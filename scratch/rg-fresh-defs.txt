@@ -1,0 +1,123 @@
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:252:opposite cap; its other two exact shell members lie outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:15:unused cap point outside that complete class.  Erasing the unused point
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:409:inside the class and one named point outside both rows. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10375:inductive FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10441:abbrev FreshThirdCrossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10457:  ¬ FreshThirdCrossRowHit P Pρ firstSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10458:    ¬ FreshThirdCrossRowHit P Pρ secondSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10463:inductive FreshThirdCapSourceNonHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10484:namespace FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10494:    (interaction : FreshThirdCapSourceInteraction P Pρ source Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10495:    (hnot : ¬ FreshThirdCrossRowHit P Pρ source Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10496:    FreshThirdCapSourceNonHit P Pρ source Q := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10510:end FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10519:      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10521:      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10523:      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10524:      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10533:inductive FreshThirdNonCanonicalInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10590:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10592:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10594:      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10596:  by_cases hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10597:  · by_cases hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10603:        (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10606:      (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10637:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10638:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10762:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10763:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10885:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10886:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10929:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10930:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10992:theorem false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10995:    (hfirst : FreshThirdCrossRowHit P Pρ firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10996:    (hsecond : FreshThirdCrossRowHit P Pρ secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11090:    Nonempty (FreshThirdCapSourceInteraction P Pρ source Q) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11172:inductive FreshThirdTwoCapSourceObstruction : Type where
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11177:        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11179:        FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11180:      FreshThirdTwoCapSourceObstruction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11204:      FreshThirdTwoCapSourceObstruction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11206:namespace FreshThirdTwoCapSourceObstruction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11212:    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11214:      FreshThirdCrossRowHit P Pρ C.firstSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11215:        FreshThirdCrossRowHit P Pρ C.secondSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11225:    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11227:      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11234:    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11243:    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11249:          FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11251:            FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11266:    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11284:      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11286:        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11289:        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11290:      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11292:      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11293:      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11298:        FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11300:        FreshThirdNonCanonicalInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11306:    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11312:        false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11317:end FreshThirdTwoCapSourceObstruction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11328:      FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11341:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11343:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11348:        (h : FreshThirdCrossRowHit P Pρ source Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11411:            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11437:                    (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11467:              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11514:                        (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12934:    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12978:    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12982:      FreshThirdTwoCapSourceObstruction.false_of_hasDistinctCrossRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12996:        (FreshThirdTwoCapSourceObstruction.residualCase_of_isResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12998:          (FreshThirdTwoCapSourceObstruction.isResidual_of_not_hasDistinctCrossRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13012:      FreshThirdSameCapCrossRowAlignment P Pρ Q C.firstSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13017:        FreshThirdSameCapCrossRowAlignment P Pρ Q C.secondSource
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:350:        .exclusion inside outside)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:101:  | exclusion (inside outside : Label)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:132:      .exclusion inside outside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:188:  | .exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:191:          (firstApexLocalEqualityIndex inside outside)))]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:251:  | .exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:254:      (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:255:          ⟨1, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:256:        localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:278:      | .exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:281:          (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:282:              ⟨1, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:283:            localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:314:    (P : CanonicalPacket L) {inside outside : Label}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:317:    ¬ P.localEqHolds ⟨1, inside, outside⟩ := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:354:      | .exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:357:          (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:358:              ⟨1, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:359:            localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:391:  | exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:393:      obtain ⟨hinside, houtside, hrow⟩ := hvalid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:403:              (firstApexLocalEqualityIndex inside outside)) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:406:          exact P.not_localEqHolds_one_of_shell_outside hinside' houtside'
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:410:            hinside' houtside' heq.symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:242:  | .exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:245:      (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:246:          ⟨1, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:247:        localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:300:  | exclusion inside outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:302:      obtain ⟨hinside, houtside, hrow⟩ := hvalid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:310:              (firstApexLocalEqualityIndex inside outside)) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:313:          exact P.not_localEqHolds_one_of_shell_outside hinside' houtside'
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:317:            hinside' houtside' heq.symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:143:        ⟨row, inside, outside⟩
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:179:      occurrence.inside occurrence.outside)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:231:                occurrence.inside occurrence.outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:232:            ⟨occurrence.row.center, occurrence.inside, occurrence.outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:235:                occurrence.inside occurrence.outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:253:  obtain ⟨hindex, hinside, houtside, hrow⟩ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:265:    hrow hinside houtside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:133:    (selected : G3Case) (center inside outside : Label)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:138:      localEqRow localEquality = ⟨center, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:172:      ⟨center, inside, outside⟩ hexact hinside' houtside' hlocal
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:175:      ⟨center, inside, outside⟩ hexact hinside' houtside' hlocal.symm

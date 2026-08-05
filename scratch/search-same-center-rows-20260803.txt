@@ -1,0 +1,9 @@
+The matched construction is the equal-center exact-four residual case:
+
+- It is modeled by `FreshThirdEqualCenterExactFourRow`, which says the two cap-source rows in the equal-center residual are the **same exact four-point row**, and that row contains exactly the two cap sources and the two fresh sources.
+- In the same arm, `allCollisionEndpointsOmitted_of_equalCenterHits` states that all retained collision endpoints are omitted by both cap-source rows (and thus consistent with that equal-center, shared-row setup).
+
+So the documented pattern is a shared cap-source exact-four row in the equal-center residual, with the collision/freshness constraints enforced by the equal-center collision lemmas.
+  handles: PVNVZW NVM1Z4  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show --lean TG1A3M && nthdegree docs show --lean R0MJAR && nthdegree docs show --lean ZM5HBT && nthdegree…, nthdegree docs search --lean "canonical cap residual", nthdegree docs search --lean "two selected exact-four rows same blocker center", nthdegree docs search --lean "same-cap fiber source canonical cap", nthdegree docs search --lean "exact-four canonical residual cap", nthdegree docs search --lean "cross-row residual", nthdegree docs show --lean PVNVZW && nthdegree docs show --lean K48G47 && nthdegree docs show --lean NVM1Z4 && nthdegree…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

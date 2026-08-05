@@ -1,0 +1,45 @@
+QQ staged-q1 variable-order/target search (Singular 4.4.1)
+
+Source: scratch/q1-power-search/x_subst_qq.singular, with bu=bs+x.
+Generators: H=(e2,e5,e7,e8,e9,q1). For each order, G=liftstd(H,Tmat)
+was computed over QQ with dp ordering; `TARGET_ZERO` means reduce(target,G)=0.
+
+Remainder-only scan:
+
+order (br,bs,x,bv,bw):
+  x*(br-bv)*bv*bw       basis=61 zero=1
+  x^2*bv^2*bw           basis=61 zero=0
+  x^4*bv^2*bw           basis=61 zero=0
+  x^8*bv^2*bw           basis=61 zero=1
+
+order (x,br,bv,bw,bs):
+  x*(br-bv)*bv*bw       basis=60 zero=1
+  x^2*bv^2*bw           basis=60 zero=0
+  x^4*bv^2*bw           basis=60 zero=0
+  x^8*bv^2*bw           basis=60 zero=1
+
+order (x,bv,bw,br,bs):
+  x*(br-bv)*bv*bw       basis=65 zero=1
+  x^2*bv^2*bw           basis=65 zero=0
+  x^4*bv^2*bw           basis=65 zero=0
+  x^8*bv^2*bw           basis=65 zero=1
+
+Full lift/reconstruction for target x*(br-bv)*bv*bw:
+
+order (br,bs,x,bv,bw):
+  lift rows=61 nz=1 terms=1 maxterms=1 maxdeg=0 maxcoeffchars=907;
+  reconstructed from H: zero=1, D_nz=6, D_terms=5515, D_maxterms=1298.
+
+order (x,br,bv,bw,bs):
+  lift rows=60 nz=1 terms=1 maxterms=1 maxdeg=0 maxcoeffchars=886;
+  reconstructed from H: zero=1, D_nz=6, D_terms=5735, D_maxterms=1379.
+
+order (x,bv,bw,br,bs):
+  lift rows=65 nz=1 terms=1 maxterms=1 maxdeg=0 maxcoeffchars=433;
+  reconstructed from H: zero=1, D_nz=6, D_terms=5499, D_maxterms=1326.
+
+Conclusion: x*(br-bv)*bv*bw is an exact ideal consequence in all tested
+orders, with a one-row basis lift; x^2*bv^2*bw and x^4*bv^2*bw are not
+ideal consequences. x^8*bv^2*bw is an exact consequence in all tested
+orders (full reconstruction metrics were retained previously for the first
+order in scratch/q1-power-search/REPORT.txt).

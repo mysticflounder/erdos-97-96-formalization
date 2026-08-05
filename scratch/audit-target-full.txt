@@ -1,0 +1,176 @@
+      (source_witness : FirstFiberCapSourceWitness P Pρ source)
+      (source'_witness : FirstFiberCapSourceWitness P Pρ source')
+      (cross_membership :
+        TwoCapSourcesMutualCrossMembership (H := H) source source')
+      (blockers_eq : H.blockerVertex source = H.blockerVertex source')
+      (all_endpoint_omission :
+        AllCollisionEndpointsOmitted P Pρ source source')
+      (blocker_mem_capInterior :
+        H.centerAt source.1 source.2 ∈
+          S.capInteriorByIndex S.oppIndex1)
+      (shell_inter_cap_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+            S.capByIndex S.oppIndex1 =
+          {source.1, source'.1}) :
+      FreshThirdTwoCapSourceObstruction
+
+namespace FreshThirdTwoCapSourceObstruction
+
+/-- The normalized two-source packet contains two distinct new centers on the
+fresh pair's perpendicular bisector.  The stronger equal-blocker/all-endpoint-
+omission constructor intentionally does not erase into this generic case. -/
+def HasDistinctCrossRows :
+    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+  | .normalized C Q _ _ =>
+      FreshThirdCrossRowHit P Pρ C.firstSource Q ∧
+        FreshThirdCrossRowHit P Pρ C.secondSource Q ∧
+        H.centerAt C.firstSource.1 C.firstSource.2 ≠
+          H.centerAt C.secondSource.1 C.secondSource.2
+  | .sameBlockerAllEndpointOmission .. => False
+
+/-- Positive residual interface left after the checked three-center arm.  The
+all-endpoint-omission constructor keeps all of its stronger fields in
+`obstruction`; the proposition merely marks that it is already a residual
+constructor rather than a generic normalized packet. -/
+def IsResidual :
+    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+  | .normalized C Q _ _ =>
+      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q
+  | .sameBlockerAllEndpointOmission .. => True
+
+/-- Constructor-level positive residual packet consumed by the load-bearing
+leaf.  Unlike `IsResidual`, the normalized arm has already converted failed
+cross-row hits into equal-blocker or source-row-omission data. -/
+def ResidualCase :
+    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+  | .normalized C Q _ _ => FreshThirdNormalizedResidualCase P Pρ C Q
+  | .sameBlockerAllEndpointOmission .. => True
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Convert the negative guard used by the coordinator into the explicit
+three-arm residual normal form. -/
+theorem isResidual_of_not_hasDistinctCrossRows
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hrows : ¬ obstruction.HasDistinctCrossRows) :
+    obstruction.IsResidual := by
+  cases obstruction with
+  | normalized C Q _ _ =>
+      by_cases hfirst :
+          FreshThirdCrossRowHit P Pρ C.firstSource Q
+      · by_cases hsecond :
+            FreshThirdCrossRowHit P Pρ C.secondSource Q
+        · by_cases hcenters :
+              H.centerAt C.firstSource.1 C.firstSource.2 =
+                H.centerAt C.secondSource.1 C.secondSource.2
+          · exact Or.inr (Or.inr hcenters)
+          · exact (hrows ⟨hfirst, hsecond, hcenters⟩).elim
+        · exact Or.inr (Or.inl hsecond)
+      · exact Or.inl hfirst
+  | sameBlockerAllEndpointOmission => trivial
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Expose the strict residual as constructor-specific positive data before it
+reaches the single load-bearing leaf. -/
+theorem residualCase_of_isResidual
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hresidual : obstruction.IsResidual) :
+    obstruction.ResidualCase := by
+  cases obstruction with
+  | normalized C Q firstInteraction secondInteraction =>
+      exact freshThirdNormalizedResidualCase_of_crossRowResidual
+        (P := P) (Pρ := Pρ) C Q firstInteraction secondInteraction hresidual
+  | sameBlockerAllEndpointOmission => trivial
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The positive three-center subcase of the obstruction is source-clean. -/
+theorem false_of_hasDistinctCrossRows
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hrows : obstruction.HasDistinctCrossRows) :
+    False := by
+  cases obstruction with
+  | normalized C Q _ _ =>
+      exact
+        false_of_two_freshThirdCrossRowHits_distinctCenters
+          (P := P) (Pρ := Pρ) Q C.firstSource C.secondSource
+          hrows.1 hrows.2.1 hrows.2.2
+  | sameBlockerAllEndpointOmission => exact hrows
+
+end FreshThirdTwoCapSourceObstruction
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Constructor-specific terminal for the normalized fresh-third packet after
+the checked distinct-three-center arm has been removed. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) :
+    False := by
+  sorry
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe in
+/-- Simultaneous omission of all four collision endpoints removes the sole
+non-deletion arm of the retained first-fiber descent.  Consequently one of
+the four collision-source deletions preserves K4 at the cap-source blocker,
+the first apex, the opposite collision blocker, and the other two robust
+Moser apices. -/
+theorem collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (source_witness : FirstFiberCapSourceWitness P Pρ source)
+    (all_endpoint_omission :
+      AllCollisionEndpointsOmitted P Pρ source source') :
+    ATailFirstFiberOverlapDescent.FirstFiberCollisionFiveCenterDeletionResidual
+      P Pρ source S.oppApex2 S.surplusApex := by
+  have hP₁omit :=
+    (all_endpoint_omission P.source₁ (by simp)).1
+  have hPρ₁omit :=
+    (all_endpoint_omission Pρ.source₁ (by simp)).1
+  have hdescent :=
+    ATailFirstFiberOverlapDescent.firstFiber_cycleAlignedHits_or_collisionFiveCenterDeletion
+        P Pρ Q source source_witness.2.2.2.1
+        (Or.inl hP₁omit) (Or.inl hPρ₁omit)
+        LPρ hLPρ MPρ LP hLP MP
+        (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+        (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+  rcases hdescent with hcycle | hdeletion
+  · exact False.elim (hP₁omit hcycle.1)
+  · exact hdeletion
+
+/-- Exact-row form of the four first-fiber deletion arms.  Each arm records
+five q-free cardinal-four rows and the deleted source's distinct actual
+blocker, where the same deletion is blocked. -/
+abbrev FirstFiberCollisionFiveCenterExactRowsResidual
+    (P : RetainedInteriorBlockerCollision R)
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (a₂ a₃ : ℝ²) : Prop :=
+  Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H P.source₁ P.source₁_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H Pρ.source₁ Pρ.source₁_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt P.source₁ P.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H P.source₂ P.source₂_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H Pρ.source₂ Pρ.source₂_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt P.source₁ P.source₁_mem_A) a₂ a₃)
+

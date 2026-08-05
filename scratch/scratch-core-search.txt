@@ -1,0 +1,220 @@
+scratch/current-freshthird-anchor-slice.lean:3:  rcases ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+scratch/current-freshthird-anchor-slice.lean:22:theorem exists_distinctRadius_commonDeletionParent
+scratch/current-freshthird-anchor-slice.lean:50:  rcases CriticalPairFrontier.originalUnique_or_commonDeletionParent
+scratch/retained_directed_omission_probe_20260731.lean:7:#print axioms Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core
+scratch/retained_directed_omission_probe_20260731.lean:8:#print axioms Problem97.ATailFrontierLiveClosure.nonempty_retainedOmissionAllLargeNormalForm
+scratch/retained_directed_omission_probe_20260731.lean:9:#print axioms Problem97.ATailFrontierLiveClosure.triApexAllLargeContext_of_residuals
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFivePlacementXuPeerU.lean:121:      nonempty_commonDeletionTwoCenterPacket
+scratch/run-tmp/exact_four_second_radius_kernel_snippets_20260726.lean:151:  rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/retained-directed-omission-audit-20260731.md:16:* `nonempty_retainedOmissionAllLargeNormalForm` (around 6804), whose body
+scratch/retained-directed-omission-audit-20260731.md:21:  `exists_fresh_firstCap_commonDeletion_of_reverseHit`;
+scratch/retained-directed-omission-audit-20260731.md:23:  `triApexAllLargeContext_of_residuals` (around 6879); and
+scratch/retained-directed-omission-audit-20260731.md:25:  `false_of_retainedOmission_triApexAllLarge_core` (around 6917), whose body
+scratch/triapex-incidence-obstruction/retained-core-producer-audit.md:1:# Producer audit for `false_of_retainedOmission_triApexAllLarge_core`
+scratch/collision-equality-arms/REPORT.md:30:`commonDeletionRows_imply_source₁_cross_omissions` checks that the
+scratch/triapex-incidence-obstruction/round4-universal-lift-audit.md:7:`false_of_retainedOmission_triApexAllLarge_core`.
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFivePlacementXvPeerU.lean:260:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFivePlacementXvPeerU.lean:264:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/atail-arm2/SI1CoupledFECenterAnalysis.lean:121:theorem fe_offRadius_commonDeletion_centers
+scratch/atail-arm2/SI1CoupledFECenterAnalysis.lean:143:#print axioms fe_offRadius_commonDeletion_centers
+scratch/collision-equality-arms/CollisionEqualityArms.lean:135:theorem commonDeletionRows_imply_source₁_cross_omissions
+scratch/collision-equality-arms/CollisionEqualityArms.lean:204:#print axioms commonDeletionRows_imply_source₁_cross_omissions
+scratch/census-554/STATE.md:466:  all 8 banked zero-cross-cap rows subsumed by the 107. msolve output
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyPlacementCoordinator.lean:143:      (commonDeletion :
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFiveGoodSourceClosure.lean:267:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFiveGoodSourceClosure.lean:271:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/retained-omission-e1/post-core-dependency-audit/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/post-core-dependency-audit/REPORT.md:48:| `false_of_retainedOmission_triApexAllLarge_core` | `FrontierLiveClosure.lean:6918` | Direct obligation | Anchored `sorry`; load-bearing. |
+scratch/retained-omission-e1/post-core-dependency-audit/REPORT.md:58:| `exists_distinctRadius_commonDeletionParent` | `FrontierLiveClosure.lean:7431` | None | Checked producer.  Turns a distinct K4 radius at the first apex into another `FrontierCommonDeletionParentResidual`.  Candidate to move before the core. |
+scratch/retained-omission-e1/post-core-dependency-audit/REPORT.md:133:3. `exists_distinctRadius_commonDeletionParent`.
+scratch/retained-omission-e1/post-core-dependency-audit/REPORT.md:153:at `rho`.  Apply `exists_distinctRadius_commonDeletionParent` to get a new
+scratch/retained-omission-e1/round5-v3-global-bank-audit/REPORT.md:8:Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core
+scratch/retained-omission-e1/same-shell-superadditivity/REPORT.md:69:`false_of_retainedOmission_triApexAllLarge_core` by itself.  In the six-point
+scratch/retained-omission-e1/round5-bank-audit/REPORT.md:9:  .false_of_retainedOmission_triApexAllLarge_core
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:5:**No existing theorem formalizes, or is directly instantiable from, the exact-`n = 15` 31-clause obstruction on `R0,R1,R2,K7,K8`.**
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:7:Anchor: `Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core` at `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6918`. It remains an explicit load-bearing `sorry`. The round-6 full-multiplicity probe records one schema-v4 `fresh_SSS_k1_d3_f2` result, `unsat` (Z3 4.15.3), at `round6-full-multiplicity/artifacts/20260801T220757.354027Z-cases-pid20770/summary.json`. This is exact external evidence for its finite relaxation, not a Lean proof.
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:9:The frozen Boolean core has exactly 31 clauses: 9 cyclic-alternation cuts (1332, 1334, 1335, 1381, 1383, 1384, 1569, 1570, 1613), 18 exact-rich-profile clauses (12, 16--20, 48, 51--55, 84, 86--90), and 4 global-K4 clauses (231, 247, 264, 278). It uses only `R0,R1,R2,K7,K8`.
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:23:| `false_of_two_centers_equidistant_pair_{after,enclosed,split,before}`: each stated CCW four-point order plus two centers each satisfying `dist center p1 = dist center p2` gives `False`. `dist_eq_dist_of_mutual_bisector` transports mutual equalities. | `P97/ATail/TwoCenterBisectorParity.lean:53,74,94,112,134`. Public but not anchor-imported (only a historical certificate imports it). Source-clean, no local `#print axioms` result or fresh audit: transitive axioms **UNKNOWN**. | Set centers to `K7,K8` and endpoints to two row points. Missing: both full equality pairs and a certified CCW order; profile/cardinality clauses do not supply either. |
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:29:| RVOL `u5_common_bisector_triple_incompatibility`; and `qcritical_exact_selected_double_bisector_incompatibility` (single-bisector sibling included). The former needs positive `dist p q`, noncollinear common-circle triple, and a deleted K4 class; the latter needs `U5DangerousTriple`, critical/deleted K4 classes, and cross-memberships. | `U5GlobalIncidenceKernels.lean:146`, `U5GlobalIncidenceQCriticalExactSelectedDoubleBisector.lean:26`, sibling `...QCriticalSelectedBisector.lean:131`; RVOL-reachable/source-proved inventory entries, fresh closure **UNKNOWN**. | Nearest class-level K7/K8 analogue. Missing the entire metric/class packet and positive cross incidences. Establishing those by invoking the incompatibility theorem is circular. |
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:30:| RVOL `exists_selectedFourClass_of_globalK4 : HasNEquidistantProperty 4 A -> center ∈ A -> Nonempty (SelectedFourClass A center)`. | `p97-rvol/lean/RVOL/P97/U1CarrierInjection.lean:1029`; RVOL-reachable/source-proved, fresh closure **UNKNOWN**. | Selects a K4 row only. Missing ambient lift, identification with `K7/K8`, full equality-class cardinality, and all nine cuts. |
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:31:| Legacy/general `three_common_equidistant_centers_eq`: a noncollinear triple simultaneously equidistant from two centers forces the centers equal. Near-misses: `pointChord_strictMono_of_angle_lt_radius`, `inner_endpoint_chord_nonpos_of_cospherical_angles`, `midpoint_vsub_orthogonal`, and `n9Point_four_radon_partition` with partition-false consumers. | legacy `~/projects/math-projects/erdos/97/lean/N9Geometry.lean:19096,1427,1832,1268,69`; older-general counterpart `~/erdos-general-theorem/97/lean/N9Geometry.lean:19309,1489,1894,1268,69`. Public `source_reachable=true`, source-proved/no-sorry; archival roots, no recorded axiom/dependency graph: **UNKNOWN**. | Map triple to row points and centers to `K7,K8`. Missing all six equalities and noncollinearity (or positive radius/angle-order/convex/no-crossing data for near-misses). The bridge is geometric realization, not K4 counting. |
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:42:    (k : Fin 2 -> Fin 15 -> Bool)  -- K7,K8
+scratch/retained-omission-e1/round6-five-support-global-bank/REPORT.md:51:theorem retainedOmission_to_round6_fiveSupport31Clauses
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:32:abbrev K8 := (kOptions 8).attach
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:46:def core31 (r0 : R0) (r1 : R1) (r2 : R2) (k7 : K7) (k8 : K8) : Prop :=
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:58:    (k7 : K7) (k8 : K8) : Decidable (core31 r0 r1 r2 k7 k8) := by
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:63:def ExistsK8 (r0 : R0) (r1 : R1) (r2 : R2) (k7 : K7) : Prop :=
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:64:  ∃ k8 : K8, core31 r0 r1 r2 k7 k8
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:66:instance existsK8Decidable (r0 : R0) (r1 : R1) (r2 : R2) (k7 : K7) :
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:67:    Decidable (ExistsK8 r0 r1 r2 k7) := by
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:68:  unfold ExistsK8
+scratch/retained-omission-e1/round5-core-mining/FiniteFiveSupportCore.lean:72:  ∃ k7 : K7, ExistsK8 r0 r1 r2 k7
+scratch/retained-omission-e1/round14-secondcap-global-bank/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round14-secondcap-global-bank/REPORT.md:42:two-hit theorem.  This blocks a tempting but invalid cross-cap localization
+scratch/retained-omission-e1/round14-secondcap-global-bank/REPORT.md:72:| Current `ATailRetainedMatchingEndpointContinuation.nonempty_threeDistinctEndpointCrossOrCycle` | Three-blocker path gives `first ∈ selectedAt next` or a third common deletion. | The positive arm is again an actual blocker shell at `next`, not a rich-apex I2 class. The cycle arm is a selected-subset packet. No bridge maps either to a cross-cap rich two-hit. |
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:105:- `K7 = {x | k4_7_x}` and `K8 = {x | k4_8_x}`.
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:113:The four K4 clauses say `|K7|=|K8|=4`, `7∉K7`, and `8∉K8`.
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:123:| 1381 | `K8,R0` | `U \ {8,12}` |
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:124:| 1383 | `K8,R1` | `{0,1,2,3,4,5,6,7,12,14}` |
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:125:| 1384 | `K8,R2` | `{0,1,2,3,9,10,11,13}` |
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:136:First, the last three alternation clauses force the three apex-cover facts
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:154:  interiors cover `A`, `B\{7}`, `C`, and 12; the two other apex-cover
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:159:  and 1384 covers `U\{8}` and gives `|K8|≤3`, contradicting `|K8|=4`.
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:171:- zero failures of any of the three apex-cover facts;
+scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md:182:2. a source-faithful construction of `R0,R1,R2,K7,K8` from the exact-15 SSS
+scratch/retained-omission-e1/round5-v2-global-bank-audit/REPORT.md:11:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round5-v2-global-bank-audit/REPORT.md:126:| `common_deletion_packets` | `ATailCommonDeletionTwoCenter.CommonDeletionTwoCenterPacket` and `nonempty_commonDeletionTwoCenterPacket` in `ATail/CommonDeletionTwoCenter.lean` | packet already carries exact four rows, distinct centers, and overlap `<= 2` |
+scratch/retained-omission-e1/round5-v2-global-bank-audit/REPORT.md:235:theorem exists_nonalternating_common_radius_pair_of_retainedOmission_triApexAllLarge
+scratch/retained-omission-e1/round6-full-multiplicity/README.md:4:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/power-rank-q-arms/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round6-full-multiplicity/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round6-full-multiplicity/REPORT.md:44:## Follow-up: cross-cap rich-slice localization
+scratch/retained-omission-e1/round6-full-multiplicity/REPORT.md:69:`artifacts/20260801T224403.436616Z-caplocal-pid70174/`. Thus cross-cap
+scratch/ExactFourRigid221GlobalDeletionSplit.lean:1423:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/ExactFourRigid221GlobalDeletionSplit.lean:1427:  rcases nonempty_commonDeletionTwoCenterPacket
+scratch/retained-omission-e1/round12-global-bank-audit/REPORT.md:5:Target audited: `Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round12-global-bank-audit/REPORT.md:11:nthdegree docs search --lean --agentic 'positive cross-cap rich two-hit full-shell incidence from retained common-deletion tri-apex all-large caps'
+scratch/retained-omission-e1/round12-global-bank-audit/REPORT.md:14:It found no theorem that derives a positive cross-cap rich two-hit or full-shell
+scratch/retained-omission-e1/round12-global-bank-audit/REPORT.md:29:| `Problem97.U1Depth5.CriticalRowPacket.full_shell_exact` | `lean/RVOL/P97/U1Depth5Prefix.lean:525`; import `RVOL.P97.U1Depth5Prefix` | Source-proved bank theorem, but it only identifies four selected row points after an already-given shell-radius equality.  It neither creates a cross-cap hit nor establishes full-shell membership from the E1 inputs. |
+scratch/retained-omission-e1/round12-global-bank-audit/REPORT.md:30:| cross-cap edge / cap-witness separation | `lean/Erdos9796Proof/P97/Dumitrescu/L7.lean:203`; import `Erdos9796Proof.P97.Dumitrescu.L7` | A negative compatibility fact: cross-cap edges are not cap-witness pairs.  It cannot provide the requested positive incidence. |
+scratch/retained-omission-e1/round6-fresh-arm-shared-base/REPORT.md:7:`false_of_retainedOmission_triApexAllLarge_core`.  No Lean/Lake invocation,
+scratch/retained-omission-e1/round6-edm-cegar/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/SecondCapEndpointBridgeCheck.lean:27:  rcases nonempty_retainedInteriorCommonDeletion P with ⟨commonDeletion⟩
+scratch/retained-omission-e1/SecondCapEndpointBridgeCheck.lean:30:    commonDeletion := commonDeletion
+scratch/retained-omission-e1/round6-full-multiplicity-bank/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round6-other-cap-double-hit-bank/REPORT.md:14:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round6-other-cap-double-hit-bank/REPORT.md:67:| radius `r` and **two shell hits** in `SelectedClass(...j,r) ∩ capInteriorByIndex j` | **No** | This is the first missing antecedent. Neither `Q` nor `G` has a cross-cap shell-incidence field or an existential radius/point pair. |
+scratch/retained-omission-e1/round6-positive-overlap-strategy/REPORT.md:5:Anchor: `Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round6-positive-overlap-strategy/global-count-audit.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/cap-between-source-audit/REPORT.md:8:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/cap-between-source-audit/REPORT.md:170:data, a global center-count inequality, and the no-three-apex-cover condition
+scratch/retained-omission-e1/round7-collision-three-hit-preflight/REPORT.md:24:| tri-apex all-large residual chain `B,L,N,T` | **No (only flattened consequences)** | G retains `cap_card_ge_six`, indexed richness, the cover cardinality bound, and no-three-apex-cover; it cannot be inverted to the dependent residual witnesses required by the candidate. |
+scratch/retained-omission-e1/round7-collision-three-hit-preflight/REPORT.md:48:exists_three_hit_of_retainedOmissionAllLargeNormalForm
+scratch/retained-omission-e1/round7-collision-three-hit-preflight/REPORT.md:60:`exists_two_distinctRadiusBlockerCollisions_of_retainedOmissionAllLargeNormalForm`,
+scratch/retained-omission-e1/round6-power-matrix-bank/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round13-global-rich-two-hit-localization/README.md:4:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round13-second-cap-cegar-audit/REPORT.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/general-critical-shell-cover/REPORT.md:8:ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core
+scratch/retained-omission-e1/general-critical-shell-cover/REPORT.md:233:theorem retainedOmission_forces_kalmanson_equalities
+scratch/BlockerVThreeCommonDeletionPackets.lean:69:    nonempty_commonDeletionTwoCenterPacket
+scratch/retained-omission-e1/round6-ptolemy-plucker-bank/REPORT.md:4:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:1:# Post-v29 global theorem-bank audit: `false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:31:    select((tostring|test("retainedOmission|triApexAllLarge|cross.?cap|K8";"i")))]
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:46:mandatory banks matches the retained-omission/tri-apex/K8 cross-cap query.
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:54:  "false_of_retainedOmission_triApexAllLarge_core K8 cross-cap incidence retained omission tri-apex"
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:58:`false_of_retainedOmission_triApexAllLarge_core` (cross-cap retention omission
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:67:  "criticalShell_inter_otherRichCapSlice_card_le_one K8 cross-cap incidence retained omission"
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:104:is therefore an auditable K8 cross-cap incidence extraction (or another direct
+scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md:111:`false_of_retainedOmission_triApexAllLarge_core`.  Existing one-hit and
+scratch/retained-omission-e1/round5-general-cegar/REPORT.md:7:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:16:K7 = {x | k4_7_x}       K8 = {x | k4_8_x}.
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:32:7 ∉ K7, |K7| = 4,   8 ∉ K8, |K8| = 4.
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:43:| 1381 | `K8,R0` | `U \ {8,12}` |
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:44:| 1383 | `K8,R1` | `{0,1,2,3,4,5,6,7,12,14}` |
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:45:| 1384 | `K8,R2` | `{0,1,2,3,9,10,11,13}` |
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:50:The finite contradiction is the apex-cover split.  The rich--rich cuts force
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:55:analogous `K8` domains cover `U \ {8}`, yielding `|K8| ≤ 3` against
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:56:`|K8| = 4`.
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:78:is exactly the branch endpoint and is reusable for either `K7` or `K8`.
+scratch/retained-omission-e1/round5-general-cegar/FINITE-SET-SYSTEM-LEAN-ROUTE-R2.md:81:profile/apex-cover bookkeeping and invoke this lemma twice.  It should not be
+scratch/atail-force/r-anchored-221-consumer/AnchoredTwoRowCoverConsumer.lean:111:theorem exists_offSurplus_sharedRow_commonDeletion
+scratch/atail-force/r-anchored-221-consumer/AnchoredTwoRowCoverConsumer.lean:147:#print axioms exists_offSurplus_sharedRow_commonDeletion
+scratch/retained-omission-e1/round5-general-cegar/V15-GLOBAL-THEOREM-BANK.md:19:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round5-general-cegar/V15-GLOBAL-THEOREM-BANK.md:42:  .false_of_retainedOmission_triApexAllLarge_core
+scratch/retained-omission-e1/round5-general-cegar/V15-GLOBAL-THEOREM-BANK.md:203:theorem exists_exactOffCircleCore_of_retainedOmission_triApexAllLarge
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:127:    (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:144:    commonDeletion.packet.actual_blocker_ne_center₁
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:145:    commonDeletion.packet.actual_blocker_ne_center₂
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:157:    (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:174:        commonDeletion hwSupport hqReturn hwReturn)
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:186:    (_commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:211:    (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:224:    escape.point_mem_A commonDeletion.packet.actual_blocker_ne_center₁
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:236:    (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius) : Type
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:283:    (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius) :
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:284:    Nonempty (OffRadiusDirectedOutcome escape offRadius commonDeletion) := by
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:289:        (crossMembership_offRadius_nonreturn commonDeletion hwSupport)⟩
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:292:        commonDeletion companion
+scratch/atail-force/offradius-directed-nonreturn/OffRadiusDirectedNonreturn.lean:297:            commonDeletion companion hqReturn hwReturn)⟩
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:47:  | commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:52:private theorem production_commonDeletion_of_scratch
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:61:  exact nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:77:      Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.firstApexUnique_or_commonDeletion_or_spent
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:85:    rcases production_commonDeletion_of_scratch packet with
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:87:    exact ⟨FrontierCoupledTwoFourRadiusConsumedOutcome.commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:90:    rcases entry.exists_commonDeletion with
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:92:    rcases production_commonDeletion_of_scratch packet with
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:94:    exact ⟨FrontierCoupledTwoFourRadiusConsumedOutcome.commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:99:theorem protectedOriginal_or_commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:110:  | commonDeletion deleted center packet =>
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/FrontierCoupledTwoFourRadiusConsumer.lean:114:#print axioms protectedOriginal_or_commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/REPORT.md:10:protectedOriginal_or_commonDeletion
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/REPORT.md:51:`ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket`, so the
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/REPORT.md:94:protectedOriginal_or_commonDeletion:
+scratch/atail-force/frontier-coupled-two-four-radius-consumer/REPORT.md:105:`protectedOriginal_or_commonDeletion R`:
+scratch/atail-force/unique4-singleton-repeat-producer/REPORT.md:222:cross-cap two-center consumer; and the fourth requires additional incidence
+scratch/retained-omission-e1/round5-general-cegar/V19-TERMINAL-GLOBAL-THEOREM-BANK.md:11:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round5-general-cegar/V19-TERMINAL-GLOBAL-THEOREM-BANK.md:30:  cross-cap incidence or a proof reducing the live residual to this finite
+scratch/atail-force/period3-common-deletion-coupling-audit/REPORT.md:43:| `exists_third_commonDeletionSource` | A third point of the physical radius class outside `B1`, whose deletion preserves K4 at both centers; see `LargeCapUniqueFiveCommonDeletionNormalForm.lean:257-270`. | Its statement deliberately does not place the third point in the strict cap interior.  It therefore cannot be inserted into the physical transition orbit without a new geometric fact. |
+scratch/atail-force/global-k4-extension/REPORT.md:150:- the preferred h4/h5 roles vary across caps, so there is no fixed cap-label
+scratch/atail-force/r-anchored-f2-supportheavy-handler/AnchoredF2SupportHeavyHandler.lean:14:packet with `commonDeletionAtLiveCenter`, while the provenance-bearing F2 work
+scratch/atail-force/r-anchored-f2-supportheavy-handler/AnchoredF2SupportHeavyHandler.lean:305:`commonDeletionAtLiveCenter`. -/
+scratch/atail-force/r-anchored-f2-supportheavy-handler/AnchoredF2SupportHeavyHandler.lean:410:  commonDeletion :
+scratch/atail-force/r-anchored-f2-supportheavy-handler/AnchoredF2SupportHeavyHandler.lean:430:    exact E.commonDeletion.eliminate N.q_mem_surplus O
+scratch/atail-force/r-anchored-f2-supportheavy-handler/REPORT.md:9:`commonDeletionAtLiveCenter` is deliberately not substituted for that packet:
+scratch/atail-force/r-anchored-f2-supportheavy-handler/REPORT.md:45:`commonDeletionAtLiveCenter X.toSharedRowCommonDeletionPacket hcenter` and
+scratch/atail-force/all-reverse-parent-return-forcing/REPORT.md:37:- `physicalSecondApex_commonDeletion_robust_or_critical`;
+scratch/atail-force/onradius-cross-nonreturn/OnRadiusCrossNonreturn.lean:367:    · rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/onradius-cross-nonreturn/OnRadiusCrossNonreturn.lean:384:    · rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/onradius-cross-nonreturn/OnRadiusCrossNonreturn.lean:388:      rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/r-two-off-live-failure/REPORT.md:113:  (commonDeletion_firstRow_eq_liveBase C) hfail
+scratch/atail-force/physical-alignment-bank-match/REPORT.md:11:   `exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen`
+scratch/atail-force/physical-alignment-bank-match/REPORT.md:104:`Problem97.ATailCommonDeletionCriticalExpansionScratch.commonDeletion_successor_or_alignedCriticalPair`,
+scratch/atail-force/physical-alignment-bank-match/REPORT.md:142:`Problem97.ATailCommonDeletionUniformConsumerScratch.physicalSecondApex_commonDeletion_robust_or_swappedUniqueFour`
+scratch/retained-omission-e1/round5-general-cegar/artifacts-v11/20260802T093313.097282Z-retry-pid99343/PARTIAL-CANARY-AUDIT.md:5:- Target: `Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/atail-force/physical-alignment-bank-match/PhysicalAlignmentBankMatch.lean:139:  rcases exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:128:private theorem outcome_of_commonDeletionPacket
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:135:  rcases physicalSecondApex_commonDeletion_robust_or_critical C with
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:156:    rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:159:    exact outcome_of_commonDeletionPacket R C
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:163:    rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean:166:    exact outcome_of_commonDeletionPacket R C
+scratch/atail-force/unique5-distinct-hybrid-terminal/REPORT.md:53:physicalSecondApex_commonDeletion_robust_or_critical
+scratch/atail-force/exact-five-two-hit-producer-attempt/ExactFiveTwoHitProducerAttempt.lean:209:  rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/exact-five-two-hit-producer-attempt/ExactFiveTwoHitProducerAttempt.lean:213:  rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/exact-five-two-hit-producer-attempt/REPORT.md:137:7. `nonempty_commonDeletionTwoCenterPacket` packages both deletions with the
+scratch/atail-force/allreverse-alternative-closer/REPORT.md:182:The production `exists_third_commonDeletionSource` theorem does not bridge
+scratch/atail-force/matching-endpoint-path-terminal/MatchingEndpointPathTerminal.lean:186:    rcases nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/matching-endpoint-path-terminal/MatchingEndpointPathTerminal.lean:250:    rcases nonempty_commonDeletionTwoCenterPacket H W.first_mem_A
+scratch/retained-omission-e1/round5-general-cegar/V14-TERMINAL-AUTHENTICATION.md:6:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/retained-omission-e1/round5-general-cegar/v23-guard-support-core-pilot.md:95:`false_of_retainedOmission_triApexAllLarge_core` in
+scratch/retained-omission-e1/round5-general-cegar/v23-guard-support-core-pilot.md:97:critical-shell chain proves cross-cap radius-slice cardinality at most one, but
+scratch/atail-force/r-f2-supportheavy-k4-split/F2SupportHeavyK4Split.lean:380:    (dangerousTriple_at_commonDeletion C)
+scratch/atail-force/r-f2-supportheavy-k4-split/REPORT.md:36:- `nonempty_commonDeletionTwoCenterPacket`, whose implementation confirms the
+scratch/atail-force/r-f2-supportheavy-k4-split/REPORT.md:86:  `dangerousTriple_at_commonDeletion C`.
+scratch/atail-force/parent-exactfive-assembler/ParentExactFiveAssembler.lean:226:    | commonDeletion deleted center packet =>
+scratch/atail-force/r-full-parent-entry/ReciprocalDirectedCrossGlobalBoundary.lean:292:theorem exists_fresh_commonDeletion_or_secondApexCritical
+scratch/atail-force/r-full-parent-entry/ReciprocalDirectedCrossGlobalBoundary.lean:349:    exact nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/r-full-parent-entry/ReciprocalDirectedCrossGlobalBoundary.lean:365:#print axioms exists_fresh_commonDeletion_or_secondApexCritical
+scratch/atail-force/exact7-role-coverage-gate/DESIGN.md:83:- cross-cap bisector injectivity (at most one cap point equidistant from a
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:303:private theorem exists_commonDeletion_of_omitted_at_source
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:330:    nonempty_commonDeletionTwoCenterPacket H
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:337:theorem LeastPositiveTerminalHitPredecessor.exists_commonDeletion_or_originalPairMutualHit
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:407:        rcases exists_commonDeletion_of_omitted_at_source
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:413:      rcases exists_commonDeletion_of_omitted_at_source
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:474:        rcases exists_commonDeletion_of_omitted_at_source
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:480:      rcases exists_commonDeletion_of_omitted_at_source
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:489:theorem AmbientRobustHistoryPair.spentEntryOrbit_originalPairMutualHit_or_commonDeletion
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:510:    rcases K.hitsOriginalPairAndActualBlockerHit_or_exists_commonDeletionTwoCenterPacket with
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:512:    · rcases K.exists_commonDeletion_or_originalPairMutualHit hresidual with
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:532:#print axioms LeastPositiveTerminalHitPredecessor.exists_commonDeletion_or_originalPairMutualHit
+scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean:533:#print axioms AmbientRobustHistoryPair.spentEntryOrbit_originalPairMutualHit_or_commonDeletion
+scratch/retained-omission-e1/round5-general-cegar/README.md:5:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`
+scratch/atail-force/exact7-role-coverage-gate/REPORT.md:123:strict monotonicity, crossing/ordinal comparisons, cross-cap bisector
+scratch/atail-force/exact7-role-coverage-gate/REPORT.md:156:  This is the cross-cap bisector-parity pattern: the Kalmanson base
+scratch/atail-force/exact7-role-coverage-gate/REPORT.md:229:on the same arc side of chord (O, s0) — cross-cap bisector injectivity in
+scratch/retained-omission-e1/round5-general-cegar/V17-PRODUCTION1-GLOBAL-THEOREM-BANK.md:29:`false_of_retainedOmission_triApexAllLarge_core`, reduce its coordinator
+scratch/retained-omission-e1/round5-general-cegar/V17-PRODUCTION1-GLOBAL-THEOREM-BANK.md:35:`Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`.
+scratch/retained-omission-e1/round5-general-cegar/V17-PRODUCTION1-GLOBAL-THEOREM-BANK.md:291:2. **Positive cross-cap incidence producer.** The live source proves
+scratch/atail-force/r-full-parent-entry/CoherentRCommonDeletionProvenance.lean:507:theorem not_nonempty_commonDeletion_at_source
+scratch/atail-force/r-full-parent-entry/CoherentRCommonDeletionProvenance.lean:746:#print axioms CoherentRCommonDeletionPacket.not_nonempty_commonDeletion_at_source

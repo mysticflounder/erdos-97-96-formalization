@@ -1,0 +1,220 @@
+# `false_of_capSourceThirdCanonicalRowSurface` refactor plan
+
+## Current source-state correction
+
+As of the current 2026-07-31 worktree, the exact declaration
+
+```lean
+Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal
+  .false_of_capSourceThirdCanonicalRowSurface
+```
+
+is present in the live checkout at
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`. Its former literal
+`sorry` has been replaced by a checked exhaustive coordinator over
+`GeometricMultiplicityResidual`. Its transitive closure is still open through
+the first enlarged-fiber leaf and the strict fresh-third residual described
+below. The earlier claim that the declaration might be only a local extraction
+remains stale and should not guide the implementation. The detailed source audit is recorded in
+[`scratch/cap-source-refactor-plan-audit-20260731.md`](../scratch/cap-source-refactor-plan-audit-20260731.md).
+
+## Implementation status (2026-07-31)
+
+The first refactor stage is now installed in the live source. The earlier
+two-source packet plumbing passed a direct Lean 4.27 source compile (with the
+repository's pre-existing `sorry`s). The latest fresh-third narrowing and
+positive residual normal form also pass the repository's Lean 4.27
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure` target. That build
+refreshed the proof-blueprint source index and kernel call graph. This is not
+yet a transitive closure:
+
+* `TwoCapSourceThirdCanonicalRowSurface` retains two actual
+  `CriticalShellSystem` vertices, their distinctness, the full canonical-row
+  witnesses, and both `CrossPairDeletionView`s.
+* `twoCapSourceThirdCanonicalRowSurface_of_capEight` packages the existing
+  checked two-source producer. Because that producer is an existential in
+  `Prop` while the packet contains actual vertices, the source-clean package
+  is a `noncomputable def` using `Classical.choose` rather than a large
+  elimination.
+* `twoCapSourceThirdCanonicalRowSurface_of_capSource` lifts the existing
+  single-source cap arm without changing `hglobalCapSplit`.
+* The former root callers now target three explicit two-source residual
+  interfaces: `false_of_twoCapSources_freshThirdBlockerFiber`,
+  `false_of_twoCapSources_freshOutsideFirstBlockerFiber`, and
+  `false_of_twoCapSources_freshOutsideSecondBlockerFiber`. The second-side
+  interface is now a checked swap wrapper around the first-side interface, so
+  only the fresh-third and first-enlarged branches remain independent
+  mathematical leaves.
+* `false_of_capSourceThirdCanonicalRowSurface` is now an exhaustive checked
+  `rcases` coordinator over `GeometricMultiplicityResidual`; its transitive
+  closure still depends on the two independent leaves and the checked
+  second-side swap transport.
+
+The compatibility adapters no longer recurse into the root. There are two
+independent packet-level branches, but the checked fresh-third router exposes
+two constructor-specific terminals. Thus the current coordinator-interface
+frontier has three actual theorem obligations:
+
+* `false_of_twoCapSources_freshOutsideFirstBlockerFiber`;
+* `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`; and
+* `false_of_capSource_firstFiber_collisionFiveCenterDeletion`.
+
+After those are proved, the remaining gates are a Lake build and refreshed
+proof-blueprint/transitive-axiom audit. A clean source compile is not a claim
+that the publish target is `sorry`-free.
+
+The swap-preserving packet helper is now also source-checked: the two
+canonical-row witnesses can be exchanged while preserving the full support
+and deletion-survival views. An earlier direct Lean 4.27 compile validated the
+fresh-third positive normalization described below. Since that check, the
+equal-blocker branch has been strengthened to retain its originating
+`FreshOutsideFirstBlockerFiber` packet and simultaneous omission of all four
+collision endpoints. The direct check exposed a parser break in the new
+all-endpoint lemma, which was repaired. A subsequent guarded Lean 4.27 target
+build completed successfully and refreshed the proof-blueprint, validating
+the full Q-retaining rewire. This structural check does not discharge the three
+load-bearing terminal obligations. The packet-level
+fresh-third theorem now checks the positive same-cap terminal against both
+cap-eight sources. If neither source aligns, it passes both independently
+normalized `FreshThirdCapSourceInteraction` packets to the checked two-source
+core. The core removes the direct distinct-cross-row arm and sends only the
+strict complement to the open residual. The former single-source theorem is
+compatibility-only wiring that recovers the two-source packet before entering
+the load-bearing theorem.
+
+## Verdict
+
+[
+\boxed{\text{Refactor it—but eliminate it as a load-bearing }sorry.}
+]
+
+It should become a **checked coordinator**, while the real unresolved mathematics stays in narrower child theorems.
+
+A theorem called
+
+```lean
+false_of_capSourceThirdCanonicalRowSurface
+```
+
+suggests that `CapSourceThirdCanonicalRowSurface P Pρ` is itself contradictory. It is not the true terminal datum. The surface merely supplies:
+
+* the cap-eight bound;
+* one strict-cap source outside the four collision sources;
+* an actual third blocker distinct from both collision blockers and both physical apices;
+* its actual full exact-four row;
+* one omission/deletion-survival choice against each collision pair.
+
+The contradiction only becomes targeted after combining that surface with the separately produced geometric multiplicity residual
+
+[
+\texttt{FreshThirdBlockerFiber}
+;\lor;
+\texttt{FreshOutsideFirstBlockerFiber}
+;\lor;
+\texttt{FreshOutsideSecondBlockerFiber}.
+]
+
+The source-clean multiplicity module explicitly says these are the three non-cross-hit outputs and that its normalization alone gives no global contradiction.
+
+## The coordinator after the first refactor stage
+
+The honest *end-state* coordinator interface is approximately:
+
+```lean
+theorem false_of_capSourceSurface_and_geometricMultiplicity
+    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+    (hgeom : GeometricMultiplicityResidual P Pρ) :
+    False := by
+  rcases hgeom with hthird | hfirst | hsecond
+  · exact
+      false_of_capSource_freshThirdBlockerFiber
+        P Pρ ... hcapSource hthird
+  · exact
+      false_of_capSource_freshOutsideFirstBlockerFiber
+        P Pρ ... hcapSource hfirst
+  · exact
+      false_of_capSource_freshOutsideSecondBlockerFiber
+        P Pρ ... hcapSource hsecond
+```
+
+That dispatch is now installed in the existing root. It contains no literal
+`sorry`, and the old adapters no longer call it. It is not yet a transitive
+closure because the three two-source residual leaves it dispatches to remain
+load-bearing `sorry`s. The next acceptance gate is to prove those leaves
+source-clean, then rebuild and audit the publish spine.
+
+The outer coordinator still produces the two semantic inputs and keeps the
+existing publish interface. The refactored root performs the child dispatch
+after the outer coordinator supplies:
+
+```lean
+hglobalCapSplit :
+  CapSourceThirdCanonicalRowSurface P Pρ ∨
+    CrossBlockerCoincidence P Pρ
+```
+
+and
+
+```lean
+hgeometricMultiplicity :
+  CollisionCrossHit P Pρ ∨
+    GeometricMultiplicityResidual P Pρ
+```
+
+The cap-source arm is still passed to the root by name for compatibility; the
+root now immediately packages the two-source surface and splits the residual.
+The old root recursion has been removed, so only the three narrowed child
+theorems remain on the proof frontier.
+
+So if the local theorem has absorbed all of that into one new `sorry`, that is an architectural regression: it has merged several already-normalized semantic cases back together.
+
+The long-term API could rename it to reflect the extra datum:
+
+```lean
+false_of_capSourceSurface_and_geometricMultiplicity
+```
+
+or, if it derives multiplicity internally,
+
+```lean
+false_of_capSourceSurface_of_threeOmissionMultiplicity
+```
+
+The current name hides the actual reason the surface is supposed to be impossible.
+
+# The more important refactor: retain **two** cap sources
+
+The current `CapSourceThirdCanonicalRowSurface` exposes only one source, even
+though the checked cap-eight producer already proves the existence of two
+distinct sources. In particular, the source-clean theorem
+`exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals` is already
+available in `TwoCollisionGlobalProducer.lean`. There is not yet a production
+`TwoCapSourceThirdCanonicalRowSurface` packet, so the low-risk change is to add
+one around that producer rather than change the global split in place.
+
+The current single-source surface also throws away stronger data that is
+already proved:
+
+It retains only
+
+```lean
+∃ source, ...
+```
+
+but cap size at least eight actually produces **two distinct strict-cap sources**, each carrying the complete third-row and cross-pair deletion-survival packet. Current main already has:
+
+```lean
+exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+```
+
+and subsequently reconstructs two `FirstFiberCapSourceWitness` values from it.
+
+That suggests the genuinely useful normal form is:
+
+```lean
+structure TwoCapSourceThirdCanonicalRowSurface
+    (P : RetainedInteriorBlockerCollision R)
+    (Pρ : RetainedInteriorBlockerCollision Rρ) where
+
+  cap_card_ge_eight :
+    8 ≤ (S.capByIndex S.oppIndex1).card

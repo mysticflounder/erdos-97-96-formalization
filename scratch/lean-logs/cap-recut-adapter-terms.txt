@@ -1,0 +1,93 @@
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-254-  have hiwpB : iw < ipB :=
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-255-    open_reverse_complement_after_zero hn (lo := iw) hpBout
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:256:  rcases exists_sorted_pair_points_between (φ := φ) (lo := iu) (hi := iv)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-257-      hiuqA hqAiv hiuqB hqBiv hφqA hφqB hqAB with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-258-    ⟨q₁, q₂, iQ1, iQ2, huQ1, hQ1Q2, hQ2v, hφQ1, hφQ2, hQset⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:259:  rcases exists_sorted_triple_points_between (φ := φ) (lo := iv) (hi := iw)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-260-      hivsA hsAiw hivsB hsBiw hivsC hsCiw hφsA hφsB hφsC hsAB hsAC
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-261-      hsBC with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-262-    ⟨s1, s2, s3, is1, is2, is3, hvs1, hs1s2, hs2s3, hs3w, hφs1,
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-263-      hφs2, hφs3, hSset⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:264:  rcases exists_sorted_pair_points_after (φ := φ) (lo := iw)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-265-      hiwpA hiwpB hφpA hφpB hpAB with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-266-    ⟨p₁, p₂, iPw, iPu, hwPw, hPwPu, hφPw, hφPu, hPset⟩
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-494-  have hivqB : iv < iqB :=
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-495-    open_reverse_complement_after_zero hn (lo := iv) hqBout
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:496:  rcases exists_sorted_pair_points_between (φ := φ) (lo := iu) (hi := iw)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-497-      hiupA hpAiw hiupB hpBiw hφpA hφpB hpAB with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-498-    ⟨p₁, p₂, iP1, iP2, huP1, hP1P2, hP2w, hφP1, hφP2, hPset⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:499:  rcases exists_sorted_triple_points_between (φ := φ) (lo := iw) (hi := iv)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-500-      hiwsA hsAiv hiwsB hsBiv hiwsC hsCiv hφsA hφsB hφsC hsAB hsAC
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-501-      hsBC with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-502-    ⟨s1, s2, s3, is1, is2, is3, hws1, hs1s2, hs2s3, hs3v, hφs1,
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-503-      hφs2, hφs3, hSset⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:504:  rcases exists_sorted_pair_points_after (φ := φ) (lo := iv)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-505-      hivqA hivqB hφqA hφqB hqAB with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-506-    ⟨q₁, q₂, iQ1, iQ2, hvQ1, hQ1Q2, hφQ1, hφQ2, hQset⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-21-Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-22-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:23:`exists_sorted_pair_finset_eq`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-24-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-25-`triangle_verts_subset_adjacentCapsByIndex`.
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-36-order.  This is used by the P1 selector to orient the two strict-interior
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-37-points of a short cap by their ambient boundary indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:38:theorem exists_sorted_pair_finset_eq
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-39-    {α : Type} [LinearOrder α] [DecidableEq α] {a b : α} (hab : a ≠ b) :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-40-    ∃ x y : α, x < y ∧ ({x, y} : Finset α) = ({a, b} : Finset α) := by
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-47-linear order.  The P1 selector applies this to the three exported surplus-cap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-48-boundary indices before assigning the generated labels `s1`, `s2`, `s3`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:49:theorem exists_sorted_triple_finset_eq
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-50-    {α : Type} [LinearOrder α] [DecidableEq α]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-51-    {a b c : α} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-82-P1 selector uses this after the strict cap-interior interval export has found
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-83-the two boundary indices for a short cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:84:theorem exists_sorted_pair_points_between
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-85-    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-86-    {lo hi ia ib : Fin n} {a b : α}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-106-index.  This is the finite selector for the wrapping cap after the boundary
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-107-order is cut at the surplus apex. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:108:theorem exists_sorted_pair_points_after
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-109-    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-110-    {lo ia ib : Fin n} {a b : α}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-184-keeps the interval bounds and point-set equality needed when the P1 selector
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-185-orients a chosen three-point surplus subpacket. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:186:theorem exists_sorted_triple_points_between
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-187-    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-188-    {lo hi ia ib ic : Fin n} {a b c : α}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-205-    intro h
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-206-    exact hbc (by rw [← hib, ← hic, h])
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:207:  rcases exists_sorted_triple_finset_eq (a := ia) (b := ib) (c := ic)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-208-      hiab hiac hibc with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-209-    ⟨ix, iy, iz, hixiy, hiyiz, hset⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-270-  CircumscribedMECPacket.ofNonObtuse S.triangleNonObtuse S.hCirc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-271-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:272:/-- The circumscribed MEC packet rotated to cap index `1`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-273-@[reducible] noncomputable def circPacket2
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-274-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-285-    disk_contains_A := S.circPacket.disk_contains_A }
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-286-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:287:/-- The circumscribed MEC packet rotated to cap index `2`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-288-@[reducible] noncomputable def circPacket3
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-289-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-314-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-315-    MoserTriangle A :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:316:  (S.triangleByIndex i).rotate
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-317-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-318-/-- The circumscribed MEC packet in the support-chord frame of an indexed cap. -/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-320-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-321-    CircumscribedMECPacket A (S.capFrameByIndex i) :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:322:  (S.circPacketByIndex i).rotate
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-323-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-324-/-- The support-chord frame of an indexed cap with the base order reversed. -/

@@ -1,0 +1,2044 @@
+{
+  "A=J": {
+    "residual_orders": [
+      "OAKCX",
+      "OAKXC",
+      "OAXCK",
+      "OAXKC",
+      "OCAKX",
+      "OCAXK",
+      "OCKXA",
+      "OCXKA",
+      "OKACX",
+      "OKCAX",
+      "OKCXA",
+      "OKXAC",
+      "OXACK",
+      "OXCAK",
+      "OXCKA",
+      "OXKAC"
+    ],
+    "ranked": [
+      {
+        "predicate": "dKX>=dCX",
+        "closed_count": 8,
+        "orders": [
+          "OAXKC",
+          "OCAXK",
+          "OCAKX",
+          "OCKXA",
+          "OXACK",
+          "OXKAC",
+          "OKCAX",
+          "OKXAC"
+        ]
+      },
+      {
+        "predicate": "dCO>=dKO",
+        "closed_count": 8,
+        "orders": [
+          "OAXKC",
+          "OAKCX",
+          "OAKXC",
+          "OCAKX",
+          "OCXKA",
+          "OCKXA",
+          "OXCKA",
+          "OXKAC"
+        ]
+      },
+      {
+        "predicate": "dAX>=dCX",
+        "closed_count": 8,
+        "orders": [
+          "OAXKC",
+          "OCAXK",
+          "OCAKX",
+          "OCKXA",
+          "OXACK",
+          "OXKAC",
+          "OKCAX",
+          "OKXAC"
+        ]
+      },
+      {
+        "predicate": "dAO>=dKO",
+        "closed_count": 8,
+        "orders": [
+          "OAXKC",
+          "OAKCX",
+          "OAKXC",
+          "OCAKX",
+          "OCXKA",
+          "OCKXA",
+          "OXCKA",
+          "OXKAC"
+        ]
+      },
+      {
+        "predicate": "dAK>=dCK",
+        "closed_count": 8,
+        "orders": [
+          "OAKXC",
+          "OCAXK",
+          "OCAKX",
+          "OCXKA",
+          "OXCAK",
+          "OXKAC",
+          "OKACX",
+          "OKXAC"
+        ]
+      },
+      {
+        "predicate": "dAC>=dCK",
+        "closed_count": 8,
+        "orders": [
+          "OAKXC",
+          "OCAXK",
+          "OCAKX",
+          "OCXKA",
+          "OXCAK",
+          "OXKAC",
+          "OKACX",
+          "OKXAC"
+        ]
+      },
+      {
+        "predicate": "dKO>=dCO",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OXACK",
+          "OXCAK",
+          "OKACX",
+          "OKCAX",
+          "OKCXA"
+        ]
+      },
+      {
+        "predicate": "dKO>=dAO",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OXACK",
+          "OXCAK",
+          "OKACX",
+          "OKCAX",
+          "OKCXA"
+        ]
+      },
+      {
+        "predicate": "dCX>=dKX",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OAKCX",
+          "OXCAK",
+          "OXCKA",
+          "OKACX",
+          "OKCXA"
+        ]
+      },
+      {
+        "predicate": "dCX>=dAX",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OAKCX",
+          "OXCAK",
+          "OXCKA",
+          "OKACX",
+          "OKCXA"
+        ]
+      },
+      {
+        "predicate": "dCK>=dAK",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OAKCX",
+          "OXACK",
+          "OXCKA",
+          "OKCAX",
+          "OKCXA"
+        ]
+      },
+      {
+        "predicate": "dCK>=dAC",
+        "closed_count": 6,
+        "orders": [
+          "OAXCK",
+          "OAKCX",
+          "OXACK",
+          "OXCKA",
+          "OKCAX",
+          "OKCXA"
+        ]
+      }
+    ],
+    "uncovered_by_any": [],
+    "certificates": {
+      "dAC>=dCK::OAKXC": {
+        "labels": [
+          "K2[AKXC]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OCAXK": {
+        "labels": [
+          "K1[OCAK]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OCAKX": {
+        "labels": [
+          "K1[OCAK]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OCXKA": {
+        "labels": [
+          "K2[CXKA]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OXCAK": {
+        "labels": [
+          "K1[OCAK]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OXKAC": {
+        "labels": [
+          "K2[OKAC]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OKACX": {
+        "labels": [
+          "K2[OKAC]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dCK::OKXAC": {
+        "labels": [
+          "K2[OKAC]",
+          "dAC>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OAKXC": {
+        "labels": [
+          "K2[AKXC]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OCAXK": {
+        "labels": [
+          "K1[OCAK]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OCAKX": {
+        "labels": [
+          "K1[OCAK]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OCXKA": {
+        "labels": [
+          "K2[CXKA]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OXCAK": {
+        "labels": [
+          "K1[OCAK]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OXKAC": {
+        "labels": [
+          "K2[OKAC]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OKACX": {
+        "labels": [
+          "K2[OKAC]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dCK::OKXAC": {
+        "labels": [
+          "K2[OKAC]",
+          "dAK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OAXKC": {
+        "labels": [
+          "K2[OAKC]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OAKCX": {
+        "labels": [
+          "K2[OAKC]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OAKXC": {
+        "labels": [
+          "K1[OAKX]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OCAKX": {
+        "labels": [
+          "K1[OAKX]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OCXKA": {
+        "labels": [
+          "K1[OCKA]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OCKXA": {
+        "labels": [
+          "K1[OCKA]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OXCKA": {
+        "labels": [
+          "K2[OXKA]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAO>=dKO::OXKAC": {
+        "labels": [
+          "K2[OXKA]",
+          "dAO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OAXKC": {
+        "labels": [
+          "K2[AXKC]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OCAXK": {
+        "labels": [
+          "K1[OCAX]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OCAKX": {
+        "labels": [
+          "K1[OCAX]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OCKXA": {
+        "labels": [
+          "K2[CKXA]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OXACK": {
+        "labels": [
+          "K2[OXAC]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OXKAC": {
+        "labels": [
+          "K2[OXAC]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OKCAX": {
+        "labels": [
+          "K1[OCAX]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAX>=dCX::OKXAC": {
+        "labels": [
+          "K2[OXAC]",
+          "dAX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OAXCK": {
+        "labels": [
+          "K1[OACK]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OAKCX": {
+        "labels": [
+          "K2[AKCX]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OXACK": {
+        "labels": [
+          "K1[OACK]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OXCKA": {
+        "labels": [
+          "K2[XCKA]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OKCAX": {
+        "labels": [
+          "K2[OKCA]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAC::OKCXA": {
+        "labels": [
+          "K2[OKCA]",
+          "dCK>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OAXCK": {
+        "labels": [
+          "K1[OACK]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OAKCX": {
+        "labels": [
+          "K2[AKCX]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OXACK": {
+        "labels": [
+          "K1[OACK]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OXCKA": {
+        "labels": [
+          "K2[XCKA]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OKCAX": {
+        "labels": [
+          "K2[OKCA]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dAK::OKCXA": {
+        "labels": [
+          "K2[OKCA]",
+          "dCK>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OAXKC": {
+        "labels": [
+          "K2[OAKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OAKCX": {
+        "labels": [
+          "K2[OAKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OAKXC": {
+        "labels": [
+          "K1[OAKX]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCAKX": {
+        "labels": [
+          "K1[OAKX]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCXKA": {
+        "labels": [
+          "K1[OCKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCKXA": {
+        "labels": [
+          "K1[OCKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OXCKA": {
+        "labels": [
+          "K2[OXKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OXKAC": {
+        "labels": [
+          "K2[OXKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OAXCK": {
+        "labels": [
+          "K2[AXCK]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OAKCX": {
+        "labels": [
+          "K1[OACX]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OXCAK": {
+        "labels": [
+          "K2[OXCA]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OXCKA": {
+        "labels": [
+          "K2[OXCA]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OKACX": {
+        "labels": [
+          "K1[OACX]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dAX::OKCXA": {
+        "labels": [
+          "K2[KCXA]",
+          "dCX>=dAX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OAXCK": {
+        "labels": [
+          "K2[AXCK]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OAKCX": {
+        "labels": [
+          "K1[OACX]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OXCAK": {
+        "labels": [
+          "K2[OXCA]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OXCKA": {
+        "labels": [
+          "K2[OXCA]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OKACX": {
+        "labels": [
+          "K1[OACX]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCX>=dKX::OKCXA": {
+        "labels": [
+          "K2[KCXA]",
+          "dCX>=dKX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OAXCK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OXACK": {
+        "labels": [
+          "K2[OXAK]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OXCAK": {
+        "labels": [
+          "K2[OXAK]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OKACX": {
+        "labels": [
+          "K1[OKAX]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OKCAX": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dAO::OKCXA": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dAO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OAXCK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OXACK": {
+        "labels": [
+          "K2[OXAK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OXCAK": {
+        "labels": [
+          "K2[OXAK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKACX": {
+        "labels": [
+          "K1[OKAX]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKCAX": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKCXA": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OAXKC": {
+        "labels": [
+          "K2[AXKC]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OCAXK": {
+        "labels": [
+          "K1[OCAX]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OCAKX": {
+        "labels": [
+          "K1[OCAX]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OCKXA": {
+        "labels": [
+          "K2[CKXA]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OXACK": {
+        "labels": [
+          "K2[OXAC]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OXKAC": {
+        "labels": [
+          "K2[OXAC]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OKCAX": {
+        "labels": [
+          "K1[OCAX]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKX>=dCX::OKXAC": {
+        "labels": [
+          "K2[OXAC]",
+          "dKX>=dCX"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      }
+    }
+  },
+  "X=C": {
+    "residual_orders": [
+      "OACJK",
+      "OAJCK",
+      "OAJKC",
+      "OAKCJ",
+      "OCAJK",
+      "OCAKJ",
+      "OCKAJ",
+      "OCKJA",
+      "OJAKC",
+      "OJCAK",
+      "OJCKA",
+      "OJKAC",
+      "OKACJ",
+      "OKCJA",
+      "OKJAC",
+      "OKJCA"
+    ],
+    "ranked": [
+      {
+        "predicate": "dJO>=dKO",
+        "closed_count": 8,
+        "orders": [
+          "OAJKC",
+          "OAKCJ",
+          "OCAKJ",
+          "OCKAJ",
+          "OCKJA",
+          "OJAKC",
+          "OJCKA",
+          "OJKAC"
+        ]
+      },
+      {
+        "predicate": "dCO>=dKO",
+        "closed_count": 8,
+        "orders": [
+          "OAJKC",
+          "OAKCJ",
+          "OCAKJ",
+          "OCKAJ",
+          "OCKJA",
+          "OJAKC",
+          "OJCKA",
+          "OJKAC"
+        ]
+      },
+      {
+        "predicate": "dCK>=dJK",
+        "closed_count": 8,
+        "orders": [
+          "OAJCK",
+          "OAKCJ",
+          "OCKAJ",
+          "OJAKC",
+          "OJCAK",
+          "OJCKA",
+          "OKACJ",
+          "OKCJA"
+        ]
+      },
+      {
+        "predicate": "dCJ>=dJK",
+        "closed_count": 8,
+        "orders": [
+          "OAJCK",
+          "OAKCJ",
+          "OCKAJ",
+          "OJAKC",
+          "OJCAK",
+          "OJCKA",
+          "OKACJ",
+          "OKCJA"
+        ]
+      },
+      {
+        "predicate": "dAK>=dAJ",
+        "closed_count": 8,
+        "orders": [
+          "OACJK",
+          "OAKCJ",
+          "OCAKJ",
+          "OJCAK",
+          "OJCKA",
+          "OJKAC",
+          "OKACJ",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dAC>=dAJ",
+        "closed_count": 8,
+        "orders": [
+          "OACJK",
+          "OAKCJ",
+          "OCAKJ",
+          "OJCAK",
+          "OJCKA",
+          "OJKAC",
+          "OKACJ",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dKO>=dJO",
+        "closed_count": 6,
+        "orders": [
+          "OACJK",
+          "OAJCK",
+          "OCAJK",
+          "OKCJA",
+          "OKJAC",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dKO>=dCO",
+        "closed_count": 6,
+        "orders": [
+          "OACJK",
+          "OAJCK",
+          "OCAJK",
+          "OKCJA",
+          "OKJAC",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dJK>=dCK",
+        "closed_count": 6,
+        "orders": [
+          "OACJK",
+          "OAJKC",
+          "OCAJK",
+          "OCKJA",
+          "OKJAC",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dJK>=dCJ",
+        "closed_count": 6,
+        "orders": [
+          "OACJK",
+          "OAJKC",
+          "OCAJK",
+          "OCKJA",
+          "OKJAC",
+          "OKJCA"
+        ]
+      },
+      {
+        "predicate": "dAJ>=dAK",
+        "closed_count": 6,
+        "orders": [
+          "OAJCK",
+          "OAJKC",
+          "OCAJK",
+          "OCKJA",
+          "OKCJA",
+          "OKJAC"
+        ]
+      },
+      {
+        "predicate": "dAJ>=dAC",
+        "closed_count": 6,
+        "orders": [
+          "OAJCK",
+          "OAJKC",
+          "OCAJK",
+          "OCKJA",
+          "OKCJA",
+          "OKJAC"
+        ]
+      }
+    ],
+    "uncovered_by_any": [],
+    "certificates": {
+      "dAC>=dAJ::OACJK": {
+        "labels": [
+          "K2[OACJ]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OAKCJ": {
+        "labels": [
+          "K2[OACJ]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OCAKJ": {
+        "labels": [
+          "K2[CAKJ]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OJCAK": {
+        "labels": [
+          "K1[OJCA]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OJCKA": {
+        "labels": [
+          "K1[OJCA]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OJKAC": {
+        "labels": [
+          "K2[JKAC]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OKACJ": {
+        "labels": [
+          "K2[OACJ]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAC>=dAJ::OKJCA": {
+        "labels": [
+          "K1[OJCA]",
+          "dAC>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OAJCK": {
+        "labels": [
+          "K2[OAJC]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OAJKC": {
+        "labels": [
+          "K2[OAJC]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OCAJK": {
+        "labels": [
+          "K2[CAJK]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OCKJA": {
+        "labels": [
+          "K1[OCJA]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OKCJA": {
+        "labels": [
+          "K1[OCJA]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAC::OKJAC": {
+        "labels": [
+          "K2[KJAC]",
+          "dAJ>=dAC"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OAJCK": {
+        "labels": [
+          "K2[OAJC]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OAJKC": {
+        "labels": [
+          "K2[OAJC]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OCAJK": {
+        "labels": [
+          "K2[CAJK]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OCKJA": {
+        "labels": [
+          "K1[OCJA]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OKCJA": {
+        "labels": [
+          "K1[OCJA]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAJ>=dAK::OKJAC": {
+        "labels": [
+          "K2[KJAC]",
+          "dAJ>=dAK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OACJK": {
+        "labels": [
+          "K2[OACJ]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OAKCJ": {
+        "labels": [
+          "K2[OACJ]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OCAKJ": {
+        "labels": [
+          "K2[CAKJ]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OJCAK": {
+        "labels": [
+          "K1[OJCA]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OJCKA": {
+        "labels": [
+          "K1[OJCA]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OJKAC": {
+        "labels": [
+          "K2[JKAC]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OKACJ": {
+        "labels": [
+          "K2[OACJ]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dAK>=dAJ::OKJCA": {
+        "labels": [
+          "K1[OJCA]",
+          "dAK>=dAJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OAJCK": {
+        "labels": [
+          "K1[OJCK]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OAKCJ": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OCKAJ": {
+        "labels": [
+          "K2[CKAJ]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OJAKC": {
+        "labels": [
+          "K2[JAKC]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OJCAK": {
+        "labels": [
+          "K1[OJCK]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OJCKA": {
+        "labels": [
+          "K1[OJCK]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OKACJ": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCJ>=dJK::OKCJA": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCJ>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OAJCK": {
+        "labels": [
+          "K1[OJCK]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OAKCJ": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OCKAJ": {
+        "labels": [
+          "K2[CKAJ]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OJAKC": {
+        "labels": [
+          "K2[JAKC]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OJCAK": {
+        "labels": [
+          "K1[OJCK]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OJCKA": {
+        "labels": [
+          "K1[OJCK]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OKACJ": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCK>=dJK::OKCJA": {
+        "labels": [
+          "K2[OKCJ]",
+          "dCK>=dJK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OAJKC": {
+        "labels": [
+          "K2[OAKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OAKCJ": {
+        "labels": [
+          "K2[OAKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCAKJ": {
+        "labels": [
+          "K2[OCKJ]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCKAJ": {
+        "labels": [
+          "K1[OCKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OCKJA": {
+        "labels": [
+          "K2[OCKJ]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OJAKC": {
+        "labels": [
+          "K1[OJKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OJCKA": {
+        "labels": [
+          "K1[OCKA]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dCO>=dKO::OJKAC": {
+        "labels": [
+          "K1[OJKC]",
+          "dCO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OACJK": {
+        "labels": [
+          "K1[OCJK]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OAJKC": {
+        "labels": [
+          "K2[AJKC]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OCAJK": {
+        "labels": [
+          "K1[OCJK]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OCKJA": {
+        "labels": [
+          "K2[CKJA]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OKJAC": {
+        "labels": [
+          "K2[OKJC]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCJ::OKJCA": {
+        "labels": [
+          "K2[OKJC]",
+          "dJK>=dCJ"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OACJK": {
+        "labels": [
+          "K1[OCJK]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OAJKC": {
+        "labels": [
+          "K2[AJKC]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OCAJK": {
+        "labels": [
+          "K1[OCJK]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OCKJA": {
+        "labels": [
+          "K2[CKJA]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OKJAC": {
+        "labels": [
+          "K2[OKJC]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJK>=dCK::OKJCA": {
+        "labels": [
+          "K2[OKJC]",
+          "dJK>=dCK"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OAJKC": {
+        "labels": [
+          "K2[OAKC]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OAKCJ": {
+        "labels": [
+          "K2[OAKC]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OCAKJ": {
+        "labels": [
+          "K2[OCKJ]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OCKAJ": {
+        "labels": [
+          "K1[OCKA]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OCKJA": {
+        "labels": [
+          "K2[OCKJ]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OJAKC": {
+        "labels": [
+          "K1[OJKC]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OJCKA": {
+        "labels": [
+          "K1[OCKA]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dJO>=dKO::OJKAC": {
+        "labels": [
+          "K1[OJKC]",
+          "dJO>=dKO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OACJK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OAJCK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OCAJK": {
+        "labels": [
+          "K2[OCJK]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKCJA": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKJAC": {
+        "labels": [
+          "K1[OKJC]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dCO::OKJCA": {
+        "labels": [
+          "K1[OKJC]",
+          "dKO>=dCO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OACJK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OAJCK": {
+        "labels": [
+          "K2[OACK]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OCAJK": {
+        "labels": [
+          "K2[OCJK]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OKCJA": {
+        "labels": [
+          "K1[OKCA]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OKJAC": {
+        "labels": [
+          "K1[OKJC]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      },
+      "dKO>=dJO::OKJCA": {
+        "labels": [
+          "K1[OKJC]",
+          "dKO>=dJO"
+        ],
+        "coefficients": [
+          "1",
+          "1"
+        ]
+      }
+    }
+  }
+}

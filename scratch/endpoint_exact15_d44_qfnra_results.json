@@ -1,0 +1,984 @@
+{
+  "diagnostic_only": true,
+  "lane_selection": "profile=D44 and prior strict-Kalmanson QF_LRA result=SAT",
+  "lane_count": 38,
+  "lane_set_sha256": "f5611486803bff3e00bf2af12562a6a8ddfff13825abc87be9c3c6e9cae7fa79",
+  "source_sha256": {
+    "scratch/endpoint_exact15_profile_results.json": "cd38800a7843878a50daaf70041ef1873e46e6bf7fb6cfb392a002bbed2ec40e",
+    "scratch/endpoint_exact15_profile_miner.py": "b43456c17a623d4b415b071a4949a04fc05613daebfa509e6cf5deadaa0e5079",
+    "scratch/five_role_euclidean_qfnra_audit.py": "60fb18a3e72b21b02f98ae23a77556d73ad5316d3080476eafc89d0588c861f3",
+    "scratch/endpoint_exact15_d44_qfnra_audit.py": "a76bca4860ef90815b57c739685c197cf0d5488540c60b87e55903922929f8cc"
+  },
+  "solvers": {
+    "z3": "4.16.0",
+    "cvc5": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]"
+  },
+  "run": {
+    "workers": 12,
+    "z3_timeout_seconds": 60,
+    "cvc5_timeout_seconds": 30,
+    "cvc5_flags": [
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--force-logic=QF_NRA",
+      "--tlimit"
+    ]
+  },
+  "smoke_test": {
+    "sat": {
+      "expected": "SAT",
+      "z3": "SAT",
+      "cvc5": "SAT"
+    },
+    "unsat": {
+      "expected": "UNSAT",
+      "z3": "UNSAT",
+      "cvc5": "UNSAT"
+    }
+  },
+  "d44_constraints": [
+    "squared_distance(O,K) = squared_distance(O,B)",
+    "squared_distance(O,C) != squared_distance(O,K)"
+  ],
+  "summary": {
+    "z3": {
+      "SAT": 0,
+      "UNSAT": 0,
+      "UNKNOWN": 38
+    },
+    "cvc5": {
+      "SAT": 0,
+      "UNSAT": 0,
+      "UNKNOWN": 38
+    },
+    "classifications": {
+      "UNKNOWN": 38
+    },
+    "exact_rational_sat_witnesses": 0,
+    "cross_solver_terminal_disagreements": 0
+  },
+  "smallest_exact_rational_witnesses": [],
+  "cross_solver_terminal_disagreements": [],
+  "rows": [
+    {
+      "index": 1,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCBM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAKXCBM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.20629445789382,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016001250129193,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 2,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAKXMBC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 63.039866709150374,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016222667181864,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 3,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXBC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAKMXBC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.6175795418676,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.017126749968156,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 4,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMBXC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAKMBXC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 63.14206420816481,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.013048416934907,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 5,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXBC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAMKXBC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.6787171671167,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014158750185743,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 6,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKBXC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OAMKBXC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.4279332079459,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.010294042062014,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 7,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OMAKXBC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17206225008704,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.01575266686268,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 8,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKBXC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OMAKBXC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.2650784580037,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.015597832854837,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 9,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OMABKXC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.754941791063175,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.01545204082504,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 10,
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OAKXC_OMBAKXC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.288669290952384,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.017274665879086,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 11,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCXKABM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.18217374989763,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.010615791892633,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 12,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBAM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCXKBAM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.178183416835964,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.012738791992888,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 13,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKAM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCXBKAM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.62597145792097,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016300625167787,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 14,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCXBKMA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.225183125119656,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016279958188534,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 15,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBMKA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCXBMKA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 64.3094869160559,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014677915954962,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 16,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKAM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCBXKAM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17567366710864,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.0129025420174,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 17,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKMA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCBXKMA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.66311162500642,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.013959208037704,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 18,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXMKA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCBXMKA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17772174999118,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.011762333102524,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 19,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBMXKA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OCBMXKA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.82417370821349,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.013596375007182,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 20,
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMBCXKA",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/AeqJ_OCXKA_OMBCXKA.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.223838709061965,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.013590374961495,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 21,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJBM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCAKJBM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.30200199992396,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016091624973342,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 22,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBJM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCAKBJM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 61.110673875082284,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016635332955047,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 23,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBMJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCAKBMJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.33934970898554,
+        "reason": "canceled",
+        "lazy_rounds": 2,
+        "active_constraint_count": 56
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.00760579109192,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 24,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKJM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCABKJM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.23298520804383,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.016252249944955,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 25,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKMJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCABKMJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 62.01894374983385,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014443583087996,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 26,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKMJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCBAKMJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.18617454217747,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014064791845158,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 27,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAMKJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCBAMKJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.01069545792416,
+        "reason": "canceled",
+        "lazy_rounds": 2,
+        "active_constraint_count": 56
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.01787808397785,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 28,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OCBMAKJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17035512509756,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014144124928862,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 29,
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMBCAKJ",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OCAKJ_OMBCAKJ.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 61.353114917175844,
+        "reason": "canceled",
+        "lazy_rounds": 2,
+        "active_constraint_count": 56
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.01468479190953,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 30,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACBM",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJKACBM.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.030470667174086,
+        "reason": "canceled",
+        "lazy_rounds": 2,
+        "active_constraint_count": 56
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.018865457968786,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 31,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJKAMBC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.180049208924174,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.018463916843757,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 32,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMABC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJKMABC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.179854708956555,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.010832582833245,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 33,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKABC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJMKABC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.826747875195,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.011354125104845,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 34,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKBAC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJMKBAC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17792691709474,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014780707890168,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 35,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMBKAC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OJMBKAC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.2410992088262,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.015619874931872,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 36,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKBAC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OMJKBAC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.24060050002299,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.018143041990697,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 37,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJBKAC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OMJBKAC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.932623292086646,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.019714332884178,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    },
+    {
+      "index": 38,
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMBJKAC",
+      "profile": "D44",
+      "instance": "scratch/endpoint_exact15_d44_qfnra_instances/XeqC_OJKAC_OMBJKAC.smt2",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 60.17445208388381,
+        "reason": "timeout",
+        "lazy_rounds": 1,
+        "active_constraint_count": 55
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "wall_seconds": 30.014369792072102,
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "classification": "UNKNOWN"
+    }
+  ],
+  "omitted": [
+    "anonymous shell fillers",
+    "erased-row support coupling",
+    "physical cap/MEC geometry",
+    "full ambient fifteen-point completion",
+    "global no-K4"
+  ]
+}

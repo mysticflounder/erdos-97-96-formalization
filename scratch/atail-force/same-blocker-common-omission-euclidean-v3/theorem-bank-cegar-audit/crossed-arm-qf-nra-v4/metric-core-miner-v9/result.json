@@ -1,0 +1,6754 @@
+{
+  "algebra_candidate_log": [
+    {
+      "elapsed_s": 0.016771832946687937,
+      "equality_count": 8,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p1",
+        "s3",
+        "t4"
+      ],
+      "polynomial_count": 8,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 10.0,
+      "variable_count": 8,
+      "verdict": "NONUNIT",
+      "z3_verdict": "UNKNOWN"
+    },
+    {
+      "elapsed_s": 0.011401833035051823,
+      "equality_count": 8,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t4"
+      ],
+      "polynomial_count": 8,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 10.0,
+      "variable_count": 8,
+      "verdict": "NONUNIT",
+      "z3_verdict": "UNKNOWN"
+    },
+    {
+      "elapsed_s": 0.1363349580205977,
+      "equality_count": 11,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "polynomial_count": 11,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 10.0,
+      "variable_count": 10,
+      "verdict": "UNIT",
+      "z3_verdict": "UNKNOWN"
+    }
+  ],
+  "algebra_smoke_tests": {
+    "equal_k4": {
+      "elapsed_s": 0.00915737496688962,
+      "polynomial_count": 5,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 5.0,
+      "variable_count": 4,
+      "verdict": "UNIT"
+    },
+    "equilateral_triangle": {
+      "elapsed_s": 0.011626583058387041,
+      "polynomial_count": 2,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 5.0,
+      "variable_count": 2,
+      "verdict": "NONUNIT"
+    },
+    "passed": true
+  },
+  "algebraic_unit_core": {
+    "atom_sha256": "7cd4de6875b046a9860d57731f393edd1c6d90b2c4e07813deebf913f0c35061",
+    "atoms": [
+      {
+        "left_edge": [
+          "r2",
+          "t4"
+        ],
+        "right_edge": [
+          "s3",
+          "t4"
+        ],
+        "text": "d2(r2,t4) = d2(s3,t4)"
+      },
+      {
+        "left_edge": [
+          "r2",
+          "t4"
+        ],
+        "right_edge": [
+          "t1",
+          "t4"
+        ],
+        "text": "d2(r2,t4) = d2(t1,t4)"
+      },
+      {
+        "left_edge": [
+          "a1",
+          "p2"
+        ],
+        "right_edge": [
+          "a1",
+          "s3"
+        ],
+        "text": "d2(a1,p2) = d2(a1,s3)"
+      },
+      {
+        "left_edge": [
+          "a1",
+          "p2"
+        ],
+        "right_edge": [
+          "a1",
+          "t4"
+        ],
+        "text": "d2(a1,p2) = d2(a1,t4)"
+      },
+      {
+        "left_edge": [
+          "a1",
+          "p2"
+        ],
+        "right_edge": [
+          "s3",
+          "t1"
+        ],
+        "text": "d2(a1,p2) = d2(s3,t1)"
+      },
+      {
+        "left_edge": [
+          "a1",
+          "p2"
+        ],
+        "right_edge": [
+          "s3",
+          "t2"
+        ],
+        "text": "d2(a1,p2) = d2(s3,t2)"
+      },
+      {
+        "left_edge": [
+          "a1",
+          "r2"
+        ],
+        "right_edge": [
+          "a1",
+          "t2"
+        ],
+        "text": "d2(a1,r2) = d2(a1,t2)"
+      },
+      {
+        "left_edge": [
+          "p2",
+          "t2"
+        ],
+        "right_edge": [
+          "p2",
+          "t4"
+        ],
+        "text": "d2(p2,t2) = d2(p2,t4)"
+      },
+      {
+        "left_edge": [
+          "p2",
+          "t2"
+        ],
+        "right_edge": [
+          "r2",
+          "t2"
+        ],
+        "text": "d2(p2,t2) = d2(r2,t2)"
+      },
+      {
+        "left_edge": [
+          "p2",
+          "r2"
+        ],
+        "right_edge": [
+          "r2",
+          "t1"
+        ],
+        "text": "d2(p2,r2) = d2(r2,t1)"
+      },
+      {
+        "left_edge": [
+          "p2",
+          "t1"
+        ],
+        "right_edge": [
+          "t1",
+          "t2"
+        ],
+        "text": "d2(p2,t1) = d2(t1,t2)"
+      }
+    ],
+    "cvc5_replay": {
+      "elapsed_s": 30.057747000129893,
+      "returncode": -6,
+      "stderr_tail": "cvc5 interrupted by timeout.\n",
+      "verdict": "UNKNOWN"
+    },
+    "equality_count": 11,
+    "gauge": [
+      "a1",
+      "p2"
+    ],
+    "interpretation": "UNIT proves the gauge-fixed equality ideal has no complex point, hence no real planar realization; Z3/cvc5 classification is reported independently",
+    "minimality_scope": "greedy induced-point deletion to fixed point, then one-pass equality deletion, using only Singular UNIT as a deletion license; NONUNIT/UNKNOWN retain the item",
+    "minimization_log": [
+      {
+        "deleted": "a1",
+        "elapsed_s": 0.013510167133063078,
+        "phase": "singular-point-delete",
+        "polynomial_count": 7,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "p2",
+        "elapsed_s": 0.012221249984577298,
+        "phase": "singular-point-delete",
+        "polynomial_count": 6,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "r2",
+        "elapsed_s": 0.03126716706901789,
+        "phase": "singular-point-delete",
+        "polynomial_count": 7,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "s3",
+        "elapsed_s": 0.030033166985958815,
+        "phase": "singular-point-delete",
+        "polynomial_count": 7,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "t1",
+        "elapsed_s": 0.04918641597032547,
+        "phase": "singular-point-delete",
+        "polynomial_count": 7,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "t2",
+        "elapsed_s": 0.05442170822061598,
+        "phase": "singular-point-delete",
+        "polynomial_count": 6,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "t4",
+        "elapsed_s": 0.05014479090459645,
+        "phase": "singular-point-delete",
+        "polynomial_count": 7,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 8,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(r2,t4) = d2(s3,t4)",
+        "elapsed_s": 10.008063541958109,
+        "error": "TimeoutExpired",
+        "phase": "singular-atom-delete",
+        "timeout_s": 10.0,
+        "verdict": "UNKNOWN"
+      },
+      {
+        "deleted": "d2(r2,t4) = d2(t1,t4)",
+        "elapsed_s": 3.1723855000454932,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(a1,p2) = d2(a1,s3)",
+        "elapsed_s": 10.008778666844591,
+        "error": "TimeoutExpired",
+        "phase": "singular-atom-delete",
+        "timeout_s": 10.0,
+        "verdict": "UNKNOWN"
+      },
+      {
+        "deleted": "d2(a1,p2) = d2(a1,t4)",
+        "elapsed_s": 2.6364162501413375,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(a1,p2) = d2(s3,t1)",
+        "elapsed_s": 1.1116359159350395,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(a1,p2) = d2(s3,t2)",
+        "elapsed_s": 6.418628917075694,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(a1,r2) = d2(a1,t2)",
+        "elapsed_s": 2.2473738328553736,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(p2,t2) = d2(p2,t4)",
+        "elapsed_s": 10.008265584008768,
+        "error": "TimeoutExpired",
+        "phase": "singular-atom-delete",
+        "timeout_s": 10.0,
+        "verdict": "UNKNOWN"
+      },
+      {
+        "deleted": "d2(p2,t2) = d2(r2,t2)",
+        "elapsed_s": 8.351476875133812,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(p2,r2) = d2(r2,t1)",
+        "elapsed_s": 9.704834042117,
+        "phase": "singular-atom-delete",
+        "polynomial_count": 10,
+        "returncode": 0,
+        "stderr_tail": "",
+        "timeout_s": 10.0,
+        "variable_count": 10,
+        "verdict": "NONUNIT"
+      },
+      {
+        "deleted": "d2(p2,t1) = d2(t1,t2)",
+        "elapsed_s": 10.007323417114094,
+        "error": "TimeoutExpired",
+        "phase": "singular-atom-delete",
+        "timeout_s": 10.0,
+        "verdict": "UNKNOWN"
+      }
+    ],
+    "msolve_crosscheck": {
+      "agreement": true,
+      "runs": [
+        {
+          "elapsed_s": 0.06307825003750622,
+          "order": "forward",
+          "returncode": 0,
+          "stderr_tail": "",
+          "verdict": "UNIT"
+        },
+        {
+          "elapsed_s": 0.014892792096361518,
+          "order": "reverse",
+          "returncode": 0,
+          "stderr_tail": "",
+          "verdict": "UNIT"
+        }
+      ],
+      "verdict": "UNIT",
+      "warning": "msolve is corroboration only; Singular char-0 is the arbiter"
+    },
+    "numerical_filter": {
+      "dof_after_gauge": 10,
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 11
+    },
+    "point_count": 7,
+    "points": [
+      "a1",
+      "p2",
+      "r2",
+      "s3",
+      "t1",
+      "t2",
+      "t4"
+    ],
+    "polynomial_count": 11,
+    "polynomial_variable_count": 10,
+    "production_signature_check": {
+      "matcher_sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396",
+      "matcher_source": "census/global_confinement/metric_realizability_probe.py",
+      "matches": [],
+      "scope": "production equality-only closure signatures; excludes exactness and convex-order signatures absent from this QF_NRA formula"
+    },
+    "singular": {
+      "elapsed_s": 0.13796216598711908,
+      "polynomial_count": 11,
+      "returncode": 0,
+      "stderr_tail": "",
+      "timeout_s": 10.0,
+      "variable_count": 10,
+      "verdict": "UNIT"
+    },
+    "singular_script": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/algebraic-minimal-core.sing",
+    "singular_script_sha256": "7ea5590062f4f0175de0b17b6b17fd553f806d00512f4be6fe4bb775fc160feb",
+    "smt2": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/algebraic-minimal-core.smt2",
+    "smt2_sha256": "10f9c1cf219147e4071f596d0293e79dc4f9f2e51299d7e43a1df4f6b8efd3e1",
+    "z3_replay": {
+      "distinctness_count": 21,
+      "elapsed_s": 31.062239000108093,
+      "equality_count": 11,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "point_count": 7,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "timeout_ms": 30000,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    }
+  },
+  "budgets": {
+    "algebra_candidate_count": 12,
+    "algebra_timeout_s": 10.0,
+    "final_z3_timeout_ms": 30000,
+    "max_queries": 180,
+    "minimize_timeout_ms": 5000,
+    "output": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/result.json",
+    "per_size": 32,
+    "seed_timeout_ms": 10000,
+    "timeout_ms": 750,
+    "witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-compact-v9-canonical-resume-1800s-critical-k4-compact-pb/witness.json"
+  },
+  "elapsed_s": 319.0282165419776,
+  "environment": {
+    "cvc5_binary": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "python": "3.14.6",
+    "z3_binary": "Z3 version 4.16.0 - 64 bit",
+    "z3py": "4.16.0"
+  },
+  "full_query": {
+    "distinctness_count": 136,
+    "elapsed_s": 10.505989749915898,
+    "equality_count": 59,
+    "gauge": [
+      "a1",
+      "a2"
+    ],
+    "point_count": 17,
+    "points": [
+      "a1",
+      "a2",
+      "a3",
+      "p1",
+      "p2",
+      "q1",
+      "q2",
+      "r1",
+      "r2",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "timeout_ms": 10000,
+    "unknown_reason": "timeout",
+    "verdict": "UNKNOWN"
+  },
+  "minimal_unsat_core": null,
+  "minimization_log": [],
+  "schema": "crossed-arm-global-edge-closure-metric-core-miner-v2",
+  "smallest_hard_unknowns": [
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 15,
+      "dof_after_gauge": 8,
+      "elapsed_s": 0.8412746251560748,
+      "equality_count": 8,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 8,
+      "point_count": 6,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p1",
+        "s3",
+        "t4"
+      ],
+      "role_count": 5,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 15,
+      "dof_after_gauge": 8,
+      "elapsed_s": 0.8417586251161993,
+      "equality_count": 8,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 8,
+      "point_count": 6,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t4"
+      ],
+      "role_count": 5,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8680437090806663,
+      "equality_count": 11,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 11,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8522864577826113,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r1",
+        "s3",
+        "t2"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8583077921066433,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8587033750955015,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t1",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8598807919770479,
+      "equality_count": 10,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8608290001284331,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8614836249034852,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "q2",
+        "s3",
+        "t3",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8616836669389158,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r2",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8635787090752274,
+      "equality_count": 10,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 8,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8638001249637455,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.864667542045936,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t2"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8667622921057045,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8670962920878083,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t1",
+        "t2"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8747449580114335,
+      "equality_count": 10,
+      "gauge": [
+        "p2",
+        "t2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 8,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8860440831631422,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8910240000113845,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "r2",
+        "s3",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.875233167083934,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8804488328751177,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    }
+  ],
+  "smoke_tests": {
+    "equal_k4": {
+      "distinctness_count": 6,
+      "elapsed_s": 0.004803332965821028,
+      "equality_count": 5,
+      "gauge": [
+        "a",
+        "b"
+      ],
+      "point_count": 4,
+      "points": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "timeout_ms": 5000,
+      "verdict": "UNSAT"
+    },
+    "equilateral_triangle": {
+      "distinctness_count": 3,
+      "elapsed_s": 0.0011645001359283924,
+      "equality_count": 2,
+      "gauge": [
+        "a",
+        "b"
+      ],
+      "model": {
+        "a": {
+          "x": "0",
+          "y": "0"
+        },
+        "b": {
+          "x": "1",
+          "y": "0"
+        },
+        "c": {
+          "x": "1/2",
+          "y": "0.8660254037?"
+        }
+      },
+      "model_replay": {
+        "all_constraints_true": true,
+        "constraint_count": 9,
+        "true_count": 9
+      },
+      "point_count": 3,
+      "points": [
+        "a",
+        "b",
+        "c"
+      ],
+      "timeout_ms": 5000,
+      "verdict": "SAT"
+    },
+    "passed": true
+  },
+  "source": {
+    "global_closure_sha256": "2bd17f326f94c278f0795583acea56d581702dda78500bb2fdb99b2044901cb4",
+    "nontrivial_global_edge_class_sizes": [
+      12,
+      10,
+      8,
+      7,
+      7,
+      6,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "nontrivial_global_edge_classes": 11,
+    "point_count": 17,
+    "points": [
+      "a1",
+      "a2",
+      "a3",
+      "p1",
+      "p2",
+      "q1",
+      "q2",
+      "r1",
+      "r2",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "radius_equality_generator_count": 61,
+    "replay_fields_checked": [
+      "cap_block_position_replay",
+      "cap_crossing_kalmanson_replay",
+      "crossed_arm_replay",
+      "full_shared_pair_separation_replay",
+      "geometric_incidence_replay"
+    ],
+    "semantic_replay": "PASS",
+    "source_arm": "source-at-common",
+    "source_result": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-compact-v9-canonical-resume-1800s-critical-k4-compact-pb/result.json",
+    "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v9",
+    "source_result_sha256": "2258a038625ff149d498b39b9683646abb0793bcc21ce0c11531ee3a1f0a437a",
+    "source_result_status": "SAT",
+    "witness": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-compact-v9-canonical-resume-1800s-critical-k4-compact-pb/witness.json",
+    "witness_sha256": "48a35a28c42d23c976d5d5a748f7768c00660c068b145911e7174371ac645bb8"
+  },
+  "status": "ALGEBRAIC_UNIT_CORE_Z3_UNKNOWN",
+  "tranche": [
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8680437090806663,
+      "equality_count": 11,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 11,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8833679580129683,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p2",
+        "r1",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.9056722500827163,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.875233167083934,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8850770841818303,
+      "equality_count": 14,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8804488328751177,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8818545830436051,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8863819579128176,
+      "equality_count": 14,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8806697921827435,
+      "equality_count": 13,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8808694579638541,
+      "equality_count": 13,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8756905421614647,
+      "equality_count": 13,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.879363875137642,
+      "equality_count": 13,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8772416659630835,
+      "equality_count": 13,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8818226249422878,
+      "equality_count": 13,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8828556251246482,
+      "equality_count": 13,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8896724579390138,
+      "equality_count": 13,
+      "gauge": [
+        "q2",
+        "r1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8826223749201745,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8799649169668555,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8840983340051025,
+      "equality_count": 13,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8778574171010405,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8875132917892188,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8762797499075532,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8834070421289653,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8852498750202358,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8883133749477565,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r1",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8796687498688698,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8823897079564631,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8758709998801351,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8926665419712663,
+      "equality_count": 13,
+      "gauge": [
+        "q2",
+        "s1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r1",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8822784170042723,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "q2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8833067920058966,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.880066541954875,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 28,
+      "dof_after_gauge": 12,
+      "elapsed_s": 0.8836614589672536,
+      "equality_count": 13,
+      "gauge": [
+        "a1",
+        "q2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 13,
+      "point_count": 8,
+      "points": [
+        "a1",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9125790419057012,
+      "equality_count": 18,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9068482080474496,
+      "equality_count": 18,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9301239580381662,
+      "equality_count": 18,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9132697908207774,
+      "equality_count": 18,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9133029168006033,
+      "equality_count": 18,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9139716669451445,
+      "equality_count": 18,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9082410419359803,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9131885420065373,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9164892500266433,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9115916660521179,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.908290334045887,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9036860421765596,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9143842500634491,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9167589161079377,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9254264160990715,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9156930828467011,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9174432910513133,
+      "equality_count": 17,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9042319168802351,
+      "equality_count": 17,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.913678707787767,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.927969790995121,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9128125829156488,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9121319998521358,
+      "equality_count": 17,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9102089160587639,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9096009160857648,
+      "equality_count": 17,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.907224209047854,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9564213748089969,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9081820838619024,
+      "equality_count": 17,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9233521248679608,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9133925000205636,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9111002499703318,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9095080841798335,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 36,
+      "dof_after_gauge": 14,
+      "elapsed_s": 0.9130409578792751,
+      "equality_count": 17,
+      "gauge": [
+        "a1",
+        "q2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 15,
+      "point_count": 9,
+      "points": [
+        "a1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 8,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9594097081571817,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.953713416820392,
+      "equality_count": 22,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9428461249917746,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9482388747856021,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9460455840453506,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9412747498136014,
+      "equality_count": 22,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 10,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9431885841768235,
+      "equality_count": 22,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9418075000867248,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9742652499116957,
+      "equality_count": 22,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9427362910937518,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9430071248207241,
+      "equality_count": 22,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9402904170565307,
+      "equality_count": 22,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9579132089857012,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9428299160208553,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9437502499204129,
+      "equality_count": 22,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.940941708162427,
+      "equality_count": 21,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9396812079939991,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9442282908130437,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9460937501862645,
+      "equality_count": 21,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9428117088973522,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9412849161308259,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9349982501007617,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9438684999477118,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9404344169888645,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9337618749123067,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9528365000151098,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9462796670850366,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9404643340967596,
+      "equality_count": 21,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9423825840931386,
+      "equality_count": 21,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9435307087842375,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9428208330646157,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 45,
+      "dof_after_gauge": 16,
+      "elapsed_s": 0.9463073341175914,
+      "equality_count": 21,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 17,
+      "point_count": 10,
+      "points": [
+        "a1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 9,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9972465829923749,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9709522919729352,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9689759579487145,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9697722080163658,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9815758340992033,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9762747909408063,
+      "equality_count": 27,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.983563416171819,
+      "equality_count": 27,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9945801249705255,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9791616250295192,
+      "equality_count": 27,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9647788340225816,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9752430832013488,
+      "equality_count": 26,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9805126672144979,
+      "equality_count": 26,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9852970000356436,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9793864169623703,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9821361671201885,
+      "equality_count": 26,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9730892088264227,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.982574834022671,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9835387498605996,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9772794172167778,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9741007499396801,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "a3",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9756916668266058,
+      "equality_count": 26,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9864275420550257,
+      "equality_count": 26,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9865423340816051,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9911566248629242,
+      "equality_count": 26,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9822745830751956,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9862693750765175,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 1.135120625142008,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9749642091337591,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9778503749985248,
+      "equality_count": 26,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9671621669549495,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9768342501483858,
+      "equality_count": 26,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 55,
+      "dof_after_gauge": 18,
+      "elapsed_s": 0.9805167091544718,
+      "equality_count": 26,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 19,
+      "point_count": 11,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0253912080079317,
+      "equality_count": 33,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0116127501241863,
+      "equality_count": 32,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0111206248402596,
+      "equality_count": 32,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.1133763331454247,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0201644168701023,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0308550000190735,
+      "equality_count": 31,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0196564169600606,
+      "equality_count": 31,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0407326659187675,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0218073329888284,
+      "equality_count": 31,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0085561249870807,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0130815000738949,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "a3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0063501668628305,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0287756661418825,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0137800830416381,
+      "equality_count": 31,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0114155001938343,
+      "equality_count": 31,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.00830112490803,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0265395841561258,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0110457909759134,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.016685500042513,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0167317080777138,
+      "equality_count": 31,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 16,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0129354579839855,
+      "equality_count": 31,
+      "gauge": [
+        "p2",
+        "t1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 10,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.008243374992162,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s3",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0145026659592986,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0224089589901268,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0444973749108613,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0483458749949932,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0140126249752939,
+      "equality_count": 30,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0142405829392374,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0469613750465214,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 14,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0179149999748915,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "q1",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.013020624872297,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "s4"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p1",
+        "q1",
+        "q2",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 66,
+      "dof_after_gauge": 20,
+      "elapsed_s": 1.0269154589623213,
+      "equality_count": 30,
+      "gauge": [
+        "a1",
+        "t3"
+      ],
+      "generic_overdetermination": 1,
+      "heuristic_only": true,
+      "jacobian_rank": 21,
+      "point_count": 12,
+      "points": [
+        "a1",
+        "p2",
+        "q2",
+        "r1",
+        "r2",
+        "s1",
+        "s3",
+        "s4",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 11,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 10,
+      "dof_after_gauge": 6,
+      "elapsed_s": 0.5193322501145303,
+      "equality_count": 6,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 6,
+      "model_replay": {
+        "all_constraints_true": true,
+        "constraint_count": 20,
+        "true_count": 20
+      },
+      "point_count": 5,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "s3",
+        "t4"
+      ],
+      "role_count": 4,
+      "timeout_ms": 750,
+      "verdict": "SAT"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 15,
+      "dof_after_gauge": 8,
+      "elapsed_s": 0.8412746251560748,
+      "equality_count": 8,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 8,
+      "point_count": 6,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "p1",
+        "s3",
+        "t4"
+      ],
+      "role_count": 5,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 15,
+      "dof_after_gauge": 8,
+      "elapsed_s": 0.8417586251161993,
+      "equality_count": 8,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 8,
+      "point_count": 6,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t4"
+      ],
+      "role_count": 5,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 15,
+      "dof_after_gauge": 8,
+      "elapsed_s": 0.561054416000843,
+      "equality_count": 8,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 8,
+      "model_replay": {
+        "all_constraints_true": true,
+        "constraint_count": 27,
+        "true_count": 27
+      },
+      "point_count": 6,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "s3",
+        "t1",
+        "t4"
+      ],
+      "role_count": 5,
+      "timeout_ms": 750,
+      "verdict": "SAT"
+    },
+    {
+      "cyclic_span": 11,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8670962920878083,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t1",
+        "t2"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8667622921057045,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 8,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8860440831631422,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q1",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8583077921066433,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 8,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8638001249637455,
+      "equality_count": 10,
+      "gauge": [
+        "p1",
+        "p2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p1",
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 13,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8635787090752274,
+      "equality_count": 10,
+      "gauge": [
+        "p2",
+        "q1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p2",
+        "q1",
+        "r2",
+        "s1",
+        "s4",
+        "t2",
+        "t3"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 9,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8747449580114335,
+      "equality_count": 10,
+      "gauge": [
+        "p2",
+        "t2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "p2",
+        "q2",
+        "r2",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "role_count": 7,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8614836249034852,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "q2",
+        "s3",
+        "t3",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8910240000113845,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "r2",
+        "s3",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8587033750955015,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t1",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8608290001284331,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r1",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8616836669389158,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "a2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a2",
+        "a3",
+        "r2",
+        "s3",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8522864577826113,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r1",
+        "s3",
+        "t2"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 15,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.864667542045936,
+      "equality_count": 10,
+      "gauge": [
+        "a1",
+        "p1"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "s3",
+        "t2"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    },
+    {
+      "cyclic_span": 12,
+      "distinctness_count": 21,
+      "dof_after_gauge": 10,
+      "elapsed_s": 0.8598807919770479,
+      "equality_count": 10,
+      "gauge": [
+        "a3",
+        "t2"
+      ],
+      "generic_overdetermination": 0,
+      "heuristic_only": true,
+      "jacobian_rank": 10,
+      "point_count": 7,
+      "points": [
+        "a1",
+        "a3",
+        "p1",
+        "p2",
+        "r2",
+        "t2",
+        "t4"
+      ],
+      "role_count": 6,
+      "timeout_ms": 750,
+      "unknown_reason": "timeout",
+      "verdict": "UNKNOWN"
+    }
+  ],
+  "tranche_counts": {
+    "SAT": 2,
+    "UNKNOWN": 178,
+    "UNSAT": 0
+  },
+  "trust": {
+    "classification": "trusted external computation, not a Lean/kernel proof",
+    "encoding": "global undirected-edge equality closure + pairwise distinctness + similarity gauge only",
+    "numerical_policy": "Jacobian rank is prioritization-only and has no verdict force",
+    "sat_policy": "Z3 models replayed against every asserted formula with model_completion=True",
+    "unknown_policy": "UNKNOWN and numerical failure never imply UNSAT and never authorize deletion"
+  }
+}

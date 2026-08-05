@@ -1,0 +1,34 @@
+{
+  "algebraic": {
+    "banks": [],
+    "certificate_count": 0,
+    "certificate_kind_histogram": {},
+    "lean_kernel_checked": false,
+    "semantics": "typed P97 Euclidean/distinct-point nogoods: QQ unit equality infeasibility and QQ ideal membership forcing a real point collision, plus exact QQ(sqrt(3)) closure of all 32 real equilateral-shell orientation branches; the latter two separately require external pairwise distinctness",
+    "systems": [],
+    "template_sha256": []
+  },
+  "structural": {
+    "covered_certificate_count": 0,
+    "kept_antichain_count": 0,
+    "kept_cap_order_antichain_count": 0,
+    "kept_five_point_cap_order_antichain_count": 0,
+    "kept_rhombus_cap_order_antichain_count": 0,
+    "kept_structural_antichain_count": 0,
+    "kept_structural_row_antichain_count": 0,
+    "source": null,
+    "source_cap_order_unique_certificate_count": 0,
+    "source_certificate_schema_histogram": {},
+    "source_five_point_cap_order_unique_certificate_count": 0,
+    "source_record_count": 0,
+    "source_rhombus_cap_order_unique_certificate_count": 0,
+    "source_stage_histogram": {},
+    "source_structural_unique_certificate_count": 0,
+    "source_unique_certificate_count": 0,
+    "structural_projected_duplicate_clause_count": 0,
+    "structural_projected_subsumed_clause_count": 0,
+    "structural_projected_unique_clause_count": 0,
+    "subsumed_certificate_count": 0
+  },
+  "three_rhombus_prefix_bank": null
+}

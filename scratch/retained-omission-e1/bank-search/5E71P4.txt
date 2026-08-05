@@ -1,0 +1,5 @@
+theorem false_of_frontierAllLargeCapsTriApexRobustResidual
+
+The tri-apex all-large-caps terminal.  The packet's apex-rich fields are
+already sufficient for the uniform all-cardinality leaf above; no separate
+strict-cap pattern witnesses need to be constructed or forwarded.

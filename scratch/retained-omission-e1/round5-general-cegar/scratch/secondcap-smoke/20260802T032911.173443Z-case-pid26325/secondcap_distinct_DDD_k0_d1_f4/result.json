@@ -1,0 +1,52 @@
+{
+  "case": {
+    "arm": "secondcap_distinct",
+    "deleted": 1,
+    "fresh": 4,
+    "kept": 0,
+    "profiles": "DDD"
+  },
+  "case_id": "secondcap_distinct_DDD_k0_d1_f4",
+  "constraint_counts": {
+    "common_deletion_packets": 406,
+    "critical_blocker_map": 27,
+    "critical_full_row": 384,
+    "critical_no_competing_K4": 168,
+    "cyclic_alternation_cut": 2276,
+    "distinct_circle_overlap": 1328,
+    "exact_rich_profiles": 210,
+    "global_K4": 372,
+    "no_all_apex_shell": 15,
+    "normal_form": 13,
+    "packet_B2_equals_critical_row": 360,
+    "pair_center_multiplicity": 105,
+    "positive_distances": 105,
+    "positive_squared_distances": 105,
+    "same_shell_squared_superadditivity": 2184,
+    "source_in_critical_row": 180,
+    "squared_distance_equality_transport": 1365,
+    "strict_kalmanson": 2730,
+    "strict_triangle": 1365,
+    "three_distinct_blockers": 1
+  },
+  "constraint_total": 13699,
+  "elapsed_seconds": 2.288306875154376,
+  "encoding_sha256": "4f6307e13b1a630423e92bd568c9b572cc1fea98ba707b4eac2ae24563b63125",
+  "schema_version": 4,
+  "script_sha256": "65bba451ee498bc0bbf5b89a17a088cad6896bb51b532350c6d5bf536f8f0d57",
+  "solver": {
+    "name": "z3",
+    "seed": 97,
+    "version": "4.15.3"
+  },
+  "solver_check_seconds": 0.33609679201617837,
+  "status": "unsat",
+  "timeout_ms": 1000,
+  "unsat_core_families": [
+    "critical_blocker_map",
+    "critical_full_row",
+    "cyclic_alternation_cut",
+    "normal_form",
+    "source_in_critical_row"
+  ]
+}

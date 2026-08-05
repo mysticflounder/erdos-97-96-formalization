@@ -1,0 +1,5 @@
+theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+
+The cap-source row omits one endpoint from each retained collision pair.
+Deleting those two omitted endpoints therefore preserves the source row, while
+alignment makes the same deletion fatal at the first apex.

@@ -1,0 +1,5659 @@
+{
+  "diagnostic_only": true,
+  "solver": {
+    "name": "Z3",
+    "version": "4.16.0",
+    "logic": "QF_LRA"
+  },
+  "source_consequences": {
+    "exact_cap": "At n=15 all three large caps have size 6 and first strict cap interior is exactly {C,M,K,B}.",
+    "S6": "OC=OM=OJ=OK=OB.",
+    "D44": "OC=OM=OJ, OK=OB, and OC != OK."
+  },
+  "omissions": [
+    "No Euclidean coordinates or full 15-point completion.",
+    "No second/third-cap profile constraints.",
+    "No anonymous outer support points or explicit deletion-row overlap variables.",
+    "UNSAT cores are tracked Z3 cores, not independently checked certificates."
+  ],
+  "counts": {
+    "A=J/OAKXC/S6": {
+      "UNSAT": 30
+    },
+    "A=J/OAKXC/D44": {
+      "UNSAT": 20,
+      "SAT": 10
+    },
+    "A=J/OCXKA/S6": {
+      "UNSAT": 30
+    },
+    "A=J/OCXKA/D44": {
+      "UNSAT": 20,
+      "SAT": 10
+    },
+    "X=C/OCAKJ/S6": {
+      "UNSAT": 30
+    },
+    "X=C/OCAKJ/D44": {
+      "UNSAT": 21,
+      "SAT": 9
+    },
+    "X=C/OJKAC/S6": {
+      "UNSAT": 30
+    },
+    "X=C/OJKAC/D44": {
+      "UNSAT": 21,
+      "SAT": 9
+    }
+  },
+  "rows": [
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCMB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCMB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCBM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OAKX",
+          "K2_OAXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCBM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "79/4",
+            "AC": "19/2",
+            "AK": "19/2",
+            "AM": "25/2",
+            "AO": "19/2",
+            "AX": "19/2",
+            "BC": "55/4",
+            "BK": "26",
+            "BM": "55/4",
+            "BO": "71/4",
+            "BX": "23",
+            "CK": "27/2",
+            "CM": "19/2",
+            "CO": "19/2",
+            "CX": "19/2",
+            "KM": "79/4",
+            "KO": "71/4",
+            "KX": "19/2",
+            "MO": "19/2",
+            "MX": "71/4",
+            "OX": "67/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "O",
+              "C",
+              "X",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMCB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OAKX",
+          "K2_OAMC",
+          "K2_OAXM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMCB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OABC",
+          "K2_OAKX",
+          "K2_OAMB",
+          "K2_OAXM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "161/4",
+            "AC": "129/4",
+            "AK": "129/4",
+            "AM": "121/4",
+            "AO": "97/4",
+            "AX": "73/4",
+            "BC": "24",
+            "BK": "189/4",
+            "BM": "24",
+            "BO": "133/4",
+            "BX": "121/4",
+            "CK": "161/4",
+            "CM": "97/4",
+            "CO": "97/4",
+            "CX": "97/4",
+            "KM": "145/4",
+            "KO": "133/4",
+            "KX": "73/4",
+            "MO": "97/4",
+            "MX": "73/4",
+            "OX": "73/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "A",
+              "K",
+              "M"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBCM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OABC",
+          "K2_OAKX",
+          "K2_OAXB",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBCM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKCM",
+          "K2_KXCM",
+          "K2_OACM",
+          "K2_XBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKMC",
+          "K2_KXMC",
+          "K2_OAMC",
+          "K2_XBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKMC",
+          "K2_KXMC",
+          "K2_OAMC",
+          "K2_XBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXCB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMXB",
+          "K1_OXCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXCB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMXB",
+          "K1_OXCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXBC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OABC",
+          "K2_OAKM",
+          "K2_OAMX",
+          "K2_OAXB",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXBC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "45/2",
+            "AC": "39/2",
+            "AK": "39/2",
+            "AM": "33/2",
+            "AO": "33/2",
+            "AX": "33/2",
+            "BC": "33/2",
+            "BK": "47/2",
+            "BM": "33/2",
+            "BO": "41/2",
+            "BX": "33/4",
+            "CK": "43/2",
+            "CM": "33/2",
+            "CO": "33/2",
+            "CX": "29/2",
+            "KM": "33/4",
+            "KO": "41/2",
+            "KX": "33/2",
+            "MO": "33/2",
+            "MX": "17/2",
+            "OX": "31/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMBXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OABX",
+          "K2_OAKM",
+          "K2_OAMB",
+          "K2_OAXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMBXC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "69/2",
+            "AC": "61/2",
+            "AK": "61/2",
+            "AM": "53/2",
+            "AO": "37/2",
+            "AX": "49/2",
+            "BC": "49/2",
+            "BK": "67/2",
+            "BM": "49/2",
+            "BO": "49/2",
+            "BX": "49/4",
+            "CK": "63/2",
+            "CM": "49/2",
+            "CO": "37/2",
+            "CX": "25/2",
+            "KM": "49/2",
+            "KO": "49/2",
+            "KX": "49/2",
+            "MO": "37/2",
+            "MX": "33/2",
+            "OX": "27/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "O",
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXCM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKCM",
+          "K2_KBCM",
+          "K2_OACM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXCM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKCM",
+          "K2_KBCM",
+          "K2_OACM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OABX",
+          "K2_OAKB",
+          "K2_OAMC",
+          "K2_OAXM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKMC",
+          "K2_KBMC",
+          "K2_OAMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBMXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKMX",
+          "K2_AKXC",
+          "K2_KBMX",
+          "K2_KBXC",
+          "K2_OAMX",
+          "K2_OAXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBMXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_AKMX",
+          "K2_AKXC",
+          "K2_KBMX",
+          "K2_KBXC",
+          "K2_OAMX",
+          "K2_OAXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXCB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OAKX",
+          "K2_OAXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXCB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OKXB",
+          "K1_OMKB",
+          "K1_OXCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXBC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMC",
+          "K1_OMKC",
+          "K2_AMBC",
+          "K2_AMXB",
+          "K2_MKBC",
+          "K2_MKXB",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXBC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "197/8",
+            "AC": "171/8",
+            "AK": "171/8",
+            "AM": "14",
+            "AO": "43/4",
+            "AX": "137/8",
+            "BC": "179/8",
+            "BK": "213/8",
+            "BM": "179/8",
+            "BO": "137/8",
+            "BX": "69/4",
+            "CK": "203/8",
+            "CM": "161/8",
+            "CO": "43/4",
+            "CX": "17",
+            "KM": "137/8",
+            "KO": "137/8",
+            "KX": "137/8",
+            "MO": "43/4",
+            "MX": "111/8",
+            "OX": "43/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKBXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMC",
+          "K1_OMKC",
+          "K2_AMXC",
+          "K2_MKXC",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKBXC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "87/4",
+            "AC": "16",
+            "AK": "16",
+            "AM": "29/4",
+            "AO": "12",
+            "AX": "25",
+            "BC": "63/4",
+            "BK": "79/4",
+            "BM": "63/4",
+            "BO": "79/4",
+            "BX": "79/4",
+            "CK": "18",
+            "CM": "12",
+            "CO": "12",
+            "CX": "12",
+            "KM": "9",
+            "KO": "79/4",
+            "KX": "25",
+            "MO": "12",
+            "MX": "20",
+            "OX": "22"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMBKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMC",
+          "K1_OBKC",
+          "K1_OMBC",
+          "K2_AMXC",
+          "K2_BKXC",
+          "K2_MBXC",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMBKXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMC",
+          "K1_OBKC",
+          "K2_AMBK",
+          "K2_AMKX",
+          "K2_AMXC",
+          "K2_BKXC",
+          "K2_MBXC",
+          "K2_OABK",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_O_AC",
+          "base_X_AK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXCM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OAKX",
+          "K2_OAXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXCM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABCM",
+          "K2_OACM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMC",
+          "K2_OAMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMC",
+          "K2_OAMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKMXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMX",
+          "K2_ABXC",
+          "K2_OAMX",
+          "K2_OAXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKMXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMX",
+          "K2_ABXC",
+          "K2_OAMX",
+          "K2_OAXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABMKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABKX",
+          "K2_ABMK",
+          "K2_ABXC",
+          "K2_OAKX",
+          "K2_OAMK",
+          "K2_OAXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABMKXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OABC",
+          "K1_OBMC",
+          "K1_OMKC",
+          "K2_ABKX",
+          "K2_ABMK",
+          "K2_ABXC",
+          "K2_BMXC",
+          "K2_MKXC",
+          "K2_OAMK",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_O_AC",
+          "base_X_AK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXCB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_MAKX",
+          "K2_MAXC",
+          "K2_OMKX",
+          "K2_OMXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXCB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKB",
+          "K1_OKXB",
+          "K1_OMAB",
+          "K1_OXCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKC",
+          "K2_AKBC",
+          "K2_AKXB",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "25",
+            "AC": "21",
+            "AK": "21",
+            "AM": "15",
+            "AO": "61/2",
+            "AX": "59/4",
+            "BC": "151/4",
+            "BK": "71/2",
+            "BM": "151/4",
+            "BO": "201/4",
+            "BX": "101/4",
+            "CK": "159/4",
+            "CM": "61/2",
+            "CO": "61/2",
+            "CX": "61/2",
+            "KM": "143/4",
+            "KO": "201/4",
+            "KX": "59/4",
+            "MO": "61/2",
+            "MX": "57/2",
+            "OX": "42"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKBXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKC",
+          "K1_OKBC",
+          "K1_OMAC",
+          "K2_MABX",
+          "K2_MAKB",
+          "K2_MAXC",
+          "K2_OMKB",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_O_AC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKBXC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "77/4",
+            "AC": "69/4",
+            "AK": "69/4",
+            "AM": "53/4",
+            "AO": "53/4",
+            "AX": "53/4",
+            "BC": "97/4",
+            "BK": "13",
+            "BM": "97/4",
+            "BO": "89/4",
+            "BX": "45/4",
+            "CK": "101/4",
+            "CM": "73/4",
+            "CO": "53/4",
+            "CX": "53/4",
+            "KM": "93/4",
+            "KO": "89/4",
+            "KX": "53/4",
+            "MO": "53/4",
+            "MX": "69/4",
+            "OX": "53/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_MAKX",
+          "K2_MAXC",
+          "K2_OMKX",
+          "K2_OMXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "43/4",
+            "AC": "63/4",
+            "AK": "63/4",
+            "AM": "21/2",
+            "AO": "75/4",
+            "AX": "25",
+            "BC": "21",
+            "BK": "19",
+            "BM": "21",
+            "BO": "25",
+            "BX": "117/4",
+            "CK": "75/4",
+            "CM": "85/4",
+            "CO": "75/4",
+            "CX": "25",
+            "KM": "25",
+            "KO": "25",
+            "KX": "25",
+            "MO": "75/4",
+            "MX": "133/4",
+            "OX": "129/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BAKX",
+          "K2_BAXC",
+          "K2_MBKX",
+          "K2_MBXC",
+          "K2_OMKX",
+          "K2_OMXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "29/2",
+            "AC": "25/2",
+            "AK": "25/2",
+            "AM": "29/2",
+            "AO": "35/2",
+            "AX": "29/2",
+            "BC": "45/2",
+            "BK": "53/2",
+            "BM": "45/2",
+            "BO": "53/2",
+            "BX": "53/2",
+            "CK": "41/2",
+            "CM": "35/2",
+            "CO": "35/2",
+            "CX": "35/2",
+            "KM": "49/2",
+            "KO": "53/2",
+            "KX": "29/2",
+            "MO": "35/2",
+            "MX": "47/2",
+            "OX": "49/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXCM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXCM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKMXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BAKM",
+          "K2_BAMX",
+          "K2_BAXC",
+          "K2_OBKM",
+          "K2_OBMX",
+          "K2_OBXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKMXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMX",
+          "K2_OBXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAMKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBKX",
+          "K2_OBMK",
+          "K2_OBXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAMKXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBKX",
+          "K2_OBMK",
+          "K2_OBXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBMAKXC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BMKX",
+          "K2_BMXC",
+          "K2_MAKX",
+          "K2_MAXC",
+          "K2_OBKX",
+          "K2_OBXC",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBMAKXC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAK",
+          "K2_OBKX",
+          "K2_OBMA",
+          "K2_OBXC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKAMB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMB",
+          "K1_OCXB",
+          "K1_OKAB",
+          "K1_OXKB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKAMB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMB",
+          "K1_OCXB",
+          "K1_OKAB",
+          "K1_OXKB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXM",
+          "K1_OXKM",
+          "K2_CXAB",
+          "K2_CXBM",
+          "K2_XKAB",
+          "K2_XKBM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "27/2",
+            "AC": "19/2",
+            "AK": "19/2",
+            "AM": "27/2",
+            "AO": "27/2",
+            "AX": "27/2",
+            "BC": "39/2",
+            "BK": "45/2",
+            "BM": "39/2",
+            "BO": "41/2",
+            "BX": "51/2",
+            "CK": "27/2",
+            "CM": "33/2",
+            "CO": "27/2",
+            "CX": "27/2",
+            "KM": "43/2",
+            "KO": "41/2",
+            "KX": "27/2",
+            "MO": "27/2",
+            "MX": "47/2",
+            "OX": "43/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMAB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_CXKM",
+          "K2_CXMA",
+          "K2_OCKM",
+          "K2_OCMA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMAB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXB",
+          "K1_OKMB",
+          "K1_OXKB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMBA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OKMA",
+          "K2_CXBA",
+          "K2_CXKM",
+          "K2_CXMB",
+          "K2_KMBA",
+          "K2_OCBA",
+          "K2_OCKM",
+          "K2_OCMB",
+          "K2_XKBA",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_O_AC",
+          "base_X_AK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMBA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXA",
+          "K1_OKMA",
+          "K1_OXKA",
+          "K2_CXBA",
+          "K2_KMBA",
+          "K2_XKBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBAM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXM",
+          "K1_OXKM",
+          "K2_CXAM",
+          "K2_XKAM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBAM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "9",
+            "AC": "14",
+            "AK": "14",
+            "AM": "9",
+            "AO": "9",
+            "AX": "9",
+            "BC": "143/8",
+            "BK": "89/8",
+            "BM": "143/8",
+            "BO": "111/8",
+            "BX": "11",
+            "CK": "135/8",
+            "CM": "16",
+            "CO": "9",
+            "CX": "71/8",
+            "KM": "151/8",
+            "KO": "111/8",
+            "KX": "9",
+            "MO": "9",
+            "MX": "103/8",
+            "OX": "55/8"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBMA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_CXBM",
+          "K2_CXKB",
+          "K2_CXMA",
+          "K2_OCBM",
+          "K2_OCKB",
+          "K2_OCMA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBMA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OKBA",
+          "K2_CXBM",
+          "K2_CXKB",
+          "K2_CXMA",
+          "K2_KBMA",
+          "K2_OCKB",
+          "K2_OCMA",
+          "K2_XKMA",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_O_AC",
+          "base_X_AK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKAB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXB",
+          "K1_OMKB",
+          "K1_OXMB",
+          "K2_CXAB",
+          "K2_MKAB",
+          "K2_XMAB",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKAB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXB",
+          "K1_OXMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKBA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXA",
+          "K1_OXMA",
+          "K2_CXBA",
+          "K2_XMBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKBA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXA",
+          "K1_OXMA",
+          "K2_CXBA",
+          "K2_XMBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMBKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBKA",
+          "K1_OCXA",
+          "K1_OMBA",
+          "K1_OXMA",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMBKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCXA",
+          "K1_OXMA",
+          "K2_CXBK",
+          "K2_CXKA",
+          "K2_XMBK",
+          "K2_XMKA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKAM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBKM",
+          "K1_OCXM",
+          "K1_OXBM",
+          "K2_BKAM",
+          "K2_CXAM",
+          "K2_XBAM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKAM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "37/2",
+            "AC": "33/2",
+            "AK": "33/2",
+            "AM": "25/2",
+            "AO": "25/2",
+            "AX": "25/2",
+            "BC": "45/2",
+            "BK": "10",
+            "BM": "45/2",
+            "BO": "41/2",
+            "BX": "21/2",
+            "CK": "47/2",
+            "CM": "35/2",
+            "CO": "25/2",
+            "CX": "25/2",
+            "KM": "43/2",
+            "KO": "41/2",
+            "KX": "25/2",
+            "MO": "25/2",
+            "MX": "31/2",
+            "OX": "25/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_CXKM",
+          "K2_CXMA",
+          "K2_OCKM",
+          "K2_OCMA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "105/4",
+            "AC": "101/4",
+            "AK": "101/4",
+            "AM": "17",
+            "AO": "51/4",
+            "AX": "20",
+            "BC": "22",
+            "BK": "13",
+            "BM": "22",
+            "BO": "20",
+            "BX": "51/4",
+            "CK": "109/4",
+            "CM": "23",
+            "CO": "51/4",
+            "CX": "51/4",
+            "KM": "20",
+            "KO": "20",
+            "KX": "20",
+            "MO": "51/4",
+            "MX": "67/4",
+            "OX": "51/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBMKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBMA",
+          "K1_OCXA",
+          "K1_OMKA",
+          "K1_OXBA",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBMKA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "233/8",
+            "AC": "217/8",
+            "AK": "217/8",
+            "AM": "193/8",
+            "AO": "193/8",
+            "AX": "193/8",
+            "BC": "67/4",
+            "BK": "24",
+            "BM": "67/4",
+            "BO": "225/8",
+            "BX": "17/2",
+            "CK": "241/8",
+            "CM": "201/8",
+            "CO": "193/8",
+            "CX": "67/8",
+            "KM": "18",
+            "KO": "225/8",
+            "KX": "193/8",
+            "MO": "193/8",
+            "MX": "143/8",
+            "OX": "177/8"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKAB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKAB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKBA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKBA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXBKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBK",
+          "K2_CMKA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXBKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBK",
+          "K2_CMKA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMBXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBX",
+          "K2_CMKA",
+          "K2_CMXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMBXKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMA",
+          "K2_CMBX",
+          "K2_CMKA",
+          "K2_CMXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKAM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBXM",
+          "K1_OXKM",
+          "K2_BXAM",
+          "K2_CBAM",
+          "K2_OCAM",
+          "K2_OCBX",
+          "K2_OCKA",
+          "K2_OCXK",
+          "K2_XKAM",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKAM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "87/4",
+            "AC": "71/4",
+            "AK": "71/4",
+            "AM": "47/4",
+            "AO": "75/4",
+            "AX": "23/2",
+            "BC": "26",
+            "BK": "121/4",
+            "BM": "26",
+            "BO": "30",
+            "BX": "19",
+            "CK": "28",
+            "CM": "75/4",
+            "CO": "75/4",
+            "CX": "75/4",
+            "KM": "24",
+            "KO": "30",
+            "KX": "23/2",
+            "MO": "75/4",
+            "MX": "67/4",
+            "OX": "87/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKMA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BXKM",
+          "K2_BXMA",
+          "K2_CBKM",
+          "K2_CBMA",
+          "K2_OCKM",
+          "K2_OCMA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKMA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "53/2",
+            "AC": "45/2",
+            "AK": "45/2",
+            "AM": "11",
+            "AO": "23/2",
+            "AX": "37/2",
+            "BC": "49/2",
+            "BK": "57/2",
+            "BM": "49/2",
+            "BO": "37/2",
+            "BX": "37/2",
+            "CK": "53/2",
+            "CM": "43/2",
+            "CO": "23/2",
+            "CX": "37/2",
+            "KM": "37/2",
+            "KO": "37/2",
+            "KX": "37/2",
+            "MO": "23/2",
+            "MX": "31/2",
+            "OX": "23/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K",
+              "B"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXMKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBXA",
+          "K1_OCBA",
+          "K1_OMKA",
+          "K1_OXMA",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXMKA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "87/2",
+            "AC": "81/2",
+            "AK": "81/2",
+            "AM": "33",
+            "AO": "21",
+            "AX": "59/2",
+            "BC": "65/2",
+            "BK": "89/2",
+            "BM": "65/2",
+            "BO": "59/2",
+            "BX": "33/2",
+            "CK": "48",
+            "CM": "77/2",
+            "CO": "21",
+            "CX": "33",
+            "KM": "59/2",
+            "KO": "59/2",
+            "KX": "59/2",
+            "MO": "21",
+            "MX": "33/2",
+            "OX": "33/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBMXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BMKA",
+          "K2_CBKA",
+          "K2_MXKA",
+          "K2_OCKA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBMXKA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "115/4",
+            "AC": "35/2",
+            "AK": "35/2",
+            "AM": "31/2",
+            "AO": "35/2",
+            "AX": "35/2",
+            "BC": "35/2",
+            "BK": "135/4",
+            "BM": "35/2",
+            "BO": "119/4",
+            "BX": "107/4",
+            "CK": "47/2",
+            "CM": "37/4",
+            "CO": "35/2",
+            "CX": "35/2",
+            "KM": "35/2",
+            "KO": "119/4",
+            "KX": "35/2",
+            "MO": "35/2",
+            "MX": "19/2",
+            "OX": "99/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "O",
+              "C",
+              "X",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKAB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKAB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKBA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCA",
+          "K2_MCBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKBA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCA",
+          "K2_MCBA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXBKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCA",
+          "K2_MCBK",
+          "K2_MCKA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXBKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCA",
+          "K2_MCBK",
+          "K2_MCKA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCBXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BXKA",
+          "K2_CBKA",
+          "K2_MCKA",
+          "K2_OMKA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCBXKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCA",
+          "K2_MCBX",
+          "K2_MCKA",
+          "K2_MCXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMBCXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BCKA",
+          "K2_CXKA",
+          "K2_MBKA",
+          "K2_OMKA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMBCXKA",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "41/2",
+            "AC": "25/2",
+            "AK": "25/2",
+            "AM": "79/4",
+            "AO": "25/2",
+            "AX": "25/2",
+            "BC": "41/4",
+            "BK": "51/2",
+            "BM": "41/4",
+            "BO": "39/2",
+            "BX": "45/2",
+            "CK": "33/2",
+            "CM": "25/2",
+            "CO": "25/2",
+            "CX": "25/2",
+            "KM": "103/4",
+            "KO": "39/2",
+            "KX": "25/2",
+            "MO": "25/2",
+            "MX": "95/4",
+            "OX": "37/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": false,
+            "C": true,
+            "X": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "O",
+              "C",
+              "X",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "C",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKAM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAM",
+          "K2_OBCX",
+          "K2_OBKA",
+          "K2_OBXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKAM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAM",
+          "K2_OBCX",
+          "K2_OBKA",
+          "K2_OBXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKMA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCX",
+          "K2_OBKM",
+          "K2_OBXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKMA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCX",
+          "K2_OBKM",
+          "K2_OBXK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXMKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BCKA",
+          "K2_CXKA",
+          "K2_OBKA",
+          "base_O_AC",
+          "base_X_AK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXMKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCX",
+          "K2_OBXM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCMXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCMXKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBMCXKA",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBMCXKA",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJMB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKB",
+          "K1_OCAB",
+          "K1_OJMB",
+          "K1_OKJB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJMB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKB",
+          "K1_OCAB",
+          "K1_OJMB",
+          "K1_OKJB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJBM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJBM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "87/4",
+            "AC": "21/4",
+            "AJ": "23/2",
+            "AK": "21/4",
+            "AM": "37/2",
+            "AO": "33/2",
+            "BC": "75/4",
+            "BJ": "23/2",
+            "BK": "91/4",
+            "BM": "75/4",
+            "BO": "79/4",
+            "CJ": "19/2",
+            "CK": "19/2",
+            "CM": "29/2",
+            "CO": "23/2",
+            "JK": "23/2",
+            "JM": "23/2",
+            "JO": "23/2",
+            "KM": "83/4",
+            "KO": "79/4",
+            "MO": "23/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMJB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKB",
+          "K1_OCAB",
+          "K1_OKMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMJB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKB",
+          "K1_OCAB",
+          "K1_OKMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMBJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKJ",
+          "K1_OCAJ",
+          "K1_OKMJ",
+          "K2_AKBJ",
+          "K2_CABJ",
+          "K2_KMBJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMBJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAKJ",
+          "K1_OCAJ",
+          "K1_OKMJ",
+          "K2_AKBJ",
+          "K2_CABJ",
+          "K2_KMBJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBJM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCBJ",
+          "K2_OCKB",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBJM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "31/2",
+            "AC": "19/2",
+            "AJ": "27/2",
+            "AK": "19/2",
+            "AM": "31/2",
+            "AO": "31/2",
+            "BC": "87/4",
+            "BJ": "29/4",
+            "BK": "37/4",
+            "BM": "87/4",
+            "BO": "95/4",
+            "CJ": "75/4",
+            "CK": "75/4",
+            "CM": "79/4",
+            "CO": "75/4",
+            "JK": "37/4",
+            "JM": "63/4",
+            "JO": "75/4",
+            "KM": "91/4",
+            "KO": "95/4",
+            "MO": "75/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBMJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCBM",
+          "K2_OCKB",
+          "K2_OCMJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBMJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "175/8",
+            "AC": "85/8",
+            "AJ": "87/4",
+            "AK": "85/8",
+            "AM": "79/4",
+            "AO": "71/4",
+            "BC": "23",
+            "BJ": "27",
+            "BK": "27",
+            "BM": "23",
+            "BO": "27",
+            "CJ": "167/8",
+            "CK": "167/8",
+            "CM": "159/8",
+            "CO": "21/2",
+            "JK": "30",
+            "JM": "19/2",
+            "JO": "21/2",
+            "KM": "27",
+            "KO": "27",
+            "MO": "21/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKJB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMB",
+          "K1_OCAB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKJB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMB",
+          "K1_OCAB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKBJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMJ",
+          "K1_OCAJ",
+          "K2_AMBJ",
+          "K2_CABJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKBJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMJ",
+          "K1_OCAJ",
+          "K2_AMBJ",
+          "K2_CABJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMBKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMJ",
+          "K1_OCAJ",
+          "K2_AMBK",
+          "K2_AMKJ",
+          "K2_CABK",
+          "K2_CAKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMBKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OAMJ",
+          "K1_OCAJ",
+          "K2_AMBK",
+          "K2_AMKJ",
+          "K2_CABK",
+          "K2_CAKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKJM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKJM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "9",
+            "AC": "11",
+            "AJ": "53/4",
+            "AK": "11",
+            "AM": "61/4",
+            "AO": "11",
+            "BC": "79/4",
+            "BJ": "67/4",
+            "BK": "27/2",
+            "BM": "79/4",
+            "BO": "33/2",
+            "CJ": "83/4",
+            "CK": "83/4",
+            "CM": "87/4",
+            "CO": "53/4",
+            "JK": "53/4",
+            "JM": "53/4",
+            "JO": "53/4",
+            "KM": "35/2",
+            "KO": "33/2",
+            "MO": "53/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "O",
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKMJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKM",
+          "K2_OCMJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKMJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "57/8",
+            "AC": "75/8",
+            "AJ": "59/4",
+            "AK": "75/8",
+            "AM": "99/8",
+            "AO": "21/2",
+            "BC": "131/8",
+            "BJ": "79/4",
+            "BK": "19/2",
+            "BM": "131/8",
+            "BO": "33/2",
+            "CJ": "141/8",
+            "CK": "141/8",
+            "CM": "65/4",
+            "CO": "99/8",
+            "JK": "35/2",
+            "JM": "99/8",
+            "JO": "99/8",
+            "KM": "99/8",
+            "KO": "33/2",
+            "MO": "99/8"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABMKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABMKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OABJ",
+          "K2_ABKJ",
+          "K2_ABMK",
+          "K2_CAMK",
+          "K2_OCAB",
+          "K2_OCKJ",
+          "K2_OCMK",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_C_JK",
+          "base_O_JC"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKJB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKJB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKBJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCBJ",
+          "K2_OCKB",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKBJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMJ",
+          "K2_CMBJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMABKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMJ",
+          "K2_CMBK",
+          "K2_CMKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMABKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMJ",
+          "K2_CMBK",
+          "K2_CMKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMBAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMJ",
+          "K2_CMAK",
+          "K2_CMBA",
+          "K2_CMKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMBAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMJ",
+          "K2_CMAK",
+          "K2_CMBA",
+          "K2_CMKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKJM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBAM",
+          "K2_BAJM",
+          "K2_BAKJ",
+          "K2_CBJM",
+          "K2_CBKJ",
+          "K2_OCBA",
+          "K2_OCJM",
+          "K2_OCKJ",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKJM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBAM",
+          "K2_BAJM",
+          "K2_BAKJ",
+          "K2_CBJM",
+          "K2_CBKJ",
+          "K2_OCBA",
+          "K2_OCJM",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_C_JK",
+          "base_O_JC"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKMJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBAJ",
+          "K2_BAKM",
+          "K2_BAMJ",
+          "K2_CBKM",
+          "K2_OCBA",
+          "K2_OCKM",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKMJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "69/4",
+            "AC": "17",
+            "AJ": "22",
+            "AK": "17",
+            "AM": "14",
+            "AO": "20",
+            "BC": "53/4",
+            "BJ": "81/4",
+            "BK": "69/4",
+            "BM": "53/4",
+            "BO": "69/4",
+            "CJ": "61/4",
+            "CK": "61/4",
+            "CM": "37/4",
+            "CO": "37/4",
+            "JK": "73/4",
+            "JM": "37/4",
+            "JO": "37/4",
+            "KM": "37/4",
+            "KO": "69/4",
+            "MO": "37/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAMKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAMKJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "13",
+            "AC": "16",
+            "AJ": "18",
+            "AK": "16",
+            "AM": "39/4",
+            "AO": "51/4",
+            "BC": "47/4",
+            "BJ": "18",
+            "BK": "17",
+            "BM": "47/4",
+            "BO": "47/4",
+            "CJ": "18",
+            "CK": "18",
+            "CM": "55/4",
+            "CO": "19/2",
+            "JK": "19/2",
+            "JM": "19/2",
+            "JO": "19/2",
+            "KM": "13/2",
+            "KO": "47/4",
+            "MO": "19/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "O",
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OCKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "19",
+            "AC": "63/4",
+            "AJ": "75/4",
+            "AK": "63/4",
+            "AM": "39/4",
+            "AO": "151/8",
+            "BC": "79/8",
+            "BJ": "277/8",
+            "BK": "269/8",
+            "BM": "79/8",
+            "BO": "101/4",
+            "CJ": "235/8",
+            "CK": "235/8",
+            "CM": "10",
+            "CO": "19",
+            "JK": "19",
+            "JM": "219/8",
+            "JO": "19",
+            "KM": "203/8",
+            "KO": "101/4",
+            "MO": "19"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKJB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKJB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKBJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCBJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKBJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCBJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCABKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCBK",
+          "K2_MCKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCABKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCBK",
+          "K2_MCKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCBAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCAK",
+          "K2_MCBA",
+          "K2_MCKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCBAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCJ",
+          "K2_MCAK",
+          "K2_MCBA",
+          "K2_MCKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMBCAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_BCKJ",
+          "K2_MBKJ",
+          "K2_OMKJ",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMBCAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "35/2",
+            "AC": "19/2",
+            "AJ": "55/4",
+            "AK": "19/2",
+            "AM": "75/4",
+            "AO": "31/2",
+            "BC": "75/4",
+            "BJ": "99/4",
+            "BK": "103/4",
+            "BM": "75/4",
+            "BO": "87/4",
+            "CJ": "75/4",
+            "CK": "75/4",
+            "CM": "21",
+            "CO": "75/4",
+            "JK": "19",
+            "JM": "24",
+            "JO": "75/4",
+            "KM": "26",
+            "KO": "87/4",
+            "MO": "75/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "J",
+              "K",
+              "B"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKJM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAK",
+          "K2_OBCA",
+          "K2_OBJM",
+          "K2_OBKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKJM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAK",
+          "K2_OBCA",
+          "K2_OBJM",
+          "K2_OBKJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKMJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAK",
+          "K2_OBCA",
+          "K2_OBKM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKMJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAK",
+          "K2_OBCA",
+          "K2_OBKM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAMKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAM",
+          "K2_OBCA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAMKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAM",
+          "K2_OBCA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCMAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCMAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBMCAKJ",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBMCAKJ",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACMB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACMB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OCMB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACBM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKM",
+          "K2_JKBM",
+          "K2_JKCB",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACBM",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "95/4",
+            "AC": "17/2",
+            "AJ": "25/2",
+            "AK": "17/2",
+            "AM": "79/4",
+            "AO": "75/4",
+            "BC": "79/4",
+            "BJ": "103/4",
+            "BK": "31",
+            "BM": "79/4",
+            "BO": "24",
+            "CJ": "67/4",
+            "CK": "67/4",
+            "CM": "67/4",
+            "CO": "67/4",
+            "JK": "67/4",
+            "JM": "79/4",
+            "JO": "67/4",
+            "KM": "26",
+            "KO": "24",
+            "MO": "67/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "J",
+              "K",
+              "M"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMCB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMCB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OMCB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "47/2",
+            "AC": "28",
+            "AJ": "133/4",
+            "AK": "28",
+            "AM": "47/4",
+            "AO": "137/4",
+            "BC": "12",
+            "BJ": "111/4",
+            "BK": "49/2",
+            "BM": "12",
+            "BO": "107/4",
+            "CJ": "28",
+            "CK": "28",
+            "CM": "35/2",
+            "CO": "99/4",
+            "JK": "99/4",
+            "JM": "99/4",
+            "JO": "99/4",
+            "KM": "41/2",
+            "KO": "107/4",
+            "MO": "99/4"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABCM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABCM",
+          "K2_JKCM",
+          "K2_KACM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABCM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABCM",
+          "K2_JKCM",
+          "K2_KACM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMC",
+          "K2_JKMC",
+          "K2_KAMC",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_ABMC",
+          "K2_JKMC",
+          "K2_KAMC",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMACB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OACB",
+          "K1_OMAB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMACB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OACB",
+          "K1_OMAB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMABC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMABC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "65/4",
+            "AC": "37/2",
+            "AJ": "41/2",
+            "AK": "37/2",
+            "AM": "37/4",
+            "AO": "33/2",
+            "BC": "29/2",
+            "BJ": "39/2",
+            "BK": "37/2",
+            "BM": "29/2",
+            "BO": "29/2",
+            "CJ": "37/2",
+            "CK": "37/2",
+            "CM": "31/2",
+            "CO": "25/2",
+            "JK": "25/2",
+            "JM": "25/2",
+            "JO": "25/2",
+            "KM": "19/2",
+            "KO": "29/2",
+            "MO": "25/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "O",
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "A",
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMBAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMBAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBAC",
+          "K1_OJKC",
+          "K1_OKMC",
+          "K2_JKBA",
+          "K2_KMAC",
+          "K2_KMBA",
+          "K2_OJBA",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_C_JK",
+          "base_O_JC"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBACM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JKCM",
+          "K2_KBCM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBACM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JKCM",
+          "K2_KBCM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBAMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBAMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JKMC",
+          "K2_KBMC",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBMAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBMAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBMC",
+          "K1_OJKC",
+          "K1_OKBC",
+          "K1_OMAC",
+          "K2_JKMA",
+          "K2_KBAC",
+          "K2_KBMA",
+          "K2_OJMA",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_C_JK",
+          "base_O_JC"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKACB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OACB",
+          "K1_OKAB",
+          "K1_OMKB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKACB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OACB",
+          "K1_OKAB",
+          "K1_OMKB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKABC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OABC",
+          "K1_OMKC",
+          "K2_JMAB",
+          "K2_MKAB",
+          "K2_MKBC",
+          "K2_OJAB",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKABC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "99/8",
+            "AC": "107/8",
+            "AJ": "139/8",
+            "AK": "107/8",
+            "AM": "83/8",
+            "AO": "179/8",
+            "BC": "173/8",
+            "BJ": "221/8",
+            "BK": "205/8",
+            "BM": "173/8",
+            "BO": "253/8",
+            "CJ": "205/8",
+            "CK": "205/8",
+            "CM": "165/8",
+            "CO": "205/8",
+            "JK": "205/8",
+            "JM": "35/2",
+            "JO": "205/8",
+            "KM": "141/8",
+            "KO": "253/8",
+            "MO": "205/8"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKBAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJMC",
+          "K1_OMKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKBAC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "43/8",
+            "AC": "21/2",
+            "AJ": "141/8",
+            "AK": "21/2",
+            "AM": "55/4",
+            "AO": "149/8",
+            "BC": "23/2",
+            "BJ": "133/8",
+            "BK": "21/4",
+            "BM": "23/2",
+            "BO": "149/8",
+            "CJ": "125/8",
+            "CK": "125/8",
+            "CM": "109/8",
+            "CO": "125/8",
+            "JK": "125/8",
+            "JM": "93/8",
+            "JO": "125/8",
+            "KM": "19/2",
+            "KO": "149/8",
+            "MO": "125/8"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "O",
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMBKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBKC",
+          "K1_OJMC",
+          "K2_JMAC",
+          "K2_JMBK",
+          "K2_JMKA",
+          "K2_OJAC",
+          "K2_OJBK",
+          "K2_OJKA",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMBKAC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "105/4",
+            "AC": "67/4",
+            "AJ": "26",
+            "AK": "67/4",
+            "AM": "24",
+            "AO": "71/4",
+            "BC": "71/2",
+            "BJ": "79/2",
+            "BK": "133/4",
+            "BM": "71/2",
+            "BO": "133/4",
+            "CJ": "133/4",
+            "CK": "133/4",
+            "CM": "129/4",
+            "CO": "24",
+            "JK": "81/2",
+            "JM": "24",
+            "JO": "24",
+            "KM": "75/2",
+            "KO": "133/4",
+            "MO": "24"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": false,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKACM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBCM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKACM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBCM",
+          "K2_OJCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKAMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBMC",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKAMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBMC",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKMAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBKC",
+          "K1_OJBC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKMAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBAC",
+          "K2_JBMA",
+          "K2_OJMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBMKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBMC",
+          "K1_OJBC",
+          "K1_OMKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBMKAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_JBAC",
+          "K2_JBKA",
+          "K2_JBMK",
+          "K2_OJAC",
+          "K2_OJKA",
+          "K2_OJMK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKACB",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKB",
+          "K2_JKCB",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKACB",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OACB",
+          "K1_OJKB",
+          "K1_OKAB",
+          "K1_OMJB",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKABC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKABC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OABC",
+          "K1_OMJC",
+          "K2_JKAB",
+          "K2_JKBC",
+          "K2_MJAB",
+          "K2_MJBC",
+          "K2_OMAB",
+          "O_radius_CM",
+          "SigmaB_CM",
+          "base_A_CK",
+          "base_C_JK",
+          "base_O_JC"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKBAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKBAC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "15/2",
+            "AC": "19/2",
+            "AJ": "21/2",
+            "AK": "19/2",
+            "AM": "27/2",
+            "AO": "21/2",
+            "BC": "67/4",
+            "BJ": "51/4",
+            "BK": "43/4",
+            "BM": "67/4",
+            "BO": "59/4",
+            "CJ": "71/4",
+            "CK": "71/4",
+            "CM": "79/4",
+            "CO": "21/2",
+            "JK": "21/2",
+            "JM": "21/2",
+            "JO": "21/2",
+            "KM": "63/4",
+            "KO": "59/4",
+            "MO": "21/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJBKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OBKC",
+          "K1_OJBC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJBKAC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "69/4",
+            "AC": "43/4",
+            "AJ": "15",
+            "AK": "43/4",
+            "AM": "17",
+            "AO": "43/4",
+            "BC": "49/2",
+            "BJ": "13",
+            "BK": "65/4",
+            "BM": "49/2",
+            "BO": "81/4",
+            "CJ": "85/4",
+            "CK": "85/4",
+            "CM": "89/4",
+            "CO": "15",
+            "JK": "15",
+            "JM": "15",
+            "JO": "15",
+            "KM": "51/2",
+            "KO": "81/4",
+            "MO": "15"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "O",
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMBJKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKC",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OB",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMBJKAC",
+      "profile": "D44",
+      "result": {
+        "status": "SAT",
+        "readback_all_constraints": true,
+        "witness": {
+          "distances": {
+            "AB": "43/2",
+            "AC": "11/2",
+            "AJ": "23/2",
+            "AK": "11/2",
+            "AM": "39/2",
+            "AO": "33/2",
+            "BC": "37/2",
+            "BJ": "23/2",
+            "BK": "45/2",
+            "BM": "37/2",
+            "BO": "39/2",
+            "CJ": "19/2",
+            "CK": "19/2",
+            "CM": "31/2",
+            "CO": "23/2",
+            "JK": "23/2",
+            "JM": "23/2",
+            "JO": "23/2",
+            "KM": "43/2",
+            "KO": "39/2",
+            "MO": "23/2"
+          },
+          "cap1": {
+            "O": false,
+            "A": true,
+            "C": true,
+            "J": true,
+            "K": true,
+            "M": true,
+            "B": true
+          },
+          "shells": {
+            "SigmaA": [
+              "C",
+              "K"
+            ],
+            "SigmaB": [
+              "C",
+              "M"
+            ],
+            "SigmaX": [
+              "J",
+              "K"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKACM",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K1_OJKM",
+          "K2_JKCM",
+          "base_C_JK",
+          "base_O_JC",
+          "n15_S6_OK"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKACM",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBCM",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKAMC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKAMC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBMC",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKMAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBMA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKMAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBMA",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJMKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBKA",
+          "K2_OBMK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJMKAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBKA",
+          "K2_OBMK",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBMJKAC",
+      "profile": "S6",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBJK",
+          "K2_OBKA",
+          "K2_OBMJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBMJKAC",
+      "profile": "D44",
+      "result": {
+        "status": "UNSAT",
+        "core": [
+          "K2_OBAC",
+          "K2_OBJK",
+          "K2_OBKA",
+          "K2_OBMJ",
+          "O_radius_CM",
+          "SigmaB_CM"
+        ]
+      }
+    }
+  ]
+}

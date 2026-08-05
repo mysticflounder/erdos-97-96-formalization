@@ -1,0 +1,671 @@
+  /-- Minimality's positive content, in robustness form: the carrier is covered
+  by four-point classes of centres carrying exactly one K4 radius, and those are
+  exactly the points where deletion robustness fails. -/
+  notRobustCover_card : D.A.card ≤ 4 * (notRobustCenters D).card
+  /-- No centre covers all three Moser apices on one radius, so at least two
+  distinct covering centres are spent on the apices. -/
+  no_center_covers_all_apices :
+    ∀ p ∈ D.A, ∀ r : ℝ, 0 < r →
+      ¬ (S.triangle.v1 ∈ SelectedClass D.A p r ∧
+        S.triangle.v2 ∈ SelectedClass D.A p r ∧
+        S.triangle.v3 ∈ SelectedClass D.A p r)
+
+/-- Two hits of one rich opposite-apex class in a canonical critical shell
+force that shell's blocker center into the same indexed strict cap.  This is
+the uniform ordered-cap localization needed by the tri-apex terminal. -/
+theorem criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {i : Fin 3}
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+    (hunique : IsUniqueFourCenter D.A (H.centerAt x hx))
+    {r : ℝ}
+    (htwo :
+      2 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card) :
+    H.centerAt x hx ∈ S.capInteriorByIndex i := by
+  classical
+  have hone :
+      1 < ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card := by
+    omega
+  rw [Finset.one_lt_card] at hone
+  obtain ⟨q, hq, w, hw, hqw⟩ := hone
+  have hq' := Finset.mem_inter.mp hq
+  have hw' := Finset.mem_inter.mp hw
+  have hqClassInterior := Finset.mem_inter.mp hq'.2
+  have hwClassInterior := Finset.mem_inter.mp hw'.2
+  have hcenterA : H.centerAt x hx ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt x hx).toCriticalFourShell.center_mem).2
+  have hcenterNe :
+      H.centerAt x hx ≠ S.oppositeVertexByIndex i := by
+    intro hcenter
+    apply not_isUniqueFourCenter_of_fullyDeletionRobust
+      (fullyDeletionRobustAt_of_apexRichClassStructure hrich)
+    simpa [hcenter] using hunique
+  have hcenterEq :
+      dist (H.centerAt x hx) q = dist (H.centerAt x hx) w :=
+    ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius q hq'.1).trans
+      ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius w hw'.1).symm
+  have hapexEq :
+      dist (S.oppositeVertexByIndex i) q =
+        dist (S.oppositeVertexByIndex i) w :=
+    (mem_selectedClass.mp hqClassInterior.1).2.trans
+      (mem_selectedClass.mp hwClassInterior.1).2.symm
+  exact commonPhysicalPair_center_mem_capInteriorByIndex i
+    hcenterA hcenterNe hqClassInterior.2 hwClassInterior.2 hqw
+    hcenterEq hapexEq
+
+/-- A canonical critical shell whose blocker is already localized in one
+strict cap cannot have two hits in a rich slice of a different strict cap.
+The two hits would localize the same blocker in that other cap, contradicting
+disjointness of indexed cap interiors. -/
+theorem false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {i j : Fin 3}
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hcenter : H.centerAt x hx ∈ S.capInteriorByIndex i)
+    (hij : i ≠ j)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex j))
+    (hunique : IsUniqueFourCenter D.A (H.centerAt x hx))
+    {r : ℝ}
+    (htwo :
+      2 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+          S.capInteriorByIndex j)).card) :
+    False := by
+  have hother : H.centerAt x hx ∈ S.capInteriorByIndex j :=
+    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+      hx hrich hunique htwo
+  exact (S.capInteriorByIndex_ne_of_mem_of_mem_ne hcenter hother hij) rfl
+
+/-- Once a canonical critical shell's blocker is localized in one strict cap,
+that full shell has at most one hit in every radius slice of a distinct rich
+cap.  This cardinality form is the direct finite-search rule extracted from
+`false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap`. -/
+theorem criticalShell_inter_otherRichCapSlice_card_le_one
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {i j : Fin 3}
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hcenter : H.centerAt x hx ∈ S.capInteriorByIndex i)
+    (hij : i ≠ j)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex j))
+    (r : ℝ) :
+    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+      (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+        S.capInteriorByIndex j)).card ≤ 1 := by
+  by_contra hnot
+  have htwo :
+      2 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+          S.capInteriorByIndex j)).card := by
+    omega
+  exact false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+    hx hcenter hij hrich (isUniqueFourCenter_centerAt H x hx) htwo
+
+/-- An equal-blocker collision cannot remain isolated when at least three
+frontier-radius members lie in the strict first opposite cap.  The collision
+shell meets that cap in exactly its two sources, so a third member has a
+distinct actual blocker and supplies a directed omission with the first
+source. -/
+theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (hthree :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card) :
+    Nonempty (RetainedInteriorDirectedOmission R) := by
+  classical
+  let I : Finset ℝ² :=
+    SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  have hxExists :
+      ∃ x ∈ I, x ∉ ({P.source₁, P.source₂} : Finset ℝ²) := by
+    by_contra hno
+    push_neg at hno
+    have hsub : I ⊆ ({P.source₁, P.source₂} : Finset ℝ²) := by
+      intro x hx
+      exact hno x hx
+    have hcard := Finset.card_le_card hsub
+    have hpairCard :
+        ({P.source₁, P.source₂} : Finset ℝ²).card = 2 := by
+      simp [P.sources_ne]
+    dsimp [I] at hcard
+    omega
+  rcases hxExists with ⟨x, hxI, hxNotPair⟩
+  have hxParts := Finset.mem_inter.mp hxI
+  have hxRadius : x ∈ SelectedClass D.A S.oppApex1 radius := hxParts.1
+  have hxInterior : x ∈ S.capInteriorByIndex S.oppIndex1 := hxParts.2
+  have hxA : x ∈ D.A := (mem_selectedClass.mp hxRadius).1
+  have hxOutside :
+      x ∉ (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support := by
+    intro hxShell
+    apply hxNotPair
+    rw [← P.shell_inter_cap_eq_sources]
+    exact Finset.mem_inter.mpr
+      ⟨hxShell,
+        S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hxInterior⟩
+  have hsource₁NeX : P.source₁ ≠ x := by
+    intro h
+    apply hxNotPair
+    simp [← h]
+  have hblockersNe :
+      H.centerAt P.source₁ P.source₁_mem_A ≠ H.centerAt x hxA := by
+    intro hblockers
+    apply hxOutside
+    have hsupportEq :
+        (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support =
+          (H.selectedAt x hxA).toCriticalFourShell.support := by
+      rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+          P.source₁ P.source₁_mem_A,
+        ← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+        hblockers]
+    rw [hsupportEq]
+    exact (H.selectedAt x hxA).toCriticalFourShell.q_mem_support
+  exact ⟨{
+    source₁ := P.source₁
+    source₂ := x
+    source₁_mem_A := P.source₁_mem_A
+    source₂_mem_A := hxA
+    sources_ne := hsource₁NeX
+    source₁_mem_radius := P.source₁_mem_radius
+    source₂_mem_radius := hxRadius
+    source₁_mem_capInterior := P.source₁_mem_capInterior
+    source₂_mem_capInterior := hxInterior
+    blockers_ne := hblockersNe
+    directed_omission := Or.inl ⟨hxOutside,
+      (cross_deletion_survives_iff_not_mem_selected_support H
+        P.source₁_mem_A).mpr hxOutside⟩ }⟩
+
+/-- A frontier-radius class of cardinality at least five has at least three
+strict first-cap members, so the preceding collision reduction applies. -/
+theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex1 radius).card) :
+    Nonempty (RetainedInteriorDirectedOmission R) := by
+  have hbound :
+      (SelectedClass D.A S.oppApex1 radius).card - 2 ≤
+        (SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+        D.convex S.oppIndex1
+          (ATailUniqueArmRouteAuditScratch.frontier_radius_pos F)
+  apply
+    nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+      R P
+  omega
+
+/- A checked E-specific normal form for a retained directed omission.  The
+orientation and reverse-incidence disjunctions have already been eliminated by
+the upstream common-deletion and reverse-coupling producers. -/
+inductive RetainedOmissionAllLargeNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorDirectedOmission R) : Type
+  | pairedCommonDeletion
+      (O : OrientedRetainedCommonDeletion P)
+      (reverse_omission :
+        O.kept ∉
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+      (reversePacket :
+        CommonDeletionTwoCenterPacket
+          D H O.kept S.oppApex1
+          (H.centerAt O.deleted O.deleted_mem_A))
+  | reverseHitFreshCommonDeletion
+      (O : OrientedRetainedCommonDeletion P)
+      (reverse_mem :
+        O.kept ∈
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+      (reverseBlocker_mem_capInterior :
+        H.centerAt O.deleted O.deleted_mem_A ∈
+          S.capInteriorByIndex S.oppIndex1)
+      (reverseShell_inter_cap_eq :
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            S.capByIndex S.oppIndex1 =
+          {O.kept, O.deleted})
+      (fresh : ℝ²)
+      (fresh_mem_capInterior :
+        fresh ∈ S.capInteriorByIndex S.oppIndex1)
+      (fresh_ne_kept : fresh ≠ O.kept)
+      (fresh_ne_deleted : fresh ≠ O.deleted)
+      (fresh_not_mem_reverseShell :
+        fresh ∉
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+      (freshPacket :
+        CommonDeletionTwoCenterPacket
+          D H fresh S.oppApex1
+          (H.centerAt O.deleted O.deleted_mem_A))
+
+/-- In the reverse-hit arm, the reverse blocker strictly separates the two
+retained sources in the canonical order of the first cap. -/
+theorem exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (reverse_mem :
+      O.kept ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+    (reverseBlocker_mem_capInterior :
+      H.centerAt O.deleted O.deleted_mem_A ∈
+        S.capInteriorByIndex S.oppIndex1)
+    (reverseShell_inter_cap_eq :
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 =
+        {O.kept, O.deleted}) :
+    ∃ (m : ℕ) (L : CGN.OrderedCap m)
+      (Packet : CGN.MecCapPacket D.A L)
+      (Hside : CGN.MinorCapSideHypotheses Packet)
+      (Hord : CGN.StrictCapOrder D.A L)
+      (j r s : Fin m),
+        Finset.univ.image L.points = S.capByIndex S.oppIndex1 ∧
+        L.points r = O.kept ∧
+        L.points s = O.deleted ∧
+        L.points j = H.centerAt O.deleted O.deleted_mem_A ∧
+        ((r < j ∧ j < s) ∨ (s < j ∧ j < r)) := by
+  classical
+  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  have hkeptImage : O.kept ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 O.kept_mem_capInterior
+  have hdeletedImage : O.deleted ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 O.deleted_mem_capInterior
+  have hblockerImage :
+      H.centerAt O.deleted O.deleted_mem_A ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact
+      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+        reverseBlocker_mem_capInterior
+  rcases Finset.mem_image.mp hkeptImage with ⟨r, _hrmem, hr⟩
+  rcases Finset.mem_image.mp hdeletedImage with ⟨s, _hsmem, hs⟩
+  rcases Finset.mem_image.mp hblockerImage with ⟨j, _hjmem, hj⟩
+  have hdeletedShell :
+      O.deleted ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+    have hmem :
+        O.deleted ∈
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            S.capByIndex S.oppIndex1 := by
+      rw [reverseShell_inter_cap_eq]
+      simp
+    exact hmem.1
+  have heq :
+      dist (H.centerAt O.deleted O.deleted_mem_A) O.kept =
+        dist (H.centerAt O.deleted O.deleted_mem_A) O.deleted :=
+    ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+        O.kept reverse_mem).trans
+      ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+        O.deleted hdeletedShell).symm
+  have hjr : j ≠ r := by
+    intro hjr
+    apply
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.center_not_mem_support
+    have hcenterEq : H.centerAt O.deleted O.deleted_mem_A = O.kept := by
+      calc
+        H.centerAt O.deleted O.deleted_mem_A = L.points j := hj.symm
+        _ = L.points r := by rw [hjr]
+        _ = O.kept := hr
+    simpa [hcenterEq] using reverse_mem
+  have hjs : j ≠ s := by
+    intro hjs
+    apply
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.center_not_mem_support
+    have hcenterEq : H.centerAt O.deleted O.deleted_mem_A = O.deleted := by
+      calc
+        H.centerAt O.deleted O.deleted_mem_A = L.points j := hj.symm
+        _ = L.points s := by rw [hjs]
+        _ = O.deleted := hs
+    simpa [hcenterEq] using hdeletedShell
+  have hrs : r ≠ s := by
+    intro hrs
+    apply O.sources_ne
+    calc
+      O.kept = L.points r := hr.symm
+      _ = L.points s := by rw [hrs]
+      _ = O.deleted := hs
+  have heqL : dist (L.points j) (L.points r) = dist (L.points j) (L.points s) := by
+    simpa only [hj, hr, hs] using heq
+  refine ⟨m, L, Packet, Hside, Hord, j, r, s, hcap, hr, hs, hj, ?_⟩
+  rcases lt_or_gt_of_ne hrs with hrslt | hslt
+  · exact Or.inl
+      (CGN.index_strictly_between_of_equidistant Packet Hside Hord
+        hrslt hjr hjs heqL)
+  · exact Or.inr
+      (CGN.index_strictly_between_of_equidistant Packet Hside Hord
+        hslt hjs hjr heqL.symm)
+
+/-- The first opposite apex is a carrier point. -/
+private theorem oppApex1_mem_A_for_reverseHit
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+
+/-- The first opposite apex is outside the closed cap indexed by
+`oppIndex1`.  The concrete cap/vertex names depend on the surplus index. -/
+private theorem oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, hi] using S.partition.v2_notin_C2
+  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, hi] using S.partition.v3_notin_C3
+  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, hi] using S.partition.v1_notin_C1
+
+/-- In the reverse-hit arm, the first apex and the reverse blocker are on
+opposite sides of the retained-source chord.  Their two equal-distance
+relations therefore force both associated squared base-angle inequalities. -/
+theorem reverseHit_twoCenter_sqdist_acute
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (reverse_mem :
+      O.kept ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+    (reverseBlocker_mem_capInterior :
+      H.centerAt O.deleted O.deleted_mem_A ∈
+        S.capInteriorByIndex S.oppIndex1)
+    (reverseShell_inter_cap_eq :
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 =
+        {O.kept, O.deleted}) :
+    dist S.oppApex1 (H.centerAt O.deleted O.deleted_mem_A) ^ 2 +
+        dist S.oppApex1 O.kept ^ 2 >
+          dist (H.centerAt O.deleted O.deleted_mem_A) O.kept ^ 2 ∧
+      dist S.oppApex1 (H.centerAt O.deleted O.deleted_mem_A) ^ 2 +
+        dist (H.centerAt O.deleted O.deleted_mem_A) O.kept ^ 2 >
+          dist S.oppApex1 O.kept ^ 2 := by
+  classical
+  rcases exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit O
+      reverse_mem reverseBlocker_mem_capInterior reverseShell_inter_cap_eq with
+    ⟨m, L, Packet, Hside, Hord, j, r, s, hcap, hr, hs, hj, hbetween⟩
+  have hdeletedShell :
+      O.deleted ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+    have hmem :
+        O.deleted ∈
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            S.capByIndex S.oppIndex1 := by
+      rw [reverseShell_inter_cap_eq]
+      simp
+    exact hmem.1
+  have hp : dist S.oppApex1 O.kept = dist S.oppApex1 O.deleted :=
+    (mem_selectedClass.mp O.kept_mem_radius).2.trans
+      (mem_selectedClass.mp O.deleted_mem_radius).2.symm
+  have hq :
+      dist (H.centerAt O.deleted O.deleted_mem_A) O.kept =
+        dist (H.centerAt O.deleted O.deleted_mem_A) O.deleted :=
+    ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+        O.kept reverse_mem).trans
+      ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+        O.deleted hdeletedShell).symm
+  have happA : S.oppApex1 ∈ D.A :=
+    oppApex1_mem_A_for_reverseHit S
+  have happOffCap : S.oppApex1 ∉ S.capByIndex S.oppIndex1 :=
+    oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit S
+  have happOff : S.oppApex1 ∉ Finset.univ.image L.points := by
+    intro happImage
+    apply happOffCap
+    rw [← hcap]
+    exact happImage
+  rcases hbetween with hrjs | hsjr
+  · have hprod :
+        signedArea2 S.oppApex1 (L.points r) (L.points s) *
+            signedArea2 (L.points j) (L.points r) (L.points s) < 0 :=
+      CGN.signedArea_product_neg_of_between_and_off_cap D.convex Packet Hord
+        hrjs.1 hrjs.2 happA happOff
+    have hacute := two_center_two_hit_sqdist_acute_of_signedArea_opposite
+      (p := S.oppApex1) (q := L.points j) (x := L.points r) (y := L.points s)
+      (by simpa only [hr, hs] using hp)
+      (by simpa only [hj, hr, hs] using hq)
+      (by simpa only [hr, hs] using O.sources_ne)
+      hprod
+    simpa only [hj, hr] using hacute
+  · have hprod :
+        signedArea2 S.oppApex1 (L.points s) (L.points r) *
+            signedArea2 (L.points j) (L.points s) (L.points r) < 0 :=
+      CGN.signedArea_product_neg_of_between_and_off_cap D.convex Packet Hord
+        hsjr.1 hsjr.2 happA happOff
+    have hacute := two_center_two_hit_sqdist_acute_of_signedArea_opposite
+      (p := S.oppApex1) (q := L.points j) (x := L.points s) (y := L.points r)
+      (by simpa only [hr, hs] using hp.symm)
+      (by simpa only [hj, hr, hs] using hq.symm)
+      (by simpa only [hr, hs] using O.sources_ne.symm)
+      hprod
+    simpa only [hj, hr, hs, hp, hq] using hacute
+
+/-- The two-arm E normal form is source-clean: it only composes checked
+common-deletion, orientation, reverse-coupling, and fresh-third producers. -/
+theorem nonempty_retainedOmissionAllLargeNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorDirectedOmission R)
+    (hfirstLarge : 5 ≤ (S.capByIndex S.oppIndex1).card) :
+    Nonempty (RetainedOmissionAllLargeNormalForm P) := by
+  rcases nonempty_retainedInteriorCommonDeletion P with ⟨C⟩
+  rcases nonempty_orientedRetainedCommonDeletion P C with ⟨O⟩
+  rcases nonempty_retainedReverseCouplingOutcome O with ⟨Q⟩
+  cases Q with
+  | pairedCommonDeletion reverse_omission reversePacket =>
+      exact ⟨.pairedCommonDeletion O reverse_omission reversePacket⟩
+  | reverseHit reverse_mem reverseBlocker_mem_capInterior reverseShell_inter_cap_eq =>
+      rcases exists_fresh_firstCap_commonDeletion_of_reverseHit
+          O reverseShell_inter_cap_eq hfirstLarge with
+        ⟨fresh, fresh_mem_capInterior, fresh_ne_kept, fresh_ne_deleted,
+          fresh_not_mem_reverseShell, ⟨freshPacket⟩⟩
+      exact ⟨.reverseHitFreshCommonDeletion O reverse_mem
+        reverseBlocker_mem_capInterior reverseShell_inter_cap_eq fresh
+        fresh_mem_capInterior fresh_ne_kept fresh_ne_deleted
+        fresh_not_mem_reverseShell freshPacket⟩
+
+/- The indexed context consumed by the E1 core.  The old residual chain is
+flattened here once; the core need not repeatedly distinguish the surplus and
+the two named opposite roles. -/
+structure TriApexAllLargeContext
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) : Prop where
+  cap_card_ge_six :
+    ∀ i : Fin 3, 6 ≤ (S.capByIndex i).card
+  apex_rich :
+    ∀ i : Fin 3,
+      ApexRichClassStructure D.A
+        (S.oppositeVertexByIndex i)
+  notRobustCover_card :
+    D.A.card ≤ 4 * (notRobustCenters D).card
+  no_center_covers_all_apices :
+    ∀ p ∈ D.A, ∀ r : ℝ, 0 < r →
+      ¬ (S.triangle.v1 ∈ SelectedClass D.A p r ∧
+        S.triangle.v2 ∈ SelectedClass D.A p r ∧
+        S.triangle.v3 ∈ SelectedClass D.A p r)
+
+private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
+      SurplusCapPacket.oppIndex1, hi]
+
+private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
+      SurplusCapPacket.oppIndex2, hi]
+
+private theorem capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.surplusIdx = S.surplusCap := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+
+private theorem triApexAllLargeContext_index_cases
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    i = S.oppIndex1 ∨ i = S.oppIndex2 ∨ i = S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨j, hj3⟩
+  fin_cases i <;>
+    interval_cases j <;>
+      simp [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+
+/-- Build the indexed E1 context from the existing residual bundle. -/
+theorem triApexAllLargeContext_of_residuals
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+    TriApexAllLargeContext D S := by
+  have hcap1 : 6 ≤ (S.capByIndex S.oppIndex1).card := by
+    rw [capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext]
+    exact L.firstOppCap_card_ge_six
+  have hcap2 : 6 ≤ (S.capByIndex S.oppIndex2).card := by
+    rw [capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext]
+    exact L.secondOppCap_card_ge_six
+  have hsurplus : 6 ≤ (S.capByIndex S.surplusIdx).card := by
+    rw [capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext]
+    exact N.surplusCap_card_ge_six
+  refine {
+    cap_card_ge_six := ?_
+    apex_rich := ?_
+    notRobustCover_card := T.notRobustCover_card
+    no_center_covers_all_apices := T.no_center_covers_all_apices }
+  · intro i
+    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+    · exact hcap1
+    · exact hcap2
+    · exact hsurplus
+  · intro i
+    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+    · simpa using T.oppApex1_rich
+    · simpa using T.oppApex2_rich
+    · simpa using T.surplusApex_rich
+
+/-- Every canonical critical-shell center lies in one of the three strict cap
+interiors once all three opposite apices are rich.  Richness makes every Moser
+apex deletion robust, whereas a critical-shell center is unique-four; the cap
+partition then leaves only the three strict interiors. -/
+theorem exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {x : ℝ²} (hx : x ∈ D.A) :
+    ∃ i : Fin 3, H.centerAt x hx ∈ S.capInteriorByIndex i := by
+  have hunique : IsUniqueFourCenter D.A (H.centerAt x hx) :=
+    isUniqueFourCenter_centerAt H x hx
+  have hcenterNe (i : Fin 3) :
+      H.centerAt x hx ≠ S.oppositeVertexByIndex i := by
+    intro hcenter
+    exact
+      not_isUniqueFourCenter_of_fullyDeletionRobust
+          (fullyDeletionRobustAt_of_apexRichClassStructure (G.apex_rich i))
+        (by simpa [hcenter] using hunique)
+  have hcenterA : H.centerAt x hx ∈ D.A :=
+    Finset.mem_of_mem_erase
+      (H.selectedAt x hx).toCriticalFourShell.center_mem
+  rcases S.mem_triangle_verts_or_exists_capInteriorByIndex_of_mem hcenterA with
+    htriangle | hcap
+  · rcases S.mem_triangle_verts_oppositeVertexByIndex_cases htriangle with
+      hsurplus | hfirst | hsecond
+    · exact False.elim ((hcenterNe S.surplusIdx) hsurplus)
+    · exact False.elim ((hcenterNe S.oppIndex1) hfirst)
+    · exact False.elim ((hcenterNe S.oppIndex2) hsecond)
+  · exact hcap
+
+/-- Source-faithful global form of the cross-cap one-hit rule.  Every
+canonical critical shell has a strict-cap location, and in every other rich
+cap it meets each interior radius slice in at most one point. -/
+theorem exists_criticalShell_center_with_otherRichCapSlice_card_le_one
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {x : ℝ²} (hx : x ∈ D.A) :
+    ∃ i : Fin 3,
+      H.centerAt x hx ∈ S.capInteriorByIndex i ∧
+      ∀ j : Fin 3, i ≠ j → ∀ r : ℝ,
+        ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+            S.capInteriorByIndex j)).card ≤ 1 := by
+  rcases
+      exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+        G hx with
+    ⟨i, hcenter⟩
+  refine ⟨i, hcenter, ?_⟩
+  intro j hij r
+  exact criticalShell_inter_otherRichCapSlice_card_le_one
+    hx hcenter hij (G.apex_rich j) r
+
+/- The actual E1 geometric consumer.  This is intentionally the single open
+core: its input is the normalized two-arm geometry and the flattened tri-apex
+context, rather than the raw directed omission and residual chain. -/
+theorem false_of_retainedOmission_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (Q : RetainedOmissionAllLargeNormalForm P)
+    (G : TriApexAllLargeContext D S) :
+    False := by
+  sorry
+
+/- Compatibility wrapper retaining the old public theorem and caller API. -/
+theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorDirectedOmission R)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+    False := by
+  have hfirstLarge : 5 ≤ (S.capByIndex S.oppIndex1).card := by
+    have hcap :=
+      (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
+        S.oppIndex1
+    omega
+  rcases nonempty_retainedOmissionAllLargeNormalForm P hfirstLarge with ⟨Q⟩
+  exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q
+    (triApexAllLargeContext_of_residuals L N T)
+
+/-- A strict first-cap point on a radius distinct from the retained frontier
+radius cannot lie in the localized collision shell.  Indeed, that shell has
+only the two collision sources in the whole first cap, and both sources lie on
+the retained frontier radius. -/
+theorem secondRadiusInterior_disjoint_collisionShell
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}

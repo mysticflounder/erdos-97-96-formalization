@@ -1,0 +1,70 @@
+{
+  "schema_version": 6,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "strict_interior_profile": [4, 4, 4],
+    "cyclic_order": [13, 0, 1, 2, 3, 14, 4, 5, 6, 7, 12, 8, 9, 10, 11],
+    "apices": [12, 13, 14],
+    "strict_interiors": [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]],
+    "closed_caps": [[13, 0, 1, 2, 3, 14], [14, 4, 5, 6, 7, 12], [12, 8, 9, 10, 11, 13]],
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "case_axes": {
+    "arm": ["paired", "fresh", "secondcap_collision", "secondcap_distinct"],
+    "profiles": ["SSS", "SSD", "SDS", "SDD", "DSS", "DSD", "DDS", "DDD"],
+    "kept": [0, 1, 2, 3],
+    "deleted": "a distinct first-interior label",
+    "fresh": "for arm=fresh, a first-interior label distinct from kept and deleted; for secondcap_*, a second-interior label"
+  },
+  "constraint_families": [
+    "positive_distances",
+    "positive_squared_distances",
+    "squared_distance_equality_transport",
+    "strict_triangle",
+    "strict_kalmanson",
+    "critical_blocker_map",
+    "critical_full_row",
+    "source_in_critical_row",
+    "critical_no_competing_K4",
+    "global_K4",
+    "exact_rich_profiles",
+    "same_shell_squared_superadditivity",
+    "pair_center_multiplicity",
+    "no_all_apex_shell",
+    "common_deletion_packets",
+    "packet_B2_equals_critical_row",
+    "normal_form",
+    "endpoint_critical_fiber",
+    "three_distinct_blockers",
+    "distinct_circle_overlap",
+    "cyclic_alternation_cut"
+  ],
+  "important_distinctions": {
+    "critical_blocker_domain": "all carrier labels except the source; apex exclusion follows from the encoded rich-profile/full-row/no-qfree constraints and is not a domain assumption",
+    "critical_row": "full ambient positive-radius class of cardinality exactly four",
+    "rich_class": "full ambient positive-radius class with exact S6/D44 size",
+    "packet_B1": "chosen four-subset of a q-deleted apex class; off-subset incidence is unknown",
+    "packet_B2": "chosen subset identified with the retained source's full critical row by secondRow_support_eq_criticalShell_of_center_eq for every one-hot carrier blocker, including the rejected apex-center branch",
+    "secondcap_endpoint_split": "the Lean fresh continuation has fresh in the second strict cap; sourceReturn is impossible by cap disjointness, and the two remaining endpoint outcomes are represented by equality or inequality of the actual one-hot blockers of fresh and kept",
+    "endpoint_critical_fiber": "the named RowHit is witnessed by kept membership in the retained first-apex rich class, from which Lean selects a four-subpacket through kept",
+    "unsat_core": "family-level operational core; arm-specific role identities are compiled into packet construction, so it is not a modular theorem dependency graph",
+    "cyclic_alternation_cut": "redundant propagation cut compiled from the four banked two-center bisector-parity terminals; it is already implied by strict Kalmanson plus the named circle equalities",
+    "squared_distance_relaxation": "independent positive squared-distance variables; same-center equality is transported from unsquared distances, but no nonlinear s=d^2 equation is assumed",
+    "same_shell_squared_superadditivity": "for every angularly ordered rich-shell triple x<y<z at an extreme apex, s(x,z)>s(x,y)+s(y,z), normalized to margin one",
+    "solver_unsat": "external evidence for this finite abstraction, not a Lean proof"
+  },
+  "result_required_fields": [
+    "schema_version",
+    "case",
+    "status",
+    "elapsed_seconds",
+    "constraint_counts",
+    "solver",
+    "script_sha256",
+    "source_contract",
+    "encoding_sha256"
+  ],
+  "status_values": ["sat", "unsat", "unknown", "error"]
+}

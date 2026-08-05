@@ -1,0 +1,701 @@
+  7480	    {H : CriticalShellSystem D.A}
+  7481	    {F : CriticalPairFrontier D S radius H}
+  7482	    {R : FrontierCommonDeletionParentResidual F}
+  7483	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7484	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7485	    (Q : EndpointFreshFirstApexRowSource E) :
+  7486	    Nonempty (EndpointFreshCriticalRoleOutcome Q) := by
+  7487	  by_cases hAJ :
+  7488	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 = Q.J
+  7489	  · exact ⟨EndpointFreshCriticalRoleOutcome.firstCenterEqFreshSource hAJ⟩
+  7490	  by_cases hAX :
+  7491	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7492	        H.centerAt Q.J Q.J_mem_A
+  7493	  · exact ⟨EndpointFreshCriticalRoleOutcome.sharedBlocker hAX⟩
+  7494	  by_cases hXC : H.centerAt Q.J Q.J_mem_A = Q.C
+  7495	  · exact ⟨EndpointFreshCriticalRoleOutcome.secondCenterEqFirstSource hXC⟩
+  7496	  exact ⟨EndpointFreshCriticalRoleOutcome.generic hAJ hAX hXC⟩
+  7497	
+  7498	/-- If the common endpoint blocker and the blocker selected at the fresh row
+  7499	source coincide (`A = X`), then their exact four-shells coincide.  In
+  7500	particular the common support contains the three pairwise-distinct named
+  7501	points `C`, `K`, and `J`; only its fourth point remains unnamed. -/
+  7502	theorem endpointFresh_support_eq_of_sharedBlocker
+  7503	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7504	    {H : CriticalShellSystem D.A}
+  7505	    {F : CriticalPairFrontier D S radius H}
+  7506	    {R : FrontierCommonDeletionParentResidual F}
+  7507	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7508	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7509	    (Q : EndpointFreshFirstApexRowSource E)
+  7510	    (K_mem_J_shell :
+  7511	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7512	    (hAX :
+  7513	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7514	        H.centerAt Q.J Q.J_mem_A) :
+  7515	    let KA :=
+  7516	      (H.selectedAt E.fiber.source₁.1
+  7517	        E.fiber.source₁.2).toCriticalFourShell
+  7518	    let KX := (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell
+  7519	    KA.radius = KX.radius ∧
+  7520	      KA.support = KX.support ∧
+  7521	      Q.C ∈ KA.support ∧
+  7522	      Q.K ∈ KA.support ∧
+  7523	      Q.J ∈ KA.support := by
+  7524	  let KA :=
+  7525	    (H.selectedAt E.fiber.source₁.1
+  7526	      E.fiber.source₁.2).toCriticalFourShell
+  7527	  let KX := (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell
+  7528	  change
+  7529	    KA.radius = KX.radius ∧
+  7530	      KA.support = KX.support ∧
+  7531	      Q.C ∈ KA.support ∧
+  7532	      Q.K ∈ KA.support ∧
+  7533	      Q.J ∈ KA.support
+  7534	  have hC_A : Q.C ∈ KA.support := by
+  7535	    rcases Q.fiber_orientation with ⟨hC, _⟩ | ⟨hC, _⟩
+  7536	    · rw [hC]
+  7537	      exact KA.q_mem_support
+  7538	    · rw [hC]
+  7539	      exact E.fiber.source₂_mem_commonSupport
+  7540	  have hK_A : Q.K ∈ KA.support := by
+  7541	    rcases Q.fiber_orientation with ⟨_, hK⟩ | ⟨_, hK⟩
+  7542	    · rw [hK]
+  7543	      exact E.fiber.source₂_mem_commonSupport
+  7544	    · rw [hK]
+  7545	      exact KA.q_mem_support
+  7546	  have hK_X : Q.K ∈ KX.support := K_mem_J_shell
+  7547	  have hr : KA.radius = KX.radius := by
+  7548	    calc
+  7549	      KA.radius =
+  7550	          dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.K :=
+  7551	        (KA.support_eq_radius Q.K hK_A).symm
+  7552	      _ = dist (H.centerAt Q.J Q.J_mem_A) Q.K := by rw [hAX]
+  7553	      _ = KX.radius := KX.support_eq_radius Q.K hK_X
+  7554	  have hsupp : KA.support = KX.support := by
+  7555	    rw [KA.support_eq, KX.support_eq]
+  7556	    simp only [hAX, hr]
+  7557	  have hJ_A : Q.J ∈ KA.support := by
+  7558	    rw [hsupp]
+  7559	    exact KX.q_mem_support
+  7560	  exact ⟨hr, hsupp, hC_A, hK_A, hJ_A⟩
+  7561	
+  7562	/-- In the shared-blocker branch, the common exact shell and the fresh
+  7563	first-apex row meet in exactly the two named points `C` and `J`. -/
+  7564	theorem endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+  7565	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7566	    {H : CriticalShellSystem D.A}
+  7567	    {F : CriticalPairFrontier D S radius H}
+  7568	    {R : FrontierCommonDeletionParentResidual F}
+  7569	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7570	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7571	    (Q : EndpointFreshFirstApexRowSource E)
+  7572	    (K_mem_J_shell :
+  7573	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7574	    (hAX :
+  7575	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7576	        H.centerAt Q.J Q.J_mem_A) :
+  7577	    let KA :=
+  7578	      (H.selectedAt E.fiber.source₁.1
+  7579	        E.fiber.source₁.2).toCriticalFourShell
+  7580	    KA.support ∩ Q.row.support = {Q.C, Q.J} := by
+  7581	  classical
+  7582	  let KA :=
+  7583	    (H.selectedAt E.fiber.source₁.1
+  7584	      E.fiber.source₁.2).toCriticalFourShell
+  7585	  change KA.support ∩ Q.row.support = {Q.C, Q.J}
+  7586	  rcases endpointFresh_support_eq_of_sharedBlocker Q K_mem_J_shell hAX with
+  7587	    ⟨_hr, _hsupp, hC_A, _hK_A, hJ_A⟩
+  7588	  have hpairSub :
+  7589	      ({Q.C, Q.J} : Finset ℝ²) ⊆ KA.support ∩ Q.row.support := by
+  7590	    intro z hz
+  7591	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+  7592	    rcases hz with rfl | rfl
+  7593	    · exact Finset.mem_inter.mpr ⟨hC_A, Q.C_mem_row⟩
+  7594	    · exact Finset.mem_inter.mpr ⟨hJ_A, Q.J_mem_row⟩
+  7595	  have hpairCard : ({Q.C, Q.J} : Finset ℝ²).card = 2 := by
+  7596	    simpa using Finset.card_pair Q.J_ne_C.symm
+  7597	  have hinterCard : (KA.support ∩ Q.row.support).card ≤ 2 := by
+  7598	    exact SelectedFourClass.inter_card_le_two
+  7599	      KA.toSelectedFourClass Q.row E.fiber.commonBlocker_ne_firstApex
+  7600	  symm
+  7601	  exact Finset.eq_of_subset_of_card_le hpairSub (by
+  7602	    rw [hpairCard]
+  7603	    exact hinterCard)
+  7604	
+  7605	/-- The shared-blocker branch has one uniquely determined fourth point in the
+  7606	common exact-four shell.  Both this point and K lie outside the fresh
+  7607	first-apex row. -/
+  7608	theorem endpointFresh_sharedBlocker_fourth_packet
+  7609	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7610	    {H : CriticalShellSystem D.A}
+  7611	    {F : CriticalPairFrontier D S radius H}
+  7612	    {R : FrontierCommonDeletionParentResidual F}
+  7613	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7614	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7615	    (Q : EndpointFreshFirstApexRowSource E)
+  7616	    (K_mem_J_shell :
+  7617	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7618	    (hAX :
+  7619	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7620	        H.centerAt Q.J Q.J_mem_A) :
+  7621	    let KA :=
+  7622	      (H.selectedAt E.fiber.source₁.1
+  7623	        E.fiber.source₁.2).toCriticalFourShell
+  7624	    KA.support ∩ Q.row.support = {Q.C, Q.J} ∧
+  7625	      Q.K ∉ Q.row.support ∧
+  7626	      ∃! L : ℝ²,
+  7627	        L ∉ ({Q.C, Q.K, Q.J} : Finset ℝ²) ∧
+  7628	        KA.support = {Q.C, Q.K, Q.J, L} ∧
+  7629	        L ∉ Q.row.support ∧
+  7630	        L ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ∧
+  7631	        L ≠ W.second := by
+  7632	  classical
+  7633	  let KA :=
+  7634	    (H.selectedAt E.fiber.source₁.1
+  7635	      E.fiber.source₁.2).toCriticalFourShell
+  7636	  change
+  7637	    KA.support ∩ Q.row.support = {Q.C, Q.J} ∧
+  7638	      Q.K ∉ Q.row.support ∧
+  7639	      ∃! L : ℝ²,
+  7640	        L ∉ ({Q.C, Q.K, Q.J} : Finset ℝ²) ∧
+  7641	        KA.support = {Q.C, Q.K, Q.J, L} ∧
+  7642	        L ∉ Q.row.support ∧
+  7643	        L ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ∧
+  7644	        L ≠ W.second
+  7645	  rcases endpointFresh_support_eq_of_sharedBlocker
+  7646	      Q K_mem_J_shell hAX with
+  7647	    ⟨_hr, _hsupp, hC_A, hK_A, hJ_A⟩
+  7648	  have hinter : KA.support ∩ Q.row.support = {Q.C, Q.J} := by
+  7649	    simpa only [KA] using
+  7650	      endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+  7651	        Q K_mem_J_shell hAX
+  7652	  have hCK : Q.C ≠ Q.K := Q.fiber_orientation.ne
+  7653	  have hKnotRow : Q.K ∉ Q.row.support := by
+  7654	    intro hKrow
+  7655	    have hKinter : Q.K ∈ KA.support ∩ Q.row.support :=
+  7656	      Finset.mem_inter.mpr ⟨hK_A, hKrow⟩
+  7657	    rw [hinter] at hKinter
+  7658	    simp only [Finset.mem_insert, Finset.mem_singleton] at hKinter
+  7659	    exact hKinter.elim
+  7660	      (fun h ↦ hCK h.symm)
+  7661	      (fun h ↦ Q.J_ne_K h.symm)
+  7662	  let named : Finset ℝ² := {Q.C, Q.K, Q.J}
+  7663	  have hnamedCard : named.card = 3 := by
+  7664	    simp [named, hCK, Q.J_ne_C.symm, Q.J_ne_K.symm]
+  7665	  have hnamedSubset : named ⊆ KA.support := by
+  7666	    intro x hx
+  7667	    simp only [named, Finset.mem_insert, Finset.mem_singleton] at hx
+  7668	    rcases hx with rfl | rfl | rfl
+  7669	    · exact hC_A
+  7670	    · exact hK_A
+  7671	    · exact hJ_A
+  7672	  have hremainingCard : (KA.support \ named).card = 1 := by
+  7673	    rw [Finset.card_sdiff_of_subset hnamedSubset,
+  7674	      KA.support_card, hnamedCard]
+  7675	  obtain ⟨L, hLsingleton⟩ := Finset.card_eq_one.mp hremainingCard
+  7676	  have hLnotNamed : L ∉ named := by
+  7677	    have hLdiff : L ∈ KA.support \ named := by
+  7678	      rw [hLsingleton]
+  7679	      simp
+  7680	    exact (Finset.mem_sdiff.mp hLdiff).2
+  7681	  have hSupport : KA.support = {Q.C, Q.K, Q.J, L} := by
+  7682	    have hs := (Finset.sdiff_union_of_subset hnamedSubset).symm
+  7683	    rw [hs, hLsingleton]
+  7684	    ext x
+  7685	    simp [named]
+  7686	  have hLmem : L ∈ KA.support := by
+  7687	    rw [hSupport]
+  7688	    simp
+  7689	  have hLnotRow : L ∉ Q.row.support := by
+  7690	    intro hLrow
+  7691	    have hLinter : L ∈ KA.support ∩ Q.row.support :=
+  7692	      Finset.mem_inter.mpr ⟨hLmem, hLrow⟩
+  7693	    rw [hinter] at hLinter
+  7694	    simp only [Finset.mem_insert, Finset.mem_singleton] at hLinter
+  7695	    rcases hLinter with hLC | hLJ
+  7696	    · exact hLnotNamed (by simp [named, hLC])
+  7697	    · exact hLnotNamed (by simp [named, hLJ])
+  7698	  have hLneCenter :
+  7699	      L ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 := by
+  7700	    intro h
+  7701	    rw [h] at hLmem
+  7702	    exact KA.center_not_mem_support hLmem
+  7703	  have hmiddleNot : W.second ∉ KA.support := by
+  7704	    have hsource₁ :
+  7705	        E.fiber.source₁ = ⟨W.first, W.first_mem_A⟩ :=
+  7706	      Subtype.ext E.fiber_source₁_eq_first
+  7707	    change W.second ∉
+  7708	      (fun source : CriticalShellSystem.CarrierVertex D.A =>
+  7709	        (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+  7710	        E.fiber.source₁
+  7711	    rw [hsource₁]
+  7712	    exact W.second_not_mem_first_shell
+  7713	  have hLneMiddle : L ≠ W.second := by
+  7714	    intro h
+  7715	    rw [h] at hLmem
+  7716	    exact hmiddleNot hLmem
+  7717	  refine ⟨hinter, hKnotRow, L, ?_, ?_⟩
+  7718	  · exact
+  7719	      ⟨by simpa only [named] using hLnotNamed,
+  7720	        hSupport, hLnotRow, hLneCenter, hLneMiddle⟩
+  7721	  · intro Y hY
+  7722	    rcases hY with ⟨hYnotNamed, hYSupport, _, _, _⟩
+  7723	    have hYmem : Y ∈ KA.support := by
+  7724	      rw [hYSupport]
+  7725	      simp
+  7726	    rw [hSupport] at hYmem
+  7727	    simp only [Finset.mem_insert, Finset.mem_singleton] at hYmem
+  7728	    rcases hYmem with hYC | hYK | hYJ | hYL
+  7729	    · exact False.elim (hYnotNamed (by simp [hYC]))
+  7730	    · exact False.elim (hYnotNamed (by simp [hYK]))
+  7731	    · exact False.elim (hYnotNamed (by simp [hYJ]))
+  7732	    · exact hYL
+  7733	
+  7734	/-- In the shared-blocker branch, the common critical shell meets the retained
+  7735	first-apex radius class in exactly the two named points `C` and `J`. -/
+  7736	theorem endpointFresh_criticalShell_inter_frontierRadiusClass_eq_pair_of_sharedBlocker
+  7737	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7738	    {H : CriticalShellSystem D.A}
+  7739	    {F : CriticalPairFrontier D S radius H}
+  7740	    {R : FrontierCommonDeletionParentResidual F}
+  7741	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7742	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7743	    (Q : EndpointFreshFirstApexRowSource E)
+  7744	    (K_mem_J_shell :
+  7745	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7746	    (hAX :
+  7747	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7748	        H.centerAt Q.J Q.J_mem_A) :
+  7749	    let KA :=
+  7750	      (H.selectedAt E.fiber.source₁.1
+  7751	        E.fiber.source₁.2).toCriticalFourShell
+  7752	    KA.support ∩ SelectedClass D.A S.oppApex1 radius = {Q.C, Q.J} := by
+  7753	  classical
+  7754	  let KA :=
+  7755	    (H.selectedAt E.fiber.source₁.1
+  7756	      E.fiber.source₁.2).toCriticalFourShell
+  7757	  change KA.support ∩ SelectedClass D.A S.oppApex1 radius = {Q.C, Q.J}
+  7758	  rcases endpointFresh_support_eq_of_sharedBlocker Q K_mem_J_shell hAX with
+  7759	    ⟨_hr, _hsupp, hC_A, _hK_A, hJ_A⟩
+  7760	  have hpairSub :
+  7761	      ({Q.C, Q.J} : Finset ℝ²) ⊆
+  7762	        KA.support ∩ SelectedClass D.A S.oppApex1 radius := by
+  7763	    intro z hz
+  7764	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+  7765	    rcases hz with rfl | rfl
+  7766	    · exact Finset.mem_inter.mpr ⟨hC_A, Q.C_mem_radius⟩
+  7767	    · exact Finset.mem_inter.mpr ⟨hJ_A, Q.J_mem_radius⟩
+  7768	  have hpairCard : ({Q.C, Q.J} : Finset ℝ²).card = 2 := by
+  7769	    simpa using Finset.card_pair Q.J_ne_C.symm
+  7770	  have hinterCard :
+  7771	      (KA.support ∩ SelectedClass D.A S.oppApex1 radius).card ≤ 2 := by
+  7772	    simpa only [KA] using
+  7773	      ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+  7774	        (R := R) E.fiber.source₁.1 E.fiber.source₁.2
+  7775	  symm
+  7776	  exact Finset.eq_of_subset_of_card_le hpairSub (by
+  7777	    rw [hpairCard]
+  7778	    exact hinterCard)
+  7779	
+  7780	/-- The unique unnamed point of the shared critical shell, as well as `K`,
+  7781	lies outside the whole retained first-apex radius class. -/
+  7782	theorem endpointFresh_sharedBlocker_frontierRadius_fourth_packet
+  7783	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7784	    {H : CriticalShellSystem D.A}
+  7785	    {F : CriticalPairFrontier D S radius H}
+  7786	    {R : FrontierCommonDeletionParentResidual F}
+  7787	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7788	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7789	    (Q : EndpointFreshFirstApexRowSource E)
+  7790	    (K_mem_J_shell :
+  7791	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7792	    (hAX :
+  7793	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7794	        H.centerAt Q.J Q.J_mem_A) :
+  7795	    let KA :=
+  7796	      (H.selectedAt E.fiber.source₁.1
+  7797	        E.fiber.source₁.2).toCriticalFourShell
+  7798	    Q.K ∉ Q.row.support ∧
+  7799	      Q.K ∉ SelectedClass D.A S.oppApex1 radius ∧
+  7800	      ∃! L : ℝ²,
+  7801	        L ∉ ({Q.C, Q.K, Q.J} : Finset ℝ²) ∧
+  7802	        KA.support = {Q.C, Q.K, Q.J, L} ∧
+  7803	        L ∉ Q.row.support ∧
+  7804	        L ∉ SelectedClass D.A S.oppApex1 radius ∧
+  7805	        L ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ∧
+  7806	        L ≠ W.second := by
+  7807	  classical
+  7808	  let KA :=
+  7809	    (H.selectedAt E.fiber.source₁.1
+  7810	      E.fiber.source₁.2).toCriticalFourShell
+  7811	  change
+  7812	    Q.K ∉ Q.row.support ∧
+  7813	      Q.K ∉ SelectedClass D.A S.oppApex1 radius ∧
+  7814	      ∃! L : ℝ²,
+  7815	        L ∉ ({Q.C, Q.K, Q.J} : Finset ℝ²) ∧
+  7816	        KA.support = {Q.C, Q.K, Q.J, L} ∧
+  7817	        L ∉ Q.row.support ∧
+  7818	        L ∉ SelectedClass D.A S.oppApex1 radius ∧
+  7819	        L ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ∧
+  7820	        L ≠ W.second
+  7821	  have hinter :
+  7822	      KA.support ∩ SelectedClass D.A S.oppApex1 radius = {Q.C, Q.J} := by
+  7823	    simpa only [KA] using
+  7824	      endpointFresh_criticalShell_inter_frontierRadiusClass_eq_pair_of_sharedBlocker
+  7825	        Q K_mem_J_shell hAX
+  7826	  rcases endpointFresh_sharedBlocker_fourth_packet Q K_mem_J_shell hAX with
+  7827	    ⟨_hrowInter, hKnotRow, L,
+  7828	      ⟨hLnotNamed, hSupport, hLnotRow, hLneCenter, hLneMiddle⟩,
+  7829	      hunique⟩
+  7830	  have hKmem : Q.K ∈ KA.support := by
+  7831	    rw [hSupport]
+  7832	    simp
+  7833	  have hKnotClass :
+  7834	      Q.K ∉ SelectedClass D.A S.oppApex1 radius := by
+  7835	    intro hKClass
+  7836	    have hKInter :
+  7837	        Q.K ∈ KA.support ∩ SelectedClass D.A S.oppApex1 radius :=
+  7838	      Finset.mem_inter.mpr ⟨hKmem, hKClass⟩
+  7839	    rw [hinter] at hKInter
+  7840	    simp only [Finset.mem_insert, Finset.mem_singleton] at hKInter
+  7841	    exact hKInter.elim
+  7842	      (fun hKC ↦ Q.fiber_orientation.ne hKC.symm)
+  7843	      (fun hKJ ↦ Q.J_ne_K hKJ.symm)
+  7844	  have hLmem : L ∈ KA.support := by
+  7845	    rw [hSupport]
+  7846	    simp
+  7847	  have hLnotClass :
+  7848	      L ∉ SelectedClass D.A S.oppApex1 radius := by
+  7849	    intro hLClass
+  7850	    have hLInter :
+  7851	        L ∈ KA.support ∩ SelectedClass D.A S.oppApex1 radius :=
+  7852	      Finset.mem_inter.mpr ⟨hLmem, hLClass⟩
+  7853	    rw [hinter] at hLInter
+  7854	    simp only [Finset.mem_insert, Finset.mem_singleton] at hLInter
+  7855	    rcases hLInter with hLC | hLJ
+  7856	    · exact hLnotNamed (by simp [hLC])
+  7857	    · exact hLnotNamed (by simp [hLJ])
+  7858	  refine ⟨hKnotRow, hKnotClass, L, ?_, ?_⟩
+  7859	  · exact
+  7860	      ⟨hLnotNamed, hSupport, hLnotRow, hLnotClass,
+  7861	        hLneCenter, hLneMiddle⟩
+  7862	  · intro Y hY
+  7863	    rcases hY with
+  7864	      ⟨hYnotNamed, hYSupport, hYnotRow, _hYnotClass,
+  7865	        hYneCenter, hYneMiddle⟩
+  7866	    exact hunique Y
+  7867	      ⟨hYnotNamed, hYSupport, hYnotRow, hYneCenter, hYneMiddle⟩
+  7868	
+  7869	/-- A retained-radius point in the left adjacent cap is its unique point in
+  7870	that cap. -/
+  7871	theorem endpointFresh_frontierRadiusClass_inter_leftAdjacentCap_eq_singleton
+  7872	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7873	    {H : CriticalShellSystem D.A}
+  7874	    {F : CriticalPairFrontier D S radius H}
+  7875	    {R : FrontierCommonDeletionParentResidual F}
+  7876	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7877	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7878	    (Q : EndpointFreshFirstApexRowSource E)
+  7879	    (hJLeft : Q.J ∈ S.leftAdjacentCapByIndex S.oppIndex1) :
+  7880	    SelectedClass D.A S.oppApex1 radius ∩
+  7881	        S.leftAdjacentCapByIndex S.oppIndex1 = {Q.J} := by
+  7882	  classical
+  7883	  have happ :
+  7884	      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  7885	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  7886	    interval_cases i <;>
+  7887	      simp [SurplusCapPacket.oppApex1,
+  7888	        SurplusCapPacket.oppositeVertexByIndex,
+  7889	        SurplusCapPacket.oppIndex1, hi]
+  7890	  have hsingletonSub :
+  7891	      ({Q.J} : Finset ℝ²) ⊆
+  7892	        SelectedClass D.A S.oppApex1 radius ∩
+  7893	          S.leftAdjacentCapByIndex S.oppIndex1 := by
+  7894	    intro z hz
+  7895	    simp only [Finset.mem_singleton] at hz
+  7896	    subst z
+  7897	    exact Finset.mem_inter.mpr ⟨Q.J_mem_radius, hJLeft⟩
+  7898	  have hinterCard :
+  7899	      (SelectedClass D.A S.oppApex1 radius ∩
+  7900	        S.leftAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
+  7901	    rw [happ]
+  7902	    exact S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+  7903	      D.convex S.oppIndex1 radius
+  7904	  symm
+  7905	  exact Finset.eq_of_subset_of_card_le hsingletonSub (by
+  7906	    simpa using hinterCard)
+  7907	
+  7908	/-- A retained-radius point in the right adjacent cap is its unique point in
+  7909	that cap. -/
+  7910	theorem endpointFresh_frontierRadiusClass_inter_rightAdjacentCap_eq_singleton
+  7911	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7912	    {H : CriticalShellSystem D.A}
+  7913	    {F : CriticalPairFrontier D S radius H}
+  7914	    {R : FrontierCommonDeletionParentResidual F}
+  7915	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7916	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7917	    (Q : EndpointFreshFirstApexRowSource E)
+  7918	    (hJRight : Q.J ∈ S.rightAdjacentCapByIndex S.oppIndex1) :
+  7919	    SelectedClass D.A S.oppApex1 radius ∩
+  7920	        S.rightAdjacentCapByIndex S.oppIndex1 = {Q.J} := by
+  7921	  classical
+  7922	  have happ :
+  7923	      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  7924	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  7925	    interval_cases i <;>
+  7926	      simp [SurplusCapPacket.oppApex1,
+  7927	        SurplusCapPacket.oppositeVertexByIndex,
+  7928	        SurplusCapPacket.oppIndex1, hi]
+  7929	  have hsingletonSub :
+  7930	      ({Q.J} : Finset ℝ²) ⊆
+  7931	        SelectedClass D.A S.oppApex1 radius ∩
+  7932	          S.rightAdjacentCapByIndex S.oppIndex1 := by
+  7933	    intro z hz
+  7934	    simp only [Finset.mem_singleton] at hz
+  7935	    subst z
+  7936	    exact Finset.mem_inter.mpr ⟨Q.J_mem_radius, hJRight⟩
+  7937	  have hinterCard :
+  7938	      (SelectedClass D.A S.oppApex1 radius ∩
+  7939	        S.rightAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
+  7940	    rw [happ]
+  7941	    exact S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+  7942	      D.convex S.oppIndex1 radius
+  7943	  symm
+  7944	  exact Finset.eq_of_subset_of_card_le hsingletonSub (by
+  7945	    simpa using hinterCard)
+  7946	
+  7947	/-- In the shared-blocker branch, the two common row points alternate between
+  7948	the first apex and the common blocker in every compatible convex boundary
+  7949	enumeration.  This is the cyclic-order payload missing from the raw support
+  7950	collapse. -/
+  7951	theorem endpointFresh_sharedBlocker_pair_alternates
+  7952	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7953	    {H : CriticalShellSystem D.A}
+  7954	    {F : CriticalPairFrontier D S radius H}
+  7955	    {R : FrontierCommonDeletionParentResidual F}
+  7956	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  7957	    {E : RetainedMatchingEndpointCriticalFiber W}
+  7958	    (Q : EndpointFreshFirstApexRowSource E)
+  7959	    (K_mem_J_shell :
+  7960	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  7961	    (hAX :
+  7962	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  7963	        H.centerAt Q.J Q.J_mem_A)
+  7964	    (B : BoundaryIndexing D.A) :
+  7965	    SurplusCOMPGBank.btw
+  7966	        (B.indexOf
+  7967	          ⟨S.oppApex1, oppApex1_mem_A_for_reverseHit S⟩)
+  7968	        (B.indexOf (H.blockerVertex E.fiber.source₁))
+  7969	        (B.indexOf ⟨Q.C, Q.fiber_orientation.left_mem_A⟩) ↔
+  7970	      ¬ SurplusCOMPGBank.btw
+  7971	        (B.indexOf
+  7972	          ⟨S.oppApex1, oppApex1_mem_A_for_reverseHit S⟩)
+  7973	        (B.indexOf (H.blockerVertex E.fiber.source₁))
+  7974	        (B.indexOf ⟨Q.J, Q.J_mem_A⟩) := by
+  7975	  let O : CriticalShellSystem.CarrierVertex D.A :=
+  7976	    ⟨S.oppApex1, oppApex1_mem_A_for_reverseHit S⟩
+  7977	  let A : CriticalShellSystem.CarrierVertex D.A :=
+  7978	    H.blockerVertex E.fiber.source₁
+  7979	  let C : CriticalShellSystem.CarrierVertex D.A :=
+  7980	    ⟨Q.C, Q.fiber_orientation.left_mem_A⟩
+  7981	  let J : CriticalShellSystem.CarrierVertex D.A := ⟨Q.J, Q.J_mem_A⟩
+  7982	  let KA :=
+  7983	    (H.selectedAt E.fiber.source₁.1
+  7984	      E.fiber.source₁.2).toCriticalFourShell
+  7985	  rcases endpointFresh_support_eq_of_sharedBlocker Q K_mem_J_shell hAX with
+  7986	    ⟨_hr, _hsupp, hC_A, _hK_A, hJ_A⟩
+  7987	  have mem_of_eq {x y : ℝ²} {s : Finset ℝ²}
+  7988	      (hxy : x = y) (hx : x ∈ s) : y ∈ s := by
+  7989	    subst y
+  7990	    exact hx
+  7991	  have hA_ne_O : A ≠ O := by
+  7992	    intro h
+  7993	    exact E.fiber.commonBlocker_ne_firstApex (congrArg Subtype.val h)
+  7994	  have hJ_ne_O : J ≠ O := by
+  7995	    intro h
+  7996	    have hpoint : Q.J = S.oppApex1 := congrArg Subtype.val h
+  7997	    exact Q.row.center_not_mem (mem_of_eq hpoint Q.J_mem_row)
+  7998	  have hJ_ne_A : J ≠ A := by
+  7999	    intro h
+  8000	    have hpoint : Q.J = H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 :=
+  8001	      congrArg Subtype.val h
+  8002	    exact KA.center_not_mem_support (mem_of_eq hpoint hJ_A)
+  8003	  have hOEq :
+  8004	      dist S.oppApex1 Q.C = dist S.oppApex1 Q.J :=
+  8005	    (Q.row.support_eq_radius Q.C Q.C_mem_row).trans
+  8006	      (Q.row.support_eq_radius Q.J Q.J_mem_row).symm
+  8007	  have hAEq :
+  8008	      dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.C =
+  8009	        dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.J :=
+  8010	    (KA.support_eq_radius Q.C hC_A).trans
+  8011	      (KA.support_eq_radius Q.J hJ_A).symm
+  8012	  apply SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+  8013	  · exact B.index_injective.ne hA_ne_O.symm
+  8014	  · exact B.index_injective.ne hJ_ne_O
+  8015	  · exact B.index_injective.ne hJ_ne_A
+  8016	  · simpa only [B.point_eq, pointOf, dist_comm, O, C] using hOEq
+  8017	  · simpa only [B.point_eq, pointOf, dist_comm, A, C,
+  8018	      CriticalShellSystem.blockerVertex] using hAEq
+  8019	  · exact B.boundary_injective.ne
+  8020	      (B.index_injective.ne (fun h ↦
+  8021	        Q.J_ne_C (congrArg Subtype.val h).symm))
+  8022	
+  8023	/- The two selected supports exposed at an endpoint collision.  One is the
+  8024	critical exact shell through the first collision source; the other is the
+  8025	fresh first-apex selected row. -/
+  8026	private noncomputable def endpointFreshTwoShellSeed
+  8027	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  8028	    {H : CriticalShellSystem D.A}
+  8029	    {F : CriticalPairFrontier D S radius H}
+  8030	    {R : FrontierCommonDeletionParentResidual F}
+  8031	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  8032	    (E : RetainedMatchingEndpointCriticalFiber W)
+  8033	    (Q : EndpointFreshFirstApexRowSource E) : Finset ℝ² :=
+  8034	  (H.selectedAt E.fiber.source₁.1
+  8035	      E.fiber.source₁.2).toCriticalFourShell.support ∪
+  8036	    Q.row.support
+  8037	
+  8038	/-- Both selected supports in the endpoint seed consist of carrier points. -/
+  8039	theorem endpointFresh_twoShellSeed_subset_carrier
+  8040	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  8041	    {H : CriticalShellSystem D.A}
+  8042	    {F : CriticalPairFrontier D S radius H}
+  8043	    {R : FrontierCommonDeletionParentResidual F}
+  8044	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  8045	    (E : RetainedMatchingEndpointCriticalFiber W)
+  8046	    (Q : EndpointFreshFirstApexRowSource E) :
+  8047	    endpointFreshTwoShellSeed E Q ⊆ D.A := by
+  8048	  intro z hz
+  8049	  simp only [endpointFreshTwoShellSeed, Finset.mem_union] at hz
+  8050	  rcases hz with hz | hz
+  8051	  · exact
+  8052	      (H.selectedAt E.fiber.source₁.1
+  8053	        E.fiber.source₁.2).toCriticalFourShell.support_subset_A hz
+  8054	  · exact Q.row.support_subset_A hz
+  8055	
+  8056	/-- In the shared-blocker branch, the critical four-shell support and the
+  8057	selected first-apex four-support form an exact six-point seed: their
+  8058	intersection is precisely the pair `C, J`.
+  8059	
+  8060	The first-apex physical radius class may contain six points; this theorem is
+  8061	about the selected four-support `Q.row.support`, not exact physical
+  8062	multiplicity at that apex. -/
+  8063	theorem endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+  8064	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  8065	    {H : CriticalShellSystem D.A}
+  8066	    {F : CriticalPairFrontier D S radius H}
+  8067	    {R : FrontierCommonDeletionParentResidual F}
+  8068	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  8069	    {E : RetainedMatchingEndpointCriticalFiber W}
+  8070	    (Q : EndpointFreshFirstApexRowSource E)
+  8071	    (K_mem_J_shell :
+  8072	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  8073	    (hAX :
+  8074	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  8075	        H.centerAt Q.J Q.J_mem_A) :
+  8076	    (endpointFreshTwoShellSeed E Q).card = 6 := by
+  8077	  classical
+  8078	  let KA :=
+  8079	    (H.selectedAt E.fiber.source₁.1
+  8080	      E.fiber.source₁.2).toCriticalFourShell
+  8081	  change (KA.support ∪ Q.row.support).card = 6
+  8082	  have hinter : KA.support ∩ Q.row.support = {Q.C, Q.J} :=
+  8083	    endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+  8084	      Q K_mem_J_shell hAX
+  8085	  have hpairCard : ({Q.C, Q.J} : Finset ℝ²).card = 2 := by
+  8086	    simpa using Finset.card_pair Q.J_ne_C.symm
+  8087	  rw [Finset.card_union, KA.support_card, Q.row.support_card, hinter]
+  8088	  omega
+  8089	
+  8090	/-- Minimality and the all-large cap floor force a global K4 row to escape
+  8091	the two supports already exposed by an endpoint collision.
+  8092	
+  8093	This is the first all-center continuation beyond the locally realizable
+  8094	shared-blocker two-circle pattern: the seed has at most eight points, whereas
+  8095	the three large caps force at least fifteen carrier points. -/
+  8096	theorem endpointFresh_exists_selectedRow_escape_twoShellSeed
+  8097	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  8098	    {H : CriticalShellSystem D.A}
+  8099	    {F : CriticalPairFrontier D S radius H}
+  8100	    (R : FrontierCommonDeletionParentResidual F)
+  8101	    {P : RetainedInteriorDirectedOmission R}
+  8102	    (O : OrientedRetainedCommonDeletion P)
+  8103	    (C : ReverseHitFreshEndpointContext R O)
+  8104	    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+  8105	    (Q : EndpointFreshFirstApexRowSource E) :
+  8106	    ∃ center : ℝ²,
+  8107	      ∃ _hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+  8108	        ∃ K : SelectedFourClass D.A center,
+  8109	          ∃ z : ℝ²,
+  8110	            z ∈ K.support ∧ z ∉ endpointFreshTwoShellSeed E Q := by
+  8111	  let KA :=
+  8112	    (H.selectedAt E.fiber.source₁.1
+  8113	      E.fiber.source₁.2).toCriticalFourShell
+  8114	  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+  8115	    endpointFresh_twoShellSeed_subset_carrier E Q
+  8116	  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+  8117	    refine ⟨E.fiber.source₁.1, ?_⟩
+  8118	    exact Finset.mem_union_left _ KA.q_mem_support
+  8119	  have hseedCard : (endpointFreshTwoShellSeed E Q).card ≤ 8 := by
+  8120	    calc
+  8121	      (endpointFreshTwoShellSeed E Q).card
+  8122	          ≤ KA.support.card + Q.row.support.card := by
+  8123	            exact Finset.card_union_le KA.support Q.row.support
+  8124	      _ = 8 := by rw [KA.support_card, Q.row.support_card]
+  8125	  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
+  8126	    intro hseedEq
+  8127	    have hAcard : D.A.card ≤ 8 := by
+  8128	      simpa [hseedEq] using hseedCard
+  8129	    have hAge : 15 ≤ D.A.card :=
+  8130	      ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+  8131	        S C.allLarge.cap_card_ge_six
+  8132	    omega
+  8133	  rcases
+  8134	      exists_faithfulCarrierPattern_of_globalK4
+  8135	        D.K4 E.fiber.source₁.2 with
+  8136	    ⟨G⟩
+  8137	  rcases
+  8138	      G.exists_row_escape_of_proper_subset
+  8139	        R.minimal hseedNonempty hseedSub hseedProper with
+  8140	    ⟨center, hcenter, z, hzRow, hzOutside⟩
+  8141	  exact
+  8142	    ⟨center, hcenter, G.classAt center (hseedSub hcenter),
+  8143	      z, hzRow, hzOutside⟩
+  8144	
+  8145	/-- Every simultaneous choice of selected four-classes at the six endpoint
+  8146	seed centers contains an escaping chosen row.
+  8147	
+  8148	This is the quantifier adapter needed by a finite selected-support search.  It
+  8149	does not identify a preferred row or treat a selected support as a full
+  8150	physical radius class. -/
+  8151	theorem endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker
+  8152	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  8153	    {H : CriticalShellSystem D.A}
+  8154	    {F : CriticalPairFrontier D S radius H}
+  8155	    (R : FrontierCommonDeletionParentResidual F)
+  8156	    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+  8157	    (E : RetainedMatchingEndpointCriticalFiber W)
+  8158	    (Q : EndpointFreshFirstApexRowSource E)
+  8159	    (K_mem_J_shell :
+  8160	      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+  8161	    (hAX :
+  8162	      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+  8163	        H.centerAt Q.J Q.J_mem_A)
+  8164	    (hcard : 15 ≤ D.A.card)
+  8165	    (K : ∀ center : ℝ²,
+  8166	      center ∈ endpointFreshTwoShellSeed E Q →
+  8167	        SelectedFourClass D.A center) :
+  8168	    ∃ center : ℝ²,
+  8169	      ∃ hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+  8170	        ∃ z : ℝ²,
+  8171	          z ∈ (K center hcenter).support ∧
+  8172	            z ∉ endpointFreshTwoShellSeed E Q := by
+  8173	  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+  8174	    endpointFresh_twoShellSeed_subset_carrier E Q
+  8175	  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+  8176	    let KA :=
+  8177	      (H.selectedAt E.fiber.source₁.1
+  8178	        E.fiber.source₁.2).toCriticalFourShell
+  8179	    refine ⟨E.fiber.source₁.1, ?_⟩
+  8180	    exact Finset.mem_union_left _ KA.q_mem_support

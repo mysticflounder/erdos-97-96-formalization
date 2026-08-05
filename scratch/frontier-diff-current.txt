@@ -1,0 +1,193 @@
+diff --git a/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean b/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+index 9ad3b516..871e0bea 100644
+--- a/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
++++ b/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+@@ -8033,10 +8033,28 @@ private noncomputable def endpointFreshTwoShellSeed
+     (Q : EndpointFreshFirstApexRowSource E) : Finset ℝ² :=
+   (H.selectedAt E.fiber.source₁.1
+       E.fiber.source₁.2).toCriticalFourShell.support ∪
+     Q.row.support
+ 
++/-- Both selected supports in the endpoint seed consist of carrier points. -/
++theorem endpointFresh_twoShellSeed_subset_carrier
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    {R : FrontierCommonDeletionParentResidual F}
++    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
++    (E : RetainedMatchingEndpointCriticalFiber W)
++    (Q : EndpointFreshFirstApexRowSource E) :
++    endpointFreshTwoShellSeed E Q ⊆ D.A := by
++  intro z hz
++  simp only [endpointFreshTwoShellSeed, Finset.mem_union] at hz
++  rcases hz with hz | hz
++  · exact
++      (H.selectedAt E.fiber.source₁.1
++        E.fiber.source₁.2).toCriticalFourShell.support_subset_A hz
++  · exact Q.row.support_subset_A hz
++
+ /-- In the shared-blocker branch, the critical four-shell support and the
+ selected first-apex four-support form an exact six-point seed: their
+ intersection is precisely the pair `C, J`.
+ 
+ The first-apex physical radius class may contain six points; this theorem is
+@@ -8091,16 +8109,12 @@ theorem endpointFresh_exists_selectedRow_escape_twoShellSeed
+           ∃ z : ℝ²,
+             z ∈ K.support ∧ z ∉ endpointFreshTwoShellSeed E Q := by
+   let KA :=
+     (H.selectedAt E.fiber.source₁.1
+       E.fiber.source₁.2).toCriticalFourShell
+-  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A := by
+-    intro z hz
+-    simp only [endpointFreshTwoShellSeed, Finset.mem_union] at hz
+-    rcases hz with hz | hz
+-    · exact KA.support_subset_A hz
+-    · exact Q.row.support_subset_A hz
++  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
++    endpointFresh_twoShellSeed_subset_carrier E Q
+   have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+     refine ⟨E.fiber.source₁.1, ?_⟩
+     exact Finset.mem_union_left _ KA.q_mem_support
+   have hseedCard : (endpointFreshTwoShellSeed E Q).card ≤ 8 := by
+     calc
+@@ -8126,10 +8140,65 @@ theorem endpointFresh_exists_selectedRow_escape_twoShellSeed
+     ⟨center, hcenter, z, hzRow, hzOutside⟩
+   exact
+     ⟨center, hcenter, G.classAt center (hseedSub hcenter),
+       z, hzRow, hzOutside⟩
+ 
++/-- Every simultaneous choice of selected four-classes at the six endpoint
++seed centers contains an escaping chosen row.
++
++This is the quantifier adapter needed by a finite selected-support search.  It
++does not identify a preferred row or treat a selected support as a full
++physical radius class. -/
++theorem endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    (R : FrontierCommonDeletionParentResidual F)
++    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
++    (E : RetainedMatchingEndpointCriticalFiber W)
++    (Q : EndpointFreshFirstApexRowSource E)
++    (K_mem_J_shell :
++      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
++    (hAX :
++      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
++        H.centerAt Q.J Q.J_mem_A)
++    (hcard : 15 ≤ D.A.card)
++    (K : ∀ center : ℝ²,
++      center ∈ endpointFreshTwoShellSeed E Q →
++        SelectedFourClass D.A center) :
++    ∃ center : ℝ²,
++      ∃ hcenter : center ∈ endpointFreshTwoShellSeed E Q,
++        ∃ z : ℝ²,
++          z ∈ (K center hcenter).support ∧
++            z ∉ endpointFreshTwoShellSeed E Q := by
++  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
++    endpointFresh_twoShellSeed_subset_carrier E Q
++  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
++    let KA :=
++      (H.selectedAt E.fiber.source₁.1
++        E.fiber.source₁.2).toCriticalFourShell
++    refine ⟨E.fiber.source₁.1, ?_⟩
++    exact Finset.mem_union_left _ KA.q_mem_support
++  have hseedCard : (endpointFreshTwoShellSeed E Q).card = 6 :=
++    endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
++      Q K_mem_J_shell hAX
++  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
++    intro hseedEq
++    have hAcard : D.A.card = 6 := by
++      simpa [hseedEq] using hseedCard
++    omega
++  rcases
++      exists_faithfulCarrierPattern_with_classes_on
++        D.K4 hseedSub hseedNonempty K with
++    ⟨G, hG⟩
++  rcases
++      G.exists_row_escape_of_proper_subset
++        R.minimal hseedNonempty hseedSub hseedProper with
++    ⟨center, hcenter, z, hzRow, hzOutside⟩
++  refine ⟨center, hcenter, z, ?_, hzOutside⟩
++  simpa only [hG center hcenter] using hzRow
++
+ /-- Cross-hit subproblem in which the common endpoint blocker is the fresh
+ first-apex row source (`A = J`). -/
+ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core
+     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+     {H : CriticalShellSystem D.A}
+@@ -10529,15 +10598,17 @@ theorem freshThirdNormalizedResidualCase_of_crossRowResidual
+     · rcases hresidual with hfirst' | hsecond' | hcenters
+       · exact (hfirst' hfirst).elim
+       · exact (hsecond' hsecond).elim
+       · exact .equalCrossRowCenters hfirst hsecond hcenters
+     · exact .secondNonHit
++        firstInteraction
+         (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+           (P := P) (Pρ := Pρ) C.secondSource Q secondInteraction hsecond)
+   · exact .firstNonHit
+       (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+         (P := P) (Pρ := Pρ) C.firstSource Q firstInteraction hfirst)
++      secondInteraction
+ 
+ /-- The rigid positive packet in the equal-center residual: both cap-source
+ rows are the same exact four-point row, containing precisely the two cap
+ sources and the two fresh sources. -/
+ structure FreshThirdEqualCenterExactFourRow
+@@ -11211,11 +11282,15 @@ hypotheses before this packet is built. -/
+ inductive FreshThirdNormalizedResidualRemainingCase
+     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+     (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+   | firstNonHit
+       (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
++      (secondInteraction :
++        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+   | secondNonHit
++      (firstInteraction :
++        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+       (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+   | equalCrossRowCenters
+       (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+       (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+       (centers_eq :
+@@ -11282,11 +11357,11 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+     intro source h deleted deleted_eq deleted_not_mem
+     rcases deleted_eq with rfl | rfl
+     · exact deleted_not_mem h.2.1
+     · exact deleted_not_mem h.2.2
+   cases hresidual with
+-  | firstNonHit data =>
++  | firstNonHit data secondInteraction' =>
+       exact
+         false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+           (P := P) (Pρ := Pρ)
+           (hρne := hρne) (hfrontierFour := hfrontierFour)
+           (hρfour := hρfour)
+@@ -11295,12 +11370,12 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+           (T := T) (hpairsDisjoint := hpairsDisjoint)
+           (hblockersNe := hblockersNe)
+           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+           (LP := LP) (hLP := hLP) (MP := MP)
+           C Q
+-          (.firstNonHit data)
+-  | secondNonHit data =>
++          (.firstNonHit data secondInteraction')
++  | secondNonHit firstInteraction' data =>
+       exact
+         false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+           (P := P) (Pρ := Pρ)
+           (hρne := hρne) (hfrontierFour := hfrontierFour)
+           (hρfour := hρfour)
+@@ -11309,11 +11384,11 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+           (T := T) (hpairsDisjoint := hpairsDisjoint)
+           (hblockersNe := hblockersNe)
+           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+           (LP := LP) (hLP := hLP) (MP := MP)
+           C Q
+-          (.secondNonHit data)
++          (.secondNonHit firstInteraction' data)
+   | equalCrossRowCenters hfirst hsecond hcenters =>
+       have closeCanonicalFirst :
+           ∀ {capIndex : Fin 3},
+             H.centerAt C.firstSource.1 C.firstSource.2 ∈
+               S.capInteriorByIndex capIndex →

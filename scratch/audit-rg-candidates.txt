@@ -1,0 +1,191 @@
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:198:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:201:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:246:theorem false_of_distinct_actualRow_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:103:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:115:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:144:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:148:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:26:  blocker centers force at least one directed cross-deletion survival.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:250:blocker centers force at least one directed cross-deletion survival:
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:263:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:277:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:20:  cross-deletion survival; and
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:95:cross-deletion survival without assuming any positive cross incidence. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:106:  directed_cross_deletion_survival :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:277:        directed_cross_deletion_survival := hsurvival }⟩)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:155:/-- The omitted physical successor is exactly a cross-deletion survivor at
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:175:  exact (cross_deletion_survives_iff_not_mem_selected_support H _).mpr hwOutside
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:798:theorem false_of_f1t2_collision_product_of_manifest_label_packet_hrows
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:847:theorem false_of_f1t2_collision_product_of_branch0_choices
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:939:    false_of_f1t2_collision_product_of_manifest_label_packet_hrows
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1403:theorem false_of_f1t2_collision_product_of_branch0_noCollision
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1458:    false_of_f1t2_collision_product_of_branch0_choices rows hfixed
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1470:theorem false_of_f1t2_collision_product_of_branch0_noCollision_branch_data
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1561:    false_of_f1t2_collision_product_of_branch0_noCollision
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2594:theorem false_of_f1t2_collision_product
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2711:    false_of_f1t2_collision_product_of_branch0_noCollision
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2727:theorem false_of_f1t2_extra_omit3_collision
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3901:      Record001Branch0Collision.false_of_f1t2_extra_omit3_collision
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1180:theorem u1_largeCap_routeB_f1Slot0ExcludedTarget_false_of_collisionExclusion
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1200:theorem u1_largeCap_routeB_f1TailCollisionTarget_false_of_collisionExclusion
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2632:theorem false_of_f2CriticalRow_center_p_q_named_collisionExclusion
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2683:theorem false_of_f2CriticalRow_center_p_collisionExclusion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:201:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:243:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:307:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:100:/-- The pointwise third-blocker and cross-pair deletion-survival witness
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:494:/-- One of the two cross-deletions preserves the source's canonical K4. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:504:/-- The selected-support form of cross-pair deletion survival. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:522:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:523:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:151:    exact (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:433:  (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:441:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:306:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:308:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:371:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:374:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:507:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:619:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:698:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:720:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:772:theorem false_of_firstFiber_explicit_overlap_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:804:theorem false_of_firstFiber_bothOutsideHits_and_firstPairHit
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:856:  apply false_of_firstFiber_explicit_overlap_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:901:theorem false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:20:critical-shell semantics turn that omission into cross-deletion survival at
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:203:directed omission and the corresponding cross-deletion survivor. -/
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:268:      (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:271:      (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:240:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:259:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:394:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:574:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:185:      (cross_deletion_survives_iff_not_mem_selected_support H P.J_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:250:      (cross_deletion_survives_iff_not_mem_selected_support H W.next_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:681:theorem false_of_crossed_arm_seven_point_collision_of_injective
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:740:  apply false_of_crossed_arm_seven_point_collision_of_injective hreal.injective core.hAP
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:194:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:254:      exact false_of_distinct_actualRow_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:20:  cross-deletions to retain four equidistant points; and
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:311:obstruction centers force at least one directed cross-deletion survival. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:323:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:337:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:631:theorem cross_deletion_survives_or_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781:theorem cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:842:    (cross_deletion_survives_iff_not_mem_selected_support H hw).mpr
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:865:/-- Survival of the cross deletion forces the two source points onto
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:867:theorem SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:878:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:905:    (cross_deletion_survives_iff_not_mem_selected_support H hq).mp hsurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:932:theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:941:    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1039:/-- If both source deletions preserve K4 at the first apex, mutual cross
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1046:theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1118:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1140:      blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1146:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1171:    blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1188:    blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1225:/-- In the exact card-five first-apex branch, either cross deletion survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1228:theorem card_five_cross_deletion_survives_or_cross_oppositeSide
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1239:  rcases cross_deletion_survives_or_cross_membership P with
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:162:        (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:165:        (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:407:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:29:fresh common deletion; its three-distinct path splits into a closing cross hit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:556:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:561:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:254:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:352:  rcases cross_deletion_survives_or_cross_membership F.pair with
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:360:      (actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:132:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:283:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:288:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:370:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:375:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1010:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1014:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1018:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1022:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1536:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2542:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2630:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5169:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5231:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5730:cross deletions therefore preserve K4, and the actual blockers are distinct. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5897:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5902:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6784:      (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7718:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8047:theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8054:theorem false_of_twoCapSources_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8067:  exact false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8099:theorem false_of_freshThird_sameCapCrossRowAlignment
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8717:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8720:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8995:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8998:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9502:theorem false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9670:          ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9673:        ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9788:theorem false_of_hasDistinctCrossRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9795:        false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9806:theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10002:    exact ATailFirstFiberOverlapDescent.false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10069:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10071:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10091:          ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10093:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10099:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10101:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10143:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10146:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10981:theorem false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11024:theorem false_of_capSource_firstFiber_crossedThreeRowExactSupports
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11068:outside-point deletion row packet and the other receives an oriented crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11070:theorem false_of_capSource_firstFiber_collisionFiveCenterDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11101:    exact false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11117:    exact false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11133:    exact false_of_capSource_firstFiber_crossedThreeRowExactSupports
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11149:    exact false_of_capSource_firstFiber_crossedThreeRowExactSupports
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11171:theorem false_of_twoCapSources_sameBlockerAllEndpointOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11194:  apply false_of_capSource_firstFiber_collisionFiveCenterDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11231:theorem false_of_twoCapSources_freshThirdBlockerFiber_residual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11238:        false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11254:        false_of_twoCapSources_sameBlockerAllEndpointOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11275:theorem false_of_twoCapSources_freshThirdBlockerFiber_core
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11280:      FreshThirdTwoCapSourceObstruction.false_of_hasDistinctCrossRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11283:      false_of_twoCapSources_freshThirdBlockerFiber_residual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11304:theorem false_of_twoCapSources_freshThirdBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11312:      false_of_freshThird_sameCapCrossRowAlignment
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11317:        false_of_freshThird_sameCapCrossRowAlignment
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11329:      exact false_of_twoCapSources_freshThirdBlockerFiber_core
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11351:    false_of_twoCapSources_freshThirdBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11372:theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11411:      false_of_twoCapSources_freshThirdBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11417:      false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11423:      false_of_twoCapSources_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11739:private theorem false_of_twoCapSources_of_blockers_off_firstCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11864:theorem false_of_twoCapSources_complementaryMembership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12004:theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12166:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12168:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12176:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12178:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12190:theorem false_of_twoCapSources_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12205:    false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12215:Its detailed mutual-cross-membership/deletion analysis remains checked, but
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12217:theorem false_of_twoCapSources_firstFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12233:    · exact false_of_twoCapSources_freshThirdBlockerFiber_core
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12284:    · exact false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12289:  · exact false_of_twoCapSources_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13567:    exact false_of_distinct_actualRow_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13572:    exact false_of_distinct_actualRow_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14084:    false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14182:    exact false_of_twoCapSources_firstFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14405:cross-omission rectangle, two oppositely oriented localized common-deletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15158:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15162:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:188:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:193:    (cross_deletion_survives_iff_not_mem_selected_support

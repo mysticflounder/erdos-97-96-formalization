@@ -1,0 +1,4 @@
+theorem record001QTShellSupportOrBranch0Collision_ofGlobalK4ShellData
+
+Package the canonical global-K4 shell data into the new q/t1 shell-support
+or collision surface.

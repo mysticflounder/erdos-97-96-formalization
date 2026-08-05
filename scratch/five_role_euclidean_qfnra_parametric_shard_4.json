@@ -1,0 +1,89 @@
+{
+  "normalization": "O=(0,0), branch circle radius=1, A=(1,0) in A=J or C=(1,0) in X=C; rational circle chart omits one angle point but strict cells are open",
+  "rows": [
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 61.8512407920789,
+        "reason": "timeout"
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMAKXBC.smt2"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 61.22245391597971,
+        "reason": "timeout"
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMABKXC.smt2"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 62.07964879204519,
+        "reason": "timeout"
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMBAKXC.smt2"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "z3": {
+        "status": "UNKNOWN",
+        "wall_seconds": 61.57206495804712,
+        "reason": "timeout"
+      },
+      "cvc5": {
+        "status": "UNKNOWN",
+        "returncode": -6,
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ]
+      },
+      "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCXKABM.smt2"
+    }
+  ],
+  "counts": {
+    "z3": {
+      "SAT": 0,
+      "UNSAT": 0,
+      "UNKNOWN": 4
+    },
+    "cvc5": {
+      "SAT": 0,
+      "UNSAT": 0,
+      "UNKNOWN": 4
+    }
+  }
+}

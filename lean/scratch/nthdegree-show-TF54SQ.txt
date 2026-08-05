@@ -1,0 +1,5 @@
+theorem allCollisionEndpointsOmitted_of_equalBlocker_shell_inter_cap_eq
+
+The exact common-blocker shell intersection upgrades the earlier
+existential common omission to simultaneous omission of all four collision
+endpoints by both equal-blocker rows.

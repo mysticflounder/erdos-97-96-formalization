@@ -1,0 +1,299 @@
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-331-        (ERow.support_eq_radius _ hb_mem_ERow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-332-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:333:/-- Cyclic-recut form of `false_of_five_ccw_second_two_selected_rows`.
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-334-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-335-The five indices are increasing in the coordinate system obtained by cutting
+--
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-409-        (ARow.support_eq_radius _ hd_mem_ARow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-410-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:411:/-- Cyclic-recut form of
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-412-`false_of_five_ccw_reversed_second_two_selected_rows`.
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-413-
+--
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-658-        (CRow.support_eq_radius _ hd_mem_CRow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-659-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:660:/-- Cyclic-recut form of `false_of_five_ccw_two_selected_rows`. -/
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-661-theorem false_of_five_ccw_two_selected_rows_cyclicShift
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-662-    {carrier : Finset ℝ²}
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-33-needed by the erased-pin ordered scaffold: the producer still has to export the
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-34-indices, but the CCW ten-point hull follows formally from this certificate. -/
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:35:abbrev HullOrderSubsequenceCertificate (A : Finset ℝ²)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-36-    (pointOf : SurplusCOMPGBank.Label → ℝ²) : Prop :=
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-37-  ∃ n : ℕ, ∃ φ : Fin n → ℝ², ∃ idx : Fin 10 → Fin n,
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-45-/-- Consume a P1 ambient hull-order certificate to obtain the exact
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-46-`labelOfHullFin` CCW certificate expected by the finite candidate producers. -/
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:47:theorem isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-48-    {A : Finset ℝ²} {pointOf : SurplusCOMPGBank.Label → ℝ²}
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:49:    (hcert : HullOrderSubsequenceCertificate A pointOf) :
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-50-    EuclideanGeometry.IsCcwConvexPolygon
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-51-      (fun i : Fin 10 =>
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-75-`Fin 10` bookkeeping from the geometric selector, whose remaining job is to
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-76-export these indices from the cap-block interval facts. -/
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:77:theorem hullOrderSubsequenceCertificate_of_explicit_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-78-    {A : Finset ℝ²} {pointOf : SurplusCOMPGBank.Label → ℝ²}
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-79-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-95-    (hPw : φ iPw = pointOf .Pw)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-96-    (hPu : φ iPu = pointOf .Pu) :
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:97:    HullOrderSubsequenceCertificate A pointOf := by
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-98-  let idx : Fin 10 → Fin n
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-99-    | ⟨0, _⟩ => iu
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-153-      s2 ∈ S.capInteriorByIndex S.surplusIdx ∧
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-154-      s3 ∈ S.capInteriorByIndex S.surplusIdx ∧
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:155:      HullOrderSubsequenceCertificate A
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-156-        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) := by
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-157-  classical
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-331-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-332-  have hcert :
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:333:      HullOrderSubsequenceCertificate A
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-334-        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) :=
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:335:    hullOrderSubsequenceCertificate_of_explicit_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-336-      (A := A)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-337-      (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-393-      s2 ∈ S.capInteriorByIndex S.surplusIdx ∧
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-394-      s3 ∈ S.capInteriorByIndex S.surplusIdx ∧
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:395:      HullOrderSubsequenceCertificate A
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-396-        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) := by
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-397-  classical
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-571-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-572-  have hcert :
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:573:      HullOrderSubsequenceCertificate A
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-574-        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) :=
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:575:    hullOrderSubsequenceCertificate_of_explicit_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-576-      (A := A)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-577-      (pointOf := leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
+--
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean-463-/-! ## Part 2c — the gauge normalization (steps 1–3)
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean-464-
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean:465:Rotate the CCW enumeration so the surplus apex sits at index `0`; then the two
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean-466-non-surplus apices are *forced* to indices `3` and `7` by the cap sizes
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean-467-(surplus `= 5`, opposite `= 4`), and the two opposite caps pull back to the
+--
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean-86-    (∡ (reverseCyclicPoint point i.val) (reverseCyclicPoint point j.val)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean-87-      (reverseCyclicPoint point k.val)).sign = -1 := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:88:  have hrotate : IsCcwConvexPolygon (rotatePoint point) := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean-89-    simpa [rotatePoint] using
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean-90-      isCcwConvexPolygon_cyclicShift hinj hccw (1 : Fin (n + 1))
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-1998-            (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-1999-            (centerClass := centerClass)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2000:            (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2001-            hinj (orderedLabelPairs_ne_local hpair) (hsame c) (hsame cp))
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2002-    · rcases hleftOrder with ⟨h0w, hwv⟩
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2046-                leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2047-                  (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2048:          isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2049-        convert hccwLeft using 2
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2050-        rename_i i
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2392-                rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2393-                  (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2394:          isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2395-        convert hccwRight using 2
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2396-        rename_i i
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2428-            (pointOf := leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2429-            (centerClass := centerClass)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2430:            (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2431-            hinj (orderedLabelPairs_ne_local hpair) (hsame c) (hsame cp))
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean-2432-
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-394-                hs3I hp12 hq12 hs12 hs13 hs23
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-395-                (fun _ => dist p x)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean:396:                (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-397-          · rcases hleftOrder with ⟨h0w, hwv⟩
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-398-            rcases exists_leftPinnedHullOrderLabels_of_apex_order
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-442-                      leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-443-                        (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean:444:                isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-445-              convert hccwLeft using 2
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-446-              rename_i i
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-501-                      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-502-                        (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean:503:                isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-504-              convert hccwRight using 2
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-505-              rename_i i
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-528-                hs3I hq12 hp12 hs12 hs13 hs23
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-529-                (fun _ => dist p x)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean:530:                (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-531-      · intro p hpI hpErase
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean-532-        exact
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-790-  have hccw : EuclideanGeometry.IsCcwConvexPolygon
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-791-      (fun i : Fin 10 => pointOf (SurplusCOMPGBank.labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:792:    isCcwConvexPolygon_of_hullOrderSubsequenceCertificate hcert
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-793-  have hsurpEq :
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-794-      S.capInteriorByIndex S.surplusIdx = ({s1, s2, s3} : Finset ℝ²) :=
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1026-      (fun i : Fin 10 => pointOf (SurplusCOMPGBank.reflectedHullLabel
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1027-        (SurplusCOMPGBank.labelOfHullFin i))) := by
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:1028:    have hc := isCcwConvexPolygon_of_hullOrderSubsequenceCertificate hcert
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1029-    convert hc using 2
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1030-    rename_i i
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1448-  have hccw : EuclideanGeometry.IsCcwConvexPolygon
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1449-      (fun i : Fin 10 => pointOf (SurplusCOMPGBank.labelOfHullFin i)) := by
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:1450:    have hc := isCcwConvexPolygon_of_hullOrderSubsequenceCertificate hcert
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1451-    convert hc using 2
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1452-    rename_i i
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1689-      (fun i : Fin 10 => pointOf (SurplusCOMPGBank.reflectedHullLabel
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1690-        (SurplusCOMPGBank.labelOfHullFin i))) := by
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:1691:    have hc := isCcwConvexPolygon_of_hullOrderSubsequenceCertificate hcert
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1692-    convert hc using 2
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean-1693-    rename_i i
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-50-  /-- The global boundary indices are ordered from `lo` to `hi`. -/
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-51-  hlohi : lo < hi
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:52:  /-- Reindex the local cap order into the global boundary order. -/
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-53-  idx : Fin m → Fin n
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-54-  /-- The local-to-global reindexing is strictly increasing. -/
+--
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean-85-  rcases hcyc with ⟨hij, hjk⟩ | ⟨hjk, hki⟩ | ⟨hki, hij⟩
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean-86-  · exact signedArea2_neg_of_lt hccw hinj hij hjk
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:87:  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k)]
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean-88-    exact signedArea2_neg_of_lt hccw hinj hjk hki
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:89:  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k),
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:90:      signedArea2_rotate (boundary j) (boundary k) (boundary i)]
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean-91-    exact signedArea2_neg_of_lt hccw hinj hki hij
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean-92-
+--
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean-90-  rcases hcyc with ⟨hij, hjk⟩ | ⟨hjk, hki⟩ | ⟨hki, hij⟩
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean-91-  · exact signedArea2_neg_of_lt hccw hinj hij hjk
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:92:  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k)]
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean-93-    exact signedArea2_neg_of_lt hccw hinj hjk hki
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:94:  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k),
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:95:      signedArea2_rotate (boundary j) (boundary k) (boundary i)]
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean-96-    exact signedArea2_neg_of_lt hccw hinj hki hij
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean-97-
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-584-          rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-585-            (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:586:      isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-587-    refine ⟨{
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-588-      p₁ := p₁, p₂ := p₂, q₁ := q₁, q₂ := q₂,
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-633-            leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-634-              (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:635:        isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-636-      convert hccwLeft using 2
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-637-      rename_i i
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1502-            rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1503-              (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:1504:        isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1505-      convert hccwRight using 2
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1506-      rename_i i
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1538-          leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1539-            (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:1540:      isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1541-    refine ⟨{
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-1542-      p₁ := q₁, p₂ := q₂, q₁ := p₁, q₂ := p₂,
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2488-      hconv hK4 hM44 hcontain hcardA hpayload hinj hpointA hp12 hpair
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2489-      hqpair hcenterOpp hxLabels
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:2490:      (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2491-  · rcases hleftOrder with ⟨h0w, hwv⟩
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2492-    rcases exists_leftPinnedHullOrderLabels_of_apex_order
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2526-            leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2527-              (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:2528:        isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2529-      convert hccwLeft using 2
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2530-      rename_i i
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2609-            rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2610-              (labelOfHullFin i)) :=
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:2611:        isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2612-      convert hccwRight using 2
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2613-      rename_i i
+--
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2638-      hconv hK4 hM44 hcontain hcardA hpayload hinj hpointA hq12 hqpair
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2639-      hpair hcenterOpp hxLabels
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:2640:      (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2641-
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean-2642-end ErasedCertificate
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-916-Returns the shifted enumeration `psi`, its descending predicate, and the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-917-reindexing `psi (i - ic) = phi i`. -/
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:918:private theorem shift_boundaryOrder
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-919-    {A : Finset ℝ²} {n : ℕ} [NeZero n] {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-920-    (hphi_inj : Function.Injective phi) (hphi_image : Finset.univ.image phi = A)
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1089-**Proof (cyclic-interval position).**  Shift the global CCW boundary order
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1090-(`boundaryOrder_hneg` from `CGN4g0_globalBoundaryOrder_of_convexIndep`) so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1091:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The cap `C₂` is the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1092-opposite-`v₂` arc, so `supportCap_interval_of_oppositeFirst_local'` puts `x`'s
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1093-index strictly between the `v₃` and `v₁` indices (`jv3 < ix < jv1` up to the
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1122-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1123-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1124:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1125-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1126-  set jv3 : Fin n := i3 - i2 with hjv3def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1187-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1188-**Proof (cyclic-interval position).**  Shift the global CCW boundary order so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1189:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The point `x ∈ I₂` is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1190-located strictly between the `v₃` and `v₁` indices via `index_between_of_onArc`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1191-on `C₂ = OnArcOpposite v₂ v₃ v₁`.  The cap vertex `a₁ ∈ I₁ = OnArcOpposite
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1221-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1222-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1223:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1224-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1225-  set jv3 : Fin n := i3 - i2 with hjv3def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1321-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1322-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1323:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1324-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1325-  set jv3 : Fin n := i3 - i2 with hjv3def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1401-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1402-**Proof (cyclic-interval position).**  Shift the global CCW boundary order so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1403:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The point `x ∈ I₂` is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1404-located strictly between the `v₃` and `v₁` indices via `index_between_of_onArc`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1405-on `C₂ = OnArcOpposite v₂ v₃ v₁` (opposite vertex `v₂` at index `0`, so outside
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1437-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1438-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1439:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1440-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1441-  set jv3 : Fin n := i3 - i2 with hjv3def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1711-`same_side_of_chord_endpoint_thales`).**  Shift the global CCW boundary order
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1712-(`boundaryOrder_hneg`) so the apex `v₂` sits at index `0`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1713:(`shift_boundaryOrder`).  The cap `C₂` is the opposite-`v₂` arc, so
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1714-`supportCap_interval_of_oppositeFirst_local'` puts `x`'s index strictly between
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1715-the `v₃` and `v₁` indices (`jv3 < ix < jv1`, up to the orientation swap).  With
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1742-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1743-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1744:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1745-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1746-  set jv3 : Fin n := i3 - i2 with hjv3def
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-30-cutting it at the first apex puts the surplus and second apices at `3` and
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-31-`7`, and the exact-class interior at `4,5,6`.  The file therefore exposes
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:32:both fully normalized packets and a finite no-recut theorem for the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-33-incompatible `0,4,8` mirror request.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-34--/
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-118-  decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-119-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:120:/-- No cyclic recut of the mirror macro positions can put the first apex,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-121-second apex, and surplus apex simultaneously at `0`, `4`, and `8`. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-122-theorem no_mirror_cyclicCut_roles_zero_four_eight :

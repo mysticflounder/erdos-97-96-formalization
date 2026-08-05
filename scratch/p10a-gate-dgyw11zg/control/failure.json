@@ -1,0 +1,10 @@
+{
+  "attempt": 0,
+  "detail": {},
+  "diagnostic": "SAT decode/detect/certificate failure: productivity path and ledger must be enabled together",
+  "failure_sha256": "c7ad24e6d61a7f8561274e9716f482e0d1751ffa5d613006ee2f9fd921f2c11c",
+  "kind": "SAT_CERTIFICATE_FAILURE",
+  "learned_clause_added": false,
+  "raw_sat_index": 0,
+  "schema": "p97-phase3-structural-cegar-projected-static-v3-failure-v1"
+}

@@ -1,0 +1,33 @@
+HANDLE NQVMAZ
+theorem false_of_two_freshThirdCrossRowHits_distinctCenters
+
+Two distinct cap-source cross-row centers, together with the fresh common
+blocker, would give three carrier points on the perpendicular bisector of the
+two fresh sources, contradicting the convex-carrier two-center bound.
+HANDLE WSPYFJ
+theorem false_of_freshThird_sameCapCrossRowAlignment
+
+The positive same-cap cross-row alignment is impossible by ordered-cap
+uniqueness: two distinct cap centers cannot bisect the same outside pair.
+HANDLE JCZGJ2
+theorem false_of_freshThirdEqualCenter_sameCapOppIndex
+
+The equal-center exact-row packet is impossible when a same-cap
+interaction places the common cap-source center in the canonical opposite cap.
+The two cap sources and one internal fresh source then give three points in a
+selected four-class intersected with that cap, contradicting the ordered-cap
+two-point bound.
+HANDLE CGA5NK
+theorem criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+
+Two hits of one rich opposite-apex class in a canonical critical shell
+force that shell's blocker center into the same indexed strict cap.  This is
+the uniform ordered-cap localization needed by the tri-apex terminal.
+HANDLE JRQ522
+theorem equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
+
+Two distinct strict-cap points on one rich-apex radius whose canonical
+critical shells have the same blocker determine that blocker's complete
+intersection with the indexed cap.  In particular, the common blocker is
+strictly inside the cap and its selected shell meets the whole cap in exactly
+the two source points.

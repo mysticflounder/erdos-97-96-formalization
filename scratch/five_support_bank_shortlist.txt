@@ -1,0 +1,24 @@
+NAME: Problem97.exists_selectedFourClass_of_globalK4
+SOURCE: lean/RVOL/P97/U1CarrierInjection.lean:1029 reachable=true status=source-proved
+STATEMENT: theorem exists_selectedFourClass_of_globalK4 {A : Finset ℝ²} {center : ℝ²} (hK4 : HasNEquidistantProperty 4 A) (hcenter : center ∈ A) : Nonempty (SelectedFourClass A center)
+
+NAME: Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
+SOURCE: lean/RVOL/P97/U1LargeCapRouteBTail.lean:2499 reachable=true status=source-proved
+STATEMENT: theorem false_of_twoLargeCaps_pCentered_t2Source {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²} {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)} (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol) (hCirc : ∃ h12 h23 h13, MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩) {M : MoserTriangle D.A} (CP : CapTriple D.A M) (i j : Fin 3) (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u) : LargeCapPCenteredT2SourceTwoLargeCapsStatement (p
+
+NAME: Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction
+SOURCE: lean/RVOL/P97/U1TwoLargeCapObstruction.lean:77 reachable=false status=source-proved
+STATEMENT: theorem u1TwoLargeCapObstruction (a c d e f : ℝ²) (hac : a ≠ c) (h1 : dist c a = dist c d) (h2 : dist c a = dist c f) (h3 : dist d c = dist d e) (h4 : dist d c = dist d f) (h5 : dist f a = dist f d) (h6 : dist f a = dist f e) (h7 : dist e a = dist e c) : False
+
+NAME: Problem97.u5_common_bisector_triple_incompatibility
+SOURCE: lean/RVOL/P97/U5GlobalIncidenceKernels.lean:146 reachable=true status=source-proved
+STATEMENT: theorem u5_common_bisector_triple_incompatibility {D : CounterexampleData} {q p x t1 t2 t3 : ℝ²} {Bx : Finset ℝ²} (hr_pos : 0 < dist p q) (hT_noncol : ¬ Collinear ℝ ({t1, t2, t3} : Set ℝ²)) (ht1_radius : dist p t1 = dist p q) (ht2_radius : dist p t2 = dist p q) (ht3_radius : dist p t3 = dist p q) (Kx : U5QDeletedK4Class D q x Bx) (hpBx : p ∈ Bx) (ht1Bx : t1 ∈ Bx) (ht2Bx : t2 ∈ Bx) (ht3Bx : t3 ∈ Bx) : False
+
+NAME: Problem97.U5QCriticalTripleClass.qcritical_exact_selected_double_bisector_incompatibility
+SOURCE: lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedDoubleBisector.lean:26 reachable=true status=source-proved
+STATEMENT: theorem U5QCriticalTripleClass.qcritical_exact_selected_double_bisector_incompatibility {D : CounterexampleData} {q p t₁ t₃ u : ℝ²} {T B₁ B₃ Bu : Finset ℝ²} (htriple : U5DangerousTriple D q p T) (ht₁ : t₁ ∈ T) (ht₃ : t₃ ∈ T) (K₁ : U5QCriticalTripleClass D q t₁ B₁) (K₃ : U5QCriticalTripleClass D q t₃ B₃) (Ku : U5QCriticalTripleClass D q u Bu) (hpB₁ : p ∈ B₁) (huB₁ : u ∈ B₁) (ht₁B₃ : t₁ ∈ B₃) (huB₃ : u ∈ B₃) (hpBu : p ∈ Bu) : False
+
+NAME: Problem97.U5QCriticalTripleClass.qcritical_exact_selected_bisector_incompatibility
+SOURCE: lean/RVOL/P97/U5GlobalIncidenceQCriticalSelectedBisector.lean:131 reachable=true status=source-proved
+STATEMENT: theorem U5QCriticalTripleClass.qcritical_exact_selected_bisector_incompatibility {D : CounterexampleData} {q p t₁ t₂ u : ℝ²} {T B₁ B₂ Bu : Finset ℝ²} (htriple : U5DangerousTriple D q p T) (ht₁ : t₁ ∈ T) (ht₂ : t₂ ∈ T) (K₁ : U5QCriticalTripleClass D q t₁ B₁) (K₂ : U5QDeletedK4Class D q t₂ B₂) (Ku : U5QCriticalTripleClass D q u Bu) (hpB₁ : p ∈ B₁) (ht₂B₁ : t₂ ∈ B₁) (huB₁ : u ∈ B₁) (hpB₂ : p ∈ B₂) (huB₂ : u ∈ B₂) (hpBu : p ∈ Bu) : False
+

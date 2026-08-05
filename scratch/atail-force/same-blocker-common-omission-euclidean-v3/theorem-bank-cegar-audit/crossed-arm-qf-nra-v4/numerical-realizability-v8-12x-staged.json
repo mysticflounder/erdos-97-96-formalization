@@ -1,0 +1,2033 @@
+{
+  "best_equality_residual": {
+    "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+    "coordinates": {
+      "a1": [
+        0.0,
+        0.0
+      ],
+      "a2": [
+        0.5261102467050773,
+        0.33788299431721985
+      ],
+      "a3": [
+        0.27086736553833807,
+        0.3665940913339512
+      ],
+      "p1": [
+        0.5043072800449447,
+        0.22318861256399622
+      ],
+      "p2": [
+        0.5773282497641472,
+        0.10582481559799141
+      ],
+      "q1": [
+        0.36194937183741355,
+        0.1476606131033731
+      ],
+      "q2": [
+        0.24572370195740229,
+        0.18772959957658233
+      ],
+      "r1": [
+        0.19824822220103455,
+        0.3814575338341943
+      ],
+      "r2": [
+        0.39049690274046434,
+        -0.12324571285393539
+      ],
+      "s1": [
+        0.6144346715073011,
+        0.23706651922049937
+      ],
+      "s2": [
+        0.48165698010172964,
+        0.7546506103667463
+      ],
+      "s3": [
+        0.2518534810203049,
+        0.35078374433885495
+      ],
+      "s4": [
+        0.37936582860534496,
+        0.058444474854245636
+      ],
+      "t1": [
+        0.6119133401356,
+        0.07854839166128952
+      ],
+      "t2": [
+        0.12187171291200027,
+        0.17534629334590823
+      ],
+      "t3": [
+        0.4374458869839548,
+        -0.12047164075017876
+      ],
+      "t4": [
+        1.0,
+        0.0
+      ]
+    },
+    "diagnostics": {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "cross_class_disequalities": {
+        "at_or_below_disequality_tolerance": 0,
+        "count": 1915,
+        "min_abs_squared_distance_difference": 8.146623288224353e-05
+      },
+      "point_distinctness": {
+        "at_or_below_distinctness_tolerance": 0,
+        "count": 136,
+        "min_pair_squared_distance": 0.0006114948765704501
+      },
+      "strict_convex_cyclic_supporting_edge_order": {
+        "at_or_below_supporting_tolerance": 130,
+        "count": 255,
+        "min_supporting_edge_orientation": -0.5717905206103784,
+        "nonpositive": 130
+      },
+      "within_class_equalities": {
+        "above_equality_tolerance": 125,
+        "count": 125,
+        "max_abs_squared_distance_difference": 0.21530659878868666,
+        "rms_squared_distance_difference": 0.08378596142443243
+      }
+    },
+    "objective_l2": 0.9367555265260301,
+    "seed": 7,
+    "stage": "equality_first"
+  },
+  "best_exact_cyclic_order_candidate": {
+    "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+    "coordinates": {
+      "a1": [
+        0.0,
+        0.0
+      ],
+      "a2": [
+        2.7496109141046587,
+        2.5505946889789044
+      ],
+      "a3": [
+        -1.6330223164196336,
+        3.217630224342777
+      ],
+      "p1": [
+        0.49758544904985547,
+        4.4662517010916405
+      ],
+      "p2": [
+        2.400076640037182,
+        3.1645705962765813
+      ],
+      "q1": [
+        -0.4726275376105405,
+        4.463343975566478
+      ],
+      "q2": [
+        1.607445273805824,
+        4.112477067559075
+      ],
+      "r1": [
+        -1.1149062351676686,
+        3.895140412487726
+      ],
+      "r2": [
+        1.1103552829353056,
+        4.468078001428132
+      ],
+      "s1": [
+        -0.6412514278705091,
+        0.26046506313762835
+      ],
+      "s2": [
+        -1.6818045137191513,
+        1.5545292975730678
+      ],
+      "s3": [
+        -1.205308920284294,
+        0.708968748098013
+      ],
+      "s4": [
+        -1.8506854998368216,
+        2.508241302316598
+      ],
+      "t1": [
+        2.1284995714753157,
+        0.8748523963348878
+      ],
+      "t2": [
+        1.5873870529448921,
+        0.3821647335729574
+      ],
+      "t3": [
+        2.676003930005745,
+        1.598967250208566
+      ],
+      "t4": [
+        1.0,
+        0.0
+      ]
+    },
+    "diagnostics": {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "cross_class_disequalities": {
+        "at_or_below_disequality_tolerance": 0,
+        "count": 1915,
+        "min_abs_squared_distance_difference": 2.3935961326770894e-05
+      },
+      "point_distinctness": {
+        "at_or_below_distinctness_tolerance": 0,
+        "count": 136,
+        "min_pair_squared_distance": 0.3735504831921973
+      },
+      "strict_convex_cyclic_supporting_edge_order": {
+        "at_or_below_supporting_tolerance": 0,
+        "count": 255,
+        "min_supporting_edge_orientation": 9.866183032170885e-06,
+        "nonpositive": 0
+      },
+      "within_class_equalities": {
+        "above_equality_tolerance": 125,
+        "count": 125,
+        "max_abs_squared_distance_difference": 20.82305939799615,
+        "rms_squared_distance_difference": 11.373417831248393
+      }
+    },
+    "objective_l2": 1151.6687797927877,
+    "seed": 9,
+    "stage": "convexity_preserving_refinement"
+  },
+  "best_joint_refinement": {
+    "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+    "coordinates": {
+      "a1": [
+        0.0,
+        0.0
+      ],
+      "a2": [
+        2.7496109141046587,
+        2.5505946889789044
+      ],
+      "a3": [
+        -1.6330223164196336,
+        3.217630224342777
+      ],
+      "p1": [
+        0.49758544904985547,
+        4.4662517010916405
+      ],
+      "p2": [
+        2.400076640037182,
+        3.1645705962765813
+      ],
+      "q1": [
+        -0.4726275376105405,
+        4.463343975566478
+      ],
+      "q2": [
+        1.607445273805824,
+        4.112477067559075
+      ],
+      "r1": [
+        -1.1149062351676686,
+        3.895140412487726
+      ],
+      "r2": [
+        1.1103552829353056,
+        4.468078001428132
+      ],
+      "s1": [
+        -0.6412514278705091,
+        0.26046506313762835
+      ],
+      "s2": [
+        -1.6818045137191513,
+        1.5545292975730678
+      ],
+      "s3": [
+        -1.205308920284294,
+        0.708968748098013
+      ],
+      "s4": [
+        -1.8506854998368216,
+        2.508241302316598
+      ],
+      "t1": [
+        2.1284995714753157,
+        0.8748523963348878
+      ],
+      "t2": [
+        1.5873870529448921,
+        0.3821647335729574
+      ],
+      "t3": [
+        2.676003930005745,
+        1.598967250208566
+      ],
+      "t4": [
+        1.0,
+        0.0
+      ]
+    },
+    "diagnostics": {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "cross_class_disequalities": {
+        "at_or_below_disequality_tolerance": 0,
+        "count": 1915,
+        "min_abs_squared_distance_difference": 2.3935961326770894e-05
+      },
+      "point_distinctness": {
+        "at_or_below_distinctness_tolerance": 0,
+        "count": 136,
+        "min_pair_squared_distance": 0.3735504831921973
+      },
+      "strict_convex_cyclic_supporting_edge_order": {
+        "at_or_below_supporting_tolerance": 0,
+        "count": 255,
+        "min_supporting_edge_orientation": 9.866183032170885e-06,
+        "nonpositive": 0
+      },
+      "within_class_equalities": {
+        "above_equality_tolerance": 125,
+        "count": 125,
+        "max_abs_squared_distance_difference": 20.82305939799615,
+        "rms_squared_distance_difference": 11.373417831248393
+      }
+    },
+    "objective_l2": 1151.6687797927877,
+    "seed": 9,
+    "stage": "convexity_preserving_refinement"
+  },
+  "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+  "elapsed_seconds": 27.84281516680494,
+  "encoding": {
+    "constraint_counts": {
+      "all_point_pair_distinctness": 136,
+      "exact_cyclic_supporting_edge_order": 255,
+      "serialized_cross_class_squared_distance_disequalities": 1915,
+      "serialized_within_class_squared_distance_equalities": 125
+    },
+    "disequality_optimization": "restart-local signed hinge branches; final diagnostics always replay all 1915 original unsigned cross-class gaps",
+    "per_center_metric_counts": {
+      "a1": {
+        "cross_class_disequalities": 101,
+        "within_class_equalities": 19
+      },
+      "a2": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "a3": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "p1": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "p2": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "q1": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "q2": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "r1": {
+        "cross_class_disequalities": 112,
+        "within_class_equalities": 8
+      },
+      "r2": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "s1": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "s2": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "s3": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "s4": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "t1": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "t2": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      },
+      "t3": {
+        "cross_class_disequalities": 113,
+        "within_class_equalities": 7
+      },
+      "t4": {
+        "cross_class_disequalities": 114,
+        "within_class_equalities": 6
+      }
+    },
+    "similarity_gauge": {
+      "a1": [
+        0.0,
+        0.0
+      ],
+      "orientation": "preserved",
+      "t4": [
+        1.0,
+        0.0
+      ]
+    },
+    "supporting_edge_definition": "for every directed adjacent edge in witness cyclic order, every other point has strictly positive orientation"
+  },
+  "input": {
+    "cyclic_order": [
+      "a1",
+      "t4",
+      "t2",
+      "t1",
+      "t3",
+      "a2",
+      "p2",
+      "q2",
+      "r2",
+      "p1",
+      "q1",
+      "r1",
+      "a3",
+      "s4",
+      "s2",
+      "s3",
+      "s1"
+    ],
+    "source_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/result.json",
+    "source_result_sha256": "3233921049a03f3ca4b2f92554fd61f6fd175e7b19c7f3b2aea22fa1464634a3",
+    "source_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+    "witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json",
+    "witness_sha256": "76875cf2585b9bb8cf288a1ad85e94505ab3cc8f941117e9536cf0bf12e3c027"
+  },
+  "qualifying_metric_candidate_count": 0,
+  "qualifying_strict_convex_candidate_count": 0,
+  "runs": [
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.0003579482798876654
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.5974463358386197
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 0.0529048760241389,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 22.563600684365383,
+            "rms_squared_distance_difference": 12.964247759151375
+          }
+        },
+        "elapsed_seconds": 0.514411540934816,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 134,
+        "njev": 100,
+        "objective_l2": 1343.5275157579078
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.138929837361863e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.000611472016300451
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546507456737701,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153066115232296,
+            "rms_squared_distance_difference": 0.08378596142444054
+          }
+        },
+        "elapsed_seconds": 0.3143297079950571,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 100,
+        "njev": 100,
+        "objective_l2": 0.9367555265261209
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.00139534709103728
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.9253232222340579
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.27544978683651733,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 28.475033672023137,
+          "rms_squared_distance_difference": 16.27735935248126
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 0,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063803765987045e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116061287919184
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672984501862,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.4111932802926612,
+            "rms_squared_distance_difference": 0.0951275909611216
+          }
+        },
+        "elapsed_seconds": 0.1273557918611914,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.03030811672
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.00034098039916585776
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.4550937549577475
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 8.767866237296973e-06,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 21.847021811777676,
+            "rms_squared_distance_difference": 11.206200121865546
+          }
+        },
+        "elapsed_seconds": 3.199903208995238,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 853,
+        "njev": 610,
+        "objective_l2": 1147.6082562764439
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.0988408190652e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114670041408437
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546508487277521,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.21530671046488936,
+            "rms_squared_distance_difference": 0.08378596142444977
+          }
+        },
+        "elapsed_seconds": 0.30629033292643726,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 98,
+        "njev": 98,
+        "objective_l2": 0.936755526526224
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.000704837143901349
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.7674614302279856
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.01359030826311175,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 30.667552979803087,
+          "rms_squared_distance_difference": 16.556985825831866
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 1,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063736237032394e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116061096717117
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672986317913,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119327972367015,
+            "rms_squared_distance_difference": 0.09512759094563449
+          }
+        },
+        "elapsed_seconds": 0.12932616588659585,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116724
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.0017448756123457088
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.07406996615827761
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 2,
+            "count": 255,
+            "min_supporting_edge_orientation": -3.0014972437264476e-05,
+            "nonpositive": 2
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 15.553040318252416,
+            "rms_squared_distance_difference": 7.72278592347612
+          }
+        },
+        "elapsed_seconds": 0.8745702498126775,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 240,
+        "njev": 164,
+        "objective_l2": 2987.4320053951815
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.113831615050304e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114744466042877
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 130,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.5717904690840087,
+            "nonpositive": 130
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.21530667284782296,
+            "rms_squared_distance_difference": 0.08378596142439643
+          }
+        },
+        "elapsed_seconds": 0.22299833316355944,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 69,
+        "njev": 68,
+        "objective_l2": 0.9367555265256275
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.00427126817410084
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.4189063612614742
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 9,
+          "count": 255,
+          "min_supporting_edge_orientation": -0.7104198445061123,
+          "nonpositive": 9
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 34.898410487737934,
+          "rms_squared_distance_difference": 16.750112150855287
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 2,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.4033572917436276e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0014268376181898806
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 127,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.4167025549505079,
+            "nonpositive": 127
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.30475394392904853,
+            "rms_squared_distance_difference": 0.09038114802575543
+          }
+        },
+        "elapsed_seconds": 0.12403279193677008,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 10700.14334493086
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 6.587343836464532e-06
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 4.414273354337993e-07
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 79,
+            "count": 255,
+            "min_supporting_edge_orientation": -1.096942695725454e-05,
+            "nonpositive": 78
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.8234358716117858,
+            "rms_squared_distance_difference": 0.18884417943970902
+          }
+        },
+        "elapsed_seconds": 0.19098820793442428,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 36,
+        "njev": 36,
+        "objective_l2": 11998.467922122732
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.13799595029141e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.000611469553419205
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546507607802908,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153066148276228,
+            "rms_squared_distance_difference": 0.08378596142446051
+          }
+        },
+        "elapsed_seconds": 0.29209737479686737,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 91,
+        "njev": 91,
+        "objective_l2": 0.9367555265263441
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.00035285370207605027
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.030565767886628632
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 97,
+          "count": 255,
+          "min_supporting_edge_orientation": -9.564544241538249,
+          "nonpositive": 97
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 26.129010942523042,
+          "rms_squared_distance_difference": 7.605130164055893
+        }
+      },
+      "initial_family": "broad random coordinates",
+      "seed": 3,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063885035034092e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0002311606168424076
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672984097322,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119328014739964,
+            "rms_squared_distance_difference": 0.09512759096217105
+          }
+        },
+        "elapsed_seconds": 0.12595433415845037,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.03030811673
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.00017866846298275618
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.36648092918170355
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 0.03156415315653344,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 22.41792374853094,
+            "rms_squared_distance_difference": 12.060493148552093
+          }
+        },
+        "elapsed_seconds": 0.4083960419520736,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 105,
+        "njev": 81,
+        "objective_l2": 1222.9551541839571
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.099758349430775e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114660657602134
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546508549123772,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153067073897262,
+            "rms_squared_distance_difference": 0.08378596142445538
+          }
+        },
+        "elapsed_seconds": 0.3297974159941077,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 100,
+        "njev": 100,
+        "objective_l2": 0.9367555265262868
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.0036412795681535215
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.9037071447173134
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.2595372970837859,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 29.013010951427916,
+          "rms_squared_distance_difference": 16.447396729150924
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 4,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.206388300951545e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116061096330193
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672984851741,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.4111932797847675,
+            "rms_squared_distance_difference": 0.09512759094643614
+          }
+        },
+        "elapsed_seconds": 0.1311794170178473,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116728
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.00011918918366760067
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.5734612510857676
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 8.464224335480441e-06,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 24.445574285320962,
+            "rms_squared_distance_difference": 13.345901917583925
+          }
+        },
+        "elapsed_seconds": 4.878571917070076,
+        "least_squares_message": "The maximum number of function evaluations is exceeded.",
+        "least_squares_status": 0,
+        "nfev": 1200,
+        "njev": 960,
+        "objective_l2": 1335.6519087332308
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.099300728370284e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114647384335072
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546508567489091,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.21530670872847518,
+            "rms_squared_distance_difference": 0.08378596142445768
+          }
+        },
+        "elapsed_seconds": 0.32069254107773304,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 100,
+        "njev": 100,
+        "objective_l2": 0.9367555265263124
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.008773768204471288
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.7337827881337687
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.03973059567301582,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 29.303150944925985,
+          "rms_squared_distance_difference": 16.26687704404431
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 5,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.206376330304849e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116060829954377
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672985508671,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119327998378563,
+            "rms_squared_distance_difference": 0.09512759095051408
+          }
+        },
+        "elapsed_seconds": 0.1211414581630379,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116724
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.002611370418300396
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0026274642944513833
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 2,
+            "count": 255,
+            "min_supporting_edge_orientation": -1.2610831377164733e-05,
+            "nonpositive": 2
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 19.847774353683793,
+            "rms_squared_distance_difference": 9.583190855411209
+          }
+        },
+        "elapsed_seconds": 4.330402165884152,
+        "least_squares_message": "The maximum number of function evaluations is exceeded.",
+        "least_squares_status": 0,
+        "nfev": 1200,
+        "njev": 872,
+        "objective_l2": 1488.7734041179742
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.133319573963571e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114682783699873
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546507638877288,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153066256177394,
+            "rms_squared_distance_difference": 0.08378596142442409
+          }
+        },
+        "elapsed_seconds": 0.20763183385133743,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 64,
+        "njev": 64,
+        "objective_l2": 0.9367555265259367
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.008120327325645604
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.08488144262666529
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 10,
+          "count": 255,
+          "min_supporting_edge_orientation": -0.3159310938999637,
+          "nonpositive": 10
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 35.02015688092983,
+          "rms_squared_distance_difference": 16.849114588422
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 6,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063785234477384e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116060534597783
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672986818805,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.4111932798313338,
+            "rms_squared_distance_difference": 0.09512759094980104
+          }
+        },
+        "elapsed_seconds": 0.11068454198539257,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116728
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 1.7153666577101746e-06
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 4.196601474717324e-05
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 70,
+            "count": 255,
+            "min_supporting_edge_orientation": -1.294500166970632e-05,
+            "nonpositive": 69
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.7903156891882426,
+            "rms_squared_distance_difference": 0.1882968627013697
+          }
+        },
+        "elapsed_seconds": 0.19313979102298617,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 40,
+        "njev": 40,
+        "objective_l2": 11513.9932755192
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.146623288224353e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114948765704501
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 130,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.5717905206103784,
+            "nonpositive": 130
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.21530659878868666,
+            "rms_squared_distance_difference": 0.08378596142443243
+          }
+        },
+        "elapsed_seconds": 0.17526950011961162,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 55,
+        "njev": 55,
+        "objective_l2": 0.9367555265260301
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.004373055676725968
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.023740629627292453
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 96,
+          "count": 255,
+          "min_supporting_edge_orientation": -9.878357841617948,
+          "nonpositive": 96
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 24.719581894723945,
+          "rms_squared_distance_difference": 5.5256506421206755
+        }
+      },
+      "initial_family": "broad random coordinates",
+      "seed": 7,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.4033623718103768e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.001426837641498192
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 127,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.4167025551061617,
+            "nonpositive": 127
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.3047539441018766,
+            "rms_squared_distance_difference": 0.09038114802376868
+          }
+        },
+        "elapsed_seconds": 0.11328654084354639,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 10700.143344930857
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 0.00023091861598611985
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.40433210765238076
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 0.06185906030332923,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 23.894288112851797,
+            "rms_squared_distance_difference": 13.19555718176837
+          }
+        },
+        "elapsed_seconds": 0.49103099992498755,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 137,
+        "njev": 103,
+        "objective_l2": 1332.8323613917846
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.102913280708113e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114633807521933
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546508540022728,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153066960790632,
+            "rms_squared_distance_difference": 0.08378596142445216
+          }
+        },
+        "elapsed_seconds": 0.3142718749586493,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 99,
+        "njev": 99,
+        "objective_l2": 0.9367555265262508
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.0010879535410968089
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.8965392532447649
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.29553704068041403,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 28.784644519905466,
+          "rms_squared_distance_difference": 16.383195869968183
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 8,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063781959791307e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116060809730754
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672986965196,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119327980453735,
+            "rms_squared_distance_difference": 0.09512759094354557
+          }
+        },
+        "elapsed_seconds": 0.11814549984410405,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116728
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.3935961326770894e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.3735504831921973
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 0,
+            "count": 255,
+            "min_supporting_edge_orientation": 9.866183032170885e-06,
+            "nonpositive": 0
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 20.82305939799615,
+            "rms_squared_distance_difference": 11.373417831248393
+          }
+        },
+        "elapsed_seconds": 5.065736999968067,
+        "least_squares_message": "The maximum number of function evaluations is exceeded.",
+        "least_squares_status": 0,
+        "nfev": 1200,
+        "njev": 1030,
+        "objective_l2": 1151.6687797927877
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.101145433686563e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114679822573888
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546508393888819,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153067046810756,
+            "rms_squared_distance_difference": 0.08378596142443875
+          }
+        },
+        "elapsed_seconds": 0.3149050420615822,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 99,
+        "njev": 99,
+        "objective_l2": 0.9367555265261008
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.002835398865913774
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.7551156662839535
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 0,
+          "count": 255,
+          "min_supporting_edge_orientation": 0.06758929988431461,
+          "nonpositive": 0
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 31.15175356788315,
+          "rms_squared_distance_difference": 16.809212678432914
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 9,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.206378116054175e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116060983075502
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672986262732,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119327985024456,
+            "rms_squared_distance_difference": 0.09512759094227785
+          }
+        },
+        "elapsed_seconds": 0.1095263329334557,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.03030811672
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 4.205065914408834e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.10808502783999699
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 2,
+            "count": 255,
+            "min_supporting_edge_orientation": -2.2505910225664727e-05,
+            "nonpositive": 2
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 20.438035180825405,
+            "rms_squared_distance_difference": 10.385055392938092
+          }
+        },
+        "elapsed_seconds": 2.7016900829039514,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 801,
+        "njev": 549,
+        "objective_l2": 1679.2872737504877
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.132206963351596e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114676648185989
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546507701559079,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.2153066272884552,
+            "rms_squared_distance_difference": 0.08378596142442905
+          }
+        },
+        "elapsed_seconds": 0.3101718749385327,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 97,
+        "njev": 97,
+        "objective_l2": 0.9367555265259923
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.005761811893037816
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.25121556845230614
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 5,
+          "count": 255,
+          "min_supporting_edge_orientation": -0.25817948944618496,
+          "nonpositive": 5
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 31.459291348595865,
+          "rms_squared_distance_difference": 15.860762994003768
+        }
+      },
+      "initial_family": "cyclic-order regular polygon plus jitter",
+      "seed": 10,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063744366918048e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.00023116062026936563
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672981942526,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.4111932804695344,
+            "rms_squared_distance_difference": 0.09512759097881343
+          }
+        },
+        "elapsed_seconds": 0.11183895799331367,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.030308116724
+      }
+    },
+    {
+      "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+      "convexity_preserving_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 3.134919466008662e-06
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 5.466417077257744e-07
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 60,
+            "count": 255,
+            "min_supporting_edge_orientation": -1.2196524847869284e-05,
+            "nonpositive": 60
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.8737641906084135,
+            "rms_squared_distance_difference": 0.21606284665543915
+          }
+        },
+        "elapsed_seconds": 0.15490804216824472,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 31,
+        "njev": 31,
+        "objective_l2": 11781.637855938132
+      },
+      "equality_first": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 8.129005750809326e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0006114728998350796
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 125,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.7546507641941248,
+            "nonpositive": 125
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.21530663246202505,
+            "rms_squared_distance_difference": 0.08378596142441319
+          }
+        },
+        "elapsed_seconds": 0.23734108405187726,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 75,
+        "njev": 75,
+        "objective_l2": 0.9367555265258152
+      },
+      "initial_diagnostics": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "cross_class_disequalities": {
+          "at_or_below_disequality_tolerance": 0,
+          "count": 1915,
+          "min_abs_squared_distance_difference": 0.0014698451028997694
+        },
+        "point_distinctness": {
+          "at_or_below_distinctness_tolerance": 0,
+          "count": 136,
+          "min_pair_squared_distance": 0.03552601218813846
+        },
+        "strict_convex_cyclic_supporting_edge_order": {
+          "at_or_below_supporting_tolerance": 118,
+          "count": 255,
+          "min_supporting_edge_orientation": -6.537942733622344,
+          "nonpositive": 118
+        },
+        "within_class_equalities": {
+          "above_equality_tolerance": 125,
+          "count": 125,
+          "max_abs_squared_distance_difference": 14.715129121212838,
+          "rms_squared_distance_difference": 4.528265454763201
+        }
+      },
+      "initial_family": "broad random coordinates",
+      "seed": 11,
+      "strict_refinement": {
+        "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+        "diagnostics": {
+          "classification": "FLOATING_POINT_HEURISTIC_ONLY",
+          "cross_class_disequalities": {
+            "at_or_below_disequality_tolerance": 0,
+            "count": 1915,
+            "min_abs_squared_distance_difference": 2.2063811452199822e-05
+          },
+          "point_distinctness": {
+            "at_or_below_distinctness_tolerance": 0,
+            "count": 136,
+            "min_pair_squared_distance": 0.0002311606120358566
+          },
+          "strict_convex_cyclic_supporting_edge_order": {
+            "at_or_below_supporting_tolerance": 117,
+            "count": 255,
+            "min_supporting_edge_orientation": -0.6124672982028901,
+            "nonpositive": 117
+          },
+          "within_class_equalities": {
+            "above_equality_tolerance": 125,
+            "count": 125,
+            "max_abs_squared_distance_difference": 0.41119328071726247,
+            "rms_squared_distance_difference": 0.09512759097425348
+          }
+        },
+        "elapsed_seconds": 0.11190720810554922,
+        "least_squares_message": "`ftol` termination condition is satisfied.",
+        "least_squares_status": 2,
+        "nfev": 23,
+        "njev": 23,
+        "objective_l2": 11682.03030811673
+      }
+    }
+  ],
+  "schema": "crossed-arm-v8-scipy-least-squares-numerical-diagnostic-v1",
+  "settings": {
+    "convex_max_nfev": 1200,
+    "convex_objective_equality_scale": 0.01,
+    "convex_supporting_weight": 100.0,
+    "disequality_tolerance": 1e-08,
+    "distinctness_tolerance": 1e-08,
+    "equality_max_nfev": 1200,
+    "equality_tolerance": 1e-07,
+    "numpy_version": "2.5.1",
+    "objective_disequality_margin": 1e-05,
+    "objective_distinctness_margin": 1e-05,
+    "objective_equality_scale": 1e-05,
+    "objective_supporting_margin": 1e-05,
+    "restarts": 12,
+    "scipy_version": "1.18.0",
+    "strict_max_nfev": 1600,
+    "supporting_tolerance": 1e-08
+  },
+  "status": "NO_QUALIFYING_NUMERICAL_SEED_FOUND",
+  "trust_boundary": "No result is an exact SAT/UNSAT verdict. Success is only a numerical seed; failure is no evidence of infeasibility."
+}

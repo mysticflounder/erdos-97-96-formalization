@@ -1,0 +1,46 @@
+{
+  "case": {
+    "arm": "secondcap_collision",
+    "deleted": 1,
+    "fresh": 4,
+    "kept": 0,
+    "profiles": "SSS"
+  },
+  "case_id": "secondcap_collision_SSS_k0_d1_f4",
+  "constraint_counts": {
+    "common_deletion_packets": 406,
+    "critical_blocker_map": 27,
+    "critical_full_row": 384,
+    "critical_no_competing_K4": 168,
+    "cyclic_alternation_cut": 2010,
+    "distinct_circle_overlap": 1171,
+    "endpoint_critical_fiber": 13,
+    "exact_rich_profiles": 105,
+    "global_K4": 372,
+    "no_all_apex_shell": 15,
+    "normal_form": 13,
+    "packet_B2_equals_critical_row": 360,
+    "pair_center_multiplicity": 105,
+    "positive_distances": 105,
+    "positive_squared_distances": 105,
+    "same_shell_squared_superadditivity": 1092,
+    "source_in_critical_row": 180,
+    "squared_distance_equality_transport": 1365,
+    "strict_kalmanson": 2730,
+    "strict_triangle": 1365
+  },
+  "constraint_total": 12091,
+  "elapsed_seconds": 2.7013557499740273,
+  "encoding_sha256": "acc3ce76fc5bbd203d3eff9479560010edd08e3dd950eb0855ee24eadd6b1f16",
+  "reason_unknown": "canceled",
+  "schema_version": 4,
+  "script_sha256": "65bba451ee498bc0bbf5b89a17a088cad6896bb51b532350c6d5bf536f8f0d57",
+  "solver": {
+    "name": "z3",
+    "seed": 97,
+    "version": "4.15.3"
+  },
+  "solver_check_seconds": 1.0110404591541737,
+  "status": "unknown",
+  "timeout_ms": 1000
+}

@@ -1,0 +1,768 @@
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF12.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF12.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF12.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U5GramCertPoly.lean:9:# Phase-0d Gram-certificate checker — reflective sparse polynomials
+lean/Erdos9796Proof/P97/U5GramCertPoly.lean:12:Gram-certificate checker
+lean/Erdos9796Proof/P97/U5GramCertPoly.lean:13:(`docs/u-lane/97-u5-grampair-phase0d-checker-design-2026-06-03.md` §2.1).
+lean/Erdos9796Proof/P97/U5GramCertPoly.lean:38:namespace U5GramCert
+lean/Erdos9796Proof/P97/U5GramCertPoly.lean:802:end U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HrowRecord001PostAll8Manifest.lean:24:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverseManifest.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverseManifest.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:108:def expectedPinnedMask : Label -> Nat
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:122:def Row.pinnedMask (row : Row) : Nat :=
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:129:  row.pinnedMask == expectedPinnedMask row.sstar
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:185:  shadow.centerMask .v == expectedPinnedMask sstar
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:187:def pinnedMaskOf (sstar : Label) : Nat :=
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:190:theorem pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:192:    pinnedMaskOf sstar = expectedPinnedMask sstar := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:195:    simp [pinnedMaskOf, expectedPinnedMask, maskOfLabels, Label.bit,
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:198:theorem pinnedClassOK_of_centerMask_eq_pinnedMaskOf
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:201:    (hmask : shadow.centerMask .v = pinnedMaskOf sstar) :
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:204:    pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar hs]
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:394:def allNormalizedMasks : List Nat :=
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:410:    (if center == .v then mask == expectedPinnedMask sstar else true) &&
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:434:  allNormalizedMasks.filter (candidateMaskOK sstar center ·)
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:529:  setCenterMask (setCenterMask emptyShadowMasks .v (pinnedMaskOf sstar)) .w wmask
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:533:    (incrementPairCounts .v (pinnedMaskOf sstar) emptyPairCounts)
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:2028:theorem mem_allNormalizedMasks_of_maskNormalized {mask : Nat}
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:2030:    mask ∈ allNormalizedMasks := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:2033:  rw [allNormalizedMasks]
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean:2050:    ⟨mem_allNormalizedMasks_of_maskNormalized
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:39:`CircumscribedMECPacket` is a structural data carrier — it does **not**
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:42:witness-ranking constructor take a `(CapTriple A M, CircumscribedMECPacket A M)`
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:48:* `Problem97.CircumscribedMECPacket A M` — the data carrier (center,
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:51:* `Problem97.CircumscribedMECPacket.ofNonObtuse` — discharge constructor
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:52:  from a `MEC.NonObtuseCircumscribedMoserTriangle` and circumscribed
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:62:/- ### `CircumscribedMECPacket`: geometric data carrier -/
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:64:/-- `CircumscribedMECPacket A M` carries the geometric data needed by
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:81:plus a `CircumscribedMECPacket A M` over the same Moser triangle `M` is
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:83:structure CircumscribedMECPacket (A : Finset ℝ²) (M : MoserTriangle A) where
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:141:namespace CircumscribedMECPacket
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:147:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:148:    CircumscribedMECPacket A M.rotate :=
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:162:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:163:    CircumscribedMECPacket A M.reverse :=
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:183:projection's `CircumscribedMECPacket` is fully determined by the MEC
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:185:disk-containment all flow from the `MEC.NonObtuseCircumscribedMoserTriangle`
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:193:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:196:    CircumscribedMECPacket A (MT.toMoserTriangle.toStructural hCirc) where
+lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean:217:end CircumscribedMECPacket
+lean/Erdos9796Proof/P97/CapBridgeFromK4.lean:26:`nonempty_nonobtuseCircumscribedMoserTriangle`, but keeps the triangle as
+lean/Erdos9796Proof/P97/CapBridgeFromK4.lean:43:    ∃ (MT : NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/CapBridgeFromK4.lean:54:  let MT : NonObtuseCircumscribedMoserTriangle A hA hncol :=
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3010.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3010.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001Manifest.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001Manifest.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3006.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3006.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3000.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3000.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF11.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF11.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF11.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverseManifest.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverseManifest.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/MEC/Basic.lean:18:This is the geometric content needed by the U1–U7 surplus-cap programme
+lean/Erdos9796Proof/P97/MEC/Basic.lean:30:* **Uniqueness** is the classical parallelogram-law / midpoint argument.
+lean/Erdos9796Proof/P97/MEC/Basic.lean:163:minimality clauses; the centre agreement uses the parallelogram-law
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:7:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:62:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:63:    CircumscribedMECPacket A (rot2 M) :=
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:77:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:78:    CircumscribedMECPacket A (rot3 M) :=
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:112:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:198:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:284:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:451:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/N9Endpoint/N4a.lean:353:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/N9Endpoint/N4a.lean:407:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPT20.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPT20.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPT20.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/Phase3SurvivorSingularSystem01.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/Phase3SurvivorSingularSystem01.lean:32:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0CollisionDirectExtraUnits.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0CollisionDirectExtraUnits.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0CollisionDirectExtraUnits.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2CoreSeedQT2.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2CoreSeedQT2.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/FiniteN10.lean:49:      (CircumscribedMECPacket.ofNonObtuse
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:104:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:120:      D.K4 (CircumscribedMECPacket.ofNonObtuse MT hCirc)
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:133:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverse.lean:13:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverse.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:2:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:48:  MT : Problem97.MEC.NonObtuseCircumscribedMoserTriangle A hne hnoncol
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:53:  Packet : Problem97.CircumscribedMECPacket A (MT.toMoserTriangle.toStructural hCirc)
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:90:    Problem97.CircumscribedMECPacket A S.triangle2 :=
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:104:    Problem97.CircumscribedMECPacket A S.triangle3 :=
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:596:  let N : Problem97.MEC.NonObtuseCircumscribedMoserTriangle A hne hnoncol :=
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:614:  let Packet : Problem97.CircumscribedMECPacket A
+lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean:616:    Problem97.CircumscribedMECPacket.ofNonObtuse N hCirc
+lean/Erdos9796Proof/P97/OangleBridge.lean:98:`NonObtuseCircumscribedMoserTriangle` wrapper produced by
+lean/Erdos9796Proof/P97/MultiCenter/CapProfile.lean:96:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/MultiCenter/CapProfile.lean:124:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/MultiCenter/CapProfile.lean:147:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:593:triangle is `D/√3 < D`.)  Formalised as a Gram-rank obstruction in the plane: the three
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:647:    -- The Gram system is `g0·D² + (g1+g2)·D²/2 = 0` (and permutations); `D² > 0` forces
+lean/Erdos9796Proof/P97/MEC/ArcAngle.lean:24:algebra" for the four-step program (A0 + A1 + A2 + A3).
+lean/Erdos9796Proof/P97/MEC/ArcAngle.lean:28:This file establishes the full A0-A3 program plus the equality / iff forms of
+lean/Erdos9796Proof/P97/MEC/ArcAngle.lean:255:/A3 program: it reduces every arc-angle subtraction to a single `oangle` on
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F12.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F12.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F12.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3Manifest.lean:14:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3Manifest.lean:29:open U5GramCert
+lean/Erdos9796Proof/P97/Dumitrescu/Lc3.lean:1:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/Dumitrescu/Lc3.lean:43:  guaranteed by `CircumscribedMECPacket`; or
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4.lean:13:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/UniversalLocal.lean:4:import Erdos9796Proof.P97.PinnedMultiplicity
+lean/Erdos9796Proof/P97/UniversalLocal.lean:56:`not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three`, and
+lean/Erdos9796Proof/P97/UniversalLocal.lean:58:`universalProblem97Statement_iff_pinnedMultiplicity`.  Unconditional: axiom
+lean/Erdos9796Proof/P97/UniversalLocal.lean:60:theorem exists_pinnedMultiplicity_le_three_of_card_le_nine
+lean/Erdos9796Proof/P97/UniversalLocal.lean:63:    ∃ p ∈ A, pinnedMultiplicity A p ≤ 3 :=
+lean/Erdos9796Proof/P97/UniversalLocal.lean:64:  (not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three A).mp
+lean/Erdos9796Proof/P97/Certificate/CheckpointedRupCompact.lean:28:## Binary grammar
+lean/Erdos9796Proof/P97/Certificate/CheckpointedRupCompact.lean:177:Decode the strict raw ASCII85 envelope described in this module's grammar.
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2Manifest.lean:14:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2Manifest.lean:29:open U5GramCert
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:2:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/Certificate/CheckpointedRupCompactSelfTest.lean:75:-- Action tag 2 is outside the pure-RUP grammar.
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:3:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1274:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1646:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1673:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1692:    (P : Problem97.CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3007.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3007.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:7:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:112:theorem CircumscribedMECPacket.normSim_mec_disk_normalized
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:114:    (P : CircumscribedMECPacket A M) {x : ℝ²} (hx : x ∈ A) :
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:290:theorem CircumscribedMECPacket.normSim_v3_fst_bounds
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:292:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:437:theorem CircumscribedMECPacket.normSim_nonobtuse_at_v3_normalized
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:439:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:486:theorem CircumscribedMECPacket.normSim_center_snd_nonneg
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:488:    (P : CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:672:    (P : CircumscribedMECPacket A M) {z p q : ℝ²} (hz : z ∈ A)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:293:    (T C : Finset α) (fixedMask : Nat)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:294:    (hfixed : ∀ label : Label, maskHas fixedMask label = true →
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:296:    maskInterCard (pointMask pointOf T) fixedMask ≤ (T ∩ C).card := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:298:    maskHas (pointMask pointOf T) label && maskHas fixedMask label
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:300:      maskInterCard (pointMask pointOf T) fixedMask = labels.length := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:314:    maskInterCard (pointMask pointOf T) fixedMask = labels.length := hmaskCard
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:785:private theorem maskHas_pinnedMaskOf_u_true {sstar : Label}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:787:    maskHas (pinnedMaskOf sstar) .u = true := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:791:private theorem maskHas_pinnedMaskOf_sstar_true {sstar : Label}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:793:    maskHas (pinnedMaskOf sstar) sstar = true := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:797:private theorem maskHas_pinnedMaskOf_Pw_true {sstar : Label}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:799:    maskHas (pinnedMaskOf sstar) .Pw = true := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:803:private theorem maskHas_pinnedMaskOf_Pu_true {sstar : Label}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:805:    maskHas (pinnedMaskOf sstar) .Pu = true := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:849:private theorem pinnedMask_crossSeparation_trigger_pair_bits_false
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:857:      crossSeparationOKForMasks center mask .v (pinnedMaskOf sstar) = true) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:868:        huc huv hsc hsv (maskHas_pinnedMaskOf_u_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:869:        (maskHas_pinnedMaskOf_sstar_true hsstar) hsep
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:875:        hsc hsv hPwc hPwv (maskHas_pinnedMaskOf_sstar_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:876:        (maskHas_pinnedMaskOf_Pw_true hsstar) hsep
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:880:        hsc hsv hPuc hPuv (maskHas_pinnedMaskOf_sstar_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:881:        (maskHas_pinnedMaskOf_Pu_true hsstar) hsep
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:883:private theorem pinnedMask_crossSeparation_trigger_condition
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:891:      crossSeparationOKForMasks center mask .v (pinnedMaskOf sstar) = true) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:894:  rcases pinnedMask_crossSeparation_trigger_pair_bits_false hsstar
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:909:private theorem pinnedMask_crossSeparation_final_bound
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:913:      crossSeparationOKForMasks sstar mask .v (pinnedMaskOf sstar) = true) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:926:        (maskHas_pinnedMaskOf_u_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:927:        (maskHas_pinnedMaskOf_Pw_true hsstar) (by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:938:          (maskHas_pinnedMaskOf_u_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:939:          (maskHas_pinnedMaskOf_Pu_true hsstar) (by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:949:          (maskHas_pinnedMaskOf_Pw_true hsstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:950:          (maskHas_pinnedMaskOf_Pu_true hsstar) (by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1360:        pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1395:      pointMask pointOf (centerClass .v) = pinnedMaskOf sstar := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1403:          (pinnedMaskOf sstar) = true := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1428:    exact pinnedMask_crossSeparation_trigger_condition hsstar htriggerCenter
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1446:    pinnedMask_crossSeparation_final_bound hsstar (hcrossV sstar hsstarV)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1643:          pinnedMaskOf sstar := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1645:        pinnedRightSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1684:          pinnedMaskOf sstar := by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1687:        pinnedLeftSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1948:          exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hsstar (by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:1951:              pinnedRightSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2317:          exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hsstar (by
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:2321:              pinnedLeftSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:3:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:59:  let N : Problem97.MEC.NonObtuseCircumscribedMoserTriangle A hne hnoncol :=
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:85:  let P1 : Problem97.CircumscribedMECPacket A M1 :=
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:86:    Problem97.CircumscribedMECPacket.ofNonObtuse N hCirc
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:87:  let P2 : Problem97.CircumscribedMECPacket A M2 :=
+lean/Erdos9796Proof/P97/CGN/CGN8.lean:98:  let P3 : Problem97.CircumscribedMECPacket A M3 :=
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1941:      U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1942:          ((U5GramCert.coordSqDistPoly 0 1 12 13) ++
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1943:            U5GramCert.neg (U5GramCert.coordSqDistPoly 0 1 2 3)) = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1947:    rw [U5GramCert.eval_append, U5GramCert.eval_neg,
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1948:      U5GramCert.eval_coordSqDistPoly, U5GramCert.eval_coordSqDistPoly]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1957:        U5GramCert.eval ν [([0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1958:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f2, hpt20',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1961:        U5GramCert.eval ν [([0, 0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1962:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f2, hpt20',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1973:        U5GramCert.eval ν [([0, 0, 0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1974:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f3, hpf11',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1977:        U5GramCert.eval ν [([0, 0, 0, 0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1978:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f3, hpf11',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1989:        U5GramCert.eval ν [([0, 0, 0, 0, 0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1990:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f4, hpf12',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1993:        U5GramCert.eval ν [([0, 0, 0, 0, 0, 0, 0, 1], (-1 : ℚ))] = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1994:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f4, hpf12',
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2005:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2007:      simp [U5GramCert.eval, U5GramCert.evalMono, ν]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2011:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2013:      simp [U5GramCert.eval, U5GramCert.evalMono, ν]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2025:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2027:      simp [U5GramCert.eval, U5GramCert.evalMono, ν]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2031:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2033:      simp [U5GramCert.eval, U5GramCert.evalMono, ν]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3064:      U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3065:          ((U5GramCert.coordSqDistPoly 0 1 12 13) ++
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3066:            U5GramCert.neg (U5GramCert.coordSqDistPoly 0 1 2 3)) = 0 := by
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3070:    rw [U5GramCert.eval_append, U5GramCert.eval_neg,
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3071:      U5GramCert.eval_coordSqDistPoly, U5GramCert.eval_coordSqDistPoly]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3081:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3083:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f2, hU_t20]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3085:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3087:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f2, hU_t20]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3095:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3097:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f3, hU_f11]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3099:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3101:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f3, hU_f11]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3109:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3111:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f4, hU_f12]
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3113:        U5GramCert.eval ν
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3115:      simp [U5GramCert.eval, U5GramCert.evalMono, ν, f4, hU_f12]
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:1:import Erdos9796Proof.P97.PinnedMultiplicity
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:96:theorem selectedClass_card_le_pinnedMultiplicity
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:98:    (SelectedClass A p r).card ≤ pinnedMultiplicity A p := by
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:102:    apply (hasNEquidistantPointsAt_iff_le_pinnedMultiplicity hpos).mp
+lean/Erdos9796Proof/P97/U1Depth5HrowRecord001PostAll8Independent.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HrowRecord001PostAll8Independent.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U2/OneHitRealization.lean:6:This module is the **vocabulary bridge** of the U2.B one-hit programme
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4Manifest.lean:14:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4Manifest.lean:29:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotQT1Record001.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotQT1Record001.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3008.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3008.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3004.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3004.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/UniversalProblem97.lean:48:  descent step lets the M4 proof program assume minimality, which
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:697:    (hmask : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar) :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:699:  exact pinnedClassOK_of_centerMask_eq_pinnedMaskOf hs
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:705:theorem maskNormalized_pinnedMaskOf_of_isSurplusStar
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:707:    maskNormalized (pinnedMaskOf sstar) = true := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:712:theorem maskCard_pinnedMaskOf_of_isSurplusStar
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:714:    maskCard (pinnedMaskOf sstar) = 4 := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:719:theorem maskHas_pinnedMaskOf_v_eq_false_of_isSurplusStar
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:721:    maskHas (pinnedMaskOf sstar) .v = false := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:816:theorem oneSidedSeed_fixedMask_privateCenter_eq_some_of_mem
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:818:    seed.fixedMask seed.privateCenter = some seed.privateMask := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:821:        decide (seed.fixedMask seed.privateCenter = some seed.privateMask)) =
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:861:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:873:      exact maskCard_pinnedMaskOf_of_isSurplusStar hs
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:881:      exact maskHas_pinnedMaskOf_v_eq_false_of_isSurplusStar hs
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:2760:theorem pinnedMaskOf_mem_candidateMasks_v
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:2762:    pinnedMaskOf sstar ∈ candidateMasks sstar .v := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:2769:theorem mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:2773:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar) :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:2776:  exact pinnedMaskOf_mem_candidateMasks_v hs
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3124:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3143:    exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hs hpinned
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3158:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3180:    exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hs hpinned
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3203:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3270:    (hpinned : pointMask pointOf (centerClass .v) = pinnedMaskOf sstar)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3462:    eq_fixedMask_of_mem_seed_candidateMasks
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3465:      (by simp [OneSidedSeed.fixedMask]) (hcandidate .v)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3468:    eq_fixedMask_of_mem_seed_candidateMasks
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3471:      (by simp [OneSidedSeed.fixedMask]) (hcandidate .w)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3475:    eq_fixedMask_of_mem_seed_candidateMasks
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3476:      (oneSidedSeed_fixedMask_privateCenter_eq_some_of_mem hseed)
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3768:  simpa [OneSidedSeed.candidateMasks, OneSidedSeed.fixedMask, hsstar,
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3779:  have hfixed : seed.fixedMask center = none := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3780:    simp [OneSidedSeed.fixedMask, hv, hw, hprivate]
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6103:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6108:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6169:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6174:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6235:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6244:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6364:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6373:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6492:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6497:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6558:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6563:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6636:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6641:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6671:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6676:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6785:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:6794:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7051:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7056:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7082:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7087:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7168:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7173:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7199:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7204:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7421:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7426:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7576:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7581:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7607:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7612:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7764:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7769:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7795:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7800:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7881:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7886:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7912:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:7917:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8058:  have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8063:  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8215:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8220:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8246:    have hseedMem :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:8251:    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+lean/Erdos9796Proof/P97/Cap/Structure.lean:9:program (see `docs/97-uniform-theorem-closure-plan.md`).  The closure
+lean/Erdos9796Proof/P97/Cap/Structure.lean:287:MEC promotion data (a `MEC.NonObtuseCircumscribedMoserTriangle` and
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:317:  (`triangleNonObtuse : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol`),
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:339:  triangleNonObtuse : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:362:underlying `MEC.NonObtuseCircumscribedMoserTriangle` vertex. -/
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:422:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001NonF1.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001NonF1.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/FiniteRowAlgebraicCollisions.lean:31:open U5GramCert
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:432:**Proof.** `dist(p,E)² − dist(p,x)² = ‖E − x‖² + 2⟪E − x, x − p⟫` (parallelogram
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2.lean:13:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/IdealMembershipCertPoly.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/IdealMembershipCertPoly.lean:11:This file extends the sparse-polynomial checker used by the U5 Gram
+lean/Erdos9796Proof/P97/IdealMembershipCertPoly.lean:23:namespace U5GramCert
+lean/Erdos9796Proof/P97/IdealMembershipCertPoly.lean:69:end U5GramCert
+lean/Erdos9796Proof/P97/Phase3SurvivorSingularSystem00.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/Phase3SurvivorSingularSystem00.lean:32:open U5GramCert
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:442:abbrev RightOneSidedErasedPayloadSeedMaskInputs {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:574:abbrev LeftOneSidedErasedPayloadSeedMaskInputs {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:706:theorem false_of_rightOneSidedErasedPayload_of_seedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:708:    (hseed : RightOneSidedErasedPayloadSeedMaskInputs S p x radius)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:730:theorem false_of_leftOneSidedErasedPayload_of_seedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:732:    (hseed : LeftOneSidedErasedPayloadSeedMaskInputs S p x radius)
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5370:theorem rightOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5372:    (hseed : RightOneSidedErasedPayloadSeedMaskInputs S p x radius) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5444:theorem leftOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5446:    (hseed : LeftOneSidedErasedPayloadSeedMaskInputs S p x radius) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5568:abbrev IsM44NonSurplusContainmentErasedPinTripleSeedMaskInputsStatement :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5607:                RightOneSidedErasedPayloadSeedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5627:                LeftOneSidedErasedPayloadSeedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:9450:theorem seedCandidateInputsStatement_of_seedMaskInputsStatement
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:9451:    (hseed : IsM44NonSurplusContainmentErasedPinTripleSeedMaskInputsStatement) :
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:9464:    exact rightOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:9467:    exact leftOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:269:    (T C : Finset α) (fixedMask : Nat)
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:270:    (hfixed : ∀ label : Label, maskHas fixedMask label = true →
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:272:    maskInterCard (pointMask pointOf T) fixedMask ≤ (T ∩ C).card := by
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:274:    maskHas (pointMask pointOf T) label && maskHas fixedMask label
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:276:      maskInterCard (pointMask pointOf T) fixedMask = labels.length := by
+lean/Erdos9796Proof/P97/EndpointCertificate/GeometryProducer.lean:290:    maskInterCard (pointMask pointOf T) fixedMask = labels.length := hmaskCard
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3003.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3003.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverse.lean:13:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverse.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:10:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:269:    CircumscribedMECPacket A S.triangle :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:270:  CircumscribedMECPacket.ofNonObtuse S.triangleNonObtuse S.hCirc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:275:    CircumscribedMECPacket A (S.triangleByIndex 1) :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:290:    CircumscribedMECPacket A (S.triangleByIndex 2) :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:305:    CircumscribedMECPacket A (S.triangleByIndex i) :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:321:    CircumscribedMECPacket A (S.capFrameByIndex i) :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:333:    CircumscribedMECPacket A (S.reversedCapFrameByIndex i) :=
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3.lean:13:`U5GramCert.unitIdealCertCheckerNormalized`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/MultiCenter/Certificate/ProfileInventory.lean:53:def testedMatchesSummary (row : ProfileRow) : Bool :=
+lean/Erdos9796Proof/P97/MultiCenter/Certificate/ProfileInventory.lean:63:  ((row.noBadStatus && row.localEqualsSat) && row.testedMatchesSummary) &&
+lean/Erdos9796Proof/P97/EndpointCertificate/ShadowBank.lean:116:  SurplusCOMPGBank.allNormalizedMasks.filter
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:95:96 territory — the adjacent problem in this repository.  `pinnedMultiplicity` is
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:106:centred at `p` (`pinnedMultiplicity`).  Then
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:111:`universalProblem97Statement_iff_pinnedMultiplicity` proves that equivalence
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:145:`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`, in
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:158:/-- **Pinned distance multiplicity.**  `pinnedMultiplicity A p` is the largest
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:165:noncomputable def pinnedMultiplicity (A : Finset ℝ²) (p : ℝ²) : ℕ :=
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:175:theorem hasNEquidistantPointsAt_iff_le_pinnedMultiplicity
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:177:    HasNEquidistantPointsAt n A p ↔ n ≤ pinnedMultiplicity A p := by
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:186:    rw [pinnedMultiplicity]
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:189:    have hpos : 0 < pinnedMultiplicity A p := lt_of_lt_of_le hn h
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:192:      · rw [pinnedMultiplicity, hc, Finset.sup_empty] at hpos; exact absurd hpos (lt_irrefl 0)
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:198:      rw [pinnedMultiplicity, hreq] at h; exact h⟩
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:202:theorem hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:204:    HasNEquidistantProperty n A ↔ ∀ p ∈ A, n ≤ pinnedMultiplicity A p := by
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:207:    exact (hasNEquidistantPointsAt_iff_le_pinnedMultiplicity hn).mp (h p hp)
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:209:    exact (hasNEquidistantPointsAt_iff_le_pinnedMultiplicity hn).mpr (h p hp)
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:213:theorem not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:215:    ¬ HasNEquidistantProperty 4 A ↔ ∃ p ∈ A, pinnedMultiplicity A p ≤ 3 := by
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:216:  rw [hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity (by norm_num : 0 < 4)]
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:233:theorem universalProblem97Statement_iff_pinnedMultiplicity :
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:236:        ∃ p ∈ A, pinnedMultiplicity A p ≤ 3 := by
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:239:    exact (not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three A).mp
+lean/Erdos9796Proof/P97/PinnedMultiplicity.lean:242:    exact (not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three A).mpr
+lean/Erdos9796Proof/P97/EndpointCertificate/Checker.lean:103:def isNormalizedMonom : List (Nat × Nat) → Bool
+lean/Erdos9796Proof/P97/EndpointCertificate/Checker.lean:107:      p.2 != 0 && decide (compare p.1 q.1 = .lt) && isNormalizedMonom (q :: ps)
+lean/Erdos9796Proof/P97/EndpointCertificate/Checker.lean:113:      t.coeff != 0 && isNormalizedMonom t.monom &&
+lean/Erdos9796Proof/P97/EndpointCertificate/Checker.lean:119:        t.coeff != 0 && isNormalizedMonom t.monom &&
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:472:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:791:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1307:    (P : CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:7:import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionNormalization
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:35:namespace ATailRetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:43:open ATailRetainedMatchingCommonDeletionNormalization
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:44:open ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:45:open ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:50:inductive RetainedMatchingNextLocation
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:69:structure RetainedMatchingTwoStepCommonDeletionWalk
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:90:  nextLocation : RetainedMatchingNextLocation (S := S) first second next
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:92:namespace RetainedMatchingTwoStepCommonDeletionWalk
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:100:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:112:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:124:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:135:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:140:end RetainedMatchingTwoStepCommonDeletionWalk
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:243:structure RetainedMatchingEndpointCriticalFiber
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:248:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type where
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:259:structure RetainedMatchingThreeDistinctBlockerPath
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:264:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Prop where
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:277:inductive RetainedMatchingTwoStepEndpointOutcome
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:282:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:284:  | endpointCriticalFiber (fiber : RetainedMatchingEndpointCriticalFiber W)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:285:  | threeDistinctBlockers (path : RetainedMatchingThreeDistinctBlockerPath W)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:307:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:308:    Nonempty (RetainedMatchingTwoStepEndpointOutcome W) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:311:  · exact ⟨RetainedMatchingTwoStepEndpointOutcome.sourceReturn hreturn⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:330:      exact ⟨RetainedMatchingTwoStepEndpointOutcome.endpointCriticalFiber {
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:337:    · exact ⟨RetainedMatchingTwoStepEndpointOutcome.threeDistinctBlockers {
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:365:    (L : RetainedMatchingLargeCapConsumerOutcome R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:366:    Nonempty (RetainedMatchingTwoStepCommonDeletionWalk R) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:384:        nextLocation := RetainedMatchingNextLocation.sourceReturn rfl }⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:403:        nextLocation := RetainedMatchingNextLocation.freshFirstCap
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:429:        nextLocation := RetainedMatchingNextLocation.freshSecondCap
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:433:structure RetainedMatchingCommonDeletionCycleNormalForm
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:438:  walk : RetainedMatchingTwoStepCommonDeletionWalk R
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:439:  endpoint : RetainedMatchingTwoStepEndpointOutcome walk
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:448:    (L : RetainedMatchingLargeCapConsumerOutcome R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:449:    Nonempty (RetainedMatchingCommonDeletionCycleNormalForm R) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:462:    (G : RetainedMatchingGeometricReduction R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:463:    Nonempty (RetainedMatchingCommonDeletionCycleNormalForm R) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:464:  rcases nonempty_retainedMatchingLargeCapConsumerOutcome G with ⟨L⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:468:end ATailRetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3009.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3009.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3032:    simp only [EuclideanSpace.inner_eq_star_dotProduct, Matrix.vec2_dotProduct] at h
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3442:  the `3×3` Gram determinant of `{A,B,C}` vanishes *identically* (three plane
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3443:  vectors are linearly dependent).  Expanding the Gram entries via the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3504:    -- Gram entries of `{A,B,C}` over the six reals (diagonal `= t²`, off-diagonal
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3526:    · -- CONSTRAINT: `det(Gram) = 0` (ring) with the entries substituted.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3527:      have hgram :
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3538:      rw [gAA, gBB, gCC, gAB, gAC, gBC] at hgram
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3539:      nlinarith [hgram, ht2]
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3570:yet `r² ≥ t²`), nor from the `(t, r, ρ)` Gram constraint plus the branch sign
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3575:`t`, with the polarization Gram entries `gAA = gBB = gCC = t²`, `gBC = t²/2`,
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3580:holds (a `nlinarith` consequence of the Gram facts).  The arc product is `≤ 0`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3621:  -- Gram entries of `{A,B,C}` (diagonal `= t²`, off-diagonal via polarization).
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:3643:  -- of the five Gram facts; coefficients found by polynomial division).
+lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean:245:    ⟨SurplusCOMPGBank.mem_allNormalizedMasks_of_maskNormalized
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:26:- `false_of_mutualShellPair_sharedMember_selectedClassExcludes`: the third
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:30:- `false_of_mutualShellPair_sharedMember_thirdShellExcludes`: the third
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:36:- `false_of_mutualClassPair_sharedMember_thirdClassExcludes`: the same
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:59:theorem false_of_mutualShellPair_sharedMember_selectedClassExcludes
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:82:theorem false_of_mutualShellPair_sharedMember_thirdShellExcludes
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:92:  false_of_mutualShellPair_sharedMember_selectedClassExcludes Kb K0 hMb hM0 hC0
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:132:theorem false_of_mutualClassPair_sharedMember_thirdClassExcludes
+lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean:23:    Problem97.MEC.NonObtuseCircumscribedMoserTriangle A S.hne S.hnoncol :=
+lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean:93:    Problem97.CircumscribedMECPacket A
+lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean:124:    Problem97.MEC.NonObtuseCircumscribedMoserTriangle A S.hne S.hnoncol :=
+lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean:194:    Problem97.CircumscribedMECPacket A
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:13:coordinate contradiction is reduced to small Gram-determinant and polynomial
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:110:/-- The expanded Gram determinant of three vectors in `ℝ²` vanishes. -/
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:111:private theorem circleNetwork_planar_gram_det_zero (x y z : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:269:  have hgram_buw := circleNetwork_planar_gram_det_zero B U W
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:270:  have hgram_buw' :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:273:    rw [hbb, huu, huw, hbw] at hgram_buw
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:274:    simpa [q, t] using hgram_buw
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:276:    rw [hq] at hgram_buw' ⊢
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:277:    nlinarith only [hgram_buw']
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:334:  have hgram_bcr := circleNetwork_planar_gram_det_zero B C (U - a)
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:336:    rw [hbb, hcc, hrnorm, hbc, hb_r, hcu] at hgram_bcr
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:337:    nlinarith only [hgram_bcr]
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:338:  have hgram_abu := circleNetwork_planar_gram_det_zero a B U
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:340:    rw [haa, hbb, huu] at hgram_abu
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:342:    nlinarith only [hgram_abu]
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:414:    have hgram_zer := circleNetwork_planar_gram_det_zero z e r
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:419:      rw [hz_norm, he_norm, hr_norm, hze, her, hzr_val] at hgram_zer
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:420:      nlinarith only [hgram_zer]
+lean/Erdos9796Proof/P97/Census554/TenPointRowCollisionCertificate.lean:26:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/SixPointSixteenIncidenceCertificate.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/Census554/SixPointSixteenIncidenceCertificate.lean:38:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:34:-- The proof eliminates one planar Gram determinant and two sums of squares.
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:50:  have hgram :
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:58:  rw [haa, hbb, hS, hab, hax, hbx] at hgram
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:60:    nlinarith [hgram, hR]
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenP4SeedDefs.lean:21:  allNormalizedMasks.filter fun mask =>
+lean/Erdos9796Proof/P97/ErasedCertificate/CardTenP4SeedDefs.lean:39:  refine ⟨mem_allNormalizedMasks_of_maskNormalized hnorm, ?_⟩
+lean/Erdos9796Proof/P97/Census554/SixPointFifteenIncidenceCertificate.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/Census554/SixPointFifteenIncidenceCertificate.lean:38:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/TenPointRowCollision.lean:31:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/NineCenterEighteenEqualityCertificate.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/Census554/NineCenterEighteenEqualityCertificate.lean:33:open U5GramCert
+lean/Erdos9796Proof/P97/Census554/SixPointAlgebraicRowCollisions.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:309:-- The proof performs a coordinate Gram-determinant elimination in `ℝ²`.
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:315:the triple points would have Gram matrix with diagonal `r²` and off-diagonal
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:316:`r²/2`, whose determinant is positive; every three-vector Gram determinant in
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:353:  have hgram :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:361:  rw [haa, hbb, hcc, hab, hac, hbc] at hgram
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:362:  ring_nf at hgram
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:475:-- Scalar form of the two Gram-factor eliminations in
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:491:  have hgram_q12 :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:499:  rw [hqq, haa, hbb, hqadot, habdot] at hgram_q12
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:500:  have hgram_q12' :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:503:    simpa [Q2] using hgram_q12
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:506:      linear_combination -2 * hgram_q12'
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:514:  have hgram_123 :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:522:  rw [haa, hbb, hcc, habdot, hbcdot] at hgram_123
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:523:  have hgram_123' :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:526:    simpa [A3] using hgram_123
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:529:      linear_combination -2 * hgram_123'
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:560:-- `p`- and `t₁`-circles is forced by a planar Gram determinant.
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:572:  have hgram_q12 :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:580:  rw [hqq, haa, hbb, hqadot, habdot] at hgram_q12
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:581:  have hgram_q12' :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:584:    simpa [Q2] using hgram_q12
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:587:      linear_combination -2 * hgram_q12'
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:604:-- This scalar proof uses a planar Gram determinant plus polynomial
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:620:  have hgram_qau :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:628:  rw [hqq, haa, hS, hqadot, hqudot, haudot] at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:629:  ring_nf at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:632:      nlinarith [hgram_qau]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:665:-- The Gram determinant hypotheses are consumed through normalization after
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:683:  have hgram_qau :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:691:  rw [hqq, haa, hS, hqadot, hqudot, haudot] at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:692:  ring_nf at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:695:      nlinarith [hgram_qau]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:720:  have hgram_qau :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:728:  rw [hqq, haa, hS, hqadot, hqudot, haudot] at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:729:  ring_nf at hgram_qau
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:732:      nlinarith [hgram_qau]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:760:-- The proof extracts the forced regular-hexagon chain by planar Gram
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1727:  have hgram_abx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1735:  rw [haa, hbb, hS, habdot, haxdot, hbxdot] at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1736:  ring_nf at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1737:  have hgram_acx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1745:  rw [haa, hcc, hS, hacdot, haxdot, hcxdot] at hgram_acx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1746:  ring_nf at hgram_acx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1748:    nlinarith [hgram_abx, hgram_acx]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1752:  rw [hS_eq_R] at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1753:  ring_nf at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1870:-- The proof eliminates three planar Gram determinants.
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1887:  have hgram_abx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1895:  rw [haa, hbb, hS, habdot, haxdot, hbxdot] at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1896:  ring_nf at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1897:  have hgram_abc :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1905:  rw [haa, hbb, hcc, habdot, hacdot, hbcdot] at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1906:  ring_nf at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1907:  have hgram_acx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1915:  rw [haa, hcc, hS, hacdot, haxdot, hcxdot] at hgram_acx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1916:  ring_nf at hgram_acx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1919:    nlinarith [hgram_abx, hR]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1921:    nlinarith [hgram_abc, hR]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1923:    rw [hYsq] at hgram_acx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1924:    ring_nf at hgram_acx ⊢
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1925:    nlinarith [hgram_acx]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1939:`c`, then the three planar Gram determinants are inconsistent. -/
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2060:  have hgram_abc :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2068:  rw [haa, hbb, hcc, habdot, hacdot, hbcdot] at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2069:  ring_nf at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2072:      nlinarith [hgram_abc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2080:  have hgram_abx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2088:  rw [haa, hbb, hS, habdot, haxdot, hbxdot, hYeq] at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2089:  ring_nf at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2092:    nlinarith [hgram_abx]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2208:-- The proof eliminates the outer equilateral point by three Gram determinants.
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2223:  have hgram_abc :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2231:  rw [haa, hbb, hcc, habdot, hacdot, hbcdot] at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2232:  ring_nf at hgram_abc
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2235:      nlinarith [hgram_abc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2247:  have hgram_abx :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2255:  rw [haa, hbb, hS, habdot, haxdot', hbxdot', hYeq] at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2256:  ring_nf at hgram_abx
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2257:  have hgram_acx :
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3002.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3002.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1Record001Cycle5CoreCollisionProductManifest.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Record001Cycle5CoreCollisionProductManifest.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2138:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2147:      D.K4 (CircumscribedMECPacket.ofNonObtuse MT hCirc)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2160:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2214:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2302:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2347:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2404:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2473:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2520:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2544:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2570:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3326:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3375:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:77:  allNormalizedMasks.filter (oneSidedSeedCandidateMaskOK sstar center ·)
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:80:def OneSidedSeed.fixedMask (seed : OneSidedSeed) (center : Label) :
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:94:  match seed.fixedMask center with
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:169:  allNormalizedMasks.filter (oneSidedSeedRelaxedShapeMaskOK center ·)
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:174:  match seed.fixedMask center with
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:405:    ⟨mem_allNormalizedMasks_of_maskNormalized
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:414:  rcases hfixed : seed.fixedMask center with _ | fixed
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:427:theorem eq_fixedMask_of_mem_seed_candidateMasks
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:429:    (hfixed : seed.fixedMask center = some fixed)
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:450:        simp [OneSidedSeed.candidateMasks, OneSidedSeed.fixedMask,
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:755:    ⟨mem_allNormalizedMasks_of_maskNormalized
+lean/Erdos9796Proof/P97/SurplusSeededShadow.lean:770:        simp [OneSidedSeed.relaxedShapeMasks, OneSidedSeed.fixedMask,
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F11.lean:6:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F11.lean:13:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F11.lean:27:open U5GramCert
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:52:* `Problem97.MEC.nonobtuseCircumscribedMoserTriangle` — packaging into
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:54:* `Problem97.MEC.nonobtuseCircumscribedMoserTriangle_nonobtuse` — the three
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:667:structure NonObtuseCircumscribedMoserTriangle
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:687:theorem nonempty_nonobtuseCircumscribedMoserTriangle
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:691:    Nonempty (NonObtuseCircumscribedMoserTriangle A hA hncol) := by
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:708:noncomputable def nonobtuseCircumscribedMoserTriangle
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:713:  (Classical.choice (nonempty_nonobtuseCircumscribedMoserTriangle hA hncol hcirc)).toMoserTriangle
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:715:/-- The convenience extractor `nonobtuseCircumscribedMoserTriangle` produces a
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:717:theorem nonobtuseCircumscribedMoserTriangle_nonobtuse
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:721:    let M := nonobtuseCircumscribedMoserTriangle hA hncol hcirc
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:725:  set N := Classical.choice (nonempty_nonobtuseCircumscribedMoserTriangle hA hncol hcirc)
+lean/Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001.lean:14:`U5GramCert.unitIdealCertChecker`, and optional theorem-facing replay
+lean/Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001.lean:28:open U5GramCert
+lean/Erdos9796Proof/P97/U1CardTenCapProfile.lean:31:    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+lean/Erdos9796Proof/P97/U1CardTenCapProfile.lean:45:      D.K4 (CircumscribedMECPacket.ofNonObtuse MT hCirc)
+lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean:371:      OneSidedSeed.fixedMask]
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:61:only way `FiniteN9Closure` enters the surplus program is via the U7
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:468:manifest supplies a real `MEC.NonObtuseCircumscribedMoserTriangle`, the
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:475:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:502:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:529:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:560:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:579:    (MT : MEC.NonObtuseCircumscribedMoserTriangle A hA hncol)
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:9:import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:57:    CircumscribedMECPacket D.A D.packet.triangle :=
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:58:  CircumscribedMECPacket.ofNonObtuse D.packet.triangleNonObtuse D.packet.hCirc
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:61:    CircumscribedMECPacket D.A (triangle231 D) := {
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:81:    CircumscribedMECPacket D.A (triangle312 D) := {
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:124:    (P : CircumscribedMECPacket A M) :
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:125:    CircumscribedMECPacket A ({
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:159:    (P : CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:185:    (P : CircumscribedMECPacket A M)
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1418:    MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1447:    MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1476:    MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:8:import Erdos9796Proof.P97.ATail.RetainedMatchingEndpointContinuation
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:9:import Erdos9796Proof.P97.ATail.RetainedMatchingSourceReturnRadiusSplit
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:41:open ATailRetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:42:open ATailRetainedMatchingEndpointContinuation
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:43:open ATailRetainedMatchingSourceReturnRadiusSplit
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:55:  | matchingCycle (data : RetainedMatchingCommonDeletionCycleNormalForm R)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:88:      (walk : RetainedMatchingTwoStepCommonDeletionWalk R)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:91:      (walk : RetainedMatchingTwoStepCommonDeletionWalk R)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:92:      (fiber : RetainedMatchingEndpointCriticalFiber walk)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:96:      (walk : RetainedMatchingTwoStepCommonDeletionWalk R)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:97:      (path : RetainedMatchingThreeDistinctBlockerPath walk)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:72:open ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:73:open ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:249:def checkedMask (datum : DirectRowArcFiniteDatum) : Option (Finset (Fin 11)) :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:257:  datum.arc.center = datum.row.center ∧ checkedMask datum = some datum.arc.mask
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:268:    simpa only [checkedMask, hcard, ↓reduceDIte] using hvalid.2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:277:  simp only [checkedMask, datum.support_card_of_valid hvalid,
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:7:import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:33:namespace ATailRetainedMatchingSourceReturnRadiusSplit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:39:open ATailRetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:53:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type where
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:84:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:110:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type where
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:151:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:190:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:297:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:384:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:491:    (W : RetainedMatchingTwoStepCommonDeletionWalk R)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:662:    (W : RetainedMatchingTwoStepCommonDeletionWalk R) : Type
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:677:    (W : RetainedMatchingTwoStepCommonDeletionWalk R)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:696:end ATailRetainedMatchingSourceReturnRadiusSplit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:31:namespace ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:313:structure RetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:325:theorem nonempty_retainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:331:    Nonempty (RetainedMatchingGeometricReduction R) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:336:end ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:107:        (CircumscribedMECPacket.ofNonObtuse S.triangleNonObtuse S.hCirc)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:8:import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:35:namespace ATailRetainedMatchingEndpointContinuation
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:43:open ATailRetainedMatchingCommonDeletionCycle
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:86:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:87:    (E : RetainedMatchingEndpointCriticalFiber W) : Type where
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:108:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:109:    (E : RetainedMatchingEndpointCriticalFiber W) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:156:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:157:    {E : RetainedMatchingEndpointCriticalFiber W}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:175:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:176:    {E : RetainedMatchingEndpointCriticalFiber W}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:208:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:209:    (_E : RetainedMatchingEndpointCriticalFiber W) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:221:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:222:    (_P : RetainedMatchingThreeDistinctBlockerPath W) : Type
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:240:    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:241:    (P : RetainedMatchingThreeDistinctBlockerPath W) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:270:end ATailRetainedMatchingEndpointContinuation
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:7:import Erdos9796Proof.P97.ATail.RetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:29:namespace ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:34:open ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:591:inductive RetainedMatchingLargeCapConsumerOutcome
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:649:theorem nonempty_retainedMatchingLargeCapConsumerOutcome
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:654:    (G : RetainedMatchingGeometricReduction R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:655:    Nonempty (RetainedMatchingLargeCapConsumerOutcome R) := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:661:      exact ⟨RetainedMatchingLargeCapConsumerOutcome.pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:671:          ⟨RetainedMatchingLargeCapConsumerOutcome.firstCapFreshCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:677:          ⟨RetainedMatchingLargeCapConsumerOutcome.secondCapLocalizedReverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:681:end ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:7:import Erdos9796Proof.P97.ATail.RetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:28:open ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:29:open ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:467:  | consumedDistinctBlockers (data : RetainedMatchingLargeCapConsumerOutcome R)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:484:      let G : RetainedMatchingGeometricReduction R := {
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:488:      rcases nonempty_retainedMatchingLargeCapConsumerOutcome G with ⟨consumed⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:7:import Erdos9796Proof.P97.ATail.RetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:34:namespace ATailRetainedMatchingCommonDeletionNormalization
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:39:open ATailRetainedMatchingGeometricReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:40:open ATailRetainedMatchingLargeCapConsumer
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:154:    (L : RetainedMatchingLargeCapConsumerOutcome R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:178:    (G : RetainedMatchingGeometricReduction R) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:181:  rcases nonempty_retainedMatchingLargeCapConsumerOutcome G with ⟨L⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:188:end ATailRetainedMatchingCommonDeletionNormalization
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:9:import Erdos9796Proof.P97.U5GramCertPoly
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3301:  sourceFacts : List U5GramCert.SparsePoly
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3302:  sourceCofactors : List (ℕ × U5GramCert.SparsePoly)
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3304:    U5GramCert.unitIdealCertChecker sourceFacts sourceCofactors = true
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3309:      ∃ ν : ℕ → ℝ, ∀ f ∈ sourceFacts, U5GramCert.eval ν f = 0
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3324:  exact U5GramCert.false_of_unitIdealCertChecker ν
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3519:  sourceFacts : List U5GramCert.SparsePoly
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3520:  sourceCofactors : List (ℕ × U5GramCert.SparsePoly)
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3522:    U5GramCert.unitIdealCertChecker sourceFacts sourceCofactors = true
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3527:      ∃ ν : ℕ → ℝ, ∀ f ∈ sourceFacts, U5GramCert.eval ν f = 0
+lean/Erdos9796Proof/P97/U1Depth5Prefix.lean:3540:  exact U5GramCert.false_of_unitIdealCertChecker ν

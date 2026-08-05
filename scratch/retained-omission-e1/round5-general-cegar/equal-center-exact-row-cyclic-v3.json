@@ -1,0 +1,68 @@
+{
+  "C_caps": [
+    2,
+    2
+  ],
+  "C_centers": [
+    2,
+    2
+  ],
+  "C_rows": [
+    [
+      "t3",
+      "q1",
+      "q2",
+      "s3"
+    ],
+    [
+      "t3",
+      "q1",
+      "q2",
+      "s3"
+    ]
+  ],
+  "C_sources": [
+    "q1",
+    "q2"
+  ],
+  "Q_cap": 2,
+  "Q_center": 1,
+  "Q_sources": [
+    "t3",
+    "s3"
+  ],
+  "added_constraints": {
+    "exact_Q_overlap": true,
+    "exact_equal_four_row": true,
+    "noncanonical_interaction": true
+  },
+  "cyclic_metric": true,
+  "elapsed_ms": 25129,
+  "interactions": [
+    "sameCapWithInternalFiberSource",
+    "sameCapWithInternalFiberSource"
+  ],
+  "positions": {
+    "a1": 0,
+    "a2": 5,
+    "a3": 12,
+    "p1": 8,
+    "p2": 11,
+    "q1": 10,
+    "q2": 7,
+    "r1": 6,
+    "r2": 9,
+    "s1": 15,
+    "s2": 16,
+    "s3": 14,
+    "s4": 13,
+    "t1": 4,
+    "t2": 1,
+    "t3": 3,
+    "t4": 2
+  },
+  "residual_mode": "equalCrossRowCenters",
+  "status": "sat",
+  "timeout_ms": 120000,
+  "trust_boundary": "external Z3 only; bounded n=17 lane; no Lean/universal claim"
+}

@@ -1,0 +1,773 @@
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:79:theorem qDeletion_survives_of_actualBlocker_eq_firstApex_of_not_cardFour
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:243:          (qDeletion_survives_of_actualBlocker_eq_firstApex_of_not_cardFour
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:263:frontier deletions survives at a source's actual blocker exactly when that
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:265:theorem frontierDeletion_survival_iff_actualBlocker_ne_qBlocker
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:291:`P.q`-blocker fiber exactly when one frontier deletion survives at its actual
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:293:theorem mem_outside_qBlockerFiber_iff_frontierDeletion_survival
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:306:  rw [frontierDeletion_survival_iff_actualBlocker_ne_qBlocker
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:29:theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:31:    (S.capInteriorByIndex i).card + 2 = (S.capByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:49:    {n : ℕ} (hinterior : (S.capInteriorByIndex i).card ≤ n) :
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:85:  have hcard := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:96:  rw [S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four i hcap]
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:110:    (n := (S.capInteriorByIndex i).card) le_rfl
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:111:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:116:theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:123:    4 ≤ (S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:128:    simpa [Ir] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr hrFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:130:    simpa [Iρ] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hρ hρFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:159:  have hinter := oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:161:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:168:theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:174:      (S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:183:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:187:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hρ
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:219:    oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:221:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:25:/-- Two distinct centers at which one prescribed deletion survives, packaged
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:173:  directed_crossDeletion_survival :
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:184:structure FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:241:        (FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) := by
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:298:        actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:348:    · have hsurvival := crossDeletion_survives_of_obstructionCenters_ne
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:361:        directed_crossDeletion_survival := hsurvival }⟩)
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:114:    false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual_of_card_eq_eleven_s2_o0
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:118:    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:138:    false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:142:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:151:      false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual_of_card_eq_eleven_s2_o0
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:185:        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:144:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:148:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:17:old and new second-apex rows have the same radius, giving a five-point radius
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:55:  support_eq_radius := C.row₁.same_radius
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:74:  support_eq_radius := C.row₂.same_radius
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:110:private theorem selectedRows_sameCenter_radius_eq_or_disjoint
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:176:    rcases selectedRows_sameCenter_radius_eq_or_disjoint oldRow newRow with
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:185:                C.row₂.same_radius source hsourceSecond
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:232:private theorem selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:239:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:260:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:262:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:272:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:273:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:277:  change 2 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:287:      S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:289:  exact selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:306:      S.capInteriorByIndex S.oppIndex1).card := by omega
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:311:obstruction centers force at least one directed cross-deletion survival. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:312:theorem crossDeletion_survives_of_obstructionCenters_ne
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:323:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:337:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:364:  exact actual_blocker_ne_of_deletion_survives H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:30:private theorem selectedClass_capInterior_card_ge_three_of_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:36:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:57:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:59:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:69:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:70:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:74:  change 3 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:91:      S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:93:  exact selectedClass_capInterior_card_ge_three_of_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:153:      actual_blocker_ne_of_deletion_survives H hqA P.q_survives
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:155:      actual_blocker_ne_of_deletion_survives H hwA P.w_survives }
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:322:    ATAILSameRadiusDoubleErase.sameRadius_double_erase_survives_or_unique_class_card_four_or_five
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:53:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:55:    (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:97:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:132:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:136:    R.firstApexFullyDeletionRobust.survives fresh hfreshA
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:33:theorem capInteriorByIndex_subset_selectedClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:48:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:54:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:68:theorem capInteriorByIndex_subset_selectedClass_of_card_eq_fifteen
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:78:  apply capInteriorByIndex_subset_selectedClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:105:    capInteriorByIndex_subset_selectedClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:41:  support_eq_radius := K.same_radius
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:58:/-- Exact theorem-facing boundary of a five-center deletion-survival packet. -/
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:93:    (h : FiveCenterDeletionSurvival D q c₀ c₁ c₂ c₃ c₄) :
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:13:witness survives deletion of every carrier point. A five-point radius class
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:108:/-- A critical deletion is exactly the classical negation of surviving every
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:63:/-- Every physical cycle vertex lies in the common exact-five radius class. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:101:strict-cap set, with the exact actual-critical omission and deletion-survival
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:113:  successor_deletion_survives_actualBlocker :
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:147:    successor_deletion_survives_actualBlocker := ?_ }⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:151:    exact (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:293:theorem physicalApex_survives_sourceDeletion
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:320:  ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:322:    (K.physicalApex_survives_sourceDeletion i)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:340:theorem successor_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:351:  exact K.transition.successor_deletion_survives_actualBlocker (K.source i)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:423:theorem reverse_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:433:  (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:554:#print axioms PhysicalActualCriticalOmissionCycle.successor_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:557:#print axioms PhysicalActualCriticalMutualOmissionEdge.reverse_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:198:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:201:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:227:theorem frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:285:theorem cardFour_or_frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:315:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:317:    exact frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+lean/Erdos9796Proof/P97/ATail/ApexTripleEquidistance.lean:64:  -- `p` is none of the apices, since the common radius is positive.
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:108:        S.capInteriorByIndex i)).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:123:`4 ≤ (S.capInteriorByIndex i).card` loses the radius data on which the uniform
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:129:        S.capInteriorByIndex i).card) ∨
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:132:        S.capInteriorByIndex i).card ∧
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:134:        S.capInteriorByIndex i).card)
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:150:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:154:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁,
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:155:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂⟩
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:94:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:97:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:100:/-- The pointwise third-blocker and cross-pair deletion-survival witness
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:102:abbrev CapSourceThirdBlockerCrossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:131:private theorem two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:170:      6 ≤ (S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:171:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:179:  change 2 ≤ ((S.capInteriorByIndex S.oppIndex1) \ pairSources).card
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:182:private theorem capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:200:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:275:        ATailThirdCenterCommonPair.frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:290:        ATailThirdCenterCommonPair.frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:307:theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:323:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:326:    two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:336:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:342:deletion-survival witness. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:343:theorem exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:360:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:361:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:364:    two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:375:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:378:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:383:/-- Two strict first-cap points on a common apex-centred radius, distinct from
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:386:deletion-survival packet as the cardinality-only cap-eight producer. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:388:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:398:    (commonRadius : ℝ)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:401:        (SelectedClass D.A S.oppApex1 commonRadius ∩
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:402:          S.capInteriorByIndex S.oppIndex1).card)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:403:    (hcommonNeRadius : commonRadius ≠ radius)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:404:    (hcommonNeρ : commonRadius ≠ ρ) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:407:        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:408:        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:409:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:410:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:414:        (SelectedClass D.A S.oppApex1 commonRadius ∩
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:415:          S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:429:      · apply hcommonNeRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:432:      · apply hcommonNeRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:451:      · apply hcommonNeRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:454:      · apply hcommonNeRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:466:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:470:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:495:abbrev CrossPairDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:504:/-- The selected-support form of cross-pair deletion survival. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:512:/-- Cross-pair deletion survival and selected-support omission are the same
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:514:theorem crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:518:    CrossPairDeletionSurvival (H := H) source x y ↔
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:522:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:523:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:525:/-- Canonical packet retaining the producer's deletion-survival evidence.
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:531:  survives : CrossPairDeletionSurvival (H := H) source x y
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:542:  (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:637:    exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:98:  support_eq_radius := R.packet.row₂.same_radius
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:254:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:352:  rcases cross_deletion_survives_or_cross_membership F.pair with
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:360:      (actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:422:/-- The off-radius source, its full parent, and the resulting common deletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:424:structure FrontierOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:437:theorem nonempty_frontierOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:444:    Nonempty (FrontierOffRadiusCommonDeletion escape E) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:477:  | offRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:479:      (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:492:    exact ⟨FrontierEscapeLocationOutcome.offRadiusCommonDeletion E
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:493:      (nonempty_frontierOffRadiusCommonDeletion E).some⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:20:critical-shell semantics turn that omission into cross-deletion survival at
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:203:directed omission and the corresponding cross-deletion survivor. -/
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:217:        S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:219:    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:224:        S.capInteriorByIndex S.oppIndex1).card := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:268:      (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:271:      (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:103:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:115:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:23:namespace ATAILSameRadiusDoubleErase
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:29:theorem sameRadius_double_erase_survives_or_unique_class_card_four_or_five
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:102:end ATAILSameRadiusDoubleErase
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:277:theorem actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:332:        actual_blocker_ne_of_deletion_survives H hqA hqSurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:334:        actual_blocker_ne_of_deletion_survives H hwA hwSurvives }⟩
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:395:/-- Two distinct-radius single-deletion survivors either survive together or
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:513:/-- Survivor-packet specialization of the double-deletion normal form. -/
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:543:/-- The first-apex deletion normal form for a relocated survivor pair. -/
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:631:theorem cross_deletion_survives_or_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:682:private theorem exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:741:theorem exists_pair_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:758:  rcases exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781:theorem cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:831:surviving deletion of `q` at `w`'s blocker.  If the two blockers coincided,
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:842:    (cross_deletion_survives_iff_not_mem_selected_support H hw).mpr
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:865:/-- Survival of the cross deletion forces the two source points onto
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:867:theorem SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:878:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:905:    (cross_deletion_survives_iff_not_mem_selected_support H hq).mp hsurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:929:/-- Cross-deletion survival at a source's actual blocker already separates
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:932:theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:941:    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1036:  exact actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1046:theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1071:      actual_blocker_ne_of_deletion_survives H P.q_mem_A hqSurvivesO
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1074:      actual_blocker_ne_of_deletion_survives H P.w_mem_A hwSurvivesO
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1116:/-- Under first-apex deletion survival, the two blockers coincide exactly
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1118:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1140:      blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1145:single-deletion survivals needed by the preceding theorem. -/
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1146:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1171:    blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1188:    blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1225:/-- In the exact card-five first-apex branch, either cross deletion survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1228:theorem card_five_cross_deletion_survives_or_cross_oppositeSide
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1239:  rcases cross_deletion_survives_or_cross_membership P with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1256:  rcases exists_pair_double_deletion_survives_secondApex D S r hthree with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1287:        actual_blocker_ne_of_deletion_survives H hqA hqSurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1289:        actual_blocker_ne_of_deletion_survives H hwA hwSurvives }
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1299:    ATAILSameRadiusDoubleErase.sameRadius_double_erase_survives_or_unique_class_card_four_or_five
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:240:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:259:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:394:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:398:      R.firstApexFullyDeletionRobust.survives O.kept O.kept_mem_A
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:491:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:493:    (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:533:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:574:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:578:    R.firstApexFullyDeletionRobust.survives fresh hfreshA
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:111:  rcases R.common.firstApexDouble with ⟨otherRadius, hotherPos, hfourRaw⟩
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:122:  by_cases hsame : otherRadius = radius
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:142:  rcases R.common.firstApexDouble with ⟨otherRadius, hotherPos, hfourRaw⟩
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:153:  by_cases hsame : otherRadius = radius
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:220:    by_cases hsame : otherRadius = radius
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:290:    by_cases hsame : otherRadius = r
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:42:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:44:    (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:114:        S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:116:    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:121:        S.capInteriorByIndex S.oppIndex1).card := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:162:        (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:165:        (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:305:  have hthree : 2 < (S.capInteriorByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:308:  have hcard := capInteriorByIndex_card_add_two S k
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:364:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:407:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:411:    R.firstApexFullyDeletionRobust.survives fresh hfreshA
+lean/Erdos9796Proof/P97/ATail/LargeOppositeCapsBiApexSurface.lean:60:two physical rows and deletion-survival facts are geometric and unchanged. -/
+lean/Erdos9796Proof/P97/ATail/LargeOppositeCapsBiApexSurface.lean:76:    actual_blocker_ne_of_deletion_survives H' C.q_mem_A C.survives₁
+lean/Erdos9796Proof/P97/ATail/LargeOppositeCapsBiApexSurface.lean:78:    actual_blocker_ne_of_deletion_survives H' C.q_mem_A C.survives₂
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:22:consumer.  Cross survival yields the retained companion common-deletion
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:99:theorem capInteriorByIndex_card_eq_four_of_card_eq_fifteen
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:104:    (S.capInteriorByIndex i).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:106:  have hinter := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:111:theorem twoRichClassSlices_partition_of_capInterior_card_eq_four
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:117:    (hinterior : (S.capInteriorByIndex i).card = 4) :
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:131:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:134:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:163:        (S.capInteriorByIndex i).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:166:    capInteriorByIndex_card_eq_four_of_card_eq_fifteen S hcard hlarge i⟩
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:237:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:240:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:243:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i K.radius_pos
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:277:  have hinter := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:20:`selectedClass_capInteriorByIndex_card_ge_two` theorem. At a Moser opposite
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:206:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:208:    (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:259:    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:262:    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:290:  have hcapCard := capInteriorByIndex_card_add_two S k
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:13:The shared-critical-pair output of the large physical-apex radius transition
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:46:    (packet : SharedCriticalPairAtLargeSecondApex D S radius)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:63:/-- The fresh exact four-shell survives deletion of a point outside its
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:67:    (packet : SharedCriticalPairAtLargeSecondApex D S radius)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:94:    (packet : SharedCriticalPairAtLargeSecondApex D S radius) :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:148:    exact ⟨RobustLargeRadiusReducedOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:159:      ⟨deleted, _hdeletedRadius, _hdeletedShell, ⟨commonDeletion⟩⟩
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:160:    exact ⟨RobustLargeRadiusReducedOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:18:deleted sources have the same radius about the new center, or
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:101:theorem five_le_selectedClass_of_restoration_and_sharedRadius
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:220:theorem exists_fresh_sharedRadiusPair_or_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:12:The geometric survivor pair and both apex deletion facts used by a
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:15:they follow again for every system from the retained single-deletion survival
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:34:deletion-survival witnesses. -/
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:51:    actual_blocker_ne_of_deletion_survives H' P.q_mem_A P.q_survives
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:53:    actual_blocker_ne_of_deletion_survives H' P.w_mem_A P.w_survives
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:102:system, with the same radius and the same selected survivor pair. -/
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:15:which frontier deletion survives, and using the four-point bound on every
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:137:/-- Color a source by which frontier deletion survives at its actual blocker. -/
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:172:theorem deletionSurvival_cover_of_mem_outside_qBlockerFiber
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:186:    (mem_outside_qBlockerFiber_iff_frontierDeletion_survival
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:295:      (deletionSurvival_cover_of_mem_outside_qBlockerFiber
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:300:      (deletionSurvival_cover_of_mem_outside_qBlockerFiber
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:14:exact five-point first-apex class is thinned to two sources surviving deletion
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:30:theorem selectedClass_capInteriorByIndex_card_ge_three_of_card_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:37:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:58:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:60:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:70:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:71:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:75:  change 3 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:94:      S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:96:  exact selectedClass_capInteriorByIndex_card_ge_three_of_card_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:101:cap and survive deletion at the second opposite apex. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:213:      actual_blocker_ne_of_deletion_survives H hqA P.q_survives
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:215:      actual_blocker_ne_of_deletion_survives H hwA P.w_survives }
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:217:#print axioms selectedClass_capInteriorByIndex_card_ge_three_of_card_five
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:39:abbrev FiveCenterDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:96:  FiveCenterDeletionSurvival D P.source₁
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:99:    FiveCenterDeletionSurvival D Pρ.source₁
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:102:    FiveCenterDeletionSurvival D P.source₂
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:105:    FiveCenterDeletionSurvival D Pρ.source₂
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:276:theorem exists_two_firstFiber_deletions_surviving_at_rowCenter
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:306:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:308:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:312:first-fiber points yield a two-deletion by four-center survival grid. -/
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:313:theorem exists_two_firstFiber_deletions_fourCenters_survive
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:371:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:374:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:507:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:619:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:698:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:720:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:13:The strict-cap collision branch supplies a fresh point whose deletion survives
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:190:    R.firstApexFullyDeletionRobust.survives source hsourceA
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:194:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:45:/-- A retained-radius source whose deletion survives at the first apex and at
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:239:  same_radius := K.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:270:    T_same_radius := ?_ }
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:354:    T_same_radius := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:443:          R.firstApexFullyDeletionRobust.survives
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:450:          R.firstApexFullyDeletionRobust.survives
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:552:      R.firstApexFullyDeletionRobust.survives source hsourceA
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:556:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:561:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:671:without discarding the retained-radius or common-deletion provenance. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:41:  exact mem_selectedClass.mpr ⟨hzCarrier, K.same_radius z hzB⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:137:/-- The second stored physical-apex row uses the same unique radius. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:307:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:43:four-class at the same radius. -/
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:309:          S.capInteriorByIndex S.oppIndex2)).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:542:        source.1 ∈ S.capInteriorByIndex S.oppIndex2).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:744:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:830:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2)) :
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:851:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1082:and one surviving source-valid interior deletion.  The only remaining arm has
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1114:            S.capInteriorByIndex S.oppIndex2).card ∧
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1116:            S.capInteriorByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1140:          S.capInteriorByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1142:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1148:          S.capInteriorByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1150:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1341:physical common-deletion ingress.  This retains the second-apex radius
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1343:theorem nonempty_radiusAnchoredPhysicalCommonDeletionIngress
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:224:      (cross_deletion_survives_iff_not_mem_selected_support H P.J_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:228:      R.firstApexFullyDeletionRobust.survives P.K
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:289:      (cross_deletion_survives_iff_not_mem_selected_support H W.next_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:293:      R.firstApexFullyDeletionRobust.survives W.first W.first_mem_A
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:26:  blocker centers force at least one directed cross-deletion survival.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:171:theorem selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:178:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:199:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:201:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:211:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:212:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:216:  change 2 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:226:      S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:228:  exact selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:245:      S.capInteriorByIndex S.oppIndex1).card := by omega
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:250:blocker centers force at least one directed cross-deletion survival:
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:263:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:277:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:304:  exact actual_blocker_ne_of_deletion_survives H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:376:#print axioms selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:288:class has at least five members, that class survives every deletion. If it
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:290:radius, so one of the two radius classes survives every deletion. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:244:      (S.capInteriorByIndex S.surplusIdx).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:245:    have h := capInteriorByIndex_card_add_two S S.surplusIdx
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:249:      (S.capInteriorByIndex S.oppIndex2).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:250:    have h := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:254:      (S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:255:    have h := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:21:centered radius class containing the common pair.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:124:  exact actual_blocker_ne_of_deletion_survives H hqA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:74:      S.capInteriorByIndex S.oppIndex1).card = 2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:89:        S.capInteriorByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:167:      S.capInteriorByIndex S.oppIndex1).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:193:    CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:194:    CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:205:    CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:206:    CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:239:      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:240:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:245:      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:246:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:251:      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:252:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:260:          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:261:          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:266:          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:267:          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:272:          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:273:          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:88:  have hcap_card : (S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:89:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:94:        S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:153:def CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:184:def CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:199:    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:200:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:203:    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:204:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:207:    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:208:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:211:    ATAILSameRadiusDoubleErase.sameRadius_double_erase_survives_or_unique_class_card_four_or_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:222:    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:223:      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:125:  source_deletion_survives_physicalApex :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:127:  partner_deletion_survives_physicalApex :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:142:      (packet : SharedCriticalPairAtLargeSecondApex D S radius)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:201:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:222:        source_deletion_survives_physicalApex :=
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:225:        partner_deletion_survives_physicalApex :=
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:243:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:252:    exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:273:        S.capInteriorByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:275:      S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:283:        S.capInteriorByIndex S.oppIndex2).card by omega) with
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:435:      exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:20:  cross-deletion survival; and
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:95:cross-deletion survival without assuming any positive cross incidence. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:106:  directed_cross_deletion_survival :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:230:        actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:277:        directed_cross_deletion_survival := hsurvival }⟩)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:64:        S.capInteriorByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:127:  radiusClass_capInterior_card_ge_three :
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:130:        S.capInteriorByIndex S.oppIndex2).card
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:197:    radiusClass_capInterior_card_ge_three :=
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:210:  physicalApex_survives_source_deletion :
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:259:    physicalApex_survives_source_deletion := hphysical
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:119:    L.carrier_surjective q (Card11Labeling.capInteriorAt_subset CP second hqI)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:121:    L.carrier_surjective w (Card11Labeling.capInteriorAt_subset CP second hwI)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:123:    L.carrier_surjective c (Card11Labeling.capInteriorAt_subset CP second hcI)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:227:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:244:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:253:    capInteriorProfile_eq_332_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:289:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:305:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:321:    capInteriorProfile_eq_332_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:388:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:404:        S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:409:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:412:    have hIge : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:621:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:804:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:835:        S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:839:  have hIge : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:842:      (S.capInteriorByIndex S.oppIndex1).card + 2 =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:844:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:27:theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:34:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:55:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:57:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:67:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:68:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:72:  change 2 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:84:theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:90:        S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:111:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:113:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:123:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:124:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:126:  change T.card - 2 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:85:        (S.capInteriorByIndex S.oppIndex1).card = 2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:86:      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:89:        3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:14:`scratch/card11-exact5-common-fullradius-v6/probe.py`.
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:335:structure OnRadiusSurplusMarginalCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:350:theorem nonempty_onRadiusSurplusMarginalCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:357:    Nonempty (OnRadiusSurplusMarginalCommonDeletion E hit) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:441:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:479:  | originalOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:482:        FrontierOffRadiusCommonDeletion normal.escape offRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:483:  | onRadiusSurplusPairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:487:      (paired : OnRadiusSurplusMarginalCommonDeletion surplus hit)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:488:  | companionOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:495:      (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:513:            ⟨FrontierRefinedEscapeOutcome.onRadiusSurplusPairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:515:              (nonempty_onRadiusSurplusMarginalCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:522:            ⟨FrontierRefinedEscapeOutcome.companionOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:525:              (nonempty_frontierOffRadiusCommonDeletion offRadius).some⟩
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:526:  | offRadiusCommonDeletion offRadius commonDeletion =>
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:528:        ⟨FrontierRefinedEscapeOutcome.originalOffRadiusCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:529:          offRadius commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:52:shared-radius pair.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:161:          S.capInteriorByIndex S.oppIndex2)).card ≤ 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:291:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:296:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:378:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:383:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:938:singleton-deletion survival square with that source's actual blocker. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1018:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1022:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1026:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1030:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1151:          row.same_radius y hy⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1155:      (row.same_radius source hsourceB).symm.trans
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1168:    exact (row.same_radius y hy).trans hradii
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1247:deletion-survival square. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1248:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1346:deletion-survival square. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1439:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1447:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1455:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1463:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1544:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2421:    S.capInteriorByIndex S.oppIndex2).card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2436:    S.capInteriorByIndex S.oppIndex2).card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2467:      (I ∩ S.capInteriorByIndex S.oppIndex2).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2761:      (Iu ∩ S.capInteriorByIndex S.oppIndex2).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2867:      (S.capInteriorByIndex S.oppIndex2).card = 3) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2967:        4 ≤ (S.capInteriorByIndex S.oppIndex2).card)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2972:        (S.capInteriorByIndex S.oppIndex2).card = 3)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2981:        (S.capInteriorByIndex S.oppIndex2).card = 3)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2996:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3005:      (S.capInteriorByIndex S.oppIndex2).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3073:      (S.capInteriorByIndex S.oppIndex2).card = 3) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5131:      (S.capInteriorByIndex S.oppIndex2).card = 3)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5162:      (S.capInteriorByIndex S.oppIndex2).card = 3)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5759:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5865:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5905:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5910:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5945:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6020:obligations: the surviving interior-deletion branch and the no-five
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6171:        S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6174:  have hinteriorCap : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6177:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6282:  rcases R.directed_crossDeletion_survival with hdeleteW | hdeleteQ
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6322:theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6326:    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6350:        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6633:          S.capInteriorByIndex i)).card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6639:          S.capInteriorByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6685:          S.capInteriorByIndex j)).card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6706:        S.capInteriorByIndex j)).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6711:          S.capInteriorByIndex j)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6721:theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6729:        S.capInteriorByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6792:      (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6808:          S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6810:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6814:    nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7228:            S.capInteriorByIndex j)).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7782:theorem endpointFresh_sharedBlocker_frontierRadius_fourth_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8587:    {frontierRadius commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8593:    (hxRadius : x ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8594:    (hyRadius : y ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8652:theorem equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8699:            S.capInteriorByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8961:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8965:    R.firstApexFullyDeletionRobust.survives z hzA
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8988:source-faithful common-deletion parent at the second radius. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8989:theorem exists_distinctRadius_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9242:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9250:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9253:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9420:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9449:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9486:retaining the common-radius membership needed by blocker rigidity. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9487:private theorem exists_two_firstFiberCapSourceWitness_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9489:    (commonRadius : ℝ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9492:        (SelectedClass D.A S.oppApex1 commonRadius ∩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9493:          S.capInteriorByIndex S.oppIndex1).card)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9494:    (hcommonNeRadius : commonRadius ≠ radius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9495:    (hcommonNeρ : commonRadius ≠ ρ) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9498:        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9499:        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9505:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9508:      commonRadius hcommonCard hcommonNeRadius hcommonNeρ
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9525:          S.capInteriorByIndex S.oppIndex1).card →
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9934:/-- At least one cap-source row survives deletion of the other source. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9935:abbrev TwoCapSourcesOneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9948:theorem mutualCrossMembership_or_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9951:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source' := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9960:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9963:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10213:theorem sourceDeletionSurvival_or_blockerVertex_eq_mutualPair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10238:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10241:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10304:centers, a surviving one-point deletion, distinct blocker caps, or a same-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10322:      (deletion_survives :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10411:      (deletion_survives :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10431:  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10433:        deletion_survives
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11091:          ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11094:        ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11099:The latter retains its common radius, complete cap-source witnesses, mutual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11113:      {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11118:        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11120:        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11499:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11504:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11509:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11514:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11553:  ATailFirstFiberOverlapDescent.FiveCenterDeletionSurvival D Q.source.1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11557:    ATailFirstFiberOverlapDescent.FiveCenterDeletionSurvival D
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11590:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11596:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11712:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11714:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11734:          ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11736:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11742:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11744:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11764:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11767:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11776:theorem oppositeBlocker_outsideDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11786:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11789:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11849:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11852:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11855:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11858:      (ATailFiveCenterDeletionBoundary.fiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12289:  have hcommonRadius :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12290:      dist (H.centerAt source.1 source.2) commonOutside = K.radius :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12291:    K.support_eq_radius commonOutside hcommonSupport
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12293:  exact hoppositeOff (hcross.trans hcommonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12317:      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) commonOutside ≠ K.radius :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12318:    K.dist_ne_radius_of_mem_A_not_mem_support hcommonA
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12327:  exact hcommonOff (hcross.trans hoppositeRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12479:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12485:      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12554:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12558:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12560:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12625:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12630:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12632:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12650:      ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12668:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12673:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12675:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12714:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12719:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12721:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12811:It retains the shared radius, both complete source witnesses, mutual row
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12815:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12820:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12822:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13648:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13652:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13654:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13669:abbrev SixCenterDeletionSurvivalPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13671:  ATailFirstFiberOverlapDescent.FiveCenterDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13678:/-- A one-sided cap-source deletion synchronizes the surviving source row
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13682:theorem sixCenterDeletionSurvivalPacket_of_oneSided
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13687:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13688:    SixCenterDeletionSurvivalPacket (D := D) source'.1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13693:      SixCenterDeletionSurvivalPacket (D := D) source.1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13809:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13811:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13819:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13821:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13831:The second source, common-radius, and one-sided-deletion refinements are not
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13833:theorem false_of_twoCapSources_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13835:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13839:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13841:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13845:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13862:    {commonRadius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13866:      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13868:      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13872:  rcases mutualCrossMembership_or_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13898:                    (S.oppositeVertexByIndex S.oppIndex1) commonRadius ∩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13905:                    (S.oppositeVertexByIndex S.oppIndex1) commonRadius ∩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13915:            equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13932:  · exact false_of_twoCapSources_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14030:    S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14085:private theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14187:            S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14189:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14194:            S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14208:            S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14215:        S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14220:            S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14227:        S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15026:    (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15552:          (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15568:          (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15815:                S.capInteriorByIndex S.oppIndex1).card →
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15819:      ⟨commonRadius, hcommonCard, hcommonNeRadius, hcommonNeρ⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15820:    rcases exists_two_firstFiberCapSourceWitness_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15821:        P Pρ T hcapSource.1 commonRadius hcommonCard
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15822:        hcommonNeRadius hcommonNeρ with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15923:              S.capInteriorByIndex i)).card) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16073:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16076:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16124:              S.capInteriorByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16203:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16206:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16216:            S.capInteriorByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16369:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16383:pair on each radius has a common actual blocker.  Every weaker second-radius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16411:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16414:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16425:              S.capInteriorByIndex i)).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16440:chosen collision source whose deletion also survives at the first apex and
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16481:        S.capInteriorByIndex S.oppIndex1).card = 2)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16507:          S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16510:      S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16516:          S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16614:      equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16685:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16706:        (S.capInteriorByIndex S.oppIndex1).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16708:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16724:    exists_distinctRadius_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16770:              S.capInteriorByIndex S.oppIndex1).card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16772:          nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16778:              S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16801:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16805:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16848:        S.capInteriorByIndex S.oppIndex1).card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16850:      nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16868:          S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16876:          S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:17016:            S.capInteriorByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:155:/-- The omitted physical successor is exactly a cross-deletion survivor at
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:175:  exact (cross_deletion_survives_iff_not_mem_selected_support H _).mpr hwOutside
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:154:    simpa [T] using R.unused.radiusClass_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:188:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:193:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.FullRadiusSemantics
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:207:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:374:        S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:378:      (S.capInteriorByIndex S.oppIndex1).card + 2 =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:380:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:383:    have hIge : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.FullRadiusSemantics
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.FullRadiusAtoms
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:229:/-- After deleting `q`, there remains a four-point same-radius witness at
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:434:#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.fullRadiusValuation_prefix
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:177:/-- A source-center map rules out every decoded four-class surviving deletion
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.FullRadiusSemantics
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:62:/-- A true local-four atom survives deletion of any label outside its support. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:150:        same_radius := ?_ }⟩
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/LivePacket.lean:33:    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:135:    (S.capInteriorByIndex S.oppIndex1).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:142:  have hinterior := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:245:      (S.capInteriorByIndex S.surplusIdx).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:246:    have h := capInteriorByIndex_card_add_two S S.surplusIdx
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:250:      (S.capInteriorByIndex S.oppIndex1).card = 3 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:253:      (S.capInteriorByIndex S.oppIndex2).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:254:    have h := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Families.lean:12:Each entry contains two negative radius-equality literals at a common center
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:97:  have hcap_card : (S.capInteriorByIndex S.oppIndex1).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:98:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:103:        S.capInteriorByIndex S.oppIndex1).card = 2 := by

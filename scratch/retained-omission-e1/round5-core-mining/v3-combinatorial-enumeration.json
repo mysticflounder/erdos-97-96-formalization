@@ -1,0 +1,24 @@
+{
+  "apex_cover_failures": {
+    "12_in_R1_union_R2": 0,
+    "13_in_R0_union_R2": 0,
+    "14_in_R0_union_R1": 0
+  },
+  "branch_arc_cover_failures": {
+    "K7": 0,
+    "K8": 0
+  },
+  "branch_counts": {
+    "R1_has_12": 469,
+    "R2_has_12": 469
+  },
+  "full_set_system_witnesses": 0,
+  "k7_feasible_rich_triples": 388,
+  "k8_feasible_rich_triples": 388,
+  "rich_options_per_apex": [
+    45,
+    45,
+    45
+  ],
+  "rich_triples_after_pair_cuts": 857
+}

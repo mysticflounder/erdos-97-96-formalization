@@ -1,0 +1,42 @@
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9073:  | sourceRowOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9129:abbrev FreshThirdCrossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9145:  ¬ FreshThirdCrossRowHit P Pρ firstSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9146:    ¬ FreshThirdCrossRowHit P Pρ secondSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9151:inductive FreshThirdCapSourceNonHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9162:  | sourceRowOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9179:theorem nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9183:    (hnot : ¬ FreshThirdCrossRowHit P Pρ source Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9184:    FreshThirdCapSourceNonHit P Pρ source Q := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9188:  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9189:      exact .sourceRowOmission deleted deleted_eq deleted_not_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9207:      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9209:      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9210:  | equalCrossRowCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9211:      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9212:      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9231:  by_cases hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9232:  · by_cases hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9236:      · exact .equalCrossRowCenters hfirst hsecond hcenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9238:        (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9241:      (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9247:structure FreshThirdEqualCenterExactFourRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9269:theorem freshThirdEqualCenterExactFourRow_of_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9272:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9273:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9277:    FreshThirdEqualCenterExactFourRow P Pρ C Q := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9395:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9396:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9409:      freshThirdEqualCenterExactFourRow_of_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9439:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9440:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9447:    freshThirdEqualCenterExactFourRow_of_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9502:theorem false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9505:    (hfirst : FreshThirdCrossRowHit P Pρ firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9506:    (hsecond : FreshThirdCrossRowHit P Pρ secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9669:      · exact ⟨.sourceRowOmission Q.source₂ (Or.inr rfl) hsource₂
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9672:    · exact ⟨.sourceRowOmission Q.source₁ (Or.inl rfl) hsource₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9724:      FreshThirdCrossRowHit P Pρ C.firstSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9725:        FreshThirdCrossRowHit P Pρ C.secondSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9759:          FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9761:            FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9795:        false_of_two_freshThirdCrossRowHits_distinctCenters

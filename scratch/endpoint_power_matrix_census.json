@@ -1,0 +1,3876 @@
+{
+  "schema": "endpoint-power-matrix-census-v2",
+  "legend": {
+    "Z": "certified zero",
+    "NZ": "certified nonzero",
+    "U": "unknown"
+  },
+  "method": {
+    "direct": "all 5-row/5-column subsets; unique possible matching; sole matching all NZ",
+    "difference": "four circle rows minus one common reference row; difference rank <= 3; zero for Z-Z or identical physical circles, and nonzero only Z-NZ",
+    "anonymous": "only the two overlap-forced off-shell witness roles are admitted, and only beside named points from which they are certified distinct; cross-arm witnesses are never used together",
+    "physical_circle_equalities": [
+      "erase_M_at_A = Sigma_A",
+      "erase_K_at_B = Sigma_B"
+    ],
+    "overlap_consequences": [
+      "at least two erase_M_at_O support points are off Sigma_A",
+      "at least two erase_K_at_O support points are off Sigma_B"
+    ],
+    "selected_subset_warning": "the erased O-centered rows are selected four-subsets, so absence from them is not off-circle evidence"
+  },
+  "regimes": {
+    "labels_unmerged": {
+      "named_points": [
+        "O",
+        "C",
+        "M",
+        "K",
+        "A",
+        "B",
+        "J",
+        "X"
+      ],
+      "facts": {
+        "O_retained": {
+          "O": "NZ",
+          "C": "Z",
+          "M": "Z",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "Z",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_A": {
+          "O": "U",
+          "C": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A": "NZ",
+          "B": "U",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_B": {
+          "O": "U",
+          "C": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A": "U",
+          "B": "NZ",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        },
+        "Sigma_X": {
+          "O": "U",
+          "C": "U",
+          "M": "U",
+          "K": "Z",
+          "A": "U",
+          "B": "U",
+          "J": "Z",
+          "X": "NZ",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_O": {
+          "O": "NZ",
+          "C": "U",
+          "M": "U",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "Z",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_A": {
+          "O": "U",
+          "C": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A": "NZ",
+          "B": "U",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_K_at_O": {
+          "O": "NZ",
+          "C": "U",
+          "M": "U",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "Z"
+        },
+        "erase_K_at_B": {
+          "O": "U",
+          "C": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A": "U",
+          "B": "NZ",
+          "J": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        }
+      },
+      "direct_5x5": {
+        "all": {
+          "submatrices": 3248,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "named_only": {
+          "submatrices": 3136,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "minimum_completion": {
+          "total_new_facts": 5,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C",
+            "J"
+          ],
+          "topological_order": [
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "Sigma_A",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "U"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "Sigma_X",
+              "C",
+              "prove off-circle / power nonzero"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_A",
+              "J",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 5,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C",
+            "J"
+          ],
+          "topological_order": [
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "Sigma_A",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "U"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "Sigma_X",
+              "C",
+              "prove off-circle / power nonzero"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_A",
+              "J",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "difference_4x4_common_base": {
+        "all": {
+          "submatrices": 21840,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "named_only": {
+          "submatrices": 19600,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "minimum_completion": {
+          "total_new_facts": 5,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C",
+            "M",
+            "K"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "K",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "C",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "O_retained",
+              "K",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "M",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 5,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C",
+            "M",
+            "K"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "K",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "C",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "O_retained",
+              "K",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "M",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "possible_O_centered_radius_equalities": {
+        "pairwise_unidentified": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 3248,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 3136,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "U"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "Sigma_X",
+                "C",
+                "prove off-circle / power nonzero"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 21840,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 19600,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_M_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 3248,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 3136,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_K_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_K_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "U"
+              ],
+              [
+                "erase_K_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "Sigma_X",
+                "C",
+                "prove off-circle / power nonzero"
+              ],
+              [
+                "erase_K_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_K_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 21840,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 19600,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 3248,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 3136,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "U"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "Sigma_X",
+                "C",
+                "prove off-circle / power nonzero"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 21840,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 19600,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "erase_M_at_O_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 3248,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 3136,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "U"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "Sigma_X",
+                "C",
+                "prove off-circle / power nonzero"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 21840,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 19600,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "all_three_O_centered_equal": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 3248,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 3136,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": null,
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 21840,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 19600,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        }
+      }
+    },
+    "A_eq_J": {
+      "named_points": [
+        "O",
+        "C",
+        "M",
+        "K",
+        "A=J",
+        "B",
+        "X"
+      ],
+      "facts": {
+        "O_retained": {
+          "O": "NZ",
+          "C": "Z",
+          "M": "Z",
+          "K": "U",
+          "A=J": "Z",
+          "B": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_A": {
+          "O": "U",
+          "C": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A=J": "NZ",
+          "B": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_B": {
+          "O": "U",
+          "C": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A=J": "U",
+          "B": "NZ",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        },
+        "Sigma_X": {
+          "O": "U",
+          "C": "U",
+          "M": "U",
+          "K": "Z",
+          "A=J": "Z",
+          "B": "U",
+          "X": "NZ",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_O": {
+          "O": "NZ",
+          "C": "U",
+          "M": "U",
+          "K": "U",
+          "A=J": "U",
+          "B": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "Z",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_A": {
+          "O": "U",
+          "C": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A=J": "NZ",
+          "B": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_K_at_O": {
+          "O": "NZ",
+          "C": "U",
+          "M": "U",
+          "K": "U",
+          "A=J": "U",
+          "B": "U",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "Z"
+        },
+        "erase_K_at_B": {
+          "O": "U",
+          "C": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A=J": "U",
+          "B": "NZ",
+          "X": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        }
+      },
+      "direct_5x5": {
+        "all": {
+          "submatrices": 1288,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "named_only": {
+          "submatrices": 1176,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "minimum_completion": {
+          "total_new_facts": 4,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "A=J",
+            "K",
+            "X",
+            "C"
+          ],
+          "topological_order": [
+            "erase_M_at_O",
+            "Sigma_B",
+            "Sigma_A",
+            "O_retained",
+            "Sigma_X"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "A=J",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "C",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "Sigma_X",
+              "O",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "prove on-circle / power zero"
+            ],
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 4,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "A=J",
+            "K",
+            "X",
+            "C"
+          ],
+          "topological_order": [
+            "erase_M_at_O",
+            "Sigma_B",
+            "Sigma_A",
+            "O_retained",
+            "Sigma_X"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "A=J",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "C",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "Sigma_X",
+              "O",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "prove on-circle / power zero"
+            ],
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "difference_4x4_common_base": {
+        "all": {
+          "submatrices": 12040,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "named_only": {
+          "submatrices": 9800,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "minimum_completion": {
+          "total_new_facts": 4,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C",
+            "K",
+            "A=J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "A=J",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "K",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "C",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "O_retained",
+              "K",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 4,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C",
+            "K",
+            "A=J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "A=J",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "K",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "C",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "O_retained",
+              "K",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "C",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "C",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "possible_O_centered_radius_equalities": {
+        "pairwise_unidentified": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "A=J",
+              "K",
+              "X",
+              "C"
+            ],
+            "topological_order": [
+              "erase_M_at_O",
+              "Sigma_B",
+              "Sigma_A",
+              "O_retained",
+              "Sigma_X"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "A=J",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "C",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "C",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "O",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_M_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_K_at_O"
+            ],
+            "points": [
+              "O",
+              "A=J",
+              "K",
+              "X",
+              "C"
+            ],
+            "topological_order": [
+              "erase_K_at_O",
+              "Sigma_B",
+              "Sigma_A",
+              "O_retained",
+              "Sigma_X"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "A=J",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "X",
+                "NZ"
+              ],
+              [
+                "erase_K_at_O",
+                "C",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_K_at_O",
+                "C",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "O",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "A=J",
+              "K",
+              "X",
+              "C"
+            ],
+            "topological_order": [
+              "erase_M_at_O",
+              "Sigma_B",
+              "Sigma_A",
+              "O_retained",
+              "Sigma_X"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "A=J",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "C",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "C",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "O",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "erase_M_at_O_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "A=J",
+              "K",
+              "X",
+              "C"
+            ],
+            "topological_order": [
+              "erase_M_at_O",
+              "Sigma_B",
+              "Sigma_A",
+              "O_retained",
+              "Sigma_X"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "A=J",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "C",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "C",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "O",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_X",
+                "C",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "all_three_O_centered_equal": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": null,
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        }
+      }
+    },
+    "X_eq_C": {
+      "named_points": [
+        "O",
+        "C=X",
+        "M",
+        "K",
+        "A",
+        "B",
+        "J"
+      ],
+      "facts": {
+        "O_retained": {
+          "O": "NZ",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "Z",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_A": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A": "NZ",
+          "B": "U",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_B": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A": "U",
+          "B": "NZ",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        },
+        "Sigma_X": {
+          "O": "U",
+          "C=X": "NZ",
+          "M": "U",
+          "K": "Z",
+          "A": "U",
+          "B": "U",
+          "J": "Z",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_O": {
+          "O": "NZ",
+          "C=X": "U",
+          "M": "U",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "Z",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_A": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A": "NZ",
+          "B": "U",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_K_at_O": {
+          "O": "NZ",
+          "C=X": "U",
+          "M": "U",
+          "K": "U",
+          "A": "U",
+          "B": "U",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "Z"
+        },
+        "erase_K_at_B": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A": "U",
+          "B": "NZ",
+          "J": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        }
+      },
+      "direct_5x5": {
+        "all": {
+          "submatrices": 1288,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "named_only": {
+          "submatrices": 1176,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "minimum_completion": {
+          "total_new_facts": 4,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C=X",
+            "J"
+          ],
+          "topological_order": [
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "Sigma_A",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C=X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_A",
+              "J",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 4,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C=X",
+            "J"
+          ],
+          "topological_order": [
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "Sigma_A",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C=X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "Sigma_A",
+              "J",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "difference_4x4_common_base": {
+        "all": {
+          "submatrices": 12040,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "named_only": {
+          "submatrices": 9800,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "minimum_completion": {
+          "total_new_facts": 4,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C=X",
+            "M",
+            "J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "C=X",
+              "NZ"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "J",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "Sigma_A",
+              "J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 4,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C=X",
+            "M",
+            "J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "C=X",
+              "NZ"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "J",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "Sigma_A",
+              "J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "O",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "J",
+              "NZ"
+            ]
+          ],
+          "named_only": true
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "possible_O_centered_radius_equalities": {
+        "pairwise_unidentified": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_M_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_K_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_K_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_K_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_K_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_K_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "erase_M_at_O_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 4,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "J"
+            ],
+            "topological_order": [
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "Sigma_A",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "Sigma_A",
+                "J",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "all_three_O_centered_equal": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 1288,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 1176,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": null,
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 12040,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 9800,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        }
+      }
+    },
+    "A_eq_J_and_X_eq_C": {
+      "named_points": [
+        "O",
+        "C=X",
+        "M",
+        "K",
+        "A=J",
+        "B"
+      ],
+      "facts": {
+        "O_retained": {
+          "O": "NZ",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "U",
+          "A=J": "Z",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_A": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A=J": "NZ",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "Sigma_B": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A=J": "U",
+          "B": "NZ",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        },
+        "Sigma_X": {
+          "O": "U",
+          "C=X": "NZ",
+          "M": "U",
+          "K": "Z",
+          "A=J": "Z",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_O": {
+          "O": "NZ",
+          "C=X": "U",
+          "M": "U",
+          "K": "U",
+          "A=J": "U",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "Z",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_M_at_A": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "NZ",
+          "K": "Z",
+          "A=J": "NZ",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "NZ",
+          "anon_on_erase_K_at_O_off_Sigma_B": "U"
+        },
+        "erase_K_at_O": {
+          "O": "NZ",
+          "C=X": "U",
+          "M": "U",
+          "K": "U",
+          "A=J": "U",
+          "B": "U",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "Z"
+        },
+        "erase_K_at_B": {
+          "O": "U",
+          "C=X": "Z",
+          "M": "Z",
+          "K": "NZ",
+          "A=J": "U",
+          "B": "NZ",
+          "anon_on_erase_M_at_O_off_Sigma_A": "U",
+          "anon_on_erase_K_at_O_off_Sigma_B": "NZ"
+        }
+      },
+      "direct_5x5": {
+        "all": {
+          "submatrices": 448,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "named_only": {
+          "submatrices": 336,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 4
+        },
+        "minimum_completion": {
+          "total_new_facts": 5,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C=X",
+            "A=J"
+          ],
+          "topological_order": [
+            "Sigma_A",
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C=X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "A=J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "A=J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "Sigma_X",
+              "M",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "M",
+              "prove on-circle / power zero"
+            ],
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 5,
+          "rows": [
+            "O_retained",
+            "Sigma_A",
+            "Sigma_B",
+            "Sigma_X",
+            "erase_M_at_O"
+          ],
+          "points": [
+            "O",
+            "M",
+            "K",
+            "C=X",
+            "A=J"
+          ],
+          "topological_order": [
+            "Sigma_A",
+            "Sigma_B",
+            "erase_M_at_O",
+            "Sigma_X",
+            "O_retained"
+          ],
+          "matching": [
+            [
+              "O_retained",
+              "O",
+              "NZ"
+            ],
+            [
+              "Sigma_A",
+              "M",
+              "NZ"
+            ],
+            [
+              "Sigma_B",
+              "K",
+              "NZ"
+            ],
+            [
+              "Sigma_X",
+              "C=X",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "A=J",
+              "U"
+            ]
+          ],
+          "nonzero_upgrades": [
+            [
+              "erase_M_at_O",
+              "A=J",
+              "prove off-circle / power nonzero"
+            ]
+          ],
+          "zero_upgrades": [
+            [
+              "Sigma_X",
+              "M",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "M",
+              "prove on-circle / power zero"
+            ],
+            [
+              "O_retained",
+              "K",
+              "prove on-circle / power zero"
+            ],
+            [
+              "erase_M_at_O",
+              "K",
+              "prove on-circle / power zero"
+            ]
+          ]
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "difference_4x4_common_base": {
+        "all": {
+          "submatrices": 6440,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "named_only": {
+          "submatrices": 4200,
+          "unique_possible": 0,
+          "certificates": 0,
+          "minimum_possible_matchings": 0,
+          "minimum_positive_possible_matchings": 2
+        },
+        "minimum_completion": {
+          "total_new_facts": 5,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C=X",
+            "M",
+            "A=J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "C=X",
+              "NZ"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "A=J",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "Sigma_B",
+              "A=J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "O",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "M",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "A=J",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "M",
+              "Z"
+            ]
+          ],
+          "named_only": true
+        },
+        "minimum_named_only_completion": {
+          "total_new_facts": 5,
+          "differences": [
+            [
+              "Sigma_A",
+              "O_retained"
+            ],
+            [
+              "Sigma_B",
+              "O_retained"
+            ],
+            [
+              "Sigma_X",
+              "O_retained"
+            ],
+            [
+              "erase_M_at_O",
+              "O_retained"
+            ]
+          ],
+          "points": [
+            "O",
+            "C=X",
+            "M",
+            "A=J"
+          ],
+          "matching": [
+            [
+              [
+                "Sigma_A",
+                "O_retained"
+              ],
+              "M",
+              "NZ"
+            ],
+            [
+              [
+                "Sigma_B",
+                "O_retained"
+              ],
+              "O",
+              "U"
+            ],
+            [
+              [
+                "Sigma_X",
+                "O_retained"
+              ],
+              "C=X",
+              "NZ"
+            ],
+            [
+              [
+                "erase_M_at_O",
+                "O_retained"
+              ],
+              "A=J",
+              "U"
+            ]
+          ],
+          "primitive_additions": [
+            [
+              "Sigma_B",
+              "A=J",
+              "Z"
+            ],
+            [
+              "Sigma_B",
+              "O",
+              "Z"
+            ],
+            [
+              "Sigma_X",
+              "M",
+              "Z"
+            ],
+            [
+              "erase_M_at_O",
+              "A=J",
+              "NZ"
+            ],
+            [
+              "erase_M_at_O",
+              "M",
+              "Z"
+            ]
+          ],
+          "named_only": true
+        },
+        "witness_completion_below_named_minimum": null,
+        "closest": []
+      },
+      "possible_O_centered_radius_equalities": {
+        "pairwise_unidentified": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 448,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 336,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "A=J"
+            ],
+            "topological_order": [
+              "Sigma_A",
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "A=J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "A=J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 6440,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 4200,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_M_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 448,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 336,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_K_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "A=J"
+            ],
+            "topological_order": [
+              "Sigma_A",
+              "Sigma_B",
+              "erase_K_at_O",
+              "Sigma_X",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_K_at_O",
+                "A=J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_K_at_O",
+                "A=J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_K_at_O",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_K_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 6440,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 4200,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "O_retained_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 448,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 336,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "A=J"
+            ],
+            "topological_order": [
+              "Sigma_A",
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "A=J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "A=J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 6440,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 4200,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "erase_M_at_O_eq_erase_K_at_O": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 448,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            },
+            "named_only": {
+              "submatrices": 336,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 4
+            }
+          },
+          "minimum_named_only_direct_completion": {
+            "total_new_facts": 5,
+            "rows": [
+              "O_retained",
+              "Sigma_A",
+              "Sigma_B",
+              "Sigma_X",
+              "erase_M_at_O"
+            ],
+            "points": [
+              "O",
+              "M",
+              "K",
+              "C=X",
+              "A=J"
+            ],
+            "topological_order": [
+              "Sigma_A",
+              "Sigma_B",
+              "erase_M_at_O",
+              "Sigma_X",
+              "O_retained"
+            ],
+            "matching": [
+              [
+                "O_retained",
+                "O",
+                "NZ"
+              ],
+              [
+                "Sigma_A",
+                "M",
+                "NZ"
+              ],
+              [
+                "Sigma_B",
+                "K",
+                "NZ"
+              ],
+              [
+                "Sigma_X",
+                "C=X",
+                "NZ"
+              ],
+              [
+                "erase_M_at_O",
+                "A=J",
+                "U"
+              ]
+            ],
+            "nonzero_upgrades": [
+              [
+                "erase_M_at_O",
+                "A=J",
+                "prove off-circle / power nonzero"
+              ]
+            ],
+            "zero_upgrades": [
+              [
+                "Sigma_X",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "M",
+                "prove on-circle / power zero"
+              ],
+              [
+                "O_retained",
+                "K",
+                "prove on-circle / power zero"
+              ],
+              [
+                "erase_M_at_O",
+                "K",
+                "prove on-circle / power zero"
+              ]
+            ]
+          },
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 6440,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 4200,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        },
+        "all_three_O_centered_equal": {
+          "consistent": true,
+          "direct_5x5": {
+            "all": {
+              "submatrices": 448,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 336,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          },
+          "minimum_named_only_direct_completion": null,
+          "witness_direct_completion_below_named_minimum": null,
+          "difference_completion_below_direct_minimum": null,
+          "difference_4x4_common_base": {
+            "all": {
+              "submatrices": 6440,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            },
+            "named_only": {
+              "submatrices": 4200,
+              "unique_possible": 0,
+              "certificates": 0,
+              "minimum_possible_matchings": 0,
+              "minimum_positive_possible_matchings": 2
+            }
+          }
+        }
+      }
+    }
+  }
+}

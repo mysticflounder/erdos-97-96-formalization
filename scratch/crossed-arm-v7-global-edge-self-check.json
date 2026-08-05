@@ -1,0 +1,14 @@
+{
+  "cross_center_transitive_chain_checked": true,
+  "degenerate_E_branches_checked": true,
+  "lean_declaration": "Problem97.Census554.EqualityCore.EdgeClosure.sound",
+  "mutual_triangle_transport_entailed": true,
+  "n17_E_biconditional_count": 2040,
+  "n17_undirected_edge_count": 136,
+  "probe_E_biconditional_count": 60,
+  "probe_undirected_edge_count": 15,
+  "probe_vertex_count": 6,
+  "radius_partition_entailed": true,
+  "status": "GLOBAL_EDGE_EQUALITY_OK",
+  "unrelated_comparison_remains_free": true
+}

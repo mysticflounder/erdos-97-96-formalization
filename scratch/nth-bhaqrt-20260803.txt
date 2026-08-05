@@ -1,0 +1,7 @@
+theorem false_of_twoCapSources_freshThirdBlockerFiber_core
+
+The fresh-third cap-source core retains either both cap-eight sources and
+their independently normalized positive interactions with the fresh blocker
+fiber, or the stronger equal-blocker/all-endpoint-omission packet produced by
+the first-fiber descent. It removes the source-clean three-center arm before
+entering the strict residual.

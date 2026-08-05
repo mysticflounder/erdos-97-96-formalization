@@ -1,0 +1,455 @@
+{
+  "cases": [
+    {
+      "case_id": "fresh_DDD_k0_d2_f1",
+      "completed_count": 489,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 490,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k0_d2_f3",
+      "completed_count": 501,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 502,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f1",
+      "completed_count": 493,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 494,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f2",
+      "completed_count": 509,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 510,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f0",
+      "completed_count": 484,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 484,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f2",
+      "completed_count": 500,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 501,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f1",
+      "completed_count": 491,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 492,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f3",
+      "completed_count": 492,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 493,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f1",
+      "completed_count": 497,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 498,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f2",
+      "completed_count": 489,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 490,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f0",
+      "completed_count": 531,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 532,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f2",
+      "completed_count": 489,
+      "completed_violating_count": 0,
+      "cut_count": 0,
+      "profiles": "DDD",
+      "proposal_count": 490,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_SDD_k0_d2_f1",
+      "completed_count": 513,
+      "completed_violating_count": 1,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 514,
+      "violating_count": 1
+    },
+    {
+      "case_id": "fresh_SDD_k0_d2_f3",
+      "completed_count": 499,
+      "completed_violating_count": 2,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 499,
+      "violating_count": 2
+    },
+    {
+      "case_id": "fresh_SDD_k0_d3_f1",
+      "completed_count": 506,
+      "completed_violating_count": 1,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 507,
+      "violating_count": 1
+    },
+    {
+      "case_id": "fresh_SDD_k0_d3_f2",
+      "completed_count": 509,
+      "completed_violating_count": 1,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 510,
+      "violating_count": 1
+    },
+    {
+      "case_id": "fresh_SDD_k1_d3_f0",
+      "completed_count": 506,
+      "completed_violating_count": 3,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 507,
+      "violating_count": 3
+    },
+    {
+      "case_id": "fresh_SDD_k1_d3_f2",
+      "completed_count": 528,
+      "completed_violating_count": 3,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 528,
+      "violating_count": 3
+    },
+    {
+      "case_id": "fresh_SDD_k2_d0_f1",
+      "completed_count": 503,
+      "completed_violating_count": 1,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 504,
+      "violating_count": 1
+    },
+    {
+      "case_id": "fresh_SDD_k2_d0_f3",
+      "completed_count": 536,
+      "completed_violating_count": 3,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 536,
+      "violating_count": 3
+    },
+    {
+      "case_id": "fresh_SDD_k3_d0_f1",
+      "completed_count": 507,
+      "completed_violating_count": 1,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 508,
+      "violating_count": 1
+    },
+    {
+      "case_id": "fresh_SDD_k3_d0_f2",
+      "completed_count": 510,
+      "completed_violating_count": 0,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 511,
+      "violating_count": 0
+    },
+    {
+      "case_id": "fresh_SDD_k3_d1_f0",
+      "completed_count": 519,
+      "completed_violating_count": 5,
+      "cut_count": 12,
+      "profiles": "SDD",
+      "proposal_count": 520,
+      "violating_count": 5
+    }
+  ],
+  "claim_scope": "validated live-prefix efficiency census; not closure",
+  "completed_count": 11601,
+  "completed_status_distribution": {
+    "unsat": 11601
+  },
+  "completed_violating_count": 21,
+  "distinct_cut_hit_count": 9,
+  "journal_count": 23,
+  "kind": "v30_s_profile_mutual_class_cut_census",
+  "most_frequent_cuts": [
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 2,
+      "occurrences": 5,
+      "second_center": 1,
+      "signed_antecedent": [
+        {
+          "bool": "k4_2_12",
+          "value": true
+        },
+        {
+          "bool": "k4_2_1",
+          "value": true
+        },
+        {
+          "bool": "k4_1_2",
+          "value": true
+        },
+        {
+          "bool": "k4_1_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 1,
+      "occurrences": 4,
+      "second_center": 2,
+      "signed_antecedent": [
+        {
+          "bool": "k4_1_12",
+          "value": true
+        },
+        {
+          "bool": "k4_1_2",
+          "value": true
+        },
+        {
+          "bool": "k4_2_1",
+          "value": true
+        },
+        {
+          "bool": "k4_2_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 2,
+      "occurrences": 4,
+      "second_center": 3,
+      "signed_antecedent": [
+        {
+          "bool": "k4_2_12",
+          "value": true
+        },
+        {
+          "bool": "k4_2_3",
+          "value": true
+        },
+        {
+          "bool": "k4_3_2",
+          "value": true
+        },
+        {
+          "bool": "k4_3_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 1,
+      "occurrences": 2,
+      "second_center": 0,
+      "signed_antecedent": [
+        {
+          "bool": "k4_1_12",
+          "value": true
+        },
+        {
+          "bool": "k4_1_0",
+          "value": true
+        },
+        {
+          "bool": "k4_0_1",
+          "value": true
+        },
+        {
+          "bool": "k4_0_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 3,
+      "occurrences": 2,
+      "second_center": 1,
+      "signed_antecedent": [
+        {
+          "bool": "k4_3_12",
+          "value": true
+        },
+        {
+          "bool": "k4_3_1",
+          "value": true
+        },
+        {
+          "bool": "k4_1_3",
+          "value": true
+        },
+        {
+          "bool": "k4_1_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 0,
+      "occurrences": 2,
+      "second_center": 3,
+      "signed_antecedent": [
+        {
+          "bool": "k4_0_12",
+          "value": true
+        },
+        {
+          "bool": "k4_0_3",
+          "value": true
+        },
+        {
+          "bool": "k4_3_0",
+          "value": true
+        },
+        {
+          "bool": "k4_3_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 3,
+      "occurrences": 1,
+      "second_center": 0,
+      "signed_antecedent": [
+        {
+          "bool": "k4_3_12",
+          "value": true
+        },
+        {
+          "bool": "k4_3_0",
+          "value": true
+        },
+        {
+          "bool": "k4_0_3",
+          "value": true
+        },
+        {
+          "bool": "k4_0_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 0,
+      "occurrences": 1,
+      "second_center": 2,
+      "signed_antecedent": [
+        {
+          "bool": "k4_0_12",
+          "value": true
+        },
+        {
+          "bool": "k4_0_2",
+          "value": true
+        },
+        {
+          "bool": "k4_2_0",
+          "value": true
+        },
+        {
+          "bool": "k4_2_12",
+          "value": false
+        }
+      ]
+    },
+    {
+      "apex": 12,
+      "apex_index": 0,
+      "first_center": 2,
+      "occurrences": 1,
+      "second_center": 0,
+      "signed_antecedent": [
+        {
+          "bool": "k4_2_12",
+          "value": true
+        },
+        {
+          "bool": "k4_2_0",
+          "value": true
+        },
+        {
+          "bool": "k4_0_2",
+          "value": true
+        },
+        {
+          "bool": "k4_0_12",
+          "value": false
+        }
+      ]
+    }
+  ],
+  "proposal_count": 11620,
+  "run_dir": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/artifacts-v30-production2/20260802T223925.167839Z-retry-pid61925",
+  "violating_proposal_count": 21,
+  "violation_multiplicity_distribution": {
+    "0": 11599,
+    "1": 20,
+    "2": 1
+  }
+}

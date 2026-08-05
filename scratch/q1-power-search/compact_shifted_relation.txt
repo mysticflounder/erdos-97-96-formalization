@@ -1,0 +1,77 @@
+Q1 crossed-arm power search (characteristic zero, external Singular)
+====================================================================
+
+Target and shift
+----------------
+The computation uses R = QQ[br,bs,bv,bw,x] with bu = bs + x and target
+
+    T = x^8*bv^2*bw.
+
+The six generators are the crossed-arm q1 setup (e2,e5,e7,e8,e9,q1) after
+the same substitution.  `check_substitution.py` reports
+
+    SUBSTITUTION_CHECK=1 generators=6
+
+so the shifted e2 expression is now syntactically identical to the direct
+substitution of the unshifted source.
+
+The shifted q1 generator simplifies to
+
+    q1 = bs*x^2 - bs^2*bw - bs*x*bw - x^2*bw + bs*bw^2.
+
+Variable-order probe
+--------------------
+Each row is `ring variable order : |std(H)|, nonzero lift rows, total C terms,
+max C terms`; all probes have `ORDER_REM_ZERO=1` (T reduces to zero modulo
+the computed standard basis).
+
+    (br,bs,x,bv,bw) : 61, 54, 941, 225
+    (x,br,bs,bv,bw) : 62, 53, 1093, 235
+    (br,x,bs,bv,bw) : 62, 53, 1106, 238
+    (br,bs,bv,bw,x) : 64, 56, 439, 55   [shortest lift observed]
+    (bw,bv,x,bs,br) : 64, 53, 764, 64
+
+The direct corrected script in the original order `(br,bs,x,bv,bw)` gave
+`|std(H)|=61`, `55` nonzero C rows, `1100` C terms, and maximum C support
+`288`; its reduction also returned zero.  This agrees with the independent
+order probe up to the expected basis/lift tie-breaking differences.
+
+Compact C/G component (best order)
+-----------------------------------
+For order `(br,bs,bv,bw,x)`, the 56-row lift satisfies
+
+    T = sum_i C_i G_i,
+
+where `G = std(H)` and `C = lift(G,ideal(T))`.  The shortest individual
+nonzero component is row 46 (one C monomial, 11 G terms):
+
+    C[46] = -41529/256
+
+    G[46] = br*bv^3*bw - 2*br*bv^2*bw - br^2*bs*x
+          + br*bs*bv*x - bs*bv^2*x + br^2*bv - br*bv^2
+          + bv^3 + br*bv*bw + br*bs*x - br*bv.
+
+Another short one-term coefficient is row 10:
+
+    C[10] = 315/128,
+
+    G[10] = br*bs^3 - br*bs*bv^2 + bs^2*bv^2 - bs*bv^3
+          + 2*br*bs^2*x - 3*br*bs*bv*x + br*bv^2*x
+          + 2*bs*bv^2*x - bv^3*x + br*bs*x^2 + bv^2*x^2
+          - 3*br*bs^2 + 3*br^2*bv + 3*br*bs*bv - 3*br*bv^2
+          + 3*bv^3 - bv^2*x - 3*br*bv.
+
+These are components of the full lift, not standalone ideal certificates;
+the remaining 54 nonzero C rows are required for the displayed identity.
+No composition back to the original `(br,bs,bu,bv,bw)` generators was
+completed in this run (the corrected direct shifted composition was stopped
+while it was still expensive).  Consequently this is only an external
+Singular reduction/lift artifact; no Lean or kernel verification is claimed.
+
+Artifacts
+---------
+
+    order_br_bs_bv_bw_x.singular/.out   (best variable order and C rows)
+    order_*.singular/.out              (other order probes)
+    x_subst_qq.singular/.out            (corrected shifted direct run)
+    check_substitution.py               (source-vs-shift consistency check)

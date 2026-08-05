@@ -1,0 +1,13 @@
+2 attic/U2OppCap2Escape.lean
+30 comparator/Challenge.lean
+28 lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+1 lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean
+2 lean/scratch/c-package-bank/FidelityCheck.lean
+1 lean/scratch/e-package-bank/FidelityCheck.lean
+2 scratch/atail-arm1/UniqueArmReduction.lean
+1 scratch/atail-arm2/SI1CardFiveCollisionResidual.lean
+2 scratch/current-freshthird-anchor-slice.lean
+2 scratch/f3-anchor-slice.lean
+50 scratch/live-bank-match/routeBTail_HEAD.lean
+50 scratch/p1b-fidelity-audit/baseline.lean
+56 scratch/p1b-fidelity-audit/candidate.lean

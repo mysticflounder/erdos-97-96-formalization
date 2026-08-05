@@ -1,0 +1,21 @@
+Use the crossed-arm obstacle file in the Problem 97 formalization corpus:
+
+`Erdos9796Proof.P97.ATail.CrossedArmSevenPointEuclideanObstruction` (in `erdos-97-96-formalization-lean`).
+
+The relevant imported incompatibility theorem to close this branch is:
+
+- `normalized_crossedArmSevenPoint_incompatible`: exact indexed statement is “The normalized crossed-arm eleven-equality system is inconsistent.”
+- `crossed_arm_seven_point_collision`: exact indexed statement is “The crossed-arm eleven distance equalities force the anchor labels to coincide.”
+- `crossed_arm_seven_point_collision_of_global_equalities`: exact indexed statement is “Global-equality form of the crossed-arm collision.”
+- `false_of_crossed_arm_seven_point_collision_of_injective`: exact indexed statement is “Injective label realizations cannot contain the crossed-arm equality pattern.”
+- `not_realizes_of_crossedArmSevenPointCollisionCore`: exact indexed statement is “No injective planar realization can realize a row pattern whose equality closure contains a crossed-arm seven-point core.”
+
+So the likely closure pattern is:
+1) derive the crossed-arm equalities (global/eleven-equality form),  
+2) apply `crossed_arm_seven_point_collision_*` to get anchor collision,  
+3) discharge by `false_of_crossed_arm_seven_point_collision_of_injective`/`not_realizes_of_crossedArmSevenPointCollisionCore` in the `Complex`-based geometry context.
+
+I don’t see a more expanded machine-printed formula (like the `br * bs^2 * bw^2 * (bv - 1)^2 = 0` string) in the indexed snippet text, but the theorem family above is exactly the imported seven-point crossed-arm incompatibility chain.
+  handles: BYQF8E CRF96G EKQF9K KVRH2M R19PQQ RSYNPD  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show --lean BYQF8E, nthdegree docs show --lean Y0DTAX, nthdegree docs show --lean FCR894, nthdegree docs search --lean "crossed-arm seven-point collision injective", nthdegree docs show --lean KVRH2M, nthdegree docs show --lean EKQF9K, nthdegree docs show --lean BYQF9E, nthdegree docs show --lean MCFYRG, nthdegree docs search --lean --kind theorem --sig "br * bs''^2 * bw''^2 * (bv - 1)''^2 = 0" "crossed arm", nthdegree docs search --lean --kind theorem --name KVRH2M*, nthdegree docs search --lean --kind theorem --name "crossed_arm*" "crossed", nthdegree docs show --corpus erdos-97-96-formalization-lean KVRH2M, nthdegree docs search --lean "crossed_arm_seven_point_collision_of_global_equalities", nthdegree docs search --lean "br * bs''^2 * bw''^2", nthdegree docs search --lean "anchor labels to coincide", nthdegree docs search --lean "bv - 1", nthdegree docs search --lean "Complex crossed arm", nthdegree docs show --lean CRF96G, nthdegree docs show --lean R19PQQ, nthdegree docs show --lean 0T8APY, nthdegree docs show --lean q??, nthdegree docs search --lean "q1 e2 e5 e7 e8 e9 crossed", nthdegree docs show --lean BYQF8E, nthdegree docs search --lean "Erdos9796Proof.P97.ATail.CrossedArmSevenPointEuclideanObstruction", nthdegree docs search --lean --kind theorem --sig "normalized_crossedArmSevenPoint_incompatible" "crossed", nthdegree docs search --lean --kind theorem --sig "false_of_crossed_arm" "crossed-arm", nthdegree docs search --lean "bv - 1", nthdegree docs search --lean "crossed-arm seven-point", nthdegree docs show --lean RSYNPD, nthdegree docs search --lean "equalities force the two anchor labels to coincide", nthdegree get KVRH2M
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

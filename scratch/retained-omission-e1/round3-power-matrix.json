@@ -1,0 +1,12 @@
+{
+  "schema": "retained-omission-e1-power-pattern-v1",
+  "scope": "literal exact n=15 incidence shadow; discovery only",
+  "model_path": "scratch/triapex-incidence-obstruction/check_model.py",
+  "model_sha256": "c777ebed73e3028c5bbb39664be93ad5f2f35469a3c72027a42204e52d6136f7",
+  "rows": 12,
+  "columns": 15,
+  "minors_tested": 2378376,
+  "search_exhaustive": true,
+  "hit_count": 0,
+  "hits": []
+}

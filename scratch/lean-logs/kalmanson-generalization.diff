@@ -1,0 +1,122 @@
+diff --git a/lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean b/lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean
+index fbe898f2..4a358565 100644
+--- a/lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean
++++ b/lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean
+@@ -26,11 +26,11 @@ diagonals.  The proof reuses the current signed-side line-intersection theorem
+ and the current extreme-pair hull-line theorem. -/
+ theorem exists_mem_openSegment_diagonals_of_ccw
+     {A : Finset ℝ²} (hA : ConvexIndep A)
+-    {phi : Fin A.card → ℝ²}
++    {n : ℕ} {phi : Fin n → ℝ²}
+     (hphi_inj : Function.Injective phi)
+     (hphi_image : Finset.univ.image phi = A)
+     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+-    {ia ib ic id : Fin A.card}
++    {ia ib ic id : Fin n}
+     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
+     ∃ z : ℝ²,
+       z ∈ openSegment ℝ (phi ia) (phi ic) ∧
+@@ -239,11 +239,11 @@ theorem complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
+ strictly convex CCW boundary enumeration. -/
+ theorem dist_add_dist_lt_diagonal_sum_of_ccw
+     {A : Finset ℝ²} (hA : ConvexIndep A)
+-    {phi : Fin A.card → ℝ²}
++    {n : ℕ} {phi : Fin n → ℝ²}
+     (hphi_inj : Function.Injective phi)
+     (hphi_image : Finset.univ.image phi = A)
+     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+-    {ia ib ic id : Fin A.card}
++    {ia ib ic id : Fin n}
+     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
+     dist (phi ib) (phi ic) + dist (phi ia) (phi id) <
+       dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
+@@ -272,11 +272,11 @@ theorem dist_add_dist_lt_diagonal_sum_of_ccw
+ strictly convex CCW boundary enumeration. -/
+ theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+     {A : Finset ℝ²} (hA : ConvexIndep A)
+-    {phi : Fin A.card → ℝ²}
++    {n : ℕ} {phi : Fin n → ℝ²}
+     (hphi_inj : Function.Injective phi)
+     (hphi_image : Finset.univ.image phi = A)
+     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+-    {ia ib ic id : Fin A.card}
++    {ia ib ic id : Fin n}
+     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
+     dist (phi ia) (phi ib) + dist (phi ic) (phi id) <
+       dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
+diff --git a/lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean b/lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean
+index ce61b71e..78ecf75a 100644
+--- a/lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean
++++ b/lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean
+@@ -28,11 +28,11 @@ The first endpoint inequality forces `dist i1 i5 < dist i1 i3`; the second force
+ strict inequality.  The result is independent of the ambient carrier cardinality. -/
+ theorem false_of_two_k2_three_row_triangle
+     {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+-    {boundary : Fin carrier.card → ℝ²}
++    {n : ℕ} {boundary : Fin n → ℝ²}
+     (hboundaryInjective : Function.Injective boundary)
+     (hboundaryImage : Finset.univ.image boundary = carrier)
+     (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+-    {i0 i1 i2 i3 i4 i5 : Fin carrier.card}
++    {i0 i1 i2 i3 i4 i5 : Fin n}
+     (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+     (h34 : i3 < i4) (h45 : i4 < i5)
+     (Row0 : SelectedFourClass carrier (boundary i0))
+@@ -67,5 +67,57 @@ theorem false_of_two_k2_three_row_triangle
+ 
+ #print axioms false_of_two_k2_three_row_triangle
+ 
++/-- Reflected orientation of `false_of_two_k2_three_row_triangle`.
++
++The three row centers still precede the three shared support vertices, but
++the support-triangle orientation is reversed.  The same two strict
++Kalmanson inequalities cancel after substituting the three row equalities.
++This is cardinality-generic; the original proof appeared only behind the
++`Fin 11` p5 triangle-B adapter. -/
++theorem false_of_two_k2_three_row_triangle_reflected
++    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
++    {n : ℕ} {boundary : Fin n → ℝ²}
++    (hboundaryInjective : Function.Injective boundary)
++    (hboundaryImage : Finset.univ.image boundary = carrier)
++    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
++    {i0 i1 i2 i3 i4 i5 : Fin n}
++    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
++    (h34 : i3 < i4) (h45 : i4 < i5)
++    (Row0 : SelectedFourClass carrier (boundary i0))
++    (Row1 : SelectedFourClass carrier (boundary i1))
++    (Row2 : SelectedFourClass carrier (boundary i2))
++    (hi4_mem_Row0 : boundary i4 ∈ Row0.support)
++    (hi5_mem_Row0 : boundary i5 ∈ Row0.support)
++    (hi3_mem_Row1 : boundary i3 ∈ Row1.support)
++    (hi4_mem_Row1 : boundary i4 ∈ Row1.support)
++    (hi3_mem_Row2 : boundary i3 ∈ Row2.support)
++    (hi5_mem_Row2 : boundary i5 ∈ Row2.support) :
++    False := by
++  have hrow0 :
++      dist (boundary i0) (boundary i4) =
++        dist (boundary i0) (boundary i5) :=
++    (Row0.support_eq_radius _ hi4_mem_Row0).trans
++      (Row0.support_eq_radius _ hi5_mem_Row0).symm
++  have hrow1 :
++      dist (boundary i1) (boundary i3) =
++        dist (boundary i1) (boundary i4) :=
++    (Row1.support_eq_radius _ hi3_mem_Row1).trans
++      (Row1.support_eq_radius _ hi4_mem_Row1).symm
++  have hrow2 :
++      dist (boundary i2) (boundary i3) =
++        dist (boundary i2) (boundary i5) :=
++    (Row2.support_eq_radius _ hi3_mem_Row2).trans
++      (Row2.support_eq_radius _ hi5_mem_Row2).symm
++  have hkal0145 :=
++    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
++      hboundaryImage hboundaryCcw h01
++      (h12.trans (h23.trans h34)) h45
++  have hkal1235 :=
++    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
++      hboundaryImage hboundaryCcw h12 h23 (h34.trans h45)
++  linarith
++
++#print axioms false_of_two_k2_three_row_triangle_reflected
++
+ end UniqueFourKalmansonOccurrenceScratch
+ end Problem97

@@ -1,0 +1,1087 @@
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:10:# Seven carrier sources outside two four-point supports
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:22:/-- The point complement of two selected four-point supports has cardinality
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:24:theorem seven_le_outside_two_selected_supports_card
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:27:    7 ≤ (A \ (K₁.support ∪ K₂.support)).card := by
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:31:  have hUnion : (K₁.support ∪ K₂.support).card ≤ 8 := by
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:33:      (K₁.support ∪ K₂.support).card ≤ K₁.support.card + K₂.support.card :=
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:35:      _ = 8 := by rw [K₁.support_card, K₂.support_card]
+lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean:51:      seven_le_outside_two_selected_supports_card hA K₁ K₂
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:17:* an exact four-point class with universal singleton-deletion obstruction
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:245:  · rcases exists_exactFour_firstApex_interiorPair D S hr hfour with
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:71:        (B i).card ≤ K.support.card := by
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:77:        _ = 4 := K.support_card
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:95:    rcases exact_support_surface_of_card_le_four_and_pairCovered
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:127:    have hinter : ∀ i j, i ≠ j → ((B i) ∩ B j).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:133:      have hphysical : (Ki.support ∩ Kj.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:134:        SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:149:    rcases exists_perm_supports_eq_paley B hcardEq hself hone hinter with ⟨σ, hσ⟩
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:203:  rcases exists_seven_sources_outside_two_selected_supports hcard K₁ K₂ with
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:71:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:86:private theorem firstApex_interior_card_ge_three_of_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:202:      firstApex_interior_card_ge_three_of_card_eq_five D S hr hcard
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:217:      firstApex_marginal_inter_secondClass_card_le_one D S r rho
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:20:known centers. The full frontier has one additional exact-card-four escape.
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:13:least two points in the strict interior of the opposite cap.  Together with
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:14:the adjacent-cap one-hit bounds, this makes cap sizes four and five rigid and
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:15:forces a closed cap of size at least six from two distinct K4 radii.
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:27:/-- Deleting the two Moser endpoints from an indexed closed cap gives its
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:29:theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:36:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:40:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:44:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:49:    {n : ℕ} (hinterior : (S.capInteriorByIndex i).card ≤ n) :
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:71:  have hinter : (T ∩ I).card ≤ n :=
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:72:    (Finset.card_le_card Finset.inter_subset_right).trans (by simpa [I] using hinterior)
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:73:  have hsplit := Finset.card_sdiff_add_card_inter T I
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:85:  have hcard := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:96:  rw [S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four i hcap]
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:111:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:128:    simpa [Ir] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr hrFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:130:    simpa [Iρ] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hρ hρFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:159:  have hinter := oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:161:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:183:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:187:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hρ
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:206:/-- Sharp two-radius cap bound.  Two distinct positive radii at a Moser apex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:211:theorem oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:221:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:38:  support_card := hcard
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:36:/-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:58:/-- Two distinct centers in one indexed ordered cap cannot both bisect the
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:60:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:181:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:15:centers must therefore contain at least one source.  In particular, the cap
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:21:then meets the cap in exactly the two collision sources.
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:92:/-- The full parent forces at least one non-surplus cap to have cardinality
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:153:/-- If the first apex and the common blocker lie in one indexed cap, at least
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:154:one actual collision source lies in that cap. -/
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:369:/-- In the localized first-cap case, the common exact four-shell has exactly
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:370:the two collision sources in that cap. -/
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:406:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:88:theorem criticalShell_inter_selectedClass_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:94:  exact criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:101:theorem criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:110:    (criticalShell_inter_selectedClass_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:121:Keeping the two arms visible is essential at the all-large-caps terminal:
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:150:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:154:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁,
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:155:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂⟩
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellMutualOmission.lean:73:  rcases exists_seven_sources_outside_two_selected_supports hcard K₁ K₂ with
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:57:      FirstApexInteriorPairGeometry.exists_exactFour_firstApex_interiorPair
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:20:Every constructor of the retained matching large-cap outcome contains two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:23:one of the two cap-cardinality renewals.
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:236:      (H.selectedAt source₁.1 source₁.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:350:/-- Every large-cap matching outcome yields the same source-tagged two-step
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointCollisionLocalization.lean:168:the strict first-cap interior lies in one of the two adjacent closed caps. -/
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:17:system and two retained strict-cap collision packets.
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:22:  the complete two-point shell-minus-first-cap remainder; both points avoid
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:27:new off-cap source is only known to occur in one of the two canonical shells.
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:261:    Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:267:      P.source₁_mem_A).toCriticalFourShell.support_card] at hsplit
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:288:  have hone : 1 < outside.card := by omega
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:355:critical support locking, and the two exact cap-intersection equations. -/
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:42:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:49:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:53:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:57:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:68:/-- Equal actual blockers for the two strict-cap retained sources. -/
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:116:    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:252:opposite cap; its other two exact shell members lie outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:287:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:295:/-- Three pairwise-distinct points of one strict cap interior force the
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:297:theorem capByIndex_card_ge_five_of_three_distinct_interior
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:308:  have hcard := capInteriorByIndex_card_add_two S k
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:311:/-- A localized collision cap is automatically large: the two sources and
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:340:  exact capByIndex_card_ge_five_of_three_distinct_interior
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:364:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:20:the deleted source's blocker and the first apex bisect the same two strict-cap
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:68:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:193:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:378:        CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:491:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:498:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:502:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:506:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:508:/-- If the large-cap disjunction selects the cap containing the two retained
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:533:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:14:exact four-class, consider sources outside that blocker fiber.  A source is
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:253:  have hinterLe : (K.support ∩ C.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:254:    SelectedFourClass.inter_card_le_two K C hcenterNe
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:266:  have hinterGe : 2 ≤ (K.support ∩ C.support).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:276:  have hinterEq : (K.support ∩ C.support).card = 2 := by omega
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:277:  have hsplit := Finset.card_sdiff_add_card_inter K.support C.support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:278:  have hdiffEq : (K.support \ C.support).card = 2 := by
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:279:    rw [K.support_card, hinterEq] at hsplit
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:307:    _ ≤ (K.support \ C.support).card :=
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:355:    Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:387:    Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:418:/-- Full source-faithful common-deletion ingress produced by exact four.
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:439:theorem nonempty_exactFourPhysicalCommonDeletionIngress_of_source
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:487:theorem nonempty_exactFourPhysicalCommonDeletionIngress
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:508:  rcases nonempty_exactFourPhysicalCommonDeletionIngress_of_source
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:527:/-- Kernel-checked audit boundary: exact four reaches either a robust
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:531:theorem nonempty_exactFourPhysicalConsumerOutcome
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:536:  rcases nonempty_exactFourPhysicalCommonDeletionIngress R with ⟨ingress⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:14:of its two outcomes.  This module consumes the live MEC/cap geometry, the
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:219:    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:290:its two actual non-surplus opposite caps has cardinality at least five. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:13:relation on the finite nonempty set of physical strict-cap members.  Choosing
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:370:theorem successor_actualCriticalSupport_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:379:          (PhysicalVertex.mem_A (K.source i))).toCriticalFourShell.support).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:380:  apply selected_support_inter_card_le_two_of_not_mem_other_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:397:    Finset.card_le_card Finset.inter_subset_left
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:59:    support_card := hTcard
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:75:  have hone : 1 < K.support.card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:76:    rw [K.support_card]
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:178:theorem criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:207:    support_card := hTcard
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:224:  have hInterThree : 3 ≤ (criticalRow.support ∩ firstRow.support).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:227:      _ ≤ (criticalRow.support ∩ firstRow.support).card :=
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:229:  have hInterTwo := SelectedFourClass.inter_card_le_two criticalRow firstRow
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:233:#print axioms criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:52:  support_card := C.B₁_card
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:71:  support_card := C.B₂_card
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:138:  rw [Finset.card_insert_of_notMem hextraNot, K.support_card] at hcard
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:149:  have hsplit := Finset.card_sdiff_add_card_inter C.B₂ C.B₁
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:150:  have hinter : (C.B₂ ∩ C.B₁).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:306:        (H.selectedAt q hq).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:322:in at most two points.  Unlike `SelectedFourClass.inter_card_le_two`, the
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:324:theorem criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:327:    (K.support ∩ SelectedClass A p radius).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:331:      3 ≤ (K.support ∩ SelectedClass A p radius).card := by
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:393:theorem false_of_centerAt_selectedFourClass_inter_card_ge_three
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:400:        K.support).card) :
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:404:        K.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:405:    SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:192:  | exactFourPartition (data : RetainedSourceReturnExactFourPartition W)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:236:  card_four := by rw [K.support_card]
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:241:private theorem dangerousTriple_of_exactFourClass
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:367:      actualShell.support_card actualShell.q_mem_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:432:    dangerousTriple_of_exactFourClass W.firstPacket.center₁_mem_A hradiusPos
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:437:    dangerousTriple_of_exactFourClass W.firstPacket.center₁_mem_A hradiusPos
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:458:      K₁.support_card hfirstPartnerK₁
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:464:      K₂.support_card hsecondPartnerK₂
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:502:      criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:506:      criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:615:      have hcardIdentity := Finset.card_union_add_card_inter I₁ I₂
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:640:    exact ⟨RetainedSourceReturnRadiusOutcome.exactFourPartition {
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:666:  | exactFourPartition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:685:  | exactFourPartition data =>
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:687:      exact ⟨RetainedSourceReturnU5Outcome.exactFourPartition data ingress⟩
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:75:  rw [hsupport, K.support_card]
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:189:    _ ≤ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support.card :=
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:192:      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:203:  have hsplit := Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:18:apex with two distinct support-disjoint exact four-point radius classes.
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:49:    4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:106:  have hinter := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:109:/-- If a strict cap interior has four points, then two distinct K4 radius
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:111:theorem twoRichClassSlices_partition_of_capInterior_card_eq_four
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:117:    (hinterior : (S.capInteriorByIndex i).card = 4) :
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:131:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:134:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:181:theorem selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:195:      oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:202:theorem twoRichClasses_card_eq_four_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:212:    oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:217:theorem selectedFourClass_radius_eq_one_of_twoRichRadii_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:237:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:240:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:243:      S.selectedClass_capInteriorByIndex_card_ge_two hconv i K.radius_pos
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:277:  have hinter := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:282:theorem selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:292:  have hcards := twoRichClasses_card_eq_four_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:294:  rcases selectedFourClass_radius_eq_one_of_twoRichRadii_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:301:    rw [hcards.1, K.support_card]
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:307:    rw [hcards.2, K.support_card]
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:312:`D44` branch has two exact four-classes and the row equals one of them. -/
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:332:      selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:335:    have hcards := twoRichClasses_card_eq_four_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:338:      selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:352:  exact ⟨K, selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:368:  exact ⟨K, selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:418:apex has two distinct exact four-classes. -/
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:442:    have hcards := twoRichClasses_card_eq_four_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:56:      support_card := hTcard
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:108:      support_card := hTcard
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:292:/-- The actual late row of a strict second-cap source contains at most two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:371:      (K.support ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:373:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:393:    criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:527:        (fun z => dist z R.interior_q = dist z R.interior_w)).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:533:/-- At one second-apex radius, at most one strict second-cap-interior source
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:535:theorem interiorPairBad_secondClassInterior_card_le_one
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:648:private theorem firstSecondClass_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:666:    criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:744:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:766:      (firstApex_marginal_inter_secondClass_card_le_one
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:774:          interiorPairBad_secondClassInterior_card_le_one
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:851:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:960:  have hinter : (C ∩ rowAt source).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:965:      Finset.card_sdiff_add_card_inter C (rowAt source)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1083:two disjoint exact four-point rows, and each radius class has at least two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1142:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1150:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1179:      firstSecondClass_inter_card_le_two (rho := rho) R
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1253:        firstSecondClass_inter_card_le_two (rho := rho) R
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1256:        firstSecondClass_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1358:      nonempty_exactFourPhysicalCommonDeletionIngress_of_source
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1392:      nonempty_exactFourPhysicalCommonDeletionIngress_of_source
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:131:private theorem two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:171:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:173:  have hsplit := Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:326:    two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:340:/-- The cap-eight margin leaves two distinct strict-cap sources outside both
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:343:theorem exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:364:    two_le_card_capInterior_sdiff_collisionSources
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:388:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:575:      (H.selectedAt source.1 source.2).toCriticalFourShell.support.card = 4 ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:579:/-- The cap-source row surface is unchanged when the two collision rows are
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:642:    (H.selectedAt source.1 source.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:53:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:60:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:64:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:68:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:97:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:103:    have hsplit := Finset.card_sdiff_add_card_inter K C
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:107:        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:117:  have hIinterCard : (I ∩ K).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:118:    have hle := Finset.card_le_card hIinterSub
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:121:    have hsplit := Finset.card_sdiff_add_card_inter I K
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:216:    simpa [SelectedClass, C.toCriticalFourShell.support_eq] using C.toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:73:  rw [row.support_card] at hcard
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:95:  support_card := R.packet.B₂_card
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:105:theorem frontierCommonDeletionResidual_secondRow_inter_marginal_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:130:      firstApex_marginal_inter_secondClass_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:136:theorem frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:142:      (H.selectedAt F.pair.q F.pair.q_mem_A).toCriticalFourShell.support).card
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:148:  have hinter := SelectedFourClass.inter_card_le_two K₂ Kq
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:170:  have hinterKq : (R.packet.B₂ ∩ Kq.support).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:172:      frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two R
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:173:  have hdiff : 2 ≤ (R.packet.B₂ \ Kq.support).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:175:        (R.packet.B₂ \ Kq.support).card +
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:176:            (R.packet.B₂ ∩ Kq.support).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:177:      rw [Finset.card_sdiff_add_card_inter, R.packet.B₂_card]
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:179:  have hinterT : (R.packet.B₂ ∩ T).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:181:      frontierCommonDeletionResidual_secondRow_inter_marginal_card_le_one R
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:224:theorem nonempty_frontierSecondRowOffConfinementEscape
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:229:    Nonempty (FrontierSecondRowOffConfinementEscape R) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:259:theorem nonempty_parentFrontierSecondRowOffConfinementEscape
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:264:    Nonempty (FrontierSecondRowOffConfinementEscape R.common) :=
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:265:  nonempty_frontierSecondRowOffConfinementEscape R.common
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:444:    Nonempty (FrontierOffRadiusCommonDeletion escape E) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:483:theorem nonempty_frontierEscapeLocationOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:489:    Nonempty (FrontierEscapeLocationOutcome escape) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:522:  rcases nonempty_parentFrontierSecondRowOffConfinementEscape R with ⟨escape⟩
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:523:  rcases nonempty_frontierEscapeLocationOutcome escape with ⟨escapeLocation⟩
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:16:and then return either an ordered three-row core or a same-cap two-center core.
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:17:either the two localized omission cycles align with two named cap-row hits, or
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:82:deleted point is one of the collision sources; K4 survives at the cap-source
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:109:/-- Two distinct centers in one ordered cap cannot both bisect the same
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:111:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:154:/-- The first collision row is exactly its two strict-cap sources together
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:155:with the two named off-cap points carried by the enlarged blocker fiber. -/
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:225:  have hinter : (K.support ∩ L.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:226:    SelectedFourClass.inter_card_le_two K L hcenters
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:233:        P.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:245:          source.2).toCriticalFourShell.support).card +
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:249:            source.2).toCriticalFourShell.support).card =
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:252:    Finset.card_sdiff_add_card_inter _ _
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:257:          source.2).toCriticalFourShell.support).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:264:            source.2).toCriticalFourShell.support).card := by
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:379:two-omission conclusion.  Either the cap-source row hits `P.source₁`; then
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:380:it must omit `P.source₂` and at least one named off-cap point.  Or deleting
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:495:          SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:525:`Pρ.source₁` while omitting their partners and at least one named off-cap
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:638:the two cap-row hits.  This is the fully retained, source-exact residual
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:739:/-- A cap source chosen outside the two collision pairs is not itself a point
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:793:  apply false_of_centerAt_selectedFourClass_inter_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:802:two named off-cap hits plus either one of the original collision sources
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:898:/-- Alternative two-hit terminal.  If the cap-source blocker is localized
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:899:inside the first cap, then the two named off-cap common hits already violate
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:901:theorem false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:951:  exact false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:57:  rw [row.support_card] at hcard
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:23:Select the two guaranteed strict-first-cap retained sources before inspecting
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:31:joint deletion at three concrete centers or an exact four-point radius
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:317:/-- The robust parent enters either the existing two-large-cap surface or the
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:112:      (H.selectedAt source₁.1 source₁.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:126:The two sources are a chosen collision source and the fresh strict-cap point.
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:15:deletion-critical row.  If that row contains two distinct strict-cap members
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:18:the ordered-cap two-point bound.
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:141:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:51:theorem exactFour_or_companionCommonDeletion_or_physicalSecondApexEndpoint
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:75:#print axioms exactFour_or_companionCommonDeletion_or_physicalSecondApexEndpoint
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:169:    4 = C.toCriticalFourShell.support.card :=
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:170:      C.toCriticalFourShell.support_card.symm
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:396:yield two disjoint exact four-point ambient shells. -/
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:659:theorem firstApex_marginal_inter_secondClass_card_le_one
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:701:      firstApex_marginal_inter_secondClass_card_le_one D S r rho
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:812:      Finset.card_erase_of_mem hwK, K.support_card] at hfourK
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:822:        Finset.erase_eq_self.mpr hwK, K.support_card]
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:848:distinct centers, so their support overlap has cardinality at most two.
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:852:theorem selected_support_inter_card_le_two_of_not_mem_other_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:858:      (H.selectedAt w hw).toCriticalFourShell.support).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:859:  exact SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1333:  have hsplit := Finset.card_sdiff_add_card_inter F S.surplusCap
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:47:    4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:64:    4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:17:* an exact four-point class contains a distinct pair in the strict interior
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:47:/-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:69:/-- Two distinct centers in one indexed ordered cap cannot both bisect the
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:71:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:208:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:230:/-- An exact four-point class at an opposite vertex has at least two members
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:232:private theorem selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:274:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:282:private theorem firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:289:  exact selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:292:/-- An exact four-point class at the first apex contains a distinct pair in
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:294:theorem exists_exactFour_firstApex_interiorPair
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:304:  have htwo := firstApex_cardFour_interior_card_ge_two D S hr hcard
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:86:theorem support_inter_card_eq_two_of_isSupportBounded (bits : UpperPair → Bool)
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:133:covered in at least one direction, then capacity is tight: every support has
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:135:theorem exact_support_surface_of_card_le_four_and_pairCovered
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:231:    (hinter : ∀ i j, i ≠ j → ((B i) ∩ B j).card ≤ 2) :
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:258:theorem exists_perm_supports_eq_paley_of_card_le_four_and_pairCovered
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:263:    (hinter : ∀ i j, i ≠ j → ((B i) ∩ B j).card ≤ 2) :
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:266:  rcases exact_support_surface_of_card_le_four_and_pairCovered
+lean/Erdos9796Proof/P97/ATail/SevenSourceTournament.lean:268:  exact exists_perm_supports_eq_paley B hcardEq hself hone hinter
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:61:      support_card :=
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:62:        (H.selectedAt source₂ hsource₂).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:110:    _ ≤ (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support.card :=
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:113:      (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:230:    have hsplit := Finset.card_sdiff_add_card_inter
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:20:`selectedClass_capInteriorByIndex_card_ge_two` theorem. At a Moser opposite
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:21:vertex, the two disjoint exact shells contribute four strict-interior cap
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:204:/-- Removing the two Moser endpoints from an indexed closed cap lowers its
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:206:private theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:213:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:217:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:221:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:226:theorem MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:253:    rw [hsClassEq, (K.shellAt s).toCriticalFourShell.support_card]
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:257:    rw [htClassEq, (K.shellAt t).toCriticalFourShell.support_card]
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:259:    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:262:    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:265:      2 ≤ ((K.shellAt s).toCriticalFourShell.support ∩ I).card := by
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:268:      2 ≤ ((K.shellAt t).toCriticalFourShell.support ∩ I).card := by
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:290:  have hcapCard := capInteriorByIndex_card_add_two S k
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:305:  apply K.capByIndex_card_ge_six_of_two_sources D S k hcenterEq
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:43:fresh exact four-shell. -/
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:60:  rw [packet.shell.toCriticalFourShell.support_card] at hcard
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:63:/-- The fresh exact four-shell survives deletion of a point outside its
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:75:    4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:46:  have hinterLower : 4 ≤ (T ∩ I).card := by
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:48:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:54:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:58:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:88:theorem false_of_sProfile_interiorPair_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:114:theorem false_of_sProfile_interiorPair_of_card_eq_fifteen
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:131:  apply false_of_sProfile_interiorPair_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:39:outside point of both the collision row and a blocker row": the case
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:52:theorem selectedClass_oppApex2_inter_surplusCap_card_le_one
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:60:theorem selectedClass_oppApex2_inter_oppCap1_card_le_one
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:90:    (selectedClass_oppApex2_inter_surplusCap_card_le_one S radius)
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:103:    (selectedClass_oppApex2_inter_oppCap1_card_le_one S radius)
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:154:      (H.selectedAt source₁.1 source₁.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:16:at least two strict-cap members of the physical exact-five class avoid that
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:46:theorem actualUnusedRow_physicalInterior_inter_card_le_one
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:54:          R.source_mem_A).toCriticalFourShell.support).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:155:  have hinterOne : (T ∩ K).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:156:    simpa [T, K] using actualUnusedRow_physicalInterior_inter_card_le_one R
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:157:  have hsplit := Finset.card_sdiff_add_card_inter T K
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:224:/-- The live six-point large-cap premise reaches the origin-tagged two-source
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:232:  rcases nonempty_largeCapUniqueFiveUnusedCriticalRow H hcap profile with
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:91:    P.unusedRow.source_mem_A).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:110:    P.unusedRow.source_mem_A).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:224:theorem physical_support_inter_card_eq_three
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:253:/-- Beyond the two strict-cap sources, the shared three-point physical-row
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:284:    rw [physical_support_inter_card_eq_three P] at hcard
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:15:unused cap point outside that complete class.  Erasing the unused point
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:101:  have hsplit := Finset.card_sdiff_add_card_inter T I
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:102:  have hinter : 3 ≤ (T ∩ I).card := by omega
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:234:  rcases nonempty_largeCapUniqueFiveUnusedPoint hcap profile with ⟨unused⟩
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:24:two points from the strict interior of its opposite cap. The two adjacent
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:25:one-hit bounds leave room for at most two class members outside that
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:27:theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:69:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:82:gives each class of cardinality `m` a contribution of `m - 2` to the interior
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:84:theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/CapInteriorRadiusCounting.lean:125:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:95:        U5QDeletedK4Class.inter_card_le_two R₁ R₂ hcenters }⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean:19:An exact four-cap in any alternative nonobtuse MEC packet forces a
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean:25:This terminal requires only one exact four-cap.  It does not require the
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean:62:has singleton intersections with the two adjacent caps. -/
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:22:* one fresh critical shell through both chosen cap-interior points.
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:98:/-- The singleton-core residual: two strict opposite-cap points share the
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:275:      S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:311:    have hsplit := Finset.card_sdiff_add_card_inter D.A U
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:312:    have hinterLe : (D.A ∩ U).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:315:          Finset.card_le_card Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:490:This is the equality-only form of the exact four-point obstruction emitted by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:14:contain at most two physical strict-cap members. Since there are at least
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:48:two physical strict-cap members of the exact-five class. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:49:theorem actualCriticalSupport_physicalInterior_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:60:          (Finset.mem_inter.mp hqPhysical).1).1).toCriticalFourShell.support).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:67:  change (P ∩ K.support).card ≤ 2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:69:  have hthree : 3 ≤ (P ∩ K.support).card := by omega
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:70:  rcases Finset.one_lt_card.mp (show 1 < (P ∩ K.support).card by omega) with
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:108:  have htwo : (K.support ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:110:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:139:  have hinterTwo : (P ∩ K.support).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:141:      actualCriticalSupport_physicalInterior_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:143:  have hsplit := Finset.card_sdiff_add_card_inter P K.support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:144:  have hdiffPos : 0 < (P \ K.support).card := by omega
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:66:/-- The stored row at the physical second apex has at most one surplus-cap
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:68:theorem secondRow_inter_surplusCap_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:104:        F.pair.q_mem_A).toCriticalFourShell.support).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:106:    frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:108:  have hsplit := Finset.card_sdiff_add_card_inter R.common.packet.B₂
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:131:      (secondRow_inter_surplusCap_card_le_one R)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:392:theorem nonempty_surplusEscapeCompanionOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:398:    Nonempty (SurplusEscapeCompanionOutcome E) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:430:      (secondRow_inter_surplusCap_card_le_one R)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:498:theorem nonempty_frontierRefinedEscapeOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:504:    Nonempty (FrontierRefinedEscapeOutcome normal) := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:509:      rcases nonempty_surplusEscapeCompanionOutcome surplus with ⟨outcome⟩
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:548:  rcases nonempty_frontierRefinedEscapeOutcome normal with ⟨escapeOutcome⟩
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:11:# Exact-card-five strict-interior survivor pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:28:/-- The adjacent-cap one-hit argument strengthens from two to three strict
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:72:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:89:theorem firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:125:/-- Exact card five produces two strict-interior sources whose deletion still
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:139:    simpa [I] using firstApex_cardFive_interior_card_ge_three D S hr hcard
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:218:#print axioms firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:58:The two distinct sources have one actual blocker and one exact four-point
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:88:    (H.selectedAt source₁.1 source₁.2).toCriticalFourShell.support.card = 4
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:177:      (H.selectedAt source₁.1 source₁.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:98:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:101:  have hinter_card :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorStrictUnitSatisfaction.lean:111:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:178:      have hnot := hfamilies.selected_row_own_cap_at_most_two k center hdata.1 p₁ hdata.2.1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_critical_frontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:14:opposite cap and at most one point in each adjacent cap.  This file records
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:17:* exactly two strict hits, hence exactly one hit in each adjacent cap; or
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:67:two adjacent caps, one in each. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:112:      firstApex_marginal_inter_secondClass_card_le_one D S radius rho
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:209:/-- The aligned pair inherits the production two-apex escape inequality; in
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:278:theorem exactFour_twoStrict_or_alignedInteriorFrontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:289:    simpa [T, I] using firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:300:      have hsplit := Finset.card_sdiff_add_card_inter T I
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:345:#print axioms exactFour_twoStrict_or_alignedInteriorFrontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:63:strict cap interior.  No positive-radius or cardinality hypothesis is
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:146:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:168:/-- The card-four analogue of the interior counting: an exact card-four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:171:theorem selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:213:    simp [T, Finset.card_sdiff_add_card_inter]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:221:theorem firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:228:  exact selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:231:/-- The exact card-four branch has a strict-interior selected pair, so the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:233:theorem exists_cardFour_interior_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:243:  have htwo := firstApex_cardFour_interior_card_ge_two D S hr hcard
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:376:#print axioms selectedClass_capInteriorByIndex_card_ge_two_of_card_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:377:#print axioms firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:378:#print axioms exists_cardFour_interior_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:238:      (boundary_mem_carrier Q (σ source))).toCriticalFourShell.support.card ≤ T.card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:256:  change K.support.card ≤ T.card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:258:    K.support.card ≤ (T.image fun point => Q.boundary (σ point)).card :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:273:        (boundary_mem_carrier Q (σ source))).toCriticalFourShell.support.card = 4 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:275:      (boundary_mem_carrier Q (σ source))).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:196:theorem nonempty_exactFourMutualOmissionJointDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:323:theorem exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:409:inside the class and one named point outside both rows. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:460:      have h := Finset.card_union_add_card_inter Iu Iv
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:469:private theorem exists_exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:507:  rcases exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:517:    exactFourMutualOmissionJointDeletion_exactFive_strongSplit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:596:    rcases exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:611:theorem exists_two_exactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:702:    exists_exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:705:    exists_exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:756:theorem false_of_exactFour_twoDeletion_blockerTwoCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:858:theorem exactFour_twoDeletion_crossOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:890:    exact false_of_exactFour_twoDeletion_blockerTwoCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:939:theorem exactFour_fourSurvivingCenters_survivalSquare_split
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1003:      K.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1056:theorem exactFour_jointDeleted_mutualOmission_with_one_original
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1170:  rw [K.support_card, hBcard]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1174:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1248:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1347:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1409:    exactFour_fourSurvivingCenters_survivalSquare_split
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1415:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1423:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1431:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1439:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1447:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1455:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1463:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1558:    false_of_exactFourMutualOmission_fourCenterCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1623:  rcases exactFour_twoDeletion_crossOmission first second hdeletedNe
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1738:theorem exactFourMutualOmissionRigid221_globalDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1818:theorem exactFourRigid221_context_u_ne_source_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1962:theorem exactFourRigid221_context_sourceOrThirdRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2004:      (exactFourRigid221_context_u_ne_source_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2010:theorem exactFourRigid221_context_u_ne_source_otherPlacement
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2050:    exactFourRigid221_context_u_ne_source_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2087:theorem exactFourRigid221_singleton_minimalCore_of_sourceBlocker_outside_class
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2190:theorem false_of_exactFourMutualOmissionRigid221_minimalCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2238:theorem exactFourRigid221_sourceBlockerInClass_placement
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2318:        exactFourRigid221_context_u_ne_source_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2396:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2410:two; equality is the source-row-heavy cap shape. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2424:interior of the physical second cap.  Equality with two is the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2441:points in the strict cap, and the two-center localization theorem then puts
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2472:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_left
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2548:its rigid two-point physical block to the strict second cap, and the checked
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2550:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2573:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2598:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2617:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2638:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2643:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2646:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2685:    exactFourRigid221_sourceEqU_blockerVRowOther_sourceHeavyPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2770:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_left
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2786:equidistant from the interior pair `u`, `xu`, and the two-center cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2789:theorem exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2857:theorem exactFourRigid221_sourceHeavy_exactFive_other_eq_xv
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2988:theorem exactFourRigid221_sourceHeavyOtherXv_capProfile
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2996:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3062:theorem exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3316:theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3410:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_reciprocalArm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3516:            packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3576:          packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3627:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3635:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3679:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_xuXvRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3872:/-- If the `xv` row contains none of the other three points outside the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3877:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_twoDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3947:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3953:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3986:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_deletedXvRow_direct
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4045:      ((Hlate.selectedAt packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4105:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4231:    false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4243:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_vXvRow_direct
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4298:      ((Hlate.selectedAt packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4362:      exactFourMutualOmissionJointDeletion_of_prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4484:    false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4489:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4510:      false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_xuXvRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4517:      false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_vXvRow_direct
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4524:      false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_deletedXvRow_direct
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4527:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission_twoDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4533:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_xuXvMutualOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4736:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_directedCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4967:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5048:              packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5084:        false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_reciprocalArm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5093:          false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_directedCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5100:          false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_xuXvMutualOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5107:      false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5113:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveFirstGrowth
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5136:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5138:        (exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5144:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveSurplusGrowth
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5169:    false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5171:        (exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5177:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5194:    exactFourRigid221_sourceEqU_blockerVRowOther_sourceHeavyPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5197:    exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior P packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5198:  cases exactFourRigid221_sourceHeavyOtherXv_capProfile P with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5201:        false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5206:        false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveSurplusGrowth
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5208:            (exactFourRigid221_sourceHeavy_exactFive_other_eq_xv
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5213:        false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveFirstGrowth
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5215:            (exactFourRigid221_sourceHeavy_exactFive_other_eq_xv
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5223:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5239:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5243:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5246:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5253:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5325:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5330:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5333:        false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5339:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5394:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5435:      exactFourRigid221_sourceBlockerInClass_placement
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5439:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5445:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5452:theorem false_of_exactFourMutualOmissionRigid221_physicalApex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5493:      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5500:        exactFourRigid221_singleton_minimalCore_of_sourceBlocker_outside_class
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5504:      false_of_exactFourMutualOmissionRigid221_minimalCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5511:theorem false_of_exactFourMutualOmissionRigid221_nonphysicalCollision
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5560:theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5598:      false_of_exactFourMutualOmissionRigid221_physicalApex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5604:        false_of_exactFourMutualOmissionRigid221_nonphysicalCollision
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5610:        false_of_exactFourMutualOmissionRigid221_minimalCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5617:theorem false_of_exactFourMutualOmissionRigid221
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5661:      exactFourMutualOmissionRigid221_globalDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5665:    false_of_exactFourMutualOmissionRigid221_globalDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5674:theorem false_of_exactFourMutualOmissionJointDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5709:      exactFourMutualOmissionJointDeletion_exactFive_strongSplit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5719:        false_of_exactFourMutualOmissionRigid221
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5727:      exists_two_exactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5736:retains the preceding strict-cap omitted peer and, in addition, two physical
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5739:theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5833:      nonempty_exactFourMutualOmissionJointDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5837:    false_of_exactFourMutualOmissionJointDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5845:theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5913:    false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5925:theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5958:    false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5965:ruled out by two-center cap localization and the ordered-cap row bound. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5966:theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5989:    false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6000:theorem false_of_exactFourPostCardElevenTwoRadiusBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6022:theorem false_of_exactFourPostCardElevenRobustSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6037:      false_of_exactFourPostCardElevenInteriorDeletionBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6041:      false_of_exactFourPostCardElevenTwoRadiusBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6047:by `false_of_exactFourPostCardElevenRobustSurface`. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6048:theorem false_of_exactFourPhysicalConsumerRobustOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6059:  exact false_of_exactFourPostCardElevenRobustSurface _R _hcard surface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6065:theorem false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6110:  rcases nonempty_exactFourPhysicalConsumerOutcome original with ⟨outcome⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6114:        false_of_exactFourPhysicalConsumerRobustOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6118:        false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6172:    ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6173:      D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6174:  have hinteriorCap : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6175:    hinterior.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6177:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6182:/-- If the physical second apex is deletion-robust, the two exact-five cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6216:      FirstApexInteriorPairGeometry.exists_exactFour_firstApex_interiorPair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6492:`(6, 6, 6)`.  This is the honest residual of the cap-six continuation after the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6501:  /-- The surplus cap is large as well, not merely the two opposite caps. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6623:theorem criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6670:strict cap cannot have two hits in a rich slice of a different strict cap.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6671:The two hits would localize the same blocker in that other cap, contradicting
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6673:theorem false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6688:    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6692:/-- Once a canonical critical shell's blocker is localized in one strict cap,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6695:`false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap`. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6696:theorem criticalShell_inter_otherRichCapSlice_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6713:  exact false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6718:shell meets that cap in exactly its two sources, so a third member has a
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6721:theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6810:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6814:    nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7184:/-- Every canonical critical-shell center lies in one of the three strict cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7235:  exact criticalShell_inter_otherRichCapSlice_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7499:source coincide (`A = X`), then their exact four-shells coincide.  In
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7597:  have hinterCard : (KA.support ∩ Q.row.support).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7598:    exact SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7672:  have hremainingCard : (KA.support \ named).card = 1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7674:      KA.support_card, hnamedCard]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7771:      (KA.support ∩ SelectedClass D.A S.oppApex1 radius).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7773:      ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8081:  change (KA.support ∪ Q.row.support).card = 6
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8087:  rw [Finset.card_union, KA.support_card, Q.row.support_card, hinter]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8096:theorem endpointFresh_exists_selectedRow_escape_twoShellSeed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8122:          ≤ KA.support.card + Q.row.support.card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8124:      _ = 8 := by rw [KA.support_card, Q.row.support_card]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8151:theorem endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8265:into the two adjacent-cap leaves above.  Immediate constructor fan-out: two. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8579:only the two collision sources in the whole first cap, and both sources lie on
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8772:    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8795:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8803:/-- Two exact two-point cap intersections of four-point rows, supported on
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8805:has exactly two support points outside the cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8806:theorem exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8861:  have hsplit₀ := Finset.card_sdiff_add_card_inter K₀ C
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8866:  have hsplit₁ := Finset.card_sdiff_add_card_inter K₁ C
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9081:  have hsplit := Finset.card_sdiff_add_card_inter E S.surplusCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9095:/-- Two selected four-classes with distinct centres in one indexed ordered cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9096:share at most one support point outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9106:      (Kd.support \ S.capByIndex i)).card ≤ 1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9129:          (Kd.support \ S.capByIndex i)).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9243:      source.2).toCriticalFourShell.support.card = 4 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9247:/-- The additive two-source packet for the cap-eight third-row producer.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9278:      hsupport, hcard, hviewP, hviewPρ⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9283:      hsupport, hcard, hviewPρ, hviewP⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9300:/-- Package the already checked two-source cap-eight producer without changing
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9302:noncomputable def twoCapSourceThirdCanonicalRowSurface_of_capEight
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9311:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9330:        (H.selectedAt source.1 source.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9338:        (H.selectedAt source'.1 source'.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9347:noncomputable def twoCapSourceThirdCanonicalRowSurface_of_capSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9351:    twoCapSourceThirdCanonicalRowSurface_of_capEight
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9389:the two distinct blockers lie in one indexed cap while both fiber sources
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9410:uniqueness: two distinct cap centers cannot bisect the same outside pair. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9456:          (Ksource.support \ S.capByIndex capIndex)).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9465:/-- The first collision row is exactly its two strict-cap sources together
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9466:with the two named off-cap points carried by the enlarged first blocker
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9503:        source.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9508:/-- The cap-eight margin produces two distinct strict-cap sources carrying the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9518:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9540:          source.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9549:          source'.2).toCriticalFourShell.support_card,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9554:/-- Lift two strict first-cap points on one fresh first-apex radius while
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9574:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9589:strict first-cap points is one of the two retained collision radii. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9631:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9641:/-- The two cap-source rows contain one another's sources. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9700:two-point cap intersection is stronger than the earlier existential common
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9702:both cap sources lie outside the two collision pairs. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9997:  rw [hsixCard, hsupportCard] at hcardLe
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10003:/-- At least one cap-source row survives deletion of the other source. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10160:  have hinterLe : (K.support ∩ K'.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10161:    SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10317:belongs to the strict interior of one indexed cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10373:centers, a surviving one-point deletion, distinct blocker caps, or a same-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10462:/-- Positive data hidden by the failure of one cap-source cross-row hit. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10610:rows are the same exact four-point row, containing precisely the two cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10748:          C.firstSource.2).toCriticalFourShell.support_card, hnamedCard])).symm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10756:The two cap sources and one internal fresh source then give three points in a
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10835:    CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10850:    have hge : 3 ≤ (K.support ∩ S.capByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10854:        _ ≤ (K.support ∩ S.capByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10869:    have hge : 3 ≤ (K.support ∩ S.capByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10873:        _ ≤ (K.support ∩ S.capByIndex S.oppIndex1).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10923:collision pairs is omitted by both cap-source rows.  The exact four-point
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11118:            (Ksource.support ∩ Kfresh.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11119:          SelectedFourClass.inter_card_le_two Ksource Kfresh hcentersEq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11170:checked two-point cap intersection of the common shell instead of erasing
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11606:/-- The two canonical rows centered in the first cap either share an omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11607:outside endpoint, so deleting it preserves K4 at both rows and all three rich
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11608:apices, or realize one of the two crossed outside-pair membership patterns. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11686:named outside points. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11704:    exact ATailFirstFiberOverlapDescent.false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11711:two named off-cap points in the first blocker row.  If it contained both, the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11712:two distinct blocker centers in the same ordered cap would bisect the same
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11812:/-- Trim either common outside-point deletion to five exact q-free rows while
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11925:private theorem exists_fourth_of_support_card_eq_four
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11996:/-- Any off-cap carrier point other than the two named points in the enlarged
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12355:metric non-equality against the named outside point on that row. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12453:  rcases exists_fourth_of_support_card_eq_four
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12456:      (H.selectedAt source.1 source.2).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12462:  rcases exists_fourth_of_support_card_eq_four
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12467:        Pρ.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12770:outside-point deletion row packet and the other receives an oriented crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13003:/-- The two-source fresh-third coordinator checks the positive same-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13046:recovers the checked two-source cap-eight packet before entering the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13064:        twoCapSourceThirdCanonicalRowSurface_of_capSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13099:leaf and the two-cap-source one-sided-deletion leaf.  Both callers already
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13108:    twoCapSourceThirdCanonicalRowSurface_of_capSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13134:/-- The two distinct blockers of a mutually incident cap-source pair can
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13194:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13253:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13264:blocker can lie in the source cap.  A blocker in that cap would see the two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13266:two-hit bound for a selected row centered in its own indexed cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13351:the two distinct cap interiors other than the source cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13440:the chord joining two distinct source-cap points. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13564:two mutually incident cap-source rows with distinct blockers.  The blockers
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13565:would be two distinct off-cap bisectors of the chord joining the sources. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13705:geometric arm of the two-cap-source split. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13737:/-- A one-sided cap-source deletion synchronizes the surviving source row
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14089:    S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14221:    exact K.support_card.ge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14228:/-- Once every first-cap radius carrying two strict-cap points is retained,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14248:        S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14274:        S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14286:        S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14302:/-- The second collision row has two points outside the first cap.  Since its
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14303:center cannot bisect the two named outside points of the first collision row,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14304:at least one of its outside points is genuinely new. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14325:        exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14327:            P.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14329:            Pρ.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14498:collision blocker, the exact two-point off-cap census upgrades it to the full
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14645:strict measure is support growth beyond a seed of cardinality at most twelve,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14682:          ≤ (K₁.support ∪ K₂.support).card + K₃.support.card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14685:      _ ≤ (K₁.support.card + K₂.support.card) + K₃.support.card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14689:                K₃.support.card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14691:            rw [K₁.support_card, K₂.support_card, K₃.support_card]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14783:          4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14917:theorem firstFiber_globalRow_inter_firstShell_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14922:        P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14931:    SelectedFourClass.inter_card_le_two Kq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14943:`firstFiber_globalRow_inter_firstShell_card_le_two`: the global row has
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14952:          P.source₁_mem_A).toCriticalFourShell.support).card := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14956:          P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14957:    firstFiber_globalRow_inter_firstShell_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14960:    Finset.card_sdiff_add_card_inter Kq.support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14963:  rw [Kq.support_card] at hdecomp
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15030:  have hinterCard : (K ∩ E).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15038:  have hsplit := Finset.card_sdiff_add_card_inter K E
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15309:        K.support_card hqOutside hnotFirst hnotSecond with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15339:    support_card := K.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15660:        exact K.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15761:The universal critical-row escape supplies a canonical row outside the two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15790:      (twoCapSourceThirdCanonicalRowSurface_of_capEight
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15921:been normalized all the way to their named two-point strict-cap parts.  The
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15926:exact-four/exact-two collision rows and must still identify their strict-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16105:first-apex radii with exactly two strict-cap points each, four disjoint
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16113:positive shared outside point.  Closure must therefore use the retained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16116:theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16243:radii have each been normalized to an exact four-point class whose strict-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16246:theorem exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16397:    exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16399:        P.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16401:        Pρ.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16428:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16433:    exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16449:four-point lower bound and two selected strict-cap points.  This leaf adds a
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16451:cardinality four, and exact strict-cap cardinality two at that radius.  The
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16454:theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16486:    exact criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16489:    exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16502:strict-cap slice is exactly the two collision sources, so this branch saturates
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16508:points.  The checked proof prefix below selects two distinct strict-cap points
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16526:theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16569:      S.selectedClass_capInteriorByIndex_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16699:      exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16701:          P.source₁_mem_A).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16702:        (H.selectedAt u huA).toCriticalFourShell.support_card
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16744:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16767:        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16823:    · have hρexactFour :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16831:          nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16840:          false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16841:            F R P Fρ Rρ Pρ hρne hfrontierFour hρexactFour
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16880:/-- Checked strict-interior cardinality split for the exact-four, two-radius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16887:strict-cap cardinality exactly two.  The split is exhaustive and acyclic. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16888:theorem false_of_exactFourCollision_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16909:      nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16938:      false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16989:        false_of_exactFourCollision_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:17097:    criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:17196:dispatches its checked cap-bound split to the two terminal surfaces. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:33:    (hcard : support.card = 4) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:34:    (centeredSupportIndices center support).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:42:    (hcard : support.card = 4) (i : Fin 4) : ℕ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:44:      (centeredSupportIndices_card center support hcard) i).val
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:113:    (row : RowSupportAtom) (hcard : row.support.card = 4)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:117:      centeredSupportIndex row.center row.support hcard i := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:127:          (centeredSupportIndices_card row.center row.support hcard) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:152:    (hcard : support.card = 4) (side : OuterSide) : ℕ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:156:      globalStart center + centeredSupportIndex center support hcard 2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:161:    (hcard : support.card = 4) (side : OuterSide) : ℕ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:163:  | .left => centeredSupportIndex center support hcard 1 - 1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:164:  | .right => 10 - centeredSupportIndex center support hcard 2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:169:    (hcard : support.card = 4) (side : OuterSide) : Finset (Fin 11) :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:170:  (Finset.range (finiteArcTurnCount center support hcard side)).image fun k ↦
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:171:    ⟨(finiteArcStart center support hcard side + k) % 11,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:176:    (row : RowSupportAtom) (hcard : row.support.card = 4)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:179:      finiteArcTurnMask row.center row.support hcard side := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:202:  support_card : row.support.card = 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:204:    finiteArcTurnMask row.center row.support support_card arc.side = arc.mask
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:223:      certificate.support_card hrow certificate.arc.side]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:250:  if hcard : datum.row.support.card = 4 then
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:251:    some (finiteArcTurnMask datum.row.center datum.row.support hcard datum.arc.side)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:263:theorem support_card_of_valid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:265:    datum.row.support.card = 4 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:274:        (datum.support_card_of_valid hvalid) datum.arc.side =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:277:  simp only [checkedMask, datum.support_card_of_valid hvalid,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:288:  support_card := datum.support_card_of_valid hvalid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:13:For the strict-interior survivor pair produced by exact card five, any actual
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:44:/-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:66:/-- Two distinct centers in one indexed ordered cap cannot both bisect the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:68:theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:127:/-- For the exact-card-five strict-interior survivor pair, a directed cross
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:220:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:442:private theorem endpoint_row_inter_cap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:467:        CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:473:        CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:480:        CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:486:        CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:507:  have hle := endpoint_row_inter_cap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:586:    CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:10:# Exact-card-five strict-interior critical frontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:92:    simpa [I] using firstApex_cardFive_interior_card_ge_three D S hr hcard
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:107:      firstApex_marginal_inter_secondClass_card_le_one D S r rho
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:238:/-- The production frontier carried by an exact-card-five strict-interior
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4MirrorOuterArcTransport.lean:123:    (hcard : (reflectSupport row.support).card = 4)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:144:both the displayed support and the selected row have cardinality four. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:148:    (hcard : row.support.card = 4)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:158:      (Q.selectedRowSupport row.center).card ≤ row.support.card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:71:  support_card := K.support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:156:  support_card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:255:    support_card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:375:    ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:376:      D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:380:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:384:      hinter.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:25:* the complete exact four-point first-apex class as its first-apex row; and
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:52:opposite cap is the two-point remainder block. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:245:    have h := capInteriorByIndex_card_add_two S S.surplusIdx
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:250:    have h := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:255:    have h := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:263:  rcases Card11CapLabeling.nonempty_of_interior_card_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:344:/-- Exactly two boundary positions are strict first-cap hits of the actual
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:13:regimes.  An exact four-class is deletion-critical at the first apex for
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:96:      support_card := (P.cube.classAt center).support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/OccurrenceBridge/BridgeFamilies.lean:316:  have hnot := hQ.selected_row_own_cap_at_most_two k c hc p₁ hp₁ p₂ hp₂
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_bisector_localization
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_critical_frontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:17:* exact four, with universal first-apex deletion criticality and a strict-cap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:167:  · rcases exists_cardFour_interior_pair D S hr hfour with
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:313:          exact P.not_localEqHolds_one_of_shell_outside hinside' houtside'
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:316:          exact P.not_localEqHolds_one_of_shell_outside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:35:      row.support.toFinset.card = 4 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:56:/-- The finite-set support of a decoded local-four row has cardinality four. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:57:theorem encoderLocalFourRows_support_toFinset_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:59:    row.support.toFinset.card = 4 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:94:      exact (encoderLocalFourRows_support_toFinset_card hrow).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:142:    exact encoderLocalFourRows_support_toFinset_card hrow
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:69:one row member and one point outside the full blocker shell. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:309:theorem CanonicalPacket.not_localEqHolds_one_of_shell_outside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:322:    dist (L.pointOf outside) (L.pointOf 1) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:325:    _ = dist (L.pointOf inside) (L.pointOf 1) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:406:          exact P.not_localEqHolds_one_of_shell_outside hinside' houtside'
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:409:          exact P.not_localEqHolds_one_of_shell_outside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:142:  have hinterior := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:164:      Finset.card_le_card Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:169:    Finset.eq_of_subset_of_card_le Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:246:    have h := capInteriorByIndex_card_add_two S S.surplusIdx
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:254:    have h := capInteriorByIndex_card_add_two S S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:262:  rcases Card11CapLabeling.nonempty_of_interior_card_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/P4MirrorOuterOccurrenceBridge/Families.lean:46:  decide ((reflectSupport e.row.support).card = 4 ∧
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:142:theorem row_inter_indices_card_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:168:  have h := Q.row_inter_indices_card_eq center Finset.univ
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:175:      (Q.boundary center) (Q.boundary_mem center)).support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:277:  exact (Q.row_inter_indices_card_eq center mirrorSurplusClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:289:    (Q.row_inter_indices_card_eq center mirrorFirstOppositeClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:301:    (Q.row_inter_indices_card_eq center mirrorSecondOppositeClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:315:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:331:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:347:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:360:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:365:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:379:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:383:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:397:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:402:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:419:        simp [capBoundOK, hcap, hend, Q.surplusCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:421:      · simp [capBoundOK, hcap, hend, Q.surplusCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:432:        simp [capBoundOK, hcap, hend, Q.firstOppositeCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:434:      · simp [capBoundOK, hcap, hend, Q.firstOppositeCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:445:        simp [capBoundOK, hcap, hend, Q.secondOppositeCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:447:      · simp [capBoundOK, hcap, hend, Q.secondOppositeCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:552:theorem row_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:585:        (Kleft.support ∩ Kright.support).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:586:    rw [← hinter, Finset.card_image_of_injective _ Q.boundary_injective]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:588:  exact SelectedFourClass.inter_card_le_two Kleft Kright <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:671:          have hinter := Q.row_inter_card_le_two hne
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:120:theorem row_inter_indices_card_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:146:  have h := Q.row_inter_indices_card_eq center Finset.univ
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:153:      (Q.boundary center) (Q.boundary_mem center)).support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:255:  exact (Q.row_inter_indices_card_eq center surplusClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:267:    (Q.row_inter_indices_card_eq center firstOppositeClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:279:    (Q.row_inter_indices_card_eq center secondOppositeClosedIndices).trans <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:293:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:309:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:325:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:338:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:343:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:357:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:362:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:375:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:379:  · exact Census554.Card11SelectedCube.support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:396:        simp [capBoundOK, hcap, hend, Q.firstCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:398:      · simp [capBoundOK, hcap, hend, Q.firstCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:409:        simp [capBoundOK, hcap, hend, Q.alignedCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:411:      · simp [capBoundOK, hcap, hend, Q.alignedCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:422:        simp [capBoundOK, hcap, hend, Q.shortCap_count_le_two center hcap',
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:424:      · simp [capBoundOK, hcap, hend, Q.shortCap_count_le_two center hcap']
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:526:theorem row_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:559:        (Kleft.support ∩ Kright.support).card := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:560:    rw [← hinter, Finset.card_image_of_injective _ Q.boundary_injective]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:562:  exact SelectedFourClass.inter_card_le_two Kleft Kright <| by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:645:          have hinter := Q.row_inter_card_le_two hne
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:20:and endpoint/two-point source instance over the five concrete right-cap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:65:/-- Every endpoint-centered, two-distinct-point instance of the right-cap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:74:/-- Every three-distinct-point instance of the right-cap at-most-two source
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:394:private theorem endpoint_row_inter_rightCap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:411:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:416:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:422:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:427:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:443:private theorem endpoint_row_inter_shortCap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:460:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:465:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:471:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:476:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:494:private theorem endpoint_row_inter_secondOppositeCap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:511:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:516:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:522:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:527:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:538:  have hle := endpoint_row_inter_shortCap_card_le_one P hc
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:572:  have hle := endpoint_row_inter_secondOppositeCap_card_le_one P hc
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:606:  have hle := endpoint_row_inter_rightCap_card_le_one P hc
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:644:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:700:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitValuation.lean:14:The two direct P4 strict-cap positions are selected-class hits.  The final
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:71:/-- A four-point first opposite cap forces the exact-two class distribution.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:72:The aligned three-hit arm is impossible because that cap has only two strict
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:79:  rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:86:      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:91:        (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:129:  · rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:89:    have hcard := capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:92:  have hinter_card :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4StrictUnitSourceBridge/P4StrictUnitSourceBridge.lean:102:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Curvature/P5RetainedOuterArcMasks.lean:18:at every boundary center, the exact four boundary positions of the selected
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Curvature/P5RetainedOuterArcMasks.lean:157:  exact hcard.trans (Q.selectedRow center).support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectSatisfaction.lean:64:  selected_row_own_cap_at_most_two := fun k =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:237:      ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:238:        D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:240:    hinter.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:244:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:263:  have hinterCard : (T ∩ I).card = 3 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:266:        Finset.card_le_card (Finset.inter_subset_right :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:270:    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_right
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:271:    simpa [hinterCard, hIcard]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:282:/-- The first opposite-cap strict interior is exactly the two frontier sources
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:305:      ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:312:          ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:313:            D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:315:        hinter.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:406:      ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:407:        D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:409:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:413:      hinter.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:837:      ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:838:        D S R.interior.frontier.radius_pos R.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:840:    hinter.trans (Finset.card_le_card Finset.inter_subset_right)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:844:    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:1032:      simpa [(C.classAt 1).support_card] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:18:`selected_row_own_cap_at_most_two_{0,1,2}` on the direct branch.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:22:(cloned counting proofs of the aligned wrapper's closed-cap image
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:313:/-- Each CNF endpoint center is one of the matching ordered-cap endpoint
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:445:private theorem endpoint_row_inter_cap_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:462:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:467:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:473:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:478:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:489:  have hle := endpoint_row_inter_cap_card_le_one P hc
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:516:/-- Families `selected_row_own_cap_at_most_two_{0,1,2}` on the direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:528:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two S D.convex
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:18:`selected_row_own_cap_at_most_two_{0,1,2}` on the mirror branch.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:489:private theorem endpoint_row_inter_cap_card_le_one_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:506:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:511:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:517:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:522:      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:533:  have hle := endpoint_row_inter_cap_card_le_one_mirror P hc
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:564:/-- Families `selected_row_own_cap_at_most_two_{0,1,2}` on the mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:577:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two S D.convex
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorSatisfaction.lean:68:  selected_row_own_cap_at_most_two := fun k =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:230:/-- Family `exact_two_left_adjacent_hit_at_least_1`: the surplus closed cap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:257:/-- Families `selected_row_own_cap_at_most_two_{0,1,2}`: the selected row
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:258:of any cap-position center contains at most two other positions of its own
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:369:  selected_row_own_cap_at_most_two :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/GenericFamilies.lean:144:  exact (Q.carrierPattern.classAt _ _).support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectOuterOccurrenceBridge/MembershipRowOccurrences.lean:87:  e.row.2.support.card = 4 ∧
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:55:  simpa using K.support_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:97:    · exact K.support_card.le
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectOuterOccurrenceBridge/RowArcOccurrences.lean:79:  e.row.2.support.card = 4 ∧
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:198:        4 = K.support.card := K.support_card.symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectCriticalComponentSatisfaction.lean:10:entries, two strict units, 21 right-cap residuals, and six CEGAR entries.

@@ -1,0 +1,171 @@
+{
+  "all_families": [
+    "common_deletion_packets",
+    "critical_blocker_map",
+    "critical_full_row",
+    "critical_no_competing_K4",
+    "cyclic_alternation_cut",
+    "distinct_circle_overlap",
+    "exact_rich_profiles",
+    "global_K4",
+    "no_all_apex_shell",
+    "normal_form",
+    "packet_B2_equals_critical_row",
+    "pair_center_multiplicity",
+    "positive_distances",
+    "positive_squared_distances",
+    "same_shell_squared_superadditivity",
+    "source_in_critical_row",
+    "squared_distance_equality_transport",
+    "strict_kalmanson",
+    "strict_triangle",
+    "three_distinct_blockers"
+  ],
+  "case": {
+    "arm": "secondcap_distinct",
+    "deleted": 1,
+    "fresh": 4,
+    "kept": 0,
+    "profiles": "SSS"
+  },
+  "family_constraint_counts": {
+    "common_deletion_packets": 406,
+    "critical_blocker_map": 27,
+    "critical_full_row": 384,
+    "critical_no_competing_K4": 168,
+    "cyclic_alternation_cut": 2010,
+    "distinct_circle_overlap": 1171,
+    "exact_rich_profiles": 105,
+    "global_K4": 372,
+    "no_all_apex_shell": 15,
+    "normal_form": 13,
+    "packet_B2_equals_critical_row": 360,
+    "pair_center_multiplicity": 105,
+    "positive_distances": 105,
+    "positive_squared_distances": 105,
+    "same_shell_squared_superadditivity": 1092,
+    "source_in_critical_row": 180,
+    "squared_distance_equality_transport": 1365,
+    "strict_kalmanson": 2730,
+    "strict_triangle": 1365,
+    "three_distinct_blockers": 1
+  },
+  "final": {
+    "elapsed_seconds": 6.5277253340464085,
+    "families": [
+      "exact_rich_profiles",
+      "global_K4",
+      "strict_kalmanson"
+    ],
+    "inclusion_minimal_under_greedy_order": true,
+    "status": "unsat"
+  },
+  "initial": {
+    "elapsed_seconds": 0.5157345840707421,
+    "status": "unsat"
+  },
+  "removal_attempts": [
+    {
+      "elapsed_seconds": 0.6395104578696191,
+      "removed": "common_deletion_packets",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 19.758563917130232,
+      "removed": "critical_blocker_map",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 17.120484959101304,
+      "removed": "critical_full_row",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 8.785453125135973,
+      "removed": "critical_no_competing_K4",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 10.90663112513721,
+      "removed": "cyclic_alternation_cut",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 9.992845332948491,
+      "removed": "distinct_circle_overlap",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 30.015846624970436,
+      "removed": "exact_rich_profiles",
+      "status": "unknown"
+    },
+    {
+      "elapsed_seconds": 1.4286667918786407,
+      "removed": "global_K4",
+      "status": "sat"
+    },
+    {
+      "elapsed_seconds": 12.369443999836221,
+      "removed": "no_all_apex_shell",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 3.9467859170399606,
+      "removed": "normal_form",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 14.029046332929283,
+      "removed": "packet_B2_equals_critical_row",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 16.220159915974364,
+      "removed": "pair_center_multiplicity",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 10.28991604107432,
+      "removed": "positive_distances",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 20.192901582922786,
+      "removed": "positive_squared_distances",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 17.7053944170475,
+      "removed": "same_shell_squared_superadditivity",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 6.517512542195618,
+      "removed": "source_in_critical_row",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 17.111863875063136,
+      "removed": "squared_distance_equality_transport",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 0.09604320907965302,
+      "removed": "strict_kalmanson",
+      "status": "sat"
+    },
+    {
+      "elapsed_seconds": 5.534861916210502,
+      "removed": "strict_triangle",
+      "status": "unsat"
+    },
+    {
+      "elapsed_seconds": 4.268578500021249,
+      "removed": "three_distinct_blockers",
+      "status": "unsat"
+    }
+  ],
+  "script_sha256": "65bba451ee498bc0bbf5b89a17a088cad6896bb51b532350c6d5bf536f8f0d57",
+  "timeout_ms": 30000
+}

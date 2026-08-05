@@ -1,0 +1,14 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9738
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) :
+    False := by
+  sorry
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe in

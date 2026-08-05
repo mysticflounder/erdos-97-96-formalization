@@ -1,0 +1,1 @@
+{"attempt":0,"clause_count":58314,"cnf_sha256":"89548ae97ba91b15592c59c34a6c57f53f34095b990b0aea3993b13d84b5c30b","previous_record_sha256":null,"record_sha256":"83831d304ac5e1a33e9a0901b3b81225bfcea68dddf470e8d8bccb69cdad195a","returncode":10,"schema":"p97-phase3-structural-cegar-projected-static-v3-solver-log-v1","stderr":"","stdout":"s SATISFIABLE\n","verdict":"SAT"}

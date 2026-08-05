@@ -1,0 +1,363 @@
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:86:structure SelectedBoundaryOrder (pointOf : Label → ℝ²) where
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:88:  boundary : Label → ℝ²
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:94:noncomputable def SelectedBoundaryOrder.ofDirect {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:105:noncomputable def SelectedBoundaryOrder.ofMirror {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:116:noncomputable def SelectedBoundaryOrder.ofDirectOrMirror {pointOf : Label → ℝ²} :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/CanonicalPacket.lean:126:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:59:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:78:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:92:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:111:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/OccurrenceCore.lean:242:    {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/OccurrenceCore.lean:281:    {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:33:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:139:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:158:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:218:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:231:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:260:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:270:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:82:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:93:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:105:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:114:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:124:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:141:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:159:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:179:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectorSemantics.lean:198:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:124:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:171:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:178:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:191:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:217:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:222:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:253:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3NoQFreeSliceLedger.lean:272:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:130:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:175:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:188:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:200:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:204:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:231:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:274:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexGlobalEqSliceLedger.lean:296:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:125:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:190:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:200:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:213:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:234:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:239:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:289:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6LocalFourSliceLedger.lean:309:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean:61:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean:66:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean:95:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean:100:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:28:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:42:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:64:-- The exact `native_decide` scan authenticates all 108704 retained base clauses.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:72:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:119:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:135:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:160:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixCombinedSemantics.lean:168:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:31:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:141:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:162:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:239:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:252:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:311:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:114:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:140:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:180:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:194:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:213:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:218:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:244:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedLocalEqSliceLedger.lean:264:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:144:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:191:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:204:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:259:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:268:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixBaseSemantics.lean:31:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixBaseSemantics.lean:40:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixBaseSemantics.lean:52:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixBaseSemantics.lean:66:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixBaseSemantics.lean:76:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:122:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:155:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:162:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:175:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:203:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:214:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:223:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:228:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:294:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3UsedCenterSliceLedger.lean:316:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:124:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:172:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:186:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:216:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:224:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:241:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:246:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:338:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceCenterSliceLedger.lean:358:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:115:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:142:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:187:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:200:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:221:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:226:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:252:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SelectedGlobalEqSliceLedger.lean:273:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:51:  fin_cases source <;> native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:80:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:112:  native_decide +revert
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:122:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:130:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:148:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:167:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:180:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:232:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:248:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:295:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:352:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:388:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:409:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:435:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:454:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:480:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixInheritedTailSemantics.lean:499:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreClauseBank.lean:43:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreClauseBank.lean:77:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:58:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:83:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:125:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:135:  native_decide +revert
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:143:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:200:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:213:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:230:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:242:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:260:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:280:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:284:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:299:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:313:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:393:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:514:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:583:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:601:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:656:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSeparationSemantics.lean:670:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:29:noncomputable def edgeDistance (pointOf : Label → ℝ²) (edge : RawEdge) : ℝ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:32:theorem edgeDistance_canonicalEdge (pointOf : Label → ℝ²)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:42:    (pointOf : Label → ℝ²) (first second : RawEdge)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:52:def interpAtom {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:59:def sourceVal {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:63:theorem sourceVal_order {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:70:theorem sourceVal_global {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:80:    {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:95:    {A : Finset ℝ²} {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:114:def CyclicAlternationSat {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:141:    {A : Finset ℝ²} (hconv : ConvexIndep A) (hcard : A.card = 11)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/SemanticCore.lean:142:    {pointOf : Label → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:32:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:38:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:47:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:66:    {A : Finset ℝ²} {center center' : ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:81:    {A : Finset ℝ²} (H : CriticalShellSystem A)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:82:    (q : ℝ²) (hq : q ∈ A) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:90:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:147:    {A : Finset ℝ²} {center : ℝ²} {radius : ℝ} {removed : ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:189:  native_decide +revert
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:229:  let T : Finset ℝ² := SelectedClass D.A S.oppApex1 radius
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/PrefixSemanticCore.lean:233:  let removed : ℝ² := L.pointOf shellCase.other.label
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:131:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:143:    have hsize : convexFiveComboTable.size = 210 := by native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:195:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:208:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:275:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:378:    {a x b c y : ℝ²} (hab : a ≠ b) (hxy : x ≠ y)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:244:  cases family <;> native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:249:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:255:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:268:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:303:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:325:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean:455:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:33:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:78:  fin_cases source <;> native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:86:  fin_cases source <;> native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:169:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:340:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:353:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:366:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:383:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:396:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:410:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:449:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:477:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:521:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:534:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:549:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:582:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:606:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:630:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:648:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:669:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:693:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:721:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean:749:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:30:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:34:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:44:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:54:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:65:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:78:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:150:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:164:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:177:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:190:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:205:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:220:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:232:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:246:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:273:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:285:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:297:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:313:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:331:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:346:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:361:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:375:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:390:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:404:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:419:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:27:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:90:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:126:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:180:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:210:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:165:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:179:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:253:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:272:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:303:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SeparationSliceLedger.lean:319:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:153:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:216:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:224:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:238:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:287:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:291:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:310:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:331:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:417:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:439:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:180:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:223:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:237:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:341:  cases route <;> native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:346:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:349:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:374:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:425:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:487:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3SourceTailSliceLedger.lean:509:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:129:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:182:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:195:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:230:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:235:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:318:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:338:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3Checkpoint0ClauseBank.lean:71:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3Checkpoint0ClauseBank.lean:83:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3Checkpoint0ClauseBank.lean:96:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:114:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:136:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:175:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:188:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:200:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:206:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:309:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:327:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3GlobalTransitivitySliceLedger.lean:346:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:139:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:153:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:165:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:182:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:223:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:242:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:258:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BaseSliceLedger.lean:279:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:156:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:199:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:211:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:224:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:243:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:261:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:266:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:322:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6QDeletedPairSliceLedger.lean:342:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:28:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:59:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:64:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:129:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:134:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:196:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:201:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:26:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:36:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:64:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:76:  let B : Finset ℝ² := row.support.toFinset.image L.pointOf
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:121:    ∃ B : Finset ℝ²,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:127:  let B : Finset ℝ² := row.support.toFinset.image L.pointOf
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:188:    ∃ B : Finset ℝ²,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:210:    ∃ B : Finset ℝ²,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:116:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:142:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:182:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:196:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:211:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:216:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:322:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:341:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalTransitivitySliceLedger.lean:360:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:112:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:148:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:194:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:201:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:214:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:237:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:242:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:270:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:290:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3U5Semantics.lean:26:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3U5Semantics.lean:31:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3U5Semantics.lean:46:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3U5Semantics.lean:62:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3U5Semantics.lean:189:        ({L.pointOf t1, L.pointOf t2, L.pointOf t3} : Set ℝ²) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:124:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:178:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:191:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:220:  native_decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:26:attribute [local instance] Classical.propDecidable
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:65:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:214:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:233:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:255:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:275:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:295:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:329:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:362:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:389:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:423:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:467:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:503:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:557:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean:595:    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}

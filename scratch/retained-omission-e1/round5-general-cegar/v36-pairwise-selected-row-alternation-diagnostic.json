@@ -1,0 +1,1764 @@
+{
+  "counts": {
+    "sat": 12,
+    "unknown": 0,
+    "unsat": 0
+  },
+  "elapsed_seconds": 76.5152785028331,
+  "pairwise": true,
+  "results": [
+    {
+      "case_id": "fresh_DDD_k0_d2_f1",
+      "elapsed_seconds": 6.331548624904826,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          1,
+          6,
+          8
+        ],
+        "j": 8,
+        "qrow": [
+          0,
+          2,
+          8,
+          13
+        ],
+        "seed": [
+          0,
+          1,
+          2,
+          6,
+          8,
+          13
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              8
+            ],
+            "outside_seed": [
+              7,
+              10,
+              14
+            ],
+            "qrow_overlap": [
+              8
+            ],
+            "row": [
+              7,
+              8,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [
+              0
+            ],
+            "outside_seed": [
+              5,
+              12
+            ],
+            "qrow_overlap": [
+              0,
+              2
+            ],
+            "row": [
+              0,
+              2,
+              5,
+              12
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              1
+            ],
+            "outside_seed": [
+              3,
+              5
+            ],
+            "qrow_overlap": [
+              13
+            ],
+            "row": [
+              1,
+              3,
+              5,
+              13
+            ]
+          },
+          {
+            "center": 6,
+            "common_overlap": [],
+            "outside_seed": [
+              9,
+              11,
+              14
+            ],
+            "qrow_overlap": [
+              2
+            ],
+            "row": [
+              2,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [
+              1
+            ],
+            "outside_seed": [
+              4,
+              5,
+              10
+            ],
+            "qrow_overlap": [],
+            "row": [
+              1,
+              4,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 13,
+            "common_overlap": [
+              6
+            ],
+            "outside_seed": [
+              5,
+              11,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              6,
+              11,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k0_d2_f3",
+      "elapsed_seconds": 6.390816042199731,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          3,
+          7,
+          11
+        ],
+        "j": 7,
+        "qrow": [
+          0,
+          2,
+          7,
+          8
+        ],
+        "seed": [
+          0,
+          2,
+          3,
+          7,
+          8,
+          11
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [],
+            "outside_seed": [
+              4,
+              12,
+              13
+            ],
+            "qrow_overlap": [
+              2
+            ],
+            "row": [
+              2,
+              4,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              9,
+              10,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              9,
+              10,
+              13
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              11
+            ],
+            "outside_seed": [
+              1,
+              9,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              1,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 7,
+            "common_overlap": [],
+            "outside_seed": [
+              4,
+              6,
+              10,
+              12
+            ],
+            "qrow_overlap": [],
+            "row": [
+              4,
+              6,
+              10,
+              12
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              13,
+              14
+            ],
+            "qrow_overlap": [
+              2
+            ],
+            "row": [
+              2,
+              5,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 11,
+            "common_overlap": [
+              3,
+              7
+            ],
+            "outside_seed": [
+              10,
+              14
+            ],
+            "qrow_overlap": [
+              7
+            ],
+            "row": [
+              3,
+              7,
+              10,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f1",
+      "elapsed_seconds": 6.404064582893625,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          1,
+          7,
+          14
+        ],
+        "j": 7,
+        "qrow": [
+          0,
+          3,
+          7,
+          8
+        ],
+        "seed": [
+          0,
+          1,
+          3,
+          7,
+          8,
+          14
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              9,
+              10
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              3,
+              9,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [],
+            "outside_seed": [
+              2,
+              11
+            ],
+            "qrow_overlap": [
+              3,
+              8
+            ],
+            "row": [
+              2,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              2,
+              5
+            ],
+            "qrow_overlap": [
+              8
+            ],
+            "row": [
+              2,
+              5,
+              8,
+              14
+            ]
+          },
+          {
+            "center": 7,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              2,
+              6,
+              12
+            ],
+            "qrow_overlap": [],
+            "row": [
+              2,
+              6,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              4,
+              10,
+              12
+            ],
+            "qrow_overlap": [],
+            "row": [
+              4,
+              10,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 14,
+            "common_overlap": [
+              7
+            ],
+            "outside_seed": [
+              4,
+              9,
+              11
+            ],
+            "qrow_overlap": [
+              7
+            ],
+            "row": [
+              4,
+              7,
+              9,
+              11
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f2",
+      "elapsed_seconds": 6.4399798340164125,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "j": 4,
+        "qrow": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "seed": [
+          0,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              5,
+              13
+            ],
+            "qrow_overlap": [
+              7
+            ],
+            "row": [
+              2,
+              5,
+              7,
+              13
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              0
+            ],
+            "outside_seed": [
+              8,
+              10
+            ],
+            "qrow_overlap": [
+              0,
+              3
+            ],
+            "row": [
+              0,
+              3,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              8,
+              9,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              8,
+              9,
+              14
+            ]
+          },
+          {
+            "center": 4,
+            "common_overlap": [
+              6
+            ],
+            "outside_seed": [
+              10,
+              14
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              3,
+              6,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 6,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              12,
+              13
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              3,
+              5,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 7,
+            "common_overlap": [
+              0,
+              6
+            ],
+            "outside_seed": [
+              13,
+              14
+            ],
+            "qrow_overlap": [
+              0
+            ],
+            "row": [
+              0,
+              6,
+              13,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f0",
+      "elapsed_seconds": 6.398594666970894,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          1,
+          4,
+          13
+        ],
+        "j": 4,
+        "qrow": [
+          1,
+          3,
+          4,
+          11
+        ],
+        "seed": [
+          0,
+          1,
+          3,
+          4,
+          11,
+          13
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              13
+            ],
+            "outside_seed": [
+              5,
+              14
+            ],
+            "qrow_overlap": [
+              11
+            ],
+            "row": [
+              5,
+              11,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [
+              0
+            ],
+            "outside_seed": [
+              12,
+              14
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              0,
+              3,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              0,
+              1,
+              4,
+              13
+            ],
+            "outside_seed": [],
+            "qrow_overlap": [
+              1,
+              4
+            ],
+            "row": [
+              0,
+              1,
+              4,
+              13
+            ]
+          },
+          {
+            "center": 4,
+            "common_overlap": [],
+            "outside_seed": [
+              6,
+              7,
+              10
+            ],
+            "qrow_overlap": [
+              11
+            ],
+            "row": [
+              6,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "common_overlap": [],
+            "outside_seed": [
+              7,
+              8,
+              9
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 13,
+            "common_overlap": [
+              4
+            ],
+            "outside_seed": [
+              6,
+              9,
+              14
+            ],
+            "qrow_overlap": [
+              4
+            ],
+            "row": [
+              4,
+              6,
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f2",
+      "elapsed_seconds": 6.369399833958596,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          1,
+          2,
+          9,
+          13
+        ],
+        "j": 9,
+        "qrow": [
+          1,
+          3,
+          8,
+          9
+        ],
+        "seed": [
+          1,
+          2,
+          3,
+          8,
+          9,
+          13
+        ],
+        "selected_rows": [
+          {
+            "center": 1,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              0,
+              7,
+              11
+            ],
+            "qrow_overlap": [],
+            "row": [
+              0,
+              2,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              1
+            ],
+            "outside_seed": [
+              6,
+              11
+            ],
+            "qrow_overlap": [
+              1,
+              3
+            ],
+            "row": [
+              1,
+              3,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              1
+            ],
+            "outside_seed": [
+              0,
+              5,
+              12
+            ],
+            "qrow_overlap": [
+              1
+            ],
+            "row": [
+              0,
+              1,
+              5,
+              12
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [
+              9
+            ],
+            "outside_seed": [
+              6,
+              11,
+              14
+            ],
+            "qrow_overlap": [
+              9
+            ],
+            "row": [
+              6,
+              9,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 9,
+            "common_overlap": [
+              13
+            ],
+            "outside_seed": [
+              7,
+              12,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              7,
+              12,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 13,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              4,
+              6,
+              12
+            ],
+            "qrow_overlap": [],
+            "row": [
+              2,
+              4,
+              6,
+              12
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f1",
+      "elapsed_seconds": 6.349984542001039,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          1,
+          2,
+          7,
+          10
+        ],
+        "j": 10,
+        "qrow": [
+          0,
+          2,
+          6,
+          10
+        ],
+        "seed": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          10
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [],
+            "outside_seed": [
+              3,
+              11,
+              13,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              3,
+              11,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              8,
+              11
+            ],
+            "qrow_overlap": [
+              0,
+              2
+            ],
+            "row": [
+              0,
+              2,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              7
+            ],
+            "outside_seed": [
+              3,
+              5
+            ],
+            "qrow_overlap": [
+              0
+            ],
+            "row": [
+              0,
+              3,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 6,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              8,
+              12,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              8,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 7,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              9,
+              14
+            ],
+            "qrow_overlap": [
+              0
+            ],
+            "row": [
+              0,
+              5,
+              9,
+              14
+            ]
+          },
+          {
+            "center": 10,
+            "common_overlap": [
+              1
+            ],
+            "outside_seed": [
+              8,
+              9,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              1,
+              8,
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f3",
+      "elapsed_seconds": 6.39336954196915,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          2,
+          3,
+          6,
+          8
+        ],
+        "j": 6,
+        "qrow": [
+          0,
+          2,
+          6,
+          10
+        ],
+        "seed": [
+          0,
+          2,
+          3,
+          6,
+          8,
+          10
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              7,
+              12,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              7,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              3
+            ],
+            "outside_seed": [
+              1,
+              9,
+              12
+            ],
+            "qrow_overlap": [],
+            "row": [
+              1,
+              3,
+              9,
+              12
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              6
+            ],
+            "outside_seed": [
+              11,
+              12
+            ],
+            "qrow_overlap": [
+              6,
+              10
+            ],
+            "row": [
+              6,
+              10,
+              11,
+              12
+            ]
+          },
+          {
+            "center": 6,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              7,
+              11,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              5,
+              7,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [],
+            "outside_seed": [
+              5,
+              9,
+              13
+            ],
+            "qrow_overlap": [
+              10
+            ],
+            "row": [
+              5,
+              9,
+              10,
+              13
+            ]
+          },
+          {
+            "center": 10,
+            "common_overlap": [
+              8
+            ],
+            "outside_seed": [
+              9,
+              11,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              8,
+              9,
+              11,
+              13
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f1",
+      "elapsed_seconds": 6.379046750022098,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          1,
+          3,
+          7,
+          11
+        ],
+        "j": 7,
+        "qrow": [
+          0,
+          3,
+          7,
+          9
+        ],
+        "seed": [
+          0,
+          1,
+          3,
+          7,
+          9,
+          11
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [],
+            "outside_seed": [
+              2,
+              5,
+              10,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              2,
+              5,
+              10,
+              13
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [
+              11
+            ],
+            "outside_seed": [
+              2,
+              8,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              2,
+              8,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              7
+            ],
+            "outside_seed": [
+              2,
+              5,
+              12
+            ],
+            "qrow_overlap": [
+              7
+            ],
+            "row": [
+              2,
+              5,
+              7,
+              12
+            ]
+          },
+          {
+            "center": 7,
+            "common_overlap": [],
+            "outside_seed": [
+              6,
+              8,
+              10,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              6,
+              8,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 9,
+            "common_overlap": [
+              7,
+              11
+            ],
+            "outside_seed": [
+              4,
+              14
+            ],
+            "qrow_overlap": [
+              7
+            ],
+            "row": [
+              4,
+              7,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 11,
+            "common_overlap": [
+              3
+            ],
+            "outside_seed": [
+              5,
+              14
+            ],
+            "qrow_overlap": [
+              3,
+              9
+            ],
+            "row": [
+              3,
+              5,
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f2",
+      "elapsed_seconds": 6.313043999951333,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          2,
+          3,
+          11,
+          12
+        ],
+        "j": 11,
+        "qrow": [
+          0,
+          3,
+          6,
+          11
+        ],
+        "seed": [
+          0,
+          2,
+          3,
+          6,
+          11,
+          12
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              2,
+              3,
+              11,
+              12
+            ],
+            "outside_seed": [],
+            "qrow_overlap": [
+              3,
+              11
+            ],
+            "row": [
+              2,
+              3,
+              11,
+              12
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              3
+            ],
+            "outside_seed": [
+              5,
+              8,
+              13
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              3,
+              5,
+              8,
+              13
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [],
+            "outside_seed": [
+              9,
+              10,
+              14
+            ],
+            "qrow_overlap": [
+              0
+            ],
+            "row": [
+              0,
+              9,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 6,
+            "common_overlap": [
+              12
+            ],
+            "outside_seed": [
+              1,
+              7,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              1,
+              7,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 11,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              8,
+              14
+            ],
+            "qrow_overlap": [
+              0
+            ],
+            "row": [
+              0,
+              2,
+              8,
+              14
+            ]
+          },
+          {
+            "center": 12,
+            "common_overlap": [
+              3,
+              11
+            ],
+            "outside_seed": [],
+            "qrow_overlap": [
+              0,
+              3,
+              6,
+              11
+            ],
+            "row": [
+              0,
+              3,
+              6,
+              11
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f0",
+      "elapsed_seconds": 6.291874292073771,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          0,
+          3,
+          11,
+          12
+        ],
+        "j": 11,
+        "qrow": [
+          1,
+          3,
+          10,
+          11
+        ],
+        "seed": [
+          0,
+          1,
+          3,
+          10,
+          11,
+          12
+        ],
+        "selected_rows": [
+          {
+            "center": 0,
+            "common_overlap": [
+              12
+            ],
+            "outside_seed": [
+              13,
+              14
+            ],
+            "qrow_overlap": [
+              1
+            ],
+            "row": [
+              1,
+              12,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "common_overlap": [
+              0,
+              3,
+              11,
+              12
+            ],
+            "outside_seed": [],
+            "qrow_overlap": [
+              3,
+              11
+            ],
+            "row": [
+              0,
+              3,
+              11,
+              12
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              12
+            ],
+            "outside_seed": [
+              2,
+              5
+            ],
+            "qrow_overlap": [
+              10
+            ],
+            "row": [
+              2,
+              5,
+              10,
+              12
+            ]
+          },
+          {
+            "center": 10,
+            "common_overlap": [
+              0,
+              3
+            ],
+            "outside_seed": [
+              7,
+              13
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              0,
+              3,
+              7,
+              13
+            ]
+          },
+          {
+            "center": 11,
+            "common_overlap": [],
+            "outside_seed": [
+              8,
+              9,
+              13
+            ],
+            "qrow_overlap": [
+              1
+            ],
+            "row": [
+              1,
+              8,
+              9,
+              13
+            ]
+          },
+          {
+            "center": 12,
+            "common_overlap": [
+              0
+            ],
+            "outside_seed": [
+              2,
+              4,
+              14
+            ],
+            "qrow_overlap": [],
+            "row": [
+              0,
+              2,
+              4,
+              14
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f2",
+      "elapsed_seconds": 6.453555791871622,
+      "included_constraints": 8880,
+      "model": {
+        "common": [
+          2,
+          3,
+          8,
+          14
+        ],
+        "j": 8,
+        "qrow": [
+          1,
+          3,
+          5,
+          8
+        ],
+        "seed": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          14
+        ],
+        "selected_rows": [
+          {
+            "center": 1,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              9,
+              11,
+              13
+            ],
+            "qrow_overlap": [],
+            "row": [
+              9,
+              11,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 2,
+            "common_overlap": [
+              3
+            ],
+            "outside_seed": [
+              4,
+              6
+            ],
+            "qrow_overlap": [
+              1,
+              3
+            ],
+            "row": [
+              1,
+              3,
+              4,
+              6
+            ]
+          },
+          {
+            "center": 3,
+            "common_overlap": [
+              2
+            ],
+            "outside_seed": [
+              6,
+              10,
+              11
+            ],
+            "qrow_overlap": [],
+            "row": [
+              2,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "common_overlap": [],
+            "outside_seed": [
+              4,
+              10,
+              13
+            ],
+            "qrow_overlap": [
+              1
+            ],
+            "row": [
+              1,
+              4,
+              10,
+              13
+            ]
+          },
+          {
+            "center": 8,
+            "common_overlap": [
+              14
+            ],
+            "outside_seed": [
+              0,
+              12
+            ],
+            "qrow_overlap": [
+              1
+            ],
+            "row": [
+              0,
+              1,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 14,
+            "common_overlap": [
+              3
+            ],
+            "outside_seed": [
+              0,
+              9,
+              10
+            ],
+            "qrow_overlap": [
+              3
+            ],
+            "row": [
+              0,
+              3,
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      "pairwise_alternation_constraints": 180,
+      "qrow_alternation_constraints": 24,
+      "reason": null,
+      "status": "sat"
+    }
+  ]
+}

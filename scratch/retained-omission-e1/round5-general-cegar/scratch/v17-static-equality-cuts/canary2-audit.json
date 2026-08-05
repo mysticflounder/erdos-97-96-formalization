@@ -1,0 +1,83 @@
+{
+  "all_assignments_covered": true,
+  "all_projected_cores_specialized": true,
+  "case_id": "fresh_DDD_k0_d2_f1",
+  "clause_length_distribution": {
+    "6": 1764,
+    "7": 6792,
+    "8": 5808,
+    "9": 1320
+  },
+  "coverage": [
+    {
+      "core_specializations": 1,
+      "iteration": 0,
+      "matching_static_cuts": 4,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 1,
+      "matching_static_cuts": 10,
+      "projected_core_size": 7
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 2,
+      "matching_static_cuts": 6,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 3,
+      "matching_static_cuts": 2,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 4,
+      "matching_static_cuts": 1,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 5,
+      "matching_static_cuts": 1,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 6,
+      "matching_static_cuts": 1,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 7,
+      "matching_static_cuts": 1,
+      "projected_core_size": 8
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 8,
+      "matching_static_cuts": 7,
+      "projected_core_size": 7
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 9,
+      "matching_static_cuts": 10,
+      "projected_core_size": 7
+    },
+    {
+      "core_specializations": 1,
+      "iteration": 10,
+      "matching_static_cuts": 26,
+      "projected_core_size": 7
+    }
+  ],
+  "dynamic_blocker_count": 11,
+  "generation_seconds": 0.024568166118115187,
+  "triangle_cut_count": 15684,
+  "unique_triangle_cut_count": 15684
+}

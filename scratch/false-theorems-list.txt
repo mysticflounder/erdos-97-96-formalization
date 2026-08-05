@@ -1,0 +1,39 @@
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:103:    (hP2 : S.oppositeVertexByIndex i ∉ SelectedClass A M rM) : False := by
+lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean:130:    (hP2 : S.oppositeVertexByIndex i ∉ SelectedClass A M rM) : False := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:261:        (H.selectedAt source hsource).toCriticalFourShell.support) : False := by
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:68:    (hx : x ∈ T) (hy : y ∈ T) (hcard : T.card ≤ 1) : False := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:163:    (P : OrderedDifferentPairCrossHit Q) : False := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:264:    (P : AlternateOrderedDifferentPairCrossHit Q) : False := by
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:161:    (Q : OrderedCrossRowCore P) : False := by
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:267:    (Q : SameCapCollisionPairCore P) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:62:    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:83:    (hc2 : dist (phi k2) (phi i1) = dist (phi k2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:121:    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:143:    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean:68:    (hbw : bw ≠ 0) (hbv1 : bv - 1 ≠ 0) : False := by
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:172:    (C : RobustLargeRadiusResidualConsumers H F) : False := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:396:    (hO_mem_ARow : boundary iO ∈ ARow.support) : False := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:440:    (hid_mem_BRow : boundary id ∈ BRow.support) : False := by
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:67:    (hP2 : P ∉ SelectedClass A M rad) : False := by
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:112:    (hP2 : P ∉ K2.support) : False := by
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:139:    (hP2 : P ∉ SelectedClass A M rM) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:262:    (hbw : bw ≠ 0) (hbv1 : bv - 1 ≠ 0) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:276:  (hG3 : (bu - bs) * (br - bv) * bv * bw = 0) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:346:    (hconjV : zv = starRingEnd ℂ bv) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:485:    (hPU_UV : dist (pt 1 0) U = dist U V) : False := by
+lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean:694:    (hUP_UV : dist (pointOf U) (pointOf P) = dist (pointOf U) (pointOf V)) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoLratIngress/P5ExactTwoClosure.lean:118:    (h : ∀ clause ∈ bridgeClauses, clauseSat v clause) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoLratIngress/P5ExactTwoClosure.lean:136:    (distribution : ExactTwoStrictHitDistribution R) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3Checkpoint0ClauseBank.lean:347:    (hseven : shadow.centerOf 7 = 8) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean:38:      clauseSat v clause) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean:50:        (signedClauseOfDefault clause) = true) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ConvexFiveSliceLedger.lean:382:    (hbcy : signedArea2 b c y < 0) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean:130:        (signedClauseOfDefault clause) = true) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreClauseBank.lean:343:    (hseven : shadow.centerOf 7 = 8) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:206:    (h₃₄ : Disjoint a₃.mask a₄.mask) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:37:    (Q : AlignedP5MirrorBoundaryPacket R profile P) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:42:    (Q : AlignedP5BoundaryPacket R profile P) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/CyclicAlternationCore.lean:112:      dist (phi (idx r)) (phi (idx q))) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Curvature/P5RetainedOuterArcMasks.lean:453:    (h₃₄ : Disjoint (arc₃.turnMask Q) (arc₄.turnMask Q)) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateSemantics.lean:120:      clauseSat v clause) : False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateLedgerClosure.lean:25:    (h : ∀ clause ∈ p4CompactLedger, clauseSat v clause) : False := by

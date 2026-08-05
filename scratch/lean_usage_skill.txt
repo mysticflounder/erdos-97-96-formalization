@@ -1,0 +1,176 @@
+---
+name: lean-usage
+description: "Use for any Lean 4 or Lake task — theorem search and reuse, editing proofs, sorry/axiom obligations, lake-build, solver-proof validation, lint, olean caching, dependency pinning."
+---
+
+# Lean Usage
+
+Apply the repository's `AGENTS.md`, user instructions, and active proof plan before
+these defaults. In particular, `lake-build` is the required build path when a build
+is authorized; it is not permission to build through an explicit no-build gate.
+
+## Core workflow
+
+1. **Read the live project contract.** Check repository instructions, the active
+   plan/closure matrix, theorem-bank registries, and build or publication gates.
+2. **Refresh current truth.** Read current source and imports. In proof-blueprint
+   projects, recheck the live anchor/status and refresh stale source/kernel indexes.
+   Anchors, line numbers, open-node counts, and rendered status files are snapshots.
+3. **Search before proving.** Search project banks first, then the indexed Lean
+   corpora. Treat search hits as candidates until the reuse preflight below passes.
+4. **Make grounded progress.** Prove a useful result, shrink the target's freedom,
+   or improve supporting infrastructure/tests/docs in a way the active plan needs.
+   Do not commit wrapper networks or equivalent reformulations as proof progress.
+5. **Validate proportionally.** Build the smallest affected target first, then run
+   broader and publication gates only when authorized and appropriate. Audit warnings,
+   import reachability, proof-spine edges, and axioms—not only exit status.
+6. **Synchronize the record.** When the theorem frontier changes, update all living
+   status/plan docs in the same change so stale claims do not remain authoritative.
+
+## Theorem search and reuse preflight
+
+Before deriving a finite pattern, incidence lemma, local contradiction, or helper:
+
+```bash
+nthdegree docs search --lean "<statement or mathematical concept>"
+nthdegree docs search --lean --name '<name-pattern>' "<concept>"
+nthdegree docs search --lean --sig '<type fragment>' "<concept>"
+```
+
+Search both project terminology and concept-level mathematical language. Use `rg`
+for source navigation after semantic search, not as the only theorem-discovery tool.
+
+Before reusing a candidate, verify:
+
+- its exact current statement and hypotheses;
+- source path, current elaboration, and import reachability from the consumer;
+- kernel axiom closure and any approved trust boundary;
+- a hypothesis-by-hypothesis map from the live obligation;
+- the first missing antecedent, circularity risk, and immediate spine consumer.
+
+A contradiction consumer without a producer for its hypotheses is not a closure route.
+A precise negative compatibility result is still useful: record it before deriving anew.
+
+## Proof obligations and tractability
+
+- Represent an in-project unproved obligation as a `sorry`-backed theorem against an
+  explicit statement, not a named `axiom` and never a silent `True` placeholder.
+- Every `sorry` introduced or actively refactored by the current plan must be
+  load-bearing on the headline/publish proof spine and wired to its consumer.
+- Judge decomposition by aggregate tractability, not raw `sorry` count. Many named,
+  independently buildable branch leaves can be better than one theorem hiding many
+  case holes. Do not create orphan obligations merely to improve a count.
+- Named axioms are reserved for genuine external assumptions with project approval,
+  reason, and citation. Never approve a local IOU as an external axiom.
+- In projects without proof-blueprint, establish reachability from the headline
+  theorem by source/import inspection and make the consumer explicit in the change.
+
+Read [proof-discipline.md](references/proof-discipline.md) before changing obligations,
+using `native_decide`, importing archived/mined Lean, or evaluating solver evidence.
+
+## Evidence and claim scope
+
+Use the rigor labels `PROVEN`, `CONJECTURED`, `EMPIRICALLY VERIFIED`, and `HEURISTIC`
+for claims. For computations, also state whether the result is exhaustive within a
+specified abstraction, externally exact, or sampled. Exhausting a finite abstraction
+does not by itself prove the intended geometric or ambient theorem.
+
+Generated metadata, normalized statement shapes, a source scan with no `sorry`, solver
+output, and old `.olean` files are discovery evidence—not current kernel proof or
+immediate applicability. Require a fresh build and axiom audit before calling archived
+or unimported Lean reusable. State the exact trust boundary of SAT/SMT/CAS/native
+computation rather than upgrading it to “kernel checked.”
+
+## Build quick start
+
+```bash
+lake-build                 # whole project
+lake-build Foo.Bar         # one target
+lake-build --jobs 4        # forwarded to `lake build`; advisory, not a hard cap
+
+cd <lake-root>
+lake exe cache get         # mathlib oleans; per project
+```
+
+`lake-build` locates the Lake root, serializes top-level builds per project, caps each
+Lean worker's memory, records timing, and cleans up its lock/shim. On successful
+proof-blueprint builds it best-effort refreshes the source/kernel graph and rewrites
+`docs/live-blueprint.md`. `LAKE_BUILD_NO_REFRESH=1` disables that side effect; a green
+build can then coexist with stale blueprint state, so refresh explicitly before making
+proof-state or publication claims.
+
+`docs/live-blueprint.md` is therefore a **build artifact**, regenerated after every
+successful build in a proof-blueprint project — a `spine` snapshot of the open frontier,
+not a hand-authored document. Do not edit it; the next build overwrites it. Read it
+after a build to see where the proof stands, and treat the `wrote …/docs/live-blueprint.md`
+line as the confirmation that it is current. Because the rewrite is best-effort, a green
+build whose render failed leaves the previous file in place.
+
+Do not edit files in the running build's source graph and then cite that build as
+validation of the edited state. Prepare notes or the next change separately and wait
+for a fresh build after source changes.
+
+Build time is work time, not wait time. Always run `lake-build` in the background.
+The harness delivers a completion notice with the build's exit status and output when
+it finishes — that notice is the only signal you need. Never poll for it: no `sleep`,
+no repeated status or log checks, no `tail -f`, no watch loop, no waiting on a build
+that has not reported yet. Polling buys nothing the notice does not already give you
+and burns the interval you were supposed to be working in.
+
+Spend that interval on work the plan needs that stays outside the build's source
+graph: theorem search and reuse preflight, reading references and dead-ends, drafting
+the next change as notes, updating status/plan docs, or auditing prior output. If the
+build result is genuinely the sole blocker and nothing else is in flight, end the turn
+and let the completion notice bring you back — do not idle in a wait loop to hold the
+turn open.
+
+Read [build-operations.md](references/build-operations.md) for root detection,
+environment overrides, concurrency, direct single-file exceptions, and mathlib cache.
+Read [build-performance.md](references/build-performance.md) when a build is slow.
+
+## Validation closeout
+
+- A green root target says nothing about modules outside its import closure. Build any
+  active unimported module explicitly or add it to a real aggregate/CI target.
+- Treat warnings introduced or touched by the change as defects. In a noisy inherited
+  tree, record the baseline and avoid unrelated cleanup unless it is in scope.
+- In proof-blueprint projects, confirm fresh source and kernel indexes, the intended
+  spine edge, actual axiom closure, focused tests, and `verify-publish` when publishing.
+- Audit actual closure; do not infer it from tactic names or source text. Reject
+  `sorryAx` and every unexpected custom axiom.
+- Keep generated-payload exclusions narrow: omit bulk term shards when necessary, but
+  keep hand-written checkers, soundness theorems, geometry, and aggregate consumers
+  visible to proof mining and closure audits.
+- If validation is gated or incomplete, report exactly what was not run.
+
+For proof-blueprint command semantics, use the sibling
+[proof-blueprint skill](../proof-blueprint/SKILL.md).
+
+## Code and repository hygiene
+
+- Fix new lint warnings promptly; suppress only with the narrowest justified scope.
+- Use mathematical names and neutral status language. Name new declarations for the
+  mathematics, not the pipeline: do not coin house/software jargon or codenames for a
+  math object, encode tool names in theorem schemas, or present project shorthand as
+  established terminology. Conform to a project's naming glossary when one exists.
+- Keep the public interface intentional. Mark non-interface helpers `private`;
+  an `Internal` namespace groups names but does not hide them.
+- Follow project header/authorship and source-literature policy for new files.
+- For mathlib/FLT-bound code, apply the stricter repository idiom before review.
+
+Read [code-quality.md](references/code-quality.md) for lint fixes and syntax gotchas,
+[repository-policy.md](references/repository-policy.md) for headers/references, and
+[mathlib-flt-idiom.md](references/mathlib-flt-idiom.md) for mathlib/FLT review.
+
+## Reference map
+
+| Task | Read |
+|---|---|
+| Wrapper behavior, host sharing, raw Lean exceptions, mathlib cache | [build-operations.md](references/build-operations.md) |
+| Budgets, stats, and elaboration profiling | [build-performance.md](references/build-performance.md) |
+| Generated proofs, DRAT emitters, project olean archival | [generated-proofs.md](references/generated-proofs.md) |
+| `sorry`, axioms, proof spine, evidence, `native_decide` | [proof-discipline.md](references/proof-discipline.md) |
+| Lints, naming/tone, surface-syntax troubleshooting | [code-quality.md](references/code-quality.md) |
+| Headers, authorship, provenance, local literature | [repository-policy.md](references/repository-policy.md) |
+| Mathlib/FLT style and pre-review audit | [mathlib-flt-idiom.md](references/mathlib-flt-idiom.md) |
+| Lake dependency pins, local paths, mirrors | [vendoring.md](references/vendoring.md) |

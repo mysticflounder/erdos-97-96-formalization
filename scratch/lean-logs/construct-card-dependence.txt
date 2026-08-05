@@ -1,0 +1,40 @@
+32:* `three_le_card_of_convexIndep_noncoll` (spec §3.6) — `¬ Collinear ⇒ 3 ≤ A.card`.
+61:  cut-open key into `φ : Fin A.card → ℝ²`, strictly monotone in the key. Pure
+81:    3 ≤ A.card := by
+85:  interval_cases hcard : A.card
+263:    {n : ℕ} {phi : Fin n → ℝ²} (hA : Problem97.ConvexIndep A)
+265:    {i k : Fin n} (hik : i < k) :
+458:order around an interior center `c`: there is `φ : Fin A.card → ℝ²` that is
+473:    ∃ φ : Fin A.card → ℝ²,
+483:  have hcard : B.card = A.card := Finset.card_image_of_injOn hinj
+486:  have hex : ∀ i : Fin A.card, ∃ a, a ∈ A ∧ key a = B.orderEmbOfFin hcard i := by
+490:  set φ : Fin A.card → ℝ² := fun i => (hex i).choose with hφdef
+516:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+517:    {i t k : Fin A.card} (hit : i < t) (htk : t < k)
+729:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+735:    {i t k : Fin A.card} (hit : i < t) (htk : t < k)
+810:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+816:    {i t k : Fin A.card} (hit : i < t) (htk : t < k)
+889:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+896:    {i k t : Fin A.card} (hik : i < k)
+962:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+969:    {i k t : Fin A.card} (hik : i < k)
+1008:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1015:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1159:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1166:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1212:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1219:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1532:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1539:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1610:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1617:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1727:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1734:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1796:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1803:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k)
+1865:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1872:    {i j k : Fin A.card} (hij : i < j) (hjk : j < k) :
+1904:    {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
+1939:    ∃ (n : ℕ) (_ : 3 ≤ n) (phi : Fin n → ℝ²),
+1946:  refine ⟨A.card, Problem97.three_le_card_of_convexIndep_noncoll hA hnoncoll, phi,

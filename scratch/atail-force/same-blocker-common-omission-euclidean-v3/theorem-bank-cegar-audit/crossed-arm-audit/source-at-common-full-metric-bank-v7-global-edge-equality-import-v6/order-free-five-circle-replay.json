@@ -1,0 +1,219 @@
+{
+  "carrier_size": 17,
+  "families": {
+    "six_point_five_circle_collision_a": {
+      "equalities": [
+        [
+          "O",
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "A",
+          "O",
+          "C"
+        ],
+        [
+          "A",
+          "O",
+          "E"
+        ],
+        [
+          "C",
+          "B",
+          "E"
+        ],
+        [
+          "C",
+          "B",
+          "F"
+        ],
+        [
+          "E",
+          "O",
+          "C"
+        ],
+        [
+          "E",
+          "O",
+          "F"
+        ],
+        [
+          "F",
+          "O",
+          "A"
+        ]
+      ],
+      "match_count": 0,
+      "match_previews": [],
+      "role_order": [
+        "A",
+        "O",
+        "B",
+        "E",
+        "C",
+        "F"
+      ],
+      "search_nodes_by_depth": [
+        1,
+        17,
+        272,
+        24,
+        36,
+        0,
+        0
+      ],
+      "theorem": "Problem97.Census554.EqualityCore.six_point_five_circle_collision_a"
+    },
+    "six_point_five_circle_collision_b": {
+      "equalities": [
+        [
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "A",
+          "O",
+          "E"
+        ],
+        [
+          "B",
+          "O",
+          "A"
+        ],
+        [
+          "B",
+          "O",
+          "C"
+        ],
+        [
+          "B",
+          "O",
+          "F"
+        ],
+        [
+          "E",
+          "O",
+          "B"
+        ],
+        [
+          "C",
+          "O",
+          "F"
+        ],
+        [
+          "F",
+          "A",
+          "E"
+        ],
+        [
+          "F",
+          "A",
+          "C"
+        ]
+      ],
+      "match_count": 0,
+      "match_previews": [],
+      "role_order": [
+        "A",
+        "O",
+        "B",
+        "E",
+        "F",
+        "C"
+      ],
+      "search_nodes_by_depth": [
+        1,
+        17,
+        272,
+        24,
+        0,
+        0,
+        0
+      ],
+      "theorem": "Problem97.Census554.EqualityCore.six_point_five_circle_collision_b"
+    },
+    "six_point_five_circle_collision_c": {
+      "equalities": [
+        [
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "A",
+          "O",
+          "E"
+        ],
+        [
+          "A",
+          "O",
+          "C"
+        ],
+        [
+          "B",
+          "O",
+          "A"
+        ],
+        [
+          "B",
+          "O",
+          "F"
+        ],
+        [
+          "E",
+          "B",
+          "C"
+        ],
+        [
+          "E",
+          "B",
+          "F"
+        ],
+        [
+          "C",
+          "O",
+          "E"
+        ],
+        [
+          "F",
+          "A",
+          "E"
+        ]
+      ],
+      "match_count": 0,
+      "match_previews": [],
+      "role_order": [
+        "A",
+        "O",
+        "B",
+        "E",
+        "F",
+        "C"
+      ],
+      "search_nodes_by_depth": [
+        1,
+        17,
+        272,
+        24,
+        36,
+        0,
+        0
+      ],
+      "theorem": "Problem97.Census554.EqualityCore.six_point_five_circle_collision_c"
+    }
+  },
+  "matching_scope": "injective six-role assignments only",
+  "schema": "order-free-six-point-five-circle-witness-replay-v1",
+  "status": "SURVIVES",
+  "total_match_count": 0,
+  "trust_note": "Finite replay against a complete serialized radius partition. Each match uses nine raw distance equalities and injectivity gives A != E. This script does not itself run Lean or certify the witness.",
+  "witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v7-global-edge-equality-import-v6/witness.json",
+  "witness_sha256": "22f95a352f670f74ae61268f0bbc5bfd56537db8c54d51f99f91c8f7ff6d01bc"
+}

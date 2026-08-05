@@ -1,0 +1,15 @@
+lean/scratch/CheckFreshThirdNames.lean
+scratch/CrossedArmSevenPointEuclideanObstruction.instrumented.lean
+scratch/LocalizedG3SquareHighHB.lean
+scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/LocalizedG3ProductSquareProducer.lean
+scratch/check.lean
+scratch/check_core_axioms.lean
+scratch/check_getd_20260801.lean
+scratch/classify.lean
+scratch/counts.lean
+scratch/disj.lean
+scratch/q1_g3_square_certificate.lean
+scratch/q1_g7_staged_exact.lean
+scratch/q1_g7_twostage_exact.lean
+scratch/q1_six_u_exact.lean
+scratch/singleton.lean

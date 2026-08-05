@@ -1,0 +1,1254 @@
+lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean:40:  change dist a b ^ 2 = dist b c ^ 2 at habcSq
+lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean:41:  change dist b c ^ 2 = dist c d ^ 2 at hbcdSq
+lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean:42:  change dist d a ^ 2 = dist a b ^ 2 at hdaabSq
+lean/Erdos9796Proof/P97/MEC/Basic.lean:35:  yields `dist p m ^ 2 ≤ r² - (dist c₁ c₂ / 2)²` for every `p ∈ A`.
+lean/Erdos9796Proof/P97/MEC/Basic.lean:182:`dist p (midpoint c₁ c₂) ^ 2 ≤ r² - (dist c₁ c₂ / 2)²`. -/
+lean/Erdos9796Proof/P97/MEC/Basic.lean:185:    dist p (midpoint ℝ c₁ c₂) ^ 2 ≤ r ^ 2 - (dist c₁ c₂ / 2) ^ 2 := by
+lean/Erdos9796Proof/P97/MEC/Basic.lean:189:  have h1_sq : dist p c₁ ^ 2 ≤ r ^ 2 := sq_le_sq_of_abs_le dist_nonneg h1
+lean/Erdos9796Proof/P97/MEC/Basic.lean:190:  have h2_sq : dist p c₂ ^ 2 ≤ r ^ 2 := sq_le_sq_of_abs_le dist_nonneg h2
+lean/Erdos9796Proof/P97/MEC/Basic.lean:223:    have hmid_nn_sq : 0 ≤ dist pSample m ^ 2 := sq_nonneg _
+lean/Erdos9796Proof/P97/MEC/Basic.lean:241:    have hmid_sq_le : dist p m ^ 2 ≤ r' ^ 2 := by rw [hr'_sq]; exact hmid_bound
+lean/Erdos9796Proof/P97/MEC/Boundary.lean:174:  rw [h1, norm_sub_pow_two_real, real_inner_smul_right]
+lean/Erdos9796Proof/P97/MEC/Boundary.lean:339:  rw [norm_add_pow_two_real]
+lean/Erdos9796Proof/P97/MEC/ShortestSideDiskAdapter.lean:31:  have hsq : dist p (mecSphere A hA).center ^ 2 ≤
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:80:the row algebra proves `dist p u ^ 2 = dist p t ^ 2` for a dangerous triple
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:87:    (hsq : dist p u ^ 2 = dist p t ^ 2) :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:103:    dist p u ^ 2 = dist p t ^ 2 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:111:    (hsq : dist p u ^ 2 = dist p t ^ 2) :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:120:    (hq : dist q u ^ 2 = dist q t ^ 2)
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:121:    (hp : dist p u ^ 2 = dist p t ^ 2) :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:137:  have hxab_sq : dist x a ^ 2 = dist x b ^ 2 := by rw [hxab]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:138:  have hyab_sq : dist y a ^ 2 = dist y b ^ 2 := by rw [hyab]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:139:  have hxac_sq : dist x a ^ 2 = dist x c ^ 2 := by rw [hxac]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:140:  have hyac_sq : dist y a ^ 2 = dist y c ^ 2 := by rw [hyac]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:204:    (hq : dist q u ^ 2 = dist q t ^ 2)
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:206:    dist p u ^ 2 = dist p t ^ 2 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:658:produces `dist p u ^ 2 = dist p t ^ 2` for a named dangerous triple point
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:665:    (hsq : dist p u ^ 2 = dist p t ^ 2) :
+lean/Erdos9796Proof/P97/MidpointInequality.lean:33:  --   dist c x ^ 2 + dist c y ^ 2 = 2 * (dist c m ^ 2 + (dist x y / 2) ^ 2)
+lean/Erdos9796Proof/P97/MidpointInequality.lean:40:  have hPolar : dist x y ^ 2 =
+lean/Erdos9796Proof/P97/MidpointInequality.lean:41:      dist x c ^ 2 - 2 * ⟪x - c, y - c⟫_ℝ + dist y c ^ 2 := by
+lean/Erdos9796Proof/P97/MidpointInequality.lean:53:  -- hApoll : dist c x ^ 2 + dist c y ^ 2 = 2 * (d ^ 2 + (D/2)^2)
+lean/Erdos9796Proof/P97/MidpointInequality.lean:54:  -- hPolar : D ^ 2 = dist c x ^ 2 - 2 * ι + dist c y ^ 2
+lean/Erdos9796Proof/P97/MidpointInequality.lean:55:  -- Subtract: dist c x ^ 2 + dist c y ^ 2 = D^2 + 2*ι.
+lean/Erdos9796Proof/P97/MidpointInequality.lean:83:    have hNorm : dist x y ^ 2 =
+lean/Erdos9796Proof/P97/MidpointInequality.lean:84:        dist z x ^ 2 - 2 * ⟪x - z, y - z⟫_ℝ + dist z y ^ 2 := by
+lean/Erdos9796Proof/P97/MidpointInequality.lean:88:    have hsq : dist z (midpoint ℝ x y) ^ 2 ≤ (dist x y / 2) ^ 2 := by
+lean/Erdos9796Proof/P97/MidpointInequality.lean:99:    have hNorm : dist x y ^ 2 =
+lean/Erdos9796Proof/P97/MidpointInequality.lean:100:        dist z x ^ 2 - 2 * ⟪x - z, y - z⟫_ℝ + dist z y ^ 2 := by
+lean/Erdos9796Proof/P97/MidpointInequality.lean:104:    have hsq : dist z (midpoint ℝ x y) ^ 2 ≤ (dist x y / 2) ^ 2 := by
+lean/Erdos9796Proof/P97/CircumcenterSide.lean:27:inscribed-angle lemma `inner_chord_eq_two_mul_inner_midpoint` converts to
+lean/Erdos9796Proof/P97/CircumcenterSide.lean:103:step `Problem97.inner_chord_eq_two_mul_inner_midpoint`, which converts
+lean/Erdos9796Proof/P97/CircumcenterSide.lean:121:  have hchord := inner_chord_eq_two_mul_inner_midpoint hac hbc
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:81:    coordSqDist x y = dist x y ^ 2 :=
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:114:    dist (axisRotatePerp u a) (axisRotatePerp u b) ^ 2 = dist a b ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:189:    dist A B ^ 2 = (A 0 - B 0) ^ 2 + (A 1 - B 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:195:      dist (normalAxis p q a) (normalAxis p q b) ^ 2 :=
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:202:      dist (normalAxis p q p) (normalAxis p q a) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:212:      dist (normalAxis p q q) (normalAxis p q a) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:389:    have hsq : dist (0 : ℝ²) (!₂[(1 : ℝ), 0] : ℝ²) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1516:    have hsq : dist (0 : ℝ²) (!₂[(1 : ℝ), 0] : ℝ²) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:59:  (pairs.map fun ab => dist (x ab.1) (x ab.2) ^ 2).prod
+lean/Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:93:        0 < (pairs.map fun ab => dist (x ab.1) (x ab.2) ^ 2).prod
+lean/Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:96:      have hhead : 0 < dist (x ab.1) (x ab.2) ^ 2 := by
+lean/Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:99:          0 < (rest.map fun cd => dist (x cd.1) (x cd.2) ^ 2).prod := by
+lean/Erdos9796Proof/P97/Foundation.lean:27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:19:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:20:import Erdos9796Proof.P97.ATail.OrdinalKalmansonCycle
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:48:* `inner_chord_eq_two_mul_inner_midpoint_off_sphere` — off-sphere chord
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:52:  `inner_chord_eq_two_mul_inner_midpoint` on the sphere.
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:124:on-sphere Thales (`inner_chord_eq_two_mul_inner_midpoint`).
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:220:`inner_chord_eq_two_mul_inner_midpoint` (the on-sphere version) to
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:225:theorem inner_chord_eq_two_mul_inner_midpoint_off_sphere
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:272:1. By `inner_chord_eq_two_mul_inner_midpoint_off_sphere`,
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:277:   (`inner_chord_eq_two_mul_inner_midpoint`) and the non-obtuse
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:303:  have hkey := inner_chord_eq_two_mul_inner_midpoint_off_sphere v2 v3 v O h23_eq
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:312:    inner_chord_eq_two_mul_inner_midpoint hv2_norm hv3_norm
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:398:Generalizes `inner_chord_eq_two_mul_inner_midpoint_off_sphere` by dropping the
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:445:  have key : (dist p E) ^ 2 - (dist p x) ^ 2 = ‖E - x‖ ^ 2 + 2 * ⟪E - x, x - p⟫_ℝ := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:36:`dist x v2 ^ 2 * signedArea2 o v2 v3 = dist v2 v3 ^ 2 * signedArea2 x v2 v3`.
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:44:    dist x v2 ^ 2 * signedArea2 o v2 v3 = dist v2 v3 ^ 2 * signedArea2 x v2 v3 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:45:  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:49:    have := dist_sq x v2 ▸ dist_sq x v3 ▸ (congr_arg (· ^ 2) hdist_xv2v3); linarith
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:52:    have := dist_sq v2 v3 ▸ dist_sq v2 o ▸ (congr_arg (· ^ 2) hdist_v2v3o); linarith
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:55:    have := dist_sq x o ▸ dist_sq x v3 ▸ (congr_arg (· ^ 2) hdist_xo); linarith
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:120:proportional (by the positive scalar `dist x c ^ 2`) to
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:129:`0 = 0` (the `dist x c ^ 2` factor vanishes). -/
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:132:      * dist x c ^ 2
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:165:`dist x vb ^ 2 ≤ d ^ 2 - dist x vc ^ 2 < d ^ 2`. -/
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:178:  have hoff := inner_chord_eq_two_mul_inner_midpoint_off_sphere vb vc x va hbcn
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:216:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:225:  have hxc_lt' : dist x vc ^ 2 < d ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:253:the BRIDGE identity (`signedArea2_reflection_chord`) with `dist x c ^ 2 > 0`:
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:254:`(o-chord product) · dist x c ^ 2 = 2 · (triple) > 0`. -/
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:260:  have hdxc2 : 0 < dist x c ^ 2 := by have := dist_pos.mpr hxc; positivity
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:263:        * signedArea2 c e w * dist x c ^ 2
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:270:`⟪c - x, e - w⟫` has the sign of `dist x e ^ 2 - dist x w ^ 2` (the apex's chord
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:272:`2⟪c - x, e - w⟫ = (dist c w ^ 2 - dist c e ^ 2) + (dist x e ^ 2 - dist x w ^ 2)`. -/
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:275:      = (dist c w ^ 2 - dist c e ^ 2) + (dist x e ^ 2 - dist x w ^ 2) := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:276:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:898:    have hxc_lt' : dist x vc ^ 2 < d ^ 2 := by nlinarith [hstrict, dist_nonneg (x := x) (y := vc), hdpos]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1339:                      have hprop : dist x S.triangle.v2 ^ 2 * signedArea2 o S.triangle.v2 S.triangle.v3 =
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1340:                          dist S.triangle.v2 S.triangle.v3 ^ 2 * signedArea2 x S.triangle.v2 S.triangle.v3 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1345:                      have hdxv2_sq : 0 < dist x S.triangle.v2 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1347:                      have hd23_sq : 0 < dist S.triangle.v2 S.triangle.v3 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1351:                        have h1 : dist x S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1354:                            dist S.triangle.v2 S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1439:                      have hprop : dist x S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1441:                          dist S.triangle.v3 S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1447:                      have hdxv3_sq : 0 < dist x S.triangle.v3 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1449:                      have hd31_sq : 0 < dist S.triangle.v3 S.triangle.v1 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1453:                        have h1 : dist x S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1456:                            dist S.triangle.v3 S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1540:                      have hprop : dist x S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1542:                          dist S.triangle.v1 S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1548:                      have hdxv1_sq : 0 < dist x S.triangle.v1 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1550:                      have hd12_sq : 0 < dist S.triangle.v1 S.triangle.v2 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1554:                        have h1 : dist x S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1557:                            dist S.triangle.v1 S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1652:                      have hprop : dist x S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1654:                          dist S.triangle.v3 S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1667:                      have hdxv3_sq : 0 < dist x S.triangle.v3 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1669:                      have hd32_sq : 0 < dist S.triangle.v3 S.triangle.v2 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1673:                        have h1 : dist x S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1676:                            dist S.triangle.v3 S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1761:                      have hprop : dist x S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1763:                          dist S.triangle.v1 S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1776:                      have hdxv1_sq : 0 < dist x S.triangle.v1 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1778:                      have hd13_sq : 0 < dist S.triangle.v1 S.triangle.v3 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1782:                        have h1 : dist x S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1785:                            dist S.triangle.v1 S.triangle.v3 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1871:                      have hprop : dist x S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1873:                          dist S.triangle.v2 S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1886:                      have hdxv2_sq : 0 < dist x S.triangle.v2 ^ 2 :=
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1888:                      have hd21_sq : 0 < dist S.triangle.v2 S.triangle.v1 ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1892:                        have h1 : dist x S.triangle.v2 ^ 2 *
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:1895:                            dist S.triangle.v2 S.triangle.v1 ^ 2 *
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:53:  change dist (normSim a b a) (normSim a b b) ^ 2 =
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:54:    dist (normSim a b x) (normSim a b y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:303:  change dist (T A) (T C) ^ 2 = dist (T A) (T E) ^ 2 at hACeqRaw
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:377:  change dist (T A) (T B) ^ 2 = dist (T A) (T F) ^ 2 at hBnormRaw
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:385:  change dist (T B) (T E) ^ 2 = dist (T E) (T F) ^ 2 at hBEnormRaw
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:617:  change dist (T C) (T B) ^ 2 = dist (T C) (T D) ^ 2 at hCBCD
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:634:  change dist (T C) (T B) ^ 2 = dist (T C) (T E) ^ 2 at hCBCE
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1282:    (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1283:      * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) < 0 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1291:    have hA : dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2 < 0 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1294:    have hB : 0 < dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1299:    have hA : 0 < dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1302:    have hB : dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2 < 0 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1456:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1475:    dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1478:    dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1481:  have hDsq : dist S.triangle.v3 qs ^ 2 = dist S.triangle.v3 q ^ 2 := by rw [hD]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2085:      dist c p ^ 2 = (c 0 - p 0) ^ 2 + (c 1 - p 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2092:  have hlt_sq : (c 1) ^ 2 < dist c p ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2096:  have hdist_sq_lt : dist c p ^ 2 < (c 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2133:      dist (T S.triangle.v3) (T Z.a2) ^ 2 =
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2149:  have hdist_sq_lt_half : dist (T S.triangle.v3) (T Z.a2) ^ 2 < 1 / 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2656:        ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2660:        ∀ z : ℝ², dist q1 z ^ 2 = ((X z + 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2664:        ∀ z : ℝ², dist q2 z ^ 2 = ((X z - 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2710:      have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2715:      have hdist_sq' : (Y a - yc) ^ 2 ≤ ((1 / 2 : ℝ) ^ 2) + yc ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2765:          dist q1 q2 ^ 2 = dist q1 q3 ^ 2 + dist q2 q3 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2771:      have hq3q1_sq : dist q1 q3 ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2783:        have hchord := inner_chord_eq_two_mul_inner_midpoint hq1q3 hq2q3
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3098:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3121:    have hsq : dist center a ^ 2 ≤ S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3892:        ((T0 a) 0 + 1) ^ 2 + ((T0 a) 1) ^ 2 = dist (T0 a) (Problem97.CGN.vec2 (-1) 0) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3901:        ((T0 a) 0 - 1) ^ 2 + ((T0 a) 1) ^ 2 = dist (T0 a) (Problem97.CGN.vec2 1 0) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3932:    (horigin_sq_le_two : dist (Problem97.CGN.vec2 0 0) p ^ 2 ≤ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3946:    have hdist_sq : dist p (Problem97.CGN.vec2 1 0) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3950:        dist p (Problem97.CGN.vec2 1 0) ^ 2 = u ^ 2 + y ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:3956:      dist (Problem97.CGN.vec2 0 0) p ^ 2 = x ^ 2 + y ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4123:      dist q1 q3 ^ 2 ≤ dist q1 q2 ^ 2 + dist q2 q3 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4132:      dist q1 q3 ^ 2 = ‖q1 - q3‖ ^ 2 := by rw [dist_eq_norm]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4137:      _ = dist q1 q2 ^ 2 + dist q2 q3 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4262:        dist (T q1) (T q3) ^ 2 ≤ dist (T q1) (T q2) ^ 2 + dist (T q2) (T q3) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4264:          tau.scale ^ 2 * dist q1 q3 ^ 2 ≤
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4265:            tau.scale ^ 2 * (dist q1 q2 ^ 2 + dist q2 q3 ^ 2) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4268:          (tau.scale * dist q1 q3) ^ 2 ≤
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4269:            (tau.scale * dist q1 q2) ^ 2 + (tau.scale * dist q2 q3) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4276:        dist (Problem97.CGN.vec2 0 0) (T q3) ^ 2 ≤ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4278:          dist (T q1) (T q2) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4285:          dist (T q2) (T q3) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4290:      have : dist (Problem97.CGN.vec2 0 0) (T q3) ^ 2 ≤ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:4291:        have htmp' : dist (Problem97.CGN.vec2 0 0) (T q3) ^ 2 ≤ 1 + 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:5070:      have hsq : dist (T q1) (T q2) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:5223:  have hAB_sq : dist A B ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:5226:  have hAq_sq : dist A q ^ 2 = 1 + 2 * a + r ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:5530:      have hAD_sq' : dist (T q1) (T q3) ^ 2 = 1 + 2 * dx + r ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:5816:  have hAq_sq : dist (T S.triangle.v1) (T q) ^ 2
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6234:      have hsqeq : dist (T q3) (T q) ^ 2 = dist (T q3) (T C) ^ 2 := by rw [hDq_T]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6774:    (heqsq : distDq ^ 2 = r ^ 2 * (2 - 2 * Real.cos (δ - ε))) :
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6779:  have heqsq2 : distDq ^ 2 = (r * Real.sqrt (2 - 2 * Real.cos (δ - ε))) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6812:    0 ≤ (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6813:        * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6853:        0 ≤ (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6854:            * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7050:      have hsqeq : dist (T q3) (T E) ^ 2 = dist (T q3) (T q) ^ 2 := by rw [hDE_T]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7132:      have hDEdist : dist (T q3) (T E) ^ 2 = r ^ 2 * (2 - 2 * Real.cos (δ - ε)) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7156:      have h_coord : dist (T q3) (T qs) ^ 2 =
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7192:      have hsq : dist (T q3) (T qs) ^ 2 = dist (T q3) (T q) ^ 2 := by rw [hDqs_T]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7202:          = (dist (T q2) (T qs) ^ 2 - dist (T q2) (T q) ^ 2) / 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7211:          = (dist (T q1) (T qs) ^ 2 - dist (T q1) (T q) ^ 2) / 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7219:    have hTB2qs : dist (T q2) (T qs) ^ 2 = tau.scale ^ 2 * dist q2 qs ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7221:    have hTB2q : dist (T q2) (T q) ^ 2 = tau.scale ^ 2 * dist q2 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7223:    have hTA2qs : dist (T q1) (T qs) ^ 2 = tau.scale ^ 2 * dist q1 qs ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7225:    have hTA2q : dist (T q1) (T q) ^ 2 = tau.scale ^ 2 * dist q1 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7231:        (tau.scale ^ 2 * dist q2 qs ^ 2 - tau.scale ^ 2 * dist q2 q ^ 2) / 2
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7232:            * ((tau.scale ^ 2 * dist q1 qs ^ 2 - tau.scale ^ 2 * dist q1 q ^ 2) / 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7233:          = (dist q2 qs ^ 2 - dist q2 q ^ 2) * (dist q1 qs ^ 2 - dist q1 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7238:        0 ≤ (dist q2 qs ^ 2 - dist q2 q ^ 2) * (dist q1 qs ^ 2 - dist q1 q ^ 2) :=
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7285:    0 ≤ (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7286:        * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7326:        0 ≤ (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7327:            * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7523:      have hsqeq : dist (T q3) (T E) ^ 2 = dist (T q3) (T q) ^ 2 := by rw [hDE_T]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7627:      have hDEdist : dist (T q3) (T E) ^ 2 = r ^ 2 * (2 - 2 * Real.cos (δ - ε)) := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7651:      have h_coord : dist (T q3) (T qs) ^ 2 =
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7680:      have hsq : dist (T q3) (T qs) ^ 2 = dist (T q3) (T q) ^ 2 := by rw [hDqs_T]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7690:          = (dist (T q2) (T qs) ^ 2 - dist (T q2) (T q) ^ 2) / 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7699:          = (dist (T q1) (T qs) ^ 2 - dist (T q1) (T q) ^ 2) / 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7707:    have hTB2qs : dist (T q2) (T qs) ^ 2 = tau.scale ^ 2 * dist q2 qs ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7709:    have hTB2q : dist (T q2) (T q) ^ 2 = tau.scale ^ 2 * dist q2 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7711:    have hTA2qs : dist (T q1) (T qs) ^ 2 = tau.scale ^ 2 * dist q1 qs ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7713:    have hTA2q : dist (T q1) (T q) ^ 2 = tau.scale ^ 2 * dist q1 q ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7719:        (tau.scale ^ 2 * dist q2 qs ^ 2 - tau.scale ^ 2 * dist q2 q ^ 2) / 2
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7720:            * ((tau.scale ^ 2 * dist q1 qs ^ 2 - tau.scale ^ 2 * dist q1 q ^ 2) / 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7721:          = (dist q2 qs ^ 2 - dist q2 q ^ 2) * (dist q1 qs ^ 2 - dist q1 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7726:        0 ≤ (dist q2 qs ^ 2 - dist q2 q ^ 2) * (dist q1 qs ^ 2 - dist q1 q ^ 2) :=
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7776:      (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7777:        * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) < 0) :
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7800:      (dist S.triangle.v2 qs ^ 2 - dist S.triangle.v2 q ^ 2)
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:7801:        * (dist S.triangle.v1 qs ^ 2 - dist S.triangle.v1 q ^ 2) < 0) :
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8015:        ∀ z : ℝ², dist q1 z ^ 2 = ((X z + 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8019:        ∀ z : ℝ², dist q2 z ^ 2 = ((X z - 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8023:        ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8098:          have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8109:              dist center q ^ 2 > S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8176:          have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:8187:              dist center q ^ 2 > S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:9118:      dist B (reflPt B D q) ^ 2 = dist B q ^ 2 ∧
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:9119:      dist D (reflPt B D q) ^ 2 = dist D q ^ 2 := by
+lean/Erdos9796Proof/P97/Cap/ArcInscribedAngle.lean:41:theorem inner_chord_eq_two_mul_inner_midpoint
+lean/Erdos9796Proof/P97/Cap/ArcInscribedAngle.lean:114:  rw [inner_chord_eq_two_mul_inner_midpoint hxO hyO]
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:74:  rw [h1, norm_sub_pow_two_real, real_inner_smul_right]
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:248:  have hchord := Problem97.inner_chord_eq_two_mul_inner_midpoint hpc hqc
+lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:359:  have h5 := Problem97.inner_chord_eq_two_mul_inner_midpoint haO hbO
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:51:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:384:  have hsq : dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:390:      = Real.sqrt (dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2) :=
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:467:    have hpol : dist S.triangle.v1 S.triangle.v3 ^ 2 ≤ s0 ^ 2 + r ^ 2 := by
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:482:    have hchart_sq : dist (T S.triangle.v1) (T S.triangle.v3) ^ 2
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:485:      calc (tau.scale * dist S.triangle.v1 S.triangle.v3) ^ 2
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:486:          = tau.scale ^ 2 * dist S.triangle.v1 S.triangle.v3 ^ 2 := by ring
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:665:    dist (T Z.a2) (T S.triangle.v3) ^ 2 < s ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:674:  have hd13sq : 1 < dist (Problem97.CGN.vec2 (0 : ℝ) 0) (T S.triangle.v3) ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:1:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:18:This obstruction is not a consequence of the abstract strict Kalmanson
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:145:  change dist d a ^ 2 = dist d c ^ 2 at hda_sq
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:146:  change dist d a ^ 2 = dist d e ^ 2 at hde_sq
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:147:  change dist e a ^ 2 = dist e b ^ 2 at hea_sq
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:450:strict triangle and strict Kalmanson inequalities. -/
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:464:  change dist b a ^ 2 = dist b e ^ 2 at hb_sq
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:465:  change dist c a ^ 2 = dist c b ^ 2 at hca_sq
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:466:  change dist c a ^ 2 = dist c d ^ 2 at hcd_sq
+lean/Erdos9796Proof/P97/NoDiameterUnderK4.lean:127:  have hdist_sq : ‖p - m‖ ^ 2 ≤ (dist a b / 2) ^ 2 := by
+lean/Erdos9796Proof/P97/NoDiameterUnderK4.lean:936:      have hdist_sq : ‖q - m‖ ^ 2 < (d / 2) ^ 2 := by
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1311:    (hv1dist : x ^ 2 + (y + 1) ^ 2 = r)
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1312:    (hpdist : u ^ 2 + (v + 1) ^ 2 = r)
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean:43:    have h : dist x c ^ 2 = dist y c ^ 2 := by rw [hxc]
+lean/Erdos9796Proof/P97/PropositionEExactTen.lean:48:    have h : dist x d ^ 2 = dist y d ^ 2 := by rw [hxd]
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:869:    have hdist_sq : dist (L.points t) Packet.center ^ 2 ≤ dist q1 Packet.center ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:874:        dist (L.points t) Packet.center ^ 2 =
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:879:        dist q1 Packet.center ^ 2 = ((1 / 2 : ℝ) ^ 2 + yc ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/ArcPartitionCount.lean:194:    rw [@norm_sub_pow_two_real ℝ² _ _ (vi - O) (vk - O)]
+lean/Erdos9796Proof/P97/ArcPartitionCount.lean:216:    rw [@norm_add_pow_two_real ℝ² _ _ (v - vk) (vk - O)]
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:11:# Three-equality Kalmanson schemas
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:22:namespace CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:358:end CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:49:2 * ⟪y - midpoint a c, c - a⟫_ℝ = dist y a ^ 2 - dist y c ^ 2.
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:158:`dist y a ^ 2 - dist y c ^ 2` are related by a factor of 2. From this
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:162:The identity expands `dist y a ^ 2 - dist y c ^ 2` via
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:165:dist y a ^ 2 = ‖y - a‖^2 = ‖y‖^2 - 2 ⟪y, a⟫ + ‖a‖^2,
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:166:dist y c ^ 2 = ‖y - c‖^2 = ‖y‖^2 - 2 ⟪y, c⟫ + ‖c‖^2.
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:170:dist y a ^ 2 - dist y c ^ 2
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:183:2 * ⟪y - midpoint ℝ a c, c - a⟫_ℝ = dist y a ^ 2 - dist y c ^ 2.
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:197:      = dist y a ^ 2 - dist y c ^ 2 := by
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:233:  have hsq_iff : dist y a ≤ dist y c ↔ dist y a ^ 2 ≤ dist y c ^ 2 := by
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:239:    -- `dist y a ^ 2 ≤ dist y c ^ 2` means `dist y a ^ 2 - dist y c ^ 2 ≤ 0`.
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:240:    have hdiff : dist y a ^ 2 - dist y c ^ 2 ≤ 0 := by linarith
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:247:    have : dist y a ^ 2 - dist y c ^ 2 ≤ 0 := by linarith
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:260:  have hsq_iff : dist y a < dist y c ↔ dist y a ^ 2 < dist y c ^ 2 := by
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:273:    have hdiff : dist y a ^ 2 - dist y c ^ 2 < 0 := by linarith
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:278:    have : dist y a ^ 2 - dist y c ^ 2 < 0 := by linarith
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:326:  -- `2 * ⟪x - midpoint a c, c - a⟫ = dist x c ^ 2 - dist x a ^ 2 = 0`.
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:453:  have ha_perp : ⟪a - midpoint ℝ a c, c - a⟫_ℝ = - (dist a c) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:502:  have hdist_sq : dist y b ^ 2 ≤ dist y c ^ 2 :=
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:504:  have hbc_sq_pos : 0 < dist b c ^ 2 := by positivity
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:506:  have hrhs_pos : 0 < dist y c ^ 2 + dist b c ^ 2 - dist y b ^ 2 := by linarith
+lean/Erdos9796Proof/P97/Dumitrescu/Lc1Strict.lean:509:        = dist y c ^ 2 + dist b c ^ 2 - dist y b ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:200:  simpa [hinner_e, hinner_n, norm_smul, he, hn, pow_two] using hsq
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:337:    dist (vec2 x1 y1) (vec2 x2 y2) ^ 2 = (x1 - x2) ^ 2 + (y1 - y2) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:778:        have hdist_sq : dist (T (L.points t)) (T Packet.center) ^ 2 ≤
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:779:            dist (T q1) (T Packet.center) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:786:        have hleft : dist (T (L.points t)) (T Packet.center) ^ 2 =
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:792:        have hright : dist (T q1) (T Packet.center) ^ 2 = 1 + lam ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1514:    have hsq : dist (L.points j) (L.points r) ^ 2 = dist (L.points j) (L.points s) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1527:          (L.points s - L.points r) = dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1536:        _ = dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1541:          dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1550:    have hpos : 0 < dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1556:    have hsq : dist (L.points j) (L.points r) ^ 2 = dist (L.points j) (L.points s) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1584:          (L.points r - L.points s) = dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1593:        _ = dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1598:          dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1610:    have hpos : 0 < dist (L.points r) (L.points s) ^ 2 / 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1649:      dist (L.points i0) (L.points s) ^ 2 =
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1650:        dist (L.points i0) (L.points r) ^ 2 + dist (L.points r) (L.points s) ^ 2
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1656:    rw [dist_eq_norm, hvec, norm_add_pow_two_real, dist_eq_norm, dist_eq_norm]
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1659:      dist (L.points i0) (L.points r) ^ 2 <
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1660:        dist (L.points i0) (L.points s) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1661:    have hrs_sq_pos : 0 < dist (L.points r) (L.points s) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1706:      dist (L.points jm) (L.points r) ^ 2 =
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1707:        dist (L.points jm) (L.points s) ^ 2 + dist (L.points r) (L.points s) ^ 2
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1713:    rw [dist_eq_norm, hvec, norm_add_pow_two_real, dist_eq_norm, dist_eq_norm]
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1718:      dist (L.points jm) (L.points s) ^ 2 <
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1719:        dist (L.points jm) (L.points r) ^ 2 := by
+lean/Erdos9796Proof/P97/CGN/CGN6.lean:1720:    have hrs_sq_pos : 0 < dist (L.points r) (L.points s) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:32:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:63:      dist (pt 0 0) (normSim p₁ p₂ center) ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:64:        dist (pt 1 0) (normSim p₁ p₂ center) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:89:      dist (normSim p₁ p₂ x) (normSim p₁ p₂ center) ^ 2 ≤
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:90:        dist (pt 0 0) (normSim p₁ p₂ center) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:138:    dist p₁ p₂ ^ 2 *
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:139:        dist (normSim p₁ p₂ a) (normSim p₁ p₂ b) ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:140:      dist a b ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:163:  change dist (pt 0 0) (normSim p₁ p₂ x) ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:164:    dist (pt 0 0) (normSim p₁ p₂ y) ^ 2 at hsq
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:187:  change dist (pt 1 0) (normSim p₁ p₂ x) ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:188:    dist (pt 1 0) (normSim p₁ p₂ y) ^ 2 at hsq
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:200:      dist p₂ u ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:201:        dist p₁ p₂ ^ 2 - 2 * inner ℝ (p₂ - p₁) (u - p₁) +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:202:          dist u p₁ ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:207:      dist p₂ u ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:208:        dist p₁ p₂ ^ 2 - 2 * inner ℝ (p₂ - p₁) (u - p₁) +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:209:          dist p₁ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:212:  have hraw : dist p₂ u ^ 2 ≤ dist p₁ p₂ ^ 2 + dist p₁ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:218:  have hbase_sq_pos : 0 < dist p₁ p₂ ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:221:      dist (pt 1 0) (normSim p₁ p₂ u) ^ 2 ≤
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:222:        1 + dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:225:        1 + dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 <
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:226:          dist (pt 1 0) (normSim p₁ p₂ u) ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:231:      dist (normSim p₁ p₂ u) (pt 1 0) ^ 2 ≤
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:232:        1 + dist (normSim p₁ p₂ u) (pt 0 0) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:249:      dist p₁ u ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:250:        dist p₂ u ^ 2 - 2 * inner ℝ (u - p₂) (p₁ - p₂) +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:251:          dist p₁ p₂ ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:255:  have hraw' : dist p₁ u ^ 2 ≤ dist p₂ u ^ 2 + dist p₁ p₂ ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:257:  have hraw : dist p₁ u ^ 2 ≤ dist p₁ p₂ ^ 2 + dist p₂ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:263:  have hbase_sq_pos : 0 < dist p₁ p₂ ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:266:      dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 ≤
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:267:        1 + dist (pt 1 0) (normSim p₁ p₂ u) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:270:        1 + dist (pt 1 0) (normSim p₁ p₂ u) ^ 2 <
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:271:          dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:276:      dist (normSim p₁ p₂ u) (pt 0 0) ^ 2 ≤
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:277:        1 + dist (normSim p₁ p₂ u) (pt 1 0) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:398:      dist p₁ p₂ ^ 2 =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:399:        dist p₁ u ^ 2 - 2 * inner ℝ (p₁ - u) (p₂ - u) + dist p₂ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:403:  have hraw : dist p₁ p₂ ^ 2 ≤ dist p₁ u ^ 2 + dist p₂ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:412:      dist p₁ p₂ ^ 2 *
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:413:          (dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:414:            dist (pt 1 0) (normSim p₁ p₂ u) ^ 2) =
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:415:        dist p₁ u ^ 2 + dist p₂ u ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:419:      1 ≤ dist (pt 0 0) (normSim p₁ p₂ u) ^ 2 +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:420:        dist (pt 1 0) (normSim p₁ p₂ u) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:421:    have hbase_sq_pos : 0 < dist p₁ p₂ ^ 2 := sq_pos_of_pos hbase_pos
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:424:      1 ≤ dist (normSim p₁ p₂ u) (pt 0 0) ^ 2 +
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:425:        dist (normSim p₁ p₂ u) (pt 1 0) ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:10:# Ordinal Kalmanson strict-cycle consumer
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:24:namespace ATailOrdinalKalmansonCycle
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:26:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:28:/-- One source-valid selected-row Kalmanson comparison between two named
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:90:/-- A nonempty transitive path of selected-row Kalmanson steps strictly
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:109:/-- A directed cycle of selected-row ordinal Kalmanson comparisons is
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:144:end ATailOrdinalKalmansonCycle
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:10:# Sixteen-equality Kalmanson contradiction
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:12:This module packages a fixed linear consequence of ten strict Kalmanson inequalities as a
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:19:namespace CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:21:/-- The main strict Kalmanson inequality, transported to four vertices presented
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:37:/-- The complementary strict Kalmanson inequality, transported to four vertices
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:60:The proof combines the eight main Kalmanson inequalities on quadruples
+lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean:263:end CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:20:This module records the next source-valid Kalmanson consumer: choose a fresh
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:40:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:113:/-- The narrow source-valid different-pair packet which reaches a Kalmanson
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:155:strict Kalmanson comparisons: `AC < AJ` from the `O`-row and `AJ < AC` from
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:27:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:39:    have h : dist x c ^ 2 = dist y c ^ 2 := by rw [hxc]
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:44:    have h : dist x d ^ 2 = dist y d ^ 2 := by rw [hxd]
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:23:exact-class memberships, no Kalmanson/order content — so these ports are
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:80:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:87:  have hsq : dist p₁ p₂ ^ 2 = (p₂ 0 - p₁ 0) ^ 2 + (p₂ 1 - p₁ 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:102:  have hkey : dist (normSim p₁ p₂ a) (normSim p₁ p₂ b) ^ 2 * dist p₁ p₂ ^ 2
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:103:      = dist a b ^ 2 := by
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:109:  have hsq : dist (normSim p₁ p₂ a) (normSim p₁ p₂ b) ^ 2
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:110:      = ((dist p₁ p₂)⁻¹ * dist a b) ^ 2 := by
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:145:    have h : dist p₃ p₁ ^ 2 = dist p₁ p₂ ^ 2 := by rw [h31]
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:149:    have h : dist p₂ p₃ ^ 2 = dist p₁ p₂ ^ 2 := by rw [h23]
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:7:# Same-shell squared-distance superadditivity
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:13:`dist x z ^ 2 > dist x y ^ 2 + dist y z ^ 2`.
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:27:/-- Three same-shell points satisfy strict squared-distance superadditivity
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:34:    dist x z ^ 2 > dist x y ^ 2 + dist y z ^ 2 := by
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:46:  have hnorm := norm_sub_pow_two_real (x - y) (z - y)
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:52:/-- Ordered-cap form of same-shell squared-distance superadditivity.
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:57:theorem sameShell_sqDist_superadditive_of_strictCapOrder
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:69:    dist (L.points i) (L.points k) ^ 2 >
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:70:      dist (L.points i) (L.points j) ^ 2 +
+lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean:71:        dist (L.points j) (L.points k) ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:11:# Convex-quadrilateral Kalmanson bridge
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:22:namespace CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:109:boundary triples, imply the strict Kalmanson inequality. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:172:/-- The companion strict Kalmanson inequality for the other pair of opposite
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:238:/-- Generic strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:271:/-- Companion strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:338:`O < A < Y < E < C`.  The `Y`-row equality and the complementary Kalmanson
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:340:the other Kalmanson inequality on `O,A,E,C` force `AE < OA`. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:420:For `ia < ib < ic < id`, the strict Kalmanson inequality
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:460:induced-metric CEGAR search: the companion strict Kalmanson inequality has
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:492:companion strict Kalmanson inequality has identical left and right sides. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:562:end CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:89:    dist (capU1 α) (capU2 γ) ^ 2
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:92:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:107:    StrictMonoOn (fun γ => dist (capU1 α) (capU2 γ) ^ 2) (Set.Icc 0 (π/3)) := by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:108:  have key : (fun γ => dist (capU1 α) (capU2 γ) ^ 2)
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:189:    dist (capU1 α) (capU3 δ) ^ 2
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:194:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:211:    StrictAntiOn (fun δ => dist (capU1 α) (capU3 δ) ^ 2) (Set.Icc 0 (π/3)) := by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:212:  have key : (fun δ => dist (capU1 α) (capU3 δ) ^ 2)
+lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean:39:  change dist (normSim a b a) (normSim a b b) ^ 2 =
+lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean:40:    dist (normSim a b x) (normSim a b y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean:301:  change dist (T P2) (T P1) ^ 2 = dist (T P2) (T P3) ^ 2 at hP2eqP1P3'
+lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean:310:  change dist (T P2) (T P1) ^ 2 = dist (T P2) (T P4) ^ 2 at hP2eqP1P4'
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:31:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:81:  have hCsq : dist C (pt 0 0) ^ 2 = dist C (pt 1 0) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:88:  have hEsq : dist E (pt 0 0) ^ 2 = dist E (pt 1 0) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:97:  have hBDsq : dist B (pt 1 0) ^ 2 = dist (pt 1 0) (pt 0 0) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:105:  have hCEsq : dist C (pt 0 0) ^ 2 = dist C E ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:113:  have hEBsq : dist E (pt 0 0) ^ 2 = dist E B ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:123:  have hBCsq : dist B C ^ 2 = dist B (pt 1 0) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:107:    have h : dist apex O ^ 2 = R ^ 2 := by rw [hapexO]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:110:    have h : dist e₁ O ^ 2 = R ^ 2 := by rw [he₁O]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:113:    have h : dist e₂ O ^ 2 = R ^ 2 := by rw [he₂O]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:117:    have h : dist e₁ apex ^ 2 = d ^ 2 := by rw [he₁A]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:122:    have h : dist e₂ apex ^ 2 = d ^ 2 := by rw [he₂A]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:127:    have h : dist p apex ^ 2 = d ^ 2 := by rw [hpA]
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:130:  have hpDisk_sq_dist : dist p O ^ 2 ≤ R ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:59:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) B ^ 2 at hOABsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:60:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) C ^ 2 at hOACsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:61:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) B ^ 2 at hAOBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:62:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) V ^ 2 at hAOVsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:63:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) W ^ 2 at hAOWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:64:  change dist B C ^ 2 = dist B U ^ 2 at hBCUsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:65:  change dist B C ^ 2 = dist B V ^ 2 at hBCVsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:66:  change dist C (pt 1 0) ^ 2 = dist C V ^ 2 at hCAVsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:67:  change dist U C ^ 2 = dist U W ^ 2 at hUCWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:68:  change dist V (pt 1 0) ^ 2 = dist V U ^ 2 at hVAUsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:69:  change dist V (pt 1 0) ^ 2 = dist V W ^ 2 at hVAWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:70:  change dist W (pt 0 0) ^ 2 = dist W B ^ 2 at hWOBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:71:  change dist W (pt 0 0) ^ 2 = dist W U ^ 2 at hWOUsq
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:134:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:145:  change dist (normSim o a o) (normSim o a a) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:146:    dist (normSim o a p) (normSim o a q) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:220:    change dist (T p) (T center) ^ 2 = dist (T o) (T center) ^ 2 at hsq
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:20:The second-cap-large reverse-hit arm does not need a separate Kalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:10:# Kalmanson consumers for the corrected own-cap survivors
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:25:namespace CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:27:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:197:end CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:8:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:28:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16:import Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:17:import Erdos9796Proof.P97.ATail.KalmansonSixteenEqualitySchema
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10028:the three-row Kalmanson consumer. -/
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:729:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:752:    have hsq : dist center a ^ 2 ≤ S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:814:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1147:  have hsq : dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1153:      = Real.sqrt (dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2) :=
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1373:  hv3_on_mec : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1375:  hdisk : ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1490:    ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1497:  have hsq : dist (T x) (T S.Packet.center) ^ 2 ≤ R ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1530:      dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2 ∧
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1531:      (∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2) ∧
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1566:  have hc3sq : dist (T S.triangle.v3) (T S.triangle.v2) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1576:  have hb1sq : dist (T S.triangle.v1) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1578:  have hb3sq : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1580:  have hb2sq : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1610:  have hv3_on_mec : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1624:    have hpol : dist S.triangle.v1 S.triangle.v2 ^ 2 ≤ s ^ 2 + s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1644:    have htrans : dist (T S.triangle.v1) (T S.triangle.v2) ^ 2 ≤ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1646:      calc (tau.scale * dist S.triangle.v1 S.triangle.v2) ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1647:          = tau.scale ^ 2 * dist S.triangle.v1 S.triangle.v2 ^ 2 := by ring
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1652:    have hexpand : dist (T S.triangle.v1) (T S.triangle.v2) ^ 2 = (1 + c) ^ 2 + sg ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1676:  have hdisk : ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1777:  have h : dist (F.T x) (F.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1778:      ≤ dist (F.T S.triangle.v3) (F.T S.Packet.center) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1787:  have hsq : dist (F.T S.triangle.v3) (F.T Z.a3) ^ 2 = 1 := by rw [h]; norm_num
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1808:    have h : dist (F.T S.triangle.v3) (F.T p) ^ 2 = 1 := by rw [hp_circ]; norm_num
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:2254:  have hv1_on_mec : dist (F.base.T S.triangle.v1) (F.base.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:2259:  have h : dist (F.base.T x) (F.base.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:2260:      ≤ dist (F.base.T S.triangle.v1) (F.base.T S.Packet.center) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:2275:    have h : dist (F.base.T S.triangle.v1) (F.base.T p) ^ 2 = 1 := by rw [hp_circ]; norm_num
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:36:Each is one strict Kalmanson kernel plus the two radius equalities; the
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:48:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowRadiusOccurrenceBridge/Main.lean:14:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:38:  change dist (normSim a b a) (normSim a b b) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:39:    dist (normSim a b p) (normSim a b q) ^ 2 at hSq
+lean/Erdos9796Proof/P97/N4d/FormCLowerForcesV2.lean:226:      ∀ z : ℝ², dist q1 z ^ 2 = ((X z + 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCLowerForcesV2.lean:230:      ∀ z : ℝ², dist q2 z ^ 2 = ((X z - 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCLowerForcesV2.lean:234:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCLowerForcesV2.lean:309:    have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCLowerForcesV2.lean:317:      have hdist_sq_q : dist center q ^ 2 > S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:39:  change dist (normSim a b a) (normSim a b b) ^ 2 =
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:40:    dist (normSim a b x) (normSim a b y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:58:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:95:    change dist (T B) (T A) ^ 2 = dist (T B) (T D) ^ 2 at h
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:101:    change dist (T F) (T A) ^ 2 = dist (T F) (T D) ^ 2 at h
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:135:    change dist (T B) (T A) ^ 2 = dist (T B) (T C) ^ 2 at h
+lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean:142:    change dist (T F) (T A) ^ 2 = dist (T F) (T E) ^ 2 at h
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowRadiusOccurrenceBridge/Families.lean:24:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:37:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:224:    have hdistsq : dist v₃ v₁ ^ 2 = X ^ 2 + Y ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:231:    have h : dist b₂ v₁ ^ 2 = dist b₂ v₃ ^ 2 := by rw [hb2v1, hb2v3]
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:237:    have h : dist b₂ v₁ ^ 2 = dist b₂ a₂ ^ 2 := by rw [hb2v1, hb2a2]
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:149:different-pair Kalmanson consumer.  Its complement is not inert: it produces
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowRadiusOccurrenceBridge/Orientation.lean:28:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/N4d/FormBLowerForcesV3.lean:229:      ∀ z : ℝ², dist q1 z ^ 2 = ((X z + 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormBLowerForcesV3.lean:233:      ∀ z : ℝ², dist q2 z ^ 2 = ((X z - 1 / 2) ^ 2 + Y z ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormBLowerForcesV3.lean:237:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormBLowerForcesV3.lean:314:    have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormBLowerForcesV3.lean:322:      have hdist_sq_q : dist center q ^ 2 > S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowRadiusOccurrenceBridge/Core.lean:29:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectIndexedAgreement.lean:13:generic, critical-support, strict-unit, Kalmanson, and CEGAR occurrence
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:42:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:134:  have hXsq : dist X P ^ 2 = dist X Q ^ 2 := by rw [hXeq]
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:135:  have hBsq : dist B P ^ 2 = dist B Q ^ 2 := by rw [hBeq]
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:136:  have hdsq : dist X O ^ 2 ≤ dist B O ^ 2 := pow_le_pow_left₀ dist_nonneg hXdisk 2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowAtLeastFourOccurrenceBridge/Main.lean:14:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:30:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:99:  have hpa_sq : dist p a ^ 2 = r ^ 2 := by rw [hpa]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:100:  have hpb_sq : dist p b ^ 2 = r ^ 2 := by rw [hpb]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:101:  have hpc_sq : dist p c ^ 2 = r ^ 2 := by rw [hpc]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:102:  have hab_sq : dist a b ^ 2 = r ^ 2 := by rw [hab]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:103:  have hax_sq : dist a x ^ 2 = r ^ 2 := by rw [hax]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:104:  have hbx_sq : dist b x ^ 2 = r ^ 2 := by rw [hbx]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:105:  have hcxca_sq : dist c x ^ 2 = dist c a ^ 2 := by rw [hcxca]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowAtLeastFourOccurrenceBridge/Families.lean:19:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:22:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:766:  have hb1sq : dist (T S.triangle.v1) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:768:  have hb3sq : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:770:  have hb2sq : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:852:    dist (T x) (T S.Packet.center) ^ 2 ≤ (tau.scale * S.Packet.radius) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:922:  have hbase_sq : dist (T S.triangle.v3) (T S.triangle.v1) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:957:  have hv12_gt_sq : (1 : ℝ) < dist (T S.triangle.v1) (T S.triangle.v2) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:960:      dist (T S.triangle.v2) (T x₂) ^ 2 ≤ dist (T S.triangle.v3) (T S.triangle.v2) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:56:  have hDErab : (dist D E ^ 2)⁻¹ * dist D E ^ 2 = 1 :=
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:58:  have hEFrab : (dist E F ^ 2)⁻¹ * dist E F ^ 2 = 1 :=
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:60:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) C ^ 2 at hABCsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:61:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) E ^ 2 at hABEsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:62:  change dist F (pt 0 0) ^ 2 = dist F C ^ 2 at hFACsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:63:  change dist F (pt 0 0) ^ 2 = dist F D ^ 2 at hFADsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:64:  change dist F (pt 0 0) ^ 2 = dist F E ^ 2 at hFAEsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:65:  change dist (pt 1 0) D ^ 2 = dist (pt 1 0) F ^ 2 at hBDFsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:66:  change dist C (pt 1 0) ^ 2 = dist C D ^ 2 at hCBDsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:67:  change dist E (pt 1 0) ^ 2 = dist E C ^ 2 at hEBCsq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:68:  change dist E (pt 1 0) ^ 2 = dist E D ^ 2 at hEBDsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowAtLeastFourOccurrenceBridge/Core.lean:20:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:708:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:730:    have hsq : dist center a ^ 2 ≤ S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2600:   `inner_chord_eq_two_mul_inner_midpoint`, both `O := v₂` on κ₂) collapse it to the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2702:  --     STEP 2 `inner_chord_eq_two_mul_inner_midpoint` (center `v₂`, chord `v₃–x`,
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2735:    -- so `inner_chord_eq_two_mul_inner_midpoint` (center `v₂`, chord `v₃–x`, point `q₃`)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2745:      inner_chord_eq_two_mul_inner_midpoint hv3O hxO
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:46:def directResidualShapeWF : NonKalmansonShape → Bool
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:64:def directResidualEntryWF (entry : NonKalmansonEntry) : Bool :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:104:    (shape : NonKalmansonShape) (hwf : directResidualShapeWF shape = true) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:203:    (entry : NonKalmansonEntry) (hwf : directResidualEntryWF entry = true) :
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:43:  change dist (normSim o a o) (normSim o a a) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:44:    dist (normSim o a x) (normSim o a y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:283:  change dist (T D) (T A) ^ 2 = dist (T D) (T E) ^ 2 at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:291:  change dist (T E) (T A) ^ 2 = dist (T E) (T C) ^ 2 at hEAEC
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:299:  change dist (T E) (T A) ^ 2 = dist (T E) (T Y) ^ 2 at hEAEY
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:307:  change dist (T C) (T D) ^ 2 = dist (T C) (T Y) ^ 2 at hCDCY
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:46:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:379:  have hsq : dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:385:      = Real.sqrt (dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2) :=
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:605:  hv2_on_mec : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:607:  hdisk : ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:702:    ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:709:  have hsq : dist (T x) (T S.Packet.center) ^ 2 ≤ R ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:742:      dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2 ∧
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:743:      (∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2) ∧
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:778:  have hc3sq : dist (T S.triangle.v2) (T S.triangle.v3) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:788:  have hb1sq : dist (T S.triangle.v1) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:790:  have hb2sq : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:792:  have hb3sq : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:822:  have hv2_on_mec : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = 1 / 4 + Oy ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:836:    have hpol : dist S.triangle.v1 S.triangle.v3 ^ 2 ≤ s ^ 2 + s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:853:    have htrans : dist (T S.triangle.v1) (T S.triangle.v3) ^ 2 ≤ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:855:      calc (tau.scale * dist S.triangle.v1 S.triangle.v3) ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:856:          = tau.scale ^ 2 * dist S.triangle.v1 S.triangle.v3 ^ 2 := by ring
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:861:    have hexpand : dist (T S.triangle.v1) (T S.triangle.v3) ^ 2 = (1 + c) ^ 2 + sg ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:885:  have hdisk : ∀ x ∈ A, dist (T x) (T S.Packet.center) ^ 2 ≤ 1 / 4 + Oy ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:986:  have h : dist (F.T x) (F.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:987:      ≤ dist (F.T S.triangle.v2) (F.T S.Packet.center) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:996:  have hsq : dist (F.T S.triangle.v2) (F.T Z.a2) ^ 2 = 1 := by rw [h]; norm_num
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1017:    have h : dist (F.T S.triangle.v2) (F.T p) ^ 2 = 1 := by rw [hp_circ]; norm_num
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1463:  have hv1_on_mec : dist (F.base.T S.triangle.v1) (F.base.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1468:  have h : dist (F.base.T x) (F.base.T S.Packet.center) ^ 2
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1469:      ≤ dist (F.base.T S.triangle.v1) (F.base.T S.Packet.center) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1484:    have h : dist (F.base.T S.triangle.v1) (F.base.T p) ^ 2 = 1 := by rw [hp_circ]; norm_num
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:73:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:80:      dist (reflectXAxis p) (reflectXAxis q) ^ 2 = dist p q ^ 2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/P4FullLedgerSatisfaction.lean:15:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Main
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/P4FullLedgerSatisfaction.lean:123:            (residual55Entries.map NonKalmansonEntry.clause ++
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/P4FullLedgerSatisfaction.lean:126:                  (P4KalmansonOccurrenceBridgeScratch.bridgeClauses ++
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/P4FullLedgerSatisfaction.lean:187:    ∀ clause ∈ P4KalmansonOccurrenceBridgeScratch.bridgeClauses,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/P4FullLedgerSatisfaction.lean:189:  P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_direct
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:40:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:408:  have hb1sq : dist (T S.triangle.v1) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:410:  have hb2sq : dist (T S.triangle.v2) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:412:  have hb3sq : dist (T S.triangle.v3) (T S.Packet.center) ^ 2 = R ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:478:    dist (T x) (T S.Packet.center) ^ 2 ≤ (tau.scale * S.Packet.radius) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:550:  have hbase_sq : dist (T S.triangle.v2) (T S.triangle.v1) ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:580:  have hsh_lt1_sq : dist (T S.triangle.v2) (T S.triangle.v3) ^ 2 < 1 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:582:  have hv13_gt_sq : (1 : ℝ) < dist (T S.triangle.v1) (T S.triangle.v3) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:585:      dist (T S.triangle.v3) (T x₃) ^ 2 < dist (T S.triangle.v2) (T S.triangle.v3) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:52:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hBA_BCsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:53:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) D ^ 2 at hBA_BDsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:54:  change dist C (pt 0 0) ^ 2 = dist C (pt 1 0) ^ 2 at hCA_CBsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:55:  change dist C (pt 0 0) ^ 2 = dist C E ^ 2 at hCA_CEsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:56:  change dist C (pt 0 0) ^ 2 = dist C F ^ 2 at hCA_CFsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:57:  change dist D C ^ 2 = dist D E ^ 2 at hDC_DEsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:58:  change dist E (pt 0 0) ^ 2 = dist E F ^ 2 at hEA_EFsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:59:  change dist F (pt 1 0) ^ 2 = dist F D ^ 2 at hFB_FDsq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:60:  change dist F (pt 1 0) ^ 2 = dist F E ^ 2 at hFB_FEsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Main.lean:14:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:331:  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:540:vector wrappers): `dist X Y ^ 2 = (X 0 − Y 0)² + (X 1 − Y 1)²`. -/
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:542:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:582:non-obtuse `v₃`), the chord from `a₂` to `v₃` satisfies `dist a₂ v₃ ^ 2 < 1`.
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:594:    dist a₂ v₃ ^ 2 < 1 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:604:`dist a₂ v₃ ^ 2 < s ^ 2`.  This is the §6.3 Family-A `{v₃,v₂}` branch; it is
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:614:    dist a₂ v₃ ^ 2 < s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:626:force `dist a₂ v₃ ^ 2 = 1`, contradicting `familyA_a2v3_sq_lt_one`.
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:640:  have hlt : dist a₂ v₃ ^ 2 < 1 :=
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:643:  have heq : dist a₂ v₃ ^ 2 = 1 := by rw [hK4, ha2v1]; norm_num
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:649:`False`: the pin `dist a₂ v₂ = s` forces `dist a₂ v₃ ^ 2 = s²`, contradicting
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:662:  have hlt : dist a₂ v₃ ^ 2 < s ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:665:  have heq : dist a₂ v₃ ^ 2 = s ^ 2 := by rw [hK4, ha2v2]
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1045:      dist (familyBRadiusSA2Point s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1061:      dist (familyBRadiusSRootPlusB2Point s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1077:      dist (familyBRadiusSA2Point s) (familyBRadiusSRootPlusB2Point s) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1095:      dist (familyBRadiusSRootMinusB2Point s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1111:      dist (familyBRadiusSA2Point s) (familyBRadiusSRootMinusB2Point s) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1138:      dist (familyBRadiusSRootPlusOtherApex s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1155:      dist (familyBRadiusSRootPlusOtherApex s) (familyBRadiusSRootPlusB2Point s) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1287:    have hsq : dist (vec2 bx yb) v₂ ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1295:    have hsq : dist (vec2 bx yb) a₂ ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1428:    (hdist : (qx - ax) ^ 2 + (qy - ay) ^ 2 > 0) :
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1444:      have hsq : dist (vec2 qx qy) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1451:      have hsq : dist (vec2 qx qy) (familyBRadiusSRootPlusB2Point s) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1533:  have hsq : dist (familyBChordEqLowerAnglePoint s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1555:  have hsq : dist (familyBChordEqHigherAnglePoint s) (vec2 1 0) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1590:      dist (familyBChordEqLowerAnglePoint s) (familyBChordEqHigherAnglePoint s) ^ 2 = s ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1607:      dist (familyBChordEqLowerAnglePoint s) (familyBRadiusSA2Point s) ^ 2 =
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:1608:        dist (familyBChordEqHigherAnglePoint s) (familyBRadiusSA2Point s) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:305:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:651:  have hAB_sq : dist A B ^ 2 = 1 := by
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:654:  have hAq_sq : dist A q ^ 2 = 1 + 2 * a + r ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:911:      have hAD_sq' : dist (T q1) (T q3) ^ 2 = 1 + 2 * dx + r ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:492:      ∀ z : ℝ², dist center z ^ 2 = (X z ^ 2 + (Y z - yc) ^ 2) * ‖u‖ ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:515:    have hsq : dist center a ^ 2 ≤ S.Packet.radius ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:577:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:1001:  have hAq_sq : dist (T S.triangle.v1) (T q) ^ 2
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:1430:      have hsqeq : dist (T q3) (T q) ^ 2 = dist (T q3) (T C) ^ 2 := by rw [hDq_T]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:10:# Extension-stable Kalmanson consumers from the exact-four search
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:16:relations used by the strict Kalmanson inequalities remain.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:24:namespace UniqueFourKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:26:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:710:end UniqueFourKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Families.lean:24:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:45:  change dist (normSim o a o) (normSim o a a) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:46:    dist (normSim o a x) (normSim o a y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:303:  change dist (T D) (T A) ^ 2 = dist (T D) (T E) ^ 2 at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:311:  change dist (T D) (T A) ^ 2 = dist (T D) (T F) ^ 2 at hDADF
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:52:  change dist O (pt 0 0) ^ 2 = dist O B ^ 2 at hOA_OBsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:53:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) B ^ 2 at hAO_ABsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:54:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) C ^ 2 at hAO_ACsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:55:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) (pt 1 0) ^ 2 at hAO_AEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:56:  change dist C B ^ 2 = dist C (pt 1 0) ^ 2 at hCB_CEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:57:  change dist C B ^ 2 = dist C F ^ 2 at hCB_CFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:58:  change dist (pt 1 0) O ^ 2 = dist (pt 1 0) C ^ 2 at hEO_ECsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:59:  change dist (pt 1 0) O ^ 2 = dist (pt 1 0) F ^ 2 at hEO_EFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:60:  change dist F O ^ 2 = dist F (pt 0 0) ^ 2 at hFO_FAsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:132:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) B ^ 2 at hAO_ABsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:133:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) (pt 1 0) ^ 2 at hAO_AEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:134:  change dist B O ^ 2 = dist B (pt 0 0) ^ 2 at hBO_BAsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:135:  change dist B O ^ 2 = dist B C ^ 2 at hBO_BCsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:136:  change dist B O ^ 2 = dist B F ^ 2 at hBO_BFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:137:  change dist (pt 1 0) O ^ 2 = dist (pt 1 0) B ^ 2 at hEO_EBsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:138:  change dist C O ^ 2 = dist C F ^ 2 at hCO_CFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:139:  change dist F (pt 0 0) ^ 2 = dist F (pt 1 0) ^ 2 at hFA_FEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:140:  change dist F (pt 0 0) ^ 2 = dist F C ^ 2 at hFA_FCsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:212:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) B ^ 2 at hAO_ABsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:213:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) (pt 1 0) ^ 2 at hAO_AEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:214:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) C ^ 2 at hAO_ACsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:215:  change dist B O ^ 2 = dist B (pt 0 0) ^ 2 at hBO_BAsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:216:  change dist B O ^ 2 = dist B F ^ 2 at hBO_BFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:217:  change dist (pt 1 0) B ^ 2 = dist (pt 1 0) C ^ 2 at hEB_ECsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:218:  change dist (pt 1 0) B ^ 2 = dist (pt 1 0) F ^ 2 at hEB_EFsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:219:  change dist C O ^ 2 = dist C (pt 1 0) ^ 2 at hCO_CEsq
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:220:  change dist F (pt 0 0) ^ 2 = dist F (pt 1 0) ^ 2 at hFA_FEsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5KalmansonDecode
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:14:closed mirror native coverage theorem.  The resulting executable Kalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:21:open ATailAlignedP5KalmansonDecodeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:34:/-- A mirror aligned-p5 boundary packet contradicts the geometric Kalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorClosure.lean:41:  rcases hasKalmansonOccurrence_of_semanticTrace Q.semanticTrace with
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:59:  change dist O (pt 0 0) ^ 2 = dist O B ^ 2 at hOA_OBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:60:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) C ^ 2 at hAO_ACsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:61:  change dist B (pt 0 0) ^ 2 = dist B C ^ 2 at hBA_BCsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:62:  change dist B (pt 0 0) ^ 2 = dist B (pt 1 0) ^ 2 at hBA_BEsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:63:  change dist D O ^ 2 = dist D B ^ 2 at hDO_DBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:64:  change dist D O ^ 2 = dist D (pt 1 0) ^ 2 at hDO_DEsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:65:  change dist D O ^ 2 = dist D F ^ 2 at hDO_DFsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:66:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hEA_ECsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:67:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) D ^ 2 at hEA_EDsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:68:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) F ^ 2 at hEA_EFsq
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:69:  change dist F O ^ 2 = dist F (pt 0 0) ^ 2 at hFO_FAsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeClassifier.lean:19:strict-Kalmanson schemas are reused from the original classifier.  In
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4KalmansonCorePort.UniqueFourKalmansonCores
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:10:# Reflection transport for the aligned five-point Kalmanson schemas
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:12:The compact aligned-p5 search retains normalized Kalmanson schemas `1`, `4`,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:15:supplies the generic decreasing-index Kalmanson transport and exposes one
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:25:namespace UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:27:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:28:open UniqueFourKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:30:/-- The first strict Kalmanson inequality is unchanged when all four boundary
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:46:/-- The complementary strict Kalmanson inequality is unchanged when all four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:307:end UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Core.lean:29:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5KalmansonDecode
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:14:closed native coverage theorem.  The resulting executable Kalmanson occurrence
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:24:open ATailAlignedP5KalmansonDecodeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:39:/-- A direct aligned-p5 boundary packet contradicts the geometric Kalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5DirectClosure.lean:46:  rcases hasKalmansonOccurrence_of_semanticTrace Q.semanticTrace with
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:39:  change dist (normSim o a o) (normSim o a a) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:40:    dist (normSim o a x) (normSim o a y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:178:  change dist (T D) (T A) ^ 2 = dist (T D) (T E) ^ 2 at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:186:  change dist (T D) (T A) ^ 2 = dist (T D) (T X) ^ 2 at hDADX
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4SourceFieldAudit.CorrectedOwnCapKalmansonCores
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4KalmansonOccurrence.SixRoleKalmansonTriangle
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.UniqueFourKalmansonReflection
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:13:# Card-eleven exact-two Kalmanson schema decoder
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:30:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:32:open CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:33:open UniqueFourKalmansonOccurrenceScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:34:open UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeClassifier.lean:21:* the four surviving strict-Kalmanson occurrence schemas.
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:33:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) H ^ 2 at hAHsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:34:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) H ^ 2 at hBHsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:81:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) D ^ 2 at hADsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:82:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hBCsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:83:  change dist C (pt 0 0) ^ 2 = dist C D ^ 2 at hCA_CDsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:84:  change dist D (pt 1 0) ^ 2 = dist D H ^ 2 at hDB_DHsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:85:  change dist H C ^ 2 = dist H D ^ 2 at hHC_HDsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:160:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) D ^ 2 at hADsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:161:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hBCsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:162:  change dist C (pt 0 0) ^ 2 = dist C D ^ 2 at hCA_CDsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:163:  change dist C (pt 0 0) ^ 2 = dist C T ^ 2 at hCA_CTsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:164:  change dist D (pt 1 0) ^ 2 = dist D H ^ 2 at hDB_DHsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:165:  change dist D (pt 1 0) ^ 2 = dist D T ^ 2 at hDB_DTsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:166:  change dist H C ^ 2 = dist H T ^ 2 at hHC_HTsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:242:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) L ^ 2 at hALsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:243:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hBCsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:244:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) R ^ 2 at hBRsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:245:  change dist L (pt 1 0) ^ 2 = dist L C ^ 2 at hLB_LCsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:246:  change dist H C ^ 2 = dist H R ^ 2 at hHC_HRsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:247:  change dist R (pt 0 0) ^ 2 = dist R C ^ 2 at hRA_RCsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:248:  change dist R (pt 0 0) ^ 2 = dist R L ^ 2 at hRA_RLsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:328:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) L ^ 2 at hALsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:329:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) M ^ 2 at hAMsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:330:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) R ^ 2 at hBRsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:331:  change dist L (pt 1 0) ^ 2 = dist L H ^ 2 at hLB_LHsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:332:  change dist L (pt 1 0) ^ 2 = dist L T ^ 2 at hLB_LTsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:333:  change dist H M ^ 2 = dist H R ^ 2 at hHM_HRsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:334:  change dist H M ^ 2 = dist H T ^ 2 at hHM_HTsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:335:  change dist T (pt 0 0) ^ 2 = dist T M ^ 2 at hTA_TMsq
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:336:  change dist T (pt 0 0) ^ 2 = dist T R ^ 2 at hTA_TRsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:17:closed native search forces one of the four Kalmanson occurrence schemas.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:50:def HasKalmansonOccurrence (P : PatternCode) : Prop :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:259:one of the four strict-Kalmanson occurrences. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:260:theorem hasKalmansonOccurrence_of_semanticTrace
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:262:    HasKalmansonOccurrence P := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:264:  have hnoKalmanson :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeCoverage.lean:277:      hnoKalmanson centers hcenters]
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:41:  change dist (normSim a b a) (normSim a b b) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:42:    dist (normSim a b x) (normSim a b y) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:374:  change dist (T C) (T D) ^ 2 = dist (T C) (T P) ^ 2 at hCDCP
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:383:  change dist (T D) (T A) ^ 2 = dist (T D) (T Q) ^ 2 at hDADQ
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5Closure.lean:15:common geometric Kalmanson decoder.
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:100:    simpa [circleNetwork_normSq, circleNetwork_dot, pow_two] using h
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:211:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) B ^ 2 at hOABsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:212:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) U ^ 2 at hOAUsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:213:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) V ^ 2 at hAOVsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:214:  change dist B (pt 0 0) ^ 2 = dist B C ^ 2 at hBOCsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:215:  change dist B (pt 0 0) ^ 2 = dist B W ^ 2 at hBOWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:216:  change dist C (pt 1 0) ^ 2 = dist C U ^ 2 at hCACUsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:217:  change dist C (pt 1 0) ^ 2 = dist C W ^ 2 at hCACWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:218:  change dist U B ^ 2 = dist U V ^ 2 at hUBVsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:219:  change dist U B ^ 2 = dist U W ^ 2 at hUBWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:220:  change dist V B ^ 2 = dist V W ^ 2 at hVBWsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:221:  change dist W (pt 0 0) ^ 2 = dist W U ^ 2 at hWOWUsq
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:242:    simpa [circleNetwork_normSq, circleNetwork_dot, pow_two] using hOABsq.symm
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:244:    simpa [circleNetwork_normSq, circleNetwork_dot, pow_two] using hOAUsq.symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/GeneratedData.lean:20:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Families.lean:28:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:17:closed native search forces one of the four Kalmanson occurrence schemas.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:50:def HasKalmansonOccurrence (P : PatternCode) : Prop :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:258:one of the four strict-Kalmanson occurrences. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:259:theorem hasKalmansonOccurrence_of_semanticTrace
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:261:    HasKalmansonOccurrence P := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:263:  have hnoKalmanson :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeCoverage.lean:276:      hnoKalmanson centers hcenters]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:10:# Source satisfaction for the non-Kalmanson P4 compact residual
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:13:verified-Kalmanson, and critical-support packages.  Fifty-five are direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:31:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:42:inductive NonKalmansonShape where
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:70:def residualShapeLits : NonKalmansonShape → List Int
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:86:def residualShapeWF : NonKalmansonShape → Bool
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:102:structure NonKalmansonEntry where
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:104:  shape : NonKalmansonShape
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:106:def residualEntryWF (entry : NonKalmansonEntry) : Bool :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:112:    (hfamilies : DenseFamilySatisfaction Q σ) (shape : NonKalmansonShape)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:199:    (hfamilies : DenseFamilySatisfaction Q σ) (entry : NonKalmansonEntry)
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:100:    | some (a, b) => (dist (y a) (y b) ^ 2)⁻¹
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:120:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:170:`d2Poly a b` evaluates to `dist (y a) (y b) ^ 2`. -/
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:174:    (d2Poly a b).eval (envOf y rabPairs) = dist (y a) (y b) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:199:    have henv : envOf y rabPairs (18 + j) = (dist (y a) (y b) ^ 2)⁻¹ := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual55Data.lean:13:def residual55Entries : List NonKalmansonEntry := [
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual55Families.lean:13:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.UniqueFourKalmansonReflection
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:10:# Fin-eleven adapters for the aligned-p5 Kalmanson consumers
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:12:The reusable Kalmanson consumers use a boundary indexed by `Fin A.card`.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:21:namespace ATailAlignedP5FinElevenKalmansonScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:23:open UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:24:open UniqueFourKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5FinElevenKalmanson.lean:330:end ATailAlignedP5FinElevenKalmansonScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:33:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:57:    CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:113:      CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:55:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) B ^ 2 at hAE_ABsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:56:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) C ^ 2 at hEA_ECsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:57:  change dist C (pt 0 0) ^ 2 = dist C B ^ 2 at hCA_CBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:58:  change dist C (pt 0 0) ^ 2 = dist C D ^ 2 at hCA_CDsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:59:  change dist F (pt 1 0) ^ 2 = dist F C ^ 2 at hFE_FCsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:60:  change dist F (pt 1 0) ^ 2 = dist F G ^ 2 at hFE_FGsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:61:  change dist F (pt 1 0) ^ 2 = dist F D ^ 2 at hFE_FDsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:62:  change dist G (pt 0 0) ^ 2 = dist G (pt 1 0) ^ 2 at hGA_GEsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:63:  change dist G (pt 0 0) ^ 2 = dist G F ^ 2 at hGA_GFsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:64:  change dist D (pt 0 0) ^ 2 = dist D B ^ 2 at hDA_DBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:65:  change dist D (pt 0 0) ^ 2 = dist D G ^ 2 at hDA_DGsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:56:  change dist (pt 0 0) B ^ 2 = dist (pt 0 0) C ^ 2 at hAB_ACsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:57:  change dist (pt 0 0) B ^ 2 = dist (pt 0 0) D ^ 2 at hAB_ADsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:58:  change dist B (pt 0 0) ^ 2 = dist B C ^ 2 at hBA_BCsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:59:  change dist B (pt 0 0) ^ 2 = dist B F ^ 2 at hBA_BFsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:60:  change dist B (pt 0 0) ^ 2 = dist B (pt 1 0) ^ 2 at hBA_BEsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:61:  change dist F C ^ 2 = dist F (pt 1 0) ^ 2 at hFC_FEsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:62:  change dist F C ^ 2 = dist F G ^ 2 at hFC_FGsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:63:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) D ^ 2 at hEA_EDsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:64:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) F ^ 2 at hEA_EFsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:65:  change dist (pt 1 0) (pt 0 0) ^ 2 = dist (pt 1 0) G ^ 2 at hEA_EGsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:66:  change dist G (pt 0 0) ^ 2 = dist G D ^ 2 at hGA_GDsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:149:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) B ^ 2 at hAO_ABsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:150:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) (pt 1 0) ^ 2 at hAO_AEsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:151:  change dist (pt 0 0) O ^ 2 = dist (pt 0 0) D ^ 2 at hAO_ADsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:152:  change dist B O ^ 2 = dist B (pt 0 0) ^ 2 at hBO_BAsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:153:  change dist B O ^ 2 = dist B F ^ 2 at hBO_BFsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:154:  change dist B O ^ 2 = dist B G ^ 2 at hBO_BGsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:155:  change dist (pt 1 0) B ^ 2 = dist (pt 1 0) D ^ 2 at hEB_EDsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:156:  change dist (pt 1 0) B ^ 2 = dist (pt 1 0) F ^ 2 at hEB_EFsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:157:  change dist F C ^ 2 = dist F D ^ 2 at hFC_FDsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:158:  change dist F C ^ 2 = dist F G ^ 2 at hFC_FGsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:159:  change dist G (pt 0 0) ^ 2 = dist G (pt 1 0) ^ 2 at hGA_GEsq
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:160:  change dist G (pt 0 0) ^ 2 = dist G F ^ 2 at hGA_GFsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5FinElevenKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:13:# Decode aligned-p5 executable Kalmanson occurrences
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:16:memberships consumed by the geometric `Fin 11` Kalmanson terminals.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:22:namespace ATailAlignedP5KalmansonDecodeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:29:open ATailAlignedP5FinElevenKalmansonScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:590:/-- Any executable aligned-p5 Kalmanson occurrence is consumed by one of the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:668:end ATailAlignedP5KalmansonDecodeScratch
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:51:  change dist (pt 0 0) B ^ 2 = dist (pt 0 0) C ^ 2 at hOBsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:52:  change dist (pt 1 0) B ^ 2 = dist (pt 1 0) (pt 0 0) ^ 2 at hABsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:53:  change dist (pt 1 0) U ^ 2 = dist (pt 1 0) (pt 0 0) ^ 2 at hAUsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:54:  change dist B C ^ 2 = dist B (pt 1 0) ^ 2 at hBCsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:55:  change dist U V ^ 2 = dist U (pt 0 0) ^ 2 at hUVsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:56:  change dist C U ^ 2 = dist C (pt 1 0) ^ 2 at hCUsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:57:  change dist C V ^ 2 = dist C (pt 1 0) ^ 2 at hCVsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:58:  change dist V B ^ 2 = dist V (pt 1 0) ^ 2 at hVBsq
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:59:  change dist V C ^ 2 = dist V (pt 1 0) ^ 2 at hVCsq
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:80:  change dist (T c) (T b) ^ 2 = dist (T c) (T x) ^ 2 at hcbxSq
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:81:  change dist (T c) (T b) ^ 2 = dist (T c) (T y) ^ 2 at hcbySq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:56:  change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) B ^ 2 at hOA_OBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:57:  change dist B (pt 0 0) ^ 2 = dist B (pt 1 0) ^ 2 at hBO_BAsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:58:  change dist B (pt 0 0) ^ 2 = dist B D ^ 2 at hBO_BDsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:59:  change dist B (pt 0 0) ^ 2 = dist B E ^ 2 at hBO_BEsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:60:  change dist C (pt 0 0) ^ 2 = dist C B ^ 2 at hCO_CBsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:61:  change dist C (pt 0 0) ^ 2 = dist C F ^ 2 at hCO_CFsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:62:  change dist D B ^ 2 = dist D C ^ 2 at hDB_DCsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:63:  change dist D B ^ 2 = dist D E ^ 2 at hDB_DEsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:64:  change dist E (pt 0 0) ^ 2 = dist E (pt 1 0) ^ 2 at hEO_EAsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:65:  change dist F (pt 1 0) ^ 2 = dist F C ^ 2 at hFA_FCsq
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:66:  change dist F (pt 1 0) ^ 2 = dist F E ^ 2 at hFA_FEsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/OccurrenceBridge/BridgeCore.lean:39:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:37:  change dist (normSim o a o) (normSim o a a) ^ 2 =
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:38:    dist (normSim o a p) (normSim o a q) ^ 2 at hSq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:142:  change dist B (pt 0 0) ^ 2 = dist (pt 1 0) (pt 0 0) ^ 2 at hBsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:143:  change dist C (pt 0 0) ^ 2 = dist (pt 1 0) (pt 0 0) ^ 2 at hCsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:144:  change dist C (pt 1 0) ^ 2 = dist C (pt 0 0) ^ 2 at hCcenterSq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:145:  change dist U (pt 1 0) ^ 2 = dist U B ^ 2 at hUsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:146:  change dist B U ^ 2 = dist B (pt 1 0) ^ 2 at hBUsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:147:  change dist B C ^ 2 = dist B (pt 1 0) ^ 2 at hBCsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:148:  change dist C V ^ 2 = dist C (pt 0 0) ^ 2 at hCVsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:149:  change dist V B ^ 2 = dist V (pt 0 0) ^ 2 at hVBsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:150:  change dist W U ^ 2 = dist W (pt 0 0) ^ 2 at hWUsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:151:  change dist W C ^ 2 = dist W (pt 0 0) ^ 2 at hWCsq
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:152:  change dist W V ^ 2 = dist W (pt 0 0) ^ 2 at hWVsq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/OccurrenceBridge/BridgeFamilies.lean:31:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/OccurrenceBridge/BridgeMain.lean:34:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectSatisfaction.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.DirectKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectSatisfaction.lean:67:    seededFullLinearKalmansonCutSat_direct P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectSatisfaction.lean:69:    verifiedKalmansonOrderSchemaCutSat_direct P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:10:# Direct-branch Kalmanson cut satisfaction
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:17:terminal (`RetainedKalmansonDecoder`).
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:30:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:69:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:82:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:95:    ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:108:    ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:122:    ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:164:theorem seededFullLinearKalmansonCutSat_direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:166:    SeededFullLinearKalmansonCutSat Q directIndex := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:240:theorem verifiedKalmansonOrderSchemaCutSat_direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:242:    VerifiedKalmansonOrderSchemaCutSat Q directIndex := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:326:  Problem97.P5IndexedSourceScratch.seededFullLinearKalmansonCutSat_direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectKalmanson.lean:328:  Problem97.P5IndexedSourceScratch.verifiedKalmansonOrderSchemaCutSat_direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.Kalmanson.RetainedKalmansonDecoder
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:51:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:115:transported boundary, so every Kalmanson schema consumer applies without
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:268:/- ## Kalmanson cut families -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:270:/-- One Kalmanson row-instance CNF cut is satisfied: not every membership
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:315:def SeededFullLinearKalmansonCutSat
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:338:def VerifiedKalmansonOrderSchemaCutSat
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:371:  seeded_full_linear_kalmanson_cut : SeededFullLinearKalmansonCutSat Q σ
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:373:    VerifiedKalmansonOrderSchemaCutSat Q σ
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCoreFamilySatisfaction.lean:22:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:3:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.MirrorKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:9:eight-role P4 Kalmanson schemas.  Their reflected source semantics is
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:10:supplied by `seededFullLinearKalmansonCutSat_mirror`; `mirrorValAgreement`
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:46:  apply seededFullLinearKalmansonCutSat_mirror P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorIndexedFamilySatisfaction.lean:4:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Main
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorIndexedFamilySatisfaction.lean:60:    ∀ clause ∈ P4KalmansonOccurrenceBridgeScratch.bridgeClauses,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorIndexedFamilySatisfaction.lean:62:  P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorResidual55Satisfaction.lean:65:    (shape : NonKalmansonShape) (hwf : directResidualShapeWF shape = true) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:11:# Mirror-branch Kalmanson cut satisfaction
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:34:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:107:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:121:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:136:    ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:151:    ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:167:    ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:216:theorem seededFullLinearKalmansonCutSat_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:218:    SeededFullLinearKalmansonCutSat Q mirrorIndex := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:330:theorem verifiedKalmansonOrderSchemaCutSat_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:332:    VerifiedKalmansonOrderSchemaCutSat Q mirrorIndex := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:449:  Problem97.P5IndexedSourceScratch.seededFullLinearKalmansonCutSat_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorKalmanson.lean:451:  Problem97.P5IndexedSourceScratch.verifiedKalmansonOrderSchemaCutSat_mirror
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorSatisfaction.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.MirrorKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorSatisfaction.lean:71:    seededFullLinearKalmansonCutSat_mirror P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorSatisfaction.lean:73:    verifiedKalmansonOrderSchemaCutSat_mirror P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:12:This module records the cardinality-generic strict Kalmanson consumer extracted from the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:20:namespace UniqueFourKalmansonOccurrenceScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:22:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:74:Kalmanson inequalities cancel after substituting the three row equalities.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:122:end UniqueFourKalmansonOccurrenceScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.Kalmanson.RetainedKalmansonDecoder
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:13:The retained Kalmanson occurrence type stores schemas `5` and `8` only in
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:16:Kalmanson consumers and a single exact-two mirror-packet ingress.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:32:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:33:open UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:318:    (T : RetainedKalmansonDecoderScratch.OrderedEight)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:339:  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:342:  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:345:  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:348:  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:351:  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:354:  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:357:  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:360:  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:363:  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:366:  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:369:  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:372:  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:380:  | schema5 (T : RetainedKalmansonDecoderScratch.OrderedFive)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:382:  | schema8 (T : RetainedKalmansonDecoderScratch.OrderedEight)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.UniqueFourKalmansonReflection
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:10:# Missing orientations of the retained Kalmanson schema bank
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:12:The kernel-only Kalmanson bank stores one normalized order schema for each of
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:25:namespace MissingRetainedKalmansonOrientationsScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:27:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:28:open UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:298:end MissingRetainedKalmansonOrientationsScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/CyclicAlternation/Main.lean:10:open ATailUniqueFourExactTwoSchemaDecoderScratch RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.Kalmanson.MissingRetainedOrientations
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5FinElevenKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:12:# Generic decoder for the reduced-core Kalmanson schema bank
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:23:namespace RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:25:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:26:open UniqueFourKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:28:open ATailAlignedP5FinElevenKalmansonScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:29:open MissingRetainedKalmansonOrientationsScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:949:/-- Generic terminal for every exact Kalmanson occurrence retained by the p5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:1018:end RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/CyclicAlternation/Core.lean:30:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/MutualTransport/Main.lean:14:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/CyclicAlternation/Families.lean:15:open ATailUniqueFourExactTwoSchemaDecoderScratch RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk09.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk09.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk09.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk09.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk13.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk13.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk13.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk13.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/MutualTransport/Families.lean:25:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk05.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk05.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk05.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk05.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeAll
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:3:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:5:/-! Source-satisfaction interface for the P4 Kalmanson compact window. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:7:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:14:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:26:/-- Source satisfaction of the authenticated compact Kalmanson window on the direct branch. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:36:      (verifiedKalmansonOrderSchemaCutSat_direct Q) hv entry hslot
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:38:/-- Source satisfaction of the authenticated compact Kalmanson window on the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:49:      (verifiedKalmansonOrderSchemaCutSat_mirror Q) hv entry hslot
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Main.lean:51:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:207:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:211:    (h : dist a c ^ 2 = dist b c ^ 2) :
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:323:  have hp1sq : dist p t1 ^ 2 = r ^ 2 := by rw [hp1]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:324:  have hp2sq : dist p t2 ^ 2 = r ^ 2 := by rw [hp2]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:325:  have hp3sq : dist p t3 ^ 2 = r ^ 2 := by rw [hp3]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:326:  have h12sq : dist t1 t2 ^ 2 = r ^ 2 := by rw [h12]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:327:  have h13sq : dist t1 t3 ^ 2 = r ^ 2 := by rw [h13]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:328:  have h23sq : dist t2 t3 ^ 2 = r ^ 2 := by rw [h23]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:779:  have hpqsq : dist p q ^ 2 = r ^ 2 := by rw [hpq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:780:  have hp1sq : dist p t₁ ^ 2 = r ^ 2 := by rw [hpt₁]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:781:  have hp2sq : dist p t₂ ^ 2 = r ^ 2 := by rw [hpt₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:782:  have hp3sq : dist p t₃ ^ 2 = r ^ 2 := by rw [hpt₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:783:  have h1qsq : dist t₁ q ^ 2 = r ^ 2 := by rw [ht₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:784:  have h12sq : dist t₁ t₂ ^ 2 = r ^ 2 := by rw [ht₁t₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:785:  have h23sq : dist t₂ t₃ ^ 2 = r ^ 2 := by rw [ht₂t₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:786:  have hapqsq : dist a p ^ 2 = dist a q ^ 2 := by rw [hapq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:787:  have h3asq : dist t₃ a ^ 2 = r ^ 2 := by rw [ht₃a]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:824:    have hqt₂sq_zero : dist q t₂ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:835:    have ht₁t₃sq_zero : dist t₁ t₃ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:931:  have hpqsq : dist p q ^ 2 = r ^ 2 := by rw [hpq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:932:  have hp1sq : dist p t₁ ^ 2 = r ^ 2 := by rw [hpt₁]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:933:  have hp2sq : dist p t₂ ^ 2 = r ^ 2 := by rw [hpt₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:934:  have hp3sq : dist p t₃ ^ 2 = r ^ 2 := by rw [hpt₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:935:  have h1qsq : dist t₁ q ^ 2 = r ^ 2 := by rw [ht₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:936:  have h12sq : dist t₁ t₂ ^ 2 = r ^ 2 := by rw [ht₁t₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:937:  have h23sq : dist t₂ t₃ ^ 2 = r ^ 2 := by rw [ht₂t₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:938:  have h3t₁qsq : dist t₃ t₁ ^ 2 = dist t₃ q ^ 2 := by rw [ht₃t₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:971:    have hqt₂sq_zero : dist q t₂ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:982:    have ht₁t₃sq_zero : dist t₁ t₃ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1088:  have hpqsq : dist p q ^ 2 = r ^ 2 := by rw [hpq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1089:  have hp1sq : dist p t₁ ^ 2 = r ^ 2 := by rw [hpt₁]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1090:  have hp2sq : dist p t₂ ^ 2 = r ^ 2 := by rw [hpt₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1091:  have h1qsq : dist t₁ q ^ 2 = r ^ 2 := by rw [ht₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1092:  have h12sq : dist t₁ t₂ ^ 2 = r ^ 2 := by rw [ht₁t₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1093:  have h1usq : dist t₁ u ^ 2 = r ^ 2 := by rw [ht₁u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1094:  have h2usq : dist t₂ u ^ 2 = r ^ 2 := by rw [ht₂u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1095:  have hat₁qsq : dist a t₁ ^ 2 = dist a q ^ 2 := by rw [hat₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1096:  have hauqsq : dist a u ^ 2 = dist a q ^ 2 := by rw [hauq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1130:    have hqt₂sq_zero : dist q t₂ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1142:    have hpusq : dist p u ^ 2 = S := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1145:    have hpu_sq_pos : 0 < dist p u ^ 2 := sq_pos_of_pos hpu_pos
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1252:  have hpqsq : dist p q ^ 2 = r ^ 2 := by rw [hpq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1253:  have hp1sq : dist p t₁ ^ 2 = r ^ 2 := by rw [hpt₁]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1254:  have hp2sq : dist p t₂ ^ 2 = r ^ 2 := by rw [hpt₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1255:  have h1qsq : dist t₁ q ^ 2 = r ^ 2 := by rw [ht₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1256:  have h12sq : dist t₁ t₂ ^ 2 = r ^ 2 := by rw [ht₁t₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1257:  have h1usq : dist t₁ u ^ 2 = r ^ 2 := by rw [ht₁u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1258:  have h2usq : dist t₂ u ^ 2 = r ^ 2 := by rw [ht₂u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1259:  have huqsq : dist u q ^ 2 = r ^ 2 := by rw [huq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1288:    have hqt₂sq_zero : dist q t₂ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1300:    have hpusq : dist p u ^ 2 = S := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1303:    have hpu_sq_pos : 0 < dist p u ^ 2 := sq_pos_of_pos hpu_pos
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1470:  have hpqsq : dist p q ^ 2 = r ^ 2 := by rw [hpq]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1471:  have hp1sq : dist p t₁ ^ 2 = r ^ 2 := by rw [hpt₁]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1472:  have hp2sq : dist p t₂ ^ 2 = r ^ 2 := by rw [hpt₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1473:  have hp3sq : dist p t₃ ^ 2 = r ^ 2 := by rw [hpt₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1474:  have h1qsq : dist t₁ q ^ 2 = r ^ 2 := by rw [ht₁q]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1475:  have h12sq : dist t₁ t₂ ^ 2 = r ^ 2 := by rw [ht₁t₂]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1476:  have h1usq : dist t₁ u ^ 2 = r ^ 2 := by rw [ht₁u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1477:  have h23sq : dist t₂ t₃ ^ 2 = r ^ 2 := by rw [ht₂t₃]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1478:  have h2usq : dist t₂ u ^ 2 = r ^ 2 := by rw [ht₂u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1479:  have h3usq : dist t₃ u ^ 2 = r ^ 2 := by rw [ht₃u]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1518:    have hqt₂sq_zero : dist q t₂ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1529:    have ht₁t₃sq_zero : dist t₁ t₃ ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1544:    have hpusq : dist p u ^ 2 = S := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1547:    have hpu_sq_pos : 0 < dist p u ^ 2 := sq_pos_of_pos hpu_pos
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1771:  have hpasq : dist p a ^ 2 = r ^ 2 := by rw [hpa]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1772:  have hpbsq : dist p b ^ 2 = r ^ 2 := by rw [hpb]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1773:  have hpcsq : dist p c ^ 2 = r ^ 2 := by rw [hpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1774:  have habsq : dist a b ^ 2 = r ^ 2 := by rw [hab]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1775:  have hacsq : dist a c ^ 2 = r ^ 2 := by rw [hac]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1776:  have haxsq : dist a x ^ 2 = r ^ 2 := by rw [hax]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1777:  have hbxsq : dist b x ^ 2 = r ^ 2 := by rw [hbx]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1778:  have hxpcsq : dist x p ^ 2 = dist x c ^ 2 := by rw [hxpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1946:  have hpasq : dist p a ^ 2 = r ^ 2 := by rw [hpa]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1947:  have hpbsq : dist p b ^ 2 = r ^ 2 := by rw [hpb]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1948:  have hpcsq : dist p c ^ 2 = r ^ 2 := by rw [hpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1949:  have habsq : dist a b ^ 2 = r ^ 2 := by rw [hab]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1950:  have haxsq : dist a x ^ 2 = r ^ 2 := by rw [hax]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1951:  have hbxsq : dist b x ^ 2 = r ^ 2 := by rw [hbx]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1952:  have hxpcsq : dist x p ^ 2 = dist x c ^ 2 := by rw [hxpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:1953:  have hcabsq : dist c a ^ 2 = dist c b ^ 2 := by rw [hcab]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2112:  have hpasq : dist p a ^ 2 = r ^ 2 := by rw [hpa]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2113:  have hpbsq : dist p b ^ 2 = r ^ 2 := by rw [hpb]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2114:  have hpcsq : dist p c ^ 2 = r ^ 2 := by rw [hpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2115:  have hab_hac_sq : dist a b ^ 2 = dist a c ^ 2 := by rw [hab_eq_hac]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2116:  have hab_hbc_sq : dist a b ^ 2 = dist b c ^ 2 := by rw [hab_eq_hbc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2117:  have hxpa_sq : dist x p ^ 2 = dist x a ^ 2 := by rw [hxpa]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2118:  have hxpb_sq : dist x p ^ 2 = dist x b ^ 2 := by rw [hxpb]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2159:      have habsq_zero : dist a b ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2173:  have hx_sq : dist p x ^ 2 = r ^ 2 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2298:  have hpasq : dist p a ^ 2 = r ^ 2 := by rw [hpa]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2299:  have hpbsq : dist p b ^ 2 = r ^ 2 := by rw [hpb]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2300:  have hpcsq : dist p c ^ 2 = r ^ 2 := by rw [hpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2301:  have hab_hac_sq : dist a b ^ 2 = dist a c ^ 2 := by rw [hab_eq_hac]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2302:  have hab_hbc_sq : dist a b ^ 2 = dist b c ^ 2 := by rw [hab_eq_hbc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2303:  have hax_side_sq : dist a x ^ 2 = dist a b ^ 2 := by rw [hax_side]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2304:  have hbx_side_sq : dist b x ^ 2 = dist a b ^ 2 := by rw [hbx_side]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2305:  have hxpcsq : dist x p ^ 2 = dist x c ^ 2 := by rw [hxpc]
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:2348:      have habsq_zero : dist a b ^ 2 = 0 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/MutualTransport/Orientation.lean:26:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk04.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk04.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk04.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk04.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/MutualTransport/Core.lean:30:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk12.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk12.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk12.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk12.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk08.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk08.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk08.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk08.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk15.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk15.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk15.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk15.lean:473:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.DirectKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.MirrorKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:13:# P4 retained-Kalmanson occurrence bridge: source interface
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:24:namespace P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:31:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:40:/-- The eighteen retained Kalmanson schema/orientation slots, in exactly the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:83:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFive, T.values = targets := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:162:    ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:211:    (hfamily : VerifiedKalmansonOrderSchemaCutSat Q σ)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/KalmansonCore.lean:269:end P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:3:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk02
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:4:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk03
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:5:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk04
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:6:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk05
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk06
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk07
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk08
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:10:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk09
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:11:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk10
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:12:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk11
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:13:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk12
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:14:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk13
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:15:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk14
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:16:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.BridgeChunk15
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:18:/-! Aggregation and hashes for the authenticated P4 Kalmanson window. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:20:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:26:/-- Authenticated compact P4 Kalmanson window metadata. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:35:explicit direct and reflected-boundary terminals in `KalmansonCore`. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeAll.lean:39:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk01.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk01.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk01.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk01.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk10.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk10.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk10.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk10.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk06.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk06.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk06.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk06.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk07.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk07.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk07.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk07.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk03.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk03.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk03.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk03.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk11.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk11.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk11.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk11.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk02.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk02.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk02.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk02.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk14.lean:2:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk14.lean:4:/-! Authenticated P4 Kalmanson compact-clause entries. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk14.lean:6:namespace Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/BridgeChunk14.lean:525:end Problem97.P4KalmansonOccurrenceBridgeScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Families.lean:1:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.KalmansonCore

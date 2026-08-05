@@ -1,0 +1,151 @@
+# Live endpoint schema: extended M/B Kalmanson audit
+
+The schema includes O-shell C,J,M; A-shell C,K; B-shell C,M;
+M not in A-shell; and K not in B-shell. M and B are inserted in
+all cyclic positions preserving each named post-P1/P2 residual order.
+
+SAT means an exact rational distance/Kalmanson witness. It is an
+abstract metric witness unless separately Euclidean-validated.
+
+## A=J
+
+- insertion orders: 60
+- baseline SAT: 56
+- proposed equality UNSAT: 0
+- proposed equality SAT: 52
+- current nonmembership signs both UNSAT: 0
+
+| base | extended order | proposed equality | nonmembership status | witness/core |
+|---|---|---|---|---|
+| OAKXC | OAKXCMB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=20, dAO=25, dAX=35, dBC=30, dBK=40, dBM=30, dBO=25, dBX=25, dCK=60, dCM=30, dCO=25, dCX=35, dKM=40, dKO=55, dKX=35, dMO=25, dMX=25, dOX=40 |
+| OAKXC | OAKXCBM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=20, dAO=25, dAX=35, dBC=30, dBK=40, dBM=30, dBO=25, dBX=25, dCK=60, dCM=30, dCO=25, dCX=35, dKM=40, dKO=55, dKX=35, dMO=25, dMX=25, dOX=40 |
+| OAKXC | OAKXMCB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=20, dAX=30, dBC=20, dBK=30, dBM=20, dBO=20, dBX=20, dCK=30, dCM=20, dCO=20, dCX=30, dKM=40, dKO=40, dKX=30, dMO=20, dMX=20, dOX=30 |
+| OAKXC | OAKXMBC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=20, dAX=30, dBC=20, dBK=30, dBM=20, dBO=20, dBX=20, dCK=30, dCM=20, dCO=20, dCX=30, dKM=40, dKO=40, dKX=30, dMO=20, dMX=20, dOX=30 |
+| OAKXC | OAKXBCM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=30, dAK=30, dAM=20, dAO=20, dAX=30, dBC=20, dBK=40, dBM=20, dBO=20, dBX=20, dCK=30, dCM=20, dCO=20, dCX=30, dKM=30, dKO=40, dKX=30, dMO=20, dMX=20, dOX=30 |
+| OAKXC | OAKXBMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=30, dAK=30, dAM=20, dAO=20, dAX=30, dBC=20, dBK=40, dBM=20, dBO=20, dBX=20, dCK=30, dCM=20, dCO=20, dCX=30, dKM=30, dKO=40, dKX=30, dMO=20, dMX=20, dOX=30 |
+| OAKXC | OAKMXCB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=20, dAK=20, dAM=40, dAO=30, dAX=40, dBC=25, dBK=35, dBM=25, dBO=15, dBX=25, dCK=20, dCM=30, dCO=30, dCX=40, dKM=30, dKO=40, dKX=40, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OAKMXBC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=20, dAK=20, dAM=40, dAO=30, dAX=40, dBC=25, dBK=35, dBM=25, dBO=15, dBX=25, dCK=20, dCM=30, dCO=30, dCX=40, dKM=30, dKO=40, dKX=40, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OAKMBXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=40, dAC=30, dAK=30, dAM=40, dAO=30, dAX=30, dBC=20, dBK=30, dBM=20, dBO=20, dBX=20, dCK=20, dCM=20, dCO=30, dCX=30, dKM=20, dKO=30, dKX=30, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OAKBXCM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=20, dAO=20, dAX=30, dBC=20, dBK=20, dBM=20, dBO=30, dBX=20, dCK=20, dCM=10, dCO=20, dCX=30, dKM=20, dKO=30, dKX=30, dMO=20, dMX=30, dOX=20 |
+| OAKXC | OAKBXMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=20, dAO=20, dAX=30, dBC=20, dBK=20, dBM=20, dBO=30, dBX=20, dCK=20, dCM=10, dCO=20, dCX=30, dKM=20, dKO=30, dKX=30, dMO=20, dMX=30, dOX=20 |
+| OAKXC | OAKBMXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=30, dAO=20, dAX=25, dBC=20, dBK=20, dBM=20, dBO=30, dBX=15, dCK=20, dCM=20, dCO=20, dCX=25, dKM=30, dKO=30, dKX=25, dMO=20, dMX=15, dOX=25 |
+| OAKXC | OAMKXCB | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=35, dAC=60, dAK=60, dAM=30, dAO=35, dAX=40, dBC=35, dBK=35, dBM=35, dBO=30, dBX=15, dCK=30, dCM=40, dCO=35, dCX=40, dKM=40, dKO=55, dKX=40, dMO=35, dMX=30, dOX=25 |
+| OAKXC | OAMKXBC | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=35, dAC=60, dAK=60, dAM=30, dAO=35, dAX=40, dBC=35, dBK=35, dBM=35, dBO=30, dBX=15, dCK=30, dCM=40, dCO=35, dCX=40, dKM=40, dKO=55, dKX=40, dMO=35, dMX=30, dOX=25 |
+| OAKXC | OAMKBXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=40, dAC=40, dAK=40, dAM=30, dAO=30, dAX=30, dBC=30, dBK=20, dBM=30, dBO=20, dBX=20, dCK=20, dCM=20, dCO=30, dCX=30, dKM=20, dKO=30, dKX=30, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OAMBKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=40, dAC=40, dAK=40, dAM=30, dAO=30, dAX=30, dBC=20, dBK=20, dBM=20, dBO=30, dBX=20, dCK=20, dCM=20, dCO=30, dCX=30, dKM=30, dKO=20, dKX=30, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OABKXCM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=25, dAO=25, dAX=30, dBC=30, dBK=30, dBM=30, dBO=35, dBX=30, dCK=30, dCM=25, dCO=25, dCX=30, dKM=30, dKO=45, dKX=30, dMO=25, dMX=15, dOX=25 |
+| OAKXC | OABKXMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=25, dAO=25, dAX=30, dBC=30, dBK=30, dBM=30, dBO=35, dBX=30, dCK=30, dCM=25, dCO=25, dCX=30, dKM=30, dKO=45, dKX=30, dMO=25, dMX=15, dOX=25 |
+| OAKXC | OABKMXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=20, dAX=20, dBC=30, dBK=20, dBM=30, dBO=30, dBX=20, dCK=20, dCM=10, dCO=20, dCX=20, dKM=20, dKO=30, dKX=20, dMO=20, dMX=20, dOX=20 |
+| OAKXC | OABMKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=40, dAK=40, dAM=40, dAO=30, dAX=25, dBC=20, dBK=30, dBM=20, dBO=30, dBX=15, dCK=20, dCM=10, dCO=30, dCX=25, dKM=20, dKO=20, dKX=25, dMO=30, dMX=25, dOX=25 |
+| OAKXC | OMAKXCB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=30, dAX=30, dBC=30, dBK=30, dBM=30, dBO=20, dBX=20, dCK=40, dCM=20, dCO=30, dCX=30, dKM=50, dKO=40, dKX=30, dMO=30, dMX=40, dOX=20 |
+| OAKXC | OMAKXBC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=30, dAX=30, dBC=30, dBK=30, dBM=30, dBO=20, dBX=20, dCK=40, dCM=20, dCO=30, dCX=30, dKM=50, dKO=40, dKX=30, dMO=30, dMX=40, dOX=20 |
+| OAKXC | OMAKBXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=30, dAO=30, dAX=30, dBC=40, dBK=20, dBM=40, dBO=20, dBX=20, dCK=30, dCM=20, dCO=30, dCX=30, dKM=40, dKO=30, dKX=30, dMO=30, dMX=30, dOX=10 |
+| OAKXC | OMABKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=30, dAO=30, dAX=25, dBC=40, dBK=20, dBM=40, dBO=30, dBX=25, dCK=40, dCM=10, dCO=30, dCX=25, dKM=40, dKO=20, dKX=25, dMO=30, dMX=25, dOX=15 |
+| OAKXC | OMBAKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=40, dAO=30, dAX=25, dBC=30, dBK=30, dBM=30, dBO=30, dBX=15, dCK=20, dCM=30, dCO=30, dCX=25, dKM=40, dKO=20, dKX=25, dMO=30, dMX=25, dOX=25 |
+| OAKXC | OBAKXCM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=20, dAO=30, dAX=30, dBC=30, dBK=40, dBM=30, dBO=20, dBX=30, dCK=20, dCM=20, dCO=30, dCX=30, dKM=20, dKO=40, dKX=30, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OBAKXMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=20, dAO=30, dAX=30, dBC=30, dBK=40, dBM=30, dBO=20, dBX=30, dCK=20, dCM=20, dCO=30, dCX=30, dKM=20, dKO=40, dKX=30, dMO=30, dMX=20, dOX=20 |
+| OAKXC | OBAKMXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=40, dAO=30, dAX=35, dBC=40, dBK=40, dBM=40, dBO=20, dBX=25, dCK=20, dCM=20, dCO=30, dCX=35, dKM=20, dKO=40, dKX=35, dMO=30, dMX=25, dOX=15 |
+| OAKXC | OBAMKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=20, dAO=30, dAX=25, dBC=30, dBK=30, dBM=30, dBO=20, dBX=15, dCK=20, dCM=20, dCO=30, dCX=25, dKM=20, dKO=20, dKX=25, dMO=30, dMX=25, dOX=15 |
+| OAKXC | OBMAKXC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=20, dAO=30, dAX=25, dBC=20, dBK=30, dBM=20, dBO=20, dBX=15, dCK=30, dCM=10, dCO=30, dCX=25, dKM=30, dKO=20, dKX=25, dMO=30, dMX=25, dOX=15 |
+| OCXKA | OCXKAMB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=20, dAO=25, dAX=35, dBC=30, dBK=40, dBM=30, dBO=25, dBX=25, dCK=60, dCM=30, dCO=25, dCX=35, dKM=40, dKO=55, dKX=35, dMO=25, dMX=25, dOX=40 |
+| OCXKA | OCXKABM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAK=40, dAM=20, dAO=25, dAX=35, dBC=30, dBK=40, dBM=30, dBO=25, dBX=25, dCK=60, dCM=30, dCO=25, dCX=35, dKM=40, dKO=55, dKX=35, dMO=25, dMX=25, dOX=40 |
+| OCXKA | OCXKMAB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=10, dAC=20, dAK=20, dAM=20, dAO=20, dAX=20, dBC=20, dBK=20, dBM=20, dBO=20, dBX=20, dCK=30, dCM=30, dCO=20, dCX=20, dKM=20, dKO=30, dKX=20, dMO=20, dMX=30, dOX=30 |
+| OCXKA | OCXKMBA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=10, dAC=20, dAK=20, dAM=20, dAO=20, dAX=20, dBC=20, dBK=20, dBM=20, dBO=20, dBX=20, dCK=30, dCM=30, dCO=20, dCX=20, dKM=20, dKO=30, dKX=20, dMO=20, dMX=30, dOX=30 |
+| OCXKA | OCXKBAM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=10, dAO=20, dAX=20, dBC=30, dBK=20, dBM=30, dBO=20, dBX=30, dCK=30, dCM=20, dCO=20, dCX=20, dKM=20, dKO=30, dKX=20, dMO=20, dMX=20, dOX=30 |
+| OCXKA | OCXKBMA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=10, dAO=20, dAX=20, dBC=30, dBK=20, dBM=30, dBO=20, dBX=30, dCK=30, dCM=20, dCO=20, dCX=20, dKM=20, dKO=30, dKX=20, dMO=20, dMX=20, dOX=30 |
+| OCXKA | OCXMKAB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=20, dAO=30, dAX=30, dBC=25, dBK=25, dBM=25, dBO=20, dBX=20, dCK=40, dCM=40, dCO=30, dCX=30, dKM=20, dKO=20, dKX=30, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OCXMKBA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAK=30, dAM=20, dAO=30, dAX=30, dBC=25, dBK=25, dBM=25, dBO=20, dBX=20, dCK=40, dCM=40, dCO=30, dCX=30, dKM=20, dKO=20, dKX=30, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OCXMBKA | baseline UNSAT | - | - |
+| OCXKA | OCXBKAM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=35, dAC=25, dAK=25, dAM=15, dAO=30, dAX=30, dBC=40, dBK=20, dBM=40, dBO=30, dBX=20, dCK=40, dCM=20, dCO=30, dCX=30, dKM=30, dKO=20, dKX=30, dMO=30, dMX=30, dOX=30 |
+| OCXKA | OCXBKMA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=35, dAC=25, dAK=25, dAM=15, dAO=30, dAX=30, dBC=40, dBK=20, dBM=40, dBO=30, dBX=20, dCK=40, dCM=20, dCO=30, dCX=30, dKM=30, dKO=20, dKX=30, dMO=30, dMX=30, dOX=30 |
+| OCXKA | OCXBMKA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=30, dAO=25, dAX=20, dBC=30, dBK=20, dBM=30, dBO=35, dBX=20, dCK=20, dCM=40, dCO=25, dCX=20, dKM=30, dKO=25, dKX=20, dMO=25, dMX=40, dOX=35 |
+| OCXKA | OCMXKAB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=35, dAK=35, dAM=30, dAO=30, dAX=40, dBC=25, dBK=45, dBM=25, dBO=15, dBX=25, dCK=60, dCM=30, dCO=30, dCX=40, dKM=50, dKO=40, dKX=40, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OCMXKBA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=35, dAK=35, dAM=30, dAO=30, dAX=40, dBC=25, dBK=45, dBM=25, dBO=15, dBX=25, dCK=60, dCM=30, dCO=30, dCX=40, dKM=50, dKO=40, dKX=40, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OCMXBKA | UNKNOWN | 0:UNKNOWN/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCXKA | OCMBXKA | baseline UNSAT | - | - |
+| OCXKA | OCBXKAM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAK=25, dAM=35/2, dAO=20, dAX=30, dBC=20, dBK=40, dBM=20, dBO=30, dBX=20, dCK=40, dCM=35/2, dCO=20, dCX=30, dKM=65/2, dKO=30, dKX=30, dMO=20, dMX=45/2, dOX=30 |
+| OCXKA | OCBXKMA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAK=25, dAM=35/2, dAO=20, dAX=30, dBC=20, dBK=40, dBM=20, dBO=30, dBX=20, dCK=40, dCM=35/2, dCO=20, dCX=30, dKM=65/2, dKO=30, dKX=30, dMO=20, dMX=45/2, dOX=30 |
+| OCXKA | OCBXMKA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAK=20, dAM=30, dAO=25, dAX=40, dBC=30, dBK=30, dBM=30, dBO=35, dBX=20, dCK=20, dCM=40, dCO=25, dCX=40, dKM=30, dKO=15, dKX=40, dMO=25, dMX=20, dOX=35 |
+| OCXKA | OCBMXKA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=15, dAC=20, dAK=20, dAM=30, dAO=30, dAX=40, dBC=25, dBK=15, dBM=25, dBO=35, dBX=35, dCK=20, dCM=40, dCO=30, dCX=40, dKM=30, dKO=30, dKX=40, dMO=30, dMX=20, dOX=20 |
+| OCXKA | OMCXKAB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=30, dAO=30, dAX=20, dBC=30, dBK=20, dBM=30, dBO=20, dBX=20, dCK=30, dCM=30, dCO=30, dCX=20, dKM=40, dKO=20, dKX=20, dMO=30, dMX=40, dOX=30 |
+| OCXKA | OMCXKBA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=30, dAO=30, dAX=20, dBC=30, dBK=20, dBM=30, dBO=20, dBX=20, dCK=30, dCM=30, dCO=30, dCX=20, dKM=40, dKO=20, dKX=20, dMO=30, dMX=40, dOX=30 |
+| OCXKA | OMCXBKA | UNKNOWN | 0:UNKNOWN/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCXKA | OMCBXKA | baseline UNSAT | - | - |
+| OCXKA | OMBCXKA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=20, dAK=20, dAM=30, dAO=30, dAX=20, dBC=25, dBK=25, dBM=25, dBO=35, dBX=35, dCK=20, dCM=40, dCO=30, dCX=20, dKM=30, dKO=20, dKX=20, dMO=30, dMX=40, dOX=20 |
+| OCXKA | OBCXKAM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=10, dAO=30, dAX=20, dBC=20, dBK=30, dBM=20, dBO=20, dBX=30, dCK=30, dCM=20, dCO=30, dCX=20, dKM=20, dKO=20, dKX=20, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OBCXKMA | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAK=20, dAM=10, dAO=30, dAX=20, dBC=20, dBK=30, dBM=20, dBO=20, dBX=30, dCK=30, dCM=20, dCO=30, dCX=20, dKM=20, dKO=20, dKX=20, dMO=30, dMX=20, dOX=30 |
+| OCXKA | OBCXMKA | baseline UNSAT | - | - |
+| OCXKA | OBCMXKA | UNKNOWN | 0:UNKNOWN/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCXKA | OBMCXKA | UNKNOWN | 0:UNKNOWN/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+
+## X=C
+
+- insertion orders: 60
+- baseline SAT: 56
+- proposed equality UNSAT: 0
+- proposed equality SAT: 52
+- current nonmembership signs both UNSAT: 0
+
+| base | extended order | proposed equality | nonmembership status | witness/core |
+|---|---|---|---|---|
+| OCAKJ | OCAKJMB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=45, dAK=25, dAM=25, dAO=40, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=25, dCJ=40, dCK=40, dCM=20, dCO=25, dJK=40, dJM=30, dJO=25, dKM=30, dKO=45, dMO=25 |
+| OCAKJ | OCAKJBM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=45, dAK=25, dAM=25, dAO=40, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=25, dCJ=40, dCK=40, dCM=20, dCO=25, dJK=40, dJM=30, dJO=25, dKM=30, dKO=45, dMO=25 |
+| OCAKJ | OCAKMJB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=30, dAO=30, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=30, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OCAKJ | OCAKMBJ | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=30, dAO=30, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=30, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OCAKJ | OCAKBJM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=30, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OCAKJ | OCAKBMJ | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=30, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OCAKJ | OCAMKJB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=15, dAC=30, dAJ=20, dAK=30, dAM=20, dAO=30, dBC=25, dBJ=25, dBK=25, dBM=25, dBO=25, dCJ=40, dCK=40, dCM=40, dCO=30, dJK=40, dJM=30, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OCAKJ | OCAMKBJ | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=15, dAC=30, dAJ=20, dAK=30, dAM=20, dAO=30, dBC=25, dBJ=25, dBK=25, dBM=25, dBO=25, dCJ=40, dCK=40, dCM=40, dCO=30, dJK=40, dJM=30, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OCAKJ | OCAMBKJ | baseline UNSAT | - | - |
+| OCAKJ | OCABKJM | SAT | 0:SAT/SAT; 1:UNSAT/SAT | dAB=20, dAC=30, dAJ=20, dAK=30, dAM=30, dAO=30, dBC=40, dBJ=30, dBK=20, dBM=40, dBO=30, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=20, dJO=30, dKM=30, dKO=20, dMO=30 |
+| OCAKJ | OCABKMJ | SAT | 0:SAT/SAT; 1:UNSAT/SAT | dAB=20, dAC=30, dAJ=20, dAK=30, dAM=30, dAO=30, dBC=40, dBJ=30, dBK=20, dBM=40, dBO=30, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=20, dJO=30, dKM=30, dKO=20, dMO=30 |
+| OCAKJ | OCABMKJ | SAT | 0:SAT/UNSAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=40, dAO=35, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=35, dCJ=20, dCK=20, dCM=40, dCO=25, dJK=20, dJM=30, dJO=25, dKM=30, dKO=25, dMO=25 |
+| OCAKJ | OCMAKJB | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=25, dAC=40, dAJ=30, dAK=40, dAM=20, dAO=35, dBC=35, dBJ=35, dBK=35, dBM=35, dBO=20, dCJ=60, dCK=60, dCM=30, dCO=35, dJK=60, dJM=40, dJO=35, dKM=50, dKO=35, dMO=35 |
+| OCAKJ | OCMAKBJ | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=25, dAC=40, dAJ=30, dAK=40, dAM=20, dAO=35, dBC=35, dBJ=35, dBK=35, dBM=35, dBO=20, dCJ=60, dCK=60, dCM=30, dCO=35, dJK=60, dJM=40, dJO=35, dKM=50, dKO=35, dMO=35 |
+| OCAKJ | OCMABKJ | UNKNOWN | 0:UNSAT/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCAKJ | OCMBAKJ | baseline UNSAT | - | - |
+| OCAKJ | OCBAKJM | SAT | 0:SAT/SAT; 1:SAT/UNSAT | dAB=20, dAC=30, dAJ=20, dAK=30, dAM=20, dAO=35, dBC=20, dBJ=30, dBK=40, dBM=20, dBO=35, dCJ=40, dCK=40, dCM=30, dCO=25, dJK=40, dJM=20, dJO=25, dKM=30, dKO=25, dMO=25 |
+| OCAKJ | OCBAKMJ | SAT | 0:SAT/SAT; 1:SAT/UNSAT | dAB=20, dAC=30, dAJ=20, dAK=30, dAM=20, dAO=35, dBC=20, dBJ=30, dBK=40, dBM=20, dBO=35, dCJ=40, dCK=40, dCM=30, dCO=25, dJK=40, dJM=20, dJO=25, dKM=30, dKO=25, dMO=25 |
+| OCAKJ | OCBAMKJ | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=20, dAC=40, dAJ=20, dAK=40, dAM=20, dAO=35, dBC=30, dBJ=20, dBK=30, dBM=30, dBO=35, dCJ=30, dCK=30, dCM=40, dCO=25, dJK=30, dJM=20, dJO=25, dKM=30, dKO=15, dMO=25 |
+| OCAKJ | OCBMAKJ | SAT | 0:UNSAT/SAT; 1:SAT/SAT | dAB=35, dAC=40, dAJ=20, dAK=40, dAM=20, dAO=20, dBC=25, dBJ=25, dBK=15, dBM=25, dBO=35, dCJ=30, dCK=30, dCM=40, dCO=30, dJK=30, dJM=20, dJO=30, dKM=30, dKO=30, dMO=30 |
+| OCAKJ | OMCAKJB | SAT | 0:SAT/UNSAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=40, dAO=30, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=30, dCK=30, dCM=30, dCO=30, dJK=30, dJM=20, dJO=30, dKM=40, dKO=20, dMO=30 |
+| OCAKJ | OMCAKBJ | SAT | 0:SAT/UNSAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=40, dAO=30, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=30, dCK=30, dCM=30, dCO=30, dJK=30, dJM=20, dJO=30, dKM=40, dKO=20, dMO=30 |
+| OCAKJ | OMCABKJ | UNKNOWN | 0:UNKNOWN/UNSAT; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCAKJ | OMCBAKJ | baseline UNSAT | - | - |
+| OCAKJ | OMBCAKJ | SAT | 0:SAT/UNSAT; 1:SAT/SAT | dAB=35, dAC=20, dAJ=20, dAK=20, dAM=40, dAO=20, dBC=25, dBJ=25, dBK=25, dBM=25, dBO=35, dCJ=20, dCK=20, dCM=40, dCO=30, dJK=20, dJM=30, dJO=30, dKM=30, dKO=20, dMO=30 |
+| OCAKJ | OBCAKJM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=20, dBK=30, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=20, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OCAKJ | OBCAKMJ | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=20, dBK=30, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=20, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OCAKJ | OBCAMKJ | baseline UNSAT | - | - |
+| OCAKJ | OBCMAKJ | UNKNOWN | 0:UNSAT/UNKNOWN; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OCAKJ | OBMCAKJ | UNKNOWN | 0:UNKNOWN/UNSAT; 1:UNKNOWN/UNKNOWN | no exact witness reconstructed |
+| OJKAC | OJKACMB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=45, dAK=25, dAM=25, dAO=40, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=25, dCJ=40, dCK=40, dCM=20, dCO=25, dJK=40, dJM=30, dJO=25, dKM=30, dKO=45, dMO=25 |
+| OJKAC | OJKACBM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=45, dAK=25, dAM=25, dAO=40, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=25, dCJ=40, dCK=40, dCM=20, dCO=25, dJK=40, dJM=30, dJO=25, dKM=30, dKO=45, dMO=25 |
+| OJKAC | OJKAMCB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=20, dCO=20, dJK=20, dJM=30, dJO=20, dKM=30, dKO=30, dMO=20 |
+| OJKAC | OJKAMBC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=20, dCO=20, dJK=20, dJM=30, dJO=20, dKM=30, dKO=30, dMO=20 |
+| OJKAC | OJKABCM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=10, dCO=20, dJK=20, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJKABMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=30, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=10, dCO=20, dJK=20, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJKMACB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAJ=40, dAK=30, dAM=20, dAO=20, dBC=20, dBJ=30, dBK=20, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=40, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJKMABC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAJ=40, dAK=30, dAM=20, dAO=20, dBC=20, dBJ=30, dBK=20, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=40, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJKMBAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=40, dBK=30, dBM=20, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=40, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJKBACM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAJ=30, dAK=30, dAM=25, dAO=20, dBC=25, dBJ=30, dBK=20, dBM=25, dBO=30, dCJ=20, dCK=20, dCM=15, dCO=20, dJK=20, dJM=15, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJKBAMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAJ=30, dAK=30, dAM=25, dAO=20, dBC=25, dBJ=30, dBK=20, dBM=25, dBO=30, dCJ=20, dCK=20, dCM=15, dCO=20, dJK=20, dJM=15, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJKBMAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=30, dBK=20, dBM=20, dBO=30, dCJ=20, dCK=20, dCM=20, dCO=20, dJK=20, dJM=30, dJO=20, dKM=30, dKO=30, dMO=20 |
+| OJKAC | OJMKACB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=25, dAJ=45, dAK=25, dAM=35, dAO=25, dBC=25, dBJ=25, dBK=25, dBM=25, dBO=15, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=30, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJMKABC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=25, dAJ=45, dAK=25, dAM=35, dAO=25, dBC=25, dBJ=25, dBK=25, dBM=25, dBO=15, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=30, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJMKBAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=15, dAC=25, dAJ=35, dAK=25, dAM=25, dAO=15, dBC=30, dBJ=40, dBK=20, dBM=30, dBO=20, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=30, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OJMBKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=25, dAJ=25, dAK=25, dAM=25, dAO=15, dBC=25, dBJ=45, dBK=25, dBM=25, dBO=35, dCJ=40, dCK=40, dCM=20, dCO=30, dJK=40, dJM=30, dJO=30, dKM=30, dKO=20, dMO=30 |
+| OJKAC | OJBKACM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=30, dCJ=30, dCK=30, dCM=20, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJBKAMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=20, dBK=20, dBM=20, dBO=30, dCJ=30, dCK=30, dCM=20, dCO=20, dJK=30, dJM=20, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJBKMAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=20, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=30, dCJ=30, dCK=30, dCM=20, dCO=20, dJK=30, dJM=30, dJO=20, dKM=20, dKO=30, dMO=20 |
+| OJKAC | OJBMKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=25, dAK=25, dAM=25, dAO=15, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=30, dCJ=40, dCK=40, dCM=30, dCO=30, dJK=40, dJM=40, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OJKAC | OMJKACB | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=40, dAO=20, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=20, dCK=20, dCM=30, dCO=30, dJK=20, dJM=30, dJO=30, dKM=40, dKO=30, dMO=30 |
+| OJKAC | OMJKABC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=30, dAK=20, dAM=40, dAO=20, dBC=30, dBJ=20, dBK=20, dBM=30, dBO=20, dCJ=20, dCK=20, dCM=30, dCO=30, dJK=20, dJM=30, dJO=30, dKM=40, dKO=30, dMO=30 |
+| OJKAC | OMJKBAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=45/2, dAC=55/2, dAJ=45/2, dAK=55/2, dAM=55/2, dAO=35/2, dBC=40, dBJ=30, dBK=25, dBM=40, dBO=20, dCJ=25, dCK=25, dCM=30, dCO=30, dJK=25, dJM=30, dJO=30, dKM=45, dKO=35, dMO=30 |
+| OJKAC | OMJBKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=25, dAC=25, dAJ=25, dAK=25, dAM=25, dAO=15, dBC=40, dBJ=20, dBK=20, dBM=40, dBO=30, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=30, dJO=30, dKM=40, dKO=20, dMO=30 |
+| OJKAC | OMBJKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=30, dAO=20, dBC=30, dBJ=20, dBK=30, dBM=30, dBO=30, dCJ=20, dCK=20, dCM=30, dCO=30, dJK=20, dJM=40, dJO=30, dKM=40, dKO=20, dMO=30 |
+| OJKAC | OBJKACM | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=20, dBK=30, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=10, dCO=30, dJK=20, dJM=20, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OBJKAMC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=30, dAC=20, dAJ=30, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=20, dBK=30, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=10, dCO=30, dJK=20, dJM=20, dJO=30, dKM=20, dKO=30, dMO=30 |
+| OJKAC | OBJKMAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=30, dAJ=20, dAK=30, dAM=30, dAO=20, dBC=40, dBJ=20, dBK=40, dBM=40, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=40, dJO=30, dKM=20, dKO=40, dMO=30 |
+| OJKAC | OBJMKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=20, dBC=30, dBJ=20, dBK=30, dBM=30, dBO=20, dCJ=30, dCK=30, dCM=20, dCO=30, dJK=30, dJM=20, dJO=30, dKM=20, dKO=20, dMO=30 |
+| OJKAC | OBMJKAC | SAT | 0:SAT/SAT; 1:SAT/SAT | dAB=20, dAC=20, dAJ=20, dAK=20, dAM=20, dAO=20, dBC=20, dBJ=30, dBK=30, dBM=20, dBO=20, dCJ=20, dCK=20, dCM=20, dCO=30, dJK=20, dJM=20, dJO=30, dKM=30, dKO=20, dMO=30 |
+

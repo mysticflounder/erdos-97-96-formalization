@@ -1,0 +1,30 @@
+on disk: 4666 files; indexed: 4666 files
+  clean — index matches source
+
+name collisions: 8 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (8):
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e2Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e5Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e7Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e8Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e9Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.false_of_q1_br_eq_bv  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.q1Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.ExactFiveCommonShellV7.evalClauseD_binary_implication  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean
+  (spine membership unknown — no mined graph; run `refs --refresh` to classify on-spine collisions as errors)

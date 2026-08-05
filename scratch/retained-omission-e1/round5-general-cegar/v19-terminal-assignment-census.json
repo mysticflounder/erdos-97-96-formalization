@@ -1,0 +1,279 @@
+{
+  "census": {
+    "adjacent_hamming_histogram": {
+      "2": 99,
+      "4": 33,
+      "6": 7,
+      "8": 12,
+      "10": 11,
+      "12": 13,
+      "14": 4,
+      "16": 7,
+      "18": 1,
+      "20": 1,
+      "22": 1
+    },
+    "block_1_choice_weight_histogram": {
+      "1": 190
+    },
+    "complement_pairs": [
+      [
+        "block_12_3",
+        "block_12_4"
+      ],
+      [
+        "block_13_11",
+        "block_13_4"
+      ],
+      [
+        "block_14_10",
+        "block_14_3"
+      ],
+      [
+        "block_5_11",
+        "block_5_4"
+      ],
+      [
+        "block_6_10",
+        "block_6_11"
+      ],
+      [
+        "block_9_1",
+        "block_9_6"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_11"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_12"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_4"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_2"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_6"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_8"
+      ],
+      [
+        "k4_14_12",
+        "k4_14_2"
+      ],
+      [
+        "k4_14_12",
+        "k4_14_6"
+      ],
+      [
+        "k4_14_12",
+        "k4_14_8"
+      ],
+      [
+        "k4_14_2",
+        "k4_14_4"
+      ],
+      [
+        "k4_14_2",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_4",
+        "k4_14_6"
+      ],
+      [
+        "k4_14_4",
+        "k4_14_8"
+      ],
+      [
+        "k4_14_6",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_8",
+        "k4_14_9"
+      ]
+    ],
+    "factor_key_count": 190,
+    "factor_key_upper_bound": 384,
+    "factor_names": [
+      "block_12_3",
+      "block_13_11",
+      "block_14_10",
+      "block_5_11",
+      "block_6_10",
+      "block_9_1",
+      "block_1_11",
+      "block_1_3",
+      "block_1_6",
+      "k4_14_10"
+    ],
+    "first_flip": {
+      "block_12_3": 1,
+      "block_12_4": 1,
+      "block_13_11": 160,
+      "block_13_4": 160,
+      "block_14_10": 4,
+      "block_14_3": 4,
+      "block_1_11": 32,
+      "block_1_3": 32,
+      "block_1_6": 40,
+      "block_5_11": 64,
+      "block_5_4": 64,
+      "block_6_10": 16,
+      "block_6_11": 16,
+      "block_9_1": 6,
+      "block_9_6": 6,
+      "k4_14_10": 2,
+      "k4_14_11": 2,
+      "k4_14_12": 2,
+      "k4_14_2": 2,
+      "k4_14_4": 2,
+      "k4_14_6": 2,
+      "k4_14_8": 2,
+      "k4_14_9": 2
+    },
+    "from_initial_hamming_histogram": {
+      "0": 1,
+      "2": 6,
+      "4": 18,
+      "6": 29,
+      "8": 27,
+      "10": 18,
+      "12": 20,
+      "14": 30,
+      "16": 27,
+      "18": 12,
+      "20": 2
+    },
+    "invariant_count": 802,
+    "k4_14_two_class_partition_observed": true,
+    "same_pairs": [
+      [
+        "k4_14_10",
+        "k4_14_2"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_6"
+      ],
+      [
+        "k4_14_10",
+        "k4_14_8"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_12"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_4"
+      ],
+      [
+        "k4_14_11",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_12",
+        "k4_14_4"
+      ],
+      [
+        "k4_14_12",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_2",
+        "k4_14_6"
+      ],
+      [
+        "k4_14_2",
+        "k4_14_8"
+      ],
+      [
+        "k4_14_4",
+        "k4_14_9"
+      ],
+      [
+        "k4_14_6",
+        "k4_14_8"
+      ]
+    ],
+    "semantic_bool_count": 825,
+    "truth_count": {
+      "block_12_3": 95,
+      "block_12_4": 95,
+      "block_13_11": 30,
+      "block_13_4": 160,
+      "block_14_10": 80,
+      "block_14_3": 110,
+      "block_1_11": 78,
+      "block_1_3": 64,
+      "block_1_6": 48,
+      "block_5_11": 110,
+      "block_5_4": 80,
+      "block_6_10": 80,
+      "block_6_11": 110,
+      "block_9_1": 110,
+      "block_9_6": 80,
+      "k4_14_10": 94,
+      "k4_14_11": 96,
+      "k4_14_12": 96,
+      "k4_14_2": 94,
+      "k4_14_4": 96,
+      "k4_14_6": 94,
+      "k4_14_8": 94,
+      "k4_14_9": 96
+    },
+    "varying_count": 23,
+    "varying_names": [
+      "block_12_3",
+      "block_12_4",
+      "block_13_11",
+      "block_13_4",
+      "block_14_10",
+      "block_14_3",
+      "block_1_11",
+      "block_1_3",
+      "block_1_6",
+      "block_5_11",
+      "block_5_4",
+      "block_6_10",
+      "block_6_11",
+      "block_9_1",
+      "block_9_6",
+      "k4_14_10",
+      "k4_14_11",
+      "k4_14_12",
+      "k4_14_2",
+      "k4_14_4",
+      "k4_14_6",
+      "k4_14_8",
+      "k4_14_9"
+    ]
+  },
+  "scheme": "v19-terminal-assignment-census/v1",
+  "scope": "observed completed proposals only; no master-entailment claim",
+  "terminal": {
+    "assignment_checks": 190,
+    "blocker_count": 190,
+    "complete": false,
+    "elapsed_seconds": 3632.762650999939,
+    "journal_head_sha256": "218151c6b377c854883a22c8cc0e429fb159b4d9048d8707371203538226a35f",
+    "journal_record_count": 380,
+    "reason_incomplete": "v19_wall_clock_budget_exhausted",
+    "status": "unknown"
+  },
+  "trust": "hash-authenticated artifact census; observed relations are empirical and are not Lean/kernel theorems"
+}

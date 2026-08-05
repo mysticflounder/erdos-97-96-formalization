@@ -1,0 +1,439 @@
+  6740	  have hxRadius : x ∈ SelectedClass D.A S.oppApex1 radius := hxParts.1
+  6741	  have hxInterior : x ∈ S.capInteriorByIndex S.oppIndex1 := hxParts.2
+  6742	  have hxA : x ∈ D.A := (mem_selectedClass.mp hxRadius).1
+  6743	  have hxOutside :
+  6744	      x ∉ (H.selectedAt P.source₁
+  6745	        P.source₁_mem_A).toCriticalFourShell.support := by
+  6746	    intro hxShell
+  6747	    apply hxNotPair
+  6748	    rw [← P.shell_inter_cap_eq_sources]
+  6749	    exact Finset.mem_inter.mpr
+  6750	      ⟨hxShell,
+  6751	        S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hxInterior⟩
+  6752	  have hsource₁NeX : P.source₁ ≠ x := by
+  6753	    intro h
+  6754	    apply hxNotPair
+  6755	    simp [← h]
+  6756	  have hblockersNe :
+  6757	      H.centerAt P.source₁ P.source₁_mem_A ≠ H.centerAt x hxA := by
+  6758	    intro hblockers
+  6759	    apply hxOutside
+  6760	    have hsupportEq :
+  6761	        (H.selectedAt P.source₁
+  6762	            P.source₁_mem_A).toCriticalFourShell.support =
+  6763	          (H.selectedAt x hxA).toCriticalFourShell.support := by
+  6764	      rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+  6765	          P.source₁ P.source₁_mem_A,
+  6766	        ← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+  6767	        hblockers]
+  6768	    rw [hsupportEq]
+  6769	    exact (H.selectedAt x hxA).toCriticalFourShell.q_mem_support
+  6770	  exact ⟨{
+  6771	    source₁ := P.source₁
+  6772	    source₂ := x
+  6773	    source₁_mem_A := P.source₁_mem_A
+  6774	    source₂_mem_A := hxA
+  6775	    sources_ne := hsource₁NeX
+  6776	    source₁_mem_radius := P.source₁_mem_radius
+  6777	    source₂_mem_radius := hxRadius
+  6778	    source₁_mem_capInterior := P.source₁_mem_capInterior
+  6779	    source₂_mem_capInterior := hxInterior
+  6780	    blockers_ne := hblockersNe
+  6781	    directed_omission := Or.inl ⟨hxOutside,
+  6782	      (cross_deletion_survives_iff_not_mem_selected_support H
+  6783	        P.source₁_mem_A).mpr hxOutside⟩ }⟩
+  6784	
+  6785	/-- A frontier-radius class of cardinality at least five has at least three
+  6786	strict first-cap members, so the preceding collision reduction applies. -/
+  6787	theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five
+  6788	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  6789	    {H : CriticalShellSystem D.A}
+  6790	    {F : CriticalPairFrontier D S radius H}
+  6791	    (R : FrontierCommonDeletionParentResidual F)
+  6792	    (P : RetainedInteriorBlockerCollision R)
+  6793	    (hfive : 5 ≤ (SelectedClass D.A S.oppApex1 radius).card) :
+  6794	    Nonempty (RetainedInteriorDirectedOmission R) := by
+  6795	  have hbound :
+  6796	      (SelectedClass D.A S.oppApex1 radius).card - 2 ≤
+  6797	        (SelectedClass D.A S.oppApex1 radius ∩
+  6798	          S.capInteriorByIndex S.oppIndex1).card := by
+  6799	    simpa using
+  6800	      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+  6801	        D.convex S.oppIndex1
+  6802	          (ATailUniqueArmRouteAuditScratch.frontier_radius_pos F)
+  6803	  apply
+  6804	    nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+  6805	      R P
+  6806	  omega
+  6807	
+  6808	/- A checked E-specific normal form for a retained directed omission.  The
+  6809	orientation and reverse-incidence disjunctions have already been eliminated by
+  6810	the upstream common-deletion and reverse-coupling producers. -/
+  6811	inductive RetainedOmissionAllLargeNormalForm
+  6812	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  6813	    {H : CriticalShellSystem D.A}
+  6814	    {F : CriticalPairFrontier D S radius H}
+  6815	    {R : FrontierCommonDeletionParentResidual F}
+  6816	    (P : RetainedInteriorDirectedOmission R) : Type
+  6817	  | pairedCommonDeletion
+  6818	      (O : OrientedRetainedCommonDeletion P)
+  6819	      (reverse_omission :
+  6820	        O.kept ∉
+  6821	          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+  6822	      (reversePacket :
+  6823	        CommonDeletionTwoCenterPacket
+  6824	          D H O.kept S.oppApex1
+  6825	          (H.centerAt O.deleted O.deleted_mem_A))
+  6826	  | reverseHitFreshCommonDeletion
+  6827	      (O : OrientedRetainedCommonDeletion P)
+  6828	      (reverse_mem :
+  6829	        O.kept ∈
+  6830	          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+  6831	      (reverseBlocker_mem_capInterior :
+  6832	        H.centerAt O.deleted O.deleted_mem_A ∈
+  6833	          S.capInteriorByIndex S.oppIndex1)
+  6834	      (reverseShell_inter_cap_eq :
+  6835	        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+  6836	            S.capByIndex S.oppIndex1 =
+  6837	          {O.kept, O.deleted})
+  6838	      (fresh : ℝ²)
+  6839	      (fresh_mem_capInterior :
+  6840	        fresh ∈ S.capInteriorByIndex S.oppIndex1)
+  6841	      (fresh_ne_kept : fresh ≠ O.kept)
+  6842	      (fresh_ne_deleted : fresh ≠ O.deleted)
+  6843	      (fresh_not_mem_reverseShell :
+  6844	        fresh ∉
+  6845	          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+  6846	      (freshPacket :
+  6847	        CommonDeletionTwoCenterPacket
+  6848	          D H fresh S.oppApex1
+  6849	          (H.centerAt O.deleted O.deleted_mem_A))
+  6850	
+  6851	/-- In the reverse-hit arm, the reverse blocker strictly separates the two
+  6852	retained sources in the canonical order of the first cap. -/
+  6853	theorem exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit
+  6854	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  6855	    {H : CriticalShellSystem D.A}
+  6856	    {F : CriticalPairFrontier D S radius H}
+  6857	    {R : FrontierCommonDeletionParentResidual F}
+  6858	    {P : RetainedInteriorDirectedOmission R}
+  6859	    (O : OrientedRetainedCommonDeletion P)
+  6860	    (reverse_mem :
+  6861	      O.kept ∈
+  6862	        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+  6863	    (reverseBlocker_mem_capInterior :
+  6864	      H.centerAt O.deleted O.deleted_mem_A ∈
+  6865	        S.capInteriorByIndex S.oppIndex1)
+  6866	    (reverseShell_inter_cap_eq :
+  6867	      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+  6868	          S.capByIndex S.oppIndex1 =
+  6869	        {O.kept, O.deleted}) :
+  6870	    ∃ (m : ℕ) (L : CGN.OrderedCap m)
+  6871	      (Packet : CGN.MecCapPacket D.A L)
+  6872	      (Hside : CGN.MinorCapSideHypotheses Packet)
+  6873	      (Hord : CGN.StrictCapOrder D.A L)
+  6874	      (j r s : Fin m),
+  6875	        Finset.univ.image L.points = S.capByIndex S.oppIndex1 ∧
+  6876	        L.points r = O.kept ∧
+  6877	        L.points s = O.deleted ∧
+  6878	        L.points j = H.centerAt O.deleted O.deleted_mem_A ∧
+  6879	        ((r < j ∧ j < s) ∨ (s < j ∧ j < r)) := by
+  6880	  classical
+  6881	  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+  6882	    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  6883	  have hkeptImage : O.kept ∈ Finset.univ.image L.points := by
+  6884	    rw [hcap]
+  6885	    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 O.kept_mem_capInterior
+  6886	  have hdeletedImage : O.deleted ∈ Finset.univ.image L.points := by
+  6887	    rw [hcap]
+  6888	    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 O.deleted_mem_capInterior
+  6889	  have hblockerImage :
+  6890	      H.centerAt O.deleted O.deleted_mem_A ∈ Finset.univ.image L.points := by
+  6891	    rw [hcap]
+  6892	    exact
+  6893	      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+  6894	        reverseBlocker_mem_capInterior
+  6895	  rcases Finset.mem_image.mp hkeptImage with ⟨r, _hrmem, hr⟩
+  6896	  rcases Finset.mem_image.mp hdeletedImage with ⟨s, _hsmem, hs⟩
+  6897	  rcases Finset.mem_image.mp hblockerImage with ⟨j, _hjmem, hj⟩
+  6898	  have hdeletedShell :
+  6899	      O.deleted ∈
+  6900	        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+  6901	    have hmem :
+  6902	        O.deleted ∈
+  6903	          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+  6904	            S.capByIndex S.oppIndex1 := by
+  6905	      rw [reverseShell_inter_cap_eq]
+  6906	      simp
+  6907	    exact hmem.1
+  6908	  have heq :
+  6909	      dist (H.centerAt O.deleted O.deleted_mem_A) O.kept =
+  6910	        dist (H.centerAt O.deleted O.deleted_mem_A) O.deleted :=
+  6911	    ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+  6912	        O.kept reverse_mem).trans
+  6913	      ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+  6914	        O.deleted hdeletedShell).symm
+  6915	  have hjr : j ≠ r := by
+  6916	    intro hjr
+  6917	    apply
+  6918	      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.center_not_mem_support
+  6919	    have hcenterEq : H.centerAt O.deleted O.deleted_mem_A = O.kept := by
+  6920	      calc
+  6921	        H.centerAt O.deleted O.deleted_mem_A = L.points j := hj.symm
+  6922	        _ = L.points r := by rw [hjr]
+  6923	        _ = O.kept := hr
+  6924	    simpa [hcenterEq] using reverse_mem
+  6925	  have hjs : j ≠ s := by
+  6926	    intro hjs
+  6927	    apply
+  6928	      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.center_not_mem_support
+  6929	    have hcenterEq : H.centerAt O.deleted O.deleted_mem_A = O.deleted := by
+  6930	      calc
+  6931	        H.centerAt O.deleted O.deleted_mem_A = L.points j := hj.symm
+  6932	        _ = L.points s := by rw [hjs]
+  6933	        _ = O.deleted := hs
+  6934	    simpa [hcenterEq] using hdeletedShell
+  6935	  have hrs : r ≠ s := by
+  6936	    intro hrs
+  6937	    apply O.sources_ne
+  6938	    calc
+  6939	      O.kept = L.points r := hr.symm
+  6940	      _ = L.points s := by rw [hrs]
+  6941	      _ = O.deleted := hs
+  6942	  have heqL : dist (L.points j) (L.points r) = dist (L.points j) (L.points s) := by
+  6943	    simpa only [hj, hr, hs] using heq
+  6944	  refine ⟨m, L, Packet, Hside, Hord, j, r, s, hcap, hr, hs, hj, ?_⟩
+  6945	  rcases lt_or_gt_of_ne hrs with hrslt | hslt
+  6946	  · exact Or.inl
+  6947	      (CGN.index_strictly_between_of_equidistant Packet Hside Hord
+  6948	        hrslt hjr hjs heqL)
+  6949	  · exact Or.inr
+  6950	      (CGN.index_strictly_between_of_equidistant Packet Hside Hord
+  6951	        hslt hjs hjr heqL.symm)
+  6952	
+  6953	/-- The first opposite apex is a carrier point. -/
+  6954	private theorem oppApex1_mem_A_for_reverseHit
+  6955	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+  6956	    S.oppApex1 ∈ A := by
+  6957	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  6958	  interval_cases i
+  6959	  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  6960	  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  6961	  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+  6962	
+  6963	/-- The first opposite apex is outside the closed cap indexed by
+  6964	`oppIndex1`.  The concrete cap/vertex names depend on the surplus index. -/
+  6965	private theorem oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit
+  6966	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+  6967	    S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
+  6968	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  6969	  interval_cases i
+  6970	  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+  6971	      SurplusCapPacket.capByIndex, hi] using S.partition.v2_notin_C2
+  6972	  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+  6973	      SurplusCapPacket.capByIndex, hi] using S.partition.v3_notin_C3
+  6974	  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+  6975	      SurplusCapPacket.capByIndex, hi] using S.partition.v1_notin_C1
+  6976	
+  6977	/-- In the reverse-hit arm, the first apex and the reverse blocker are on
+  6978	opposite sides of the retained-source chord.  Their two equal-distance
+  6979	relations therefore force both associated squared base-angle inequalities. -/
+  6980	theorem reverseHit_twoCenter_sqdist_acute
+  6981	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  6982	    {H : CriticalShellSystem D.A}
+  6983	    {F : CriticalPairFrontier D S radius H}
+  6984	    {R : FrontierCommonDeletionParentResidual F}
+  6985	    {P : RetainedInteriorDirectedOmission R}
+  6986	    (O : OrientedRetainedCommonDeletion P)
+  6987	    (reverse_mem :
+  6988	      O.kept ∈
+  6989	        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+  6990	    (reverseBlocker_mem_capInterior :
+  6991	      H.centerAt O.deleted O.deleted_mem_A ∈
+  6992	        S.capInteriorByIndex S.oppIndex1)
+  6993	    (reverseShell_inter_cap_eq :
+  6994	      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+  6995	          S.capByIndex S.oppIndex1 =
+  6996	        {O.kept, O.deleted}) :
+  6997	    dist S.oppApex1 (H.centerAt O.deleted O.deleted_mem_A) ^ 2 +
+  6998	        dist S.oppApex1 O.kept ^ 2 >
+  6999	          dist (H.centerAt O.deleted O.deleted_mem_A) O.kept ^ 2 ∧
+  7000	      dist S.oppApex1 (H.centerAt O.deleted O.deleted_mem_A) ^ 2 +
+  7001	        dist (H.centerAt O.deleted O.deleted_mem_A) O.kept ^ 2 >
+  7002	          dist S.oppApex1 O.kept ^ 2 := by
+  7003	  classical
+  7004	  rcases exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit O
+  7005	      reverse_mem reverseBlocker_mem_capInterior reverseShell_inter_cap_eq with
+  7006	    ⟨m, L, Packet, Hside, Hord, j, r, s, hcap, hr, hs, hj, hbetween⟩
+  7007	  have hdeletedShell :
+  7008	      O.deleted ∈
+  7009	        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+  7010	    have hmem :
+  7011	        O.deleted ∈
+  7012	          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+  7013	            S.capByIndex S.oppIndex1 := by
+  7014	      rw [reverseShell_inter_cap_eq]
+  7015	      simp
+  7016	    exact hmem.1
+  7017	  have hp : dist S.oppApex1 O.kept = dist S.oppApex1 O.deleted :=
+  7018	    (mem_selectedClass.mp O.kept_mem_radius).2.trans
+  7019	      (mem_selectedClass.mp O.deleted_mem_radius).2.symm
+  7020	  have hq :
+  7021	      dist (H.centerAt O.deleted O.deleted_mem_A) O.kept =
+  7022	        dist (H.centerAt O.deleted O.deleted_mem_A) O.deleted :=
+  7023	    ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+  7024	        O.kept reverse_mem).trans
+  7025	      ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support_eq_radius
+  7026	        O.deleted hdeletedShell).symm
+  7027	  have happA : S.oppApex1 ∈ D.A :=
+  7028	    oppApex1_mem_A_for_reverseHit S
+  7029	  have happOffCap : S.oppApex1 ∉ S.capByIndex S.oppIndex1 :=
+  7030	    oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit S
+  7031	  have happOff : S.oppApex1 ∉ Finset.univ.image L.points := by
+  7032	    intro happImage
+  7033	    apply happOffCap
+  7034	    rw [← hcap]
+  7035	    exact happImage
+  7036	  rcases hbetween with hrjs | hsjr
+  7037	  · have hprod :
+  7038	        signedArea2 S.oppApex1 (L.points r) (L.points s) *
+  7039	            signedArea2 (L.points j) (L.points r) (L.points s) < 0 :=
+  7040	      CGN.signedArea_product_neg_of_between_and_off_cap D.convex Packet Hord
+  7041	        hrjs.1 hrjs.2 happA happOff
+  7042	    have hacute := two_center_two_hit_sqdist_acute_of_signedArea_opposite
+  7043	      (p := S.oppApex1) (q := L.points j) (x := L.points r) (y := L.points s)
+  7044	      (by simpa only [hr, hs] using hp)
+  7045	      (by simpa only [hj, hr, hs] using hq)
+  7046	      (by simpa only [hr, hs] using O.sources_ne)
+  7047	      hprod
+  7048	    simpa only [hj, hr] using hacute
+  7049	  · have hprod :
+  7050	        signedArea2 S.oppApex1 (L.points s) (L.points r) *
+  7051	            signedArea2 (L.points j) (L.points s) (L.points r) < 0 :=
+  7052	      CGN.signedArea_product_neg_of_between_and_off_cap D.convex Packet Hord
+  7053	        hsjr.1 hsjr.2 happA happOff
+  7054	    have hacute := two_center_two_hit_sqdist_acute_of_signedArea_opposite
+  7055	      (p := S.oppApex1) (q := L.points j) (x := L.points s) (y := L.points r)
+  7056	      (by simpa only [hr, hs] using hp.symm)
+  7057	      (by simpa only [hj, hr, hs] using hq.symm)
+  7058	      (by simpa only [hr, hs] using O.sources_ne.symm)
+  7059	      hprod
+  7060	    simpa only [hj, hr, hs, hp, hq] using hacute
+  7061	
+  7062	/-- The two-arm E normal form is source-clean: it only composes checked
+  7063	common-deletion, orientation, reverse-coupling, and fresh-third producers. -/
+  7064	theorem nonempty_retainedOmissionAllLargeNormalForm
+  7065	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7066	    {H : CriticalShellSystem D.A}
+  7067	    {F : CriticalPairFrontier D S radius H}
+  7068	    {R : FrontierCommonDeletionParentResidual F}
+  7069	    (P : RetainedInteriorDirectedOmission R)
+  7070	    (hfirstLarge : 5 ≤ (S.capByIndex S.oppIndex1).card) :
+  7071	    Nonempty (RetainedOmissionAllLargeNormalForm P) := by
+  7072	  rcases nonempty_retainedInteriorCommonDeletion P with ⟨C⟩
+  7073	  rcases nonempty_orientedRetainedCommonDeletion P C with ⟨O⟩
+  7074	  rcases nonempty_retainedReverseCouplingOutcome O with ⟨Q⟩
+  7075	  cases Q with
+  7076	  | pairedCommonDeletion reverse_omission reversePacket =>
+  7077	      exact ⟨.pairedCommonDeletion O reverse_omission reversePacket⟩
+  7078	  | reverseHit reverse_mem reverseBlocker_mem_capInterior reverseShell_inter_cap_eq =>
+  7079	      rcases exists_fresh_firstCap_commonDeletion_of_reverseHit
+  7080	          O reverseShell_inter_cap_eq hfirstLarge with
+  7081	        ⟨fresh, fresh_mem_capInterior, fresh_ne_kept, fresh_ne_deleted,
+  7082	          fresh_not_mem_reverseShell, ⟨freshPacket⟩⟩
+  7083	      exact ⟨.reverseHitFreshCommonDeletion O reverse_mem
+  7084	        reverseBlocker_mem_capInterior reverseShell_inter_cap_eq fresh
+  7085	        fresh_mem_capInterior fresh_ne_kept fresh_ne_deleted
+  7086	        fresh_not_mem_reverseShell freshPacket⟩
+  7087	
+  7088	/- The indexed context consumed by the E1 core.  The old residual chain is
+  7089	flattened here once; the core need not repeatedly distinguish the surplus and
+  7090	the two named opposite roles. -/
+  7091	structure TriApexAllLargeContext
+  7092	    (D : CounterexampleData) (S : SurplusCapPacket D.A) : Prop where
+  7093	  cap_card_ge_six :
+  7094	    ∀ i : Fin 3, 6 ≤ (S.capByIndex i).card
+  7095	  apex_rich :
+  7096	    ∀ i : Fin 3,
+  7097	      ApexRichClassStructure D.A
+  7098	        (S.oppositeVertexByIndex i)
+  7099	  notRobustCover_card :
+  7100	    D.A.card ≤ 4 * (notRobustCenters D).card
+  7101	  no_center_covers_all_apices :
+  7102	    ∀ p ∈ D.A, ∀ r : ℝ, 0 < r →
+  7103	      ¬ (S.triangle.v1 ∈ SelectedClass D.A p r ∧
+  7104	        S.triangle.v2 ∈ SelectedClass D.A p r ∧
+  7105	        S.triangle.v3 ∈ SelectedClass D.A p r)
+  7106	
+  7107	private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
+  7108	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+  7109	    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+  7110	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  7111	  interval_cases i <;>
+  7112	    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
+  7113	      SurplusCapPacket.oppIndex1, hi]
+  7114	
+  7115	private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
+  7116	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+  7117	    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+  7118	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  7119	  interval_cases i <;>
+  7120	    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
+  7121	      SurplusCapPacket.oppIndex2, hi]
+  7122	
+  7123	private theorem capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext
+  7124	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+  7125	    S.capByIndex S.surplusIdx = S.surplusCap := by
+  7126	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  7127	  interval_cases i <;>
+  7128	    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+  7129	
+  7130	private theorem triApexAllLargeContext_index_cases
+  7131	    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+  7132	    i = S.oppIndex1 ∨ i = S.oppIndex2 ∨ i = S.surplusIdx := by
+  7133	  rcases hi : S.surplusIdx with ⟨j, hj3⟩
+  7134	  fin_cases i <;>
+  7135	    interval_cases j <;>
+  7136	      simp [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+  7137	
+  7138	/-- Build the indexed E1 context from the existing residual bundle. -/
+  7139	theorem triApexAllLargeContext_of_residuals
+  7140	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  7141	    {H : CriticalShellSystem D.A}
+  7142	    {F : CriticalPairFrontier D S radius H}
+  7143	    {R : FrontierCommonDeletionParentResidual F}
+  7144	    {B : FrontierBiApexRobustResidual R}
+  7145	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+  7146	    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+  7147	    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+  7148	    TriApexAllLargeContext D S := by
+  7149	  have hcap1 : 6 ≤ (S.capByIndex S.oppIndex1).card := by
+  7150	    rw [capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext]
+  7151	    exact L.firstOppCap_card_ge_six
+  7152	  have hcap2 : 6 ≤ (S.capByIndex S.oppIndex2).card := by
+  7153	    rw [capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext]
+  7154	    exact L.secondOppCap_card_ge_six
+  7155	  have hsurplus : 6 ≤ (S.capByIndex S.surplusIdx).card := by
+  7156	    rw [capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext]
+  7157	    exact N.surplusCap_card_ge_six
+  7158	  refine {
+  7159	    cap_card_ge_six := ?_
+  7160	    apex_rich := ?_
+  7161	    notRobustCover_card := T.notRobustCover_card
+  7162	    no_center_covers_all_apices := T.no_center_covers_all_apices }
+  7163	  · intro i
+  7164	    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+  7165	    · exact hcap1
+  7166	    · exact hcap2
+  7167	    · exact hsurplus
+  7168	  · intro i
+  7169	    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+  7170	    · simpa using T.oppApex1_rich
+  7171	    · simpa using T.oppApex2_rich
+  7172	    · simpa using T.surplusApex_rich
+  7173	
+  7174	/-- Every canonical critical-shell center lies in one of the three strict cap
+  7175	interiors once all three opposite apices are rich.  Richness makes every Moser
+  7176	apex deletion robust, whereas a critical-shell center is unique-four; the cap
+  7177	partition then leaves only the three strict interiors. -/
+  7178	theorem exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge

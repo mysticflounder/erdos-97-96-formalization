@@ -1,0 +1,102 @@
+{
+  "schema_version": 10,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v9.json",
+    "encoder": "round5_cegar_v9.py",
+    "meaning": "all v8 constraints and the v9 post-SAT full-shell scan are retained; v10 adds a bounded static full-shell power-cycle family before the first nonlinear solver check"
+  },
+  "scope": {
+    "cardinality": 15,
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "new_constraint_families": [
+    "power_pattern_static_centers_three_rich_two_critical"
+  ],
+  "cut_admission": {
+    "power_pattern_static_centers_three_rich_two_critical": {
+      "lean_theorem": "Problem97.Census554.CirclePowerMatrix.false_of_powerMatrix_unique_possible_matching",
+      "antecedent": "one unconditional positive-radius rich full shell at each of the three distinct apex centers and two active positive-radius critical full rows at two distinct non-apex centers; the five columns are the five circle centers; diagonal power entries are nonzero because every radius is positive",
+      "schema_arms": [
+        "paired",
+        "fresh",
+        "secondcap_collision",
+        "secondcap_distinct"
+      ],
+      "full_shell_sources": [
+        "active critical_full_row",
+        "unconditional exact_rich_profiles"
+      ],
+      "excluded_sources": [
+        "global_K4 chosen four-subsets",
+        "packet_B1 chosen four-subsets",
+        "packet_B2 as an independent shell source"
+      ]
+    }
+  },
+  "static_specialization": {
+    "edge": "i -> j iff support(shell_i, center(shell_j)) is false, hence the cross power entry is certified nonzero",
+    "equivalence": "a nonidentity possible determinant permutation exists iff this five-vertex digraph has a directed simple cycle of length 2 through 5",
+    "assertion": "under the two critical-row activation literals, at least one of all 84 directed simple cycles has every edge certified nonzero",
+    "selection": "one rich radius choice at each apex times every unordered pair of non-apex critical centers",
+    "candidate_count_range": [
+      66,
+      528
+    ],
+    "cycles_per_candidate": 84,
+    "cycle_term_count_range": [
+      5544,
+      44352
+    ],
+    "construction_budget_terminal": "error before solver.check if either the 528-candidate or 44352-cycle-term audited bound is exceeded",
+    "broader_family_excluded": "all five-shell-type selections are not emitted: DDD would require 6930 candidates and 582120 explicit cycle terms"
+  },
+  "artifacts": {
+    "static": "static_power_constraints.json records theorem, exact antecedent, counts, centers, shell names, and activation centers",
+    "lazy": "power_cuts.json retains the v9 post-SAT exact-120-permutation certificates",
+    "formula": "encoding.smt2.gz and encoding_sha256 describe the final formula, including static and any later lazy cuts"
+  },
+  "worker_provenance_gate": {
+    "timing": "each worker recomputes and validates provenance immediately before constructing Encoding",
+    "comparison": "the recomputed full provenance map must exactly equal the parent-frozen map",
+    "required_dependencies": [
+      "base_v8_script_sha256",
+      "base_v9_script_sha256",
+      "script_sha256",
+      "schema_sha256",
+      "uv_lock_sha256",
+      "source_contract"
+    ],
+    "failure_status": "error; no Encoding is constructed and no solver check occurs"
+  },
+  "important_distinctions": {
+    "full_class_only": "absence from a chosen four-subset is never used as nonzero power",
+    "distinct_centers": "the rich product chooses at most one radius per apex; the two critical centers are distinct non-apices",
+    "critical_activation": "a critical row is used only under used(center)",
+    "rich_activation": "each selected rich class is an unconditional full ambient positive-radius class",
+    "unknown_incidence": "not selected is never interpreted as nonincidence",
+    "solver_unsat": "external evidence for this finite abstraction, not by itself a Lean closure theorem"
+  },
+  "result_required_fields": [
+    "schema_version",
+    "case",
+    "status",
+    "constraint_counts",
+    "script_sha256",
+    "base_v8_script_sha256",
+    "base_v9_script_sha256",
+    "schema_sha256",
+    "uv_lock_sha256",
+    "source_contract",
+    "initial_encoding_sha256",
+    "encoding_sha256",
+    "static_power_candidate_count",
+    "static_power_cycle_term_count"
+  ],
+  "status_values": [
+    "sat",
+    "unsat",
+    "unknown",
+    "error"
+  ]
+}

@@ -1,0 +1,216 @@
+    have hpoint : Q.J = H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 :=
+      congrArg Subtype.val h
+    exact KA.center_not_mem_support (mem_of_eq hpoint hJ_A)
+  have hOEq :
+      dist S.oppApex1 Q.C = dist S.oppApex1 Q.J :=
+    (Q.row.support_eq_radius Q.C Q.C_mem_row).trans
+      (Q.row.support_eq_radius Q.J Q.J_mem_row).symm
+  have hAEq :
+      dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.C =
+        dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.J :=
+    (KA.support_eq_radius Q.C hC_A).trans
+      (KA.support_eq_radius Q.J hJ_A).symm
+  apply SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+  · exact B.index_injective.ne hA_ne_O.symm
+  · exact B.index_injective.ne hJ_ne_O
+  · exact B.index_injective.ne hJ_ne_A
+  · simpa only [B.point_eq, pointOf, dist_comm, O, C] using hOEq
+  · simpa only [B.point_eq, pointOf, dist_comm, A, C,
+      CriticalShellSystem.blockerVertex] using hAEq
+  · exact B.boundary_injective.ne
+      (B.index_injective.ne (fun h ↦
+        Q.J_ne_C (congrArg Subtype.val h).symm))
+
+/- The two selected supports exposed at an endpoint collision.  One is the
+critical exact shell through the first collision source; the other is the
+fresh first-apex selected row. -/
+private noncomputable def endpointFreshTwoShellSeed
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E) : Finset ℝ² :=
+  (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell.support ∪
+    Q.row.support
+
+/-- Both selected supports in the endpoint seed consist of carrier points. -/
+theorem endpointFresh_twoShellSeed_subset_carrier
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E) :
+    endpointFreshTwoShellSeed E Q ⊆ D.A := by
+  intro z hz
+  simp only [endpointFreshTwoShellSeed, Finset.mem_union] at hz
+  rcases hz with hz | hz
+  · exact
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell.support_subset_A hz
+  · exact Q.row.support_subset_A hz
+
+/-- In the shared-blocker branch, the critical four-shell support and the
+selected first-apex four-support form an exact six-point seed: their
+intersection is precisely the pair `C, J`.
+
+The first-apex physical radius class may contain six points; this theorem is
+about the selected four-support `Q.row.support`, not exact physical
+multiplicity at that apex. -/
+theorem endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A) :
+    (endpointFreshTwoShellSeed E Q).card = 6 := by
+  classical
+  let KA :=
+    (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell
+  change (KA.support ∪ Q.row.support).card = 6
+  have hinter : KA.support ∩ Q.row.support = {Q.C, Q.J} :=
+    endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+      Q K_mem_J_shell hAX
+  have hpairCard : ({Q.C, Q.J} : Finset ℝ²).card = 2 := by
+    simpa using Finset.card_pair Q.J_ne_C.symm
+  rw [Finset.card_union, KA.support_card, Q.row.support_card, hinter]
+  omega
+
+/-- Minimality and the all-large cap floor force a global K4 row to escape
+the two supports already exposed by an endpoint collision.
+
+This is the first all-center continuation beyond the locally realizable
+shared-blocker two-circle pattern: the seed has at most eight points, whereas
+the three large caps force at least fifteen carrier points. -/
+theorem endpointFresh_exists_selectedRow_escape_twoShellSeed
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E) :
+    ∃ center : ℝ²,
+      ∃ _hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+        ∃ K : SelectedFourClass D.A center,
+          ∃ z : ℝ²,
+            z ∈ K.support ∧ z ∉ endpointFreshTwoShellSeed E Q := by
+  let KA :=
+    (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell
+  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+    endpointFresh_twoShellSeed_subset_carrier E Q
+  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+    refine ⟨E.fiber.source₁.1, ?_⟩
+    exact Finset.mem_union_left _ KA.q_mem_support
+  have hseedCard : (endpointFreshTwoShellSeed E Q).card ≤ 8 := by
+    calc
+      (endpointFreshTwoShellSeed E Q).card
+          ≤ KA.support.card + Q.row.support.card := by
+            exact Finset.card_union_le KA.support Q.row.support
+      _ = 8 := by rw [KA.support_card, Q.row.support_card]
+  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
+    intro hseedEq
+    have hAcard : D.A.card ≤ 8 := by
+      simpa [hseedEq] using hseedCard
+    have hAge : 15 ≤ D.A.card :=
+      ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+        S C.allLarge.cap_card_ge_six
+    omega
+  rcases
+      exists_faithfulCarrierPattern_of_globalK4
+        D.K4 E.fiber.source₁.2 with
+    ⟨G⟩
+  rcases
+      G.exists_row_escape_of_proper_subset
+        R.minimal hseedNonempty hseedSub hseedProper with
+    ⟨center, hcenter, z, hzRow, hzOutside⟩
+  exact
+    ⟨center, hcenter, G.classAt center (hseedSub hcenter),
+      z, hzRow, hzOutside⟩
+
+/-- Every simultaneous choice of selected four-classes at the six endpoint
+seed centers contains an escaping chosen row.
+
+This is the quantifier adapter needed by a finite selected-support search.  It
+does not identify a preferred row or treat a selected support as a full
+physical radius class. -/
+theorem endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A)
+    (hcard : 15 ≤ D.A.card)
+    (K : ∀ center : ℝ²,
+      center ∈ endpointFreshTwoShellSeed E Q →
+        SelectedFourClass D.A center) :
+    ∃ center : ℝ²,
+      ∃ hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+        ∃ z : ℝ²,
+          z ∈ (K center hcenter).support ∧
+            z ∉ endpointFreshTwoShellSeed E Q := by
+  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+    endpointFresh_twoShellSeed_subset_carrier E Q
+  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    refine ⟨E.fiber.source₁.1, ?_⟩
+    exact Finset.mem_union_left _ KA.q_mem_support
+  have hseedCard : (endpointFreshTwoShellSeed E Q).card = 6 :=
+    endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+      Q K_mem_J_shell hAX
+  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
+    intro hseedEq
+    have hAcard : D.A.card = 6 := by
+      simpa [hseedEq] using hseedCard
+    omega
+  rcases
+      exists_faithfulCarrierPattern_with_classes_on
+        D.K4 hseedSub hseedNonempty K with
+    ⟨G, hG⟩
+  rcases
+      G.exists_row_escape_of_proper_subset
+        R.minimal hseedNonempty hseedSub hseedProper with
+    ⟨center, hcenter, z, hzRow, hzOutside⟩
+  refine ⟨center, hcenter, z, ?_, hzOutside⟩
+  simpa only [hG center hcenter] using hzRow
+
+/-- Cross-hit subproblem in which the common endpoint blocker is the fresh
+first-apex row source (`A = J`). -/
+theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAJ : H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 = Q.J) :
+    False := by

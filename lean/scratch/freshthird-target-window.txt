@@ -1,0 +1,391 @@
+/-- Convert the negative guard used by the coordinator into the explicit
+three-arm residual normal form. -/
+theorem isResidual_of_not_hasDistinctCrossRows
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hrows : ¬ obstruction.HasDistinctCrossRows) :
+    obstruction.IsResidual := by
+  cases obstruction with
+  | normalized C Q _ _ =>
+      by_cases hfirst :
+          FreshThirdCrossRowHit P Pρ C.firstSource Q
+      · by_cases hsecond :
+            FreshThirdCrossRowHit P Pρ C.secondSource Q
+        · by_cases hcenters :
+              H.centerAt C.firstSource.1 C.firstSource.2 =
+                H.centerAt C.secondSource.1 C.secondSource.2
+          · exact Or.inr (Or.inr hcenters)
+          · exact (hrows ⟨hfirst, hsecond, hcenters⟩).elim
+        · exact Or.inr (Or.inl hsecond)
+      · exact Or.inl hfirst
+  | sameBlockerAllEndpointOmission => trivial
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Expose the strict residual as constructor-specific positive data before it
+reaches the single load-bearing leaf. -/
+theorem residualCase_of_isResidual
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hresidual : obstruction.IsResidual) :
+    obstruction.ResidualCase := by
+  cases obstruction with
+  | normalized C Q firstInteraction secondInteraction =>
+      exact freshThirdNormalizedResidualCase_of_crossRowResidual
+        (P := P) (Pρ := Pρ) C Q firstInteraction secondInteraction hresidual
+  | sameBlockerAllEndpointOmission => trivial
+
+/-! This is the narrowed frontier left after consuming the canonical
+equal-center/`oppIndex1` interaction.  The positive equal-center packet now
+stores only distinct-cap or noncanonical same-cap interactions; the original
+same-blocker and source-row-omission constructors are eliminated by the hit
+hypotheses before this packet is built. -/
+inductive FreshThirdNormalizedResidualRemainingCase
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | firstNonHit
+      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+      (secondInteraction :
+        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+  | secondNonHit
+      (firstInteraction :
+        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+  | equalCrossRowCenters
+      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+      (centers_eq :
+        H.centerAt C.firstSource.1 C.firstSource.2 =
+          H.centerAt C.secondSource.1 C.secondSource.2)
+      (firstInteraction :
+        FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q)
+      (secondInteraction :
+        FreshThirdNonCanonicalInteraction P Pρ C.secondSource Q)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The positive three-center subcase of the obstruction is source-clean. -/
+theorem false_of_hasDistinctCrossRows
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hrows : obstruction.HasDistinctCrossRows) :
+    False := by
+  cases obstruction with
+  | normalized C Q _ _ =>
+      exact
+        false_of_two_freshThirdCrossRowHits_distinctCenters
+          (P := P) (Pρ := Pρ) Q C.firstSource C.secondSource
+          hrows.1 hrows.2.1 hrows.2.2
+  | sameBlockerAllEndpointOmission => exact hrows
+
+end FreshThirdTwoCapSourceObstruction
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The unresolved residual leaf after the canonical equal-center/`oppIndex1`
+arm has been removed.  Its interface is deliberately narrower than the
+former constructor-product obligation. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hremaining :
+      FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase
+        P Pρ C Q) :
+    False := by
+  sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Constructor-specific terminal for the normalized fresh-third packet after
+the checked distinct-three-center arm has been removed. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) :
+    False := by
+  have false_of_omission :
+      ∀ (source : CriticalShellSystem.CarrierVertex D.A)
+        (h : FreshThirdCrossRowHit P Pρ source Q)
+        (deleted : CriticalShellSystem.CarrierVertex D.A)
+        (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+        (deleted_not_mem :
+          deleted.1 ∉
+            (H.selectedAt source.1 source.2).toCriticalFourShell.support),
+        False := by
+    intro source h deleted deleted_eq deleted_not_mem
+    rcases deleted_eq with rfl | rfl
+    · exact deleted_not_mem h.2.1
+    · exact deleted_not_mem h.2.2
+  cases hresidual with
+  | firstNonHit data =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          C Q
+          (.firstNonHit data secondInteraction)
+  | secondNonHit data =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          C Q
+          (.secondNonHit firstInteraction data)
+  | equalCrossRowCenters hfirst hsecond hcenters =>
+      have closeCanonicalFirst :
+          ∀ {capIndex : Fin 3},
+            H.centerAt C.firstSource.1 C.firstSource.2 ∈
+              S.capInteriorByIndex capIndex →
+            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+              Q.source₂.1 ∈ S.capByIndex capIndex) →
+            capIndex = S.oppIndex1 → False := by
+        intro capIndex sourceCenter_mem fiberSource_mem_cap hcapIndex
+        exact
+          false_of_freshThirdEqualCenter_sameCapOppIndex
+            (P := P) (Pρ := Pρ) C Q hfirst hsecond hcenters
+            hfirst.2.1 hfirst.2.2 capIndex sourceCenter_mem
+            fiberSource_mem_cap hcapIndex
+      cases firstInteraction with
+      | sameBlocker center_eq _ =>
+          exact hfirst.1 center_eq
+      | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+          exact false_of_omission C.firstSource hfirst deleted deleted_eq
+            deleted_not_mem
+      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+          overlap_eq sourceCap freshCap sourceCenter_mem freshCenter_mem caps_ne =>
+          let firstNonCanonical :=
+            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+              centers_ne source₁_mem source₂_mem overlap_eq sourceCap freshCap
+              sourceCenter_mem freshCenter_mem caps_ne
+          cases secondInteraction with
+          | sameBlocker center_eq _ =>
+              exact hsecond.1 center_eq
+          | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+              exact false_of_omission C.secondSource hsecond deleted deleted_eq
+                deleted_not_mem
+          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+              caps_ne' =>
+              exact
+                false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                  (P := P) (Pρ := Pρ)
+                  (hρne := hρne) (hfrontierFour := hfrontierFour)
+                  (hρfour := hρfour)
+                  (hfrontierInteriorEq := hfrontierInteriorEq)
+                  (hρInteriorEq := hρInteriorEq)
+                  (T := T) (hpairsDisjoint := hpairsDisjoint)
+                  (hblockersNe := hblockersNe)
+                  (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                  (LP := LP) (hLP := hLP) (MP := MP)
+                  C Q
+                  (.equalCrossRowCenters hfirst hsecond hcenters
+                    firstNonCanonical
+                    (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+                      centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                      sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+                      caps_ne'))
+          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+              fiberSource_mem_cap' =>
+              by_cases hcapIndex' : capIndex' = S.oppIndex1
+              · have sourceCenter_mem_first :
+                    H.centerAt C.firstSource.1 C.firstSource.2 ∈
+                      S.capInteriorByIndex capIndex' := by
+                  simpa [hcenters] using sourceCenter_mem'
+                exact closeCanonicalFirst sourceCenter_mem_first
+                  fiberSource_mem_cap' hcapIndex'
+              · exact
+                  false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                    (P := P) (Pρ := Pρ)
+                    (hρne := hρne) (hfrontierFour := hfrontierFour)
+                    (hρfour := hρfour)
+                    (hfrontierInteriorEq := hfrontierInteriorEq)
+                    (hρInteriorEq := hρInteriorEq)
+                    (T := T) (hpairsDisjoint := hpairsDisjoint)
+                    (hblockersNe := hblockersNe)
+                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                    (LP := LP) (hLP := hLP) (MP := MP)
+                    C Q
+                    (.equalCrossRowCenters hfirst hsecond hcenters
+                      firstNonCanonical
+                      (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+                        centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                        capIndex' sourceCenter_mem' freshCenter_mem'
+                        fiberSource_mem_cap' hcapIndex'))
+      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+          overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap =>
+          by_cases hcapIndex : capIndex = S.oppIndex1
+          · exact closeCanonicalFirst sourceCenter_mem fiberSource_mem_cap hcapIndex
+          · let firstNonCanonical :=
+              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+                centers_ne source₁_mem source₂_mem overlap_eq capIndex
+                sourceCenter_mem freshCenter_mem fiberSource_mem_cap hcapIndex
+            cases secondInteraction with
+            | sameBlocker center_eq _ =>
+                exact hsecond.1 center_eq
+            | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+                exact false_of_omission C.secondSource hsecond deleted deleted_eq
+                  deleted_not_mem
+            | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+                overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+                caps_ne' =>
+                exact
+                  false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                    (P := P) (Pρ := Pρ)
+                    (hρne := hρne) (hfrontierFour := hfrontierFour)
+                    (hρfour := hρfour)
+                    (hfrontierInteriorEq := hfrontierInteriorEq)
+                    (hρInteriorEq := hρInteriorEq)
+                    (T := T) (hpairsDisjoint := hpairsDisjoint)
+                    (hblockersNe := hblockersNe)
+                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                    (LP := LP) (hLP := hLP) (MP := MP)
+                    C Q
+                    (.equalCrossRowCenters hfirst hsecond hcenters
+                      firstNonCanonical
+                      (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+                        centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                        sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+                        caps_ne'))
+            | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+                overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+                fiberSource_mem_cap' =>
+                by_cases hcapIndex' : capIndex' = S.oppIndex1
+                · have sourceCenter_mem_first :
+                      H.centerAt C.firstSource.1 C.firstSource.2 ∈
+                        S.capInteriorByIndex capIndex' := by
+                    simpa [hcenters] using sourceCenter_mem'
+                  exact closeCanonicalFirst sourceCenter_mem_first
+                    fiberSource_mem_cap' hcapIndex'
+                · exact
+                    false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                      (P := P) (Pρ := Pρ)
+                      (hρne := hρne) (hfrontierFour := hfrontierFour)
+                      (hρfour := hρfour)
+                      (hfrontierInteriorEq := hfrontierInteriorEq)
+                      (hρInteriorEq := hρInteriorEq)
+                      (T := T) (hpairsDisjoint := hpairsDisjoint)
+                      (hblockersNe := hblockersNe)
+                      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                      (LP := LP) (hLP := hLP) (MP := MP)
+                      C Q
+                      (.equalCrossRowCenters hfirst hsecond hcenters
+                        firstNonCanonical
+                        (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+                          centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                          capIndex' sourceCenter_mem' freshCenter_mem'
+                          fiberSource_mem_cap' hcapIndex'))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe in
+/-- Simultaneous omission of all four collision endpoints removes the sole
+non-deletion arm of the retained first-fiber descent.  Consequently one of
+the four collision-source deletions preserves K4 at the cap-source blocker,
+the first apex, the opposite collision blocker, and the other two robust
+Moser apices. -/
+theorem collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (source_witness : FirstFiberCapSourceWitness P Pρ source)
+    (all_endpoint_omission :
+      AllCollisionEndpointsOmitted P Pρ source source') :
+    ATailFirstFiberOverlapDescent.FirstFiberCollisionFiveCenterDeletionResidual
+      P Pρ source S.oppApex2 S.surplusApex := by
+  have hP₁omit :=
+    (all_endpoint_omission P.source₁ (by simp)).1
+  have hPρ₁omit :=
+    (all_endpoint_omission Pρ.source₁ (by simp)).1
+  have hdescent :=
+    ATailFirstFiberOverlapDescent.firstFiber_cycleAlignedHits_or_collisionFiveCenterDeletion
+        P Pρ Q source source_witness.2.2.2.1
+        (Or.inl hP₁omit) (Or.inl hPρ₁omit)
+        LPρ hLPρ MPρ LP hLP MP
+        (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+        (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+  rcases hdescent with hcycle | hdeletion
+  · exact False.elim (hP₁omit hcycle.1)
+  · exact hdeletion
+
+/-- Exact-row form of the four first-fiber deletion arms.  Each arm records
+five q-free cardinal-four rows and the deleted source's distinct actual
+blocker, where the same deletion is blocked. -/
+abbrev FirstFiberCollisionFiveCenterExactRowsResidual
+    (P : RetainedInteriorBlockerCollision R)
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (a₂ a₃ : ℝ²) : Prop :=
+  Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H P.source₁ P.source₁_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H Pρ.source₁ Pρ.source₁_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt P.source₁ P.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H P.source₂ P.source₂_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) a₂ a₃) ∨
+    Nonempty
+      (ATailFiveCenterDeletionBoundary.FiveSurvivorExactRowsBoundary
+        D H Pρ.source₂ Pρ.source₂_mem_A
+        (H.centerAt source.1 source.2) S.oppApex1
+        (H.centerAt P.source₁ P.source₁_mem_A) a₂ a₃)
+
+/-- Canonical-row omission forced by each exact five-center arm.  Besides the
+common source row, the deleted endpoint is absent from the selected row at the
+opposite collision blocker. -/
+abbrev FirstFiberCollisionDeletedEndpointOmissionResidual
+    (P : RetainedInteriorBlockerCollision R)
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  (P.source₁ ∉
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      P.source₁ ∉
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support) ∨
+    (Pρ.source₁ ∉
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      Pρ.source₁ ∉
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support) ∨
+    (P.source₂ ∉
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      P.source₂ ∉
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support) ∨
+    (Pρ.source₂ ∉
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      Pρ.source₂ ∉
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support)
+
+/-- The two canonical rows centered in the first cap either share an omitted
+outside endpoint, so deleting it preserves K4 at both rows and all three rich
+apices, or realize one of the two crossed outside-pair membership patterns. -/
+abbrev FirstFiberOutsidePairFiveCenterOrCrossedResidual
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  ATailFirstFiberOverlapDescent.FiveCenterDeletionSurvival D Q.source.1
+      (H.centerAt source.1 source.2)
+      (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+      S.oppApex1 S.oppApex2 S.surplusApex ∨
+    ATailFirstFiberOverlapDescent.FiveCenterDeletionSurvival D

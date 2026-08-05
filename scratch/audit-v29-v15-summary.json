@@ -1,0 +1,662 @@
+{
+  "case_count": 16,
+  "counts": {
+    "unknown": 16
+  },
+  "elapsed_seconds": 1234.1055272498634,
+  "workers": 8,
+  "resolved_budgets": {
+    "boolean_prepass": {
+      "max_candidates": 2000000,
+      "max_cuts": 256,
+      "timeout_ms": 30000
+    },
+    "full_solver": {
+      "max_candidates": 2000000,
+      "max_cuts": 256,
+      "timeout_ms": 600000
+    }
+  },
+  "results": [
+    {
+      "case_id": "fresh_DDD_k0_d2_f1",
+      "status": "unknown",
+      "elapsed_seconds": 618.3785196249373,
+      "full_solver_check_seconds": 600.043661667034,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 9.592301500029862,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k0_d2_f3",
+      "status": "unknown",
+      "elapsed_seconds": 615.342350916937,
+      "full_solver_check_seconds": 600.0402289158665,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 6.699856874998659,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f1",
+      "status": "unknown",
+      "elapsed_seconds": 616.6392496670596,
+      "full_solver_check_seconds": 600.0107670421712,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 7.946226750034839,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k0_d3_f2",
+      "status": "unknown",
+      "elapsed_seconds": 616.5474770830479,
+      "full_solver_check_seconds": 600.0269417089876,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 7.935115667060018,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f0",
+      "status": "unknown",
+      "elapsed_seconds": 613.3983612500597,
+      "full_solver_check_seconds": 600.0527340418193,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 4.766128916991875,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k1_d3_f2",
+      "status": "unknown",
+      "elapsed_seconds": 616.6879287499469,
+      "full_solver_check_seconds": 600.0457287922036,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 7.999341583112255,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f1",
+      "status": "unknown",
+      "elapsed_seconds": 618.4647897498216,
+      "full_solver_check_seconds": 600.0398660409264,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 9.661474541993812,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k2_d0_f3",
+      "status": "unknown",
+      "elapsed_seconds": 616.5903189999517,
+      "full_solver_check_seconds": 600.0424108749721,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 7.962105167098343,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f1",
+      "status": "unknown",
+      "elapsed_seconds": 613.6415227919351,
+      "full_solver_check_seconds": 600.045977207832,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 5.230630749836564,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k3_d0_f2",
+      "status": "unknown",
+      "elapsed_seconds": 615.2154265840072,
+      "full_solver_check_seconds": 600.03764566686,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 6.718639499973506,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f0",
+      "status": "unknown",
+      "elapsed_seconds": 615.2228840000462,
+      "full_solver_check_seconds": 600.0680577501189,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 6.669578459113836,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_DDD_k3_d1_f2",
+      "status": "unknown",
+      "elapsed_seconds": 614.4066635419149,
+      "full_solver_check_seconds": 600.0485844581854,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 5.815661499975249,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 3
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 48
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 2184
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_SDD_k0_d2_f1",
+      "status": "unknown",
+      "elapsed_seconds": 617.0404302920215,
+      "full_solver_check_seconds": 600.0269656658638,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 8.59299200004898,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 17
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 40
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 1820
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_SDD_k0_d2_f3",
+      "status": "unknown",
+      "elapsed_seconds": 614.4809523751028,
+      "full_solver_check_seconds": 600.044674082892,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 6.1234384579584,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 17
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 40
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 1820
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_SDD_k0_d3_f1",
+      "status": "unknown",
+      "elapsed_seconds": 614.3432218749076,
+      "full_solver_check_seconds": 600.0233653751202,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 6.005206291098148,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 17
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 40
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 1820
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    },
+    {
+      "case_id": "fresh_SDD_k0_d3_f2",
+      "status": "unknown",
+      "elapsed_seconds": 615.4246664168313,
+      "full_solver_check_seconds": 600.0092344998848,
+      "full_solver_check_count": 1,
+      "boolean_seconds": 7.087334083858877,
+      "boolean_status": "sat_no_cut",
+      "power_cut_count": 0,
+      "constraints": [
+        {
+          "key": "apex_global_k4_profile_compatibility",
+          "value": 17
+        },
+        {
+          "key": "critical_row_cross_cap_rich_slice_one_hit",
+          "value": 40
+        },
+        {
+          "key": "four_point_squared_cnd",
+          "value": 4095
+        },
+        {
+          "key": "nonapex_global_k4_squared_superadditivity",
+          "value": 4368
+        },
+        {
+          "key": "pair_center_multiplicity",
+          "value": 105
+        },
+        {
+          "key": "same_shell_squared_superadditivity",
+          "value": 1820
+        },
+        {
+          "key": "triple_center_multiplicity",
+          "value": 455
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:66:      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:68:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:97:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:100:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:134:      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:163:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:167:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:174:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:178:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:197:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:201:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:273:        ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:278:        ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:298:        actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:105:  q_survives : HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:106:  w_survives : HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:153:      actual_blocker_ne_of_deletion_survives H hqA P.q_survives
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:155:      actual_blocker_ne_of_deletion_survives H hwA P.w_survives }
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:169:    (h : HasNEquidistantPointsAt n S p) :
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:170:    HasNEquidistantPointsAt n T p := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:187:    HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:210:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:266:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:271:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:275:      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:326:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:151:      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:154:      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:182:    ((¬ HasNEquidistantPointsAt 4 (D.A.erase q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:184:        ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:198:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:201:      exact ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:236:    HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:238:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:243:      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:247:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:261:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:263:    HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:276:    HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:295:      HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:297:      HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:304:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:306:      HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:308:        HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:315:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:80:    ¬ HasNEquidistantPointsAt 4 (D.A.erase q) (H.centerAt q hq)
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:97:      HasNEquidistantPointsAt 4 (D.skeleton q) c₀ := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:100:      HasNEquidistantPointsAt 4 (D.skeleton q) c₁ := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:103:      HasNEquidistantPointsAt 4 (D.skeleton q) c₂ := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:106:      HasNEquidistantPointsAt 4 (D.skeleton q) c₃ := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:109:      HasNEquidistantPointsAt 4 (D.skeleton q) c₄ := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:112:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:115:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:118:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:121:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:124:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:127:      ¬ HasNEquidistantPointsAt 4 (D.A.erase q) (H.centerAt q hq) :=
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:103:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:115:  exact (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:70:    (h : HasNEquidistantPointsAt n A center) :
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:71:    HasNEquidistantPointsAt n B center := by
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:97:    ¬ HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:99:      ¬ HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:144:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:148:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:403:    HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:405:      HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:410:      HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:457:        HasNEquidistantPointsAt 4 (D.A.erase F.pair.q) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:469:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:473:        HasNEquidistantPointsAt 4 (D.A.erase F.pair.w) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:164:      HasNEquidistantPointsAt 4 (D.A.erase source) center :=
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:99:    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase z) center)
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:133:  firstApexDouble_blocked : ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:161:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:185:    (hblocked : ¬ HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2) :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:63:      ¬ HasNEquidistantPointsAt 4 (A.erase source) center)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:121:    ¬ HasNEquidistantPointsAt 4 (D.A.erase source) center
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:124:    ¬ HasNEquidistantPointsAt 4 (D.A.erase partner) center
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:125:  source_deletion_survives_physicalApex :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:126:    HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:127:  partner_deletion_survives_physicalApex :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:128:    HasNEquidistantPointsAt 4 (D.A.erase partner) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:149:    HasNEquidistantPointsAt 4 (D.A.erase z) center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:172:      ¬ HasNEquidistantPointsAt 4 (D.A.erase source) center) :
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:197:        ¬ HasNEquidistantPointsAt 4 (D.A.erase partner)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:201:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:205:        ¬ HasNEquidistantPointsAt 4 (D.A.erase partner) center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:222:        source_deletion_survives_physicalApex :=
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:225:        partner_deletion_survives_physicalApex :=
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:241:        HasNEquidistantPointsAt 4 (D.A.erase partner)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:243:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:246:        HasNEquidistantPointsAt 4 (D.A.erase partner) center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:337:        ¬ HasNEquidistantPointsAt 4 (D.A.erase source) center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:363:        HasNEquidistantPointsAt 4 (D.A.erase b) center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:367:        ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:439:  rcases U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:446:  rcases U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:551:        HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:554:        HasNEquidistantPointsAt 4 (D.A.erase source)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:556:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:559:        HasNEquidistantPointsAt 4 (D.A.erase source)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:561:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:94:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:97:      actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:122:    (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:124:      HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:126:    (HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:128:      HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:270:      HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:272:        HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:285:      HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:287:        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:499:  HasNEquidistantPointsAt 4 (D.A.erase x)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:501:    HasNEquidistantPointsAt 4 (D.A.erase y)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:522:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:523:      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:31:      HasNEquidistantPointsAt 4 (D.A.erase z) center
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:37:    ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:44:    HasNEquidistantPointsAt 4 (A.erase z) center := by
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:61:    HasNEquidistantPointsAt 4 ((A.erase z).erase w) center := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:211:    HasNEquidistantPointsAt 4 (D.A.erase unused.point) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:222:    ¬ HasNEquidistantPointsAt 4 (D.A.erase unused.point)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:241:      HasNEquidistantPointsAt 4 (D.A.erase unused.point) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:240:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:259:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:392:        HasNEquidistantPointsAt 4 (D.A.erase O.kept)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:394:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:397:        HasNEquidistantPointsAt 4 (D.A.erase O.kept) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:572:      HasNEquidistantPointsAt 4 (D.A.erase fresh)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:574:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:577:      HasNEquidistantPointsAt 4 (D.A.erase fresh) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:41:  HasNEquidistantPointsAt 4 (D.A.erase deleted) c₀ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:42:    HasNEquidistantPointsAt 4 (D.A.erase deleted) c₁ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:43:    HasNEquidistantPointsAt 4 (D.A.erase deleted) c₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:44:    HasNEquidistantPointsAt 4 (D.A.erase deleted) c₃ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:45:    HasNEquidistantPointsAt 4 (D.A.erase deleted) c₄
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:297:          HasNEquidistantPointsAt 4 (D.A.erase y)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:299:          HasNEquidistantPointsAt 4 (D.A.erase z)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:306:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:308:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:338:          (HasNEquidistantPointsAt 4 (D.A.erase y)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:340:            HasNEquidistantPointsAt 4 (D.A.erase y) a₁ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:341:            HasNEquidistantPointsAt 4 (D.A.erase y) a₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:342:            HasNEquidistantPointsAt 4 (D.A.erase y) a₃) ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:343:          (HasNEquidistantPointsAt 4 (D.A.erase z)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:345:            HasNEquidistantPointsAt 4 (D.A.erase z) a₁ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:346:            HasNEquidistantPointsAt 4 (D.A.erase z) a₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:347:            HasNEquidistantPointsAt 4 (D.A.erase z) a₃) := by
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:371:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:374:      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:424:      (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:426:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:428:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:430:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:431:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₃) := by
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:505:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:507:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:510:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:514:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:581:      (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:583:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:585:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:587:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:588:        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₃) ∨
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:589:      (HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:591:        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:593:        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:595:        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁) a₂ ∧
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:596:        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁) a₃) := by
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:617:          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:619:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:622:          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:626:          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:696:            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:698:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:701:            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:705:            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:718:          HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:720:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:723:          HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:728:          HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:201:    exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:216:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt (B.survives z hzA)
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:270:    exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:285:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:158:    HasNEquidistantPointsAt 4 (D.A.erase point)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:208:    HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:287:    HasNEquidistantPointsAt 4 (D.A.erase hit.point) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:304:    HasNEquidistantPointsAt 4 (D.A.erase hit.point) S.oppApex1
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:439:      HasNEquidistantPointsAt 4 (D.A.erase y)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:441:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:146:      HasNEquidistantPointsAt 4 (D.A.erase source₂)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:150:      HasNEquidistantPointsAt 4 (D.A.erase source₁)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:268:      (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:271:      (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:143:  if HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:152:      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:162:      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:181:    HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:183:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:220:        HasNEquidistantPointsAt 4 (D.A.erase deleted)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:258:        HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:293:        HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:298:        HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:303:        HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:37:    HasNEquidistantPointsAt 4 (D.A.erase deleted) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:77:      HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:169:      HasNEquidistantPointsAt 4 (D.A.erase w)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:175:  exact (cross_deletion_survives_iff_not_mem_selected_support H _).mpr hwOutside
+lean/Erdos9796Proof/P97/ATail/LargeOppositeCapsBiApexSurface.lean:76:    actual_blocker_ne_of_deletion_survives H' C.q_mem_A C.survives₁
+lean/Erdos9796Proof/P97/ATail/LargeOppositeCapsBiApexSurface.lean:78:    actual_blocker_ne_of_deletion_survives H' C.q_mem_A C.survives₂
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:113:  successor_deletion_survives_actualBlocker :
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:115:      HasNEquidistantPointsAt 4 (D.A.erase (successor q).1)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:130:        HasNEquidistantPointsAt 4 (D.A.erase w)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:139:        HasNEquidistantPointsAt 4 (D.A.erase (successor q).1)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:147:    successor_deletion_survives_actualBlocker := ?_ }⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:151:    exact (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:299:    HasNEquidistantPointsAt 4 (D.A.erase (K.source i).1) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:320:  ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:340:theorem successor_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:346:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:351:  exact K.transition.successor_deletion_survives_actualBlocker (K.source i)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:423:theorem reverse_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:429:    HasNEquidistantPointsAt 4 (D.A.erase (K.source E.index).1)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:433:  (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:554:#print axioms PhysicalActualCriticalOmissionCycle.successor_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:557:#print axioms PhysicalActualCriticalMutualOmissionEdge.reverse_deletion_survives_actualBlocker
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:268:      HasNEquidistantPointsAt 4 (D.A.erase third)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:270:      HasNEquidistantPointsAt 4 (D.A.erase third) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:305:      HasNEquidistantPointsAt 4 (D.A.erase third)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:307:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:310:      HasNEquidistantPointsAt 4 (D.A.erase third) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:111:  q_survives : HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:112:  w_survives : HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:137:    HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:213:      actual_blocker_ne_of_deletion_survives H hqA P.q_survives
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:215:      actual_blocker_ne_of_deletion_survives H hwA P.w_survives }
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:62:        ¬ HasNEquidistantPointsAt 4 (D.A.erase x) W.packet.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:259:    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:261:      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:263:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:277:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:304:  exact actual_blocker_ne_of_deletion_survives H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:162:        (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:165:        (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:405:      HasNEquidistantPointsAt 4 (D.A.erase fresh)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:407:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:410:      HasNEquidistantPointsAt 4 (D.A.erase fresh) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:124:  exact actual_blocker_ne_of_deletion_survives H hqA
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:169:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:179:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:408:    ¬ HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:410:      ¬ HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:725:      (HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:727:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:803:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:805:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1097:          (HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1099:            HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:56:    (h : HasNEquidistantPointsAt n S p) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:57:    HasNEquidistantPointsAt n T p := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:76:    HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:100:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:158:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:164:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:168:      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:220:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:40:      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:86:    HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:107:      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:224:    ((¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:226:        ¬ HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:273:    (HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:275:        HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:302:      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:304:        HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:333:        ¬ HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:335:        ¬ HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:167:    HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:169:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:281:      HasNEquidistantPointsAt 4 (D.A.erase z)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:283:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:286:      HasNEquidistantPointsAt 4 (D.A.erase z)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:288:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:291:      HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:368:      HasNEquidistantPointsAt 4 (D.A.erase w.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:370:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:373:      HasNEquidistantPointsAt 4 (D.A.erase w.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:375:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:378:      HasNEquidistantPointsAt 4 (D.A.erase w.1) S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:967:      (HasNEquidistantPointsAt 4 (D.A.erase q) a ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:968:        HasNEquidistantPointsAt 4 (D.A.erase a) bq) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:969:      (HasNEquidistantPointsAt 4 (D.A.erase q) bu ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:970:        HasNEquidistantPointsAt 4 (D.A.erase bu) bq) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:971:      (HasNEquidistantPointsAt 4 (D.A.erase q) bv ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:972:        HasNEquidistantPointsAt 4 (D.A.erase bv) bq) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:973:      (HasNEquidistantPointsAt 4 (D.A.erase q) br ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:974:        HasNEquidistantPointsAt 4 (D.A.erase br) bq) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1010:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1014:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1018:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1022:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1301:      (HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1303:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1307:      (HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1310:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1315:      (HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1318:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1323:      (HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1327:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1533:      HasNEquidistantPointsAt 4 (D.A.erase first.deleted.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1536:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1716:  blocked : ¬ HasNEquidistantPointsAt 4 (D.A \ deleted) center
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1719:      HasNEquidistantPointsAt 4 (D.A \ deleted.erase s) center
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2119:      ¬ HasNEquidistantPointsAt 4 (D.A \ U) c := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2124:        HasNEquidistantPointsAt 4 (D.A \ U.erase s) c := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5766:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5768:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5801:      HasNEquidistantPointsAt 4 (D.A.erase v.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5804:      HasNEquidistantPointsAt 4 (D.A.erase u.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5872:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5874:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5895:      HasNEquidistantPointsAt 4 (D.A.erase v.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5897:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5900:      HasNEquidistantPointsAt 4 (D.A.erase u.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5902:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5939:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5941:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5975:      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5977:        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6213:        ¬ HasNEquidistantPointsAt 4 (D.A.erase x) W.packet.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6784:      (cross_deletion_survives_iff_not_mem_selected_support H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7716:      HasNEquidistantPointsAt 4 (D.A.erase z)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7718:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7721:      HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8694:  HasNEquidistantPointsAt 4 (D.A.erase source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8696:    HasNEquidistantPointsAt 4 (D.A.erase source.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8717:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8720:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8976:    HasNEquidistantPointsAt 4 (D.A.erase source.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8978:      HasNEquidistantPointsAt 4 (D.A.erase source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8995:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8998:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9079:      (deletion_survives :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9080:        HasNEquidistantPointsAt 4 (D.A.erase deleted.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9168:      (deletion_survives :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9169:        HasNEquidistantPointsAt 4 (D.A.erase deleted.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9188:  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9190:        deletion_survives
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9670:          ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9673:        ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10069:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10071:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10091:          ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10093:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10099:        ⟨(cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10101:          (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10135:    HasNEquidistantPointsAt 4 (D.A.erase Q.source.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10137:      HasNEquidistantPointsAt 4 (D.A.erase Q.otherOutsidePoint)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10143:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10146:      ((cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12030:    HasNEquidistantPointsAt 4 (D.A.erase deleted) c₅ ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12166:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12168:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12176:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12178:        (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12402:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12405:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12455:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12457:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12505:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12686:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13031:                    ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13059:        ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13120:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13350:    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13363:    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13646:      ¬ HasNEquidistantPointsAt 4 (D.A.erase v) center :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13647:    not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15150:            HasNEquidistantPointsAt 4 (D.A.erase v)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15153:            HasNEquidistantPointsAt 4 (D.A.erase u)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15158:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15162:            (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:31:    (hK4 : HasNEquidistantPointsAt 4 A center)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:35:    HasNEquidistantPointsAt 4 ((A.erase q).erase w) center ∨
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:41:      HasNEquidistantPointsAt 4 ((A.erase q).erase w) center
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:76:    rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hK4 with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:115:    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:133:    HasNEquidistantPointsAt 4 (A.erase q) center ∨
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:135:        ¬ HasNEquidistantPointsAt 4 (A.erase q) center := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:149:  · by_cases hsurvives : HasNEquidistantPointsAt 4 (A.erase q) center
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:162:    (hwblocked : ¬ HasNEquidistantPointsAt 4 (A.erase w) center) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:191:        ¬ HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2).card ≤ 1) := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:234:        HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2).card) := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:238:    HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:259:      HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2 ∧
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:260:      HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:264:    HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:277:theorem actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:280:    (hsurvives : HasNEquidistantPointsAt 4 (A.erase q) center) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:300:  q_survives : HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:301:  w_survives : HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:332:        actual_blocker_ne_of_deletion_survives H hqA hqSurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:334:        actual_blocker_ne_of_deletion_survives H hwA hwSurvives }⟩
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:342:      HasNEquidistantPointsAt 4 (A.erase deleted) center)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:344:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:345:        ((A.erase deleted).erase pivot) center)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:349:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:352:      pivot ∈ SelectedClass (A.erase deleted) center radius := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:356:      (A := A.erase deleted) (x := pivot) (s := center) (d := radius)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:360:        4 ≤ (SelectedClass ((A.erase deleted).erase pivot)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:366:      ¬ 5 ≤ (SelectedClass (A.erase deleted) center radius).card := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:370:      (A := A.erase deleted) (x := pivot) (s := center) (d := radius)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:375:      (SelectedClass (A.erase deleted) center radius).card = 4 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:400:    (hqSurvives : HasNEquidistantPointsAt 4 (A.erase q) center)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:401:    (hwSurvives : HasNEquidistantPointsAt 4 (A.erase w) center)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:403:    HasNEquidistantPointsAt 4 ((A.erase q).erase w) center ∨
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:411:      HasNEquidistantPointsAt 4 ((A.erase q).erase w) center
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:414:        ¬ HasNEquidistantPointsAt 4 ((A.erase w).erase q) center := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:518:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:548:  HasNEquidistantPointsAt 4 ((D.A.erase P.q).erase P.w) S.oppApex1 ∨
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:559:  HasNEquidistantPointsAt 4 ((D.A.erase P.q).erase P.w) S.oppApex2 ∨
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:574:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:631:theorem cross_deletion_survives_or_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:635:    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:639:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:649:    (h : HasNEquidistantPointsAt n S p) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:650:    HasNEquidistantPointsAt n T p := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:682:private theorem exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:690:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:695:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:741:theorem exists_pair_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:752:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:758:  rcases exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:769:    ¬ HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781:theorem cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:784:    HasNEquidistantPointsAt 4 (A.erase w) (H.centerAt q hq) ↔
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:792:          HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:841:      HasNEquidistantPointsAt 4 (A.erase q) (H.centerAt w hw) :=
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:842:    (cross_deletion_survives_iff_not_mem_selected_support H hw).mpr
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:867:theorem SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:872:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:878:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:896:      HasNEquidistantPointsAt 4 (A.erase w) (H.centerAt q hq)) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:905:    (cross_deletion_survives_iff_not_mem_selected_support H hq).mp hsurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:916:          HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:932:theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:937:      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:941:    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1034:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1036:  exact actual_blocker_ne_of_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1046:theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1051:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1053:      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1071:      actual_blocker_ne_of_deletion_survives H P.q_mem_A hqSurvivesO
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1074:      actual_blocker_ne_of_deletion_survives H P.w_mem_A hwSurvivesO
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1118:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1123:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1125:      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1) :
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1140:      blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1146:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1151:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1157:      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1162:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1166:      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1171:    blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1188:    blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1228:theorem card_five_cross_deletion_survives_or_cross_oppositeSide
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1234:    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1239:  rcases cross_deletion_survives_or_cross_membership P with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1256:  rcases exists_pair_double_deletion_survives_secondApex D S r hthree with
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1263:      HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1268:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1272:      HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1287:        actual_blocker_ne_of_deletion_survives H hqA hqSurvives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1289:        actual_blocker_ne_of_deletion_survives H hwA hwSurvives }
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:68:      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:70:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:118:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:121:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:149:        ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1)) ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:152:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:56:      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:86:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:90:    ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:107:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:111:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:195:        ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:200:        ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:230:        actual_blocker_ne_of_deletion_survives H
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:70:    HasNEquidistantPointsAt 4 (D.A.erase deleted) packet.center := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:76:    _ ≤ ((D.A.erase deleted).filter
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:106:      HasNEquidistantPointsAt 4 (D.A.erase deleted) packet.center :=
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:109:      HasNEquidistantPointsAt 4 (D.A.erase deleted) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:112:        4 ≤ (SelectedClass (D.A.erase deleted) S.oppApex2 radius).card :=
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:48:    (h : HasNEquidistantPointsAt n A center) :
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:49:    HasNEquidistantPointsAt n B center := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:218:    HasNEquidistantPointsAt 4 (D.A.erase point)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:254:      (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:352:  rcases cross_deletion_survives_or_cross_membership F.pair with
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:360:      (actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:363:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:367:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:451:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:71:    (h : HasNEquidistantPointsAt n A center) :
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:72:    HasNEquidistantPointsAt n B center := by
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:162:    ¬ HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:244:    HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:385:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:389:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:487:    exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:510:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:44:    ¬ HasNEquidistantPointsAt 4 (D.A.erase unused.point) center
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:66:      HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:90:    ¬ HasNEquidistantPointsAt 4 (D.A.erase source₁.1)
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:93:    ¬ HasNEquidistantPointsAt 4 (D.A.erase source₂.1)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:80:      HasNEquidistantPointsAt 4 (A \ (U.erase s)) center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:82:      ¬ HasNEquidistantPointsAt 4 (A \ U) center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:88:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:93:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:163:      ¬ HasNEquidistantPointsAt 4 (A \ U) center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:166:        HasNEquidistantPointsAt 4 (A \ (U.erase s)) center) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:130:      HasNEquidistantPointsAt 4 (D.A.erase fresh)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:132:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:135:      HasNEquidistantPointsAt 4 (D.A.erase fresh) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:183:        HasNEquidistantPointsAt 4 (D.A.erase P.K)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:185:      (cross_deletion_survives_iff_not_mem_selected_support H P.J_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:188:        HasNEquidistantPointsAt 4 (D.A.erase P.K) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:248:        HasNEquidistantPointsAt 4 (D.A.erase W.first)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:250:      (cross_deletion_survives_iff_not_mem_selected_support H W.next_mem_A).mpr
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:253:        HasNEquidistantPointsAt 4 (D.A.erase W.first) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:51:    actual_blocker_ne_of_deletion_survives H' P.q_mem_A P.q_survives
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:53:    actual_blocker_ne_of_deletion_survives H' P.w_mem_A P.w_survives
+lean/Erdos9796Proof/P97/ATail/CriticalSystemRebase.lean:122:      ¬ HasNEquidistantPointsAt 4 (D.A.erase source) center) :
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:189:      HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex1 :=
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:192:      HasNEquidistantPointsAt 4 (D.A.erase source)
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:194:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:50:      ¬ HasNEquidistantPointsAt 4 B center := by
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:63:    (hfull : HasNEquidistantPointsAt 4 A center)
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:64:    (hblocked : ¬ HasNEquidistantPointsAt 4 (A \ U) center) :
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:68:      ¬ HasNEquidistantPointsAt 4 (A \ V) center ∧
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:70:        HasNEquidistantPointsAt 4 (A \ (V.erase s)) center := by
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:74:      ¬ HasNEquidistantPointsAt 4 (A \ V) center
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:108:      HasNEquidistantPointsAt 4 (A \ (U.erase s)) center)
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:110:      ¬ HasNEquidistantPointsAt 4 (A \ U) center)
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:122:      ¬ HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:127:      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hrestore with
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:187:      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:189:        HasNEquidistantPointsAt 4
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:229:      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:319:    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:321:      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:323:  rcases cross_deletion_survives_or_cross_membership P with hqSurv | hwq
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:337:    rcases cross_deletion_survives_or_cross_membership P' with hwSurv | hqw
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:364:  exact actual_blocker_ne_of_deletion_survives H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:96:theorem not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:99:    ¬ HasNEquidistantPointsAt 4 (A.erase x) c := by
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:107:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:138:      ∃ p ∈ D.A.erase x, ¬ HasNEquidistantPointsAt 4 (D.A.erase x) p := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:195:    P.localFourHolds_to_hasNEquidistantPointsAt_erase
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:63:theorem CanonicalPacket.localFourHolds_to_hasNEquidistantPointsAt_erase
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3LocalFourGeometry.lean:72:    HasNEquidistantPointsAt 4 (A.erase (L.pointOf deleted))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:105:  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:112:    HasNEquidistantPointsAt 4 (D.A.erase first)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:115:    HasNEquidistantPointsAt 4 (D.A.erase second)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:118:    HasNEquidistantPointsAt 4 (D.A.erase first) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:120:    HasNEquidistantPointsAt 4 (D.A.erase second) S.oppApex2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:130:    HasNEquidistantPointsAt 4 (D.A.erase deleted) S.oppApex2 := by
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:186:      HasNEquidistantPointsAt 4 (D.A.erase first)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:188:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:191:      HasNEquidistantPointsAt 4 (D.A.erase second)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:193:    (cross_deletion_survives_iff_not_mem_selected_support
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:36:  survives₁ : HasNEquidistantPointsAt 4 (D.A.erase q) center₁
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:37:  survives₂ : HasNEquidistantPointsAt 4 (D.A.erase q) center₂
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:57:    (hsurvives₁ : HasNEquidistantPointsAt 4 (D.A.erase q) center₁)
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:58:    (hsurvives₂ : HasNEquidistantPointsAt 4 (D.A.erase q) center₂) :
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:62:      HasNEquidistantPointsAt 4 (D.skeleton q) center₁ := by
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:65:      HasNEquidistantPointsAt 4 (D.skeleton q) center₂ := by
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:68:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:71:      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton

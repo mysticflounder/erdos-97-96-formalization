@@ -1,0 +1,306 @@
+    ∃ W : RetainedMatchingTwoStepCommonDeletionWalk R,
+      W.first = O.kept ∧ W.second = O.deleted ∧ W.next = fresh ∧
+        (Nonempty (RetainedMatchingEndpointCriticalFiber W) ∨
+          Nonempty (RetainedMatchingThreeDistinctBlockerPath W)) := by
+  let W : RetainedMatchingTwoStepCommonDeletionWalk R := {
+    first := O.kept
+    second := O.deleted
+    next := fresh
+    first_mem_A := O.kept_mem_A
+    second_mem_A := O.deleted_mem_A
+    next_mem_A := freshPacket.q_mem_A
+    first_ne_second := O.sources_ne
+    second_ne_next := fresh_ne_deleted.symm
+    first_mem_radius := O.kept_mem_radius
+    second_mem_radius := O.deleted_mem_radius
+    first_mem_capInterior := O.kept_mem_capInterior
+    second_mem_capInterior := O.deleted_mem_capInterior
+    firstPacket := O.packet
+    secondPacket := freshPacket
+    nextLocation := RetainedMatchingNextLocation.freshFirstCap
+      fresh_mem_capInterior fresh_ne_kept fresh_ne_deleted }
+  refine ⟨W, rfl, rfl, rfl, ?_⟩
+  rcases nonempty_twoStepEndpointOutcome W with ⟨outcome⟩
+  cases outcome with
+  | sourceReturn next_eq_first =>
+      exact False.elim (fresh_ne_kept (by simpa [W] using next_eq_first))
+  | endpointCriticalFiber fiber => exact Or.inl ⟨fiber⟩
+  | threeDistinctBlockers path => exact Or.inr ⟨path⟩
+
+/-- Source-faithful data retained after the fresh reverse-hit branch has been
+turned into its nonreturning two-step walk.  The endpoint leaves below receive
+this whole context, so the endpoint split does not erase the reverse-shell
+localization or any freshness hypothesis. -/
+structure ReverseHitFreshEndpointContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P) : Type where
+  reverse_mem :
+    O.kept ∈
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support
+  reverseBlocker_mem_capInterior :
+    H.centerAt O.deleted O.deleted_mem_A ∈
+      S.capInteriorByIndex S.oppIndex1
+  reverseShell_inter_cap_eq :
+    (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+        S.capByIndex S.oppIndex1 =
+      {O.kept, O.deleted}
+  fresh : ℝ²
+  fresh_mem_capInterior :
+    fresh ∈ S.capInteriorByIndex S.oppIndex1
+  fresh_ne_kept : fresh ≠ O.kept
+  fresh_ne_deleted : fresh ≠ O.deleted
+  fresh_not_mem_reverseShell :
+    fresh ∉
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support
+  freshPacket :
+    CommonDeletionTwoCenterPacket
+      D H fresh S.oppApex1
+      (H.centerAt O.deleted O.deleted_mem_A)
+  allLarge : TriApexAllLargeContext D S
+  walk : RetainedMatchingTwoStepCommonDeletionWalk R
+  walk_first_eq : walk.first = O.kept
+  walk_second_eq : walk.second = O.deleted
+  walk_next_eq : walk.next = fresh
+
+/-- The sole cyclic-order input still needed after an endpoint collision has
+supplied a fresh first-apex row source.  All metric equalities and the final
+cross incidence are kept outside this structure, so a producer of this packet
+is exactly a producer of the six-point boundary placement
+`O < A < X < J < C < K`. -/
+structure EndpointFreshOrderedCrossRowPlacement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) : Type where
+  boundary : Fin D.A.card → ℝ²
+  boundary_injective : Function.Injective boundary
+  boundary_image : Finset.univ.image boundary = D.A
+  boundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary
+  iO : Fin D.A.card
+  iA : Fin D.A.card
+  iX : Fin D.A.card
+  iJ : Fin D.A.card
+  iC : Fin D.A.card
+  iK : Fin D.A.card
+  hOA : iO < iA
+  hAX : iA < iX
+  hXJ : iX < iJ
+  hJC : iJ < iC
+  hCK : iC < iK
+  boundary_O : boundary iO = S.oppApex1
+  boundary_A :
+    boundary iA = H.centerAt E.fiber.source₁.1 E.fiber.source₁.2
+  boundary_X : boundary iX = H.centerAt Q.J Q.J_mem_A
+  boundary_J : boundary iJ = Q.J
+  boundary_C : boundary iC = Q.C
+  boundary_K : boundary iK = Q.K
+
+/-- The endpoint cross-hit arm is closed once its six named points occur in
+the ordered placement `O < A < X < J < C < K`.  This is a proved adapter to
+`OrderedCrossRowCore`; it introduces no new metric hypothesis. -/
+theorem false_of_endpointFreshCrossHit_of_orderedPlacement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    {Q : EndpointFreshFirstApexRowSource E}
+    (placement : EndpointFreshOrderedCrossRowPlacement Q)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support) :
+    False := by
+  exact OrderedCrossRowCore.false {
+    C := Q.C
+    K := Q.K
+    fiber_orientation := Q.fiber_orientation
+    J := Q.J
+    J_mem_A := Q.J_mem_A
+    boundary := placement.boundary
+    boundary_injective := placement.boundary_injective
+    boundary_image := placement.boundary_image
+    boundary_ccw := placement.boundary_ccw
+    iO := placement.iO
+    iA := placement.iA
+    iX := placement.iX
+    iJ := placement.iJ
+    iC := placement.iC
+    iK := placement.iK
+    hOA := placement.hOA
+    hAX := placement.hAX
+    hXJ := placement.hXJ
+    hJC := placement.hJC
+    hCK := placement.hCK
+    boundary_O := placement.boundary_O
+    boundary_A := placement.boundary_A
+    boundary_X := placement.boundary_X
+    boundary_J := placement.boundary_J
+    boundary_C := placement.boundary_C
+    boundary_K := placement.boundary_K
+    robust_equidistant :=
+      (Q.row.support_eq_radius Q.J Q.J_mem_row).trans
+        (Q.row.support_eq_radius Q.C Q.C_mem_row).symm
+    K_mem_J_shell := K_mem_J_shell }
+
+/-- Source-proved exact continuation of an endpoint-critical fiber: choose a
+fresh first-apex row source and classify its actual critical row by whether it
+contains the opposite fiber endpoint. -/
+theorem exists_reverseHitFresh_endpointCriticalFiber_continuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W) :
+    ∃ Q : EndpointFreshFirstApexRowSource E,
+      Nonempty (EndpointFreshCrossOrCommonDeletion Q) := by
+  rcases nonempty_endpointFreshFirstApexRowSource E with ⟨Q⟩
+  exact ⟨Q, nonempty_endpointFreshCrossOrCommonDeletion Q⟩
+
+/-- The only role coincidences not already excluded by the endpoint-row and
+selected-shell interfaces.  In the notation used by the closure plan,
+`A` is the common endpoint blocker, `X` is the blocker selected at `J`, and
+the three exceptional constructors are exactly `A = J`, `A = X`, and
+`X = C`.  The residual constructor records the negation of all three. -/
+inductive EndpointFreshCriticalRoleOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) : Type
+  | firstCenterEqFreshSource
+      (hAJ :
+        H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 = Q.J)
+  | sharedBlocker
+      (hAX :
+        H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+          H.centerAt Q.J Q.J_mem_A)
+  | secondCenterEqFirstSource
+      (hXC : H.centerAt Q.J Q.J_mem_A = Q.C)
+  | generic
+      (hAJ :
+        H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ≠ Q.J)
+      (hAX :
+        H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ≠
+          H.centerAt Q.J Q.J_mem_A)
+      (hXC : H.centerAt Q.J Q.J_mem_A ≠ Q.C)
+
+/-- Exhaustive classification by the three endpoint cross-hit role
+coincidences that are not ruled out by the inherited exact-row data. -/
+theorem nonempty_endpointFreshCriticalRoleOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) :
+    Nonempty (EndpointFreshCriticalRoleOutcome Q) := by
+  by_cases hAJ :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 = Q.J
+  · exact ⟨EndpointFreshCriticalRoleOutcome.firstCenterEqFreshSource hAJ⟩
+  by_cases hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A
+  · exact ⟨EndpointFreshCriticalRoleOutcome.sharedBlocker hAX⟩
+  by_cases hXC : H.centerAt Q.J Q.J_mem_A = Q.C
+  · exact ⟨EndpointFreshCriticalRoleOutcome.secondCenterEqFirstSource hXC⟩
+  exact ⟨EndpointFreshCriticalRoleOutcome.generic hAJ hAX hXC⟩
+
+/-- If the common endpoint blocker and the blocker selected at the fresh row
+source coincide (`A = X`), then their exact four-shells coincide.  In
+particular the common support contains the three pairwise-distinct named
+points `C`, `K`, and `J`; only its fourth point remains unnamed. -/
+theorem endpointFresh_support_eq_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A) :
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    let KX := (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell
+    KA.radius = KX.radius ∧
+      KA.support = KX.support ∧
+      Q.C ∈ KA.support ∧
+      Q.K ∈ KA.support ∧
+      Q.J ∈ KA.support := by
+  let KA :=
+    (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell
+  let KX := (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell
+  change
+    KA.radius = KX.radius ∧
+      KA.support = KX.support ∧
+      Q.C ∈ KA.support ∧
+      Q.K ∈ KA.support ∧
+      Q.J ∈ KA.support
+  have hC_A : Q.C ∈ KA.support := by
+    rcases Q.fiber_orientation with ⟨hC, _⟩ | ⟨hC, _⟩
+    · rw [hC]
+      exact KA.q_mem_support
+    · rw [hC]
+      exact E.fiber.source₂_mem_commonSupport
+  have hK_A : Q.K ∈ KA.support := by
+    rcases Q.fiber_orientation with ⟨_, hK⟩ | ⟨_, hK⟩
+    · rw [hK]
+      exact E.fiber.source₂_mem_commonSupport
+    · rw [hK]
+      exact KA.q_mem_support
+  have hK_X : Q.K ∈ KX.support := K_mem_J_shell
+  have hr : KA.radius = KX.radius := by
+    calc
+      KA.radius =
+          dist (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.K :=
+        (KA.support_eq_radius Q.K hK_A).symm
+      _ = dist (H.centerAt Q.J Q.J_mem_A) Q.K := by rw [hAX]
+      _ = KX.radius := KX.support_eq_radius Q.K hK_X
+  have hsupp : KA.support = KX.support := by
+    rw [KA.support_eq, KX.support_eq]
+    simp only [hAX, hr]
+  have hJ_A : Q.J ∈ KA.support := by
+    rw [hsupp]
+    exact KX.q_mem_support
+  exact ⟨hr, hsupp, hC_A, hK_A, hJ_A⟩
+
+/-- In the shared-blocker branch, the common exact shell and the fresh
+first-apex row meet in exactly the two named points `C` and `J`. -/
+theorem endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A) :
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    KA.support ∩ Q.row.support = {Q.C, Q.J} := by
+  classical
+  let KA :=
+    (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell
+  change KA.support ∩ Q.row.support = {Q.C, Q.J}

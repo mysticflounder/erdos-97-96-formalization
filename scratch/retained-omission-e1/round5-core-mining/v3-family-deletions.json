@@ -1,0 +1,54 @@
+{
+  "baseline": "unsat",
+  "checks": 10,
+  "core_size": 284,
+  "elapsed_seconds": 3.143402541987598,
+  "family_deletions": [
+    {
+      "dropped": 11,
+      "family": "cyclic_alternation_cut",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 1,
+      "family": "distinct_circle_overlap",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 60,
+      "family": "exact_rich_profiles",
+      "status_without": "sat"
+    },
+    {
+      "dropped": 32,
+      "family": "global_K4",
+      "status_without": "sat"
+    },
+    {
+      "dropped": 2,
+      "family": "no_all_apex_shell",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 8,
+      "family": "positive_squared_distances",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 11,
+      "family": "same_shell_squared_superadditivity",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 11,
+      "family": "squared_distance_equality_transport",
+      "status_without": "unsat"
+    },
+    {
+      "dropped": 148,
+      "family": "strict_kalmanson",
+      "status_without": "sat"
+    }
+  ],
+  "unknown": 0
+}

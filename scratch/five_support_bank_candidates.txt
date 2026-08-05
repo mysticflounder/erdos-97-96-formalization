@@ -1,0 +1,21 @@
+docs/general-n-certificate-bank-mining-2026-07-09.md:143:| K4 window bank | 1 | Ten checked dead four-point Nullstellensatz payloads |
+docs/general-n-certificate-bank-mining-2026-07-09.md:146:The K4 bank was the one unimported bank missing an immediate semantic
+docs/general-n-certificate-bank-mining-2026-07-09.md:150:Problem97.EndpointCertificate.K4WindowBank
+docs/general-n-certificate-bank-mining-2026-07-09.md:151:  .false_of_mem_k4DeadCertificates
+docs/general-n-certificate-bank-mining-2026-07-09.md:154:For any real valuation and any certificate in the ten-entry dead K4 bank,
+docs/general-n-certificate-bank-mining-2026-07-09.md:502:cyclic-boundary-order interface to prove that the two diagonals of every
+docs/general-n-certificate-bank-mining-2026-07-09.md:613:a strict C1-C2 chord-bisector intersection has positive C1 midpoint-line
+docs/general-n-certificate-bank-mining-2026-07-09.md:667:3. the five-point equilateral-bisector collision; and
+docs/general-n-certificate-bank-mining-2026-07-09.md:674:motifs to the equal-`K4` obstruction, 1,116 rows / 31 motifs to the
+docs/general-n-certificate-bank-mining-2026-07-09.md:675:equilateral-bisector obstruction, and 230 rows / 9 motifs to the three-triad
+docs/general-n-certificate-bank-mining-2026-07-09.md:691:Problem97.Census554.EqualityCore.equilateral_bisector_collision
+docs/general-n-certificate-bank-mining-2026-07-09.md:715:finite closure chains for all twelve equal-`K4` and both
+docs/general-n-certificate-bank-mining-2026-07-09.md:716:equilateral-bisector generated bank modules, ending in the corresponding
+docs/general-n-certificate-bank-mining-2026-07-09.md:734:### Cyclic-separation surface
+docs/general-n-certificate-bank-mining-2026-07-09.md:737:consumer.  A `SharedPairSeparationCore` says that two centers have the same
+docs/general-n-certificate-bank-mining-2026-07-09.md:740:that shared pair on opposite sides of the two centers.  The card-11 checker
+docs/general-n-certificate-bank-mining-2026-07-09.md:763:from a `Card11CapLabeling`, the surplus-packet convexity and global-K4
+docs/general-n-certificate-bank-mining-2026-07-09.md:782:strict convex cyclic order `W,F,P,X,Z` is incompatible with
+docs/general-n-certificate-bank-mining-2026-07-09.md:800:and the core is wired into both arbitrary-cardinality alternatives in
+docs/general-n-certificate-bank-mining-2026-07-09.md:808:`P,X`, and the required cyclic role order. The checked role map and concise
+docs/general-n-certificate-bank-mining-2026-07-09.md:842:  ten-entry dead K4 bank, then apply the new semantic consumer;

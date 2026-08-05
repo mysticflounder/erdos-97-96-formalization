@@ -1,0 +1,417 @@
+7742-  hblockersNe
+7743-  LPρ hLPρ MPρ LP hLP MP in
+7744-/-- Lift the single-source global-split packet to the additive two-source
+7745-surface.  The global split remains unchanged until its consumers are ready. -/
+7746-noncomputable def twoCapSourceThirdCanonicalRowSurface_of_capSource
+7747:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ) :
+7748-    TwoCapSourceThirdCanonicalRowSurface P Pρ := by
+7749-  exact
+7750-    twoCapSourceThirdCanonicalRowSurface_of_capEight
+7751-      (P := P) (Pρ := Pρ)
+7752-      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+7753:      hpairsDisjoint hcapSource.1
+7754-
+7755-/-- Load-bearing first enlarged-fiber residual for the two-source packet.  It
+7756-includes the one-sided-deletion branch that must no longer recurse through the
+7757-global cap-source root. -/
+7758-theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber
+--
+7984-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+7985-  T hpairsDisjoint hblockersNe
+7986-  LPρ hLPρ MPρ LP hLP MP in
+7987-/-- In the aligned residual, every first-apex radius carrying at least two
+7988-strict first-cap points is one of the two retained collision radii. -/
+7989:abbrev FirstCapMultiPointRadiiRetained : Prop :=
+7990-  ∀ r : ℝ,
+7991-    2 ≤
+7992-        (SelectedClass D.A S.oppApex1 r ∩
+7993-          S.capInteriorByIndex S.oppIndex1).card →
+7994-      r = radius ∨ r = ρ
+--
+8839-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+8840-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+8841-/-- The fresh-third cap-source core receives the normalized positive
+8842-interaction directly.  Its geometric contradiction remains the single open
+8843-obligation for this refactored branch. -/
+8844:theorem false_of_capSource_freshThirdBlockerFiber_core
+8845-    (source : CriticalShellSystem.CarrierVertex D.A)
+8846-    (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
+8847-    (Q : FreshThirdBlockerFiber P Pρ)
+8848-    (interaction : FreshThirdCapSourceInteraction P Pρ source Q) :
+8849-    False := by
+8850-  sorry
+8851-
+8852-/-- Compatibility adapter retaining the old public theorem while replacing its
+8853-negative interface with the checked positive interaction normal form. -/
+8854:theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+8855-    (source : CriticalShellSystem.CarrierVertex D.A)
+8856-    (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
+8857-    (Q : FreshThirdBlockerFiber P Pρ)
+8858-    (hnoAlignment :
+8859-      ¬ FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
+--
+8862-    nonempty_freshThirdCapSourceInteraction_of_noAlignment
+8863-      (P := P) (Pρ := Pρ) (T := T)
+8864-      (source := source) (hsource := hsource)
+8865-      (Q := Q) (hnoAlignment := hnoAlignment)
+8866-  exact
+8867:    false_of_capSource_freshThirdBlockerFiber_core
+8868-      (P := P) (Pρ := Pρ)
+8869-      (hρne := hρne) (hfrontierFour := hfrontierFour)
+8870-      (hρfour := hρfour)
+8871-      (hfrontierInteriorEq := hfrontierInteriorEq)
+8872-      (hρInteriorEq := hρInteriorEq)
+--
+8880-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+8881-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+8882-/-- Compatibility adapter for the former fresh-third coordinator.  The
+8883-cap-source existential is exposed here so the checked same-cap arm and the
+8884-normalized negative arm share one public entry point. -/
+8885:theorem false_of_capSource_freshThirdBlockerFiber
+8886:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+8887-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+8888-    False := by
+8889:  rcases hcapSource with ⟨hcap, source, hsource⟩
+8890-  rcases hthird with ⟨Q⟩
+8891-  by_cases halign : FreshThirdSameCapCrossRowAlignment P Pρ Q source
+8892-  · exact
+8893-      false_of_freshThird_sameCapCrossRowAlignment
+8894-        (P := P) (Pρ := Pρ) Q source halign
+8895-  · exact
+8896:      false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+8897-        (P := P) (Pρ := Pρ)
+8898-        (hρne := hρne) (hfrontierFour := hfrontierFour)
+8899-        (hρfour := hρfour)
+8900-        (hfrontierInteriorEq := hfrontierInteriorEq)
+8901-        (hρInteriorEq := hρInteriorEq)
+--
+8913-theorem false_of_twoCapSources_freshThirdBlockerFiber
+8914-    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+8915-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+8916-    False := by
+8917-  exact
+8918:    false_of_capSource_freshThirdBlockerFiber
+8919-      (P := P) (Pρ := Pρ)
+8920-      (hρne := hρne) (hfrontierFour := hfrontierFour)
+8921-      (hρfour := hρfour)
+8922-      (hfrontierInteriorEq := hfrontierInteriorEq)
+8923-      (hρInteriorEq := hρInteriorEq)
+8924-      (T := T) (hpairsDisjoint := hpairsDisjoint)
+8925-      (hblockersNe := hblockersNe)
+8926-      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+8927-      (LP := LP) (hLP := hLP) (MP := MP)
+8928:      (hcapSource :=
+8929-        twoCapSourceThirdCanonicalRowSurface_toSingle
+8930-          (P := P) (Pρ := Pρ)
+8931-          (hρne := hρne) (hfrontierFour := hfrontierFour)
+8932-          (hρfour := hρfour)
+8933-          (hfrontierInteriorEq := hfrontierInteriorEq)
+--
+8946-leaf and the two-cap-source one-sided-deletion leaf.  Both callers already
+8947-produce the cap-source surface and one arm of the geometric blocker-fiber
+8948-residual, while the ambient tri-apex, collision, localized-deletion, and
+8949-mutual-omission data remain available here through the section interface. -/
+8950-theorem false_of_capSourceThirdCanonicalRowSurface
+8951:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+8952-    (hresidual : GeometricMultiplicityResidual P Pρ) :
+8953-    False := by
+8954-  have C :=
+8955-    twoCapSourceThirdCanonicalRowSurface_of_capSource
+8956-      (P := P) (Pρ := Pρ) (T := T)
+8957:      (hpairsDisjoint := hpairsDisjoint) hcapSource
+8958-  rcases hresidual with hthird | hfirst | hsecond
+8959-  · exact
+8960-      false_of_twoCapSources_freshThirdBlockerFiber
+8961-        P Pρ hρne hfrontierFour hρfour
+8962-        hfrontierInteriorEq hρInteriorEq
+--
+9734-/-- Compatibility adapter for the former one-sided-deletion leaf.
+9735-
+9736-The first enlarged fiber supplies the corresponding blocker-multiplicity arm.
+9737-The second source, common-radius, and one-sided-deletion refinements are not
+9738-separate terminal inputs after consolidation. -/
+9739:theorem false_of_twoCapSources_oneSidedDeletionSurvival
+9740-    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9741-    {commonRadius : ℝ}
+9742-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+9743-    (hsourcesNe : source.1 ≠ source'.1)
+9744-    (hsourceRadius :
+--
+9761-
+9762-/-- Compatibility coordinator for the former two-source first-fiber split.
+9763-
+9764-Its detailed mutual-cross-membership/deletion analysis remains checked, but
+9765-all branches now ultimately depend on the common cap-source obstruction. -/
+9766:theorem false_of_twoCapSources_firstFiber
+9767-    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9768-    {commonRadius : ℝ}
+9769-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+9770-    (hsourcesNe : source.1 ≠ source'.1)
+9771-    (hsourceRadius :
+--
+9781-      H.blockerVertex source = H.blockerVertex source'
+9782-    · rcases
+9783-        commonCollisionEndpointOmission_or_complementaryMembership
+9784-          P Pρ source source' hsource hsource' with
+9785-        hcommon | hcomplementary
+9786:      · exact false_of_capSource_freshThirdBlockerFiber
+9787-          P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+9788-          T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+9789-          (capSourceSurface_of_firstFiberWitness P Pρ source hsource)
+9790-          (freshThirdBlockerFiber_of_mutualCrossMembership
+9791-            P Pρ source source' hsourcesNe hsource hsource'
+--
+9796-    · exact false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+9797-        P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+9798-        T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+9799-        source source' hsourcesNe hsourceRadius hsourceRadius'
+9800-        hmutual hblockersEq
+9801:  · exact false_of_twoCapSources_oneSidedDeletionSurvival
+9802-      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+9803-      T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+9804-      Q source source' hsourcesNe hsourceRadius hsourceRadius'
+9805-      hsource hsource' hsurvival
+9806-
+--
+9813-radii, contradicting the source's exclusion from both collision pairs. -/
+9814-private theorem firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned
+9815-    (source : CriticalShellSystem.CarrierVertex D.A)
+9816-    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9817-    (haligned :
+9818:      FirstCapMultiPointRadiiRetained
+9819-        (S := S) (radius := radius) (ρ := ρ)) :
+9820-    SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+9821-        S.capInteriorByIndex S.oppIndex1 =
+9822-      {source.1} := by
+9823-  classical
+--
+9882-/-- Under alignment, every first-apex K4 radius is one of the two retained
+9883-collision radii.  This is the global form needed when a deletion produces an
+9884-otherwise unnamed four-point class at the first apex. -/
+9885-private theorem firstApex_K4Radius_eq_retained_of_aligned
+9886-    (haligned :
+9887:      FirstCapMultiPointRadiiRetained
+9888-        (S := S) (radius := radius) (ρ := ρ))
+9889-    {r : ℝ} (hr : 0 < r)
+9890-    (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 r).card) :
+9891-    r = radius ∨ r = ρ := by
+9892-  apply haligned r
+--
+9904-/-- Deleting one point from each retained exact-four class destroys every K4
+9905-at the first apex.  Alignment is essential here: it rules out an unnamed
+9906-radius appearing after the deletion. -/
+9907-private theorem crossRetainedEndpoints_doubleDeletion_obstructsFirstApex
+9908-    (haligned :
+9909:      FirstCapMultiPointRadiiRetained
+9910-        (S := S) (radius := radius) (ρ := ρ))
+9911-    {x y : ℝ²}
+9912-    (hx : x ∈ SelectedClass D.A S.oppApex1 radius)
+9913-    (hy : y ∈ SelectedClass D.A S.oppApex1 ρ) :
+9914-    ¬ HasNEquidistantPointsAt 4
+--
+9953-alignment makes the same deletion fatal at the first apex. -/
+9954-private theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+9955-    (source : CriticalShellSystem.CarrierVertex D.A)
+9956-    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9957-    (haligned :
+9958:      FirstCapMultiPointRadiiRetained
+9959-        (S := S) (radius := radius) (ρ := ρ)) :
+9960-    ∃ x y : ℝ²,
+9961-      x ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+9962-      y ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+9963-      x ∉
+--
+10038-/-- Once every first-cap radius carrying two strict-cap points is retained,
+10039-the rich first-apex packet cannot use its six-point arm, and its two K4 radii
+10040-are exactly the two retained collision radii, up to order. -/
+10041-private theorem oppApex1_rich_exactRetainedRadii_of_aligned
+10042-    (haligned :
+10043:      FirstCapMultiPointRadiiRetained
+10044-        (S := S) (radius := radius) (ρ := ρ)) :
+10045-    ∃ r₁ r₂ : ℝ,
+10046-      0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+10047-      4 ≤ (SelectedClass D.A S.oppApex1 r₁).card ∧
+10048-      4 ≤ (SelectedClass D.A S.oppApex1 r₂).card ∧
+--
+11405-    change
+11406-      source.1 ∉
+11407-        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+11408-          {Pρ.source₁, Pρ.source₂})
+11409-    exact hsourceOutside
+11410:  have hcapSource' : CapSourceThirdCanonicalRowSurface P' Pρ' := by
+11411-    by_cases hvSource : v = source.1
+11412-    · subst v
+11413-      have hcenterSource' :
+11414-          H'.centerAt source.1 source.2 = center := by
+11415-        exact hcenterV
+--
+11567-      Disjoint
+11568-        ({P.source₁, P.source₂} : Finset ℝ²)
+11569-        {Pρ.source₁, Pρ.source₂}
+11570-    exact hpairsDisjoint
+11571-  exact
+11572:    false_of_capSource_freshThirdBlockerFiber
+11573-      (P := P') (Pρ := Pρ')
+11574-      (hρne := hρne)
+11575-      (hfrontierFour := hfrontierFour)
+11576-      (hρfour := hρfour)
+11577-      (hfrontierInteriorEq := hfrontierInteriorEq')
+--
+11579-      (T := T')
+11580-      (hpairsDisjoint := hpairsDisjoint')
+11581-      (hblockersNe := hblockersNe')
+11582-      (LPρ := LPρ') (hLPρ := hLPρ') (MPρ := MPρ')
+11583-      (LP := LP') (hLP := hLP') (MP := MP')
+11584:      hcapSource' ⟨third⟩
+11585-
+11586-/-- Compatibility form of the former aligned/nonbisector residual.
+11587-
+11588-The universal critical-row escape supplies a canonical row outside the two
+11589-collision rows and the cap-source row.  Overriding a second point of that row
+11590-with the same selected four-class creates a fresh third blocker fiber while
+11591-preserving every retained collision packet and cap-source deletion view.
+11592-The contradiction is therefore delegated to
+11593:`false_of_capSource_freshThirdBlockerFiber`; the enlarged-fiber,
+11594-singleton-radius, alignment, and nonbisector arguments remain in the
+11595-signature only for downstream compatibility. -/
+11596-theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+11597-    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+11598-    (source : CriticalShellSystem.CarrierVertex D.A)
+--
+11600-    (hsingleton :
+11601-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+11602-          S.capInteriorByIndex S.oppIndex1 =
+11603-        {source.1})
+11604-    (haligned :
+11605:      FirstCapMultiPointRadiiRetained
+11606-        (S := S) (radius := radius) (ρ := ρ))
+11607-    (hsecondNe :
+11608-      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+11609-        dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+11610-          Q.otherOutsidePoint) :
+--
+11632-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+11633-          S.capInteriorByIndex S.oppIndex1 =
+11634-        {source.1})
+11635-    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+11636-    (haligned :
+11637:      FirstCapMultiPointRadiiRetained
+11638-        (S := S) (radius := radius) (ρ := ρ)) :
+11639-    False := by
+11640-  rcases hfirst with ⟨Q⟩
+11641-  exact
+11642-    false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+--
+11650-
+11651-The radius provenance remains checked, but no longer defines a live
+11652-obligation independently of the common cap-source/blocker-multiplicity
+11653-packet. -/
+11654-theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+11655:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+11656-    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+11657-    (haligned :
+11658:      FirstCapMultiPointRadiiRetained
+11659-        (S := S) (radius := radius) (ρ := ρ)) :
+11660-    False := by
+11661:  rcases hcapSource with
+11662-    ⟨hcap, source, hsourceInterior, hsourceOutside,
+11663-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+11664-      hcenterNeFirstApex, hcenterNeSecondApex,
+11665-      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+11666-  have hsource : FirstFiberCapSourceWitness P Pρ source :=
+--
+11678-      source hsource hsingleton hfirst haligned
+11679-
+11680-/-- Compatibility coordinator for the former enlarged first-fiber route.
+11681-
+11682-Its radius split and two-source extraction remain available, but the live
+11683:coordinator consumes `hcapSource` before this split. -/
+11684-theorem false_of_capSource_freshOutsideFirstBlockerFiber
+11685:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+11686-    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ)) :
+11687-    False := by
+11688-  rcases hfirst with ⟨Q⟩
+11689-  by_cases haligned :
+11690:      FirstCapMultiPointRadiiRetained
+11691-        (S := S) (radius := radius) (ρ := ρ)
+11692-  · exact
+11693-      false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+11694-        P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+11695-        T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+11696:        hcapSource ⟨Q⟩ haligned
+11697-  · change
+11698-      ¬ ∀ r : ℝ,
+11699-          2 ≤
+11700-              (SelectedClass D.A S.oppApex1 r ∩
+11701-                S.capInteriorByIndex S.oppIndex1).card →
+11702-            r = radius ∨ r = ρ at haligned
+11703-    push_neg at haligned
+11704-    rcases haligned with
+11705-      ⟨commonRadius, hcommonCard, hcommonNeRadius, hcommonNeρ⟩
+11706-    rcases exists_two_firstFiberCapSourceWitness_of_commonRadius
+11707:        P Pρ T hcapSource.1 commonRadius hcommonCard
+11708-        hcommonNeRadius hcommonNeρ with
+11709-      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+11710-        hsource, hsource'⟩
+11711:    exact false_of_twoCapSources_firstFiber
+11712-      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+11713-      hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+11714-      Q source source' hsourcesNe hsourceRadius hsourceRadius'
+11715-      hsource hsource'
+11716-
+11717-/-- Compatibility transport for the former enlarged second-fiber route. -/
+11718-theorem false_of_capSource_freshOutsideSecondBlockerFiber
+11719:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+11720-    (hsecond : Nonempty (FreshOutsideSecondBlockerFiber P Pρ)) :
+11721-    False := by
+11722-  let Bswap : FrontierBiApexRobustResidual Rρ :=
+11723-    ⟨B.secondApex_robust⟩
+11724-  let Lswap : FrontierLargeOppositeCapsBiApexRobustResidual Bswap :=
+--
+11731-  exact false_of_capSource_freshOutsideFirstBlockerFiber
+11732-    Pρ P hρne.symm hρfour hfrontierFour
+11733-    hρInteriorEq hfrontierInteriorEq Tswap
+11734-    hpairsDisjoint.symm hblockersNe.symm
+11735-    LP hLP MP LPρ hLPρ MPρ
+11736:    (capSourceThirdCanonicalRowSurface_swap P Pρ hcapSource)
+11737-    (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
+11738-
+11739-end
+11740-
+11741-end TwoSourceExactCollisionRowsTerminal
+--
+11818-                Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+11819-            P.source₂ ∈
+11820-              (H.selectedAt Pρ.source₁
+11821-                Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+11822-  classical
+11823:  have hglobalCapSplit : TwoCollisionGlobalSplit P Pρ :=
+11824-    hcapEightOrCross.imp
+11825-      (fun hcap =>
+11826-        exists_capSource_thirdCanonicalRow_omits_each_collisionPair
+11827-          P Pρ B.secondApex_robust hpairsDisjoint hcap)
+11828-      id
+--
+11892-  have hgeometricMultiplicity :=
+11893-    collisionCrossHit_or_geometricMultiplicity
+11894-      P Pρ hblockerMultiplicity
+11895-  rcases hgeometricMultiplicity with hcross | hresidual
+11896-  · exact Or.inr hcross
+11897:  · rcases hglobalCapSplit with hcapSource | hcoincidence
+11898-    · exact False.elim
+11899-        (TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
+11900-            (P := P) (Pρ := Pρ)
+11901-            (hρne := hρne)
+11902-            (hfrontierFour := hfrontierFour)
+--
+11906-            (T := T)
+11907-            (hpairsDisjoint := hpairsDisjoint)
+11908-            (hblockersNe := hblockersNe)
+11909-            (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+11910-            (LP := LP) (hLP := hLP) (MP := MP)
+11911:            hcapSource hresidual)
+11912-    · exact False.elim
+11913-        (TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence
+11914-            (P := P) (Pρ := Pρ)
+11915-            (hρne := hρne)
+11916-            (hfrontierFour := hfrontierFour)

@@ -1,0 +1,353 @@
+{
+  "active_stage_histogram": {},
+  "artifact_hashes": {
+    "base.cnf": "89548ae97ba91b15592c59c34a6c57f53f34095b990b0aea3993b13d84b5c30b",
+    "bootstrap.json": "614fa582266717d413d262797b9ff17f8ad5f27a392a0bdd4058ba5daa7257c9",
+    "cube-batches.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "learned-certificates.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "productivity.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke.json": "a7c9345370416ba3746852f85283a90ca51133bc097e449697ad1db6231a99f6",
+    "solver-logs.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "survivors.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "bootstrap": {
+    "algebraic": {
+      "banks": [],
+      "certificate_count": 0,
+      "certificate_kind_histogram": {},
+      "lean_kernel_checked": false,
+      "semantics": "typed P97 Euclidean/distinct-point nogoods: QQ unit equality infeasibility and QQ ideal membership forcing a real point collision, plus exact QQ(sqrt(3)) closure of all 32 real equilateral-shell orientation branches; the latter two separately require external pairwise distinctness",
+      "systems": [],
+      "template_sha256": []
+    },
+    "structural": {
+      "covered_certificate_count": 0,
+      "kept_antichain_count": 0,
+      "kept_cap_order_antichain_count": 0,
+      "kept_five_point_cap_order_antichain_count": 0,
+      "kept_rhombus_cap_order_antichain_count": 0,
+      "kept_structural_antichain_count": 0,
+      "kept_structural_row_antichain_count": 0,
+      "source": null,
+      "source_cap_order_unique_certificate_count": 0,
+      "source_certificate_schema_histogram": {},
+      "source_five_point_cap_order_unique_certificate_count": 0,
+      "source_record_count": 0,
+      "source_rhombus_cap_order_unique_certificate_count": 0,
+      "source_stage_histogram": {},
+      "source_structural_unique_certificate_count": 0,
+      "source_unique_certificate_count": 0,
+      "structural_projected_duplicate_clause_count": 0,
+      "structural_projected_subsumed_clause_count": 0,
+      "structural_projected_unique_clause_count": 0,
+      "subsumed_certificate_count": 0
+    },
+    "three_rhombus_prefix_bank": null
+  },
+  "configuration": {
+    "algebraic_bootstraps": [],
+    "artifact_schema": "p97-phase3-structural-cegar-projected-static-v3",
+    "bootstrap_results": null,
+    "cell": {
+      "exact": true,
+      "k": 4,
+      "n": 10,
+      "profile": [
+        4,
+        4,
+        5
+      ]
+    },
+    "compiled_loader_cache": {
+      "enabled": false,
+      "index_schema": "p97-phase3-indexed-antichain-v2",
+      "ordering_schema": "p97-phase3-v3-loader-order-v1",
+      "schema": "p97-phase3-compiled-loader-cache-v5",
+      "trust_boundary": "accelerator only; source replay remains required at terminal, explicit audit, and publication acceptance boundaries"
+    },
+    "configuration_schema": "p97-phase3-structural-cegar-configuration-projected-static-v3",
+    "dependency_sha256": {
+      "census/atail_force/producer_bank.py": "484510cafb79a1256a0dcd030958e57145229654cabd245aa29030543b1cf8cb",
+      "census/global_confinement/cap_selected_nogood_certificate_probe.py": "9e21350a4126eb40d09e5fb454c9dee691e6dc1aaccf026a4ca6e238fc96aa13",
+      "census/global_confinement/equality_ideal_probe.py": "bf2721022dd1523c15a1b33592d572013848e2e6a2f81970ce63fbcb667d53b7",
+      "census/global_confinement/metric_realizability_probe.py": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396",
+      "census/p97_search/phase3_cegar_runtime.py": "67b1b1b4df6920ccd5ed0049617d6825020f323f264000819459e79e39844e4b",
+      "census/p97_search/phase3_loader_cache.py": "7a89b938ee5ab33364f98c336ce22ebc2eae3d01d97268b728dfef543e60d5b2",
+      "census/p97_search/phase3_order_universe.py": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0",
+      "census/p97_search/phase3_ordered_metric_rules.py": "1f36e03abc000ae8cd3aa21a8cc2dafe4754f23760d53d86fd2d9cf68b1114a0",
+      "census/p97_search/phase3_pinned_multiplicity.py": "4bfe993bb4264c23adad06001bb9e420be8186aa0fc60db1b828fc797c46b496",
+      "census/p97_search/phase3_shard_optimization.py": "7d8638e42718733f2ccb48c748497e34cfa09044c3b7cee9bd35383e2f0fb38c",
+      "census/p97_search/phase3_shared_pair_separation.py": "84b4ed57ffa2ad4d9c8f13c6c15c7ad4882411b7813e2096318500b54513a56f",
+      "census/p97_search/phase3_structural_cegar.py": "8d09e3fb72522a7e9ed111cab8a33b56afcf739434fe54e79619c00290358e9d",
+      "census/p97_search/phase3_structural_cegar_projected_static_v3.py": "2ddae8fd28a26a79afdd541bdf38b003f70fd53a4b819bc02a3afe8db00a8c53",
+      "census/p97_search/phase3_three_rhombus.py": "ded17d9137c1013e9e93400cea7231cb95e23bbf1320623eb65423009b0f3422",
+      "census/p97_search/phase3_three_rhombus_prefix_bank.py": "6626aaad7b03bc7ac2336fbe313b0578bd248a3d8a25475330b44496359320f9",
+      "census/p97_search/realize.py": "fd92ccd22911de389bc1310e0c862c8199f1c34c0a92b1b2381cba66414cb41a",
+      "census/p97_search/sat_generate.py": "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817",
+      "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean": "fb67e83ed1cb9d3c7169e25b31b3502ebd12d119f370bdc8adfe2486b7d9a22c",
+      "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean": "298ed086af97a18e73a29352a34691394b9b3790597af75e7d859b1080b578eb",
+      "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean": "eb31b3cf6b7294aff42f4a56cb16ae70b765e5bff2a883ef2ac37e41aec91047",
+      "lean/Erdos9796Proof/P97/EndpointCertificate/OrderedCoreSigns.lean": "e404f50f1e1ddc13a5c4b6e8b3e2fbd1848b5a40ddcef24387eaeca544ecfbcd",
+      "lean/Erdos9796Proof/P97/Phase3MetricCertificateBank.lean": "6c10da654b755e66a98071a77a7568819e86e4a0914fb823b86cbfe5a584cb2d",
+      "lean/Erdos9796Proof/P97/Phase3SharedPairSeparation.lean": "cd6af40c90ce6aff789caf7dca08ac6467f00be7112f31540d3c992dad9a9537",
+      "lean/Erdos9796Proof/P97/Phase3ThreeRhombusRowAdapter.lean": "f5ac99ddab12653e11797a9cbcf59a9fee5a06d1e74179787f54e3dccffece31",
+      "lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean": "d924194678554e61bf3e205ebcac93c7a11adccc3d1516be7688fc5754b1f321"
+    },
+    "detector": "_formalized_metric_core(rows,10,(),include_extended=True,include_ordered=False); then exact seven-point three-rhombus equality-closure detection with a row-major s[p,q] DIMACS callback; then all 24 cap_orders with forward/reverse equality-convex-five-point; then phase3_ordered_metric_rules exhaustive convex-rhombus; then shared-pair cyclic separation over every compatible cap annotation/order with an exact minimized positive antecedent; then direct five-point/three-selected-row Kalmanson coverage over every within-fiber order under one minimized row antecedent",
+    "dynamic_learned_core_limit": 1000,
+    "journal_contract_schema": "p97-phase3-structural-cegar-journal-projected-static-v3",
+    "learned_record_schema": "p97-phase3-structural-cegar-learned-projected-static-v3",
+    "manifest_publication": {
+      "audit_boundary": "startup replay, checkpoint, terminal, resume, clean shutdown, and periodic RUNNING publications",
+      "audit_every_running_publications": null,
+      "hot_path": "full aggregate projection and authenticated stream recount",
+      "mode": "recount-v1"
+    },
+    "metric_row_exact": false,
+    "mode": "cap+blocker-projected",
+    "parallel": {
+      "artifact_mode": "full",
+      "artifact_policy": "retain per-cube CNF; cube discovery is proof-free and local UNSAT results remain unverified",
+      "artifact_schema_compatibility": "projected-static-v3 cube schemas are hash-bound; v1/v2 cube journals intentionally fail closed",
+      "claim_scope": "cube results are scheduling artifacts only and never establish a terminal or theorem-level result",
+      "compact_crash_policy": "transient cube files may remain after an interrupted batch; resume fails closed on any unjournaled or unexpected artifact",
+      "coordinator_commit_order": "ascending cube index; worker completion order is ignored",
+      "cube_count": 0,
+      "cube_depth": 4,
+      "mode": "sequential",
+      "semantic_variables": [],
+      "stale_result_policy": "decode and recheck every SAT assignment against the live structural antichain and committed cut streams"
+    },
+    "pinned_multiplicity": {
+      "added_clause_count": 49690,
+      "added_variable_count": 1080,
+      "blocker_choice_variable_count": 90,
+      "blocker_semantics": "low[x,p] chooses p != x with s[p,x]; no four p-incident distances avoiding p,x are one asserted equality class",
+      "carrier_vertex_count": 10,
+      "clause_counts": {
+        "PINNED-EQ-ROW": 360,
+        "PINNED-EQ-TRANS": 42570,
+        "PINNED-LOW-CHOICE": 370,
+        "PINNED-LOW-LINK": 90,
+        "PINNED-LOW-MULTIPLICITY": 6300
+      },
+      "descriptor_sha256": "3d4b6937c9ca200d67940184490e4b73e4564a52adc06ce59d224e666a5d04a8",
+      "distance_item_count": 45,
+      "distance_items_sha256": "2154c0505d50e875bd188adccc69085bf776c3cdb38926ab2274201cc6cafa86",
+      "equality_relation_variable_count": 990,
+      "equality_semantics": "true asserts equal squared distances; false does not assert a distance inequality",
+      "first_auxiliary_variable": 115,
+      "full_class_scope": "row links use selected four-shell memberships only; no selected subset nonmembership is treated as a metric inequality",
+      "legacy_projected_variable_count": 114,
+      "schema": "p97-phase3-projected-static-global-pinned-multiplicity-v1",
+      "semantic_variable_count": 111,
+      "total_variable_count": 1194
+    },
+    "productivity_telemetry": {
+      "enabled": true,
+      "miner_schema": "p97-phase3-proof-core-miner-v1",
+      "promotion": "PARKED-SPEC until a replayable finite or kernel consumer",
+      "record_schema": "p97-phase3-lemma-productivity-record-v1",
+      "schema": "p97-phase3-lemma-productivity-v1",
+      "stream": "productivity.jsonl",
+      "trust_boundary": "authenticated read-only diagnostic stream; it cannot alter classification, clause admission, witness validation, or terminal proof publication"
+    },
+    "sat_contract_schema": "p97-phase3-structural-cegar-sat-projected-static-v3",
+    "sat_encoding": {
+      "mincut_scope": "counterexample_card_ge_ten",
+      "project_blockers": true,
+      "semantic_assignment_schema": "p97-phase3-semantic-assignment-v2-sf",
+      "spec_version": "phase3-v0.2-projected-static",
+      "static_dual2": true
+    },
+    "semantic_contract_schema": "p97-phase3-structural-cegar-semantic-projected-static-v3",
+    "shard_local_simplification": {
+      "assumption_contract": "shard literals are retained as residual unit clauses; the residual formula is equivalent to source CNF conjoined with those units",
+      "base_snapshot": null,
+      "enabled": false,
+      "schema": "p97-phase3-shard-local-simplification-v1",
+      "scope": "fixed top-level shard literals only; source CNF is simplified before each sequential discovery solve",
+      "trust_boundary": "optimization metadata is replayable from authenticated source clauses; it does not create learned cuts or promote UNSAT"
+    },
+    "solver_protocol": {
+      "cube_local_unsat": "unverified and non-terminal",
+      "discovery": "proof-free CaDiCaL invocation",
+      "incremental": {
+        "append_only_formula": true,
+        "enabled": false,
+        "proof_boundary": "outside incremental session",
+        "resume": "rebuild from authenticated CNF/journals",
+        "schema": "p97-phase3-persistent-cadical-discovery-v1"
+      },
+      "terminal": "fresh proof-producing rerun on exact terminal.cnf",
+      "terminal_cnf_drift": "fail-closed"
+    },
+    "source_provenance": {
+      "legacy_driver_sha256": "af87693d1ff05f556c967237704edd447d3800486bdb530e4b1ebefd5897e33a",
+      "legacy_sat_generate_sha256": "df18dcebc77577826803fdfb60951d0812b3935587569be8c7ae443bcca851d3",
+      "snapshot": "scratch/p97-distinct-distance-lane/phase3_legacy_source_snapshot_20260729.json"
+    },
+    "static_constraints": {
+      "blocker_projection": {
+        "enabled": true,
+        "semantics": "existential B1 projection; classifiers reconstruct c_min(x)=min{d:s[d,x]}"
+      },
+      "dual2": {
+        "enabled": true,
+        "scope": "convex-independent Euclidean carrier; at most two carrier centers lie on a target-pair perpendicular bisector"
+      },
+      "dynamic_perpendicular_bisector_detector": {
+        "enabled": true,
+        "reason": "retained for closure-derived longer equality paths; DUAL2 does not subsume the audited 189 of 425 records"
+      },
+      "global_pinned_multiplicity": {
+        "added_clause_count": 49690,
+        "added_variable_count": 1080,
+        "blocker_choice_variable_count": 90,
+        "blocker_semantics": "low[x,p] chooses p != x with s[p,x]; no four p-incident distances avoiding p,x are one asserted equality class",
+        "carrier_vertex_count": 10,
+        "clause_counts": {
+          "PINNED-EQ-ROW": 360,
+          "PINNED-EQ-TRANS": 42570,
+          "PINNED-LOW-CHOICE": 370,
+          "PINNED-LOW-LINK": 90,
+          "PINNED-LOW-MULTIPLICITY": 6300
+        },
+        "descriptor_sha256": "3d4b6937c9ca200d67940184490e4b73e4564a52adc06ce59d224e666a5d04a8",
+        "distance_item_count": 45,
+        "distance_items_sha256": "2154c0505d50e875bd188adccc69085bf776c3cdb38926ab2274201cc6cafa86",
+        "equality_relation_variable_count": 990,
+        "equality_semantics": "true asserts equal squared distances; false does not assert a distance inequality",
+        "first_auxiliary_variable": 115,
+        "full_class_scope": "row links use selected four-shell memberships only; no selected subset nonmembership is treated as a metric inequality",
+        "legacy_projected_variable_count": 114,
+        "schema": "p97-phase3-projected-static-global-pinned-multiplicity-v1",
+        "semantic_variable_count": 111,
+        "total_variable_count": 1194
+      },
+      "s_mincut": {
+        "enabled": true,
+        "scope": "Problem97.counterexample_card_ge_ten at n=10",
+        "scope_token": "counterexample_card_ge_ten"
+      }
+    },
+    "survivor_limit": 2,
+    "survivor_record_schema": "p97-phase3-structural-cegar-survivor-projected-static-v3",
+    "three_rhombus_ingress": {
+      "certificate_schema": "p97-phase3-three-rhombus-equality-closure-v1",
+      "lean_direct_pattern_consumer": "Problem97.Phase3ThreeRhombusRowAdapter.false_of_thirteen_row_memberships",
+      "stage": "equality-seven-point-three-rhombus",
+      "terminal_claim": false,
+      "trust_boundary": "the generic equality-closure certificate and exact membership clause are Python-replayed; the named Lean row adapter covers the direct 13-membership pattern only, so journal replay is not a terminal or general Lean-kernel proof"
+    },
+    "three_rhombus_literal_namespace": {
+      "descriptor": {
+        "formula": "1 + (n-1)*center + (point if point<center else point-1)",
+        "mapping_sha256": "e5f7801c91152dd27a201c7014ae801b8036551e770092ae9419f03321c81802",
+        "n": 10,
+        "schema": "p97-phase3-row-major-s-dimacs-v1",
+        "variable_count": 90
+      },
+      "descriptor_sha256": "fd59dcaa0f2dabb93504050ff1544d8463c0633de5f67427213d38c9c9eca854"
+    },
+    "three_rhombus_prefix_bank": null,
+    "timeout_seconds": 5,
+    "workers": 1
+  },
+  "counts": {
+    "active_antichain_count": 0,
+    "bootstrap_cap_order_nogood_count": 0,
+    "bootstrap_five_point_cap_order_nogood_count": 0,
+    "bootstrap_kalmanson_cap_order_nogood_count": 0,
+    "bootstrap_learned_core_count": 0,
+    "bootstrap_rhombus_cap_order_nogood_count": 0,
+    "bootstrap_shared_pair_separation_nogood_count": 0,
+    "bootstrap_three_rhombus_prefix_nogood_count": 0,
+    "classified_raw_sat_count": 0,
+    "cube_batch_count": 0,
+    "cube_committed_result_count": 0,
+    "cube_local_unsat_unverified_count": 0,
+    "cube_result_count": 0,
+    "cube_stale_result_count": 0,
+    "dynamic_algebraic_nogood_count": 0,
+    "dynamic_cap_order_nogood_count": 0,
+    "dynamic_certificate_kind_histogram": {},
+    "dynamic_equilateral_shell_nogood_count": 0,
+    "dynamic_five_point_cap_order_nogood_count": 0,
+    "dynamic_kalmanson_cap_order_nogood_count": 0,
+    "dynamic_learned_core_count": 0,
+    "dynamic_real_distinctness_nogood_count": 0,
+    "dynamic_rhombus_cap_order_nogood_count": 0,
+    "dynamic_shared_pair_separation_nogood_count": 0,
+    "dynamic_three_rhombus_nogood_count": 0,
+    "dynamic_total_nogood_count": 0,
+    "learned_core_count": 0,
+    "raw_sat_count": 0,
+    "solver_attempt_count": 0,
+    "structural_survivor_count": 0,
+    "unclassified_raw_sat_count": 0
+  },
+  "diagnostic": null,
+  "dynamic_stage_histogram": {},
+  "failure": null,
+  "incremental_discovery": null,
+  "manifest_generation": 1,
+  "manifest_generation_schema": "p97-phase3-structural-cegar-projected-static-v3-manifest-generation-v1",
+  "manifest_sha256": "418c8d1c0b1fbe7486b59f8d7a1afeb1948c7dde5e5de6719c7e6b64a39a3e1d",
+  "observed_detector_stage_histogram": {},
+  "previous_manifest_sha256": null,
+  "productivity_stream": {
+    "byte_count": 0,
+    "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "record_count": 0,
+    "terminal_record_sha256": null
+  },
+  "result_claim": "bounded structural CEGAR checkpoint only; no Euclidean, P97-realizable, kernel-level, completeness, or non-existence claim",
+  "schema": "p97-phase3-structural-cegar-projected-static-v3",
+  "shard_local_simplification": {
+    "attempt_count": 0,
+    "attempts": [],
+    "base_snapshot": null,
+    "enabled": false,
+    "schema": "p97-phase3-shard-local-simplification-v1"
+  },
+  "stage_histogram": {},
+  "status": "RUNNING",
+  "stream_ledgers": {
+    "cube-batches": {
+      "byte_count": 0,
+      "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record_count": 0,
+      "terminal_record_sha256": null
+    },
+    "learned": {
+      "byte_count": 0,
+      "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record_count": 0,
+      "terminal_record_sha256": null
+    },
+    "solver-logs": {
+      "byte_count": 0,
+      "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record_count": 0,
+      "terminal_record_sha256": null
+    },
+    "survivors": {
+      "byte_count": 0,
+      "file_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "record_count": 0,
+      "terminal_record_sha256": null
+    }
+  },
+  "terminal_clause_count": null,
+  "terminal_drat_verified": false,
+  "trust_boundary": {
+    "algebraic": "saved Singular QQ identities are hash-pinned and independently replayed with exact SymPy Poly arithmetic; a deterministic non-induced Fin10 directed-subgraph matcher maps only nonzero-cofactor generator endpoints. Unit identities establish equality infeasibility after the P0/P1 similarity gauge, whose normalization uses the external P97 fact P0 != P1. The separately typed real-distinctness identity establishes x9x^2+x9y^2=0 and uses the ordered-real step P9=P0 plus the external P97 pairwise-distinctness hypothesis; it is not routed through unit/equality infeasibility. These are not unconditional order-independent structural contradictions",
+    "lean": "Phase3ThreeRhombusRowAdapter.false_of_thirteen_row_memberships is the dependency-pinned direct consumer for the 13-membership pattern only; no Lean build or transitive axiom audit was run for this v3 integration, and it does not kernel-replay every generic Python closure path. The generic ConvexFivePointCore.false_of_core and ConvexRhombusCore.false_of_core consumers (and their negative orientation variants), plus CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order, are kernel-checked generic theorems; this Phase-3 certificate format and all concrete cap-order ingress paths are not kernel-landed",
+    "parallel": "cube-batch mode is explicit opt-in local scheduling over an exhaustive deterministic semantic-variable partition; workers only solve immutable snapshot CNFs, while the coordinator rechecks SAT assignments against live cuts and alone appends hash-chained records. Per-cube UNSAT is unverified and never terminal",
+    "sat": "CaDiCaL assignment decoded and revalidated by SatEncoding",
+    "structural": "current order-independent Python formalized-core detector plus a checked-path membership clause for duplicate-center cores or a minimum whole-row clause for other structural cores, with independent Python replay; the next detector replays a seven-point three-rhombus equality closure and negates exactly its positive row memberships; that replay is not itself a terminal or Lean-kernel proof; an optional externally pinned v2 prefix bank is fully source-replayed and translated into the same v3 row-major clause namespace before enumeration; each cap-order certificate retains an exactly minimized subset of positive f facts, reconstructs every compatible Phase-3 completion and all 24 source cap_orders without a reflection quotient, and replays either the cyclic five-point closures or the convex-rhombus closures in every order; the selected-row Kalmanson rule additionally binds an exactly minimized union of complete rows and replays its three direct rows, five roles, and boundary rotation separately in every order",
+    "survivor": "order-independent metric-core and three-rhombus detectors, and exhaustive cap-order detectors returned none, and no unit or real-distinctness algebraic template matched; this is structurally unresolved only, not Euclidean or P97-realizable",
+    "terminal": "UNSAT is terminal only after drat-trim prints exact s VERIFIED"
+  }
+}

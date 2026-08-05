@@ -1,0 +1,2 @@
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:49:theorem exists_sorted_triple_finset_eq
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:186:theorem exists_sorted_triple_points_between

@@ -1,0 +1,76 @@
+{
+  "boolean_relaxation": {
+    "excluded_total": 18357,
+    "included_total": 8937,
+    "physical_shell_cap_excluded": 210,
+    "physical_shell_cap_included": 0,
+    "pinned_center_included": 16
+  },
+  "case_id": "fresh_DDD_k0_d2_f1",
+  "elapsed_seconds": 28.64686066680588,
+  "epistemic_status": "diagnostic only; v37 includes a forced hypothetical producer, so UNSAT would be conditional and SAT/UNKNOWN would not close P97",
+  "formula_assertion_count": 27294,
+  "formula_sha256": "305f6643e1fc1eb37bfcf008e36c53c5fc647537c27dc76cdb9122e35538ac37",
+  "new_family_counts": {
+    "endpoint_seed_pinned_physical_center": 16,
+    "endpoint_seed_pinned_physical_shell_seed_cap_three": 210
+  },
+  "reason_unknown": "canceled",
+  "schema_version": 38,
+  "source_provenance": {
+    "files": {
+      "lean_source": {
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+        "sha256": "09bbb1fd36e8aa6b984c1f0b00ada3b0c45511f52b76720aaebab45b66a1a794"
+      },
+      "v12_boolean_relaxation": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/round5_cegar_v12.py",
+        "sha256": "8da7127a36dafdbce667edcd44ebef0db62eb2245ad832f373817c4bc28df1c9"
+      },
+      "v35_base": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/round5_cegar_v35.py",
+        "sha256": "26f087f61d441990863b284fb64792734ffa7ff6db17ed84ee221b51f88bf89e"
+      },
+      "v36_base": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/v36_selected_row_alternation_pilot.py",
+        "sha256": "c18a9871dd4b0e0cd1ea52f42cb03f1fdc92feaa3dbf7c4ae1669ab2f1489cfe"
+      },
+      "v37_base": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/v37_endpoint_frontier_adjacent_singleton_pilot.py",
+        "sha256": "53469c8304895efa22dcb1f1642bb8302ea75fde6489963b503f6aa39e70034f"
+      },
+      "v38_schema": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/schema_v38.json",
+        "sha256": "a1b7d6b83e0eaa8a9febbb047234f966ac789d15eff86fcf05da4cfc8047e576"
+      },
+      "v38_script": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/v38_pinned_seed_center_multiplicity_canary.py",
+        "sha256": "cc2ab562e706b16d6dfed7e62ff8e81d5035b6f6e4b5e827359ee988c71b1ddd"
+      },
+      "v38_test": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/test_v38_pinned_seed_center_multiplicity_canary.py",
+        "sha256": "7a30c08f1ae5063ccceab472a30d89c1fdc80bbf1d24b629eeea65ae3d2e386e"
+      },
+      "v8_encoding": {
+        "path": "scratch/retained-omission-e1/round5-general-cegar/round5_cegar_v8.py",
+        "sha256": "e0c98be80b2729cf50ee1d9da6c081fc4db2095e66abfb3c85abfbf5799b7162"
+      }
+    },
+    "lean_theorems": [
+      "endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker",
+      "endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker"
+    ],
+    "new_family_counts": {
+      "endpoint_seed_pinned_physical_center": 16,
+      "endpoint_seed_pinned_physical_shell_seed_cap_three": 210
+    },
+    "schema_version": 38,
+    "scope": "exact worktree snapshot of direct v38 sources and dependencies; not a git-HEAD-authenticated production manifest",
+    "semantic_boolean_delta": 15
+  },
+  "source_provenance_sha256": "99861cb7afc1958cf9da204cb1a268983705be370cceed37301c189aedf9f7ab",
+  "status": "unknown",
+  "timeout_ms": 20000,
+  "tracker_count": 44,
+  "tracker_set_exact": true
+}

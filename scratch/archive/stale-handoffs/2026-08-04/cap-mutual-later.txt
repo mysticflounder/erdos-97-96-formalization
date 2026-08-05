@@ -1,0 +1,556 @@
+ 13140	        P Pρ hρne hfrontierFour hρfour
+ 13141	        hfrontierInteriorEq hρInteriorEq
+ 13142	        T hpairsDisjoint hblockersNe
+ 13143	        LPρ hLPρ MPρ LP hLP MP C hsecond
+ 13144	
+ 13145	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13146	  hpairsDisjoint hblockersNe
+ 13147	  LPρ hLPρ MPρ LP hLP MP in
+ 13148	/-- The two distinct blockers of a mutually incident cap-source pair can
+ 13149	occupy the same indexed strict cap only when it is the source cap. -/
+ 13150	theorem exists_mutualBlockerCapIndices_same_only_first
+ 13151	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13152	    (hsourcesNe : source.1 ≠ source'.1)
+ 13153	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 13154	    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+ 13155	    (hmutual :
+ 13156	      TwoCapSourcesMutualCrossMembership (H := H) source source')
+ 13157	    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+ 13158	    ∃ i j : Fin 3,
+ 13159	      H.centerAt source.1 source.2 ∈ S.capInteriorByIndex i ∧
+ 13160	        H.centerAt source'.1 source'.2 ∈ S.capInteriorByIndex j ∧
+ 13161	        (i = j → i = S.oppIndex1) := by
+ 13162	  rcases exists_blockerCenter_mem_capInteriorByIndex
+ 13163	      (T := T) source with ⟨i, hi⟩
+ 13164	  rcases exists_blockerCenter_mem_capInteriorByIndex
+ 13165	      (T := T) source' with ⟨j, hj⟩
+ 13166	  refine ⟨i, j, hi, hj, ?_⟩
+ 13167	  intro hij
+ 13168	  subst j
+ 13169	  by_contra hifirst
+ 13170	  have hcentersNe :
+ 13171	      H.centerAt source.1 source.2 ≠
+ 13172	        H.centerAt source'.1 source'.2 := by
+ 13173	    intro hcenters
+ 13174	    apply hblockersNe'
+ 13175	    apply Subtype.ext
+ 13176	    exact hcenters
+ 13177	  have hsourceOff :
+ 13178	      source.1 ∉ S.capByIndex i :=
+ 13179	    S.capInteriorByIndex_not_mem_capByIndex_of_ne
+ 13180	      hsource.2.1 (Ne.symm hifirst)
+ 13181	  have hsourceOff' :
+ 13182	      source'.1 ∉ S.capByIndex i :=
+ 13183	    S.capInteriorByIndex_not_mem_capByIndex_of_ne
+ 13184	      hsource'.2.1 (Ne.symm hifirst)
+ 13185	  have hcenterEq :
+ 13186	      dist (H.centerAt source.1 source.2) source.1 =
+ 13187	        dist (H.centerAt source.1 source.2) source'.1 :=
+ 13188	    ((H.selectedAt source.1
+ 13189	        source.2).toCriticalFourShell.support_eq_radius
+ 13190	      source.1
+ 13191	      (H.selectedAt source.1
+ 13192	        source.2).toCriticalFourShell.q_mem_support).trans
+ 13193	      ((H.selectedAt source.1
+ 13194	        source.2).toCriticalFourShell.support_eq_radius
+ 13195	      source'.1 hmutual.1).symm
+ 13196	  have hcenterEq' :
+ 13197	      dist (H.centerAt source'.1 source'.2) source.1 =
+ 13198	        dist (H.centerAt source'.1 source'.2) source'.1 :=
+ 13199	    ((H.selectedAt source'.1
+ 13200	        source'.2).toCriticalFourShell.support_eq_radius
+ 13201	      source.1 hmutual.2).trans
+ 13202	      ((H.selectedAt source'.1
+ 13203	        source'.2).toCriticalFourShell.support_eq_radius
+ 13204	      source'.1
+ 13205	      (H.selectedAt source'.1
+ 13206	        source'.2).toCriticalFourShell.q_mem_support).symm
+ 13207	  exact
+ 13208	    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+ 13209	      S i
+ 13210	      (S.capInteriorByIndex_subset_capByIndex i hi)
+ 13211	      (S.capInteriorByIndex_subset_capByIndex i hj)
+ 13212	      hcentersNe source.2 source'.2 hsourcesNe
+ 13213	      hsourceOff hsourceOff' hcenterEq hcenterEq'
+ 13214	
+ 13215	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13216	  T hpairsDisjoint hblockersNe
+ 13217	  LPρ hLPρ MPρ LP hLP MP in
+ 13218	private theorem false_of_three_firstCap_hits_at_firstCap_blocker
+ 13219	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13220	    (z : ℝ²)
+ 13221	    (hsourcesNe : source.1 ≠ source'.1)
+ 13222	    (hzNeSource : z ≠ source.1)
+ 13223	    (hzNeSource' : z ≠ source'.1)
+ 13224	    (hsourceCap : source.1 ∈ S.capByIndex S.oppIndex1)
+ 13225	    (hsourceCap' : source'.1 ∈ S.capByIndex S.oppIndex1)
+ 13226	    (hzCap : z ∈ S.capByIndex S.oppIndex1)
+ 13227	    (hsource'Mem :
+ 13228	      source'.1 ∈
+ 13229	        (H.selectedAt source.1
+ 13230	          source.2).toCriticalFourShell.support)
+ 13231	    (hzMem :
+ 13232	      z ∈
+ 13233	        (H.selectedAt source.1
+ 13234	          source.2).toCriticalFourShell.support)
+ 13235	    (hcenterCap :
+ 13236	      H.centerAt source.1 source.2 ∈
+ 13237	        S.capByIndex S.oppIndex1) :
+ 13238	    False := by
+ 13239	  classical
+ 13240	  have htriple :
+ 13241	      ({source.1, source'.1, z} : Finset ℝ²) ⊆
+ 13242	        (H.selectedAt source.1
+ 13243	            source.2).toCriticalFourShell.support ∩
+ 13244	          S.capByIndex S.oppIndex1 := by
+ 13245	    intro x hx
+ 13246	    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+ 13247	    rcases hx with rfl | rfl | rfl
+ 13248	    · exact Finset.mem_inter.mpr
+ 13249	        ⟨(H.selectedAt source.1
+ 13250	            source.2).toCriticalFourShell.q_mem_support,
+ 13251	          hsourceCap⟩
+ 13252	    · exact Finset.mem_inter.mpr ⟨hsource'Mem, hsourceCap'⟩
+ 13253	    · exact Finset.mem_inter.mpr ⟨hzMem, hzCap⟩
+ 13254	  have hthree :
+ 13255	      3 ≤
+ 13256	        ((H.selectedAt source.1
+ 13257	            source.2).toCriticalFourShell.support ∩
+ 13258	          S.capByIndex S.oppIndex1).card := by
+ 13259	    have hle := Finset.card_le_card htriple
+ 13260	    simpa [hsourcesNe, Ne.symm hzNeSource,
+ 13261	      Ne.symm hzNeSource'] using hle
+ 13262	  have htwo :
+ 13263	      ((H.selectedAt source.1
+ 13264	          source.2).toCriticalFourShell.support ∩
+ 13265	        S.capByIndex S.oppIndex1).card ≤ 2 := by
+ 13266	    simpa using
+ 13267	      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+ 13268	        S D.convex S.oppIndex1
+ 13269	        (H.selectedAt source.1
+ 13270	          source.2).toCriticalFourShell.toSelectedFourClass
+ 13271	        hcenterCap
+ 13272	  omega
+ 13273	
+ 13274	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13275	  T hpairsDisjoint hblockersNe
+ 13276	  LPρ hLPρ MPρ LP hLP MP in
+ 13277	/-- In the complementary first-collision-pair branch, neither cap-source
+ 13278	blocker can lie in the source cap.  A blocker in that cap would see the two
+ 13279	mutually incident sources and one collision endpoint, contradicting the
+ 13280	two-hit bound for a selected row centered in its own indexed cap. -/
+ 13281	theorem false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+ 13282	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13283	    (hsourcesNe : source.1 ≠ source'.1)
+ 13284	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 13285	    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+ 13286	    (hmutual :
+ 13287	      TwoCapSourcesMutualCrossMembership (H := H) source source')
+ 13288	    (hcomplementary :
+ 13289	      (P.source₁ ∈
+ 13290	            (H.selectedAt source.1
+ 13291	              source.2).toCriticalFourShell.support ∧
+ 13292	          P.source₂ ∈
+ 13293	            (H.selectedAt source'.1
+ 13294	              source'.2).toCriticalFourShell.support) ∨
+ 13295	        (P.source₂ ∈
+ 13296	            (H.selectedAt source.1
+ 13297	              source.2).toCriticalFourShell.support ∧
+ 13298	          P.source₁ ∈
+ 13299	            (H.selectedAt source'.1
+ 13300	              source'.2).toCriticalFourShell.support))
+ 13301	    (hcenterFirst :
+ 13302	      H.centerAt source.1 source.2 ∈
+ 13303	          S.capByIndex S.oppIndex1 ∨
+ 13304	        H.centerAt source'.1 source'.2 ∈
+ 13305	          S.capByIndex S.oppIndex1) :
+ 13306	    False := by
+ 13307	  rcases hsource with
+ 13308	    ⟨_, hsourceInterior, hsourceOutside, _, _, _, _, _, _, _, _⟩
+ 13309	  rcases hsource' with
+ 13310	    ⟨_, hsourceInterior', hsourceOutside', _, _, _, _, _, _, _, _⟩
+ 13311	  have hsourceCap :
+ 13312	      source.1 ∈ S.capByIndex S.oppIndex1 :=
+ 13313	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsourceInterior
+ 13314	  have hsourceCap' :
+ 13315	      source'.1 ∈ S.capByIndex S.oppIndex1 :=
+ 13316	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsourceInterior'
+ 13317	  have hP₁Cap :
+ 13318	      P.source₁ ∈ S.capByIndex S.oppIndex1 :=
+ 13319	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 13320	      P.source₁_mem_capInterior
+ 13321	  have hP₂Cap :
+ 13322	      P.source₂ ∈ S.capByIndex S.oppIndex1 :=
+ 13323	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 13324	      P.source₂_mem_capInterior
+ 13325	  have hP₁NeSource : P.source₁ ≠ source.1 := by
+ 13326	    intro h
+ 13327	    apply hsourceOutside
+ 13328	    exact h ▸ (by simp)
+ 13329	  have hP₁NeSource' : P.source₁ ≠ source'.1 := by
+ 13330	    intro h
+ 13331	    apply hsourceOutside'
+ 13332	    exact h ▸ (by simp)
+ 13333	  have hP₂NeSource : P.source₂ ≠ source.1 := by
+ 13334	    intro h
+ 13335	    apply hsourceOutside
+ 13336	    exact h ▸ (by simp)
+ 13337	  have hP₂NeSource' : P.source₂ ≠ source'.1 := by
+ 13338	    intro h
+ 13339	    apply hsourceOutside'
+ 13340	    exact h ▸ (by simp)
+ 13341	  rcases hcenterFirst with hcenterFirst | hcenterFirst
+ 13342	  · rcases hcomplementary with hfirst | hsecond
+ 13343	    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+ 13344	        source source' P.source₁ hsourcesNe
+ 13345	        hP₁NeSource hP₁NeSource' hsourceCap hsourceCap'
+ 13346	        hP₁Cap hmutual.1 hfirst.1 hcenterFirst
+ 13347	    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+ 13348	        source source' P.source₂ hsourcesNe
+ 13349	        hP₂NeSource hP₂NeSource' hsourceCap hsourceCap'
+ 13350	        hP₂Cap hmutual.1 hsecond.1 hcenterFirst
+ 13351	  · rcases hcomplementary with hfirst | hsecond
+ 13352	    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+ 13353	        source' source P.source₂ hsourcesNe.symm
+ 13354	        hP₂NeSource' hP₂NeSource hsourceCap' hsourceCap
+ 13355	        hP₂Cap hmutual.2 hfirst.2 hcenterFirst
+ 13356	    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+ 13357	        source' source P.source₁ hsourcesNe.symm
+ 13358	        hP₁NeSource' hP₁NeSource hsourceCap' hsourceCap
+ 13359	        hP₁Cap hmutual.2 hsecond.2 hcenterFirst
+ 13360	
+ 13361	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13362	  hpairsDisjoint hblockersNe
+ 13363	  LPρ hLPρ MPρ LP hLP MP in
+ 13364	/-- In the complementary first-collision-pair branch, the two blockers lie in
+ 13365	the two distinct cap interiors other than the source cap. -/
+ 13366	theorem exists_mutualBlockerCapIndices_distinct_otherCaps
+ 13367	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13368	    (hsourcesNe : source.1 ≠ source'.1)
+ 13369	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 13370	    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+ 13371	    (hmutual :
+ 13372	      TwoCapSourcesMutualCrossMembership (H := H) source source')
+ 13373	    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+ 13374	    (hcomplementary :
+ 13375	      (P.source₁ ∈
+ 13376	            (H.selectedAt source.1
+ 13377	              source.2).toCriticalFourShell.support ∧
+ 13378	          P.source₂ ∈
+ 13379	            (H.selectedAt source'.1
+ 13380	              source'.2).toCriticalFourShell.support) ∨
+ 13381	        (P.source₂ ∈
+ 13382	            (H.selectedAt source.1
+ 13383	              source.2).toCriticalFourShell.support ∧
+ 13384	          P.source₁ ∈
+ 13385	            (H.selectedAt source'.1
+ 13386	              source'.2).toCriticalFourShell.support)) :
+ 13387	    ∃ i j : Fin 3,
+ 13388	      H.centerAt source.1 source.2 ∈ S.capInteriorByIndex i ∧
+ 13389	        H.centerAt source'.1 source'.2 ∈ S.capInteriorByIndex j ∧
+ 13390	        i ≠ S.oppIndex1 ∧
+ 13391	        j ≠ S.oppIndex1 ∧
+ 13392	        i ≠ j := by
+ 13393	  rcases exists_mutualBlockerCapIndices_same_only_first
+ 13394	      P Pρ T source source' hsourcesNe hsource hsource'
+ 13395	      hmutual hblockersNe' with
+ 13396	    ⟨i, j, hi, hj, hsameOnlyFirst⟩
+ 13397	  have hiNe : i ≠ S.oppIndex1 := by
+ 13398	    intro hiFirst
+ 13399	    apply false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+ 13400	      P Pρ source source' hsourcesNe hsource hsource'
+ 13401	      hmutual hcomplementary
+ 13402	    left
+ 13403	    rw [hiFirst] at hi
+ 13404	    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hi
+ 13405	  have hjNe : j ≠ S.oppIndex1 := by
+ 13406	    intro hjFirst
+ 13407	    apply false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+ 13408	      P Pρ source source' hsourcesNe hsource hsource'
+ 13409	      hmutual hcomplementary
+ 13410	    right
+ 13411	    rw [hjFirst] at hj
+ 13412	    exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hj
+ 13413	  have hijNe : i ≠ j := by
+ 13414	    intro hij
+ 13415	    exact hiNe (hsameOnlyFirst hij)
+ 13416	  exact ⟨i, j, hi, hj, hiNe, hjNe, hijNe⟩
+ 13417	
+ 13418	omit D S radius ρ H F R P Fρ Rρ Pρ hρne
+ 13419	  hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13420	  T hpairsDisjoint hblockersNe
+ 13421	  LPρ hLPρ MPρ LP hLP MP in
+ 13422	/-- Two distinct carrier points outside an ordered cap cannot both bisect one
+ 13423	of its chords.  The CGN side dichotomy puts one bisector point back on the
+ 13424	open subchain, contradicting that it is outside the cap. -/
+ 13425	private theorem false_of_two_offCap_bisectors
+ 13426	    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+ 13427	    (hconv : ConvexIndep A)
+ 13428	    (hmem : ∀ t : Fin m, L.points t ∈ A)
+ 13429	    (Hord : CGN.StrictCapOrder A L)
+ 13430	    {r s : Fin m} (hrs : r < s) {a b : ℝ²}
+ 13431	    (haA : a ∈ A) (hbA : b ∈ A) (hab : a ≠ b)
+ 13432	    (har : a ≠ L.points r) (has : a ≠ L.points s)
+ 13433	    (hbr : b ≠ L.points r) (hbs : b ≠ L.points s)
+ 13434	    (haeq : dist a (L.points r) = dist a (L.points s))
+ 13435	    (hbeq : dist b (L.points r) = dist b (L.points s))
+ 13436	    (haOff : a ∉ Finset.univ.image L.points)
+ 13437	    (hbOff : b ∉ Finset.univ.image L.points) :
+ 13438	    False := by
+ 13439	  classical
+ 13440	  rcases CGN.CGN6e3_exists_subchain_side_apex
+ 13441	      hconv hmem hrs haA hbA hab har has hbr hbs haeq hbeq with
+ 13442	    haPos | hbPos
+ 13443	  · obtain ⟨j, _, _, hj⟩ :=
+ 13444	      (Hord.subchord_open_side_iff_A hrs haA).mp haPos
+ 13445	    exact haOff (Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩)
+ 13446	  · obtain ⟨j, _, _, hj⟩ :=
+ 13447	      (Hord.subchord_open_side_iff_A hrs hbA).mp hbPos
+ 13448	    exact hbOff (Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩)
+ 13449	
+ 13450	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13451	  T hpairsDisjoint hblockersNe
+ 13452	  LPρ hLPρ MPρ LP hLP MP in
+ 13453	/-- Two distinct blocker centers outside the source cap cannot both bisect
+ 13454	the chord joining two distinct source-cap points. -/
+ 13455	private theorem false_of_twoCapSources_of_blockers_off_firstCap
+ 13456	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13457	    (hsourcesNe : source.1 ≠ source'.1)
+ 13458	    (hsourceCap :
+ 13459	      source.1 ∈ S.capInteriorByIndex S.oppIndex1)
+ 13460	    (hsourceCap' :
+ 13461	      source'.1 ∈ S.capInteriorByIndex S.oppIndex1)
+ 13462	    (hmutual :
+ 13463	      TwoCapSourcesMutualCrossMembership (H := H) source source')
+ 13464	    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+ 13465	    (haOff :
+ 13466	      H.centerAt source.1 source.2 ∉
+ 13467	        S.capByIndex S.oppIndex1)
+ 13468	    (hbOff :
+ 13469	      H.centerAt source'.1 source'.2 ∉
+ 13470	        S.capByIndex S.oppIndex1) :
+ 13471	    False := by
+ 13472	  classical
+ 13473	  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+ 13474	    ⟨m, L, Packet, _Hside, Hord, hcap⟩
+ 13475	  have hsourceImage :
+ 13476	      source.1 ∈ Finset.univ.image L.points := by
+ 13477	    rw [hcap]
+ 13478	    exact S.capInteriorByIndex_subset_capByIndex
+ 13479	      S.oppIndex1 hsourceCap
+ 13480	  have hsourceImage' :
+ 13481	      source'.1 ∈ Finset.univ.image L.points := by
+ 13482	    rw [hcap]
+ 13483	    exact S.capInteriorByIndex_subset_capByIndex
+ 13484	      S.oppIndex1 hsourceCap'
+ 13485	  rcases Finset.mem_image.mp hsourceImage with
+ 13486	    ⟨r, _hrMem, hr⟩
+ 13487	  rcases Finset.mem_image.mp hsourceImage' with
+ 13488	    ⟨s, _hsMem, hs⟩
+ 13489	  have hrsNe : r ≠ s := by
+ 13490	    intro hrs
+ 13491	    apply hsourcesNe
+ 13492	    calc
+ 13493	      source.1 = L.points r := hr.symm
+ 13494	      _ = L.points s := by rw [hrs]
+ 13495	      _ = source'.1 := hs
+ 13496	  have hab :
+ 13497	      H.centerAt source.1 source.2 ≠
+ 13498	        H.centerAt source'.1 source'.2 := by
+ 13499	    intro hab
+ 13500	    apply hblockersNe'
+ 13501	    apply Subtype.ext
+ 13502	    exact hab
+ 13503	  have haImageOff :
+ 13504	      H.centerAt source.1 source.2 ∉
+ 13505	        Finset.univ.image L.points := by
+ 13506	    simpa [hcap] using haOff
+ 13507	  have hbImageOff :
+ 13508	      H.centerAt source'.1 source'.2 ∉
+ 13509	        Finset.univ.image L.points := by
+ 13510	    simpa [hcap] using hbOff
+ 13511	  have har :
+ 13512	      H.centerAt source.1 source.2 ≠ L.points r := by
+ 13513	    intro har
+ 13514	    exact haImageOff
+ 13515	      (Finset.mem_image.mpr
+ 13516	        ⟨r, Finset.mem_univ _, har.symm⟩)
+ 13517	  have has :
+ 13518	      H.centerAt source.1 source.2 ≠ L.points s := by
+ 13519	    intro has
+ 13520	    exact haImageOff
+ 13521	      (Finset.mem_image.mpr
+ 13522	        ⟨s, Finset.mem_univ _, has.symm⟩)
+ 13523	  have hbr :
+ 13524	      H.centerAt source'.1 source'.2 ≠ L.points r := by
+ 13525	    intro hbr
+ 13526	    exact hbImageOff
+ 13527	      (Finset.mem_image.mpr
+ 13528	        ⟨r, Finset.mem_univ _, hbr.symm⟩)
+ 13529	  have hbs :
+ 13530	      H.centerAt source'.1 source'.2 ≠ L.points s := by
+ 13531	    intro hbs
+ 13532	    exact hbImageOff
+ 13533	      (Finset.mem_image.mpr
+ 13534	        ⟨s, Finset.mem_univ _, hbs.symm⟩)
+ 13535	  have haeq :
+ 13536	      dist (H.centerAt source.1 source.2) (L.points r) =
+ 13537	        dist (H.centerAt source.1 source.2) (L.points s) := by
+ 13538	    rw [hr, hs]
+ 13539	    exact
+ 13540	      ((H.selectedAt source.1
+ 13541	          source.2).toCriticalFourShell.support_eq_radius
+ 13542	        source.1
+ 13543	        (H.selectedAt source.1
+ 13544	          source.2).toCriticalFourShell.q_mem_support).trans
+ 13545	        ((H.selectedAt source.1
+ 13546	          source.2).toCriticalFourShell.support_eq_radius
+ 13547	        source'.1 hmutual.1).symm
+ 13548	  have hbeq :
+ 13549	      dist (H.centerAt source'.1 source'.2) (L.points r) =
+ 13550	        dist (H.centerAt source'.1 source'.2) (L.points s) := by
+ 13551	    rw [hr, hs]
+ 13552	    exact
+ 13553	      ((H.selectedAt source'.1
+ 13554	          source'.2).toCriticalFourShell.support_eq_radius
+ 13555	        source.1 hmutual.2).trans
+ 13556	        ((H.selectedAt source'.1
+ 13557	          source'.2).toCriticalFourShell.support_eq_radius
+ 13558	        source'.1
+ 13559	        (H.selectedAt source'.1
+ 13560	          source'.2).toCriticalFourShell.q_mem_support).symm
+ 13561	  rcases lt_or_gt_of_ne hrsNe with hrs | hsr
+ 13562	  · exact false_of_two_offCap_bisectors
+ 13563	      D.convex Packet.mem_A Hord hrs
+ 13564	      (H.blockerVertex source).2
+ 13565	      (H.blockerVertex source').2 hab
+ 13566	      har has hbr hbs haeq hbeq haImageOff hbImageOff
+ 13567	  · exact false_of_two_offCap_bisectors
+ 13568	      D.convex Packet.mem_A Hord hsr
+ 13569	      (H.blockerVertex source).2
+ 13570	      (H.blockerVertex source').2 hab
+ 13571	      has har hbs hbr haeq.symm hbeq.symm
+ 13572	      haImageOff hbImageOff
+ 13573	
+ 13574	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13575	  hpairsDisjoint hblockersNe
+ 13576	  LPρ hLPρ MPρ LP hLP MP in
+ 13577	/-- Complementary choices from the first collision pair are impossible for
+ 13578	two mutually incident cap-source rows with distinct blockers.  The blockers
+ 13579	would be two distinct off-cap bisectors of the chord joining the sources. -/
+ 13580	theorem false_of_twoCapSources_complementaryMembership
+ 13581	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+ 13582	    (hsourcesNe : source.1 ≠ source'.1)
+ 13583	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 13584	    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+ 13585	    (hmutual :
+ 13586	      TwoCapSourcesMutualCrossMembership (H := H) source source')
+ 13587	    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+ 13588	    (hcomplementary :
+ 13589	      (P.source₁ ∈
+ 13590	            (H.selectedAt source.1
+ 13591	              source.2).toCriticalFourShell.support ∧
+ 13592	          P.source₂ ∈
+ 13593	            (H.selectedAt source'.1
+ 13594	              source'.2).toCriticalFourShell.support) ∨
+ 13595	        (P.source₂ ∈
+ 13596	            (H.selectedAt source.1
+ 13597	              source.2).toCriticalFourShell.support ∧
+ 13598	          P.source₁ ∈
+ 13599	            (H.selectedAt source'.1
+ 13600	              source'.2).toCriticalFourShell.support)) :
+ 13601	    False := by
+ 13602	  classical
+ 13603	  rcases exists_mutualBlockerCapIndices_distinct_otherCaps
+ 13604	      P Pρ T source source' hsourcesNe hsource hsource'
+ 13605	      hmutual hblockersNe' hcomplementary with
+ 13606	    ⟨i, j, hi, hj, hiNe, hjNe, _hijNe⟩
+ 13607	  have haOff :
+ 13608	      H.centerAt source.1 source.2 ∉
+ 13609	        S.capByIndex S.oppIndex1 :=
+ 13610	    S.capInteriorByIndex_not_mem_capByIndex_of_ne
+ 13611	      hi hiNe
+ 13612	  have hbOff :
+ 13613	      H.centerAt source'.1 source'.2 ∉
+ 13614	        S.capByIndex S.oppIndex1 :=
+ 13615	    S.capInteriorByIndex_not_mem_capByIndex_of_ne
+ 13616	      hj hjNe
+ 13617	  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+ 13618	    ⟨m, L, Packet, _Hside, Hord, hcap⟩
+ 13619	  have hsourceImage :
+ 13620	      source.1 ∈ Finset.univ.image L.points := by
+ 13621	    rw [hcap]
+ 13622	    exact S.capInteriorByIndex_subset_capByIndex
+ 13623	      S.oppIndex1 hsource.2.1
+ 13624	  have hsourceImage' :
+ 13625	      source'.1 ∈ Finset.univ.image L.points := by
+ 13626	    rw [hcap]
+ 13627	    exact S.capInteriorByIndex_subset_capByIndex
+ 13628	      S.oppIndex1 hsource'.2.1
+ 13629	  rcases Finset.mem_image.mp hsourceImage with
+ 13630	    ⟨r, _hrMem, hr⟩
+ 13631	  rcases Finset.mem_image.mp hsourceImage' with
+ 13632	    ⟨s, _hsMem, hs⟩
+ 13633	  have hrsNe : r ≠ s := by
+ 13634	    intro hrs
+ 13635	    apply hsourcesNe
+ 13636	    calc
+ 13637	      source.1 = L.points r := hr.symm
+ 13638	      _ = L.points s := by rw [hrs]
+ 13639	      _ = source'.1 := hs
+ 13640	  have hab :
+ 13641	      H.centerAt source.1 source.2 ≠
+ 13642	        H.centerAt source'.1 source'.2 := by
+ 13643	    intro hab
+ 13644	    apply hblockersNe'
+ 13645	    apply Subtype.ext
+ 13646	    exact hab
+ 13647	  have haImageOff :
+ 13648	      H.centerAt source.1 source.2 ∉
+ 13649	        Finset.univ.image L.points := by
+ 13650	    simpa [hcap] using haOff
+ 13651	  have hbImageOff :
+ 13652	      H.centerAt source'.1 source'.2 ∉
+ 13653	        Finset.univ.image L.points := by
+ 13654	    simpa [hcap] using hbOff
+ 13655	  have har :
+ 13656	      H.centerAt source.1 source.2 ≠ L.points r := by
+ 13657	    intro har
+ 13658	    exact haImageOff
+ 13659	      (Finset.mem_image.mpr
+ 13660	        ⟨r, Finset.mem_univ _, har.symm⟩)
+ 13661	  have has :
+ 13662	      H.centerAt source.1 source.2 ≠ L.points s := by
+ 13663	    intro has
+ 13664	    exact haImageOff
+ 13665	      (Finset.mem_image.mpr
+ 13666	        ⟨s, Finset.mem_univ _, has.symm⟩)
+ 13667	  have hbr :
+ 13668	      H.centerAt source'.1 source'.2 ≠ L.points r := by
+ 13669	    intro hbr
+ 13670	    exact hbImageOff
+ 13671	      (Finset.mem_image.mpr
+ 13672	        ⟨r, Finset.mem_univ _, hbr.symm⟩)
+ 13673	  have hbs :
+ 13674	      H.centerAt source'.1 source'.2 ≠ L.points s := by
+ 13675	    intro hbs
+ 13676	    exact hbImageOff
+ 13677	      (Finset.mem_image.mpr
+ 13678	        ⟨s, Finset.mem_univ _, hbs.symm⟩)
+ 13679	  have haeq :
+ 13680	      dist (H.centerAt source.1 source.2) (L.points r) =
+ 13681	        dist (H.centerAt source.1 source.2) (L.points s) := by
+ 13682	    rw [hr, hs]
+ 13683	    exact
+ 13684	      ((H.selectedAt source.1
+ 13685	          source.2).toCriticalFourShell.support_eq_radius
+ 13686	        source.1
+ 13687	        (H.selectedAt source.1
+ 13688	          source.2).toCriticalFourShell.q_mem_support).trans
+ 13689	        ((H.selectedAt source.1
+ 13690	          source.2).toCriticalFourShell.support_eq_radius
+ 13691	        source'.1 hmutual.1).symm
+ 13692	  have hbeq :
+ 13693	      dist (H.centerAt source'.1 source'.2) (L.points r) =
+ 13694	        dist (H.centerAt source'.1 source'.2) (L.points s) := by
+ 13695	    rw [hr, hs]

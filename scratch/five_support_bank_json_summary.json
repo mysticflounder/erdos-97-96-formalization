@@ -1,0 +1,136 @@
+{
+  "u5_global_incidence": {
+    "modules": 296,
+    "modules_absent_by_basename": 293,
+    "novel_class_incompatibility_consumers": 96,
+    "novel_metric_incompatibility_consumers": 88,
+    "novel_other_contradiction_consumers": 0,
+    "novel_scalar_incompatibility_consumers": 112
+  },
+  "unimported": {
+    "generated_u1_source_unit_consumers": 18,
+    "source_proved_novel_contradiction_consumers": 19,
+    "standalone_metric_consumers": 1
+  }
+}
+[
+  {
+    "category": "scalar-algebra-uniform",
+    "count": 112,
+    "family": "U5GlobalIncidence",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-data-uniform",
+    "count": 96,
+    "family": "U5GlobalIncidence",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "metric-point-uniform",
+    "count": 88,
+    "family": "U5GlobalIncidence",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-data-uniform",
+    "count": 46,
+    "family": "U5",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "scalar-algebra-uniform",
+    "count": 44,
+    "family": "U5",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "metric-point-uniform",
+    "count": 34,
+    "family": "U5",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-data-uniform",
+    "count": 34,
+    "family": "other",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-data-uniform",
+    "count": 18,
+    "family": "U1",
+    "reachability": "unimported"
+  },
+  {
+    "category": "ambient-set-uniform",
+    "count": 9,
+    "family": "U5",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "scalar-algebra-uniform",
+    "count": 5,
+    "family": "other",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-data-uniform",
+    "count": 4,
+    "family": "U2",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-set-uniform",
+    "count": 4,
+    "family": "other",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-set-uniform",
+    "count": 3,
+    "family": "U1",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "ambient-set-uniform",
+    "count": 2,
+    "family": "U2",
+    "reachability": "RVOL-reachable"
+  },
+  {
+    "category": "metric-point-uniform",
+    "count": 1,
+    "family": "U1TwoLargeCapObstruction",
+    "reachability": "unimported"
+  }
+]
+{
+  "bank_like_modules": 376,
+  "candidate_absent_exact_name": 1545,
+  "candidate_absent_shape": 1486,
+  "candidate_exact_name_statement_drift": 0,
+  "candidate_has_sorry": 5,
+  "candidate_instances": 2148,
+  "candidate_source_proved": 2143,
+  "candidate_source_reachable": 1979,
+  "categories": {
+    "ambient-data-uniform": 1698,
+    "ambient-n": 12,
+    "ambient-set-uniform": 193,
+    "definition": 848,
+    "fixed-cardinality": 24,
+    "fixed-or-utility": 1507,
+    "metric-point-uniform": 143,
+    "scalar-algebra-uniform": 172
+  },
+  "declarations": 4597,
+  "modules_absent_by_basename": 404,
+  "proved_reachable_candidates_absent_shape": 1368,
+  "source_modules": 462,
+  "source_proved_novel_false_consumers": 500,
+  "source_proved_novel_false_consumers_reachable": 481,
+  "source_proved_novel_false_consumers_unimported": 19,
+  "source_reachable_modules": 430,
+  "theorems_and_lemmas": 3749
+}

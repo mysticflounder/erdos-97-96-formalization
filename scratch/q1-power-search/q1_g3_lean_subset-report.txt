@@ -1,0 +1,19 @@
+Lean scratch subset audit for G3
+
+File: scratch/q1_g3_subset_test.lean
+Command: cd lean && lake env lean ../scratch/q1_g3_subset_test.lean
+Result: exit 0, real 45.44s (cached rerun; first run ~73s), only no module-doc warning.
+
+The first compiling subset tested is `mask27` (bit order U8,U24,U30,U32,U34,U37):
+  assumptions: hq, p2, p5, h8, h24, h32, h34
+  omitted: h30, h37
+  conclusion: (bu-bs)*(br-bv)*bv*bw = 0
+  proof: simp only polynomial definitions; grobner (ringSteps := 100000)
+
+The scratch file currently contains only `mask27`; no production source was
+modified.
+
+Minimality guidance (external QQ Singular scan, not Lean/kernel evidence):
+`scratch/q1_g3_subset_u_scan.sing` fixed base (e2,e5,q1) and exhaustively
+scanned all 64 U-subsets. First hit is mask27 (four U's: U8,U24,U32,U34);
+no subset of size <=3 reduced G3 to zero. Other hits: masks 31,59,62,63.

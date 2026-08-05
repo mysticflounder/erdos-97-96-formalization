@@ -1,0 +1,402 @@
+{
+  "assignment_ordinal": 0,
+  "candidate_fixes": [
+    {
+      "bool": "rich_0_1_0",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_1",
+      "value": true
+    },
+    {
+      "bool": "rich_0_1_10",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_11",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_12",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_13",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_14",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_2",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_3",
+      "value": true
+    },
+    {
+      "bool": "rich_0_1_4",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_5",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_6",
+      "value": false
+    },
+    {
+      "bool": "rich_0_1_7",
+      "value": true
+    },
+    {
+      "bool": "rich_0_1_8",
+      "value": true
+    },
+    {
+      "bool": "rich_0_1_9",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_0",
+      "value": true
+    },
+    {
+      "bool": "rich_1_0_1",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_10",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_11",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_12",
+      "value": true
+    },
+    {
+      "bool": "rich_1_0_13",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_14",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_2",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_3",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_4",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_5",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_6",
+      "value": true
+    },
+    {
+      "bool": "rich_1_0_7",
+      "value": true
+    },
+    {
+      "bool": "rich_1_0_8",
+      "value": false
+    },
+    {
+      "bool": "rich_1_0_9",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_0",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_1",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_10",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_11",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_12",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_13",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_14",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_2",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_3",
+      "value": true
+    },
+    {
+      "bool": "rich_1_1_4",
+      "value": true
+    },
+    {
+      "bool": "rich_1_1_5",
+      "value": true
+    },
+    {
+      "bool": "rich_1_1_6",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_7",
+      "value": false
+    },
+    {
+      "bool": "rich_1_1_8",
+      "value": true
+    },
+    {
+      "bool": "rich_1_1_9",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_0",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_1",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_10",
+      "value": true
+    },
+    {
+      "bool": "rich_2_0_11",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_12",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_13",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_14",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_2",
+      "value": true
+    },
+    {
+      "bool": "rich_2_0_3",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_4",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_5",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_6",
+      "value": true
+    },
+    {
+      "bool": "rich_2_0_7",
+      "value": false
+    },
+    {
+      "bool": "rich_2_0_8",
+      "value": true
+    },
+    {
+      "bool": "rich_2_0_9",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_0",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_1",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_10",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_11",
+      "value": true
+    },
+    {
+      "bool": "rich_2_1_12",
+      "value": true
+    },
+    {
+      "bool": "rich_2_1_13",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_14",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_2",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_3",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_4",
+      "value": true
+    },
+    {
+      "bool": "rich_2_1_5",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_6",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_7",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_8",
+      "value": false
+    },
+    {
+      "bool": "rich_2_1_9",
+      "value": true
+    }
+  ],
+  "candidate_fixes_sha256": "10430da373e4fb639404167f53393042d2311a6384e37fae68023f69bff9f550",
+  "candidate_selection": "deterministic saved-order suffix of 75 fixes",
+  "complete_fix_count": 825,
+  "delta_route": {
+    "admitted": true,
+    "fresh": {
+      "elapsed_seconds": 12.069524833001196,
+      "preprocessing": {
+        "logic_audit": {
+          "accepted": false,
+          "array_nodes": 0,
+          "bad_sorts": 0,
+          "bitvector_nodes": 0,
+          "classification": "REJECTED",
+          "examples": [],
+          "integer_nodes": 0,
+          "ite_nodes": 0,
+          "nodes": 326023,
+          "nonlinear_nodes": 0,
+          "pb_nodes": 105,
+          "quantifiers": 0,
+          "uf_applications": 0
+        },
+        "normalized_assertion_count": 192529,
+        "pipeline": [
+          "substitute fixes and trackers=true",
+          "simplify",
+          "pb-preprocess",
+          "card2bv"
+        ],
+        "source_assertion_count": 26,
+        "tracker_count": 26
+      },
+      "raw_formula_sha256": "bce451bab18921a6c0d0d29d5307c8aab59be1c1fc937d991c6b40a8d7ca2720",
+      "reason_unknown": null,
+      "replay_label": "independent_fresh_raw_replay",
+      "retained_fix_count": 75,
+      "retained_fixes_sha256": "10430da373e4fb639404167f53393042d2311a6384e37fae68023f69bff9f550",
+      "solve_seconds": 1.6793638330418617,
+      "status": "unsat"
+    },
+    "primary": {
+      "elapsed_seconds": 11.639328999910504,
+      "preprocessing": {
+        "logic_audit": {
+          "accepted": false,
+          "array_nodes": 0,
+          "bad_sorts": 0,
+          "bitvector_nodes": 0,
+          "classification": "REJECTED",
+          "examples": [],
+          "integer_nodes": 0,
+          "ite_nodes": 0,
+          "nodes": 325537,
+          "nonlinear_nodes": 0,
+          "pb_nodes": 105,
+          "quantifiers": 0,
+          "uf_applications": 0
+        },
+        "normalized_assertion_count": 192529,
+        "pipeline": [
+          "substitute fixes and trackers=true",
+          "simplify",
+          "pb-preprocess",
+          "card2bv"
+        ],
+        "source_assertion_count": 26,
+        "tracker_count": 26
+      },
+      "raw_formula_sha256": "bce451bab18921a6c0d0d29d5307c8aab59be1c1fc937d991c6b40a8d7ca2720",
+      "reason_unknown": null,
+      "replay_label": "primary_fresh_raw_parse",
+      "retained_fix_count": 75,
+      "retained_fixes_sha256": "10430da373e4fb639404167f53393042d2311a6384e37fae68023f69bff9f550",
+      "solve_seconds": 1.5392121251206845,
+      "status": "unsat"
+    },
+    "removed_fix_count": 750,
+    "retained_fix_count": 75,
+    "status": "admitted_unsat_projection"
+  },
+  "kind": "v22-blocker-minimization-pilot",
+  "production_launched": false,
+  "raw_full_formula_sha256": "bce451bab18921a6c0d0d29d5307c8aab59be1c1fc937d991c6b40a8d7ca2720",
+  "schema_version": 22,
+  "selector_route": {
+    "authenticated_projection": false,
+    "core_minimization": [
+      "smt.core.minimize"
+    ],
+    "elapsed_seconds": 0.013620167039334774,
+    "raw_core_size": 0,
+    "reason_unknown": "canceled",
+    "status": "unknown",
+    "timeout_ms": 1
+  },
+  "trust_boundary": "external Z3 exact-n15 replay; no Lean theorem or kernel ingress"
+}

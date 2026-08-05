@@ -1,0 +1,21 @@
+Command:
+PYTHONDONTWRITEBYTECODE=1 uv run python scratch/retained-omission-e1/post-v37-alternating/verify.py
+
+Exit status: 0
+
+verified A-X-B-J
+  boundary: A V U X B L K J
+  triangle: A X B
+  first_cap: X B
+  adjacent_cap: B L K J A
+  a_shell: J U V X
+  b_shell: J K L X
+  minimum_turn: 24/5125
+verified A-J-B-X
+  boundary: A J K L B X U V
+  triangle: A B X
+  first_cap: B X
+  adjacent_cap: A J K L B
+  a_shell: J U V X
+  b_shell: J K L X
+  minimum_turn: 24/5125

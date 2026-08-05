@@ -1,0 +1,383 @@
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:23:interior points, all outside the first cap, so one of them is absent from the
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:70:same distinct carrier pair outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:71:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:105:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:109:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:208:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellMutualOmission.lean:57:pair among those sources.  The witnesses retain their physical outside-support
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:12:`false_of_capSource_freshOutsideFirstBlockerFiber`.
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:110:pair of points outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:111:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:145:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:149:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:183:          rw [P.shell_inter_cap_eq_sources, Q.outside_eq_pair]
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:458:        apply Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:739:/-- A cap source chosen outside the two collision pairs is not itself a point
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:768:  exact hsourceOutside (Finset.mem_union_left _ hsourcePair)
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:804:theorem false_of_firstFiber_bothOutsideHits_and_firstPairHit
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:846:    apply Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:852:    apply Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:899:inside the first cap, then the two named off-cap common hits already violate
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:901:theorem false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:951:  exact false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:955:    Q.source_not_mem_firstCap Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:151:  otherOutsidePoint_not_mem_firstCap :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:152:    otherOutsidePoint ∉ S.capByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:153:  outside_eq_pair :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:197:  otherOutsidePoint_not_mem_firstCap :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:198:    otherOutsidePoint ∉ S.capByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:199:  outside_eq_pair :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:232:  otherOutsidePoint_not_mem_firstCap :=
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:233:    Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:234:  outside_eq_pair := Q.outside_eq_pair
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:287:    simpa [outside] using collisionShell_sdiff_firstCap_card_eq_two P
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:299:private theorem outside_eq_pair
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:310:    (hxOutside : x ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:315:    (hyOutside : y ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:513:                  source_not_mem_firstCap := hxOutside
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:520:                  otherOutsidePoint_not_mem_firstCap := hyOutside
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:521:                  outside_eq_pair :=
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:522:                    outside_eq_pair P hxMem hxOutside
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:572:                  source_not_mem_firstCap := hxOutside
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:579:                  otherOutsidePoint_not_mem_firstCap := hyOutside
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:580:                  outside_eq_pair :=
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:581:                    outside_eq_pair Pρ hxMem hxOutside
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:23:blocker outside the surplus cap, while cross survival gives a second
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:255:        H F.pair.q_mem_A).mpr hzOutside
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:268:critical shell, its actual blocker is outside the surplus cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:300:  have hqOutside : F.pair.q ∉ Finset.univ.image L.points := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:303:  have hwOutside : F.pair.w ∉ Finset.univ.image L.points := by
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:312:    sourceBlocker_dist_eq_of_crossMembership F.pair hwSupport
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:314:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:316:      hqOutside hwOutside F.pair.q_ne_w
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:319:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:321:      hqOutside hwOutside F.pair.q_ne_w
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:344:localizing that blocker outside the surplus cap, or deleting the companion
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:352:  rcases cross_deletion_survives_or_cross_membership F.pair with
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:361:        F.pair hcross).symm
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:867:theorem SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:932:theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:941:    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:14:second row but outside the old first row.  Its deletion still preserves the
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:39:outside point of both the collision row and a blocker row": the case
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:59:same distinct carrier pair outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:60:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:94:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:98:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:181:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:100:/-- The pointwise third-blocker and cross-pair deletion-survival witness
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:101:carried by a strict-cap source outside both collision pairs. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:102:abbrev CapSourceThirdBlockerCrossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:182:private theorem capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:200:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:205:  change q ∈ (S.capInteriorByIndex S.oppIndex1) \ pairSources at hqOutside
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:304:outside both collision pairs.  Its actual blocker differs from both collision
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:307:theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:323:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:336:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:340:/-- The cap-eight margin leaves two distinct strict-cap sources outside both
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:341:collision pairs, each carrying the full third-blocker and cross-pair
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:343:theorem exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:360:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:361:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:375:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:378:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:385:provenance.  Each lifted source carries the same third-blocker and cross-pair
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:388:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:409:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:410:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:466:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:470:    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:495:abbrev CrossPairDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:504:/-- The selected-support form of cross-pair deletion survival. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:505:abbrev CrossPairSelectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:512:/-- Cross-pair deletion survival and selected-support omission are the same
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:514:theorem crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:518:    CrossPairDeletionSurvival (H := H) source x y ↔
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:519:      CrossPairSelectedSupportOmission (H := H) source x y := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:527:structure CrossPairDeletionView
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:531:  survives : CrossPairDeletionSurvival (H := H) source x y
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:533:namespace CrossPairDeletionView
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:540:    (view : CrossPairDeletionView (H := H) source x y) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:541:    CrossPairSelectedSupportOmission (H := H) source x y :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:542:  (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:545:end CrossPairDeletionView
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:576:      CrossPairDeletionView (H := H) source P.source₁ P.source₂ ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:577:      CrossPairDeletionView (H := H) source Pρ.source₁ Pρ.source₂
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:593:    ⟨hcap, source, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:635:  obtain ⟨source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:637:    exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:639:  exact ⟨hcap, source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointCollisionLocalization.lean:167:/-- Any endpoint-row point on the retained first-apex radius that is outside
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointCollisionLocalization.lean:177:    (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:297:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:303:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:120:structure OrderedDifferentPairCrossHit
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:157:theorem OrderedDifferentPairCrossHit.false
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:163:    (P : OrderedDifferentPairCrossHit Q) : False := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:223:structure AlternateOrderedDifferentPairCrossHit
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:258:theorem AlternateOrderedDifferentPairCrossHit.false
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:264:    (P : AlternateOrderedDifferentPairCrossHit Q) : False := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:323:#print axioms OrderedDifferentPairCrossHit.false
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:324:#print axioms AlternateOrderedDifferentPairCrossHit.false
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:268:sources remain outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:269:theorem actualRow_center_eq_commonBlocker_of_sameCap_outside_sources
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:39:/-- A selected four-row survives erasing any point outside its support. -/
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:56:/-- A selected four-row survives erasing two points outside its support. -/
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:15:unused cap point outside that complete class.  Erasing the unused point
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:68:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:102:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:106:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:193:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:146:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:16:double-deletion pair inside that strict interior.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:19:to the actual frontier pair.  It does not produce a directed cross incidence
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:79:inside the first non-surplus cap's strict interior. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:19:  reselected inside the strict cap while preserving double-deletion K4 at the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:20:shell members outside the pair's cap; one still has to select a residual-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:67:same distinct carrier pair outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:68:theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:102:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:106:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:127:/-- For the exact-card-five strict-interior survivor pair, a directed cross
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:220:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:97:/-- A cap-aware labeling can be reindexed inside its second three-label block
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:195:joint deletion outside both rows. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:409:inside the class and one named point outside both rows. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1646:outside the original blocker pair and the physical apex. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3407:outside the rows at `xu` and `xv`, producing two distinct prescribed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3872:/-- If the `xv` row contains none of the other three points outside the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5392:source-row placements above.  The outside-class arm is discharged into the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5922:outside the active late row.  Equality of the two actual blockers would make
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6973:/-- The first opposite apex is outside the closed cap indexed by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8140:    ⟨center, hcenter, z, hzRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8143:      z, hzRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8196:    ⟨center, hcenter, z, hzRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8236:    (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8258:    (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8281:    (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8315:  have hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8719:strictly inside the cap and its selected shell meets the whole cap in exactly
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8804:disjoint pairs, force the complete cross-omission rectangle.  Each row also
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8805:has exactly two support points outside the cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8806:theorem exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9096:share at most one support point outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9151:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9157:  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9244:    CrossPairDeletionView (H := H) source P.source₁ P.source₂ ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9245:    CrossPairDeletionView (H := H) source Pρ.source₁ Pρ.source₂
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9277:    ⟨hcap, hinterior, houtside, hneqP, hneqPρ, hneqA1, hneqA2,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9311:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9319:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9322:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9359:theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9366:theorem false_of_twoCapSources_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9379:  exact false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9390:lie outside that cap and on the cap-source row. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9410:uniqueness: two distinct cap centers cannot bisect the same outside pair. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9485:private theorem firstFiberCapSourceWitness_of_crossPairSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9489:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9497:    ⟨hcap, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9518:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9534:      ⟨hcap, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9543:      ⟨hcap, hsourceInterior', hsourceOutside',
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9574:    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9580:      firstFiberCapSourceWitness_of_crossPairSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9582:      firstFiberCapSourceWitness_of_crossPairSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9631:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9635:      Q.source_not_mem_firstCap Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9702:both cap sources lie outside the two collision pairs. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9778:/-- The two cross-pair omission views have a finite exact alternative.  Either
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11083:same-cap alignment with both fiber sources outside the common cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11607:outside endpoint, so deleting it preserves K4 at both rows and all three rich
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11608:apices, or realize one of the two crossed outside-pair membership patterns. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11609:abbrev FirstFiberOutsidePairFiveCenterOrCrossedResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11642:/-- Exact-row normalization of the outside-pair split.  The two deletion arms
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11645:abbrev FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11687:theorem capCenter_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11704:    exact ATailFirstFiberOverlapDescent.false_of_firstFiber_twoOutsideHits_of_capCenter
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11713:outside pair. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11714:theorem oppositeBlocker_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11722:  exact capCenter_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11730:/-- Checked outside-pair split used by the finite terminal.  A common omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11733:theorem firstFiberOutsidePair_fiveCenter_or_crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11741:    FirstFiberOutsidePairFiveCenterOrCrossedResidual P Pρ Q source := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11742:  have hsourceOmit := capCenter_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11744:  have hoppositeOmit := oppositeBlocker_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11812:/-- Trim either common outside-point deletion to five exact q-free rows while
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11814:theorem firstFiberOutsidePair_exactRows_or_crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11818:      FirstFiberOutsidePairFiveCenterOrCrossedResidual P Pρ Q source) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11819:    FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11834:`oppositeBlocker_omits_firstFiber_outsidePair`. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11841:  rcases oppositeBlocker_omits_firstFiber_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11954:/-- Fixed-role support packet for either crossed outside-pair constructor.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11957:proved to lie outside the first cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11980:  oppositeOutside_not_mem_commonRow :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11983:  commonOutside_not_mem_oppositeRow :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12000:private theorem offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12004:    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12021:    rw [← Q.outside_eq_pair]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12022:    exact Finset.mem_sdiff.mpr ⟨hzFirstRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12056:    apply E.oppositeOutside_not_mem_commonRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12060:  · exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12063:  · exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12092:    apply E.commonOutside_not_mem_oppositeRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12100:  · exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12103:  · exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12155:    apply E.commonOutside_not_mem_oppositeRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12205:    apply E.oppositeOutside_not_mem_commonRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12344:      E.oppositeOutside_not_mem_commonRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12355:metric non-equality against the named outside point on that row. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12378:      E.commonOutside_not_mem_oppositeRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12390:/-- Normalize a crossed pair of positive memberships and complementary
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12406:    (commonOutside_not_mem_firstCap :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12407:      commonOutside ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12408:    (oppositeOutside_not_mem_firstCap :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12409:      oppositeOutside ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12416:    (oppositeOutside_not_mem_commonRow :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12423:    (commonOutside_not_mem_oppositeRow :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12437:    exact commonOutside_not_mem_firstCap (h ▸ hsourceCap)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12440:    exact commonOutside_not_mem_firstCap (h ▸ hsource'Cap)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12449:    exact oppositeOutside_not_mem_firstCap (h ▸ hPρ₁Cap)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12452:    exact oppositeOutside_not_mem_firstCap (h ▸ hPρ₂Cap)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12519:    oppositeOutside_not_mem_commonRow := oppositeOutside_not_mem_commonRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12520:    commonOutside_not_mem_oppositeRow := commonOutside_not_mem_oppositeRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12528:    commonFourth_not_mem_firstCap := hcommonFourthOutside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12529:    oppositeFourth_not_mem_firstCap := hoppositeFourthOutside }⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12531:/-- Fully normalized outside-pair constructor.  Its two deletion arms retain
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12534:abbrev FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12561:theorem firstFiberOutsidePair_exactRows_or_crossedThreeRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12574:      FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12576:    FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12586:        Q.source_not_mem_firstCap Q.otherOutsidePoint_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12594:        Q.otherOutsidePoint_not_mem_firstCap Q.source_not_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12679:/-- Deletion constructor of the normalized outside-pair packet.  The deleted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12683:theorem false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12708:    (outsideExactRows :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12722:/-- Crossed constructor of the normalized outside-pair packet.  The
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12768:four-way survival packet explicit is a strict narrowing.  The mixed terminal
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12770:outside-point deletion row packet and the other receives an oriented crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12794:    (houtsidePair :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12795:      FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12801:  rcases houtsidePair with hsource | hother | hsourceAtCommon | hotherAtCommon
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12803:    exact false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12819:    exact false_of_capSource_firstFiber_outsidePairDeletionExactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12833:      Q.otherOutsidePoint Q.otherOutsidePoint_mem_A (Or.inr rfl) E hexactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12849:      Q.source.1 Q.otherOutsidePoint (Or.inl ⟨rfl, rfl⟩) E hexactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12865:      Q.otherOutsidePoint Q.source.1 (Or.inr ⟨rfl, rfl⟩) E hexactRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12909:      (firstFiberOutsidePair_exactRows_or_crossedThreeRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12912:        (firstFiberOutsidePair_exactRows_or_crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12914:          (firstFiberOutsidePair_fiveCenter_or_crossed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13119:      false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13125:      false_of_twoCapSources_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13194:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13408:/-- Two distinct carrier points outside an ordered cap cannot both bisect one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13410:open subchain, contradicting that it is outside the cap. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13439:/-- Two distinct blocker centers outside the source cap cannot both bisect
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13907:    false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14015:    ⟨_hcap, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14302:/-- The second collision row has two points outside the first cap.  Since its
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14303:center cannot bisect the two named outside points of the first collision row,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14305:private theorem exists_secondRowOutsidePoint_ne_firstOutsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14325:        exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14473:private theorem secondRowOutsidePoint_blocker_ne_first
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14480:    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14489:  exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14500:private theorem freshOutsideSecondBlockerFiber_of_secondRowOutsidePoint
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14506:    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14592:      · exact Finset.mem_sdiff.mpr ⟨hzSecondRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14614:    source_not_mem_firstCap := hzOutside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14621:    otherOutsidePoint_not_mem_firstCap := hyOutside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14622:    outside_eq_pair := houtsideEq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14706:    ⟨center, hcenter, z, hzRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14709:      z, hzRow, hzOutside⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14969:/-- Two distinct named points of the global K4 row lie outside the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14971:theorem exists_two_firstFiber_globalRow_points_outside_firstShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14991:private theorem exists_second_outside_two_pairs
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15073:private def rebaseCrossPairDeletionView
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15077:    (view : CrossPairDeletionView (H := H) source x y)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15083:    CrossPairDeletionView (H := H') source x y where
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15085:    (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15088:        simpa [CrossPairSelectedSupportOmission, hsupport] using homits)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15207:/-- Compatibility-only reduction from a fresh canonical row outside the two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15307:      exists_second_outside_two_pairs K.support q.1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15570:    ⟨hcapEight, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15607:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15611:          (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15623:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15627:          (crossPairDeletionSurvival_iff_selectedSupportOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15639:        ⟨hcapEight, source, hsourceInterior, hsourceOutside', ?_, ?_,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15675:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15678:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15681:          rebaseCrossPairDeletionView source P.source₁ P.source₂
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15684:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15687:          CrossPairDeletionView (H := H') source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15690:          rebaseCrossPairDeletionView source Pρ.source₁ Pρ.source₂
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15693:        ⟨hcapEight, source, hsourceInterior, hsourceOutside', ?_, ?_,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15761:The universal critical-row escape supplies a canonical row outside the two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15786:    false_of_twoCapSources_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15801:theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15827:theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15835:    ⟨hcap, source, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15840:    ⟨hcap, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15848:    false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15857:theorem false_of_capSource_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15866:      false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15891:theorem false_of_capSource_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15904:  exact false_of_capSource_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16110:A purely local common-outside-pair argument is unavailable: the checked
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16111:ordered-cap theorem `selectedFourClass_outside_overlap_card_le_one` only gives
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16397:    exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16435:        T hpairsDisjoint hblockersNe hcrossOmissions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16699:      exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16996:retained first-apex radius inside its strict opposite cap.  This branch records
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:252:opposite cap; its other two exact shell members lie outside that cap. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RowRadiusOccurrenceBridge/Core.lean:56:/-- Decode the P4 row/equality prefix; values outside it are arbitrary. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/CyclicAlternation/Core.lean:64:/-- Decode the P4 row/equality prefix.  Values outside it are an arbitrary
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:399:/-- An outside source is interior-pair bad when deleting either member of the
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:401:noncomputable def interiorPairBadOutsideSources
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:418:    (hsource : source ∈ interiorPairBadOutsideSources R) :
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:450:/-- All outside sources which block both source-valid interior-pair deletions
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:457:    (hsource₁ : source₁ ∈ interiorPairBadOutsideSources R)
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:458:    (hsource₂ : source₂ ∈ interiorPairBadOutsideSources R) :
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:540:    ((interiorPairBadOutsideSources R).filter fun source =>
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:710:second-cap source outside the first-apex fiber for which at least one member
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:713:theorem exists_interiorPairGoodOutsideSource_mem_secondClassInterior
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:736:    (interiorPairBadOutsideSources R).filter fun source =>
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:795:      source ∉ interiorPairBadOutsideSources R := by
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:812:    by simpa [source] using hzCapInterior, houtside, hsurvives⟩
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:815:source outside the active source's actual late row once that row has the
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1124:        exists_interiorPairGoodOutsideSource_mem_secondClassInterior
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:12:Outside the exact-card-four first-apex escape, a source whose actual blocker
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:77:/-- Outside the exact-card-four escape, an actual blocker at the first apex
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:15:selected four-row and the six labels outside that row and its center.  Each
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:142:candidate row, then the six labels outside that row and its center. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:776:  rw [hpair, hcross]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:802:  rw [hpair, hcross]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/MutualTransport/Core.lean:64:/-- Decode the P4 row/equality prefix.  Values outside it are an arbitrary
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5CommonBisectorSliceLedger.lean:14:source-choice order followed by the six labels outside the chosen row and its
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Core.lean:56:/-- Decode the P4 row/equality prefix; values outside it are arbitrary. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:245:      (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:247:        localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean:302:      obtain ⟨hinside, houtside, hrow⟩ := hvalid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:69:one row member and one point outside the full blocker shell. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:138:      localEqRow localEquality = ⟨center, inside, outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3BlockerSemantics.lean:139:      localEqRow localEquality = ⟨center, outside, inside⟩)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:254:      (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:256:        localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:281:          (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:283:            localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:357:          (localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:359:            localEqRow (firstApexLocalEqualityIndex inside outside) =
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3FirstApexExactFiveSliceLedger.lean:393:      obtain ⟨hinside, houtside, hrow⟩ := hvalid
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:141:    (exactBlockerCandidateSupport row).flatMap fun inside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:142:      (exactBlockerCandidateOutside row).map fun outside =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:143:        ⟨row, inside, outside⟩
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:232:            ⟨occurrence.row.center, occurrence.inside, occurrence.outside⟩ ∨
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:236:            ⟨occurrence.row.center, occurrence.outside, occurrence.inside⟩) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:253:  obtain ⟨hindex, hinside, houtside, hrow⟩ :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ExactBlockerSliceLedger.lean:265:    hrow hinside houtside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3DuplicateCenterSliceLedger.lean:16:the pair of outside centers in source order, authenticates the four negative
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:98:/-- One source occurrence: a focus pair followed by three labels outside it. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3PerpendicularBisectorSliceLedger.lean:111:outside each focus pair. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectOuterOccurrenceBridge/RowArcOccurrences.lean:136:No values outside this entry's row and outer-arc dense variables are assumed. -/

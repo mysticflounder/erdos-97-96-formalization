@@ -1,0 +1,40 @@
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:321:adjacent cap centre) admit the centre-line reflection `o` as the SECOND crossing;
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:359:distinct circles sharing the base chord `e₁`–`e₂`, so they admit no third common
+lean/Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean:192:/-- No planar `5 × 5` power matrix can admit a unique possible perfect matching
+lean/Erdos9796Proof/P97/TwoCircleCrossing.lean:35:*distinct* spheres through two *distinct* common points `p₁`, `p₂` admit no
+lean/Erdos9796Proof/P97/TwoCircleCrossing.lean:132:two-circle crossing bound they admit no third common point lying strictly off
+lean/Erdos9796Proof/P97/TwoCircleCrossing.lean:166:two distinct circles through two distinct shared points admit no third common
+lean/Erdos9796Proof/P97/Census554/TenPointRowCollision.lean:12:The ten four-member rows below admit an exact rational ideal-membership
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureRows.lean:422:/-- All five actual critical-source rows admit exact sorted placements inside
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2446:  sorry
+lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:255:`q ∉ B` condition so the row-specific c5d3b producer interface can admit
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:9498:/-- Large convex `K4` configurations admit a surplus-cap packet.  This is a
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:753:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1244:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1343:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2232:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2407:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2562:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2588:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2613:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3327:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5389:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5555:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6017:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6076:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6318:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6329:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7259:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8382:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8405:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8427:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8504:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8527:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8582:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8623:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9389:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9529:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11497:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12884:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12927:  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:17226:pairwise two-circle bounds, and the three rich patterns admit incidence models

@@ -1,0 +1,40 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11163
+theorem false_of_twoCapSources_freshThirdBlockerFiber_residual
+    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+    (hresidual : obstruction.ResidualCase) :
+    False := by
+  cases obstruction with
+  | normalized C Q firstInteraction secondInteraction =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          C Q firstInteraction secondInteraction hresidual
+  | sameBlockerAllEndpointOmission Q source source' sources_ne
+      source_mem_radius source'_mem_radius source_witness source'_witness
+      cross_membership blockers_eq all_endpoint_omission blocker_mem_capInterior
+      shell_inter_cap_eq =>
+      exact
+        false_of_twoCapSources_sameBlockerAllEndpointOmission
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          Q source source' sources_ne source_mem_radius source'_mem_radius
+          source_witness source'_witness cross_membership blockers_eq
+          all_endpoint_omission blocker_mem_capInterior shell_inter_cap_eq
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

@@ -1,0 +1,154 @@
+{
+  "ENCODED": [
+    "one shared real-coordinate assignment for all 17 named points",
+    "orientation-preserving similarity gauge on the first two cyclic-order points",
+    "all 136 pairwise point-distinctness inequalities",
+    "the full serialized radius partition at every center: every within-class target pair is equal and every cross-class target pair is unequal",
+    "a1 uses its serialized radius_classes verbatim; its selected row is not promoted to a new disjoint class"
+  ],
+  "OMITTED": [
+    "MEC and nonobtuse-apex hypotheses",
+    "CounterexampleData.noM44 and the arbitrary-n reduction",
+    "re-execution of the source Boolean CEGAR/theorem-bank search",
+    "Lean proof objects, transitive axiom audit, and kernel verification",
+    "all cyclic-order and convexity inequalities"
+  ],
+  "action": "STAGED_COMPACT_BASIS_LAZY_METRIC_RELATION_CEGAR",
+  "active_lazy_constraint_count": 16,
+  "basis_cross_class_disequality_count": 909,
+  "basis_within_class_equality_count": 62,
+  "batch_size": 64,
+  "constraint_counts": {
+    "gauge": 4,
+    "pairwise-distinctness": 136,
+    "radius-cross-class-disequality": 1915,
+    "radius-within-class-equality": 125
+  },
+  "constraint_total": 2180,
+  "declared_gauge_atom_count": 4,
+  "elapsed_ms": 300086,
+  "fidelity_note": "a global undirected-distance spanning forest, one positivity atom per non-gauge quotient class, and one representative disequality per quotient-class pair observed in an original cross-radius atom imply the full metric partition; every basis atom remains in a monotone lazy phase; SAT is accepted only after exact replay of every original atom",
+  "full_cross_class_disequality_count": 1915,
+  "full_within_class_equality_count": 125,
+  "gauge_distance_class": 0,
+  "gauge_substituted": true,
+  "global_distance_class_count": 74,
+  "hard_constraint_count": 0,
+  "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json",
+  "iterations": [
+    {
+      "active_lazy_constraint_count": 0,
+      "added_lazy_constraint_count": 8,
+      "added_lazy_constraints": [
+        "radius_eq_a1_t4_s2",
+        "radius_eq_p2_t4_a2",
+        "radius_eq_p2_t4_q2",
+        "radius_eq_p2_t4_r1",
+        "radius_eq_s1_t4_q2",
+        "radius_eq_s1_t4_s3",
+        "radius_eq_s1_t4_t1",
+        "radius_eq_t1_t4_a2"
+      ],
+      "added_lazy_phase": "radius-equality",
+      "check_ms": 0,
+      "fresh_violated_lazy_constraint_counts": {
+        "point-distinctness": 62,
+        "radius-disequality": 781,
+        "radius-equality": 13
+      },
+      "iteration": 0,
+      "result": "SAT"
+    },
+    {
+      "active_lazy_constraint_count": 8,
+      "added_lazy_constraint_count": 8,
+      "added_lazy_constraints": [
+        "radius_eq_a1_r2_r1",
+        "radius_eq_a1_t1_s1",
+        "radius_eq_a1_t3_q2",
+        "radius_eq_a2_q1_r1",
+        "radius_eq_a2_t2_q2",
+        "radius_eq_a2_t2_s2",
+        "radius_eq_a3_p2_s1",
+        "radius_eq_a3_p2_s2"
+      ],
+      "added_lazy_phase": "radius-equality",
+      "check_ms": 1,
+      "fresh_violated_lazy_constraint_counts": {
+        "point-distinctness": 34,
+        "radius-disequality": 449,
+        "radius-equality": 27
+      },
+      "iteration": 1,
+      "result": "SAT"
+    },
+    {
+      "active_lazy_constraint_count": 16,
+      "check_ms": 300064,
+      "iteration": 2,
+      "reason_unknown": "timeout",
+      "result": "UNKNOWN"
+    }
+  ],
+  "lazy_constraint_count": 1044,
+  "lazy_point_distinctness_count": 73,
+  "max_iterations": 100,
+  "phase_batch_sizes": {
+    "point-distinctness": 16,
+    "radius-disequality": 32,
+    "radius-equality": 8
+  },
+  "quotient_internal_disequality_count": 0,
+  "reason_unknown": "timeout",
+  "schema": "crossed-arm-full-radius-qf-nra-v7",
+  "solver": "Z3 4.16.0 QF_NRA",
+  "source_validation": {
+    "a1_selected_row_role": "one existing serialized radius class; no synthetic class added",
+    "a1_serialized_class_count": 6,
+    "carrier_cardinality": 17,
+    "radius_class_counts": {
+      "a1": 6,
+      "a2": 12,
+      "a3": 13,
+      "p1": 13,
+      "p2": 12,
+      "q1": 12,
+      "q2": 12,
+      "r1": 11,
+      "r2": 12,
+      "s1": 13,
+      "s2": 12,
+      "s3": 13,
+      "s4": 12,
+      "t1": 13,
+      "t2": 13,
+      "t3": 12,
+      "t4": 13
+    },
+    "radius_partition_center_count": 17,
+    "radius_partition_target_count_per_center": 16,
+    "replay_fields_checked": [
+      "semantic_replay",
+      "cap_block_position_replay",
+      "cap_crossing_kalmanson_replay",
+      "crossed_arm_replay",
+      "full_shared_pair_separation_replay",
+      "geometric_incidence_replay"
+    ],
+    "source_arm": "source-at-common",
+    "source_result_sha256": "3233921049a03f3ca4b2f92554fd61f6fd175e7b19c7f3b2aea22fa1464634a3",
+    "source_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+    "source_status": "SAT",
+    "status": "SELF_CHECK_OK",
+    "witness_sha256": "76875cf2585b9bb8cf288a1ad85e94505ab3cc8f941117e9536cf0bf12e3c027"
+  },
+  "stage": "metric",
+  "timeout_ms": 300000,
+  "trust_boundary": {
+    "solver": "Z3 QF_NRA is trusted external computation; SAT is accepted only after exact model replay of every encoded atom and the full radius partition",
+    "source": "v4/v5 JSON replay markers and structural checks are artifact evidence, not a rerun of the CEGAR producer",
+    "unknown": "UNKNOWN or timeout is no evidence for SAT or UNSAT",
+    "unsat": "a Z3 UNSAT has no independently checkable certificate and is not Lean/kernel closure"
+  },
+  "verdict": "UNKNOWN"
+}

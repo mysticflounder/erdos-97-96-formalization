@@ -1,0 +1,208 @@
+[
+  {
+    "memory": {
+      "id": "01KZ5SJ5BKBHSYQPR1MA0183Y4",
+      "content": "2026-08-03 P97 A=J/X=C five-role cap audit: current live facts give O outside the closed first cap; C and K in its strict interior (so X also interior in X=C); A=J transfers only J's retained O-radius fact to A, while X=C leaves A and J cap-unlocalized (J is only on the retained O-radius). Endpoint collision cannot invoke commonBlocker_mem_firstCapInterior_of_sources_mem or commonShell_inter_firstCap_eq_sources because K=walk.next has no SelectedClass-at-O radius premise, so RetainedRadiusCollision is unavailable. Full four-shell facts add no named first-cap membership. Cap contiguity therefore filters 0 of the 16 equality/Kalmanson-feasible orders in either branch. A natural weakest symmetric new predicate is: at least one unresolved role is outside strict first-cap interior (A or X in A=J; A or J in X=C), reducing 16 to 14. The simplest stronger unary target A outside strict interior reduces each branch from 16 to 10.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T07:07:14.979288Z",
+      "updated_at": "2026-08-04T07:07:14.979288Z",
+      "accessed_at": "2026-08-04T23:35:46.736696Z",
+      "access_count": 18,
+      "expires_at": null
+    },
+    "score": 1.7650876054510058
+  },
+  {
+    "memory": {
+      "id": "01KZ753SAEW7EWZ4ENPQGJZDCY",
+      "content": "Five-role endpoint predicate audit: the source-faithful extra shell equality alone does not close either role-coincidence branch. A=J plus d(C,X)=d(K,X) leaves exactly OAKXC and OCXKA. X=C plus d(C,K)=d(J,K) leaves exactly OCAKJ and OJKAC. Adding the otherwise-unproved retained-apex K-radius d(C,O)=d(K,O) or d(J,O)=d(K,O), respectively, removes both survivors. Do not call P1/P2 a closure without that second producer or a source-faithful substitute.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T19:48:21.338155Z",
+      "updated_at": "2026-08-04T19:48:21.338155Z",
+      "accessed_at": "2026-08-04T23:35:46.736995Z",
+      "access_count": 12,
+      "expires_at": null
+    },
+    "score": 1.7469627147046503
+  },
+  {
+    "memory": {
+      "id": "01KZ762MZG781H33K8YX1SVAAP",
+      "content": "Eight-role endpoint diagnostic no-go (2026-08-04): extending the five-role residuals with O,C,M,K,A,B,J,X, all seven-representative strict Kalmanson inequalities, cap1 contiguity for C,M,K,B, full named Sigma_A/B/X memberships and nonmemberships, Sigma_B intersect cap1 exactly {C,M}, named pair-center <=2, triple-center <=1, and saturation of {C,M} by O,B leaves both exact order pairs SAT. P1/P2 are not forced. A=J residuals have 10/30 SAT insertions each; X=C have 9/30. The erased deletion rows remain decoupled because no named members are source-forced. Artifacts scratch/five_role_extended_packet_report.md and results.json. Next constraint must couple anonymous erased-row supports/full carrier or add stronger Euclidean realizability; do not rerun the same named-role relaxation.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T20:05:12.685070Z",
+      "updated_at": "2026-08-04T20:05:12.685070Z",
+      "accessed_at": "2026-08-04T23:35:46.737171Z",
+      "access_count": 20,
+      "expires_at": null
+    },
+    "score": 1.7153138744502199
+  },
+  {
+    "memory": {
+      "id": "01KZ74M29VW1E6JMK6YMP3NTCC",
+      "content": "P97 five-role endpoint bank audit (2026-08-04): mandatory current/sibling/legacy theorem registries and merged Lean corpus contain no source-faithful producer of A=J's d(C,X)=d(K,X) or X=C's d(C,K)=d(J,K). All hits are consumers conditional on the missing same-shell incidence (CriticalFourShell.support_eq_radius; SameCapCollisionPairCore.secondCenter_equidistant via HasSourceFaithfulSecondCenter), or foreign U5 packets requiring U5QAllowedAuditSupport/full-profile incidences. Source-faithful no-new-sorry narrowing: replace A=J leaf by complement C∉selected shell centered X after closing C-membership arm; replace X=C leaf by J∉SelectedClass A K (dist K C) after closing membership arm. H.selectedAt K is blocker-centered, not K-centered; D.K4 K does not place C,J on its existential shell.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T19:39:46.238148Z",
+      "updated_at": "2026-08-04T19:39:46.238148Z",
+      "accessed_at": "2026-08-04T23:35:46.737310Z",
+      "access_count": 6,
+      "expires_at": null
+    },
+    "score": 1.6319824753559693
+  },
+  {
+    "memory": {
+      "id": "01KZ5WGCFE686ZWCP9GGZ2B4TE",
+      "content": "Exact five-role Kalmanson mining: residual 16/24 in A=J and X=C. One extra equality K-radius (A=J dOC=dOK; X=C dOJ=dOK) closes 14/16; adding dCX=dKX (A=J) or dCK=dJK (X=C) closes all 16 in exact Kalmanson certificates. Same-cap capdot dOC^2+dOK^2-dCK^2 is too weak in metric relaxation. Current endpoint producer gives K=W.next only cap membership, not SelectedClass-at-O radius; these are diagnostic targets, not wired closure.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T07:58:42.505418Z",
+      "updated_at": "2026-08-04T07:58:42.505418Z",
+      "accessed_at": "2026-08-04T23:35:46.737446Z",
+      "access_count": 8,
+      "expires_at": null
+    },
+    "score": 1.6207513416815742
+  },
+  {
+    "memory": {
+      "id": "01KZ76BY25K5DVSAEQ5HRCYZQQ",
+      "content": "2026-08-04 audit: FreshThird cap-profile formulas do not constrain the endpoint role-coincidence leaves at FrontierLiveClosure 8368 and 8490. Those leaves take RetainedMatchingEndpointCriticalFiber, EndpointFreshFirstApexRowSource, a positive K-in-J-shell hit, and A=J or X=C; they lack TwoCapSourceThirdCanonicalRowSurface, FreshThirdBlockerFiber, cap_card_ge_eight, profile parameters, or a candidate-pool membership/exhaustion bridge. The formulas are diagnostic workload arithmetic only for false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining. For endpoint CEGAR, do not encode them; instead encode cyclic placement/full-row geometry or first prove a profile-to-role transport and candidate-pool bridge.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [
+        "P97",
+        "FreshThird",
+        "E1",
+        "cap-profile",
+        "CEGAR"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T20:10:16.899982Z",
+      "updated_at": "2026-08-04T20:10:16.899982Z",
+      "accessed_at": "2026-08-04T23:35:46.737567Z",
+      "access_count": 7,
+      "expires_at": null
+    },
+    "score": 1.5515515515515514
+  },
+  {
+    "memory": {
+      "id": "01KZ7786NJN6JGS8Q6N8CW0YMR",
+      "content": "2026-08-04 endpoint constructive audit: all four residual five-role orders are locally realizable by exact rational strictly convex 7-representative configurations: A=J orders OAKXC and OCXKA; X=C orders OCAKJ and OJKAC. Each satisfies OC^2=OM^2=OJ^2, AC^2=AK^2, BC^2=BM^2, XJ^2=XK^2, AM^2!=AC^2, BK^2!=BC^2, and branch identity. Independent exact verifier checked all 140 directed-edge/other-point cross signs positive. This refutes only a local named-equality/nonincidence/cyclic-order impossibility route; it is not a global P97 model and does not realize anonymous erased-row supports/full K4. Artifacts scratch/endpoint_constructive_geometry_{report.md,results.json,verification.json}.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T20:25:43.225580Z",
+      "updated_at": "2026-08-04T20:25:43.225580Z",
+      "accessed_at": "2026-08-04T23:35:46.737711Z",
+      "access_count": 7,
+      "expires_at": null
+    },
+    "score": 1.5164835164835164
+  },
+  {
+    "memory": {
+      "id": "01KZ381SHXQN3J9RC4HE3R664T",
+      "content": "EndpointFreshFiveRoleKalmanson.lean is a source-clean endpoint five-role Kalmanson bank covering all eight oriented cyclic order types in each coincidence case. For A=J: direct O,A,C,X,K; O,C,X,A,K; O,X,K,C,A; O,C,K,A,X and reflected O,K,X,C,A; O,K,A,X,C; O,A,C,K,X; O,X,A,K,C. For X=C: direct O,C,J,A,K; O,J,A,C,K; O,A,K,J,C; O,J,K,C,A and reflected O,K,A,J,C; O,K,C,A,J; O,C,J,K,A; O,A,C,K,J. Reflected generic consumers are false_of_five_ccw_three_shell_equalities_043_431_241 and false_of_five_ccw_three_shell_equalities_302_021_410; endpoint adapters are false_of_firstCenterEqFreshSource_of_crossHit_of_placement and false_of_secondCenterEqFirstSource_of_crossHit_of_placement. All four lean_verify with only propext, Classical.choice, Quot.sound and no source warnings.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": "01KZ374QR0PAKJ8875NWAFB4PA",
+      "created_at": "2026-08-03T07:22:43.937826Z",
+      "updated_at": "2026-08-03T07:22:43.937826Z",
+      "accessed_at": "2026-08-04T23:35:46.737831Z",
+      "access_count": 18,
+      "expires_at": null
+    },
+    "score": 1.465201465201465
+  },
+  {
+    "memory": {
+      "id": "01KZ5R169G5X0FY62VBCFA34BV",
+      "content": "For the endpoint-fresh A=J and X=C five-role bridge, relabeling gives the same equalities d(O,u)=d(O,v), d(u,v)=d(u,w), d(t,u)=d(t,w). Among the 24 O-anchored cyclic orders, strict Kalmanson inequalities (even with all strict triangle inequalities) exclude exactly 8 and leave 16 feasible. UNSAT orders: Ouvtw Ouvwt Ovtuw Ovwut Otuwv Otwvu Owutv Owtvu. Feasible orders: Outvw Outwv Ouwvt Ouwtv Ovutw Ovuwt Ovtwu Ovwtu Otuvw Otvuw Otvwu Otwuv Owuvt Owvut Owvtu Owtuv. The existing EndpointFreshFiveRoleKalmanson placement constructors match exactly the 8 excluded orders, so they are consumers, not an all-order producer; closure needs extra cap/incidence geometry to eliminate or orient the 16 survivors.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T06:40:30.328612Z",
+      "updated_at": "2026-08-04T06:40:30.328612Z",
+      "accessed_at": "2026-08-04T23:35:46.737949Z",
+      "access_count": 19,
+      "expires_at": null
+    },
+    "score": 1.4476744186046513
+  },
+  {
+    "memory": {
+      "id": "01KZ5GEB8XRH4E23JC853EP7BR",
+      "content": "2026-08-03 ATail retained-core role-placement audit: EndpointFreshFiveRoleKalmanson covers 8/24 oriented orders in each A=J and X=C branch. All 16 complementary orders are locally realizable by convex rational-coordinate configurations satisfying exactly the three metric equalities, using A=0,C=(1,0), K=((1-t^2)/(1+t^2),2t/(1+t^2)), O=(1/2,u), X=K/2+v*perp(K) for A=J, with the analogous relabeling C=0,J=(1,0),A=K/2+v*perp(K) for X=C. This is only a local equality-plus-convexity realization, not a model of the full ReverseHitFreshEndpointContext. No imported cap/cyclic theorem or mined sibling/legacy bank supplies FirstCenterEqFreshSourcePlacement or SecondCenterEqFirstSourcePlacement; a new full-row/cap cyclic-order localization producer is required.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-04T04:27:52.861539Z",
+      "updated_at": "2026-08-04T04:27:52.861539Z",
+      "accessed_at": "2026-08-04T23:35:46.738072Z",
+      "access_count": 25,
+      "expires_at": null
+    },
+    "score": 1.4058646204439573
+  }
+]

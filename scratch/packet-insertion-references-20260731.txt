@@ -1,0 +1,356 @@
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-99-
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-100-/-- The pointwise third-blocker and cross-pair deletion-survival witness
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-101-carried by a strict-cap source outside both collision pairs. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:102:abbrev CapSourceThirdBlockerCrossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-103-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-104-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-105-    {F : CriticalPairFrontier D S radius H}
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-197-            {Pρ.source₁, Pρ.source₂})) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-198-    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-199-      source.1 = q ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:200:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-201-  classical
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-202-  let pairSources : Finset ℝ² :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-203-    ({P.source₁, P.source₂} : Finset ℝ²) ∪
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-320-        {Pρ.source₁, Pρ.source₂})
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-321-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-322-    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:323:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-324-  classical
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-325-  have hcard :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-326-    two_le_card_capInterior_sdiff_collisionSources
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-357-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-358-    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-359-      source.1 ≠ source'.1 ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:360:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:361:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-362-  classical
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-363-  have hcard :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-364-    two_le_card_capInterior_sdiff_collisionSources
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-406-      source.1 ≠ source'.1 ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-407-        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-408-        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:409:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:410:        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-411-  classical
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-412-  have honeLt :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-413-      1 <
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-549-Keep the cap-eight lower bound in the packet: downstream positive-alignment
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-550-arguments need the original cap cardinal margin, not only the selected source
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-551-extracted from it. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:552:abbrev CapSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-553-    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-554-    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-555-    {F : CriticalPairFrontier D S radius H}
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-578-
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-579-/-- The cap-source row surface is unchanged when the two collision rows are
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-580-exchanged. -/
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:581:theorem capSourceThirdCanonicalRowSurface_swap
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-582-    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-583-    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-584-    {F : CriticalPairFrontier D S radius H}
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-587-    {Fρ : CriticalPairFrontier D S ρ H}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-588-    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-589-    (Pρ : RetainedInteriorBlockerCollision Rρ)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:590:    (h : CapSourceThirdCanonicalRowSurface P Pρ) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:591:    CapSourceThirdCanonicalRowSurface Pρ P := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-592-  rcases h with
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-593-    ⟨hcap, source, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-594-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-611-    {Fρ : CriticalPairFrontier D S ρ H}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-612-    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-613-    (Pρ : RetainedInteriorBlockerCollision Rρ) : Prop :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:614:  CapSourceThirdCanonicalRowSurface P Pρ ∨
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-615-    CrossBlockerCoincidence P Pρ
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-616-
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-617-/-- The cap-eight source's canonical row is a third exact-four row and omits
+--
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-631-        ({P.source₁, P.source₂} : Finset ℝ²)
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-632-        {Pρ.source₁, Pρ.source₂})
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-633-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:634:    CapSourceThirdCanonicalRowSurface P Pρ := by
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-635-  obtain ⟨source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-636-      hcenterNeFirst, hcenterNeSecond, hsurvives, hsurvivesρ⟩ :=
+lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean-637-    exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7622-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7623-/-- Source-exact witness carried by the cap-eight third-row surface, with the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7624-existential source exposed for downstream geometric alignment arguments. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7625:abbrev CapSourceThirdCanonicalRowWitness
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7626-    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7627-  8 ≤ (S.capByIndex S.oppIndex1).card ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7628-    source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7653-the finite-map output needed by the computational route.  Consolidating at
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7654-this boundary removes two branch-specific obligations in favor of one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7655-cardinality-sharp global target with cap profile floor `(8, 6, 6)`. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7656:theorem false_of_capSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7657:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7658-    (hresidual : GeometricMultiplicityResidual P Pρ) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7659-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7660-  sorry
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7739-The common terminal consumes `hcapSource` together with the fresh-third arm of
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7740-the geometric-multiplicity residual. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7741-theorem false_of_capSource_freshThirdBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7742:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7743-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7744-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7745-  exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7746:    false_of_capSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7747-      P Pρ hρne hfrontierFour hρfour
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7748-      hfrontierInteriorEq hρInteriorEq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7749-      T hpairsDisjoint hblockersNe
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7766-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7767-/-- Source-exact witness carried by the cap-eight third-row surface, with the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7768-existential source exposed so that the first-fiber descent can retain it. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7769:abbrev FirstFiberCapSourceWitness
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7770-    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7771:  CapSourceThirdCanonicalRowWitness P Pρ source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7772-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7773-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7774-  T hpairsDisjoint hblockersNe
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7777-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7778-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7779-    (hsource :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7780:      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7781:    FirstFiberCapSourceWitness P Pρ source := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7782-  rcases hsource with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7783-    ⟨hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7784-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7803-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7804-    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7805-      source.1 ≠ source'.1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7806:        FirstFiberCapSourceWitness P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7807:        FirstFiberCapSourceWitness P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7808-  obtain ⟨source, source', hsourcesNe, hsource, hsource'⟩ :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7809-    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7810-      P Pρ
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7857-      source.1 ≠ source'.1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7858-        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7859-        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7860:        FirstFiberCapSourceWitness P Pρ source ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7861:        FirstFiberCapSourceWitness P Pρ source' := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7862-  obtain
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7863-      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7864-        hsource, hsource'⟩ :=
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7976-supports make complementary choices from each collision pair. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7977-theorem commonCollisionEndpointOmission_or_complementaryMembership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7978-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7979:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7980:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7981-    (∃ z : ℝ²,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7982-        z ∈
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-7983-            (({P.source₁, P.source₂} : Finset ℝ²) ∪
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8050-        {Pρ.source₁, Pρ.source₂})
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8051-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8052-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8053:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8054:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8055-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8056-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8057-    (hblockersEq :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8244-cap-source surface. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8245-private theorem capSourceSurface_of_firstFiberWitness
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8246-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8247:    (hsource : FirstFiberCapSourceWitness P Pρ source) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8248:    CapSourceThirdCanonicalRowSurface P Pρ := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8249-  exact ⟨hsource.1, source, hsource.2⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8250-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8251-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8256-private theorem freshThirdBlockerFiber_of_mutualCrossMembership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8257-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8258-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8259:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8260:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8261-    (hblockersEq : H.blockerVertex source = H.blockerVertex source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8262-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8263-      TwoCapSourcesMutualCrossMembership (H := H) source source') :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8580-theorem exists_mutualBlockerCapIndices_same_only_first
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8581-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8582-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8583:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8584:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8585-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8586-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8587-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8711-theorem false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8712-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8713-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8714:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8715:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8716-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8717-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8718-    (hcomplementary :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8796-theorem exists_mutualBlockerCapIndices_distinct_otherCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8797-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8798-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8799:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8800:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8801-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8802-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-8803-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9010-theorem false_of_twoCapSources_complementaryMembership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9011-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9012-    (hsourcesNe : source.1 ≠ source'.1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9013:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9014:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9015-    (hmutual :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9016-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9017-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9184-finite packet. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9185-theorem sixCenterDeletionSurvivalPacket_of_oneSided
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9186-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9187:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9188:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9189-    (hsurvival :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9190-      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9191-    SixCenterDeletionSurvivalPacket (D := D) source'.1
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9342-      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9343-    (hsourceRadius' :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9344-      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9345:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9346:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9347-    (hsurvival :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9348-      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9349-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9350-  exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9351:    false_of_capSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9352-      P Pρ hρne hfrontierFour hρfour
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9353-      hfrontierInteriorEq hρInteriorEq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9354-      T hpairsDisjoint hblockersNe
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9369-      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9370-    (hsourceRadius' :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9371-      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9372:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9373:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9374-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9375-  rcases mutualCrossMembership_or_oneSidedDeletionSurvival
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9376-      source source' with hmutual | hsurvival
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9410-radii, contradicting the source's exclusion from both collision pairs. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9411-private theorem firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9412-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9413:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9414-    (haligned :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9415-      FirstCapMultiPointRadiiRetained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9416-        (S := S) (radius := radius) (ρ := ρ)) :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9550-alignment makes the same deletion fatal at the first apex. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9551-private theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9552-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9553:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9554-    (haligned :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9555-      FirstCapMultiPointRadiiRetained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-9556-        (S := S) (radius := radius) (ρ := ρ)) :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10639-obligation directly. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10640-theorem false_of_freshCanonicalRowOverride
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10641-    (source q : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10642:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10643-    (hqFirst :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10644-      q.1 ∉
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-10645-        (H.selectedAt P.source₁
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11004-        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11005-          {Pρ.source₁, Pρ.source₂})
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11006-    exact hsourceOutside
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11007:  have hcapSource' : CapSourceThirdCanonicalRowSurface P' Pρ' := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11008-    by_cases hvSource : v = source.1
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11009-    · subst v
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11010-      have hcenterSource' :
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11193-theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11194-    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11195-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11196:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11197-    (hsingleton :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11198-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11199-          S.capInteriorByIndex S.oppIndex1 =
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11207-          Q.otherOutsidePoint) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11208-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11209-  exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11210:    false_of_capSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11211-      P Pρ hρne hfrontierFour hρfour
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11212-      hfrontierInteriorEq hρInteriorEq T hpairsDisjoint hblockersNe
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11213-      LPρ hLPρ MPρ LP hLP MP
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11221-preserved only for callers. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11222-theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11223-    (source : CriticalShellSystem.CarrierVertex D.A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11224:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11225-    (hsingleton :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11226-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11227-          S.capInteriorByIndex S.oppIndex1 =
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11246-obligation independently of the common cap-source/blocker-multiplicity
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11247-packet. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11248-theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11249:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11250-    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11251-    (haligned :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11252-      FirstCapMultiPointRadiiRetained
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11257-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11258-      hcenterNeFirstApex, hcenterNeSecondApex,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11259-      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11260:  have hsource : FirstFiberCapSourceWitness P Pρ source :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11261-    ⟨hcap, hsourceInterior, hsourceOutside,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11262-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11263-      hcenterNeFirstApex, hcenterNeSecondApex,
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11276-Its radius split and two-source extraction remain available, but the live
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11277-coordinator consumes `hcapSource` before this split. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11278-theorem false_of_capSource_freshOutsideFirstBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11279:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11280-    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11281-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11282-  rcases hfirst with ⟨Q⟩
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11310-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11311-/-- Compatibility transport for the former enlarged second-fiber route. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11312-theorem false_of_capSource_freshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11313:    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11314-    (hsecond : Nonempty (FreshOutsideSecondBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11315-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11316-  let Bswap : FrontierBiApexRobustResidual Rρ :=
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11327-    hρInteriorEq hfrontierInteriorEq Tswap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11328-    hpairsDisjoint.symm hblockersNe.symm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11329-    LP hLP MP LPρ hLPρ MPρ
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11330:    (capSourceThirdCanonicalRowSurface_swap P Pρ hcapSource)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11331-    (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11332-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11333-end
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11490-  · exact Or.inr hcross
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11491-  · rcases hglobalCapSplit with hcapSource | hcoincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11492-    · exact False.elim
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11493:        (TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11494-            (P := P) (Pρ := Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11495-            (hρne := hρne)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-11496-            (hfrontierFour := hfrontierFour)

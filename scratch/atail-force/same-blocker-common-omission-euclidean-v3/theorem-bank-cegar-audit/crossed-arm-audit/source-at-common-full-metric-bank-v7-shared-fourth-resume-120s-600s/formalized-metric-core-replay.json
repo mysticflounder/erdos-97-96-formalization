@@ -1,0 +1,38 @@
+{
+  "carrier_size": 17,
+  "cyclic_order": [
+    "a1",
+    "t4",
+    "t3",
+    "t1",
+    "t2",
+    "a2",
+    "p2",
+    "q1",
+    "r2",
+    "p1",
+    "q2",
+    "r1",
+    "a3",
+    "s1",
+    "s3",
+    "s4",
+    "s2"
+  ],
+  "exact_radius_row_count": 210,
+  "formalized_metric_core": {
+    "core": {
+      "a": 5,
+      "b": 12,
+      "c": 13,
+      "x": 6,
+      "y": 3
+    },
+    "stage": "equality-convex-five-point"
+  },
+  "schema": "crossed-arm-formalized-metric-core-replay-v1",
+  "status": "KILLED",
+  "trust_note": "Finite Python replay of production-aligned metric-core matchers against the complete serialized radius partition; not a Lean proof.",
+  "witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v7-shared-fourth-resume-120s-600s/witness.json",
+  "witness_sha256": "ac05c3323002674b8961ce8a1f2e841ec6e6b17623e7f54a44dd8c33d55b7102"
+}

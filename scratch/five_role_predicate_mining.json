@@ -1,0 +1,762 @@
+[
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OACXK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OACXK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unsat",
+      "order": "OACKX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OACKX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAXCK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAXCK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "sat",
+      "order": "OAXKC",
+      "capdot": false,
+      "distances": {
+        "AC": "1.4142135623?",
+        "AK": "1.4142135623?",
+        "AO": "1",
+        "AX": "0.7905694150?",
+        "CK": "2",
+        "CO": "1",
+        "CX": "1.9039432764?",
+        "KO": "2.2360679775?",
+        "KX": "0.7905694150?",
+        "OX": "1.7677669529?"
+      },
+      "points": {
+        "O": [
+          "0",
+          "0"
+        ],
+        "A": [
+          "0",
+          "1"
+        ],
+        "C": [
+          "-1",
+          "0"
+        ],
+        "X": [
+          "-1/4",
+          "7/4"
+        ],
+        "K": [
+          "-1",
+          "2"
+        ]
+      }
+    },
+    "capdot": {
+      "status": "sat",
+      "order": "OAXKC",
+      "capdot": true,
+      "distances": {
+        "AC": "1.4142135623?",
+        "AK": "1.4142135623?",
+        "AO": "1",
+        "AX": "0.7905694150?",
+        "CK": "2",
+        "CO": "1",
+        "CX": "1.9039432764?",
+        "KO": "2.2360679775?",
+        "KX": "0.7905694150?",
+        "OX": "1.7677669529?"
+      },
+      "points": {
+        "O": [
+          "0",
+          "0"
+        ],
+        "A": [
+          "0",
+          "1"
+        ],
+        "C": [
+          "-1",
+          "0"
+        ],
+        "X": [
+          "-1/4",
+          "7/4"
+        ],
+        "K": [
+          "-1",
+          "2"
+        ]
+      }
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAKCX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAKCX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAKXC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAKXC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCAXK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCAXK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCAKX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCAKX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unsat",
+      "order": "OCXAK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCXAK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCXKA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCXKA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCKAX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCKAX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "sat",
+      "order": "OCKXA",
+      "capdot": false,
+      "distances": {
+        "AC": "1.4142135623?",
+        "AK": "1.4142135623?",
+        "AO": "1",
+        "AX": "0.7905694150?",
+        "CK": "2",
+        "CO": "1",
+        "CX": "1.9039432764?",
+        "KO": "2.2360679775?",
+        "KX": "0.7905694150?",
+        "OX": "1.7677669529?"
+      },
+      "points": {
+        "O": [
+          "0",
+          "0"
+        ],
+        "A": [
+          "0",
+          "-1"
+        ],
+        "C": [
+          "-1",
+          "0"
+        ],
+        "X": [
+          "-1/4",
+          "-7/4"
+        ],
+        "K": [
+          "-1",
+          "-2"
+        ]
+      }
+    },
+    "capdot": {
+      "status": "sat",
+      "order": "OCKXA",
+      "capdot": true,
+      "distances": {
+        "AC": "1.4142135623?",
+        "AK": "1.4142135623?",
+        "AO": "1",
+        "AX": "0.7905694150?",
+        "CK": "2",
+        "CO": "1",
+        "CX": "1.9039432764?",
+        "KO": "2.2360679775?",
+        "KX": "0.7905694150?",
+        "OX": "1.7677669529?"
+      },
+      "points": {
+        "O": [
+          "0",
+          "0"
+        ],
+        "A": [
+          "0",
+          "-1"
+        ],
+        "C": [
+          "-1",
+          "0"
+        ],
+        "X": [
+          "-1/4",
+          "-7/4"
+        ],
+        "K": [
+          "-1",
+          "-2"
+        ]
+      }
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OXACK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXACK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OXAKC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXAKC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OXCAK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXCAK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OXCKA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXCKA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OXKAC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXKAC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unsat",
+      "order": "OXKCA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OXKCA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKACX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKACX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unsat",
+      "order": "OKAXC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKAXC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKCAX",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKCAX",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKCXA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKCXA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKXAC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKXAC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "A=J",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKXCA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKXCA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OACJK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OACJK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unsat",
+      "order": "OACKJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OACKJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAJCK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAJCK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAJKC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAJKC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAKCJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAKCJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OAKJC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OAKJC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCAJK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCAJK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCAKJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCAKJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCJAK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCJAK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCJKA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCJKA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCKAJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCKAJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OCKJA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OCKJA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OJACK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJACK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OJAKC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJAKC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OJCAK",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJCAK",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OJCKA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJCKA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OJKAC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJKAC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unsat",
+      "order": "OJKCA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OJKCA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKACJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKACJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKAJC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKAJC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKCAJ",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKCAJ",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKCJA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKCJA",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKJAC",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKJAC",
+      "capdot": true
+    }
+  },
+  {
+    "system": "X=C",
+    "baseline": {
+      "status": "unknown",
+      "order": "OKJCA",
+      "capdot": false
+    },
+    "capdot": {
+      "status": "skipped",
+      "order": "OKJCA",
+      "capdot": true
+    }
+  }
+]

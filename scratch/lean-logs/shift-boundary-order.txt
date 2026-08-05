@@ -1,0 +1,79 @@
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-915-/-- Cyclically shift a descending boundary order to put `phi ic` at index `0`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-916-Returns the shifted enumeration `psi`, its descending predicate, and the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-917-reindexing `psi (i - ic) = phi i`. -/
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:918:private theorem shift_boundaryOrder
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-919-    {A : Finset ℝ²} {n : ℕ} [NeZero n] {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-920-    (hphi_inj : Function.Injective phi) (hphi_image : Finset.univ.image phi = A)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-921-    (hneg : ∀ {i j k : Fin n}, i < j → j < k →
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1088-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1089-**Proof (cyclic-interval position).**  Shift the global CCW boundary order
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1090-(`boundaryOrder_hneg` from `CGN4g0_globalBoundaryOrder_of_convexIndep`) so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1091:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The cap `C₂` is the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1092-opposite-`v₂` arc, so `supportCap_interval_of_oppositeFirst_local'` puts `x`'s
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1093-index strictly between the `v₃` and `v₁` indices (`jv3 < ix < jv1` up to the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1094-orientation swap).  With `v₂` at `0`, both `v₁` and `v₂` then sit on the same
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1121-  rcases Finset.mem_image.mp hv2A with ⟨i2, _, hi2⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1122-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1123-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1124:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1125-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1126-  set jv3 : Fin n := i3 - i2 with hjv3def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1127-  set jv1 : Fin n := i1 - i2 with hjv1def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1186-  `0 < signedArea2 a₁ v₁ x · signedArea2 v₃ v₁ x`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1187-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1188-**Proof (cyclic-interval position).**  Shift the global CCW boundary order so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1189:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The point `x ∈ I₂` is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1190-located strictly between the `v₃` and `v₁` indices via `index_between_of_onArc`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1191-on `C₂ = OnArcOpposite v₂ v₃ v₁`.  The cap vertex `a₁ ∈ I₁ = OnArcOpposite
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1192-v₁ v₂ v₃` is the canonical arc (no chord-endpoint swap needed): in the
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1220-  rcases Finset.mem_image.mp hv2A with ⟨i2, _, hi2⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1221-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1222-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1223:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1224-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1225-  set jv3 : Fin n := i3 - i2 with hjv3def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1226-  set jv1 : Fin n := i1 - i2 with hjv1def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1320-  rcases Finset.mem_image.mp hv2A with ⟨i2, _, hi2⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1321-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1322-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1323:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1324-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1325-  set jv3 : Fin n := i3 - i2 with hjv3def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1326-  set jv1 : Fin n := i1 - i2 with hjv1def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1400-sign-transitivity reduction (`Problem97.signedArea_prod_pos_trans`).
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1401-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1402-**Proof (cyclic-interval position).**  Shift the global CCW boundary order so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1403:apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The point `x ∈ I₂` is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1404-located strictly between the `v₃` and `v₁` indices via `index_between_of_onArc`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1405-on `C₂ = OnArcOpposite v₂ v₃ v₁` (opposite vertex `v₂` at index `0`, so outside
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1406-the chord interval).  The cap vertex `a₃ ∈ I₃ = OnArcOpposite v₃ v₁ v₂` is located
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1436-  rcases Finset.mem_image.mp hv2A with ⟨i2, _, hi2⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1437-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1438-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1439:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1440-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1441-  set jv3 : Fin n := i3 - i2 with hjv3def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1442-  set jv1 : Fin n := i1 - i2 with hjv1def
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1710-**Proof (cyclic-interval position — identical frame to
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1711-`same_side_of_chord_endpoint_thales`).**  Shift the global CCW boundary order
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1712-(`boundaryOrder_hneg`) so the apex `v₂` sits at index `0`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1713:(`shift_boundaryOrder`).  The cap `C₂` is the opposite-`v₂` arc, so
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1714-`supportCap_interval_of_oppositeFirst_local'` puts `x`'s index strictly between
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1715-the `v₃` and `v₁` indices (`jv3 < ix < jv1`, up to the orientation swap).  With
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1716-`v₂` at index `0`, both `v₁` and `v₂` sit on the *same* strict side of the
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1741-  rcases Finset.mem_image.mp hv2A with ⟨i2, _, hi2⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1742-  rcases Finset.mem_image.mp hv3A with ⟨i3, _, hi3⟩
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1743-  obtain ⟨psi, hpsi_inj, hpsi_image, hneg_s, hpsi_re⟩ :=
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1744:    shift_boundaryOrder hphi_inj hphi_image hneg i2
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1745-  set jv2 : Fin n := i2 - i2 with hjv2def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1746-  set jv3 : Fin n := i3 - i2 with hjv3def
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1747-  set jv1 : Fin n := i1 - i2 with hjv1def

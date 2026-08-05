@@ -1,0 +1,242 @@
+{
+  "candidate_patterns": {
+    "kalmanson_two_selected_rows": 80,
+    "sparse_raw_equalities": 864,
+    "sparse_two_selected_rows": 256,
+    "two_triple_raw_equalities": 864
+  },
+  "epistemic_scope": {
+    "excluded": [
+      "Lean elaboration or kernel checking in this run",
+      "existence of a planar or Euclidean realization",
+      "MEC, convex-independence, minimality, robustness, and production-spine closure"
+    ],
+    "included": [
+      "the exact equality closure of the 12 SHELLS and 3 RICH_CLASSES",
+      "all 4!^3 within-strict-cap permutations in the stated cyclic group order",
+      "raw equality hypotheses of the two six-point theorem schemas",
+      "full-shell membership hypotheses for selected-row consumers"
+    ],
+    "status": "EMPIRICALLY VERIFIED by exhaustive exact finite enumeration"
+  },
+  "family_hit_profile": [
+    {
+      "families": [
+        "sparse_raw_equalities",
+        "sparse_two_selected_rows",
+        "kalmanson_two_selected_rows"
+      ],
+      "orders": 352
+    },
+    {
+      "families": [
+        "two_triple_raw_equalities",
+        "sparse_raw_equalities",
+        "sparse_two_selected_rows",
+        "kalmanson_two_selected_rows"
+      ],
+      "orders": 13472
+    }
+  ],
+  "finite_pattern_cover": {
+    "lower_bound": 2,
+    "maximum_single_pattern_coverage": 6912,
+    "pairwise_overlap_orders": 0,
+    "patterns": [
+      {
+        "family": "kalmanson_two_selected_rows",
+        "orders_covered": 6912,
+        "roles": [
+          2,
+          6,
+          7,
+          11
+        ]
+      },
+      {
+        "family": "kalmanson_two_selected_rows",
+        "orders_covered": 6912,
+        "roles": [
+          6,
+          1,
+          14,
+          7
+        ]
+      }
+    ],
+    "size": 2,
+    "status": "minimum"
+  },
+  "first_witness_by_family": {
+    "kalmanson_two_selected_rows": {
+      "order": [
+        13,
+        0,
+        1,
+        2,
+        3,
+        14,
+        4,
+        5,
+        6,
+        7,
+        12,
+        8,
+        9,
+        10,
+        11
+      ],
+      "roles": [
+        2,
+        6,
+        7,
+        11
+      ]
+    },
+    "sparse_raw_equalities": {
+      "order": [
+        13,
+        0,
+        1,
+        2,
+        3,
+        14,
+        4,
+        5,
+        6,
+        7,
+        12,
+        8,
+        9,
+        10,
+        11
+      ],
+      "roles": [
+        0,
+        1,
+        4,
+        6,
+        8,
+        9
+      ]
+    },
+    "sparse_two_selected_rows": {
+      "order": [
+        13,
+        0,
+        1,
+        2,
+        3,
+        14,
+        4,
+        5,
+        6,
+        7,
+        12,
+        8,
+        9,
+        10,
+        11
+      ],
+      "roles": [
+        0,
+        1,
+        4,
+        6,
+        8,
+        9
+      ]
+    },
+    "two_triple_raw_equalities": {
+      "order": [
+        13,
+        0,
+        1,
+        2,
+        3,
+        14,
+        4,
+        5,
+        6,
+        7,
+        12,
+        8,
+        9,
+        10,
+        11
+      ],
+      "roles": [
+        1,
+        4,
+        5,
+        6,
+        9,
+        0
+      ]
+    }
+  },
+  "killed_by_family": {
+    "kalmanson_two_selected_rows": 13824,
+    "sparse_raw_equalities": 13824,
+    "sparse_two_selected_rows": 13824,
+    "two_triple_raw_equalities": 13472
+  },
+  "killed_by_union": 13824,
+  "order_convention": {
+    "cyclic_groups": [
+      13,
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      14,
+      [
+        4,
+        5,
+        6,
+        7
+      ],
+      12,
+      [
+        8,
+        9,
+        10,
+        11
+      ]
+    ],
+    "quotient": "one representative up to global rotation and reversal",
+    "within_cap_permutations": "4!^3"
+  },
+  "schema_version": 1,
+  "sources": {
+    "kalmanson": {
+      "path": "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
+      "sha256": "0c82bf6d9b30b4d6db0b705f998128277a94a78bb16a873a15599f87f28b8497"
+    },
+    "miner": {
+      "path": "scratch/retained-omission-e1/order-kernel-miner/mine_orders.py",
+      "sha256": "f868cc6eedc020983ab7f7dea5a890eacc83645494aee0ad7425698ac1a735ac"
+    },
+    "shadow": {
+      "path": "scratch/triapex-incidence-obstruction/check_model.py",
+      "sha256": "c777ebed73e3028c5bbb39664be93ad5f2f35469a3c72027a42204e52d6136f7"
+    },
+    "sparse": {
+      "path": "lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean",
+      "sha256": "a6d35435cc34c1927a0a40ccd647464a9ec3b76b03fe2625dc934289b28be56a"
+    },
+    "two_triple": {
+      "path": "lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean",
+      "sha256": "91bc2d5e71d3ecc7cc57634853913d7c88382cb8a8784549cb6bd1da62a79a62"
+    },
+    "uv_project": {
+      "path": "scratch/retained-omission-e1/order-kernel-miner/pyproject.toml",
+      "sha256": "85c3cd6b02b9aa2752bd6174f23e0b80407fdec682089907ea79733964e077f9"
+    }
+  },
+  "survivor_orders": [],
+  "survivors": 0,
+  "total_orders": 13824
+}

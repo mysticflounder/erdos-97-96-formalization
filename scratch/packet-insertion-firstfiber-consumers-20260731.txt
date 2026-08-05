@@ -1,0 +1,191 @@
+7778-    (source : CriticalShellSystem.CarrierVertex D.A)
+7779-    (hsource :
+7780-      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source) :
+7781:    FirstFiberCapSourceWitness P Pρ source := by
+7782-  rcases hsource with
+7783-    ⟨hsourceInterior, hsourceOutside,
+7784-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+--
+7799-/-- The cap-eight margin produces two distinct strict-cap sources carrying the
+7800-complete first-fiber source witness.  This is the checked strengthening used
+7801-by the live first-fiber terminal. -/
+7802:private theorem exists_two_firstFiberCapSourceWitness
+7803-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+7804-    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+7805-      source.1 ≠ source'.1 ∧
+7806:        FirstFiberCapSourceWitness P Pρ source ∧
+7807:        FirstFiberCapSourceWitness P Pρ source' := by
+7808-  obtain ⟨source, source', hsourcesNe, hsource, hsource'⟩ :=
+7809-    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+7810-      P Pρ
+--
+7844-  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+7845-/-- Lift two strict first-cap points on one fresh first-apex radius while
+7846-retaining the common-radius membership needed by blocker rigidity. -/
+7847:private theorem exists_two_firstFiberCapSourceWitness_of_commonRadius
+7848-    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card)
+7849-    (commonRadius : ℝ)
+7850-    (hcommonCard :
+--
+7857-      source.1 ≠ source'.1 ∧
+7858-        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+7859-        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+7860:        FirstFiberCapSourceWitness P Pρ source ∧
+7861:        FirstFiberCapSourceWitness P Pρ source' := by
+7862-  obtain
+7863-      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+7864-        hsource, hsource'⟩ :=
+--
+7976-supports make complementary choices from each collision pair. -/
+7977-theorem commonCollisionEndpointOmission_or_complementaryMembership
+7978-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+7979:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+7980:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+7981-    (∃ z : ℝ²,
+7982-        z ∈
+7983-            (({P.source₁, P.source₂} : Finset ℝ²) ∪
+--
+8050-        {Pρ.source₁, Pρ.source₂})
+8051-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+8052-    (hsourcesNe : source.1 ≠ source'.1)
+8053:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8054:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8055-    (hmutual :
+8056-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8057-    (hblockersEq :
+--
+8244-cap-source surface. -/
+8245-private theorem capSourceSurface_of_firstFiberWitness
+8246-    (source : CriticalShellSystem.CarrierVertex D.A)
+8247:    (hsource : FirstFiberCapSourceWitness P Pρ source) :
+8248-    CapSourceThirdCanonicalRowSurface P Pρ := by
+8249-  exact ⟨hsource.1, source, hsource.2⟩
+8250-
+--
+8256-private theorem freshThirdBlockerFiber_of_mutualCrossMembership
+8257-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+8258-    (hsourcesNe : source.1 ≠ source'.1)
+8259:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8260:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8261-    (hblockersEq : H.blockerVertex source = H.blockerVertex source')
+8262-    (hmutual :
+8263-      TwoCapSourcesMutualCrossMembership (H := H) source source') :
+--
+8580-theorem exists_mutualBlockerCapIndices_same_only_first
+8581-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+8582-    (hsourcesNe : source.1 ≠ source'.1)
+8583:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8584:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8585-    (hmutual :
+8586-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8587-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+--
+8711-theorem false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+8712-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+8713-    (hsourcesNe : source.1 ≠ source'.1)
+8714:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8715:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8716-    (hmutual :
+8717-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8718-    (hcomplementary :
+--
+8796-theorem exists_mutualBlockerCapIndices_distinct_otherCaps
+8797-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+8798-    (hsourcesNe : source.1 ≠ source'.1)
+8799:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8800:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8801-    (hmutual :
+8802-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8803-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+--
+9010-theorem false_of_twoCapSources_complementaryMembership
+9011-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+9012-    (hsourcesNe : source.1 ≠ source'.1)
+9013:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9014:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+9015-    (hmutual :
+9016-      TwoCapSourcesMutualCrossMembership (H := H) source source')
+9017-    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+--
+9184-finite packet. -/
+9185-theorem sixCenterDeletionSurvivalPacket_of_oneSided
+9186-    (source source' : CriticalShellSystem.CarrierVertex D.A)
+9187:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9188:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+9189-    (hsurvival :
+9190-      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+9191-    SixCenterDeletionSurvivalPacket (D := D) source'.1
+--
+9342-      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+9343-    (hsourceRadius' :
+9344-      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+9345:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9346:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+9347-    (hsurvival :
+9348-      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+9349-    False := by
+--
+9369-      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+9370-    (hsourceRadius' :
+9371-      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+9372:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9373:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+9374-    False := by
+9375-  rcases mutualCrossMembership_or_oneSidedDeletionSurvival
+9376-      source source' with hmutual | hsurvival
+--
+9410-radii, contradicting the source's exclusion from both collision pairs. -/
+9411-private theorem firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned
+9412-    (source : CriticalShellSystem.CarrierVertex D.A)
+9413:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9414-    (haligned :
+9415-      FirstCapMultiPointRadiiRetained
+9416-        (S := S) (radius := radius) (ρ := ρ)) :
+--
+9550-alignment makes the same deletion fatal at the first apex. -/
+9551-private theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+9552-    (source : CriticalShellSystem.CarrierVertex D.A)
+9553:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9554-    (haligned :
+9555-      FirstCapMultiPointRadiiRetained
+9556-        (S := S) (radius := radius) (ρ := ρ)) :
+--
+10639-obligation directly. -/
+10640-theorem false_of_freshCanonicalRowOverride
+10641-    (source q : CriticalShellSystem.CarrierVertex D.A)
+10642:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+10643-    (hqFirst :
+10644-      q.1 ∉
+10645-        (H.selectedAt P.source₁
+--
+11193-theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+11194-    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+11195-    (source : CriticalShellSystem.CarrierVertex D.A)
+11196:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+11197-    (hsingleton :
+11198-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+11199-          S.capInteriorByIndex S.oppIndex1 =
+--
+11221-preserved only for callers. -/
+11222-theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+11223-    (source : CriticalShellSystem.CarrierVertex D.A)
+11224:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+11225-    (hsingleton :
+11226-      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+11227-          S.capInteriorByIndex S.oppIndex1 =
+--
+11257-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+11258-      hcenterNeFirstApex, hcenterNeSecondApex,
+11259-      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+11260:  have hsource : FirstFiberCapSourceWitness P Pρ source :=
+11261-    ⟨hcap, hsourceInterior, hsourceOutside,
+11262-      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+11263-      hcenterNeFirstApex, hcenterNeSecondApex,
+--
+11297-    push_neg at haligned
+11298-    rcases haligned with
+11299-      ⟨commonRadius, hcommonCard, hcommonNeRadius, hcommonNeρ⟩
+11300:    rcases exists_two_firstFiberCapSourceWitness_of_commonRadius
+11301-        P Pρ T hcapSource.1 commonRadius hcommonCard
+11302-        hcommonNeRadius hcommonNeρ with
+11303-      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',

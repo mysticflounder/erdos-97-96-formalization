@@ -1,0 +1,72 @@
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:46:bracketing, and the principal chord-turn bound.  Lemma 30's separate cap-block
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:110:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:112:    rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:113:      EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:117:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:817:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:819:    rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:820:      EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:824:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:272:/-- The circumscribed MEC packet rotated to cap index `1`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:287:/-- The circumscribed MEC packet rotated to cap index `2`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:316:  (S.triangleByIndex i).rotate
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:322:  (S.circPacketByIndex i).rotate
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:761:/-- Every indexed cap of a surplus packet has the retained global block data
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:765:theorem capByIndex_cgn4g_strictCapBlockData
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:768:    Nonempty (Problem97.CGN.StrictCapBlockData A (S.capByIndex i)) := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:770:  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:778:  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:786:  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:39:      finRotate (n + 1) (reverseCyclicIndex n (i + 2)) := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:40:  rw [finRotate_succ_apply]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:46:theorem reverseCyclicIndex_rotate_succ (n i : Nat) :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:47:    finRotate (n + 1) (reverseCyclicIndex n (i + 1)) =
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:49:  rw [finRotate_succ_apply]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:52:theorem finRotate_ne_self_of_three_le (n : Nat) (hn : 3 <= n + 1)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:53:    (i : Fin (n + 1)) : finRotate (n + 1) i ≠ i := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:55:  rw [finRotate_succ_apply] at h
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:69:def rotatePoint {n : Nat} (point : Fin (n + 1) -> ℝ²)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:73:theorem rotatePoint_rev_eq_reverseCyclicPoint {n : Nat}
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:75:    rotatePoint point i.rev = reverseCyclicPoint point i.val := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:76:  simp only [rotatePoint, reverseCyclicPoint, reverseCyclicIndex,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:88:  have hrotate : IsCcwConvexPolygon (rotatePoint point) := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:89:    simpa [rotatePoint] using
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:92:    ShellCurvature.standardCounterclockwiseConvexPolygon_reverseLinear hrotate
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:93:  simpa [rotatePoint_rev_eq_reverseCyclicPoint] using hstandard hij hjk
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:102:  have hforward := hccw.sign_oangle_finRotate hn (reverseCyclicIndex n (i + 2))
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:104:    reverseCyclicIndex_rotate_succ n i] at hforward
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:123:  have hrotate := reverseCyclicIndex_rotate_succ n i
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:125:      finRotate (n + 1) (reverseCyclicIndex n (i + 1)) =
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:127:    rw [hrotate, hindex]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:128:  exact finRotate_ne_self_of_three_le n hn _ hfixed
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:229:    have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:232:      rw [EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:235:    simpa [reverseCyclicPoint_period] using hrotate
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:280:    have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:283:      rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:284:        EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:289:    rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:309:    have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:312:      rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:313:        EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:318:    rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:362:/-- Consecutive chords from one vertex rotate by a principal positive angle. -/
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:400:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:404:    rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:405:      EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:410:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:447:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:450:    rw [EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:455:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:589:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:592:    rw [EuclideanGeometry.oangle_rotate_sign,
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:593:      EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:598:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:609:  have hrotate :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:612:    rw [EuclideanGeometry.oangle_rotate_sign]
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:617:  rw [hrotate] at hswap
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:620:/-- Chords with a common initial point rotate by a principal positive angle. -/
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean:661:/-- Chords with a common terminal point rotate by a principal positive angle. -/
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Basic.lean:37:`ConvexCyclicOrder.rotate`/`ConvexCyclicOrder.reverse` wrapper API is still
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Basic.lean:62:CCW.  This is the subpolygon step used by cap-block arguments once the selected
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Basic.lean:266:-- TODO Step 2: ConvexCyclicOrder.rotate — `ConvexCyclicOrder A p q r s

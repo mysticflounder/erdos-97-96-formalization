@@ -1,0 +1,246 @@
+def write_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+
+
+def timestamp_slug() -> str:
+    return v8.timestamp_slug()
+
+
+def active_full_shells(
+    encoding: Encoding, model: z3.ModelRef
+) -> tuple[FullShell, ...]:
+    """Return only rows for which every support bit has full-shell meaning."""
+    shells: list[FullShell] = []
+    for center in CENTER_CANDIDATES:
+        activation = encoding.used(center)
+        if encoding._bool(model, activation):
+            shells.append(
+                FullShell(
+                    name=f"critical_{center}",
+                    kind="critical_full_row",
+                    support=tuple(encoding.row[center, x] for x in POINTS),
+                    activation=activation,
+                )
+            )
+    for (apex_index, cls), data in sorted(encoding.rich.items()):
+        support = data["support"]
+        assert isinstance(support, list)
+        shells.append(
+            FullShell(
+                name=f"rich_{apex_index}_{cls}",
+                kind="rich_full_class",
+                support=tuple(support),
+                activation=None,
+            )
+        )
+    return tuple(shells)
+
+
+def surviving_permutations(
+    zero_mask: Sequence[Sequence[bool]],
+) -> list[tuple[int, ...]]:
+    """Enumerate all 5! possible determinant monomials, without shortcuts."""
+    if len(zero_mask) != 5 or any(len(row) != 5 for row in zero_mask):
+        raise ValueError("power-pattern mask must be exactly 5 by 5")
+    return [
+        permutation
+        for permutation in PERMUTATIONS_5
+        if all(not zero_mask[row][permutation[row]] for row in range(5))
+    ]
+
+
+def _certificate_record(
+    case: Case,
+    shells: Sequence[FullShell],
+    columns: Sequence[int],
+    zero_mask: Sequence[Sequence[bool]],
+) -> dict[str, object] | None:
+    survivors = surviving_permutations(zero_mask)
+    if len(survivors) != 1:
+        return None
+    matching = survivors[0]
+    certified_nonzero = [
+        {
+            "row_index": row,
+            "row": shells[row].name,
+            "column_index": matching[row],
+            "point": columns[matching[row]],
+        }
+        for row in range(5)
+    ]
+    forced_zero = [
+        {
+            "row_index": row,
+            "row": shells[row].name,
+            "column_index": col,
+            "point": columns[col],
+        }
+        for row in range(5)
+        for col in range(5)
+        if zero_mask[row][col]
+    ]
+    eliminated = []
+    for permutation in PERMUTATIONS_5:
+        if permutation == matching:
+            continue
+        blocker = next(
+            row for row in range(5) if zero_mask[row][permutation[row]]
+        )
+        eliminated.append(
+            {
+                "permutation_points": [columns[col] for col in permutation],
+                "forced_zero_blocker": {
+                    "row_index": blocker,
+                    "row": shells[blocker].name,
+                    "column_index": permutation[blocker],
+                    "point": columns[permutation[blocker]],
+                },
+            }
+        )
+    record: dict[str, object] = {
+        "family": "power_pattern_rank4_full_shell",
+        "lean_theorem": POWER_THEOREM,
+        "schema_arm": {
+            "arm": case.arm,
+            "profiles": case.profiles,
+            "kept": case.kept,
+            "deleted": case.deleted,
+            "fresh": case.fresh,
+        },
+        "antecedent": (
+            "the five named rows are active full positive-radius carrier circle "
+            "classes; support=true is forcedZero and support=false is "
+            "forcedNonzero on the five named carrier points"
+        ),
+        "rows": [
+            {"name": shell.name, "kind": shell.kind} for shell in shells
+        ],
+        "columns": list(columns),
+        "unique_surviving_permutation_points": [
+            columns[col] for col in matching
+        ],
+        "certified_nonzero_matching": certified_nonzero,
+        "forced_zero_cells": forced_zero,
+        "eliminated_permutations": eliminated,
+        "permutations_enumerated": len(PERMUTATIONS_5),
+    }
+    verify_power_certificate(record)
+    return record
+
+
+def verify_power_certificate(record: dict[str, object]) -> None:
+    """Independent finite replay of the recorded 120-permutation witness."""
+    rows = record["rows"]
+    columns = record["columns"]
+    zeros = record["forced_zero_cells"]
+    nonzeros = record["certified_nonzero_matching"]
+    if not isinstance(rows, list) or len(rows) != 5:
+        raise AssertionError("certificate does not name five rows")
+    if not isinstance(columns, list) or len(columns) != 5 or len(set(columns)) != 5:
+        raise AssertionError("certificate does not name five distinct columns")
+    assert isinstance(zeros, list) and isinstance(nonzeros, list)
+    zero_cells = {
+        (int(item["row_index"]), int(item["column_index"])) for item in zeros
+    }
+    nonzero_cells = {
+        (int(item["row_index"]), int(item["column_index"])) for item in nonzeros
+    }
+    if zero_cells & nonzero_cells:
+        raise AssertionError("a power entry is both forced zero and nonzero")
+    if len(nonzero_cells) != 5 or {row for row, _ in nonzero_cells} != set(range(5)):
+        raise AssertionError("certified matching has the wrong row support")
+    if {col for _, col in nonzero_cells} != set(range(5)):
+        raise AssertionError("certified matching has the wrong column support")
+    zero_mask = [
+        [(row, col) in zero_cells for col in range(5)] for row in range(5)
+    ]
+    survivors = surviving_permutations(zero_mask)
+    if len(survivors) != 1:
+        raise AssertionError(f"expected one possible permutation, found {len(survivors)}")
+    matching_cells = {(row, survivors[0][row]) for row in range(5)}
+    if matching_cells != nonzero_cells:
+        raise AssertionError("unique possible permutation is not the certified matching")
+    eliminated = record["eliminated_permutations"]
+    if not isinstance(eliminated, list) or len(eliminated) != 119:
+        raise AssertionError("certificate must account for all 119 rejected permutations")
+    recorded = {tuple(item["permutation_points"]) for item in eliminated}
+    expected = {
+        tuple(columns[col] for col in permutation)
+        for permutation in PERMUTATIONS_5
+        if permutation != survivors[0]
+    }
+    if recorded != expected:
+        raise AssertionError("recorded eliminated permutations are incomplete")
+
+
+def mine_power_cut(
+    encoding: Encoding,
+    model: z3.ModelRef,
+    budget: PowerSearchBudget,
+) -> tuple[z3.BoolRef, dict[str, object]] | None:
+    """Find one deterministic full-shell rank-four obstruction in the model."""
+    shells = active_full_shells(encoding, model)
+    if len(shells) < 5:
+        return None
+    supports = {
+        shell.name: tuple(encoding._bool(model, bit) for bit in shell.support)
+        for shell in shells
+    }
+
+    # A bipartite graph with a unique perfect matching has a degree-one vertex
+    # on the row side.  Enumerating its four zero columns and sole possible
+    # column is complete, while avoiding all C(m,5)*C(15,5) submatrices.
+    for designated_index, designated in enumerate(shells):
+        zero_points = [x for x in POINTS if supports[designated.name][x]]
+        nonzero_points = [x for x in POINTS if not supports[designated.name][x]]
+        for four_zeros in itertools.combinations(zero_points, 4):
+            for possible_point in nonzero_points:
+                columns = tuple(sorted((*four_zeros, possible_point)))
+                for other_indices in itertools.combinations(
+                    [index for index in range(len(shells)) if index != designated_index],
+                    4,
+                ):
+                    budget.charge()
+                    selected_indices = (designated_index, *other_indices)
+                    selected_shells = tuple(shells[index] for index in selected_indices)
+                    zero_mask = [
+                        [supports[shell.name][point] for point in columns]
+                        for shell in selected_shells
+                    ]
+                    # The designated row must have exactly one possible entry.
+                    if sum(not value for value in zero_mask[0]) != 1:
+                        raise AssertionError("degree-one enumeration invariant failed")
+                    record = _certificate_record(
+                        encoding.case, selected_shells, columns, zero_mask
+                    )
+                    if record is None:
+                        continue
+                    antecedents: list[z3.BoolRef] = []
+                    for shell in selected_shells:
+                        if shell.activation is not None:
+                            antecedents.append(shell.activation)
+                    for item in record["certified_nonzero_matching"]:
+                        assert isinstance(item, dict)
+                        row = int(item["row_index"])
+                        point = int(item["point"])
+                        antecedents.append(z3.Not(selected_shells[row].support[point]))
+                    for item in record["forced_zero_cells"]:
+                        assert isinstance(item, dict)
+                        row = int(item["row_index"])
+                        point = int(item["point"])
+                        antecedents.append(selected_shells[row].support[point])
+                    cut = z3.Not(z3.And(*antecedents))
+                    if z3.is_true(model.eval(cut, model_completion=True)):
+                        raise AssertionError("power cut does not exclude its source model")
+                    return cut, record
+    return None
+
+
+def _remaining_ms(deadline: float) -> int:
+    return max(0, int((deadline - time.monotonic()) * 1000))
+
+
+def solve_case(
+    case: Case,
+    timeout_ms: int,

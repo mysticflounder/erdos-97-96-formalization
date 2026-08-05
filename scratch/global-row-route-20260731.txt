@@ -1,0 +1,841 @@
+ 10040	    · subst r
+ 10041	      rw [hρInteriorEq] at hinter
+ 10042	      simp [Pρ.sources_ne] at hinter
+ 10043	      omega
+ 10044	  · have hinter₁ :
+ 10045	        2 ≤
+ 10046	          (SelectedClass D.A S.oppApex1 r₁ ∩
+ 10047	            S.capInteriorByIndex S.oppIndex1).card := by
+ 10048	      have hfour₁' :
+ 10049	          4 ≤
+ 10050	            (SelectedClass D.A
+ 10051	              (S.oppositeVertexByIndex S.oppIndex1) r₁).card := by
+ 10052	        simpa using hfour₁
+ 10053	      simpa using
+ 10054	        S.selectedClass_capInteriorByIndex_card_ge_two
+ 10055	          D.convex S.oppIndex1 hr₁ hfour₁'
+ 10056	    have hinter₂ :
+ 10057	        2 ≤
+ 10058	          (SelectedClass D.A S.oppApex1 r₂ ∩
+ 10059	            S.capInteriorByIndex S.oppIndex1).card := by
+ 10060	      have hfour₂' :
+ 10061	          4 ≤
+ 10062	            (SelectedClass D.A
+ 10063	              (S.oppositeVertexByIndex S.oppIndex1) r₂).card := by
+ 10064	        simpa using hfour₂
+ 10065	      simpa using
+ 10066	        S.selectedClass_capInteriorByIndex_card_ge_two
+ 10067	          D.convex S.oppIndex1 hr₂ hfour₂'
+ 10068	    rcases haligned r₁ hinter₁ with hr₁radius | hr₁ρ
+ 10069	    · rcases haligned r₂ hinter₂ with hr₂radius | hr₂ρ
+ 10070	      · exact (hradiiNe (hr₁radius.trans hr₂radius.symm)).elim
+ 10071	      · exact
+ 10072	          ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂,
+ 10073	            Or.inl ⟨hr₁radius, hr₂ρ⟩⟩
+ 10074	    · rcases haligned r₂ hinter₂ with hr₂radius | hr₂ρ
+ 10075	      · exact
+ 10076	          ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂,
+ 10077	            Or.inr ⟨hr₁ρ, hr₂radius⟩⟩
+ 10078	      · exact (hradiiNe (hr₁ρ.trans hr₂ρ.symm)).elim
+ 10079	
+ 10080	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10081	  T hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10082	/-- The second collision row has two points outside the first cap.  Since its
+ 10083	center cannot bisect the two named outside points of the first collision row,
+ 10084	at least one of its outside points is genuinely new. -/
+ 10085	private theorem exists_secondRowOutsidePoint_ne_firstOutsidePair
+ 10086	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 10087	    (hsecondNe :
+ 10088	      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+ 10089	        dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+ 10090	          Q.otherOutsidePoint) :
+ 10091	    ∃ z : ℝ²,
+ 10092	      z ∈
+ 10093	          (H.selectedAt Pρ.source₁
+ 10094	            Pρ.source₁_mem_A).toCriticalFourShell.support ∧
+ 10095	        z ∉ S.capByIndex S.oppIndex1 ∧
+ 10096	        z ≠ Q.source.1 ∧
+ 10097	        z ≠ Q.otherOutsidePoint := by
+ 10098	  classical
+ 10099	  let K :=
+ 10100	    (H.selectedAt Pρ.source₁
+ 10101	      Pρ.source₁_mem_A).toCriticalFourShell.support \
+ 10102	        S.capByIndex S.oppIndex1
+ 10103	  have houtsideCard : K.card = 2 := by
+ 10104	    rcases
+ 10105	        exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+ 10106	          (H.selectedAt P.source₁
+ 10107	            P.source₁_mem_A).toCriticalFourShell.support_card
+ 10108	          (H.selectedAt Pρ.source₁
+ 10109	            Pρ.source₁_mem_A).toCriticalFourShell.support_card
+ 10110	          P.shell_inter_cap_eq_sources Pρ.shell_inter_cap_eq_sources
+ 10111	          P.sources_ne Pρ.sources_ne hpairsDisjoint with
+ 10112	      ⟨_, _, _, _, _, hcard⟩
+ 10113	    exact hcard
+ 10114	  by_cases hsub :
+ 10115	      K ⊆ ({Q.source.1, Q.otherOutsidePoint} : Finset ℝ²)
+ 10116	  · have hK :
+ 10117	        K = ({Q.source.1, Q.otherOutsidePoint} : Finset ℝ²) := by
+ 10118	      apply Finset.eq_of_subset_of_card_le hsub
+ 10119	      rw [houtsideCard]
+ 10120	      exact Finset.card_le_two
+ 10121	    have hsourceMem :
+ 10122	        Q.source.1 ∈
+ 10123	          (H.selectedAt Pρ.source₁
+ 10124	            Pρ.source₁_mem_A).toCriticalFourShell.support := by
+ 10125	      have :
+ 10126	          Q.source.1 ∈ K := by
+ 10127	        rw [hK]
+ 10128	        simp
+ 10129	      exact (Finset.mem_sdiff.mp this).1
+ 10130	    have hotherMem :
+ 10131	        Q.otherOutsidePoint ∈
+ 10132	          (H.selectedAt Pρ.source₁
+ 10133	            Pρ.source₁_mem_A).toCriticalFourShell.support := by
+ 10134	      have :
+ 10135	          Q.otherOutsidePoint ∈ K := by
+ 10136	        rw [hK]
+ 10137	        simp
+ 10138	      exact (Finset.mem_sdiff.mp this).1
+ 10139	    exact
+ 10140	      (hsecondNe
+ 10141	        (((H.selectedAt Pρ.source₁
+ 10142	              Pρ.source₁_mem_A).toCriticalFourShell.support_eq_radius
+ 10143	            Q.source.1 hsourceMem).trans
+ 10144	          ((H.selectedAt Pρ.source₁
+ 10145	              Pρ.source₁_mem_A).toCriticalFourShell.support_eq_radius
+ 10146	            Q.otherOutsidePoint hotherMem).symm)).elim
+ 10147	  · rw [Finset.not_subset] at hsub
+ 10148	    rcases hsub with ⟨z, hzK, hzPair⟩
+ 10149	    have hz := Finset.mem_sdiff.mp hzK
+ 10150	    refine ⟨z, hz.1, hz.2, ?_, ?_⟩
+ 10151	    · intro h
+ 10152	      subst z
+ 10153	      exact hzPair (by simp)
+ 10154	    · intro h
+ 10155	      subst z
+ 10156	      exact hzPair (by simp)
+ 10157	
+ 10158	omit hfrontierFour hρfour hpairsDisjoint hblockersNe
+ 10159	  LPρ hLPρ MPρ LP hLP MP in
+ 10160	/-- One deletion from each retained first-apex row is a genuine two-source
+ 10161	minimal deletion core at the first apex.  The double deletion is blocking,
+ 10162	while tri-apex richness restores a K4 after either source is put back. -/
+ 10163	private theorem firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+ 10164	    {x y : ℝ²}
+ 10165	    (hxPair : x ∈ ({P.source₁, P.source₂} : Finset ℝ²))
+ 10166	    (hyPair : y ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²))
+ 10167	    (hblocked :
+ 10168	      ¬ HasNEquidistantPointsAt 4
+ 10169	        ((D.A.erase x).erase y) S.oppApex1) :
+ 10170	    Nonempty
+ 10171	      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+ 10172	        D.A {x, y} S.oppApex1) := by
+ 10173	  classical
+ 10174	  have hxIntersection :
+ 10175	      x ∈
+ 10176	        SelectedClass D.A S.oppApex1 radius ∩
+ 10177	          S.capInteriorByIndex S.oppIndex1 := by
+ 10178	    rw [hfrontierInteriorEq]
+ 10179	    exact hxPair
+ 10180	  have hyIntersection :
+ 10181	      y ∈
+ 10182	        SelectedClass D.A S.oppApex1 ρ ∩
+ 10183	          S.capInteriorByIndex S.oppIndex1 := by
+ 10184	    rw [hρInteriorEq]
+ 10185	    exact hyPair
+ 10186	  have hxSelected :
+ 10187	      x ∈ SelectedClass D.A S.oppApex1 radius :=
+ 10188	    (Finset.mem_inter.mp hxIntersection).1
+ 10189	  have hySelected :
+ 10190	      y ∈ SelectedClass D.A S.oppApex1 ρ :=
+ 10191	    (Finset.mem_inter.mp hyIntersection).1
+ 10192	  have hxA : x ∈ D.A := (mem_selectedClass.mp hxSelected).1
+ 10193	  have hyA : y ∈ D.A := (mem_selectedClass.mp hySelected).1
+ 10194	  have hxDist : dist S.oppApex1 x = radius :=
+ 10195	    (mem_selectedClass.mp hxSelected).2
+ 10196	  have hyDist : dist S.oppApex1 y = ρ :=
+ 10197	    (mem_selectedClass.mp hySelected).2
+ 10198	  have hxy : x ≠ y := by
+ 10199	    intro h
+ 10200	    apply hρne
+ 10201	    calc
+ 10202	      ρ = dist S.oppApex1 y := hyDist.symm
+ 10203	      _ = dist S.oppApex1 x := by rw [h]
+ 10204	      _ = radius := hxDist
+ 10205	  apply ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+ 10206	  · intro z hz
+ 10207	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+ 10208	    rcases hz with rfl | rfl
+ 10209	    · exact hxA
+ 10210	    · exact hyA
+ 10211	  · simpa using S.oppositeVertexByIndex_mem S.oppIndex1
+ 10212	  · intro s hs t ht hst
+ 10213	    simp only [Finset.mem_insert, Finset.mem_singleton] at hs ht
+ 10214	    rcases hs with rfl | rfl <;> rcases ht with rfl | rfl
+ 10215	    · exact (hst rfl).elim
+ 10216	    · simpa [hxDist, hyDist] using hρne.symm
+ 10217	    · simpa [hxDist, hyDist] using hρne
+ 10218	    · exact (hst rfl).elim
+ 10219	  · have hsdiff :
+ 10220	        D.A \ ({x, y} : Finset ℝ²) = (D.A.erase x).erase y := by
+ 10221	      ext w
+ 10222	      simp [and_assoc, and_left_comm, and_comm]
+ 10223	    simpa [hsdiff] using hblocked
+ 10224	  · intro s hs
+ 10225	    have hrobust :
+ 10226	        FullyDeletionRobustAt D S.oppApex1 :=
+ 10227	      fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich
+ 10228	    rcases Finset.mem_insert.mp hs with rfl | hs
+ 10229	    · simpa [Finset.sdiff_singleton_eq_erase, hxy] using
+ 10230	        hrobust.survives y hyA
+ 10231	    · have hsEq : s = y := Finset.mem_singleton.mp hs
+ 10232	      subst s
+ 10233	      have herase :
+ 10234	          ({x, y} : Finset ℝ²).erase y = {x} := by
+ 10235	        ext w
+ 10236	        simp only [Finset.mem_erase, Finset.mem_insert,
+ 10237	          Finset.mem_singleton]
+ 10238	        constructor
+ 10239	        · rintro ⟨hwy, hwx | hwy'⟩
+ 10240	          · exact hwx
+ 10241	          · exact (hwy hwy').elim
+ 10242	        · intro hwx
+ 10243	          subst w
+ 10244	          exact ⟨hxy, Or.inl rfl⟩
+ 10245	      rw [herase, Finset.sdiff_singleton_eq_erase]
+ 10246	      exact hrobust.survives x hxA
+ 10247	
+ 10248	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10249	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10250	/-- A genuinely new off-cap point of the second collision row cannot have the
+ 10251	first collision blocker: equal actual blockers identify the two exact support
+ 10252	rows, whose first-row off-cap part is already the named pair in `Q`. -/
+ 10253	private theorem secondRowOutsidePoint_blocker_ne_first
+ 10254	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 10255	    {z : ℝ²}
+ 10256	    (hzSecondRow :
+ 10257	      z ∈
+ 10258	        (H.selectedAt Pρ.source₁
+ 10259	          Pρ.source₁_mem_A).toCriticalFourShell.support)
+ 10260	    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+ 10261	    (hzNeSource : z ≠ Q.source.1)
+ 10262	    (hzNeOther : z ≠ Q.otherOutsidePoint) :
+ 10263	    H.blockerVertex
+ 10264	        ⟨z,
+ 10265	          (H.selectedAt Pρ.source₁
+ 10266	            Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+ 10267	              hzSecondRow⟩ ≠
+ 10268	      H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ := by
+ 10269	  intro hblockers
+ 10270	  let hzA : z ∈ D.A :=
+ 10271	    (H.selectedAt Pρ.source₁
+ 10272	      Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hzSecondRow
+ 10273	  have hsupports :=
+ 10274	    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq H
+ 10275	      hzA P.source₁_mem_A (congrArg Subtype.val hblockers)
+ 10276	  have hzFirstRow :
+ 10277	      z ∈
+ 10278	        (H.selectedAt P.source₁
+ 10279	          P.source₁_mem_A).toCriticalFourShell.support := by
+ 10280	    rw [← hsupports]
+ 10281	    exact
+ 10282	      (H.selectedAt z hzA).toCriticalFourShell.q_mem_support
+ 10283	  have hzPair :
+ 10284	      z ∈ ({Q.source.1, Q.otherOutsidePoint} : Finset ℝ²) := by
+ 10285	    rw [← Q.outside_eq_pair]
+ 10286	    exact Finset.mem_sdiff.mpr ⟨hzFirstRow, hzOutside⟩
+ 10287	  simp only [Finset.mem_insert, Finset.mem_singleton] at hzPair
+ 10288	  rcases hzPair with hz | hz
+ 10289	  · exact hzNeSource hz
+ 10290	  · exact hzNeOther hz
+ 10291	
+ 10292	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10293	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10294	/-- If the new off-cap point of the second collision row has the second
+ 10295	collision blocker, the exact two-point off-cap census upgrades it to the full
+ 10296	second enlarged-fiber packet. -/
+ 10297	private theorem freshOutsideSecondBlockerFiber_of_secondRowOutsidePoint
+ 10298	    {z : ℝ²}
+ 10299	    (hzSecondRow :
+ 10300	      z ∈
+ 10301	        (H.selectedAt Pρ.source₁
+ 10302	          Pρ.source₁_mem_A).toCriticalFourShell.support)
+ 10303	    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+ 10304	    (hblockers :
+ 10305	      H.blockerVertex
+ 10306	          ⟨z,
+ 10307	            (H.selectedAt Pρ.source₁
+ 10308	              Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+ 10309	                hzSecondRow⟩ =
+ 10310	        H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩) :
+ 10311	    Nonempty (FreshOutsideSecondBlockerFiber P Pρ) := by
+ 10312	  classical
+ 10313	  let K :=
+ 10314	    (H.selectedAt Pρ.source₁
+ 10315	      Pρ.source₁_mem_A).toCriticalFourShell.support \
+ 10316	        S.capByIndex S.oppIndex1
+ 10317	  have hKcard : K.card = 2 := by
+ 10318	    simpa [K] using collisionShell_sdiff_firstCap_card_eq_two Pρ
+ 10319	  have hKone : 1 < K.card := by omega
+ 10320	  rcases Finset.one_lt_card.mp hKone with
+ 10321	    ⟨u, hu, v, hv, huv⟩
+ 10322	  rcases Finset.mem_sdiff.mp hu with ⟨huShell, huOutside⟩
+ 10323	  rcases Finset.mem_sdiff.mp hv with ⟨hvShell, hvOutside⟩
+ 10324	  obtain ⟨y, hyShell, hyOutside, hyz⟩ :
+ 10325	      ∃ y ∈
+ 10326	          (H.selectedAt Pρ.source₁
+ 10327	            Pρ.source₁_mem_A).toCriticalFourShell.support,
+ 10328	        y ∉ S.capByIndex S.oppIndex1 ∧ y ≠ z := by
+ 10329	    by_cases huz : u = z
+ 10330	    · refine ⟨v, hvShell, hvOutside, ?_⟩
+ 10331	      intro hvz
+ 10332	      exact huv (huz.trans hvz.symm)
+ 10333	    · exact ⟨u, huShell, huOutside, huz⟩
+ 10334	  have hzA : z ∈ D.A :=
+ 10335	    (H.selectedAt Pρ.source₁
+ 10336	      Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hzSecondRow
+ 10337	  have hyA : y ∈ D.A :=
+ 10338	    (H.selectedAt Pρ.source₁
+ 10339	      Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hyShell
+ 10340	  have hzNeP₁ : z ≠ P.source₁ := by
+ 10341	    intro hz
+ 10342	    subst z
+ 10343	    exact hzOutside
+ 10344	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10345	        P.source₁_mem_capInterior)
+ 10346	  have hzNeP₂ : z ≠ P.source₂ := by
+ 10347	    intro hz
+ 10348	    subst z
+ 10349	    exact hzOutside
+ 10350	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10351	        P.source₂_mem_capInterior)
+ 10352	  have hzNePρ₁ : z ≠ Pρ.source₁ := by
+ 10353	    intro hz
+ 10354	    subst z
+ 10355	    exact hzOutside
+ 10356	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10357	        Pρ.source₁_mem_capInterior)
+ 10358	  have hzNePρ₂ : z ≠ Pρ.source₂ := by
+ 10359	    intro hz
+ 10360	    subst z
+ 10361	    exact hzOutside
+ 10362	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10363	        Pρ.source₂_mem_capInterior)
+ 10364	  have hyNeP₁ : y ≠ P.source₁ := by
+ 10365	    intro hy
+ 10366	    subst y
+ 10367	    exact hyOutside
+ 10368	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10369	        P.source₁_mem_capInterior)
+ 10370	  have hyNeP₂ : y ≠ P.source₂ := by
+ 10371	    intro hy
+ 10372	    subst y
+ 10373	    exact hyOutside
+ 10374	      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+ 10375	        P.source₂_mem_capInterior)
+ 10376	  have houtsideEq :
+ 10377	      (H.selectedAt Pρ.source₁
+ 10378	          Pρ.source₁_mem_A).toCriticalFourShell.support \
+ 10379	          S.capByIndex S.oppIndex1 =
+ 10380	        {z, y} := by
+ 10381	    have hsubset :
+ 10382	        ({z, y} : Finset ℝ²) ⊆
+ 10383	          (H.selectedAt Pρ.source₁
+ 10384	              Pρ.source₁_mem_A).toCriticalFourShell.support \
+ 10385	            S.capByIndex S.oppIndex1 := by
+ 10386	      intro w hw
+ 10387	      simp only [Finset.mem_insert, Finset.mem_singleton] at hw
+ 10388	      rcases hw with rfl | rfl
+ 10389	      · exact Finset.mem_sdiff.mpr ⟨hzSecondRow, hzOutside⟩
+ 10390	      · exact Finset.mem_sdiff.mpr ⟨hyShell, hyOutside⟩
+ 10391	    exact
+ 10392	      (Finset.eq_of_subset_of_card_le hsubset (by
+ 10393	        rw [collisionShell_sdiff_firstCap_card_eq_two Pρ]
+ 10394	        simp [Ne.symm hyz])).symm
+ 10395	  exact ⟨{
+ 10396	    source := ⟨z, hzA⟩
+ 10397	    source_ne_first₁ := by
+ 10398	      intro h
+ 10399	      exact hzNeP₁ (congrArg Subtype.val h)
+ 10400	    source_ne_first₂ := by
+ 10401	      intro h
+ 10402	      exact hzNeP₂ (congrArg Subtype.val h)
+ 10403	    source_ne_second₁ := by
+ 10404	      intro h
+ 10405	      exact hzNePρ₁ (congrArg Subtype.val h)
+ 10406	    source_ne_second₂ := by
+ 10407	      intro h
+ 10408	      exact hzNePρ₂ (congrArg Subtype.val h)
+ 10409	    blockers_eq := hblockers
+ 10410	    source_mem_shell := hzSecondRow
+ 10411	    source_not_mem_firstCap := hzOutside
+ 10412	    otherOutsidePoint := y
+ 10413	    otherOutsidePoint_mem_A := hyA
+ 10414	    otherOutsidePoint_ne_source := hyz
+ 10415	    otherOutsidePoint_ne_first₁ := hyNeP₁
+ 10416	    otherOutsidePoint_ne_first₂ := hyNeP₂
+ 10417	    otherOutsidePoint_mem_shell := hyShell
+ 10418	    otherOutsidePoint_not_mem_firstCap := hyOutside
+ 10419	    outside_eq_pair := houtsideEq
+ 10420	  }⟩
+ 10421	
+ 10422	/-- The carrier portion already exposed by the two collision rows and the
+ 10423	named cap-source row.  Each constituent is a critical four-shell, so this
+ 10424	seed has cardinality at most twelve. -/
+ 10425	private noncomputable def criticalTripleShellSeed
+ 10426	    (source : CriticalShellSystem.CarrierVertex D.A) : Finset ℝ² :=
+ 10427	  ((H.selectedAt P.source₁
+ 10428	      P.source₁_mem_A).toCriticalFourShell.support ∪
+ 10429	    (H.selectedAt Pρ.source₁
+ 10430	      Pρ.source₁_mem_A).toCriticalFourShell.support) ∪
+ 10431	    (H.selectedAt source.1
+ 10432	      source.2).toCriticalFourShell.support
+ 10433	
+ 10434	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10435	  T hpairsDisjoint hblockersNe
+ 10436	  LPρ hLPρ MPρ LP hLP MP in
+ 10437	/-- Minimality turns the three known critical shells into a strict
+ 10438	continuation: some selected K4 row centered in their union contains a new
+ 10439	carrier point outside all three shells.
+ 10440	
+ 10441	This is the all-center step absent from the purely local blocker split.  Its
+ 10442	strict measure is support growth beyond a seed of cardinality at most twelve,
+ 10443	using the live branch's carrier lower bound `14 ≤ |A|`. -/
+ 10444	theorem exists_selectedRow_escape_criticalTripleShellSeed
+ 10445	    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+ 10446	    (source : CriticalShellSystem.CarrierVertex D.A) :
+ 10447	    ∃ center : ℝ²,
+ 10448	      ∃ hcenter : center ∈ criticalTripleShellSeed P Pρ source,
+ 10449	        ∃ K : SelectedFourClass D.A center,
+ 10450	          ∃ z : ℝ²,
+ 10451	            z ∈ K.support ∧
+ 10452	              z ∉ criticalTripleShellSeed P Pρ source := by
+ 10453	  let K₁ :=
+ 10454	    (H.selectedAt P.source₁
+ 10455	      P.source₁_mem_A).toCriticalFourShell
+ 10456	  let K₂ :=
+ 10457	    (H.selectedAt Pρ.source₁
+ 10458	      Pρ.source₁_mem_A).toCriticalFourShell
+ 10459	  let K₃ :=
+ 10460	    (H.selectedAt source.1
+ 10461	      source.2).toCriticalFourShell
+ 10462	  have hseedSub :
+ 10463	      criticalTripleShellSeed P Pρ source ⊆ D.A := by
+ 10464	    intro z hz
+ 10465	    simp only [criticalTripleShellSeed, Finset.mem_union] at hz
+ 10466	    rcases hz with (hz | hz) | hz
+ 10467	    · exact K₁.support_subset_A hz
+ 10468	    · exact K₂.support_subset_A hz
+ 10469	    · exact K₃.support_subset_A hz
+ 10470	  have hseedNonempty :
+ 10471	      (criticalTripleShellSeed P Pρ source).Nonempty := by
+ 10472	    refine ⟨source.1, ?_⟩
+ 10473	    exact Finset.mem_union_right _
+ 10474	      (K₃.q_mem_support)
+ 10475	  have hseedCard :
+ 10476	      (criticalTripleShellSeed P Pρ source).card ≤ 12 := by
+ 10477	    calc
+ 10478	      (criticalTripleShellSeed P Pρ source).card
+ 10479	          ≤ (K₁.support ∪ K₂.support).card + K₃.support.card := by
+ 10480	            exact
+ 10481	              Finset.card_union_le (K₁.support ∪ K₂.support) K₃.support
+ 10482	      _ ≤ (K₁.support.card + K₂.support.card) + K₃.support.card := by
+ 10483	            exact
+ 10484	              Nat.add_le_add_right
+ 10485	                (Finset.card_union_le K₁.support K₂.support)
+ 10486	                K₃.support.card
+ 10487	      _ = 12 := by
+ 10488	            rw [K₁.support_card, K₂.support_card, K₃.support_card]
+ 10489	  have hseedProper :
+ 10490	      criticalTripleShellSeed P Pρ source ≠ D.A := by
+ 10491	    intro hseedEq
+ 10492	    have hAcard : D.A.card ≤ 12 := by
+ 10493	      simpa [hseedEq] using hseedCard
+ 10494	    have hAge : 14 ≤ D.A.card :=
+ 10495	      FrontierLargeOppositeCapsBiApexRobustResidual.carrier_card_ge_fourteen hlarge
+ 10496	    omega
+ 10497	  rcases
+ 10498	      exists_faithfulCarrierPattern_of_globalK4
+ 10499	        D.K4 source.2 with ⟨G⟩
+ 10500	  rcases
+ 10501	      G.exists_row_escape_of_proper_subset
+ 10502	        R.minimal hseedNonempty hseedSub hseedProper with
+ 10503	    ⟨center, hcenter, z, hzRow, hzOutside⟩
+ 10504	  exact
+ 10505	    ⟨center, hcenter, G.classAt center (hseedSub hcenter),
+ 10506	      z, hzRow, hzOutside⟩
+ 10507	
+ 10508	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10509	  T hpairsDisjoint hblockersNe
+ 10510	  LPρ hLPρ MPρ LP hLP MP in
+ 10511	/-- The anonymous all-center escape can be made source-faithful unless its
+ 10512	center is fully deletion robust.
+ 10513	
+ 10514	In the non-robust branch, the escaping point itself is a critical deletion
+ 10515	source.  Indeed, non-robustness makes the center a unique-four center; since
+ 10516	the escaping point lies in a selected four-row there, deleting that point
+ 10517	destroys the center's only K4 radius.  Thus the continuation retains both the
+ 10518	new point and the exact critical row that it deletes. -/
+ 10519	theorem exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
+ 10520	    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+ 10521	    (source : CriticalShellSystem.CarrierVertex D.A) :
+ 10522	    ∃ center : ℝ²,
+ 10523	      ∃ hcenter : center ∈ criticalTripleShellSeed P Pρ source,
+ 10524	        ∃ K : SelectedFourClass D.A center,
+ 10525	          ∃ z : ℝ²,
+ 10526	            z ∈ K.support ∧
+ 10527	              z ∉ criticalTripleShellSeed P Pρ source ∧
+ 10528	                (FullyDeletionRobustAt D center ∨
+ 10529	                  ∃ C : CriticalSelectedFourClass D.A z center,
+ 10530	                    ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center) := by
+ 10531	  rcases
+ 10532	      exists_selectedRow_escape_criticalTripleShellSeed
+ 10533	        P Pρ hlarge source with
+ 10534	    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+ 10535	  refine ⟨center, hcenter, K, z, hzK, hzOutside, ?_⟩
+ 10536	  by_cases hrobust : FullyDeletionRobustAt D center
+ 10537	  · exact Or.inl hrobust
+ 10538	  · right
+ 10539	    have hcenterA : center ∈ D.A := by
+ 10540	      simp only [criticalTripleShellSeed, Finset.mem_union] at hcenter
+ 10541	      rcases hcenter with (hcenter | hcenter) | hcenter
+ 10542	      · exact
+ 10543	          (H.selectedAt P.source₁
+ 10544	            P.source₁_mem_A).toCriticalFourShell.support_subset_A hcenter
+ 10545	      · exact
+ 10546	          (H.selectedAt Pρ.source₁
+ 10547	            Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hcenter
+ 10548	      · exact
+ 10549	          (H.selectedAt source.1
+ 10550	            source.2).toCriticalFourShell.support_subset_A hcenter
+ 10551	    have hunique : IsUniqueFourCenter D.A center :=
+ 10552	      isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA hrobust
+ 10553	    have hzA : z ∈ D.A := K.support_subset_A hzK
+ 10554	    have hcenterNeZ : center ≠ z := by
+ 10555	      intro hcenterZ
+ 10556	      exact K.center_not_mem (hcenterZ ▸ hzK)
+ 10557	    have hblocked :
+ 10558	        ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center := by
+ 10559	      intro hsurvives
+ 10560	      rcases hunique with
+ 10561	        ⟨_, radius₀, hradius₀, hcard₀, hradiusUnique⟩
+ 10562	      rcases hsurvives with ⟨radius₁, hradius₁, hcard₁⟩
+ 10563	      have hselectedErase :
+ 10564	          SelectedClass (D.A.erase z) center radius₁ =
+ 10565	            (SelectedClass D.A center radius₁).erase z :=
+ 10566	        selectedClass_erase_eq D.A z center radius₁
+ 10567	      have hcardErase :
+ 10568	          4 ≤ ((SelectedClass D.A center radius₁).erase z).card := by
+ 10569	        rw [← hselectedErase]
+ 10570	        simpa [SelectedClass] using hcard₁
+ 10571	      have hcardFull :
+ 10572	          4 ≤ (SelectedClass D.A center radius₁).card :=
+ 10573	        hcardErase.trans Finset.card_erase_le
+ 10574	      have hradius₁Eq :
+ 10575	          radius₁ = radius₀ :=
+ 10576	        hradiusUnique radius₁ hradius₁ hcardFull
+ 10577	      have hKcard :
+ 10578	          4 ≤ (SelectedClass D.A center K.radius).card := by
+ 10579	        calc
+ 10580	          4 = K.support.card := K.support_card.symm
+ 10581	          _ ≤ (SelectedClass D.A center K.radius).card := by
+ 10582	            apply Finset.card_le_card
+ 10583	            intro w hw
+ 10584	            exact mem_selectedClass.mpr
+ 10585	              ⟨K.support_subset_A hw, K.support_eq_radius w hw⟩
+ 10586	      have hKRadiusEq :
+ 10587	          K.radius = radius₀ :=
+ 10588	        hradiusUnique K.radius K.radius_pos hKcard
+ 10589	      have hzRadius₀ :
+ 10590	          z ∈ SelectedClass D.A center radius₀ := by
+ 10591	        apply mem_selectedClass.mpr
+ 10592	        refine ⟨hzA, ?_⟩
+ 10593	        rw [← hKRadiusEq]
+ 10594	        exact K.support_eq_radius z hzK
+ 10595	      rw [hradius₁Eq, Finset.card_erase_of_mem hzRadius₀, hcard₀] at hcardErase
+ 10596	      omega
+ 10597	    rcases
+ 10598	      ATAILStageOnePrescribedApexDichotomy.criticalSelectedFourClass_at_of_no_qfree
+ 10599	        D.K4 hcenterA hcenterNeZ hblocked with
+ 10600	      ⟨C⟩
+ 10601	    exact ⟨C, hblocked⟩
+ 10602	
+ 10603	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10604	  hpairsDisjoint hblockersNe
+ 10605	  LPρ hLPρ MPρ LP hLP MP in
+ 10606	/-- Source-faithful ingress for the finite `q`-projection.
+ 10607	
+ 10608	At every named carrier point `q`, global K4 supplies an arbitrary selected
+ 10609	four-row centered at `q`.  Independently, the critical-shell system supplies
+ 10610	the exact unique-four cover row through `q`, together with its deletion
+ 10611	obstruction.  Tri-apex deletion robustness excludes each rich apex as that
+ 10612	cover row's center, and localizes the center to a strict indexed cap. -/
+ 10613	theorem exists_globalK4Row_and_sourceFaithfulCriticalCover
+ 10614	    (q : CriticalShellSystem.CarrierVertex D.A) :
+ 10615	    Nonempty (SelectedFourClass D.A q.1) ∧
+ 10616	      Nonempty (CriticalSelectedFourClass D.A q.1
+ 10617	        (H.centerAt q.1 q.2)) ∧
+ 10618	      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) ∧
+ 10619	      ¬ HasNEquidistantPointsAt 4
+ 10620	        (D.A.erase q.1) (H.centerAt q.1 q.2) ∧
+ 10621	      H.centerAt q.1 q.2 ≠ S.oppApex1 ∧
+ 10622	      H.centerAt q.1 q.2 ≠ S.oppApex2 ∧
+ 10623	      H.centerAt q.1 q.2 ≠ S.surplusApex ∧
+ 10624	      ∃ i : Fin 3,
+ 10625	        H.centerAt q.1 q.2 ∈ S.capInteriorByIndex i := by
+ 10626	  rcases exists_selectedFourClass_of_globalK4 D.K4 q.2 with ⟨Kq⟩
+ 10627	  have hcoverUnique :
+ 10628	      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) :=
+ 10629	    isUniqueFourCenter_centerAt H q.1 q.2
+ 10630	  have hcoverNe₁ :
+ 10631	      H.centerAt q.1 q.2 ≠ S.oppApex1 := by
+ 10632	    intro hcenter
+ 10633	    exact
+ 10634	      not_isUniqueFourCenter_of_fullyDeletionRobust
+ 10635	          (fullyDeletionRobustAt_of_apexRichClassStructure
+ 10636	            T.oppApex1_rich)
+ 10637	        (hcenter ▸ hcoverUnique)
+ 10638	  have hcoverNe₂ :
+ 10639	      H.centerAt q.1 q.2 ≠ S.oppApex2 := by
+ 10640	    intro hcenter
+ 10641	    exact
+ 10642	      not_isUniqueFourCenter_of_fullyDeletionRobust
+ 10643	          (fullyDeletionRobustAt_of_apexRichClassStructure
+ 10644	            T.oppApex2_rich)
+ 10645	        (hcenter ▸ hcoverUnique)
+ 10646	  have hcoverNe₃ :
+ 10647	      H.centerAt q.1 q.2 ≠ S.surplusApex := by
+ 10648	    intro hcenter
+ 10649	    exact
+ 10650	      not_isUniqueFourCenter_of_fullyDeletionRobust
+ 10651	          (fullyDeletionRobustAt_of_apexRichClassStructure
+ 10652	            T.surplusApex_rich)
+ 10653	        (hcenter ▸ hcoverUnique)
+ 10654	  exact
+ 10655	    ⟨⟨Kq⟩, ⟨H.selectedAt q.1 q.2⟩, hcoverUnique,
+ 10656	      H.no_qfree_at q.1 q.2, hcoverNe₁, hcoverNe₂, hcoverNe₃,
+ 10657	      exists_blockerCenter_mem_capInteriorByIndex (T := T) q⟩
+ 10658	
+ 10659	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10660	  hpairsDisjoint hblockersNe
+ 10661	  LPρ hLPρ MPρ LP hLP MP in
+ 10662	/-- The source-faithful critical cover at the enlarged first-fiber point is
+ 10663	not a new anonymous row: its center is the first collision row's actual
+ 10664	blocker, and its support is exactly the already exposed first shell.
+ 10665	
+ 10666	This is the source equality hidden by a finite projection that gives the
+ 10667	`q`-cover center a fresh role.  It also transports indexed-cap localization
+ 10668	from the `q` cover to the named first blocker. -/
+ 10669	theorem firstFiber_sourceFaithfulCriticalCover_eq_firstShell
+ 10670	    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+ 10671	    H.centerAt Q.source.1 Q.source.2 =
+ 10672	        H.centerAt P.source₁ P.source₁_mem_A ∧
+ 10673	      (H.selectedAt Q.source.1
+ 10674	          Q.source.2).toCriticalFourShell.support =
+ 10675	        (H.selectedAt P.source₁
+ 10676	          P.source₁_mem_A).toCriticalFourShell.support ∧
+ 10677	      (H.selectedAt Q.source.1
+ 10678	          Q.source.2).toCriticalFourShell.support =
+ 10679	        {P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} ∧
+ 10680	      ∃ i : Fin 3,
+ 10681	        H.centerAt P.source₁ P.source₁_mem_A ∈
+ 10682	          S.capInteriorByIndex i := by
+ 10683	  have hcenter :
+ 10684	      H.centerAt Q.source.1 Q.source.2 =
+ 10685	        H.centerAt P.source₁ P.source₁_mem_A := by
+ 10686	    simpa [CriticalShellSystem.blockerVertex] using
+ 10687	      congrArg Subtype.val Q.blockers_eq
+ 10688	  have hsupport :
+ 10689	      (H.selectedAt Q.source.1
+ 10690	          Q.source.2).toCriticalFourShell.support =
+ 10691	        (H.selectedAt P.source₁
+ 10692	          P.source₁_mem_A).toCriticalFourShell.support :=
+ 10693	    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+ 10694	      H Q.source.2 P.source₁_mem_A hcenter
+ 10695	  rcases
+ 10696	      exists_blockerCenter_mem_capInteriorByIndex
+ 10697	        (T := T) Q.source with
+ 10698	    ⟨i, hi⟩
+ 10699	  exact
+ 10700	    ⟨hcenter, hsupport,
+ 10701	      hsupport.trans (firstFiber_shell_eq_explicitFour P Pρ Q),
+ 10702	      i, hcenter ▸ hi⟩
+ 10703	
+ 10704	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10705	  T hpairsDisjoint hblockersNe
+ 10706	  LPρ hLPρ MPρ LP hLP MP in
+ 10707	/-- The global K4 row centered at an enlarged-fiber source meets the
+ 10708	source-faithful first-blocker shell in at most two points.
+ 10709	
+ 10710	The two circle centers are distinct: the enlarged-fiber source lies on the
+ 10711	blocker shell, while that shell cannot contain its own center.  This is the
+ 10712	first genuinely global incidence constraint missing from the local
+ 10713	two-selected-row order model. -/
+ 10714	theorem firstFiber_globalRow_inter_firstShell_card_le_two
+ 10715	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 10716	    (Kq : SelectedFourClass D.A Q.source.1) :
+ 10717	    (Kq.support ∩
+ 10718	      (H.selectedAt P.source₁
+ 10719	        P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+ 10720	  have hcentersNe :
+ 10721	      Q.source.1 ≠ H.centerAt P.source₁ P.source₁_mem_A := by
+ 10722	    intro hcenters
+ 10723	    apply
+ 10724	      (H.selectedAt P.source₁
+ 10725	          P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass.center_not_mem
+ 10726	    simpa [hcenters] using Q.source_mem_shell
+ 10727	  exact
+ 10728	    SelectedFourClass.inter_card_le_two Kq
+ 10729	      (H.selectedAt P.source₁
+ 10730	        P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass
+ 10731	      hcentersNe
+ 10732	
+ 10733	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10734	  T hpairsDisjoint hblockersNe
+ 10735	  LPρ hLPρ MPρ LP hLP MP in
+ 10736	/-- At least two points of the global K4 row centered at an enlarged-fiber
+ 10737	source lie outside the source-faithful first-blocker shell.
+ 10738	
+ 10739	This is the positive form of
+ 10740	`firstFiber_globalRow_inter_firstShell_card_le_two`: the global row has
+ 10741	exactly four points, while distinct circle centers permit at most two common
+ 10742	points. -/
+ 10743	theorem firstFiber_globalRow_sdiff_firstShell_card_ge_two
+ 10744	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 10745	    (Kq : SelectedFourClass D.A Q.source.1) :
+ 10746	    2 ≤
+ 10747	      (Kq.support \
+ 10748	        (H.selectedAt P.source₁
+ 10749	          P.source₁_mem_A).toCriticalFourShell.support).card := by
+ 10750	  have hinter :
+ 10751	      (Kq.support ∩
+ 10752	        (H.selectedAt P.source₁
+ 10753	          P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 :=
+ 10754	    firstFiber_globalRow_inter_firstShell_card_le_two
+ 10755	      P Pρ Q Kq
+ 10756	  have hdecomp :=
+ 10757	    Finset.card_sdiff_add_card_inter Kq.support
+ 10758	      (H.selectedAt P.source₁
+ 10759	        P.source₁_mem_A).toCriticalFourShell.support
+ 10760	  rw [Kq.support_card] at hdecomp
+ 10761	  omega
+ 10762	
+ 10763	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10764	  T hpairsDisjoint hblockersNe
+ 10765	  LPρ hLPρ MPρ LP hLP MP in
+ 10766	/-- Two distinct named points of the global K4 row lie outside the
+ 10767	source-faithful first-blocker shell. -/
+ 10768	theorem exists_two_firstFiber_globalRow_points_outside_firstShell
+ 10769	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 10770	    (Kq : SelectedFourClass D.A Q.source.1) :
+ 10771	    ∃ u ∈
+ 10772	        Kq.support \
+ 10773	          (H.selectedAt P.source₁
+ 10774	            P.source₁_mem_A).toCriticalFourShell.support,
+ 10775	      ∃ v ∈
+ 10776	          Kq.support \
+ 10777	            (H.selectedAt P.source₁
+ 10778	              P.source₁_mem_A).toCriticalFourShell.support,
+ 10779	        u ≠ v := by
+ 10780	  apply Finset.one_lt_card.mp
+ 10781	  have htwo :=
+ 10782	    firstFiber_globalRow_sdiff_firstShell_card_ge_two
+ 10783	      P Pρ Q Kq
+ 10784	  omega
+ 10785	
+ 10786	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10787	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10788	private theorem exists_second_outside_two_pairs
+ 10789	    {α : Type*} [DecidableEq α]
+ 10790	    (K : Finset α) (q a b c d : α)
+ 10791	    (hKcard : K.card = 4)
+ 10792	    (hqOutside : q ∉ ({a, b, c, d} : Finset α))
+ 10793	    (hfirst : ¬ (a ∈ K ∧ b ∈ K))
+ 10794	    (hsecond : ¬ (c ∈ K ∧ d ∈ K)) :
+ 10795	    ∃ v ∈ K, v ≠ q ∧ v ∉ ({a, b, c, d} : Finset α) := by
+ 10796	  let E : Finset α := ({a, b, c, d} : Finset α)
+ 10797	  have hfirstCard : (K ∩ ({a, b} : Finset α)).card ≤ 1 := by
+ 10798	    rw [Finset.card_le_one]
+ 10799	    intro x hx y hy
+ 10800	    simp only [Finset.mem_inter, Finset.mem_insert,
+ 10801	      Finset.mem_singleton] at hx hy
+ 10802	    rcases hx.2 with rfl | rfl <;>
+ 10803	      rcases hy.2 with rfl | rfl
+ 10804	    · rfl
+ 10805	    · exact False.elim (hfirst ⟨hx.1, hy.1⟩)
+ 10806	    · exact False.elim (hfirst ⟨hy.1, hx.1⟩)
+ 10807	    · rfl
+ 10808	  have hsecondCard : (K ∩ ({c, d} : Finset α)).card ≤ 1 := by
+ 10809	    rw [Finset.card_le_one]
+ 10810	    intro x hx y hy
+ 10811	    simp only [Finset.mem_inter, Finset.mem_insert,
+ 10812	      Finset.mem_singleton] at hx hy
+ 10813	    rcases hx.2 with rfl | rfl <;>
+ 10814	      rcases hy.2 with rfl | rfl
+ 10815	    · rfl
+ 10816	    · exact False.elim (hsecond ⟨hx.1, hy.1⟩)
+ 10817	    · exact False.elim (hsecond ⟨hy.1, hx.1⟩)
+ 10818	    · rfl
+ 10819	  have hinterEq :
+ 10820	      K ∩ E =
+ 10821	        (K ∩ ({a, b} : Finset α)) ∪
+ 10822	          (K ∩ ({c, d} : Finset α)) := by
+ 10823	    ext x
+ 10824	    simp only [E, Finset.mem_inter, Finset.mem_union,
+ 10825	      Finset.mem_insert, Finset.mem_singleton]
+ 10826	    tauto
+ 10827	  have hinterCard : (K ∩ E).card ≤ 2 := by
+ 10828	    rw [hinterEq]
+ 10829	    calc
+ 10830	      ((K ∩ {a, b}) ∪ (K ∩ {c, d})).card
+ 10831	          ≤ (K ∩ {a, b}).card + (K ∩ {c, d}).card :=
+ 10832	        Finset.card_union_le _ _
+ 10833	      _ ≤ 1 + 1 := Nat.add_le_add hfirstCard hsecondCard
+ 10834	      _ = 2 := rfl
+ 10835	  have hsplit := Finset.card_sdiff_add_card_inter K E
+ 10836	  have houtsideCard : 2 ≤ (K \ E).card := by
+ 10837	    rw [hKcard] at hsplit
+ 10838	    omega
+ 10839	  rcases Finset.exists_mem_ne (by omega : 1 < (K \ E).card) q with
+ 10840	    ⟨v, hv, hvq⟩
+ 10841	  exact ⟨v, (Finset.mem_sdiff.mp hv).1, hvq,
+ 10842	    by simpa [E] using (Finset.mem_sdiff.mp hv).2⟩
+ 10843	
+ 10844	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10845	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10846	private theorem overrideAt_selectedSupport_eq_of_ne
+ 10847	    {A : Finset ℝ²} (H : CriticalShellSystem A)
+ 10848	    {q center z : ℝ²} (C : CriticalSelectedFourClass A q center)
+ 10849	    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+ 10850	    (hz : z ∈ A) (hzq : z ≠ q) :
+ 10851	    ((H.overrideAt C hblocked).selectedAt z hz).toCriticalFourShell.support =
+ 10852	      (H.selectedAt z hz).toCriticalFourShell.support := by
+ 10853	  simp only [CriticalShellSystem.selectedAt, CriticalShellSystem.centerAt,
+ 10854	    CriticalShellSystem.overrideAt]
+ 10855	  rw [dif_neg hzq]
+ 10856	
+ 10857	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 10858	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 10859	private theorem overrideAt_selectedSupport_eq
+ 10860	    {A : Finset ℝ²} (H : CriticalShellSystem A)
+ 10861	    {q center : ℝ²} (C : CriticalSelectedFourClass A q center)
+ 10862	    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+ 10863	    (hq : q ∈ A) :
+ 10864	    ((H.overrideAt C hblocked).selectedAt q hq).toCriticalFourShell.support =
+ 10865	      C.toCriticalFourShell.support := by
+ 10866	  simp only [CriticalShellSystem.selectedAt, CriticalShellSystem.centerAt,
+ 10867	    CriticalShellSystem.overrideAt]
+ 10868	  rw [dif_pos rfl]
+ 10869	
+ 10870	private def rebaseCrossPairDeletionView
+ 10871	    {D : CounterexampleData} {H H' : CriticalShellSystem D.A}
+ 10872	    (source : CriticalShellSystem.CarrierVertex D.A)
+ 10873	    (x y : ℝ²)
+ 10874	    (view : CrossPairDeletionView (H := H) source x y)
+ 10875	    (hsupport :
+ 10876	      (H'.selectedAt source.1
+ 10877	          source.2).toCriticalFourShell.support =
+ 10878	        (H.selectedAt source.1
+ 10879	          source.2).toCriticalFourShell.support) :
+ 10880	    CrossPairDeletionView (H := H') source x y where

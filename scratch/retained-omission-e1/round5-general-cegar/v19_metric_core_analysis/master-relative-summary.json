@@ -1,0 +1,287 @@
+{
+  "base_master_invariant_entailment": [
+    {
+      "countermodel_violated_invariant_count": 183,
+      "countermodel_violated_invariant_examples": [
+        "block_0_11 == False",
+        "block_0_3 == True",
+        "block_10_4 == True",
+        "block_10_8 == False",
+        "block_11_1 == False",
+        "block_11_10 == True",
+        "block_12_11 == False",
+        "block_13_4 == True",
+        "block_13_8 == False",
+        "block_14_7 == False",
+        "block_1_2 == False",
+        "block_3_10 == True",
+        "block_3_8 == False",
+        "block_4_2 == False",
+        "block_4_9 == True",
+        "block_5_7 == False",
+        "block_6_2 == False",
+        "block_7_11 == False",
+        "block_7_6 == True",
+        "block_8_0 == False"
+      ],
+      "elapsed_seconds": 0.5277586251031607,
+      "fresh_context": false,
+      "outcome": "sat",
+      "reason_unknown": null
+    },
+    {
+      "countermodel_violated_invariant_count": 181,
+      "countermodel_violated_invariant_examples": [
+        "block_0_3 == True",
+        "block_0_6 == False",
+        "block_10_4 == True",
+        "block_10_5 == False",
+        "block_11_1 == False",
+        "block_11_10 == True",
+        "block_12_6 == False",
+        "block_13_10 == False",
+        "block_13_4 == True",
+        "block_14_6 == False",
+        "block_1_2 == False",
+        "block_3_10 == True",
+        "block_3_11 == False",
+        "block_4_5 == False",
+        "block_4_9 == True",
+        "block_5_9 == False",
+        "block_6_5 == False",
+        "block_7_2 == False",
+        "block_7_6 == True",
+        "block_8_1 == True"
+      ],
+      "elapsed_seconds": 0.5275386672001332,
+      "fresh_context": true,
+      "outcome": "sat",
+      "reason_unknown": null
+    }
+  ],
+  "entries": [
+    {
+      "assignment_sha256": "b52c22a057736eef37850a305a609288c7c39d659f98400da02eedfba35394a9",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 0,
+      "projected_fix_sha256": "fc09010c52da568f8de2fa1e4dd70ae5a310d2c73afa141e398b51d4fc6bf818",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "19d7d862b7c792efb63687346e88f20e45d46cf187f62e537810f40d44fd3cc0",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 1,
+      "projected_fix_sha256": "9d74f7282dc99242186f2e6ba50ca99051477c8d29e6af3c6f73be3c3622a447",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "bf0bdcd564e5c73bf6de525b7ae1caee1d9e53da7a5ec2b1076e32267b1cc6f1",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 2,
+      "projected_fix_sha256": "ca8ec298655f3bbc650afa6f7549b88909d03742edacf97eabfd294935d07096",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "6099ff44771474d557b922a6841423df802d364c8783baf9118763a37cf7f71e",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 3,
+      "projected_fix_sha256": "40c3392d714d3a560eccfb4fe562fe75160fa41f48206293a8f3a98a86946b40",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "8167cab6e6e25a4b05ff8e81f338e5d83270a5d1195606a6e8e2cd81b3f802d3",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 4,
+      "projected_fix_sha256": "633347a7c014e3b59b03661adcbf76f8cbb68286558fd7c7a43376000211b946",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "769c083689727b7e5b9fd69237327762a74bcbdb442c9b730e762b8bbb16a3bb",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 5,
+      "projected_fix_sha256": "9073651361716d600e94b26339cb46aa46840b602bff1c9c3c431bfe3b2ec22f",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "9c1711957b6460120f3300342fd296a443790e783d83a8fd341f1b0840c297d9",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 6,
+      "projected_fix_sha256": "8970627f83fb28b3e827eb47be2a0aec3b8a6f0aac1107d3fe94342c379678d0",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "2e6312b43156e38523899fb9e8650c024f7791752f6cb2368ca1cb002612ca56",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 7,
+      "projected_fix_sha256": "0cb3f7ebded740025b373d8362b3f518320201b0f5f96ebc227ae062c0b7648e",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "80130550c4b055e1125f5e47f70466fae1bff593bb369cdb22991aedca69ca0a",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 8,
+      "projected_fix_sha256": "d975a0461044163a6369c73d1b424c41943861d1dd2f0f74063361bd60ce48e0",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "721f406c59c10a64334f34da1f5aad7f9f70adb85388652210a2ef78193b3faf",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 9,
+      "projected_fix_sha256": "971074d1db7d47b0d522a224a74cd5f6c40cc849c2e4b5c2e80cdd37b37de33e",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "04217a5490e8285122b20db916ddb62110e7cc1d61f85a4356a4c691f976aaca",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 10,
+      "projected_fix_sha256": "be2120f0990f3959da5462feb09f46c938d58abf4906a866de3d4d55175386a9",
+      "raw_projected_outcome": "unknown"
+    },
+    {
+      "assignment_sha256": "9270505c4e1080f0f2d0dc14fa97b55ae19afed8d07e1bea533050be57517ea7",
+      "fresh_full_check_status": "unsat",
+      "master_after_projected_blocker": "not-run",
+      "ordinal": 11,
+      "projected_fix_sha256": "1410963f9f4d18a83f7e28ecc80d2eae51a67aa9801316d08ce9c191b7cd2dc4",
+      "raw_projected_outcome": "unknown"
+    }
+  ],
+  "formula_authentication": {
+    "learned_cut_count": 0,
+    "master_assertion_count": 22338,
+    "master_formula_sha256": "2e2b3a53116bdfaefd76956a6c3e6de095283f54fe017383dae795b53fa5d915",
+    "prepass_admission_authenticated": true,
+    "prepass_status": "sat_no_cut",
+    "raw_assertion_count": 52,
+    "raw_formula_sha256": "bce451bab18921a6c0d0d29d5307c8aab59be1c1fc937d991c6b40a8d7ca2720",
+    "semantic_bool_count": 825,
+    "static_bank": {
+      "admission": "syntactic equality transitivity: two true shell equalities connect a proved target member to a proved target nonmember; critical rows are guarded by Used(center)",
+      "clause_length_distribution": {
+        "6": 1764,
+        "7": 6792,
+        "8": 5808,
+        "9": 1320
+      },
+      "cut_count": 15684,
+      "descriptor_sha256": "0b6a64872273b44b656089f384128267beeca2d8c83382c4431f8b34fde673d7",
+      "dynamic_boundary": "equality paths of length at least three remain replay-authenticated",
+      "family": "exact_shell_length_two_equality_implication",
+      "frozen_full_formula_augmented": false,
+      "path_length": 2,
+      "post_bank_master_formula_sha256": "2e2b3a53116bdfaefd76956a6c3e6de095283f54fe017383dae795b53fa5d915",
+      "pre_bank_master_formula_sha256": "2cb8ce640dd9e4f0c4aeb74c60a964d652a47771ce556f7f2f191d7e3509b710",
+      "profiles": "DDD",
+      "unique_cut_count": 15684
+    }
+  },
+  "invariant_count": 804,
+  "invariant_literals_sha256": "cec588bd8a0d7a4176e3e885e2569ae5d90ac10b96acba391940c164f132697e",
+  "invariant_names_sha256": "339c76de0abf156b9b718ed9ce5d515ffafaaa771f32fcd98aa4fbf343709573",
+  "journal": "artifacts-v19-production1/20260802T153331.017335Z-case-pid34172/fresh_DDD_k0_d2_f1/assignment-journal-v19",
+  "journal_authentication": {
+    "completed_count_at_read": 132,
+    "head_sha256_at_read": "e82853051d5b03cf81b91eadd133d7ab502cf3d0ae6d22a0223a0b55679d6bd3",
+    "pending_count_at_read": 1,
+    "record_count_at_read": 265
+  },
+  "journal_state_master_invariant_entailment": [
+    {
+      "countermodel_violated_invariant_count": 170,
+      "countermodel_violated_invariant_examples": [
+        "block_0_3 == True",
+        "block_0_5 == False",
+        "block_10_4 == True",
+        "block_10_6 == False",
+        "block_11_0 == False",
+        "block_11_10 == True",
+        "block_12_5 == False",
+        "block_13_4 == True",
+        "block_13_5 == False",
+        "block_14_0 == False",
+        "block_1_5 == False",
+        "block_4_1 == False",
+        "block_4_9 == True",
+        "block_5_10 == False",
+        "block_7_6 == True",
+        "block_7_9 == False",
+        "block_9_0 == False",
+        "critical_row_0_11 == False",
+        "critical_row_0_14 == False",
+        "critical_row_0_3 == False"
+      ],
+      "elapsed_seconds": 0.6723645410966128,
+      "fresh_context": false,
+      "outcome": "sat",
+      "reason_unknown": null
+    },
+    {
+      "countermodel_violated_invariant_count": 192,
+      "countermodel_violated_invariant_examples": [
+        "block_0_3 == True",
+        "block_0_5 == False",
+        "block_10_3 == False",
+        "block_10_4 == True",
+        "block_11_10 == True",
+        "block_11_9 == False",
+        "block_12_1 == False",
+        "block_13_4 == True",
+        "block_13_9 == False",
+        "block_14_5 == False",
+        "block_1_2 == False",
+        "block_3_10 == True",
+        "block_3_8 == False",
+        "block_4_10 == False",
+        "block_4_9 == True",
+        "block_6_7 == False",
+        "block_7_5 == False",
+        "block_7_6 == True",
+        "block_8_1 == True",
+        "block_8_10 == False"
+      ],
+      "elapsed_seconds": 0.6051471249666065,
+      "fresh_context": true,
+      "outcome": "sat",
+      "reason_unknown": null
+    }
+  ],
+  "logic": "The 21-literal projection is admissible only if the authenticated master entails the other 804 literals. SAT for M and not-I is a counterexample to that premise, so observed enumeration invariance alone cannot justify a projected blocker.",
+  "master_relative_projection_justified": false,
+  "scheme": "v19-master-relative-21-projection/v1",
+  "varying_count": 21,
+  "varying_names": [
+    "block_12_3",
+    "block_12_4",
+    "block_14_10",
+    "block_14_3",
+    "block_1_11",
+    "block_1_3",
+    "block_1_6",
+    "block_5_11",
+    "block_5_4",
+    "block_6_10",
+    "block_6_11",
+    "block_9_1",
+    "block_9_6",
+    "k4_14_10",
+    "k4_14_11",
+    "k4_14_12",
+    "k4_14_2",
+    "k4_14_4",
+    "k4_14_6",
+    "k4_14_8",
+    "k4_14_9"
+  ],
+  "varying_names_sha256": "ec33639b5b62b15208dfb5f2fabc846b6461826d487ebb486ff68aed10395469"
+}

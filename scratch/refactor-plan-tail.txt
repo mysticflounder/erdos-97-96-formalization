@@ -1,0 +1,220 @@
+adapter.  Round 3 is therefore a NO-GO for bank reuse and closure.  No learned
+cut or search hit may be promoted without a source-clean Lean adapter and a
+transitive spine audit.
+
+## 2026-08-02 v26 PB-lowering/source-core checkpoint
+
+The latest computational artifact is the bounded v26
+PB-lowering/source-core pilot at
+`scratch/retained-omission-e1/round5-general-cegar/v26-pb-lowering-source-core.md`.
+After substituting the authenticated v22 55-fix projection, two independent
+fresh Z3 parses returned `UNSAT` for the lowered QF_LRA formula.  The returned
+source selectors are cyclic alternation, exact rich profiles, and strict
+Kalmanson.  This is an authenticated finite external result only: it has no
+proof certificate, no coordinate realization for the live packet, no
+universal-n argument, and no Lean/kernel ingress.  It does not close or
+narrow the live normalized-residual `sorry` by itself.
+
+The v26 global theorem-bank pass checked the required current-project prose and
+all four named P97 registries, then made exactly one indexed Lean search.  The
+only close hit was the fixed-card-11
+`RetainedKalmansonDecoder.false_of_retainedOccurrence` consumer.  It requires
+a proved carrier/boundary labeling and transformation from the v26 n=15
+exact-rich pattern to `RetainedOccurrence`; that bridge is absent.  Therefore
+v26 is a bridge target and bank NO-GO, not a reusable theorem.  Do not promote
+its finite UNSAT or its three source selectors into the closure matrix.
+
+The focused residual audit at
+`scratch/retained-omission-e1/round5-general-cegar/RESIDUAL-ROUTE-AUDIT-R2.md`
+confirms the same source frontier: the distinct-center arm is already
+source-clean, while the two non-hit arms end in `sameBlocker` or
+`sourceRowOmission`, and the equal-center arm ends in
+`CommonCollisionEndpointOmission`/complementary-membership data.  No current
+import supplies a terminal for those residual interfaces.  The next honest
+closure target is a new source-clean producer or terminal for one of those
+interfaces, not another wrapper or bank alias.
+
+## 2026-08-02 independent artifact-reuse and bank audit (R2)
+
+The independent audit at
+`scratch/retained-omission-e1/round5-general-cegar/CEGAR-ARTIFACT-REUSE-AUDIT-R2.md`
+checked the retained V21--V26 artifacts, the round-5 core-mining outputs, and
+the six named P97 registry files.  It also ran one agentic Lean-index query,
+which surfaced only the source-clean constructor
+`freshThirdNormalizedResidualCase_of_crossRowResidual`; source inspection
+confirms that it only packages the residual disjunction and does not derive
+`False`.  No banked exact-rich/five-support producer or normalized-residual
+terminal was found.
+
+The strongest bounded candidate is the 31-clause finite set-system lemma in
+`scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md`.
+It uses three six-element rich supports, two four-element K4 rows, and nine
+cyclic-alternation cuts.  It is a finite Boolean obstruction, not yet a Lean
+theorem and not yet an adapter for the live packet.  Formalizing that lemma is
+the next computationally informed route; it must be followed by a
+source-faithful construction of its five supports and a transitive axiom
+audit.  Until those two bridges exist, broad CEGAR and direct sorry removal
+remain out of scope.
+
+## 2026-08-02 finite-cardinality bridge checkpoint
+
+The literal nested `native_decide` encoding of the 31-clause packet was
+stopped after more than twenty minutes without a result; raw witness
+enumeration is not a useful Lean target.  The first generic source-clean
+component now compiles in
+`scratch/retained-omission-e1/round5-core-mining/ThreeCoverCard.lean`:
+`Finset.card_le_three_of_three_cover_atMostOne` proves that a finite set
+covered by three domains, with at most one point in each domain, has
+cardinality at most three.  The check used Lean 4.27 via `lake env lean` and
+introduced no production imports or axioms.  This is only a bridge lemma: the
+live packet still lacks a proved construction of the three covering domains
+and their at-most-one bounds, so no closure or narrowing of the live
+`FreshThirdNormalizedResidualCase` obligation is claimed.
+
+## 2026-08-02 exact-15 adapter audit R3
+
+The independent audit at
+`scratch/retained-omission-e1/round5-general-cegar/EXACT15-ADAPTER-AUDIT-R3.md`
+checked whether `ATail/ExactFifteenApexProfile.lean` can be imported as a
+live adapter.  It cannot: its producers require `D.A.card = 15` and are
+apex-indexed `SelectedFourClass` statements, whereas the normalized residual
+contains arbitrary blocker-centered `CriticalFourShell`s and only the live
+`cap_card_ge_eight` lower bound.  The first missing bridge is therefore an
+apex-to-blocker-row transfer (or a new metric contradiction), not an import
+alias.  The exact-15 profile remains a conditional finite-slice producer and
+must not be counted as closure.
+
+The same audit confirms that `K7`/`K8` in the finite packet are scratch labels
+for four-point rows avoiding centers 7 and 8; they are not production
+interfaces.  The next constructive target is the rich--rich apex-cover
+counting lemma, followed by the three-domain cardinality bridge already
+checked in `ThreeCoverCard.lean`.
+
+## 2026-08-02 v27 ordered-distance minimization checkpoint
+
+The authenticated v27 external replay reduced the fixed n=15 shadow to two
+exact-rich profile literals plus strict Kalmanson; fresh parses returned
+`UNSAT`.  Its proposed theorem-facing shape is recorded in
+`scratch/retained-omission-e1/round5-general-cegar/v27-source-assertion-minimization.md`.
+This is discovery evidence only: there is no coordinate realization,
+general-n quantifier, proof certificate, or Lean ingress, and the required
+ordered-distance producer is absent from the current bank.  It therefore
+does not narrow the live normalized residual, but it identifies a smaller
+finite geometry target if the missing apex-to-blocker transfer is later
+proved.
+
+## 2026-08-02 v29 contract and theorem-bank checkpoint
+
+The latest completed v29 retry is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/artifacts-v29-c-full-nonapex-shell/20260802T210119.317640Z-retry-pid32065/summary.json`.
+Its child-process contract is valid and all 67 cases completed, but every case
+is `UNKNOWN`; there is no cut, certificate, or mathematical narrowing.  The
+round is therefore a clean process result only and is not a closure artifact.
+
+The required post-round global theorem-bank pass is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md`.
+The three P97 registry scans found no retained-omission, tri-apex, cross-cap,
+or K8 producer, and one agentic Lean-index query found no exact target.  The
+closest source-clean facts remain fixed-radius cross-cap intersection bounds
+and the two-hit critical-shell terminal; the live `Q`/`G` interfaces do not
+provide the required same-radius two-hit bridge.  The next honest target is
+therefore still a source-faithful cross-cap incidence producer or a metric
+terminal, not a wrapper or bank alias.
+
+## 2026-08-02 paired-branch terminal audit
+
+The paired-common-deletion arm has now been checked against the available
+source-clean consumers. `ApexRichClassStructure` supplies only upper bounds
+for cap-slice intersections; `CommonDeletionTwoCenterPacket` supplies two
+exact-four rows with overlap at most two, but no lower overlap bound or global
+boundary order. The two-center bisector terminals therefore cannot be
+instantiated: the reverse-omission hypothesis explicitly says the retained
+source is outside the reverse shell, and the packet does not provide the
+shared chord/order data those terminals require. The Kalmanson and
+CapCrossing consumers have the same missing ordered-support hypotheses.
+
+The smallest honest paired-branch bridge would have to prove all of the
+following from the live packet: two distinct points in the two row supports,
+their distinctness from both centers, and a global CCW/nonalternation adapter
+(or an equivalent three-row Kalmanson pattern). None is currently available.
+The brute-force `native_decide` proof of the fixed n=15 five-support shadow is
+also not a practical terminal: nested finite enumeration has remained
+running for tens of minutes. The active computational route is consequently
+to formalize the human-readable three-domain/cardinality obstruction in
+small source-clean lemmas, then separately prove the geometric support/order
+adapter; no closure is claimed at this checkpoint.
+
+## 2026-08-02 rich--rich count-kernel checkpoint
+
+The first unconditional production slice of that route is now isolated in
+`lean/Erdos9796Proof/P97/ATail/RichApexCoverCount.lean`.  It contains an
+`omega` contradiction for the twelve decomposition counts and a finite-set
+cover lemma reducing three at-most-one cuts to `K.card ≤ 3`.  These kernels
+are independent of the scratch `Fin 15` labels (`K7`/`K8`) and therefore do
+not claim an exact-15 or live `FreshThird` result.  The targeted Lean 4.27
+build completed successfully with no linter warnings, and an explicit
+`#print axioms` check reports only the standard `propext`, `Classical.choice`
+(for the finite-set cover), and `Quot.sound` dependencies.  The next
+promotion step is an explicit import plus a source-faithful adapter supplying
+the count variables and the three cut bounds from the live blocker packet.
+Until that adapter is proved, the normalized-residual `sorry` remains open.
+
+## 2026-08-02 parity-adapter correction and corpus search
+
+The parity audit corrected the earlier domain classification: all nine finite
+clauses can be partitioned into the four existing nonalternating order
+terminals.  Three clauses are wholly between their centers (`_split`), one is
+wholly after them (`_before`), and five are before-or-after unions; the latter
+split into the `_after`, `_before`, or `_enclosed` cases.  This removes the
+previously recorded concern that an additional cyclic-rotation terminal was
+needed.
+
+An agentic Lean-corpus search for the combined live adapter shape returned no
+single reusable theorem.  It found the existing FreshThird normalization and
+support-radius facts separately, but no theorem deriving five finite support
+sets, common-radius equalities, and the order partitions from
+`FreshThirdBlockerFiber`.  Consequently the next source-faithful target is a
+three-part adapter (support extraction, radius transfer, then finite order
+partition), not another scratch `K8` enumeration or an import alias.
+
+## 2026-08-02 finite order-kernel checkpoint
+
+The finite order component is now isolated in
+`lean/Erdos9796Proof/P97/ATail/FreshThirdOrderPartition.lean`.  Its
+`Problem97.freshThird_pair_order_partition` theorem proves the four-way
+nonalternating partition for two ordered `Fin n` endpoints lying either on
+the same outside side or in the open interval between their centers.  The
+targeted Lean 4.27 build completed successfully with no linter warnings, and
+`#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound`.
+This is a reusable finite producer for the future parity adapter, not closure:
+the live `FreshThirdBlockerFiber` packet still does not derive its region
+hypothesis (nor the support extraction and radius-transfer data) for the
+residual theorem.
+
+## 2026-08-02 full-fidelity FreshThird residual checkpoint
+
+The repaired N17 probe is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/N17-FRESH-THIRD-FIDELITY-PROBE-ROUND5.md`.
+It uses independent selectors for `C.firstSource` and `C.secondSource`,
+explicit cap-row survival predicates, guarded deletion-survival predicates,
+and the corrected equal-center arm.  The incidence artifact
+`artifacts-n17-generic/20260802T184918Z/result.json` is SAT in all three
+normalized residual arms (`firstNonHit`, `secondNonHit`, and
+`equalCrossRowCenters`).  The cyclic/metric artifact
+`artifacts-n17-generic/20260802T184331Z/result.json` and its per-arm runs are
+`UNKNOWN` at the bounded time limits, so this is an external finite diagnostic
+only: it has no coordinate realization, universal-n quantifier, Lean ingress,
+or kernel-checked certificate.
+
+The mandatory post-round theorem-bank audit is recorded by the round-5 global
+bank pass.  All six required P97 registries (including the general-n census)
+and one focused agentic Lean search returned no `FreshThird`,
+`sourceRowOmission`, normalized-residual, or equivalent terminal/adapter.
+The nearest imported facts are the existing cross-deletion survival/support
+equivalences and the distinct-center FreshThird terminal; neither supplies the
+missing common-radius, boundary-order, or blocker-row hypotheses.  The
+load-bearing `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`
+obligation therefore remains open, with no promotion or closure claim from
+this round.  The next honest implementation target is a source-faithful
+support/radius/order adapter or a new metric terminal, not a wrapper around the
+existing `sorry`.

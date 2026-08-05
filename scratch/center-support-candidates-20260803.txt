@@ -1,0 +1,220 @@
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:287:        (blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:343:        obstructionCenters_eq := hcenters
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:111:        rw [← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support H
+lean/Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean:113:            ← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support H
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:250:equalities put `C,E` on the two circles centered at `A,D`; the fifth makes
+lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:605:    apply normSim_center_fst_eq_half_of_equidistant hAB
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:13:at the first source are already two carrier centers equidistant from the
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:185:theorem false_of_center_first_two_k2_three_selected_rows_triangle
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:227:theorem false_of_center_first_two_k2_three_selected_rows_triangle_reflected
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:446:displayed equidistant rows, centered at `b` and `c`, are incompatible with
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:55:  exact H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:26:order the three equalities centered at `O,A,X` form a strict two-edge cycle.
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:79:pair `OJ = OC`. It does not supply an equality centered away from the first
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:60:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:121:theorem commonPhysicalPair_center_mem_capInteriorByIndex
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:181:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:191:theorem commonPhysicalPair_center_mem_secondCapInterior
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:12:This module collects the small interface for centers whose four-equidistant
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:127:theorem hasCriticalDeletionAt_of_centerAt_eq
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:140:theorem FullyDeletionRobustAt.centerAt_ne
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:155:theorem source₁_mem_cap_or_source₂_mem_cap_of_centers_mem_cap
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:177:theorem actualRow_center_eq_commonBlocker_of_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:263:    (actualRow_center_eq_commonBlocker_of_contains_collisionSources
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:269:theorem actualRow_center_eq_commonBlocker_of_sameCap_outside_sources
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:229:theorem no_center_class_contains_all_apices
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:186:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:125:    exact (lateFirstApexSystem_centerAt_eq R source.2 hclass).trans
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:126:      (lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A hqClass).symm
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:183:      (lateFirstApexSystem_centerAt_eq_iff_mem_class R source₁.2).not.mpr
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:187:      (lateFirstApexSystem_centerAt_eq_iff_mem_class R source₂.2).not.mpr
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:251:      (lateFirstApexSystem_centerAt_eq_iff_mem_class R anchor.2).not.mpr
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:291:      selectedSupports_eq_of_actualBlockers_eq Hlate source.2 anchor.2 hcenters
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:82:theorem firstRow_support_eq_criticalShell_of_center_eq
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:92:    H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:97:theorem secondRow_support_eq_criticalShell_of_center_eq
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:107:    H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:163:    have hcenter := oppApex1_eq_oppositeVertex_oppIndex1 S
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:182:  · have hcenter := oppApex1_eq_oppositeVertex_oppIndex1 S
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:204:  · have hcenter := oppApex2_eq_oppositeVertex_oppIndex2 S
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:224:    · have hcenter := oppApex2_eq_oppositeVertex_oppIndex2 S
+lean/Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:272:  have hcenter := oppApex2_eq_oppositeVertex_oppIndex2 S
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:83:  exact (H.selectedFourClass_support_eq_shell source₁ hsource₁ K).symm
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:102:      selectedSupports_eq_of_actualBlockers_eq H source.2 anchor.2 hcenter
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:267:    · have heq : H.centerAt source₁.1 source₁.2 = S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:272:        exact hcenters (heq.trans hsource₂CenterEq.symm)
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:312:    · have heq : H.centerAt source₁.1 source₁.2 = S.oppApex2 :=
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:317:        exact hcenters (heq.trans hsource₂CenterEq.symm)
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:101:  rw [det_liftedFour_eq_neg_signedArea2_mul_power center a b c d
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:103:    (power_eq_zero_of_dist_eq center a K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:105:    (power_eq_zero_of_dist_eq center b K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:107:    (power_eq_zero_of_dist_eq center c K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:109:    power_eq_zero_of_dist_eq center d K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:122:  have hpa := power_eq_zero_of_dist_eq center a K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:124:  have hpb := power_eq_zero_of_dist_eq center b K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:126:  have hpc := power_eq_zero_of_dist_eq center c K.radius
+lean/Erdos9796Proof/P97/ATail/CriticalShellLiftedDeterminant.lean:138:  rw [det_liftedFour_eq_neg_signedArea2_mul_power center a b c d
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:66:theorem interior_pair_bisector_center_mem_capInterior
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:146:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:152:theorem interior_pair_bisector_center_not_mem_surplusCap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:280:        (blocker_centers_eq_of_five_le_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:310:theorem coincident_blocker_no_third_bisector_center
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:324:  rcases (blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:68:theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:220:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:219:        (blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:267:        blockers_eq := hcenters
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:104:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:71:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:208:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:340:        (blocker_centers_eq_of_five_le_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:368:centers, no third carrier point is equidistant from the frontier pair. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:383:  rcases (blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:462:theorem false_of_four_ccw_endpoint_centers_bisect_middle_pair
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:493:theorem false_of_four_ccw_middle_centers_bisect_endpoint_pair
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:95:every four-point equidistant witness at that center. -/
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:275:theorem isUniqueFourCenter_centerAt
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:287:theorem centerAt_ne_source
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:296:theorem uniqueFourClass_centerAt_eq_selectedAt_support
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:307:  rw [uniqueFourClass_eq (isUniqueFourCenter_centerAt H q hq)
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:314:theorem source_mem_uniqueFourClass_centerAt
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:318:  rw [uniqueFourClass_centerAt_eq_selectedAt_support H q hq]
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:393:theorem false_of_centerAt_selectedFourClass_inter_card_ge_three
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2786:equidistant from the interior pair `u`, `xu`, and the two-center cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3329:each other have equal blocker centers: the second apex and both centers are
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3333:    blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3494:      blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6673:theorem false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6774:      rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6776:        ← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7188:theorem exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7218:theorem exists_criticalShell_center_with_otherRichCapSlice_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7997:    exact Q.row.center_not_mem (mem_of_eq hpoint Q.J_mem_row)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8002:    exact KA.center_not_mem_support (mem_of_eq hpoint hJ_A)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8634:    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8636:      ← uniqueFourClass_centerAt_eq_selectedAt_support H z hzA,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8654:theorem blocker_centers_eq_of_secondRadius_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8744:    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8745:      ← uniqueFourClass_centerAt_eq_selectedAt_support H y hyA,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9631:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9742:    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H source.1 source.2,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9743:      ← uniqueFourClass_centerAt_eq_selectedAt_support H source'.1 source'.2,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10117:    exact hcenterNeFirst (congrArg Subtype.val heq)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10119:    exact hcenterNeSecond (congrArg Subtype.val heq)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10379:      (center_eq :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10467:      (center_eq :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10498:  | sameBlocker center_eq support_eq =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10499:      exact .sameBlocker center_eq support_eq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10525:      (centers_eq :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10529:/-! The canonical-cap equal-center terminal consumes exactly one positive
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10601:      · exact .equalCrossRowCenters hfirst hsecond hcenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10609:/-- The rigid positive packet in the equal-center residual: both cap-source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10615:  centers_eq :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10754:/-- The equal-center exact-row packet is impossible when a same-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10879:/-- In the equal-center exact-row arm, the existing finite endpoint split
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10922:/-- In the equal-center exact-row arm, every endpoint of the two retained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11276:equal-center/`oppIndex1` interaction.  The positive equal-center packet now
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11294:      (centers_eq :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11321:/-- The unresolved residual leaf after the canonical equal-center/`oppIndex1`
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11388:  | equalCrossRowCenters hfirst hsecond hcenters =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11403:      | sameBlocker center_eq _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11404:          exact hfirst.1 center_eq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11412:              centers_ne source₁_mem source₂_mem overlap_eq sourceCap freshCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11415:          | sameBlocker center_eq _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11416:              exact hsecond.1 center_eq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11435:                  (.equalCrossRowCenters hfirst hsecond hcenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11438:                      centers_ne' source₁_mem' source₂_mem' overlap_eq'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11468:                centers_ne source₁_mem source₂_mem overlap_eq capIndex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11471:            | sameBlocker center_eq _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11472:                exact hsecond.1 center_eq
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11512:                      (.equalCrossRowCenters hfirst hsecond hcenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11515:                          centers_ne' source₁_mem' source₂_mem' overlap_eq'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12393:metric equalities carried by these rows and the exact five-center deletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13194:    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13720:  exact blocker_centers_eq_of_secondRadius_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14769:        selectedClass_erase_eq D.A z center radius₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15114:  blockers_eq := hcenter₁.trans (P.blockers_eq.trans hcenter₂.symm)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15345:    rw [uniqueFourClass_centerAt_eq_selectedAt_support H q.1 q.2]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16286:      uniqueFourClass_centerAt_eq_selectedAt_support H x hx⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16555:      uniqueFourClass_centerAt_eq_selectedAt_support H x hx⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:16646:          blocker_centers_eq_of_secondRadius_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:12:re-cut at its carrier center, applies the production equal-radius quarter-turn
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:28:/-- A selected class's center, equipped with the additional carrier-membership
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:157:/-- Every selected four-point equal-radius class centered at a carrier point
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean:213:theorem exists_globalSelectedQuarterTurnArcs {A : Finset ℝ²} {center : ℝ²}
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:61:theorem blocker_centers_eq_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:265:        (blocker_centers_eq_of_mutual_cross_membership R hxA hyA hxy
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:128:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:53:theorem false_of_two_centers_equidistant_pair_after
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:74:theorem false_of_two_centers_equidistant_pair_enclosed
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:112:theorem false_of_two_centers_equidistant_pair_split
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:134:theorem false_of_two_centers_equidistant_pair_before
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectIndexedAgreement.lean:86:theorem blockerVariable_parameterBinding (source center : Label)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectIndexedAgreement.lean:126:theorem rowVariable_lt_10000 (center point : Label) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectIndexedAgreement.lean:130:theorem radiusVariable_lt_10000 (center left right : Label) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean:1029:        by simpa [hcenter] using (C.classAt 1).support_eq_radius x hx⟩
+lean/Erdos9796Proof/P97/ATail/KalmansonRadiusOrderReversal.lean:92:configuration when the two equalities centered at `phi i4` come from two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:159:          (blocker_centers_eq_of_mutual_cross_membership R hxA hyA hxy
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:196:      (H.selectedFourClass_support_eq_shell
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectOuterSourceSatisfaction.lean:57:          have hatom : membershipAtom center point = atom := of_decide_eq_true h
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectOuterSourceSatisfaction.lean:87:          have hatom : rowAtom center point0 point1 point2 point3 = atom := of_decide_eq_true h
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectOuterSourceSatisfaction.lean:113:          have hatom : outerAtom center side mask = atom := of_decide_eq_true h
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:111:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstFiberOverlapDescent.lean:951:  exact false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:297:    have hcenter := oppApex1_eq_oppositeVertexByIndex S
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Families.lean:50:theorem rowVariable_pos (center point : Label) : 1 ≤ rowVariable center point := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Families.lean:54:theorem radiusVariable_pos (center left right : Label) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Families.lean:63:theorem blockerVariable_pos (source center : Label) :
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:100:    simpa [T, ← hcenter] using profile.class_card_eq_five
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:431:private theorem centerAt_ne_firstApex_of_mem_outsideFirstApexFiber
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:446:      (lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:549:  have hcenters := interiorPairBad_source_blockers_eq R hbad₁ hbad₂
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:638:    (lateFirstApexSystem_centerAt_eq_iff_mem_class R source.2).mp
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:645:      lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:659:    lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
+lean/Erdos9796Proof/P97/ATail/AnchoredDoubleDeletionProducer.lean:152:  rw [← criticalSupports_eq_of_actualBlocker_eq P hsource hcenter]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:19:when that source is in the first-apex class and the requested center is the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Core.lean:95:theorem blockerVal_false_of_center_ne_zero
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:86:theorem lateFirstApexSystem_centerAt_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:110:    lateFirstApexSystem_centerAt_eq R hsourceA hsourceClass
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:168:  exact ⟨lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A hqClass,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:169:    lateFirstApexSystem_centerAt_eq R F.pair.w_mem_A hwClass,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:175:theorem lateFirstApexSystem_centerAt_eq_iff_mem_class
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:206:  · exact lateFirstApexSystem_centerAt_eq R hsourceA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:220:  exact (lateFirstApexSystem_centerAt_eq R hsource₁A hsource₁Class).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:221:    (lateFirstApexSystem_centerAt_eq R hsource₂A hsource₂Class).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:261:          lateFirstApexSystem_centerAt_eq R anchorVertex.2 hanchorClass
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:262:    exact (lateFirstApexSystem_centerAt_eq_iff_mem_class R source.2).mp hsourceCenter
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:271:    exact (lateFirstApexSystem_centerAt_eq R source.2 hz).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:272:      (lateFirstApexSystem_centerAt_eq R anchorVertex.2 hanchorClass).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:297:#print axioms lateFirstApexSystem_centerAt_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:302:#print axioms lateFirstApexSystem_centerAt_eq_iff_mem_class
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:68:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:113:theorem commonFirstApexPair_center_mem_firstCapInterior
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:193:      exact false_of_two_cap_centers_equidistant_outside_pair S j
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:412:theorem actualRow_center_eq_reverseBlocker_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcFinite.lean:31:theorem centeredSupportIndices_card
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4GenericFamilies.lean:101:two radius equalities at one center imply the third, for any index transport.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4GenericFamilies.lean:110:instance: two members of one selected row are equidistant from its center,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4GenericFamilies.lean:139:instance: two ordered centers cannot share an equidistant pair in any of the
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:833:theorem blocker_centers_ne_of_not_mem_other_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1046:theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1118:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1140:      blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1146:theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1171:    blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1176:theorem blocker_centers_eq_of_five_le_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1188:    blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1203:theorem blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1222:    exact blocker_centers_eq_of_five_le_of_mutual_cross_membership
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/Families.lean:12:Each entry contains two negative radius-equality literals at a common center
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:352:      rw [min_eq_left (le_of_lt hcenterOrder),
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V7TwoCenterBisectorSliceLedger.lean:353:        max_eq_right (le_of_lt hcenterOrder)] at hside
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:75:    ((F.classAt (boundary center) (hboundaryMem center)).support_eq_radius
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:77:    ((F.classAt (boundary center) (hboundaryMem center)).support_eq_radius
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:124:        (equalityClosure (centers.map (rowOfPattern P)))) = false := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:200:        (equalityClosure (centers.map (rowOfPattern P)))) = false := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:204:    normalizedRoots (equalityClosure (centers.map (rowOfPattern P)))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:252:      firstCenter_eq := edgeClosure_of_semanticRows_edgesEqual centers
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:256:      secondCenter_eq := edgeClosure_of_semanticRows_edgesEqual centers
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MetricSound.lean:293:      exactFirstClassCore_eq_false hreal hexact centers

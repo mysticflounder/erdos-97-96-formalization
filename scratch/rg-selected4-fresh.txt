@@ -1,0 +1,128 @@
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:442:    (K : SelectedFourClass A center) : K.support.Nonempty := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1016:Each row is a `CriticalSelectedFourClass`, so its support is the whole ambient
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1092:theorem selectedFourClass_support_eq_shell
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1097:  have hqK : q ∈ K.support := H.source_mem_selectedFourClass q hq K
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean:278:theorem selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeAssembly.lean:137:    exact H.selectedFourClass_support_eq_shell (L.pointOf q) (L.mem_carrier q)
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:55:  exact H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:406:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:148:@[simp] private theorem transportSelectedFourClass_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:151:    (transportSelectedFourClass K hcenter).support = K.support := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:186:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean:24:* **L2** `SelectedFourClass.support_eq_selectedClass_of_moserCap` +
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean:61:theorem SelectedFourClass.support_eq_selectedClass_of_moserCap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:644:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:700:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ErasedCertificate/CardElevenBlocker.lean:139:    exact H.selectedFourClass_support_eq_shell (L.pointOf q)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:110:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:864:      (dangerousBaseSelectedFourClass hfixed).support_card
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1981:      (dangerousBaseSelectedFourClass hfixed).support_card
+lean/Erdos9796Proof/P97/ExactTenSelectedShellMincut.lean:33:theorem exists_selectedFourClass_escape_of_card_eq_ten
+lean/Erdos9796Proof/P97/ExactTenSelectedShellMincut.lean:92:    exists_selectedFourClass_escape_of_card_eq_ten
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:50:    ∃ K : SelectedFourClass A center, point ∈ K.support := by
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:83:  exact (H.selectedFourClass_support_eq_shell source₁ hsource₁ K).symm
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:182:  exact H.selectedFourClass_support_eq_shell q hq
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:376:The proof uses only `SelectedFourClass.support_eq_radius` to produce the three
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:28:theorem selectedFourClass_support_eq_criticalShell_of_source_mem
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:308:      selectedFourClass_support_eq_criticalShell_of_source_mem C K hyK
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:366:      selectedFourClass_support_eq_criticalShell_of_source_mem C K hyK
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:39:@[simp] private theorem transportSelectedFourClass_support
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:42:    (transportSelectedFourClass K hcenter).support = K.support := by
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:128:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:373:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:378:        CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:92:    H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:107:    H.selectedFourClass_support_eq_shell source hsource
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:36:theorem selectedFourClass_support_subset_selectedClass
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:51:      Finset.card_le_card (selectedFourClass_support_subset_selectedClass K)
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:181:theorem selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:198:  simpa [hradius] using selectedFourClass_support_subset_selectedClass K
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:217:theorem selectedFourClass_radius_eq_one_of_twoRichRadii_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:282:theorem selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:294:  rcases selectedFourClass_radius_eq_one_of_twoRichRadii_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:299:      simpa [hr] using selectedFourClass_support_subset_selectedClass K
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:305:      simpa [hr] using selectedFourClass_support_subset_selectedClass K
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:332:      selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:338:      selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:342:theorem exists_selectedFourClass_support_subset_richSixClass_of_globalK4
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:352:  exact ⟨K, selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:356:theorem exists_selectedFourClass_support_eq_one_of_twoRichClasses_of_globalK4
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:368:  exact ⟨K, selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:141:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8795:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10385:  | sourceRowOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10441:abbrev FreshThirdCrossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10457:  ¬ FreshThirdCrossRowHit P Pρ firstSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10458:    ¬ FreshThirdCrossRowHit P Pρ secondSource Q ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10474:  | sourceRowOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10495:    (hnot : ¬ FreshThirdCrossRowHit P Pρ source Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10500:  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10501:      exact .sourceRowOmission deleted deleted_eq deleted_not_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10523:      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10524:      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10533:inductive FreshThirdNonCanonicalInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10596:  by_cases hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10597:  · by_cases hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10637:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10638:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10762:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10763:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10835:    CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10885:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10886:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10929:    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10930:    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10992:theorem false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10995:    (hfirst : FreshThirdCrossRowHit P Pρ firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10996:    (hsecond : FreshThirdCrossRowHit P Pρ secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11159:      · exact ⟨.sourceRowOmission Q.source₂ (Or.inr rfl) hsource₂
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11162:    · exact ⟨.sourceRowOmission Q.source₁ (Or.inl rfl) hsource₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11214:      FreshThirdCrossRowHit P Pρ C.firstSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11215:        FreshThirdCrossRowHit P Pρ C.secondSource Q ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11249:          FreshThirdCrossRowHit P Pρ C.firstSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11251:            FreshThirdCrossRowHit P Pρ C.secondSource Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11292:      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11293:      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11298:        FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11300:        FreshThirdNonCanonicalInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11312:        false_of_two_freshThirdCrossRowHits_distinctCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11348:        (h : FreshThirdCrossRowHit P Pρ source Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11405:      | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11411:            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11417:          | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11437:                    (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11467:              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11473:            | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11514:                        (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:13253:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:42:@[simp] private theorem transportSelectedFourClass_support
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:45:    (transportSelectedFourClass K hcenter).support = K.support := by
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:104:        (H.selectedFourClass_support_eq_shell source₁.1 source₁.2 K₂).symm
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:173:@[simp] private theorem transportSelectedFourClass_support
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:176:    (transportSelectedFourClass K hcenter).support = K.support := by
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:196:      (H.selectedFourClass_support_eq_shell
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:287:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:586:    CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusSemantics.lean:109:    H.selectedFourClass_support_eq_shell
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:62:private theorem selectedFourClass_support_dist_eq
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:92:    selectedFourClass_support_dist_eq Row0 hi1_mem_Row0 hi3_mem_Row0
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:99:        selectedFourClass_support_dist_eq Row4 hi2_mem_Row4 hi3_mem_Row4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:107:        selectedFourClass_support_dist_eq Row5 hi1_mem_Row5 hi2_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:140:    selectedFourClass_support_dist_eq Row0 hi1_mem_Row0 hi3_mem_Row0
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:143:    selectedFourClass_support_dist_eq Row2 hi3_mem_Row2 hi4_mem_Row2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:150:        selectedFourClass_support_dist_eq Row3 hi1_mem_Row3 hi4_mem_Row3
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:218:        selectedFourClass_support_dist_eq Row3 hi2_mem_Row3 hi5_mem_Row3
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:225:        selectedFourClass_support_dist_eq Row4 hi1_mem_Row4 hi5_mem_Row4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:232:        selectedFourClass_support_dist_eq Row5 hi1_mem_Row5 hi2_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:270:    selectedFourClass_support_dist_eq Row0 hi1_mem_Row0 hi3_mem_Row0
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:273:    selectedFourClass_support_dist_eq Row0 hi1_mem_Row0 hi5_mem_Row0
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:280:        selectedFourClass_support_dist_eq Row4 hi1_mem_Row4 hi2_mem_Row4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:288:        selectedFourClass_support_dist_eq Row5 hi2_mem_Row5 hi3_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:293:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:309:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5SourceTrace.lean:325:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:315:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:331:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorSourceTrace.lean:347:  exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:577:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two S D.convex
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:528:  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two S D.convex

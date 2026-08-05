@@ -1,0 +1,8 @@
+../scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/LocalizedG3ProductSquareProducer.lean:14:204638: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (2000000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+real 99.88
+user 96.23
+sys 2.74

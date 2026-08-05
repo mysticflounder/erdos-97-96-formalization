@@ -1,0 +1,32 @@
+{
+  "inputs": {
+    "raw_blob": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/artifacts-v19-production1/20260802T153331.017335Z-case-pid34172/fresh_DDD_k0_d2_f1/full_frozen_v19.smt2.gz",
+      "sha256": "699807aa782a9083ebec185444b483f7e9da53b4f7a43e45ae923aa82f363067"
+    },
+    "script": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/round5_rich_kalmanson_cegar_v28.py",
+      "sha256": "f4935b1bcb77bffbd6e036207f9460851a6e1f3e8aec1cdc64b75111671220b8"
+    },
+    "test": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/test_round5_rich_kalmanson_cegar_v28.py",
+      "sha256": "8101d5553930aa21f95da5fa091466d91d938fc3e52e036c349fdf5e7f140730"
+    },
+    "v27": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/v27-source-assertion-minimization.json",
+      "sha256": "b3ec9c29f0f5062d6043f5f1d5171e2abd10599113fabab7e4dad634583856a0"
+    }
+  },
+  "kind": "v28-output-hash-manifest",
+  "outputs": {
+    "report": {
+      "path": "v28-smoke.md",
+      "sha256": "c0e2bc10db024a67eee6874862062fc488d400b580bc96067c9366638e930427"
+    },
+    "result": {
+      "path": "v28-smoke.json",
+      "sha256": "59408e57c1797666a8a8f633f97afe69477e4abf6acecb4d32baf53c7683a49b"
+    }
+  },
+  "schema_version": 28
+}

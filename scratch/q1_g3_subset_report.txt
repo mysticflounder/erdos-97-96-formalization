@@ -1,0 +1,50 @@
+Q1 G3 staged-subset audit (scratch-only, 2026-08-02)
+=======================================================
+
+Target
+------
+G3 = (bu-bs)*(br-bv)*bv*bw.
+
+Low-term identities
+-------------------
+The six existing producers are U8,U24,U30,U32,U34,U37.  Their source-clean
+Lean identities are the short equations in `q1_six_u_exact.lean`:
+
+  U8  = 1*e7 + (1-bu)*q1
+  U24 = -br*e8 + bw*e9
+  U30 = (bv*bw-bw^2+bw-1)*e7
+        -(bs*bu-bu^2-bs+bu)*e8
+  U32 = -(br*bv-br)*e8 + (bv*bw-bw^2+bw-1)*e9
+  U34 = -(bs-2*bu+bv-bw)*e8 + (bv*bw-bw^2+bw-1)*q1
+  U37 = (bs-bu)*e7 + (-bs*bu+bu*bv+bs-bv)*q1.
+
+Exact/finite probes
+-------------------
+The existing Singular subset scan reports G3 in the ideals for masks
+27,31,51,55,59,63 (bit order U8,U24,U30,U32,U34,U37).  Thus the smallest
+reported subset is mask 27 = {U8,U24,U32,U34}; its exact lift has standard
+basis size 64, 10,659 coefficient terms, and maximum multiplier degree 11.
+The next compact reported subset is mask 51 = {U8,U24,U34,U37}, with 5,364
+lift terms and maximum degree 9.  These are external Singular artifacts,
+not Lean certificates.
+
+Affine-combination negative result
+-----------------------------------
+`find_g3_staged_linear.py` searched all six U's over QQ modulo 1,000,003 for
+an identity with polynomial multipliers of total degree at most d:
+
+  d=1: 48 columns, rank 36, no identity
+  d=2: 174 columns, rank 126, no identity
+  d=3: 510 columns, rank 335, no identity
+  d=4: 1266 columns, rank 748, no identity
+
+Therefore no compact affine `linear_combination` of the current six U's with
+degree <=4 multipliers was found; any subset cannot improve this bound.
+
+Lean scratch status
+-------------------
+`scratch/q1_g3_subset_test.lean` contains `all_six` and `mask27` theorem
+prototypes using `grobner` after expanding the U definitions.  A compile was
+already launched by the parent agent.  This is scratch-only and does not
+establish production closure; the staged route still requires a large
+Groebner proof (or explicit degree-9/11 multipliers) after the U producers.

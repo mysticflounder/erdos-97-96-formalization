@@ -1,0 +1,571 @@
+    exact hsFirst₂ (congrArg Subtype.val heq)
+  · intro heq
+    exact hsSecond₁ (congrArg Subtype.val heq)
+  · intro heq
+    exact hsSecond₂ (congrArg Subtype.val heq)
+  · intro heq
+    exact hsFirst₁' (congrArg Subtype.val heq)
+  · intro heq
+    exact hsFirst₂' (congrArg Subtype.val heq)
+  · intro heq
+    exact hsSecond₁' (congrArg Subtype.val heq)
+  · intro heq
+    exact hsSecond₂' (congrArg Subtype.val heq)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Two mutually incident selected exact-four rows with distinct blocker
+values overlap at exactly their two source points. -/
+theorem selectedSupports_inter_eq_sources_of_mutualCrossMembership_distinctBlockers
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+    (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+        (H.selectedAt source'.1 source'.2).toCriticalFourShell.support =
+      {source.1, source'.1} := by
+  let K := (H.selectedAt source.1 source.2).toCriticalFourShell
+  let K' := (H.selectedAt source'.1 source'.2).toCriticalFourShell
+  have hcentersNe :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt source'.1 source'.2 := by
+    intro hcenters
+    apply hblockersNe'
+    apply Subtype.ext
+    exact hcenters
+  have hinterLe : (K.support ∩ K'.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two
+      K.toSelectedFourClass K'.toSelectedFourClass hcentersNe
+  have hpairSubset :
+      ({source.1, source'.1} : Finset _) ⊆ K.support ∩ K'.support := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨K.q_mem_support, hmutual.2⟩
+    · exact Finset.mem_inter.mpr
+        ⟨hmutual.1, K'.q_mem_support⟩
+  have hpairEq :
+      ({source.1, source'.1} : Finset _) = K.support ∩ K'.support :=
+    Finset.eq_of_subset_of_card_le hpairSubset (by
+      simpa [hsourcesNe] using hinterLe)
+  exact hpairEq.symm
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Once two distinct actual blockers both bisect a source pair, every other
+actual blocker whose selected row contains that pair is one of the two. -/
+theorem blockerVertex_eq_one_of_mutualPair_of_selectedRow_contains_sources
+    (source source' u : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+    (huSource :
+      source.1 ∈
+        (H.selectedAt u.1 u.2).toCriticalFourShell.support)
+    (huSource' :
+      source'.1 ∈
+        (H.selectedAt u.1 u.2).toCriticalFourShell.support) :
+    H.blockerVertex u = H.blockerVertex source ∨
+      H.blockerVertex u = H.blockerVertex source' := by
+  let c := H.centerAt source.1 source.2
+  let c' := H.centerAt source'.1 source'.2
+  let cu := H.centerAt u.1 u.2
+  have hcA : c ∈ D.A := by
+    simpa [c, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex source).2
+  have hcA' : c' ∈ D.A := by
+    simpa [c', CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex source').2
+  have hcuA : cu ∈ D.A := by
+    simpa [cu, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex u).2
+  have hcc' : c ≠ c' := by
+    intro h
+    apply hblockersNe'
+    apply Subtype.ext
+    exact h
+  have hcEq :
+      dist c source.1 = dist c source'.1 := by
+    exact
+      ((H.selectedAt source.1
+        source.2).toCriticalFourShell.support_eq_radius
+          source.1
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.q_mem_support).trans
+        ((H.selectedAt source.1
+          source.2).toCriticalFourShell.support_eq_radius
+            source'.1 hmutual.1).symm
+  have hcEq' :
+      dist c' source.1 = dist c' source'.1 := by
+    exact
+      ((H.selectedAt source'.1
+        source'.2).toCriticalFourShell.support_eq_radius
+          source.1 hmutual.2).trans
+        ((H.selectedAt source'.1
+          source'.2).toCriticalFourShell.support_eq_radius
+            source'.1
+            (H.selectedAt source'.1
+              source'.2).toCriticalFourShell.q_mem_support).symm
+  have hcuEq :
+      dist cu source.1 = dist cu source'.1 := by
+    exact
+      ((H.selectedAt u.1 u.2).toCriticalFourShell.support_eq_radius
+          source.1 huSource).trans
+        ((H.selectedAt u.1
+          u.2).toCriticalFourShell.support_eq_radius
+            source'.1 huSource').symm
+  by_cases hcuEqC : cu = c
+  · exact Or.inl (by
+      apply Subtype.ext
+      exact hcuEqC)
+  by_cases hcuEqC' : cu = c'
+  · exact Or.inr (by
+      apply Subtype.ext
+      exact hcuEqC')
+  have hbound :=
+    Dumitrescu.perpBisector_apex_bound
+      D.convex source.2 source'.2 hsourcesNe
+  have hcFilter :
+      c ∈ D.A.filter
+        (fun z => dist z source.1 = dist z source'.1) :=
+    Finset.mem_filter.mpr ⟨hcA, hcEq⟩
+  have hcFilter' :
+      c' ∈ D.A.filter
+        (fun z => dist z source.1 = dist z source'.1) :=
+    Finset.mem_filter.mpr ⟨hcA', hcEq'⟩
+  have hcuFilter :
+      cu ∈ D.A.filter
+        (fun z => dist z source.1 = dist z source'.1) :=
+    Finset.mem_filter.mpr ⟨hcuA, hcuEq⟩
+  have hthree :
+      2 <
+        (D.A.filter
+          (fun z => dist z source.1 = dist z source'.1)).card := by
+    rw [Finset.two_lt_card]
+    exact
+      ⟨c, hcFilter, c', hcFilter', cu, hcuFilter,
+        hcc', Ne.symm hcuEqC, Ne.symm hcuEqC'⟩
+  exact False.elim ((not_lt_of_ge hbound) hthree)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- At every actual blocker, one source deletion preserves the selected
+exact-four row unless that blocker is one of the two saturated pair centers. -/
+theorem sourceDeletionSurvival_or_blockerVertex_eq_mutualPair
+    (source source' u : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+    HasNEquidistantPointsAt 4 (D.A.erase source.1)
+        (H.centerAt u.1 u.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase source'.1)
+        (H.centerAt u.1 u.2) ∨
+      H.blockerVertex u = H.blockerVertex source ∨
+      H.blockerVertex u = H.blockerVertex source' := by
+  by_cases huSource :
+      source.1 ∈
+        (H.selectedAt u.1 u.2).toCriticalFourShell.support
+  · by_cases huSource' :
+        source'.1 ∈
+          (H.selectedAt u.1 u.2).toCriticalFourShell.support
+    · rcases
+        blockerVertex_eq_one_of_mutualPair_of_selectedRow_contains_sources
+          source source' u hsourcesNe hmutual hblockersNe'
+          huSource huSource' with hblocker | hblocker
+      · exact Or.inr (Or.inr (Or.inl hblocker))
+      · exact Or.inr (Or.inr (Or.inr hblocker))
+    · exact Or.inr (Or.inl <|
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H u.2).2 huSource')
+  · exact Or.inl <|
+      (cross_deletion_survives_iff_not_mem_selected_support
+        H u.2).2 huSource
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Every actual blocker avoids the three robust Moser apices and therefore
+belongs to the strict interior of one indexed cap. -/
+theorem exists_blockerCenter_mem_capInteriorByIndex
+    (source : CriticalShellSystem.CarrierVertex D.A) :
+    ∃ i : Fin 3,
+      H.centerAt source.1 source.2 ∈ S.capInteriorByIndex i := by
+  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex1, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex2, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.surplusApex, by
+      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+  have hblockerNe₁ : H.blockerVertex source ≠ apex₁ :=
+    FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+      H source apex₁.2
+  have hblockerNe₂ : H.blockerVertex source ≠ apex₂ :=
+    FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+      H source apex₂.2
+  have hblockerNe₃ : H.blockerVertex source ≠ apex₃ :=
+    FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+      H source apex₃.2
+  have hcenterNe₁ :
+      H.centerAt source.1 source.2 ≠ S.oppApex1 := by
+    intro h
+    apply hblockerNe₁
+    apply Subtype.ext
+    simpa [apex₁] using h
+  have hcenterNe₂ :
+      H.centerAt source.1 source.2 ≠ S.oppApex2 := by
+    intro h
+    apply hblockerNe₂
+    apply Subtype.ext
+    simpa [apex₂] using h
+  have hcenterNe₃ :
+      H.centerAt source.1 source.2 ≠ S.surplusApex := by
+    intro h
+    apply hblockerNe₃
+    apply Subtype.ext
+    simpa [apex₃] using h
+  rcases S.mem_triangle_verts_or_exists_capInteriorByIndex_of_mem
+      (H.blockerVertex source).2 with htriangle | hcap
+  · rcases S.mem_triangle_verts_oppositeVertexByIndex_cases htriangle with
+      hsurplus | hfirst | hsecond
+    · exact False.elim (hcenterNe₃ (by simpa using hsurplus))
+    · exact False.elim (hcenterNe₁ (by simpa using hfirst))
+    · exact False.elim (hcenterNe₂ (by simpa using hsecond))
+  · exact hcap
+
+/-! The former negative fresh-third leaf hid four positive geometric cases
+behind the single residual `¬ FreshThirdSameCapCrossRowAlignment`.  The
+following packet records the checked alternatives explicitly: equal blocker
+centers, a surviving one-point deletion, distinct blocker caps, or a same-cap
+fiber source. -/
+inductive FreshThirdCapSourceInteraction
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Type where
+  | sameBlocker
+      (center_eq :
+        H.centerAt source.1 source.2 =
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (support_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support =
+          (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support)
+  | sourceRowOmission
+      (deleted : CriticalShellSystem.CarrierVertex D.A)
+      (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+      (deleted_not_mem :
+        deleted.1 ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (deletion_survives :
+        HasNEquidistantPointsAt 4 (D.A.erase deleted.1)
+          (H.centerAt source.1 source.2))
+  | distinctBlockersDifferentCaps
+      (centers_ne :
+        H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (source₁_mem :
+        Q.source₁.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (source₂_mem :
+        Q.source₂.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (overlap_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+            (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support =
+          {Q.source₁.1, Q.source₂.1})
+      (sourceCap freshCap : Fin 3)
+      (sourceCenter_mem :
+        H.centerAt source.1 source.2 ∈ S.capInteriorByIndex sourceCap)
+      (freshCenter_mem :
+        H.centerAt Q.source₁.1 Q.source₁.2 ∈
+          S.capInteriorByIndex freshCap)
+      (caps_ne : sourceCap ≠ freshCap)
+  | sameCapWithInternalFiberSource
+      (centers_ne :
+        H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (source₁_mem :
+        Q.source₁.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (source₂_mem :
+        Q.source₂.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (overlap_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+            (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support =
+          {Q.source₁.1, Q.source₂.1})
+      (capIndex : Fin 3)
+      (sourceCenter_mem :
+        H.centerAt source.1 source.2 ∈ S.capInteriorByIndex capIndex)
+      (freshCenter_mem :
+        H.centerAt Q.source₁.1 Q.source₁.2 ∈
+          S.capInteriorByIndex capIndex)
+      (fiberSource_mem_cap :
+        Q.source₁.1 ∈ S.capByIndex capIndex ∨
+          Q.source₂.1 ∈ S.capByIndex capIndex)
+
+/-- A cap-source row supplies a genuinely new perpendicular-bisector center
+for the fresh blocker pair. -/
+abbrev FreshThirdCrossRowHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop :=
+  H.centerAt source.1 source.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2 ∧
+    Q.source₁.1 ∈
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+    Q.source₂.1 ∈
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support
+
+/-- Positive normal form for the complement of two distinct cross-row
+centers. It exposes the three mathematical residual arms without splitting
+the load-bearing obligation into constructor-product leaves. -/
+abbrev FreshThirdCrossRowResidual
+    (firstSource secondSource : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop :=
+  ¬ FreshThirdCrossRowHit P Pρ firstSource Q ∨
+    ¬ FreshThirdCrossRowHit P Pρ secondSource Q ∨
+    H.centerAt firstSource.1 firstSource.2 =
+      H.centerAt secondSource.1 secondSource.2
+
+/-- Positive data hidden by the failure of one cap-source cross-row hit. -/
+inductive FreshThirdCapSourceNonHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | sameBlocker
+      (center_eq :
+        H.centerAt source.1 source.2 =
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (support_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support =
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support)
+  | sourceRowOmission
+      (deleted : CriticalShellSystem.CarrierVertex D.A)
+      (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+      (deleted_not_mem :
+        deleted.1 ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (deletion_survives :
+        HasNEquidistantPointsAt 4 (D.A.erase deleted.1)
+          (H.centerAt source.1 source.2))
+
+namespace FreshThirdCapSourceInteraction
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Constructor normalization for a failed cross-row hit.  The two geometric
+interaction constructors are themselves cross-row hits, so only equal blocker
+or source-row omission can survive. -/
+theorem nonHit_of_not_crossRowHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (interaction : FreshThirdCapSourceInteraction P Pρ source Q)
+    (hnot : ¬ FreshThirdCrossRowHit P Pρ source Q) :
+    FreshThirdCapSourceNonHit P Pρ source Q := by
+  cases interaction with
+  | sameBlocker center_eq support_eq =>
+      exact .sameBlocker center_eq support_eq
+  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+      exact .sourceRowOmission deleted deleted_eq deleted_not_mem
+        deletion_survives
+  | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+      _ _ _ _ _ _ =>
+      exact (hnot ⟨centers_ne, source₁_mem, source₂_mem⟩).elim
+  | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+      _ _ _ _ _ =>
+      exact (hnot ⟨centers_ne, source₁_mem, source₂_mem⟩).elim
+
+end FreshThirdCapSourceInteraction
+
+/-- Three positive normalized cases left after removing two distinct
+cross-row centers.  This is deliberately a data packet, not three new proof
+obligations. -/
+inductive FreshThirdNormalizedResidualCase
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | firstNonHit
+      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+  | secondNonHit
+      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+  | equalCrossRowCenters
+      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+      (centers_eq :
+        H.centerAt C.firstSource.1 C.firstSource.2 =
+          H.centerAt C.secondSource.1 C.secondSource.2)
+
+/-! The canonical-cap equal-center terminal consumes exactly one positive
+interaction shape.  Keep the other positive shapes explicit so the
+load-bearing residual leaf cannot silently widen back to the original
+constructor product. -/
+inductive FreshThirdNonCanonicalInteraction
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | distinctBlockersDifferentCaps
+      (centers_ne :
+        H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (source₁_mem :
+        Q.source₁.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (source₂_mem :
+        Q.source₂.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (overlap_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+            (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support =
+          {Q.source₁.1, Q.source₂.1})
+      (sourceCap freshCap : Fin 3)
+      (sourceCenter_mem :
+        H.centerAt source.1 source.2 ∈ S.capInteriorByIndex sourceCap)
+      (freshCenter_mem :
+        H.centerAt Q.source₁.1 Q.source₁.2 ∈
+          S.capInteriorByIndex freshCap)
+      (caps_ne : sourceCap ≠ freshCap)
+  | sameCapWithInternalFiberSource
+      (centers_ne :
+        H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (source₁_mem :
+        Q.source₁.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (source₂_mem :
+        Q.source₂.1 ∈
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (overlap_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+            (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support =
+          {Q.source₁.1, Q.source₂.1})
+      (capIndex : Fin 3)
+      (sourceCenter_mem :
+        H.centerAt source.1 source.2 ∈ S.capInteriorByIndex capIndex)
+      (freshCenter_mem :
+        H.centerAt Q.source₁.1 Q.source₁.2 ∈
+          S.capInteriorByIndex capIndex)
+      (fiberSource_mem_cap :
+        Q.source₁.1 ∈ S.capByIndex capIndex ∨
+          Q.source₂.1 ∈ S.capByIndex capIndex)
+      (hcapIndex : capIndex ≠ S.oppIndex1)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Turn the explicit logical complement into constructor-specific positive
+data while retaining both original interaction packets at the caller. -/
+theorem freshThirdNormalizedResidualCase_of_crossRowResidual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual :
+      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q) :
+    FreshThirdNormalizedResidualCase P Pρ C Q := by
+  by_cases hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q
+  · by_cases hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q
+    · rcases hresidual with hfirst' | hsecond' | hcenters
+      · exact (hfirst' hfirst).elim
+      · exact (hsecond' hsecond).elim
+      · exact .equalCrossRowCenters hfirst hsecond hcenters
+    · exact .secondNonHit
+        (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+          (P := P) (Pρ := Pρ) C.secondSource Q secondInteraction hsecond)
+  · exact .firstNonHit
+      (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+        (P := P) (Pρ := Pρ) C.firstSource Q firstInteraction hfirst)
+
+/-- The rigid positive packet in the equal-center residual: both cap-source
+rows are the same exact four-point row, containing precisely the two cap
+sources and the two fresh sources. -/
+structure FreshThirdEqualCenterExactFourRow
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  centers_eq :
+    H.centerAt C.firstSource.1 C.firstSource.2 =
+      H.centerAt C.secondSource.1 C.secondSource.2
+  capCenter_ne_freshCenter :
+    H.centerAt C.firstSource.1 C.firstSource.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2
+  first_support_eq :
+    (H.selectedAt C.firstSource.1
+        C.firstSource.2).toCriticalFourShell.support =
+      {C.firstSource.1, C.secondSource.1, Q.source₁.1, Q.source₂.1}
+  second_support_eq :
+    (H.selectedAt C.secondSource.1
+        C.secondSource.2).toCriticalFourShell.support =
+      {C.firstSource.1, C.secondSource.1, Q.source₁.1, Q.source₂.1}
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Equal cap-source centers in the both-hit arm force the selected row to be
+the named four-source row. -/
+theorem freshThirdEqualCenterExactFourRow_of_hits
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+    (hcenters :
+      H.centerAt C.firstSource.1 C.firstSource.2 =
+        H.centerAt C.secondSource.1 C.secondSource.2) :
+    FreshThirdEqualCenterExactFourRow P Pρ C Q := by
+  have hQCenters :
+      H.centerAt Q.source₁.1 Q.source₁.2 =
+        H.centerAt Q.source₂.1 Q.source₂.2 :=
+    congrArg Subtype.val Q.blockers_eq
+  have hfirstQ₁ : C.firstSource.1 ≠ Q.source₁.1 := by
+    intro heq
+    apply hfirst.1
+    have hcarrier : C.firstSource = Q.source₁ := Subtype.ext heq
+    simp [hcarrier]
+  have hfirstQ₂ : C.firstSource.1 ≠ Q.source₂.1 := by
+    intro heq
+    apply hfirst.1
+    have hcarrier : C.firstSource = Q.source₂ := Subtype.ext heq
+    simpa [hcarrier] using hQCenters.symm
+  have hsecondQ₁ : C.secondSource.1 ≠ Q.source₁.1 := by
+    intro heq
+    apply hsecond.1
+    have hcarrier : C.secondSource = Q.source₁ := Subtype.ext heq
+    simp [hcarrier]
+  have hsecondQ₂ : C.secondSource.1 ≠ Q.source₂.1 := by
+    intro heq
+    apply hsecond.1
+    have hcarrier : C.secondSource = Q.source₂ := Subtype.ext heq
+    simpa [hcarrier] using hQCenters.symm
+  have hradii :
+      (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.radius =
+        (H.selectedAt C.secondSource.1
+          C.secondSource.2).toCriticalFourShell.radius := by
+    calc
+      (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.radius =
+          dist (H.centerAt C.firstSource.1 C.firstSource.2) Q.source₁.1 :=
+        ((H.selectedAt C.firstSource.1
+            C.firstSource.2).toCriticalFourShell.support_eq_radius
+          Q.source₁.1 hfirst.2.1).symm
+      _ = dist (H.centerAt C.secondSource.1 C.secondSource.2)
+          Q.source₁.1 := by rw [hcenters]
+      _ = (H.selectedAt C.secondSource.1
+          C.secondSource.2).toCriticalFourShell.radius :=
+        (H.selectedAt C.secondSource.1
+          C.secondSource.2).toCriticalFourShell.support_eq_radius
+            Q.source₁.1 hsecond.2.1
+  have hcenterDistances (z : ℝ²) :
+      dist (H.centerAt C.firstSource.1 C.firstSource.2) z =
+        dist (H.centerAt C.secondSource.1 C.secondSource.2) z :=
+    congrArg (fun center ↦ dist center z) hcenters
+  have hsupports :
+      (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt C.secondSource.1

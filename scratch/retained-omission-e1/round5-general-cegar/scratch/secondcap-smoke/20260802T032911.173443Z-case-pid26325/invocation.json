@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "round5_cegar.py",
+    "case",
+    "--arm",
+    "secondcap_distinct",
+    "--profiles",
+    "DDD",
+    "--kept",
+    "0",
+    "--deleted",
+    "1",
+    "--fresh",
+    "4",
+    "--timeout-ms",
+    "1000",
+    "--artifacts",
+    "scratch/secondcap-smoke"
+  ],
+  "case_count": 1,
+  "schema_sha256": "de9a2694579b0d3fa6771fcb5a7e2f822dfe0b9ed5a602237aaae46b2d41f9fb",
+  "schema_version": 4,
+  "script_sha256": "65bba451ee498bc0bbf5b89a17a088cad6896bb51b532350c6d5bf536f8f0d57",
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "uv_lock_sha256": "a942a01001ddeeb51124fc84740bc6ae5b6221fdda605a83509a3cff1bef399c"
+}

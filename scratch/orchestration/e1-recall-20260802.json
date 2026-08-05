@@ -1,0 +1,162 @@
+[
+  {
+    "memory": {
+      "id": "01KZ2GFX28TB27YXC7TMB36W33",
+      "content": "E1 all-large seven-source trace (2026-08-02): SevenSourcesOutsideTwoShells proves selection of 7 carrier vertices from card>=15 outside two selected four-supports. SevenSourceTournament.exists_perm_supports_eq_paley does NOT produce a mutually omitted pair: under no mutual omission it classifies the restricted supports as the Paley T7 residual. Thus an honest producer must return mutual-omission OR Paley, and a new geometric Paley-exclusion bridge is required. A mutual pair converts to cross-deletion survivals and distinct blocker centers via CriticalPairFrontier, but no applicable source-clean False consumer exists; FiveCenterDeletionBoundary explicitly says even five survivors are only normalization. The exact-four four-center consumers in FrontierLiveClosure require unrelated OriginalUniqueFourResidual data and depend on sorry leaves.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-03T00:31:00.288467Z",
+      "updated_at": "2026-08-03T00:31:00.288467Z",
+      "accessed_at": "2026-08-03T03:09:53.443049Z",
+      "access_count": 9,
+      "expires_at": null
+    },
+    "score": 1.6552511415525113
+  },
+  {
+    "memory": {
+      "id": "01KZ2QCX59JHT9ANN444VZH59Q",
+      "content": "As of 2026-08-02, retained-omission CEGAR should not be forecast to close the Lean target by runtime alone. v30 is the first materially positive recent round: about 6,950 authenticated UNSAT assignments across 23 active cases yielded 437 projected cores of size 4-17, with at least one per case, but zero cases had closed near mid-budget. Treat any v30 case-level UNSAT before timeout as the decisive convergence signal; another all-UNKNOWN terminal wave means broad CEGAR needs a new general theorem/cut family. v22's 55-fix core covered all 190 v19 assignments but 0 later v20 proposals, showing basin escape rather than monotone global shrinkage.",
+      "memory_type": "decision",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-03T02:31:42.344952Z",
+      "updated_at": "2026-08-03T02:31:42.344952Z",
+      "accessed_at": "2026-08-03T03:09:53.443377Z",
+      "access_count": 3,
+      "expires_at": null
+    },
+    "score": 1.6418992388546574
+  },
+  {
+    "memory": {
+      "id": "01KYZSN9ABC4YYE35FPHB39A1K",
+      "content": "Retained-omission E1 already has a sound exact-n15 four-point Schoenberg/CND CEGAR lane at scratch/retained-omission-e1/round6-edm-cegar: all 4,095 balanced 4-point inequalities were tested and the hard DDD probes remained UNKNOWN. Do not duplicate this family; any future EDM strengthening must add a genuinely stronger support or integrate it into the current full-multiplicity v7 lineage.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-01T23:13:30.818649Z",
+      "updated_at": "2026-08-01T23:13:30.818649Z",
+      "accessed_at": "2026-08-03T03:09:53.443572Z",
+      "access_count": 16,
+      "expires_at": null
+    },
+    "score": 1.4823852371511363
+  },
+  {
+    "memory": {
+      "id": "01KZ13MFNNWJV17E3CGGHDHC5G",
+      "content": "2026-08-02 retained-omission exact-n15 CEGAR v13 terminal result: authenticated 16-case replay completed in 1235.450s; all 16 Boolean prepasses were SAT with no certified cut, and all 16 full nonlinear checks timed out/canceled as UNKNOWN. No SAT model, UNSAT certificate, learned cut, or closure. Artifacts: scratch/retained-omission-e1/round5-general-cegar/artifacts-v13-canary/20260802T110226.865850Z-v11-16-replay-pid84479. V13 apex-global-K4-profile compatibility did not distinguish these survivors.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T11:27:04.762659Z",
+      "updated_at": "2026-08-02T11:27:04.762659Z",
+      "accessed_at": "2026-08-03T03:09:53.599659Z",
+      "access_count": 70,
+      "expires_at": null
+    },
+    "score": 1.4587912087912087
+  },
+  {
+    "memory": {
+      "id": "01KZ27V8JR1Z98BRKGBSSNTMJ8",
+      "content": "After the earlier v28-only count, v30 production launched with --workers 23. Current retained-omission CEGAR load is 24 active solver cores total: 23 v30 worker processes plus the single-threaded v28 process.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T21:59:55.593600Z",
+      "updated_at": "2026-08-02T21:59:55.593600Z",
+      "accessed_at": "2026-08-03T03:09:53.444209Z",
+      "access_count": 28,
+      "expires_at": null
+    },
+    "score": 1.4293032786885247
+  },
+  {
+    "memory": {
+      "id": "01KZ1NCZ25C3QTBYV822SE092F",
+      "content": "P97 retained-omission v19 production terminal 2026-08-02: fresh_DDD_k0_d2_f1 ran 3600s and ended UNKNOWN only because wall-clock budget exhausted, with 190/190 complete 825-literal assignments independently replayed UNSAT and no SAT model/generalized blocker. Artifact scratch/retained-omission-e1/round5-general-cegar/artifacts-v19-production1/20260802T153331.017335Z-case-pid34172; summary sha256 327dd9f3df4d4bc36b77bc1866eae8933abf083e4c017899ebead6f9602796b9; resume preflight authenticated all 190 blockers. The initial 21-bit basin exhausted at iteration 159 but was not global; iteration 160 introduced block_13_11/block_13_4. Do not claim projected closure.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T16:37:32.745965Z",
+      "updated_at": "2026-08-02T16:37:32.745965Z",
+      "accessed_at": "2026-08-03T03:09:53.444347Z",
+      "access_count": 41,
+      "expires_at": null
+    },
+    "score": 1.4139194139194138
+  },
+  {
+    "memory": {
+      "id": "01KZ0X2TE9JB4JCYGSRAMFEZ2V",
+      "content": "Authenticated retained-omission exact-n15 CEGAR v10 static power-cycle retry terminal result: artifacts scratch/retained-omission-e1/round5-general-cegar/artifacts-v10/20260802T085343.215706Z-retry-pid37045; 67/67 cases UNKNOWN (reason canceled), 0 SAT/UNSAT/error, elapsed 1807.925s. Authentication passed exact v8-UNKNOWN case set, 67 formula hashes matching decompressed SMT2, 67 static power artifacts with 84 cycles per candidate and counts/formula family consistent, exact summary/provenance/live dependency/source-contract hashes, seeds 1..67. The sound pre-first-check 3-rich-plus-2-critical full-shell power-cycle constraints did not change any terminal verdict; next qualitatively different lane is v11 Boolean prepass.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T09:32:34.501428Z",
+      "updated_at": "2026-08-02T09:32:34.501428Z",
+      "accessed_at": "2026-08-03T03:09:53.599829Z",
+      "access_count": 69,
+      "expires_at": null
+    },
+    "score": 1.3642723880597016
+  },
+  {
+    "memory": {
+      "id": "01KYZJQME97YPZ3W2FNW7AJYKD",
+      "content": "Round5 target-specific exact-n15 E1 CEGAR pass1 for false_of_retainedOmission_triApexAllLarge_core completed 288 cases: 102 UNSAT, 186 UNKNOWN at 30s/case, 0 SAT, 0 errors, 570s wall on 12 nice'd workers. Artifact scratch/retained-omission-e1/round5-general-cegar/artifacts/20260801T210150.916945Z-matrix-pid92755/matrix_summary.json. This is external Z3 evidence only, not Lean closure; retry should carry only UNKNOWN cases.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-01T21:12:27.711829Z",
+      "updated_at": "2026-08-01T21:12:27.711829Z",
+      "accessed_at": "2026-08-03T03:09:53.444654Z",
+      "access_count": 123,
+      "expires_at": null
+    },
+    "score": 1.3562653562653564
+  }
+]

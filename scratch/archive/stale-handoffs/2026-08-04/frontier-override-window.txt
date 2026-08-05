@@ -1,0 +1,321 @@
+ 13220	
+ 13221	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13222	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 13223	private theorem exists_second_outside_two_pairs
+ 13224	    {α : Type*} [DecidableEq α]
+ 13225	    (K : Finset α) (q a b c d : α)
+ 13226	    (hKcard : K.card = 4)
+ 13227	    (hqOutside : q ∉ ({a, b, c, d} : Finset α))
+ 13228	    (hfirst : ¬ (a ∈ K ∧ b ∈ K))
+ 13229	    (hsecond : ¬ (c ∈ K ∧ d ∈ K)) :
+ 13230	    ∃ v ∈ K, v ≠ q ∧ v ∉ ({a, b, c, d} : Finset α) := by
+ 13231	  let E : Finset α := ({a, b, c, d} : Finset α)
+ 13232	  have hfirstCard : (K ∩ ({a, b} : Finset α)).card ≤ 1 := by
+ 13233	    rw [Finset.card_le_one]
+ 13234	    intro x hx y hy
+ 13235	    simp only [Finset.mem_inter, Finset.mem_insert,
+ 13236	      Finset.mem_singleton] at hx hy
+ 13237	    rcases hx.2 with rfl | rfl <;>
+ 13238	      rcases hy.2 with rfl | rfl
+ 13239	    · rfl
+ 13240	    · exact False.elim (hfirst ⟨hx.1, hy.1⟩)
+ 13241	    · exact False.elim (hfirst ⟨hy.1, hx.1⟩)
+ 13242	    · rfl
+ 13243	  have hsecondCard : (K ∩ ({c, d} : Finset α)).card ≤ 1 := by
+ 13244	    rw [Finset.card_le_one]
+ 13245	    intro x hx y hy
+ 13246	    simp only [Finset.mem_inter, Finset.mem_insert,
+ 13247	      Finset.mem_singleton] at hx hy
+ 13248	    rcases hx.2 with rfl | rfl <;>
+ 13249	      rcases hy.2 with rfl | rfl
+ 13250	    · rfl
+ 13251	    · exact False.elim (hsecond ⟨hx.1, hy.1⟩)
+ 13252	    · exact False.elim (hsecond ⟨hy.1, hx.1⟩)
+ 13253	    · rfl
+ 13254	  have hinterEq :
+ 13255	      K ∩ E =
+ 13256	        (K ∩ ({a, b} : Finset α)) ∪
+ 13257	          (K ∩ ({c, d} : Finset α)) := by
+ 13258	    ext x
+ 13259	    simp only [E, Finset.mem_inter, Finset.mem_union,
+ 13260	      Finset.mem_insert, Finset.mem_singleton]
+ 13261	    tauto
+ 13262	  have hinterCard : (K ∩ E).card ≤ 2 := by
+ 13263	    rw [hinterEq]
+ 13264	    calc
+ 13265	      ((K ∩ {a, b}) ∪ (K ∩ {c, d})).card
+ 13266	          ≤ (K ∩ {a, b}).card + (K ∩ {c, d}).card :=
+ 13267	        Finset.card_union_le _ _
+ 13268	      _ ≤ 1 + 1 := Nat.add_le_add hfirstCard hsecondCard
+ 13269	      _ = 2 := rfl
+ 13270	  have hsplit := Finset.card_sdiff_add_card_inter K E
+ 13271	  have houtsideCard : 2 ≤ (K \ E).card := by
+ 13272	    rw [hKcard] at hsplit
+ 13273	    omega
+ 13274	  rcases Finset.exists_mem_ne (by omega : 1 < (K \ E).card) q with
+ 13275	    ⟨v, hv, hvq⟩
+ 13276	  exact ⟨v, (Finset.mem_sdiff.mp hv).1, hvq,
+ 13277	    by simpa [E] using (Finset.mem_sdiff.mp hv).2⟩
+ 13278	
+ 13279	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13280	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 13281	private theorem overrideAt_selectedSupport_eq_of_ne
+ 13282	    {A : Finset ℝ²} (H : CriticalShellSystem A)
+ 13283	    {q center z : ℝ²} (C : CriticalSelectedFourClass A q center)
+ 13284	    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+ 13285	    (hz : z ∈ A) (hzq : z ≠ q) :
+ 13286	    ((H.overrideAt C hblocked).selectedAt z hz).toCriticalFourShell.support =
+ 13287	      (H.selectedAt z hz).toCriticalFourShell.support := by
+ 13288	  simp only [CriticalShellSystem.selectedAt, CriticalShellSystem.centerAt,
+ 13289	    CriticalShellSystem.overrideAt]
+ 13290	  rw [dif_neg hzq]
+ 13291	
+ 13292	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 13293	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+ 13294	private theorem overrideAt_selectedSupport_eq
+ 13295	    {A : Finset ℝ²} (H : CriticalShellSystem A)
+ 13296	    {q center : ℝ²} (C : CriticalSelectedFourClass A q center)
+ 13297	    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+ 13298	    (hq : q ∈ A) :
+ 13299	    ((H.overrideAt C hblocked).selectedAt q hq).toCriticalFourShell.support =
+ 13300	      C.toCriticalFourShell.support := by
+ 13301	  simp only [CriticalShellSystem.selectedAt, CriticalShellSystem.centerAt,
+ 13302	    CriticalShellSystem.overrideAt]
+ 13303	  rw [dif_pos rfl]
+ 13304	
+ 13305	private def rebaseCrossPairDeletionView
+ 13306	    {D : CounterexampleData} {H H' : CriticalShellSystem D.A}
+ 13307	    (source : CriticalShellSystem.CarrierVertex D.A)
+ 13308	    (x y : ℝ²)
+ 13309	    (view : CrossPairDeletionView (H := H) source x y)
+ 13310	    (hsupport :
+ 13311	      (H'.selectedAt source.1
+ 13312	          source.2).toCriticalFourShell.support =
+ 13313	        (H.selectedAt source.1
+ 13314	          source.2).toCriticalFourShell.support) :
+ 13315	    CrossPairDeletionView (H := H') source x y where
+ 13316	  survives :=
+ 13317	    (crossPairDeletionSurvival_iff_selectedSupportOmission
+ 13318	      (H := H') source x y).mpr (by
+ 13319	        have homits := view.omits
+ 13320	        simpa [CrossPairSelectedSupportOmission, hsupport] using homits)
+ 13321	
+ 13322	private def rebaseRetainedInteriorBlockerCollision
+ 13323	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+ 13324	    {H H' : CriticalShellSystem D.A}
+ 13325	    {F : CriticalPairFrontier D S radius H}
+ 13326	    {R : FrontierCommonDeletionParentResidual F}
+ 13327	    (P : RetainedInteriorBlockerCollision R)
+ 13328	    {F' : CriticalPairFrontier D S radius H'}
+ 13329	    {R' : FrontierCommonDeletionParentResidual F'}
+ 13330	    (hcenter₁ :
+ 13331	      H'.centerAt P.source₁ P.source₁_mem_A =
+ 13332	        H.centerAt P.source₁ P.source₁_mem_A)
+ 13333	    (hcenter₂ :
+ 13334	      H'.centerAt P.source₂ P.source₂_mem_A =
+ 13335	        H.centerAt P.source₂ P.source₂_mem_A) :
+ 13336	    RetainedInteriorBlockerCollision R' where
+ 13337	  source₁ := P.source₁
+ 13338	  source₂ := P.source₂
+ 13339	  source₁_mem_A := P.source₁_mem_A
+ 13340	  source₂_mem_A := P.source₂_mem_A
+ 13341	  sources_ne := P.sources_ne
+ 13342	  source₁_mem_radius := P.source₁_mem_radius
+ 13343	  source₂_mem_radius := P.source₂_mem_radius
+ 13344	  source₁_mem_capInterior := P.source₁_mem_capInterior
+ 13345	  source₂_mem_capInterior := P.source₂_mem_capInterior
+ 13346	  blockers_eq := hcenter₁.trans (P.blockers_eq.trans hcenter₂.symm)
+ 13347	
+ 13348	private def rebaseLocalizedCollisionCommonDeletion
+ 13349	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+ 13350	    {H H' : CriticalShellSystem D.A}
+ 13351	    {F : CriticalPairFrontier D S radius H}
+ 13352	    {R : FrontierCommonDeletionParentResidual F}
+ 13353	    (P : RetainedInteriorBlockerCollision R)
+ 13354	    (LP : LocalizedCollisionCommonDeletion P)
+ 13355	    {F' : CriticalPairFrontier D S radius H'}
+ 13356	    {R' : FrontierCommonDeletionParentResidual F'}
+ 13357	    (P' : RetainedInteriorBlockerCollision R')
+ 13358	    (hsource₁ : P'.source₁ = P.source₁)
+ 13359	    (hsource₂ : P'.source₂ = P.source₂)
+ 13360	    (hcenter :
+ 13361	      H'.centerAt P'.source₁ P'.source₁_mem_A =
+ 13362	        H.centerAt P.source₁ P.source₁_mem_A)
+ 13363	    (hsupport :
+ 13364	      (H'.selectedAt P'.source₁
+ 13365	          P'.source₁_mem_A).toCriticalFourShell.support =
+ 13366	        (H.selectedAt P.source₁
+ 13367	          P.source₁_mem_A).toCriticalFourShell.support) :
+ 13368	    LocalizedCollisionCommonDeletion P' where
+ 13369	  fresh := LP.fresh
+ 13370	  fresh_mem_capInterior := LP.fresh_mem_capInterior
+ 13371	  fresh_ne_source₁ := by simpa [hsource₁] using LP.fresh_ne_source₁
+ 13372	  fresh_ne_source₂ := by simpa [hsource₂] using LP.fresh_ne_source₂
+ 13373	  fresh_not_mem_shell := by simpa [hsupport] using LP.fresh_not_mem_shell
+ 13374	  packet := by
+ 13375	    simpa [hcenter] using rebaseCommonDeletionSystem LP.packet H'
+ 13376	
+ 13377	private def rebaseLocalizedCollisionMutualOmissionCycle
+ 13378	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+ 13379	    {H H' : CriticalShellSystem D.A}
+ 13380	    {F : CriticalPairFrontier D S radius H}
+ 13381	    {R : FrontierCommonDeletionParentResidual F}
+ 13382	    (P : RetainedInteriorBlockerCollision R)
+ 13383	    (LP : LocalizedCollisionCommonDeletion P)
+ 13384	    (MP : LocalizedCollisionMutualOmissionCycle P LP)
+ 13385	    {F' : CriticalPairFrontier D S radius H'}
+ 13386	    {R' : FrontierCommonDeletionParentResidual F'}
+ 13387	    (P' : RetainedInteriorBlockerCollision R')
+ 13388	    (LP' : LocalizedCollisionCommonDeletion P')
+ 13389	    (hsource₁ : P'.source₁ = P.source₁)
+ 13390	    (hsource₂ : P'.source₂ = P.source₂)
+ 13391	    (hfresh : LP'.fresh = LP.fresh)
+ 13392	    (hcollisionCenter :
+ 13393	      H'.centerAt MP.collisionSource MP.collisionSource_mem_A =
+ 13394	        H.centerAt MP.collisionSource MP.collisionSource_mem_A)
+ 13395	    (hfreshCenter :
+ 13396	      H'.centerAt LP.fresh LP.packet.q_mem_A =
+ 13397	        H.centerAt LP.fresh LP.packet.q_mem_A)
+ 13398	    (hcommonCenter :
+ 13399	      H'.centerAt P'.source₁ P'.source₁_mem_A =
+ 13400	        H.centerAt P.source₁ P.source₁_mem_A)
+ 13401	    (hcollisionSupport :
+ 13402	      (H'.selectedAt MP.collisionSource
+ 13403	          MP.collisionSource_mem_A).toCriticalFourShell.support =
+ 13404	        (H.selectedAt MP.collisionSource
+ 13405	          MP.collisionSource_mem_A).toCriticalFourShell.support)
+ 13406	    (hfreshSupport :
+ 13407	      (H'.selectedAt LP'.fresh
+ 13408	          LP'.packet.q_mem_A).toCriticalFourShell.support =
+ 13409	        (H.selectedAt LP.fresh
+ 13410	          LP.packet.q_mem_A).toCriticalFourShell.support) :
+ 13411	    LocalizedCollisionMutualOmissionCycle P' LP' where
+ 13412	  collisionSource := MP.collisionSource
+ 13413	  collisionSource_mem_A := MP.collisionSource_mem_A
+ 13414	  collisionSource_mem_capInterior := MP.collisionSource_mem_capInterior
+ 13415	  collisionSource_eq := by
+ 13416	    rcases MP.collisionSource_eq with h | h
+ 13417	    · exact Or.inl (h.trans hsource₁.symm)
+ 13418	    · exact Or.inr (h.trans hsource₂.symm)
+ 13419	  collisionSource_ne_fresh := by
+ 13420	    simpa [hfresh] using MP.collisionSource_ne_fresh
+ 13421	  collisionSource_blocker_eq_commonBlocker :=
+ 13422	    hcollisionCenter.trans
+ 13423	      (MP.collisionSource_blocker_eq_commonBlocker.trans hcommonCenter.symm)
+ 13424	  fresh_not_mem_collisionSource_shell := by
+ 13425	    simpa [hfresh, hcollisionSupport] using
+ 13426	      MP.fresh_not_mem_collisionSource_shell
+ 13427	  collisionSource_not_mem_fresh_shell := by
+ 13428	    simpa [hfresh, hfreshSupport] using
+ 13429	      MP.collisionSource_not_mem_fresh_shell
+ 13430	  blockers_ne := by
+ 13431	    simpa [hfresh, hcollisionCenter, hfreshCenter] using MP.blockers_ne
+ 13432	  freshPacket := by
+ 13433	    simpa [hfresh, hcollisionCenter] using
+ 13434	      rebaseCommonDeletionSystem MP.freshPacket H'
+ 13435	  collisionSourcePacket := by
+ 13436	    simpa [hfresh, hfreshCenter] using
+ 13437	      rebaseCommonDeletionSystem MP.collisionSourcePacket H'
+ 13438	
+ 13439	/-- Compatibility-only reduction from a fresh canonical row outside the two
+ 13440	retained collision rows and the cap-source row.
+ 13441	
+ 13442	A second point of the fresh row is installed by `CriticalShellSystem.overrideAt`.
+ 13443	All retained frontier, collision, omission, and cap-source packets are rebased
+ 13444	to the overridden system before invoking the cap-source terminal through the
+ 13445	legacy fresh-third interface.  The live coordinator no longer uses this
+ 13446	construction: the original cap-source surface already feeds the common global
+ 13447	obligation directly. -/
+ 13448	theorem false_of_freshCanonicalRowOverride
+ 13449	    (source q : CriticalShellSystem.CarrierVertex D.A)
+ 13450	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 13451	    (hqFirst :
+ 13452	      q.1 ∉
+ 13453	        (H.selectedAt P.source₁
+ 13454	          P.source₁_mem_A).toCriticalFourShell.support)
+ 13455	    (hqSecond :
+ 13456	      q.1 ∉
+ 13457	        (H.selectedAt Pρ.source₁
+ 13458	          Pρ.source₁_mem_A).toCriticalFourShell.support)
+ 13459	    (hqSource :
+ 13460	      q.1 ∉
+ 13461	        (H.selectedAt source.1
+ 13462	          source.2).toCriticalFourShell.support) :
+ 13463	    False := by
+ 13464	  let K :=
+ 13465	    (H.selectedAt q.1 q.2).toCriticalFourShell
+ 13466	  let center := H.centerAt q.1 q.2
+ 13467	  have hcenterNeFirst :
+ 13468	      center ≠ H.centerAt P.source₁ P.source₁_mem_A := by
+ 13469	    intro hcenter
+ 13470	    have hsupportEq :=
+ 13471	      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+ 13472	        H q.2 P.source₁_mem_A hcenter
+ 13473	    apply hqFirst
+ 13474	    rw [← hsupportEq]
+ 13475	    exact K.q_mem_support
+ 13476	  have hcenterNeSecond :
+ 13477	      center ≠ H.centerAt Pρ.source₁ Pρ.source₁_mem_A := by
+ 13478	    intro hcenter
+ 13479	    have hsupportEq :=
+ 13480	      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+ 13481	        H q.2 Pρ.source₁_mem_A hcenter
+ 13482	    apply hqSecond
+ 13483	    rw [← hsupportEq]
+ 13484	    exact K.q_mem_support
+ 13485	  have hcenterNeSource :
+ 13486	      center ≠ H.centerAt source.1 source.2 := by
+ 13487	    intro hcenter
+ 13488	    have hsupportEq :=
+ 13489	      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+ 13490	        H q.2 source.2 hcenter
+ 13491	    apply hqSource
+ 13492	    rw [← hsupportEq]
+ 13493	    exact K.q_mem_support
+ 13494	  let QP : RetainedRadiusCollision (R := R) :=
+ 13495	    retainedRadiusCollisionOfInteriorCollision P
+ 13496	  let QPρ : RetainedRadiusCollision (R := Rρ) :=
+ 13497	    retainedRadiusCollisionOfInteriorCollision Pρ
+ 13498	  have hnotFirst :
+ 13499	      ¬ (P.source₁ ∈ K.support ∧ P.source₂ ∈ K.support) := by
+ 13500	    rintro ⟨h₁, h₂⟩
+ 13501	    exact false_of_distinct_actualRow_contains_collisionSources
+ 13502	      QP q.2 hcenterNeFirst h₁ h₂
+ 13503	  have hnotSecond :
+ 13504	      ¬ (Pρ.source₁ ∈ K.support ∧ Pρ.source₂ ∈ K.support) := by
+ 13505	    rintro ⟨h₁, h₂⟩
+ 13506	    exact false_of_distinct_actualRow_contains_collisionSources
+ 13507	      QPρ q.2 hcenterNeSecond h₁ h₂
+ 13508	  have hqNeFirst₁ : q.1 ≠ P.source₁ := by
+ 13509	    intro h
+ 13510	    apply hqFirst
+ 13511	    rw [h]
+ 13512	    exact
+ 13513	      (H.selectedAt P.source₁
+ 13514	        P.source₁_mem_A).toCriticalFourShell.q_mem_support
+ 13515	  have hqNeFirst₂ : q.1 ≠ P.source₂ := by
+ 13516	    intro h
+ 13517	    apply hqFirst
+ 13518	    rw [h]
+ 13519	    exact P.source₂_mem_source₁_shell
+ 13520	  have hqNeSecond₁ : q.1 ≠ Pρ.source₁ := by
+ 13521	    intro h
+ 13522	    apply hqSecond
+ 13523	    rw [h]
+ 13524	    exact
+ 13525	      (H.selectedAt Pρ.source₁
+ 13526	        Pρ.source₁_mem_A).toCriticalFourShell.q_mem_support
+ 13527	  have hqNeSecond₂ : q.1 ≠ Pρ.source₂ := by
+ 13528	    intro h
+ 13529	    apply hqSecond
+ 13530	    rw [h]
+ 13531	    exact Pρ.source₂_mem_source₁_shell
+ 13532	  have hqOutside :
+ 13533	      q.1 ∉
+ 13534	        ({P.source₁, P.source₂, Pρ.source₁, Pρ.source₂} :
+ 13535	          Finset ℝ²) := by
+ 13536	    simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+ 13537	    exact ⟨hqNeFirst₁, hqNeFirst₂, hqNeSecond₁, hqNeSecond₂⟩
+ 13538	  rcases
+ 13539	      exists_second_outside_two_pairs K.support q.1
+ 13540	        P.source₁ P.source₂ Pρ.source₁ Pρ.source₂

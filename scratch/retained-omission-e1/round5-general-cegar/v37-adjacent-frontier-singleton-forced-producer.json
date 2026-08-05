@@ -1,0 +1,111 @@
+{
+  "contract": {
+    "banked_adjacent_frontier_singleton": true,
+    "forced_hypothetical_branch_two_hit_producer": true,
+    "pairwise_selected_row_alternation": true
+  },
+  "counts": {
+    "sat": 12,
+    "unknown": 0,
+    "unsat": 0
+  },
+  "elapsed_seconds": 79.64409620990045,
+  "results": [
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k0_d2_f1",
+      "elapsed_seconds": 6.622163499938324,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k0_d2_f3",
+      "elapsed_seconds": 6.825323625002056,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k0_d3_f1",
+      "elapsed_seconds": 6.594819708960131,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k0_d3_f2",
+      "elapsed_seconds": 6.70006962493062,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k1_d3_f0",
+      "elapsed_seconds": 6.5021271670702845,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k1_d3_f2",
+      "elapsed_seconds": 6.516793208895251,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k2_d0_f1",
+      "elapsed_seconds": 6.804340458009392,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k2_d0_f3",
+      "elapsed_seconds": 6.509555124910548,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k3_d0_f1",
+      "elapsed_seconds": 6.658129750052467,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k3_d0_f2",
+      "elapsed_seconds": 6.710827250033617,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k3_d1_f0",
+      "elapsed_seconds": 6.575109834084287,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    },
+    {
+      "adjacent_frontier_singleton_constraints": 40,
+      "case_id": "fresh_DDD_k3_d1_f2",
+      "elapsed_seconds": 6.624836958013475,
+      "included_constraints": 8921,
+      "reason": null,
+      "status": "sat"
+    }
+  ]
+}

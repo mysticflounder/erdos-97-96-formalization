@@ -1,0 +1,35 @@
+{
+  "C_rows": [
+    [
+      "q1",
+      "q2",
+      "s1",
+      "s3"
+    ],
+    [
+      "q1",
+      "q2",
+      "s1",
+      "s3"
+    ]
+  ],
+  "C_sources": [
+    "q1",
+    "q2"
+  ],
+  "Q_sources": [
+    "s3",
+    "s1"
+  ],
+  "added_constraints": {
+    "exact_Q_overlap": true,
+    "exact_equal_four_row": true,
+    "noncanonical_interaction": true
+  },
+  "cyclic_metric": false,
+  "elapsed_ms": 4980,
+  "residual_mode": "equalCrossRowCenters",
+  "status": "sat",
+  "timeout_ms": 30000,
+  "trust_boundary": "external Z3 only; bounded n=17 lane; no Lean/universal claim"
+}

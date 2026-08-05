@@ -1,0 +1,1664 @@
+{
+  "A=J": {
+    "schema": {
+      "roles": [
+        "O",
+        "A",
+        "C",
+        "X",
+        "K",
+        "M",
+        "B"
+      ],
+      "residuals": [
+        "OAKXC",
+        "OCXKA"
+      ],
+      "equalities": [
+        [
+          [
+            "A",
+            "O"
+          ],
+          [
+            "C",
+            "O"
+          ]
+        ],
+        [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "A",
+            "K"
+          ]
+        ],
+        [
+          [
+            "A",
+            "X"
+          ],
+          [
+            "K",
+            "X"
+          ]
+        ],
+        [
+          [
+            "C",
+            "O"
+          ],
+          [
+            "M",
+            "O"
+          ]
+        ],
+        [
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "M"
+          ]
+        ],
+        [
+          [
+            "C",
+            "X"
+          ],
+          [
+            "K",
+            "X"
+          ]
+        ]
+      ],
+      "nonmemberships": [
+        [
+          [
+            "A",
+            "M"
+          ],
+          [
+            "A",
+            "C"
+          ]
+        ],
+        [
+          [
+            "B",
+            "K"
+          ],
+          [
+            "B",
+            "C"
+          ]
+        ]
+      ]
+    },
+    "rows": [
+      {
+        "base": "OAKXC",
+        "order": "OAKXCMB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKXCBM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "19",
+          "AC": "21/2",
+          "AK": "21/2",
+          "AM": "18",
+          "AO": "21/2",
+          "AX": "24",
+          "BC": "17/2",
+          "BK": "24",
+          "BM": "17/2",
+          "BO": "18",
+          "BX": "69/2",
+          "CK": "29/2",
+          "CM": "21/2",
+          "CO": "21/2",
+          "CX": "24",
+          "KM": "24",
+          "KO": "35/2",
+          "KX": "24",
+          "MO": "21/2",
+          "MX": "71/2",
+          "OX": "30"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKXMCB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKXMBC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "53/4",
+          "AC": "61/4",
+          "AK": "61/4",
+          "AM": "53/4",
+          "AO": "53/4",
+          "AX": "53/4",
+          "BC": "2",
+          "BK": "33/2",
+          "BM": "2",
+          "BO": "49/4",
+          "BX": "37/4",
+          "CK": "39/2",
+          "CM": "7",
+          "CO": "53/4",
+          "CX": "53/4",
+          "KM": "31/2",
+          "KO": "37/2",
+          "KX": "53/4",
+          "MO": "53/4",
+          "MX": "29/4",
+          "OX": "57/4"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKXBCM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKXBMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKMXCB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKMXBC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "51/4",
+          "AC": "103/4",
+          "AK": "103/4",
+          "AM": "81/4",
+          "AO": "13",
+          "AX": "69/4",
+          "BC": "35/4",
+          "BK": "69/4",
+          "BM": "35/4",
+          "BO": "1",
+          "BX": "5/4",
+          "CK": "125/4",
+          "CM": "95/4",
+          "CO": "13",
+          "CX": "69/4",
+          "KM": "69/4",
+          "KO": "39/2",
+          "KX": "69/4",
+          "MO": "13",
+          "MX": "31/4",
+          "OX": "15/2"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKMBXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKBXCM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKBXMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAKBMXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAMKXCB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAMKXBC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "63/2",
+          "AC": "29",
+          "AK": "29",
+          "AM": "18",
+          "AO": "18",
+          "AX": "18",
+          "BC": "28",
+          "BK": "67/2",
+          "BM": "28",
+          "BO": "26",
+          "BX": "27/2",
+          "CK": "69/2",
+          "CM": "28",
+          "CO": "18",
+          "CX": "18",
+          "KM": "18",
+          "KO": "51/2",
+          "KX": "18",
+          "MO": "18",
+          "MX": "27/2",
+          "OX": "27/2"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAMKBXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OAMBKXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OABKXCM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OABKXMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OABKMXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OABMKXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OMAKXCB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OMAKXBC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OMAKBXC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "111/8",
+          "AC": "29/4",
+          "AK": "29/4",
+          "AM": "13/4",
+          "AO": "51/8",
+          "AX": "23/2",
+          "BC": "137/8",
+          "BK": "23/2",
+          "BM": "137/8",
+          "BO": "73/4",
+          "BX": "55/4",
+          "CK": "27/2",
+          "CM": "17/2",
+          "CO": "51/8",
+          "CX": "23/2",
+          "KM": "23/2",
+          "KO": "109/8",
+          "KX": "23/2",
+          "MO": "51/8",
+          "MX": "55/4",
+          "OX": "55/4"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OMABKXC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "25/4",
+          "AC": "37/4",
+          "AK": "37/4",
+          "AM": "6",
+          "AO": "29/2",
+          "AX": "29/2",
+          "BC": "29/2",
+          "BK": "25/2",
+          "BM": "29/2",
+          "BO": "83/4",
+          "BX": "75/4",
+          "CK": "49/4",
+          "CM": "29/2",
+          "CO": "29/2",
+          "CX": "29/2",
+          "KM": "33/2",
+          "KO": "21",
+          "KX": "29/2",
+          "MO": "29/2",
+          "MX": "83/4",
+          "OX": "97/4"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OMBAKXC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "21/4",
+          "AC": "9",
+          "AK": "9",
+          "AM": "11",
+          "AO": "21",
+          "AX": "14",
+          "BC": "14",
+          "BK": "65/4",
+          "BM": "14",
+          "BO": "25",
+          "BX": "20",
+          "CK": "16",
+          "CM": "14",
+          "CO": "21",
+          "CX": "14",
+          "KM": "21",
+          "KO": "30",
+          "KX": "14",
+          "MO": "21",
+          "MX": "21",
+          "OX": "29"
+        }
+      },
+      {
+        "base": "OAKXC",
+        "order": "OBAKXCM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OBAKXMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OBAKMXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OBAMKXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OAKXC",
+        "order": "OBMAKXC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKAMB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKABM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "7",
+          "AC": "7",
+          "AK": "7",
+          "AM": "10",
+          "AO": "13",
+          "AX": "7",
+          "BC": "13",
+          "BK": "16",
+          "BM": "13",
+          "BO": "18",
+          "BX": "14",
+          "CK": "13",
+          "CM": "13",
+          "CO": "13",
+          "CX": "7",
+          "KM": "18",
+          "KO": "20",
+          "KX": "7",
+          "MO": "13",
+          "MX": "15",
+          "OX": "16"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKMAB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKMBA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKBAM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "33/4",
+          "AC": "25/2",
+          "AK": "25/2",
+          "AM": "33/4",
+          "AO": "51/4",
+          "AX": "33/4",
+          "BC": "79/4",
+          "BK": "71/4",
+          "BM": "79/4",
+          "BO": "21",
+          "BX": "29/2",
+          "CK": "31/2",
+          "CM": "59/4",
+          "CO": "51/4",
+          "CX": "33/4",
+          "KM": "71/4",
+          "KO": "71/4",
+          "KX": "33/4",
+          "MO": "51/4",
+          "MX": "25/2",
+          "OX": "23/2"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXKBMA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXMKAB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXMKBA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXMBKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXBKAM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "10",
+          "AC": "12",
+          "AK": "12",
+          "AM": "5/4",
+          "AO": "1",
+          "AX": "31/2",
+          "BC": "31/2",
+          "BK": "9",
+          "BM": "31/2",
+          "BO": "13/2",
+          "BX": "31/4",
+          "CK": "89/4",
+          "CM": "31/2",
+          "CO": "1",
+          "CX": "31/2",
+          "KM": "81/4",
+          "KO": "49/4",
+          "KX": "31/2",
+          "MO": "1",
+          "MX": "20",
+          "OX": "15/2"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXBKMA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCXBMKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCMXKAB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCMXKBA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCMXBKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCMBXKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCBXKAM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCBXKMA",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "27/2",
+          "AC": "21",
+          "AK": "21",
+          "AM": "21/2",
+          "AO": "6",
+          "AX": "25/2",
+          "BC": "10",
+          "BK": "31/2",
+          "BM": "10",
+          "BO": "6",
+          "BX": "2",
+          "CK": "25",
+          "CM": "37/2",
+          "CO": "6",
+          "CX": "25/2",
+          "KM": "31/2",
+          "KO": "31/2",
+          "KX": "25/2",
+          "MO": "6",
+          "MX": "8",
+          "OX": "6"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCBXMKA",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "59/4",
+          "AC": "67/4",
+          "AK": "67/4",
+          "AM": "51/4",
+          "AO": "17/2",
+          "AX": "55/4",
+          "BC": "17/2",
+          "BK": "17",
+          "BM": "17/2",
+          "BO": "17/2",
+          "BX": "13/2",
+          "CK": "83/4",
+          "CM": "59/4",
+          "CO": "17/2",
+          "CX": "55/4",
+          "KM": "17/2",
+          "KO": "27/2",
+          "KX": "55/4",
+          "MO": "17/2",
+          "MX": "17/4",
+          "OX": "17/2"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OCBMXKA",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "43/4",
+          "AC": "47/4",
+          "AK": "47/4",
+          "AM": "39/4",
+          "AO": "15",
+          "AX": "35/4",
+          "BC": "3",
+          "BK": "51/4",
+          "BM": "3",
+          "BO": "15",
+          "BX": "23/4",
+          "CK": "59/4",
+          "CM": "7",
+          "CO": "15",
+          "CX": "35/4",
+          "KM": "43/4",
+          "KO": "19",
+          "KX": "35/4",
+          "MO": "15",
+          "MX": "11/4",
+          "OX": "15"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OMCXKAB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OMCXKBA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OMCXBKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OMCBXKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OMBCXKA",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "71/4",
+          "AC": "39/4",
+          "AK": "39/4",
+          "AM": "47/4",
+          "AO": "8",
+          "AX": "8",
+          "BC": "8",
+          "BK": "91/4",
+          "BM": "8",
+          "BO": "15",
+          "BX": "18",
+          "CK": "55/4",
+          "CM": "8",
+          "CO": "8",
+          "CX": "8",
+          "KM": "71/4",
+          "KO": "15",
+          "KX": "8",
+          "MO": "8",
+          "MX": "14",
+          "OX": "49/4"
+        }
+      },
+      {
+        "base": "OCXKA",
+        "order": "OBCXKAM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OBCXKMA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OBCXMKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OBCMXKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCXKA",
+        "order": "OBMCXKA",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      }
+    ]
+  },
+  "X=C": {
+    "schema": {
+      "roles": [
+        "O",
+        "A",
+        "C",
+        "J",
+        "K",
+        "M",
+        "B"
+      ],
+      "residuals": [
+        "OCAKJ",
+        "OJKAC"
+      ],
+      "equalities": [
+        [
+          [
+            "J",
+            "O"
+          ],
+          [
+            "C",
+            "O"
+          ]
+        ],
+        [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "A",
+            "K"
+          ]
+        ],
+        [
+          [
+            "J",
+            "K"
+          ],
+          [
+            "C",
+            "J"
+          ]
+        ],
+        [
+          [
+            "C",
+            "O"
+          ],
+          [
+            "M",
+            "O"
+          ]
+        ],
+        [
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "M"
+          ]
+        ],
+        [
+          [
+            "C",
+            "J"
+          ],
+          [
+            "C",
+            "K"
+          ]
+        ]
+      ],
+      "nonmemberships": [
+        [
+          [
+            "A",
+            "M"
+          ],
+          [
+            "A",
+            "C"
+          ]
+        ],
+        [
+          [
+            "B",
+            "K"
+          ],
+          [
+            "B",
+            "C"
+          ]
+        ]
+      ]
+    },
+    "rows": [
+      {
+        "base": "OCAKJ",
+        "order": "OCAKJMB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAKJBM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "20",
+          "AC": "6",
+          "AJ": "10",
+          "AK": "6",
+          "AM": "17",
+          "AO": "15",
+          "BC": "17",
+          "BJ": "10",
+          "BK": "19",
+          "BM": "17",
+          "BO": "18",
+          "CJ": "8",
+          "CK": "8",
+          "CM": "13",
+          "CO": "10",
+          "JK": "8",
+          "JM": "10",
+          "JO": "10",
+          "KM": "17",
+          "KO": "16",
+          "MO": "10"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAKMJB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAKMBJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAKBJM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "21/4",
+          "AC": "3",
+          "AJ": "15/2",
+          "AK": "3",
+          "AM": "19/2",
+          "AO": "13/4",
+          "BC": "19/2",
+          "BJ": "11/2",
+          "BK": "21/4",
+          "BM": "19/2",
+          "BO": "21/4",
+          "CJ": "17/2",
+          "CK": "17/2",
+          "CM": "19/2",
+          "CO": "9/4",
+          "JK": "17/2",
+          "JM": "2",
+          "JO": "9/4",
+          "KM": "23/2",
+          "KO": "25/4",
+          "MO": "9/4"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAKBMJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAMKJB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAMKBJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCAMBKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCABKJM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCABKMJ",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "13/4",
+          "AC": "21/4",
+          "AJ": "55/4",
+          "AK": "21/4",
+          "AM": "19/2",
+          "AO": "14",
+          "BC": "21/2",
+          "BJ": "63/4",
+          "BK": "21/4",
+          "BM": "21/2",
+          "BO": "17",
+          "CJ": "23/2",
+          "CK": "23/2",
+          "CM": "21/2",
+          "CO": "21/2",
+          "JK": "23/2",
+          "JM": "21/4",
+          "JO": "21/2",
+          "KM": "21/4",
+          "KO": "55/4",
+          "MO": "21/2"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCABMKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCMAKJB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCMAKBJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCMABKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCMBAKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCBAKJM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCBAKMJ",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "5/4",
+          "AC": "69/4",
+          "AJ": "45/2",
+          "AK": "69/4",
+          "AM": "17/2",
+          "AO": "13/2",
+          "BC": "43/4",
+          "BJ": "45/2",
+          "BK": "41/2",
+          "BM": "43/4",
+          "BO": "1",
+          "CJ": "71/2",
+          "CK": "71/2",
+          "CM": "99/4",
+          "CO": "35/4",
+          "JK": "71/2",
+          "JM": "45/2",
+          "JO": "35/4",
+          "KM": "41/2",
+          "KO": "41/2",
+          "MO": "35/4"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCBAMKJ",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "1",
+          "AC": "27/2",
+          "AJ": "35/2",
+          "AK": "27/2",
+          "AM": "4",
+          "AO": "15/2",
+          "BC": "5",
+          "BJ": "33/2",
+          "BK": "27/2",
+          "BM": "5",
+          "BO": "11/2",
+          "CJ": "43/2",
+          "CK": "43/2",
+          "CM": "33/2",
+          "CO": "19/2",
+          "JK": "43/2",
+          "JM": "37/2",
+          "JO": "19/2",
+          "KM": "27/2",
+          "KO": "27/2",
+          "MO": "19/2"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OCBMAKJ",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "25/4",
+          "AC": "21/2",
+          "AJ": "55/4",
+          "AK": "21/2",
+          "AM": "3",
+          "AO": "59/4",
+          "BC": "13/4",
+          "BJ": "55/4",
+          "BK": "25/2",
+          "BM": "13/4",
+          "BO": "51/4",
+          "CJ": "63/4",
+          "CK": "63/4",
+          "CM": "17/2",
+          "CO": "55/4",
+          "JK": "63/4",
+          "JM": "55/4",
+          "JO": "55/4",
+          "KM": "23/2",
+          "KO": "71/4",
+          "MO": "55/4"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OMCAKJB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OMCAKBJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OMCABKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OMCBAKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OMBCAKJ",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "11",
+          "AC": "5",
+          "AJ": "11",
+          "AK": "5",
+          "AM": "11",
+          "AO": "11",
+          "BC": "6",
+          "BJ": "14",
+          "BK": "15",
+          "BM": "6",
+          "BO": "11",
+          "CJ": "10",
+          "CK": "10",
+          "CM": "7",
+          "CO": "8",
+          "JK": "10",
+          "JM": "12",
+          "JO": "8",
+          "KM": "14",
+          "KO": "11",
+          "MO": "8"
+        }
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OBCAKJM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OBCAKMJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OBCAMKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OBCMAKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OCAKJ",
+        "order": "OBMCAKJ",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKACMB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKACBM",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "19",
+          "AC": "19/2",
+          "AJ": "16",
+          "AK": "19/2",
+          "AM": "18",
+          "AO": "17",
+          "BC": "19/2",
+          "BJ": "31/2",
+          "BK": "33/2",
+          "BM": "19/2",
+          "BO": "29/2",
+          "CJ": "19/2",
+          "CK": "19/2",
+          "CM": "19/2",
+          "CO": "19/2",
+          "JK": "19/2",
+          "JM": "25/2",
+          "JO": "19/2",
+          "KM": "29/2",
+          "KO": "25/2",
+          "MO": "19/2"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKAMCB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKAMBC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "25/4",
+          "AC": "21/2",
+          "AJ": "27/2",
+          "AK": "21/2",
+          "AM": "3",
+          "AO": "29/2",
+          "BC": "13/4",
+          "BJ": "27/2",
+          "BK": "25/2",
+          "BM": "13/4",
+          "BO": "49/4",
+          "CJ": "63/4",
+          "CK": "63/4",
+          "CM": "17/2",
+          "CO": "27/2",
+          "JK": "63/4",
+          "JM": "27/2",
+          "JO": "27/2",
+          "KM": "23/2",
+          "KO": "71/4",
+          "MO": "27/2"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKABCM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKABMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKMACB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKMABC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "5/2",
+          "AC": "13",
+          "AJ": "17",
+          "AK": "13",
+          "AM": "2",
+          "AO": "13/2",
+          "BC": "13/2",
+          "BJ": "14",
+          "BK": "13",
+          "BM": "13/2",
+          "BO": "2",
+          "CJ": "43/2",
+          "CK": "43/2",
+          "CM": "16",
+          "CO": "17/2",
+          "JK": "43/2",
+          "JM": "18",
+          "JO": "17/2",
+          "KM": "13",
+          "KO": "13",
+          "MO": "17/2"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKMBAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKBACM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKBAMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJKBMAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJMKACB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJMKABC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "9",
+          "AC": "57/4",
+          "AJ": "37/2",
+          "AK": "57/4",
+          "AM": "35/4",
+          "AO": "24",
+          "BC": "35/4",
+          "BJ": "35/2",
+          "BK": "61/4",
+          "BM": "35/4",
+          "BO": "39/2",
+          "CJ": "39/2",
+          "CK": "39/2",
+          "CM": "12",
+          "CO": "79/4",
+          "JK": "39/2",
+          "JM": "35/4",
+          "JO": "79/4",
+          "KM": "35/4",
+          "KO": "113/4",
+          "MO": "79/4"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJMKBAC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "3",
+          "AC": "19/2",
+          "AJ": "29/2",
+          "AK": "19/2",
+          "AM": "25/2",
+          "AO": "13/4",
+          "BC": "27/2",
+          "BJ": "33/2",
+          "BK": "19/2",
+          "BM": "27/2",
+          "BO": "25/4",
+          "CJ": "75/4",
+          "CK": "75/4",
+          "CM": "71/4",
+          "CO": "13/2",
+          "JK": "75/4",
+          "JM": "27/2",
+          "JO": "13/2",
+          "KM": "19/2",
+          "KO": "19/2",
+          "MO": "13/2"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJMBKAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJBKACM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJBKAMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJBKMAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OJBMKAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OMJKACB",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OMJKABC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OMJKBAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OMJBKAC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "27/2",
+          "AC": "19/2",
+          "AJ": "25/2",
+          "AK": "19/2",
+          "AM": "31/2",
+          "AO": "21/2",
+          "BC": "19/2",
+          "BJ": "3",
+          "BK": "15/2",
+          "BM": "19/2",
+          "BO": "13/2",
+          "CJ": "15/2",
+          "CK": "15/2",
+          "CM": "19/2",
+          "CO": "7/2",
+          "JK": "15/2",
+          "JM": "3",
+          "JO": "7/2",
+          "KM": "23/2",
+          "KO": "15/2",
+          "MO": "7/2"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OMBJKAC",
+        "full_status": "SAT",
+        "capacity_status": "SAT",
+        "witness": {
+          "AB": "73/4",
+          "AC": "4",
+          "AJ": "37/4",
+          "AK": "4",
+          "AM": "65/4",
+          "AO": "57/4",
+          "BC": "61/4",
+          "BJ": "37/4",
+          "BK": "37/2",
+          "BM": "61/4",
+          "BO": "65/4",
+          "CJ": "29/4",
+          "CK": "29/4",
+          "CM": "49/4",
+          "CO": "37/4",
+          "JK": "29/4",
+          "JM": "37/4",
+          "JO": "37/4",
+          "KM": "35/2",
+          "KO": "33/2",
+          "MO": "37/4"
+        }
+      },
+      {
+        "base": "OJKAC",
+        "order": "OBJKACM",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OBJKAMC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OBJKMAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OBJMKAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      },
+      {
+        "base": "OJKAC",
+        "order": "OBMJKAC",
+        "full_status": "UNSAT",
+        "capacity_status": "UNSAT",
+        "witness": null
+      }
+    ]
+  }
+}

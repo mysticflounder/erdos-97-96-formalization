@@ -1,0 +1,14 @@
+{
+  "known_dead": {
+    "certificate_proof_sha256": "3cecdb9c3cee50bd6abf8bc1609634bbfdd7fe0555e24beed55828c6b2f34c05",
+    "certificate_replayed": true,
+    "source": "current bounded100 model index 0 rows",
+    "stage": "equality-duplicate-center"
+  },
+  "schema": "p97-phase3-structural-cegar-projected-static-v3-smoke-v1",
+  "smoke_sha256": "110039dea3ca0595b258929e01594f17f8fefcfbd07133e82f8cad22da6430e9",
+  "synthetic_non_detected": {
+    "detector_result": null,
+    "source": "forward directed four-cycle singleton rows"
+  }
+}

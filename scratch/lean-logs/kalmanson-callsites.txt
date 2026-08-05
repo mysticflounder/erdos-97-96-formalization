@@ -1,0 +1,688 @@
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-24-/-- Four increasing vertices of one CCW enumeration have intersecting open
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-25-diagonals.  The proof reuses the current signed-side line-intersection theorem
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-26-and the current extreme-pair hull-line theorem. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:27:theorem exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-28-    {A : Finset ℝ²} (hA : ConvexIndep A)
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-29-    {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-30-    (hphi_inj : Function.Injective phi)
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-237-
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-238-/-- Generic strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-239-strictly convex CCW boundary enumeration. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:240:theorem dist_add_dist_lt_diagonal_sum_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-241-    {A : Finset ℝ²} (hA : ConvexIndep A)
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-242-    {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-243-    (hphi_inj : Function.Injective phi)
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-248-    dist (phi ib) (phi ic) + dist (phi ia) (phi id) <
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-249-      dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-250-  obtain ⟨z, hzac, hzbd⟩ :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:251:    exists_mem_openSegment_diagonals_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-252-      hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-253-  have hiac : ia < ic := hiab.trans hibc
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-254-  have hiad : ia < id := hiac.trans hicd
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-270-
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-271-/-- Companion strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-272-strictly convex CCW boundary enumeration. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:273:theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-274-    {A : Finset ℝ²} (hA : ConvexIndep A)
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-275-    {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-276-    (hphi_inj : Function.Injective phi)
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-281-    dist (phi ia) (phi ib) + dist (phi ic) (phi id) <
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-282-      dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-283-  obtain ⟨z, hzac, hzbd⟩ :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:284:    exists_mem_openSegment_diagonals_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-285-      hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-286-  have hiac : ia < ic := hiab.trans hibc
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-287-  have hiad : ia < id := hiac.trans hicd
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-313-    (heq : dist (phi ia) (phi ic) = dist (phi ia) (phi id)) :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-314-    dist (phi ib) (phi ic) < dist (phi ib) (phi id) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-315-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:316:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-317-      hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-318-  linarith
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-319-
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-330-    (heq : dist (phi ia) (phi ic) = dist (phi ic) (phi id)) :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-331-    dist (phi ia) (phi ib) < dist (phi ib) (phi id) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-332-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:333:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-334-      hphi_image hccw hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-335-  linarith
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-336-
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-351-    (hARow : dist (phi iA) (phi iC) = dist (phi iA) (phi iO)) :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-352-    False := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-353-  have hOA_lt_AE :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:354:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-355-      hphi_image hccw hOA hAY hYE
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-356-  have hAE_lt_AO :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:357:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-358-      hOA (hAY.trans hYE) hEC
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-359-  have hYRow' : dist (phi iO) (phi iY) = dist (phi iY) (phi iE) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-360-    simpa only [dist_comm (phi iO) (phi iY)] using hYRow
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-449-    (BRow.support_eq_radius _ hic_mem_BRow).trans
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-450-      (BRow.support_eq_radius _ hid_mem_BRow).symm
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-451-  have hstrict :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:452:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-453-      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-454-  linarith
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-455-
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-475-        dist (boundary id) (boundary ic)) :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-476-    False := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-477-  have hstrict :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:478:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-479-      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-480-  have hdeq' :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-481-      dist (boundary ic) (boundary id) =
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-506-        dist (boundary ic) (boundary id)) :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-507-    False := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-508-  have hstrict :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:509:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-510-      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-511-  have hbeq' :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-512-      dist (boundary ia) (boundary ib) =
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-545-      (CRow.support_eq_radius _ hia_mem_CRow).trans
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-546-        (CRow.support_eq_radius _ hid_mem_CRow).symm
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-547-
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:548:#print axioms exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-549-#print axioms dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-550-#print axioms complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:551:#print axioms dist_add_dist_lt_diagonal_sum_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:552:#print axioms complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-553-#print axioms dist_lt_of_ccw_of_dist_diagonal_eq_side
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-554-#print axioms dist_first_side_lt_second_diagonal_of_ccw_of_dist_diagonal_eq_last_side
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-555-#print axioms false_of_five_ccw_three_shell_equalities
+--
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-43-    (h523 : dist (phi i5) (phi i2) = dist (phi i5) (phi i3)) :
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-44-    False := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-45-  have hK1_0125 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:46:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-47-      hphi_image hccw h01 h12 (h23.trans (h34.trans h45))
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-48-  have hK1_0235 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:49:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-50-      hphi_image hccw (h01.trans h12) h23 (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-51-  have hK2_1245 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:52:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-53-      h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-54-  have h412' : dist (phi i1) (phi i4) = dist (phi i2) (phi i4) := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-55-    simpa only [dist_comm (phi i4) (phi i1), dist_comm (phi i4) (phi i2)] using h412
+--
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-79-    (h415 : dist (phi i4) (phi i1) = dist (phi i4) (phi i5)) :
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-80-    False := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-81-  have hK1_0125 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:82:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-83-      hphi_image hccw h01 h12 (h23.trans (h34.trans h45))
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-84-  have hK2_0134 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:85:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-86-      h01 (h12.trans h23) h34
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-87-  have hK1_0345 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:88:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-89-      hphi_image hccw (h01.trans (h12.trans h23)) h34 h45
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-90-  have hK2_1234 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:91:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-92-      h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-93-  have hK2_1245 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:94:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-95-      h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-96-  have h325' : dist (phi i2) (phi i3) = dist (phi i3) (phi i5) := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-97-    simpa only [dist_comm (phi i3) (phi i2)] using h325
+--
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-120-    (h314 : dist (phi i3) (phi i1) = dist (phi i3) (phi i4)) :
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-121-    False := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-122-  have hK2_0123 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:123:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-124-      h01 h12 h23
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-125-  have hK1_0124 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:126:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-127-      hphi_image hccw h01 h12 (h23.trans h34)
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-128-  have hK1_0234 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:129:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-130-      hphi_image hccw (h01.trans h12) h23 h34
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-131-  have h314' : dist (phi i1) (phi i3) = dist (phi i3) (phi i4) := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-132-    simpa only [dist_comm (phi i3) (phi i1)] using h314
+--
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-154-    (h415 : dist (phi i4) (phi i1) = dist (phi i4) (phi i5)) :
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-155-    False := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-156-  have hK1_0125 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:157:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-158-      hphi_image hccw h01 h12 (h23.trans (h34.trans h45))
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-159-  have hK2_0134 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:160:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-161-      h01 (h12.trans h23) h34
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-162-  have hK1_0235 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:163:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-164-      hphi_image hccw (h01.trans h12) h23 (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-165-  have hK1_0345 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:166:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-167-      hphi_image hccw (h01.trans (h12.trans h23)) h34 h45
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-168-  have hK2_1234 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:169:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-170-      h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-171-  have hK2_1245 :=
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:172:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-173-      h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-174-  have h415' : dist (phi i1) (phi i4) = dist (phi i4) (phi i5) := by
+lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean-175-    simpa only [dist_comm (phi i4) (phi i1)] using h415
+--
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-172-      dist (P.boundary P.iA) (P.boundary P.iC) <
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-173-        dist (P.boundary P.iA) (P.boundary P.iJ) := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-174-    have hkal :=
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:175:      complementary_dist_add_dist_lt_diagonal_sum_of_ccw D.convex
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-176-        P.boundary_injective P.boundary_image P.boundary_ccw
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-177-        P.hOJ P.hJC P.hCA
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-178-    have hkal' :
+--
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-204-      dist (P.boundary P.iA) (P.boundary P.iJ) <
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-205-        dist (P.boundary P.iA) (P.boundary P.iC) := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-206-    have hkal :=
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:207:      complementary_dist_add_dist_lt_diagonal_sum_of_ccw D.convex
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-208-        P.boundary_injective P.boundary_image P.boundary_ccw
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-209-        (P.hJC.trans P.hCA) P.hAX P.hXK
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-210-    have hkal' :
+--
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-273-      dist (P.boundary P.iJ) (P.boundary P.iX) <
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-274-        dist (P.boundary P.iC) (P.boundary P.iX) := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-275-    have hkal :=
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:276:      complementary_dist_add_dist_lt_diagonal_sum_of_ccw D.convex
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-277-        P.boundary_injective P.boundary_image P.boundary_ccw
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-278-        P.hOC P.hCJ P.hJX
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-279-    have hkal' :
+--
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-304-      dist (P.boundary P.iC) (P.boundary P.iX) <
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-305-        dist (P.boundary P.iJ) (P.boundary P.iX) := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-306-    have hkal :=
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:307:      complementary_dist_add_dist_lt_diagonal_sum_of_ccw D.convex
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-308-        P.boundary_injective P.boundary_image P.boundary_ccw
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-309-        (P.hCJ.trans P.hJX) P.hXA P.hAK
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean-310-    have hkal' :
+--
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-192-    simpa only [Q.boundary_A, Q.boundary_C, Q.boundary_K] using
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-193-      Q.fiber_orientation.commonBlocker_equidistant
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-194-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:195:    dist_add_dist_lt_diagonal_sum_of_ccw D.convex
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-196-      Q.boundary_injective Q.boundary_image Q.boundary_ccw
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-197-      Q.hAX Q.hXJ (Q.hJC.trans Q.hCK)
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean-198-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-61-    (hc1 : dist (phi j1) (phi i1) = dist (phi j1) (phi i2))
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-62-    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-63-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:64:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-65-      h12 h2j hjj
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-66-  rw [dist_comm (phi i2) (phi j1), dist_comm (phi i1) (phi j2),
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-67-    dist_comm (phi i1) (phi j1), dist_comm (phi i2) (phi j2)] at hkal
+--
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-82-    (hc1 : dist (phi k1) (phi i1) = dist (phi k1) (phi i2))
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-83-    (hc2 : dist (phi k2) (phi i1) = dist (phi k2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-84-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:85:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-86-      hphi_image hccw h1k hkk hk2
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-87-  rw [dist_comm (phi i1) (phi k2), dist_comm (phi i1) (phi k1)] at hkal
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-88-  rw [hc1, hc2] at hkal
+--
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-120-    (hc1 : dist (phi j1) (phi i1) = dist (phi j1) (phi i2))
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-121-    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-122-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:123:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-124-      hphi_image hccw hj1 h12 h2j
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-125-  rw [dist_comm (phi i2) (phi j1), dist_comm (phi i1) (phi j1)] at hkal
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-126-  rw [hc2, ← hc1] at hkal
+--
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-142-    (hc1 : dist (phi j1) (phi i1) = dist (phi j1) (phi i2))
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-143-    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-144-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:145:    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-146-      hjj hj1 h12
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-147-  rw [hc1, hc2] at hkal
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean-148-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-93-  have h35 : i3 < i5 := h34.trans h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-94-  have h57 : i5 < i7 := h56.trans h67
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-95-  have hkal0156 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:96:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-97-      hboundaryImage hboundaryCcw h01 h15 h56
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-98-  have hkal0345 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:99:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-100-      hboundaryImage hboundaryCcw h03 h34 h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-101-  have hkal1257 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:102:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-103-      hboundaryImage hboundaryCcw h12 h25 h57
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-104-  have hkal2357 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:105:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-106-      hboundaryImage hboundaryCcw h23 h35 h57
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-107-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-108-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-178-  have h24 : i2 < i4 := h23.trans h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-179-  have h25 : i2 < i5 := h24.trans h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-180-  have hkal10125 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:181:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-182-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12 h25
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-183-  have hkal20134 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:184:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-185-      hboundaryImage hboundaryCcw h01 h13 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-186-  have hkal10245 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:187:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-188-      hboundaryInjective hboundaryImage hboundaryCcw h02 h24 h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-189-  have hkal21234 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:190:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-191-      hboundaryImage hboundaryCcw h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-192-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean-193-
+--
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-54-    have harea := hneg_of_ccw hphi_inj hccw hFX hXZ
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-55-    rwa [hF, hX, hZ] at harea
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-56-  obtain ⟨q, hqFX, hqPZ⟩ :=
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:57:    CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-58-      hA hphi_inj hphi_image hccw hFP hPX hXZ
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-59-  apply FivePointCircleIsoscelesOrderCore.false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-60-    hreal core hWFZ hFXZ
+--
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-110-    rw [hswap]
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-111-    exact mul_neg_of_neg_of_pos hWFZ (neg_pos.mpr hFXZ)
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-112-  · obtain ⟨q, hqFX, hqPZ⟩ :=
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:113:      CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-114-        hA hphi_inj hphi_image hccw hFP hPX hXZ
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-115-    exact ⟨q, hqFX, hqPZ⟩
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean-116-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-273-    (hi3_mem_Row2 : boundary T.i3 ∈ Row2.support)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-274-    (hi4_mem_Row2 : boundary T.i4 ∈ Row2.support) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-275-    False := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:276:  exact false_of_two_k2_three_row_triangle hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-277-    (cardBoundary_injective hcard hinj)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-278-    (cardBoundary_image hcard himage)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-279-    (cardBoundary_ccw hcard hccw)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-321-    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-322-      (Row2.support_eq_radius _ hi5_mem_Row2).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-323-  have hkal0145 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:324:    dist_add_dist_lt_diagonal_sum_of_ccw hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-325-      (cardBoundary_injective hcard hinj)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-326-      (cardBoundary_image hcard himage)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-327-      (cardBoundary_ccw hcard hccw)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-329-      (toCardIndex_lt hcard (T.h12.trans (T.h23.trans T.h34)))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-330-      (toCardIndex_lt hcard T.h45)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-331-  have hkal1235 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:332:    dist_add_dist_lt_diagonal_sum_of_ccw hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-333-      (cardBoundary_injective hcard hinj)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-334-      (cardBoundary_image hcard himage)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-335-      (cardBoundary_ccw hcard hccw)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-478-    dist (boundary ib) (boundary ic) + dist (boundary ia) (boundary id) <
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-479-      dist (boundary ia) (boundary ic) + dist (boundary ib) (boundary id) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-480-  have h :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:481:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-482-      (cardBoundary_injective hcard hinj)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-483-      (cardBoundary_image hcard himage)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-484-      (cardBoundary_ccw hcard hccw)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-498-    dist (boundary ia) (boundary ib) + dist (boundary ic) (boundary id) <
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-499-      dist (boundary ia) (boundary ic) + dist (boundary ib) (boundary id) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-500-  have h :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:501:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-502-      (cardBoundary_injective hcard hinj)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-503-      (cardBoundary_image hcard himage)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean-504-      (cardBoundary_ccw hcard hccw)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-82-        dist (boundary i4) (boundary i3) :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-83-    support_dist_eq Row4 hi1_mem_Row4 hi3_mem_Row4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-84-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:85:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-86-      hinj himage hccw (h23.trans h34) h12 h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-87-  simp only [dist_comm] at hrow0 hrow2 hrow3 hrow4 hkal
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-88-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-175-        support_dist_eq Row0 hi7_mem_Row0 hi1_mem_Row0
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-176-      _ = dist (boundary i1) (boundary i0) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-177-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:178:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA hinj himage hccw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-179-      h67 (h34.trans (h45.trans h56)) (h12.trans h23)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-180-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:181:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-182-      hinj himage hccw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-183-      (h23.trans (h34.trans (h45.trans (h56.trans h67)))) h12 h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-184-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:185:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hA hinj himage hccw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-186-      h56 h45 (h12.trans (h23.trans h34))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-187-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean-188-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-75-        support_dist_eq Row5 hi2_mem_Row5 hi3_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-76-      _ = dist (boundary i3) (boundary i5) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-77-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:78:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-79-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-80-      h45 h34 (h12.trans h23)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-81-  have hkal2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:82:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-83-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-84-      (h23.trans (h34.trans h45)) h12 h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-85-  simp only [dist_comm] at hrow0 hrow4 hrow5 hkal1 hkal2
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-119-      _ = dist (boundary i2) (boundary i3) :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-120-        support_dist_eq Row2 hi1_mem_Row2 hi3_mem_Row2
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-121-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:122:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-123-      hboundaryInjective hboundaryImage hboundaryCcw h23 h12 h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-124-  simp only [dist_comm] at hrow0 hrow1 hrow2 hkal
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-125-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-182-        support_dist_eq Row5 hi0_mem_Row5 hi4_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-183-      _ = dist (boundary i4) (boundary i5) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-184-  have hkal0134 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:185:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-186-      hboundaryInjective hboundaryImage hboundaryCcw h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-187-      (h23.trans h34) h12
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-188-  have hkal0145 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:189:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-190-      hboundaryInjective hboundaryImage hboundaryCcw h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-191-      (h12.trans (h23.trans h34)) h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-192-  have hkal1234 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:193:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-194-      hboundaryInjective hboundaryImage hboundaryCcw h34 h23 h12
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-195-  have hkal1245 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:196:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-197-      hboundaryInjective hboundaryImage hboundaryCcw h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-198-      (h12.trans h23) h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-199-  simp only [dist_comm] at hrow2 hrow3a hrow3b hrow4 hrow5 hkal0134 hkal0145 hkal1234 hkal1245
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-268-        support_dist_eq Row6 hi1_mem_Row6 hi5_mem_Row6
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-269-      _ = dist (boundary i5) (boundary i6) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-270-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:271:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-272-      hboundaryInjective hboundaryImage hboundaryCcw h56 h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-273-      (h01.trans (h12.trans (h23.trans h34)))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-274-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:275:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-276-      hboundaryInjective hboundaryImage hboundaryCcw h56
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-277-      (h12.trans (h23.trans (h34.trans h45))) h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-278-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:279:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-280-      hboundaryInjective hboundaryImage hboundaryCcw h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-281-      (h23.trans h34) (h01.trans h12)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-282-  have hkal2c :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:283:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-284-      hboundaryInjective hboundaryImage hboundaryCcw h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-285-      (h12.trans (h23.trans h34)) h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-286-  have hkal2d :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean:287:    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-288-      hboundaryInjective hboundaryImage hboundaryCcw h34 h23
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-289-      (h01.trans h12)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean-290-  simp only [dist_comm] at hrow0 hrow3 hrow4 hrow5a hrow5b hrow6 hkal1 hkal2a hkal2b hkal2c hkal2d
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-29-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-30-/-- The first strict Kalmanson inequality is unchanged when all four boundary
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-31-roles are read in decreasing order. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:32:theorem dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-33-    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-34-    {boundary : Fin carrier.card → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-35-    (hboundaryInjective : Function.Injective boundary)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-40-    dist (boundary ib) (boundary ic) + dist (boundary ia) (boundary id) <
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-41-      dist (boundary ia) (boundary ic) + dist (boundary ib) (boundary id) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-42-  simpa only [dist_comm, add_comm] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:43:    (dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-44-      hboundaryImage hboundaryCcw hdc hcb hba)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-45-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-46-/-- The complementary strict Kalmanson inequality is unchanged when all four
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-47-boundary roles are read in decreasing order. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:48:theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-49-    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-50-    {boundary : Fin carrier.card → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-51-    (hboundaryInjective : Function.Injective boundary)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-56-    dist (boundary ia) (boundary ib) + dist (boundary ic) (boundary id) <
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-57-      dist (boundary ia) (boundary ic) + dist (boundary ib) (boundary id) := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-58-  simpa only [dist_comm, add_comm] using
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:59:    (complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-60-      hboundaryInjective hboundaryImage hboundaryCcw hdc hcb hba)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-61-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-62-private theorem selectedFourClass_support_dist_eq
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-107-        selectedFourClass_support_dist_eq Row5 hi1_mem_Row5 hi2_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-108-      _ = dist (boundary i2) (boundary i5) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-109-  have hkal2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:110:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-111-      hboundaryImage hboundaryCcw h23 h34 h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-112-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:113:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-114-      hboundaryInjective hboundaryImage hboundaryCcw h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-115-      (h12.trans h23) (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-116-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-149-      _ = dist (boundary i3) (boundary i4) :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-150-        selectedFourClass_support_dist_eq Row3 hi1_mem_Row3 hi4_mem_Row3
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-151-  have hkal2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:152:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-153-      hboundaryImage hboundaryCcw h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-154-  have hkal1a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:155:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-156-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-157-      (h01.trans h12) h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-158-  have hkal1b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:159:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-160-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-161-      (h23.trans h34)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-162-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-232-        selectedFourClass_support_dist_eq Row5 hi1_mem_Row5 hi2_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-233-      _ = dist (boundary i2) (boundary i5) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-234-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:235:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-236-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-237-      (h01.trans (h12.trans h23)) h34 h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-238-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:239:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-240-      hboundaryImage hboundaryCcw h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-241-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:242:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-243-      hboundaryImage hboundaryCcw (h01.trans h12) h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-244-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-245-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-288-        selectedFourClass_support_dist_eq Row5 hi2_mem_Row5 hi3_mem_Row5
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-289-      _ = dist (boundary i3) (boundary i5) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-290-  have hkal2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:291:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-292-      hboundaryImage hboundaryCcw h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-293-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:294:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-295-      hboundaryInjective hboundaryImage hboundaryCcw h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-296-      (h12.trans h23) (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-297-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-298-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:299:#print axioms dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean:300:#print axioms complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-301-#print axioms false_of_schemaOne_normalized
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-302-#print axioms false_of_schemaFour_normalized
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/UniqueFourKalmansonReflection.lean-303-#print axioms false_of_schemaSix_normalized
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-68-          (Row10.support_eq_radius _ hi7_mem_Row10).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-69-      _ = dist (boundary i7) (boundary i10) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-70-  have hkal2047 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:71:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-72-      hboundaryImage hboundaryCcw h01 h14 (h46.trans h67)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-73-  have hkal1067ten :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:74:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-75-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-76-      (h01.trans (h14.trans h46)) h67 h7ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-77-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-119-          (Row10.support_eq_radius _ hi8_mem_Row10).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-120-      _ = dist (boundary i8) (boundary i10) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-121-  have hkal20126 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:122:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-123-      hboundaryImage hboundaryCcw h01 h12 h26
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-124-  have hkal1028ten :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:125:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-126-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-127-      (h01.trans h12) (h26.trans h68) h8ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-128-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-183-          (Row3.support_eq_radius _ hi2_mem_Row3).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-184-      _ = dist (boundary i2) (boundary i3) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-185-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:186:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-187-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12 h23
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-188-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-189-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-254-          (Row3.support_eq_radius _ hi2_mem_Row3).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-255-      _ = dist (boundary i2) (boundary i3) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-256-  have hkal0134 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:257:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-258-      hboundaryImage hboundaryCcw h01 (h12.trans h23) h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-259-  have hkal0145 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:260:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-261-      hboundaryImage hboundaryCcw h01 ((h12.trans h23).trans h34) h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-262-  have hkal1234 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:263:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-264-      hboundaryImage hboundaryCcw h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-265-  have hkal1245 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:266:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-267-      hboundaryImage hboundaryCcw h12 (h23.trans h34) h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-268-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-269-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-317-          (Row4.support_eq_radius _ hi3_mem_Row4).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-318-      _ = dist (boundary i3) (boundary i4) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-319-  have hkal20123 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:320:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-321-      hboundaryImage hboundaryCcw h01 h12 h23
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-322-  have hkal10124 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:323:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-324-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12 (h23.trans h34)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-325-  have hkal10234 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:326:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-327-      hboundaryInjective hboundaryImage hboundaryCcw (h01.trans h12) h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-328-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-329-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-391-          (Row10.support_eq_radius _ hi5_mem_Row10).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-392-      _ = dist (boundary i5) (boundary i10) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-393-  have hkal :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:394:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-395-      hboundaryInjective hboundaryImage hboundaryCcw (h01.trans h12) h25 h5ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-396-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-397-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-436-        (Row2.support_eq_radius _ hi0_mem_Row2).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-437-          (Row2.support_eq_radius _ hi4_mem_Row2).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-438-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:439:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-440-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-441-      (h24.trans (h47.trans h7ten))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-442-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:443:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-444-      hboundaryImage hboundaryCcw h01 (h12.trans h24) h47
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-445-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:446:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-447-      hboundaryImage hboundaryCcw h12 h24 (h47.trans h7ten)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-448-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-449-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-522-  have h2ten : i2 < i10 := h23.trans (h34.trans (h45.trans h5ten))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-523-  have h4ten : i4 < i10 := h45.trans h5ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-524-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:525:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-526-      hboundaryInjective hboundaryImage hboundaryCcw h01 h12 h2ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-527-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:528:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-529-      hboundaryImage hboundaryCcw h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-530-      (h12.trans (h23.trans (h34.trans h45))) h5ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-531-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:532:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-533-      hboundaryImage hboundaryCcw h12 (h23.trans h34) h4ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-534-  have hkal2c :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:535:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-536-      hboundaryImage hboundaryCcw h12 (h23.trans (h34.trans h45)) h5ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-537-  have hkal2d :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:538:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-539-      hboundaryImage hboundaryCcw h23 h34 h4ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-540-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-541-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-626-          (Row10.support_eq_radius _ hi8_mem_Row10).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-627-      _ = dist (boundary i8) (boundary i10) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-628-  have hkal2a :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:629:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-630-      hboundaryImage hboundaryCcw h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-631-      (h12.trans (h23.trans h35)) (h56.trans h68)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-632-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:633:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-634-      hboundaryInjective hboundaryImage hboundaryCcw
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-635-      (h01.trans (h12.trans (h23.trans (h35.trans h56)))) h68 h8ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-636-  have hkal2b :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:637:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-638-      hboundaryImage hboundaryCcw h12 h23
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-639-      (h35.trans (h56.trans h68))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-640-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-688-          (Row10.support_eq_radius _ hi9_mem_Row10).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-689-      _ = dist (boundary i9) (boundary i10) := dist_comm _ _
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-690-  have hkal2 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:691:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-692-      hboundaryImage hboundaryCcw h01 (h12.trans h27) h79
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-693-  have hkal1 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean:694:    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-695-      hboundaryInjective hboundaryImage hboundaryCcw (h01.trans h12)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-696-      (h27.trans h79) h9ten
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean-697-  linarith
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-26-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-27-The first endpoint inequality forces `dist i1 i5 < dist i1 i3`; the second forces the reverse
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-28-strict inequality.  The result is independent of the ambient carrier cardinality. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:29:theorem false_of_two_k2_three_row_triangle
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-30-    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-31-    {n : ℕ} {boundary : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-32-    (hboundaryInjective : Function.Injective boundary)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-58-    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-59-      (Row2.support_eq_radius _ hi4_mem_Row2).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-60-  have hkal0135 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:61:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-62-      hboundaryImage hboundaryCcw h01 (h12.trans h23) (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-63-  have hkal1234 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:64:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-65-      hboundaryImage hboundaryCcw h12 h23 h34
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-66-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-67-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:68:#print axioms false_of_two_k2_three_row_triangle
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-69-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:70:/-- Reflected orientation of `false_of_two_k2_three_row_triangle`.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-71-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-72-The three row centers still precede the three shared support vertices, but
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-73-the support-triangle orientation is reversed.  The same two strict
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-74-Kalmanson inequalities cancel after substituting the three row equalities.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-75-This is cardinality-generic; the original proof appeared only behind the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-76-`Fin 11` p5 triangle-B adapter. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:77:theorem false_of_two_k2_three_row_triangle_reflected
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-78-    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-79-    {n : ℕ} {boundary : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-80-    (hboundaryInjective : Function.Injective boundary)
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-109-    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-110-      (Row2.support_eq_radius _ hi5_mem_Row2).symm
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-111-  have hkal0145 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:112:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-113-      hboundaryImage hboundaryCcw h01
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-114-      (h12.trans (h23.trans h34)) h45
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-115-  have hkal1235 :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:116:    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-117-      hboundaryImage hboundaryCcw h12 h23 (h34.trans h45)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-118-  linarith
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-119-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean:120:#print axioms false_of_two_k2_three_row_triangle_reflected
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-121-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-122-end UniqueFourKalmansonOccurrenceScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean-123-end Problem97

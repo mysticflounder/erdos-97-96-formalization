@@ -1,0 +1,780 @@
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-6-
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-7-import Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:8:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-9-import Erdos9796Proof.P97.ConvexCyclicOrder.Basic
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-10-
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-74-ambient indices for the ten generated labels.  This isolates the finite
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-75-`Fin 10` bookkeeping from the geometric selector, whose remaining job is to
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:76:export these indices from the cap-block interval facts. -/
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-77-theorem hullOrderSubsequenceCertificate_of_explicit_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-78-    {A : Finset ℝ²} {pointOf : SurplusCOMPGBank.Label → ℝ²}
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-222-    simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-223-      using hv
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:224:  rcases S.capInteriorByIndex_open_interval_of_global_indices S.oppIndex2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-225-      hccw hφinj hφimage h0v (Or.inr hvw) htriOpp2_v1 htriOpp2_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-226-      htriOpp2_v3 hqAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-227-    ⟨iqA, hiuqA, hqAiv, hφqA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:228:  rcases S.capInteriorByIndex_open_interval_of_global_indices S.oppIndex2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-229-      hccw hφinj hφimage h0v (Or.inr hvw) htriOpp2_v1 htriOpp2_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-230-      htriOpp2_v3 hqBI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-231-    ⟨iqB, hiuqB, hqBiv, hφqB⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:232:  rcases S.capInteriorByIndex_open_interval_of_global_indices S.surplusIdx
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-233-      hccw hφinj hφimage hvw (Or.inl h0v) htriSurplus_v1
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-234-      htriSurplus_v2 htriSurplus_v3 hsAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-235-    ⟨isA, hivsA, hsAiw, hφsA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:236:  rcases S.capInteriorByIndex_open_interval_of_global_indices S.surplusIdx
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-237-      hccw hφinj hφimage hvw (Or.inl h0v) htriSurplus_v1
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-238-      htriSurplus_v2 htriSurplus_v3 hsBI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-239-    ⟨isB, hivsB, hsBiw, hφsB⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:240:  rcases S.capInteriorByIndex_open_interval_of_global_indices S.surplusIdx
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-241-      hccw hφinj hφimage hvw (Or.inl h0v) htriSurplus_v1
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-242-      htriSurplus_v2 htriSurplus_v3 hsCI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-243-    ⟨isC, hivsC, hsCiw, hφsC⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:244:  rcases S.capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-245-      S.oppIndex1 hccw hφinj hφimage h0v hvw htriOpp1_v1 htriOpp1_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-246-      htriOpp1_v3 hpAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-247-    ⟨ipA, hpAout, hφpA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:248:  rcases S.capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-249-      S.oppIndex1 hccw hφinj hφimage h0v hvw htriOpp1_v1 htriOpp1_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-250-      htriOpp1_v3 hpBI with
+--
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-462-    simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-463-      using hv
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:464:  rcases S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-465-      S.oppIndex1 hccw hφinj hφimage h0w (Or.inr hwv) htriOpp1_v1
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-466-      htriOpp1_v2 htriOpp1_v3 hpAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-467-    ⟨ipA, hiupA, hpAiw, hφpA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:468:  rcases S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-469-      S.oppIndex1 hccw hφinj hφimage h0w (Or.inr hwv) htriOpp1_v1
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-470-      htriOpp1_v2 htriOpp1_v3 hpBI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-471-    ⟨ipB, hiupB, hpBiw, hφpB⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:472:  rcases S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-473-      S.surplusIdx hccw hφinj hφimage hwv (Or.inl h0w)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-474-      htriSurplus_v1 htriSurplus_v2 htriSurplus_v3 hsAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-475-    ⟨isA, hiwsA, hsAiv, hφsA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:476:  rcases S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-477-      S.surplusIdx hccw hφinj hφimage hwv (Or.inl h0w)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-478-      htriSurplus_v1 htriSurplus_v2 htriSurplus_v3 hsBI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-479-    ⟨isB, hiwsB, hsBiv, hφsB⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:480:  rcases S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-481-      S.surplusIdx hccw hφinj hφimage hwv (Or.inl h0w)
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-482-      htriSurplus_v1 htriSurplus_v2 htriSurplus_v3 hsCI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-483-    ⟨isC, hiwsC, hsCiv, hφsC⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:484:  rcases S.capInteriorByIndex_open_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-485-      S.oppIndex2 hccw hφinj hφimage h0w hwv htriOpp2_v1 htriOpp2_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-486-      htriOpp2_v3 hqAI with
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-487-    ⟨iqA, hqAout, hφqA⟩
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean:488:  rcases S.capInteriorByIndex_open_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-489-      S.oppIndex2 hccw hφinj hφimage h0w hwv htriOpp2_v1 htriOpp2_v2
+lean/Erdos9796Proof/P97/PinnedHullOrder.lean-490-      htriOpp2_v3 hqBI with
+--
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-6-
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-7-import Erdos9796Proof.P97.CGN.CGN6
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean:8:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-9-import Erdos9796Proof.P97.SurplusCOMPGBankSep
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-10-import Erdos9796Proof.P97.U1CarrierInjection
+--
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-776-  have hcapSurplus : S.capByIndex S.surplusIdx = S.surplusCap := by
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-777-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean:778:    interval_cases i <;> simp [SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-779-      SurplusCapPacket.surplusCap, hi]
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-780-  have hCcard : (Finset.univ.image L.points).card = m := by
+--
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-851-  have hcapSurplus : S.capByIndex S.surplusIdx = S.surplusCap := by
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-852-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean:853:    interval_cases i <;> simp [SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-854-      SurplusCapPacket.surplusCap, hi]
+lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean-855-  have himageCard : (Finset.univ.image L.points).card = 6 := by
+--
+lean/Erdos9796Proof/P97/FiniteN10.lean-10-import Erdos9796Proof.P97.SmallCardinality
+lean/Erdos9796Proof/P97/FiniteN10.lean-11-import Erdos9796Proof.P97.U2SqueezePort
+lean/Erdos9796Proof/P97/FiniteN10.lean:12:import Erdos9796Proof.P97.SurplusM44Packet.Shard04
+lean/Erdos9796Proof/P97/FiniteN10.lean-13-import Erdos9796Proof.P97.EndpointCertificate.GeometryProducer
+lean/Erdos9796Proof/P97/FiniteN10.lean-14-import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
+--
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean-10-import Erdos9796Proof.P97.ErasedPinFixedSeedDFS
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean-11-import Erdos9796Proof.P97.EndpointCertificate.MetricShadow
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:12:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean-13-import Erdos9796Proof.P97.Dumitrescu.L1
+lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean-14-
+--
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-98-        exact hneg hij' hjk'
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-99-
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:100:private theorem supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-101-    {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-102-    {u v w : ℝ²}
+--
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-361-          exact hC1_arc.mpr this
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-362-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:363:        supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-364-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-365-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-413-          ∃ q : Fin n, i3 - i1 ≤ q ∧ q ≤ i2 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-414-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:415:        supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-416-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-417-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-6-
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-7-import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:8:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-9-import Erdos9796Proof.P97.U2.SimilarityNormalization
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-10-
+--
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-103-        exact hneg hij' hjk'
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-104-
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean:105:private theorem supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-106-    {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-107-    {u v w : ℝ²}
+--
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-319-          ∃ q : Fin n, i2 - i1 ≤ q ∧ q ≤ i3 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-320-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean:321:        supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-322-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-323-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-418-          ∃ q : Fin n, i3 - i1 ≤ q ∧ q ≤ i2 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-419-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean:420:        supportCap_interval_of_oppositeFirst_local
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-421-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean-422-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean-221-
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean-222-/-- Final `IsM44` removable-vertex extraction once the two non-surplus Moser
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:223:  caps are contained.  Existing `SurplusM44Packet` lemmas prove count/placement
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean-224-  consequences of this containment, but this extraction is not yet closed. -/
+lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean-225-abbrev IsM44NonSurplusContainmentRemovableStatement : Prop :=
+--
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-331-        (ERow.support_eq_radius _ hb_mem_ERow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-332-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:333:/-- Cyclic-recut form of `false_of_five_ccw_second_two_selected_rows`.
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-334-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-335-The five indices are increasing in the coordinate system obtained by cutting
+--
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-409-        (ARow.support_eq_radius _ hd_mem_ARow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-410-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:411:/-- Cyclic-recut form of
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-412-`false_of_five_ccw_reversed_second_two_selected_rows`.
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-413-
+--
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-658-        (CRow.support_eq_radius _ hd_mem_CRow).symm
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-659-
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:660:/-- Cyclic-recut form of `false_of_five_ccw_two_selected_rows`. -/
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-661-theorem false_of_five_ccw_two_selected_rows_cyclicShift
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean-662-    {carrier : Finset ℝ²}
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-103-        exact hneg hij' hjk'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-104-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:105:private theorem supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-106-    {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-107-    {u v w : ℝ²}
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-366-          exact hC1_arc.mpr this
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-367-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:368:        supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-369-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-370-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-418-          ∃ q : Fin n, i3 - i1 ≤ q ∧ q ≤ i2 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-419-      simpa [psi, hshift_i2, hshift_i3] using
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:420:        supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-421-          (A := A) (C := S.CP.C1) (phi := psi)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-422-          hpsi_inj hpsi_image hneg_shift S.CP.C1_subset
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-881-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-882-The two same-side certificates below (`same_side_of_chord_endpoint_thales`,
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:883:`same_side_of_chord_capPair`) reduce to *index-interval position* facts on the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-884-global CCW boundary order `φ` of `A` (from
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-885-`CGN4g0_globalBoundaryOrder_of_convexIndep`).  We package the boundary order as a
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1090-(`boundaryOrder_hneg` from `CGN4g0_globalBoundaryOrder_of_convexIndep`) so the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1091-apex `v₂` sits at index `0` (`shift_boundaryOrder`).  The cap `C₂` is the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1092:opposite-`v₂` arc, so `supportCap_interval_of_oppositeFirst_local'` puts `x`'s
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1093-index strictly between the `v₃` and `v₁` indices (`jv3 < ix < jv1` up to the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1094-orientation swap).  With `v₂` at `0`, both `v₁` and `v₂` then sit on the same
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1141-  by_cases h31 : jv3 < jv1
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1142-  · -- `v₂ = 0 < jv3 < jv1`; `C₂` is the clean index block `[jv3, jv1]`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1143:    have hC2int := supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1144-      (A := A) (C := S.CP.C2) (phi := psi) (u := S.triangle.v2) (v := S.triangle.v3)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1145-        (w := S.triangle.v1)
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1160-  · -- `v₂ = 0 < jv1 < jv3`; `C₂` is the swapped index block `[jv1, jv3]`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1161-    have h13 : jv1 < jv3 := lt_of_le_of_ne (le_of_not_gt h31) hv1_ne_v3
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1162:    have hC2int := supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1163-      (A := A) (C := S.CP.C2) (phi := psi) (u := S.triangle.v2) (v := S.triangle.v1)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1164-        (w := S.triangle.v3)
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1404-located strictly between the `v₃` and `v₁` indices via `index_between_of_onArc`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1405-on `C₂ = OnArcOpposite v₂ v₃ v₁` (opposite vertex `v₂` at index `0`, so outside
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1406:the chord interval).  The cap vertex `a₃ ∈ I₃ = OnArcOpposite v₃ v₁ v₂` is located
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1407-against the `[v₂, v₁]` index interval: in the `jv3 < jv1` orientation `v₃` is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1408-*inside* that interval, so `index_outside_of_onArc` forces `jv1 < ia3`; in the
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1535-
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1536-Both `same_side_*` lemmas live just above this theorem and are proven from the
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1537:cyclic-interval position of the cap/apex vertices relative to the variable chord
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1538-v₃–x (via `CGN4g0_globalBoundaryOrder_of_convexIndep` +
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1539-`signedArea2_{neg_of_outside,pos_of_between}`); the general algebraic bridges
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1712-(`boundaryOrder_hneg`) so the apex `v₂` sits at index `0`
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1713-(`shift_boundaryOrder`).  The cap `C₂` is the opposite-`v₂` arc, so
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1714:`supportCap_interval_of_oppositeFirst_local'` puts `x`'s index strictly between
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1715-the `v₃` and `v₁` indices (`jv3 < ix < jv1`, up to the orientation swap).  With
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1716-`v₂` at index `0`, both `v₁` and `v₂` sit on the *same* strict side of the
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1761-  by_cases h31 : jv3 < jv1
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1762-  · -- `v₂ = 0 < jv3 < jv1`; `C₂` is the clean index block `[jv3, jv1]`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1763:    have hC2int := supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1764-      (A := A) (C := S.CP.C2) (phi := psi) (u := S.triangle.v2) (v := S.triangle.v3)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1765-        (w := S.triangle.v1)
+--
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1780-  · -- `v₂ = 0 < jv1 < jv3`; `C₂` is the swapped index block `[jv1, jv3]`.
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1781-    have h13 : jv1 < jv3 := lt_of_le_of_ne (le_of_not_gt h31) hv1_ne_v3
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1782:    have hC2int := supportCap_interval_of_oppositeFirst_local'
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1783-      (A := A) (C := S.CP.C2) (phi := psi) (u := S.triangle.v2) (v := S.triangle.v1)
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean-1784-        (w := S.triangle.v3)
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-17-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-18-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:19:# `SurplusM44Packet` shard 01 (lines 35-1511 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-20-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:21:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-22-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-23-`exists_sorted_pair_finset_eq`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-24-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-25-`triangle_verts_subset_adjacentCapsByIndex`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:26:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-27-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-28--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-80-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-81-/-- Sort two already indexed points inside one ambient index interval.  The
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:82:P1 selector uses this after the strict cap-interior interval export has found
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-83-the two boundary indices for a short cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-84-theorem exists_sorted_pair_points_between
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-386-form of `onArcOpposite_iff_index_block` used by the erased-pin hull-order
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-387-producer. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:388:theorem capByIndex_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-389-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-390-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-427-    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-428-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:429:/-- Reverse-support endpoint form of `capByIndex_interval_of_global_indices`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-430-If the `v3` endpoint occurs before the `v2` endpoint and the opposite apex is
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:431:outside that interval, the indexed cap is the closed interval from `v3` to
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-432-`v2`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:433:theorem capByIndex_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-434-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-435-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-481-form needed when a cap crosses the chosen linear cut of the cyclic boundary
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-482-order. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:483:theorem capByIndex_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-484-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-485-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-561-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-562-/-- Reverse-endpoint form of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:563:`capByIndex_complement_interval_of_global_indices`.  If the `v3` endpoint comes
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-564-before the opposite apex and the apex comes before the `v2` endpoint in the
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:565:ambient order, then the indexed cap is the complement of the open interval from
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-566-`v3` to `v2`.  This is the wrapping orientation that occurs after cutting the
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-567-P1 boundary order at the surplus apex. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:568:theorem capByIndex_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-569-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-570-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-10-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-11-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:12:# `SurplusM44Packet` shard 06 (lines 7223-8635 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-13-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:14:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-15-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-16-`left_one_sided_obstruction_payload`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-17-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-18-`IsM44.right_row2002_selectedClass_eq_moserPair_surplusPair`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean:19:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-20-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard06.lean-21--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-10-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-11-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:12:# `SurplusM44Packet` shard 07 (lines 8636-10057 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-13-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:14:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-15-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-16-`IsM44.left_row0031_selectedClass_eq_oppInterior1_singleton_surplusTriple`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-17-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-18-`leftOneSidedErasedPayload_of_oppIndex2_surplus_mem`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean:19:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-20-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard07.lean-21--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:10:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:11:import Erdos9796Proof.P97.SurplusM44Packet.Shard06
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-12-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-13-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:14:# `SurplusM44Packet` shard 08 (lines 10058-11482 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-15-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:16:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-17-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-18-`rightOneSidedObstructionPayload_of_erasedPayload`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-19-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-20-`IsM44.exists_oppIndex1_primitive_packet_cases_of_erasedPinTriple_chains`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:21:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-22-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean-23--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-10-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-11-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:12:# `SurplusM44Packet` shard 04 (lines 4365-5764 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-13-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:14:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-15-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-16-`IsM44.exists_surplusInterior_triple_of_oppIndex2_left_surplus`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-17-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-18-`IsM44.exists_surplusSelectorNamedSplit_of_formC`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean:19:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-20-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard04.lean-21--/
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:21:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard013
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:22:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard014
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:23:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard015
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:24:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard016
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:25:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard017
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:26:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard018
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:27:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard019
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:28:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard020
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:29:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard021
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:30:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard022
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:31:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard023
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:32:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard024
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:33:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard025
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:34:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard026
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean:35:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYNYNTermShards.R013UeqvR013YYNYNBlockShard027
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean-36-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYNYN.lean-37-/-!
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-10-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-11-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:12:# `SurplusM44Packet` shard 05 (lines 5765-7222 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-13-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:14:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-15-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-16-`NonSurplusMoserCapExcludes`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-17-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-18-`right_one_sided_obstruction_payload`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:19:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-20-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-21--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-117-/-- Export a shared CCW boundary enumeration of `A` cut so that the surplus
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-118-apex is index zero.  This is the first geometric input for the P1 ordered
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:119:scaffold producer: subsequent interval exports locate the two opposite cap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-120-interiors and the selected surplus triple in this same ambient order. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean-121-theorem exists_ccw_boundary_order_at_surplus_apex
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:10:import Erdos9796Proof.P97.SurplusM44Packet.Shard07
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:11:import Erdos9796Proof.P97.SurplusM44Packet.Shard08
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-12-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-13-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:14:# `SurplusM44Packet` shard 09 (lines 11483-12329 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-15-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:16:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-17-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-18-`IsM44.exists_oppIndex2_primitive_packet_cases_of_erasedPinTriple_chains`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-19-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-20-`IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean:21:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-22-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard09.lean-23--/
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YNNYTermShards.R013UeqvR013YNNYBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YNNYTermShards.R013UeqvR013YNNYBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YNNYTermShards.R013UeqvR013YNNYBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YNNYTermShards.R013UeqvR013YNNYBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YNNYTermShards.R013UeqvR013YNNYBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean-21-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YNNY.lean-22-/-!
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-8-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-9-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:10:# `SurplusM44Packet` shard 02 (lines 1512-2963 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-11-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:12:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-13-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-14-`capInteriorByIndex_mem_private`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-15-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-16-`leftEndpointOnFirstRadius_false`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:17:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-18-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-19--/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-289-a non-wrapping indexed cap occurs strictly between the two support endpoint
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-290-indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:291:theorem capInteriorByIndex_open_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-292-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-293-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-303-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-304-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:305:  rcases (S.capByIndex_interval_of_global_indices i hccw hφ hφimage hab hc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-306-      hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-307-    ⟨q, hiaq, hqib, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-319-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-320-/-- Strict-interior version of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:321:`capByIndex_reverse_interval_of_global_indices`: if the support endpoints
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-322-occur in the order `v3 < v2` with the opposite apex outside that interval, a
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-323-strict interior point lies strictly between those two endpoint indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:324:theorem capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-325-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-326-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-336-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-337-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:338:  rcases (S.capByIndex_reverse_interval_of_global_indices i hccw hφ hφimage
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-339-      hibia hc hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-340-    ⟨q, hibq, hqia, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-354-a wrapping indexed cap occurs in the open complement of the support endpoint
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-355-interval. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:356:theorem capInteriorByIndex_open_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-357-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-358-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-368-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-369-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:370:  rcases (S.capByIndex_complement_interval_of_global_indices i hccw hφ hφimage
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-371-      haic hcib hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-372-    ⟨q, hqout, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-386-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-387-/-- Strict-interior version of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:388:`capByIndex_reverse_complement_interval_of_global_indices`: the support
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-389-endpoints are excluded, so a strict interior point lies in the open reverse
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-390-complement. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:391:theorem capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-392-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-393-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-403-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-404-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:405:  rcases (S.capByIndex_reverse_complement_interval_of_global_indices i hccw hφ
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-406-      hφimage hibc hcia hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-407-    ⟨q, hqout, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-9-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-10-/-!
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:11:# `SurplusM44Packet` shard 03 (lines 2964-4364 of the original monolith)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-12-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:13:Mechanical split of `SurplusM44Packet.lean`; body text is verbatim.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-14-First decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-15-`rightPrivateSecondHit_reflection_false`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-16-Last decl:
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-17-`IsM44.exists_surplusInterior_triple_of_oppIndex1_right_surplus`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:18:The aggregator module `Erdos9796Proof.P97.SurplusM44Packet` re-exports every shard, so
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-19-downstream imports are unchanged.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean-20--/
+--
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-376-  have hsurp := S.surplus
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-377-  rw [hidx] at hsurp
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:378:  interval_cases i <;> simpa [surplusCap, hidx] using hsurp
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-379-
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-380-/-- The first opposite cap. -/
+--
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-548-    (S.capByIndex S.oppIndex1).card = 4 := by
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-549-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:550:  interval_cases i <;> simpa [oppIndex1, oppCap1, capByIndex, hi] using hM44.1
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-551-
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-552-/-- Under `IsM44`, the second non-surplus opposite cap has closed-cardinality
+--
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-556-    (S.capByIndex S.oppIndex2).card = 4 := by
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-557-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:558:  interval_cases i <;> simpa [oppIndex2, oppCap2, capByIndex, hi] using hM44.2
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-559-
+lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean-560-/-- Under `IsM44`, the first non-surplus opposite cap has exactly two strict
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/Geometry.lean-6-
+lean/Erdos9796Proof/P97/EndpointCertificate/Geometry.lean-7-import Erdos9796Proof.P97.EndpointCertificate.ShadowBank
+lean/Erdos9796Proof/P97/EndpointCertificate/Geometry.lean:8:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/EndpointCertificate/Geometry.lean-9-
+lean/Erdos9796Proof/P97/EndpointCertificate/Geometry.lean-10-/-!
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-154-interval between the two support endpoints. This is not a new public CGN
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-155-interface; it packages the `CapTriple.arc_membership` predicate as a finite
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:156:interval statement so it can feed `CGN4g1_capBlock_of_supportCap`. -/
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:157:private theorem supportCap_interval_of_oppositeFirst
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-158-    {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-159-    {u v w : ℝ²}
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-253-the finite-order bookkeeping behind "cut the global order at the omitted
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-254-support vertex" before applying
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:255:`supportCap_interval_of_oppositeFirst`. -/
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-256-private theorem hneg_of_cyclicShift
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-257-    {n : ℕ} {phi : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-336-        exact hneg hij' hjk'
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-337-
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:338:/-- `CGN4g1`: package a support cap described as a closed global interval into
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-339-the ordered-cap block interface plus the MEC-side packet fields. -/
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-340-theorem CGN4g1_capBlock_of_supportCap
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1370-          ∃ q : Fin n, i2 - i1 ≤ q ∧ q ≤ i3 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1371-      simpa [psi, hi1, hi2, hi3] using
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1372:        supportCap_interval_of_oppositeFirst
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1373-          (A := A) (C := C) (phi := psi)
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1374-          hpsi_inj hpsi_image hneg_shift hC_subset hC_arc hv_mem hw_mem
+--
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1512-          ∃ q : Fin n, i3 - i1 ≤ q ∧ q ≤ i2 - i1 ∧ psi q = x := by
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1513-      simpa [psi, hi1, hi2, hi3] using
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1514:        supportCap_interval_of_oppositeFirst
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1515-          (A := A) (C := C) (phi := psi)
+lean/Erdos9796Proof/P97/CGN/CGN4g.lean-1516-          hpsi_inj hpsi_image hneg_shift hC_subset hswap_arc hw_mem hv_mem
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean-7-import Erdos9796Proof.P97.EndpointCertificate.GeneralMCardEleven
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean-8-import Erdos9796Proof.P97.Census554.CapSelectedCarrierBridge
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean:9:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean-10-import Erdos9796Proof.P97.U1CarrierInjection
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeStaging.lean-11-
+--
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean-34-* U1 (`U1m-c1a1c2` derivation): that the opposed endpoint-order row of the
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean-35-  cross-cap blocker ping-pong produces the strict off-chord common point.  This
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:36:  needs the ordered-cap endpoint machinery (`EndpointUsed`, `RankInterval`, the
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean-37-  source/target push toward opposite cap ends) from `U1k-b`/`U1m-b0`/`U1m-b1c`/
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean-38-  `U1m-c1a0`, which is not yet formalized in Lean.
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean-5--/
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean-6-
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:7:import Erdos9796Proof.P97.SurplusM44Packet.Shard01
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:9:import Erdos9796Proof.P97.SurplusM44Packet.Shard03
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:10:import Erdos9796Proof.P97.SurplusM44Packet.Shard04
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:11:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:12:import Erdos9796Proof.P97.SurplusM44Packet.Shard06
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:13:import Erdos9796Proof.P97.SurplusM44Packet.Shard07
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:14:import Erdos9796Proof.P97.SurplusM44Packet.Shard08
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean:15:import Erdos9796Proof.P97.SurplusM44Packet.Shard09
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean-16-
+lean/Erdos9796Proof/P97/SurplusM44Packet.lean-17-/-!
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:21:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard013
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:22:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard014
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:23:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard015
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:24:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard016
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean:25:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R011UeqvR011NNNNTermShards.R011UeqvR011NNNNBlockShard017
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean-26-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R011UeqvR011NNNN.lean-27-/-!
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:21:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard013
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:22:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard014
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:23:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard015
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:24:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard016
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:25:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard017
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:26:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard018
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:27:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard019
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:28:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard020
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:29:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard021
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:30:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard022
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:31:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard023
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:32:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard024
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:33:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard025
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:34:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard026
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean:35:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NNYTermShards.R005UeqvR005NNYBlockShard027
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean-36-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R005UeqvR005NNY.lean-37-/-!
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:21:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard013
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:22:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard014
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean:23:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYYTermShards.R013UeqvR013NNYYBlockShard015
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean-24-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013NNYY.lean-25-/-!
+--
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean-16-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard008
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean-17-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard009
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean:18:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard010
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean:19:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard011
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean:20:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard012
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean:21:import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013YYYNTermShards.R013UeqvR013YYYNBlockShard013
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean-22-
+lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit/R013UeqvR013YYYN.lean-23-/-!
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean-16-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard008
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean-17-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard009
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean:18:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard010
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean:19:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard011
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean:20:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard012
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean:21:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2041TermShards.EpQ2041BlockShard013
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean-22-
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2041.lean-23-set_option linter.style.longLine false
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean-16-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard008
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean-17-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard009
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean:18:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard010
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean:19:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard011
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean:20:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard012
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean-21-
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009.lean-22-set_option linter.style.longLine false
+--
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean-16-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard008
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean-17-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard009
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:18:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard010
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:19:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard011
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:20:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard012
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:21:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard013
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:22:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard014
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:23:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard015
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:24:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard016
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:25:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard017
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:26:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard018
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean:27:import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008BlockShard019
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean-28-
+lean/Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1008.lean-29-set_option linter.style.longLine false
+--
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean-9-import Erdos9796Proof.P97.Census554.Space
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean-10-import Erdos9796Proof.P97.U1CarrierInjection
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:11:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean-12-
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean-13-/-!
+--
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean-8-import Erdos9796Proof.P97.N9Endpoint.N4a
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean-9-import Erdos9796Proof.P97.CircumscribedMECPacket
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean:10:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean-11-import Erdos9796Proof.P97.U2.WitnessReflectionKernel
+lean/Erdos9796Proof/P97/U2NonSurplusOneHit.lean-12-
+--
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-8-import Erdos9796Proof.P97.Census554.GeometryBridge
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-9-import Erdos9796Proof.P97.Census554.SeparationMirror
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:10:import Erdos9796Proof.P97.SurplusM44Packet
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-11-
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-12-/-!
+--
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-616-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-617-        change x ∈ S.capInteriorByIndex S.oppIndex2 at hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:618:        exact S.capInteriorByIndex_open_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-619-          S.oppIndex2 hccw hboundary hboundaryImage hdirect.1
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-620-          (Or.inr hdirect.2) hwOpp2V1 huOpp2V2 hvOpp2V3 hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-621-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:622:        exact S.capInteriorByIndex_open_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-623-          S.surplusIdx hccw hboundary hboundaryImage hdirect.2
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-624-          (Or.inl hdirect.1) huSurplusV1 hvSurplusV2 hwSurplusV3 hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-625-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-626-        change x ∈ S.capInteriorByIndex S.oppIndex1 at hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:627:        rcases S.capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-628-            S.oppIndex1 hccw hboundary hboundaryImage hdirect.1
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-629-            hdirect.2 hvOpp1V1 hwOpp1V2 huOpp1V3 hx with
+--
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-643-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-644-        change x ∈ S.capInteriorByIndex S.oppIndex1 at hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:645:        exact S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-646-          S.oppIndex1 hccw hboundary hboundaryImage hmirror.1
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-647-          (Or.inr hmirror.2) hvOpp1V1 hwOpp1V2 huOpp1V3 hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-648-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:649:        exact S.capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-650-          S.surplusIdx hccw hboundary hboundaryImage hmirror.2
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-651-          (Or.inl hmirror.1) huSurplusV1 hvSurplusV2 hwSurplusV3 hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-652-      · intro x hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-653-        change x ∈ S.capInteriorByIndex S.oppIndex2 at hx
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:654:        rcases S.capInteriorByIndex_open_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-655-            S.oppIndex2 hccw hboundary hboundaryImage hmirror.1
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean-656-            hmirror.2 hwOpp2V1 huOpp2V2 hvOpp2V3 hx with
+--
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean-6-
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean-7-import Erdos9796Proof.P97.ATail.LargeCapUniqueFive
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard05
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean-9-
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean-10-/-!
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-8-The generic residual bridge is stated for the P5 `(5,5,4)` cap layout.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-9-This file authenticates the same 55 emitted P4 occurrences against their
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:10:actual `(5,4,5)` direct-boundary cap intervals and proves them under the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-11-single total valuation used by the other compact components.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-12--/
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-31-  {distribution : ExactTwoStrictHitDistribution R}
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-32-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean:33:/-- The actual direct-P4 closed-cap role intervals used by this residual. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-34-def directResidualCapPositions : Fin 3 → Finset Label
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4DirectValuation/DirectResidual55Satisfaction.lean-35-  | 0 => secondOppositeCapPositions
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean-6-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean-7-import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.MirrorTransport
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean-9-import Erdos9796Proof.P97.CapSelectedRowCounting
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/MirrorCapFamilies.lean-10-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean-6-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean-7-import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.GenericFamilies
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean:8:import Erdos9796Proof.P97.SurplusM44Packet.Shard02
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean-9-import Erdos9796Proof.P97.CapSelectedRowCounting
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/DirectCapFamilies.lean-10-
+--
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-118-  decide
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-119-
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:120:/-- No cyclic recut of the mirror macro positions can put the first apex,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-121-second apex, and surplus apex simultaneously at `0`, `4`, and `8`. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean-122-theorem no_mirror_cyclicCut_roles_zero_four_eight :

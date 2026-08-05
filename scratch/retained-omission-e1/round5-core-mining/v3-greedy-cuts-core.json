@@ -1,0 +1,1930 @@
+{
+  "baseline": "unsat",
+  "checks": 285,
+  "core_size": 284,
+  "decisions": [
+    {
+      "core_position": 136,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 137,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 138,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 139,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 140,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 141,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 142,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 143,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 144,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 145,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 146,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 147,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 148,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 149,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 150,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 151,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 152,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 153,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 154,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 155,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 156,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 157,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 158,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 159,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 160,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 161,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 162,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 163,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 164,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 165,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 166,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 167,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 168,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 169,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 170,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 171,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 172,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 173,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 174,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 175,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 176,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 177,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 178,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 179,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 180,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 181,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 182,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 183,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 184,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 185,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 186,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 187,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 188,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 189,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 190,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 191,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 192,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 193,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 194,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 195,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 196,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 197,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 198,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 199,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 200,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 201,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 202,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 203,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 204,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 205,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 206,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 207,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 208,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 209,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 210,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 211,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 212,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 213,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 214,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 215,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 216,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 217,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 218,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 219,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 220,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 221,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 222,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 223,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 224,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 225,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 226,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 227,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 228,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 229,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 230,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 231,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 232,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 233,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 234,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 235,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 236,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 237,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 238,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 239,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 240,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 241,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 242,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 243,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 244,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 245,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 246,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 247,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 248,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 249,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 250,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 251,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 252,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 253,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 254,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 255,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 256,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 257,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 258,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 259,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 260,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 261,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 262,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 263,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 264,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 265,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 266,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 267,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 268,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 269,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 270,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 271,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 272,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 273,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 274,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 275,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 276,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 277,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 278,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 279,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 280,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 281,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 282,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 283,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 11,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 72,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 73,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 74,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 75,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 76,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 77,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 78,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 79,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 80,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 81,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 82,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 83,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 84,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 85,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 86,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 87,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 88,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 89,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 90,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 91,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 92,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 93,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 94,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 95,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 96,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 97,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 98,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 99,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 100,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 101,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 102,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 103,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 104,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 105,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 12,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 13,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 14,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 15,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 16,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 17,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 18,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 19,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 20,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 21,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 22,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 23,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 24,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 25,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 26,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 27,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 28,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 29,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 30,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 31,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 32,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 33,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 34,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 35,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 36,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 37,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 38,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 39,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 40,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 41,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 42,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 43,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 44,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 45,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 46,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 47,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 48,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 49,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 50,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 51,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 52,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 53,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 54,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 55,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 56,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 57,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 58,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 59,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 60,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 61,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 62,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 63,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 64,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 65,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 66,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 67,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 68,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 69,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 70,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 71,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 125,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 126,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 127,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 128,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 129,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 130,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 131,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 132,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 133,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 134,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 135,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 114,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 115,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 116,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 117,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 118,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 119,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 120,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 121,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 122,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 123,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 124,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 106,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 107,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 108,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 109,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 110,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 111,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 112,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 113,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 0,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 1,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 2,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 3,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 4,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 5,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 6,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 7,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 8,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 9,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 10,
+      "removed": false,
+      "status_without": "sat"
+    }
+  ],
+  "elapsed_seconds": 23.33706270903349,
+  "remaining": [
+    {
+      "core_position": 0,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_6_0, rich_0_0_0),\n                And(k4_6_1, rich_0_0_1),\n                And(k4_6_2, rich_0_0_2),\n                And(k4_6_3, rich_0_0_3),\n                And(k4_6_4, rich_0_0_4),\n                And(k4_6_5, rich_0_0_5),\n                And(k4_6_8, rich_0_0_8),\n                And(k4_6_9, rich_0_0_9),\n                And(k4_6_10, rich_0_0_10),\n                And(k4_6_11, rich_0_0_11),\n                And(k4_6_13, rich_0_0_13),\n                And(k4_6_14, rich_0_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1280
+    },
+    {
+      "core_position": 2,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_6_0, rich_1_0_0),\n                And(k4_6_1, rich_1_0_1),\n                And(k4_6_2, rich_1_0_2),\n                And(k4_6_3, rich_1_0_3),\n                And(k4_6_4, rich_1_0_4),\n                And(k4_6_5, rich_1_0_5),\n                And(k4_6_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1282
+    },
+    {
+      "core_position": 3,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_6_0, rich_2_0_0),\n                And(k4_6_1, rich_2_0_1),\n                And(k4_6_2, rich_2_0_2),\n                And(k4_6_3, rich_2_0_3),\n                And(k4_6_7, rich_2_0_7),\n                And(k4_6_8, rich_2_0_8),\n                And(k4_6_9, rich_2_0_9),\n                And(k4_6_10, rich_2_0_10),\n                And(k4_6_11, rich_2_0_11),\n                And(k4_6_12, rich_2_0_12),\n                And(k4_6_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1283
+    },
+    {
+      "core_position": 4,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_9_0, rich_0_0_0),\n                And(k4_9_1, rich_0_0_1),\n                And(k4_9_2, rich_0_0_2),\n                And(k4_9_3, rich_0_0_3),\n                And(k4_9_4, rich_0_0_4),\n                And(k4_9_5, rich_0_0_5),\n                And(k4_9_6, rich_0_0_6),\n                And(k4_9_7, rich_0_0_7),\n                And(k4_9_10, rich_0_0_10),\n                And(k4_9_11, rich_0_0_11),\n                And(k4_9_13, rich_0_0_13),\n                And(k4_9_14, rich_0_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1428
+    },
+    {
+      "core_position": 5,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_9_0, rich_1_0_0),\n                And(k4_9_1, rich_1_0_1),\n                And(k4_9_2, rich_1_0_2),\n                And(k4_9_3, rich_1_0_3),\n                And(k4_9_4, rich_1_0_4),\n                And(k4_9_5, rich_1_0_5),\n                And(k4_9_6, rich_1_0_6),\n                And(k4_9_7, rich_1_0_7),\n                And(k4_9_8, rich_1_0_8),\n                And(k4_9_12, rich_1_0_12),\n                And(k4_9_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1430
+    },
+    {
+      "core_position": 6,
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_9_0, rich_2_0_0),\n                And(k4_9_1, rich_2_0_1),\n                And(k4_9_2, rich_2_0_2),\n                And(k4_9_3, rich_2_0_3),\n                And(k4_9_10, rich_2_0_10),\n                And(k4_9_11, rich_2_0_11),\n                And(k4_9_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1431
+    },
+    {
+      "core_position": 8,
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_0_0_0, rich_1_0_0),\n                And(rich_0_0_1, rich_1_0_1),\n                And(rich_0_0_2, rich_1_0_2),\n                And(rich_0_0_3, rich_1_0_3),\n                And(rich_0_0_4, rich_1_0_4),\n                And(rich_0_0_5, rich_1_0_5),\n                And(rich_0_0_6, rich_1_0_6),\n                And(rich_0_0_7, rich_1_0_7),\n                And(rich_0_0_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1569
+    },
+    {
+      "core_position": 9,
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_0_0_0, rich_2_0_0),\n                And(rich_0_0_1, rich_2_0_1),\n                And(rich_0_0_2, rich_2_0_2),\n                And(rich_0_0_3, rich_2_0_3),\n                And(rich_0_0_8, rich_2_0_8),\n                And(rich_0_0_9, rich_2_0_9),\n                And(rich_0_0_10, rich_2_0_10),\n                And(rich_0_0_11, rich_2_0_11),\n                And(rich_0_0_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1570
+    },
+    {
+      "core_position": 10,
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_1_0_4, rich_2_0_4),\n                And(rich_1_0_5, rich_2_0_5),\n                And(rich_1_0_6, rich_2_0_6),\n                And(rich_1_0_7, rich_2_0_7),\n                And(rich_1_0_8, rich_2_0_8),\n                And(rich_1_0_9, rich_2_0_9),\n                And(rich_1_0_10, rich_2_0_10),\n                And(rich_1_0_11, rich_2_0_11),\n                And(rich_1_0_12, rich_2_0_12)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1613
+    },
+    {
+      "core_position": 24,
+      "expression": "Not(rich_0_0_12)",
+      "family": "exact_rich_profiles",
+      "index": 12
+    },
+    {
+      "core_position": 27,
+      "expression": "PbEq(((rich_0_0_0, 1),\n      (rich_0_0_1, 1),\n      (rich_0_0_2, 1),\n      (rich_0_0_3, 1),\n      (rich_0_0_4, 1),\n      (rich_0_0_5, 1),\n      (rich_0_0_6, 1),\n      (rich_0_0_7, 1),\n      (rich_0_0_8, 1),\n      (rich_0_0_9, 1),\n      (rich_0_0_10, 1),\n      (rich_0_0_11, 1),\n      (rich_0_0_12, 1),\n      (rich_0_0_13, 1),\n      (rich_0_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 16
+    },
+    {
+      "core_position": 28,
+      "expression": "rich_0_0_0",
+      "family": "exact_rich_profiles",
+      "index": 17
+    },
+    {
+      "core_position": 29,
+      "expression": "rich_0_0_1",
+      "family": "exact_rich_profiles",
+      "index": 18
+    },
+    {
+      "core_position": 30,
+      "expression": "rich_0_0_2",
+      "family": "exact_rich_profiles",
+      "index": 19
+    },
+    {
+      "core_position": 31,
+      "expression": "rich_0_0_3",
+      "family": "exact_rich_profiles",
+      "index": 20
+    },
+    {
+      "core_position": 36,
+      "expression": "rich_1_0_4 == (d_4_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 39
+    },
+    {
+      "core_position": 37,
+      "expression": "rich_1_0_5 == (d_5_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 40
+    },
+    {
+      "core_position": 38,
+      "expression": "rich_1_0_6 == (d_6_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 41
+    },
+    {
+      "core_position": 39,
+      "expression": "rich_1_0_7 == (d_7_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 42
+    },
+    {
+      "core_position": 44,
+      "expression": "rich_1_0_12 == (d_12_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 47
+    },
+    {
+      "core_position": 45,
+      "expression": "Not(rich_1_0_13)",
+      "family": "exact_rich_profiles",
+      "index": 48
+    },
+    {
+      "core_position": 46,
+      "expression": "rich_1_0_14 == (d_13_14 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 49
+    },
+    {
+      "core_position": 47,
+      "expression": "PbEq(((rich_1_0_0, 1),\n      (rich_1_0_1, 1),\n      (rich_1_0_2, 1),\n      (rich_1_0_3, 1),\n      (rich_1_0_4, 1),\n      (rich_1_0_5, 1),\n      (rich_1_0_6, 1),\n      (rich_1_0_7, 1),\n      (rich_1_0_8, 1),\n      (rich_1_0_9, 1),\n      (rich_1_0_10, 1),\n      (rich_1_0_11, 1),\n      (rich_1_0_12, 1),\n      (rich_1_0_13, 1),\n      (rich_1_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 51
+    },
+    {
+      "core_position": 48,
+      "expression": "rich_1_0_4",
+      "family": "exact_rich_profiles",
+      "index": 52
+    },
+    {
+      "core_position": 49,
+      "expression": "rich_1_0_5",
+      "family": "exact_rich_profiles",
+      "index": 53
+    },
+    {
+      "core_position": 50,
+      "expression": "rich_1_0_6",
+      "family": "exact_rich_profiles",
+      "index": 54
+    },
+    {
+      "core_position": 51,
+      "expression": "rich_1_0_7",
+      "family": "exact_rich_profiles",
+      "index": 55
+    },
+    {
+      "core_position": 60,
+      "expression": "rich_2_0_8 == (d_8_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 78
+    },
+    {
+      "core_position": 61,
+      "expression": "rich_2_0_9 == (d_9_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 79
+    },
+    {
+      "core_position": 62,
+      "expression": "rich_2_0_10 == (d_10_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 80
+    },
+    {
+      "core_position": 63,
+      "expression": "rich_2_0_11 == (d_11_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 81
+    },
+    {
+      "core_position": 64,
+      "expression": "rich_2_0_12 == (d_12_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 82
+    },
+    {
+      "core_position": 65,
+      "expression": "rich_2_0_13 == (d_13_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 83
+    },
+    {
+      "core_position": 66,
+      "expression": "Not(rich_2_0_14)",
+      "family": "exact_rich_profiles",
+      "index": 84
+    },
+    {
+      "core_position": 67,
+      "expression": "PbEq(((rich_2_0_0, 1),\n      (rich_2_0_1, 1),\n      (rich_2_0_2, 1),\n      (rich_2_0_3, 1),\n      (rich_2_0_4, 1),\n      (rich_2_0_5, 1),\n      (rich_2_0_6, 1),\n      (rich_2_0_7, 1),\n      (rich_2_0_8, 1),\n      (rich_2_0_9, 1),\n      (rich_2_0_10, 1),\n      (rich_2_0_11, 1),\n      (rich_2_0_12, 1),\n      (rich_2_0_13, 1),\n      (rich_2_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 86
+    },
+    {
+      "core_position": 68,
+      "expression": "rich_2_0_8",
+      "family": "exact_rich_profiles",
+      "index": 87
+    },
+    {
+      "core_position": 69,
+      "expression": "rich_2_0_9",
+      "family": "exact_rich_profiles",
+      "index": 88
+    },
+    {
+      "core_position": 70,
+      "expression": "rich_2_0_10",
+      "family": "exact_rich_profiles",
+      "index": 89
+    },
+    {
+      "core_position": 71,
+      "expression": "rich_2_0_11",
+      "family": "exact_rich_profiles",
+      "index": 90
+    },
+    {
+      "core_position": 78,
+      "expression": "Not(k4_6_6)",
+      "family": "global_K4",
+      "index": 198
+    },
+    {
+      "core_position": 79,
+      "expression": "Implies(k4_6_7, d_6_7 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 199
+    },
+    {
+      "core_position": 80,
+      "expression": "Implies(k4_6_8, d_6_8 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 201
+    },
+    {
+      "core_position": 81,
+      "expression": "Implies(k4_6_9, d_6_9 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 203
+    },
+    {
+      "core_position": 82,
+      "expression": "Implies(k4_6_10, d_6_10 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 205
+    },
+    {
+      "core_position": 83,
+      "expression": "Implies(k4_6_11, d_6_11 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 207
+    },
+    {
+      "core_position": 84,
+      "expression": "Implies(k4_6_12, d_6_12 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 209
+    },
+    {
+      "core_position": 85,
+      "expression": "Implies(k4_6_13, d_6_13 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 211
+    },
+    {
+      "core_position": 87,
+      "expression": "PbEq(((k4_6_0, 1),\n      (k4_6_1, 1),\n      (k4_6_2, 1),\n      (k4_6_3, 1),\n      (k4_6_4, 1),\n      (k4_6_5, 1),\n      (k4_6_6, 1),\n      (k4_6_7, 1),\n      (k4_6_8, 1),\n      (k4_6_9, 1),\n      (k4_6_10, 1),\n      (k4_6_11, 1),\n      (k4_6_12, 1),\n      (k4_6_13, 1),\n      (k4_6_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 216
+    },
+    {
+      "core_position": 92,
+      "expression": "Implies(k4_9_4, d_4_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 287
+    },
+    {
+      "core_position": 93,
+      "expression": "Implies(k4_9_5, d_5_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 289
+    },
+    {
+      "core_position": 94,
+      "expression": "Implies(k4_9_6, d_6_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 291
+    },
+    {
+      "core_position": 95,
+      "expression": "Implies(k4_9_7, d_7_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 293
+    },
+    {
+      "core_position": 96,
+      "expression": "Implies(k4_9_8, d_8_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 295
+    },
+    {
+      "core_position": 97,
+      "expression": "Not(k4_9_9)",
+      "family": "global_K4",
+      "index": 297
+    },
+    {
+      "core_position": 100,
+      "expression": "Implies(k4_9_12, d_9_12 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 302
+    },
+    {
+      "core_position": 102,
+      "expression": "Implies(k4_9_14, d_9_14 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 306
+    },
+    {
+      "core_position": 103,
+      "expression": "PbEq(((k4_9_0, 1),\n      (k4_9_1, 1),\n      (k4_9_2, 1),\n      (k4_9_3, 1),\n      (k4_9_4, 1),\n      (k4_9_5, 1),\n      (k4_9_6, 1),\n      (k4_9_7, 1),\n      (k4_9_8, 1),\n      (k4_9_9, 1),\n      (k4_9_10, 1),\n      (k4_9_11, 1),\n      (k4_9_12, 1),\n      (k4_9_13, 1),\n      (k4_9_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 309
+    },
+    {
+      "core_position": 186,
+      "expression": "d_6_13 + d_10_14 >= d_13_14 + d_6_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 526
+    },
+    {
+      "core_position": 193,
+      "expression": "d_12_13 + d_8_14 >= d_8_13 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 541
+    },
+    {
+      "core_position": 199,
+      "expression": "d_12_13 + d_4_9 >= d_4_13 + d_9_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 598
+    },
+    {
+      "core_position": 205,
+      "expression": "d_12_13 + d_5_9 >= d_5_13 + d_9_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 640
+    },
+    {
+      "core_position": 206,
+      "expression": "d_7_13 + d_6_12 >= d_12_13 + d_6_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 659
+    },
+    {
+      "core_position": 207,
+      "expression": "d_7_13 + d_6_11 >= d_6_13 + d_7_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 666
+    },
+    {
+      "core_position": 209,
+      "expression": "d_12_13 + d_7_11 >= d_7_13 + d_11_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 694
+    },
+    {
+      "core_position": 211,
+      "expression": "d_8_13 + d_11_12 >= d_12_13 + d_8_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 712
+    },
+    {
+      "core_position": 257,
+      "expression": "d_8_14 + d_4_9 >= d_9_14 + d_4_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2355
+    },
+    {
+      "core_position": 258,
+      "expression": "d_9_14 + d_4_10 >= d_10_14 + d_4_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2361
+    },
+    {
+      "core_position": 259,
+      "expression": "d_10_14 + d_4_11 >= d_11_14 + d_4_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2365
+    },
+    {
+      "core_position": 261,
+      "expression": "d_12_14 + d_5_8 >= d_8_14 + d_5_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2389
+    },
+    {
+      "core_position": 265,
+      "expression": "d_4_8 + d_5_9 >= d_4_9 + d_5_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2509
+    },
+    {
+      "core_position": 266,
+      "expression": "d_4_9 + d_5_10 >= d_4_10 + d_5_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2515
+    },
+    {
+      "core_position": 267,
+      "expression": "d_4_10 + d_5_11 >= d_4_11 + d_5_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2519
+    },
+    {
+      "core_position": 269,
+      "expression": "d_5_12 + d_6_8 >= d_5_8 + d_6_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2601
+    },
+    {
+      "core_position": 270,
+      "expression": "d_5_8 + d_6_9 >= d_5_9 + d_6_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2609
+    },
+    {
+      "core_position": 271,
+      "expression": "d_5_9 + d_6_10 >= d_5_10 + d_6_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2615
+    },
+    {
+      "core_position": 272,
+      "expression": "d_5_10 + d_6_11 >= d_5_11 + d_6_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2619
+    },
+    {
+      "core_position": 276,
+      "expression": "d_6_9 + d_7_10 >= d_6_10 + d_7_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2675
+    },
+    {
+      "core_position": 277,
+      "expression": "d_6_10 + d_7_11 >= d_6_11 + d_7_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2679
+    },
+    {
+      "core_position": 279,
+      "expression": "d_7_9 + d_10_12 >= d_7_10 + d_9_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2707
+    },
+    {
+      "core_position": 280,
+      "expression": "d_7_10 + d_11_12 >= d_7_11 + d_10_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2711
+    },
+    {
+      "core_position": 281,
+      "expression": "d_9_12 + d_8_10 >= d_10_12 + d_8_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2721
+    },
+    {
+      "core_position": 282,
+      "expression": "d_10_12 + d_8_11 >= d_11_12 + d_8_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2725
+    }
+  ],
+  "remaining_family_counts": {
+    "cyclic_alternation_cut": 9,
+    "exact_rich_profiles": 30,
+    "global_K4": 18,
+    "strict_kalmanson": 25
+  },
+  "remaining_size": 82,
+  "unknown": 0
+}

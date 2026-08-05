@@ -1,0 +1,20 @@
+# STALE — invalid shifted QQ certificate metrics
+#
+# The source used here had an e2 substitution typo (two `br*bu` terms lost the
+# `x` shift).  Do not use these numbers as evidence.  See
+# `compact_shifted_relation.txt` and `x_subst_qq_corrected.out` for the
+# corrected characteristic-zero run.
+generated_utc=2026-08-02T14:54:29Z
+SHIFT_BASIS_SIZE=57
+SHIFT_TARGET_REMAINDER=0
+SHIFT_TARGET_ZERO=1
+SHIFT_LIFT_ROWS=57 SHIFT_LIFT_NZ=1 SHIFT_LIFT_TERMS=1 SHIFT_LIFT_MAXTERMS=1 SHIFT_LIFT_MAXDEG=7 SHIFT_LIFT_MAXCOEFFCHARS=532
+SHIFT_RECON_ZERO=1 SHIFT_D_NZ=6 SHIFT_D_TERMS=3685 SHIFT_D_MAXTERMS=826
+DROW 1 TERMS=275
+DROW 2 TERMS=357
+DROW 3 TERMS=783
+DROW 4 TERMS=826
+DROW 5 TERMS=631
+DROW 6 TERMS=813
+output_bytes=3717338
+script_sha256=48b6b729f02ff98ea9969c272bf2a9301aab7b171e024eaf6e2351c8c9a95564

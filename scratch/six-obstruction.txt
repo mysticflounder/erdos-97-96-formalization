@@ -1,0 +1,396 @@
+    (hBE_EF : dist B E = dist E F)
+    (hACD : signedArea2 A C D < 0)
+    (hADE : signedArea2 A D E < 0)
+    (hCDE : signedArea2 C D E < 0)
+    (hABC : signedArea2 A B C < 0)
+    (hABE : signedArea2 A B E < 0)
+    (hABF : signedArea2 A B F < 0) :
+    False := by
+  open Census554.EqualityCore in
+    apply mirror_interleaving_metric_orientation_incompatibility
+      (A := reflectXAxis A) (B := reflectXAxis B)
+      (C := reflectXAxis C) (D := reflectXAxis D)
+      (E := reflectXAxis E) (F := reflectXAxis F)
+  · exact fun h => hAD (reflectXAxis_injective h)
+  · simpa only [dist_reflectXAxis] using hAB_AF
+  · simpa only [dist_reflectXAxis] using hAC_AE
+  · simpa only [dist_reflectXAxis] using hAD_CD
+  · simpa only [dist_reflectXAxis] using hAD_DE
+  · simpa only [dist_reflectXAxis] using hBE_EF
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+
+/-- Boundary-order adapter for the mirror-interleaving Euclidean CEGAR cut. -/
+theorem false_of_six_ccw_mirror_interleaving_row_equalities
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id ie iff : Fin n}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (hide : id < ie) (hief : ie < iff)
+    (hAB_AF :
+      dist (boundary ia) (boundary ib) =
+        dist (boundary ia) (boundary iff))
+    (hAC_AE :
+      dist (boundary ia) (boundary ic) =
+        dist (boundary ia) (boundary ie))
+    (hAD_CD :
+      dist (boundary ia) (boundary id) =
+        dist (boundary ic) (boundary id))
+    (hAD_DE :
+      dist (boundary ia) (boundary id) =
+        dist (boundary id) (boundary ie))
+    (hBE_EF :
+      dist (boundary ib) (boundary ie) =
+        dist (boundary ie) (boundary iff)) :
+    False := by
+  have hACD :
+      signedArea2 (boundary ia) (boundary ic) (boundary id) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hiab.trans hibc) hicd
+  have hADE :
+      signedArea2 (boundary ia) (boundary id) (boundary ie) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hiab.trans (hibc.trans hicd)) hide
+  have hCDE :
+      signedArea2 (boundary ic) (boundary id) (boundary ie) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hicd hide
+  have hABC :
+      signedArea2 (boundary ia) (boundary ib) (boundary ic) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hiab hibc
+  have hABE :
+      signedArea2 (boundary ia) (boundary ib) (boundary ie) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hiab
+      (hibc.trans (hicd.trans hide))
+  have hABF :
+      signedArea2 (boundary ia) (boundary ib) (boundary iff) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hiab
+      (hibc.trans (hicd.trans (hide.trans hief)))
+  exact mirror_interleaving_metric_orientation_incompatibility_of_neg
+    (A := boundary ia) (B := boundary ib) (C := boundary ic)
+    (D := boundary id) (E := boundary ie) (F := boundary iff)
+    (hboundary_injective.ne
+      (hiab.trans (hibc.trans hicd)).ne)
+    hAB_AF hAC_AE hAD_CD hAD_DE hBE_EF
+    hACD hADE hCDE hABC hABE hABF
+
+set_option maxHeartbeats 800000 in
+-- Coordinate normalization plus the exact nonlinear elimination needs extra heartbeats.
+/-- The direct six-point metric-orientation cut found by the exact Euclidean
+subset miner. -/
+theorem metric_orientation_incompatibility
+    {A B C D E F : ℝ²}
+    (hAB : A ≠ B)
+    (hAB_AF : dist A B = dist A F)
+    (hAD_AF : dist A D = dist A F)
+    (hDA_DB : dist D A = dist D B)
+    (hCB_CE : dist C B = dist C E)
+    (hCD_CE : dist C D = dist C E)
+    (hCDA : 0 < signedArea2 C D A)
+    (hCDB : 0 < signedArea2 C D B)
+    (hDEB : 0 < signedArea2 D E B)
+    (hEFD : 0 < signedArea2 E F D)
+    (hFAB : 0 < signedArea2 F A B)
+    (hFAC : 0 < signedArea2 F A C)
+    (hFAD : 0 < signedArea2 F A D) :
+    False := by
+  let T := normSim A B
+  let x := T C 0
+  let s := T C 1
+  let y := T D 1
+  let m := T E 0
+  let n := T E 1
+  let p := T F 0
+  let q := T F 1
+  have hTA : T A = pt 0 0 := by
+    simpa [T] using normSim_fst A B
+  have hTB : T B = pt 1 0 := by
+    simpa [T] using normSim_snd A B hAB
+  have map_dist_eq {X Y Z W : ℝ²} (heq : dist X Y = dist Z W) :
+      dist (T X) (T Y) = dist (T Z) (T W) := by
+    simp only [T, normSim_dist_image A B hAB]
+    rw [heq]
+  have hAB_AD : dist A B = dist A D := hAB_AF.trans hAD_AF.symm
+  have hCB_CD : dist C B = dist C D := hCB_CE.trans hCD_CE.symm
+  have hDfst : T D 0 = 1 / 2 := by
+    apply normSim_center_fst_eq_half_of_equidistant hAB
+    simpa [dist_comm] using hDA_DB
+  have hDunit := normSim_dist_sq_eq_one hAB hAB_AD
+  change (T A 0 - T D 0) ^ 2 + (T A 1 - T D 1) ^ 2 = 1 at hDunit
+  rw [hTA] at hDunit
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, zero_sub,
+    neg_sq] at hDunit
+  have hysq : y ^ 2 = 3 / 4 := by
+    dsimp [y]
+    rw [hDfst] at hDunit
+    nlinarith only [hDunit]
+  have hCBCD := congrArg (fun r : ℝ => r ^ 2) (map_dist_eq hCB_CD)
+  change dist (T C) (T B) ^ 2 = dist (T C) (T D) ^ 2 at hCBCD
+  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hCBCD
+  rw [hTB] at hCBCD
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero] at hCBCD
+  have hx : x = 2 * y * s := by
+    dsimp [x, y, s]
+    rw [hDfst] at hCBCD
+    dsimp [y, s] at hysq
+    nlinarith only [hCBCD, hysq]
+  have hFunit := normSim_dist_sq_eq_one hAB hAB_AF
+  change (T A 0 - T F 0) ^ 2 + (T A 1 - T F 1) ^ 2 = 1 at hFunit
+  rw [hTA] at hFunit
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, zero_sub,
+    neg_sq] at hFunit
+  have hFcircle : p ^ 2 + q ^ 2 = 1 := by
+    simpa [p, q] using hFunit
+  have hCBCE := congrArg (fun r : ℝ => r ^ 2) (map_dist_eq hCB_CE)
+  change dist (T C) (T B) ^ 2 = dist (T C) (T E) ^ 2 at hCBCE
+  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hCBCE
+  rw [hTB] at hCBCE
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero] at hCBCE
+  have hEcircle :
+      (m - 2 * y * s) ^ 2 + (n - s) ^ 2 =
+        (1 - 2 * y * s) ^ 2 + s ^ 2 := by
+    dsimp [m, n, s]
+    dsimp [x] at hx
+    rw [← hx]
+    nlinarith only [hCBCE]
+  have hCDA' := normSim_signedArea_pos hAB hCDA
+  change 0 < signedArea2 (T C) (T D) (T A) at hCDA'
+  rw [hTA] at hCDA'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    zero_sub] at hCDA'
+  rw [hDfst] at hCDA'
+  change 0 < (1 / 2 - x) * (-s) - (-x) * (y - s) at hCDA'
+  have hCDAidentity :
+      (1 / 2 - x) * (-s) - (-x) * (y - s) = s := by
+    rw [hx]
+    linear_combination 2 * s * hysq
+  have hspos : 0 < s := by
+    rw [hCDAidentity] at hCDA'
+    exact hCDA'
+  have hCDB' := normSim_signedArea_pos hAB hCDB
+  change 0 < signedArea2 (T C) (T D) (T B) at hCDB'
+  rw [hTB] at hCDB'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hCDB'
+  rw [hDfst] at hCDB'
+  change 0 < (1 / 2 - x) * (0 - s) - (1 - x) * (y - s) at hCDB'
+  have hCDBidentity :
+      (1 / 2 - x) * (0 - s) - (1 - x) * (y - s) = 2 * s - y := by
+    rw [hx]
+    linear_combination 2 * s * hysq
+  have hkpos : 0 < 2 * s - y := by
+    rw [hCDBidentity] at hCDB'
+    exact hCDB'
+  have hFAB' := normSim_signedArea_pos hAB hFAB
+  change 0 < signedArea2 (T F) (T A) (T B) at hFAB'
+  rw [hTA, hTB] at hFAB'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    zero_sub] at hFAB'
+  have hqpos : 0 < q := by
+    dsimp [p, q]
+    nlinarith only [hFAB']
+  have hFAC' := normSim_signedArea_pos hAB hFAC
+  change 0 < signedArea2 (T F) (T A) (T C) at hFAC'
+  rw [hTA] at hFAC'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    zero_sub] at hFAC'
+  change 0 < (-p) * (s - q) - (x - p) * (-q) at hFAC'
+  have hFACidentity :
+      (-p) * (s - q) - (x - p) * (-q) = s * (2 * y * q - p) := by
+    rw [hx]
+    ring
+  have hfacScalar : 0 < 2 * y * q - p := by
+    have hproduct : 0 < s * (2 * y * q - p) := by
+      rw [← hFACidentity]
+      exact hFAC'
+    exact pos_of_mul_pos_right hproduct hspos.le
+  have hFAD' := normSim_signedArea_pos hAB hFAD
+  change 0 < signedArea2 (T F) (T A) (T D) at hFAD'
+  rw [hTA] at hFAD'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    zero_sub] at hFAD'
+  have hfadScalar : 0 < q / 2 - p * y := by
+    dsimp [p, q, y]
+    rw [hDfst] at hFAD'
+    nlinarith only [hFAD']
+  have hDEB' := normSim_signedArea_pos hAB hDEB
+  change 0 < signedArea2 (T D) (T E) (T B) at hDEB'
+  rw [hTB] at hDEB'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hDEB'
+  have hdebScalar : 0 < y * (1 - m) - n / 2 := by
+    dsimp [y, m, n]
+    rw [hDfst] at hDEB'
+    nlinarith only [hDEB']
+  have hEFD' := normSim_signedArea_pos hAB hEFD
+  change 0 < signedArea2 (T E) (T F) (T D) at hEFD'
+  simp only [signedArea2] at hEFD'
+  have hefdScalar :
+      0 < (p - m) * (y - n) - (q - n) * (1 / 2 - m) := by
+    dsimp [p, q, m, n, y]
+    rw [hDfst] at hEFD'
+    nlinarith only [hEFD']
+  exact normalized_six_point_incompatible y s m n p q hysq hkpos
+    hFcircle hEcircle hqpos hfacScalar hfadScalar hdebScalar hefdScalar
+
+/-- Reversed-orientation form of `metric_orientation_incompatibility`.
+Reflection preserves the five metric equalities and changes all seven
+orientation signs. -/
+theorem metric_orientation_incompatibility_of_neg
+    {A B C D E F : ℝ²}
+    (hAB : A ≠ B)
+    (hAB_AF : dist A B = dist A F)
+    (hAD_AF : dist A D = dist A F)
+    (hDA_DB : dist D A = dist D B)
+    (hCB_CE : dist C B = dist C E)
+    (hCD_CE : dist C D = dist C E)
+    (hCDA : signedArea2 C D A < 0)
+    (hCDB : signedArea2 C D B < 0)
+    (hDEB : signedArea2 D E B < 0)
+    (hEFD : signedArea2 E F D < 0)
+    (hFAB : signedArea2 F A B < 0)
+    (hFAC : signedArea2 F A C < 0)
+    (hFAD : signedArea2 F A D < 0) :
+    False := by
+  open Census554.EqualityCore in
+    apply metric_orientation_incompatibility
+      (A := reflectXAxis A) (B := reflectXAxis B)
+      (C := reflectXAxis C) (D := reflectXAxis D)
+      (E := reflectXAxis E) (F := reflectXAxis F)
+  · exact fun h => hAB (reflectXAxis_injective h)
+  · simpa only [dist_reflectXAxis] using hAB_AF
+  · simpa only [dist_reflectXAxis] using hAD_AF
+  · simpa only [dist_reflectXAxis] using hDA_DB
+  · simpa only [dist_reflectXAxis] using hCB_CE
+  · simpa only [dist_reflectXAxis] using hCD_CE
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+
+/-- Boundary-order adapter for the six-point Euclidean CEGAR cut. -/
+theorem false_of_six_ccw_row_equalities
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id ie iff : Fin n}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (hide : id < ie) (hief : ie < iff)
+    (hAB_AF :
+      dist (boundary ia) (boundary ib) =
+        dist (boundary ia) (boundary iff))
+    (hAD_AF :
+      dist (boundary ia) (boundary id) =
+        dist (boundary ia) (boundary iff))
+    (hDA_DB :
+      dist (boundary id) (boundary ia) =
+        dist (boundary id) (boundary ib))
+    (hCB_CE :
+      dist (boundary ic) (boundary ib) =
+        dist (boundary ic) (boundary ie))
+    (hCD_CE :
+      dist (boundary ic) (boundary id) =
+        dist (boundary ic) (boundary ie)) :
+    False := by
+  have cyclic_area (X Y Z : ℝ²) :
+      signedArea2 X Y Z = signedArea2 Z X Y := by
+    simp only [signedArea2]
+    ring
+  have hACD :
+      signedArea2 (boundary ia) (boundary ic) (boundary id) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hiab.trans hibc) hicd
+  have hBCD :
+      signedArea2 (boundary ib) (boundary ic) (boundary id) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hibc hicd
+  have hBDE :
+      signedArea2 (boundary ib) (boundary id) (boundary ie) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hibc.trans hicd) hide
+  have hDEF :
+      signedArea2 (boundary id) (boundary ie) (boundary iff) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hide hief
+  have hABF :
+      signedArea2 (boundary ia) (boundary ib) (boundary iff) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw hiab
+      (hibc.trans (hicd.trans (hide.trans hief)))
+  have hACF :
+      signedArea2 (boundary ia) (boundary ic) (boundary iff) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hiab.trans hibc) (hicd.trans (hide.trans hief))
+  have hADF :
+      signedArea2 (boundary ia) (boundary id) (boundary iff) < 0 :=
+    hneg_of_ccw hboundary_injective hboundary_ccw
+      (hiab.trans (hibc.trans hicd)) (hide.trans hief)
+  apply metric_orientation_incompatibility_of_neg
+      (A := boundary ia) (B := boundary ib) (C := boundary ic)
+      (D := boundary id) (E := boundary ie) (F := boundary iff)
+      (hboundary_injective.ne hiab.ne)
+      hAB_AF hAD_AF hDA_DB hCB_CE hCD_CE
+  · rw [cyclic_area]
+    exact hACD
+  · rw [cyclic_area]
+    exact hBCD
+  · rw [cyclic_area]
+    exact hBDE
+  · rw [cyclic_area]
+    exact hDEF
+  · rw [cyclic_area, cyclic_area]
+    exact hABF
+  · rw [cyclic_area, cyclic_area]
+    exact hACF
+  · rw [cyclic_area, cyclic_area]
+    exact hADF
+
+/-- Selected-row consumer for the six-point Euclidean CEGAR cut. -/
+theorem false_of_six_ccw_three_selected_rows
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id ie iff : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (hide : id < ie) (hief : ie < iff)
+    (ARow : SelectedFourClass carrier (boundary ia))
+    (CRow : SelectedFourClass carrier (boundary ic))
+    (DRow : SelectedFourClass carrier (boundary id))
+    (hb_mem_ARow : boundary ib ∈ ARow.support)
+    (hd_mem_ARow : boundary id ∈ ARow.support)
+    (hf_mem_ARow : boundary iff ∈ ARow.support)
+    (hb_mem_CRow : boundary ib ∈ CRow.support)
+    (hd_mem_CRow : boundary id ∈ CRow.support)
+    (he_mem_CRow : boundary ie ∈ CRow.support)
+    (ha_mem_DRow : boundary ia ∈ DRow.support)
+    (hb_mem_DRow : boundary ib ∈ DRow.support) :
+    False := by
+  apply false_of_six_ccw_row_equalities
+    hboundary_injective hboundary_ccw hiab hibc hicd hide hief
+  · exact
+      (ARow.support_eq_radius _ hb_mem_ARow).trans
+        (ARow.support_eq_radius _ hf_mem_ARow).symm
+  · exact
+      (ARow.support_eq_radius _ hd_mem_ARow).trans
+        (ARow.support_eq_radius _ hf_mem_ARow).symm
+  · exact
+      (DRow.support_eq_radius _ ha_mem_DRow).trans
+        (DRow.support_eq_radius _ hb_mem_DRow).symm
+  · exact
+      (CRow.support_eq_radius _ hb_mem_CRow).trans

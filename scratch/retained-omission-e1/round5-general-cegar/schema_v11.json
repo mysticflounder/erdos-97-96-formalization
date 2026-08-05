@@ -1,0 +1,77 @@
+{
+  "schema_version": 11,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v8.json",
+    "encoder": "round5_cegar_v8.py",
+    "miner": "round5_cegar_v9.py full-shell power-pattern miner",
+    "meaning": "all v8 constraints are retained; v11 adds a sound Bool-only prepass before the first mixed full-solver check"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "strict_interior_profile": [4, 4, 4],
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "boolean_relaxation": {
+    "selection_unit": "individual v8 constraint",
+    "include_criterion": "every free uninterpreted constant has Bool sort",
+    "exclude_criterion": "at least one free uninterpreted constant has Real, Int, or another non-Bool sort",
+    "soundness": "the relaxation is a literal subset of v8 assertions",
+    "loop": "SAT model -> mine one v9 full-shell unique-possible-matching cut -> independently replay and assert into both Boolean and full solvers -> repeat",
+    "budgets": ["wall-clock milliseconds", "candidate submatrices", "learned cuts"],
+    "timeout_or_budget": "nonterminal; proceed to full solver with already admitted cuts",
+    "unsat_gate": "report full-case UNSAT only when every learned cut is theorem-sound and provenance-complete"
+  },
+  "cut_admission": {
+    "family": "power_pattern_rank4_full_shell",
+    "lean_theorem": "Problem97.Census554.CirclePowerMatrix.false_of_powerMatrix_unique_possible_matching",
+    "criterion": "all 120 permutations enumerated; exactly one avoids forced-zero cells; its five entries are certified nonzero",
+    "full_shell_sources": ["active critical_full_row", "unconditional exact_rich_profiles"],
+    "formula_binding": "resolve every named row against the exact Encoding, validate row kinds and every indexed cell/point, reconstruct Not(And(activations, certified nonzeros, forced zeros)), require exact sexpr equality, and recompute its SHA-256",
+    "sexpr_hash_bytes": "UTF-8 bytes of reconstructed_cut.sexpr() with no added newline",
+    "required_evidence": [
+      "exact schema arm",
+      "exact antecedent",
+      "independent 120-permutation replay",
+      "source-model falsification",
+      "certificate hash",
+      "cut-expression hash",
+      "miner source hash",
+      "formula-before-cut hash"
+    ]
+  },
+  "first_check_invariant": {
+    "requirement": "every Boolean-prepass learned cut is asserted into the full v8 solver before its first check",
+    "audit_fields": [
+      "base_full_encoding_sha256",
+      "first_check_encoding_sha256",
+      "pre_first_check_power_cut_count",
+      "full_solver_check_count"
+    ]
+  },
+  "worker_provenance_gate": {
+    "timing": "before Encoding construction",
+    "comparison": "exact equality after recomputing target, schema version, v11/v8/v9/schema/uv.lock hashes, and the complete source contract",
+    "miner_hash": "admissions must use the miner_v9_script_sha256 accepted by this gate"
+  },
+  "matrix": {
+    "workers": "integer in 1..24",
+    "complete": "the returned case multiset is exact and unknown=0 and error=0",
+    "exit": "zero iff complete; nonzero otherwise",
+    "audit": ["resolved budgets", "elapsed seconds", "completeness", "full encoding hash by case"]
+  },
+  "retry": {
+    "source": "an exact-current schema-v8 summary for the same target with complete v8 frozen provenance",
+    "byte_binding": "read once; parse and SHA-256 the same byte string"
+  },
+  "artifacts": {
+    "boolean_prepass.json": "filter counts, budgets, checks, models, terminal reason, and initial/final Boolean formula hashes",
+    "boolean_encoding.smt2.gz": "replayable final Boolean formula after every admitted prepass cut",
+    "power_cuts_v11.json": "all learned cuts, admissions, source-model falsification, hashes, and phase counts",
+    "encoding.smt2.gz": "full formula including all learned cuts",
+    "result.json": "case verdict, provenance, counts, hashes, and artifact hashes"
+  },
+  "status_values": ["sat", "unsat", "unknown", "error"],
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

@@ -340,3 +340,18 @@ docs/live-blueprint.md.tmp
 # root cause). Differs from the canonical certificate under the same driver
 # directory -- not a duplicate, just an accidental/unreliable capture.
 /scratch/**/root-cwd-strays-*/
+
+# same-blocker-common-omission-euclidean-v3 crossed-arm-qf-nra-v4
+# metric-core-miner-v9 Singular certificate exports over GitHub's 100 MB hard
+# push limit (largest already-committed file repo-wide is ~83 MB). Regenerate
+# from the pinned Singular drivers in the same directory.
+/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/localized-q1-transformed-product-certificate-v1.singexpr
+/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/localized-q1-simple-product-certificate.singexpr
+/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/q1-buchberger-proof-dag-better.json
+/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/q1-buchberger-proof-dag-better-basis203.json
+
+# Root-level Singular certificate export over GitHub's 100 MB hard push
+# limit (271 MB). GitHub's pre-receive hook rejected the initial
+# worktree-hygiene-sweep push over this file. Regenerate from the pinned
+# Singular driver in the same scratch/ tree.
+/scratch/q1_radical_staged_exact.singexpr

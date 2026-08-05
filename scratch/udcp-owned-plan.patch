@@ -1,0 +1,53 @@
+diff --git a/docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md b/docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md
+--- a/docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md
++++ b/docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md
+@@ -1167,3 +1167,49 @@ only a source/build checkpoint: the terminal remains `sorry`-backed and has
+ not passed a closing transitive proof-blueprint and axiom audit. Those gates
+ must be rerun after the terminal is proved before any closure claim.
++
++## 2026-08-02 rich--rich count-kernel checkpoint
++
++The first unconditional production slice of that route is now isolated in
++`lean/Erdos9796Proof/P97/ATail/RichApexCoverCount.lean`.  It contains an
++`omega` contradiction for the twelve decomposition counts and a finite-set
++cover lemma reducing three at-most-one cuts to `K.card ≤ 3`.  These kernels
++are independent of the scratch `Fin 15` labels (`K7`/`K8`) and therefore do
++not claim an exact-15 or live `FreshThird` result.  The targeted Lean 4.27
++build completed successfully with no linter warnings, and an explicit
++`#print axioms` check reports only the standard `propext`, `Classical.choice`
++(for the finite-set cover), and `Quot.sound` dependencies.  The next
++promotion step is an explicit import plus a source-faithful adapter supplying
++the count variables and the three cut bounds from the live blocker packet.
++Until that adapter is proved, the normalized-residual `sorry` remains open.
++
++## 2026-08-02 parity-adapter correction and corpus search
++
++The parity audit corrected the earlier domain classification: all nine finite
++clauses can be partitioned into the four existing nonalternating order
++terminals.  Three clauses are wholly between their centers (`_split`), one is
++wholly after them (`_before`), and five are before-or-after unions; the latter
++split into the `_after`, `_before`, or `_enclosed` cases.  This removes the
++previously recorded concern that an additional cyclic-rotation terminal was
++needed.
++
++An agentic Lean-corpus search for the combined live adapter shape returned no
++single reusable theorem.  It found the existing FreshThird normalization and
++support-radius facts separately, but no theorem deriving five finite support
++sets, common-radius equalities, and the order partitions from
++`FreshThirdBlockerFiber`.  Consequently the next source-faithful target is a
++three-part adapter (support extraction, radius transfer, then finite order
++partition), not another scratch `K8` enumeration or an import alias.
++
++## 2026-08-02 finite order-kernel checkpoint
++
++The finite order component is now isolated in
++`lean/Erdos9796Proof/P97/ATail/FreshThirdOrderPartition.lean`.  Its
++`Problem97.freshThird_pair_order_partition` theorem proves the four-way
++nonalternating partition for two ordered `Fin n` endpoints lying either on
++the same outside side or in the open interval between their centers.  The
++targeted Lean 4.27 build completed successfully with no linter warnings, and
++`#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound`.
++This is a reusable finite producer for the future parity adapter, not closure:
++the live `FreshThirdBlockerFiber` packet still does not derive its region
++hypothesis (nor the support extraction and radius-transfer data) for the
++residual theorem.

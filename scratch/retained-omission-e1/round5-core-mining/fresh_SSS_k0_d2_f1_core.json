@@ -1,0 +1,2523 @@
+{
+  "case_id": "fresh_SSS_k0_d2_f1",
+  "constraint_total": 68308,
+  "core": [
+    {
+      "expression": "PbEq(((fresh_B2_0, 1),\n      (fresh_B2_1, 1),\n      (fresh_B2_2, 1),\n      (fresh_B2_3, 1),\n      (fresh_B2_4, 1),\n      (fresh_B2_5, 1),\n      (fresh_B2_6, 1),\n      (fresh_B2_7, 1),\n      (fresh_B2_8, 1),\n      (fresh_B2_9, 1),\n      (fresh_B2_10, 1),\n      (fresh_B2_11, 1),\n      (fresh_B2_12, 1),\n      (fresh_B2_13, 1),\n      (fresh_B2_14, 1)),\n     4)",
+      "family": "common_deletion_packets",
+      "index": 206
+    },
+    {
+      "expression": "Not(fresh_B2_1)",
+      "family": "common_deletion_packets",
+      "index": 208
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_2), d_1_2 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 243
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_4), d_1_4 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 245
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_5), d_1_5 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 246
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_6), d_1_6 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 247
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_7), d_1_7 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 248
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_8), d_1_8 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 249
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_10),\n        d_1_10 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 251
+    },
+    {
+      "expression": "Implies(And(block_2_1, fresh_B2_12),\n        d_1_12 == fresh_radius2)",
+      "family": "common_deletion_packets",
+      "index": 253
+    },
+    {
+      "expression": "Not(block_2_2)",
+      "family": "critical_blocker_map",
+      "index": 4
+    },
+    {
+      "expression": "PbEq(((block_2_0, 1),\n      (block_2_1, 1),\n      (block_2_3, 1),\n      (block_2_4, 1),\n      (block_2_5, 1),\n      (block_2_6, 1),\n      (block_2_7, 1),\n      (block_2_8, 1),\n      (block_2_9, 1),\n      (block_2_10, 1),\n      (block_2_11, 1)),\n     1)",
+      "family": "critical_blocker_map",
+      "index": 5
+    },
+    {
+      "expression": "Not(critical_row_0_0)",
+      "family": "critical_full_row",
+      "index": 0
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_0 == (d_0_1 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 32
+    },
+    {
+      "expression": "Not(critical_row_1_1)",
+      "family": "critical_full_row",
+      "index": 34
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_2 == (d_1_2 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 36
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_4 == (d_1_4 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 40
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_5 == (d_1_5 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 42
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_6 == (d_1_6 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 44
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_7 == (d_1_7 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 46
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_8 == (d_1_8 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 48
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_9 == (d_1_9 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 50
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_10 == (d_1_10 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 52
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_11 == (d_1_11 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 54
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        critical_row_1_12 == (d_1_12 == critical_radius_1))",
+      "family": "critical_full_row",
+      "index": 56
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        PbEq(((critical_row_1_0, 1),\n              (critical_row_1_1, 1),\n              (critical_row_1_2, 1),\n              (critical_row_1_3, 1),\n              (critical_row_1_4, 1),\n              (critical_row_1_5, 1),\n              (critical_row_1_6, 1),\n              (critical_row_1_7, 1),\n              (critical_row_1_8, 1),\n              (critical_row_1_9, 1),\n              (critical_row_1_10, 1),\n              (critical_row_1_11, 1),\n              (critical_row_1_12, 1),\n              (critical_row_1_13, 1),\n              (critical_row_1_14, 1)),\n             4))",
+      "family": "critical_full_row",
+      "index": 63
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_4,\n                k4_11_2,\n                k4_11_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3504
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_5,\n                k4_11_2,\n                k4_11_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3505
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_6,\n                k4_11_2,\n                k4_11_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3506
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_7,\n                k4_11_2,\n                k4_11_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3507
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_8,\n                k4_11_2,\n                k4_11_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3508
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_9,\n                k4_11_2,\n                k4_11_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3509
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_10,\n                k4_11_2,\n                k4_11_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3510
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_12,\n                k4_11_2,\n                k4_11_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3511
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_7,\n                critical_row_1_9,\n                k4_11_7,\n                k4_11_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3544
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_8,\n                critical_row_1_12,\n                k4_11_8,\n                k4_11_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3550
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_6,\n                rich_0_0_2,\n                rich_0_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3566
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_2,\n                critical_row_1_6,\n                rich_1_0_2,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3597
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_4,\n                critical_row_1_5,\n                rich_1_0_4,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3615
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_4,\n                critical_row_1_6,\n                rich_1_0_4,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3616
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_4,\n                critical_row_1_7,\n                rich_1_0_4,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3617
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_4,\n                critical_row_1_11,\n                rich_1_0_4,\n                rich_1_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3621
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_4,\n                critical_row_1_12,\n                rich_1_0_4,\n                rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3622
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_5,\n                critical_row_1_6,\n                rich_1_0_5,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3624
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_5,\n                critical_row_1_7,\n                rich_1_0_5,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3625
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_5,\n                critical_row_1_11,\n                rich_1_0_5,\n                rich_1_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3629
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_5,\n                critical_row_1_12,\n                rich_1_0_5,\n                rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3630
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_6,\n                critical_row_1_7,\n                rich_1_0_6,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3632
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_6,\n                critical_row_1_8,\n                rich_1_0_6,\n                rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3633
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_6,\n                critical_row_1_11,\n                rich_1_0_6,\n                rich_1_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3636
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_6,\n                critical_row_1_12,\n                rich_1_0_6,\n                rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3637
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_7,\n                critical_row_1_11,\n                rich_1_0_7,\n                rich_1_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3642
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_7,\n                critical_row_1_12,\n                rich_1_0_7,\n                rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3643
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_0,\n                critical_row_1_8,\n                rich_2_0_0,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3664
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_0,\n                critical_row_1_9,\n                rich_2_0_0,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3665
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_0,\n                critical_row_1_10,\n                rich_2_0_0,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3666
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_0,\n                critical_row_1_11,\n                rich_2_0_0,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3667
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_8,\n                critical_row_1_9,\n                rich_2_0_8,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3701
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_8,\n                critical_row_1_10,\n                rich_2_0_8,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3702
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_8,\n                critical_row_1_11,\n                rich_2_0_8,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3703
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_8,\n                critical_row_1_12,\n                rich_2_0_8,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3704
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_9,\n                critical_row_1_10,\n                rich_2_0_9,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3706
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_9,\n                critical_row_1_11,\n                rich_2_0_9,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3707
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_9,\n                critical_row_1_12,\n                rich_2_0_9,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3708
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_10,\n                critical_row_1_11,\n                rich_2_0_10,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3710
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_10,\n                critical_row_1_12,\n                rich_2_0_10,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3711
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        Not(And(critical_row_1_11,\n                critical_row_1_12,\n                rich_2_0_11,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 3713
+    },
+    {
+      "expression": "Implies(And(Or(block_0_3,\n               block_1_3,\n               block_2_3,\n               block_3_3,\n               block_4_3,\n               block_5_3,\n               block_6_3,\n               block_7_3,\n               block_8_3,\n               block_9_3,\n               block_10_3,\n               block_11_3,\n               block_12_3,\n               block_13_3,\n               block_14_3),\n            True),\n        Not(And(critical_row_3_0,\n                critical_row_3_2,\n                rich_0_0_0,\n                rich_0_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 8223
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_1_8, k4_1_10, rich_2_0_8, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 29602
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_1_9, k4_1_10, rich_2_0_9, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 29606
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_1_10, k4_1_12, rich_2_0_10, rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 29611
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_1, rich_0_0_0, rich_0_0_1)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45876
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_2, rich_0_0_0, rich_0_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45877
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_3, rich_0_0_0, rich_0_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45878
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_4, rich_0_0_0, rich_0_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45879
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_6, rich_0_0_0, rich_0_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45881
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_7, rich_0_0_0, rich_0_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45882
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_13, rich_0_0_0, rich_0_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45883
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_14, rich_0_0_0, rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45884
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_2, rich_0_0_1, rich_0_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45885
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_3, rich_0_0_1, rich_0_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45886
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_6, rich_0_0_1, rich_0_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45889
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_7, rich_0_0_1, rich_0_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45890
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_13, rich_0_0_1, rich_0_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45891
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_14, rich_0_0_1, rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45892
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_3, rich_0_0_2, rich_0_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45893
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_4, rich_0_0_2, rich_0_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45894
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_6, rich_0_0_2, rich_0_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45896
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_7, rich_0_0_2, rich_0_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45897
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_13, rich_0_0_2, rich_0_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45898
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_14, rich_0_0_2, rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45899
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_4, rich_0_0_3, rich_0_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45900
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_5, rich_0_0_3, rich_0_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45901
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_6, rich_0_0_3, rich_0_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45902
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_13, rich_0_0_3, rich_0_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45904
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_14, rich_0_0_3, rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45905
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_14, rich_0_0_5, rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45914
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_13, rich_0_0_6, rich_0_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45916
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_13,\n                k4_11_14,\n                rich_0_0_13,\n                rich_0_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45923
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_4, rich_1_0_0, rich_1_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45927
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_6, rich_1_0_0, rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45929
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_7, rich_1_0_0, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45930
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_8, rich_1_0_0, rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45931
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_7, rich_1_0_1, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45941
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_6, rich_1_0_2, rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45950
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_7, rich_1_0_2, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45951
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_6, rich_1_0_3, rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45959
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_5, rich_1_0_4, rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45966
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_6, rich_1_0_4, rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45967
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_7, rich_1_0_4, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45968
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_8, rich_1_0_4, rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45969
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_9, rich_1_0_4, rich_1_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45970
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_12, rich_1_0_4, rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45972
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_4, k4_11_14, rich_1_0_4, rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45973
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_6, rich_1_0_5, rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45974
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_7, rich_1_0_5, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45975
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_8, rich_1_0_5, rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45976
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_12, rich_1_0_5, rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45979
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_14, rich_1_0_5, rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45980
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_7, rich_1_0_6, rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45981
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_8, rich_1_0_6, rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45982
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_9, rich_1_0_6, rich_1_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45983
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_10, rich_1_0_6, rich_1_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45984
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_12, rich_1_0_6, rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45985
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_14, rich_1_0_6, rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45986
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_8, rich_1_0_7, rich_1_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45987
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_10, rich_1_0_7, rich_1_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45989
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_12, rich_1_0_7, rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45990
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_14, rich_1_0_7, rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45991
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_8, k4_11_12, rich_1_0_8, rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45994
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_10,\n                k4_11_12,\n                rich_1_0_10,\n                rich_1_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 45999
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_12,\n                k4_11_14,\n                rich_1_0_12,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46001
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_0, k4_11_13, rich_2_0_0, rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46005
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_1, k4_11_13, rich_2_0_1, rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46008
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_2, k4_11_13, rich_2_0_2, rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46010
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_3, k4_11_13, rich_2_0_3, rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46011
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_5, k4_11_9, rich_2_0_5, rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46022
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_8, rich_2_0_6, rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46026
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_9, rich_2_0_6, rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46027
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_6, k4_11_10, rich_2_0_6, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46028
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_8, rich_2_0_7, rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46030
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_9, rich_2_0_7, rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46031
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_7, k4_11_10, rich_2_0_7, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46032
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_8, k4_11_9, rich_2_0_8, rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46034
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_8, k4_11_10, rich_2_0_8, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46035
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_8, k4_11_12, rich_2_0_8, rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46036
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_9, k4_11_10, rich_2_0_9, rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46037
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_9, k4_11_12, rich_2_0_9, rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46038
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(k4_11_10,\n                k4_11_12,\n                rich_2_0_10,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46039
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(k4_11_2, k4_11_9, fresh_B2_2, fresh_B2_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46773
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(k4_11_2, k4_11_10, fresh_B2_2, fresh_B2_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46774
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(k4_11_2, k4_11_12, fresh_B2_2, fresh_B2_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 46775
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_1,\n                rich_1_0_0,\n                rich_1_0_1)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47264
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_2,\n                rich_1_0_0,\n                rich_1_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47265
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_3,\n                rich_1_0_0,\n                rich_1_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47266
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_4,\n                rich_1_0_0,\n                rich_1_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47267
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_5,\n                rich_1_0_0,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47268
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_6,\n                rich_1_0_0,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47269
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_7,\n                rich_1_0_0,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47270
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_14,\n                rich_1_0_0,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47271
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_2,\n                rich_1_0_1,\n                rich_1_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47272
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_3,\n                rich_1_0_1,\n                rich_1_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47273
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_4,\n                rich_1_0_1,\n                rich_1_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47274
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_5,\n                rich_1_0_1,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47275
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_6,\n                rich_1_0_1,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47276
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_7,\n                rich_1_0_1,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47277
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_14,\n                rich_1_0_1,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47278
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_3,\n                rich_1_0_2,\n                rich_1_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47279
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_4,\n                rich_1_0_2,\n                rich_1_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47280
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_5,\n                rich_1_0_2,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47281
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_6,\n                rich_1_0_2,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47282
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_7,\n                rich_1_0_2,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47283
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_14,\n                rich_1_0_2,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47284
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_4,\n                rich_1_0_3,\n                rich_1_0_4)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47285
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_5,\n                rich_1_0_3,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47286
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_6,\n                rich_1_0_3,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47287
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_7,\n                rich_1_0_3,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47288
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_14,\n                rich_1_0_3,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47289
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_4,\n                rich_0_0_5,\n                rich_1_0_4,\n                rich_1_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47290
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_4,\n                rich_0_0_6,\n                rich_1_0_4,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47291
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_4,\n                rich_0_0_7,\n                rich_1_0_4,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47292
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_4,\n                rich_0_0_14,\n                rich_1_0_4,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47293
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_5,\n                rich_0_0_6,\n                rich_1_0_5,\n                rich_1_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47294
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_5,\n                rich_0_0_7,\n                rich_1_0_5,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47295
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_5,\n                rich_0_0_14,\n                rich_1_0_5,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47296
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_6,\n                rich_0_0_7,\n                rich_1_0_6,\n                rich_1_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47297
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_6,\n                rich_0_0_14,\n                rich_1_0_6,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47298
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_7,\n                rich_0_0_14,\n                rich_1_0_7,\n                rich_1_0_14)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47299
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_1,\n                rich_2_0_0,\n                rich_2_0_1)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47306
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_2,\n                rich_2_0_0,\n                rich_2_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47307
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_3,\n                rich_2_0_0,\n                rich_2_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47308
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_8,\n                rich_2_0_0,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47309
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_9,\n                rich_2_0_0,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47310
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_10,\n                rich_2_0_0,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47311
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_11,\n                rich_2_0_0,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47312
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_0,\n                rich_0_0_13,\n                rich_2_0_0,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47313
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_2,\n                rich_2_0_1,\n                rich_2_0_2)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47314
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_3,\n                rich_2_0_1,\n                rich_2_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47315
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_8,\n                rich_2_0_1,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47316
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_9,\n                rich_2_0_1,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47317
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_10,\n                rich_2_0_1,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47318
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_11,\n                rich_2_0_1,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47319
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_1,\n                rich_0_0_13,\n                rich_2_0_1,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47320
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_3,\n                rich_2_0_2,\n                rich_2_0_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47321
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_8,\n                rich_2_0_2,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47322
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_9,\n                rich_2_0_2,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47323
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_10,\n                rich_2_0_2,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47324
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_11,\n                rich_2_0_2,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47325
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_2,\n                rich_0_0_13,\n                rich_2_0_2,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47326
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_8,\n                rich_2_0_3,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47327
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_9,\n                rich_2_0_3,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47328
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_10,\n                rich_2_0_3,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47329
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_11,\n                rich_2_0_3,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47330
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_3,\n                rich_0_0_13,\n                rich_2_0_3,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47331
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_8,\n                rich_0_0_9,\n                rich_2_0_8,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47338
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_8,\n                rich_0_0_10,\n                rich_2_0_8,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47339
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_8,\n                rich_0_0_11,\n                rich_2_0_8,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47340
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_8,\n                rich_0_0_13,\n                rich_2_0_8,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47341
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_9,\n                rich_0_0_10,\n                rich_2_0_9,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47342
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_9,\n                rich_0_0_11,\n                rich_2_0_9,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47343
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_9,\n                rich_0_0_13,\n                rich_2_0_9,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47344
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_10,\n                rich_0_0_11,\n                rich_2_0_10,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47345
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_10,\n                rich_0_0_13,\n                rich_2_0_10,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47346
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_0_0_11,\n                rich_0_0_13,\n                rich_2_0_11,\n                rich_2_0_13)))",
+      "family": "cyclic_alternation_cut",
+      "index": 47347
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(rich_0_0_2,\n                rich_0_0_3,\n                fresh_B2_2,\n                fresh_B2_3)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48035
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(rich_0_0_2,\n                rich_0_0_6,\n                fresh_B2_2,\n                fresh_B2_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48038
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_5,\n                rich_2_0_4,\n                rich_2_0_5)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48642
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_6,\n                rich_2_0_4,\n                rich_2_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48643
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_7,\n                rich_2_0_4,\n                rich_2_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48644
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_8,\n                rich_2_0_4,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48645
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_9,\n                rich_2_0_4,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48646
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_10,\n                rich_2_0_4,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48647
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_4,\n                rich_1_0_11,\n                rich_2_0_4,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48648
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_6,\n                rich_2_0_5,\n                rich_2_0_6)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48650
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_7,\n                rich_2_0_5,\n                rich_2_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48651
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_8,\n                rich_2_0_5,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48652
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_9,\n                rich_2_0_5,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48653
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_10,\n                rich_2_0_5,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48654
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_5,\n                rich_1_0_11,\n                rich_2_0_5,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48655
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_6,\n                rich_1_0_7,\n                rich_2_0_6,\n                rich_2_0_7)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48657
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_6,\n                rich_1_0_8,\n                rich_2_0_6,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48658
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_6,\n                rich_1_0_9,\n                rich_2_0_6,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48659
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_6,\n                rich_1_0_10,\n                rich_2_0_6,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48660
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_6,\n                rich_1_0_11,\n                rich_2_0_6,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48661
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_7,\n                rich_1_0_8,\n                rich_2_0_7,\n                rich_2_0_8)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48663
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_7,\n                rich_1_0_9,\n                rich_2_0_7,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48664
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_7,\n                rich_1_0_10,\n                rich_2_0_7,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48665
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_7,\n                rich_1_0_11,\n                rich_2_0_7,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48666
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_8,\n                rich_1_0_9,\n                rich_2_0_8,\n                rich_2_0_9)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48668
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_8,\n                rich_1_0_10,\n                rich_2_0_8,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48669
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_8,\n                rich_1_0_11,\n                rich_2_0_8,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48670
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_8,\n                rich_1_0_12,\n                rich_2_0_8,\n                rich_2_0_12)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48671
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_9,\n                rich_1_0_10,\n                rich_2_0_9,\n                rich_2_0_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48672
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_9,\n                rich_1_0_11,\n                rich_2_0_9,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48673
+    },
+    {
+      "expression": "Implies(And(True, True),\n        Not(And(rich_1_0_10,\n                rich_1_0_11,\n                rich_2_0_10,\n                rich_2_0_11)))",
+      "family": "cyclic_alternation_cut",
+      "index": 48675
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(rich_2_0_0,\n                rich_2_0_10,\n                fresh_B2_0,\n                fresh_B2_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 50832
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(rich_2_0_8,\n                rich_2_0_10,\n                fresh_B2_8,\n                fresh_B2_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 50868
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        Not(And(rich_2_0_9,\n                rich_2_0_10,\n                fresh_B2_9,\n                fresh_B2_10)))",
+      "family": "cyclic_alternation_cut",
+      "index": 50872
+    },
+    {
+      "expression": "Implies(And(Or(block_0_1,\n               block_1_1,\n               block_2_1,\n               block_3_1,\n               block_4_1,\n               block_5_1,\n               block_6_1,\n               block_7_1,\n               block_8_1,\n               block_9_1,\n               block_10_1,\n               block_11_1,\n               block_12_1,\n               block_13_1,\n               block_14_1),\n            True),\n        AtMost((And(critical_row_1_0, rich_0_0_0),\n                And(critical_row_1_1, rich_0_0_1),\n                And(critical_row_1_2, rich_0_0_2),\n                And(critical_row_1_3, rich_0_0_3),\n                And(critical_row_1_4, rich_0_0_4),\n                And(critical_row_1_5, rich_0_0_5),\n                And(critical_row_1_6, rich_0_0_6),\n                And(critical_row_1_7, rich_0_0_7),\n                And(critical_row_1_8, rich_0_0_8),\n                And(critical_row_1_9, rich_0_0_9),\n                And(critical_row_1_10, rich_0_0_10),\n                And(critical_row_1_11, rich_0_0_11),\n                And(critical_row_1_12, rich_0_0_12),\n                And(critical_row_1_13, rich_0_0_13),\n                And(critical_row_1_14, rich_0_0_14)),\n               2))",
+      "family": "distinct_circle_overlap",
+      "index": 70
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_1_0, rich_0_0_0),\n                And(k4_1_1, rich_0_0_1),\n                And(k4_1_2, rich_0_0_2),\n                And(k4_1_3, rich_0_0_3),\n                And(k4_1_4, rich_0_0_4),\n                And(k4_1_5, rich_0_0_5),\n                And(k4_1_6, rich_0_0_6),\n                And(k4_1_7, rich_0_0_7),\n                And(k4_1_8, rich_0_0_8),\n                And(k4_1_9, rich_0_0_9),\n                And(k4_1_10, rich_0_0_10),\n                And(k4_1_11, rich_0_0_11),\n                And(k4_1_12, rich_0_0_12),\n                And(k4_1_13, rich_0_0_13),\n                And(k4_1_14, rich_0_0_14)),\n               2))",
+      "family": "distinct_circle_overlap",
+      "index": 570
+    },
+    {
+      "expression": "Implies(And(True, block_2_1),\n        AtMost((And(rich_0_0_0, fresh_B2_0),\n                And(rich_0_0_1, fresh_B2_1),\n                And(rich_0_0_2, fresh_B2_2),\n                And(rich_0_0_3, fresh_B2_3),\n                And(rich_0_0_4, fresh_B2_4),\n                And(rich_0_0_5, fresh_B2_5),\n                And(rich_0_0_6, fresh_B2_6),\n                And(rich_0_0_7, fresh_B2_7),\n                And(rich_0_0_8, fresh_B2_8),\n                And(rich_0_0_9, fresh_B2_9),\n                And(rich_0_0_10, fresh_B2_10),\n                And(rich_0_0_11, fresh_B2_11),\n                And(rich_0_0_12, fresh_B2_12),\n                And(rich_0_0_13, fresh_B2_13),\n                And(rich_0_0_14, fresh_B2_14)),\n               2))",
+      "family": "distinct_circle_overlap",
+      "index": 927
+    },
+    {
+      "expression": "rich_0_0_0 == (d_0_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 0
+    },
+    {
+      "expression": "rich_0_0_1 == (d_1_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 1
+    },
+    {
+      "expression": "rich_0_0_2 == (d_2_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 2
+    },
+    {
+      "expression": "rich_0_0_3 == (d_3_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 3
+    },
+    {
+      "expression": "rich_0_0_4 == (d_4_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 4
+    },
+    {
+      "expression": "rich_0_0_5 == (d_5_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 5
+    },
+    {
+      "expression": "rich_0_0_6 == (d_6_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 6
+    },
+    {
+      "expression": "rich_0_0_7 == (d_7_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 7
+    },
+    {
+      "expression": "rich_0_0_8 == (d_8_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 8
+    },
+    {
+      "expression": "rich_0_0_9 == (d_9_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 9
+    },
+    {
+      "expression": "rich_0_0_10 == (d_10_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 10
+    },
+    {
+      "expression": "rich_0_0_11 == (d_11_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 11
+    },
+    {
+      "expression": "Not(rich_0_0_12)",
+      "family": "exact_rich_profiles",
+      "index": 12
+    },
+    {
+      "expression": "rich_0_0_13 == (d_12_13 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 13
+    },
+    {
+      "expression": "rich_0_0_14 == (d_12_14 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 14
+    },
+    {
+      "expression": "PbEq(((rich_0_0_0, 1),\n      (rich_0_0_1, 1),\n      (rich_0_0_2, 1),\n      (rich_0_0_3, 1),\n      (rich_0_0_4, 1),\n      (rich_0_0_5, 1),\n      (rich_0_0_6, 1),\n      (rich_0_0_7, 1),\n      (rich_0_0_8, 1),\n      (rich_0_0_9, 1),\n      (rich_0_0_10, 1),\n      (rich_0_0_11, 1),\n      (rich_0_0_12, 1),\n      (rich_0_0_13, 1),\n      (rich_0_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 16
+    },
+    {
+      "expression": "rich_0_0_0",
+      "family": "exact_rich_profiles",
+      "index": 17
+    },
+    {
+      "expression": "rich_0_0_1",
+      "family": "exact_rich_profiles",
+      "index": 18
+    },
+    {
+      "expression": "rich_0_0_2",
+      "family": "exact_rich_profiles",
+      "index": 19
+    },
+    {
+      "expression": "rich_0_0_3",
+      "family": "exact_rich_profiles",
+      "index": 20
+    },
+    {
+      "expression": "rich_1_0_0 == (d_0_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 35
+    },
+    {
+      "expression": "rich_1_0_1 == (d_1_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 36
+    },
+    {
+      "expression": "rich_1_0_2 == (d_2_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 37
+    },
+    {
+      "expression": "rich_1_0_3 == (d_3_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 38
+    },
+    {
+      "expression": "rich_1_0_4 == (d_4_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 39
+    },
+    {
+      "expression": "rich_1_0_5 == (d_5_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 40
+    },
+    {
+      "expression": "rich_1_0_6 == (d_6_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 41
+    },
+    {
+      "expression": "rich_1_0_7 == (d_7_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 42
+    },
+    {
+      "expression": "rich_1_0_8 == (d_8_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 43
+    },
+    {
+      "expression": "rich_1_0_9 == (d_9_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 44
+    },
+    {
+      "expression": "rich_1_0_10 == (d_10_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 45
+    },
+    {
+      "expression": "rich_1_0_11 == (d_11_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 46
+    },
+    {
+      "expression": "rich_1_0_12 == (d_12_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 47
+    },
+    {
+      "expression": "Not(rich_1_0_13)",
+      "family": "exact_rich_profiles",
+      "index": 48
+    },
+    {
+      "expression": "rich_1_0_14 == (d_13_14 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 49
+    },
+    {
+      "expression": "PbEq(((rich_1_0_0, 1),\n      (rich_1_0_1, 1),\n      (rich_1_0_2, 1),\n      (rich_1_0_3, 1),\n      (rich_1_0_4, 1),\n      (rich_1_0_5, 1),\n      (rich_1_0_6, 1),\n      (rich_1_0_7, 1),\n      (rich_1_0_8, 1),\n      (rich_1_0_9, 1),\n      (rich_1_0_10, 1),\n      (rich_1_0_11, 1),\n      (rich_1_0_12, 1),\n      (rich_1_0_13, 1),\n      (rich_1_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 51
+    },
+    {
+      "expression": "rich_1_0_4",
+      "family": "exact_rich_profiles",
+      "index": 52
+    },
+    {
+      "expression": "rich_1_0_5",
+      "family": "exact_rich_profiles",
+      "index": 53
+    },
+    {
+      "expression": "rich_1_0_6",
+      "family": "exact_rich_profiles",
+      "index": 54
+    },
+    {
+      "expression": "rich_1_0_7",
+      "family": "exact_rich_profiles",
+      "index": 55
+    },
+    {
+      "expression": "rich_2_0_0 == (d_0_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 70
+    },
+    {
+      "expression": "rich_2_0_1 == (d_1_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 71
+    },
+    {
+      "expression": "rich_2_0_2 == (d_2_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 72
+    },
+    {
+      "expression": "rich_2_0_3 == (d_3_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 73
+    },
+    {
+      "expression": "rich_2_0_4 == (d_4_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 74
+    },
+    {
+      "expression": "rich_2_0_5 == (d_5_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 75
+    },
+    {
+      "expression": "rich_2_0_6 == (d_6_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 76
+    },
+    {
+      "expression": "rich_2_0_7 == (d_7_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 77
+    },
+    {
+      "expression": "rich_2_0_8 == (d_8_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 78
+    },
+    {
+      "expression": "rich_2_0_9 == (d_9_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 79
+    },
+    {
+      "expression": "rich_2_0_10 == (d_10_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 80
+    },
+    {
+      "expression": "rich_2_0_11 == (d_11_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 81
+    },
+    {
+      "expression": "rich_2_0_12 == (d_12_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 82
+    },
+    {
+      "expression": "rich_2_0_13 == (d_13_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 83
+    },
+    {
+      "expression": "Not(rich_2_0_14)",
+      "family": "exact_rich_profiles",
+      "index": 84
+    },
+    {
+      "expression": "PbEq(((rich_2_0_0, 1),\n      (rich_2_0_1, 1),\n      (rich_2_0_2, 1),\n      (rich_2_0_3, 1),\n      (rich_2_0_4, 1),\n      (rich_2_0_5, 1),\n      (rich_2_0_6, 1),\n      (rich_2_0_7, 1),\n      (rich_2_0_8, 1),\n      (rich_2_0_9, 1),\n      (rich_2_0_10, 1),\n      (rich_2_0_11, 1),\n      (rich_2_0_12, 1),\n      (rich_2_0_13, 1),\n      (rich_2_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 86
+    },
+    {
+      "expression": "rich_2_0_8",
+      "family": "exact_rich_profiles",
+      "index": 87
+    },
+    {
+      "expression": "rich_2_0_9",
+      "family": "exact_rich_profiles",
+      "index": 88
+    },
+    {
+      "expression": "rich_2_0_10",
+      "family": "exact_rich_profiles",
+      "index": 89
+    },
+    {
+      "expression": "rich_2_0_11",
+      "family": "exact_rich_profiles",
+      "index": 90
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_0 == critical_row_1_0)",
+      "family": "global_K4",
+      "index": 32
+    },
+    {
+      "expression": "Not(k4_1_1)",
+      "family": "global_K4",
+      "index": 33
+    },
+    {
+      "expression": "Implies(k4_1_2, d_1_2 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 34
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_2 == critical_row_1_2)",
+      "family": "global_K4",
+      "index": 35
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_3 == critical_row_1_3)",
+      "family": "global_K4",
+      "index": 37
+    },
+    {
+      "expression": "Implies(k4_1_4, d_1_4 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 38
+    },
+    {
+      "expression": "Implies(k4_1_5, d_1_5 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 40
+    },
+    {
+      "expression": "Implies(k4_1_6, d_1_6 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 42
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_6 == critical_row_1_6)",
+      "family": "global_K4",
+      "index": 43
+    },
+    {
+      "expression": "Implies(k4_1_7, d_1_7 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 44
+    },
+    {
+      "expression": "Implies(k4_1_8, d_1_8 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 46
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_9 == critical_row_1_9)",
+      "family": "global_K4",
+      "index": 49
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_10 == critical_row_1_10)",
+      "family": "global_K4",
+      "index": 51
+    },
+    {
+      "expression": "Implies(k4_1_11, d_1_11 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 52
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_11 == critical_row_1_11)",
+      "family": "global_K4",
+      "index": 53
+    },
+    {
+      "expression": "Implies(k4_1_12, d_1_12 == k4_radius_1)",
+      "family": "global_K4",
+      "index": 54
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_12 == critical_row_1_12)",
+      "family": "global_K4",
+      "index": 55
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_13 == critical_row_1_13)",
+      "family": "global_K4",
+      "index": 57
+    },
+    {
+      "expression": "Implies(Or(block_0_1,\n           block_1_1,\n           block_2_1,\n           block_3_1,\n           block_4_1,\n           block_5_1,\n           block_6_1,\n           block_7_1,\n           block_8_1,\n           block_9_1,\n           block_10_1,\n           block_11_1,\n           block_12_1,\n           block_13_1,\n           block_14_1),\n        k4_1_14 == critical_row_1_14)",
+      "family": "global_K4",
+      "index": 59
+    },
+    {
+      "expression": "PbEq(((k4_1_0, 1),\n      (k4_1_1, 1),\n      (k4_1_2, 1),\n      (k4_1_3, 1),\n      (k4_1_4, 1),\n      (k4_1_5, 1),\n      (k4_1_6, 1),\n      (k4_1_7, 1),\n      (k4_1_8, 1),\n      (k4_1_9, 1),\n      (k4_1_10, 1),\n      (k4_1_11, 1),\n      (k4_1_12, 1),\n      (k4_1_13, 1),\n      (k4_1_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 61
+    },
+    {
+      "expression": "Implies(k4_11_0, d_0_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 341
+    },
+    {
+      "expression": "Implies(k4_11_1, d_1_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 343
+    },
+    {
+      "expression": "Implies(k4_11_2, d_2_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 345
+    },
+    {
+      "expression": "Implies(k4_11_3, d_3_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 347
+    },
+    {
+      "expression": "Implies(k4_11_4, d_4_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 349
+    },
+    {
+      "expression": "Implies(k4_11_5, d_5_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 351
+    },
+    {
+      "expression": "Implies(k4_11_6, d_6_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 353
+    },
+    {
+      "expression": "Implies(k4_11_7, d_7_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 355
+    },
+    {
+      "expression": "Implies(k4_11_8, d_8_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 357
+    },
+    {
+      "expression": "Implies(k4_11_9, d_9_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 359
+    },
+    {
+      "expression": "Implies(k4_11_10, d_10_11 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 361
+    },
+    {
+      "expression": "Not(k4_11_11)",
+      "family": "global_K4",
+      "index": 363
+    },
+    {
+      "expression": "Implies(k4_11_12, d_11_12 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 364
+    },
+    {
+      "expression": "Implies(k4_11_13, d_11_13 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 366
+    },
+    {
+      "expression": "Implies(k4_11_14, d_11_14 == k4_radius_11)",
+      "family": "global_K4",
+      "index": 368
+    },
+    {
+      "expression": "PbEq(((k4_11_0, 1),\n      (k4_11_1, 1),\n      (k4_11_2, 1),\n      (k4_11_3, 1),\n      (k4_11_4, 1),\n      (k4_11_5, 1),\n      (k4_11_6, 1),\n      (k4_11_7, 1),\n      (k4_11_8, 1),\n      (k4_11_9, 1),\n      (k4_11_10, 1),\n      (k4_11_11, 1),\n      (k4_11_12, 1),\n      (k4_11_13, 1),\n      (k4_11_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 371
+    },
+    {
+      "expression": "Not(And(d_11_12 == d_11_13, d_11_13 == d_11_14))",
+      "family": "no_all_apex_shell",
+      "index": 11
+    },
+    {
+      "expression": "Or(And(block_2_0, critical_row_0_0),\n   And(block_2_1, critical_row_1_0),\n   And(block_2_2, critical_row_2_0),\n   And(block_2_3, critical_row_3_0),\n   And(block_2_4, critical_row_4_0),\n   And(block_2_5, critical_row_5_0),\n   And(block_2_6, critical_row_6_0),\n   And(block_2_7, critical_row_7_0),\n   And(block_2_8, critical_row_8_0),\n   And(block_2_9, critical_row_9_0),\n   And(block_2_10, critical_row_10_0),\n   And(block_2_11, critical_row_11_0))",
+      "family": "normal_form",
+      "index": 4
+    },
+    {
+      "expression": "Or(block_2_0, block_2_1, block_2_2, block_2_3)",
+      "family": "normal_form",
+      "index": 5
+    },
+    {
+      "expression": "Not(Or(And(block_2_0, critical_row_0_13),\n       And(block_2_1, critical_row_1_13),\n       And(block_2_2, critical_row_2_13),\n       And(block_2_3, critical_row_3_13),\n       And(block_2_4, critical_row_4_13),\n       And(block_2_5, critical_row_5_13),\n       And(block_2_6, critical_row_6_13),\n       And(block_2_7, critical_row_7_13),\n       And(block_2_8, critical_row_8_13),\n       And(block_2_9, critical_row_9_13),\n       And(block_2_10, critical_row_10_13),\n       And(block_2_11, critical_row_11_13)))",
+      "family": "normal_form",
+      "index": 7
+    },
+    {
+      "expression": "Or(And(block_2_0, critical_row_0_0),\n   And(block_2_1, critical_row_1_0),\n   And(block_2_2, critical_row_2_0),\n   And(block_2_3, critical_row_3_0),\n   And(block_2_4, critical_row_4_0),\n   And(block_2_5, critical_row_5_0),\n   And(block_2_6, critical_row_6_0),\n   And(block_2_7, critical_row_7_0),\n   And(block_2_8, critical_row_8_0),\n   And(block_2_9, critical_row_9_0),\n   And(block_2_10, critical_row_10_0),\n   And(block_2_11, critical_row_11_0))",
+      "family": "normal_form",
+      "index": 8
+    },
+    {
+      "expression": "Not(Or(And(block_2_0, critical_row_0_3),\n       And(block_2_1, critical_row_1_3),\n       And(block_2_2, critical_row_2_3),\n       And(block_2_3, critical_row_3_3),\n       And(block_2_4, critical_row_4_3),\n       And(block_2_5, critical_row_5_3),\n       And(block_2_6, critical_row_6_3),\n       And(block_2_7, critical_row_7_3),\n       And(block_2_8, critical_row_8_3),\n       And(block_2_9, critical_row_9_3),\n       And(block_2_10, critical_row_10_3),\n       And(block_2_11, critical_row_11_3)))",
+      "family": "normal_form",
+      "index": 11
+    },
+    {
+      "expression": "Not(Or(And(block_2_0, critical_row_0_14),\n       And(block_2_1, critical_row_1_14),\n       And(block_2_2, critical_row_2_14),\n       And(block_2_3, critical_row_3_14),\n       And(block_2_4, critical_row_4_14),\n       And(block_2_5, critical_row_5_14),\n       And(block_2_6, critical_row_6_14),\n       And(block_2_7, critical_row_7_14),\n       And(block_2_8, critical_row_8_14),\n       And(block_2_9, critical_row_9_14),\n       And(block_2_10, critical_row_10_14),\n       And(block_2_11, critical_row_11_14)))",
+      "family": "normal_form",
+      "index": 12
+    },
+    {
+      "expression": "Implies(block_2_0, fresh_B2_2 == critical_row_0_2)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 182
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_0 == critical_row_1_0)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 195
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_2 == critical_row_1_2)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 197
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_6 == critical_row_1_6)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 201
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_9 == critical_row_1_9)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 204
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_10 == critical_row_1_10)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 205
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_11 == critical_row_1_11)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 206
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_13 == critical_row_1_13)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 208
+    },
+    {
+      "expression": "Implies(block_2_1, fresh_B2_14 == critical_row_1_14)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 209
+    },
+    {
+      "expression": "Implies(block_2_3, fresh_B2_2 == critical_row_3_2)",
+      "family": "packet_B2_equals_critical_row",
+      "index": 227
+    },
+    {
+      "expression": "Implies(block_2_0, critical_row_0_2)",
+      "family": "source_in_critical_row",
+      "index": 2
+    },
+    {
+      "expression": "Implies(block_2_1, critical_row_1_2)",
+      "family": "source_in_critical_row",
+      "index": 17
+    },
+    {
+      "expression": "Implies(block_2_3, critical_row_3_2)",
+      "family": "source_in_critical_row",
+      "index": 47
+    },
+    {
+      "expression": "d_1_13 + d_0_2 >= d_2_13 + d_0_1 + 1",
+      "family": "strict_kalmanson",
+      "index": 1
+    },
+    {
+      "expression": "d_1_13 + d_0_11 >= d_0_13 + d_1_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 22
+    },
+    {
+      "expression": "d_1_13 + d_0_11 >= d_11_13 + d_0_1 + 1",
+      "family": "strict_kalmanson",
+      "index": 23
+    },
+    {
+      "expression": "d_2_13 + d_0_3 >= d_3_13 + d_0_2 + 1",
+      "family": "strict_kalmanson",
+      "index": 25
+    },
+    {
+      "expression": "d_3_13 + d_0_14 >= d_13_14 + d_0_3 + 1",
+      "family": "strict_kalmanson",
+      "index": 47
+    },
+    {
+      "expression": "d_13_14 + d_0_4 >= d_4_13 + d_0_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 67
+    },
+    {
+      "expression": "d_13_14 + d_0_7 >= d_7_13 + d_0_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 73
+    },
+    {
+      "expression": "d_4_13 + d_0_5 >= d_5_13 + d_0_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 85
+    },
+    {
+      "expression": "d_5_13 + d_0_6 >= d_6_13 + d_0_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 101
+    },
+    {
+      "expression": "d_5_13 + d_0_8 >= d_8_13 + d_0_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 107
+    },
+    {
+      "expression": "d_5_13 + d_0_11 >= d_0_13 + d_5_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 112
+    },
+    {
+      "expression": "d_6_13 + d_0_7 >= d_7_13 + d_0_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 115
+    },
+    {
+      "expression": "d_7_13 + d_0_12 >= d_12_13 + d_0_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 127
+    },
+    {
+      "expression": "d_12_13 + d_0_8 >= d_8_13 + d_0_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 137
+    },
+    {
+      "expression": "d_12_13 + d_0_11 >= d_11_13 + d_0_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 143
+    },
+    {
+      "expression": "d_8_13 + d_0_9 >= d_9_13 + d_0_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 145
+    },
+    {
+      "expression": "d_8_13 + d_0_10 >= d_10_13 + d_0_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 147
+    },
+    {
+      "expression": "d_9_13 + d_0_10 >= d_10_13 + d_0_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 151
+    },
+    {
+      "expression": "d_10_13 + d_0_11 >= d_11_13 + d_0_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 155
+    },
+    {
+      "expression": "d_2_13 + d_1_3 >= d_3_13 + d_1_2 + 1",
+      "family": "strict_kalmanson",
+      "index": 157
+    },
+    {
+      "expression": "d_2_13 + d_1_6 >= d_1_13 + d_2_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 164
+    },
+    {
+      "expression": "d_2_13 + d_1_8 >= d_1_13 + d_2_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 170
+    },
+    {
+      "expression": "d_2_13 + d_1_9 >= d_1_13 + d_2_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 172
+    },
+    {
+      "expression": "d_2_13 + d_1_10 >= d_1_13 + d_2_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 174
+    },
+    {
+      "expression": "d_2_13 + d_1_10 >= d_10_13 + d_1_2 + 1",
+      "family": "strict_kalmanson",
+      "index": 175
+    },
+    {
+      "expression": "d_2_13 + d_1_11 >= d_1_13 + d_2_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 176
+    },
+    {
+      "expression": "d_2_13 + d_1_11 >= d_11_13 + d_1_2 + 1",
+      "family": "strict_kalmanson",
+      "index": 177
+    },
+    {
+      "expression": "d_3_13 + d_1_12 >= d_1_13 + d_3_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 188
+    },
+    {
+      "expression": "d_13_14 + d_1_10 >= d_1_13 + d_10_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 212
+    },
+    {
+      "expression": "d_4_13 + d_1_8 >= d_1_13 + d_4_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 224
+    },
+    {
+      "expression": "d_7_13 + d_1_12 >= d_12_13 + d_1_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 259
+    },
+    {
+      "expression": "d_12_13 + d_1_11 >= d_1_13 + d_11_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 274
+    },
+    {
+      "expression": "d_8_13 + d_1_9 >= d_9_13 + d_1_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 277
+    },
+    {
+      "expression": "d_9_13 + d_1_10 >= d_10_13 + d_1_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 283
+    },
+    {
+      "expression": "d_3_13 + d_2_11 >= d_2_13 + d_3_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 306
+    },
+    {
+      "expression": "d_13_14 + d_2_6 >= d_2_13 + d_6_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 312
+    },
+    {
+      "expression": "d_13_14 + d_2_12 >= d_2_13 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 316
+    },
+    {
+      "expression": "d_12_13 + d_2_8 >= d_8_13 + d_2_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 379
+    },
+    {
+      "expression": "d_12_13 + d_2_9 >= d_9_13 + d_2_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 381
+    },
+    {
+      "expression": "d_8_13 + d_2_9 >= d_9_13 + d_2_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 387
+    },
+    {
+      "expression": "d_13_14 + d_3_12 >= d_12_13 + d_3_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 407
+    },
+    {
+      "expression": "d_13_14 + d_3_11 >= d_3_13 + d_11_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 414
+    },
+    {
+      "expression": "d_10_13 + d_3_11 >= d_3_13 + d_10_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 486
+    },
+    {
+      "expression": "d_4_13 + d_11_14 >= d_13_14 + d_4_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 502
+    },
+    {
+      "expression": "d_5_13 + d_12_14 >= d_13_14 + d_5_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 508
+    },
+    {
+      "expression": "d_6_13 + d_12_14 >= d_12_13 + d_6_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 521
+    },
+    {
+      "expression": "d_7_13 + d_8_14 >= d_13_14 + d_7_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 532
+    },
+    {
+      "expression": "d_12_13 + d_8_14 >= d_8_13 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 541
+    },
+    {
+      "expression": "d_5_13 + d_4_11 >= d_4_13 + d_5_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 572
+    },
+    {
+      "expression": "d_6_13 + d_4_11 >= d_4_13 + d_6_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 584
+    },
+    {
+      "expression": "d_12_13 + d_4_11 >= d_4_13 + d_11_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 602
+    },
+    {
+      "expression": "d_10_13 + d_4_11 >= d_4_13 + d_10_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 614
+    },
+    {
+      "expression": "d_6_13 + d_5_11 >= d_5_13 + d_6_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 626
+    },
+    {
+      "expression": "d_10_13 + d_5_11 >= d_5_13 + d_10_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 656
+    },
+    {
+      "expression": "d_7_13 + d_6_11 >= d_6_13 + d_7_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 666
+    },
+    {
+      "expression": "d_8_13 + d_6_11 >= d_6_13 + d_8_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 680
+    },
+    {
+      "expression": "d_10_13 + d_6_11 >= d_6_13 + d_10_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 686
+    },
+    {
+      "expression": "d_12_13 + d_7_11 >= d_7_13 + d_11_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 694
+    },
+    {
+      "expression": "d_8_13 + d_11_12 >= d_12_13 + d_8_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 712
+    },
+    {
+      "expression": "d_9_13 + d_8_11 >= d_8_13 + d_9_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 722
+    },
+    {
+      "expression": "d_10_13 + d_9_11 >= d_9_13 + d_10_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 726
+    },
+    {
+      "expression": "d_0_2 + d_1_3 >= d_0_3 + d_1_2 + 1",
+      "family": "strict_kalmanson",
+      "index": 729
+    },
+    {
+      "expression": "d_0_3 + d_1_14 >= d_0_14 + d_1_3 + 1",
+      "family": "strict_kalmanson",
+      "index": 751
+    },
+    {
+      "expression": "d_0_14 + d_1_4 >= d_0_4 + d_1_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 771
+    },
+    {
+      "expression": "d_0_4 + d_1_5 >= d_0_5 + d_1_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 789
+    },
+    {
+      "expression": "d_0_5 + d_1_6 >= d_0_6 + d_1_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 805
+    },
+    {
+      "expression": "d_0_6 + d_1_7 >= d_0_7 + d_1_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 819
+    },
+    {
+      "expression": "d_0_7 + d_1_12 >= d_0_12 + d_1_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 831
+    },
+    {
+      "expression": "d_0_12 + d_1_8 >= d_0_8 + d_1_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 841
+    },
+    {
+      "expression": "d_0_12 + d_1_11 >= d_0_11 + d_1_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 847
+    },
+    {
+      "expression": "d_0_8 + d_1_9 >= d_0_9 + d_1_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 849
+    },
+    {
+      "expression": "d_0_9 + d_1_10 >= d_0_10 + d_1_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 855
+    },
+    {
+      "expression": "d_0_10 + d_1_11 >= d_0_11 + d_1_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 859
+    },
+    {
+      "expression": "d_1_14 + d_2_4 >= d_1_4 + d_2_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 1321
+    },
+    {
+      "expression": "d_1_4 + d_2_5 >= d_1_5 + d_2_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 1339
+    },
+    {
+      "expression": "d_1_5 + d_2_6 >= d_1_6 + d_2_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 1355
+    },
+    {
+      "expression": "d_1_6 + d_2_7 >= d_1_7 + d_2_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 1369
+    },
+    {
+      "expression": "d_1_7 + d_2_12 >= d_1_12 + d_2_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 1381
+    },
+    {
+      "expression": "d_1_12 + d_2_8 >= d_1_8 + d_2_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1391
+    },
+    {
+      "expression": "d_1_12 + d_2_9 >= d_1_9 + d_2_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1393
+    },
+    {
+      "expression": "d_1_8 + d_2_9 >= d_1_9 + d_2_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 1399
+    },
+    {
+      "expression": "d_1_9 + d_2_10 >= d_1_10 + d_2_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 1405
+    },
+    {
+      "expression": "d_1_9 + d_2_11 >= d_1_11 + d_2_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 1407
+    },
+    {
+      "expression": "d_1_10 + d_2_11 >= d_1_11 + d_2_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 1409
+    },
+    {
+      "expression": "d_2_14 + d_3_4 >= d_2_4 + d_3_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 1741
+    },
+    {
+      "expression": "d_2_4 + d_3_5 >= d_2_5 + d_3_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 1759
+    },
+    {
+      "expression": "d_2_5 + d_3_6 >= d_2_6 + d_3_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 1775
+    },
+    {
+      "expression": "d_2_6 + d_3_7 >= d_2_7 + d_3_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 1789
+    },
+    {
+      "expression": "d_2_7 + d_3_12 >= d_2_12 + d_3_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 1801
+    },
+    {
+      "expression": "d_2_12 + d_3_8 >= d_2_8 + d_3_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1811
+    },
+    {
+      "expression": "d_2_12 + d_3_11 >= d_2_11 + d_3_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1817
+    },
+    {
+      "expression": "d_2_8 + d_3_9 >= d_2_9 + d_3_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 1819
+    },
+    {
+      "expression": "d_2_9 + d_3_10 >= d_2_10 + d_3_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 1825
+    },
+    {
+      "expression": "d_2_10 + d_3_11 >= d_2_11 + d_3_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 1829
+    },
+    {
+      "expression": "d_2_8 + d_11_12 >= d_2_11 + d_8_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2055
+    },
+    {
+      "expression": "d_3_4 + d_5_14 >= d_3_5 + d_4_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2071
+    },
+    {
+      "expression": "d_3_5 + d_6_14 >= d_3_6 + d_5_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2087
+    },
+    {
+      "expression": "d_3_6 + d_7_14 >= d_3_7 + d_6_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2101
+    },
+    {
+      "expression": "d_3_7 + d_12_14 >= d_3_12 + d_7_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2113
+    },
+    {
+      "expression": "d_3_12 + d_8_14 >= d_3_8 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2123
+    },
+    {
+      "expression": "d_3_8 + d_9_14 >= d_3_9 + d_8_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2131
+    },
+    {
+      "expression": "d_3_9 + d_10_14 >= d_3_10 + d_9_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2137
+    },
+    {
+      "expression": "d_3_10 + d_11_14 >= d_3_11 + d_10_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2141
+    },
+    {
+      "expression": "d_12_14 + d_4_8 >= d_8_14 + d_4_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2347
+    },
+    {
+      "expression": "d_8_14 + d_4_9 >= d_9_14 + d_4_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2355
+    },
+    {
+      "expression": "d_9_14 + d_4_10 >= d_10_14 + d_4_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2361
+    },
+    {
+      "expression": "d_10_14 + d_4_11 >= d_11_14 + d_4_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2365
+    },
+    {
+      "expression": "d_8_14 + d_10_12 >= d_10_14 + d_8_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2461
+    },
+    {
+      "expression": "d_4_12 + d_5_8 >= d_4_8 + d_5_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2501
+    },
+    {
+      "expression": "d_4_8 + d_5_9 >= d_4_9 + d_5_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2509
+    },
+    {
+      "expression": "d_4_9 + d_5_10 >= d_4_10 + d_5_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2515
+    },
+    {
+      "expression": "d_4_10 + d_5_11 >= d_4_11 + d_5_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2519
+    },
+    {
+      "expression": "d_5_12 + d_6_8 >= d_5_8 + d_6_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2601
+    },
+    {
+      "expression": "d_5_8 + d_6_9 >= d_5_9 + d_6_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2609
+    },
+    {
+      "expression": "d_5_9 + d_6_10 >= d_5_10 + d_6_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2615
+    },
+    {
+      "expression": "d_5_10 + d_6_11 >= d_5_11 + d_6_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2619
+    },
+    {
+      "expression": "d_6_12 + d_7_8 >= d_6_8 + d_7_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2661
+    },
+    {
+      "expression": "d_6_8 + d_7_9 >= d_6_9 + d_7_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2669
+    },
+    {
+      "expression": "d_6_9 + d_7_10 >= d_6_10 + d_7_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2675
+    },
+    {
+      "expression": "d_6_10 + d_7_11 >= d_6_11 + d_7_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2679
+    },
+    {
+      "expression": "d_7_8 + d_9_12 >= d_7_9 + d_8_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2701
+    },
+    {
+      "expression": "d_7_9 + d_10_12 >= d_7_10 + d_9_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2707
+    },
+    {
+      "expression": "d_7_10 + d_11_12 >= d_7_11 + d_10_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2711
+    }
+  ],
+  "core_family_counts": {
+    "common_deletion_packets": 10,
+    "critical_blocker_map": 2,
+    "critical_full_row": 14,
+    "cyclic_alternation_cut": 232,
+    "distinct_circle_overlap": 3,
+    "exact_rich_profiles": 60,
+    "global_K4": 36,
+    "no_all_apex_shell": 1,
+    "normal_form": 6,
+    "packet_B2_equals_critical_row": 10,
+    "source_in_critical_row": 3,
+    "strict_kalmanson": 123
+  },
+  "core_size": 500,
+  "elapsed_seconds": 5.056142915971577,
+  "status": "unsat"
+}

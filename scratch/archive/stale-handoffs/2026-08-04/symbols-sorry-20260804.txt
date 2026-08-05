@@ -1,0 +1,33 @@
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:720 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1175 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1249 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2191 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2397 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2551 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2574 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2599 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3317 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5340 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5512 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6001 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6066 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6312 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6323 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7243 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8368 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8387 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8409 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8490 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8509 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8567 💧
+   theorem    Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8613 💧
+   theorem    Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9385 💧
+   theorem    Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9525 💧
+   theorem    Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11490 💧
+   theorem    Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12849 💧
+   theorem    Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:12892 💧
+   theorem    Problem97.CPackageBankFidelity.fidelity_c1                             scratch/c-package-bank/FidelityCheck.lean:38 💧
+   theorem    Problem97.CPackageBankFidelity.fidelity_c2                             scratch/c-package-bank/FidelityCheck.lean:122 💧
+   theorem    Problem97.EPackageBankFidelity.fidelity_e1                             scratch/e-package-bank/FidelityCheck.lean:47 💧
+
+31 symbol(s)

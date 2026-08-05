@@ -1,0 +1,240 @@
+lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean:197:  exact h16 (three_equal_sided_four_cycles_force_x1_eq_x6
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:17:* an exact four-point class with universal singleton-deletion obstruction
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:139:      S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:142:      S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:147:    c ∈ S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:216:      S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:245:  · rcases exists_exactFour_firstApex_interiorPair D S hr hfour with
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:251:        c ∈ S.capInteriorByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:310:            S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:314:            S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:318:            S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:30:private theorem selectedClass_capInterior_card_ge_three_of_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:36:      S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:51:      T \ S.capInteriorByIndex i ⊆
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:55:      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hradius
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:57:      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:59:      (T \ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:69:      (T \ S.capInteriorByIndex i).card +
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:70:          (T ∩ S.capInteriorByIndex i).card = T.card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:74:  change 3 ≤ (T ∩ S.capInteriorByIndex i).card
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:91:      S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:93:  exact selectedClass_capInterior_card_ge_three_of_card_eq_five
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:101:    S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:103:    S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:110:    (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:112:  have hnot := S.capInteriorByIndex_not_mem_capByIndex_of_ne hx
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:116:    simpa [SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:182:    S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:184:    S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:197:      S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:251:    exact hfour
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:359:        S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:370:        S.capInteriorByIndex S.oppIndex1 :=
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:20:known centers. The full frontier has one additional exact-card-four escape.
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:68:      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support) :
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:72:    (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:73:      P.q (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.q_mem_support
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:75:      ((H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:86:      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:94:      P.q ∈ (H.selectedAt source hsource).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:96:      P.w ∈ (H.selectedAt source hsource).toCriticalFourShell.support) :
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:113:      (H.selectedAt source hsource).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:116:        ((H.selectedAt source hsource).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:146:      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:159:      P.q ∈ (H.selectedAt source hsource).toCriticalFourShell.support :=
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:163:      P.w ∈ (H.selectedAt source hsource).toCriticalFourShell.support :=
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:186:      (q ∈ (H.selectedAt source hsource).toCriticalFourShell.support ∧
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:187:        w ∈ (H.selectedAt source hsource).toCriticalFourShell.support) := by
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:212:      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:218:        P.q ∈ (H.selectedAt source hsource).toCriticalFourShell.support ∧
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:219:        P.w ∈ (H.selectedAt source hsource).toCriticalFourShell.support := by
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:232:      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:284:apex lies in the exact-card-four unique-radius arm. -/
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:292:        (H.selectedAt F.pair.q F.pair.q_mem_A).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:323:    · exact Or.inl hfour
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:31:joint deletion at three concrete centers or an exact four-point radius
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:20:The low-level theorem states exactly the four orientation inequalities and
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:301:  exact false_of_second_three_rows_of_four_orientations
+lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean:625:  exact false_of_three_rows_of_four_orientations
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:20:frontier first-apex class may still have exactly four points.  Away from that
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:27:packet remains in the hypotheses, and the exact-card-four arm is not hidden in
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:48:the exact-card-four exception, cross survival supplies a source-faithful
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:15:five points, while its fresh critical shell has exactly four.  Deleting a
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:43:fresh exact four-shell. -/
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:63:/-- The fresh exact four-shell survives deletion of a point outside its
+lean/Erdos9796Proof/P97/U5FiniteExtraction.lean:1534:eight support points injectively and has six exact four-point q-free selected
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:29:theorem capInteriorByIndex_card_add_two
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:31:    (S.capInteriorByIndex i).card + 2 = (S.capByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:33:  · simpa only [SurplusCapPacket.capInteriorByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:34:      SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:37:  · simpa only [SurplusCapPacket.capInteriorByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:38:      SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:41:  · simpa only [SurplusCapPacket.capInteriorByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:42:      SurplusCapPacket.capByIndex,
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:46:private theorem selectedClass_card_le_of_small_cap
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:49:    {n : ℕ} (hinterior : (S.capInteriorByIndex i).card ≤ n) :
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:53:  let I := S.capInteriorByIndex i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:63:      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hr
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:79:theorem oppositeVertex_selectedClass_card_le_five_of_cap_card_eq_five
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:82:    (hcap : (S.capByIndex i).card = 5) {r : ℝ} (hr : 0 < r) :
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:84:  apply selectedClass_card_le_of_small_cap S hconv i hr (n := 3)
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:85:  have hcard := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:88:/-- A positive radius class at the apex opposite a four-point cap has at
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:90:theorem oppositeVertex_selectedClass_card_le_four_of_cap_card_eq_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:93:    (hcap : (S.capByIndex i).card = 4) {r : ℝ} (hr : 0 < r) :
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:95:  apply selectedClass_card_le_of_small_cap S hconv i hr (n := 2)
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:96:  rw [S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four i hcap]
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:99:never exceeds its opposite cap in cardinality, at any cap size.
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:104:theorem oppositeVertex_selectedClass_card_le_cap_card
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:108:      (S.capByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:109:  have hle := selectedClass_card_le_of_small_cap S hconv i hr
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:110:    (n := (S.capInteriorByIndex i).card) le_rfl
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:111:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:116:theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:123:    4 ≤ (S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:125:  let Ir := SelectedClass A (S.oppositeVertexByIndex i) r ∩ S.capInteriorByIndex i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:126:  let Iρ := SelectedClass A (S.oppositeVertexByIndex i) ρ ∩ S.capInteriorByIndex i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:128:    simpa [Ir] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr hrFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:130:    simpa [Iρ] using S.selectedClass_capInteriorByIndex_card_ge_two hconv i hρ hρFour
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:139:  have hsub : Ir ∪ Iρ ⊆ S.capInteriorByIndex i := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:158:    6 ≤ (S.capByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:159:  have hinter := oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:161:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:168:theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:174:      (S.capInteriorByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:177:    S.capInteriorByIndex i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:179:    S.capInteriorByIndex i
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:183:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:187:      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hρ
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:196:  have hsub : Ir ∪ Iρ ⊆ S.capInteriorByIndex i := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:207:with classes of cardinality `m` and `m'`, force the closed opposite cap to have
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:217:      (S.capByIndex i).card := by
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:219:    oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:221:  have hcap := capInteriorByIndex_card_add_two S i
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:22:1. the exact-four residual, closed by the checked card-eleven certificate;
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:46:the protected exact-four surface already closed by the checked card-eleven
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:88:critical branch swaps to the checked exact-four certificate above. -/
+lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean:164:the checked exact-four leaf, the closed distinct-center exact-five leaf, and
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:13:This module isolates the card-eleven `(5,5,4)` cap profile and its `(3,3,2)`
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:49:    (hi5 : 5 ≤ (CP.capAt i).card) (hj5 : 5 ≤ (CP.capAt j).card) :
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:60:      (CP.capAt i).card + (CP.capAt j).card + (CP.capAt k).card = 14 := by
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:74:noncomputable def capInteriorAt
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:84:private lemma capInteriorAt_card_add_two
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:86:    (capInteriorAt CP k).card + 2 = (CP.capAt k).card := by
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:88:  · simpa [capInteriorAt, CapTriple.capAt]
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:90:  · simpa [capInteriorAt, CapTriple.capAt]
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:92:  · simpa [capInteriorAt, CapTriple.capAt]
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:95:/-- In the card-11 branch of the two-large-cap leaf, the cap sizes are exactly
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:127:/-- In the card-11 branch of the two-large-cap leaf, the strict cap interiors
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:130:theorem capInteriorProfile_eq_332_of_card_eq_eleven
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:142:    (capInteriorAt CP i).card = 3 ∧
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:143:      (capInteriorAt CP j).card = 3 ∧
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:144:        ∀ k : Fin 3, k ≠ i → k ≠ j → (capInteriorAt CP k).card = 2 := by
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:150:  have hIi := capInteriorAt_card_add_two CP i
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:151:  have hIj := capInteriorAt_card_add_two CP j
+lean/Erdos9796Proof/P97/U1CardElevenCapProfile.lean:152:  have hIk := capInteriorAt_card_add_two CP k
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:9:that packet: five exact q-free four-point rows, together with the deleted
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:26:/-- Regard an exact q-deleted K4 row as an ambient selected four-class. -/
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:54:    B = (H.selectedAt source hsource).toCriticalFourShell.support := by
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:88:/-- Trim each surviving K4 witness to an exact q-free four-point row and expose
+lean/Erdos9796Proof/P97/Phase3DuplicateCenterCertificates.lean:17:* the exact fourteen-membership obstruction found by the projected-static-v2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:46:    S.capInteriorByIndex S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:72:theorem mem_capInterior
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:76:    q.1 ∈ S.capInteriorByIndex S.oppIndex2 :=
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:87:    three_le_capInterior_hits_of_largeCapUniqueFive profile
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:112:        (H.selectedAt q.1 (PhysicalVertex.mem_A q)).toCriticalFourShell.support
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:282:theorem source_mem_capInterior
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:288:    (K.source i).1 ∈ S.capInteriorByIndex S.oppIndex2 :=
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:289:  PhysicalVertex.mem_capInterior (K.source i)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:37:private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:40:    S.oppositeVertexByIndex i ∈ S.capByIndex j := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:44:      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C2
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:46:      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C3
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:48:      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C1
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:51:      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:53:      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C1
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:55:      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:63:    (hcCap : c ∈ S.capByIndex k)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:64:    (hapexCap : apex ∈ S.capByIndex k)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:67:    (haOff : a ∉ S.capByIndex k) (hbOff : b ∉ S.capByIndex k)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:72:  rcases S.capByIndex_cgn4g_capData D.convex k with
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:121:theorem commonPhysicalPair_center_mem_capInteriorByIndex
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:126:    (hsource : source ∈ S.capInteriorByIndex i)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:127:    (hpartner : partner ∈ S.capInteriorByIndex i)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:133:    center ∈ S.capInteriorByIndex i := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:139:      ⟨S.capInteriorByIndex_subset i hsource, rfl⟩
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:144:      ⟨S.capInteriorByIndex_subset i hpartner, hphysicalEq.symm⟩
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:148:    have hne := S.capInterior_pair_dist_ne_leftOuter_of_selectedClass
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:155:    have hne := S.capInterior_pair_dist_ne_rightOuter_of_selectedClass
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:166:  rcases S.mem_triangle_verts_or_exists_capInteriorByIndex_of_mem hcenterA with
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:172:      have hcenterCap : center ∈ S.capByIndex j :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:173:        S.capInteriorByIndex_subset_capByIndex j hcenterInterior
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:175:          S.oppositeVertexByIndex i ∈ S.capByIndex j :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:176:        oppositeVertexByIndex_mem_capByIndex_of_ne S hij
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:177:      have hsourceOff : source ∉ S.capByIndex j :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:178:        S.capInteriorByIndex_not_mem_capByIndex_of_ne hsource hij
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:179:      have hpartnerOff : partner ∉ S.capByIndex j :=
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:180:        S.capInteriorByIndex_not_mem_capByIndex_of_ne hpartner hij
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:183:        (S.capInteriorByIndex_subset i hsource)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:184:        (S.capInteriorByIndex_subset i hpartner)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:196:    (hsource : source ∈ S.capInteriorByIndex S.oppIndex2)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:197:    (hpartner : partner ∈ S.capInteriorByIndex S.oppIndex2)
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:202:    center ∈ S.capInteriorByIndex S.oppIndex2 := by
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:207:  exact commonPhysicalPair_center_mem_capInteriorByIndex S.oppIndex2
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:69:    (hyx : y ∈ (H.selectedAt x hxA).toCriticalFourShell.support)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:70:    (hxy' : x ∈ (H.selectedAt y hyA).toCriticalFourShell.support) :
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:93:      (H.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:94:        x (H.selectedAt x hxA).toCriticalFourShell.q_mem_support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:96:        ((H.selectedAt x hxA).toCriticalFourShell.support_eq_radius y hyx).symm
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:99:      (H.selectedAt y hyA).toCriticalFourShell.support_eq_radius x hxy'
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:101:        ((H.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:102:          y (H.selectedAt y hyA).toCriticalFourShell.q_mem_support).symm
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:138:  source₁_mem_capInterior : source₁ ∈ S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:139:  source₂_mem_capInterior : source₂ ∈ S.capInteriorByIndex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:145:        (H.selectedAt source₁ source₁_mem_A).toCriticalFourShell.support ∧
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:149:        (H.selectedAt source₂ source₂_mem_A).toCriticalFourShell.support ∧
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:217:        S.capInteriorByIndex S.oppIndex1).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:219:    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:224:        S.capInteriorByIndex S.oppIndex1).card := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:255:    source₁_mem_capInterior := hxInterior
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:256:    source₂_mem_capInterior := hyInterior
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:260:      y ∈ (H.selectedAt x hxA).toCriticalFourShell.support
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:262:        x ∉ (H.selectedAt y hyA).toCriticalFourShell.support := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:273:private theorem capByIndex_oppIndex1_eq_oppCap1
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:275:    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:278:    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:281:private theorem capByIndex_oppIndex2_eq_oppCap2
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:283:    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:286:    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:296:    5 ≤ (S.capByIndex S.oppIndex1).card ∨
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:297:      5 ≤ (S.capByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:299:  by_cases hfirstFive : 5 ≤ (S.capByIndex S.oppIndex1).card
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:303:    have hfirstEq : (S.capByIndex S.oppIndex1).card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:304:    have hsecondEq : (S.capByIndex S.oppIndex2).card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:308:    · simpa [← capByIndex_oppIndex1_eq_oppCap1 S] using hfirstEq
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:309:    · simpa [← capByIndex_oppIndex2_eq_oppCap2 S] using hsecondEq
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:321:    5 ≤ (S.capByIndex S.oppIndex1).card ∨
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:322:      5 ≤ (S.capByIndex S.oppIndex2).card
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:55:private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:58:    S.oppositeVertexByIndex i ∈ S.capByIndex j := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:62:      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C2
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:64:      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C3
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:66:      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C1
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:69:      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:71:      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C1
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:73:      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:76:private theorem capByIndex_oppIndex1_eq_oppCap1
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:78:    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:81:    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:84:private theorem capByIndex_oppIndex2_eq_oppCap2
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:86:    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:89:    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:100:    5 ≤ (S.capByIndex S.oppIndex1).card ∨
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:101:      5 ≤ (S.capByIndex S.oppIndex2).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:105:  have hfirst : (S.capByIndex S.oppIndex1).card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:106:  have hsecond : (S.capByIndex S.oppIndex2).card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:110:  · rw [← capByIndex_oppIndex1_eq_oppCap1 S]
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:112:  · rw [← capByIndex_oppIndex2_eq_oppCap2 S]
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:124:    H.centerAt Q.fiber.source₁.1 Q.fiber.source₁.2 ∈ S.capByIndex capIndex ∧
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:125:      S.oppApex1 ∈ S.capByIndex capIndex ∧

@@ -1,0 +1,37 @@
+claiming (target_symbol): Problem97.erdos97_rhs
+sanctioned axioms (1) — accepted on the spine:
+  🪶 Lean.trustCompiler
+
+  ⚠ 9 uncommitted lean file(s) — this verdict is computed from working-tree source, not git HEAD
+  target_symbol `Problem97.erdos97_rhs`: skipped (--no-refresh); kernel was not invoked
+off-spine sorries: none — all live work is wired into the spine
+
+name collisions: 8 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (8):
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e2Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e5Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e7Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e8Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e9Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.false_of_q1_br_eq_bv  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.q1Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.ExactFiveCommonShellV7.evalClauseD_binary_implication  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean
+
+❌ verify-publish FAILED (1 blocker(s)):
+  - spine of `Problem97.erdos97_rhs` reaches sorry via Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining

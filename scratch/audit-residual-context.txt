@@ -1,0 +1,181 @@
+      (freshCenter_mem :
+        H.centerAt Q.source₁.1 Q.source₁.2 ∈
+          S.capInteriorByIndex capIndex)
+      (fiberSource_mem_cap :
+        Q.source₁.1 ∈ S.capByIndex capIndex ∨
+          Q.source₂.1 ∈ S.capByIndex capIndex)
+
+/-- A cap-source row supplies a genuinely new perpendicular-bisector center
+for the fresh blocker pair. -/
+abbrev FreshThirdCrossRowHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop :=
+  H.centerAt source.1 source.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2 ∧
+    Q.source₁.1 ∈
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+    Q.source₂.1 ∈
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support
+
+/-- Positive normal form for the complement of two distinct cross-row
+centers. It exposes the three mathematical residual arms without splitting
+the load-bearing obligation into constructor-product leaves. -/
+abbrev FreshThirdCrossRowResidual
+    (firstSource secondSource : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop :=
+  ¬ FreshThirdCrossRowHit P Pρ firstSource Q ∨
+    ¬ FreshThirdCrossRowHit P Pρ secondSource Q ∨
+    H.centerAt firstSource.1 firstSource.2 =
+      H.centerAt secondSource.1 secondSource.2
+
+/-- Positive data hidden by the failure of one cap-source cross-row hit. -/
+inductive FreshThirdCapSourceNonHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | sameBlocker
+      (center_eq :
+        H.centerAt source.1 source.2 =
+          H.centerAt Q.source₁.1 Q.source₁.2)
+      (support_eq :
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support =
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support)
+  | sourceRowOmission
+      (deleted : CriticalShellSystem.CarrierVertex D.A)
+      (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+      (deleted_not_mem :
+        deleted.1 ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      (deletion_survives :
+        HasNEquidistantPointsAt 4 (D.A.erase deleted.1)
+          (H.centerAt source.1 source.2))
+
+namespace FreshThirdCapSourceInteraction
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Constructor normalization for a failed cross-row hit.  The two geometric
+interaction constructors are themselves cross-row hits, so only equal blocker
+or source-row omission can survive. -/
+theorem nonHit_of_not_crossRowHit
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (interaction : FreshThirdCapSourceInteraction P Pρ source Q)
+    (hnot : ¬ FreshThirdCrossRowHit P Pρ source Q) :
+    FreshThirdCapSourceNonHit P Pρ source Q := by
+  cases interaction with
+  | sameBlocker center_eq support_eq =>
+      exact .sameBlocker center_eq support_eq
+  | sourceRowOmission deleted deleted_eq deleted_not_mem deletion_survives =>
+      exact .sourceRowOmission deleted deleted_eq deleted_not_mem
+        deletion_survives
+  | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+      _ _ _ _ _ _ =>
+      exact (hnot ⟨centers_ne, source₁_mem, source₂_mem⟩).elim
+  | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+      _ _ _ _ _ =>
+      exact (hnot ⟨centers_ne, source₁_mem, source₂_mem⟩).elim
+
+end FreshThirdCapSourceInteraction
+
+/-- Three positive normalized cases left after removing two distinct
+cross-row centers.  This is deliberately a data packet, not three new proof
+obligations. -/
+inductive FreshThirdNormalizedResidualCase
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  | firstNonHit
+      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+  | secondNonHit
+      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+  | equalCrossRowCenters
+      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+      (centers_eq :
+        H.centerAt C.firstSource.1 C.firstSource.2 =
+          H.centerAt C.secondSource.1 C.secondSource.2)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Turn the explicit logical complement into constructor-specific positive
+data while retaining both original interaction packets at the caller. -/
+theorem freshThirdNormalizedResidualCase_of_crossRowResidual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual :
+      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q) :
+    FreshThirdNormalizedResidualCase P Pρ C Q := by
+  by_cases hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q
+  · by_cases hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q
+    · rcases hresidual with hfirst' | hsecond' | hcenters
+      · exact (hfirst' hfirst).elim
+      · exact (hsecond' hsecond).elim
+      · exact .equalCrossRowCenters hfirst hsecond hcenters
+    · exact .secondNonHit
+        (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+          (P := P) (Pρ := Pρ) C.secondSource Q secondInteraction hsecond)
+  · exact .firstNonHit
+      (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+        (P := P) (Pρ := Pρ) C.firstSource Q firstInteraction hfirst)
+
+/-- The rigid positive packet in the equal-center residual: both cap-source
+rows are the same exact four-point row, containing precisely the two cap
+sources and the two fresh sources. -/
+structure FreshThirdEqualCenterExactFourRow
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+  centers_eq :
+    H.centerAt C.firstSource.1 C.firstSource.2 =
+      H.centerAt C.secondSource.1 C.secondSource.2
+  capCenter_ne_freshCenter :
+    H.centerAt C.firstSource.1 C.firstSource.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2
+  first_support_eq :
+    (H.selectedAt C.firstSource.1
+        C.firstSource.2).toCriticalFourShell.support =
+      {C.firstSource.1, C.secondSource.1, Q.source₁.1, Q.source₂.1}
+  second_support_eq :
+    (H.selectedAt C.secondSource.1
+        C.secondSource.2).toCriticalFourShell.support =
+      {C.firstSource.1, C.secondSource.1, Q.source₁.1, Q.source₂.1}
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Equal cap-source centers in the both-hit arm force the selected row to be
+the named four-source row. -/
+theorem freshThirdEqualCenterExactFourRow_of_hits
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+    (hcenters :
+      H.centerAt C.firstSource.1 C.firstSource.2 =
+        H.centerAt C.secondSource.1 C.secondSource.2) :
+    FreshThirdEqualCenterExactFourRow P Pρ C Q := by
+  have hQCenters :
+      H.centerAt Q.source₁.1 Q.source₁.2 =
+        H.centerAt Q.source₂.1 Q.source₂.2 :=
+    congrArg Subtype.val Q.blockers_eq
+  have hfirstQ₁ : C.firstSource.1 ≠ Q.source₁.1 := by
+    intro heq
+    apply hfirst.1
+    have hcarrier : C.firstSource = Q.source₁ := Subtype.ext heq
+    simp [hcarrier]
+  have hfirstQ₂ : C.firstSource.1 ≠ Q.source₂.1 := by
+    intro heq
+    apply hfirst.1
+    have hcarrier : C.firstSource = Q.source₂ := Subtype.ext heq
+    simpa [hcarrier] using hQCenters.symm
+  have hsecondQ₁ : C.secondSource.1 ≠ Q.source₁.1 := by
+    intro heq
+    apply hsecond.1
+    have hcarrier : C.secondSource = Q.source₁ := Subtype.ext heq
+    simp [hcarrier]
+  have hsecondQ₂ : C.secondSource.1 ≠ Q.source₂.1 := by
+    intro heq
+    apply hsecond.1
+    have hcarrier : C.secondSource = Q.source₂ := Subtype.ext heq

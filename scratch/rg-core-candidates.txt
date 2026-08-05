@@ -1,0 +1,240 @@
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:27:def qDeletedK4ClassToSelectedFourClass
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:48:theorem qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:56:    (qDeletedK4ClassToSelectedFourClass K hcard)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:368:  | pairedCommonDeletion P O reverse_omission reversePacket oppositeLargeCap =>
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:407:      rcases exists_fresh_secondCap_commonDeletion_of_reverseHit O
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:264:      exact nonempty_commonDeletionTwoCenterPacket H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:275:      exact nonempty_commonDeletionTwoCenterPacket H P.q_mem_A
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:309:      exact nonempty_commonDeletionTwoCenterPacket H P.w_mem_A
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:320:      exact nonempty_commonDeletionTwoCenterPacket H P.w_mem_A
+lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean:342:  exact physicalSecondApex_commonDeletion_robust_or_critical packet
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:223:/- ### The unique-four cover at a tri-apex robust configuration -/
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:240:/-- **The unique-four cover at a tri-apex robust configuration.**
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:246:and the apex-triple exclusion stops any one centre from covering more than two
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:252:theorem uniqueFourCover_of_triApexRobust
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:50:theorem nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:459:    rcases nonempty_commonDeletionTwoCenterPacket Hlate F.pair.q_mem_A
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:475:    rcases nonempty_commonDeletionTwoCenterPacket Hlate F.pair.w_mem_A
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:537:  rcases physicalSecondApex_commonDeletion_robust_or_critical
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:324:  rcases nonempty_commonDeletionTwoCenterPacket H hyA
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:366:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:481:      (commonDeletion :
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:495:      (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:526:  | offRadiusCommonDeletion offRadius commonDeletion =>
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:529:          offRadius commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:183:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:194:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:319:  commonDeletion : RetainedInteriorCommonDeletion omission
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:333:  rcases nonempty_retainedInteriorCommonDeletion P with ⟨commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:334:  exact ⟨⟨P, commonDeletion, oppositeLargeCap_disjunction_of_parent R⟩⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:15:three such members, another physical strict-cap source always avoids that
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:138:    simpa [P] using three_le_capInterior_hits_of_largeCapUniqueFive profile
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:32:theorem qDeleted_support_subset_selectedClass
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:57:    Finset.card_le_card (qDeleted_support_subset_selectedClass P.firstPacket.row₁)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:73:    Finset.card_le_card (qDeleted_support_subset_selectedClass P.secondPacket.row₁)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:87:  have hsub := qDeleted_support_subset_selectedClass P.firstPacket.row₁
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:106:  have hsub := qDeleted_support_subset_selectedClass P.secondPacket.row₁
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:115:theorem qDeleted_support_subset_ambientSelectedClass
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:121:    (qDeleted_support_subset_selectedClass K hzB)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:135:      (qDeleted_support_subset_ambientSelectedClass P.firstPacket.row₂)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:148:      (qDeleted_support_subset_ambientSelectedClass P.secondPacket.row₂)
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:159:  have hsub := qDeleted_support_subset_selectedClass P.firstPacket.row₂
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:177:  have hsub := qDeleted_support_subset_selectedClass P.secondPacket.row₂
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean:257:theorem exists_third_commonDeletionSource
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:73:theorem exists_fresh_secondCap_commonDeletion_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:140:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:147:/-- All three large-cap outcomes have the same normal form: a source-valid
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:149:theorem exists_commonDeletionPacket_of_largeCapConsumerOutcome
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:158:  | pairedCommonDeletion P O reverse_omission reversePacket oppositeLargeCap =>
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:166:      rcases exists_fresh_secondCap_commonDeletion_of_reverseHit O
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:173:theorem exists_commonDeletionPacket_of_matchingReduction
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:182:  exact exists_commonDeletionPacket_of_largeCapConsumerOutcome L
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:184:#print axioms exists_fresh_secondCap_commonDeletion_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:185:#print axioms exists_commonDeletionPacket_of_largeCapConsumerOutcome
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:186:#print axioms exists_commonDeletionPacket_of_matchingReduction
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:143:theorem physicalSecondApex_commonDeletion_robust_or_critical
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:170:  · rcases nonempty_commonDeletionTwoCenterPacket H hsourceA
+lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean:228:  rcases physicalSecondApex_commonDeletion_robust_or_critical
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:25:three distinct strict-cap roles first yield a fresh common deletion and then a
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:54:      (commonDeletion : LocalizedCollisionCommonDeletion data)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:68:      rcases data.nonempty_commonDeletion with ⟨commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:70:        data commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:85:      (commonDeletion : LocalizedCollisionCommonDeletion collision)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:86:      (cycle : LocalizedCollisionMutualOmissionCycle collision commonDeletion)
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:110:  | localizedCollision collision commonDeletion =>
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:112:          collision commonDeletion with
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:115:        collision commonDeletion cycle⟩
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:135:  | commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:248:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:252:    exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:431:    · rcases nonempty_commonDeletionTwoCenterPacket H hbA hcenterA
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:435:      exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:136:theorem commonDeletion_or_frontierCoupledExactFivePhysicalCycleParentResidual
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:145:  | commonDeletion deleted center packet =>
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:161:  commonDeletion :
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:173:  rcases commonDeletion_or_frontierCoupledExactFivePhysicalCycleParentResidual
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:176:    exact C.commonDeletion R
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:182:#print axioms commonDeletion_or_frontierCoupledExactFivePhysicalCycleParentResidual
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:284:  | reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:295:  | pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:389:    exact ⟨RetainedReverseCouplingOutcome.reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:399:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:406:    exact ⟨RetainedReverseCouplingOutcome.pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:412:theorem actualRow_center_eq_reverseBlocker_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:511:theorem exists_fresh_firstCap_commonDeletion_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:579:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:596:  | pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:657:      G.omission G.commonDeletion with ⟨O⟩
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:660:  | pairedCommonDeletion reverse_omission reversePacket =>
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:661:      exact ⟨RetainedMatchingLargeCapConsumerOutcome.pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:663:  | reverseHit reverse_mem reverseBlocker_mem_capInterior
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:666:      · rcases exists_fresh_firstCap_commonDeletion_of_reverseHit O
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:89:theorem nonempty_commonDeletionTwoCenterPacket_of_sharedCriticalPair
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:118:  exact ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:127:  | commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:147:  | commonDeletion deleted center packet =>
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:148:    exact ⟨RobustLargeRadiusReducedOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:157:    rcases nonempty_commonDeletionTwoCenterPacket_of_sharedCriticalPair
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:159:      ⟨deleted, _hdeletedRadius, _hdeletedShell, ⟨commonDeletion⟩⟩
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:160:    exact ⟨RobustLargeRadiusReducedOutcome.commonDeletion
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean:161:      deleted packet.center commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:59:theorem three_le_capInterior_hits_of_largeCapUniqueFive
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:198:      three_le_capInterior_hits_of_largeCapUniqueFive profile
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:17:the same cap.  The row then has three same-cap support points, contradicting
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:87:    three_le_capInterior_hits_of_largeCapUniqueFive profile
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:293:  rcases nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:297:  rcases nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:380:  rcases nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:384:  rcases nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1111:theorem qDeletedRow_at_actualBlocker_eq_canonicalSupport
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1540:      nonempty_commonDeletionTwoCenterPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3017:arms.  The three named interior points exhaust the physical second-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5956:residue: three physical strict-cap hits in the actual late row are already
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6240:private theorem false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6249:  rcases physicalSecondApex_commonDeletion_robust_or_critical C with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6280:        nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6285:      false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6292:        nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6297:      false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6450:points as well, so all three caps are large.  Redesignating the second opposite
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6819:  | pairedCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6828:  | reverseHitFreshCommonDeletion
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6855:theorem exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6956:private theorem oppApex1_mem_A_for_reverseHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6967:private theorem oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6982:theorem reverseHit_twoCenter_sqdist_acute
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7006:  rcases exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit O
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7030:    oppApex1_mem_A_for_reverseHit S
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7032:    oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit S
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7078:  | pairedCommonDeletion reverse_omission reversePacket =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7079:      exact ⟨.pairedCommonDeletion O reverse_omission reversePacket⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7080:  | reverseHit reverse_mem reverseBlocker_mem_capInterior reverseShell_inter_cap_eq =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7081:      rcases exists_fresh_firstCap_commonDeletion_of_reverseHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7085:      exact ⟨.reverseHitFreshCommonDeletion O reverse_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7109:private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7117:private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7125:private theorem capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7132:private theorem triApexAllLargeContext_index_cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7141:theorem triApexAllLargeContext_of_residuals
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7152:    rw [capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7155:    rw [capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7158:    rw [capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext]
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7166:    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7171:    rcases triApexAllLargeContext_index_cases S i with rfl | rfl | rfl
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7176:/-- Every canonical critical-shell center lies in one of the three strict cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7180:theorem exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7222:      exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7233:theorem false_of_retainedOmission_triApexAllLarge_core
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7258:      (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7262:  exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7263:    (triApexAllLargeContext_of_residuals L N T)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7727:  rcases ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7746:theorem exists_distinctRadius_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7774:  rcases CriticalPairFrontier.originalUnique_or_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10096:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10099:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10104:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10107:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10112:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10115:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10120:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10123:    · rw [← ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:11958:three robust Moser apices; the last center is the surviving cap-source
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14348:theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:14665:    exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15015:    exists_distinctRadius_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15117:three strict first-cap members give a retained directed omission, while the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15276:It receives the source-faithful exact-four cover carried by `H`; the tri-apex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:15400:      have hcover := uniqueFourCover_of_triApexRobust R.minimal S
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:305:  have hthree : 2 < (S.capInteriorByIndex k).card := by
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:348:theorem RetainedInteriorBlockerCollision.exists_fresh_commonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:415:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:441:theorem RetainedInteriorBlockerCollision.nonempty_commonDeletion
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:448:  rcases P.exists_fresh_commonDeletion with
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:483:      rcases nonempty_retainedInteriorCommonDeletion data with ⟨commonDeletion⟩
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:486:        commonDeletion := commonDeletion
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:199:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean:203:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean:22:role-coverage gate consumes: two distinct members of one second-apex
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:13:When a fifteen-point carrier has three closed Moser caps of cardinality at
+lean/Erdos9796Proof/P97/ATail/ExactFifteenApexProfile.lean:74:/-- At exact carrier size fifteen, three cap lower bounds of six are all sharp. -/
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:203:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:370:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:459:  rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:479:      (commonDeletion : FrontierOffRadiusCommonDeletion escape offRadius)
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:563:    rcases nonempty_commonDeletionTwoCenterPacket H hsourceA
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:567:    rcases nonempty_commonDeletionTwoCenterPacket H hsourceA
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:16:and then return either an ordered three-row core or a same-cap two-center core.
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:194:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:258:    rcases nonempty_commonDeletionTwoCenterPacket H W.first_mem_A
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:262:private theorem pair_q_mem_frontierClass_of_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:274:private theorem pair_w_mem_frontierClass_of_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:320:            pair_w_mem_frontierClass_of_commonDeletionParent R⟩
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:324:          (pair_q_mem_frontierClass_of_commonDeletionParent R),
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:377:theorem CriticalPairFrontier.originalUnique_or_commonDeletion
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:392:    rcases nonempty_commonDeletionTwoCenterPacket H
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:400:theorem CriticalPairFrontier.originalUnique_or_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:410:  rcases CriticalPairFrontier.originalUnique_or_commonDeletion F with
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:435:      CriticalPairFrontier.originalUnique_or_commonDeletionParent
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:72:The aligned three-hit arm is impossible because that cap has only two strict
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:17:apex as its three-interior-point cap, leaving the first opposite cap as the
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorRightCap21Satisfaction.lean:8:This module isolates the literal replay from the three geometric cap facts.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:82:/-- The generic form of the exact-five pair selector: three strict-cap points
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorResidual55Satisfaction.lean:9:The cap-source bridge supplies the three endpoint bounds, three own-cap
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:13:This transports the three concrete P4 cap blocks through `mirrorIndex`.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:624:/-- Every three-point short-cap family instance holds after mirror transport. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorCapSourceBridge/P4MirrorCapSourceBridge.lean:643:/-- Every three-point right-cap family instance holds after mirror transport. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeClassifier.lean:14:`7`.  The three closed caps are respectively `[0, 1, 2, 3]`,
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:52:/-- The encoder's three closed cap position lists. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/RightCapOccurrences.lean:16:the other 18 cap-2 clauses, together with the three cap-1 endpoint-`7`
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/RightCapOccurrences.lean:52:/-- The three source-ledger families represented by the direct cap bridge. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/RightCapOccurrences.lean:212:/-- The direct bridge materializes exactly the 18 non-generic cap-2 clauses and three cap-1 clauses. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:23:Thus the three apices have indices `0`, `4`, and `8`; the closed cap blocks
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:72:/-- The three strict points in the cap opposite the first apex. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:1411:    · rw [Q.boundary_three, ← capByIndex_oppIndex2_eq_oppCap2]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:1433:    · rw [Q.boundary_three, ← capByIndex_oppIndex1_eq_oppCap1]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:74:/-- Every three-distinct-point instance of the right-cap at-most-two source
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:100:/-- Every three-point source instance for the four-point first opposite cap. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:108:/-- Every three-point source instance for the five-point second opposite cap. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:632:/-- All three-point right-cap source instances are satisfied by the direct P4
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:729:/-- All three-point short-cap source instances are satisfied by the direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4RightCapSourceBridge/P4RightCapSourceBridge.lean:738:/-- All three-point second-opposite-cap source instances are satisfied by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:113:def qDeletedPairRow (i : Fin 3960) : QDeletedPairRow :=
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:127:  | qDeletedPair (index : Fin 3960)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:138:  | .qDeletedPair index => 45398 + index.val
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:155:    some (.qDeletedPair ⟨varIndex - 45398, by omega⟩)
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:174:  | qDeletedPair index => simp [encodeG3Var]
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:207:  | qDeletedPair index =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:270:  | qDeletedPair index =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullRadiusAtoms.lean:276:      apply congrArg (fun i : Fin 3960 => some (G3VarMeaning.qDeletedPair i))
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:197:      (encodeG3Var (.qDeletedPair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:201:      (encodeG3Var (.qDeletedPair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:250:        qDeletedPairRow
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:255:        qDeletedPairRow
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:269:private theorem CanonicalPacket.qDeletedPairHolds_canonical_iff
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:275:    P.qDeletedPairHolds (canonicalQDeletedPairRow q c a b) ↔
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:276:      P.qDeletedPairHolds ⟨q, c, a, b⟩ := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:280:      P.qDeletedPairHolds_swap q c b a
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:308:  rw [P.fullRadiusValuation_qDeletedPair] at hpairTValue hpairXValue
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:313:      P.qDeletedPairHolds
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger.lean:319:      P.qDeletedPairHolds

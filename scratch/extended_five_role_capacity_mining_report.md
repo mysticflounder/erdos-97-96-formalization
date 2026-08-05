@@ -1,0 +1,185 @@
+# Full seven-role endpoint capacity audit
+
+The Kalmanson system ranges over every four-subset of each seven-role
+order.  The capacity layer imposes named-carrier pair-center <= 2,
+named-carrier triple-center <= 1, and saturation of the known O,B
+centers for the pair {C,M}.  SAT is only a metric-relaxation witness.
+
+## A=J
+
+- insertion orders: 60
+- full 7-role Kalmanson + shell SAT: 14
+- full 7-role Kalmanson + shell UNSAT: 46
+- after named capacity + saturated {C,M} SAT: 14
+- after named capacity + saturated {C,M} UNSAT: 46
+- UNKNOWN: 0
+
+| base | order | full 7-role | capacity layer |
+|---|---|---|---|
+| OAKXC | OAKXCMB | UNSAT | UNSAT |
+| OAKXC | OAKXCBM | SAT | SAT |
+| OAKXC | OAKXMCB | UNSAT | UNSAT |
+| OAKXC | OAKXMBC | SAT | SAT |
+| OAKXC | OAKXBCM | UNSAT | UNSAT |
+| OAKXC | OAKXBMC | UNSAT | UNSAT |
+| OAKXC | OAKMXCB | UNSAT | UNSAT |
+| OAKXC | OAKMXBC | SAT | SAT |
+| OAKXC | OAKMBXC | UNSAT | UNSAT |
+| OAKXC | OAKBXCM | UNSAT | UNSAT |
+| OAKXC | OAKBXMC | UNSAT | UNSAT |
+| OAKXC | OAKBMXC | UNSAT | UNSAT |
+| OAKXC | OAMKXCB | UNSAT | UNSAT |
+| OAKXC | OAMKXBC | SAT | SAT |
+| OAKXC | OAMKBXC | UNSAT | UNSAT |
+| OAKXC | OAMBKXC | UNSAT | UNSAT |
+| OAKXC | OABKXCM | UNSAT | UNSAT |
+| OAKXC | OABKXMC | UNSAT | UNSAT |
+| OAKXC | OABKMXC | UNSAT | UNSAT |
+| OAKXC | OABMKXC | UNSAT | UNSAT |
+| OAKXC | OMAKXCB | UNSAT | UNSAT |
+| OAKXC | OMAKXBC | UNSAT | UNSAT |
+| OAKXC | OMAKBXC | SAT | SAT |
+| OAKXC | OMABKXC | SAT | SAT |
+| OAKXC | OMBAKXC | SAT | SAT |
+| OAKXC | OBAKXCM | UNSAT | UNSAT |
+| OAKXC | OBAKXMC | UNSAT | UNSAT |
+| OAKXC | OBAKMXC | UNSAT | UNSAT |
+| OAKXC | OBAMKXC | UNSAT | UNSAT |
+| OAKXC | OBMAKXC | UNSAT | UNSAT |
+| OCXKA | OCXKAMB | UNSAT | UNSAT |
+| OCXKA | OCXKABM | SAT | SAT |
+| OCXKA | OCXKMAB | UNSAT | UNSAT |
+| OCXKA | OCXKMBA | UNSAT | UNSAT |
+| OCXKA | OCXKBAM | SAT | SAT |
+| OCXKA | OCXKBMA | UNSAT | UNSAT |
+| OCXKA | OCXMKAB | UNSAT | UNSAT |
+| OCXKA | OCXMKBA | UNSAT | UNSAT |
+| OCXKA | OCXMBKA | UNSAT | UNSAT |
+| OCXKA | OCXBKAM | SAT | SAT |
+| OCXKA | OCXBKMA | UNSAT | UNSAT |
+| OCXKA | OCXBMKA | UNSAT | UNSAT |
+| OCXKA | OCMXKAB | UNSAT | UNSAT |
+| OCXKA | OCMXKBA | UNSAT | UNSAT |
+| OCXKA | OCMXBKA | UNSAT | UNSAT |
+| OCXKA | OCMBXKA | UNSAT | UNSAT |
+| OCXKA | OCBXKAM | UNSAT | UNSAT |
+| OCXKA | OCBXKMA | SAT | SAT |
+| OCXKA | OCBXMKA | SAT | SAT |
+| OCXKA | OCBMXKA | SAT | SAT |
+| OCXKA | OMCXKAB | UNSAT | UNSAT |
+| OCXKA | OMCXKBA | UNSAT | UNSAT |
+| OCXKA | OMCXBKA | UNSAT | UNSAT |
+| OCXKA | OMCBXKA | UNSAT | UNSAT |
+| OCXKA | OMBCXKA | SAT | SAT |
+| OCXKA | OBCXKAM | UNSAT | UNSAT |
+| OCXKA | OBCXKMA | UNSAT | UNSAT |
+| OCXKA | OBCXMKA | UNSAT | UNSAT |
+| OCXKA | OBCMXKA | UNSAT | UNSAT |
+| OCXKA | OBMCXKA | UNSAT | UNSAT |
+
+Capacity SAT witnesses:
+
+- `OAKXC` / `OAKXCBM`: dAB=19, dAC=21/2, dAK=21/2, dAM=18, dAO=21/2, dAX=24, dBC=17/2, dBK=24, dBM=17/2, dBO=18, dBX=69/2, dCK=29/2, dCM=21/2, dCO=21/2, dCX=24, dKM=24, dKO=35/2, dKX=24, dMO=21/2, dMX=71/2, dOX=30
+- `OAKXC` / `OAKXMBC`: dAB=53/4, dAC=61/4, dAK=61/4, dAM=53/4, dAO=53/4, dAX=53/4, dBC=2, dBK=33/2, dBM=2, dBO=49/4, dBX=37/4, dCK=39/2, dCM=7, dCO=53/4, dCX=53/4, dKM=31/2, dKO=37/2, dKX=53/4, dMO=53/4, dMX=29/4, dOX=57/4
+- `OAKXC` / `OAKMXBC`: dAB=51/4, dAC=103/4, dAK=103/4, dAM=81/4, dAO=13, dAX=69/4, dBC=35/4, dBK=69/4, dBM=35/4, dBO=1, dBX=5/4, dCK=125/4, dCM=95/4, dCO=13, dCX=69/4, dKM=69/4, dKO=39/2, dKX=69/4, dMO=13, dMX=31/4, dOX=15/2
+- `OAKXC` / `OAMKXBC`: dAB=63/2, dAC=29, dAK=29, dAM=18, dAO=18, dAX=18, dBC=28, dBK=67/2, dBM=28, dBO=26, dBX=27/2, dCK=69/2, dCM=28, dCO=18, dCX=18, dKM=18, dKO=51/2, dKX=18, dMO=18, dMX=27/2, dOX=27/2
+- `OAKXC` / `OMAKBXC`: dAB=111/8, dAC=29/4, dAK=29/4, dAM=13/4, dAO=51/8, dAX=23/2, dBC=137/8, dBK=23/2, dBM=137/8, dBO=73/4, dBX=55/4, dCK=27/2, dCM=17/2, dCO=51/8, dCX=23/2, dKM=23/2, dKO=109/8, dKX=23/2, dMO=51/8, dMX=55/4, dOX=55/4
+- `OAKXC` / `OMABKXC`: dAB=25/4, dAC=37/4, dAK=37/4, dAM=6, dAO=29/2, dAX=29/2, dBC=29/2, dBK=25/2, dBM=29/2, dBO=83/4, dBX=75/4, dCK=49/4, dCM=29/2, dCO=29/2, dCX=29/2, dKM=33/2, dKO=21, dKX=29/2, dMO=29/2, dMX=83/4, dOX=97/4
+- `OAKXC` / `OMBAKXC`: dAB=21/4, dAC=9, dAK=9, dAM=11, dAO=21, dAX=14, dBC=14, dBK=65/4, dBM=14, dBO=25, dBX=20, dCK=16, dCM=14, dCO=21, dCX=14, dKM=21, dKO=30, dKX=14, dMO=21, dMX=21, dOX=29
+- `OCXKA` / `OCXKABM`: dAB=7, dAC=7, dAK=7, dAM=10, dAO=13, dAX=7, dBC=13, dBK=16, dBM=13, dBO=18, dBX=14, dCK=13, dCM=13, dCO=13, dCX=7, dKM=18, dKO=20, dKX=7, dMO=13, dMX=15, dOX=16
+- `OCXKA` / `OCXKBAM`: dAB=33/4, dAC=25/2, dAK=25/2, dAM=33/4, dAO=51/4, dAX=33/4, dBC=79/4, dBK=71/4, dBM=79/4, dBO=21, dBX=29/2, dCK=31/2, dCM=59/4, dCO=51/4, dCX=33/4, dKM=71/4, dKO=71/4, dKX=33/4, dMO=51/4, dMX=25/2, dOX=23/2
+- `OCXKA` / `OCXBKAM`: dAB=10, dAC=12, dAK=12, dAM=5/4, dAO=1, dAX=31/2, dBC=31/2, dBK=9, dBM=31/2, dBO=13/2, dBX=31/4, dCK=89/4, dCM=31/2, dCO=1, dCX=31/2, dKM=81/4, dKO=49/4, dKX=31/2, dMO=1, dMX=20, dOX=15/2
+- `OCXKA` / `OCBXKMA`: dAB=27/2, dAC=21, dAK=21, dAM=21/2, dAO=6, dAX=25/2, dBC=10, dBK=31/2, dBM=10, dBO=6, dBX=2, dCK=25, dCM=37/2, dCO=6, dCX=25/2, dKM=31/2, dKO=31/2, dKX=25/2, dMO=6, dMX=8, dOX=6
+- `OCXKA` / `OCBXMKA`: dAB=59/4, dAC=67/4, dAK=67/4, dAM=51/4, dAO=17/2, dAX=55/4, dBC=17/2, dBK=17, dBM=17/2, dBO=17/2, dBX=13/2, dCK=83/4, dCM=59/4, dCO=17/2, dCX=55/4, dKM=17/2, dKO=27/2, dKX=55/4, dMO=17/2, dMX=17/4, dOX=17/2
+- `OCXKA` / `OCBMXKA`: dAB=43/4, dAC=47/4, dAK=47/4, dAM=39/4, dAO=15, dAX=35/4, dBC=3, dBK=51/4, dBM=3, dBO=15, dBX=23/4, dCK=59/4, dCM=7, dCO=15, dCX=35/4, dKM=43/4, dKO=19, dKX=35/4, dMO=15, dMX=11/4, dOX=15
+- `OCXKA` / `OMBCXKA`: dAB=71/4, dAC=39/4, dAK=39/4, dAM=47/4, dAO=8, dAX=8, dBC=8, dBK=91/4, dBM=8, dBO=15, dBX=18, dCK=55/4, dCM=8, dCO=8, dCX=8, dKM=71/4, dKO=15, dKX=8, dMO=8, dMX=14, dOX=49/4
+
+## X=C
+
+- insertion orders: 60
+- full 7-role Kalmanson + shell SAT: 14
+- full 7-role Kalmanson + shell UNSAT: 46
+- after named capacity + saturated {C,M} SAT: 14
+- after named capacity + saturated {C,M} UNSAT: 46
+- UNKNOWN: 0
+
+| base | order | full 7-role | capacity layer |
+|---|---|---|---|
+| OCAKJ | OCAKJMB | UNSAT | UNSAT |
+| OCAKJ | OCAKJBM | SAT | SAT |
+| OCAKJ | OCAKMJB | UNSAT | UNSAT |
+| OCAKJ | OCAKMBJ | UNSAT | UNSAT |
+| OCAKJ | OCAKBJM | SAT | SAT |
+| OCAKJ | OCAKBMJ | UNSAT | UNSAT |
+| OCAKJ | OCAMKJB | UNSAT | UNSAT |
+| OCAKJ | OCAMKBJ | UNSAT | UNSAT |
+| OCAKJ | OCAMBKJ | UNSAT | UNSAT |
+| OCAKJ | OCABKJM | UNSAT | UNSAT |
+| OCAKJ | OCABKMJ | SAT | SAT |
+| OCAKJ | OCABMKJ | UNSAT | UNSAT |
+| OCAKJ | OCMAKJB | UNSAT | UNSAT |
+| OCAKJ | OCMAKBJ | UNSAT | UNSAT |
+| OCAKJ | OCMABKJ | UNSAT | UNSAT |
+| OCAKJ | OCMBAKJ | UNSAT | UNSAT |
+| OCAKJ | OCBAKJM | UNSAT | UNSAT |
+| OCAKJ | OCBAKMJ | SAT | SAT |
+| OCAKJ | OCBAMKJ | SAT | SAT |
+| OCAKJ | OCBMAKJ | SAT | SAT |
+| OCAKJ | OMCAKJB | UNSAT | UNSAT |
+| OCAKJ | OMCAKBJ | UNSAT | UNSAT |
+| OCAKJ | OMCABKJ | UNSAT | UNSAT |
+| OCAKJ | OMCBAKJ | UNSAT | UNSAT |
+| OCAKJ | OMBCAKJ | SAT | SAT |
+| OCAKJ | OBCAKJM | UNSAT | UNSAT |
+| OCAKJ | OBCAKMJ | UNSAT | UNSAT |
+| OCAKJ | OBCAMKJ | UNSAT | UNSAT |
+| OCAKJ | OBCMAKJ | UNSAT | UNSAT |
+| OCAKJ | OBMCAKJ | UNSAT | UNSAT |
+| OJKAC | OJKACMB | UNSAT | UNSAT |
+| OJKAC | OJKACBM | SAT | SAT |
+| OJKAC | OJKAMCB | UNSAT | UNSAT |
+| OJKAC | OJKAMBC | SAT | SAT |
+| OJKAC | OJKABCM | UNSAT | UNSAT |
+| OJKAC | OJKABMC | UNSAT | UNSAT |
+| OJKAC | OJKMACB | UNSAT | UNSAT |
+| OJKAC | OJKMABC | SAT | SAT |
+| OJKAC | OJKMBAC | UNSAT | UNSAT |
+| OJKAC | OJKBACM | UNSAT | UNSAT |
+| OJKAC | OJKBAMC | UNSAT | UNSAT |
+| OJKAC | OJKBMAC | UNSAT | UNSAT |
+| OJKAC | OJMKACB | UNSAT | UNSAT |
+| OJKAC | OJMKABC | SAT | SAT |
+| OJKAC | OJMKBAC | SAT | SAT |
+| OJKAC | OJMBKAC | UNSAT | UNSAT |
+| OJKAC | OJBKACM | UNSAT | UNSAT |
+| OJKAC | OJBKAMC | UNSAT | UNSAT |
+| OJKAC | OJBKMAC | UNSAT | UNSAT |
+| OJKAC | OJBMKAC | UNSAT | UNSAT |
+| OJKAC | OMJKACB | UNSAT | UNSAT |
+| OJKAC | OMJKABC | UNSAT | UNSAT |
+| OJKAC | OMJKBAC | UNSAT | UNSAT |
+| OJKAC | OMJBKAC | SAT | SAT |
+| OJKAC | OMBJKAC | SAT | SAT |
+| OJKAC | OBJKACM | UNSAT | UNSAT |
+| OJKAC | OBJKAMC | UNSAT | UNSAT |
+| OJKAC | OBJKMAC | UNSAT | UNSAT |
+| OJKAC | OBJMKAC | UNSAT | UNSAT |
+| OJKAC | OBMJKAC | UNSAT | UNSAT |
+
+Capacity SAT witnesses:
+
+- `OCAKJ` / `OCAKJBM`: dAB=20, dAC=6, dAJ=10, dAK=6, dAM=17, dAO=15, dBC=17, dBJ=10, dBK=19, dBM=17, dBO=18, dCJ=8, dCK=8, dCM=13, dCO=10, dJK=8, dJM=10, dJO=10, dKM=17, dKO=16, dMO=10
+- `OCAKJ` / `OCAKBJM`: dAB=21/4, dAC=3, dAJ=15/2, dAK=3, dAM=19/2, dAO=13/4, dBC=19/2, dBJ=11/2, dBK=21/4, dBM=19/2, dBO=21/4, dCJ=17/2, dCK=17/2, dCM=19/2, dCO=9/4, dJK=17/2, dJM=2, dJO=9/4, dKM=23/2, dKO=25/4, dMO=9/4
+- `OCAKJ` / `OCABKMJ`: dAB=13/4, dAC=21/4, dAJ=55/4, dAK=21/4, dAM=19/2, dAO=14, dBC=21/2, dBJ=63/4, dBK=21/4, dBM=21/2, dBO=17, dCJ=23/2, dCK=23/2, dCM=21/2, dCO=21/2, dJK=23/2, dJM=21/4, dJO=21/2, dKM=21/4, dKO=55/4, dMO=21/2
+- `OCAKJ` / `OCBAKMJ`: dAB=5/4, dAC=69/4, dAJ=45/2, dAK=69/4, dAM=17/2, dAO=13/2, dBC=43/4, dBJ=45/2, dBK=41/2, dBM=43/4, dBO=1, dCJ=71/2, dCK=71/2, dCM=99/4, dCO=35/4, dJK=71/2, dJM=45/2, dJO=35/4, dKM=41/2, dKO=41/2, dMO=35/4
+- `OCAKJ` / `OCBAMKJ`: dAB=1, dAC=27/2, dAJ=35/2, dAK=27/2, dAM=4, dAO=15/2, dBC=5, dBJ=33/2, dBK=27/2, dBM=5, dBO=11/2, dCJ=43/2, dCK=43/2, dCM=33/2, dCO=19/2, dJK=43/2, dJM=37/2, dJO=19/2, dKM=27/2, dKO=27/2, dMO=19/2
+- `OCAKJ` / `OCBMAKJ`: dAB=25/4, dAC=21/2, dAJ=55/4, dAK=21/2, dAM=3, dAO=59/4, dBC=13/4, dBJ=55/4, dBK=25/2, dBM=13/4, dBO=51/4, dCJ=63/4, dCK=63/4, dCM=17/2, dCO=55/4, dJK=63/4, dJM=55/4, dJO=55/4, dKM=23/2, dKO=71/4, dMO=55/4
+- `OCAKJ` / `OMBCAKJ`: dAB=11, dAC=5, dAJ=11, dAK=5, dAM=11, dAO=11, dBC=6, dBJ=14, dBK=15, dBM=6, dBO=11, dCJ=10, dCK=10, dCM=7, dCO=8, dJK=10, dJM=12, dJO=8, dKM=14, dKO=11, dMO=8
+- `OJKAC` / `OJKACBM`: dAB=19, dAC=19/2, dAJ=16, dAK=19/2, dAM=18, dAO=17, dBC=19/2, dBJ=31/2, dBK=33/2, dBM=19/2, dBO=29/2, dCJ=19/2, dCK=19/2, dCM=19/2, dCO=19/2, dJK=19/2, dJM=25/2, dJO=19/2, dKM=29/2, dKO=25/2, dMO=19/2
+- `OJKAC` / `OJKAMBC`: dAB=25/4, dAC=21/2, dAJ=27/2, dAK=21/2, dAM=3, dAO=29/2, dBC=13/4, dBJ=27/2, dBK=25/2, dBM=13/4, dBO=49/4, dCJ=63/4, dCK=63/4, dCM=17/2, dCO=27/2, dJK=63/4, dJM=27/2, dJO=27/2, dKM=23/2, dKO=71/4, dMO=27/2
+- `OJKAC` / `OJKMABC`: dAB=5/2, dAC=13, dAJ=17, dAK=13, dAM=2, dAO=13/2, dBC=13/2, dBJ=14, dBK=13, dBM=13/2, dBO=2, dCJ=43/2, dCK=43/2, dCM=16, dCO=17/2, dJK=43/2, dJM=18, dJO=17/2, dKM=13, dKO=13, dMO=17/2
+- `OJKAC` / `OJMKABC`: dAB=9, dAC=57/4, dAJ=37/2, dAK=57/4, dAM=35/4, dAO=24, dBC=35/4, dBJ=35/2, dBK=61/4, dBM=35/4, dBO=39/2, dCJ=39/2, dCK=39/2, dCM=12, dCO=79/4, dJK=39/2, dJM=35/4, dJO=79/4, dKM=35/4, dKO=113/4, dMO=79/4
+- `OJKAC` / `OJMKBAC`: dAB=3, dAC=19/2, dAJ=29/2, dAK=19/2, dAM=25/2, dAO=13/4, dBC=27/2, dBJ=33/2, dBK=19/2, dBM=27/2, dBO=25/4, dCJ=75/4, dCK=75/4, dCM=71/4, dCO=13/2, dJK=75/4, dJM=27/2, dJO=13/2, dKM=19/2, dKO=19/2, dMO=13/2
+- `OJKAC` / `OMJBKAC`: dAB=27/2, dAC=19/2, dAJ=25/2, dAK=19/2, dAM=31/2, dAO=21/2, dBC=19/2, dBJ=3, dBK=15/2, dBM=19/2, dBO=13/2, dCJ=15/2, dCK=15/2, dCM=19/2, dCO=7/2, dJK=15/2, dJM=3, dJO=7/2, dKM=23/2, dKO=15/2, dMO=7/2
+- `OJKAC` / `OMBJKAC`: dAB=73/4, dAC=4, dAJ=37/4, dAK=4, dAM=65/4, dAO=57/4, dBC=61/4, dBJ=37/4, dBK=37/2, dBM=61/4, dBO=65/4, dCJ=29/4, dCK=29/4, dCM=49/4, dCO=37/4, dJK=29/4, dJM=37/4, dJO=37/4, dKM=35/2, dKO=33/2, dMO=37/4
+

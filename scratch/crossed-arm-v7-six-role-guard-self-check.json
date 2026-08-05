@@ -1,0 +1,182 @@
+{
+  "first": {
+    "direction_preserving_rotations_rejected": 5,
+    "linear_orders_checked": 120,
+    "positive_membership_arities": [
+      2,
+      3
+    ],
+    "reflected_orders_admitted_by_guard": 0,
+    "row_centers": [
+      1,
+      2
+    ],
+    "theorem": "false_of_five_ccw_two_selected_rows_cyclicShift"
+  },
+  "five_circle_isosceles_two_selected_rows": {
+    "cyclic_recut": false,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "positive_membership_arities": [
+      3,
+      2
+    ],
+    "theorem": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw"
+  },
+  "five_direct_three_row_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_three_row_equalities"
+  },
+  "five_kalmanson_three_selected_rows": {
+    "cyclic_recut": false,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "positive_membership_arities": [
+      2,
+      2,
+      2
+    ],
+    "theorem": "Problem97.CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order"
+  },
+  "five_kalmanson_three_shell_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "theorem": "Problem97.CapCrossingKalmanson.false_of_five_ccw_three_shell_equalities"
+  },
+  "five_second_three_row_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_three_row_equalities"
+  },
+  "four_endpoint_centers_bisect_middle_pair": {
+    "cyclic_recut": false,
+    "equality_count": 2,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 24,
+    "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_endpoint_centers_bisect_middle_pair"
+  },
+  "four_middle_centers_bisect_endpoint_pair": {
+    "cyclic_recut": false,
+    "equality_count": 2,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 24,
+    "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_middle_centers_bisect_endpoint_pair"
+  },
+  "kalmanson_012_124_314": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 120,
+    "theorem": "false_of_five_ccw_three_shell_equalities_012_124_314"
+  },
+  "kalmanson_012_325_415": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "false_of_six_ccw_three_shell_equalities_012_325_415"
+  },
+  "kalmanson_013_235_415": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "false_of_six_ccw_three_shell_equalities_013_235_415"
+  },
+  "kalmanson_013_412_523": {
+    "cyclic_recut": false,
+    "equality_count": 3,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "false_of_six_ccw_three_shell_equalities_013_412_523"
+  },
+  "reversed_second": {
+    "direction_preserving_rotations_rejected": 5,
+    "linear_orders_checked": 120,
+    "positive_membership_arities": [
+      3,
+      2
+    ],
+    "reflected_orders_admitted_by_guard": 0,
+    "row_centers": [
+      1,
+      0
+    ],
+    "theorem": "false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift"
+  },
+  "second": {
+    "direction_preserving_rotations_rejected": 5,
+    "linear_orders_checked": 120,
+    "positive_membership_arities": [
+      3,
+      2
+    ],
+    "reflected_orders_admitted_by_guard": 0,
+    "row_centers": [
+      3,
+      4
+    ],
+    "theorem": "false_of_five_ccw_second_two_selected_rows_cyclicShift"
+  },
+  "six_k2_three_row_triangle": {
+    "cyclic_recut": false,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "matcher_cyclic_recut_rejected": true,
+    "matcher_exact_positive_count": 1,
+    "matcher_missing_membership_negatives": 6,
+    "matcher_reversal_rejected": true,
+    "matcher_support_superset_positive_count": 1,
+    "positive_membership_arities": [
+      2,
+      2,
+      2
+    ],
+    "theorem": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle"
+  },
+  "six_main_row_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 5,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_row_equalities"
+  },
+  "six_mirror_interleaving_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 5,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_mirror_interleaving_row_equalities"
+  },
+  "six_sparse_row_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 4,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_row_equalities"
+  },
+  "six_sparse_two_selected_rows": {
+    "cyclic_recut": false,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "positive_membership_arities": [
+      3,
+      3
+    ],
+    "theorem": "false_of_six_ccw_two_selected_rows"
+  },
+  "six_two_triple_row_equalities": {
+    "cyclic_recut": false,
+    "equality_count": 4,
+    "linear_orders_admitted_by_guard": 1,
+    "linear_orders_checked": 720,
+    "theorem": "Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities"
+  }
+}

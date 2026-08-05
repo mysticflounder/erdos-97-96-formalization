@@ -1,0 +1,29 @@
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-258-exactly in the endpoint segment. The proof is the documented extreme-point
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-259-argument: the endpoints are extreme in the hull, the line intersection is
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-260-collinear, and any point outside the endpoint segment forces one endpoint into
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-261-an open segment, contradicting extremality. -/
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:262:theorem convexHull_line_inter_eq_segment_of_extreme_pair {A : Finset ℝ²} {c : ℝ²}
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-263-    {n : ℕ} {phi : Fin n → ℝ²} (hA : Problem97.ConvexIndep A)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-264-    (hphi_inj : Function.Injective phi) (hphi_image : Finset.univ.image phi = A)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-265-    {i k : Fin n} (hik : i < k) :
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-266-    convexHull ℝ (A : Set ℝ²) ∩ line[ℝ, phi i, phi k] = segment ℝ (phi i) (phi k) := by
+--
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-939-      have htK : phi t ∈ K := subset_convexHull _ _ (by exact_mod_cast htA)
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-940-      have hzK : z ∈ K :=
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-941-        (convex_convexHull ℝ (A : Set ℝ²)).openSegment_subset hcK htK hzopen
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-942-      have hseg : z ∈ segment ℝ (phi i) (phi k) := by
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:943:        have hEq := Problem97.convexHull_line_inter_eq_segment_of_extreme_pair
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-944-          (A := A) (c := c) (phi := phi) hA hphi_inj hphi_image hik
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-945-        have hzInter : z ∈ convexHull ℝ (A : Set ℝ²) ∩ line[ℝ, phi i, phi k] :=
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-946-          ⟨hzK, hzline⟩
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean-947-        rwa [hEq] at hzInter
+--
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-72-    subset_convexHull ℝ _ (by exact_mod_cast hidA)
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-73-  have hzK : z ∈ convexHull ℝ (A : Set ℝ²) :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-74-    (convex_convexHull ℝ (A : Set ℝ²)).openSegment_subset hibK hidK hzbd
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-75-  have hline_inter :=
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:76:    convexHull_line_inter_eq_segment_of_extreme_pair
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-77-      (A := A) (c := z) (phi := phi) hA hphi_inj hphi_image hiac
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-78-  have hzac : z ∈ segment ℝ (phi ia) (phi ic) := by
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-79-    have hzInter :
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean-80-        z ∈ convexHull ℝ (A : Set ℝ²) ∩ line[ℝ, phi ia, phi ic] :=

@@ -1,0 +1,2469 @@
+{
+  "baseline": "unsat",
+  "checks": 285,
+  "core_size": 284,
+  "decisions": [
+    {
+      "core_position": 0,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 1,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 2,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 3,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 4,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 5,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 6,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 7,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 8,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 9,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 10,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 11,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 72,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 73,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 74,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 75,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 76,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 77,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 78,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 79,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 80,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 81,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 82,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 83,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 84,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 85,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 86,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 87,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 88,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 89,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 90,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 91,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 92,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 93,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 94,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 95,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 96,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 97,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 98,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 99,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 100,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 101,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 102,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 103,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 104,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 105,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 12,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 13,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 14,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 15,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 16,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 17,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 18,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 19,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 20,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 21,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 22,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 23,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 24,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 25,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 26,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 27,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 28,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 29,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 30,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 31,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 32,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 33,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 34,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 35,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 36,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 37,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 38,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 39,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 40,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 41,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 42,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 43,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 44,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 45,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 46,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 47,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 48,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 49,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 50,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 51,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 52,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 53,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 54,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 55,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 56,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 57,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 58,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 59,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 60,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 61,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 62,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 63,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 64,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 65,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 66,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 67,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 68,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 69,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 70,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 71,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 125,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 126,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 127,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 128,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 129,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 130,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 131,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 132,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 133,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 134,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 135,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 114,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 115,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 116,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 117,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 118,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 119,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 120,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 121,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 122,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 123,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 124,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 106,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 107,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 108,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 109,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 110,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 111,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 112,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 113,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 136,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 137,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 138,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 139,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 140,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 141,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 142,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 143,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 144,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 145,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 146,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 147,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 148,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 149,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 150,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 151,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 152,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 153,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 154,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 155,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 156,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 157,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 158,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 159,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 160,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 161,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 162,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 163,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 164,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 165,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 166,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 167,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 168,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 169,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 170,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 171,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 172,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 173,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 174,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 175,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 176,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 177,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 178,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 179,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 180,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 181,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 182,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 183,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 184,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 185,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 186,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 187,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 188,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 189,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 190,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 191,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 192,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 193,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 194,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 195,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 196,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 197,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 198,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 199,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 200,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 201,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 202,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 203,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 204,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 205,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 206,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 207,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 208,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 209,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 210,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 211,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 212,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 213,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 214,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 215,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 216,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 217,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 218,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 219,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 220,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 221,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 222,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 223,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 224,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 225,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 226,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 227,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 228,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 229,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 230,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 231,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 232,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 233,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 234,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 235,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 236,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 237,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 238,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 239,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 240,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 241,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 242,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 243,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 244,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 245,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 246,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 247,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 248,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 249,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 250,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 251,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 252,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 253,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 254,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 255,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 256,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 257,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 258,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 259,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 260,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 261,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 262,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 263,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 264,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 265,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 266,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 267,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 268,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 269,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 270,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 271,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 272,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 273,
+      "removed": true,
+      "status_without": "unsat"
+    },
+    {
+      "core_position": 274,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 275,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 276,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 277,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 278,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 279,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 280,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 281,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 282,
+      "removed": false,
+      "status_without": "sat"
+    },
+    {
+      "core_position": 283,
+      "removed": false,
+      "status_without": "sat"
+    }
+  ],
+  "elapsed_seconds": 54.65068849991076,
+  "remaining": [
+    {
+      "core_position": 12,
+      "expression": "rich_0_0_0 == (d_0_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 0
+    },
+    {
+      "core_position": 13,
+      "expression": "rich_0_0_1 == (d_1_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 1
+    },
+    {
+      "core_position": 14,
+      "expression": "rich_0_0_2 == (d_2_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 2
+    },
+    {
+      "core_position": 15,
+      "expression": "rich_0_0_3 == (d_3_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 3
+    },
+    {
+      "core_position": 17,
+      "expression": "rich_0_0_5 == (d_5_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 5
+    },
+    {
+      "core_position": 18,
+      "expression": "rich_0_0_6 == (d_6_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 6
+    },
+    {
+      "core_position": 19,
+      "expression": "rich_0_0_7 == (d_7_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 7
+    },
+    {
+      "core_position": 20,
+      "expression": "rich_0_0_8 == (d_8_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 8
+    },
+    {
+      "core_position": 21,
+      "expression": "rich_0_0_9 == (d_9_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 9
+    },
+    {
+      "core_position": 22,
+      "expression": "rich_0_0_10 == (d_10_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 10
+    },
+    {
+      "core_position": 23,
+      "expression": "rich_0_0_11 == (d_11_12 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 11
+    },
+    {
+      "core_position": 24,
+      "expression": "Not(rich_0_0_12)",
+      "family": "exact_rich_profiles",
+      "index": 12
+    },
+    {
+      "core_position": 25,
+      "expression": "rich_0_0_13 == (d_12_13 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 13
+    },
+    {
+      "core_position": 26,
+      "expression": "rich_0_0_14 == (d_12_14 == rich_radius_0_0)",
+      "family": "exact_rich_profiles",
+      "index": 14
+    },
+    {
+      "core_position": 27,
+      "expression": "PbEq(((rich_0_0_0, 1),\n      (rich_0_0_1, 1),\n      (rich_0_0_2, 1),\n      (rich_0_0_3, 1),\n      (rich_0_0_4, 1),\n      (rich_0_0_5, 1),\n      (rich_0_0_6, 1),\n      (rich_0_0_7, 1),\n      (rich_0_0_8, 1),\n      (rich_0_0_9, 1),\n      (rich_0_0_10, 1),\n      (rich_0_0_11, 1),\n      (rich_0_0_12, 1),\n      (rich_0_0_13, 1),\n      (rich_0_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 16
+    },
+    {
+      "core_position": 28,
+      "expression": "rich_0_0_0",
+      "family": "exact_rich_profiles",
+      "index": 17
+    },
+    {
+      "core_position": 29,
+      "expression": "rich_0_0_1",
+      "family": "exact_rich_profiles",
+      "index": 18
+    },
+    {
+      "core_position": 30,
+      "expression": "rich_0_0_2",
+      "family": "exact_rich_profiles",
+      "index": 19
+    },
+    {
+      "core_position": 31,
+      "expression": "rich_0_0_3",
+      "family": "exact_rich_profiles",
+      "index": 20
+    },
+    {
+      "core_position": 32,
+      "expression": "rich_1_0_0 == (d_0_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 35
+    },
+    {
+      "core_position": 33,
+      "expression": "rich_1_0_1 == (d_1_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 36
+    },
+    {
+      "core_position": 34,
+      "expression": "rich_1_0_2 == (d_2_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 37
+    },
+    {
+      "core_position": 35,
+      "expression": "rich_1_0_3 == (d_3_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 38
+    },
+    {
+      "core_position": 36,
+      "expression": "rich_1_0_4 == (d_4_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 39
+    },
+    {
+      "core_position": 37,
+      "expression": "rich_1_0_5 == (d_5_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 40
+    },
+    {
+      "core_position": 38,
+      "expression": "rich_1_0_6 == (d_6_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 41
+    },
+    {
+      "core_position": 39,
+      "expression": "rich_1_0_7 == (d_7_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 42
+    },
+    {
+      "core_position": 40,
+      "expression": "rich_1_0_8 == (d_8_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 43
+    },
+    {
+      "core_position": 41,
+      "expression": "rich_1_0_9 == (d_9_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 44
+    },
+    {
+      "core_position": 42,
+      "expression": "rich_1_0_10 == (d_10_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 45
+    },
+    {
+      "core_position": 43,
+      "expression": "rich_1_0_11 == (d_11_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 46
+    },
+    {
+      "core_position": 44,
+      "expression": "rich_1_0_12 == (d_12_13 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 47
+    },
+    {
+      "core_position": 45,
+      "expression": "Not(rich_1_0_13)",
+      "family": "exact_rich_profiles",
+      "index": 48
+    },
+    {
+      "core_position": 46,
+      "expression": "rich_1_0_14 == (d_13_14 == rich_radius_1_0)",
+      "family": "exact_rich_profiles",
+      "index": 49
+    },
+    {
+      "core_position": 47,
+      "expression": "PbEq(((rich_1_0_0, 1),\n      (rich_1_0_1, 1),\n      (rich_1_0_2, 1),\n      (rich_1_0_3, 1),\n      (rich_1_0_4, 1),\n      (rich_1_0_5, 1),\n      (rich_1_0_6, 1),\n      (rich_1_0_7, 1),\n      (rich_1_0_8, 1),\n      (rich_1_0_9, 1),\n      (rich_1_0_10, 1),\n      (rich_1_0_11, 1),\n      (rich_1_0_12, 1),\n      (rich_1_0_13, 1),\n      (rich_1_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 51
+    },
+    {
+      "core_position": 48,
+      "expression": "rich_1_0_4",
+      "family": "exact_rich_profiles",
+      "index": 52
+    },
+    {
+      "core_position": 49,
+      "expression": "rich_1_0_5",
+      "family": "exact_rich_profiles",
+      "index": 53
+    },
+    {
+      "core_position": 50,
+      "expression": "rich_1_0_6",
+      "family": "exact_rich_profiles",
+      "index": 54
+    },
+    {
+      "core_position": 51,
+      "expression": "rich_1_0_7",
+      "family": "exact_rich_profiles",
+      "index": 55
+    },
+    {
+      "core_position": 52,
+      "expression": "rich_2_0_0 == (d_0_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 70
+    },
+    {
+      "core_position": 53,
+      "expression": "rich_2_0_1 == (d_1_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 71
+    },
+    {
+      "core_position": 54,
+      "expression": "rich_2_0_2 == (d_2_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 72
+    },
+    {
+      "core_position": 55,
+      "expression": "rich_2_0_3 == (d_3_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 73
+    },
+    {
+      "core_position": 56,
+      "expression": "rich_2_0_4 == (d_4_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 74
+    },
+    {
+      "core_position": 57,
+      "expression": "rich_2_0_5 == (d_5_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 75
+    },
+    {
+      "core_position": 58,
+      "expression": "rich_2_0_6 == (d_6_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 76
+    },
+    {
+      "core_position": 59,
+      "expression": "rich_2_0_7 == (d_7_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 77
+    },
+    {
+      "core_position": 60,
+      "expression": "rich_2_0_8 == (d_8_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 78
+    },
+    {
+      "core_position": 61,
+      "expression": "rich_2_0_9 == (d_9_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 79
+    },
+    {
+      "core_position": 62,
+      "expression": "rich_2_0_10 == (d_10_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 80
+    },
+    {
+      "core_position": 63,
+      "expression": "rich_2_0_11 == (d_11_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 81
+    },
+    {
+      "core_position": 64,
+      "expression": "rich_2_0_12 == (d_12_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 82
+    },
+    {
+      "core_position": 65,
+      "expression": "rich_2_0_13 == (d_13_14 == rich_radius_2_0)",
+      "family": "exact_rich_profiles",
+      "index": 83
+    },
+    {
+      "core_position": 66,
+      "expression": "Not(rich_2_0_14)",
+      "family": "exact_rich_profiles",
+      "index": 84
+    },
+    {
+      "core_position": 67,
+      "expression": "PbEq(((rich_2_0_0, 1),\n      (rich_2_0_1, 1),\n      (rich_2_0_2, 1),\n      (rich_2_0_3, 1),\n      (rich_2_0_4, 1),\n      (rich_2_0_5, 1),\n      (rich_2_0_6, 1),\n      (rich_2_0_7, 1),\n      (rich_2_0_8, 1),\n      (rich_2_0_9, 1),\n      (rich_2_0_10, 1),\n      (rich_2_0_11, 1),\n      (rich_2_0_12, 1),\n      (rich_2_0_13, 1),\n      (rich_2_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 86
+    },
+    {
+      "core_position": 68,
+      "expression": "rich_2_0_8",
+      "family": "exact_rich_profiles",
+      "index": 87
+    },
+    {
+      "core_position": 69,
+      "expression": "rich_2_0_9",
+      "family": "exact_rich_profiles",
+      "index": 88
+    },
+    {
+      "core_position": 70,
+      "expression": "rich_2_0_10",
+      "family": "exact_rich_profiles",
+      "index": 89
+    },
+    {
+      "core_position": 71,
+      "expression": "rich_2_0_11",
+      "family": "exact_rich_profiles",
+      "index": 90
+    },
+    {
+      "core_position": 72,
+      "expression": "Implies(k4_6_0, d_0_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 186
+    },
+    {
+      "core_position": 73,
+      "expression": "Implies(k4_6_1, d_1_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 188
+    },
+    {
+      "core_position": 74,
+      "expression": "Implies(k4_6_2, d_2_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 190
+    },
+    {
+      "core_position": 75,
+      "expression": "Implies(k4_6_3, d_3_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 192
+    },
+    {
+      "core_position": 76,
+      "expression": "Implies(k4_6_4, d_4_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 194
+    },
+    {
+      "core_position": 77,
+      "expression": "Implies(k4_6_5, d_5_6 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 196
+    },
+    {
+      "core_position": 78,
+      "expression": "Not(k4_6_6)",
+      "family": "global_K4",
+      "index": 198
+    },
+    {
+      "core_position": 79,
+      "expression": "Implies(k4_6_7, d_6_7 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 199
+    },
+    {
+      "core_position": 80,
+      "expression": "Implies(k4_6_8, d_6_8 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 201
+    },
+    {
+      "core_position": 81,
+      "expression": "Implies(k4_6_9, d_6_9 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 203
+    },
+    {
+      "core_position": 82,
+      "expression": "Implies(k4_6_10, d_6_10 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 205
+    },
+    {
+      "core_position": 83,
+      "expression": "Implies(k4_6_11, d_6_11 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 207
+    },
+    {
+      "core_position": 84,
+      "expression": "Implies(k4_6_12, d_6_12 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 209
+    },
+    {
+      "core_position": 85,
+      "expression": "Implies(k4_6_13, d_6_13 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 211
+    },
+    {
+      "core_position": 86,
+      "expression": "Implies(k4_6_14, d_6_14 == k4_radius_6)",
+      "family": "global_K4",
+      "index": 213
+    },
+    {
+      "core_position": 87,
+      "expression": "PbEq(((k4_6_0, 1),\n      (k4_6_1, 1),\n      (k4_6_2, 1),\n      (k4_6_3, 1),\n      (k4_6_4, 1),\n      (k4_6_5, 1),\n      (k4_6_6, 1),\n      (k4_6_7, 1),\n      (k4_6_8, 1),\n      (k4_6_9, 1),\n      (k4_6_10, 1),\n      (k4_6_11, 1),\n      (k4_6_12, 1),\n      (k4_6_13, 1),\n      (k4_6_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 216
+    },
+    {
+      "core_position": 88,
+      "expression": "Implies(k4_9_0, d_0_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 279
+    },
+    {
+      "core_position": 89,
+      "expression": "Implies(k4_9_1, d_1_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 281
+    },
+    {
+      "core_position": 90,
+      "expression": "Implies(k4_9_2, d_2_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 283
+    },
+    {
+      "core_position": 91,
+      "expression": "Implies(k4_9_3, d_3_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 285
+    },
+    {
+      "core_position": 92,
+      "expression": "Implies(k4_9_4, d_4_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 287
+    },
+    {
+      "core_position": 93,
+      "expression": "Implies(k4_9_5, d_5_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 289
+    },
+    {
+      "core_position": 94,
+      "expression": "Implies(k4_9_6, d_6_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 291
+    },
+    {
+      "core_position": 95,
+      "expression": "Implies(k4_9_7, d_7_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 293
+    },
+    {
+      "core_position": 96,
+      "expression": "Implies(k4_9_8, d_8_9 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 295
+    },
+    {
+      "core_position": 97,
+      "expression": "Not(k4_9_9)",
+      "family": "global_K4",
+      "index": 297
+    },
+    {
+      "core_position": 98,
+      "expression": "Implies(k4_9_10, d_9_10 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 298
+    },
+    {
+      "core_position": 99,
+      "expression": "Implies(k4_9_11, d_9_11 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 300
+    },
+    {
+      "core_position": 100,
+      "expression": "Implies(k4_9_12, d_9_12 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 302
+    },
+    {
+      "core_position": 101,
+      "expression": "Implies(k4_9_13, d_9_13 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 304
+    },
+    {
+      "core_position": 102,
+      "expression": "Implies(k4_9_14, d_9_14 == k4_radius_9)",
+      "family": "global_K4",
+      "index": 306
+    },
+    {
+      "core_position": 103,
+      "expression": "PbEq(((k4_9_0, 1),\n      (k4_9_1, 1),\n      (k4_9_2, 1),\n      (k4_9_3, 1),\n      (k4_9_4, 1),\n      (k4_9_5, 1),\n      (k4_9_6, 1),\n      (k4_9_7, 1),\n      (k4_9_8, 1),\n      (k4_9_9, 1),\n      (k4_9_10, 1),\n      (k4_9_11, 1),\n      (k4_9_12, 1),\n      (k4_9_13, 1),\n      (k4_9_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 309
+    },
+    {
+      "core_position": 136,
+      "expression": "d_1_13 + d_0_11 >= d_0_13 + d_1_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 22
+    },
+    {
+      "core_position": 140,
+      "expression": "d_13_14 + d_0_6 >= d_6_13 + d_0_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 71
+    },
+    {
+      "core_position": 144,
+      "expression": "d_6_13 + d_0_7 >= d_7_13 + d_0_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 115
+    },
+    {
+      "core_position": 145,
+      "expression": "d_7_13 + d_0_12 >= d_12_13 + d_0_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 127
+    },
+    {
+      "core_position": 148,
+      "expression": "d_12_13 + d_0_9 >= d_9_13 + d_0_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 139
+    },
+    {
+      "core_position": 149,
+      "expression": "d_8_13 + d_0_9 >= d_9_13 + d_0_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 145
+    },
+    {
+      "core_position": 151,
+      "expression": "d_10_13 + d_0_11 >= d_11_13 + d_0_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 155
+    },
+    {
+      "core_position": 152,
+      "expression": "d_2_13 + d_1_11 >= d_1_13 + d_2_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 176
+    },
+    {
+      "core_position": 159,
+      "expression": "d_3_13 + d_2_11 >= d_2_13 + d_3_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 306
+    },
+    {
+      "core_position": 173,
+      "expression": "d_13_14 + d_3_11 >= d_3_13 + d_11_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 414
+    },
+    {
+      "core_position": 175,
+      "expression": "d_4_13 + d_5_14 >= d_5_13 + d_4_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 489
+    },
+    {
+      "core_position": 180,
+      "expression": "d_4_13 + d_11_14 >= d_13_14 + d_4_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 502
+    },
+    {
+      "core_position": 181,
+      "expression": "d_5_13 + d_6_14 >= d_6_13 + d_5_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 505
+    },
+    {
+      "core_position": 193,
+      "expression": "d_12_13 + d_8_14 >= d_8_13 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 541
+    },
+    {
+      "core_position": 194,
+      "expression": "d_9_13 + d_10_14 >= d_10_13 + d_9_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 555
+    },
+    {
+      "core_position": 197,
+      "expression": "d_5_13 + d_4_11 >= d_4_13 + d_5_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 572
+    },
+    {
+      "core_position": 202,
+      "expression": "d_6_13 + d_5_11 >= d_5_13 + d_6_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 626
+    },
+    {
+      "core_position": 207,
+      "expression": "d_7_13 + d_6_11 >= d_6_13 + d_7_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 666
+    },
+    {
+      "core_position": 209,
+      "expression": "d_12_13 + d_7_11 >= d_7_13 + d_11_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 694
+    },
+    {
+      "core_position": 211,
+      "expression": "d_8_13 + d_11_12 >= d_12_13 + d_8_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 712
+    },
+    {
+      "core_position": 212,
+      "expression": "d_9_13 + d_8_11 >= d_8_13 + d_9_11 + 1",
+      "family": "strict_kalmanson",
+      "index": 722
+    },
+    {
+      "core_position": 213,
+      "expression": "d_0_14 + d_1_4 >= d_0_4 + d_1_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 771
+    },
+    {
+      "core_position": 214,
+      "expression": "d_0_4 + d_1_5 >= d_0_5 + d_1_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 789
+    },
+    {
+      "core_position": 215,
+      "expression": "d_0_5 + d_1_6 >= d_0_6 + d_1_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 805
+    },
+    {
+      "core_position": 216,
+      "expression": "d_0_6 + d_1_7 >= d_0_7 + d_1_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 819
+    },
+    {
+      "core_position": 217,
+      "expression": "d_0_7 + d_1_12 >= d_0_12 + d_1_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 831
+    },
+    {
+      "core_position": 219,
+      "expression": "d_0_12 + d_1_9 >= d_0_9 + d_1_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 843
+    },
+    {
+      "core_position": 220,
+      "expression": "d_0_8 + d_1_9 >= d_0_9 + d_1_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 849
+    },
+    {
+      "core_position": 221,
+      "expression": "d_0_9 + d_1_10 >= d_0_10 + d_1_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 855
+    },
+    {
+      "core_position": 222,
+      "expression": "d_0_10 + d_1_11 >= d_0_11 + d_1_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 859
+    },
+    {
+      "core_position": 225,
+      "expression": "d_1_14 + d_2_4 >= d_1_4 + d_2_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 1321
+    },
+    {
+      "core_position": 226,
+      "expression": "d_1_4 + d_2_5 >= d_1_5 + d_2_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 1339
+    },
+    {
+      "core_position": 227,
+      "expression": "d_1_5 + d_2_6 >= d_1_6 + d_2_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 1355
+    },
+    {
+      "core_position": 228,
+      "expression": "d_1_6 + d_2_7 >= d_1_7 + d_2_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 1369
+    },
+    {
+      "core_position": 229,
+      "expression": "d_1_7 + d_2_12 >= d_1_12 + d_2_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 1381
+    },
+    {
+      "core_position": 230,
+      "expression": "d_1_12 + d_2_8 >= d_1_8 + d_2_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1391
+    },
+    {
+      "core_position": 231,
+      "expression": "d_1_8 + d_2_9 >= d_1_9 + d_2_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 1399
+    },
+    {
+      "core_position": 232,
+      "expression": "d_1_9 + d_2_10 >= d_1_10 + d_2_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 1405
+    },
+    {
+      "core_position": 233,
+      "expression": "d_1_10 + d_2_11 >= d_1_11 + d_2_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 1409
+    },
+    {
+      "core_position": 234,
+      "expression": "d_2_14 + d_3_4 >= d_2_4 + d_3_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 1741
+    },
+    {
+      "core_position": 235,
+      "expression": "d_2_4 + d_3_5 >= d_2_5 + d_3_4 + 1",
+      "family": "strict_kalmanson",
+      "index": 1759
+    },
+    {
+      "core_position": 236,
+      "expression": "d_2_5 + d_3_6 >= d_2_6 + d_3_5 + 1",
+      "family": "strict_kalmanson",
+      "index": 1775
+    },
+    {
+      "core_position": 237,
+      "expression": "d_2_6 + d_3_7 >= d_2_7 + d_3_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 1789
+    },
+    {
+      "core_position": 238,
+      "expression": "d_2_7 + d_3_12 >= d_2_12 + d_3_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 1801
+    },
+    {
+      "core_position": 239,
+      "expression": "d_2_12 + d_3_8 >= d_2_8 + d_3_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 1811
+    },
+    {
+      "core_position": 240,
+      "expression": "d_2_8 + d_3_9 >= d_2_9 + d_3_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 1819
+    },
+    {
+      "core_position": 241,
+      "expression": "d_2_9 + d_3_10 >= d_2_10 + d_3_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 1825
+    },
+    {
+      "core_position": 242,
+      "expression": "d_2_10 + d_3_11 >= d_2_11 + d_3_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 1829
+    },
+    {
+      "core_position": 247,
+      "expression": "d_3_6 + d_7_14 >= d_3_7 + d_6_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2101
+    },
+    {
+      "core_position": 249,
+      "expression": "d_3_7 + d_12_14 >= d_3_12 + d_7_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2113
+    },
+    {
+      "core_position": 250,
+      "expression": "d_3_12 + d_8_14 >= d_3_8 + d_12_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2123
+    },
+    {
+      "core_position": 251,
+      "expression": "d_3_8 + d_9_14 >= d_3_9 + d_8_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2131
+    },
+    {
+      "core_position": 252,
+      "expression": "d_3_9 + d_10_14 >= d_3_10 + d_9_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2137
+    },
+    {
+      "core_position": 253,
+      "expression": "d_3_10 + d_11_14 >= d_3_11 + d_10_14 + 1",
+      "family": "strict_kalmanson",
+      "index": 2141
+    },
+    {
+      "core_position": 254,
+      "expression": "d_6_14 + d_4_7 >= d_7_14 + d_4_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 2325
+    },
+    {
+      "core_position": 255,
+      "expression": "d_7_14 + d_4_12 >= d_12_14 + d_4_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 2337
+    },
+    {
+      "core_position": 256,
+      "expression": "d_12_14 + d_4_8 >= d_8_14 + d_4_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2347
+    },
+    {
+      "core_position": 257,
+      "expression": "d_8_14 + d_4_9 >= d_9_14 + d_4_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2355
+    },
+    {
+      "core_position": 258,
+      "expression": "d_9_14 + d_4_10 >= d_10_14 + d_4_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2361
+    },
+    {
+      "core_position": 259,
+      "expression": "d_10_14 + d_4_11 >= d_11_14 + d_4_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2365
+    },
+    {
+      "core_position": 262,
+      "expression": "d_4_6 + d_5_7 >= d_4_7 + d_5_6 + 1",
+      "family": "strict_kalmanson",
+      "index": 2479
+    },
+    {
+      "core_position": 263,
+      "expression": "d_4_7 + d_5_12 >= d_4_12 + d_5_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 2491
+    },
+    {
+      "core_position": 264,
+      "expression": "d_4_12 + d_5_8 >= d_4_8 + d_5_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2501
+    },
+    {
+      "core_position": 265,
+      "expression": "d_4_8 + d_5_9 >= d_4_9 + d_5_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2509
+    },
+    {
+      "core_position": 266,
+      "expression": "d_4_9 + d_5_10 >= d_4_10 + d_5_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2515
+    },
+    {
+      "core_position": 267,
+      "expression": "d_4_10 + d_5_11 >= d_4_11 + d_5_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2519
+    },
+    {
+      "core_position": 268,
+      "expression": "d_5_7 + d_6_12 >= d_5_12 + d_6_7 + 1",
+      "family": "strict_kalmanson",
+      "index": 2591
+    },
+    {
+      "core_position": 269,
+      "expression": "d_5_12 + d_6_8 >= d_5_8 + d_6_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2601
+    },
+    {
+      "core_position": 270,
+      "expression": "d_5_8 + d_6_9 >= d_5_9 + d_6_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2609
+    },
+    {
+      "core_position": 271,
+      "expression": "d_5_9 + d_6_10 >= d_5_10 + d_6_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2615
+    },
+    {
+      "core_position": 272,
+      "expression": "d_5_10 + d_6_11 >= d_5_11 + d_6_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2619
+    },
+    {
+      "core_position": 274,
+      "expression": "d_6_12 + d_7_10 >= d_6_10 + d_7_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2665
+    },
+    {
+      "core_position": 275,
+      "expression": "d_6_8 + d_7_9 >= d_6_9 + d_7_8 + 1",
+      "family": "strict_kalmanson",
+      "index": 2669
+    },
+    {
+      "core_position": 276,
+      "expression": "d_6_9 + d_7_10 >= d_6_10 + d_7_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2675
+    },
+    {
+      "core_position": 277,
+      "expression": "d_6_10 + d_7_11 >= d_6_11 + d_7_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2679
+    },
+    {
+      "core_position": 278,
+      "expression": "d_7_8 + d_9_12 >= d_7_9 + d_8_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2701
+    },
+    {
+      "core_position": 279,
+      "expression": "d_7_9 + d_10_12 >= d_7_10 + d_9_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2707
+    },
+    {
+      "core_position": 280,
+      "expression": "d_7_10 + d_11_12 >= d_7_11 + d_10_12 + 1",
+      "family": "strict_kalmanson",
+      "index": 2711
+    },
+    {
+      "core_position": 281,
+      "expression": "d_9_12 + d_8_10 >= d_10_12 + d_8_9 + 1",
+      "family": "strict_kalmanson",
+      "index": 2721
+    },
+    {
+      "core_position": 282,
+      "expression": "d_10_12 + d_8_11 >= d_11_12 + d_8_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2725
+    },
+    {
+      "core_position": 283,
+      "expression": "d_8_10 + d_9_11 >= d_8_11 + d_9_10 + 1",
+      "family": "strict_kalmanson",
+      "index": 2729
+    }
+  ],
+  "remaining_family_counts": {
+    "exact_rich_profiles": 59,
+    "global_K4": 32,
+    "strict_kalmanson": 81
+  },
+  "remaining_size": 172,
+  "unknown": 0
+}

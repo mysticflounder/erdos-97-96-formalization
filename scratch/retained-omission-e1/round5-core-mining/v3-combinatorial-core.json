@@ -1,0 +1,171 @@
+{
+  "checks": 48,
+  "core": [
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_7_0, rich_0_0_0),\n                And(k4_7_1, rich_0_0_1),\n                And(k4_7_2, rich_0_0_2),\n                And(k4_7_3, rich_0_0_3),\n                And(k4_7_4, rich_0_0_4),\n                And(k4_7_5, rich_0_0_5),\n                And(k4_7_6, rich_0_0_6),\n                And(k4_7_8, rich_0_0_8),\n                And(k4_7_9, rich_0_0_9),\n                And(k4_7_10, rich_0_0_10),\n                And(k4_7_11, rich_0_0_11),\n                And(k4_7_13, rich_0_0_13),\n                And(k4_7_14, rich_0_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1332
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_7_0, rich_1_0_0),\n                And(k4_7_1, rich_1_0_1),\n                And(k4_7_2, rich_1_0_2),\n                And(k4_7_3, rich_1_0_3),\n                And(k4_7_4, rich_1_0_4),\n                And(k4_7_5, rich_1_0_5),\n                And(k4_7_6, rich_1_0_6),\n                And(k4_7_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1334
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_7_0, rich_2_0_0),\n                And(k4_7_1, rich_2_0_1),\n                And(k4_7_2, rich_2_0_2),\n                And(k4_7_3, rich_2_0_3),\n                And(k4_7_8, rich_2_0_8),\n                And(k4_7_9, rich_2_0_9),\n                And(k4_7_10, rich_2_0_10),\n                And(k4_7_11, rich_2_0_11),\n                And(k4_7_12, rich_2_0_12),\n                And(k4_7_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1335
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_8_0, rich_0_0_0),\n                And(k4_8_1, rich_0_0_1),\n                And(k4_8_2, rich_0_0_2),\n                And(k4_8_3, rich_0_0_3),\n                And(k4_8_4, rich_0_0_4),\n                And(k4_8_5, rich_0_0_5),\n                And(k4_8_6, rich_0_0_6),\n                And(k4_8_7, rich_0_0_7),\n                And(k4_8_9, rich_0_0_9),\n                And(k4_8_10, rich_0_0_10),\n                And(k4_8_11, rich_0_0_11),\n                And(k4_8_13, rich_0_0_13),\n                And(k4_8_14, rich_0_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1381
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_8_0, rich_1_0_0),\n                And(k4_8_1, rich_1_0_1),\n                And(k4_8_2, rich_1_0_2),\n                And(k4_8_3, rich_1_0_3),\n                And(k4_8_4, rich_1_0_4),\n                And(k4_8_5, rich_1_0_5),\n                And(k4_8_6, rich_1_0_6),\n                And(k4_8_7, rich_1_0_7),\n                And(k4_8_12, rich_1_0_12),\n                And(k4_8_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1383
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(k4_8_0, rich_2_0_0),\n                And(k4_8_1, rich_2_0_1),\n                And(k4_8_2, rich_2_0_2),\n                And(k4_8_3, rich_2_0_3),\n                And(k4_8_9, rich_2_0_9),\n                And(k4_8_10, rich_2_0_10),\n                And(k4_8_11, rich_2_0_11),\n                And(k4_8_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1384
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_0_0_0, rich_1_0_0),\n                And(rich_0_0_1, rich_1_0_1),\n                And(rich_0_0_2, rich_1_0_2),\n                And(rich_0_0_3, rich_1_0_3),\n                And(rich_0_0_4, rich_1_0_4),\n                And(rich_0_0_5, rich_1_0_5),\n                And(rich_0_0_6, rich_1_0_6),\n                And(rich_0_0_7, rich_1_0_7),\n                And(rich_0_0_14, rich_1_0_14)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1569
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_0_0_0, rich_2_0_0),\n                And(rich_0_0_1, rich_2_0_1),\n                And(rich_0_0_2, rich_2_0_2),\n                And(rich_0_0_3, rich_2_0_3),\n                And(rich_0_0_8, rich_2_0_8),\n                And(rich_0_0_9, rich_2_0_9),\n                And(rich_0_0_10, rich_2_0_10),\n                And(rich_0_0_11, rich_2_0_11),\n                And(rich_0_0_13, rich_2_0_13)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1570
+    },
+    {
+      "expression": "Implies(And(True, True),\n        AtMost((And(rich_1_0_4, rich_2_0_4),\n                And(rich_1_0_5, rich_2_0_5),\n                And(rich_1_0_6, rich_2_0_6),\n                And(rich_1_0_7, rich_2_0_7),\n                And(rich_1_0_8, rich_2_0_8),\n                And(rich_1_0_9, rich_2_0_9),\n                And(rich_1_0_10, rich_2_0_10),\n                And(rich_1_0_11, rich_2_0_11),\n                And(rich_1_0_12, rich_2_0_12)),\n               1))",
+      "family": "cyclic_alternation_cut",
+      "index": 1613
+    },
+    {
+      "expression": "Not(rich_0_0_12)",
+      "family": "exact_rich_profiles",
+      "index": 12
+    },
+    {
+      "expression": "PbEq(((rich_0_0_0, 1),\n      (rich_0_0_1, 1),\n      (rich_0_0_2, 1),\n      (rich_0_0_3, 1),\n      (rich_0_0_4, 1),\n      (rich_0_0_5, 1),\n      (rich_0_0_6, 1),\n      (rich_0_0_7, 1),\n      (rich_0_0_8, 1),\n      (rich_0_0_9, 1),\n      (rich_0_0_10, 1),\n      (rich_0_0_11, 1),\n      (rich_0_0_12, 1),\n      (rich_0_0_13, 1),\n      (rich_0_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 16
+    },
+    {
+      "expression": "rich_0_0_0",
+      "family": "exact_rich_profiles",
+      "index": 17
+    },
+    {
+      "expression": "rich_0_0_1",
+      "family": "exact_rich_profiles",
+      "index": 18
+    },
+    {
+      "expression": "rich_0_0_2",
+      "family": "exact_rich_profiles",
+      "index": 19
+    },
+    {
+      "expression": "rich_0_0_3",
+      "family": "exact_rich_profiles",
+      "index": 20
+    },
+    {
+      "expression": "Not(rich_1_0_13)",
+      "family": "exact_rich_profiles",
+      "index": 48
+    },
+    {
+      "expression": "PbEq(((rich_1_0_0, 1),\n      (rich_1_0_1, 1),\n      (rich_1_0_2, 1),\n      (rich_1_0_3, 1),\n      (rich_1_0_4, 1),\n      (rich_1_0_5, 1),\n      (rich_1_0_6, 1),\n      (rich_1_0_7, 1),\n      (rich_1_0_8, 1),\n      (rich_1_0_9, 1),\n      (rich_1_0_10, 1),\n      (rich_1_0_11, 1),\n      (rich_1_0_12, 1),\n      (rich_1_0_13, 1),\n      (rich_1_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 51
+    },
+    {
+      "expression": "rich_1_0_4",
+      "family": "exact_rich_profiles",
+      "index": 52
+    },
+    {
+      "expression": "rich_1_0_5",
+      "family": "exact_rich_profiles",
+      "index": 53
+    },
+    {
+      "expression": "rich_1_0_6",
+      "family": "exact_rich_profiles",
+      "index": 54
+    },
+    {
+      "expression": "rich_1_0_7",
+      "family": "exact_rich_profiles",
+      "index": 55
+    },
+    {
+      "expression": "Not(rich_2_0_14)",
+      "family": "exact_rich_profiles",
+      "index": 84
+    },
+    {
+      "expression": "PbEq(((rich_2_0_0, 1),\n      (rich_2_0_1, 1),\n      (rich_2_0_2, 1),\n      (rich_2_0_3, 1),\n      (rich_2_0_4, 1),\n      (rich_2_0_5, 1),\n      (rich_2_0_6, 1),\n      (rich_2_0_7, 1),\n      (rich_2_0_8, 1),\n      (rich_2_0_9, 1),\n      (rich_2_0_10, 1),\n      (rich_2_0_11, 1),\n      (rich_2_0_12, 1),\n      (rich_2_0_13, 1),\n      (rich_2_0_14, 1)),\n     6)",
+      "family": "exact_rich_profiles",
+      "index": 86
+    },
+    {
+      "expression": "rich_2_0_8",
+      "family": "exact_rich_profiles",
+      "index": 87
+    },
+    {
+      "expression": "rich_2_0_9",
+      "family": "exact_rich_profiles",
+      "index": 88
+    },
+    {
+      "expression": "rich_2_0_10",
+      "family": "exact_rich_profiles",
+      "index": 89
+    },
+    {
+      "expression": "rich_2_0_11",
+      "family": "exact_rich_profiles",
+      "index": 90
+    },
+    {
+      "expression": "Not(k4_7_7)",
+      "family": "global_K4",
+      "index": 231
+    },
+    {
+      "expression": "PbEq(((k4_7_0, 1),\n      (k4_7_1, 1),\n      (k4_7_2, 1),\n      (k4_7_3, 1),\n      (k4_7_4, 1),\n      (k4_7_5, 1),\n      (k4_7_6, 1),\n      (k4_7_7, 1),\n      (k4_7_8, 1),\n      (k4_7_9, 1),\n      (k4_7_10, 1),\n      (k4_7_11, 1),\n      (k4_7_12, 1),\n      (k4_7_13, 1),\n      (k4_7_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 247
+    },
+    {
+      "expression": "Not(k4_8_8)",
+      "family": "global_K4",
+      "index": 264
+    },
+    {
+      "expression": "PbEq(((k4_8_0, 1),\n      (k4_8_1, 1),\n      (k4_8_2, 1),\n      (k4_8_3, 1),\n      (k4_8_4, 1),\n      (k4_8_5, 1),\n      (k4_8_6, 1),\n      (k4_8_7, 1),\n      (k4_8_8, 1),\n      (k4_8_9, 1),\n      (k4_8_10, 1),\n      (k4_8_11, 1),\n      (k4_8_12, 1),\n      (k4_8_13, 1),\n      (k4_8_14, 1)),\n     4)",
+      "family": "global_K4",
+      "index": 278
+    }
+  ],
+  "elapsed_seconds": 0.29253941704519093,
+  "initial_core_size": 47,
+  "remaining_family_counts": {
+    "cyclic_alternation_cut": 9,
+    "exact_rich_profiles": 18,
+    "global_K4": 4
+  },
+  "remaining_size": 31,
+  "source_constraint_count": 2487,
+  "status": "unsat",
+  "unknown": 0
+}

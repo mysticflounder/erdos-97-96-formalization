@@ -1,0 +1,17 @@
+ 98%  5RZB68  theorem exists_two_firstFiber_deletions_fourCenters_survive  [erdos-97-96-formalization-lean · Erdos9796Proof.P97.ATail.FirstFiberOverlapDescent]  theorem exists_two_firstFiber_deletions_fourCenters_survive  If three fixed centers are deletion-rob…
+ 49%  ZA8NS3  theorem row2675_not_A1ExactMinimalProfile_of_duplicateCenter  [erdos-97-96-lean · Erdos9796Proof.P97.A1.A1DuplicateCenterRows]  theorem row2675_not_A1ExactMinimalProfile_of_duplicateCenter  Row 2675 closes because centers `v3` a…
+ 49%  CTJYSW  theorem exists_criticalFourShell  [p97-rvol-lean · RVOL.P97.U1CarrierInjection]  theorem exists_criticalFourShell  A non-removable deleted vertex supplies a critical full four-shell…
+ 49%  4Y1DNA  module  [formal-conjectures-lean · FormalConjectures.ErdosProblems.326]  # Erdős Problem 326  *Reference:* [erdosproblems.com/326](https://www.erdosproblems.com/326)
+ 49%  9AZFZV  module  [formal-conjectures-mathlib-lean · FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Domination]  ### Connected domination
+ 49%  MCRBCP  instance MaxUnramifiedProPGaloisGroup.instTopologicalSpace  [erdos-unit-distance-lean · ErdosUnitDistance.Defs.MaxUnramifiedProPGaloisGroup]  instance MaxUnramifiedProPGaloisGroup.instTopologicalSpace  The Krull topology on `MaxUnramifiedProP…
+ 49%  MRS2QA  module  [mathlib · Mathlib.Combinatorics.SimpleGraph.Subgraph]  ### Edge deletion
+ 48%  TW1Q7P  theorem row2620_not_A1ExactMinimalProfile_of_duplicateCenter  [erdos-97-96-lean · Erdos9796Proof.P97.A1.A1DuplicateCenterRows]  theorem row2620_not_A1ExactMinimalProfile_of_duplicateCenter  Row 2620 closes because centers `v3` a…
+ 48%  1KP7Y5  field center_mem  [p97-rvol-lean · RVOL.P97.U1CarrierInjection]  center_mem : center ∈ A.erase q  The blocker center survives deleting `q`.
+ 48%  8XYMDP  module  [formal-conjectures-lean · FormalConjectures.ErdosProblems.4]  # Erdős Problem 4  *Reference:* [erdosproblems.com/4](https://www.erdosproblems.com/4)
+corpus erdos-97-96-lean — indexed 2026-08-01 03:53 UTC, source @ 10b0c7a
+corpus p97-rvol-lean — indexed 2026-08-01 03:53 UTC, source @ 3380775
+corpus formal-conjectures-lean — indexed 2026-08-01 03:53 UTC, source @ c3af9ce
+corpus formal-conjectures-mathlib-lean — indexed 2026-08-01 03:53 UTC, source @ c3af9ce
+corpus erdos-unit-distance-lean — indexed 2026-08-01 03:53 UTC, source @ 5853480
+corpus erdos-97-96-formalization-lean — indexed 2026-08-01 03:53 UTC, source @ db748265
+corpus mathlib — indexed 2026-05-31 00:24 UTC, source @ d163059006

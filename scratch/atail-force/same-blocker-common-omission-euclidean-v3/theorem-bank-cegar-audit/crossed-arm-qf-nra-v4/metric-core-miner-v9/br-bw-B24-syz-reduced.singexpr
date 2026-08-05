@@ -1,0 +1,10 @@
+C1=bs+bv-1;
+
+C2=bv*bw-bs-bw;
+
+C3=bs*bw^2+bv*bw^2-bw^3+bv*bw-bw^2;
+
+C4=-bv^2;
+
+C5=-bs^2*bw+bv^2*bw+bs^2-bs*bv+bs*bw-bv*bw-bv;
+

@@ -1,0 +1,23 @@
+{
+  "schema_version": 38,
+  "status": "bounded diagnostic only",
+  "composition": {
+    "base": "v37 with pairwise selected-row alternation and forced hypothetical branch-two-hit producer",
+    "new_producer": "one fixed endpoint-seed center has seed intersection cardinality at most three on every positive-radius physical shell"
+  },
+  "lean_theorems": [
+    "endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker",
+    "endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker",
+    "endpointFresh_exists_seedCenter_ne_firstApex_ne_sharedBlocker_selectedClass_seed_card_le_three"
+  ],
+  "canonical_case": "fresh_DDD_k0_d2_f1",
+  "semantic_boolean_delta": 15,
+  "new_family_counts": {
+    "endpoint_seed_pinned_physical_center": 16,
+    "endpoint_seed_pinned_physical_shell_seed_cap_three": 210
+  },
+  "boolean_relaxation_contract": "the 210 physical-distance constraints are excluded; only the 16 selector constraints are included",
+  "max_diagnostic_timeout_ms": 60000,
+  "provenance_scope": "exact worktree snapshot, not a git-HEAD-authenticated production manifest",
+  "terminal_claim": false
+}

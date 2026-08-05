@@ -1,0 +1,306 @@
+  7850	        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+  7851	      Q.source₂.1 ∈
+  7852	        (H.selectedAt source.1 source.2).toCriticalFourShell.support
+  7853	
+  7854	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  7855	  T hpairsDisjoint hblockersNe
+  7856	  LPρ hLPρ MPρ LP hLP MP in
+  7857	/-- The positive same-cap cross-row alignment is impossible by ordered-cap
+  7858	uniqueness: two distinct cap centers cannot bisect the same outside pair. -/
+  7859	theorem false_of_freshThird_sameCapCrossRowAlignment
+  7860	    (Q : FreshThirdBlockerFiber P Pρ)
+  7861	    (source : CriticalShellSystem.CarrierVertex D.A)
+  7862	    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
+  7863	    False := by
+  7864	  rcases halign with
+  7865	    ⟨capIndex, hcommonCap, hsourceCap, hcentersNe,
+  7866	      hsource₁Off, hsource₂Off, hsource₁Row, hsource₂Row⟩
+  7867	  let Kcommon :=
+  7868	    (H.selectedAt Q.source₁.1
+  7869	      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  7870	  let Ksource :=
+  7871	    (H.selectedAt source.1
+  7872	      source.2).toCriticalFourShell.toSelectedFourClass
+  7873	  have hoverlap :=
+  7874	    selectedFourClass_outside_overlap_card_le_one
+  7875	      S capIndex hcommonCap hsourceCap hcentersNe.symm Kcommon Ksource
+  7876	  have hsource₁Common : Q.source₁.1 ∈ Kcommon.support := by
+  7877	    exact
+  7878	      (H.selectedAt Q.source₁.1
+  7879	        Q.source₁.2).toCriticalFourShell.q_mem_support
+  7880	  have hsource₂Common : Q.source₂.1 ∈ Kcommon.support := by
+  7881	    exact Q.source₂_mem_source₁_shell
+  7882	  have hsource₁Overlap :
+  7883	      Q.source₁.1 ∈
+  7884	        ((Kcommon.support \ S.capByIndex capIndex) ∩
+  7885	          (Ksource.support \ S.capByIndex capIndex)) := by
+  7886	    exact
+  7887	      Finset.mem_inter.mpr
+  7888	        ⟨Finset.mem_sdiff.mpr ⟨hsource₁Common, hsource₁Off⟩,
+  7889	          Finset.mem_sdiff.mpr ⟨hsource₁Row, hsource₁Off⟩⟩
+  7890	  have hsource₂Overlap :
+  7891	      Q.source₂.1 ∈
+  7892	        ((Kcommon.support \ S.capByIndex capIndex) ∩
+  7893	          (Ksource.support \ S.capByIndex capIndex)) := by
+  7894	    exact
+  7895	      Finset.mem_inter.mpr
+  7896	        ⟨Finset.mem_sdiff.mpr ⟨hsource₂Common, hsource₂Off⟩,
+  7897	          Finset.mem_sdiff.mpr ⟨hsource₂Row, hsource₂Off⟩⟩
+  7898	  have hsourcesPointsNe : Q.source₁.1 ≠ Q.source₂.1 := by
+  7899	    intro h
+  7900	    exact Q.sources_ne (Subtype.ext h)
+  7901	  have htwo :
+  7902	      1 <
+  7903	        ((Kcommon.support \ S.capByIndex capIndex) ∩
+  7904	          (Ksource.support \ S.capByIndex capIndex)).card :=
+  7905	    Finset.one_lt_card.mpr
+  7906	      ⟨Q.source₁.1, hsource₁Overlap,
+  7907	        Q.source₂.1, hsource₂Overlap, hsourcesPointsNe⟩
+  7908	  omega
+  7909	
+  7910	/-- Compatibility adapter for the former fresh-third coordinator.
+  7911	
+  7912	The common terminal consumes `hcapSource` together with the fresh-third arm of
+  7913	the geometric-multiplicity residual. -/
+  7914	theorem false_of_capSource_freshThirdBlockerFiber
+  7915	    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+  7916	    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+  7917	    False := by
+  7918	  exact
+  7919	    false_of_twoCapSources_freshThirdBlockerFiber
+  7920	      P Pρ hρne hfrontierFour hρfour
+  7921	      hfrontierInteriorEq hρInteriorEq
+  7922	      T hpairsDisjoint hblockersNe
+  7923	      LPρ hLPρ MPρ LP hLP MP
+  7924	      (twoCapSourceThirdCanonicalRowSurface_of_capSource
+  7925	        (P := P) (Pρ := Pρ) (T := T)
+  7926	        (hpairsDisjoint := hpairsDisjoint) hcapSource)
+  7927	      hthird
+  7928	
+  7929	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  7930	  T hpairsDisjoint hblockersNe
+  7931	  LPρ hLPρ MPρ LP hLP MP in
+  7932	/-- The first collision row is exactly its two strict-cap sources together
+  7933	with the two named off-cap points carried by the enlarged first blocker
+  7934	fiber. -/
+  7935	theorem firstFiber_shell_eq_explicitFour
+  7936	    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+  7937	    (H.selectedAt P.source₁
+  7938	        P.source₁_mem_A).toCriticalFourShell.support =
+  7939	      {P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} := by
+  7940	  exact
+  7941	    ATailFirstFiberOverlapDescent.firstFiber_shell_eq_explicitFour P Pρ Q
+  7942	
+  7943	/-- Source-exact witness carried by the cap-eight third-row surface, with the
+  7944	existential source exposed so that the first-fiber descent can retain it. -/
+  7945	abbrev FirstFiberCapSourceWitness
+  7946	    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  7947	  CapSourceThirdCanonicalRowWitness P Pρ source
+  7948	
+  7949	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  7950	  T hpairsDisjoint hblockersNe
+  7951	  LPρ hLPρ MPρ LP hLP MP in
+  7952	private theorem firstFiberCapSourceWitness_of_crossPairSurvivals
+  7953	    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card)
+  7954	    (source : CriticalShellSystem.CarrierVertex D.A)
+  7955	    (hsource :
+  7956	      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source) :
+  7957	    FirstFiberCapSourceWitness P Pρ source := by
+  7958	  rcases hsource with
+  7959	    ⟨hsourceInterior, hsourceOutside,
+  7960	      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+  7961	      hcenterNeFirstApex, hcenterNeSecondApex,
+  7962	      hfirstView, hsecondView⟩
+  7963	  exact
+  7964	    ⟨hcap, hsourceInterior, hsourceOutside,
+  7965	      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+  7966	      hcenterNeFirstApex, hcenterNeSecondApex,
+  7967	      (H.selectedAt source.1
+  7968	        source.2).toCriticalFourShell.q_mem_support,
+  7969	      (H.selectedAt source.1
+  7970	        source.2).toCriticalFourShell.support_card,
+  7971	      ⟨hfirstView⟩, ⟨hsecondView⟩⟩
+  7972	
+  7973	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  7974	  hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  7975	/-- The cap-eight margin produces two distinct strict-cap sources carrying the
+  7976	complete first-fiber source witness.  This is the checked strengthening used
+  7977	by the live first-fiber terminal. -/
+  7978	private theorem exists_two_firstFiberCapSourceWitness
+  7979	    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+  7980	    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+  7981	      source.1 ≠ source'.1 ∧
+  7982	        FirstFiberCapSourceWitness P Pρ source ∧
+  7983	        FirstFiberCapSourceWitness P Pρ source' := by
+  7984	  obtain ⟨source, source', hsourcesNe, hsource, hsource'⟩ :=
+  7985	    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+  7986	      P Pρ
+  7987	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+  7988	      hpairsDisjoint hcap
+  7989	  rcases hsource with
+  7990	    ⟨hsourceInterior, hsourceOutside,
+  7991	      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+  7992	      hcenterNeFirstApex, hcenterNeSecondApex,
+  7993	      hfirstView, hsecondView⟩
+  7994	  rcases hsource' with
+  7995	    ⟨hsourceInterior', hsourceOutside',
+  7996	      hcenterNeFirstBlocker', hcenterNeSecondBlocker',
+  7997	      hcenterNeFirstApex', hcenterNeSecondApex',
+  7998	      hfirstView', hsecondView'⟩
+  7999	  refine ⟨source, source', hsourcesNe, ?_, ?_⟩
+  8000	  · exact
+  8001	      ⟨hcap, hsourceInterior, hsourceOutside,
+  8002	        hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+  8003	        hcenterNeFirstApex, hcenterNeSecondApex,
+  8004	        (H.selectedAt source.1
+  8005	          source.2).toCriticalFourShell.q_mem_support,
+  8006	        (H.selectedAt source.1
+  8007	          source.2).toCriticalFourShell.support_card,
+  8008	        ⟨hfirstView⟩, ⟨hsecondView⟩⟩
+  8009	  · exact
+  8010	      ⟨hcap, hsourceInterior', hsourceOutside',
+  8011	        hcenterNeFirstBlocker', hcenterNeSecondBlocker',
+  8012	        hcenterNeFirstApex', hcenterNeSecondApex',
+  8013	        (H.selectedAt source'.1
+  8014	          source'.2).toCriticalFourShell.q_mem_support,
+  8015	        (H.selectedAt source'.1
+  8016	          source'.2).toCriticalFourShell.support_card,
+  8017	        ⟨hfirstView'⟩, ⟨hsecondView'⟩⟩
+  8018	
+  8019	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8020	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  8021	/-- Lift two strict first-cap points on one fresh first-apex radius while
+  8022	retaining the common-radius membership needed by blocker rigidity. -/
+  8023	private theorem exists_two_firstFiberCapSourceWitness_of_commonRadius
+  8024	    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card)
+  8025	    (commonRadius : ℝ)
+  8026	    (hcommonCard :
+  8027	      2 ≤
+  8028	        (SelectedClass D.A S.oppApex1 commonRadius ∩
+  8029	          S.capInteriorByIndex S.oppIndex1).card)
+  8030	    (hcommonNeRadius : commonRadius ≠ radius)
+  8031	    (hcommonNeρ : commonRadius ≠ ρ) :
+  8032	    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+  8033	      source.1 ≠ source'.1 ∧
+  8034	        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+  8035	        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+  8036	        FirstFiberCapSourceWitness P Pρ source ∧
+  8037	        FirstFiberCapSourceWitness P Pρ source' := by
+  8038	  obtain
+  8039	      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+  8040	        hsource, hsource'⟩ :=
+  8041	    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+  8042	      P Pρ
+  8043	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+  8044	      commonRadius hcommonCard hcommonNeRadius hcommonNeρ
+  8045	  exact
+  8046	    ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+  8047	      firstFiberCapSourceWitness_of_crossPairSurvivals
+  8048	        P Pρ hcap source hsource,
+  8049	      firstFiberCapSourceWitness_of_crossPairSurvivals
+  8050	        P Pρ hcap source' hsource'⟩
+  8051	
+  8052	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8053	  T hpairsDisjoint hblockersNe
+  8054	  LPρ hLPρ MPρ LP hLP MP in
+  8055	/-- In the aligned residual, every first-apex radius carrying at least two
+  8056	strict first-cap points is one of the two retained collision radii. -/
+  8057	abbrev FirstCapMultiPointRadiiRetained : Prop :=
+  8058	  ∀ r : ℝ,
+  8059	    2 ≤
+  8060	        (SelectedClass D.A S.oppApex1 r ∩
+  8061	          S.capInteriorByIndex S.oppIndex1).card →
+  8062	      r = radius ∨ r = ρ
+  8063	
+  8064	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8065	  T hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+  8066	/-- The second collision blocker cannot bisect the two explicit points outside
+  8067	the first cap.  The distinct first collision blocker already bisects them, so
+  8068	ordered-cap uniqueness forces the inequality without using the cap-source or
+  8069	five-center deletion data. -/
+  8070	theorem secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+  8071	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+  8072	    :
+  8073	    dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+  8074	      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+  8075	        Q.otherOutsidePoint := by
+  8076	  intro hsecondEq
+  8077	  have hsecondCenterCap :
+  8078	      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∈
+  8079	        S.capByIndex S.oppIndex1 :=
+  8080	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+  8081	      Pρ.blocker_mem_capInterior
+  8082	  have hfirstCenterCap :
+  8083	      H.centerAt P.source₁ P.source₁_mem_A ∈
+  8084	        S.capByIndex S.oppIndex1 :=
+  8085	    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+  8086	      P.blocker_mem_capInterior
+  8087	  have hfirstEq :
+  8088	      dist (H.centerAt P.source₁ P.source₁_mem_A) Q.source.1 =
+  8089	        dist (H.centerAt P.source₁ P.source₁_mem_A)
+  8090	          Q.otherOutsidePoint :=
+  8091	    ((H.selectedAt P.source₁
+  8092	        P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+  8093	      Q.source.1 Q.source_mem_shell).trans
+  8094	      ((H.selectedAt P.source₁
+  8095	        P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+  8096	      Q.otherOutsidePoint Q.otherOutsidePoint_mem_shell).symm
+  8097	  exact
+  8098	    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+  8099	      S S.oppIndex1 hsecondCenterCap hfirstCenterCap hblockersNe
+  8100	      Q.source.2 Q.otherOutsidePoint_mem_A
+  8101	      Q.otherOutsidePoint_ne_source.symm
+  8102	      Q.source_not_mem_firstCap Q.otherOutsidePoint_not_mem_firstCap
+  8103	      hsecondEq hfirstEq
+  8104	
+  8105	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8106	  T hpairsDisjoint hblockersNe
+  8107	  LPρ hLPρ MPρ LP hLP MP in
+  8108	/-- The two cap-source rows contain one another's sources. -/
+  8109	abbrev TwoCapSourcesMutualCrossMembership
+  8110	    (source source' : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  8111	  source'.1 ∈
+  8112	      (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+  8113	    source.1 ∈
+  8114	      (H.selectedAt source'.1 source'.2).toCriticalFourShell.support
+  8115	
+  8116	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8117	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  8118	private theorem common_omission_or_complementary_membership
+  8119	    {α : Type*}
+  8120	    (K K' : Finset α) (a b : α)
+  8121	    (hK : a ∉ K ∨ b ∉ K)
+  8122	    (hK' : a ∉ K' ∨ b ∉ K') :
+  8123	    ((a ∉ K ∧ a ∉ K') ∨ (b ∉ K ∧ b ∉ K')) ∨
+  8124	      ((a ∈ K ∧ b ∈ K') ∨ (b ∈ K ∧ a ∈ K')) := by
+  8125	  classical
+  8126	  by_cases haCommon : a ∉ K ∧ a ∉ K'
+  8127	  · exact Or.inl (Or.inl haCommon)
+  8128	  by_cases hbCommon : b ∉ K ∧ b ∉ K'
+  8129	  · exact Or.inl (Or.inr hbCommon)
+  8130	  right
+  8131	  rcases hK with haK | hbK
+  8132	  · rcases hK' with haK' | hbK'
+  8133	    · exact False.elim (haCommon ⟨haK, haK'⟩)
+  8134	    · refine Or.inr ⟨?_, ?_⟩
+  8135	      · by_contra hbK
+  8136	        exact hbCommon ⟨hbK, hbK'⟩
+  8137	      · by_contra haK'
+  8138	        exact haCommon ⟨haK, haK'⟩
+  8139	  · rcases hK' with haK' | hbK'
+  8140	    · refine Or.inl ⟨?_, ?_⟩
+  8141	      · by_contra haK
+  8142	        exact haCommon ⟨haK, haK'⟩
+  8143	      · by_contra hbK'
+  8144	        exact hbCommon ⟨hbK, hbK'⟩
+  8145	    · exact False.elim (hbCommon ⟨hbK, hbK'⟩)
+  8146	
+  8147	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  8148	  T hpairsDisjoint hblockersNe
+  8149	  LPρ hLPρ MPρ LP hLP MP in
+  8150	/-- The two cross-pair omission views have a finite exact alternative.  Either
+  8151	one collision endpoint is absent from both selected supports, or the two
+  8152	supports make complementary choices from each collision pair. -/
+  8153	theorem commonCollisionEndpointOmission_or_complementaryMembership
+  8154	    (source source' : CriticalShellSystem.CarrierVertex D.A)
+  8155	    (hsource : FirstFiberCapSourceWitness P Pρ source)

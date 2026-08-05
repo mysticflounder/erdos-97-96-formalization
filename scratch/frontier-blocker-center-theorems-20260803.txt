@@ -1,0 +1,481 @@
+`w` avoids the chosen exact critical shell. -/
+theorem cross_deletion_survives_iff_not_mem_selected_support
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A) :
+    HasNEquidistantPointsAt 4 (A.erase w) (H.centerAt q hq) ↔
+      w ∉ (H.selectedAt q hq).toCriticalFourShell.support := by
+  let K := (H.selectedAt q hq).toCriticalFourShell
+  constructor
+  · rintro ⟨rho, hrho, hfour⟩ hwK
+    have hqClass : q ∈ SelectedClass (A.erase w) (H.centerAt q hq) rho := by
+      by_contra hqNot
+      have hdouble :
+          HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+            (H.centerAt q hq) := by
+        refine ⟨rho, hrho, ?_⟩
+        have hsame := selectedClass_erase_card_eq_of_not_mem
+          (A := A.erase w) (x := q) (s := H.centerAt q hq)
+          (d := rho) hqNot
+        simpa [SelectedClass] using hfour.trans_eq hsame.symm
+      exact cumulative_deletion_blocked_at_source_blocker H hq hdouble
+    have hrho : rho = K.radius := by
+      calc
+        rho = dist (H.centerAt q hq) q :=
+          (mem_selectedClass.mp hqClass).2.symm
+        _ = K.radius := K.support_eq_radius q K.q_mem_support
+    have hfourK :
+        4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card := by
+      simpa [hrho] using hfour
+    have hselectedEq :
+        SelectedClass A (H.centerAt q hq) K.radius = K.support := by
+      simpa [SelectedClass] using K.support_eq.symm
+    rw [selectedClass_erase_eq, hselectedEq,
+      Finset.card_erase_of_mem hwK, K.support_card] at hfourK
+    omega
+  · intro hwK
+    refine ⟨K.radius, K.radius_pos, ?_⟩
+    have hselectedEq :
+        SelectedClass A (H.centerAt q hq) K.radius = K.support := by
+      simpa [SelectedClass] using K.support_eq.symm
+    have hcard :
+        (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card = 4 := by
+      rw [selectedClass_erase_eq, hselectedEq,
+        Finset.erase_eq_self.mpr hwK, K.support_card]
+    have hfour :
+        4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card := by
+      omega
+    simpa [SelectedClass] using hfour
+
+/-- One reverse cross omission forces distinct chosen blocker centers.
+
+Indeed, omitting `q` from the exact shell sourced at `w` is equivalent to K4
+surviving deletion of `q` at `w`'s blocker.  If the two blockers coincided,
+this would contradict deletion criticality at the blocker sourced by `q`. -/
+theorem blocker_centers_ne_of_not_mem_other_selected_support
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A) (hw : w ∈ A)
+    (hqOutside :
+      q ∉ (H.selectedAt w hw).toCriticalFourShell.support) :
+    H.centerAt q hq ≠ H.centerAt w hw := by
+  intro hcenters
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (A.erase q) (H.centerAt w hw) :=
+    (cross_deletion_survives_iff_not_mem_selected_support H hw).mpr
+      hqOutside
+  apply H.no_qfree_at q hq
+  simpa only [hcenters] using hsurvives
+
+/-- One cross omission already makes the two exact selected shells circles at
+distinct centers, so their support overlap has cardinality at most two.
+
+The reciprocal robust branch supplies this hypothesis in both directions,
+but only one direction is needed for the overlap bound. -/
+theorem selected_support_inter_card_le_two_of_not_mem_other_selected_support
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A) (hw : w ∈ A)
+    (hqOutside :
+      q ∉ (H.selectedAt w hw).toCriticalFourShell.support) :
+    (((H.selectedAt q hq).toCriticalFourShell.support ∩
+      (H.selectedAt w hw).toCriticalFourShell.support).card ≤ 2) := by
+  exact SelectedFourClass.inter_card_le_two
+    (H.selectedAt q hq).toSelectedFourClass
+    (H.selectedAt w hw).toSelectedFourClass
+    (blocker_centers_ne_of_not_mem_other_selected_support
+      H hq hw hqOutside)
+
+/-- Survival of the cross deletion forces the two source points onto
+different radii about `q`'s blocker. -/
+theorem SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A)) :
+    dist (H.centerAt P.q P.q_mem_A) P.w ≠
+      dist (H.centerAt P.q P.q_mem_A) P.q := by
+  have hwNot :
+      P.w ∉ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H P.q_mem_A).mp hsurvives
+  intro hdist
+  apply hwNot
+  apply (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.off_row_named_label_forbidden
+    P.w_mem_A
+  exact hdist.trans
+    ((H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+      P.q
+      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.q_mem_support)
+
+/-- A surviving K4 row at a source blocker is exactly the original chosen
+critical shell on the erased carrier, and its radius is the unique positive
+radius carrying four points there. -/
+theorem cross_survival_unique_radius_and_exact_support
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (A.erase w) (H.centerAt q hq)) :
+    SelectedClass (A.erase w) (H.centerAt q hq)
+        (H.selectedAt q hq).toCriticalFourShell.radius =
+      (H.selectedAt q hq).toCriticalFourShell.support ∧
+    ∀ rho : ℝ, 0 < rho →
+      4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) rho).card →
+      rho = (H.selectedAt q hq).toCriticalFourShell.radius := by
+  let K := (H.selectedAt q hq).toCriticalFourShell
+  have hwNot : w ∉ K.support :=
+    (cross_deletion_survives_iff_not_mem_selected_support H hq).mp hsurvives
+  have hselectedEq :
+      SelectedClass A (H.centerAt q hq) K.radius = K.support := by
+    simpa [SelectedClass] using K.support_eq.symm
+  constructor
+  · rw [selectedClass_erase_eq, hselectedEq,
+      Finset.erase_eq_self.mpr hwNot]
+  · intro rho hrho hfour
+    have hqClass : q ∈ SelectedClass (A.erase w) (H.centerAt q hq) rho := by
+      by_contra hqNot
+      have hdouble :
+          HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+            (H.centerAt q hq) := by
+        refine ⟨rho, hrho, ?_⟩
+        have hsame := selectedClass_erase_card_eq_of_not_mem
+          (A := A.erase w) (x := q) (s := H.centerAt q hq)
+          (d := rho) hqNot
+        simpa [SelectedClass] using hfour.trans_eq hsame.symm
+      exact cumulative_deletion_blocked_at_source_blocker H hq hdouble
+    calc
+      rho = dist (H.centerAt q hq) q :=
+        (mem_selectedClass.mp hqClass).2.symm
+      _ = K.radius := K.support_eq_radius q K.q_mem_support
+
+/-- Cross-deletion survival at a source's actual blocker already separates
+that blocker from the first apex.  No class-cardinality hypothesis is
+needed. -/
+theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hcross :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A)) :
+    H.centerAt P.q P.q_mem_A ≠ S.oppApex1 := by
+  have hradiusNe :=
+    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+      P hcross
+  have hq : dist P.q S.oppApex1 = r :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.q_mem_marginal).1).2
+  have hw : dist P.w S.oppApex1 = r :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.w_mem_marginal).1).2
+  intro hcenter
+  apply hradiusNe
+  simpa [hcenter, dist_comm] using hw.trans hq.symm
+
+/-- A cross hit in the selected critical row puts the two common points on
+opposite strict sides of the chord joining the first apex to the blocker. -/
+theorem signedArea_product_neg_of_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hwShell :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (hcenters : H.centerAt P.q P.q_mem_A ≠ S.oppApex1) :
+    signedArea2 P.w S.oppApex1 (H.centerAt P.q P.q_mem_A) *
+        signedArea2 P.q S.oppApex1 (H.centerAt P.q P.q_mem_A) < 0 := by
+  have hqFirst : dist P.q S.oppApex1 = r :=
+    (Finset.mem_filter.mp
+      (Finset.mem_sdiff.mp P.q_mem_marginal).1).2
+  have hwFirst : dist P.w S.oppApex1 = r :=
+    (Finset.mem_filter.mp
+      (Finset.mem_sdiff.mp P.w_mem_marginal).1).2
+  have hqBlocker :
+      dist P.q (H.centerAt P.q P.q_mem_A) =
+        (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.radius := by
+    simpa only [dist_comm] using
+      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+        P.q
+        (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.q_mem_support
+  have hwBlocker :
+      dist P.w (H.centerAt P.q P.q_mem_A) =
+        (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.radius := by
+    simpa only [dist_comm] using
+      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+        P.w hwShell
+  have hmid :
+      signedArea2 (midpoint ℝ P.q P.w) S.oppApex1
+        (H.centerAt P.q P.q_mem_A) = 0 :=
+    twoCircle_midpoint_collinear hwFirst hqFirst hwBlocker hqBlocker
+      P.q_ne_w.symm
+  have hflip :
+      signedArea2 P.w S.oppApex1 (H.centerAt P.q P.q_mem_A) =
+        -signedArea2 P.q S.oppApex1 (H.centerAt P.q P.q_mem_A) :=
+    signedArea2_reflection_neg hmid
+  have hq_ne_apex : P.q ≠ S.oppApex1 := by
+    intro h
+    exact (Finset.mem_sdiff.mp P.q_mem_marginal).2
+      (by
+        rcases hi : S.surplusIdx with ⟨i, hi3⟩
+        interval_cases i
+        · simpa [h, SurplusCapPacket.surplusCap,
+            SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
+        · simpa [h, SurplusCapPacket.surplusCap,
+            SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+        · simpa [h, SurplusCapPacket.surplusCap,
+            SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3)
+  have hq_ne_blocker : P.q ≠ H.centerAt P.q P.q_mem_A := by
+    intro h
+    apply H.blockerVertex_ne ⟨P.q, P.q_mem_A⟩
+    apply Subtype.ext
+    exact h.symm
+  have harea_ne :
+      signedArea2 P.q S.oppApex1 (H.centerAt P.q P.q_mem_A) ≠ 0 := by
+    intro hzero
+    exact D.convex.not_three_collinear
+      P.q_mem_A (oppApex1_mem_A S) (blocker_mem_A H P.q_mem_A)
+      hq_ne_apex hq_ne_blocker hcenters.symm
+      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
+  rw [hflip]
+  nlinarith [sq_pos_of_ne_zero harea_ne]
+
+private theorem blocker_ne_oppApex1_of_card_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hr : 0 < r)
+    (hcard : (SelectedClass D.A S.oppApex1 r).card = 5) :
+    H.centerAt P.q P.q_mem_A ≠ S.oppApex1 := by
+  have hqSelected : P.q ∈ SelectedClass D.A S.oppApex1 r := by
+    rcases Finset.mem_sdiff.mp P.q_mem_marginal with ⟨hqFilter, _⟩
+    rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
+    exact mem_selectedClass.mpr ⟨hqA, by simpa [dist_comm] using hqRadius⟩
+  have hfive : 5 ≤ (SelectedClass D.A S.oppApex1 r).card := by
+    omega
+  have hfourErase :
+      4 ≤ (SelectedClass (D.A.erase P.q) S.oppApex1 r).card :=
+    selectedClass_erase_card_ge_of_succ_le hfive
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 :=
+    ⟨r, hr, by simpa [SelectedClass] using hfourErase⟩
+  exact actual_blocker_ne_of_deletion_survives
+    H P.q_mem_A hsurvives
+
+/-- If both source deletions preserve K4 at the first apex, mutual cross
+membership forces the two chosen source blockers to coincide.
+
+The survival hypotheses keep both blockers away from the first apex.  If the
+blockers were also distinct from one another, the first apex and the two
+blockers would be three carrier points on the perpendicular bisector of the
+source pair, contradicting the convex perpendicular-bisector bound. -/
+theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hqSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1)
+    (hwSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1)
+    (hwq :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (hqw :
+      P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A := by
+  classical
+  let cq := H.centerAt P.q P.q_mem_A
+  let cw := H.centerAt P.w P.w_mem_A
+  let o := S.oppApex1
+  have hoA : o ∈ D.A := by
+    simpa [o] using oppApex1_mem_A S
+  have hcqA : cq ∈ D.A := by
+    simpa [cq] using blocker_mem_A H P.q_mem_A
+  have hcwA : cw ∈ D.A := by
+    simpa [cw] using blocker_mem_A H P.w_mem_A
+  have hcq_ne_o : cq ≠ o := by
+    simpa [cq, o] using
+      actual_blocker_ne_of_deletion_survives H P.q_mem_A hqSurvivesO
+  have hcw_ne_o : cw ≠ o := by
+    simpa [cw, o] using
+      actual_blocker_ne_of_deletion_survives H P.w_mem_A hwSurvivesO
+  by_contra hcqcw
+  have hoEq : dist o P.q = dist o P.w := by
+    have hqRadius :=
+      (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.q_mem_marginal).1).2
+    have hwRadius :=
+      (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.w_mem_marginal).1).2
+    simpa [o, dist_comm] using hqRadius.trans hwRadius.symm
+  have hcqEq : dist cq P.q = dist cq P.w := by
+    exact
+      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+        P.q
+        (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+          P.w hwq).symm
+  have hcwEq : dist cw P.q = dist cw P.w := by
+    exact
+      (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support_eq_radius
+        P.q hqw
+      |>.trans
+        ((H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support_eq_radius
+          P.w
+          (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.q_mem_support).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex
+    P.q_mem_A P.w_mem_A P.q_ne_w
+  have hoFilter :
+      o ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  have hcqFilter :
+      cq ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hcqA, hcqEq⟩
+  have hcwFilter :
+      cw ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hcwA, hcwEq⟩
+  have hthree :
+      2 < (D.A.filter (fun z => dist z P.q = dist z P.w)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨o, hoFilter, cq, hcqFilter, cw, hcwFilter,
+      hcq_ne_o.symm, hcw_ne_o.symm, hcqcw⟩
+  omega
+
+/-- Under first-apex deletion survival, the two blockers coincide exactly
+when both source points occur in the other source's selected shell. -/
+theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hqSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1)
+    (hwSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A ↔
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support ∧
+      P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support := by
+  constructor
+  · intro hcenters
+    constructor
+    · by_contra hwOutside
+      exact (blocker_centers_ne_of_not_mem_other_selected_support
+        H P.w_mem_A P.q_mem_A hwOutside) hcenters.symm
+    · by_contra hqOutside
+      exact (blocker_centers_ne_of_not_mem_other_selected_support
+        H P.q_mem_A P.w_mem_A hqOutside) hcenters
+  · rintro ⟨hwq, hqw⟩
+    exact
+      blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+        P hqSurvivesO hwSurvivesO hwq hqw
+
+/-- On the robust first-apex arm itself, coincident blockers are exactly
+reciprocal source-row membership.  The twice-erased K4 witness supplies both
+single-deletion survivals needed by the preceding theorem. -/
+theorem blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hdouble :
+      HasNEquidistantPointsAt 4
+        ((D.A.erase P.q).erase P.w) S.oppApex1) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A ↔
+      (P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support ∧
+        P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support) := by
+  have hqSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1 := by
+    apply equidistant_mono (T := D.A.erase P.q) _ hdouble
+    intro z hz
+    exact (Finset.mem_erase.mp hz).2
+  have hdoubleSym :
+      HasNEquidistantPointsAt 4
+        ((D.A.erase P.w).erase P.q) S.oppApex1 := by
+    simpa [Finset.erase_right_comm] using hdouble
+  have hwSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1 := by
+    apply equidistant_mono (T := D.A.erase P.w) _ hdoubleSym
+    intro z hz
+    exact (Finset.mem_erase.mp hz).2
+  exact
+    blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_deletion_survives
+      P hqSurvivesO hwSurvivesO
+
+/-- If the first-apex radius class has at least five points, mutual cross
+membership forces the two chosen source blockers to coincide. -/
+theorem blocker_centers_eq_of_five_le_of_mutual_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hr : 0 < r)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex1 r).card)
+    (hwq :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (hqw :
+      P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A := by
+  apply
+    blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+      P
+  · refine ⟨r, hr, ?_⟩
+    simpa [SelectedClass] using
+      selectedClass_erase_card_ge_of_succ_le
+        (A := D.A) (x := P.q) (s := S.oppApex1) (d := r) (n := 4) hfive
+  · refine ⟨r, hr, ?_⟩
+    simpa [SelectedClass] using
+      selectedClass_erase_card_ge_of_succ_le
+        (A := D.A) (x := P.w) (s := S.oppApex1) (d := r) (n := 4) hfive
+  · exact hwq
+  · exact hqw
+
+/-- A first-apex radius class of size at least five makes blocker equality
+equivalent to reciprocal membership in the two selected shells. -/
+theorem blocker_centers_eq_iff_mutual_cross_membership_of_five_le
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hr : 0 < r)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex1 r).card) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A ↔
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support ∧
+      P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support := by
+  constructor
+  · intro hcenters
+    constructor
+    · by_contra hwOutside
+      exact (blocker_centers_ne_of_not_mem_other_selected_support
+        H P.w_mem_A P.q_mem_A hwOutside) hcenters.symm
+    · by_contra hqOutside
+      exact (blocker_centers_ne_of_not_mem_other_selected_support
+        H P.q_mem_A P.w_mem_A hqOutside) hcenters
+  · rintro ⟨hwq, hqw⟩
+    exact blocker_centers_eq_of_five_le_of_mutual_cross_membership
+      P hr hfive hwq hqw
+
+/-- In the exact card-five first-apex branch, either cross deletion survives
+or the selected shell contains `w` and forces the two sources onto opposite
+strict sides.  Center separation is derived from the card-five hypothesis. -/
+theorem card_five_cross_deletion_survives_or_cross_oppositeSide
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hr : 0 < r)
+    (hcard : (SelectedClass D.A S.oppApex1 r).card = 5) :
+    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A) ∨
+      (P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support ∧
+        signedArea2 P.w S.oppApex1 (H.centerAt P.q P.q_mem_A) *
+          signedArea2 P.q S.oppApex1 (H.centerAt P.q P.q_mem_A) < 0) := by
+  rcases cross_deletion_survives_or_cross_membership P with
+    hsurvives | hwShell
+  · exact Or.inl hsurvives
+  · exact Or.inr ⟨hwShell,
+      signedArea_product_neg_of_cross_membership P hwShell
+        (blocker_ne_oppApex1_of_card_five P hr hcard)⟩
+
+/-- A three-point off-surplus first-apex marginal yields the complete paired
+frontier, with the pair chosen so both deletions preserve K4 at the second
+apex. -/
+theorem exists_criticalPairFrontier
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ)
+    (H : CriticalShellSystem D.A)
+    (hthree :
+      3 ≤ ((D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap).card) :
+    Nonempty (CriticalPairFrontier D S r H) := by
+  rcases exists_pair_double_deletion_survives_secondApex D S r hthree with
+    ⟨q, w, hqT, hwT, hqw, hdouble⟩
+  have hqA : q ∈ D.A :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp hqT).1).1
+  have hwA : w ∈ D.A :=

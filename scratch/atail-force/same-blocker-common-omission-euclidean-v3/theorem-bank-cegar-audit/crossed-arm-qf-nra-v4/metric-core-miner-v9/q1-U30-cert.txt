@@ -1,0 +1,6 @@
+0
+0
+bv*bw-bw^2+bw-1
+bs*bu-bu^2-bs+bu
+0
+0

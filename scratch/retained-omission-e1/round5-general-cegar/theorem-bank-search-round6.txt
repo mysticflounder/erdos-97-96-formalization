@@ -1,0 +1,13 @@
+In the merged Lean corpus, the FreshThird terminal material around “source-clean / equal-center / exact-four-row / all-endpoint-omission” is split across a small family of packets:
+
+- The FreshThird cap-source core reduces to either the two-cap-source normalized branch or a stronger equal-blocker branch that produces an all-endpoint-omission packet on first-fiber descent (`false_of_twoCapSources_freshThirdBlockerFiber_core`).
+- The equal-center exact-row arm is the one carrying the omission claim:
+  - `FreshThirdEqualCenterExactFourRow` fixes the residual support to a rigid exact-four-row: exactly two cap-source rows and two fresh sources.
+  - `allCollisionEndpointsOmitted_of_equalCenterHits` states every endpoint of the two retained collision pairs is omitted by both cap-source rows.
+  - `commonCollisionEndpointOmission_of_equalCenterHits` adds that a collision endpoint is omitted by the common cap-source row.
+- Endpoint ordering on this path is handled separately by a fresh-third parity/order partition theorem (`freshThird_pair_order_partition`), which carves the possible endpoint orders used by the parity terminals.
+
+If you need the same branch as a source-clean terminal adapter specifically, the only directly “source-clean” adapter text surfaced in this slice is a compatibility-style reduction (`false_of_freshCanonicalRowOverride`) that is marked as compatibility-only in its module note.
+  handles: 5M2AT9 858F2Z BDWWVD 151MXM 0MCG0G V3RKQX  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show --lean TG1A3M && nthdegree docs show --lean KZMEMH && nthdegree docs show --lean C0R73W && nthdegree…, nthdegree docs show --lean 3BKSRP && nthdegree docs show --lean V3RKQX && nthdegree docs show --lean NNVB0J && nthdegree…, nthdegree docs search --lean "firstNonHit secondNonHit equal-center exact-four-row all endpoint omission", nthdegree docs search --lean "firstNonHit secondNonHit" --kind theorem, nthdegree docs show --lean BDWWVD && nthdegree docs show --lean 151MXM, nthdegree docs search --lean "all endpoint omission" --kind theorem, nthdegree docs search --lean "equal-center exact-row firstNonHit", nthdegree docs search --lean "source-clean terminal adapter FreshThird", nthdegree docs search --lean --name f --sig "FreshThird", nthdegree docs search --lean FreshThird, nthdegree docs show --lean 0MCG0G && nthdegree docs show --lean WJ4WMP, nthdegree docs search --lean "firstNonHit", nthdegree docs search --lean "exact-four-row"
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

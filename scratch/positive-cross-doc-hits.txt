@@ -1,0 +1,60 @@
+24:  U1 source-unit certificates and generated U5 incidence incompatibility bank;
+99:`attic/U2OppCap2Escape.lean` is not a certificate bank. It has two small generic
+120:  not a metric or incidence certificate; and
+140:| Multi-center | 20 | The finite certificate stack plus `GeneralN`/`Realization`; still lacks geometric realization and persistence |
+163:`DoubleApexOffSurplusSharedRadiusPairCard12Up`. It does not classify a geometric
+164:four-point window as one of the ten dead classes; that finite/geometric bridge
+174:  .false_of_endpointShadowInBank_of_metricShadow
+178:escape label, and finite endpoint shadow, bank membership plus
+179:`EndpointMetricShadow` implies `False`. Its kernel closure is:
+200:  EndpointMetricShadow pointOf shadow
+204:`endpointMetricShadow_shadowOfPointClasses_of_sameRadius` can prove the metric
+211:contradiction theorem, but no unmined theorem supplies the geometric
+220:  .false_of_shadowInBank_of_metricShadow
+223:It says that exact pinned-bank membership plus a metric interpretation of the
+230:obligation is in the geometric producer layer, currently
+235:metric/row-zero helper schemas. They derive generator zeros from supplied
+275:They still require Lean emission/checking and a geometric producer for the
+286:finite consumer after P2 supplies the geometric candidate remainder.
+308:exact opposite-cap masks, the seed's private mask, four-label/no-self shape for
+310:mining checkpoint, the P2 holes were the geometric production of those bundled
+325:general-n geometric realization theorem.
+330:a concrete geometric `ProfileRealizationSurface` together with:
+334:3. geometric GLOBAL soundness/completion when a GLOBAL conclusion is needed;
+335:4. an explicit consumer on the U1 large-cardinality tail.
+338:enumeration as the missing step. The missing step is geometric realization and
+362:### U5 incidence bank
+365:`U5GlobalIncidence...` family. Only three of those module basenames occur here.
+366:After collapsing scalar/metric/class layers, the novel contradiction surface
+371:- 88 standalone metric-point incompatibility kernels; and
+375:There are another 133 novel U5 contradiction consumers in 48 non-global-
+376:incidence U5 modules. These are general-n in the relevant sense: their
+384:Problem97.U5QCriticalTripleClass
+396:live U1/U5 packet into one of the incompatible incidence families. The missing
+397:step is the same kind of finite/geometric producer seen in the endpoint and
+400:### Unimported U1 source-unit bank
+408:- ten branch-level `false_of_all8_slot_metric_core` theorems.
+421:already has `RowSlotLabelPacket`, `AllEightSlotMetricCore`, and the source-unit
+429:Problem97.U1LargeCapRouteBTailMetricResidualTarget
+430:  .u1TwoLargeCapObstruction
+434:the three standard core axioms. It is not a uniform two-large-cap closure: the
+444:`RVOL.P97.CGN.CGN4gExt`: `StrictCapBlockData` and nine related declarations are
+471:| metric-point candidates | 98 |
+512:incidence placement, exact mask, metric shadow, or Census554 realization
+522:and have no current producer for their old trigonometric coordinate systems.
+576:`finiteN9ClosureGeometricSources` by asking `exact?` to synthesize three
+580:OppositeMoserCapExteriorUniqueDistanceSourceTheorem;
+597:- `general_n_four_cap_side_equalities.md` and
+599:  `(m,4,4)` equilateral frame from exact four-cap containment. Current U1/U2
+600:  exposes the same exact-cap/equilateral transfer boundary.
+601:- `97-positive-defect-bridge.md` derives a surplus cap from the cap-sum
+602:  identity when `n > 9`. Current `CounterexampleData.capSum` and
+619:The generator assigns the closure status from the header's touched caps; it
+635:`docs/97-audit-2026-04-27.md` retracts the purported uniform cap-sum closure.
+644:already catalogued through the later `erdos/97` archive, its general cap
+659:but not a coverage theorem or a new geometric fact.  The read-only miner
+663:transitively, and searches for four formalized geometric obstructions:
+690:Problem97.u5_unit_triangle_on_p_circle_incompatibility
+702:  -> corresponding geometric collision or contradiction
+738:two labels on their equality-closed circles.  From `EdgeClosure.sound` and
+759:Problem97.Census554.Card11CapLabeling

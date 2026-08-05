@@ -1,0 +1,10 @@
+{
+  "attempt": 1,
+  "detail": {},
+  "diagnostic": "solver runner raised: 'NoneType' object has no attribute 'write_bytes'",
+  "failure_sha256": "df10e31d3fd0f765b9e0d96f248466d0e0952a1eeb82f4f056d5a9ccabbaa245",
+  "kind": "SOLVER_EXCEPTION",
+  "learned_clause_added": false,
+  "raw_sat_index": null,
+  "schema": "p97-phase3-structural-cegar-projected-static-v3-failure-v1"
+}

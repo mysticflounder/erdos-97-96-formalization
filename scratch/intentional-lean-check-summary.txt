@@ -1,0 +1,2 @@
+lean/scratch/CheckFourSupport.lean	rc=0	scratch/lean-check-lean_scratch_CheckFourSupport_lean.log
+scratch/TestCrossedArmG7Tail.lean	rc=0	scratch/lean-check-scratch_TestCrossedArmG7Tail_lean.log

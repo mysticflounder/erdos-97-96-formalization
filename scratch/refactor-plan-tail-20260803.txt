@@ -1,0 +1,260 @@
+The repaired N17 probe is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/N17-FRESH-THIRD-FIDELITY-PROBE-ROUND5.md`.
+It uses independent selectors for `C.firstSource` and `C.secondSource`,
+explicit cap-row survival predicates, guarded deletion-survival predicates,
+and the corrected equal-center arm.  The incidence artifact
+`artifacts-n17-generic/20260802T184918Z/result.json` is SAT in all three
+normalized residual arms (`firstNonHit`, `secondNonHit`, and
+`equalCrossRowCenters`).  The cyclic/metric artifact
+`artifacts-n17-generic/20260802T184331Z/result.json` and its per-arm runs are
+`UNKNOWN` at the bounded time limits, so this is an external finite diagnostic
+only: it has no coordinate realization, universal-n quantifier, Lean ingress,
+or kernel-checked certificate.
+
+The mandatory post-round theorem-bank audit is recorded by the round-5 global
+bank pass.  All six required P97 registries (including the general-n census)
+and one focused agentic Lean search returned no `FreshThird`,
+`sourceRowOmission`, normalized-residual, or equivalent terminal/adapter.
+The nearest imported facts are the existing cross-deletion survival/support
+equivalences and the distinct-center FreshThird terminal; neither supplies the
+missing common-radius, boundary-order, or blocker-row hypotheses.  The
+load-bearing `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`
+obligation therefore remains open, with no promotion or closure claim from
+this round.  The next honest implementation target is a source-faithful
+support/radius/order adapter or a new metric terminal, not a wrapper around the
+existing `sorry`.
+
+## 2026-08-03 normalized-residual adapter audit
+
+Two bounded audits rechecked the live `FreshThird` residual against the current
+source-clean bank.  The support audit confirms that `support_eq_radius` is
+directly usable only on the existing hit arms; the equal-center arm yields the
+exact four-point row and endpoint-omission facts already recorded, while the
+`FreshThirdOrderPartition` producer has no geometric input bridge.  The branch
+audit confirms that the `firstNonHit` and `secondNonHit` packets reduce only to
+equal-blocker/support equality or one-sided `Q` endpoint deletion-survival.
+Neither audit found a source-clean `False` consumer for the generic
+`FreshThirdBlockerFiber` packet, and neither changed the live obligation.
+
+One `nthdegree docs search --lean --agentic` query for the combined
+source-row-omission/equal-blocker/deletion-survival shape returned only the
+existing residual wrapper and consumers requiring first-fiber witnesses or
+common-radius hypotheses.  The search therefore supplies no reusable bridge;
+the next implementation target remains a new branch-specific incidence/metric
+consumer (or a producer strengthening that supplies its hypotheses), not an
+alias, wrapper, or scratch enumeration.
+
+## 2026-08-03 terminal API audit and cleanup checkpoint
+
+The normalized-residual terminal was re-audited against the current theorem
+bank after the Lean-file cleanup.  The first- and second-non-hit constructors
+provide only equal-blocker/support equality or one-sided `Q` deletion
+survival; `cross_deletion_survives_iff_not_mem_selected_support` normalizes the
+latter but does not produce `False`.  The equal-center both-hit constructor
+does provide the exact four-point support and simultaneous omission of all four
+collision endpoints, but no imported consumer accepts a generic
+`FreshThirdBlockerFiber` with those hypotheses.  The available
+`ThirdCenterCommonPair` and first-fiber five-center consumers additionally
+require absent survivor-relocation, common-radius, or first-fiber witness data.
+
+Thus there is still no source-faithful terminal or import-only bridge for the
+load-bearing normalized-residual `sorry`.  The next implementation must add a
+new occurrence/embedding or direct incidence/metric consumer (with its
+hypotheses constructed from this packet); adding another wrapper or finite
+enumeration would not narrow the live obligation.  The two untracked Lean
+axiom-audit probes were committed and pushed in `b35b77ab`; no untracked `.lean`
+files remain at this checkpoint.
+
+## 2026-08-03 equal-center canonical-cap branch checkpoint
+
+The first source-faithful consumer for the normalized packet is now present
+in `ATail/FrontierLiveClosure.lean` as
+`false_of_freshThirdEqualCenter_sameCapOppIndex`.  It consumes the genuine
+same-cap interaction data at `capIndex = S.oppIndex1`, the two both-hit
+hypotheses, and the equal-center equation.  The existing exact-row producer
+then identifies the first selected support with the four named sources; two
+cap sources and whichever fresh fiber source is in the canonical cap form a
+three-point subset of that selected row intersected with the cap.  The
+imported `CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two`
+consumer closes the branch unconditionally.
+
+The file typechecks directly under Lean 4.27.0.  This is a real branch
+consumer, not a wrapper or finite-search claim, but it does not yet close the
+parent normalized-residual `sorry`: the distinct-cap interaction, the
+same-cap interactions at the other cap indices, and the two non-hit packets
+still lack source-faithful consumers.  The next integration step is to wire
+this branch into the load-bearing coordinator while keeping those residual
+interfaces explicit.
+
+## 2026-08-03 build-hygiene checkpoint
+
+The shared endpoint-classification adapter in `FrontierLiveClosure.lean` had
+drifted from the producer's interface: the classifier returns `Nonempty`
+wrappers, while the terminal constructors consume the underlying witness
+types.  The adapter now unwraps those witnesses explicitly.  The equal-center
+canonical-cap consumer also now rewrites its selected support explicitly with
+`FreshThirdEqualCenterExactFourRow.first_support_eq`; this removes an
+elaboration-dependent `simpa` step.
+
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure` succeeds under Lean
+4.27.0 after these repairs.  This is build hygiene only and closes no
+load-bearing `sorry`; the normalized-residual branch frontier recorded above
+is unchanged.
+
+## 2026-08-03 non-hit route audit
+
+The indexed theorem-bank audit for `firstNonHit` and `secondNonHit` found no
+source-faithful terminal or import-only bridge.  The two packets normalize only
+to equal selected supports (the `sameBlocker` constructor) or one-sided
+`Q.source₁`/`Q.source₂` deletion survival (the `sourceRowOmission` constructor).
+`cross_deletion_survives_iff_not_mem_selected_support` and the blocker-center
+separation lemma rewrite these facts, but yield only center inequality or an
+intersection upper bound; they do not supply the reciprocal row incidence,
+common radius, cap placement, or boundary-order hypotheses needed by an
+existing contradiction.
+
+Accordingly, the non-hit leaves remain genuine open interfaces.  The next
+implementation must construct a new incidence/metric consumer or strengthen
+the producer with a strictly narrowing packet.  Reusing the residual wrapper,
+an alias, or a finite SAT result would be circular or non-kernel evidence and
+does not advance the closure matrix.
+
+## 2026-08-03 normalized-residual coordinator wiring checkpoint
+
+The normalized coordinator now performs the source-clean narrowing that is
+available at this frontier.  The two non-hit constructors and every
+same-blocker/source-row-omission interaction are routed into the explicit
+`FreshThirdNormalizedResidualRemainingCase` packet.  In the equal-center
+positive branch, the canonical same-cap `oppIndex1` interaction is consumed by
+`false_of_freshThirdEqualCenter_sameCapOppIndex`; distinct-cap interactions and
+same-cap interactions at the other two indices are retained as the narrowed
+`FreshThirdNonCanonicalInteraction` pair.  No source-clean terminal has been
+invented for that remaining packet: its single theorem remains the loud
+load-bearing leaf
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`.
+
+The coordinator call sites now pass the full section interface explicitly,
+which avoids Lean treating the first geometric hypothesis as the source row.
+`lake build Erdos9796Proof.P97.ATail.FrontierLiveClosure` succeeds under Lean
+4.27.0.  This is a genuine narrowing/wiring checkpoint, not closure: the
+remaining packet still contains the non-hit and noncanonical equal-center
+obligations, and the closure matrix must continue to count that leaf as open.
+
+## 2026-08-03 source-faithful consumer audit checkpoint
+
+The read-only theorem-bank audit is complete. It confirms that
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` has no
+import-reachable source-clean consumer in the current tree or the indexed P97
+banks. The `firstNonHit` and `secondNonHit` constructors expose only equal
+selected supports or one-sided deletion survival; the noncanonical
+equal-center constructors expose only distinct cap indices or same-cap
+interaction away from `S.oppIndex1`. Existing consumers require additional
+reciprocal row incidence, a common radius/first-fiber witness, or boundary
+order data that this packet does not retain. The closest RVOL tetrahedron
+consumer is not import-reachable and its U5 hypotheses do not map to this
+interface.
+
+Therefore the next closure step is a new source-faithful incidence/metric
+producer or terminal, or a producer strengthening that retains one of those
+missing invariants. An alias, wrapper, finite-search result, or conditional
+`Closers` package would be circular and receives no closure credit. The
+load-bearing leaf remains open and must stay explicit in the coordinator
+frontier. No new CEGAR round was run at this checkpoint.
+
+## 2026-08-03 shared-pair and agentic-search checkpoint
+
+The latest deep Lean search and a read-only audit of the generic shared-pair
+modules found no import-reachable consumer for the remaining leaf.  The
+nearest result, `selectedFourClass_shared_pair_separated`, requires an
+injective CCW convex boundary, a carrier-to-boundary index map, and two
+distinct centers; FreshThird supplies neither the boundary transport nor the
+distinct-center hypothesis in its residual arm.  `GeneralCarrierBridge` and
+the P4 family adapters likewise require a full faithful-carrier/core packet
+and produce alternative/SAT predicates rather than `False`.
+
+This confirms the current missing bridge precisely: either (a) a source-clean
+producer that adds the missing boundary/incidence or radius-class invariant to
+the FreshThird packet, or (b) a direct metric/incidence terminal consuming the
+existing exact-row and deletion data.  The non-hit and noncanonical
+equal-center constructors remain genuine load-bearing obligations.  No new
+`sorry`, alias, finite-search wrapper, or scratch theorem is promoted by this
+checkpoint; the closure matrix must continue to count
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` as open.
+
+## 2026-08-03 CEGAR and certificate audit checkpoint
+
+The bounded retained-omission CEGAR artifacts were checked against the
+normalized FreshThird residual.  The n=17 generic arms are `SAT` in the
+external Z3 model; the cyclic refinements are `UNKNOWN`, and the exact-n=15
+probe was cancelled/`UNKNOWN`.  The result metadata explicitly records
+`external_solver_only`, `lean_kernel_proof = false`, and
+`universal_n_claim = false`; the models omit the Euclidean realization and
+Lean ingress.  These artifacts therefore cannot be promoted as a terminal or
+as a producer for the live theorem.
+
+The certificate and script registries contain no FreshThird,
+`firstNonHit`, `secondNonHit`, or `normalized_residual` certificate.  The
+indexed Lean search likewise found only the current wrappers and branch-local
+producers.  The first missing source-faithful bridge remains a new cap,
+common-radius/fiber, cyclic-order, incidence, or metric invariant strong
+enough to consume both non-hit constructors.  The literal load-bearing
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+open; no wrapper, SAT result, or conditional theorem is promoted.
+
+## 2026-08-03 round-6 exact-row/global-bank checkpoint
+
+The round-6 global theorem-bank audit is complete.  The mandatory certificate
+registries and indexed Lean corpus contain no import-reachable, source-clean
+consumer of the full `FreshThirdEqualCenterExactFourRow` packet together with
+the noncanonical exact-overlap/cap data.  The closest reusable declarations
+are the exact-overlap incidence lemma at `FrontierLiveClosure:10039`, the
+ordered Kalmanson terminal
+`CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair`, and
+the shared-pair alternation theorem
+`Problem97.selectedFourClass_shared_pair_separated`; each requires additional
+boundary/index, strict-order, or distinct-center hypotheses absent from this
+residual.  The audit report is retained at
+`scratch/retained-omission-e1/round5-general-cegar/round6-global-bank-audit-20260803.md`.
+
+The equal-center CEGAR overlay was strengthened to exact four-point rows,
+exact fresh-row overlap, noncanonical cap-interior membership, and the cyclic
+metric relaxation.  Both the incidence and cyclic n=17 models are SAT (the
+cyclic v2/v3 run is about 26 seconds), with metadata explicitly limiting the
+result to external Z3, bounded n=17, and no Lean or Euclidean realization.
+The witness alternates the shared fresh pair across the two equal-center rows,
+so exact row support and cyclic relaxation alone do not supply the missing
+contradiction.
+
+The first source-faithful implementation target is therefore a
+branch-preserving `ConvexCyclicOrder`/strict-boundary adapter: export the
+subtype values, prove the required convex-independence and boundary index
+transport, and convert the two exact shells to the row interface expected by
+the Kalmanson consumer.  This is a producer/adapter target, not a closure
+claim.  The non-hit constructors remain untouched, and
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+the explicit open leaf in the coordinator frontier.
+
+## 2026-08-03 ShellCurvatureRows adapter audit
+
+The direct generic adapter route was checked under Lean 4.27.0.  The
+`ConvexCyclicOrder/ShellCurvatureRows` module provides a source-clean
+`ShellBoundaryIndexing` producer, with non-collinearity discharged from the
+convex carrier and `card_gt_four`; the
+`SelectedFourClassCurvature` module also provides source-clean support-order
+and quarter-turn-arc adapters.  These modules compile without `sorryAx`.
+
+They do not yet consume the live FreshThird residual.  The residual packet
+does not package `H.selectedAt` as the `SelectedFourClass` objects expected by
+the adapters, does not retain the common-radius membership needed by the
+mutual-cross-membership consumers, and does not provide the finite
+permutation/strict-order transport for the named source points.  The
+`firstNonHit` and `secondNonHit` branches still expose only one-sided deletion
+survival or equal selected supports.  Thus the first source-faithful bridge
+remains either a global erase/removability theorem or a branch-preserving
+cross-row incidence/order producer; generic boundary construction alone is
+insufficient.
+
+This is an audit and implementation-direction checkpoint only.  No new
+obligation was introduced, no wrapper or SAT artifact was promoted, and
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+the explicit open load-bearing leaf.

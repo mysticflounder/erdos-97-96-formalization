@@ -1,0 +1,454 @@
+{
+  "carrier_cardinality": 17,
+  "global_edge_equality": {
+    "first_violation": {
+      "forced_but_serialized_false": {
+        "center": "t2",
+        "endpoints": [
+          "r1",
+          "q1"
+        ]
+      },
+      "left_edge": [
+        "r1",
+        "t2"
+      ],
+      "positive_equality_path": [
+        {
+          "from_edge": [
+            "r1",
+            "t2"
+          ],
+          "positive_local_equality": {
+            "center": "r1",
+            "endpoints": [
+              "t2",
+              "q2"
+            ]
+          },
+          "to_edge": [
+            "q2",
+            "r1"
+          ]
+        },
+        {
+          "from_edge": [
+            "q2",
+            "r1"
+          ],
+          "positive_local_equality": {
+            "center": "q2",
+            "endpoints": [
+              "a1",
+              "r1"
+            ]
+          },
+          "to_edge": [
+            "a1",
+            "q2"
+          ]
+        },
+        {
+          "from_edge": [
+            "a1",
+            "q2"
+          ],
+          "positive_local_equality": {
+            "center": "a1",
+            "endpoints": [
+              "q1",
+              "q2"
+            ]
+          },
+          "to_edge": [
+            "a1",
+            "q1"
+          ]
+        },
+        {
+          "from_edge": [
+            "a1",
+            "q1"
+          ],
+          "positive_local_equality": {
+            "center": "q1",
+            "endpoints": [
+              "a1",
+              "t2"
+            ]
+          },
+          "to_edge": [
+            "q1",
+            "t2"
+          ]
+        }
+      ],
+      "right_edge": [
+        "q1",
+        "t2"
+      ]
+    },
+    "global_edge_class_count": 78,
+    "lean_soundness_reference": "Problem97.Census554.EqualityCore.EdgeClosure.sound",
+    "positive_local_equality_generator_count": 118,
+    "serialized_negative_comparison_count": 1922,
+    "undirected_edge_count": 136,
+    "violation_count": 23,
+    "violations_preview": [
+      {
+        "forced_but_serialized_false": {
+          "center": "t2",
+          "endpoints": [
+            "r1",
+            "q1"
+          ]
+        },
+        "left_edge": [
+          "r1",
+          "t2"
+        ],
+        "right_edge": [
+          "q1",
+          "t2"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "r2",
+          "endpoints": [
+            "q2",
+            "p2"
+          ]
+        },
+        "left_edge": [
+          "q2",
+          "r2"
+        ],
+        "right_edge": [
+          "p2",
+          "r2"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q2",
+          "endpoints": [
+            "a1",
+            "s3"
+          ]
+        },
+        "left_edge": [
+          "a1",
+          "q2"
+        ],
+        "right_edge": [
+          "q2",
+          "s3"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q2",
+          "endpoints": [
+            "r2",
+            "s3"
+          ]
+        },
+        "left_edge": [
+          "q2",
+          "r2"
+        ],
+        "right_edge": [
+          "q2",
+          "s3"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q2",
+          "endpoints": [
+            "p1",
+            "s3"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "q2"
+        ],
+        "right_edge": [
+          "q2",
+          "s3"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q2",
+          "endpoints": [
+            "r1",
+            "s3"
+          ]
+        },
+        "left_edge": [
+          "q2",
+          "r1"
+        ],
+        "right_edge": [
+          "q2",
+          "s3"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p1",
+          "endpoints": [
+            "t1",
+            "q1"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "t1"
+        ],
+        "right_edge": [
+          "p1",
+          "q1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p1",
+          "endpoints": [
+            "q2",
+            "q1"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "q2"
+        ],
+        "right_edge": [
+          "p1",
+          "q1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p1",
+          "endpoints": [
+            "q1",
+            "p2"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "q1"
+        ],
+        "right_edge": [
+          "p1",
+          "p2"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p1",
+          "endpoints": [
+            "q1",
+            "s1"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "q1"
+        ],
+        "right_edge": [
+          "p1",
+          "s1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q1",
+          "endpoints": [
+            "a1",
+            "r1"
+          ]
+        },
+        "left_edge": [
+          "a1",
+          "q1"
+        ],
+        "right_edge": [
+          "q1",
+          "r1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q1",
+          "endpoints": [
+            "t2",
+            "r1"
+          ]
+        },
+        "left_edge": [
+          "q1",
+          "t2"
+        ],
+        "right_edge": [
+          "q1",
+          "r1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q1",
+          "endpoints": [
+            "p1",
+            "r1"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "q1"
+        ],
+        "right_edge": [
+          "q1",
+          "r1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "q1",
+          "endpoints": [
+            "r1",
+            "p2"
+          ]
+        },
+        "left_edge": [
+          "q1",
+          "r1"
+        ],
+        "right_edge": [
+          "p2",
+          "q1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p2",
+          "endpoints": [
+            "r2",
+            "q1"
+          ]
+        },
+        "left_edge": [
+          "p2",
+          "r2"
+        ],
+        "right_edge": [
+          "p2",
+          "q1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p2",
+          "endpoints": [
+            "p1",
+            "q1"
+          ]
+        },
+        "left_edge": [
+          "p1",
+          "p2"
+        ],
+        "right_edge": [
+          "p2",
+          "q1"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p2",
+          "endpoints": [
+            "q1",
+            "a3"
+          ]
+        },
+        "left_edge": [
+          "p2",
+          "q1"
+        ],
+        "right_edge": [
+          "a3",
+          "p2"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "p2",
+          "endpoints": [
+            "q1",
+            "s3"
+          ]
+        },
+        "left_edge": [
+          "p2",
+          "q1"
+        ],
+        "right_edge": [
+          "p2",
+          "s3"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "a3",
+          "endpoints": [
+            "a1",
+            "p2"
+          ]
+        },
+        "left_edge": [
+          "a1",
+          "a3"
+        ],
+        "right_edge": [
+          "a3",
+          "p2"
+        ]
+      },
+      {
+        "forced_but_serialized_false": {
+          "center": "s3",
+          "endpoints": [
+            "a2",
+            "r1"
+          ]
+        },
+        "left_edge": [
+          "a2",
+          "s3"
+        ],
+        "right_edge": [
+          "r1",
+          "s3"
+        ]
+      }
+    ]
+  },
+  "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v6-mutual-bisector-resume-01/witness.json",
+  "killing_constraints": [
+    "global_edge_equality"
+  ],
+  "schema": "crossed-arm-v7-witness-replay-v1",
+  "six_k2_three_row_triangle": {
+    "lean_declaration": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+    "match_count": 0,
+    "matches_preview": [],
+    "ordered_sextuples_checked": 12376
+  },
+  "solver_invoked": false,
+  "status": "V7_REPLAY_KILLED",
+  "trust_boundary": "finite solver-free replay of one serialized complete row/radius witness; this does not prove the arbitrary-cardinality Lean anchor"
+}

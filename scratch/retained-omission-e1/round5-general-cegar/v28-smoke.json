@@ -1,0 +1,1107 @@
+{
+  "configuration": {
+    "max_iterations": 1,
+    "seed": 2801,
+    "timeout_ms": 120000
+  },
+  "elapsed_seconds": 15.026109459111467,
+  "exploratory_reuse": {
+    "admission_invariant": "No exploratory AST/solver verdict admits a cut or terminal: every cut requires two fresh-context exact parses and terminal UNSAT requires two fresh raw gzip parses with identical hashes/verdicts.",
+    "master_build_count": 1,
+    "oracle_build_count": 1,
+    "oracle_reuse_calls": 1,
+    "raw_parse_count": 1
+  },
+  "generalization_checkpoint": {
+    "existing_schema_match_count": 0,
+    "note": "Classified every three-equality core against the four existing KalmansonThreeEqualitySchemas up to cyclic dihedral relabeling.",
+    "reviewed_core_count": 1
+  },
+  "input": {
+    "fixed": [
+      {
+        "bool": "rich_2_1_12",
+        "value": true
+      },
+      {
+        "bool": "rich_2_1_4",
+        "value": true
+      }
+    ],
+    "fixed_sha256": "de0dc93b9bb1a095d601398a5adbcc5e32a1d177830af1174d604ee09bb0db8a",
+    "master_group_bodies_sha256": "22ac65d7072de469cdf95b509907c1a723d34a9219d5586ab3f06a893540c45f",
+    "master_groups": [
+      "track_exact_rich_profiles",
+      "track_cyclic_alternation_cut"
+    ],
+    "raw_blob_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/artifacts-v19-production1/20260802T153331.017335Z-case-pid34172/fresh_DDD_k0_d2_f1/full_frozen_v19.smt2.gz",
+    "raw_blob_sha256": "699807aa782a9083ebec185444b483f7e9da53b4f7a43e45ae923aa82f363067",
+    "raw_formula_sha256": "bce451bab18921a6c0d0d29d5307c8aab59be1c1fc937d991c6b40a8d7ca2720",
+    "script_sha256": "f4935b1bcb77bffbd6e036207f9460851a6e1f3e8aec1cdc64b75111671220b8",
+    "strict_kalmanson_count": 2730,
+    "strict_kalmanson_sha256": "84867428b4be601bbc0050b65c600d25cee4e0c381816c4af2fa55064ae1faea",
+    "test_sha256": "8101d5553930aa21f95da5fa091466d91d938fc3e52e036c349fdf5e7f140730",
+    "v27_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/retained-omission-e1/round5-general-cegar/v27-source-assertion-minimization.json",
+    "v27_sha256": "b3ec9c29f0f5062d6043f5f1d5171e2abd10599113fabab7e4dad634583856a0",
+    "z3_version": "4.15.3"
+  },
+  "iterations": [
+    {
+      "core_ids": [
+        "eq:rich_0_0:0:6",
+        "eq:rich_0_1:1:5",
+        "eq:rich_0_1:1:7",
+        "eq:rich_1_0:0:7",
+        "eq:rich_1_1:5:6",
+        "kalmanson:0022",
+        "kalmanson:0176",
+        "kalmanson:0306",
+        "kalmanson:0414",
+        "kalmanson:0502",
+        "kalmanson:0572",
+        "kalmanson:0626",
+        "kalmanson:0666",
+        "kalmanson:0841",
+        "kalmanson:0849",
+        "kalmanson:0855",
+        "kalmanson:0859",
+        "kalmanson:1391",
+        "kalmanson:1399",
+        "kalmanson:1405",
+        "kalmanson:1409",
+        "kalmanson:1811",
+        "kalmanson:1819",
+        "kalmanson:1825",
+        "kalmanson:1829",
+        "kalmanson:2123",
+        "kalmanson:2131",
+        "kalmanson:2137",
+        "kalmanson:2141",
+        "kalmanson:2347",
+        "kalmanson:2355",
+        "kalmanson:2361",
+        "kalmanson:2365",
+        "kalmanson:2501",
+        "kalmanson:2509",
+        "kalmanson:2515",
+        "kalmanson:2519",
+        "kalmanson:2601",
+        "kalmanson:2609",
+        "kalmanson:2615",
+        "kalmanson:2619",
+        "kalmanson:2661",
+        "kalmanson:2669",
+        "kalmanson:2675",
+        "kalmanson:2679"
+      ],
+      "iteration": 0,
+      "learned_clause_sha256": "f0109675ffdb46c65a713788f403298bac135aaeacb4592df1a252622f189ead",
+      "master_seconds": 0.24985041609033942,
+      "master_status": "sat",
+      "oracle": {
+        "deletion_minimal": true,
+        "initial_core_size": 45,
+        "status": "unsat"
+      },
+      "oracle_seconds": 0.27984570781700313,
+      "oracle_status": "unsat",
+      "support": [
+        {
+          "apex": 12,
+          "apex_index": 0,
+          "class": 0,
+          "points": [
+            0,
+            2,
+            6,
+            13
+          ]
+        },
+        {
+          "apex": 12,
+          "apex_index": 0,
+          "class": 1,
+          "points": [
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "apex": 13,
+          "apex_index": 1,
+          "class": 0,
+          "points": [
+            0,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "apex": 13,
+          "apex_index": 1,
+          "class": 1,
+          "points": [
+            5,
+            6,
+            11,
+            14
+          ]
+        },
+        {
+          "apex": 14,
+          "apex_index": 2,
+          "class": 0,
+          "points": [
+            2,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "apex": 14,
+          "apex_index": 2,
+          "class": 1,
+          "points": [
+            4,
+            9,
+            11,
+            12
+          ]
+        }
+      ],
+      "support_sha256": "ffbf593d7ac82c5e0bac17a4e139a82424663ebe5690dde0092e8c0367a876bf"
+    }
+  ],
+  "kind": "v28-rich-kalmanson-compact-cegar",
+  "learned_cores": [
+    {
+      "clause_sexpr": "(or (not rich_0_0_0)\n    (not rich_0_0_6)\n    (not rich_0_1_1)\n    (not rich_0_1_5)\n    (not rich_0_1_7)\n    (not rich_1_0_0)\n    (not rich_1_0_7)\n    (not rich_1_1_5)\n    (not rich_1_1_6))",
+      "clause_sha256": "f0109675ffdb46c65a713788f403298bac135aaeacb4592df1a252622f189ead",
+      "core": [
+        {
+          "center": 12,
+          "endpoints": [
+            0,
+            6
+          ],
+          "id": "eq:rich_0_0:0:6",
+          "kind": "equality",
+          "membership_pair": [
+            "rich_0_0_0",
+            "rich_0_0_6"
+          ],
+          "sexpr": "(= d_0_12 d_6_12)"
+        },
+        {
+          "center": 12,
+          "endpoints": [
+            1,
+            5
+          ],
+          "id": "eq:rich_0_1:1:5",
+          "kind": "equality",
+          "membership_pair": [
+            "rich_0_1_1",
+            "rich_0_1_5"
+          ],
+          "sexpr": "(= d_1_12 d_5_12)"
+        },
+        {
+          "center": 12,
+          "endpoints": [
+            1,
+            7
+          ],
+          "id": "eq:rich_0_1:1:7",
+          "kind": "equality",
+          "membership_pair": [
+            "rich_0_1_1",
+            "rich_0_1_7"
+          ],
+          "sexpr": "(= d_1_12 d_7_12)"
+        },
+        {
+          "center": 13,
+          "endpoints": [
+            0,
+            7
+          ],
+          "id": "eq:rich_1_0:0:7",
+          "kind": "equality",
+          "membership_pair": [
+            "rich_1_0_0",
+            "rich_1_0_7"
+          ],
+          "sexpr": "(= d_0_13 d_7_13)"
+        },
+        {
+          "center": 13,
+          "endpoints": [
+            5,
+            6
+          ],
+          "id": "eq:rich_1_1:5:6",
+          "kind": "equality",
+          "membership_pair": [
+            "rich_1_1_5",
+            "rich_1_1_6"
+          ],
+          "sexpr": "(= d_5_13 d_6_13)"
+        },
+        {
+          "id": "kalmanson:0022",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_1_13 d_0_11) (+ d_0_13 d_1_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0176",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_2_13 d_1_11) (+ d_1_13 d_2_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0306",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_3_13 d_2_11) (+ d_2_13 d_3_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0414",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_13_14 d_3_11) (+ d_3_13 d_11_14 1.0))"
+        },
+        {
+          "id": "kalmanson:0502",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_4_13 d_11_14) (+ d_13_14 d_4_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0572",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_5_13 d_4_11) (+ d_4_13 d_5_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0626",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_6_13 d_5_11) (+ d_5_13 d_6_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0666",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_7_13 d_6_11) (+ d_6_13 d_7_11 1.0))"
+        },
+        {
+          "id": "kalmanson:0841",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_0_12 d_1_8) (+ d_0_8 d_1_12 1.0))"
+        },
+        {
+          "id": "kalmanson:0849",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_0_8 d_1_9) (+ d_0_9 d_1_8 1.0))"
+        },
+        {
+          "id": "kalmanson:0855",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_0_9 d_1_10) (+ d_0_10 d_1_9 1.0))"
+        },
+        {
+          "id": "kalmanson:0859",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_0_10 d_1_11) (+ d_0_11 d_1_10 1.0))"
+        },
+        {
+          "id": "kalmanson:1391",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_1_12 d_2_8) (+ d_1_8 d_2_12 1.0))"
+        },
+        {
+          "id": "kalmanson:1399",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_1_8 d_2_9) (+ d_1_9 d_2_8 1.0))"
+        },
+        {
+          "id": "kalmanson:1405",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_1_9 d_2_10) (+ d_1_10 d_2_9 1.0))"
+        },
+        {
+          "id": "kalmanson:1409",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_1_10 d_2_11) (+ d_1_11 d_2_10 1.0))"
+        },
+        {
+          "id": "kalmanson:1811",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_2_12 d_3_8) (+ d_2_8 d_3_12 1.0))"
+        },
+        {
+          "id": "kalmanson:1819",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_2_8 d_3_9) (+ d_2_9 d_3_8 1.0))"
+        },
+        {
+          "id": "kalmanson:1825",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_2_9 d_3_10) (+ d_2_10 d_3_9 1.0))"
+        },
+        {
+          "id": "kalmanson:1829",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_2_10 d_3_11) (+ d_2_11 d_3_10 1.0))"
+        },
+        {
+          "id": "kalmanson:2123",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_3_12 d_8_14) (+ d_3_8 d_12_14 1.0))"
+        },
+        {
+          "id": "kalmanson:2131",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_3_8 d_9_14) (+ d_3_9 d_8_14 1.0))"
+        },
+        {
+          "id": "kalmanson:2137",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_3_9 d_10_14) (+ d_3_10 d_9_14 1.0))"
+        },
+        {
+          "id": "kalmanson:2141",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_3_10 d_11_14) (+ d_3_11 d_10_14 1.0))"
+        },
+        {
+          "id": "kalmanson:2347",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_12_14 d_4_8) (+ d_8_14 d_4_12 1.0))"
+        },
+        {
+          "id": "kalmanson:2355",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_8_14 d_4_9) (+ d_9_14 d_4_8 1.0))"
+        },
+        {
+          "id": "kalmanson:2361",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_9_14 d_4_10) (+ d_10_14 d_4_9 1.0))"
+        },
+        {
+          "id": "kalmanson:2365",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_10_14 d_4_11) (+ d_11_14 d_4_10 1.0))"
+        },
+        {
+          "id": "kalmanson:2501",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_4_12 d_5_8) (+ d_4_8 d_5_12 1.0))"
+        },
+        {
+          "id": "kalmanson:2509",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_4_8 d_5_9) (+ d_4_9 d_5_8 1.0))"
+        },
+        {
+          "id": "kalmanson:2515",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_4_9 d_5_10) (+ d_4_10 d_5_9 1.0))"
+        },
+        {
+          "id": "kalmanson:2519",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_4_10 d_5_11) (+ d_4_11 d_5_10 1.0))"
+        },
+        {
+          "id": "kalmanson:2601",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_5_12 d_6_8) (+ d_5_8 d_6_12 1.0))"
+        },
+        {
+          "id": "kalmanson:2609",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_5_8 d_6_9) (+ d_5_9 d_6_8 1.0))"
+        },
+        {
+          "id": "kalmanson:2615",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_5_9 d_6_10) (+ d_5_10 d_6_9 1.0))"
+        },
+        {
+          "id": "kalmanson:2619",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_5_10 d_6_11) (+ d_5_11 d_6_10 1.0))"
+        },
+        {
+          "id": "kalmanson:2661",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_6_12 d_7_8) (+ d_6_8 d_7_12 1.0))"
+        },
+        {
+          "id": "kalmanson:2669",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_6_8 d_7_9) (+ d_6_9 d_7_8 1.0))"
+        },
+        {
+          "id": "kalmanson:2675",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_6_9 d_7_10) (+ d_6_10 d_7_9 1.0))"
+        },
+        {
+          "id": "kalmanson:2679",
+          "kind": "kalmanson",
+          "sexpr": "(>= (+ d_6_10 d_7_11) (+ d_6_11 d_7_10 1.0))"
+        }
+      ],
+      "core_size": 45,
+      "cut_admission": {
+        "antecedent": [
+          "rich_0_0_0",
+          "rich_0_0_6",
+          "rich_0_1_1",
+          "rich_0_1_5",
+          "rich_0_1_7",
+          "rich_1_0_0",
+          "rich_1_0_7",
+          "rich_1_1_5",
+          "rich_1_1_6"
+        ],
+        "classification": "external-Z3 relaxation; no Lean order adapter or kernel ingress",
+        "lean_theorem": null,
+        "schema_arm": "DDD exact-n15 v27 leaf"
+      },
+      "equality_count": 5,
+      "independent_replay": {
+        "admitted": true,
+        "independent": {
+          "core_ids_sha256": "1df340cc108465b3ce69c5b2a98c5062e37e9347009af564d50a7a71788b2c48",
+          "declared_real_symbols": [
+            "d_0_10",
+            "d_0_11",
+            "d_0_12",
+            "d_0_13",
+            "d_0_8",
+            "d_0_9",
+            "d_10_14",
+            "d_11_14",
+            "d_12_14",
+            "d_13_14",
+            "d_1_10",
+            "d_1_11",
+            "d_1_12",
+            "d_1_13",
+            "d_1_8",
+            "d_1_9",
+            "d_2_10",
+            "d_2_11",
+            "d_2_12",
+            "d_2_13",
+            "d_2_8",
+            "d_2_9",
+            "d_3_10",
+            "d_3_11",
+            "d_3_12",
+            "d_3_13",
+            "d_3_8",
+            "d_3_9",
+            "d_4_10",
+            "d_4_11",
+            "d_4_12",
+            "d_4_13",
+            "d_4_8",
+            "d_4_9",
+            "d_5_10",
+            "d_5_11",
+            "d_5_12",
+            "d_5_13",
+            "d_5_8",
+            "d_5_9",
+            "d_6_10",
+            "d_6_11",
+            "d_6_12",
+            "d_6_13",
+            "d_6_8",
+            "d_6_9",
+            "d_7_10",
+            "d_7_11",
+            "d_7_12",
+            "d_7_13",
+            "d_7_8",
+            "d_7_9",
+            "d_8_14",
+            "d_9_14"
+          ],
+          "deletion_checks": [
+            {
+              "deleted": "eq:rich_0_0:0:6",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_0_1:1:5",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_0_1:1:7",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_1_0:0:7",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_1_1:5:6",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0022",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0176",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0306",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0414",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0502",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0572",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0626",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0666",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0841",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0849",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0855",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0859",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1391",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1399",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1405",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1409",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1811",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1819",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1825",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1829",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2123",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2131",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2137",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2141",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2347",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2355",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2361",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2365",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2501",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2509",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2515",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2519",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2601",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2609",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2615",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2619",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2661",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2669",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2675",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2679",
+              "model_replay_verified": true,
+              "status": "sat"
+            }
+          ],
+          "deletion_minimal_replayed": true,
+          "exact_rational": true,
+          "formula_sha256": "9f1b87d0d96f4f22011ee72f049a9caa8a5eb570fe815a8205251944c160c5f7",
+          "reason_unknown": null,
+          "status": "unsat"
+        },
+        "primary": {
+          "core_ids_sha256": "1df340cc108465b3ce69c5b2a98c5062e37e9347009af564d50a7a71788b2c48",
+          "declared_real_symbols": [
+            "d_0_10",
+            "d_0_11",
+            "d_0_12",
+            "d_0_13",
+            "d_0_8",
+            "d_0_9",
+            "d_10_14",
+            "d_11_14",
+            "d_12_14",
+            "d_13_14",
+            "d_1_10",
+            "d_1_11",
+            "d_1_12",
+            "d_1_13",
+            "d_1_8",
+            "d_1_9",
+            "d_2_10",
+            "d_2_11",
+            "d_2_12",
+            "d_2_13",
+            "d_2_8",
+            "d_2_9",
+            "d_3_10",
+            "d_3_11",
+            "d_3_12",
+            "d_3_13",
+            "d_3_8",
+            "d_3_9",
+            "d_4_10",
+            "d_4_11",
+            "d_4_12",
+            "d_4_13",
+            "d_4_8",
+            "d_4_9",
+            "d_5_10",
+            "d_5_11",
+            "d_5_12",
+            "d_5_13",
+            "d_5_8",
+            "d_5_9",
+            "d_6_10",
+            "d_6_11",
+            "d_6_12",
+            "d_6_13",
+            "d_6_8",
+            "d_6_9",
+            "d_7_10",
+            "d_7_11",
+            "d_7_12",
+            "d_7_13",
+            "d_7_8",
+            "d_7_9",
+            "d_8_14",
+            "d_9_14"
+          ],
+          "deletion_checks": [
+            {
+              "deleted": "eq:rich_0_0:0:6",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_0_1:1:5",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_0_1:1:7",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_1_0:0:7",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "eq:rich_1_1:5:6",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0022",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0176",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0306",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0414",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0502",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0572",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0626",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0666",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0841",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0849",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0855",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:0859",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1391",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1399",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1405",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1409",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1811",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1819",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1825",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:1829",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2123",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2131",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2137",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2141",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2347",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2355",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2361",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2365",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2501",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2509",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2515",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2519",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2601",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2609",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2615",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2619",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2661",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2669",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2675",
+              "model_replay_verified": true,
+              "status": "sat"
+            },
+            {
+              "deleted": "kalmanson:2679",
+              "model_replay_verified": true,
+              "status": "sat"
+            }
+          ],
+          "deletion_minimal_replayed": true,
+          "exact_rational": true,
+          "formula_sha256": "9f1b87d0d96f4f22011ee72f049a9caa8a5eb570fe815a8205251944c160c5f7",
+          "reason_unknown": null,
+          "status": "unsat"
+        },
+        "status": "paired_authenticated_unsat"
+      },
+      "iteration": 0,
+      "kalmanson_count": 40,
+      "matches_existing_KalmansonThreeEqualitySchemas": false,
+      "membership_atoms": [
+        "rich_0_0_0",
+        "rich_0_0_6",
+        "rich_0_1_1",
+        "rich_0_1_5",
+        "rich_0_1_7",
+        "rich_1_0_0",
+        "rich_1_0_7",
+        "rich_1_1_5",
+        "rich_1_1_6"
+      ],
+      "schema_matches": []
+    }
+  ],
+  "result_payload_sha256": "fc56c1a6695eda60715b4ad909538b79873f98d1a7ce57f5cfcb79983f3ce52d",
+  "schema_version": 28,
+  "terminal_replay": {
+    "admitted": false,
+    "independent": {
+      "constraint_count": 5,
+      "formula_sha256": "fa5fb0b9a77402c461e66fc9d4e708414a45a1138c5677e5a0188ffe6b1f8ff1",
+      "model_replay_verified": true,
+      "reason_unknown": null,
+      "status": "sat"
+    },
+    "primary": {
+      "constraint_count": 5,
+      "formula_sha256": "fa5fb0b9a77402c461e66fc9d4e708414a45a1138c5677e5a0188ffe6b1f8ff1",
+      "model_replay_verified": true,
+      "reason_unknown": null,
+      "status": "sat"
+    },
+    "status": "paired_replay_fail_closed"
+  },
+  "terminal_status": "max_iterations_fail_closed",
+  "timing": {
+    "exploratory_build_seconds": 0.15848629106767476,
+    "master_check_seconds": 0.24985041609033942,
+    "oracle_seconds": 0.27984570781700313,
+    "paired_core_replay_seconds": 0.18654158292338252,
+    "paired_terminal_replay_seconds": 9.552837708033621,
+    "raw_parse_seconds": 4.275098291924223
+  },
+  "trust_boundary": "external Z3 4.x exact-rational QF_LRA/PB discovery and fresh-context replay only; no proof certificate and no Lean/kernel ingress"
+}

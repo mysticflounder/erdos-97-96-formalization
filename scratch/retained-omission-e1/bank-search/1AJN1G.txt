@@ -1,0 +1,6 @@
+theorem false_of_five_ccw_three_shell_equalities
+
+Immediate three-row consumer on five points in the boundary order
+`O < A < Y < E < C`.  The `Y`-row equality and the complementary Kalmanson
+inequality on `O,A,Y,E` force `OA < AE`; the `O`- and `A`-row equalities and
+the other Kalmanson inequality on `O,A,E,C` force `AE < OA`.

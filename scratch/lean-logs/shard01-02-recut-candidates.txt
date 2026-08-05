@@ -1,0 +1,344 @@
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-217-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-218-/-- A strict interior point is distinct from the `v2` endpoint of the indexed
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:219:triangle, in the same vocabulary used by the global index interval bridges. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-220-theorem capInteriorByIndex_ne_triangleByIndex_v2
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-221-    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {x : ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-226-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-227-/-- A strict interior point is distinct from the `v3` endpoint of the indexed
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:228:triangle, in the same vocabulary used by the global index interval bridges. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-229-theorem capInteriorByIndex_ne_triangleByIndex_v3
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-230-    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {x : ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-289-a non-wrapping indexed cap occurs strictly between the two support endpoint
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-290-indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:291:theorem capInteriorByIndex_open_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-292-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-293-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-303-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-304-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:305:  rcases (S.capByIndex_interval_of_global_indices i hccw hφ hφimage hab hc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-306-      hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-307-    ⟨q, hiaq, hqib, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-319-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-320-/-- Strict-interior version of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:321:`capByIndex_reverse_interval_of_global_indices`: if the support endpoints
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:322:occur in the order `v3 < v2` with the opposite apex outside that interval, a
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-323-strict interior point lies strictly between those two endpoint indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:324:theorem capInteriorByIndex_open_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-325-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-326-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-336-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-337-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:338:  rcases (S.capByIndex_reverse_interval_of_global_indices i hccw hφ hφimage
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-339-      hibia hc hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-340-    ⟨q, hibq, hqia, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-352-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-353-/-- In one shared ambient CCW boundary enumeration, a strict interior point of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:354:a wrapping indexed cap occurs in the open complement of the support endpoint
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:355:interval. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:356:theorem capInteriorByIndex_open_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-357-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-358-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-368-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-369-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:370:  rcases (S.capByIndex_complement_interval_of_global_indices i hccw hφ hφimage
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-371-      haic hcib hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-372-    ⟨q, hqout, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-386-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-387-/-- Strict-interior version of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:388:`capByIndex_reverse_complement_interval_of_global_indices`: the support
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-389-endpoints are excluded, so a strict interior point lies in the open reverse
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:390:complement. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:391:theorem capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-392-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-393-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-403-  have hxC : x ∈ S.capByIndex i :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-404-    S.capInteriorByIndex_subset_capByIndex i hxI
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:405:  rcases (S.capByIndex_reverse_complement_interval_of_global_indices i hccw hφ
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-406-      hφimage hibc hcia hic hia hib x).1 hxC with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-407-    ⟨q, hqout, hqeq⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-598-    i hradius hxT hxRight hxne_outer
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-599-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:600:/-- A positive-radius Moser-centered selected class outside the indexed cap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-601-interior is covered by the two adjacent closed caps. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-602-theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-761-    simpa [T] using
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-762-      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hradius
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:763:  have houtside_le :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-764-      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-765-    calc
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-1229-  ⟨hcontain S.oppIndex1, hcontain S.oppIndex2⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-1230-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:1231:/-- The three escaped forms used by the non-surplus Moser-cap containment
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-1232-producer.  This mirrors the endpoint `N4c` shape, but is local to the
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean-1233-general-`n` surplus-packet interface. -/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-45-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-46-/-- Choose the increasing presentation of a three-element finite set in a
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:47:linear order.  The P1 selector applies this to the three exported surplus-cap
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-48-boundary indices before assigning the generated labels `s1`, `s2`, `s3`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:49:theorem exists_sorted_triple_finset_eq
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-50-    {α : Type} [LinearOrder α] [DecidableEq α]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-51-    {a b c : α} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-79-        simp [or_left_comm, or_comm]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-80-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:81:/-- Sort two already indexed points inside one ambient index interval.  The
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:82:P1 selector uses this after the strict cap-interior interval export has found
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-83-the two boundary indices for a short cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-84-theorem exists_sorted_pair_points_between
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-126-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-127-/-- After cutting an ambient boundary enumeration at index zero, the "before
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:128:zero" branch of an open reverse-complement interval is impossible. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:129:theorem open_reverse_complement_after_zero
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-130-    {n : ℕ} (hn : 0 < n) {lo q : Fin n} :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-131-    q < (⟨0, hn⟩ : Fin n) ∨ lo < q → lo < q := by
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-181-  exact fin_order_dichotomy_after_zero hn hiv0 hiw0 hivw
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-182-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:183:/-- Sort three already indexed points inside one ambient index interval.  This
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:184:keeps the interval bounds and point-set equality needed when the P1 selector
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-185-orients a chosen three-point surplus subpacket. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:186:theorem exists_sorted_triple_points_between
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-187-    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-188-    {lo hi ia ib ic : Fin n} {a b c : α}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-205-    intro h
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-206-    exact hbc (by rw [← hib, ← hic, h])
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:207:  rcases exists_sorted_triple_finset_eq (a := ia) (b := ib) (c := ic)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-208-      hiab hiac hibc with
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-209-    ⟨ix, iy, iz, hixiy, hiyiz, hset⟩
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-382-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-383-/-- In one shared ambient CCW boundary enumeration, an indexed cap is exactly
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:384:the closed interval between its two support endpoints whenever the opposite
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:385:triangle vertex lies outside that endpoint interval.  This is the packet-level
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-386-form of `onArcOpposite_iff_index_block` used by the erased-pin hull-order
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-387-producer. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:388:theorem capByIndex_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-389-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-390-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-427-    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-428-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:429:/-- Reverse-support endpoint form of `capByIndex_interval_of_global_indices`.
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-430-If the `v3` endpoint occurs before the `v2` endpoint and the opposite apex is
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:431:outside that interval, the indexed cap is the closed interval from `v3` to
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-432-`v2`. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:433:theorem capByIndex_reverse_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-434-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-435-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-477-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-478-/-- In one shared ambient CCW boundary enumeration, an indexed cap is exactly
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:479:the complement of the open endpoint interval whenever the opposite triangle
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-480-vertex lies strictly between the endpoint indices.  This is the wraparound
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-481-form needed when a cap crosses the chosen linear cut of the cyclic boundary
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-482-order. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:483:theorem capByIndex_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-484-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-485-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-544-        · exact
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-545-            le_of_lt
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:546:              (signedArea2_neg_of_outside hccw hφ hab (Or.inl hqia_lt))
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-547-      · rcases eq_or_lt_of_le hibq with hibq_eq | hibq_lt
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-548-        · exact
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-551-        · exact
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-552-            le_of_lt
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:553:              (signedArea2_neg_of_outside hccw hφ hab (Or.inr hibq_lt))
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-554-    have harc : OnArcOpposite (S.triangleByIndex i).v1
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-555-        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 (φ q) := by
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-561-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-562-/-- Reverse-endpoint form of
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:563:`capByIndex_complement_interval_of_global_indices`.  If the `v3` endpoint comes
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-564-before the opposite apex and the apex comes before the `v2` endpoint in the
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:565:ambient order, then the indexed cap is the complement of the open interval from
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-566-`v3` to `v2`.  This is the wrapping orientation that occurs after cutting the
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-567-P1 boundary order at the surplus apex. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:568:theorem capByIndex_reverse_complement_interval_of_global_indices
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-569-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-570-    {n : ℕ} {φ : Fin n → ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-629-        · have hneg_swap :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-630-              signedArea2 (φ q) (φ ib) (φ ia) < 0 :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:631:            signedArea2_neg_of_outside hccw hφ hbia (Or.inl hqib_lt)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-632-          rw [signedArea2_swap23]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-633-          linarith
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-638-        · have hneg_swap :
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-639-              signedArea2 (φ q) (φ ib) (φ ia) < 0 :=
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:640:            signedArea2_neg_of_outside hccw hφ hbia (Or.inr hqia_lt)
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-641-          rw [signedArea2_swap23]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-642-          linarith
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-649-    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-650-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:651:/-- A carrier point outside an indexed closed cap lies strictly on the same
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-652-side of that cap's chord as the opposite Moser vertex. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-653-theorem signedArea2_mul_pos_of_not_mem_capByIndex
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-661-  exact not_le.mp hx
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-662-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:663:/-- Two carrier points outside the same indexed cap cannot lie on the same two
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-664-endpoint-centered circles for that cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-665-theorem twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1134-      S.oppositeVertexByIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1135-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1136:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1137-    simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1138-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1145-      S.oppositeVertexByIndex S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1146-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1147:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1148-    simp [rightOuterVertexByIndex, oppositeVertexByIndex, oppIndex1,
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1149-      oppIndex2, hi]
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1157-      S.oppositeVertexByIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1158-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1159:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1160-    simp [rightOuterVertexByIndex, oppositeVertexByIndex, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1161-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1168-      S.oppositeVertexByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1169-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1170:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1171-    simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1,
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1172-      oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1173-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1174-/-- In the surplus cap, the `v2` endpoint is the first non-surplus Moser
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1175:apex.  This is the endpoint form consumed by the global interval bridges. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1176-theorem triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1177-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1179-      S.oppositeVertexByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1180-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1181:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1182-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1183-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1184-/-- In the surplus cap, the `v3` endpoint is the second non-surplus Moser
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1185:apex.  This is the endpoint form consumed by the global interval bridges. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1186-theorem triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1187-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1189-      S.oppositeVertexByIndex S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1190-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1191:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1192-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1193-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1198-    (S.triangleByIndex i).v1 = S.oppositeVertexByIndex i := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1199-  rcases i with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1200:  interval_cases idx <;> simp [triangleByIndex, oppositeVertexByIndex]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1201-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1202-/-- In the first non-surplus cap, the `v2` endpoint is the second
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1207-      S.oppositeVertexByIndex S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1208-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1209:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1210-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1211-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1217-      S.oppositeVertexByIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1218-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1219:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1220-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1221-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1227-      S.oppositeVertexByIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1228-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1229:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1230-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1231-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1237-      S.oppositeVertexByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1238-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1239:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1240-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1241-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1245-    S.oppIndex1 = leftAdjacentIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1246-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1247:  interval_cases idx <;> simp [oppIndex1, leftAdjacentIndex, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1248-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1249-/-- The second non-surplus index is the right-adjacent index of the surplus
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1253-    S.oppIndex2 = rightAdjacentIndex S.surplusIdx := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1254-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1255:  interval_cases idx <;> simp [oppIndex2, rightAdjacentIndex, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1256-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1257-/-- The surplus cap index is distinct from the first non-surplus cap index. -/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1260-    S.surplusIdx ≠ S.oppIndex1 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1261-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1262:  interval_cases idx <;> simp [oppIndex1, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1263-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1264-/-- The surplus cap index is distinct from the second non-surplus cap index. -/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1267-    S.surplusIdx ≠ S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1268-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1269:  interval_cases idx <;> simp [oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1270-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1271-/-- The two non-surplus cap indices are distinct. -/
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1274-    S.oppIndex1 ≠ S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1275-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1276:  interval_cases idx <;> simp [oppIndex1, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1277-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1278-/-- Every cap index is either the surplus index or one of the two non-surplus
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1282-    i = S.surplusIdx ∨ i = S.oppIndex1 ∨ i = S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1283-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1284:  interval_cases idx <;> fin_cases i <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1285-    simp [oppIndex1, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1286-
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1386-  simpa [MoserTriangle.verts] using hx
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1387-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1388:/-- The indexed opposite Moser endpoint is one of the three Moser vertices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1389-theorem oppositeVertexByIndex_mem_triangle_verts
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1390-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1392-  fin_cases i <;> simp [oppositeVertexByIndex, MoserTriangle.verts]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1393-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1394:/-- A Moser vertex is one of the three opposite vertices indexed by the surplus
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1395-and non-surplus cap indices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1396-theorem mem_triangle_verts_oppositeVertexByIndex_cases
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1401-      x = S.oppositeVertexByIndex S.oppIndex2 := by
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1402-  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1403:  interval_cases idx <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1404-    rcases mem_triangle_verts_cases hx with rfl | rfl | rfl <;>
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1405-      simp [oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1406-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1407:/-- The indexed left outer Moser endpoint is one of the three Moser vertices. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1408-theorem leftOuterVertexByIndex_mem_triangle_verts
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1409-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1440-        oppositeVertexByIndex, true_and, and_true, true_or, or_true]
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1441-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1442:/-- Every ambient point is either one of the three Moser vertices or belongs
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1443-to the strict interior of one indexed cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1444-theorem mem_triangle_verts_or_exists_capInteriorByIndex_of_mem
+--
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1490-              (by simpa [h] using S.leftOuterVertexByIndex_mem_triangle_verts 2))
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1491-
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:1492:/-- The three Moser vertices lie in the two caps adjacent to any indexed cap. -/
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1493-theorem triangle_verts_subset_adjacentCapsByIndex
+lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean-1494-    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :

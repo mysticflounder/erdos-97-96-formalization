@@ -1,0 +1,301 @@
+ 11550	      (hpairsDisjoint := hpairsDisjoint')
+ 11551	      (hblockersNe := hblockersNe')
+ 11552	      (LPρ := LPρ') (hLPρ := hLPρ') (MPρ := MPρ')
+ 11553	      (LP := LP') (hLP := hLP') (MP := MP')
+ 11554	      hcapSource' ⟨third⟩
+ 11555	
+ 11556	/-- Compatibility form of the former aligned/nonbisector residual.
+ 11557	
+ 11558	The universal critical-row escape supplies a canonical row outside the two
+ 11559	collision rows and the cap-source row.  Overriding a second point of that row
+ 11560	with the same selected four-class creates a fresh third blocker fiber while
+ 11561	preserving every retained collision packet and cap-source deletion view.
+ 11562	The contradiction is therefore delegated to
+ 11563	`false_of_capSource_freshThirdBlockerFiber`; the enlarged-fiber,
+ 11564	singleton-radius, alignment, and nonbisector arguments remain in the
+ 11565	signature only for downstream compatibility. -/
+ 11566	theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+ 11567	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+ 11568	    (source : CriticalShellSystem.CarrierVertex D.A)
+ 11569	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 11570	    (hsingleton :
+ 11571	      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+ 11572	          S.capInteriorByIndex S.oppIndex1 =
+ 11573	        {source.1})
+ 11574	    (haligned :
+ 11575	      FirstCapMultiPointRadiiRetained
+ 11576	        (S := S) (radius := radius) (ρ := ρ))
+ 11577	    (hsecondNe :
+ 11578	      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+ 11579	        dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+ 11580	          Q.otherOutsidePoint) :
+ 11581	    False := by
+ 11582	  exact
+ 11583	    false_of_twoCapSources_freshOutsideFirstBlockerFiber
+ 11584	      P Pρ hρne hfrontierFour hρfour
+ 11585	      hfrontierInteriorEq hρInteriorEq T hpairsDisjoint hblockersNe
+ 11586	      LPρ hLPρ MPρ LP hLP MP
+ 11587	      (twoCapSourceThirdCanonicalRowSurface_of_capEight
+ 11588	        P Pρ
+ 11589	        (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+ 11590	        hpairsDisjoint hsource.1)
+ 11591	      ⟨Q⟩
+ 11592	
+ 11593	/-- Compatibility form of the former singleton-radius aligned residual.
+ 11594	
+ 11595	Its named source supplies the common cap-source surface and its enlarged fiber
+ 11596	supplies the blocker-multiplicity residual.  The extra radius fields are
+ 11597	preserved only for callers. -/
+ 11598	theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+ 11599	    (source : CriticalShellSystem.CarrierVertex D.A)
+ 11600	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+ 11601	    (hsingleton :
+ 11602	      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+ 11603	          S.capInteriorByIndex S.oppIndex1 =
+ 11604	        {source.1})
+ 11605	    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+ 11606	    (haligned :
+ 11607	      FirstCapMultiPointRadiiRetained
+ 11608	        (S := S) (radius := radius) (ρ := ρ)) :
+ 11609	    False := by
+ 11610	  rcases hfirst with ⟨Q⟩
+ 11611	  exact
+ 11612	    false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+ 11613	      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 11614	      T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+ 11615	      Q source hsource hsingleton haligned
+ 11616	      (secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+ 11617	        P Pρ hblockersNe Q)
+ 11618	
+ 11619	/-- Compatibility coordinator for the former aligned-radii split.
+ 11620	
+ 11621	The radius provenance remains checked, but no longer defines a live
+ 11622	obligation independently of the common cap-source/blocker-multiplicity
+ 11623	packet. -/
+ 11624	theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+ 11625	    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+ 11626	    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+ 11627	    (haligned :
+ 11628	      FirstCapMultiPointRadiiRetained
+ 11629	        (S := S) (radius := radius) (ρ := ρ)) :
+ 11630	    False := by
+ 11631	  rcases hcapSource with
+ 11632	    ⟨hcap, source, hsourceInterior, hsourceOutside,
+ 11633	      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+ 11634	      hcenterNeFirstApex, hcenterNeSecondApex,
+ 11635	      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+ 11636	  have hsource : FirstFiberCapSourceWitness P Pρ source :=
+ 11637	    ⟨hcap, hsourceInterior, hsourceOutside,
+ 11638	      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+ 11639	      hcenterNeFirstApex, hcenterNeSecondApex,
+ 11640	      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+ 11641	  have hsingleton :=
+ 11642	    firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned
+ 11643	      P Pρ hfrontierInteriorEq hρInteriorEq source hsource haligned
+ 11644	  exact
+ 11645	    false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+ 11646	      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 11647	      T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+ 11648	      source hsource hsingleton hfirst haligned
+ 11649	
+ 11650	/-- Compatibility coordinator for the former enlarged first-fiber route.
+ 11651	
+ 11652	Its radius split and two-source extraction remain available, but the live
+ 11653	coordinator consumes `hcapSource` before this split. -/
+ 11654	theorem false_of_capSource_freshOutsideFirstBlockerFiber
+ 11655	    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+ 11656	    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ)) :
+ 11657	    False := by
+ 11658	  rcases hfirst with ⟨Q⟩
+ 11659	  by_cases haligned :
+ 11660	      FirstCapMultiPointRadiiRetained
+ 11661	        (S := S) (radius := radius) (ρ := ρ)
+ 11662	  · exact
+ 11663	      false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+ 11664	        P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+ 11665	        T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+ 11666	        hcapSource ⟨Q⟩ haligned
+ 11667	  · change
+ 11668	      ¬ ∀ r : ℝ,
+ 11669	          2 ≤
+ 11670	              (SelectedClass D.A S.oppApex1 r ∩
+ 11671	                S.capInteriorByIndex S.oppIndex1).card →
+ 11672	            r = radius ∨ r = ρ at haligned
+ 11673	    push_neg at haligned
+ 11674	    rcases haligned with
+ 11675	      ⟨commonRadius, hcommonCard, hcommonNeRadius, hcommonNeρ⟩
+ 11676	    rcases exists_two_firstFiberCapSourceWitness_of_commonRadius
+ 11677	        P Pρ T hcapSource.1 commonRadius hcommonCard
+ 11678	        hcommonNeRadius hcommonNeρ with
+ 11679	      ⟨source, source', hsourcesNe, hsourceRadius, hsourceRadius',
+ 11680	        hsource, hsource'⟩
+ 11681	    exact false_of_twoCapSources_firstFiber
+ 11682	      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+ 11683	      hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+ 11684	      Q source source' hsourcesNe hsourceRadius hsourceRadius'
+ 11685	      hsource hsource'
+ 11686	
+ 11687	/-- Compatibility transport for the former enlarged second-fiber route. -/
+ 11688	theorem false_of_capSource_freshOutsideSecondBlockerFiber
+ 11689	    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+ 11690	    (hsecond : Nonempty (FreshOutsideSecondBlockerFiber P Pρ)) :
+ 11691	    False := by
+ 11692	  let Bswap : FrontierBiApexRobustResidual Rρ :=
+ 11693	    ⟨B.secondApex_robust⟩
+ 11694	  let Lswap : FrontierLargeOppositeCapsBiApexRobustResidual Bswap :=
+ 11695	    ⟨L.firstOppCap_card_ge_six, L.secondOppCap_card_ge_six⟩
+ 11696	  let Nswap : FrontierAllLargeCapsBiApexRobustResidual Lswap :=
+ 11697	    ⟨N.surplusCap_card_ge_six⟩
+ 11698	  let Tswap : FrontierAllLargeCapsTriApexRobustResidual Nswap :=
+ 11699	    ⟨T.oppApex1_rich, T.oppApex2_rich, T.surplusApex_rich,
+ 11700	      T.notRobustCover_card, T.no_center_covers_all_apices⟩
+ 11701	  exact false_of_capSource_freshOutsideFirstBlockerFiber
+ 11702	    Pρ P hρne.symm hρfour hfrontierFour
+ 11703	    hρInteriorEq hfrontierInteriorEq Tswap
+ 11704	    hpairsDisjoint.symm hblockersNe.symm
+ 11705	    LP hLP MP LPρ hLPρ MPρ
+ 11706	    (capSourceThirdCanonicalRowSurface_swap P Pρ hcapSource)
+ 11707	    (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
+ 11708	
+ 11709	end
+ 11710	
+ 11711	end TwoSourceExactCollisionRowsTerminal
+ 11712	
+ 11713	/-- Source-exact collision rows force either the desired three-hit shell or
+ 11714	one concrete cross-row incidence.
+ 11715	
+ 11716	This is the remaining positive planar/MEC terminal.  Compared with the
+ 11717	collision-row coordinator below, both first-apex radius classes have already
+ 11718	been normalized all the way to their named two-point strict-cap parts.  The
+ 11719	conclusion exposes the least cross-incidence alternative: any one of its four
+ 11720	arms is immediately eliminated by the checked cross-omission rectangle.
+ 11721	
+ 11722	Coordinator-interface frontier: before this theorem, the coordinator has two
+ 11723	exact-four/exact-two collision rows and must still identify their strict-cap
+ 11724	parts.  After the checked finite and geometric normalizations, the named
+ 11725	cross-hit arm closes directly.  The other four semantic arms feed three
+ 11726	load-bearing declarations above: one four-constructor equality leaf, one
+ 11727	fresh-third-fiber leaf covering two swapped orientations, and one
+ 11728	first-fiber collision-five-center leaf. -/
+ 11729	theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+ 11730	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+ 11731	    {H : CriticalShellSystem D.A}
+ 11732	    {F : CriticalPairFrontier D S radius H}
+ 11733	    {R : FrontierCommonDeletionParentResidual F}
+ 11734	    (P : RetainedInteriorBlockerCollision R)
+ 11735	    {Fρ : CriticalPairFrontier D S ρ H}
+ 11736	    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+ 11737	    (Pρ : RetainedInteriorBlockerCollision Rρ)
+ 11738	    (hρne : ρ ≠ radius)
+ 11739	    (hfrontierFour :
+ 11740	      (SelectedClass D.A S.oppApex1 radius).card = 4)
+ 11741	    (hρfour :
+ 11742	      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+ 11743	    (hfrontierInteriorEq :
+ 11744	      SelectedClass D.A S.oppApex1 radius ∩
+ 11745	          S.capInteriorByIndex S.oppIndex1 =
+ 11746	        {P.source₁, P.source₂})
+ 11747	    (hρInteriorEq :
+ 11748	      SelectedClass D.A S.oppApex1 ρ ∩
+ 11749	          S.capInteriorByIndex S.oppIndex1 =
+ 11750	        {Pρ.source₁, Pρ.source₂})
+ 11751	    {B : FrontierBiApexRobustResidual R}
+ 11752	    {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
+ 11753	    {N : FrontierAllLargeCapsBiApexRobustResidual L}
+ 11754	    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+ 11755	    (hpairsDisjoint :
+ 11756	      Disjoint
+ 11757	        ({P.source₁, P.source₂} : Finset ℝ²)
+ 11758	        {Pρ.source₁, Pρ.source₂})
+ 11759	    (hblockersNe :
+ 11760	      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+ 11761	        H.centerAt P.source₁ P.source₁_mem_A)
+ 11762	    (LPρ : LocalizedCollisionCommonDeletion P)
+ 11763	    (hLPρ : LPρ.fresh = Pρ.source₁)
+ 11764	    (MPρ : LocalizedCollisionMutualOmissionCycle P LPρ)
+ 11765	    (LP : LocalizedCollisionCommonDeletion Pρ)
+ 11766	    (hLP : LP.fresh = P.source₁)
+ 11767	    (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
+ 11768	    (hcapEightOrCross :
+ 11769	      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+ 11770	        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+ 11771	          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+ 11772	            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+ 11773	              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+ 11774	    (∃ i : Fin 3, ∃ x : ℝ², ∃ hx : x ∈ D.A, ∃ r : ℝ,
+ 11775	      ApexRichClassStructure D.A (S.oppositeVertexByIndex i) ∧
+ 11776	        3 ≤
+ 11777	          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+ 11778	            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+ 11779	              S.capInteriorByIndex i)).card) ∨
+ 11780	      (Pρ.source₁ ∈
+ 11781	          (H.selectedAt P.source₁
+ 11782	            P.source₁_mem_A).toCriticalFourShell.support ∨
+ 11783	        Pρ.source₂ ∈
+ 11784	            (H.selectedAt P.source₁
+ 11785	              P.source₁_mem_A).toCriticalFourShell.support ∨
+ 11786	          P.source₁ ∈
+ 11787	              (H.selectedAt Pρ.source₁
+ 11788	                Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+ 11789	            P.source₂ ∈
+ 11790	              (H.selectedAt Pρ.source₁
+ 11791	                Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+ 11792	  classical
+ 11793	  have hglobalCapSplit : TwoCollisionGlobalSplit P Pρ :=
+ 11794	    hcapEightOrCross.imp
+ 11795	      (fun hcap =>
+ 11796	        exists_capSource_thirdCanonicalRow_omits_each_collisionPair
+ 11797	          P Pρ B.secondApex_robust hpairsDisjoint hcap)
+ 11798	      id
+ 11799	  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+ 11800	    ⟨S.oppApex1, by
+ 11801	      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+ 11802	  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+ 11803	    ⟨S.oppApex2, by
+ 11804	      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+ 11805	  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+ 11806	    ⟨S.surplusApex, by
+ 11807	      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+ 11808	  let a₁ : CriticalShellSystem.CarrierVertex D.A :=
+ 11809	    ⟨P.source₁, P.source₁_mem_A⟩
+ 11810	  let a₂ : CriticalShellSystem.CarrierVertex D.A :=
+ 11811	    ⟨P.source₂, P.source₂_mem_A⟩
+ 11812	  let b₁ : CriticalShellSystem.CarrierVertex D.A :=
+ 11813	    ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+ 11814	  let b₂ : CriticalShellSystem.CarrierVertex D.A :=
+ 11815	    ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+ 11816	  have homitted₁ : ∀ x, H.blockerVertex x ≠ apex₁ := by
+ 11817	    intro x
+ 11818	    exact FullyDeletionRobustAt.blockerVertex_ne
+ 11819	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+ 11820	      H x apex₁.2
+ 11821	  have homitted₂ : ∀ x, H.blockerVertex x ≠ apex₂ := by
+ 11822	    intro x
+ 11823	    exact FullyDeletionRobustAt.blockerVertex_ne
+ 11824	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+ 11825	      H x apex₂.2
+ 11826	  have homitted₃ : ∀ x, H.blockerVertex x ≠ apex₃ := by
+ 11827	    intro x
+ 11828	    exact FullyDeletionRobustAt.blockerVertex_ne
+ 11829	      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+ 11830	      H x apex₃.2
+ 11831	  have hapex₁₂ : apex₁ ≠ apex₂ := by
+ 11832	    intro h
+ 11833	    exact
+ 11834	      (S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2)
+ 11835	        (by simpa [apex₁, apex₂] using congrArg Subtype.val h)
+ 11836	  have hapex₁₃ : apex₁ ≠ apex₃ := by
+ 11837	    intro h
+ 11838	    exact
+ 11839	      (S.oppositeVertexByIndex_ne_of_ne
+ 11840	        S.surplusIdx_ne_oppIndex1).symm
+ 11841	        (by simpa [apex₁, apex₃] using congrArg Subtype.val h)
+ 11842	  have hapex₂₃ : apex₂ ≠ apex₃ := by
+ 11843	    intro h
+ 11844	    exact
+ 11845	      (S.oppositeVertexByIndex_ne_of_ne
+ 11846	        S.surplusIdx_ne_oppIndex2).symm
+ 11847	        (by simpa [apex₂, apex₃] using congrArg Subtype.val h)
+ 11848	  have hfa : H.blockerVertex a₁ = H.blockerVertex a₂ := by
+ 11849	    apply Subtype.ext
+ 11850	    exact P.blockers_eq

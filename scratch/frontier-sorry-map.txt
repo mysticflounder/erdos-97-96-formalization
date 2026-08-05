@@ -1,0 +1,220 @@
+61:open ATailCommonDeletionTwoCenter
+72:open ATailPhysicalSecondApexCommonDeletion
+127:    CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) deleted.1
+130:    CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) deleted.1
+153:          S.capInteriorByIndex S.oppIndex2)).card ≤ 2)
+209:  have hIuTwo : Iu.card ≤ 2 := by
+212:  have hIvTwo : Iv.card ≤ 2 := by
+408:    (hIuTwo : Iu.card ≤ 2)
+409:    (hIvTwo : Iv.card ≤ 2)
+545:  have hIuTwo : Iu.card ≤ 2 := by
+548:  have hIvTwo : Iv.card ≤ 2 := by
+625:  have hIuTwo : Iu.card ≤ 2 := by
+628:  have hIvTwo : Iv.card ≤ 2 := by
+744:  sorry
+951:      CommonDeletionTwoCenterPacket
+1029:    (hT : T.card ≤ 2) (hx : x ∈ T) (hy : y ∈ T)
+1034:  have hcardErase : (T.erase x).card ≤ 1 := by
+1076:  have hKTwo : (K ∩ C).card ≤ 2 := by
+1166:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+1221:      CommonDeletionTwoCenterPacket
+1235:  sorry
+1240:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1295:      CommonDeletionTwoCenterPacket
+1334:  sorry
+1339:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+1394:      CommonDeletionTwoCenterPacket
+1407:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+1415:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+1423:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+1431:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1439:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1447:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1455:      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1550:    false_of_exactFourMutualOmission_fourCenterCommonDeletion
+2223:  sorry
+2398:  sorry
+2553:  sorry
+2579:  sorry
+2604:  sorry
+2978:/-- The robust-cap-growth trichotomy, specialized to the physical second cap,
+3191:        (T ∩ S.leftAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+3196:        (T ∩ S.rightAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+3318:  sorry
+3508:            packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+3568:          packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2 :=
+5040:              packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+5380:  sorry
+5546:  sorry
+5751:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+5857:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+5913:/-- The bounded-cross-incidence residue supplies a named strict-cap peer
+5937:            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+6008:  sorry
+6046:    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+6063:    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+6067:  sorry
+6247:    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2) :
+6309:  sorry
+6320:  sorry
+6351:    {R : FrontierCommonDeletionParentResidual F}
+6373:    {R : FrontierCommonDeletionParentResidual F}
+6390:    (R : FrontierCommonDeletionParentResidual F)
+6418:    {R : FrontierCommonDeletionParentResidual F}
+6440:    {R : FrontierCommonDeletionParentResidual F}
+6463:    {R : FrontierCommonDeletionParentResidual F}
+6490:    {R : FrontierCommonDeletionParentResidual F}
+6503:    (R : FrontierCommonDeletionParentResidual F)
+6521:    {R : FrontierCommonDeletionParentResidual F}
+6547:    {R : FrontierCommonDeletionParentResidual F}
+6564:    {R : FrontierCommonDeletionParentResidual F}
+6583:structure FrontierAllLargeCapsTriApexRobustResidual
+6587:    {R : FrontierCommonDeletionParentResidual F}
+6662:strict cap cannot have two hits in a rich slice of a different strict cap.
+6698:        S.capInteriorByIndex j)).card ≤ 1 := by
+6717:    (R : FrontierCommonDeletionParentResidual F)
+6793:    (R : FrontierCommonDeletionParentResidual F)
+6817:    {R : FrontierCommonDeletionParentResidual F}
+6819:  | pairedCommonDeletion
+6820:      (O : OrientedRetainedCommonDeletion P)
+6825:        CommonDeletionTwoCenterPacket
+6828:  | reverseHitFreshCommonDeletion
+6829:      (O : OrientedRetainedCommonDeletion P)
+6849:        CommonDeletionTwoCenterPacket
+6859:    {R : FrontierCommonDeletionParentResidual F}
+6861:    (O : OrientedRetainedCommonDeletion P)
+6986:    {R : FrontierCommonDeletionParentResidual F}
+6988:    (O : OrientedRetainedCommonDeletion P)
+7066:theorem nonempty_retainedOmissionAllLargeNormalForm
+7070:    {R : FrontierCommonDeletionParentResidual F}
+7074:  rcases nonempty_retainedInteriorCommonDeletion P with ⟨C⟩
+7075:  rcases nonempty_orientedRetainedCommonDeletion P C with ⟨O⟩
+7078:  | pairedCommonDeletion reverse_omission reversePacket =>
+7079:      exact ⟨.pairedCommonDeletion O reverse_omission reversePacket⟩
+7085:      exact ⟨.reverseHitFreshCommonDeletion O reverse_mem
+7093:structure TriApexAllLargeContext
+7145:    {R : FrontierCommonDeletionParentResidual F}
+7149:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+7150:    TriApexAllLargeContext D S := by
+7183:    (G : TriApexAllLargeContext D S)
+7207:/-- Source-faithful global form of the cross-cap one-hit rule.  Every
+7208:canonical critical shell has a strict-cap location, and in every other rich
+7213:    (G : TriApexAllLargeContext D S)
+7220:            S.capInteriorByIndex j)).card ≤ 1 := by
+7233:theorem false_of_retainedOmission_triApexAllLarge_core
+7237:    (R : FrontierCommonDeletionParentResidual F)
+7240:    (G : TriApexAllLargeContext D S) :
+7242:  sorry
+7249:    (R : FrontierCommonDeletionParentResidual F)
+7254:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+7261:  rcases nonempty_retainedOmissionAllLargeNormalForm P hfirstLarge with ⟨Q⟩
+7262:  exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q
+7273:    {R : FrontierCommonDeletionParentResidual F}
+7308:    {R : FrontierCommonDeletionParentResidual F}
+7347:    (R : FrontierCommonDeletionParentResidual F)
+7404:/-- Two distinct strict-cap points on one rich-apex radius whose canonical
+7481:        S.capByIndex i).card ≤ 2 := by
+7677:    {R : FrontierCommonDeletionParentResidual F}
+7684:    ∃ L : LocalizedCollisionCommonDeletion P,
+7727:  rcases ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+7732:  let L : LocalizedCollisionCommonDeletion P := {
+7750:    (R : FrontierCommonDeletionParentResidual F)
+7756:      Nonempty (FrontierCommonDeletionParentResidual Fρ) := by
+7766:  have hhit : (E ∩ S.surplusCap).card ≤ 1 := by
+7794:      (Kd.support \ S.capByIndex i)).card ≤ 1 := by
+7860:    {R : FrontierCommonDeletionParentResidual F}
+7863:    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+7881:    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+7889:    (LPρ : LocalizedCollisionCommonDeletion P)
+7892:    (LP : LocalizedCollisionCommonDeletion Pρ)
+7911:  sorry
+8051:  sorry
+8064:  let Tswap : FrontierAllLargeCapsTriApexRobustResidual Nswap :=
+8097:/-- The positive same-cap cross-row alignment is impossible by ordered-cap
+8848:  have hinterLe : (K.support ∩ K'.support).card ≤ 2 :=
+9562:            (Ksource.support ∩ Kfresh.support).card ≤ 2 :=
+9749:  sorry
+10950:  sorry
+10993:  sorry
+11143:        source_witness source'_witness cross_membership shell_inter_cap_eq
+11185:      cross_membership blockers_eq all_endpoint_omission blocker_mem_capInterior
+11483:        S.capByIndex S.oppIndex1).card ≤ 2 := by
+12911:      (criticalTripleShellSeed P Pρ source).card ≤ 12 := by
+12927:    have hAcard : D.A.card ≤ 12 := by
+13154:        P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+13188:          P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 :=
+13232:  have hfirstCard : (K ∩ ({a, b} : Finset α)).card ≤ 1 := by
+13243:  have hsecondCard : (K ∩ ({c, d} : Finset α)).card ≤ 1 := by
+13262:  have hinterCard : (K ∩ E).card ≤ 2 := by
+13326:    {R : FrontierCommonDeletionParentResidual F}
+13329:    {R' : FrontierCommonDeletionParentResidual F'}
+13348:private def rebaseLocalizedCollisionCommonDeletion
+13352:    {R : FrontierCommonDeletionParentResidual F}
+13354:    (LP : LocalizedCollisionCommonDeletion P)
+13356:    {R' : FrontierCommonDeletionParentResidual F'}
+13368:    LocalizedCollisionCommonDeletion P' where
+13375:    simpa [hcenter] using rebaseCommonDeletionSystem LP.packet H'
+13381:    {R : FrontierCommonDeletionParentResidual F}
+13383:    (LP : LocalizedCollisionCommonDeletion P)
+13386:    {R' : FrontierCommonDeletionParentResidual F'}
+13388:    (LP' : LocalizedCollisionCommonDeletion P')
+13434:      rebaseCommonDeletionSystem MP.freshPacket H'
+13437:      rebaseCommonDeletionSystem MP.collisionSourcePacket H'
+13637:  let R' : FrontierCommonDeletionParentResidual F' :=
+13638:    rebaseFrontierCommonDeletionParentResidual R H'
+13641:  let Rρ' : FrontierCommonDeletionParentResidual Fρ' :=
+13642:    rebaseFrontierCommonDeletionParentResidual Rρ H'
+13655:  let T' : FrontierAllLargeCapsTriApexRobustResidual N' :=
+13658:  let LPρ' : LocalizedCollisionCommonDeletion P' :=
+13659:    rebaseLocalizedCollisionCommonDeletion P LPρ P'
+13661:  let LP' : LocalizedCollisionCommonDeletion Pρ' :=
+13662:    rebaseLocalizedCollisionCommonDeletion Pρ LP Pρ'
+13733:    simpa [LPρ', Pρ', rebaseLocalizedCollisionCommonDeletion,
+13736:    simpa [LP', P', rebaseLocalizedCollisionCommonDeletion,
+14133:  let Tswap : FrontierAllLargeCapsTriApexRobustResidual Nswap :=
+14168:    {R : FrontierCommonDeletionParentResidual F}
+14171:    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+14189:    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+14197:    (LPρ : LocalizedCollisionCommonDeletion P)
+14200:    (LP : LocalizedCollisionCommonDeletion Pρ)
+14352:    {R : FrontierCommonDeletionParentResidual F}
+14355:    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+14371:    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+14398:    (LPρ : LocalizedCollisionCommonDeletion P)
+14401:    (LP : LocalizedCollisionCommonDeletion Pρ)
+14471:collision packets, all-large-cap data, and tri-apex richness.  The canonical
+14482:    (R : FrontierCommonDeletionParentResidual F)
+14485:    (Rρ : FrontierCommonDeletionParentResidual Fρ)
+14501:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+14690:    (R : FrontierCommonDeletionParentResidual F)
+14693:    (Rρ : FrontierCommonDeletionParentResidual Fρ)
+14709:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+14716:              S.capInteriorByIndex i)).card ≤ 2 := by
+14718:    exact criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+14757:introduces no additional `sorry`. -/
+14762:    (R : FrontierCommonDeletionParentResidual F)
+14776:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15024:  let Tρ : FrontierAllLargeCapsTriApexRobustResidual Nρ :=
+15124:    (R : FrontierCommonDeletionParentResidual F)
+15135:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15191:    (R : FrontierCommonDeletionParentResidual F)
+15196:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15237:    (R : FrontierCommonDeletionParentResidual F)
+15242:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15255:theorem false_of_frontierAllLargeCapsTriApex_all_low_hits
+15259:    (R : FrontierCommonDeletionParentResidual F)
+15263:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15281:apex's strict opposite cap.  The rich structure is returned with the witness
+15294:theorem exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+15298:    (R : FrontierCommonDeletionParentResidual F)
+15302:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15309:    (false_of_frontierAllLargeCapsTriApex_all_low_hits
+15315:theorem false_of_frontierAllLargeCapsTriApexUniformMetricResidual
+15319:    (R : FrontierCommonDeletionParentResidual F)
+15323:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :
+15326:    exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+15329:    criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+15333:/-- The tri-apex all-large-caps terminal.  The packet's apex-rich fields are
+15336:theorem false_of_frontierAllLargeCapsTriApexRobustResidual
+15340:    (R : FrontierCommonDeletionParentResidual F)
+15344:    (T : FrontierAllLargeCapsTriApexRobustResidual N) :

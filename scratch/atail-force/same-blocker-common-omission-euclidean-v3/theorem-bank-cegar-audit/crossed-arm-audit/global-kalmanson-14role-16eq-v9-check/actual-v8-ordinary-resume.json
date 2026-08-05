@@ -1,0 +1,12 @@
+{
+  "connectivity_cut_count": 0,
+  "elapsed_seconds": 244.277,
+  "reconstructed_packet_cut_count": 203687,
+  "schema": "crossed-arm-ordinary-resume-loader-check-v1",
+  "source_cut_schema": "n17-crossed-arm-learned-cuts-v6",
+  "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+  "status": "ACTUAL_ORDINARY_RESUME_OK",
+  "structural_cut_count": 8313,
+  "theorem_cut_count": 195374,
+  "trust_boundary": "file parsing, manifest validation, and guarded-cut reconstruction only; no CEGAR enumeration or solver check"
+}

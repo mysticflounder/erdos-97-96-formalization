@@ -1,0 +1,28 @@
+{
+  "schema_version": 4,
+  "base_schema_version": 3,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "scope": {
+    "cardinality": 15,
+    "base": "../round5-general-cegar/schema.json",
+    "fixed_smokes": [
+      "paired_DDD_k0_d1",
+      "fresh_DDD_k0_d2_f1"
+    ]
+  },
+  "added_constraint_family": {
+    "name": "four_point_schoenberg_balanced_cnd",
+    "variables": "the independent squared-distance variables s(i,j) from schema v3",
+    "quantification": "every 4-subset and each of its 3 balanced (+1,+1,-1,-1) partitions modulo global sign",
+    "formula": "s(p0,p1)+s(n0,n1) <= s(p0,n0)+s(p0,n1)+s(p1,n0)+s(p1,n1)",
+    "count_at_n15": 4095,
+    "soundness": "for actual squared Euclidean distances, b^T S b = -2*norm(sum_i b_i*x_i)^2 <= 0 when sum_i b_i=0"
+  },
+  "preserved_constraint_family": {
+    "name": "squared_distance_equality_transport",
+    "formula": "d(c,x)=d(c,y) implies s(c,x)=s(c,y)",
+    "count_at_n15": 1365
+  },
+  "excluded_constraint": "No equation s(i,j)=d(i,j)^2 is asserted; the squared variables remain an independent sound relaxation.",
+  "status_values": ["sat", "unsat", "unknown", "error"]
+}
