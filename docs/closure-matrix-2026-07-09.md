@@ -2678,3 +2678,52 @@ cardinality equalities and materializes the fresh cap point that the
 2026-07-26 capGrowth audit identified as the unconsumed ingress for the
 `CommonDeletionTwoCenterPacket` route; no terminal consumes that packet
 yet, so all three leaves remain open obligations.
+
+### Rigid221 source-heavy large-cap incidence split supersedes the placement split (2026-08-05)
+
+The placement split above is superseded the same day and its three
+placement leaves are removed.  Auditing the exact-five case lemmas in
+`Rigid221SourceHeavy.lean` showed that the exact-five placement packet
+(strict interior `= {u, xu, xv}`) is consumed only to pin interior blocker
+centers to named class points; every other case lemma is cap-independent.
+The unused packet parameter is removed from `..._reciprocalArm`,
+`..._uXvMutualOmission_twoDeletions`, `..._uXvMutualOmission_vXvRow_direct`,
+and `..._uXvMutualOmission_deletedXvRow_direct` (the two `_direct`
+reindexers consumed it only for `xv ∉ source-row`, which follows directly
+from `blocker_eq_xv` and `center_not_mem_support`).
+
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge` is now proved
+by a kernel-checked incidence split over the `xv`-row and `xu`-row class
+traces (each of size `≤ 2` by `actualLateRow_secondClass_card_le_two`):
+
+- `u ∉ xv-row`: the trace dichotomy dispatches to the now cap-independent
+  `twoDeletions` / `vXvRow_direct` / `deletedXvRow_direct` closers; the
+  `xu ∈ xv-row` case, which the exact-five arm closed with interior
+  pinning, is covered by `twoDeletions` outright.
+- `u ∈ xv-row, u ∈ xu-row`: `reciprocalArm` (cap-independent).
+- `u ∈ xv-row, u ∉ xu-row, xv ∈ xu-row`: closed inline — the pair
+  `(v, xu)` is mutually omitting with prescribed joint deletions `u` and
+  the rigid deleted point
+  (`exactFourMutualOmissionJointDeletion_of_prescribed` plus
+  `false_of_twoDistinctExactFourMutualOmissionJointDeletions`).
+- `u ∈ xv-row, u ∉ xu-row, xv ∉ xu-row`, second `xu`-row class slot
+  empty: closed inline — the pair `(xu, xv)` is mutually omitting with
+  prescribed deletions `v` and the rigid deleted point.
+
+Remaining obligations, the only two open leaves:
+
+1. `..._secondOppositeLarge_vXuRow` — row traces pinned to `{u, xu}`,
+   `{v, xv}`, `{xv, u}`, `{xu, v}`: the directed four-cycle
+   `u → xu → v → xv → u`.
+2. `..._secondOppositeLarge_deletedXuRow` — row traces pinned to
+   `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`.
+
+Coordinator-interface frontier for the source-heavy subtree: before, three
+placement leaves; after, two incidence leaves, each carrying four proved
+row-incidence hypotheses over the parent.  Raw direct-`sorry` delta `−1`
+against the placement split (`+1` against the pre-split single leaf).  The
+split consumes no cap-profile counting; the exact-five machinery is
+untouched.  The placement leaves' fresh-interior ingress witness is no
+longer materialized; the two remaining leaves are fully explicit finite
+incidence patterns on the five-point class, with the single free `xu`-row
+class slot occupied by `v` or by the rigid deleted point.
