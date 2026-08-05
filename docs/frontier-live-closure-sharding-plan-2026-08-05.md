@@ -312,3 +312,8 @@ direction.
   shard 7 anchor moved for one private, 11 privates slated for recorded
   de-privatization, `/-/`-typo comment block handled as a plain comment.
   Real cut (Phase 2) next; gates (Phase 3) before any commit.
+- 2026-08-05 (execution Phase 2, convo #3046): real cut executed against
+  adcb9a4d — 15 shards written under `FrontierLiveClosure/`, umbrella in
+  place. Deliberately uncommitted pending Phase 3 gates; baselines
+  (sorry-by-declaration, endpoint axioms, spine snapshot) captured from
+  the pre-split head. Phase 3 build in flight.
