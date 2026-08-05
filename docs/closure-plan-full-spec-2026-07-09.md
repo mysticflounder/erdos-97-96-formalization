@@ -118,6 +118,12 @@ require an efficiency/observability audit before another production launch.
 A raw source scan on 2026-08-02 found 21 explicit `sorry` bodies in
 `ATail/FrontierLiveClosure.lean`.  The five-leaf inventory immediately below is
 a dated 2026-07-26 snapshot and must not be reported as current source truth.
+> **Structural note (2026-08-05, `9feb86f6`):** `ATail/FrontierLiveClosure.lean`
+> was sharded into 15 files under `ATail/FrontierLiveClosure/` with the original
+> path kept as an umbrella import; namespaces and FQNs are unchanged. Monolith
+> line references predating the split are stale; shard-file references are
+> current.
+
 
 ## Dated inventory snapshot (2026-07-26; superseded for current dispatch)
 
@@ -686,7 +692,8 @@ modules—together with all 1,656 directly referenced source assets into the mai
 mode separately reconstructs the promotion from the in-repository scratch
 provenance.
 
-This source graph is now production-wired. `FrontierLiveClosure.lean` imports
+This source graph is now production-wired. The `FrontierLiveClosure` module
+chain (card-11 split now in `FrontierLiveClosure/Rigid221Closure.lean`) imports
 the ingress and closes
 `false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven` by
 `Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual`.

@@ -1,6 +1,7 @@
 > **Status 2026-08-03 — LANDED, with a naming divergence.** The positive
 > normal form this plan proposes is implemented, at
-> `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10375-11343`, as the
+> `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean`
+(interaction machinery from line 1208), as the
 > `FreshThirdCapSourceInteraction` / `FreshThirdTwoCapSourceObstruction`
 > machinery. The public theorem name proposed below,
 > `false_of_capSource_freshThirdBlockerFiber_core`, was **not** adopted and

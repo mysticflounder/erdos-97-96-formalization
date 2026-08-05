@@ -1,7 +1,7 @@
 > **Status 2026-08-03 — LANDED. Read as a record of a completed refactor, not
 > as a proposal.** The recommendation below is implemented:
 > `false_of_retainedInteriorDirectedOmission_and_all_low_hits`
-> (`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8556`) is now
+> (`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:2795`) is now
 > exactly the compatibility wrapper this plan describes — it normalizes via
 > `nonempty_retainedOmissionAllLargeNormalForm` and dispatches to
 > `false_of_retainedOmission_triApexAllLarge_core`. Live work has moved one
