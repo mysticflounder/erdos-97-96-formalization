@@ -18792,7 +18792,7 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber
       (hρfour := hρfour)
       (hfrontierInteriorEq := hfrontierInteriorEq)
       (hρInteriorEq := hρInteriorEq) (T := T) C with
-    _hretainedPacket | ⟨Ccommon⟩
+    _hretainedPacket | ⟨⟨Ccommon⟩⟩
   · exact
       false_of_twoCapSources_freshThirdBlockerFiber_on_surface
         (P := P) (Pρ := Pρ)
