@@ -42,3 +42,31 @@ test verifies that resume neither calls the solver nor creates a new manifest
 generation.  The original output root is retained as a historical continuation
 record; a fresh canary with the corrected source hash is required before wave
 promotion.
+
+## CEGAR promotion contract
+
+The v3 wave is a certified finite producer/diagnostic lane, not a standalone
+universal-closure engine.  A learned clause, bounded `UNSAT`, finite survivor
+elimination, or exact-rational realization may guide theorem production, but it
+does not close a live Lean leaf without a source-level ingress and a
+general-cardinality lift.
+
+Before any future v3 artifact is labeled production closure, its manifest and
+handoff must name all of the following:
+
+1. the live universal Lean leaf and the hypotheses actually available at its
+   ingress;
+2. the finite representation extracted from those hypotheses, including its
+   cardinality scope and any symmetry/coverage theorem;
+3. the exact certificate replay and learned-clause soundness contract;
+4. the named Lean consumer that the artifact is intended to feed; and
+5. the theorem lifting the finite result to the universal cardinality range.
+
+The current projected-static-v3 encoding intentionally fails the full physical
+radius-class gate: its four selected witnesses form a support and
+`MetricRow.exact` remains false.  It must therefore not import ATAIL
+blocker-fiber facts, named deletion roles, or pinned-multiplicity upper bounds.
+The depth-5 wave records source-pinned finite evidence under this weaker
+contract.  The separate A-core package also requires an overflow-safe
+cardinality encoding or a proved bound before any future bounded `UNSAT` can
+be promoted to its universal Lean leaf.
