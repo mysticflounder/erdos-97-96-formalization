@@ -2,7 +2,7 @@
 
 Plan to split `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`
 (21,400 lines, 370 top-level declarations, 28 active `sorry`s as of the
-2026-08-05 working tree) into ~17 shard files under a new
+2026-08-05 working tree) into 15 shard files under a new
 `FrontierLiveClosure/` directory, with the existing module path kept as an
 umbrella import file. This is a plan only; no split has been executed.
 
@@ -78,7 +78,7 @@ pattern as the existing `CardElevenUniqueFourCertificate/` directory).
 ```lean
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
-... (all 17 shards, in order)
+... (all 15 shards, in order)
 ```
 
 Shard table. "Anchor" = first top-level declaration of the shard (the cut
@@ -94,35 +94,44 @@ the normative spec.
 | 4 | `Rigid221Placement` | `structure ExactFourMutualOmissionRigid221GlobalDeletion` | 950 | 5 |
 | 5 | `Rigid221SourceHeavy` | `structure ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket` | 2,690 | 1 |
 | 6 | `Rigid221Closure` | `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU` | 1,060 | 6 |
-| 7 | `TriApexAllLarge` | `false_of_frontierBiApexRobustExactFiveSecondCapResidual` | 920 | 1 |
-| 8 | `EndpointFresh` | `exists_reverseHitFresh_nonreturnEndpointClassification` | 1,430 | 0 |
-| 9 | `RetainedOmissionCore` | `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core` | 960 | 7 |
-| 10 | `TwoSourceCanonicalSurface` | `namespace TwoSourceExactCollisionRowsTerminal` | 1,450 | 1 |
-| 11 | `TwoSourceFreshThirdFiber` | `false_of_twoCapSources_freshOutsideFirstBlockerFiber` | 2,010 | 1 |
-| 12 | `TwoSourceFreshThirdResidual` | `namespace FreshThirdTwoCapSourceObstruction` | 840 | 1 |
-| 13 | `TwoSourceFirstFiberCollision` | `collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted` | 1,690 | 2 |
-| 14 | `TwoSourceClosure` | `exists_mutualBlockerCapIndices_same_only_first` | 1,340 | 0 |
-| 15 | `TwoSourceRetainedMinimalCore` | `exists_freshThird_retained_minimalDeletionCoreProducer` | 1,500 | 0 |
-| 16 | `TwoSourceAlignedLowHits` | `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` | 660 | 0 |
-| 17 | `Coordinator` | `false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits` (first decl after `end TwoSourceExactCollisionRowsTerminal`) | 760 | 0 |
+| 7 | `TriApexEndpointRetainedOmission` | `false_of_frontierBiApexRobustExactFiveSecondCapResidual` | 3,310 | 8 |
+| 8 | `TwoSourceCanonicalSurface` | `namespace TwoSourceExactCollisionRowsTerminal` | 1,450 | 1 |
+| 9 | `TwoSourceFreshThirdFiber` | `false_of_twoCapSources_freshOutsideFirstBlockerFiber` | 2,010 | 1 |
+| 10 | `TwoSourceFreshThirdResidual` | `namespace FreshThirdTwoCapSourceObstruction` | 840 | 1 |
+| 11 | `TwoSourceFirstFiberCollision` | `collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted` | 1,690 | 2 |
+| 12 | `TwoSourceClosure` | `exists_mutualBlockerCapIndices_same_only_first` | 1,340 | 0 |
+| 13 | `TwoSourceRetainedMinimalCore` | `exists_freshThird_retained_minimalDeletionCoreProducer` | 1,500 | 0 |
+| 14 | `TwoSourceAlignedLowHits` | `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` | 660 | 0 |
+| 15 | `Coordinator` | `false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits` (first decl after `end TwoSourceExactCollisionRowsTerminal`) | 760 | 0 |
 
-Shards 10–16 live inside `TwoSourceExactCollisionRowsTerminal`; each of
+Shard 7 is deliberately large: convo feedback (#3031, Rank-Four
+Cartographer) asked that the endpoint/retained-omission block (current
+lines ~8.0k–10.3k) stay intact in one shard because it is their active
+edit and consumption surface (`false_of_retainedOmission_triApexAllLarge_core`
+and the endpoint shared-blocker branch). The original draft cut it into
+three shards (`TriApexAllLarge` / `EndpointFresh` / `RetainedOmissionCore`
+at anchors `exists_reverseHitFresh_nonreturnEndpointClassification` and
+`false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core`);
+those two interior anchors are retired for now but remain the natural
+re-split points once that lane quiets down.
+
+Shards 8–14 live inside `TwoSourceExactCollisionRowsTerminal`; each of
 their prologues reopens the namespace, the `section`, and repeats the
 shared `variable` block verbatim (safe: `variable` binders only materialize
 into declarations that mention them, so re-declaration per shard is
-semantics-preserving). Shards 11–13 additionally contain the two small
+semantics-preserving). Shards 9–11 additionally contain the two small
 nested namespaces, which are fully inside single shards and need no
-special handling. Shard 17 returns to the top-level namespace.
+special handling. Shard 15 returns to the top-level namespace.
 
 The heavy `nlinarith` region (both `maxHeartbeats 800000` blocks and the
 `equilateral_inner_nonneg` kernel) is isolated in shard 5, the slowest
 shard, so the rest of the chain never waits on it after an unrelated edit.
 
-Merge freedom: if 17 files is too many, adjacent shards can be merged
+Merge freedom: if 15 files is too many, adjacent shards can be merged
 without re-analysis (any coarsening of a contiguous partition is still
-contiguous). Preferred merges in that case: 12→11 and 16→15. Do not merge
+contiguous). Preferred merges in that case: 10→9 and 14→13. Do not merge
 5 into its neighbors (it is the compile-time hot spot and the isolation is
-the point).
+the point), and do not re-split 7 while its lane is active (see above).
 
 ## Per-shard prologue template
 
@@ -143,7 +152,7 @@ open ATailApexRichClassStructure
 
 attribute [local instance] Classical.propDecidable
 
--- shards 10–16 only:
+-- shards 8–14 only:
 namespace TwoSourceExactCollisionRowsTerminal
 section
 variable ... (the block at current line 11155, verbatim)
@@ -172,9 +181,12 @@ stay with the declarations they precede.
 2. **Script, not hand-editing.** A one-shot script
    (`scripts/shard_frontier_live_closure.py`) reads the anchor table,
    locates each anchor by declaration name (including its attached
-   docstring/attribute/`set_option ... in` prefix lines), and writes the 17
+   docstring/attribute/`set_option ... in` prefix lines), and writes the 15
    shard files plus the umbrella. Cutting by name makes the script robust
-   to line drift from the parallel agent's edits.
+   to line drift from the parallel agent's edits. The `variable` block for
+   shards 8–14 must be re-extracted from the execution head, not from this
+   plan: it is itself under active revision (#3029 removed 12 unused
+   ambient parameters from it during the RFC window).
 3. **Private-decl gate.** Before writing anything, the script asserts, for
    each `private` declaration, that every occurrence of its name is inside
    the same shard span. On violation it aborts and reports the pair; the
@@ -226,6 +238,29 @@ direction.
 - Any change to statements, proofs, or the sorry frontier.
 - Renaming declarations or namespaces.
 
+## Convo feedback incorporated (2026-08-05, RFC #3030)
+
+- **#3031 (Rank-Four Cartographer):** keep the ~8.0k–10.3k
+  endpoint/retained-omission block intact — merged draft shards 7/8/9 into
+  the single shard 7 above; its two retired interior anchors are recorded
+  as future re-split points.
+- **#3029 (Rank-Four Cartographer):** the shared `variable` block is being
+  actively slimmed — execution must re-extract it from the head, per the
+  script note above.
+- Active-claim snapshot at RFC time (re-check `nthdegree convo who` before
+  executing; every claim below is inside this file and reinforces the
+  clean-sync-point gate): FrontierLedger claims
+  `TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion`
+  (shard 11); spine-auditor and ShellCompass are closing
+  `exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows`
+  and its cap≥8 branch (shard 14); Rank-Four Cartographer is composing
+  `freshThird_canonicalDifferentCap_boundary` into the normalized
+  FreshThird residual (shards 8–10) and editing shard 7; Codex landed the
+  `b1_live_*` consumer packet (shard 2).
+
 ## Status
 
-- 2026-08-05: plan written; not executed. Awaiting convo feedback pass.
+- 2026-08-05: plan written (17-shard draft), RFC posted as convo #3030.
+- 2026-08-05: update pass after feedback — merged to 15 shards per #3031,
+  added execution-head re-extraction note per #3029, recorded active-claim
+  snapshot. Not executed; execution still gated on a clean sync point.
