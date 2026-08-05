@@ -2636,3 +2636,45 @@ present in every cap-profile case split; do not replace it with a
 largest-cap-only split without the transport theorem.  This does not rule out
 closing the branch by a geometric impossibility or a profile-independent
 terminal.
+
+### Rigid221 source-heavy large-cap placement split (2026-08-05)
+
+The single open cap-profile arm of the source-heavy blocker-other branch,
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge`
+(`Rigid221SourceHeavy.lean`), is replaced by a kernel-checked placement
+split on the position of `v` and the rigid deleted point relative to the
+strict physical second-cap interior.  Three strictly narrower leaves:
+
+1. `..._secondOppositeLarge_vInterior` — `v` in the strict interior; the
+   interior then holds the four class points `u`, `xu`, `xv`, `v` and both
+   rigid row traces are interior.
+2. `..._secondOppositeLarge_deletedInterior` — `v` outside, the deleted
+   point in the strict interior; the interior holds `u`, `xu`, `xv` and the
+   row-omitted deleted point.
+3. `..._secondOppositeLarge_freshInterior` — both outside.  The parent
+   proves for this branch the adjacent-cap orientation split, the
+   retained-peer identification `other = xv` (recorded above at the
+   2026-07-27 fold as not derivable in the at-least-six arm; it is
+   derivable in exactly this both-outside branch), and a fresh
+   strict-interior carrier witness `w ∉ SelectedClass(A, oppApex2, ρ)`
+   extracted from the interior bound `|I| ≥ 4` against the named card-3
+   triple.
+
+Cover proof: the class cover
+`selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps` with the two
+adjacent one-hit bounds (as in the exact-five constructor), and
+`capInteriorByIndex_card_add_two` for the fourth-point extraction.  The
+coordinator call site in `...blockerVRowOther_sourceRowHeavy` is unchanged.
+
+Coordinator-interface frontier for the source-heavy subtree: before, one
+direct `sorry` leaf (`secondOppositeLarge`); after, three placement leaves.
+Raw direct-`sorry` delta `+2`.  Immediate constructor fan-out at the new
+parent coordinator is three placement arms, none closed.  Narrowing record:
+leaf 1 adds proved `v`-interior membership; leaf 2 adds `v`-outside plus
+proved deleted-interior membership; leaf 3 adds both-outside, the proved
+orientation, the proved `other = xv`, and the fresh off-class interior
+witness.  Leaf 3 restores the exact-five placement surface minus its two
+cardinality equalities and materializes the fresh cap point that the
+2026-07-26 capGrowth audit identified as the unconsumed ingress for the
+`CommonDeletionTwoCenterPacket` route; no terminal consumes that packet
+yet, so all three leaves remain open obligations.

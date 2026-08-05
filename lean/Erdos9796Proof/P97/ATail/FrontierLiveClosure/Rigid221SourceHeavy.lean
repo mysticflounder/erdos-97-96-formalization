@@ -705,15 +705,11 @@ theorem exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
       outside_adjacent_orientation :=
         houtsideAdjacentOrientation }
 
-/-- Large physical-second-cap residual of the source-heavy arm — the single
-surviving placement leaf after the exact-five arms are closed.  The strict
-second-cap interior contains the named triple `u`, `xu`, `xv` together with
-at least one further class point, and the retained contextual peer is
-unconstrained.  The source-heavy packet determines the blocker-row,
-blocker-inequality, and `xv`-interior facts, while the source context carries
-the robust growth data, so the terminal interface retains only the packet and
-the genuinely branch-specific large-cap witness. -/
-theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+/-- Large-cap placement leaf with `v` in the strict physical second-cap
+interior.  Narrowing over the large-cap parent: the strict interior holds
+four points of the rigid five-class — `u`, `xu`, `xv`, and `v` — so both
+rigid row traces land entirely in the strict interior. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -721,9 +717,326 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
     (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
     (_packet :
       ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
-    (_hsecond : 6 ≤ S.oppCap2.card) :
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (_hvInterior :
+      P.v.1 ∈ S.capInteriorByIndex S.oppIndex2) :
     False := by
   sorry
+
+/-- Large-cap placement leaf with `v` outside and the rigid deleted point
+inside the strict physical second-cap interior.  Narrowing over the large-cap
+parent: the strict interior holds the class points `u`, `xu`, `xv` together
+with the deleted point, which belongs to neither rigid row. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (_hvNotInterior :
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedInterior :
+      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2) :
+    False := by
+  sorry
+
+/-- Large-cap placement leaf with the exact-five outside placement — `v` and
+the rigid deleted point split across the two adjacent caps — together with a
+fresh strict-interior carrier point off the physical radius class.  Narrowing
+over the large-cap parent: the exact-five placement facts (`other = xv` and
+the adjacent orientation) are restored, and the cap surplus is materialized
+as the non-class interior witness `w`. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_freshInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (_hvNotInterior :
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedNotInterior :
+      P.jointDeletion.deleted.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_horientation :
+      (P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.jointDeletion.deleted.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2) ∨
+        (P.jointDeletion.deleted.1 ∈
+            S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2))
+    (_hother : P.other.1 = _packet.xv)
+    (w : ℝ²)
+    (_hwA : w ∈ D.A)
+    (_hwInterior : w ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hwNotClass : w ∉ SelectedClass D.A S.oppApex2 P.rho) :
+    False := by
+  sorry
+
+/-- Checked placement split for the large physical-second-cap residual of the
+source-heavy arm.  The class cover localizes `v` and the rigid deleted point
+to the strict interior or the two adjacent caps, and the large-cap interior
+bound materializes a fourth strict-interior point, which is off the physical
+radius class exactly when `v` and the deleted point are both outside.  The
+three placement leaves above are the remaining obligations. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hsecond : 6 ≤ S.oppCap2.card) :
+    False := by
+  classical
+  by_cases hvMem : P.v.1 ∈ S.capInteriorByIndex S.oppIndex2
+  · exact
+      false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vInterior
+        P packet hsecond hvMem
+  by_cases hdeletedMem :
+      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2
+  · exact
+      false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedInterior
+        P packet hsecond hvMem hdeletedMem
+  have hvNotInterior :
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2 := hvMem
+  have hdeletedNotInterior :
+      P.jointDeletion.deleted.1 ∉
+        S.capInteriorByIndex S.oppIndex2 := hdeletedMem
+  let K :=
+    ((lateFirstApexSystem R).selectedAt
+      P.u.1 P.u.2).toCriticalFourShell
+  have huSupport : P.u.1 ∈ K.support := K.q_mem_support
+  have hxuMem :
+      packet.xu ∈ K.support ∩ SelectedClass D.A S.oppApex2 P.rho := by
+    simpa [K, packet.source_row_trace]
+  have hxuSupport : packet.xu ∈ K.support :=
+    (Finset.mem_inter.mp hxuMem).1
+  have hblockerU :
+      (lateFirstApexSystem R).centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa only [P.huSource] using packet.blocker_eq_xv
+  have hxvNotSupport : packet.xv ∉ K.support := by
+    intro hxv
+    have hmemEq :
+        ((lateFirstApexSystem R).centerAt P.u.1 P.u.2 ∈ K.support) =
+          (packet.xv ∈ K.support) :=
+      congrArg (fun z : ℝ² => z ∈ K.support) hblockerU
+    exact K.center_not_mem_support (hmemEq.mpr hxv)
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotSupport
+    rw [← h]
+    exact huSupport
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotSupport
+    rw [← h]
+    exact hxuSupport
+  have hxvInterior :=
+    exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior P packet
+  have hpairSubset :
+      ({P.u.1, packet.xu} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.oppIndex2 := by
+    intro z hz
+    have hzInter :
+        z ∈ ({P.u.1, packet.xu} : Finset ℝ²) ∩
+          S.capInteriorByIndex S.oppIndex2 := by
+      rw [packet.source_pair_interior]
+      exact hz
+    exact (Finset.mem_inter.mp hzInter).2
+  have htripleSubset :
+      ({P.u.1, packet.xu, packet.xv} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.oppIndex2 := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl | rfl
+    · exact hpairSubset (by simp)
+    · exact hpairSubset (by simp)
+    · exact hxvInterior
+  have htripleCard :
+      ({P.u.1, packet.xu, packet.xv} : Finset ℝ²).card = 3 := by
+    simp [packet.xu_ne_u.symm, huNeXv, hxuNeXv]
+  have hinteriorCard :=
+    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex2
+  rw [capByIndex_oppIndex2_eq_oppCap2_sourceHeavy S] at hinteriorCard
+  have hlt :
+      ({P.u.1, packet.xu, packet.xv} : Finset ℝ²).card <
+        (S.capInteriorByIndex S.oppIndex2).card := by
+    rw [htripleCard]
+    omega
+  obtain ⟨w, hwInterior, hwNotTriple⟩ :=
+    Finset.exists_mem_notMem_of_card_lt_card hlt
+  have hwA : w ∈ D.A :=
+    S.capInteriorByIndex_subset S.oppIndex2 hwInterior
+  have hwNotClass :
+      w ∉ SelectedClass D.A S.oppApex2 P.rho := by
+    intro hwClass
+    rw [packet.physical_class] at hwClass
+    simp only [Finset.mem_insert, Finset.mem_union,
+      Finset.mem_singleton] at hwClass
+    rcases hwClass with hwDeleted | hwSource | hwOpposite
+    · apply hdeletedNotInterior
+      rw [← hwDeleted]
+      exact hwInterior
+    · rcases hwSource with hwU | hwXu
+      · exact hwNotTriple (by simp [hwU])
+      · exact hwNotTriple (by simp [hwXu])
+    · rcases hwOpposite with hwV | hwXv
+      · apply hvNotInterior
+        rw [← hwV]
+        exact hwInterior
+      · exact hwNotTriple (by simp [hwXv])
+  have houtsideAdjacentOrientation :
+      (P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.jointDeletion.deleted.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2) ∨
+        (P.jointDeletion.deleted.1 ∈
+            S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.v.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2) := by
+    let T :=
+      SelectedClass D.A
+        (S.oppositeVertexByIndex S.oppIndex2) P.rho
+    have hleftOne :
+        (T ∩ S.leftAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+      simpa [T] using
+        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          D.convex S.oppIndex2 P.rho
+    have hrightOne :
+        (T ∩ S.rightAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+      simpa [T] using
+        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          D.convex S.oppIndex2 P.rho
+    have hcover :
+        T \ S.capInteriorByIndex S.oppIndex2 ⊆
+          (T ∩ S.leftAdjacentCapByIndex S.oppIndex2) ∪
+            (T ∩ S.rightAdjacentCapByIndex S.oppIndex2) := by
+      simpa [T] using
+        S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+          S.oppIndex2 P.hrho
+    have hvT : P.v.1 ∈ T := by
+      simpa [T] using P.hvClass
+    have hdeletedT : P.jointDeletion.deleted.1 ∈ T := by
+      simpa [T] using P.jointDeletion.deleted_mem_class
+    have hvOutside :
+        P.v.1 ∈ T \ S.capInteriorByIndex S.oppIndex2 :=
+      Finset.mem_sdiff.mpr ⟨hvT, hvNotInterior⟩
+    have hdeletedOutside :
+        P.jointDeletion.deleted.1 ∈
+          T \ S.capInteriorByIndex S.oppIndex2 :=
+      Finset.mem_sdiff.mpr ⟨hdeletedT, hdeletedNotInterior⟩
+    have hvLocation :
+        P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+          P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2 := by
+      rcases Finset.mem_union.mp (hcover hvOutside) with
+          hleft | hright
+      · exact Or.inl (Finset.mem_inter.mp hleft).2
+      · exact Or.inr (Finset.mem_inter.mp hright).2
+    have hdeletedLocation :
+        P.jointDeletion.deleted.1 ∈
+            S.leftAdjacentCapByIndex S.oppIndex2 ∨
+          P.jointDeletion.deleted.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2 := by
+      rcases Finset.mem_union.mp (hcover hdeletedOutside) with
+          hleft | hright
+      · exact Or.inl (Finset.mem_inter.mp hleft).2
+      · exact Or.inr (Finset.mem_inter.mp hright).2
+    have hvNeDeleted :
+        P.v.1 ≠ P.jointDeletion.deleted.1 := by
+      intro h
+      apply P.jointDeletion.deleted_ne_v
+      apply Subtype.ext
+      exact h.symm
+    have hnotBothLeft :
+        ¬ (P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.jointDeletion.deleted.1 ∈
+            S.leftAdjacentCapByIndex S.oppIndex2) := by
+      rintro ⟨hvLeft, hdeletedLeft⟩
+      have hpairSubsetLeft :
+          ({P.v.1, P.jointDeletion.deleted.1} : Finset ℝ²) ⊆
+            T ∩ S.leftAdjacentCapByIndex S.oppIndex2 := by
+        intro z hz
+        simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+        rcases hz with rfl | rfl
+        · exact Finset.mem_inter.mpr ⟨hvT, hvLeft⟩
+        · exact Finset.mem_inter.mpr ⟨hdeletedT, hdeletedLeft⟩
+      have hpairLe := Finset.card_le_card hpairSubsetLeft
+      have hpairCard :
+          ({P.v.1, P.jointDeletion.deleted.1} :
+            Finset ℝ²).card = 2 := by
+        simp [hvNeDeleted]
+      omega
+    have hnotBothRight :
+        ¬ (P.v.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2 ∧
+          P.jointDeletion.deleted.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2) := by
+      rintro ⟨hvRight, hdeletedRight⟩
+      have hpairSubsetRight :
+          ({P.v.1, P.jointDeletion.deleted.1} : Finset ℝ²) ⊆
+            T ∩ S.rightAdjacentCapByIndex S.oppIndex2 := by
+        intro z hz
+        simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+        rcases hz with rfl | rfl
+        · exact Finset.mem_inter.mpr ⟨hvT, hvRight⟩
+        · exact Finset.mem_inter.mpr ⟨hdeletedT, hdeletedRight⟩
+      have hpairLe := Finset.card_le_card hpairSubsetRight
+      have hpairCard :
+          ({P.v.1, P.jointDeletion.deleted.1} :
+            Finset ℝ²).card = 2 := by
+        simp [hvNeDeleted]
+      omega
+    rcases hvLocation with hvLeft | hvRight <;>
+      rcases hdeletedLocation with hdeletedLeft | hdeletedRight
+    · exact (hnotBothLeft ⟨hvLeft, hdeletedLeft⟩).elim
+    · exact Or.inl ⟨hvLeft, hdeletedRight⟩
+    · exact Or.inr ⟨hdeletedLeft, hvRight⟩
+    · exact (hnotBothRight ⟨hvRight, hdeletedRight⟩).elim
+  have hsourceRowEq :
+      ((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.support =
+        ((lateFirstApexSystem R).selectedAt
+          P.source.1 P.source.2).toCriticalFourShell.support :=
+    congrArg
+      (fun z : CarrierVertex D.A =>
+        ((lateFirstApexSystem R).selectedAt
+          z.1 z.2).toCriticalFourShell.support)
+      P.huSource
+  have hother : P.other.1 = packet.xv := by
+    have hotherClass := P.context.other_mem_class
+    rw [packet.physical_class] at hotherClass
+    simp only [Finset.mem_insert, Finset.mem_union,
+      Finset.mem_singleton] at hotherClass
+    rcases hotherClass with hod | hosrc | hoopp
+    · exfalso
+      apply hdeletedNotInterior
+      rw [← hod]
+      exact P.context.other_mem_interior
+    · rcases hosrc with hou | hoxu
+      · exfalso
+        apply P.context.other_not_mem_source_row
+        rw [hou, ← hsourceRowEq]
+        exact huSupport
+      · exfalso
+        apply P.context.other_not_mem_source_row
+        rw [hoxu, ← hsourceRowEq]
+        exact hxuSupport
+    · rcases hoopp with hov | hoxv
+      · exfalso
+        apply hvNotInterior
+        rw [← hov]
+        exact P.context.other_mem_interior
+      · exact hoxv
+  exact
+    false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_freshInterior
+      P packet hsecond hvNotInterior hdeletedNotInterior
+        houtsideAdjacentOrientation hother w hwA hwInterior hwNotClass
 
 /-- Two distinct points of the physical second class whose late rows contain
 each other have equal blocker centers: the second apex and both centers are

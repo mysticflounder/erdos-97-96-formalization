@@ -1,0 +1,18 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+
+open Problem97 Problem97.ATailFrontierLiveClosure
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vInterior
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedInterior
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_freshInterior
