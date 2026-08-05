@@ -1064,3 +1064,24 @@ matrix used only if that route needs a certified secondary consumer.
 - Verdicts here say nothing about hypothesis-package *consistency* in the
   vacuous sense: an UNSAT package closes its leaves regardless of whether
   upstream ever instantiates it.
+
+## 10. 2026-08-04 projected-static-v3 migration checkpoint
+
+The corrected projected-static-v3 depth-5 wave completed on 20 selected
+canonical shards at
+`scratch/p97-distinct-distance-lane/phase3_projected_depth5_v3_wave_canary_20260804`.
+Eleven shards reached fresh `SHARD_STRUCTURAL_UNSAT_VERIFIED` terminal status
+with DRAT-verified shard-local proofs.  Nine shards reached bounded
+`CHECKPOINT` after 2 raw and 2 classified SAT assignments each; all nine had
+zero structural survivors and 2 dynamic learned cores.  The nine checkpoint
+directories were resumed with the exact original provenance and
+`--max-new-raw 2`; all replay manifests matched their prior manifests after
+canonical JSON normalization.
+
+This is a migration and restart-integrity result, not closure of a universal
+Lean leaf.  The wave is only a selected 20-shard subset of the depth-5
+partition, and projected-static-v3 still uses four selected support witnesses
+with `MetricRow.exact = false`.  Its terminal certificates are therefore
+finite, shard-local structural evidence.  Promotion still requires the
+five-part ingress/consumer/lift contract recorded in the migration note,
+including a general-cardinality theorem.

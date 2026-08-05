@@ -70,3 +70,27 @@ The depth-5 wave records source-pinned finite evidence under this weaker
 contract.  The separate A-core package also requires an overflow-safe
 cardinality encoding or a proved bound before any future bounded `UNSAT` can
 be promoted to its universal Lean leaf.
+
+## Depth-5 v3 wave result
+
+The corrected projected-static-v3 depth-5 wave completed at
+`scratch/p97-distinct-distance-lane/phase3_projected_depth5_v3_wave_canary_20260804`.
+All 20 requested canonical shards finalized under the same pinned prefix-bank
+and source-journal hashes:
+
+- 11 shards reached `SHARD_STRUCTURAL_UNSAT_VERIFIED`, with a fresh terminal
+  DRAT proof and zero structural survivors;
+- 9 shards reached bounded `CHECKPOINT`, each after 2 raw and 2 classified SAT
+  assignments, with zero structural survivors and 2 dynamic learned cores;
+- the wave therefore classified 18 bounded assignments and added 18 dynamic
+  cores to the 13,534 authenticated prefix cores on checkpoint shards;
+- no shard produced a universal or Euclidean closure claim.
+
+The 9 checkpoint shards were then resumed with their original configuration,
+`--max-new-raw 2`, and the same provenance pins.  Every replay parsed
+successfully, made no new generation, and was byte-equivalent after canonical
+JSON normalization to its existing manifest.  This validates the corrected
+idempotent `CHECKPOINT` resume gate; it does not turn a bounded checkpoint into
+an exhaustive result.  The 11 terminal shards remain shard-local finite
+certificates and are not an aggregate coverage proof because this wave is only
+a 20-shard subset of the depth-5 partition.
