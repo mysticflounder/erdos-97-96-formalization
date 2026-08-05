@@ -17275,214 +17275,6 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_core
           (FreshThirdTwoCapSourceObstruction.isResidual_of_not_hasDistinctCrossRows
             (P := P) (Pρ := Pρ) obstruction hrows))
 
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_surface
-    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
-    False := by
-  rcases hthird with ⟨Q⟩
-  by_cases hfirstAlign :
-      FreshThirdSameCapCrossRowAlignment P Pρ Q C.firstSource
-  · exact
-      false_of_freshThird_sameCapCrossRowAlignment
-        (P := P) (Pρ := Pρ) Q C.firstSource hfirstAlign
-  · by_cases hsecondAlign :
-        FreshThirdSameCapCrossRowAlignment P Pρ Q C.secondSource
-    · exact
-        false_of_freshThird_sameCapCrossRowAlignment
-          (P := P) (Pρ := Pρ) Q C.secondSource hsecondAlign
-    · obtain ⟨firstInteraction⟩ :=
-        nonempty_freshThirdCapSourceInteraction_of_noAlignment
-          (P := P) (Pρ := Pρ) (T := T)
-          (source := C.firstSource) (hsource := C.firstSource_data)
-          (Q := Q) (hnoAlignment := hfirstAlign)
-      obtain ⟨secondInteraction⟩ :=
-        nonempty_freshThirdCapSourceInteraction_of_noAlignment
-          (P := P) (Pρ := Pρ) (T := T)
-          (source := C.secondSource) (hsource := C.secondSource_data)
-          (Q := Q) (hnoAlignment := hsecondAlign)
-      exact false_of_twoCapSources_freshThirdBlockerFiber_core
-        (P := P) (Pρ := Pρ)
-        (hρne := hρne) (hfrontierFour := hfrontierFour)
-        (hρfour := hρfour)
-        (hfrontierInteriorEq := hfrontierInteriorEq)
-        (hρInteriorEq := hρInteriorEq)
-        (T := T) (hpairsDisjoint := hpairsDisjoint)
-        (hblockersNe := hblockersNe)
-        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-        (LP := LP) (hLP := hLP) (MP := MP)
-        (.normalized C Q firstInteraction secondInteraction)
-
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
-    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
-    False := by
-  rcases hthird with ⟨Q⟩
-  by_cases hfirstAlign :
-      FreshThirdSameCapCrossRowAlignment P Pρ Q C.surface.firstSource
-  · exact
-      false_of_freshThird_sameCapCrossRowAlignment
-        (P := P) (Pρ := Pρ) Q C.surface.firstSource hfirstAlign
-  · by_cases hsecondAlign :
-        FreshThirdSameCapCrossRowAlignment P Pρ Q C.surface.secondSource
-    · exact
-        false_of_freshThird_sameCapCrossRowAlignment
-          (P := P) (Pρ := Pρ) Q C.surface.secondSource hsecondAlign
-    · obtain ⟨firstInteraction⟩ :=
-        nonempty_freshThirdCapSourceInteraction_of_noAlignment
-          (P := P) (Pρ := Pρ) (T := T)
-          (source := C.surface.firstSource)
-          (hsource := C.surface.firstSource_data)
-          (Q := Q) (hnoAlignment := hfirstAlign)
-      obtain ⟨secondInteraction⟩ :=
-        nonempty_freshThirdCapSourceInteraction_of_noAlignment
-          (P := P) (Pρ := Pρ) (T := T)
-          (source := C.surface.secondSource)
-          (hsource := C.surface.secondSource_data)
-          (Q := Q) (hnoAlignment := hsecondAlign)
-      exact false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius
-        (P := P) (Pρ := Pρ)
-        (hρne := hρne) (hfrontierFour := hfrontierFour)
-        (hρfour := hρfour)
-        (hfrontierInteriorEq := hfrontierInteriorEq)
-        (hρInteriorEq := hρInteriorEq)
-        (T := T) (hpairsDisjoint := hpairsDisjoint)
-        (hblockersNe := hblockersNe)
-        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-        (LP := LP) (hLP := hLP) (MP := MP)
-        C Q firstInteraction secondInteraction
-
-/-- The two-source fresh-third coordinator uses the source-level producer to
-select the retained or common-radius route.  The retained packet is currently
-only a branch witness: the existing retained-surface consumer does not yet
-accept its minimal-deletion fields. -/
-theorem false_of_twoCapSources_freshThirdBlockerFiber
-    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
-    False := by
-  rcases freshThird_canonical_consumerPacket
-      (P := P) (Pρ := Pρ)
-      (hρne := hρne) (hfrontierFour := hfrontierFour)
-      (hρfour := hρfour)
-      (hfrontierInteriorEq := hfrontierInteriorEq)
-      (hρInteriorEq := hρInteriorEq) (T := T) C with
-    |_hretainedPacket | ⟨Ccommon⟩
-  · exact
-      false_of_twoCapSources_freshThirdBlockerFiber_on_surface
-        (P := P) (Pρ := Pρ)
-        (hρne := hρne) (hfrontierFour := hfrontierFour)
-        (hρfour := hρfour)
-        (hfrontierInteriorEq := hfrontierInteriorEq)
-        (hρInteriorEq := hρInteriorEq)
-        (T := T) (hpairsDisjoint := hpairsDisjoint)
-        (hblockersNe := hblockersNe)
-        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-        (LP := LP) (hLP := hLP) (MP := MP)
-        C hthird
-  · exact
-      false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
-        (P := P) (Pρ := Pρ)
-        (hρne := hρne) (hfrontierFour := hfrontierFour)
-        (hρfour := hρfour)
-        (hfrontierInteriorEq := hfrontierInteriorEq)
-        (hρInteriorEq := hρInteriorEq)
-        (T := T) (hpairsDisjoint := hpairsDisjoint)
-        (hblockersNe := hblockersNe)
-        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-        (LP := LP) (hLP := hLP) (MP := MP)
-        Ccommon hthird
-
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- Compatibility adapter for the former single-source coordinator.  It
-recovers the checked two-source cap-eight packet before entering the
-load-bearing fresh-third theorem. -/
-theorem false_of_capSource_freshThirdBlockerFiber
-    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
-    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
-    False := by
-  exact
-    false_of_twoCapSources_freshThirdBlockerFiber
-      (P := P) (Pρ := Pρ)
-      (hρne := hρne) (hfrontierFour := hfrontierFour)
-      (hρfour := hρfour)
-      (hfrontierInteriorEq := hfrontierInteriorEq)
-      (hρInteriorEq := hρInteriorEq)
-      (T := T) (hpairsDisjoint := hpairsDisjoint)
-      (hblockersNe := hblockersNe)
-      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-      (LP := LP) (hLP := hLP) (MP := MP)
-      (C :=
-        twoCapSourceThirdCanonicalRowSurface_of_capSource
-          (P := P) (Pρ := Pρ)
-          (T := T) (hpairsDisjoint := hpairsDisjoint)
-          hcapSource)
-      (hthird := hthird)
-
-/-- Compatibility form of the former negative fresh-third leaf.  The
-failed-alignment guard is now subsumed by the checked positive normal form
-used by `false_of_capSource_freshThirdBlockerFiber`; retaining this declaration
-keeps source-level callers on their previous interface. -/
-theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
-    (source : CriticalShellSystem.CarrierVertex D.A)
-    (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
-    (Q : FreshThirdBlockerFiber P Pρ)
-    (_hnoAlignment :
-      ¬ FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
-    False := by
-  exact
-    false_of_capSource_freshThirdBlockerFiber
-      (P := P) (Pρ := Pρ)
-      (hρne := hρne) (hfrontierFour := hfrontierFour)
-      (hρfour := hρfour)
-      (hfrontierInteriorEq := hfrontierInteriorEq)
-      (hρInteriorEq := hρInteriorEq)
-      (T := T) (hpairsDisjoint := hpairsDisjoint)
-      (hblockersNe := hblockersNe)
-      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-      (LP := LP) (hLP := hLP) (MP := MP)
-      ⟨hsource.1, source, hsource.2⟩ ⟨Q⟩
-
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- Fundamental cap-eight cap-source/blocker-multiplicity obstruction.
-
-This is the common load-bearing packet behind the former fresh-third negative
-leaf and the two-cap-source one-sided-deletion leaf.  Both callers already
-produce the cap-source surface and one arm of the geometric blocker-fiber
-residual, while the ambient tri-apex, collision, localized-deletion, and
-mutual-omission data remain available here through the section interface. -/
-theorem false_of_capSourceThirdCanonicalRowSurface
-    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
-    (hresidual : GeometricMultiplicityResidual P Pρ) :
-    False := by
-  have C :=
-    twoCapSourceThirdCanonicalRowSurface_of_capSource
-      (P := P) (Pρ := Pρ) (T := T)
-      (hpairsDisjoint := hpairsDisjoint) hcapSource
-  rcases hresidual with hthird | hfirst | hsecond
-  · exact
-      false_of_twoCapSources_freshThirdBlockerFiber
-        P Pρ hρne hfrontierFour hρfour
-        hfrontierInteriorEq hρInteriorEq
-        T hpairsDisjoint hblockersNe
-        LPρ hLPρ MPρ LP hLP MP C hthird
-  · exact
-      false_of_twoCapSources_freshOutsideFirstBlockerFiber
-        P Pρ hρne hfrontierFour hρfour
-        hfrontierInteriorEq hρInteriorEq
-        T hpairsDisjoint hblockersNe
-        LPρ hLPρ MPρ LP hLP MP C hfirst
-  · exact
-      false_of_twoCapSources_freshOutsideSecondBlockerFiber
-        P Pρ hρne hfrontierFour hρfour
-        hfrontierInteriorEq hρInteriorEq
-        T hpairsDisjoint hblockersNe
-        LPρ hLPρ MPρ LP hLP MP C hsecond
-
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
@@ -18904,6 +18696,214 @@ theorem freshThird_canonical_consumerPacket
       (exists_commonRadius_twoCapSourceThirdCanonicalRowSurface_packet_of_not_retained
         (P := P) (Pρ := Pρ) (T := T)
         C.cap_card_ge_eight haligned)
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_surface
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+    False := by
+  rcases hthird with ⟨Q⟩
+  by_cases hfirstAlign :
+      FreshThirdSameCapCrossRowAlignment P Pρ Q C.firstSource
+  · exact
+      false_of_freshThird_sameCapCrossRowAlignment
+        (P := P) (Pρ := Pρ) Q C.firstSource hfirstAlign
+  · by_cases hsecondAlign :
+        FreshThirdSameCapCrossRowAlignment P Pρ Q C.secondSource
+    · exact
+        false_of_freshThird_sameCapCrossRowAlignment
+          (P := P) (Pρ := Pρ) Q C.secondSource hsecondAlign
+    · obtain ⟨firstInteraction⟩ :=
+        nonempty_freshThirdCapSourceInteraction_of_noAlignment
+          (P := P) (Pρ := Pρ) (T := T)
+          (source := C.firstSource) (hsource := C.firstSource_data)
+          (Q := Q) (hnoAlignment := hfirstAlign)
+      obtain ⟨secondInteraction⟩ :=
+        nonempty_freshThirdCapSourceInteraction_of_noAlignment
+          (P := P) (Pρ := Pρ) (T := T)
+          (source := C.secondSource) (hsource := C.secondSource_data)
+          (Q := Q) (hnoAlignment := hsecondAlign)
+      exact false_of_twoCapSources_freshThirdBlockerFiber_core
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne) (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        (.normalized C Q firstInteraction secondInteraction)
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+    False := by
+  rcases hthird with ⟨Q⟩
+  by_cases hfirstAlign :
+      FreshThirdSameCapCrossRowAlignment P Pρ Q C.surface.firstSource
+  · exact
+      false_of_freshThird_sameCapCrossRowAlignment
+        (P := P) (Pρ := Pρ) Q C.surface.firstSource hfirstAlign
+  · by_cases hsecondAlign :
+        FreshThirdSameCapCrossRowAlignment P Pρ Q C.surface.secondSource
+    · exact
+        false_of_freshThird_sameCapCrossRowAlignment
+          (P := P) (Pρ := Pρ) Q C.surface.secondSource hsecondAlign
+    · obtain ⟨firstInteraction⟩ :=
+        nonempty_freshThirdCapSourceInteraction_of_noAlignment
+          (P := P) (Pρ := Pρ) (T := T)
+          (source := C.surface.firstSource)
+          (hsource := C.surface.firstSource_data)
+          (Q := Q) (hnoAlignment := hfirstAlign)
+      obtain ⟨secondInteraction⟩ :=
+        nonempty_freshThirdCapSourceInteraction_of_noAlignment
+          (P := P) (Pρ := Pρ) (T := T)
+          (source := C.surface.secondSource)
+          (hsource := C.surface.secondSource_data)
+          (Q := Q) (hnoAlignment := hsecondAlign)
+      exact false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne) (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        C Q firstInteraction secondInteraction
+
+/-- The two-source fresh-third coordinator uses the source-level producer to
+select the retained or common-radius route.  The retained packet is currently
+only a branch witness: the existing retained-surface consumer does not yet
+accept its minimal-deletion fields. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+    False := by
+  rcases freshThird_canonical_consumerPacket
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne) (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq) (T := T) C with
+    _hretainedPacket | ⟨Ccommon⟩
+  · exact
+      false_of_twoCapSources_freshThirdBlockerFiber_on_surface
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne) (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        C hthird
+  · exact
+      false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne) (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        Ccommon hthird
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Compatibility adapter for the former single-source coordinator.  It
+recovers the checked two-source cap-eight packet before entering the
+load-bearing fresh-third theorem. -/
+theorem false_of_capSource_freshThirdBlockerFiber
+    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+    False := by
+  exact
+    false_of_twoCapSources_freshThirdBlockerFiber
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne) (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq)
+      (T := T) (hpairsDisjoint := hpairsDisjoint)
+      (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP)
+      (C :=
+        twoCapSourceThirdCanonicalRowSurface_of_capSource
+          (P := P) (Pρ := Pρ)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          hcapSource)
+      (hthird := hthird)
+
+/-- Compatibility form of the former negative fresh-third leaf.  The
+failed-alignment guard is now subsumed by the checked positive normal form
+used by `false_of_capSource_freshThirdBlockerFiber`; retaining this declaration
+keeps source-level callers on their previous interface. -/
+theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (_hnoAlignment :
+      ¬ FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
+    False := by
+  exact
+    false_of_capSource_freshThirdBlockerFiber
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne) (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq)
+      (T := T) (hpairsDisjoint := hpairsDisjoint)
+      (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP)
+      ⟨hsource.1, source, hsource.2⟩ ⟨Q⟩
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Fundamental cap-eight cap-source/blocker-multiplicity obstruction.
+
+This is the common load-bearing packet behind the former fresh-third negative
+leaf and the two-cap-source one-sided-deletion leaf.  Both callers already
+produce the cap-source surface and one arm of the geometric blocker-fiber
+residual, while the ambient tri-apex, collision, localized-deletion, and
+mutual-omission data remain available here through the section interface. -/
+theorem false_of_capSourceThirdCanonicalRowSurface
+    (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
+    (hresidual : GeometricMultiplicityResidual P Pρ) :
+    False := by
+  have C :=
+    twoCapSourceThirdCanonicalRowSurface_of_capSource
+      (P := P) (Pρ := Pρ) (T := T)
+      (hpairsDisjoint := hpairsDisjoint) hcapSource
+  rcases hresidual with hthird | hfirst | hsecond
+  · exact
+      false_of_twoCapSources_freshThirdBlockerFiber
+        P Pρ hρne hfrontierFour hρfour
+        hfrontierInteriorEq hρInteriorEq
+        T hpairsDisjoint hblockersNe
+        LPρ hLPρ MPρ LP hLP MP C hthird
+  · exact
+      false_of_twoCapSources_freshOutsideFirstBlockerFiber
+        P Pρ hρne hfrontierFour hρfour
+        hfrontierInteriorEq hρInteriorEq
+        T hpairsDisjoint hblockersNe
+        LPρ hLPρ MPρ LP hLP MP C hfirst
+  · exact
+      false_of_twoCapSources_freshOutsideSecondBlockerFiber
+        P Pρ hρne hfrontierFour hρfour
+        hfrontierInteriorEq hρInteriorEq
+        T hpairsDisjoint hblockersNe
+        LPρ hLPρ MPρ LP hLP MP C hsecond
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
