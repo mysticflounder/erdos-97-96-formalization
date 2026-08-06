@@ -217,3 +217,44 @@ class, carrying a four-point shell whose class trace is exactly
 `{xv, u}`. Candidate tools, none of them tried yet: cap-interior
 cardinality against `6 ≤ S.oppCap2.card`, the joint-deletion semantics of
 `P.jointDeletion`, and exact-oracle mining of the pinned pattern.
+
+## 6. Bank cross-check and cap-cardinality lead — both negative (2026-08-05)
+
+**Mined banks: clean negative.** A cross-check of
+`docs/general-n-certificate-bank-mining-2026-07-09.md`, the three
+`certificates/*_mining.{md,json}` inventories, and the sibling checkouts
+(`p97-rvol`, `~/projects/math-projects/erdos/97`,
+`~/erdos-general-theorem/97`) found no general-`n` family that refutes the
+pinned five-cycle, and none of the §3 sub-lemmas.
+
+The closest cousins are the U5 kernels
+`Problem97.u5_unit_triangle_on_p_circle_incompatibility`
+(`lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:318`) and the
+`u5_equilateral_bisector_*` / `equilateral_bisector_collision` /
+`three_triad_collision` family. All of them are fixed-named-point Gram
+determinant kernels and all require the apex radius `r` to equal the
+triple's own side length — six equal pairwise distances. Our pentagon
+supplies no such coincidence: `rho` and the equilateral side length are
+independent, so those kernels only fire on a degenerate sub-case. They
+are also not import-reachable from `Rigid221SourceHeavy.lean`. The
+project's own `..._equilateral_class_triple_false` is the correct
+generalisation and is already in place.
+
+Note `p97-rvol` is not an independent source: its lakefile path-depends
+on this repo's `lean` package, so its U5 kernels are a fork of the
+canonical `U5GlobalIncidenceKernels.lean`, not external content.
+
+**Cap-cardinality lead: negative.** `P97/ATail/CapApexRadiusRigidity.lean`
+carries `oppositeVertex_selectedClass_card_le_cap_card` (class card ≤ cap
+card) and lower bounds `selectedClass_capInteriorByIndex_card_ge_two`,
+`..._force_capInterior_card_ge_four`. With class card 5 and
+`6 ≤ S.oppCap2.card` these are all satisfied. There is no upper bound on
+`SelectedClass ∩ capInterior` in the tree, so the fact that at least
+three pentagon class points (`u`, `xu`, `xv`) are strict-interior does
+not conflict with anything. Cap cardinality alone does not close the
+pentagon.
+
+Remaining untried tools for the off-class blocker branch, in the order
+they look most likely: the joint-deletion semantics of `P.jointDeletion`
+(what deleting that point does to the rows), a global count of four-point
+equidistant shells, and exact-oracle mining of the pinned pattern.
