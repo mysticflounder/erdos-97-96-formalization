@@ -1085,3 +1085,51 @@ with `MetricRow.exact = false`.  Its terminal certificates are therefore
 finite, shard-local structural evidence.  Promotion still requires the
 five-part ingress/consumer/lift contract recorded in the migration note,
 including a general-cardinality theorem.
+
+## 13.17 Rigid221 `BlockerV` deleted-row class elimination (2026-08-06)
+
+The `v`-row-blocker-is-deleted branch has been reduced without increasing its
+active obligation fan-out.  Before this checkpoint, the immediate coordinator
+called one coarse `sorry` knowing only
+`centerAt v = jointDeletion.deleted`.  It now performs the source-covered
+classification of the deleted point's row blocker against the exact physical
+five-class.
+
+The on-class arm is kernel-proved.  The five possible blocker identities are
+eliminated by the existing three-edge ordered-cap cycle, a new four-edge
+ordered-cap cycle, `centerAt_ne_source`, `center_not_mem_support`, or the
+incompatible pair of strict-betweenness placements.  Both the four-edge cycle
+theorem and the aggregate on-class contradiction have only `propext`,
+`Classical.choice`, and `Quot.sound` in their axiom closures.
+
+The sole remaining child is
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass`.
+It retains the parent packet and gains two source-proved facts: the deleted
+row's blocker lies in the strict second-cap interior and lies outside the exact
+physical five-class.  Thus the immediate logical split has two arms but active
+constructor fan-out one; the coordinator-interface frontier changes from one
+coarse deleted-row obligation to one strictly stronger obligation.  The
+narrowing measure is the number of admissible physical-five-class identities
+for that blocker, reduced from five to zero.  `proof-blueprint spine` confirms
+that the new residual is the only `sorry` below the deleted-row coordinator and
+is still reachable from `Problem97.erdos97_rhs`.  This is
+**CLOSED-TO-RESIDUAL**, not kernel closure of the parent pentagon branch.
+
+The off-class child has now been narrowed again without adding a leaf.  Let
+`C` be the exact physical five-class, `c := centerAt deleted`, and
+`e := centerAt xu`.  Source-row equalities and two-hit localization put both
+`c` and `e` in the strict second-cap interior.  The checked four-hook cycle,
+center/source exclusion, center/support exclusion, and selected-support
+uniqueness prove that `c` and `e` are distinct from each other and from all
+five points of `C`.  Hence that strict cap interior contains seven named
+points, the second closed cap has cardinality at least nine, and the cap-sum
+identity strengthens the residual bound from `12 ≤ |A|` to `15 ≤ |A|`.
+
+The selected row centered at `c` now also has at most one hit in `C`: two hits
+would put its actual blocker in the same strict cap as `c` and two distinct
+points of `C`, contradicting the checked three-equidistant-points cap lemma.
+Thus exact cardinalities 12--14 and the entire two-hit arm are eliminated.
+The coordinator-interface frontier and immediate constructor fan-out remain
+one.  This is a genuine two-coordinate narrowing (`|A| ≥ 15` and
+`|selectedRow(c) ∩ C| ≤ 1`), but the surviving universal residual is still a
+load-bearing `sorry`.
