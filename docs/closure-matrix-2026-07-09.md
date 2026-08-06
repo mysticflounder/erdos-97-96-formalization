@@ -2774,3 +2774,49 @@ additional proved deleted-row incidence facts (`v ∈ deleted`-row and
 leaf's four extra hypotheses in the dispatching branch; all other
 branches terminate in kernel-checked two-deletion closures.  No
 cap-profile counting is consumed.
+
+### Rigid221 source-heavy large-cap: class-cardinality split of the five-cycle leaf (2026-08-05)
+
+`..._secondOppositeLarge_fiveCycle` is now proved by splitting on
+whether the physical second-apex class contains a sixth point outside
+the five named points `{u, xu, deleted, v, xv}`.
+
+Sixth-point branch (CLOSED): a sixth class point `z` is outside the
+pinned `u`-row trace `{u, xu}` and the pinned `v`-row trace `{v, xv}`,
+so both pairs `(z, u)` and `(z, v)` have free blocker-distinctness
+certificates (`selectedSupports_eq_of_actualBlockers_eq` transports
+`z ∈ z`-row into the row that excludes it).  Casing on the second class
+slot of the `z`-row trace (`actualLateRow_secondClass_card_le_two` at
+`z`) always leaves a mutually omitted pair with two prescribed joint
+deletions:
+
+- slot `u`: pair `(z, v)` deleting `xu` and the rigid deleted point;
+- slot `xu`: pair `(z, v)` deleting `u` and the rigid deleted point;
+- slot `deleted`: pair `(z, v)` deleting `u` and `xu`;
+- slot `v`: pair `(z, u)` deleting the rigid deleted point and `xv`;
+- empty slot: pair `(z, v)` deleting `u` and the rigid deleted point.
+
+Each branch terminates in
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions`.
+
+Remaining obligation, the only open leaf of the arm:
+
+1. `..._secondOppositeLarge_pentagon` — the five-cycle configuration
+   with the class exactly the five named points
+   (`∀ q ∈ SelectedClass D.A S.oppApex2 P.rho`, `q` is one of
+   `u, xu, deleted, v, xv`).  Every mutually omitted class pair is a
+   cycle diagonal leaving exactly one prescribed deletion candidate,
+   and the predecessor blocker assignment `bl(p) =` cycle-predecessor
+   of `p` (consistent with the pinned `bl(u) = xv`) satisfies every
+   incidence and distinctness constraint, so pure incidence cannot
+   close it; the leaf needs metric input from the joint-deletion
+   packets (`uPacket`/`vPacket` two-center data).
+
+Coordinator-interface frontier for the source-heavy subtree: before,
+one five-cycle leaf; after, one pentagon leaf carrying the exact class
+enumeration as an additional hypothesis proved by the parent in the
+dispatching branch.  Raw direct-`sorry` delta `0` (1 → 1).  Narrowing
+measure: the pentagon leaf's hypothesis set strictly extends the
+five-cycle leaf's by the class enumeration; the sixth-point branch
+terminates in kernel-checked two-deletion closures.  No cap-profile
+counting is consumed.

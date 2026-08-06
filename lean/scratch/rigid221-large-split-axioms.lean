@@ -16,3 +16,6 @@ open Problem97 Problem97.ATailFrontierLiveClosure
 
 #print axioms
   Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
