@@ -30,7 +30,7 @@ write the exact status above and name the residual, mechanism, or abstraction.
 
 | Work item | Correct status | What remains open |
 |---|---|---|
-| Rigid221 deleted-row casing | **CLOSED-TO-RESIDUAL** | The five-cycle collision terminals remain explicit on-spine obligations. |
+| Rigid221 deleted-row casing | **CLOSED-TO-RESIDUAL** | The `BlockerV / vRowBlockerDeleted` on-class arm is kernel-proved; its sole surviving on-spine child pins the deleted-row blocker to the strict second-cap interior outside the exact physical five-class. Other five-cycle collision terminals remain open. |
 | Rigid221 stage-4 pentagon oracle | **DIAGNOSTIC-ONLY** | SAT witnesses certify only the exact encoded row-trace/apex-circle subsystem; the encoding omits other Lean hypotheses and does not establish full geometric realizability. |
 | Rigid221 pentagon `<= 1` mechanism | **PROSE-EXCLUDED** | The named squeeze mechanism is excluded on paper; no `sorry` is discharged and other deletion/K4/global-counting arguments remain available. |
 | E1 paired common-deletion split | **CLOSED-TO-RESIDUAL** | The split produces stronger paired residual leaves, including the grid leaf and its cap-placement data. |
