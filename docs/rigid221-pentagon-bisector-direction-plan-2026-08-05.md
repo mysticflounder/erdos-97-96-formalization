@@ -333,3 +333,170 @@ than `rho`" {{NEEDS_PROOF}}, which nothing in the tree supplies:
 `oppositeVertex_selectedClass_card_le_cap_card` are both satisfied by a
 five-point `rho` class plus a hypothetical four-point second radius when
 `6 ≤ S.oppCap2.card`.
+
+## 8. Exact-oracle mining of the pinned five-cycle (2026-08-05)
+
+Reproduce with `PYTHONPATH=. uv run python census/rigid221_pentagon_oracle.py`.
+
+The oracle is `census/endpoint_confinement/metric_realizability_probe.py`, an
+exact QF_NRA (Z3) realizability probe: it asserts strict convex position in a
+given cyclic order, pairwise distinctness, per-row equidistance and per-row
+exactness, and reports SAT / UNSAT / UNKNOWN.
+
+**Encoding validated first**, per the project solver rule: the probe's built-in
+smoke pair passes — the known-SAT system is SAT with `all_z3_assertions_true`,
+the known-UNSAT system is UNSAT. Downstream results are reported only because
+this gate passed.
+
+Labels: `0 = u`, `1 = xu`, `2 = deleted`, `3 = v`, `4 = xv`, `5 = A`
+(`A = S.oppApex2`).
+
+### 8.0 What the verdicts mean
+
+- **UNSAT is decisive.** At `n = 6` every asserted fact is proved: the six
+  labels are pairwise distinct (the five-cycle enumeration, plus
+  `dist q A = rho > 0` for the apex), the carrier is in strict convex position
+  (`D.convex`), `dist q A = rho` for all five class points, and each row
+  equality is the row's class trace. The apex row's `exact` clause is
+  **vacuous** at `n = 6` (it quantifies over labels outside the support, and
+  there are none), so nothing unproved is smuggled in.
+- **SAT is not a counterexample.** It says only that this row-level relaxation
+  is realizable — each shell contributes just its two *class* points, not all
+  four support points — hence the branch is not closable by the encoded facts.
+- **UNKNOWN is a timeout and settles nothing.** Counted separately below and
+  never folded into UNSAT.
+
+### 8.1 Convex-position freedom per leaf (`n = 6`, 60 orders)
+
+| system | SAT | UNSAT |
+|---|---|---|
+| baseline (apex circle + row `u` only) | 20 | 40 |
+| leaf `pentagonBlockerDeleted` | 5 | 55 |
+| leaf `pentagonBlockerV` | 5 | 55 |
+
+Each leaf hypothesis cuts the surviving convex orders by a factor of four.
+`xv` is never convex-adjacent to `A` in any survivor, in either leaf.
+
+### 8.2 Next-split fan-out
+
+For each leaf, one extra row `centerAt q = cand` was added and swept over that
+leaf's surviving orders. Cells read `SAT/total`, with `(?n)` marking `n`
+timeouts — a cell with `(?n)` is **not** decisive.
+
+    leaf BlockerDeleted (centerAt xv = deleted)
+      centerAt xu      -> u:0/5     v:0/5(?4)         xv:0/5        A:5/5
+      centerAt deleted -> u:0/5(?5) xu:0/5(?5)        xv:0/5(?4)    A:5/5
+      centerAt v       -> u:1/5(?1) xu:1/5(?1)        deleted:0/5   A:5/5
+
+    leaf BlockerV (centerAt xv = v)
+      centerAt xu      -> u:1/5     v:1/5(?1)         xv:0/5        A:4/5(?1)
+      centerAt deleted -> u:0/5(?5) xu:0/5(?5)        xv:0/5(?3)    A:5/5
+      centerAt v       -> u:0/5     xu:0/5(?2)        deleted:1/5(?2) A:5/5
+
+The `A` column is an artefact of the relaxation, not a live branch:
+`centerAt q = A` gives row `q` radius `rho`, so all four of its support points
+are class points, contradicting the row trace's exactly-two. That is killable
+in Lean from shell cardinality alone and needs no oracle.
+
+Decisive (all-UNSAT, zero timeouts) exclusions mined:
+
+1. unconditional — `centerAt xu ≠ xv`;
+2. leaf `BlockerDeleted` — `centerAt xu ≠ u` {{NEEDS_PROOF}};
+3. leaf `BlockerDeleted` — `centerAt v ≠ deleted`;
+4. leaf `BlockerV` — `centerAt v ≠ u`.
+
+### 8.3 The duplicate-centre kernel
+
+Items 1, 3 above share one mechanism, and the probe reports item 1 at its
+`equality-duplicate-center` stage — refuted from the equality structure alone,
+with no geometry search and no leaf hypothesis. Swept over **all 60** convex
+orders:
+
+| candidate | UNSAT | SAT | UNKNOWN | decisive stage |
+|---|---|---|---|---|
+| `centerAt xu = xv` | 60 | 0 | 0 | `equality-duplicate-center` |
+| `centerAt deleted = xv` | 54 | 4 | 2 | `full-convex` |
+
+The asymmetry is exact and worth stating, because it bounds the kernel's reach.
+Rows `u` and `xu` have class traces `{u, xu}` and `{xu, deleted}`, which **share
+`xu`**; a common centre therefore forces a single radius, so `xv` would be
+equidistant from the three distinct class points `u, xu, deleted`. Rows `u` and
+`deleted` have **disjoint** traces `{u, xu}` and `{deleted, v}`, so `xv` may
+centre both at two different radii and nothing is contradicted.
+
+So the kernel is:
+
+> **No class point is equidistant from three distinct class points.**
+> The apex `A` is equidistant from all of them (`rho`), any class point `z`
+> satisfies `dist z A = rho > 0` so `z ≠ A`, and two distinct points equidistant
+> from the same three points force those three to be collinear — contradicting
+> `D.convex.not_three_collinear`.
+
+Equivalently: **a class point cannot centre two rows whose class traces share a
+class point.** In the five-cycle those are exactly the consecutive edge pairs.
+
+Where it fires, given `centerAt u = xv`:
+
+- `centerAt xu ≠ xv` — unconditional, new;
+- `centerAt v ≠ deleted` under `BlockerDeleted`, since that leaf already makes
+  `deleted` the centre of row `xv` (trace `{xv, u}`) and row `v`'s trace
+  `{v, xv}` shares `xv`;
+- `centerAt v ≠ u` under `BlockerV` is the equilateral triple `{u, v, xv}` and
+  is already closed by the landed kernel
+  `exactFourRigid221_sourceHeavy_equilateral_class_triple_false`.
+
+What it does **not** give: `centerAt deleted ≠ xv`. The oracle explicitly leaves
+that branch SAT, so the §7 joint-deletion gain (`actual_blocker_ne_center₁`)
+remains the only source for it and is not subsumed.
+
+### 8.4 Lean route for the kernel
+
+`Problem97.MEC.not_collinear_of_three_dist_eq`
+(`lean/Erdos9796Proof/P97/Moser/NonDeg.lean:144`) already supplies "three
+distinct points equidistant from a common centre are not collinear". The
+missing step was "two distinct centres equidistant from the same three points
+coincide". It is now **proved**, as
+
+    Problem97.eq_of_two_centers_equidistant_three
+      {p₁ p₂ p₃ c₁ c₂ : ℝ²} {r s : ℝ}
+      (h₁₁ : dist p₁ c₁ = r) (h₂₁ : dist p₂ c₁ = r) (h₃₁ : dist p₃ c₁ = r)
+      (h₁₂ : dist p₁ c₂ = s) (h₂₂ : dist p₂ c₂ = s) (h₃₂ : dist p₃ c₂ = s)
+      (h12 : p₁ ≠ p₂) (h23 : p₂ ≠ p₃) (h13 : p₁ ≠ p₃) :
+      c₁ = c₂
+
+in `lean/scratch/DuplicateCircumcenter.lean`. Subtracting the two radius
+equations after `Problem97.dist_sq_coord` leaves every `pᵢ` on one common
+affine relation; differencing across the three points kills the constant, so
+`c₂ - c₁` lies in the kernel of the 2×2 matrix with rows `p₂ - p₁`, `p₃ - p₁`.
+That determinant is exactly `Problem97.signedArea2 p₁ p₂ p₃`, so it vanishes
+when `c₁ ≠ c₂`, and `Problem97.collinear_of_signedArea2_eq_zero` contradicts
+non-collinearity. Both coordinate branches close by `linear_combination` — the
+determinant identity is linear in the two relations, so no nonlinear search is
+needed.
+
+Verified: `lake env lean scratch/DuplicateCircumcenter.lean` exits 0 with no
+diagnostics, and `#print axioms` gives `[propext, Classical.choice, Quot.sound]`
+— kernel-pure, no `sorryAx`.
+
+It is **parked in `scratch/`, deliberately unwired**: it is a proved lemma with
+no consumer, and landing it on the spine is worth doing only in the same change
+as the split that uses it (§8.5). The sibling `p97-rvol` has the same statement
+as `RVOL.P97.U5GlobalIncidenceBasic.eq_of_equidistant_three_noncollinear`; that
+project is a path-dependent fork and is not import-reachable, so this is a local
+proof rather than a citation.
+
+### 8.5 Assessment
+
+The mining does **not** close a leaf, and is consistent with §5: both live
+on-class leaves remain SAT at `n = 6`, so neither is refutable from the apex
+circle plus row-trace equidistance. What it buys is the fan-out of the next
+split. Splitting `BlockerV` on `centerAt v` has six alternatives, of which
+`u` (equilateral kernel), `xv` (duplicate centre) and `A` (shell cardinality)
+are killable outright, leaving `xu`, `deleted` and off-class — three leaves in
+place of one. Splitting `BlockerDeleted` on `centerAt v` likewise kills
+`deleted`, `xv` and `A`, leaving `u`, `xu` and off-class.
+
+Either split therefore grows the frontier 27 → 29 on-spine. That is the same
+trade §5 identified, now measured rather than estimated, and it is the reason no
+split was landed in this pass. The duplicate-centre kernel is worth landing only
+together with the split that consumes it.
