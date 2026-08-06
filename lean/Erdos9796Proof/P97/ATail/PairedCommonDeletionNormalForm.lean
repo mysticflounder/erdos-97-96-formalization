@@ -506,6 +506,28 @@ theorem otherClass_eq (Gr : PairedTwoRadiusGrid O) :
     Gr.keptOtherFirst_mem_other Gr.keptOtherSecond_mem_other
     Gr.deletedOtherFirst_mem_other Gr.deletedOtherSecond_mem_other
 
+/-- **The kept critical shell, named.**  Its four points are the kept source,
+its retained-class partner, and its two second-class hits. -/
+theorem keptShell_eq (Gr : PairedTwoRadiusGrid O) :
+    (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support =
+      {O.kept, Gr.keptPartner, Gr.keptOtherFirst, Gr.keptOtherSecond} :=
+  class_eq_of_slices Gr.keptShell_subset_union
+    (by rw [Finset.inter_comm]; exact Gr.keptShell_inter_retained_eq)
+    (by rw [Finset.inter_comm]; exact Gr.keptShell_inter_other_eq)
+    Gr.kept_mem_keptShell Gr.keptPartner_mem_keptShell
+    Gr.keptOtherFirst_mem_keptShell Gr.keptOtherSecond_mem_keptShell
+
+/-- **The deleted critical shell, named.** -/
+theorem deletedShell_eq (Gr : PairedTwoRadiusGrid O) :
+    (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support =
+      {O.deleted, Gr.deletedPartner, Gr.deletedOtherFirst,
+        Gr.deletedOtherSecond} :=
+  class_eq_of_slices Gr.deletedShell_subset_union
+    (by rw [Finset.inter_comm]; exact Gr.deletedShell_inter_retained_eq)
+    (by rw [Finset.inter_comm]; exact Gr.deletedShell_inter_other_eq)
+    Gr.deleted_mem_deletedShell Gr.deletedPartner_mem_deletedShell
+    Gr.deletedOtherFirst_mem_deletedShell Gr.deletedOtherSecond_mem_deletedShell
+
 end PairedTwoRadiusGrid
 
 /-- **The paired arm reaches exactly one of the two normalized outcomes.**

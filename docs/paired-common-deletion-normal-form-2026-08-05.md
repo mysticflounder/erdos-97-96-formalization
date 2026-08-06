@@ -104,6 +104,23 @@ SelectedClass D.A S.oppApex1 otherRadius
   = {keptOtherFirst, keptOtherSecond, deletedOtherFirst, deletedOtherSecond}
 ```
 
+`keptShell_eq` and `deletedShell_eq` are the transposes, naming the two critical
+shells by the same mechanism:
+
+```
+(H.selectedAt O.kept _).toCriticalFourShell.support
+  = {O.kept, keptPartner, keptOtherFirst, keptOtherSecond}
+(H.selectedAt O.deleted _).toCriticalFourShell.support
+  = {O.deleted, deletedPartner, deletedOtherFirst, deletedOtherSecond}
+```
+
+All four sets are *exact* radius classes, not selected subsets:
+`SelectedClass` is a filter of `D.A` by definition, and
+`CriticalFourShell.support_eq` says the shell support is the whole radius class
+in `D.A`. So no further carrier point of `A` sits at any of the four radii from
+its centre — which is the fact a realizability encoding needs in order to assert
+each row as exact.
+
 Each class is the union of its two named shell slices because
 `shells_union_eq_classes_union` covers it by the two shells, so nothing in the
 class escapes both named pairs. The eight points are pairwise distinct: within a
