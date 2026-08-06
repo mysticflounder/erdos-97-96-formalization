@@ -2904,3 +2904,43 @@ Coordinator-interface frontier for the opposite-adjacent sub-arm: before,
 one undifferentiated placement leaf; after, one off-class-blocker leaf
 (fan-out 1, granularity = class membership of the `xv`-row blocker).  Raw
 direct-`sorry` delta `0` (1 → 1).
+
+### Rigid221 source-heavy large-cap: off-class-blocker row trace bound (2026-08-05)
+
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppositeAdjacentOffClassBlocker`
+now carries a parent-proved bound on the physical class trace of the `xv`
+row:
+
+```
+_htraceBound : ∀ x ∈ (selectedAt xv).support,
+    x ∈ SelectedClass D.A S.oppApex2 P.rho →
+      x = xv ∨ x = u ∨ x = deleted
+```
+
+Producer: a new private saturation kernel
+`exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant`.  For any
+selected row `q` and any two distinct class points `a, b` of that row, the
+physical apex and that row's own late blocker are two distinct carrier
+points on the perpendicular bisector of `ab`; `perpBisector_apex_bound`
+(Dumitrescu L1) caps the bisector's carrier count at two, so
+`third_not_mem_of_card_le_two` forces every carrier point equidistant from
+`a` and `b` to be the apex or that blocker.
+
+The two removals, both applied to the `xv`-row blocker `w`:
+
+- `xu ∈ xv`-row would give `dist w u = dist w xu` (both at the `xv`-row
+  radius), and `{u, xu}` is exactly the source-row class trace, so
+  saturation on the source row gives `w = oppApex2` (excluded by
+  `centerAt_ne`) or `w = centerAt u = xv` (excluded by
+  `centerAt_ne_source`).
+- `v ∈ xv`-row would give `dist w v = dist w xv`, and `{v, xv}` is exactly
+  the opposite-row class trace, so saturation on the opposite row gives
+  `w = centerAt v`.  Equal centers force equal radii
+  (`support_eq_radius` at `v` on both rows), hence `u ∈ v`-row via
+  `off_row_named_label_forbidden`; the pinned trace
+  `v`-row ∩ class = `{v, xv}` then yields `u = v` or `u = xv`, both false.
+
+Narrowing measure over the previous leaf statement: the class trace of the
+residual row drops from the five named class points to three, with `xu`
+and `v` now provably off that row.  Module build green; raw direct-`sorry`
+delta `0` (1 → 1); on-spine reaches-`sorry` count unchanged at 28.
