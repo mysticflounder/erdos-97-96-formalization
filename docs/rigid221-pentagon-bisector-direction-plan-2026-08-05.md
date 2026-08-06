@@ -696,3 +696,88 @@ Four items, recorded so the reasoning can be checked rather than re-trusted:
    five rows and stated unconditionally (§10.2 scope note).
 4. **Overstated search** — "absent, and not for want of searching" rested on a
    grep of one file, with the context's own file unswept (§10.3).
+
+## 11. Gap 1 closed: the `≤ 1` bound cannot bite against the pentagon class (2026-08-05)
+
+Closes the first open gap left by §10.2 — and closes it **generally**, for all
+five rows rather than the two whose centres the leaf locates. The route is dead
+by argument, not by failed search.
+
+Status: complete pen-and-paper argument, every ingredient identified in-tree,
+**not formalized**. It is a negative result, so it closes no `sorry`; per spine
+discipline no Lean is landed for it. The one step with no named lemma yet is
+§11.2.
+
+### 11.1 Two facts §10 missed
+
+- `packet.source_pair_interior` is a **proved packet field**: it gives
+  `{u, xu} ∩ capInteriorByIndex oppIndex2 = {u, xu}`, i.e. `u` and `xu` both lie
+  in the strict second-cap interior. With
+  `exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior`
+  (`Rigid221SourceHeavy.lean:189`) adding `xv`, three of the five class points
+  are **named** in the interior. §10.1's counting bound gave `≥ 3` without
+  saying which; this is strictly better and was already in the packet.
+- `ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_secondCapInterior`
+  (`TwoCenterCapLocalization.lean:191`) is the bisector localization **at
+  `oppIndex2`**. §10 only found the `oppIndex1` form
+  (`card_five_interior_bisector_localization.lean:66`) and wrongly treated the
+  index specialization as a limitation. Hypotheses: `center ∈ D.A`,
+  `center ≠ S.oppApex2`, both of `source`/`partner` in
+  `capInteriorByIndex oppIndex2`, `source ≠ partner`,
+  `dist center source = dist center partner`, and
+  `dist oppApex2 source = dist oppApex2 partner`.
+
+### 11.2 Cap interiors at distinct indices are disjoint
+
+Not a named lemma; a short derivation. `capInteriorByIndex i` is `Cᵢ` with its
+two Moser vertices erased (`PartitionFromMEC.lean:474`), and the third vertex is
+excluded by `CapTriple.vₖ_notin_Cₖ`, so every member is a **non-Moser** vertex of
+`Cᵢ`. `CapTriple.nonmoser_in_one` (`Cap/Structure.lean:190`) says a non-Moser
+vertex lies in exactly one cap. Hence `i ≠ j` forces
+`capInteriorByIndex i ∩ capInteriorByIndex j = ∅`. The closed-cap pairwise forms
+of exactly this argument already exist, `private`, at `U2SqueezePort.lean:63`,
+`:70`, `:77`.
+
+### 11.3 The argument
+
+Let `x` be any pentagon row. Suppose `criticalShell_inter_otherRichCapSlice_card_le_one`
+is to yield a contradiction against the pentagon class, i.e. with `j = oppIndex2`.
+Then both of the following must hold:
+
+- **(a)** `centerAt x ∈ capInteriorByIndex i` for some `i ≠ oppIndex2` — the
+  lemma's `hcenter` and `hij`;
+- **(c)** at least two points `q ≠ w` of row `x`'s support lie in
+  `SelectedClass D.A oppApex2 rho ∩ capInteriorByIndex oppIndex2` — otherwise
+  the `≤ 1` conclusion is satisfied and there is nothing to contradict.
+
+But **(c) forces `i = oppIndex2`**. From (c): `q, w` are in row `x`'s support, so
+`dist (centerAt x) q = dist (centerAt x) w` by `support_eq_radius`; they are both
+class points, so `dist oppApex2 q = dist oppApex2 w = rho`; they are both in
+`capInteriorByIndex oppIndex2`; `centerAt x ∈ D.A`; and
+`centerAt x ≠ oppApex2` via `P.surface.secondApex_robust.centerAt_ne` (used this
+way at `Rigid221SourceHeavy.lean:2196`, general in the row). These are exactly
+the hypotheses of §11.1's localization, which yields
+`centerAt x ∈ capInteriorByIndex oppIndex2`. With §11.2 that contradicts (a).
+
+So (a) and (c) are jointly unsatisfiable: **the `≤ 1` bound can never bite
+against the pentagon class, for any row.**
+
+### 11.4 Scope, stated exactly
+
+- The argument needs **no** knowledge of where `deleted` and `v` sit, and no
+  `ApexRichClassStructure`. Both prerequisites §10.2 listed as blockers are
+  dissolved rather than satisfied.
+- It is scoped to `j = oppIndex2`, the pentagon class. It says nothing about
+  applying the same lemma to a class at `oppApex1` or at the surplus apex —
+  those are different classes and are not what the squeeze needs.
+- The mechanism is now precisely identified, and it is not "the pentagon happens
+  to be degenerate". Any two class points in a common cap interior pull the row
+  centre into that same cap interior. The `≤ 1` bound needs the centre *outside*
+  the cap holding the hits. Those two demands are contradictory whenever the
+  hits are co-interior class points — which is the only configuration in which
+  the bound has anything to say.
+
+**Net effect on §10.4.** Gap 1 is closed: the `≤ 1` route is dead for the whole
+pentagon, not just rows `u` and `xv`. Gap 2 (the covering-statement sweep of
+`Rigid221Placement.lean`) remains open. The §10.4 retraction stands unchanged —
+none of this rests on the §9 oracle.
