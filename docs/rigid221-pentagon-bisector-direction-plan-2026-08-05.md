@@ -258,3 +258,48 @@ Remaining untried tools for the off-class blocker branch, in the order
 they look most likely: the joint-deletion semantics of `P.jointDeletion`
 (what deleting that point does to the rows), a global count of four-point
 equidistant shells, and exact-oracle mining of the pinned pattern.
+
+## 7. Joint-deletion semantics — what is actually there (2026-08-05)
+
+First inspection of the top-ranked untried tool. `P.jointDeletion :
+ExactFourMutualOmissionJointDeletion R P.rho P.u P.v`
+(`FrontierLiveClosure/JointDeletionCore.lean:101`) carries, besides the
+fields already consumed (`deleted_mem_class`, `deleted_ne_u`,
+`deleted_ne_v`, `deleted_not_mem_uRow`, `deleted_not_mem_vRow`,
+`blockers_ne`), two `CommonDeletionTwoCenterPacket`s
+(`ATail/CommonDeletionTwoCenter.lean:29`):
+
+    uPacket : CommonDeletionTwoCenterPacket D (lateFirstApexSystem R)
+                deleted (centerAt u) S.oppApex2
+    vPacket : CommonDeletionTwoCenterPacket D (lateFirstApexSystem R)
+                deleted (centerAt v) S.oppApex2
+
+Each packet's `actual_blocker_ne_center₁` / `actual_blocker_ne_center₂`
+field says the **deleted point's own actual blocker** differs from each
+surviving centre — it comes from `H.no_qfree_at`, so it is a genuine
+system axiom, not bookkeeping. Instantiated in the pentagon, where
+`centerAt u = xv`, this gives two facts that no current proof uses:
+
+    centerAt deleted ≠ xv
+    centerAt deleted ≠ centerAt v
+
+together with the already-known `centerAt deleted ≠ S.oppApex2`.
+
+Two more unconsumed fields per packet:
+
+- `survives₁ : HasNEquidistantPointsAt 4 (D.A.erase deleted) (centerAt u)`
+  — automatic here, since `deleted` is off the `u` row.
+- `overlap_le_two : (B₁ ∩ B₂).card ≤ 2` for a four-point `deleted`-deleted
+  K4 class `B₁` at `centerAt u = xv` and `B₂` at `S.oppApex2`. Since the
+  class has exactly five points, `B₂` is forced to be
+  `{u, xu, v, xv}`, so this says any four-point shell centred at `xv`
+  inside `D.A.erase deleted` meets `{u, xu, v, xv}` in at most two
+  points — a second-row bound at the *blocker* `xv`, independent of the
+  bank row bound, which only speaks about rows of class points.
+
+None of these closes a leaf on its own. `centerAt deleted ≠ xv` is the
+concrete gain: it pre-kills one alternative of any future split on
+`centerAt deleted`. The `overlap_le_two` consequence is the more
+interesting one and has not been worked out — it constrains shells at a
+blocker rather than at a class point, which is exactly the layer §5 says
+the off-class residual needs.
