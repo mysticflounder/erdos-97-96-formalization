@@ -547,10 +547,16 @@ Consequence for planning, and it is a real narrowing of the option set:
   rows are contained in the union of these apex classes" {{NEEDS_RESEARCH}} —
   whether it does is unchecked.
 
-## 10. The cap-interior squeeze does not transfer to the pentagon (2026-08-05)
+## 10. The cap-interior squeeze: one proved obstruction, two open gaps (2026-08-05)
 
-Resolves the `{{NEEDS_RESEARCH}}` marker closing §9. Two corrections to how §9
-posed the question, both from checking the Lean rather than the summary:
+Partially resolves the `{{NEEDS_RESEARCH}}` marker closing §9. **This section
+was rewritten after a rigor re-audit; the original version overclaimed in three
+places and drew one invalid inference. §10.5 records what changed.** Only §10.2's
+first bullet pair is PROVEN; §10.2's second bullet and §10.3 are CONJECTURED on
+partial search.
+
+Two corrections to how §9 posed the question, both from checking the Lean rather
+than the summary:
 
 1. §9 asked for one input (the covering statement). The squeeze needs **three**,
    and the covering statement is only the third. This is the E1 paired-grid
@@ -568,11 +574,18 @@ posed the question, both from checking the Lean rather than the summary:
 `{u, xu, deleted, v, xv}` lie in the strict second-cap interior — against the
 grid's `≥ 2` from a four-point class.
 
+The card-5 fact is `P.hclassFive : (SelectedClass D.A S.oppApex2 rho).card = 5`,
+a **field of the context structure** `ExactFourRigid221PhysicalApexSourceEqUContext`
+(`Rigid221Placement.lean:735`). It is *not* the leaf hypothesis `_hclassFive`,
+which is only the containment `∀ q ∈ class, q = u ∨ … ∨ q = xv` and therefore
+gives `card ≤ 5`. The first draft of this section cited the wrong one; the
+conclusion is unaffected because the context field is in scope at the leaf.
+
 Needs the index bridge `oppositeVertexByIndex S.oppIndex2 = S.oppApex2`. It
 exists — `FiniteN10.lean:101` — but is `private`; it is a three-line
 `interval_cases`/`simp` to re-derive locally.
 
-### 10.2 Input (2), per-row upper bound — INERT at this index
+### 10.2 Input (2), per-row upper bound — INERT on the two located rows
 
 The grid's prerequisite `TriApexAllLargeContext` (`∀ i, 6 ≤ (S.capByIndex i).card`,
 `TriApexEndpointRetainedOmission.lean:799`) is **not** available: the
@@ -604,7 +617,21 @@ What actually fails is the bound itself.
   equidistant from two points of a *different* cap. At `i = j` the best
   available bound degrades to the `≤ 2` of the previous bullet.
 
-### 10.3 Input (3), the covering statement — ABSENT
+**Scope of that second bullet — this is a gap, not a closure.** `i = j` is
+established only for the two rows whose centres this leaf locates: row `u` (via
+`centerAt u = xv` and `_hxvInterior`) and row `xv` (via `_hblockerInterior`).
+Rows `xu`, `deleted` and `v` have centres the leaf does not place anywhere. If
+any one of them sits in the strict interior of a cap other than `oppIndex2`,
+then `i ≠ j` **does** hold for that row and the `≤ 1` bound applies against the
+pentagon class, whose trace on that row is two points. That is a live route, not
+a refuted one. Closing it needs two things, both {{NEEDS_RESEARCH}}:
+
+1. locate — or prove unlocatable — the centres of rows `xu`, `deleted`, `v`;
+2. supply `ApexRichClassStructure D.A (S.oppositeVertexByIndex S.oppIndex2)`,
+   which the grid gets from `TriApexAllLargeContext.apex_rich` and which this
+   leaf does **not** carry.
+
+### 10.3 Input (3), the covering statement — no analogue found (partial search)
 
 The grid's `shells_union_eq_classes_union`
 (`PairedCommonDeletionNormalForm.lean:222`) is an **equality**: the union of two
@@ -612,24 +639,60 @@ shell supports equals the union of two classes at one apex. It holds there
 because each four-point shell splits `2 + 2` across the two radii, so *every*
 shell point is a class point, and the two counts are forced to meet.
 
-The pentagon has no analogue, and not for want of searching: it supplies per-row
-class **traces** only — `shell ∩ class = {two points}`, plus the trace bounds
-`_htraceBound` / `_htraceBoundXu` at `Rigid221SourceHeavy.lean:3591`. Each of
-the five rows carries two further support points that the pentagon does not
-place in any class. Even the containment form `shell ⊆ class ∪ class` (the
-grid's `keptShell_subset_union`) is unavailable, let alone the equality.
+No analogue was found. What the pentagon supplies is per-row class **traces** —
+`shell ∩ class = {two points}`, plus the trace bounds `_htraceBound` /
+`_htraceBoundXu` at `Rigid221SourceHeavy.lean:3591`. Each of the five rows
+carries two further support points that these hypotheses do not place in any
+class, so even the containment form `shell ⊆ class ∪ class` (the grid's
+`keptShell_subset_union`) was not found, let alone the equality.
+
+**Search scope, stated so it can be extended rather than repeated.** This is a
+grep of `Rigid221SourceHeavy.lean` for `∪` / `subset_union` and a read of the
+packet and leaf hypotheses. `Rigid221Placement.lean` — where the context
+structure actually lives — was **not** swept, and it does carry adjacent
+machinery: `ExactFourRigid221PhysicalApexSourceEqUContext.sourceRowInteriorCount`
+(`:762`) counts the source row's strict-second-cap-interior class members, with
+a docstring asserting the rigid `2+2+1` packet bounds that count by two. That is
+one row's half of a squeeze and it was already in the tree. Absence of a covering
+statement is therefore CONJECTURED, not established.
 
 ### 10.4 Verdict
 
-**The two-sided cap-interior squeeze does not transfer.** (1) holds and is
-stronger; (2) is inert because the pentagon's blocker and its class share a cap
-index; (3) is absent. This is consistent with §9 rather than independent of it —
-the configuration is realizable, so no combination of these counting bounds
-could have closed it. §10.2 supplies the structural reason: the grid arm's
-mechanism depends on the blocker and the class living at *different* indices,
-and the pentagon is exactly the degenerate case where they coincide.
+One proved obstruction, two open gaps.
 
-Both named routes out of this leaf are now closed. What is left is untouched by
-§9 and §10: the deletion/K4 layer, the two unplaced off-class support points per
-shell, and any statement counting the carrier globally rather than counting
-inside cap `oppIndex2`.
+- **PROVEN.** For rows `u` and `xv`, the sharp `≤ 1` bound is unavailable
+  because the blocker and the class share the index `oppIndex2`, and the
+  surviving `≤ 2` bound is saturated by their already-proved two-point traces.
+  The grid arm's mechanism depends on blocker and class living at *different*
+  indices; on these two rows the pentagon is the degenerate coincident case.
+- **OPEN.** Rows `xu`, `deleted`, `v` (§10.2 scope note) and the unswept
+  covering search (§10.3).
+
+**Retraction.** The first draft of this section argued that §9's realizability
+result made the whole squeeze moot — "the configuration is realizable, so no
+combination of these counting bounds could have closed it". **That inference is
+invalid and is withdrawn.** The §9 oracle encodes row-trace incidence and
+apex-circle metric; cap membership, adjacent caps and cap-interior structure are
+*not in the encoding at all*. A model of the encoded system therefore carries no
+information about whether a cap-counting argument closes the leaf. §9 and §10
+are independent results and neither confirms the other.
+
+Consequently the claim that "both named routes out of this leaf are now closed"
+is withdrawn as well. §3 is inert on this leaf (§9, and that argument does not
+depend on the retracted inference); the squeeze is obstructed on two rows of
+five. Still untouched by either section: the deletion/K4 layer, the unplaced
+off-class support points per shell, and any global carrier count.
+
+### 10.5 What the re-audit changed
+
+Four items, recorded so the reasoning can be checked rather than re-trusted:
+
+1. **Invalid inference, withdrawn** — §10.4's appeal to §9 (above). This was the
+   substantive error: it presented an unrelated result as confirmation.
+2. **Wrong citation, conclusion intact** — the card-5 fact was attributed to the
+   leaf's `_hclassFive`, which gives only `card ≤ 5`. It holds via the context
+   field `P.hclassFive` (§10.1).
+3. **Overstated scope** — "the `≤ 1` bound does not apply" was checked on two of
+   five rows and stated unconditionally (§10.2 scope note).
+4. **Overstated search** — "absent, and not for want of searching" rested on a
+   grep of one file, with the context's own file unswept (§10.3).
