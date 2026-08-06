@@ -289,17 +289,22 @@ Two more unconsumed fields per packet:
 
 - `survives₁ : HasNEquidistantPointsAt 4 (D.A.erase deleted) (centerAt u)`
   — automatic here, since `deleted` is off the `u` row.
-- `overlap_le_two : (B₁ ∩ B₂).card ≤ 2` for a four-point `deleted`-deleted
-  K4 class `B₁` at `centerAt u = xv` and `B₂` at `S.oppApex2`. Since the
-  class has exactly five points, `B₂` is forced to be
-  `{u, xu, v, xv}`, so this says any four-point shell centred at `xv`
-  inside `D.A.erase deleted` meets `{u, xu, v, xv}` in at most two
-  points — a second-row bound at the *blocker* `xv`, independent of the
-  bank row bound, which only speaks about rows of class points.
+- `overlap_le_two : (B₁ ∩ B₂).card ≤ 2` for four-point `deleted`-deleted
+  K4 classes `B₁` at `centerAt u = xv` and `B₂` at `S.oppApex2`. Note
+  `B₂` is **not** forced to be `{u, xu, v, xv}`: `U5QDeletedK4Class` only
+  requires four points equidistant from the apex, at no prescribed
+  radius, and the tree explicitly allows an apex to carry two distinct K4
+  radii (`oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four`
+  — they force cap interior ≥ 4, which `6 ≤ S.oppCap2.card` permits).
+  The bound becomes usable only after pinning `B₂`, i.e. after proving
+  the second apex has a unique K4 radius in this context
+  {{NEEDS_PROOF}}. With `B₂` pinned it would say that any four-point
+  shell centred at the *blocker* `xv` inside `D.A.erase deleted` meets
+  the rho-class in at most two points — a bound at a blocker rather than
+  at a class point, which is the layer §5 says the off-class residual
+  needs.
 
 None of these closes a leaf on its own. `centerAt deleted ≠ xv` is the
 concrete gain: it pre-kills one alternative of any future split on
-`centerAt deleted`. The `overlap_le_two` consequence is the more
-interesting one and has not been worked out — it constrains shells at a
-blocker rather than at a class point, which is exactly the layer §5 says
-the off-class residual needs.
+`centerAt deleted`. The `overlap_le_two` route is gated on apex radius
+uniqueness and is not available as stated.
