@@ -173,3 +173,47 @@ kills three of five alternatives (`v` by `centerAt_ne_source`, `xv`
 because `xv` is on the `v` row, `u` by the equilateral kernel) and leaves
 `centerAt v = deleted` and off-class, so the frontier would grow 1 → 2.
 Only §3 closes branches faster than it opens them.
+
+## 5. Where the real residual is (assessment, 2026-08-05)
+
+Working §3 through every branch shows what it can and cannot do, and the
+answer bounds the lane's value. Record it before implementing.
+
+**What §3 reaches.** Only an identification "the centre of row `q` is the
+class point `z`" produces a vector equation. Each such equation is a
+positive-multiple relation `Z z = t • (Z q + Z (next q))`, and two or
+three of them collapse by §3.3. So §3 is exactly a tool for the *on-class*
+blocker branches.
+
+**What it does not reach.** Splitting a leaf on the identity of one more
+row centre produces five class alternatives plus one off-class
+alternative. §3 (with the equilateral kernel) kills most of the class
+alternatives, but the off-class alternative always survives, and so does
+at least one class alternative in each split worked so far:
+
+| leaf | split on | dies | survives |
+| --- | --- | --- | --- |
+| `BlockerDeleted` | `centerAt xu` | `xu`, `deleted`, `xv`, `u` | `v`, off-class |
+| `BlockerV` | `centerAt v` | `v`, `xv`, `u` | `deleted`, off-class |
+
+So each split trades one leaf for two. The frontier grows 3 → 5 while
+every new leaf is strictly narrower. That is a legitimate narrowing under
+the promotion rules but it is not closure.
+
+**The actual obstruction.** Nothing in the pinned pentagon forces any row
+centre other than `centerAt u = xv` to be a class point. A configuration
+in which the other four centres are all off-class satisfies every
+incidence and metric fact currently proved about the pentagon. Therefore
+the pentagon **cannot** be closed by row-trace incidence plus
+apex-circle metric alone — a closure must use something else about the
+rows: their K4/deletion semantics, the second-cap interior structure and
+its cardinality, or a global count of four-point equidistant shells.
+
+**Consequence for sequencing.** Implement §3.1–§3.3 only when a split
+that consumes it is landed in the same change, so the machinery does not
+sit unconsumed. The higher-value target is the off-class blocker branch:
+a carrier point in the strict second-cap interior, off the physical
+class, carrying a four-point shell whose class trace is exactly
+`{xv, u}`. Candidate tools, none of them tried yet: cap-interior
+cardinality against `6 ≤ S.oppCap2.card`, the joint-deletion semantics of
+`P.jointDeletion`, and exact-oracle mining of the pinned pattern.
