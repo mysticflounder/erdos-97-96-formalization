@@ -3203,12 +3203,89 @@ private theorem exactFourRigid221_sourceHeavy_pentagon_xuRow_trace_bound
       Kxu.q_mem_support hdeletedXuRow hxuClass
       P.jointDeletion.deleted_mem_class hxuNeDel hxRow hxClass
 
-/-- Equilateral kill shared by the pentagon placement leaves: if the three
-strict-interior class points `u`, `xu`, `xv` satisfy
-`dist u xv = dist xu xv` and `dist u xu = dist xu xv`, they form an
-equilateral triangle inscribed in the physical class circle, so the
-physical apex lies in their convex hull, contradicting strict convex
-position. -/
+/-- Equilateral kill for any three distinct physical class points: they are
+inscribed in the physical class circle centred at the second apex, so a
+pairwise-equidistant triple is an equilateral triangle whose circumcentre
+is that apex, putting the apex inside their convex hull and contradicting
+strict convex position of the carrier. -/
+private theorem exactFourRigid221_sourceHeavy_equilateral_class_triple_false
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    {x y z : ℝ²}
+    (hxA : x ∈ D.A) (hyA : y ∈ D.A) (hzA : z ∈ D.A)
+    (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z)
+    (hxClass : x ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hyClass : y ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hzClass : z ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hxz_eq_yz : dist x z = dist y z)
+    (hxy_eq_yz : dist x y = dist y z) :
+    False := by
+  classical
+  have hxy_eq_xz : dist x y = dist x z :=
+    hxy_eq_yz.trans hxz_eq_yz.symm
+  have harea : signedArea2 x y z ≠ 0 := by
+    intro hzero
+    exact D.convex.not_three_collinear hxA hyA hzA hxy hxz hyz
+      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
+  have hinnerX : 0 ≤ inner ℝ (y - x) (z - x) :=
+    equilateral_inner_nonneg hxy_eq_xz hxy_eq_yz
+  have hinnerY : 0 ≤ inner ℝ (z - y) (x - y) := by
+    apply equilateral_inner_nonneg
+    · calc
+        dist y z = dist x y := hxy_eq_yz.symm
+        _ = dist y x := dist_comm _ _
+    · calc
+        dist y z = dist x y := hxy_eq_yz.symm
+        _ = dist x z := hxy_eq_xz
+        _ = dist z x := dist_comm _ _
+  have hinnerZ : 0 ≤ inner ℝ (x - z) (y - z) := by
+    apply equilateral_inner_nonneg
+    · calc
+        dist z x = dist x z := dist_comm _ _
+        _ = dist x y := hxy_eq_xz.symm
+        _ = dist y z := hxy_eq_yz
+        _ = dist z y := dist_comm _ _
+    · calc
+        dist z x = dist x z := dist_comm _ _
+        _ = dist x y := hxy_eq_xz.symm
+  have hphysicalX := (mem_selectedClass.mp hxClass).2
+  have hphysicalY := (mem_selectedClass.mp hyClass).2
+  have hphysicalZ := (mem_selectedClass.mp hzClass).2
+  have hhull :
+      S.oppApex2 ∈ convexHull ℝ ({x, y, z} : Set ℝ²) :=
+    mem_convexHull_three_of_equidistant_nonobtuse harea
+      (hphysicalX.trans hphysicalY.symm)
+      (hphysicalX.trans hphysicalZ.symm)
+      hinnerX hinnerY hinnerZ
+  have happA : S.oppApex2 ∈ D.A :=
+    P.surface.ingress.packet.center₂_mem_A
+  have hneX : S.oppApex2 ≠ x := by
+    intro h
+    rw [h, dist_self] at hphysicalX
+    exact (ne_of_gt P.hrho) hphysicalX.symm
+  have hneY : S.oppApex2 ≠ y := by
+    intro h
+    rw [h, dist_self] at hphysicalY
+    exact (ne_of_gt P.hrho) hphysicalY.symm
+  have hneZ : S.oppApex2 ≠ z := by
+    intro h
+    rw [h, dist_self] at hphysicalZ
+    exact (ne_of_gt P.hrho) hphysicalZ.symm
+  have hsub :
+      ({x, y, z} : Set ℝ²) ⊆ (D.A : Set ℝ²) \ {S.oppApex2} := by
+    simp only [Set.insert_subset_iff, Set.singleton_subset_iff]
+    exact
+      ⟨⟨Finset.mem_coe.mpr hxA, fun h => hneX h.symm⟩,
+       ⟨Finset.mem_coe.mpr hyA, fun h => hneY h.symm⟩,
+       ⟨Finset.mem_coe.mpr hzA, fun h => hneZ h.symm⟩⟩
+  exact D.convex S.oppApex2 (Finset.mem_coe.mpr happA)
+    (convexHull_mono hsub hhull)
+
+/-- Equilateral kill specialised to the pentagon triple `{u, xu, xv}`,
+whose distinctness and class membership come from the packet. -/
 private theorem exactFourRigid221_sourceHeavy_pentagon_equilateralXu_false
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3266,75 +3343,9 @@ private theorem exactFourRigid221_sourceHeavy_pentagon_equilateralXu_false
     apply hxvNotURow
     rw [← h]
     exact hxuURow
-  have huxu_eq_uxv :
-      dist P.u.1 packet.xu = dist P.u.1 packet.xv :=
-    huxu_eq_xuxv.trans huxv_eq_xuxv.symm
-  have harea :
-      signedArea2 P.u.1 packet.xu packet.xv ≠ 0 := by
-    intro hzero
-    exact D.convex.not_three_collinear P.u.2 hxuA hxvA
-      huNeXu huNeXv hxuNeXv
-      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
-  have hinnerU :
-      0 ≤ inner ℝ (packet.xu - P.u.1) (packet.xv - P.u.1) :=
-    equilateral_inner_nonneg huxu_eq_uxv huxu_eq_xuxv
-  have hinnerXu :
-      0 ≤ inner ℝ (packet.xv - packet.xu) (P.u.1 - packet.xu) := by
-    apply equilateral_inner_nonneg
-    · calc
-        dist packet.xu packet.xv = dist P.u.1 packet.xu :=
-          huxu_eq_xuxv.symm
-        _ = dist packet.xu P.u.1 := dist_comm _ _
-    · calc
-        dist packet.xu packet.xv = dist P.u.1 packet.xu :=
-          huxu_eq_xuxv.symm
-        _ = dist P.u.1 packet.xv := huxu_eq_uxv
-        _ = dist packet.xv P.u.1 := dist_comm _ _
-  have hinnerXv :
-      0 ≤ inner ℝ (P.u.1 - packet.xv) (packet.xu - packet.xv) := by
-    apply equilateral_inner_nonneg
-    · calc
-        dist packet.xv P.u.1 = dist P.u.1 packet.xv := dist_comm _ _
-        _ = dist P.u.1 packet.xu := huxu_eq_uxv.symm
-        _ = dist packet.xu packet.xv := huxu_eq_xuxv
-        _ = dist packet.xv packet.xu := dist_comm _ _
-    · calc
-        dist packet.xv P.u.1 = dist P.u.1 packet.xv := dist_comm _ _
-        _ = dist P.u.1 packet.xu := huxu_eq_uxv.symm
-  have hphysicalU := (mem_selectedClass.mp P.huClass).2
-  have hphysicalXu := (mem_selectedClass.mp hxuClass).2
-  have hphysicalXv := (mem_selectedClass.mp hxvClass).2
-  have hhull :
-      S.oppApex2 ∈
-        convexHull ℝ ({P.u.1, packet.xu, packet.xv} : Set ℝ²) :=
-    mem_convexHull_three_of_equidistant_nonobtuse harea
-      (hphysicalU.trans hphysicalXu.symm)
-      (hphysicalU.trans hphysicalXv.symm)
-      hinnerU hinnerXu hinnerXv
-  have happA : S.oppApex2 ∈ D.A :=
-    P.surface.ingress.packet.center₂_mem_A
-  have hneU : S.oppApex2 ≠ P.u.1 := by
-    intro h
-    rw [h, dist_self] at hphysicalU
-    exact (ne_of_gt P.hrho) hphysicalU.symm
-  have hneXu : S.oppApex2 ≠ packet.xu := by
-    intro h
-    rw [h, dist_self] at hphysicalXu
-    exact (ne_of_gt P.hrho) hphysicalXu.symm
-  have hneXv : S.oppApex2 ≠ packet.xv := by
-    intro h
-    rw [h, dist_self] at hphysicalXv
-    exact (ne_of_gt P.hrho) hphysicalXv.symm
-  have hsub :
-      ({P.u.1, packet.xu, packet.xv} : Set ℝ²) ⊆
-        (D.A : Set ℝ²) \ {S.oppApex2} := by
-    simp only [Set.insert_subset_iff, Set.singleton_subset_iff]
-    exact
-      ⟨⟨Finset.mem_coe.mpr P.u.2, fun h => hneU h.symm⟩,
-       ⟨Finset.mem_coe.mpr hxuA, fun h => hneXu h.symm⟩,
-       ⟨Finset.mem_coe.mpr hxvA, fun h => hneXv h.symm⟩⟩
-  exact D.convex S.oppApex2 (Finset.mem_coe.mpr happA)
-    (convexHull_mono hsub hhull)
+  exact exactFourRigid221_sourceHeavy_equilateral_class_triple_false
+    P P.u.2 hxuA hxvA huNeXu huNeXv hxuNeXv P.huClass hxuClass hxvClass
+    huxv_eq_xuxv huxu_eq_xuxv
 
 /-- The `xv`-row blocker of the pentagon lies in the strict physical
 second-cap interior.  It is equidistant from the pinned class edge

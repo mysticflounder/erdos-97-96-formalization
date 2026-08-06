@@ -3099,3 +3099,18 @@ Removed as superseded: the four placement leaves, the dispatch theorem
 `exactFourRigid221_sourceHeavy_adjacent_orientation_of_two` (recoverable
 at `b0157a17`).  Module build green; axioms unchanged (`propext`,
 `sorryAx`, `Classical.choice`, `Quot.sound`).
+
+### Rigid221 source-heavy large-cap: generic equilateral class-triple kernel (2026-08-05)
+
+Enabling machinery, no `sorry` change.  The equilateral convex-hull kill
+is generalised from the named pentagon triple `{u, xu, xv}` to arbitrary
+three distinct physical class points:
+`exactFourRigid221_sourceHeavy_equilateral_class_triple_false`.  The old
+`..._pentagon_equilateralXu_false` is now a thin specialisation supplying
+the packet's distinctness and class-membership facts, so the pentagon
+parent is unchanged.  The generic form is what closes a blocker sub-case
+whose two identifications share a point — e.g. `centerAt xv = v` together
+with `centerAt v = u` makes `{u, v, xv}` equilateral.  See
+`docs/rigid221-pentagon-arc-coordinate-plan-2026-08-05.md` §4.  Module
+build green; on-spine reaches-`sorry` 27 and module `sorry` count 3 both
+unchanged.

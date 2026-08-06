@@ -142,14 +142,16 @@ kill that only the arc coordinate reaches.
 - `mem_convexHull_three_of_equidistant_nonobtuse` — the three-point
   version of §3.1.
 
-## 4. Cheaper step available first
+## 4. Cheaper step, landed
 
-Generalise `..._pentagon_equilateralXu_false` from the named triple
-`{u, xu, xv}` to arbitrary three distinct class points. The proof body
-already only uses distinctness, the two distance equalities and the three
-`mem_selectedClass` radius facts. That generic kernel closes every
-sub-case whose two blocker identifications happen to share a point (the
-`BlockerV` / `centerAt v = u` case above), with no arc coordinate.
+`exactFourRigid221_sourceHeavy_equilateral_class_triple_false` (private,
+same module) is the generic form: three distinct carrier points, all in
+the physical class, pairwise equidistant, give `False`. The old named
+lemma `..._pentagon_equilateralXu_false` is now a thin specialisation of
+it that supplies the packet's distinctness and class-membership facts.
+The generic kernel closes every sub-case whose two blocker
+identifications happen to share a point (the `BlockerV` /
+`centerAt v = u` case above), with no arc coordinate.
 
 It does not close a leaf on its own: splitting `BlockerV` on `centerAt v`
 kills three of five alternatives (`v` by `centerAt_ne_source`, `xv`
