@@ -451,39 +451,38 @@ remains the only source for it and is not subsumed.
 
 ### 8.4 Lean route for the kernel
 
-`Problem97.MEC.not_collinear_of_three_dist_eq`
-(`lean/Erdos9796Proof/P97/Moser/NonDeg.lean:144`) already supplies "three
-distinct points equidistant from a common centre are not collinear". The
-missing step was "two distinct centres equidistant from the same three points
-coincide". It is now **proved**, as
+**Both halves already exist in this repo. Nothing needs proving.**
 
-    Problem97.eq_of_two_centers_equidistant_three
-      {p₁ p₂ p₃ c₁ c₂ : ℝ²} {r s : ℝ}
-      (h₁₁ : dist p₁ c₁ = r) (h₂₁ : dist p₂ c₁ = r) (h₃₁ : dist p₃ c₁ = r)
-      (h₁₂ : dist p₁ c₂ = s) (h₂₂ : dist p₂ c₂ = s) (h₃₂ : dist p₃ c₂ = s)
+    Problem97.eq_of_equidistant_three_noncollinear
+      {a b c x y : ℝ²}
+      (harea : signedArea2 a b c ≠ 0)
+      (hxab : dist x a = dist x b) (hxac : dist x a = dist x c)
+      (hyab : dist y a = dist y b) (hyac : dist y a = dist y c) :
+      x = y
+    -- lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:129
+
+    Problem97.MEC.not_collinear_of_three_dist_eq
+      {p₁ p₂ p₃ c : ℝ²} {r : ℝ}
+      (h1 : dist p₁ c = r) (h2 : dist p₂ c = r) (h3 : dist p₃ c = r)
       (h12 : p₁ ≠ p₂) (h23 : p₂ ≠ p₃) (h13 : p₁ ≠ p₃) :
-      c₁ = c₂
+      ¬ Collinear ℝ ({p₁, p₂, p₃} : Set ℝ²)
+    -- lean/Erdos9796Proof/P97/Moser/NonDeg.lean:144
 
-in `lean/scratch/DuplicateCircumcenter.lean`. Subtracting the two radius
-equations after `Problem97.dist_sq_coord` leaves every `pᵢ` on one common
-affine relation; differencing across the three points kills the constant, so
-`c₂ - c₁` lies in the kernel of the 2×2 matrix with rows `p₂ - p₁`, `p₃ - p₁`.
-That determinant is exactly `Problem97.signedArea2 p₁ p₂ p₃`, so it vanishes
-when `c₁ ≠ c₂`, and `Problem97.collinear_of_signedArea2_eq_zero` contradicts
-non-collinearity. Both coordinate branches close by `linear_combination` — the
-determinant identity is linear in the two relations, so no nonlinear search is
-needed.
+The second discharges the first's `harea` for any three distinct class points,
+since all of them are at distance `rho` from the apex. So the kernel is a direct
+two-lemma composition at the use site, with `x := A`, `y := z`, and `A ≠ z` from
+`dist z A = rho > 0`.
 
-Verified: `lake env lean scratch/DuplicateCircumcenter.lean` exits 0 with no
-diagnostics, and `#print axioms` gives `[propext, Classical.choice, Quot.sound]`
-— kernel-pure, no `sorryAx`.
-
-It is **parked in `scratch/`, deliberately unwired**: it is a proved lemma with
-no consumer, and landing it on the spine is worth doing only in the same change
-as the split that uses it (§8.5). The sibling `p97-rvol` has the same statement
-as `RVOL.P97.U5GlobalIncidenceBasic.eq_of_equidistant_three_noncollinear`; that
-project is a path-dependent fork and is not import-reachable, so this is a local
-proof rather than a citation.
+**Correction.** An earlier revision of this section claimed the "two centres
+coincide" step existed only in the sibling `p97-rvol` and was not
+import-reachable, and a local proof of it was committed at `e317d561` as
+`lean/scratch/DuplicateCircumcenter.lean`. That was wrong on both counts: the
+lemma is in this repo under the same name, in an already-imported module. The
+scratch file was a wrapper over machinery that is already available and has been
+deleted. This is the second time in this lane that hand-derived work was
+subsumed by an existing bank lemma — check
+`nthdegree docs search --lean` and the `certificates/*_mining.json` inventories
+*before* dispatching a proof, not after.
 
 ### 8.5 Assessment
 
