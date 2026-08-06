@@ -224,6 +224,12 @@ structure PairedTwoRadiusGrid
         (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support =
       SelectedClass D.A S.oppApex1 radius ∪
         SelectedClass D.A S.oppApex1 otherRadius
+  /-- The two grid radii are the *only* first-apex radii carrying four carrier
+  points.  Any other rich class would escape both retained shells and route the
+  paired arm to the joint-deletion outcome instead. -/
+  richClass_mem :
+    ∀ r : ℝ, 0 < r → 4 ≤ (SelectedClass D.A S.oppApex1 r).card →
+      r = radius ∨ r = otherRadius
 
 /-- Exhaustive paired-arm classification: either the retained common deletion
 renews at a first-apex class point escaping both shells, or the configuration
@@ -365,6 +371,33 @@ theorem deletedOtherPair_sep (Gr : PairedTwoRadiusGrid O) :
     (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).2
     Gr.deletedOther_ne
 
+/-- Off the two grid radii every first-apex class is small. -/
+theorem otherClass_card_le_three (Gr : PairedTwoRadiusGrid O) {r : ℝ}
+    (hr : 0 < r) (h₁ : r ≠ radius) (h₂ : r ≠ Gr.otherRadius) :
+    (SelectedClass D.A S.oppApex1 r).card ≤ 3 := by
+  by_contra hnot
+  rcases Gr.richClass_mem r hr (by omega) with h | h
+  · exact h₁ h
+  · exact h₂ h
+
+/-- No first-apex class exceeds four carrier points on the grid. -/
+theorem classCard_le_four (Gr : PairedTwoRadiusGrid O) {r : ℝ} (hr : 0 < r) :
+    (SelectedClass D.A S.oppApex1 r).card ≤ 4 := by
+  by_cases h4 : 4 ≤ (SelectedClass D.A S.oppApex1 r).card
+  · rcases Gr.richClass_mem r hr h4 with h | h
+    · rw [h]; exact le_of_eq Gr.retainedClass_card_eq_four
+    · rw [h]; exact le_of_eq Gr.otherClass_card_eq_four
+  · omega
+
+/-- The grid excludes the single-radius arm of `ApexRichClassStructure` at the
+first apex: richness there must be the two-radius arm, realized by exactly the
+two grid radii. -/
+theorem not_sixPoint_class (Gr : PairedTwoRadiusGrid O) :
+    ¬ ∃ r : ℝ, 0 < r ∧ 6 ≤ (SelectedClass D.A S.oppApex1 r).card := by
+  rintro ⟨r, hr, hsix⟩
+  have := Gr.classCard_le_four hr
+  omega
+
 end PairedTwoRadiusGrid
 
 /-- **The paired arm reaches exactly one of the two normalized outcomes.**
@@ -429,8 +462,19 @@ theorem nonempty_pairedCommonDeletionOutcome
           Finset.card_insert_of_notMem (by
             simpa using fun h => E.secondPartner_ne_second h.symm),
           Finset.card_singleton]
-      by_cases hcover : C' ⊆ Kkept ∪ Kdel
-      · have hkeptOther : (Kkept ∩ C').card ≤ 2 :=
+      by_cases hescape :
+          ∃ r : ℝ, ∃ z : ℝ²,
+            0 < r ∧ 4 ≤ (SelectedClass D.A S.oppApex1 r).card ∧
+              z ∈ SelectedClass D.A S.oppApex1 r ∧ z ∉ Kkept ∪ Kdel
+      swap
+      · have hcovered :
+            ∀ r : ℝ, 0 < r → 4 ≤ (SelectedClass D.A S.oppApex1 r).card →
+              SelectedClass D.A S.oppApex1 r ⊆ Kkept ∪ Kdel := by
+          intro r hr hcard z hz
+          by_contra hzn
+          exact hescape ⟨r, z, hr, hcard, hz, hzn⟩
+        have hcover : C' ⊆ Kkept ∪ Kdel := hcovered ρ hρpos hρcard
+        have hkeptOther : (Kkept ∩ C').card ≤ 2 :=
           criticalShell_inter_selectedClass_card_le_two_of_apexRich
             H O.kept O.kept_mem_A hrich ρ
         have hdelOther : (Kdel ∩ C').card ≤ 2 :=
@@ -501,6 +545,23 @@ theorem nonempty_pairedCommonDeletionOutcome
           · rw [Finset.card_union_of_disjoint hshellsDisjoint,
               Finset.card_union_of_disjoint hclassesDisjoint,
               hkeptCard, hdelCard, E.class_card_eq_four, hC'four]
+        have hrichMem :
+            ∀ r : ℝ, 0 < r → 4 ≤ (SelectedClass D.A S.oppApex1 r).card →
+              r = radius ∨ r = ρ := by
+          intro r hr hcard
+          by_contra hne
+          push_neg at hne
+          obtain ⟨z, hz⟩ :=
+            Finset.card_pos.mp
+              (show 0 < (SelectedClass D.A S.oppApex1 r).card by omega)
+          have hzU : z ∈ C ∪ C' := by
+            rw [← hunionEq]
+            exact hcovered r hr hcard hz
+          rcases Finset.mem_union.mp hzU with h | h
+          · exact hne.1
+              ((mem_selectedClass.mp hz).2.symm.trans (mem_selectedClass.mp h).2)
+          · exact hne.2
+              ((mem_selectedClass.mp hz).2.symm.trans (mem_selectedClass.mp h).2)
         rcases Finset.card_eq_two.mp hkeptOtherTwo with
           ⟨keptOtherFirst, keptOtherSecond, hkeptOtherNe, hkeptOtherEq⟩
         rcases Finset.card_eq_two.mp hdelOtherTwo with
@@ -528,8 +589,9 @@ theorem nonempty_pairedCommonDeletionOutcome
           keptShell_subset_union := hkeptSubset
           deletedShell_subset_union := hdelSubset
           shells_disjoint := hshellsDisjoint
-          shells_union_eq_classes_union := hunionEq }⟩
-      · rcases Finset.not_subset.mp hcover with ⟨z, hzC', hzNot⟩
+          shells_union_eq_classes_union := hunionEq
+          richClass_mem := hrichMem }⟩
+      · obtain ⟨r, z, hrpos, hrcard, hzC', hzNot⟩ := hescape
         have hzKkept : z ∉ Kkept := fun h => hzNot (Finset.mem_union_left _ h)
         have hzKdel : z ∉ Kdel := fun h => hzNot (Finset.mem_union_right _ h)
         have hzA : z ∈ D.A := (mem_selectedClass.mp hzC').1
@@ -553,9 +615,9 @@ theorem nonempty_pairedCommonDeletionOutcome
             reversePacket.center₁_mem_A reversePacket.center₂_mem_A
             reversePacket.centers_ne hsurvApex hsurvDel with ⟨deletedPacket⟩
         exact ⟨PairedCommonDeletionOutcome.apexClassJointDeletion {
-          sourceRadius := ρ
-          sourceRadius_pos := hρpos
-          sourceClass_card_ge_four := hρcard
+          sourceRadius := r
+          sourceRadius_pos := hrpos
+          sourceClass_card_ge_four := hrcard
           source := z
           source_mem_class := hzC'
           source_not_mem_keptShell := hzKkept

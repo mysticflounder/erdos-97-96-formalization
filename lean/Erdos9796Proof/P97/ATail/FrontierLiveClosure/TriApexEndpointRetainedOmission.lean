@@ -981,6 +981,291 @@ theorem exists_globalK4Row_and_sourceFaithfulCriticalCover_of_triApexAllLargeCon
       exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
         G q.2⟩
 
+/-! ### Cap placement census for the paired two-radius grid
+
+The grid pins both retained shells onto the two rich first-apex classes.  Every
+positive first-apex class of four points already contributes at least two points
+to the strict interior of the first cap, while each retained shell contributes
+at most two — either because its blocker sits in that same cap, or because it
+sits in another strict cap and the cross-cap one-hit rule applies to both
+classes.  The two bounds meet, which forces the whole census below. -/
+
+private theorem grid_capInterior_counts
+    {Cint Cc Cc' Kfirst Ksecond : Finset ℝ²}
+    (hclassDisj : Disjoint Cc Cc')
+    (hshellDisj : Disjoint Kfirst Ksecond)
+    (hunion : Kfirst ∪ Ksecond = Cc ∪ Cc')
+    (h1 : 2 ≤ (Cc ∩ Cint).card) (h2 : 2 ≤ (Cc' ∩ Cint).card)
+    (h3 : (Kfirst ∩ Cint).card ≤ 2) (h4 : (Ksecond ∩ Cint).card ≤ 2) :
+    (Cc ∩ Cint).card = 2 ∧ (Cc' ∩ Cint).card = 2 ∧
+      (Kfirst ∩ Cint).card = 2 ∧ (Ksecond ∩ Cint).card = 2 := by
+  classical
+  have hdistrib : ∀ X Y Z : Finset ℝ², (X ∪ Y) ∩ Z = (X ∩ Z) ∪ (Y ∩ Z) := by
+    intro X Y Z
+    ext z
+    simp only [Finset.mem_inter, Finset.mem_union]
+    tauto
+  have hsame :
+      (Cc ∩ Cint) ∪ (Cc' ∩ Cint) = (Kfirst ∩ Cint) ∪ (Ksecond ∩ Cint) := by
+    rw [← hdistrib Cc Cc' Cint, ← hdistrib Kfirst Ksecond Cint, hunion]
+  have hcardSum :
+      (Cc ∩ Cint).card + (Cc' ∩ Cint).card
+        = (Kfirst ∩ Cint).card + (Ksecond ∩ Cint).card := by
+    rw [← Finset.card_union_of_disjoint
+        (hclassDisj.mono Finset.inter_subset_left Finset.inter_subset_left),
+      ← Finset.card_union_of_disjoint
+        (hshellDisj.mono Finset.inter_subset_left Finset.inter_subset_left),
+      hsame]
+  omega
+
+private theorem grid_retained_slice_eq_pair
+    {Cint Cc : Finset ℝ²} {a b : ℝ²}
+    (ha : a ∈ Cc) (hb : b ∈ Cc) (haI : a ∈ Cint) (hbI : b ∈ Cint)
+    (hab : a ≠ b) (hcard : (Cc ∩ Cint).card = 2) :
+    Cc ∩ Cint = {a, b} := by
+  classical
+  refine (Finset.eq_of_subset_of_card_le ?_ ?_).symm
+  · intro z hz
+    rcases Finset.mem_insert.mp hz with rfl | hz'
+    · exact Finset.mem_inter.mpr ⟨ha, haI⟩
+    · rw [Finset.mem_singleton.mp hz']
+      exact Finset.mem_inter.mpr ⟨hb, hbI⟩
+  · have hpair : ({a, b} : Finset ℝ²).card = 2 := by
+      rw [Finset.card_insert_of_notMem (by simpa using hab), Finset.card_singleton]
+    omega
+
+private theorem grid_shell_other_slice_card_eq_one
+    {Cint Cc Cc' K : Finset ℝ²} {a b : ℝ²}
+    (hclassDisj : Disjoint Cc Cc')
+    (hsub : K ⊆ Cc ∪ Cc')
+    (hKC : K ∩ Cc = {a, b})
+    (haInt : a ∈ Cint) (hbOut : b ∉ Cint)
+    (hKint : (K ∩ Cint).card = 2) :
+    (K ∩ (Cc' ∩ Cint)).card = 1 := by
+  classical
+  have hKCint : K ∩ (Cc ∩ Cint) = {a} := by
+    rw [← Finset.inter_assoc, hKC]
+    ext z
+    simp only [Finset.mem_inter, Finset.mem_insert, Finset.mem_singleton]
+    constructor
+    · rintro ⟨h | h, hi⟩
+      · exact h
+      · subst h
+        exact absurd hi hbOut
+    · rintro rfl
+      exact ⟨Or.inl rfl, haInt⟩
+  have hsplit : K ∩ Cint = (K ∩ (Cc ∩ Cint)) ∪ (K ∩ (Cc' ∩ Cint)) := by
+    ext z
+    simp only [Finset.mem_inter, Finset.mem_union]
+    constructor
+    · rintro ⟨hzK, hzI⟩
+      rcases Finset.mem_union.mp (hsub hzK) with h | h
+      · exact Or.inl ⟨hzK, h, hzI⟩
+      · exact Or.inr ⟨hzK, h, hzI⟩
+    · rintro (⟨hzK, _, hzI⟩ | ⟨hzK, _, hzI⟩) <;> exact ⟨hzK, hzI⟩
+  have hdisj : Disjoint (K ∩ (Cc ∩ Cint)) (K ∩ (Cc' ∩ Cint)) :=
+    hclassDisj.mono
+      (Finset.inter_subset_right.trans Finset.inter_subset_left)
+      (Finset.inter_subset_right.trans Finset.inter_subset_left)
+  have hc := Finset.card_union_of_disjoint hdisj
+  rw [← hsplit, hKCint, Finset.card_singleton, hKint] at hc
+  omega
+
+/-- A grid shell meets the strict first-cap interior in at most two points.
+Either its blocker lies in that same cap, and the same-cap row bound applies, or
+it lies in another strict cap, and the cross-cap one-hit rule applies to each of
+the two first-apex classes carrying the shell. -/
+private theorem grid_shell_inter_capInterior_card_le_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {x : ℝ²} (hx : x ∈ D.A) {r₁ r₂ : ℝ}
+    (hsub : (H.selectedAt x hx).toCriticalFourShell.support ⊆
+      SelectedClass D.A S.oppApex1 r₁ ∪ SelectedClass D.A S.oppApex1 r₂) :
+    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+      S.capInteriorByIndex S.oppIndex1).card ≤ 2 := by
+  classical
+  rcases exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
+      G hx with ⟨i, hi⟩
+  by_cases hii : i = S.oppIndex1
+  · subst hii
+    have hle :
+        ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1).card ≤ 2 :=
+      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+        S D.convex S.oppIndex1
+        ((H.selectedAt x hx).toCriticalFourShell.toSelectedFourClass)
+        (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hi)
+    refine le_trans (Finset.card_le_card ?_) hle
+    intro z hz
+    exact Finset.mem_inter.mpr
+      ⟨(Finset.mem_inter.mp hz).1,
+        S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+          (Finset.mem_inter.mp hz).2⟩
+  · have hrich :
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex S.oppIndex1) :=
+      G.apex_rich S.oppIndex1
+    have h1 :
+        ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex1 r₁ ∩
+            S.capInteriorByIndex S.oppIndex1)).card ≤ 1 := by
+      simpa using
+        criticalShell_inter_otherRichCapSlice_card_le_one hx hi hii hrich r₁
+    have h2 :
+        ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex1 r₂ ∩
+            S.capInteriorByIndex S.oppIndex1)).card ≤ 1 := by
+      simpa using
+        criticalShell_inter_otherRichCapSlice_card_le_one hx hi hii hrich r₂
+    have hsplit :
+        (H.selectedAt x hx).toCriticalFourShell.support ∩
+            S.capInteriorByIndex S.oppIndex1 ⊆
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+              (SelectedClass D.A S.oppApex1 r₁ ∩
+                S.capInteriorByIndex S.oppIndex1)) ∪
+            ((H.selectedAt x hx).toCriticalFourShell.support ∩
+              (SelectedClass D.A S.oppApex1 r₂ ∩
+                S.capInteriorByIndex S.oppIndex1)) := by
+      intro z hz
+      rcases Finset.mem_inter.mp hz with ⟨hzK, hzI⟩
+      rcases Finset.mem_union.mp (hsub hzK) with h | h
+      · exact Finset.mem_union_left _
+          (Finset.mem_inter.mpr ⟨hzK, Finset.mem_inter.mpr ⟨h, hzI⟩⟩)
+      · exact Finset.mem_union_right _
+          (Finset.mem_inter.mpr ⟨hzK, Finset.mem_inter.mpr ⟨h, hzI⟩⟩)
+    have hsub' := Finset.card_le_card hsplit
+    have hun := Finset.card_union_le
+      ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A S.oppApex1 r₁ ∩ S.capInteriorByIndex S.oppIndex1))
+      ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A S.oppApex1 r₂ ∩ S.capInteriorByIndex S.oppIndex1))
+    omega
+
+/-- **Cap placement census for the paired two-radius grid.**
+
+The strict interior of the first cap meets the eight grid points in exactly
+four: the two retained sources on the retained class, and exactly one hit of
+each shell on the second class.  Both retained-class partners are pushed out of
+that strict interior, hence into the two adjacent caps. -/
+structure PairedGridCapPlacement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) : Prop where
+  retained_inter_capInterior_eq :
+    SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1 = {O.kept, O.deleted}
+  other_inter_capInterior_card :
+    (SelectedClass D.A S.oppApex1 Gr.otherRadius ∩
+      S.capInteriorByIndex S.oppIndex1).card = 2
+  keptPartner_not_mem_capInterior :
+    Gr.keptPartner ∉ S.capInteriorByIndex S.oppIndex1
+  deletedPartner_not_mem_capInterior :
+    Gr.deletedPartner ∉ S.capInteriorByIndex S.oppIndex1
+  keptShell_inter_other_capInterior_card :
+    ((H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support ∩
+      (SelectedClass D.A S.oppApex1 Gr.otherRadius ∩
+        S.capInteriorByIndex S.oppIndex1)).card = 1
+  deletedShell_inter_other_capInterior_card :
+    ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+      (SelectedClass D.A S.oppApex1 Gr.otherRadius ∩
+        S.capInteriorByIndex S.oppIndex1)).card = 1
+
+/-- The grid determines its own cap placement. -/
+theorem pairedGridCapPlacement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O)
+    (G : TriApexAllLargeContext D S) :
+    PairedGridCapPlacement Gr := by
+  classical
+  have hclassDisj :
+      Disjoint (SelectedClass D.A S.oppApex1 radius)
+        (SelectedClass D.A S.oppApex1 Gr.otherRadius) :=
+    selectedClass_disjoint_of_radius_ne
+      (fun h => Gr.otherRadius_ne_radius h.symm)
+  have hretTwo :
+      2 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card := by
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+        F.radius_pos (by simp [Gr.retainedClass_card_eq_four])
+  have hotherTwo :
+      2 ≤ (SelectedClass D.A S.oppApex1 Gr.otherRadius ∩
+        S.capInteriorByIndex S.oppIndex1).card := by
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+        Gr.otherRadius_pos (by simp [Gr.otherClass_card_eq_four])
+  have hKeptLe :=
+    grid_shell_inter_capInterior_card_le_two G O.kept_mem_A
+      Gr.keptShell_subset_union
+  have hDelLe :=
+    grid_shell_inter_capInterior_card_le_two G O.deleted_mem_A
+      Gr.deletedShell_subset_union
+  obtain ⟨hretEqTwo, hotherEqTwo, hKeptEqTwo, hDelEqTwo⟩ :=
+    grid_capInterior_counts hclassDisj Gr.shells_disjoint
+      Gr.shells_union_eq_classes_union hretTwo hotherTwo hKeptLe hDelLe
+  have hretEq :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 = {O.kept, O.deleted} :=
+    grid_retained_slice_eq_pair O.kept_mem_radius O.deleted_mem_radius
+      O.kept_mem_capInterior O.deleted_mem_capInterior O.sources_ne hretEqTwo
+  have hkeptPartnerNeDeleted : Gr.keptPartner ≠ O.deleted := by
+    intro h
+    exact (Finset.disjoint_left.mp Gr.shells_disjoint)
+      Gr.keptPartner_mem_keptShell
+      (by
+        rw [h]
+        exact
+          (H.selectedAt O.deleted
+            O.deleted_mem_A).toCriticalFourShell.q_mem_support)
+  have hdeletedPartnerNeKept : Gr.deletedPartner ≠ O.kept := by
+    intro h
+    exact (Finset.disjoint_left.mp Gr.shells_disjoint)
+      (by
+        rw [h]
+        exact
+          (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.q_mem_support)
+      Gr.deletedPartner_mem_deletedShell
+  have hkeptPartnerOut :
+      Gr.keptPartner ∉ S.capInteriorByIndex S.oppIndex1 := by
+    intro hin
+    have hmem : Gr.keptPartner ∈ ({O.kept, O.deleted} : Finset ℝ²) := by
+      rw [← hretEq]
+      exact Finset.mem_inter.mpr ⟨Gr.keptPartner_mem_retained, hin⟩
+    rcases Finset.mem_insert.mp hmem with h | h
+    · exact Gr.keptPartner_ne_kept h
+    · exact hkeptPartnerNeDeleted (Finset.mem_singleton.mp h)
+  have hdeletedPartnerOut :
+      Gr.deletedPartner ∉ S.capInteriorByIndex S.oppIndex1 := by
+    intro hin
+    have hmem : Gr.deletedPartner ∈ ({O.kept, O.deleted} : Finset ℝ²) := by
+      rw [← hretEq]
+      exact Finset.mem_inter.mpr ⟨Gr.deletedPartner_mem_retained, hin⟩
+    rcases Finset.mem_insert.mp hmem with h | h
+    · exact hdeletedPartnerNeKept h
+    · exact Gr.deletedPartner_ne_deleted (Finset.mem_singleton.mp h)
+  exact {
+    retained_inter_capInterior_eq := hretEq
+    other_inter_capInterior_card := hotherEqTwo
+    keptPartner_not_mem_capInterior := hkeptPartnerOut
+    deletedPartner_not_mem_capInterior := hdeletedPartnerOut
+    keptShell_inter_other_capInterior_card :=
+      grid_shell_other_slice_card_eq_one hclassDisj Gr.keptShell_subset_union
+        Gr.keptShell_inter_retained_eq O.kept_mem_capInterior hkeptPartnerOut
+        hKeptEqTwo
+    deletedShell_inter_other_capInterior_card :=
+      grid_shell_other_slice_card_eq_one hclassDisj
+        Gr.deletedShell_subset_union Gr.deletedShell_inter_retained_eq
+        O.deleted_mem_capInterior hdeletedPartnerOut hDelEqTwo }
+
 /-- Escaping-source child of the paired common-deletion leaf.
 
 The retained common deletion renews at a carrier point on a first-apex class of
@@ -1017,8 +1302,10 @@ leaf already carries order-sensitive metric data, not only incidence counts.
 
 Narrowing relative to the parent: the parent's retained class is only known to
 have at least four points and its shells are unconstrained off the retained
-radius; here both cardinalities are exactly four and both full shells are
-determined by the two classes. -/
+radius; here both cardinalities are exactly four, both full shells are
+determined by the two classes, the two grid radii are the only rich first-apex
+radii (`PairedTwoRadiusGrid.richClass_mem`), and the strict first-cap interior
+placement of all eight grid points is pinned by `PairedGridCapPlacement`. -/
 theorem false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1027,6 +1314,7 @@ theorem false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core
     {P : RetainedInteriorDirectedOmission R}
     {O : OrientedRetainedCommonDeletion P}
     (Gr : PairedTwoRadiusGrid O)
+    (place : PairedGridCapPlacement Gr)
     (G : TriApexAllLargeContext D S) :
     False := by
   sorry
@@ -1067,7 +1355,8 @@ theorem false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
           J G
   | twoRadiusGrid Gr =>
       exact
-        false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core Gr G
+        false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core Gr
+          (pairedGridCapPlacement Gr G) G
 
 /-- The fresh reverse-hit branch is already a nonreturning two-step
 common-deletion walk.  Hence its endpoint is classified by either an
