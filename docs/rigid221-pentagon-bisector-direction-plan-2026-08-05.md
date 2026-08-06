@@ -546,3 +546,90 @@ Consequence for planning, and it is a real narrowing of the option set:
   verbatim if the pentagon supplies a covering statement of the shape "these
   rows are contained in the union of these apex classes" {{NEEDS_RESEARCH}} —
   whether it does is unchecked.
+
+## 10. The cap-interior squeeze does not transfer to the pentagon (2026-08-05)
+
+Resolves the `{{NEEDS_RESEARCH}}` marker closing §9. Two corrections to how §9
+posed the question, both from checking the Lean rather than the summary:
+
+1. §9 asked for one input (the covering statement). The squeeze needs **three**,
+   and the covering statement is only the third. This is the E1 paired-grid
+   lane's own account of its mechanism (convo #3104).
+2. §9 named `selectedClass_capInteriorByIndex_card_ge_two`
+   (`CapInteriorRadiusCounting.lean:27`), which wants `4 ≤ card`. The general
+   form is `..._card_ge_card_sub_two` (`CapInteriorRadiusCounting.lean:84`).
+
+### 10.1 Input (1), lower bound — AVAILABLE, and stronger than the grid's
+
+`SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_card_sub_two`
+(`CapInteriorRadiusCounting.lean:84`) needs only `ConvexIndep A` and
+`0 < radius`, and gives `card − 2 ≤ |class ∩ capInteriorByIndex i|`. At
+`i = S.oppIndex2` the pentagon class has card `5`, so **at least three** of
+`{u, xu, deleted, v, xv}` lie in the strict second-cap interior — against the
+grid's `≥ 2` from a four-point class.
+
+Needs the index bridge `oppositeVertexByIndex S.oppIndex2 = S.oppApex2`. It
+exists — `FiniteN10.lean:101` — but is `private`; it is a three-line
+`interval_cases`/`simp` to re-derive locally.
+
+### 10.2 Input (2), per-row upper bound — INERT at this index
+
+The grid's prerequisite `TriApexAllLargeContext` (`∀ i, 6 ≤ (S.capByIndex i).card`,
+`TriApexEndpointRetainedOmission.lean:799`) is **not** available: the
+`secondOppositeLarge` constructor (`Rigid221SourceHeavy.lean:363`) supplies only
+`6 ≤ S.oppCap2.card`, nothing about the other two caps. That turns out not to
+matter — the grid uses `exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge`
+only to *obtain* a strict cap for the blocker, and this leaf already carries that
+as the hypothesis `_hblockerInterior`.
+
+What actually fails is the bound itself.
+
+- `CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two:278`
+  **does** apply, to two rows: row `xv` by `_hblockerInterior`, and row `u`
+  because `centerAt u = xv` and `_hxvInterior` puts `xv` in the same strict
+  interior (`capInteriorByIndex_subset_capByIndex`). But each of those rows
+  already has a *proved* two-point class trace — `{u, xu}` and `{xv, u}`. The
+  `≤ 2` bound is therefore **saturated by facts already in hand**; all it adds
+  is that the two remaining support points of each row avoid cap `oppIndex2`,
+  and nothing else in the leaf constrains those points.
+- `criticalShell_inter_otherRichCapSlice_card_le_one`
+  (`TriApexEndpointRetainedOmission.lean:394`) is the sharp `≤ 1` bound that
+  makes the grid's squeeze bite, and it **does not apply**. It requires
+  `hij : i ≠ j`, where `i` indexes the cap holding the row's centre and `j` the
+  apex carrying the class. The pentagon has `i = j = S.oppIndex2`: the blocker
+  sits in the strict interior of the cap opposite the very apex carrying the
+  class. The hypothesis is not bookkeeping — the proof routes through
+  `false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap`
+  (line 411), whose content is that a row centre in one cap cannot be
+  equidistant from two points of a *different* cap. At `i = j` the best
+  available bound degrades to the `≤ 2` of the previous bullet.
+
+### 10.3 Input (3), the covering statement — ABSENT
+
+The grid's `shells_union_eq_classes_union`
+(`PairedCommonDeletionNormalForm.lean:222`) is an **equality**: the union of two
+shell supports equals the union of two classes at one apex. It holds there
+because each four-point shell splits `2 + 2` across the two radii, so *every*
+shell point is a class point, and the two counts are forced to meet.
+
+The pentagon has no analogue, and not for want of searching: it supplies per-row
+class **traces** only — `shell ∩ class = {two points}`, plus the trace bounds
+`_htraceBound` / `_htraceBoundXu` at `Rigid221SourceHeavy.lean:3591`. Each of
+the five rows carries two further support points that the pentagon does not
+place in any class. Even the containment form `shell ⊆ class ∪ class` (the
+grid's `keptShell_subset_union`) is unavailable, let alone the equality.
+
+### 10.4 Verdict
+
+**The two-sided cap-interior squeeze does not transfer.** (1) holds and is
+stronger; (2) is inert because the pentagon's blocker and its class share a cap
+index; (3) is absent. This is consistent with §9 rather than independent of it —
+the configuration is realizable, so no combination of these counting bounds
+could have closed it. §10.2 supplies the structural reason: the grid arm's
+mechanism depends on the blocker and the class living at *different* indices,
+and the pentagon is exactly the degenerate case where they coincide.
+
+Both named routes out of this leaf are now closed. What is left is untouched by
+§9 and §10: the deletion/K4 layer, the two unplaced off-class support points per
+shell, and any statement counting the carrier globally rather than counting
+inside cap `oppIndex2`.
