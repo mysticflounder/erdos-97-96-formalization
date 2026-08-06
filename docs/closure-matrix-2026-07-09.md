@@ -3054,3 +3054,48 @@ The pentagon class incidence is now fully pinned to the five-cycle:
 All four placement leaves carry the strengthened `_htraceBound`; no leaf
 lost a hypothesis.  Module build green; on-spine reaches-`sorry` count
 unchanged at 28; module sorry count unchanged at 4.
+
+### Rigid221 source-heavy large-cap: placement split replaced by a blocker-identity split (2026-08-05)
+
+With the five-cycle incidence fully pinned, the cap-placement split of the
+pentagon is superseded.  The `xv`-row blocker is equidistant from the
+pinned class edge `{xv, u}` of that row, and both endpoints are
+strict-interior class points (`u` from the packet's source-pair
+interiority, `xv` from the two-center localization at the source row), so
+the two-center cap localization puts the blocker in the strict second-cap
+interior in **every** placement — not only when `v` and `deleted` are both
+exiled.  New private producer
+`exactFourRigid221_sourceHeavy_pentagon_blocker_mem_secondCapInterior`.
+
+The pentagon parent now splits on the physical-class membership of that
+blocker.  Three of the five class alternatives close in the parent:
+
+- `centerAt xv = u` — `u` is on the `xv` row, a center is not
+  (`center_not_mem_support`);
+- `centerAt xv = xv` — `centerAt_ne_source`;
+- `centerAt xv = xu` — with `centerAt u = xv` this makes `{u, xu, xv}`
+  equilateral on the physical class circle, so the apex lies in their
+  convex hull (`exactFourRigid221_sourceHeavy_pentagon_equilateralXu_false`).
+
+Coordinator-interface frontier, before → after:
+
+| | before | after |
+| --- | --- | --- |
+| granularity | cap placement of `v`, `deleted` | identity of the `xv`-row blocker |
+| leaves | 4 (`pentagonAllInterior`, `pentagonVAdjacent`, `pentagonDeletedAdjacent`, `pentagonOppositeAdjacentOffClassBlocker`) | 3 (`pentagonBlockerDeleted`, `pentagonBlockerV`, `pentagonOffClassBlocker`) |
+| on-spine reaches-`sorry` | 28 | 27 |
+| module `sorry` count | 4 | 3 |
+
+The residual model set shrinks strictly: the old open region contained
+`centerAt xv = xu` in the three interior placements, which the new split
+kills outright, and each new leaf pins the blocker to a named point or
+certifies it off-class.  `pentagonBlockerDeleted` and `pentagonBlockerV`
+additionally get `deleted`, resp. `v`, in the strict second-cap interior
+for free from the blocker localization.
+
+Removed as superseded: the four placement leaves, the dispatch theorem
+`..._pentagonOppositeAdjacent`, and the two placement helpers
+`exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior` and
+`exactFourRigid221_sourceHeavy_adjacent_orientation_of_two` (recoverable
+at `b0157a17`).  Module build green; axioms unchanged (`propext`,
+`sorryAx`, `Classical.choice`, `Quot.sound`).
