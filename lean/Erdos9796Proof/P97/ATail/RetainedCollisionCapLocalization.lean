@@ -126,6 +126,33 @@ def FirstApexCapSeparation
       Q.fiber.source₁.1 ∉ S.capByIndex capIndex ∧
       Q.fiber.source₂.1 ∉ S.capByIndex capIndex
 
+/- The same-cap branch of the closing producer contract.  This is the
+source-clean adapter from the retained-radius collision packet to the
+source-faithful terminal: the producer has already supplied the cap
+placement, so no blocker-map choice is hidden in this constructor. -/
+noncomputable def criticalFiberClosingCore_of_firstApexCapSeparation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (Q : RetainedRadiusCollision (R := R))
+    (hseparation : FirstApexCapSeparation Q) :
+    CriticalFiberClosingCore R := by
+  let capIndex : Fin 3 := Exists.choose hseparation
+  have hfields := Exists.choose_spec hseparation
+  exact .sameCap Q.fiber {
+    C := Q.fiber.source₁.1
+    K := Q.fiber.source₂.1
+    fiber_orientation := Or.inl ⟨rfl, rfl⟩
+    capIndex := capIndex
+    secondCenter := S.oppApex1
+    commonBlocker_mem_cap := hfields.1
+    secondCenter_mem_cap := hfields.2.1
+    secondCenter_ne_commonBlocker := Q.fiber.commonBlocker_ne_firstApex.symm
+    C_not_mem_cap := hfields.2.2.1
+    K_not_mem_cap := hfields.2.2.2
+    source_faithful_secondCenter := Or.inl ⟨rfl, Q.firstApex_equidistant⟩ }
+
 /-- First-apex cap separation is already contradictory through the checked
 source-faithful same-cap consumer. -/
 theorem false_of_firstApexCapSeparation
@@ -135,20 +162,9 @@ theorem false_of_firstApexCapSeparation
     {R : FrontierCommonDeletionParentResidual F}
     (Q : RetainedRadiusCollision (R := R)) :
     FirstApexCapSeparation Q → False := by
-  rintro ⟨capIndex, hcommon, hfirst, hsource₁Off, hsource₂Off⟩
-  let core : SameCapCollisionPairCore Q.fiber := {
-    C := Q.fiber.source₁.1
-    K := Q.fiber.source₂.1
-    fiber_orientation := Or.inl ⟨rfl, rfl⟩
-    capIndex := capIndex
-    secondCenter := S.oppApex1
-    commonBlocker_mem_cap := hcommon
-    secondCenter_mem_cap := hfirst
-    secondCenter_ne_commonBlocker := Q.fiber.commonBlocker_ne_firstApex.symm
-    C_not_mem_cap := hsource₁Off
-    K_not_mem_cap := hsource₂Off
-    source_faithful_secondCenter := Or.inl ⟨rfl, Q.firstApex_equidistant⟩ }
-  exact core.false
+  intro hseparation
+  exact false_of_criticalFiberClosingCore
+    (criticalFiberClosingCore_of_firstApexCapSeparation Q hseparation)
 
 /-- If the first apex and the common blocker lie in one indexed cap, at least
 one actual collision source lies in that cap. -/
