@@ -2870,3 +2870,37 @@ apex or that row's blocker).  The planned index-2 port of
 `bisectorCenter_mem_firstApexInterior` turned out pre-existing as
 `commonPhysicalPair_center_mem_secondCapInterior`
 (`TwoCenterCapLocalization.lean`).
+
+### Rigid221 source-heavy large-cap: opposite-adjacent leaf blocker dispatch (2026-08-05)
+
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppositeAdjacent`
+is now a PROVED dispatch on the physical-class membership of the `xv`-row
+blocker.  Producer chain: the blocker is equidistant from the pinned edge
+`{xv, u}` (both strict-interior class points: `u` from the packet's
+`source_pair_interior`, `xv` parent-proved), so
+`commonPhysicalPair_center_mem_secondCapInterior` localizes it into the
+strict second-cap interior.
+
+- On-class arm (CLOSED): the exact class enumeration `hclassFive` bounds
+  the blocker to the five named points; `v`/`deleted` are excluded by the
+  leaf's interior exclusions, `xv` by `centerAt_ne_source`, `u` by
+  `center_not_mem_support` with `u ∈ xv`-row.  The forced `blocker = xu`
+  yields `dist u xv = dist xu xv` (pinned `bl(u) = xv`) and
+  `dist u xu = dist xu xv` (xv-row radius), so `{u, xu, xv}` is
+  equilateral and inscribed in the physical class circle;
+  `mem_convexHull_three_of_equidistant_nonobtuse` puts `oppApex2` in
+  their convex hull, contradicting `D.convex`
+  (`exactFourRigid221_sourceHeavy_pentagon_equilateralXu_false`,
+  private).  This recovers the exact-five closure step WITHOUT the
+  interior enumeration `secondInterior_eq_named`.
+- Off-class residual (new leaf, sole remaining obligation of this arm):
+  `..._pentagonOppositeAdjacentOffClassBlocker` — the `xv`-row blocker is
+  an interior carrier point OFF the physical class circle.  Narrowing
+  measures: parent-proved interior localization (`hblockerInterior`) and
+  off-class certificate (`hblockerNotClass`), strictly stronger
+  hypotheses proved by the parent for this branch.
+
+Coordinator-interface frontier for the opposite-adjacent sub-arm: before,
+one undifferentiated placement leaf; after, one off-class-blocker leaf
+(fan-out 1, granularity = class membership of the `xv`-row blocker).  Raw
+direct-`sorry` delta `0` (1 → 1).
