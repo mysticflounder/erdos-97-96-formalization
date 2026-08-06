@@ -3004,3 +3004,53 @@ row trace is now pinned or bounded:
 The sole remaining incidence freedom is whether `deleted` lies on the `xv`
 row.  Module build green; on-spine reaches-`sorry` count unchanged at 28;
 module sorry count unchanged at 4.
+
+### Rigid221 source-heavy large-cap: both row trace bounds rebased on the mined bank; pentagon incidence fully pinned (2026-08-05)
+
+Supersession, not a new result: the mined bank already contained
+`Problem97.ATailExactFourRobustCapExpansion.actualLateRow_secondClass_card_le_two`
+(`lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:383`),
+which bounds the physical second-apex class trace of **every** actual late
+row by 2 with no cap-interior restriction.  The two bisector-saturation
+producers landed earlier the same day derived weaker special cases of that
+bound by hand.  Both are now proved from the bank instead, via one private
+pair lemma `exactFourRigid221_sourceHeavy_row_class_pair`: a row already
+carrying two distinct class points carries no third
+(`third_not_mem_of_card_le_two` on the row-class intersection).
+
+Deleted as unused: the saturation kernel
+`exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant` and the
+two saturation-based producer bodies (recoverable at `dd359d8c`).
+
+The `xv`-row bound is **strengthened** by the rebase.  The old saturation
+route could not decide whether `deleted` lies on the `xv` row — no pinned
+row carries `deleted` together with `u` or with `xv` as class points.  The
+bank bound needs no such edge: `xv` (row source, class point by the pinned
+opposite-row trace) and `u` (pentagon incidence hypothesis) are two
+distinct class points on that row, so there is no third:
+
+```
+∀ x ∈ (selectedAt xv).support,
+    x ∈ SelectedClass D.A S.oppApex2 P.rho →
+      x = xv ∨ x = u
+```
+
+Distinctness `u ≠ xv` comes from `centerAt u = xv` (packet `blocker_eq_xv`)
+and `center_not_mem_support`.  The `xu`-row producer needs only
+`deleted ∈ xu`-row and `xu ∉ deleted`-row; the placement hypotheses
+`_huNotXuRow`, `_hxvNotXuRow`, `_hvDeletedRow` and the class enumeration
+`_hclassFive` are no longer consumed by either producer.
+
+The pentagon class incidence is now fully pinned to the five-cycle:
+
+| row | class trace |
+| --- | --- |
+| `u` | `{u, xu}` (packet) |
+| `v` | `{v, xv}` (packet) |
+| `xu` | `{xu, deleted}` (bank pair bound) |
+| `deleted` | `{deleted, v}` (leaf hypotheses) |
+| `xv` | `{xv, u}` (bank pair bound — `deleted` is off this row) |
+
+All four placement leaves carry the strengthened `_htraceBound`; no leaf
+lost a hypothesis.  Module build green; on-spine reaches-`sorry` count
+unchanged at 28; module sorry count unchanged at 4.
