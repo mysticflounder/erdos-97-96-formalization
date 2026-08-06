@@ -3153,7 +3153,8 @@ physical second-cap interior.  Every cycle-adjacent class pair is then an
 interior pair, so every actual blocker of a class row localizes into the
 same strict interior via the two-center cap localization.  Narrowing over
 the parent pentagon: the two parent-proved interior memberships for `v` and
-`deleted`. -/
+`deleted`, and the parent-proved class trace bound of the `xv` row
+(`xu` and `v` are provably off that row). -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonAllInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3210,14 +3211,22 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonAllIn
     (_hvInterior :
       P.v.1 ∈ S.capInteriorByIndex S.oppIndex2)
     (_hdeletedInterior :
-      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2) :
+      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_htraceBound :
+      ∀ x ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support,
+        x ∈ SelectedClass D.A S.oppApex2 P.rho →
+          x = _packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1) :
     False := by
   sorry
 
 /-- Pentagon placement leaf with `v` exiled to an adjacent cap while
 `deleted` stays interior.  Narrowing over the parent pentagon: the
 parent-proved interior memberships for `xv` and `deleted`, the interior
-exclusion for `v`, and the adjacent-cap membership certificate for `v`. -/
+exclusion for `v`, the adjacent-cap membership certificate for `v`, and the
+parent-proved class trace bound of the `xv` row (`xu` and `v` are provably
+off that row). -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonVAdjacent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3277,14 +3286,22 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonVAdja
       P.v.1 ∉ S.capInteriorByIndex S.oppIndex2)
     (_hvAdjacent :
       P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
-        P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) :
+        P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2)
+    (_htraceBound :
+      ∀ x ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support,
+        x ∈ SelectedClass D.A S.oppApex2 P.rho →
+          x = _packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1) :
     False := by
   sorry
 
 /-- Pentagon placement leaf with `deleted` exiled to an adjacent cap while
 `v` stays interior.  Narrowing over the parent pentagon: the parent-proved
 interior memberships for `xv` and `v`, the interior exclusion for
-`deleted`, and the adjacent-cap membership certificate for `deleted`. -/
+`deleted`, the adjacent-cap membership certificate for `deleted`, and the
+parent-proved class trace bound of the `xv` row (`xu` and `v` are provably
+off that row). -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonDeletedAdjacent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3346,7 +3363,13 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonDelet
       P.jointDeletion.deleted.1 ∈
           S.leftAdjacentCapByIndex S.oppIndex2 ∨
         P.jointDeletion.deleted.1 ∈
-          S.rightAdjacentCapByIndex S.oppIndex2) :
+          S.rightAdjacentCapByIndex S.oppIndex2)
+    (_htraceBound :
+      ∀ x ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support,
+        x ∈ SelectedClass D.A S.oppApex2 P.rho →
+          x = _packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1) :
     False := by
   sorry
 
@@ -3411,6 +3434,161 @@ private theorem exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant
     third_not_mem_of_card_le_two hbound hApexFilter hcFilter
       (Ne.symm hcNeApex) (fun h => hcon.1 h.symm)
       (fun h => hcon.2 h.symm) hzFilter
+
+/-- Class trace bound for the `xv` row of the pentagon configuration: the
+only physical class points that row can carry are `xv`, `u` and the deleted
+point.  Bisector saturation on the pinned source-row edge `{u, xu}` removes
+`xu`, and saturation on the pinned opposite-row edge `{v, xv}` removes `v`
+— the latter would identify the `xv`-row blocker with the `v`-row blocker,
+collapsing the two rows and putting `u` into the pinned opposite-row class
+trace `{v, xv}`.  Independent of the cap placement of `v` and `deleted`. -/
+private theorem exactFourRigid221_sourceHeavy_pentagon_xvRow_trace_bound
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (hclassFive :
+      ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+        q = P.u.1 ∨ q = packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+          q = P.v.1 ∨ q = packet.xv) :
+    ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt
+        packet.xv hxvA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1 := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Ku :=
+    (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  let Kv :=
+    (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell
+  let Kxv :=
+    (Hlate.selectedAt packet.xv hxvA).toCriticalFourShell
+  have hxuInter :
+      packet.xu ∈
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.source_row_trace]
+    simp
+  have hxvInter :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.opposite_row_trace]
+    simp
+  have hxuClass :
+      packet.xu ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxuInter).2
+  have hxvClass :
+      packet.xv ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxvInter).2
+  have hxuURow : packet.xu ∈ Ku.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxvVRow :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxvInter).1
+  have hcenterU :
+      Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  have hxvNotURow : packet.xv ∉ Ku.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact Ku.center_not_mem_support h
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    simpa only [← h] using Ku.q_mem_support
+  have hcxvA : Hlate.centerAt packet.xv hxvA ∈ D.A :=
+    Finset.mem_of_mem_erase Kxv.center_mem
+  have hcxvNe :
+      Hlate.centerAt packet.xv hxvA ≠ S.oppApex2 :=
+    P.surface.secondApex_robust.centerAt_ne Hlate packet.xv hxvA
+  intro x hxRow hxClass
+  rcases hclassFive x hxClass with hxeq | hxeq | hxeq | hxeq | hxeq
+  · exact Or.inr (Or.inl hxeq)
+  · -- `xu` in the `xv` row would make the `xv`-row blocker equidistant
+    -- from the source-row class edge `{u, xu}`; saturation on that edge
+    -- forces it to be the apex or the source blocker `xv`, both excluded.
+    exfalso
+    have hxuRow : packet.xu ∈ Kxv.support := by
+      rw [← hxeq]
+      exact hxRow
+    have hEqEdge :
+        dist (Hlate.centerAt packet.xv hxvA) P.u.1 =
+          dist (Hlate.centerAt packet.xv hxvA) packet.xu :=
+      (Kxv.support_eq_radius _ huXvRow).trans
+        (Kxv.support_eq_radius _ hxuRow).symm
+    rcases exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant
+        P P.u.1 P.u.2 P.u.2 hxuA (Ne.symm packet.xu_ne_u)
+        Ku.q_mem_support hxuURow P.huClass hxuClass hcxvA hEqEdge with
+      happ | hcen
+    · exact hcxvNe happ
+    · have hcenH :
+          Hlate.centerAt packet.xv hxvA =
+            Hlate.centerAt P.u.1 P.u.2 := hcen
+      exact centerAt_ne_source Hlate packet.xv hxvA
+        (hcenH.trans hcenterU)
+  · exact Or.inr (Or.inr hxeq)
+  · -- `v` in the `xv` row would make the `xv`-row blocker equidistant
+    -- from the opposite-row class edge `{v, xv}`; saturation identifies it
+    -- with the `v`-row blocker, the two rows then share center and radius,
+    -- and `u` would enter the pinned opposite-row class trace.
+    exfalso
+    have hvRow : P.v.1 ∈ Kxv.support := by
+      rw [← hxeq]
+      exact hxRow
+    have hEqEdge :
+        dist (Hlate.centerAt packet.xv hxvA) P.v.1 =
+          dist (Hlate.centerAt packet.xv hxvA) packet.xv :=
+      (Kxv.support_eq_radius _ hvRow).trans
+        (Kxv.support_eq_radius _ Kxv.q_mem_support).symm
+    rcases exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant
+        P P.v.1 P.v.2 P.v.2 hxvA (Ne.symm packet.xv_ne_v)
+        Kv.q_mem_support hxvVRow P.hvClass hxvClass hcxvA hEqEdge with
+      happ | hcen
+    · exact hcxvNe happ
+    · have hcenH :
+          Hlate.centerAt packet.xv hxvA =
+            Hlate.centerAt P.v.1 P.v.2 := hcen
+      have hradiusV :
+          dist (Hlate.centerAt P.v.1 P.v.2) P.v.1 = Kv.radius :=
+        Kv.support_eq_radius _ Kv.q_mem_support
+      have hradiusXv :
+          dist (Hlate.centerAt packet.xv hxvA) P.v.1 = Kxv.radius :=
+        Kxv.support_eq_radius _ hvRow
+      have hradius : Kv.radius = Kxv.radius := by
+        rw [← hradiusV, ← hradiusXv, hcenH]
+      have hdistU :
+          dist (Hlate.centerAt P.v.1 P.v.2) P.u.1 = Kv.radius := by
+        have hshift :
+            dist (Hlate.centerAt P.v.1 P.v.2) P.u.1 =
+              dist (Hlate.centerAt packet.xv hxvA) P.u.1 := by
+          rw [hcenH]
+        rw [hshift, hradius]
+        exact Kxv.support_eq_radius _ huXvRow
+      have huVRow : P.u.1 ∈ Kv.support :=
+        Kv.off_row_named_label_forbidden P.u.2 hdistU
+      have huVInter :
+          P.u.1 ∈
+            (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex2 P.rho :=
+        Finset.mem_inter.mpr ⟨huVRow, P.huClass⟩
+      rw [packet.opposite_row_trace] at huVInter
+      simp only [Finset.mem_insert, Finset.mem_singleton] at huVInter
+      rcases huVInter with huEqV | huEqXv
+      · exact P.huNeV (Subtype.ext huEqV)
+      · exact huNeXv huEqXv
+  · exact Or.inl hxeq
 
 /-- Equilateral kill shared by the pentagon placement leaves: if the three
 strict-interior class points `u`, `xu`, `xv` satisfy
@@ -3711,7 +3889,13 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppos
             S.rightAdjacentCapByIndex S.oppIndex2) ∨
         (P.jointDeletion.deleted.1 ∈
             S.leftAdjacentCapByIndex S.oppIndex2 ∧
-          P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2)) :
+          P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2))
+    (_htraceBound :
+      ∀ x ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support,
+        x ∈ SelectedClass D.A S.oppApex2 P.rho →
+          x = _packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1) :
     False := by
   classical
   let Hlate := lateFirstApexSystem R
@@ -3719,8 +3903,6 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppos
     (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
   let Kxv :=
     (Hlate.selectedAt _packet.xv hxvA).toCriticalFourShell
-  let Kv :=
-    (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell
   have hxuInter :
       _packet.xu ∈
         (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩
@@ -3777,95 +3959,6 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppos
         S.capInteriorByIndex S.oppIndex2 :=
     commonPhysicalPair_center_mem_secondCapInterior hcxvA hcxvNe
       _hxvInterior huInterior huNeXv.symm hcxvEq hphysicalXvU
-  have hxuClass :
-      _packet.xu ∈ SelectedClass D.A S.oppApex2 P.rho :=
-    (Finset.mem_inter.mp hxuInter).2
-  have hxvVRow :
-      _packet.xv ∈
-        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support :=
-    (Finset.mem_inter.mp hxvInter).1
-  have htraceBound :
-      ∀ x ∈
-        ((lateFirstApexSystem R).selectedAt
-          _packet.xv hxvA).toCriticalFourShell.support,
-        x ∈ SelectedClass D.A S.oppApex2 P.rho →
-          x = _packet.xv ∨ x = P.u.1 ∨ x = P.jointDeletion.deleted.1 := by
-    intro x hxRow hxClass
-    rcases _hclassFive x hxClass with hxeq | hxeq | hxeq | hxeq | hxeq
-    · exact Or.inr (Or.inl hxeq)
-    · -- `xu` in the `xv` row would make the `xv`-row blocker equidistant
-      -- from the source-row class edge `{u, xu}`; saturation on that edge
-      -- forces it to be the apex or the source blocker `xv`, both excluded.
-      exfalso
-      have hxuRow : _packet.xu ∈ Kxv.support := by
-        rw [← hxeq]
-        exact hxRow
-      have hEqEdge :
-          dist (Hlate.centerAt _packet.xv hxvA) P.u.1 =
-            dist (Hlate.centerAt _packet.xv hxvA) _packet.xu :=
-        (Kxv.support_eq_radius _ _huXvRow).trans
-          (Kxv.support_eq_radius _ hxuRow).symm
-      rcases exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant
-          P P.u.1 P.u.2 P.u.2 hxuA (Ne.symm _packet.xu_ne_u)
-          Ku.q_mem_support hxuURow P.huClass hxuClass hcxvA hEqEdge with
-        happ | hcen
-      · exact hcxvNe happ
-      · have hcenH :
-            Hlate.centerAt _packet.xv hxvA =
-              Hlate.centerAt P.u.1 P.u.2 := hcen
-        exact centerAt_ne_source Hlate _packet.xv hxvA
-          (hcenH.trans hcenterU)
-    · exact Or.inr (Or.inr hxeq)
-    · -- `v` in the `xv` row would make the `xv`-row blocker equidistant
-      -- from the opposite-row class edge `{v, xv}`; saturation identifies it
-      -- with the `v`-row blocker, the two rows then share center and radius,
-      -- and `u` would enter the pinned opposite-row class trace.
-      exfalso
-      have hvRow : P.v.1 ∈ Kxv.support := by
-        rw [← hxeq]
-        exact hxRow
-      have hEqEdge :
-          dist (Hlate.centerAt _packet.xv hxvA) P.v.1 =
-            dist (Hlate.centerAt _packet.xv hxvA) _packet.xv :=
-        (Kxv.support_eq_radius _ hvRow).trans
-          (Kxv.support_eq_radius _ Kxv.q_mem_support).symm
-      rcases exactFourRigid221_sourceHeavy_eq_apex_or_center_of_equidistant
-          P P.v.1 P.v.2 P.v.2 hxvA (Ne.symm _packet.xv_ne_v)
-          Kv.q_mem_support hxvVRow P.hvClass hxvClass hcxvA hEqEdge with
-        happ | hcen
-      · exact hcxvNe happ
-      · have hcenH :
-            Hlate.centerAt _packet.xv hxvA =
-              Hlate.centerAt P.v.1 P.v.2 := hcen
-        have hradiusV :
-            dist (Hlate.centerAt P.v.1 P.v.2) P.v.1 = Kv.radius :=
-          Kv.support_eq_radius _ Kv.q_mem_support
-        have hradiusXv :
-            dist (Hlate.centerAt _packet.xv hxvA) P.v.1 = Kxv.radius :=
-          Kxv.support_eq_radius _ hvRow
-        have hradius : Kv.radius = Kxv.radius := by
-          rw [← hradiusV, ← hradiusXv, hcenH]
-        have hdistU :
-            dist (Hlate.centerAt P.v.1 P.v.2) P.u.1 = Kv.radius := by
-          have hshift :
-              dist (Hlate.centerAt P.v.1 P.v.2) P.u.1 =
-                dist (Hlate.centerAt _packet.xv hxvA) P.u.1 := by
-            rw [hcenH]
-          rw [hshift, hradius]
-          exact Kxv.support_eq_radius _ _huXvRow
-        have huVRow : P.u.1 ∈ Kv.support :=
-          Kv.off_row_named_label_forbidden P.u.2 hdistU
-        have huVInter :
-            P.u.1 ∈
-              (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩
-                SelectedClass D.A S.oppApex2 P.rho :=
-          Finset.mem_inter.mpr ⟨huVRow, P.huClass⟩
-        rw [_packet.opposite_row_trace] at huVInter
-        simp only [Finset.mem_insert, Finset.mem_singleton] at huVInter
-        rcases huVInter with huEqV | huEqXv
-        · exact P.huNeV (Subtype.ext huEqV)
-        · exact huNeXv huEqXv
-    · exact Or.inl hxeq
   by_cases hblockerClass :
       Hlate.centerAt _packet.xv hxvA ∈
         SelectedClass D.A S.oppApex2 P.rho
@@ -3900,7 +3993,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppos
         _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
         _hxvNotDeletedRow _hclassFive _hxvInterior _hvNotInterior
         _hdeletedNotInterior _horientation hcxvInterior hblockerClass
-        htraceBound
+        _htraceBound
 
 /-- Checked cap-placement split of the pentagon: the five-cycle
 configuration in which the physical second-apex class consists of exactly
@@ -3967,6 +4060,9 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
   classical
   have hxvInterior :=
     exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior P _packet
+  have htraceBound :=
+    exactFourRigid221_sourceHeavy_pentagon_xvRow_trace_bound
+      P _packet hxuA hxvA _huXvRow _hclassFive
   by_cases hvInterior : P.v.1 ∈ S.capInteriorByIndex S.oppIndex2
   · by_cases hdeletedInterior :
         P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2
@@ -3975,7 +4071,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
           P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
           _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
           _hxvNotDeletedRow _hclassFive hxvInterior hvInterior
-          hdeletedInterior
+          hdeletedInterior htraceBound
     · exact
         false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonDeletedAdjacent
           P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
@@ -3984,6 +4080,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
           hdeletedInterior
           (exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
             P P.jointDeletion.deleted_mem_class hdeletedInterior)
+          htraceBound
   · have hvAdjacent :=
       exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
         P P.hvClass hvInterior
@@ -3994,7 +4091,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
           P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
           _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
           _hxvNotDeletedRow _hclassFive hxvInterior hdeletedInterior
-          hvInterior hvAdjacent
+          hvInterior hvAdjacent htraceBound
     · have hdeletedAdjacent :=
         exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
           P P.jointDeletion.deleted_mem_class hdeletedInterior
@@ -4012,6 +4109,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
           (exactFourRigid221_sourceHeavy_adjacent_orientation_of_two
             P P.hvClass P.jointDeletion.deleted_mem_class hvNeDeleted
             hvAdjacent hdeletedAdjacent)
+          htraceBound
 
 /-- Large-cap incidence leaf with every class row trace fully pinned:
 `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`, `{deleted, v}`.  The

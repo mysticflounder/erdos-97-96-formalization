@@ -2944,3 +2944,26 @@ Narrowing measure over the previous leaf statement: the class trace of the
 residual row drops from the five named class points to three, with `xu`
 and `v` now provably off that row.  Module build green; raw direct-`sorry`
 delta `0` (1 → 1); on-spine reaches-`sorry` count unchanged at 28.
+
+### Rigid221 source-heavy large-cap: trace bound hoisted to all four placement leaves (2026-08-05)
+
+The `xv`-row class trace bound is placement-independent — its proof uses
+only the pinned row traces, the blocker identity `centerAt u = xv`, and
+the class enumeration, none of which mention the cap placement of `v` and
+`deleted`.  It is therefore extracted as the private producer
+`exactFourRigid221_sourceHeavy_pentagon_xvRow_trace_bound` and proved once
+in the pentagon parent, which now passes `_htraceBound` to all four
+placement leaves:
+
+- `..._pentagonAllInterior`
+- `..._pentagonVAdjacent`
+- `..._pentagonDeletedAdjacent`
+- `..._pentagonOppositeAdjacent` (dispatch; forwards it to the
+  off-class-blocker residual)
+
+Narrowing measure for the three previously untouched leaves: strictly
+stronger hypotheses — the class trace of the `xv` row drops from the five
+named class points to `{xv, u, deleted}`, so `xu` and `v` are provably off
+that row in every placement branch.  Module build green; on-spine
+reaches-`sorry` count unchanged at 28; raw direct-`sorry` count in the
+module unchanged at 4.
