@@ -346,6 +346,27 @@ The consequence-only route is the one taken here, so blocker coincidence
 (nothing proves the blockers differ from the eight grid points) is enumerated as
 a discrete branch rather than assumed away.
 
+### Probe status: the encoding is passing its gate but not deciding
+
+Built on the repo's exact QF_NRA oracle
+(`census/endpoint_confinement/metric_realizability_probe.py`, with
+`census/rigid221_pentagon_oracle.py` as the template). Eleven labels — the first
+apex, the eight grid points, and the two blockers — and four rows, all
+`exact=True` and all four exactness flags proved.
+
+* Encoding smoke test (`run_smoke`): **passes**.
+* Pilot sweep, 400 systems at a 5 s timeout: **0 SAT, 0 UNSAT, 400 UNKNOWN.**
+
+`UNKNOWN` is a solver timeout and is decisive for nothing; it is counted
+separately here and never folded into `UNSAT`. A uniform `UNKNOWN` sweep is a
+statement about the encoding's tractability, not about the grid: at 5 s Z3
+decides none of these systems either way. A longer-timeout sweep is in flight.
+
+The earlier numerical route was abandoned rather than reported: a multistart
+local optimizer never reached a feasible point (`min_tri`, `min_turn` and
+`min_cap` all negative with `polish_success` false), and a local optimizer
+failing to converge is not evidence of infeasibility in either direction.
+
 ## Next targets
 
 The grid leaf is the sharper of the two: it is the "global deletion-row /
