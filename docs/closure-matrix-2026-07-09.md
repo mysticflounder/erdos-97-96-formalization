@@ -2727,3 +2727,50 @@ untouched.  The placement leaves' fresh-interior ingress witness is no
 longer materialized; the two remaining leaves are fully explicit finite
 incidence patterns on the five-point class, with the single free `xu`-row
 class slot occupied by `v` or by the rigid deleted point.
+
+### Rigid221 source-heavy large-cap: deleted-row casing closes both incidence leaves to a single five-cycle leaf (2026-08-05)
+
+In both large-cap incidence leaves the rigid deleted point is a class
+point whose own actual late row also has class trace ≤ 2
+(`actualLateRow_secondClass_card_le_two` at the deleted carrier vertex),
+and in the `vXuRow` configuration the deleted point is omitted from all
+four pinned rows.  Consequently every pair `(deleted, y)` with
+`y ∉ deleted`-row is mutually omitted, and its blocker-distinctness
+certificate is free: equal centers force equal supports
+(`selectedSupports_eq_of_actualBlockers_eq`), transporting
+`deleted ∈ deleted`-row into the pinned row that excludes it.
+
+Casing on the second class slot of the deleted-row trace:
+
+- `vXuRow` (traces `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, v}`): every
+  branch yields a pair `(deleted, ·)` with two prescribed joint
+  deletions — slot `u`: pair `(deleted, xv)` deleting `v` and `xu`;
+  slot `v`: pair `(deleted, xu)` deleting `u` and `xv`; slot `xu`:
+  pair `(deleted, u)` deleting `v` and `xv`; slot `xv` or empty: pair
+  `(deleted, v)` deleting `u` and `xu`.  The leaf is CLOSED with no
+  residual.
+- `deletedXuRow` (traces `{u, xu}`, `{v, xv}`, `{xv, u}`,
+  `{xu, deleted}`): slot `u`: pair `(deleted, xv)` deleting `v` and
+  `xu`; slot `xv`: pair `(deleted, v)` deleting `u` and `xu`; slot
+  `xu` or empty: pair `(deleted, u)` deleting `v` and `xv`.  The single
+  surviving branch is slot `v`, promoted to the new leaf
+  `..._secondOppositeLarge_fiveCycle`.
+
+Remaining obligation, the only open leaf of the arm:
+
+1. `..._secondOppositeLarge_fiveCycle` — all five class row traces
+   pinned: `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`,
+   `{deleted, v}`, i.e. the directed five-cycle
+   `u → xu → deleted → v → xv → u`.  Every mutually omitted class pair
+   is a cycle diagonal whose two rows cover four of the five class
+   points, leaving exactly one prescribed deletion candidate, so the
+   two-deletion terminal does not apply directly.
+
+Coordinator-interface frontier for the source-heavy subtree: before,
+two incidence leaves; after, one five-cycle leaf carrying four
+additional proved deleted-row incidence facts (`v ∈ deleted`-row and
+`u, xu, xv ∉ deleted`-row) over its parent.  Raw direct-`sorry` delta
+`−1` (2 → 1).  Narrowing measure: the parent `deletedXuRow` proves the
+leaf's four extra hypotheses in the dispatching branch; all other
+branches terminate in kernel-checked two-deletion closures.  No
+cap-profile counting is consumed.

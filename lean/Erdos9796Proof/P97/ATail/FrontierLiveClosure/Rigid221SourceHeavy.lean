@@ -2562,42 +2562,505 @@ theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveSurplusGrowth
 /-- Large-cap incidence leaf with `u` in the `xv` row and `v` in the `xu`
 row, both reverse incidences absent.  All four class row traces are pinned
 exactly — `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, v}` — so the rigid class
-carries the directed four-cycle `u → xu → v → xv → u` of row incidences. -/
+carries the directed four-cycle `u → xu → v → xv → u` of row incidences.
+The rigid deleted point is omitted from all four pinned rows, so every
+pair `(deleted, ·)` is mutually omitted with a free blocker-distinctness
+certificate, and casing on the second class slot of the deleted row
+always leaves such a pair with two prescribed joint deletions. -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
     (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
-    (_packet :
+    (packet :
       ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
     (_hsecond : 6 ≤ S.oppCap2.card)
-    (hxuA : _packet.xu ∈ D.A)
-    (hxvA : _packet.xv ∈ D.A)
-    (_huXvRow :
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
       P.u.1 ∈
         ((lateFirstApexSystem R).selectedAt
-          _packet.xv hxvA).toCriticalFourShell.support)
-    (_huNotXuRow :
+          packet.xv hxvA).toCriticalFourShell.support)
+    (huNotXuRow :
       P.u.1 ∉
         ((lateFirstApexSystem R).selectedAt
-          _packet.xu hxuA).toCriticalFourShell.support)
-    (_hxvNotXuRow :
-      _packet.xv ∉
+          packet.xu hxuA).toCriticalFourShell.support)
+    (hxvNotXuRow :
+      packet.xv ∉
         ((lateFirstApexSystem R).selectedAt
-          _packet.xu hxuA).toCriticalFourShell.support)
-    (_hvXuRow :
+          packet.xu hxuA).toCriticalFourShell.support)
+    (hvXuRow :
       P.v.1 ∈
         ((lateFirstApexSystem R).selectedAt
-          _packet.xu hxuA).toCriticalFourShell.support) :
+          packet.xu hxuA).toCriticalFourShell.support) :
     False := by
-  sorry
+  classical
+  have hxuInter :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.u.1 P.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.source_row_trace]
+    simp
+  have hxvInter :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.opposite_row_trace]
+    simp
+  have hxuClass :
+      packet.xu ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxuInter).2
+  have hxvClass :
+      packet.xv ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxvInter).2
+  have hxuURow :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxvVRow :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxvInter).1
+  have hcenterU :
+      (lateFirstApexSystem R).centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa only [P.huSource] using packet.blocker_eq_xv
+  have hxvNotURow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact
+      ((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.center_not_mem_support h
+  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact
+      ((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.q_mem_support
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact hxuURow
+  have hxuNeV : packet.xu ≠ P.v.1 := by
+    intro h
+    apply P.hvOmitted
+    simpa only [← h] using hxuURow
+  have hvNeXv : P.v.1 ≠ packet.xv := by
+    intro h
+    exact packet.xv_ne_v h.symm
+  have huNeVpt : P.u.1 ≠ P.v.1 := by
+    intro h
+    exact P.huNeV (Subtype.ext h)
+  have hdeletedNeXu : P.jointDeletion.deleted.1 ≠ packet.xu := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    simpa only [h] using hxuURow
+  have hdeletedNeXv : P.jointDeletion.deleted.1 ≠ packet.xv := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_vRow
+    simpa only [h] using hxvVRow
+  have hdeletedNeU : P.jointDeletion.deleted.1 ≠ P.u.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_u (Subtype.ext h)
+  have hdeletedNeV : P.jointDeletion.deleted.1 ≠ P.v.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_v (Subtype.ext h)
+  have hcardXv :
+      (((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R P.surface ⟨packet.xv, hxvA⟩
+  have hxvOwnInter :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.q_mem_support,
+        hxvClass⟩
+  have huXvInter :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr ⟨huXvRow, P.huClass⟩
+  have hvNotXvRow :
+      P.v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hvNeXv.symm huNeVpt
+        (Finset.mem_inter.mpr ⟨h, P.hvClass⟩)
+  have hxuNotXvRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hxuNeXv.symm huNeXu
+        (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+  have hdeletedNotXvRow :
+      P.jointDeletion.deleted.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hdeletedNeXv.symm hdeletedNeU.symm
+        (Finset.mem_inter.mpr ⟨h, P.jointDeletion.deleted_mem_class⟩)
+  have hcardXu :
+      (((lateFirstApexSystem R).selectedAt
+            packet.xu hxuA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R P.surface ⟨packet.xu, hxuA⟩
+  have hxuOwnInter :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xu hxuA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.q_mem_support,
+        hxuClass⟩
+  have hvXuInter :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xu hxuA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr ⟨hvXuRow, P.hvClass⟩
+  have hdeletedNotXuRow :
+      P.jointDeletion.deleted.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXu hxuOwnInter hvXuInter
+        hxuNeV hdeletedNeXu.symm hdeletedNeV.symm
+        (Finset.mem_inter.mpr ⟨h, P.jointDeletion.deleted_mem_class⟩)
+  have hxuNotVRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.support := by
+    intro h
+    have hmem :
+        packet.xu ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.v.1 P.v.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho :=
+      Finset.mem_inter.mpr ⟨h, hxuClass⟩
+    rw [packet.opposite_row_trace] at hmem
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
+    rcases hmem with h1 | h1
+    · exact hxuNeV h1
+    · exact hxuNeXv h1
+  have hcardDel :
+      (((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R P.surface
+      P.jointDeletion.deleted
+  have hdelOwnInter :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support,
+        P.jointDeletion.deleted_mem_class⟩
+  by_cases hUDel :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support
+  · -- Deleted-row class trace `{deleted, u}`: two prescribed joint
+    -- deletions for the mutually omitted pair `(deleted, xv)`.
+    have huDelInter :
+        P.u.1 ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho :=
+      Finset.mem_inter.mpr ⟨hUDel, P.huClass⟩
+    have hvNotDelRow :
+        P.v.1 ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter huDelInter
+          hdeletedNeU hdeletedNeV huNeVpt
+          (Finset.mem_inter.mpr ⟨h, P.hvClass⟩)
+    have hxuNotDelRow :
+        packet.xu ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter huDelInter
+          hdeletedNeU hdeletedNeXu huNeXu
+          (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+    have hxvNotDelRow :
+        packet.xv ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter huDelInter
+          hdeletedNeU hdeletedNeXv huNeXv
+          (Finset.mem_inter.mpr ⟨h, hxvClass⟩)
+    have hblockersNe :
+        (lateFirstApexSystem R).centerAt
+            P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+          (lateFirstApexSystem R).centerAt packet.xv hxvA := by
+      intro hcenters
+      have hsupports :=
+        ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+          (lateFirstApexSystem R) P.jointDeletion.deleted.2 hxvA hcenters
+      apply hdeletedNotXvRow
+      rw [← hsupports]
+      exact
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+    rcases
+        exactFourMutualOmissionJointDeletion_of_prescribed
+          R P.surface P.rho P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+            P.v P.hvClass hvNotDelRow hvNotXvRow hblockersNe with
+      ⟨first, hfirst⟩
+    rcases
+        exactFourMutualOmissionJointDeletion_of_prescribed
+          R P.surface P.rho P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+            ⟨packet.xu, hxuA⟩ hxuClass hxuNotDelRow hxuNotXvRow
+            hblockersNe with
+      ⟨second, hsecond2⟩
+    have hdeletionsNe : first.deleted ≠ second.deleted := by
+      intro h
+      exact
+        hxuNeV
+          (congrArg Subtype.val
+            (hfirst.symm.trans (h.trans hsecond2))).symm
+    exact
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions
+        R P.hcard P.surface P.rho P.hrho P.hfive
+          P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+          (by
+            intro hpair
+            exact hdeletedNeXv (congrArg Subtype.val hpair))
+          P.jointDeletion.deleted_mem_class hxvClass
+          hxvNotDelRow hdeletedNotXvRow
+          first second hdeletionsNe
+  · by_cases hVDel :
+        P.v.1 ∈
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support
+    · -- Deleted-row class trace `{deleted, v}`: two prescribed joint
+      -- deletions for the mutually omitted pair `(deleted, xu)`.
+      have hvDelInter :
+          P.v.1 ∈
+            ((lateFirstApexSystem R).selectedAt
+                P.jointDeletion.deleted.1
+                P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex2 P.rho :=
+        Finset.mem_inter.mpr ⟨hVDel, P.hvClass⟩
+      have hxvNotDelRow :
+          packet.xv ∉
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+        intro h
+        exact
+          third_not_mem_of_card_le_two hcardDel hdelOwnInter hvDelInter
+            hdeletedNeV hdeletedNeXv hvNeXv
+            (Finset.mem_inter.mpr ⟨h, hxvClass⟩)
+      have hxuNotDelRow :
+          packet.xu ∉
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+        intro h
+        exact
+          third_not_mem_of_card_le_two hcardDel hdelOwnInter hvDelInter
+            hdeletedNeV hdeletedNeXu hxuNeV.symm
+            (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+      have hblockersNe :
+          (lateFirstApexSystem R).centerAt
+              P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+            (lateFirstApexSystem R).centerAt packet.xu hxuA := by
+        intro hcenters
+        have hsupports :=
+          ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+            (lateFirstApexSystem R) P.jointDeletion.deleted.2 hxuA
+              hcenters
+        apply hdeletedNotXuRow
+        rw [← hsupports]
+        exact
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+      rcases
+          exactFourMutualOmissionJointDeletion_of_prescribed
+            R P.surface P.rho P.jointDeletion.deleted ⟨packet.xu, hxuA⟩
+              P.u P.huClass hUDel huNotXuRow hblockersNe with
+        ⟨first, hfirst⟩
+      rcases
+          exactFourMutualOmissionJointDeletion_of_prescribed
+            R P.surface P.rho P.jointDeletion.deleted ⟨packet.xu, hxuA⟩
+              ⟨packet.xv, hxvA⟩ hxvClass hxvNotDelRow hxvNotXuRow
+              hblockersNe with
+        ⟨second, hsecond2⟩
+      have hdeletionsNe : first.deleted ≠ second.deleted := by
+        intro h
+        exact
+          huNeXv
+            (congrArg Subtype.val
+              (hfirst.symm.trans (h.trans hsecond2)))
+      exact
+        false_of_twoDistinctExactFourMutualOmissionJointDeletions
+          R P.hcard P.surface P.rho P.hrho P.hfive
+            P.jointDeletion.deleted ⟨packet.xu, hxuA⟩
+            (by
+              intro hpair
+              exact hdeletedNeXu (congrArg Subtype.val hpair))
+            P.jointDeletion.deleted_mem_class hxuClass
+            hxuNotDelRow hdeletedNotXuRow
+            first second hdeletionsNe
+    · by_cases hXuDel :
+          packet.xu ∈
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support
+      · -- Deleted-row class trace `{deleted, xu}`: two prescribed joint
+        -- deletions for the mutually omitted pair `(deleted, u)`.
+        have hxuDelInter :
+            packet.xu ∈
+              ((lateFirstApexSystem R).selectedAt
+                  P.jointDeletion.deleted.1
+                  P.jointDeletion.deleted.2).toCriticalFourShell.support
+                ∩ SelectedClass D.A S.oppApex2 P.rho :=
+          Finset.mem_inter.mpr ⟨hXuDel, hxuClass⟩
+        have hxvNotDelRow :
+            packet.xv ∉
+              ((lateFirstApexSystem R).selectedAt
+                P.jointDeletion.deleted.1
+                P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+          intro h
+          exact
+            third_not_mem_of_card_le_two hcardDel hdelOwnInter
+              hxuDelInter hdeletedNeXu hdeletedNeXv hxuNeXv
+              (Finset.mem_inter.mpr ⟨h, hxvClass⟩)
+        have hblockersNe :
+            (lateFirstApexSystem R).centerAt
+                P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+              (lateFirstApexSystem R).centerAt P.u.1 P.u.2 := by
+          intro hcenters
+          have hsupports :=
+            ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+              (lateFirstApexSystem R) P.jointDeletion.deleted.2 P.u.2
+                hcenters
+          apply P.jointDeletion.deleted_not_mem_uRow
+          rw [← hsupports]
+          exact
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.u
+                P.v P.hvClass hVDel P.hvOmitted hblockersNe with
+          ⟨first, hfirst⟩
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.u
+                ⟨packet.xv, hxvA⟩ hxvClass hxvNotDelRow hxvNotURow
+                hblockersNe with
+          ⟨second, hsecond2⟩
+        have hdeletionsNe : first.deleted ≠ second.deleted := by
+          intro h
+          exact
+            hvNeXv
+              (congrArg Subtype.val
+                (hfirst.symm.trans (h.trans hsecond2)))
+        exact
+          false_of_twoDistinctExactFourMutualOmissionJointDeletions
+            R P.hcard P.surface P.rho P.hrho P.hfive
+              P.jointDeletion.deleted P.u
+              P.jointDeletion.deleted_ne_u
+              P.jointDeletion.deleted_mem_class P.huClass
+              hUDel P.jointDeletion.deleted_not_mem_uRow
+              first second hdeletionsNe
+      · -- The deleted row omits `u`, `v`, and `xu`: two prescribed joint
+        -- deletions for the mutually omitted pair `(deleted, v)`.
+        have hblockersNe :
+            (lateFirstApexSystem R).centerAt
+                P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+              (lateFirstApexSystem R).centerAt P.v.1 P.v.2 := by
+          intro hcenters
+          have hsupports :=
+            ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+              (lateFirstApexSystem R) P.jointDeletion.deleted.2 P.v.2
+                hcenters
+          apply P.jointDeletion.deleted_not_mem_vRow
+          rw [← hsupports]
+          exact
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.v
+                P.u P.huClass hUDel P.huOmitted hblockersNe with
+          ⟨first, hfirst⟩
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.v
+                ⟨packet.xu, hxuA⟩ hxuClass hXuDel hxuNotVRow
+                hblockersNe with
+          ⟨second, hsecond2⟩
+        have hdeletionsNe : first.deleted ≠ second.deleted := by
+          intro h
+          exact
+            huNeXu
+              (congrArg Subtype.val
+                (hfirst.symm.trans (h.trans hsecond2)))
+        exact
+          false_of_twoDistinctExactFourMutualOmissionJointDeletions
+            R P.hcard P.surface P.rho P.hrho P.hfive
+              P.jointDeletion.deleted P.v
+              P.jointDeletion.deleted_ne_v
+              P.jointDeletion.deleted_mem_class P.hvClass
+              hVDel P.jointDeletion.deleted_not_mem_vRow
+              first second hdeletionsNe
 
-/-- Large-cap incidence leaf with `u` in the `xv` row and the rigid deleted
-point in the `xu` row, both reverse incidences absent.  The row traces are
-pinned to `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`, so the rigid
-deleted point occupies the single free `xu`-row class slot. -/
-theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
+/-- Large-cap incidence leaf with every class row trace fully pinned:
+`{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`, `{deleted, v}`.  The
+rigid class carries the directed five-cycle
+`u → xu → deleted → v → xv → u` of row incidences, so every mutually
+omitted class pair leaves exactly one prescribed deletion candidate and
+the two-deletion terminal does not apply directly.  This is the single
+residual configuration of the source-heavy large-cap arm. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -2623,9 +3086,455 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
     (_hdeletedXuRow :
       P.jointDeletion.deleted.1 ∈
         ((lateFirstApexSystem R).selectedAt
-          _packet.xu hxuA).toCriticalFourShell.support) :
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxuNotDeletedRow :
+      _packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxvNotDeletedRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support) :
     False := by
   sorry
+
+/-- Large-cap incidence leaf with `u` in the `xv` row and the rigid deleted
+point in the `xu` row, both reverse incidences absent.  The row traces are
+pinned to `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`.  Casing on the
+second class slot of the deleted row closes every branch through a
+prescribed joint-deletion pair except `v ∈ deleted`-row, which is the
+five-cycle leaf. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.support)
+    (hxvNotXuRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.support)
+    (hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.support) :
+    False := by
+  classical
+  have hxuInter :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.u.1 P.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.source_row_trace]
+    simp
+  have hxvInter :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.opposite_row_trace]
+    simp
+  have hxuClass :
+      packet.xu ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxuInter).2
+  have hxvClass :
+      packet.xv ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxvInter).2
+  have hxuURow :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxvVRow :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxvInter).1
+  have hcenterU :
+      (lateFirstApexSystem R).centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa only [P.huSource] using packet.blocker_eq_xv
+  have hxvNotURow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact
+      ((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.center_not_mem_support h
+  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact
+      ((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.q_mem_support
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact hxuURow
+  have hxuNeV : packet.xu ≠ P.v.1 := by
+    intro h
+    apply P.hvOmitted
+    simpa only [← h] using hxuURow
+  have hvNeXv : P.v.1 ≠ packet.xv := by
+    intro h
+    exact packet.xv_ne_v h.symm
+  have huNeVpt : P.u.1 ≠ P.v.1 := by
+    intro h
+    exact P.huNeV (Subtype.ext h)
+  have hdeletedNeXu : P.jointDeletion.deleted.1 ≠ packet.xu := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    simpa only [h] using hxuURow
+  have hdeletedNeXv : P.jointDeletion.deleted.1 ≠ packet.xv := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_vRow
+    simpa only [h] using hxvVRow
+  have hdeletedNeU : P.jointDeletion.deleted.1 ≠ P.u.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_u (Subtype.ext h)
+  have hdeletedNeV : P.jointDeletion.deleted.1 ≠ P.v.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_v (Subtype.ext h)
+  have hcardXv :
+      (((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R P.surface ⟨packet.xv, hxvA⟩
+  have hxvOwnInter :
+      packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.q_mem_support,
+        hxvClass⟩
+  have huXvInter :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr ⟨huXvRow, P.huClass⟩
+  have hvNotXvRow :
+      P.v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hvNeXv.symm huNeVpt
+        (Finset.mem_inter.mpr ⟨h, P.hvClass⟩)
+  have hxuNotXvRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hxuNeXv.symm huNeXu
+        (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+  have hdeletedNotXvRow :
+      P.jointDeletion.deleted.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact
+      third_not_mem_of_card_le_two hcardXv hxvOwnInter huXvInter
+        huNeXv.symm hdeletedNeXv.symm hdeletedNeU.symm
+        (Finset.mem_inter.mpr ⟨h, P.jointDeletion.deleted_mem_class⟩)
+  have hxuNotVRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.support := by
+    intro h
+    have hmem :
+        packet.xu ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.v.1 P.v.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho :=
+      Finset.mem_inter.mpr ⟨h, hxuClass⟩
+    rw [packet.opposite_row_trace] at hmem
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
+    rcases hmem with h1 | h1
+    · exact hxuNeV h1
+    · exact hxuNeXv h1
+  have hcardDel :
+      (((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R P.surface
+      P.jointDeletion.deleted
+  have hdelOwnInter :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho :=
+    Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support,
+        P.jointDeletion.deleted_mem_class⟩
+  by_cases hVDel :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support
+  · -- The deleted-row second class slot is `v`: all five row traces are
+    -- pinned, which is the five-cycle leaf.
+    have hvDelInter :
+        P.v.1 ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho :=
+      Finset.mem_inter.mpr ⟨hVDel, P.hvClass⟩
+    have huNotDelRow :
+        P.u.1 ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter hvDelInter
+          hdeletedNeV hdeletedNeU huNeVpt.symm
+          (Finset.mem_inter.mpr ⟨h, P.huClass⟩)
+    have hxuNotDelRow :
+        packet.xu ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter hvDelInter
+          hdeletedNeV hdeletedNeXu hxuNeV.symm
+          (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+    have hxvNotDelRow :
+        packet.xv ∉
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+      intro h
+      exact
+        third_not_mem_of_card_le_two hcardDel hdelOwnInter hvDelInter
+          hdeletedNeV hdeletedNeXv hvNeXv
+          (Finset.mem_inter.mpr ⟨h, hxvClass⟩)
+    exact
+      false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
+        P packet hsecond hxuA hxvA huXvRow huNotXuRow hxvNotXuRow
+          hdeletedXuRow hVDel huNotDelRow hxuNotDelRow hxvNotDelRow
+  · by_cases hUDel :
+        P.u.1 ∈
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.support
+    · -- Deleted-row class trace `{deleted, u}`: two prescribed joint
+      -- deletions for the mutually omitted pair `(deleted, xv)`.
+      have huDelInter :
+          P.u.1 ∈
+            ((lateFirstApexSystem R).selectedAt
+                P.jointDeletion.deleted.1
+                P.jointDeletion.deleted.2).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex2 P.rho :=
+        Finset.mem_inter.mpr ⟨hUDel, P.huClass⟩
+      have hxuNotDelRow :
+          packet.xu ∉
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+        intro h
+        exact
+          third_not_mem_of_card_le_two hcardDel hdelOwnInter huDelInter
+            hdeletedNeU hdeletedNeXu huNeXu
+            (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+      have hxvNotDelRow :
+          packet.xv ∉
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+        intro h
+        exact
+          third_not_mem_of_card_le_two hcardDel hdelOwnInter huDelInter
+            hdeletedNeU hdeletedNeXv huNeXv
+            (Finset.mem_inter.mpr ⟨h, hxvClass⟩)
+      have hblockersNe :
+          (lateFirstApexSystem R).centerAt
+              P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+            (lateFirstApexSystem R).centerAt packet.xv hxvA := by
+        intro hcenters
+        have hsupports :=
+          ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+            (lateFirstApexSystem R) P.jointDeletion.deleted.2 hxvA
+              hcenters
+        apply hdeletedNotXvRow
+        rw [← hsupports]
+        exact
+          ((lateFirstApexSystem R).selectedAt
+            P.jointDeletion.deleted.1
+            P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+      rcases
+          exactFourMutualOmissionJointDeletion_of_prescribed
+            R P.surface P.rho P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+              P.v P.hvClass hVDel hvNotXvRow hblockersNe with
+        ⟨first, hfirst⟩
+      rcases
+          exactFourMutualOmissionJointDeletion_of_prescribed
+            R P.surface P.rho P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+              ⟨packet.xu, hxuA⟩ hxuClass hxuNotDelRow hxuNotXvRow
+              hblockersNe with
+        ⟨second, hsecond2⟩
+      have hdeletionsNe : first.deleted ≠ second.deleted := by
+        intro h
+        exact
+          hxuNeV
+            (congrArg Subtype.val
+              (hfirst.symm.trans (h.trans hsecond2))).symm
+      exact
+        false_of_twoDistinctExactFourMutualOmissionJointDeletions
+          R P.hcard P.surface P.rho P.hrho P.hfive
+            P.jointDeletion.deleted ⟨packet.xv, hxvA⟩
+            (by
+              intro hpair
+              exact hdeletedNeXv (congrArg Subtype.val hpair))
+            P.jointDeletion.deleted_mem_class hxvClass
+            hxvNotDelRow hdeletedNotXvRow
+            first second hdeletionsNe
+    · by_cases hXvDel :
+          packet.xv ∈
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.support
+      · -- Deleted-row class trace `{deleted, xv}`: two prescribed joint
+        -- deletions for the mutually omitted pair `(deleted, v)`.
+        have hxvDelInter :
+            packet.xv ∈
+              ((lateFirstApexSystem R).selectedAt
+                  P.jointDeletion.deleted.1
+                  P.jointDeletion.deleted.2).toCriticalFourShell.support
+                ∩ SelectedClass D.A S.oppApex2 P.rho :=
+          Finset.mem_inter.mpr ⟨hXvDel, hxvClass⟩
+        have hxuNotDelRow :
+            packet.xu ∉
+              ((lateFirstApexSystem R).selectedAt
+                P.jointDeletion.deleted.1
+                P.jointDeletion.deleted.2).toCriticalFourShell.support := by
+          intro h
+          exact
+            third_not_mem_of_card_le_two hcardDel hdelOwnInter
+              hxvDelInter hdeletedNeXv hdeletedNeXu hxuNeXv.symm
+              (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+        have hblockersNe :
+            (lateFirstApexSystem R).centerAt
+                P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+              (lateFirstApexSystem R).centerAt P.v.1 P.v.2 := by
+          intro hcenters
+          have hsupports :=
+            ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+              (lateFirstApexSystem R) P.jointDeletion.deleted.2 P.v.2
+                hcenters
+          apply P.jointDeletion.deleted_not_mem_vRow
+          rw [← hsupports]
+          exact
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.v
+                P.u P.huClass hUDel P.huOmitted hblockersNe with
+          ⟨first, hfirst⟩
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.v
+                ⟨packet.xu, hxuA⟩ hxuClass hxuNotDelRow hxuNotVRow
+                hblockersNe with
+          ⟨second, hsecond2⟩
+        have hdeletionsNe : first.deleted ≠ second.deleted := by
+          intro h
+          exact
+            huNeXu
+              (congrArg Subtype.val
+                (hfirst.symm.trans (h.trans hsecond2)))
+        exact
+          false_of_twoDistinctExactFourMutualOmissionJointDeletions
+            R P.hcard P.surface P.rho P.hrho P.hfive
+              P.jointDeletion.deleted P.v
+              P.jointDeletion.deleted_ne_v
+              P.jointDeletion.deleted_mem_class P.hvClass
+              hVDel P.jointDeletion.deleted_not_mem_vRow
+              first second hdeletionsNe
+      · -- The deleted row omits `u`, `v`, and `xv`: two prescribed joint
+        -- deletions for the mutually omitted pair `(deleted, u)`.
+        have hblockersNe :
+            (lateFirstApexSystem R).centerAt
+                P.jointDeletion.deleted.1 P.jointDeletion.deleted.2 ≠
+              (lateFirstApexSystem R).centerAt P.u.1 P.u.2 := by
+          intro hcenters
+          have hsupports :=
+            ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+              (lateFirstApexSystem R) P.jointDeletion.deleted.2 P.u.2
+                hcenters
+          apply P.jointDeletion.deleted_not_mem_uRow
+          rw [← hsupports]
+          exact
+            ((lateFirstApexSystem R).selectedAt
+              P.jointDeletion.deleted.1
+              P.jointDeletion.deleted.2).toCriticalFourShell.q_mem_support
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.u
+                P.v P.hvClass hVDel P.hvOmitted hblockersNe with
+          ⟨first, hfirst⟩
+        rcases
+            exactFourMutualOmissionJointDeletion_of_prescribed
+              R P.surface P.rho P.jointDeletion.deleted P.u
+                ⟨packet.xv, hxvA⟩ hxvClass hXvDel hxvNotURow
+                hblockersNe with
+          ⟨second, hsecond2⟩
+        have hdeletionsNe : first.deleted ≠ second.deleted := by
+          intro h
+          exact
+            hvNeXv
+              (congrArg Subtype.val
+                (hfirst.symm.trans (h.trans hsecond2)))
+        exact
+          false_of_twoDistinctExactFourMutualOmissionJointDeletions
+            R P.hcard P.surface P.rho P.hrho P.hfive
+              P.jointDeletion.deleted P.u
+              P.jointDeletion.deleted_ne_u
+              P.jointDeletion.deleted_mem_class P.huClass
+              hUDel P.jointDeletion.deleted_not_mem_uRow
+              first second hdeletionsNe
 
 /-- Checked incidence split for the large physical-second-cap residual of
 the source-heavy arm.  The two-point class-trace bound localizes the row
