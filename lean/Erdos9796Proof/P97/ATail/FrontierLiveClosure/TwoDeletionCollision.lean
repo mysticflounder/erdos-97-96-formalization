@@ -131,12 +131,27 @@ theorem exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
     ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
       hvOmitted, huOmitted, context⟩
 
-/-- The collision arm of the two-deletion residue.  The two distinct deleted
-class sources have the same actual blocker, hence their canonical selected
-supports agree and meet the physical second-apex class in exactly those two
-sources.  Support equality, cross-membership, and the exact intersection count
-are deliberately reconstructed inside this leaf from the two deletion packets,
-their distinctness, the robust surface, and blocker equality. -/
+/-- **Load-bearing B1 producer.**  The local blocker-collision normal form is
+already source-clean; the remaining global step must force one of the checked
+third-bisector, fiber-cardinality, or escaped-overlap terminals packaged by
+`B1GlobalGapOrClosedTerminal`.
+
+This theorem is the positive producer obligation consumed immediately below.
+It does not assert that the existing local B1 geometry already supplies the
+global gap. -/
+theorem b1_globalGapOrClosedTerminal_of_counterexample
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    B1GlobalGapOrClosedTerminal C := by
+  sorry
+
+/-- The collision arm of the two-deletion residue.  It is now a checked
+adapter: the live binders are packaged as `B1GlobalTransportContext`, the
+load-bearing producer above supplies the exact global-gap disjunction, and the
+source-clean B1 consumer closes each arm. -/
 theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -170,7 +185,27 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollisi
         (lateFirstApexSystem R).centerAt
           second.deleted.1 second.deleted.2) :
     False := by
-  sorry
+  let C : B1GlobalTransportContext
+      (D := D) (S := S) (radius := radius) (H := H) (F := F) :=
+    { R := R
+      hcard := _hcard
+      surface := surface
+      rho := rho
+      hrho := _hrho
+      hfive := _hfive
+      u := u
+      v := v
+      huNeV := _huNeV
+      huClass := _huClass
+      hvClass := _hvClass
+      hvOmitted := _hvOmitted
+      huOmitted := _huOmitted
+      first := first
+      second := second
+      hdeletedNe := _hdeletedNe
+      hblockersEq := _hblockersEq }
+  exact false_of_b1_global_gap_or_closed_terminal C
+    (b1_globalGapOrClosedTerminal_of_counterexample C)
 
 /-- Two distinct deleted sources cannot lie in one another's actual rows when
 their actual blockers are distinct from each other and from the physical apex. -/
