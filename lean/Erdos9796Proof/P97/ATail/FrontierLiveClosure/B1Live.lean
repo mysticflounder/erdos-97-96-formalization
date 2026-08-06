@@ -451,6 +451,54 @@ theorem b1_live_escape_small_overlap
       (lateFirstApexSystem R) htA first.deleted.2 htNotRow
   exact ⟨t, ht, htFirst, htSecond, htNotRow, htSurvives, htBlockerNe, hsmall⟩
 
+/- A canonical blocker selected at an escaped carrier point cannot be the
+   unresolved large-multiplicity centre: criticality makes every such centre
+   a unique-four centre.  This is the centre-transport half of the producer
+   split; it leaves the genuinely noncanonical μ ≥ 5 branch explicit. -/
+theorem b1_live_canonical_blocker_pinnedMultiplicity_eq_four
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (t : ℝ²) (htA : t ∈ D.A) :
+    pinnedMultiplicity D.A
+        ((lateFirstApexSystem R).centerAt t htA) = 4 := by
+  exact pinnedMultiplicity_eq_four_of_isUniqueFourCenter
+    (isUniqueFourCenter_centerAt (lateFirstApexSystem R) t htA)
+
+/- The μ = 4 branch exposes the escaped canonical shell as a full physical
+   radius class.  It is phrased against the existing overlap consumer so a
+   future global producer can use physical-class language without silently
+   changing the selected-shell trust boundary. -/
+theorem b1_live_escape_physicalClass_inter_firstShell_card_le_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    {rho : ℝ} {u v : CarrierVertex D.A}
+    (first : ExactFourMutualOmissionJointDeletion R rho u v)
+    (t : ℝ²) (htA : t ∈ D.A)
+    (htNotRow : t ∉
+      ((lateFirstApexSystem R).selectedAt
+        first.deleted.1 first.deleted.2).toCriticalFourShell.support) :
+    (SelectedClass D.A
+        ((lateFirstApexSystem R).centerAt t htA)
+        ((lateFirstApexSystem R).selectedAt t htA).toCriticalFourShell.radius ∩
+      ((lateFirstApexSystem R).selectedAt
+        first.deleted.1 first.deleted.2).toCriticalFourShell.support).card ≤ 2 := by
+  have hclass :=
+    selectedClass_eq_support_of_pinnedMultiplicity_eq_four
+      ((lateFirstApexSystem R).selectedAt t htA).toSelectedFourClass
+      (b1_live_canonical_blocker_pinnedMultiplicity_eq_four R t htA)
+  have hphysical :
+      SelectedClass D.A ((lateFirstApexSystem R).centerAt t htA)
+          ((lateFirstApexSystem R).selectedAt t htA).radius =
+        ((lateFirstApexSystem R).selectedAt t htA).toCriticalFourShell.support := by
+    simpa [CriticalFourShell.toSelectedFourClass] using hclass
+  rw [hphysical]
+  exact selected_support_inter_card_le_two_of_not_mem_other_selected_support
+    (lateFirstApexSystem R) htA first.deleted.2 htNotRow
+
 /-- Conditional B1 terminal for the remaining global gap.
 
 The escape producer and the banked shell theorem supply the upper bound two.
@@ -626,6 +674,104 @@ theorem b1_live_false_of_bisector_fiber_card_ge_three
       hblockersEq
   exact false_of_bisector_fiber_card_ge_three_of_eq_pair
     first.uPacket.actual_blocker_ne_center₂ hfiberSet hfiberCard
+
+/-!
+### PARKED-SPEC: global B1 transport interface
+
+The local B1 consumers above have different argument lists, which made it
+easy for a future producer to prove a nearby statement that could not actually
+be fed to the live terminal.  This context packages the complete live packet
+once.  `B1GlobalGapOrClosedTerminal` is the exact disjunction a source-level
+transport theorem must produce:
+
+* a third carrier on the deleted-source bisector;
+* a direct cardinality lower bound on that bisector fiber; or
+* the lower-overlap arm consumed by `b1_live_false_of_escape_overlap_ge_three`.
+
+This is a checked consumer contract, not an assertion that the disjunction is
+available.  It is deliberately not a load-bearing `sorry` or a publish target.
+The missing producer and its arbitrary-cardinality lift remain separate.
+-/
+structure B1GlobalTransportContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H} where
+  R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F
+  hcard : 12 ≤ D.A.card
+  surface : ExactFourPostCardElevenRobustSurface R
+  rho : ℝ
+  hrho : 0 < rho
+  hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card
+  u : CarrierVertex D.A
+  v : CarrierVertex D.A
+  huNeV : u ≠ v
+  huClass : u.1 ∈ SelectedClass D.A S.oppApex2 rho
+  hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 rho
+  hvOmitted :
+    v.1 ∉
+      ((lateFirstApexSystem R).selectedAt u.1 u.2).toCriticalFourShell.support
+  huOmitted :
+    u.1 ∉
+      ((lateFirstApexSystem R).selectedAt v.1 v.2).toCriticalFourShell.support
+  first : ExactFourMutualOmissionJointDeletion R rho u v
+  second : ExactFourMutualOmissionJointDeletion R rho u v
+  hdeletedNe : first.deleted ≠ second.deleted
+  hblockersEq :
+    (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 =
+      (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2
+
+def B1GlobalGapOrClosedTerminal
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  (∃ c : ℝ²,
+      c ∈ D.A ∧
+      c ≠ (lateFirstApexSystem C.R).centerAt
+        C.first.deleted.1 C.first.deleted.2 ∧
+      c ≠ S.oppApex2 ∧
+      dist c C.first.deleted.1 = dist c C.second.deleted.1) ∨
+    (3 ≤
+      (D.A.filter
+        (fun p ↦ dist p C.first.deleted.1 = dist p C.second.deleted.1)).card) ∨
+    (∀ (t : ℝ²),
+      t ∈
+        (SelectedClass D.A S.oppApex2 C.rho ∩
+          S.capInteriorByIndex S.oppIndex2) →
+      ∀ (htA : t ∈ D.A),
+        t ≠ C.first.deleted.1 →
+        t ≠ C.second.deleted.1 →
+        t ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support →
+        (lateFirstApexSystem C.R).centerAt t htA ≠
+          (lateFirstApexSystem C.R).centerAt
+            C.first.deleted.1 C.first.deleted.2 →
+        3 ≤
+          (((lateFirstApexSystem C.R).selectedAt t htA).toCriticalFourShell.support ∩
+            ((lateFirstApexSystem C.R).selectedAt
+              C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support).card)
+
+theorem false_of_b1_global_gap_or_closed_terminal
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hterminal : B1GlobalGapOrClosedTerminal C) : False := by
+  rcases hterminal with hthird | hfiber | hoverlap
+  · rcases hthird with ⟨c, hcA, hcNeBlocker, hcNeApex, hcBisects⟩
+    exact b1_live_false_of_third_bisector_carrier C.R C.hcard C.surface C.rho
+      C.hrho C.hfive C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted
+      C.huOmitted C.first C.second C.hdeletedNe C.hblockersEq c hcA
+      hcNeBlocker hcNeApex hcBisects
+  · exact b1_live_false_of_bisector_fiber_card_ge_three C.R C.hcard C.surface
+      C.rho C.hrho C.hfive C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted
+      C.huOmitted C.first C.second C.hdeletedNe C.hblockersEq hfiber
+  · exact b1_live_false_of_escape_overlap_ge_three C.R C.hcard C.surface C.rho
+      C.hrho C.hfive C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted
+      C.huOmitted C.first C.second C.hdeletedNe C.hblockersEq hoverlap
 
 /- A physical second-apex class of size five is not merely large enough to
    produce a mutually omitted deletion.  The ordered-cap count places at least

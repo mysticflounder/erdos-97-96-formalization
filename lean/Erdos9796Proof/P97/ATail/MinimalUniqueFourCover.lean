@@ -91,6 +91,32 @@ theorem uniqueFourClass_eq
   unfold uniqueFourClass
   rw [dif_pos hex, hchoice, hr']
 
+/-- Every selected four-row at a unique-four center is the full canonical
+four-class.  This removes the apparent freedom in choosing a four-point
+subrow once deletion minimality has pinned the center's multiplicity. -/
+theorem selectedFourClass_support_eq_uniqueFourClass
+    {A : Finset ℝ²} {p : ℝ²} (hp : IsUniqueFourCenter A p)
+    (K : SelectedFourClass A p) :
+    K.support = uniqueFourClass A p := by
+  have hpUnique : IsUniqueFourCenter A p := hp
+  obtain ⟨_hpA, r, hr, hcard, huniq⟩ := hp
+  have hsub : K.support ⊆ SelectedClass A p K.radius := by
+    intro x hx
+    exact mem_selectedClass.mpr
+      ⟨K.support_subset_A hx, K.support_eq_radius x hx⟩
+  have hfour : 4 ≤ (SelectedClass A p K.radius).card := by
+    calc
+      4 = K.support.card := K.support_card.symm
+      _ ≤ (SelectedClass A p K.radius).card := Finset.card_le_card hsub
+  have hradius : K.radius = r := huniq K.radius K.radius_pos hfour
+  have hclassCard : (SelectedClass A p K.radius).card = 4 := by
+    simpa only [hradius] using hcard
+  have hsupport : K.support = SelectedClass A p K.radius := by
+    apply Finset.eq_of_subset_of_card_le hsub
+    rw [K.support_card, hclassCard]
+  rw [hsupport,
+    uniqueFourClass_eq hpUnique K.radius_pos hclassCard]
+
 /-- Deleting any member of a unique-four center's selected class destroys
 every four-point equidistant witness at that center. -/
 theorem not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass

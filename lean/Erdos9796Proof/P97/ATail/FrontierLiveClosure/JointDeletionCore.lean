@@ -704,6 +704,32 @@ B1 collision arm.  They are deliberately kept separate from the terminal
 collision theorem below: the missing global producer is the existence of a
 third carrier point on the same perpendicular bisector. -/
 
+/-- A unique-four centre has pinned multiplicity exactly four.  The defining
+uniqueness condition controls every radius class of cardinality at least four;
+the selected four-class supplies the matching lower bound. -/
+theorem pinnedMultiplicity_eq_four_of_isUniqueFourCenter
+    {A : Finset ℝ²} {p : ℝ²}
+    (hp : IsUniqueFourCenter A p) :
+    pinnedMultiplicity A p = 4 := by
+  obtain ⟨_, r, hr, hcard, huniq⟩ := hp
+  have hupper : pinnedMultiplicity A p ≤ 4 := by
+    by_contra hnot
+    have hfive : 5 ≤ pinnedMultiplicity A p := by omega
+    obtain ⟨ρ, hρ, hρcard⟩ :=
+      (hasNEquidistantPointsAt_iff_le_pinnedMultiplicity (n := 5) (by norm_num)).mpr hfive
+    have hfourRaw : 4 ≤ (A.filter (fun q => dist p q = ρ)).card := by
+      omega
+    have hfourρ : 4 ≤ (SelectedClass A p ρ).card := by
+      simpa [SelectedClass, dist_comm] using hfourRaw
+    have hρr : ρ = r := huniq ρ hρ hfourρ
+    have hfiveAtR : 5 ≤ (SelectedClass A p r).card := by
+      simpa [SelectedClass, dist_comm, hρr] using hρcard
+    omega
+  have hlower : 4 ≤ pinnedMultiplicity A p := by
+    have hclass := selectedClass_card_le_pinnedMultiplicity (A := A) (p := p) hr
+    omega
+  exact Nat.le_antisymm hupper hlower
+
 /-- A selected four-class at a centre of pinned multiplicity exactly four is
 the whole physical radius class at its selected radius.  This is the exact-
 four arm of the B1 producer route; it does not assert the missing transport
