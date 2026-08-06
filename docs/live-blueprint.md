@@ -7,7 +7,8 @@
 > `proof-blueprint spine`; to refresh the snapshot, re-run the generator
 > (`lake-build` rewrites it after every successful build).
 
-active anchors (11):
+active anchors (12):
+  ⚓ f3cf6135  Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker  [open]  — Rigid221 pentagon: off-class xv-row blocker residual; exact-oracle mining done, next split gated on frontier growth
   ⚓ a29c9c59 (YOU)  Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core  [open]  — Grid leaf: Kkept ⊔ Kdel = C ⊔ C', |C|=|C'|=4, four proved sep/reflection identities; needs an order-sensitive metric terminal
   ⚓ 019fd3ab  Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core  [open]  — E1 retained-omission endpoint global-coupling producer after FrontierLiveClosure sharding
   ⚓ 019fab71  Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core  [open]  — Post-refactor E1 verification
@@ -22,9 +23,9 @@ active anchors (11):
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — the claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 93/35997 node(s)
+open: 93/36003 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 284958 line(s) of lean across 35997 decl(s)
+spine source: 285148 line(s) of lean across 36003 decl(s)
 
 open obligations (29):
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [sorry]
@@ -201,8 +202,8 @@ open obligations (29):
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core  [💧]  ⚓ (YOU)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLarge_core
@@ -298,7 +299,7 @@ open obligations (29):
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (1 sorry)
     💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
 
-unimported files (681 file(s), 3325 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
+unimported files (681 file(s), 3316 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
 
 name collisions: 8 fully-qualified name(s) declared in ≥2 files
 ⚠  off-spine / identical-copy collisions (8):
