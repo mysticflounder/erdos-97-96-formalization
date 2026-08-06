@@ -308,3 +308,28 @@ None of these closes a leaf on its own. `centerAt deleted ≠ xv` is the
 concrete gain: it pre-kills one alternative of any future split on
 `centerAt deleted`. The `overlap_le_two` route is gated on apex radius
 uniqueness and is not available as stated.
+
+### 7.1 The apex-radius gate, checked (2026-08-05)
+
+`P.surface.radiusClassification : DeletionRobustRadiusClassification D
+S.oppApex2` (`ATail/ExactFourRobustCapExpansion.lean:123`) has exactly two
+constructors:
+
+- `fivePointRadius` — some positive radius carries ≥ 5 class points;
+- `twoDistinctRadii` — two positive radii each carrying ≥ 4, **plus**
+  `all_positive_radius_class_card_lt_five`.
+
+In the pentagon the `rho` class has card exactly 5, so instantiating
+`all_positive_radius_class_card_lt_five` at `rho` refutes the second
+constructor: the classification is always `fivePointRadius` here. That is
+a free case elimination, but it is **not** the pin §7 needs — it only
+asserts existence of a ≥ 5 radius, which we already have, and says
+nothing about whether the apex carries a second four-point radius. So
+`B₂` stays unpinned and the `overlap_le_two` route stays gated.
+
+Pinning it would need "the second apex has no four-point radius other
+than `rho`" {{NEEDS_PROOF}}, which nothing in the tree supplies:
+`oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four` and
+`oppositeVertex_selectedClass_card_le_cap_card` are both satisfied by a
+five-point `rho` class plus a hypothetical four-point second radius when
+`6 ≤ S.oppCap2.card`.
