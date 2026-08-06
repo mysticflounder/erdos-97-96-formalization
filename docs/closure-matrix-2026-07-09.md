@@ -2967,3 +2967,40 @@ named class points to `{xv, u, deleted}`, so `xu` and `v` are provably off
 that row in every placement branch.  Module build green; on-spine
 reaches-`sorry` count unchanged at 28; raw direct-`sorry` count in the
 module unchanged at 4.
+
+### Rigid221 source-heavy large-cap: `xu`-row class trace pinned (2026-08-05)
+
+Second application of the saturation kernel, producer
+`exactFourRigid221_sourceHeavy_pentagon_xuRow_trace_bound`, proved in the
+pentagon parent and passed to all four placement leaves as
+`_htraceBoundXu`:
+
+```
+∀ x ∈ (selectedAt xu).support,
+    x ∈ SelectedClass D.A S.oppApex2 P.rho →
+      x = xu ∨ x = deleted
+```
+
+`u` and `xv` are off the `xu` row by the pentagon incidence hypotheses.
+`v` is removed by saturation on the pinned deleted-row class edge
+`{deleted, v}`: `v ∈ xu`-row plus `deleted ∈ xu`-row makes the `xu`-row
+blocker equidistant from `deleted` and `v`, so it is the apex (excluded by
+`centerAt_ne`) or the deleted-row blocker.  Equal centers give equal radii
+(`support_eq_radius` at `deleted` on both rows), so
+`off_row_named_label_forbidden` puts `xu` into the deleted row against
+`_hxuNotDeletedRow`.
+
+Combined incidence state of the pentagon after both bounds — every class
+row trace is now pinned or bounded:
+
+| row | class trace |
+| --- | --- |
+| `u` | `{u, xu}` (packet, pinned) |
+| `v` | `{v, xv}` (packet, pinned) |
+| `xu` | `{xu, deleted}` (new, exact) |
+| `deleted` | `{deleted, v}` (leaf hypotheses, exact) |
+| `xv` | `⊆ {xv, u, deleted}`, contains `xv, u` |
+
+The sole remaining incidence freedom is whether `deleted` lies on the `xv`
+row.  Module build green; on-spine reaches-`sorry` count unchanged at 28;
+module sorry count unchanged at 4.
