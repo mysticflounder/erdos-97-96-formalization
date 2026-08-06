@@ -3053,17 +3053,387 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
               hVDel P.jointDeletion.deleted_not_mem_vRow
               first second hdeletionsNe
 
-/-- Genuine pentagon leaf of the source-heavy large-cap arm: the five-cycle
+/-- A class point outside the strict physical second-cap interior lies in
+one of the two adjacent caps.  This is the general-cap-profile form of the
+exact-five placement step: only the class-sdiff adjacency cover is used, no
+cap-cardinality input. -/
+private theorem exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    {z : ℝ²}
+    (hzClass : z ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hzNotInterior : z ∉ S.capInteriorByIndex S.oppIndex2) :
+    z ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+      z ∈ S.rightAdjacentCapByIndex S.oppIndex2 := by
+  classical
+  let T :=
+    SelectedClass D.A
+      (S.oppositeVertexByIndex S.oppIndex2) P.rho
+  have hcover :
+      T \ S.capInteriorByIndex S.oppIndex2 ⊆
+        (T ∩ S.leftAdjacentCapByIndex S.oppIndex2) ∪
+          (T ∩ S.rightAdjacentCapByIndex S.oppIndex2) := by
+    simpa [T] using
+      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+        S.oppIndex2 P.hrho
+  have hzT : z ∈ T := by
+    simpa [T] using hzClass
+  have hzOutside : z ∈ T \ S.capInteriorByIndex S.oppIndex2 :=
+    Finset.mem_sdiff.mpr ⟨hzT, hzNotInterior⟩
+  rcases Finset.mem_union.mp (hcover hzOutside) with hleft | hright
+  · exact Or.inl (Finset.mem_inter.mp hleft).2
+  · exact Or.inr (Finset.mem_inter.mp hright).2
+
+/-- Two distinct class points that both avoid the strict physical second-cap
+interior occupy the two adjacent caps in one of the two orientations: each
+adjacent cap meets the class in at most one point. -/
+private theorem exactFourRigid221_sourceHeavy_adjacent_orientation_of_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    {y z : ℝ²}
+    (hyClass : y ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hzClass : z ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hyz : y ≠ z)
+    (hyLoc :
+      y ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        y ∈ S.rightAdjacentCapByIndex S.oppIndex2)
+    (hzLoc :
+      z ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        z ∈ S.rightAdjacentCapByIndex S.oppIndex2) :
+    (y ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+        z ∈ S.rightAdjacentCapByIndex S.oppIndex2) ∨
+      (z ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+        y ∈ S.rightAdjacentCapByIndex S.oppIndex2) := by
+  classical
+  let T :=
+    SelectedClass D.A
+      (S.oppositeVertexByIndex S.oppIndex2) P.rho
+  have hleftOne :
+      (T ∩ S.leftAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+    simpa [T] using
+      S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex2 P.rho
+  have hrightOne :
+      (T ∩ S.rightAdjacentCapByIndex S.oppIndex2).card ≤ 1 := by
+    simpa [T] using
+      S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex2 P.rho
+  have hyT : y ∈ T := by
+    simpa [T] using hyClass
+  have hzT : z ∈ T := by
+    simpa [T] using hzClass
+  have hnotSame :
+      ∀ C : Finset ℝ², (T ∩ C).card ≤ 1 →
+        y ∈ C → z ∈ C → False := by
+    intro C hone hyC hzC
+    have hsubset : ({y, z} : Finset ℝ²) ⊆ T ∩ C := by
+      intro w hw
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hw
+      rcases hw with rfl | rfl
+      · exact Finset.mem_inter.mpr ⟨hyT, hyC⟩
+      · exact Finset.mem_inter.mpr ⟨hzT, hzC⟩
+    have hle := Finset.card_le_card hsubset
+    have hcard2 : ({y, z} : Finset ℝ²).card = 2 := by
+      simp [hyz]
+    omega
+  rcases hyLoc with hyL | hyR <;> rcases hzLoc with hzL | hzR
+  · exact (hnotSame _ hleftOne hyL hzL).elim
+  · exact Or.inl ⟨hyL, hzR⟩
+  · exact Or.inr ⟨hzL, hyR⟩
+  · exact (hnotSame _ hrightOne hyR hzR).elim
+
+/-- Pentagon placement leaf with all five class points in the strict
+physical second-cap interior.  Every cycle-adjacent class pair is then an
+interior pair, so every actual blocker of a class row localizes into the
+same strict interior via the two-center cap localization.  Narrowing over
+the parent pentagon: the two parent-proved interior memberships for `v` and
+`deleted`. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonAllInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : _packet.xu ∈ D.A)
+    (hxvA : _packet.xv ∈ D.A)
+    (_huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support)
+    (_huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hxvNotXuRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxuNotDeletedRow :
+      _packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxvNotDeletedRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hclassFive :
+      ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+        q = P.u.1 ∨ q = _packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+          q = P.v.1 ∨ q = _packet.xv)
+    (_hxvInterior :
+      _packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hvInterior :
+      P.v.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedInterior :
+      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2) :
+    False := by
+  sorry
+
+/-- Pentagon placement leaf with `v` exiled to an adjacent cap while
+`deleted` stays interior.  Narrowing over the parent pentagon: the
+parent-proved interior memberships for `xv` and `deleted`, the interior
+exclusion for `v`, and the adjacent-cap membership certificate for `v`. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonVAdjacent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : _packet.xu ∈ D.A)
+    (hxvA : _packet.xv ∈ D.A)
+    (_huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support)
+    (_huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hxvNotXuRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxuNotDeletedRow :
+      _packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxvNotDeletedRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hclassFive :
+      ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+        q = P.u.1 ∨ q = _packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+          q = P.v.1 ∨ q = _packet.xv)
+    (_hxvInterior :
+      _packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedInterior :
+      P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hvNotInterior :
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_hvAdjacent :
+      P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) :
+    False := by
+  sorry
+
+/-- Pentagon placement leaf with `deleted` exiled to an adjacent cap while
+`v` stays interior.  Narrowing over the parent pentagon: the parent-proved
+interior memberships for `xv` and `v`, the interior exclusion for
+`deleted`, and the adjacent-cap membership certificate for `deleted`. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonDeletedAdjacent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : _packet.xu ∈ D.A)
+    (hxvA : _packet.xv ∈ D.A)
+    (_huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support)
+    (_huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hxvNotXuRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxuNotDeletedRow :
+      _packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxvNotDeletedRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hclassFive :
+      ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+        q = P.u.1 ∨ q = _packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+          q = P.v.1 ∨ q = _packet.xv)
+    (_hxvInterior :
+      _packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hvInterior :
+      P.v.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedNotInterior :
+      P.jointDeletion.deleted.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedAdjacent :
+      P.jointDeletion.deleted.1 ∈
+          S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        P.jointDeletion.deleted.1 ∈
+          S.rightAdjacentCapByIndex S.oppIndex2) :
+    False := by
+  sorry
+
+/-- Pentagon placement leaf with `v` and `deleted` both exiled, one to each
+adjacent cap.  This is the large-cap analogue of the closed exact-five
+placement: the strict interior class trace is exactly `{u, xu, xv}`.  The
+exact-five machinery does not transfer directly because its placement
+packet carries `S.oppCap2.card = 5`.  Narrowing over the parent pentagon:
+the parent-proved interior membership for `xv`, both interior exclusions,
+and the two-sided adjacent-cap orientation certificate. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppositeAdjacent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : _packet.xu ∈ D.A)
+    (hxvA : _packet.xv ∈ D.A)
+    (_huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xv hxvA).toCriticalFourShell.support)
+    (_huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hxvNotXuRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          _packet.xu hxuA).toCriticalFourShell.support)
+    (_hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxuNotDeletedRow :
+      _packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hxvNotDeletedRow :
+      _packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (_hclassFive :
+      ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+        q = P.u.1 ∨ q = _packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+          q = P.v.1 ∨ q = _packet.xv)
+    (_hxvInterior :
+      _packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hvNotInterior :
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_hdeletedNotInterior :
+      P.jointDeletion.deleted.1 ∉ S.capInteriorByIndex S.oppIndex2)
+    (_horientation :
+      (P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.jointDeletion.deleted.1 ∈
+            S.rightAdjacentCapByIndex S.oppIndex2) ∨
+        (P.jointDeletion.deleted.1 ∈
+            S.leftAdjacentCapByIndex S.oppIndex2 ∧
+          P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2)) :
+    False := by
+  sorry
+
+/-- Checked cap-placement split of the pentagon: the five-cycle
 configuration in which the physical second-apex class consists of exactly
-the five named points `{u, xu, deleted, v, xv}`.  All five class row traces
-are pinned — `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`,
-`{deleted, v}` — forming the directed five-cycle
-`u → xu → deleted → v → xv → u`.  Every mutually omitted class pair is a
-cycle diagonal whose two pinned rows cover four of the five class points,
-so exactly one prescribed deletion candidate remains and the two-deletion
-terminal does not apply directly; closure requires metric input from the
-joint-deletion packets.  This is the single residual configuration of the
-source-heavy large-cap arm. -/
+the five named points `{u, xu, deleted, v, xv}`, with all five class row
+traces pinned into the directed five-cycle `u → xu → deleted → v → xv → u`.
+The blocker identity `centerAt u = xv` makes `xv` equidistant from the
+strict-interior pair `{u, xu}`, so the two-center cap localization places
+`xv` in the strict physical second-cap interior.  Splitting on the interior
+membership of `v` and `deleted` then covers the four placement leaves: the
+adjacent-cap cover handles each exclusion and the one-point adjacent-cap
+bounds force the two-sided orientation when both are exiled. -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3116,7 +3486,54 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
         q = P.u.1 ∨ q = _packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
           q = P.v.1 ∨ q = _packet.xv) :
     False := by
-  sorry
+  classical
+  have hxvInterior :=
+    exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior P _packet
+  by_cases hvInterior : P.v.1 ∈ S.capInteriorByIndex S.oppIndex2
+  · by_cases hdeletedInterior :
+        P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2
+    · exact
+        false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonAllInterior
+          P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
+          _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
+          _hxvNotDeletedRow _hclassFive hxvInterior hvInterior
+          hdeletedInterior
+    · exact
+        false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonDeletedAdjacent
+          P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
+          _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
+          _hxvNotDeletedRow _hclassFive hxvInterior hvInterior
+          hdeletedInterior
+          (exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
+            P P.jointDeletion.deleted_mem_class hdeletedInterior)
+  · have hvAdjacent :=
+      exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
+        P P.hvClass hvInterior
+    by_cases hdeletedInterior :
+        P.jointDeletion.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2
+    · exact
+        false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonVAdjacent
+          P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
+          _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
+          _hxvNotDeletedRow _hclassFive hxvInterior hdeletedInterior
+          hvInterior hvAdjacent
+    · have hdeletedAdjacent :=
+        exactFourRigid221_sourceHeavy_classPoint_adjacent_of_not_interior
+          P P.jointDeletion.deleted_mem_class hdeletedInterior
+      have hvNeDeleted : P.v.1 ≠ P.jointDeletion.deleted.1 := by
+        intro h
+        apply P.jointDeletion.deleted_ne_v
+        apply Subtype.ext
+        exact h.symm
+      exact
+        false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOppositeAdjacent
+          P _packet _hsecond hxuA hxvA _huXvRow _huNotXuRow _hxvNotXuRow
+          _hdeletedXuRow _hvDeletedRow _huNotDeletedRow _hxuNotDeletedRow
+          _hxvNotDeletedRow _hclassFive hxvInterior hvInterior
+          hdeletedInterior
+          (exactFourRigid221_sourceHeavy_adjacent_orientation_of_two
+            P P.hvClass P.jointDeletion.deleted_mem_class hvNeDeleted
+            hvAdjacent hdeletedAdjacent)
 
 /-- Large-cap incidence leaf with every class row trace fully pinned:
 `{u, xu}`, `{v, xv}`, `{xv, u}`, `{xu, deleted}`, `{deleted, v}`.  The

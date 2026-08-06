@@ -2820,3 +2820,53 @@ measure: the pentagon leaf's hypothesis set strictly extends the
 five-cycle leaf's by the class enumeration; the sixth-point branch
 terminates in kernel-checked two-deletion closures.  No cap-profile
 counting is consumed.
+
+### Rigid221 source-heavy large-cap: cap-placement split of the pentagon leaf (2026-08-05)
+
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon` is
+now a checked cap-placement cover, not a leaf.  Producer chain, all
+kernel-checked in the dispatching branch:
+
+- `exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior` (pre-existing,
+  no cap-profile input): the blocker identity `centerAt u = xv` makes `xv`
+  equidistant from the strict-interior pair `{u, xu}`, and
+  `commonPhysicalPair_center_mem_secondCapInterior` places `xv` in the
+  strict physical second-cap interior;
+- `by_cases` on interior membership of `v` and of `deleted`;
+- new private `..._classPoint_adjacent_of_not_interior`
+  (`selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps`) certifies
+  an adjacent-cap membership for each excluded point; and
+- new private `..._adjacent_orientation_of_two`
+  (one-point adjacent-cap bounds) forces the two-sided orientation when
+  both are excluded.
+
+Four placement leaves, each strictly narrower than the parent pentagon:
+
+1. `..._pentagonAllInterior` — `v, deleted ∈` strict interior (all five
+   class points interior; every cycle edge is an interior pair, so every
+   class-row blocker localizes into the interior).
+2. `..._pentagonVAdjacent` — `v` exiled with adjacency certificate,
+   `deleted` interior.
+3. `..._pentagonDeletedAdjacent` — mirror of 2.
+4. `..._pentagonOppositeAdjacent` — both exiled, one per adjacent cap
+   (orientation disjunction); large-cap analogue of the exact-five
+   placement, whose machinery does not transfer directly because its
+   packet embeds `S.oppCap2.card = 5`.
+
+Coordinator-interface frontier for the source-heavy subtree: before, one
+pentagon leaf; after, four placement leaves with parent-proved placement
+hypotheses (fan-out 4, granularity = interior/adjacent placement of the
+two non-`{u, xu, xv}` class points).  Raw direct-`sorry` delta `+3`
+(1 → 4), each leaf narrowed by parent-proved memberships/exclusions.
+
+Scratch-validated metric kernels for the leaf attacks (not landed;
+`scratchpad/pentagon-metric-shard.lean`, built green): strictly separating
+functional at any convex-position vertex; apex-ray determination
+(`xv -ᵥ s = lam • ((u -ᵥ s) + (xu -ᵥ s))`, `lam > 0` — the class point
+equidistant from a same-class pair is the near arc representative, so `xv`
+lies angularly strictly between `u` and `xu`); per-edge bisector
+saturation (any carrier point equidistant from a pinned row edge is the
+apex or that row's blocker).  The planned index-2 port of
+`bisectorCenter_mem_firstApexInterior` turned out pre-existing as
+`commonPhysicalPair_center_mem_secondCapInterior`
+(`TwoCenterCapLocalization.lean`).
