@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure
+import Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -28,6 +29,7 @@ open ATailLocalizedCollisionMutualOmissionCycle
 open Census554.CapSelectedGeometry
 open ATailCriticalSystemRebase
 open ATailOrientedPhysicalApexIngress
+open ATailPairedCommonDeletionNormalForm
 open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
 open ATailRetainedMatchingGeometricReduction
@@ -979,10 +981,65 @@ theorem exists_globalK4Row_and_sourceFaithfulCriticalCover_of_triApexAllLargeCon
       exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
         G q.2⟩
 
+/-- Escaping-source child of the paired common-deletion leaf.
+
+The retained common deletion renews at a carrier point on a first-apex class of
+at least four points which is omitted by *both* retained shells.  Deleting it
+preserves K4 at the first apex and at both retained blockers, and its own
+actual blocker is a fourth centre distinct from all three
+(`PairedApexClassJointDeletion.blocker_ne_keptBlocker`,
+`…blocker_ne_deletedBlocker`).
+
+Narrowing relative to the parent: the parent supplies only the mutual-omission
+pair; this leaf additionally names a third source on a first-apex class with a
+four-centre survival surface. -/
+theorem false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (J : PairedApexClassJointDeletion O)
+    (G : TriApexAllLargeContext D S) :
+    False := by
+  sorry
+
+/-- Saturated child of the paired common-deletion leaf.
+
+Both retained critical shells are pinned onto two concentric first-apex classes
+of cardinality exactly four: each shell meets each class in a named two-point
+set, the shells are disjoint, and their union is the union of the two classes.
+Each such two-point set is a reflected pair across the chord joining the first
+apex to that shell's blocker
+(`PairedTwoRadiusGrid.keptRetainedPair_sep` and its three companions), so this
+leaf already carries order-sensitive metric data, not only incidence counts.
+
+Narrowing relative to the parent: the parent's retained class is only known to
+have at least four points and its shells are unconstrained off the retained
+radius; here both cardinalities are exactly four and both full shells are
+determined by the two classes. -/
+theorem false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O)
+    (G : TriApexAllLargeContext D S) :
+    False := by
+  sorry
+
 /-- Paired-common-deletion branch of the E1 geometric consumer.  Its inputs
-are exactly the first constructor of `RetainedOmissionAllLargeNormalForm`, so
-the remaining metric producer can be mined and formalized independently of
-the fresh-third branch. -/
+are exactly the first constructor of `RetainedOmissionAllLargeNormalForm`.
+
+The branch is dispatched by the checked source-return normal form
+`nonempty_pairedCommonDeletionOutcome`: the paired arm *is* the source-return
+two-step walk, whose exact radius split either renews the common deletion at a
+first-apex class point escaping both shells, or — after renewing the exact-four
+arm at the second rich first-apex radius — saturates into the two-radius
+grid. -/
 theorem false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -999,7 +1056,18 @@ theorem false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
         (H.centerAt O.deleted O.deleted_mem_A))
     (G : TriApexAllLargeContext D S) :
     False := by
-  sorry
+  have hrich : ApexRichClassStructure D.A S.oppApex1 := by
+    simpa using G.apex_rich S.oppIndex1
+  rcases nonempty_pairedCommonDeletionOutcome O reversePacket hrich with
+    ⟨outcome⟩
+  cases outcome with
+  | apexClassJointDeletion J =>
+      exact
+        false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
+          J G
+  | twoRadiusGrid Gr =>
+      exact
+        false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core Gr G
 
 /-- The fresh reverse-hit branch is already a nonreturning two-step
 common-deletion walk.  Hence its endpoint is classified by either an

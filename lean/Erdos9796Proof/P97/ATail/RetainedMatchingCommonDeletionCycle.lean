@@ -9,13 +9,13 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionNormalization
 /-!
 # Source-tagged common-deletion walk for retained blocker matching
 
-Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
-only import consumers are off-spine siblings of the same retained
-strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
-It is therefore not on either current publish spine, and `lake build` does not
-reach it from the library roots. It remains a reusable normal-form bank; it
-receives no live-frontier closure credit unless a consumer is promoted through
-the standard preflight.
+Status: `ON-SPINE` since 2026-08-05, via
+`ATail.RetainedMatchingSourceReturnRadiusSplit` →
+`ATail.PairedCommonDeletionNormalForm`: the paired arm of the E1
+retained-omission core is built as a `RetainedMatchingTwoStepCommonDeletionWalk`
+with `nextLocation := .sourceReturn`.  The endpoint-classification theorems
+(`nonempty_twoStepEndpointOutcome` and the large-cap outcome adapters) remain
+bank-only.
 
 Every constructor of the retained matching large-cap outcome contains two
 consecutive source-exact common deletions.  The first edge is the original

@@ -9,13 +9,11 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
 /-!
 # Retained matching source-return radius split
 
-Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
-only import consumers are off-spine siblings of the same retained
-strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
-It is therefore not on either current publish spine, and `lake build` does not
-reach it from the library roots. It remains a reusable normal-form bank; it
-receives no live-frontier closure credit unless a consumer is promoted through
-the standard preflight.
+Status: `ON-SPINE` since 2026-08-05.  `ATail.PairedCommonDeletionNormalForm`
+consumes `nonempty_sourceReturnRadiusOutcome` to dispatch the paired arm of
+`false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`, so this
+module is now reached from the P97 publish target.  The U5 ingress theorems
+below remain bank-only: no publish-spine consumer uses them yet.
 
 The source-return arm of the retained matching walk is a genuine mutual-omission
 two-cycle.  This file keeps the complete retained first-apex radius class and
