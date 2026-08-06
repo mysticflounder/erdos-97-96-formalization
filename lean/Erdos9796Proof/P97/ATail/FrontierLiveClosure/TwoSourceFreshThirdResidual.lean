@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceTripleShellEscape
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -325,6 +326,58 @@ theorem false_of_hasDistinctCrossRows
   | sameBlockerAllEndpointOmission => exact hrows
 
 end FreshThirdTwoCapSourceObstruction
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The triple-shell escape is now paired with the canonical global cover at
+the escaped point.  This is the concrete FreshThird producer contract:
+global K4 supplies the escaping row, the critical-shell system supplies the
+source-faithful cover and deletion obstruction, and distinct centers give the
+exact two-circle overlap bound.  No cyclic order or finite-cardinality
+assumption is hidden in this packet; those are the only clauses still needed
+by a terminal consumer. -/
+theorem exists_freshThird_escape_with_sourceFaithful_cover
+    (source : CriticalShellSystem.CarrierVertex D.A) :
+    ∃ center : ℝ²,
+      ∃ hcenter : center ∈
+        freshThirdCriticalTripleShellSeed P Pρ source,
+        ∃ K : SelectedFourClass D.A center,
+          ∃ z : ℝ²,
+            ∃ hzA : z ∈ D.A,
+              z ∈ K.support ∧
+                z ∉ freshThirdCriticalTripleShellSeed P Pρ source ∧
+                ∃ i : Fin 3,
+                  H.centerAt z hzA ∈ S.capInteriorByIndex i ∧
+                  ¬ HasNEquidistantPointsAt 4
+                    (D.A.erase z) (H.centerAt z hzA) ∧
+                  ((center = H.centerAt z hzA ∧
+                      K.support =
+                        (H.selectedAt z hzA).toCriticalFourShell.support) ∨
+                    (center ≠ H.centerAt z hzA ∧
+                      (K.support ∩
+                        (H.selectedAt z hzA).toCriticalFourShell.support).card ≤ 2)) := by
+  rcases
+      exists_freshThird_selectedRow_escape_tripleShellSeed
+        (P := P) (Pρ := Pρ) (hlarge := L) source with
+    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+  have hzA : z ∈ D.A := K.support_subset_A hzK
+  rcases exists_blockerCenter_mem_capInteriorByIndex
+      (T := T) ⟨z, hzA⟩ with ⟨i, hi⟩
+  have hzBlocked :
+      ¬ HasNEquidistantPointsAt 4
+        (D.A.erase z) (H.centerAt z hzA) :=
+    H.no_qfree_at z hzA
+  by_cases hcenters : center = H.centerAt z hzA
+  · subst center
+    refine ⟨H.centerAt z hzA, hcenter, K, z, hzA, hzK, hzOutside,
+      i, hi, hzBlocked, ?_⟩
+    exact Or.inl ⟨rfl, H.selectedFourClass_support_eq_shell z hzA K⟩
+  · refine ⟨center, hcenter, K, z, hzA, hzK, hzOutside,
+      i, hi, hzBlocked, Or.inr ⟨hcenters, ?_⟩⟩
+    simpa [CriticalFourShell.toSelectedFourClass] using
+      (SelectedFourClass.inter_card_le_two K
+        (H.selectedAt z hzA).toCriticalFourShell.toSelectedFourClass
+        hcenters)
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   LPρ hLPρ MPρ LP hLP MP in
