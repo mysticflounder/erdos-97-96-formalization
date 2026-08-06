@@ -499,3 +499,50 @@ Either split therefore grows the frontier 27 → 29 on-spine. That is the same
 trade §5 identified, now measured rather than estimated, and it is the reason no
 split was landed in this pass. The duplicate-centre kernel is worth landing only
 together with the split that consumes it.
+
+## 9. The off-class-blocker leaf is not closable at this layer (2026-08-05)
+
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker`
+(`Rigid221SourceHeavy.lean:3591`) mined directly, as stage 4 of
+`census/rigid221_pentagon_oracle.py`. Label 6 is `w = centerAt xv`.
+
+**Decisiveness runs the other way here than in §8.** SAT of a system asserting
+*more* than is proved still implies the true system is realizable, so an
+over-constrained SAT is decisive for "not closable"; an over-constrained UNSAT
+is not. The primary variant therefore asserts as much as possible, and the
+weaker variants exist only to interpret an UNSAT.
+
+At `n = 7` the apex row's `exact` clause stops being vacuous and becomes exactly
+this leaf's off-class hypothesis: it forces `w` off the class circle. Rows `u`
+and `xv` carry their exact class traces `{u, xu}` and `{xv, u}`.
+
+| variant | SAT | model-verified | UNSAT | UNKNOWN |
+|---|---|---|---|---|
+| **all-exact** (primary) | **29** | 29 | 330 | 1 |
+| rows-open | 28 | 28 | 328 | 4 |
+| u-open | 27 | 27 | 330 | 3 |
+
+**Verdict: the leaf is realizable at the incidence/metric layer.** Every SAT
+model in the primary variant is Z3-verified, and the primary variant asserts a
+superset of what is proved, so the true configuration is realizable too. This
+leaf cannot be closed by row-trace incidence plus apex-circle metric — the same
+boundary §5 predicted for the pentagon as a whole, now measured for the specific
+residual rather than argued.
+
+Consequence for planning, and it is a real narrowing of the option set:
+
+- The §3 vector machinery is **inert on this leaf**. It converts "row centre
+  *is* a class point" into a linear equation; this leaf is the hypothesis that
+  it is not. §3 prices the on-class leaves only.
+- Closure must consume the cap or deletion layer. Not encoded above, and
+  therefore untouched by this verdict: `w` lies in the strict second-cap
+  interior, each shell carries two further off-class support points, and
+  `6 ≤ S.oppCap2.card`.
+- The most concrete untried route is the two-sided cap-interior squeeze that
+  the E1 paired-grid lane assembled from existing lemmas
+  (`SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two` from below;
+  `CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two` and
+  `criticalShell_inter_otherRichCapSlice_card_le_one` from above). It transfers
+  verbatim if the pentagon supplies a covering statement of the shape "these
+  rows are contained in the union of these apex classes" {{NEEDS_RESEARCH}} —
+  whether it does is unchecked.

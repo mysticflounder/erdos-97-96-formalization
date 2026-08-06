@@ -227,6 +227,71 @@ def stage_duplicate_centre(timeout_s: float = 25.0, workers: int = 6) -> None:
     print("    disjoint traces and may share a centre at two different radii.")
 
 
+# --------------------------------------------------------------------------
+# Stage 4 -- the off-class-blocker leaf itself, with w = centerAt xv as label 6.
+# --------------------------------------------------------------------------
+
+#: variants differ only in how much is asserted about rows u and xv
+_OFFCLASS_VARIANTS = {
+    "all-exact": (True, True),    # primary: strongest, so SAT is decisive
+    "rows-open": (False, False),
+    "u-open": (False, True),
+}
+
+
+def _offclass_rows(u_exact: bool, xv_exact: bool) -> list[dict]:
+    return [
+        # exact is NON-vacuous at n = 7: it forces w off the class circle,
+        # which is exactly this leaf's off-class hypothesis.
+        ROW_APEX,
+        MetricRow(4, EDGE["u"], u_exact).as_dict(),
+        MetricRow(6, EDGE["xv"], xv_exact).as_dict(),
+    ]
+
+
+def _offclass_job(job):
+    vname, order, timeout_s = job
+    rows = _offclass_rows(*_OFFCLASS_VARIANTS[vname])
+    res = _run(_sys(f"offclass-{vname}", 7, order, rows), timeout_s)
+    return (vname, res["status"],
+            res.get("verification", {}).get("all_z3_assertions_true"))
+
+
+def stage_offclass_blocker(timeout_s: float = 15.0, workers: int = 6) -> None:
+    """Is the off-class-blocker leaf realizable at the incidence/metric layer?
+
+    Decisiveness runs the other way here than in stages 1-3. SAT of a system
+    asserting MORE than is proved still implies the true system is realizable,
+    so an over-constrained SAT is decisive for "not closable"; an
+    over-constrained UNSAT is not. The primary variant therefore asserts as much
+    as possible, and the weaker variants exist only to interpret an UNSAT.
+
+    NOT encoded, and the verdict does not cover it: `w` lies in the strict
+    second-cap interior, and each shell carries two further off-class support
+    points. SAT here means "not closable from row-trace incidence plus
+    apex-circle metric" — the layer §5 already isolated — not "not closable".
+    """
+    print("\nstage 4: off-class-blocker leaf (n = 7, w = centerAt xv as label 6)")
+    orders = cyclic_orders(7)
+    print(f"  cyclic orders swept: {len(orders)}")
+    jobs = [(v, o, timeout_s) for v in _OFFCLASS_VARIANTS for o in orders]
+    agg: dict[str, list[str]] = {}
+    verified: dict[str, int] = {}
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        for future in as_completed([pool.submit(_offclass_job, j) for j in jobs]):
+            vname, status, ok = future.result()
+            agg.setdefault(vname, []).append(status)
+            if status == "SAT" and ok:
+                verified[vname] = verified.get(vname, 0) + 1
+    for vname in _OFFCLASS_VARIANTS:
+        statuses = agg[vname]
+        print(f"  {vname:11s} SAT {statuses.count('SAT'):3d} "
+              f"(model-verified {verified.get(vname, 0):3d})  "
+              f"UNSAT {statuses.count('UNSAT'):3d}  "
+              f"UNKNOWN {statuses.count('UNKNOWN'):3d}")
+    print("    primary variant is all-exact; its SAT count is the decisive one.")
+
+
 def main() -> int:
     timeout_s = float(sys.argv[1]) if len(sys.argv) > 1 else 20.0
     if not stage_smoke(timeout_s):
@@ -235,6 +300,7 @@ def main() -> int:
     survivors = stage_leaf_orders(timeout_s)
     stage_fanout(survivors, min(timeout_s, 15.0))
     stage_duplicate_centre(timeout_s)
+    stage_offclass_blocker(min(timeout_s, 15.0))
     return 0
 
 
