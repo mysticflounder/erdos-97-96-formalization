@@ -246,6 +246,44 @@ misses:
 `Disjoint` appears in no statement of any of the three mining banks, and the
 banks contain no reflected-pair / opposite-signed-area shape.
 
+## The cap-counting layer does not close the grid (negative)
+
+`TriApexAllLargeContext` carries four fields. Two are counting
+(`cap_card_ge_six`, `notRobustCover_card`), one is the apex dichotomy
+(`apex_rich`), one is global (`no_center_covers_all_apices`). Worked on paper
+against the grid; not formalized, because it does not close.
+
+The counting is done with lemmas that hold for *every* positive radius, not
+only rich ones:
+
+* `leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` and the right
+  analogue — every first-apex class meets each adjacent cap in at most one
+  point, with no cardinality hypothesis;
+* `leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2`
+  (`SurplusM44Packet/Shard03.lean:1367`) — the adjacent cap *is* an indexed cap,
+  so `cap_card_ge_six` applies to it;
+* `selectedClass_capInteriorByIndex_card_ge_card_sub_two`
+  (`CapInteriorRadiusCounting.lean:84`) — the general `card − 2` interior bound,
+  again with no cardinality hypothesis.
+
+Write `k` for the number of distinct positive first-apex radii. Every point of
+the adjacent cap other than the apex itself lies in exactly one class and each
+class contributes at most one, so `6 ≤ cap.card` gives `k ≥ 5`. In the other
+direction the grid's `classCard_le_four` and `richClass_mem` bound the total:
+two classes of four and the rest at most three, so `|A| − 1 ≤ 3k + 2`. Adding
+the `card − 2` interior bound summed over all radii gives only `k ≥ 4`, which is
+weaker.
+
+Both constraints hold on the grid and neither contradicts the other for any
+`|A| ≥ 15`: the grid simply forces the first apex to see at least five distinct
+distances. So the pure cap-counting layer is non-closing, in the same way the
+`≤ 2` bounds were: the grid satisfies it, and satisfies the sharpest available
+form of it.
+
+That leaves `notRobustCover_card` (`|A| ≤ 4·|notRobustCenters D|`) and
+`no_center_covers_all_apices` as the two genuinely unconsumed fields of the
+context, alongside the K4/deletion semantics.
+
 ## Verdict semantics for the realizability probe
 
 A numerical realizability probe on the pinned local configuration is the current
