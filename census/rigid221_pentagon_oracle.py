@@ -23,13 +23,14 @@ Every system is handed to
 (Z3) realizability oracle that asserts strict convex position in a given cyclic
 order, pairwise distinctness, per-row equidistance, and per-row exactness.
 
-Semantics, stated once.  UNSAT is decisive: that configuration has no Euclidean
-realization, so the branch is geometrically excluded.  SAT is *not* a Problem 97
-counterexample -- it only says this relaxed row-level subsystem is realizable,
-hence the branch cannot be closed by the facts encoded here.  UNKNOWN is a
-solver timeout and is decisive for nothing; the reports below count UNKNOWN
-separately and never fold it into UNSAT.  Z3 verdicts are trusted computations,
-not kernel-checked certificates.
+Semantics, stated once.  UNSAT says the exact encoded conjunction has no model;
+it excludes a Lean branch only when every asserted atom is a consequence of
+that branch.  SAT supplies a model only of the exact encoded conjunction.  It
+is neither a Problem 97 counterexample nor full-leaf realizability, and it does
+not rule out richer arguments using omitted facts.  UNKNOWN is a solver timeout
+and is decisive for nothing; the reports below count UNKNOWN separately and
+never fold it into UNSAT.  Z3 verdicts are trusted computations, not
+kernel-checked certificates.
 
 Run::
 
@@ -233,7 +234,7 @@ def stage_duplicate_centre(timeout_s: float = 25.0, workers: int = 6) -> None:
 
 #: variants differ only in how much is asserted about rows u and xv
 _OFFCLASS_VARIANTS = {
-    "all-exact": (True, True),    # primary: strongest, so SAT is decisive
+    "all-exact": (True, True),    # primary model diagnoses this exact subsystem
     "rows-open": (False, False),
     "u-open": (False, True),
 }
@@ -258,18 +259,18 @@ def _offclass_job(job):
 
 
 def stage_offclass_blocker(timeout_s: float = 15.0, workers: int = 6) -> None:
-    """Is the off-class-blocker leaf realizable at the incidence/metric layer?
+    """Does the exact encoded off-class-blocker subsystem have a model?
 
-    Decisiveness runs the other way here than in stages 1-3. SAT of a system
-    asserting MORE than is proved still implies the true system is realizable,
-    so an over-constrained SAT is decisive for "not closable"; an
-    over-constrained UNSAT is not. The primary variant therefore asserts as much
-    as possible, and the weaker variants exist only to interpret an UNSAT.
+    SAT of the primary all-exact variant witnesses consistency only of the
+    atoms actually encoded. Because that variant strengthens some encoded row
+    constraints, its model also models the weaker encoded subsystem; it does
+    not model omitted hypotheses of the full Lean leaf. The weaker variants
+    diagnose which encoded atoms drive an UNSAT result.
 
     NOT encoded, and the verdict does not cover it: `w` lies in the strict
     second-cap interior, and each shell carries two further off-class support
-    points. SAT here means "not closable from row-trace incidence plus
-    apex-circle metric" — the layer §5 already isolated — not "not closable".
+    points. SAT here is DIAGNOSTIC-ONLY: it is neither full-leaf realizability
+    nor an impossibility result for richer incidence/metric arguments.
     """
     print("\nstage 4: off-class-blocker leaf (n = 7, w = centerAt xv as label 6)")
     orders = cyclic_orders(7)
@@ -286,10 +287,10 @@ def stage_offclass_blocker(timeout_s: float = 15.0, workers: int = 6) -> None:
     for vname in _OFFCLASS_VARIANTS:
         statuses = agg[vname]
         print(f"  {vname:11s} SAT {statuses.count('SAT'):3d} "
-              f"(model-verified {verified.get(vname, 0):3d})  "
+              f"(Z3 assertions true {verified.get(vname, 0):3d})  "
               f"UNSAT {statuses.count('UNSAT'):3d}  "
               f"UNKNOWN {statuses.count('UNKNOWN'):3d}")
-    print("    primary variant is all-exact; its SAT count is the decisive one.")
+    print("    primary all-exact SAT count models only the encoded subsystem.")
 
 
 def main() -> int:

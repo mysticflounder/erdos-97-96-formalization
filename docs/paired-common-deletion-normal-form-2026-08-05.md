@@ -1,5 +1,8 @@
 # Paired common-deletion normal form (E1 paired arm), 2026-08-05
 
+Evidence-status terms in this note follow the
+[closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
+
 Anchor:
 `Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`.
 
@@ -208,12 +211,15 @@ After (dispatcher + 2 leaves):
 | symbol | role | hypotheses |
 |---|---|---|
 | `false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core` | checked dispatcher, no `sorry` | unchanged signature |
-| `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core` | leaf | `PairedApexClassJointDeletion O`, `G` |
-| `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core` | leaf | `PairedTwoRadiusGrid O`, `G` |
+| `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core` | leaf | `J : PairedApexClassJointDeletion O`, `G : TriApexAllLargeContext D S` |
+| `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core` | leaf | `Gr : PairedTwoRadiusGrid O`, `place : PairedGridCapPlacement Gr`, `G : TriApexAllLargeContext D S` |
+| `pairedGridCapPlacement` | checked placement producer | `Gr : PairedTwoRadiusGrid O`, `G : TriApexAllLargeContext D S`; returns `PairedGridCapPlacement Gr` |
 
 Granularity: one immediate constructor fan-out of two, from a single inductive
-`PairedCommonDeletionOutcome`. No new structures beyond the two leaf data
-packets. Spine open obligations: 27 → 28.
+`PairedCommonDeletionOutcome`. The two outcome packets are supplemented by the
+proved `PairedGridCapPlacement` interface on the grid arm; the dispatcher
+constructs it with `pairedGridCapPlacement Gr G`. Spine open obligations:
+27 → 28.
 
 Narrowing measure per leaf (project rule 2):
 
@@ -260,15 +266,21 @@ misses:
    `eq_of_equidistant_three_noncollinear` need three shared equidistant points;
    each grid slice supplies exactly two by construction.
 
-`Disjoint` appears in no statement of any of the three mining banks, and the
-banks contain no reflected-pair / opposite-signed-area shape.
+The banks do contain a theorem with a `Disjoint` hypothesis:
+`Problem97.endpoint_membership_clash` says that a point cannot simultaneously
+belong to two disjoint finsets. It is a generic membership clash and does not
+obviously discharge the grid residual: applying it would still require proved
+membership of one grid point in both sides of a relevant disjoint decomposition.
+The survey found no reflected-pair / opposite-signed-area terminal already
+matched to the grid data.
 
-## The cap-counting layer does not close the grid (negative)
+## Scoped cap-counting diagnostics (paper-only; no route closure)
 
 `TriApexAllLargeContext` carries four fields. Two are counting
 (`cap_card_ge_six`, `notRobustCover_card`), one is the apex dichotomy
-(`apex_rich`), one is global (`no_center_covers_all_apices`). Worked on paper
-against the grid; not formalized, because it does not close.
+(`apex_rich`), one is global (`no_center_covers_all_apices`). The calculation
+below tests one specific combination of the available cardinality inequalities.
+It is paper-only and is not a formalized exhaustion of cap-counting arguments.
 
 The counting is done with lemmas that hold for *every* positive radius, not
 only rich ones:
@@ -291,22 +303,24 @@ two classes of four and the rest at most three, so `|A| − 1 ≤ 3k + 2`. Addin
 the `card − 2` interior bound summed over all radii gives only `k ≥ 4`, which is
 weaker.
 
-Both constraints hold on the grid and neither contradicts the other for any
-`|A| ≥ 15`: the grid simply forces the first apex to see at least five distinct
-distances. So the pure cap-counting layer is non-closing, in the same way the
-`≤ 2` bounds were: the grid satisfies it, and satisfies the sharpest available
-form of it.
+Both constraints are mutually compatible for every `|A| ≥ 15`: within this
+diagnostic, the grid merely forces the first apex to see at least five distinct
+distances. This excludes that particular lower-bound-versus-total-size squeeze
+as an immediate contradiction. It does **not** establish that the cap-counting
+route as a whole is non-closing, or that these are the sharpest inequalities
+available after combining other fields and geometric information.
 
-That leaves `notRobustCover_card` (`|A| ≤ 4·|notRobustCenters D|`) and
-`no_center_covers_all_apices` as the two genuinely unconsumed fields of the
-context, alongside the K4/deletion semantics.
+This calculation does not consume `notRobustCover_card`
+(`|A| ≤ 4·|notRobustCenters D|`) or `no_center_covers_all_apices`; it also does
+not address combinations with the K4/deletion semantics.
 
 ## Verdict semantics for the realizability probe
 
-A numerical realizability probe on the pinned local configuration is the current
-input to choosing the next lane. Its verdict is decisive in one direction only,
-and only for an encoding that is *over-constrained* relative to what is proved
-(the rule `flc-sharding-plan` established on the Rigid221 pentagon, convo #3103):
+The following rules constrain any future paired-grid realizability probe. There
+is currently no committed paired-grid generator, branch manifest, invocation or
+result artifact from which an actual paired encoding can be audited. A verdict
+is decisive only after the implementation's exact relation to the proved system
+has been checked:
 
 * an encoding asserting a **superset** of the proved constraints that comes back
   **SAT** is decisive — the true, weaker system is then realizable, so no
@@ -323,9 +337,9 @@ Adding a proved fact to an encoding does *not* by itself make the encoding
 over-constrained. What decides the direction is whether the thing actually
 encoded **implies** the proved fact or is merely **implied by** it.
 
-The grid encoding trips exactly that distinction. The proved cap facts are
-membership in Moser caps — regions cut by chords between triangle vertices on
-the minimum enclosing circle. What an 11-label realizability encoding can state
+Any proposed grid encoding trips exactly that distinction. The proved cap facts
+are membership in Moser caps — regions cut by chords between triangle vertices
+on the minimum enclosing circle. What an 11-label realizability encoding can state
 without the Moser vertices as labels is that each cap appears as a *contiguous
 arc* of the convex hull order. Contiguity is a **consequence** of the cap facts:
 proved implies contiguity, contiguity does not imply proved, since it forces
@@ -342,25 +356,28 @@ direction. The clean choices are:
 * encode only **strengthenings** — then SAT is decisive for "not closable", and
   UNSAT says nothing.
 
-The consequence-only route is the one taken here, so blocker coincidence
-(nothing proves the blockers differ from the eight grid points) is enumerated as
-a discrete branch rather than assumed away.
+No committed artifact currently establishes that the paired encoding is on
+either clean side. In particular, nothing proves that the blockers differ from
+the eight grid points, while the cited generic QF_NRA oracle imposes pairwise
+ambient distinctness. A future consequence-only implementation must represent
+all blocker-coincidence cases explicitly—whether by quotienting labels or by a
+complete branch enumeration—and commit enough of that machinery to audit.
 
-### Probe status: the encoding is passing its gate but not deciding
+### Probe status retracted: no reproducible paired artifact
 
-Built on the repo's exact QF_NRA oracle
-(`census/endpoint_confinement/metric_realizability_probe.py`, with
-`census/rigid221_pentagon_oracle.py` as the template). Eleven labels — the first
-apex, the eight grid points, and the two blockers — and four rows, all
-`exact=True` and all four exactness flags proved.
+An earlier draft reported a pilot sweep of 400 systems, all `UNKNOWN`, and called
+the encoding smoke-tested and consequence-only. That status is **withdrawn as
+unreproducible**: no committed paired generator, manifest, command or result
+records which systems were generated or how blocker coincidences were handled.
+The generic `run_smoke` in
+`census/endpoint_confinement/metric_realizability_probe.py` validates only the
+shared SAT/UNSAT plumbing; it does not validate a paired-grid encoding or its
+inference direction.
 
-* Encoding smoke test (`run_smoke`): **passes**.
-* Pilot sweep, 400 systems at a 5 s timeout: **0 SAT, 0 UNSAT, 400 UNKNOWN.**
-
-`UNKNOWN` is a solver timeout and is decisive for nothing; it is counted
-separately here and never folded into `UNSAT`. A uniform `UNKNOWN` sweep is a
-statement about the encoding's tractability, not about the grid: at 5 s Z3
-decides none of these systems either way. A longer-timeout sweep is in flight.
+The reported `0 SAT / 0 UNSAT / 400 UNKNOWN` count must not be used as evidence
+about the grid, solver tractability, branch coverage, or completion of an
+encoding gate. Even for a reproducible run, `UNKNOWN` would remain decisive for
+nothing and must never be folded into `UNSAT`.
 
 The earlier numerical route was abandoned rather than reported: a multistart
 local optimizer never reached a feasible point (`min_tri`, `min_turn` and

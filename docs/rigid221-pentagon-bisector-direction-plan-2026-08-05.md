@@ -1,5 +1,8 @@
 # Rigid221 pentagon — bisector-direction closure plan (2026-08-05)
 
+Evidence-status terms in this plan follow the
+[closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
+
 Status: PLAN. The configuration facts in §1 are proved in
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean`
 at commit `32719ca9`. Everything in §3 is {{NEEDS_PROOF}} — it is the
@@ -202,12 +205,12 @@ the promotion rules but it is not closure.
 
 **The actual obstruction.** Nothing in the pinned pentagon forces any row
 centre other than `centerAt u = xv` to be a class point. A configuration
-in which the other four centres are all off-class satisfies every
-incidence and metric fact currently proved about the pentagon. Therefore
-the pentagon **cannot** be closed by row-trace incidence plus
-apex-circle metric alone — a closure must use something else about the
-rows: their K4/deletion semantics, the second-cap interior structure and
-its cardinality, or a global count of four-point equidistant shells.
+in which the other four centres are all off-class therefore survives this
+particular split analysis. This is a residual, not an impossibility theorem:
+it does not prove that the full Lean leaf is realizable, or that every richer
+incidence/metric argument must fail. The exact subsystem tested in §9 likewise
+omits the rows' K4/deletion semantics, the second-cap interior structure and
+its cardinality, and the two unnamed support points of each shell.
 
 **Consequence for sequencing.** Implement §3.1–§3.3 only when a split
 that consumes it is landed in the same change, so the machinery does not
@@ -353,16 +356,21 @@ Labels: `0 = u`, `1 = xu`, `2 = deleted`, `3 = v`, `4 = xv`, `5 = A`
 
 ### 8.0 What the verdicts mean
 
-- **UNSAT is decisive.** At `n = 6` every asserted fact is proved: the six
+- **DIAGNOSTIC-ONLY, not KERNEL-CLOSED.** These are external-solver verdicts;
+  no solver certificate is replayed into Lean.
+- **UNSAT is decisive only for the exact encoded subsystem.** At `n = 6` every
+  asserted fact is proved: the six
   labels are pairwise distinct (the five-cycle enumeration, plus
   `dist q A = rho > 0` for the apex), the carrier is in strict convex position
   (`D.convex`), `dist q A = rho` for all five class points, and each row
   equality is the row's class trace. The apex row's `exact` clause is
   **vacuous** at `n = 6` (it quantifies over labels outside the support, and
   there are none), so nothing unproved is smuggled in.
-- **SAT is not a counterexample.** It says only that this row-level relaxation
-  is realizable — each shell contributes just its two *class* points, not all
-  four support points — hence the branch is not closable by the encoded facts.
+- **SAT is not a counterexample.** It supplies a model only for this exact
+  row-level subsystem — each shell contributes just its two *class* points,
+  not all four support points. Thus the encoded conjunction itself is
+  consistent; this says neither that the full Lean leaf is realizable nor that
+  richer incidence/metric arguments cannot refute it.
 - **UNKNOWN is a timeout and settles nothing.** Counted separately below and
   never folded into UNSAT.
 
@@ -442,7 +450,7 @@ Where it fires, given `centerAt u = xv`:
   `deleted` the centre of row `xv` (trace `{xv, u}`) and row `v`'s trace
   `{v, xv}` shares `xv`;
 - `centerAt v ≠ u` under `BlockerV` is the equilateral triple `{u, v, xv}` and
-  is already closed by the landed kernel
+  is already **KERNEL-CLOSED** by the landed theorem
   `exactFourRigid221_sourceHeavy_equilateral_class_triple_false`.
 
 What it does **not** give: `centerAt deleted ≠ xv`. The oracle explicitly leaves
@@ -486,10 +494,10 @@ subsumed by an existing bank lemma — check
 
 ### 8.5 Assessment
 
-The mining does **not** close a leaf, and is consistent with §5: both live
-on-class leaves remain SAT at `n = 6`, so neither is refutable from the apex
-circle plus row-trace equidistance. What it buys is the fan-out of the next
-split. Splitting `BlockerV` on `centerAt v` has six alternatives, of which
+The mining does **not** close a leaf. Both live on-class encoded subsystems
+remain SAT at `n = 6`; this is consistency of those exact subsystems, not a
+realizability result for either full leaf. What it buys is the fan-out of the
+next split. Splitting `BlockerV` on `centerAt v` has six alternatives, of which
 `u` (equilateral kernel), `xv` (duplicate centre) and `A` (shell cardinality)
 are killable outright, leaving `xu`, `deleted` and off-class — three leaves in
 place of one. Splitting `BlockerDeleted` on `centerAt v` likewise kills
@@ -500,44 +508,47 @@ trade §5 identified, now measured rather than estimated, and it is the reason n
 split was landed in this pass. The duplicate-centre kernel is worth landing only
 together with the split that consumes it.
 
-## 9. The off-class-blocker leaf is not closable at this layer (2026-08-05)
+## 9. Stage-4 off-class-blocker subsystem model — DIAGNOSTIC-ONLY (2026-08-05)
 
 `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker`
 (`Rigid221SourceHeavy.lean:3591`) mined directly, as stage 4 of
 `census/rigid221_pentagon_oracle.py`. Label 6 is `w = centerAt xv`.
 
-**Decisiveness runs the other way here than in §8.** SAT of a system asserting
-*more* than is proved still implies the true system is realizable, so an
-over-constrained SAT is decisive for "not closable"; an over-constrained UNSAT
-is not. The primary variant therefore asserts as much as possible, and the
-weaker variants exist only to interpret an UNSAT.
+SAT of the primary, all-exact variant witnesses consistency of the atoms that
+variant actually encodes. Because it strengthens some of the encoded row
+constraints, its model also witnesses consistency of the weaker encoded
+row-trace/apex-circle subsystem. It does **not** extend to a model of the full
+Lean leaf: cap-interior membership and each shell's two unnamed off-class
+support points are omitted. The weaker variants remain useful for diagnosing
+which encoded atoms drive an UNSAT result.
 
 At `n = 7` the apex row's `exact` clause stops being vacuous and becomes exactly
 this leaf's off-class hypothesis: it forces `w` off the class circle. Rows `u`
 and `xv` carry their exact class traces `{u, xu}` and `{xv, u}`.
 
-| variant | SAT | model-verified | UNSAT | UNKNOWN |
+| variant | SAT | Z3 assertions re-evaluated true | UNSAT | UNKNOWN |
 |---|---|---|---|---|
 | **all-exact** (primary) | **29** | 29 | 330 | 1 |
 | rows-open | 28 | 28 | 328 | 4 |
 | u-open | 27 | 27 | 330 | 3 |
 
-**Verdict: the leaf is realizable at the incidence/metric layer.** Every SAT
-model in the primary variant is Z3-verified, and the primary variant asserts a
-superset of what is proved, so the true configuration is realizable too. This
-leaf cannot be closed by row-trace incidence plus apex-circle metric — the same
-boundary §5 predicted for the pentagon as a whole, now measured for the specific
-residual rather than argued.
+**Verdict: DIAGNOSTIC-ONLY.** Every reported SAT model in the primary variant
+was re-evaluated against the encoded Z3 assertions. Therefore the all-exact
+encoded subsystem has a model. This is not realizability of the full Lean leaf,
+not KERNEL-CLOSED, and not an impossibility result for richer incidence/metric
+arguments involving facts absent from the encoding.
 
 Consequence for planning, and it is a real narrowing of the option set:
 
-- The §3 vector machinery is **inert on this leaf**. It converts "row centre
-  *is* a class point" into a linear equation; this leaf is the hypothesis that
-  it is not. §3 prices the on-class leaves only.
-- Closure must consume the cap or deletion layer. Not encoded above, and
-  therefore untouched by this verdict: `w` lies in the strict second-cap
-  interior, each shell carries two further off-class support points, and
-  `6 ≤ S.oppCap2.card`.
+- The specific §3 on-class vector mechanism does not apply directly to this
+  leaf. It converts "row centre *is* a class point" into a linear equation;
+  this leaf is the hypothesis that it is not. This says nothing about other
+  vector or incidence mechanisms.
+- Any next attempt must add information absent from this exact subsystem. Two
+  named sources are the cap and deletion mechanisms; this is not a claim that
+  they exhaust a whole proof layer. Untouched by the verdict: `w` lies in the
+  strict second-cap interior, each shell carries two further off-class support
+  points, and `6 ≤ S.oppCap2.card`.
 - The most concrete untried route is the two-sided cap-interior squeeze that
   the E1 paired-grid lane assembled from existing lemmas
   (`SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two` from below;
@@ -547,13 +558,14 @@ Consequence for planning, and it is a real narrowing of the option set:
   rows are contained in the union of these apex classes" {{NEEDS_RESEARCH}} —
   whether it does is unchecked.
 
-## 10. The cap-interior squeeze: one proved obstruction, two open gaps (2026-08-05)
+## 10. The cap-interior squeeze: one named prose exclusion, two open gaps (2026-08-05)
 
-Partially resolves the `{{NEEDS_RESEARCH}}` marker closing §9. **This section
+Partially investigates the `{{NEEDS_RESEARCH}}` marker following §9. **This section
 was rewritten after a rigor re-audit; the original version overclaimed in three
-places and drew one invalid inference. §10.5 records what changed.** Only §10.2's
-first bullet pair is PROVEN; §10.2's second bullet and §10.3 are CONJECTURED on
-partial search.
+places and drew one invalid inference. §10.5 records what changed.** Only
+§10.2's first bullet pair is PROSE-EXCLUDED for the two named rows; §10.2's
+second bullet and §10.3 are OPEN on this partial search. Nothing here is
+KERNEL-CLOSED.
 
 Two corrections to how §9 posed the question, both from checking the Lean rather
 than the summary:
@@ -658,9 +670,10 @@ statement is therefore CONJECTURED, not established.
 
 ### 10.4 Verdict
 
-One proved obstruction, two open gaps.
+One named PROSE-EXCLUDED mechanism, two open gaps.
 
-- **PROVEN.** For rows `u` and `xv`, the sharp `≤ 1` bound is unavailable
+- **PROSE-EXCLUDED (two-row scope).** For rows `u` and `xv`, the sharp `≤ 1`
+  bound is unavailable
   because the blocker and the class share the index `oppIndex2`, and the
   surviving `≤ 2` bound is saturated by their already-proved two-point traces.
   The grid arm's mechanism depends on blocker and class living at *different*
@@ -678,10 +691,11 @@ information about whether a cap-counting argument closes the leaf. §9 and §10
 are independent results and neither confirms the other.
 
 Consequently the claim that "both named routes out of this leaf are now closed"
-is withdrawn as well. §3 is inert on this leaf (§9, and that argument does not
-depend on the retracted inference); the squeeze is obstructed on two rows of
-five. Still untouched by either section: the deletion/K4 layer, the unplaced
-off-class support points per shell, and any global carrier count.
+is withdrawn as well. The specific §3 on-class vector mechanism is inapplicable
+by the off-class leaf hypothesis itself, not by the §9 oracle; the squeeze is
+obstructed on two rows of five. Still untouched by either section: the
+deletion/K4 layer, the unplaced off-class support points per shell, and any
+global carrier count.
 
 ### 10.5 What the re-audit changed
 
@@ -697,16 +711,16 @@ Four items, recorded so the reasoning can be checked rather than re-trusted:
 4. **Overstated search** — "absent, and not for want of searching" rested on a
    grep of one file, with the context's own file unswept (§10.3).
 
-## 11. Gap 1 closed: the `≤ 1` bound cannot bite against the pentagon class (2026-08-05)
+## 11. Gap 1 — PROSE-EXCLUDED: the named `≤ 1` route (2026-08-05)
 
-Closes the first open gap left by §10.2 — and closes it **generally**, for all
-five rows rather than the two whose centres the leaf locates. The route is dead
-by argument, not by failed search.
+The pen-and-paper argument below excludes the named `≤ 1` route for all five
+rows rather than only the two whose centres the leaf locates. This retires that
+specific workstream; it is not kernel closure of the leaf or of a cap-counting
+layer.
 
-Status: complete pen-and-paper argument, every ingredient identified in-tree,
-**not formalized**. It is a negative result, so it closes no `sorry`; per spine
-discipline no Lean is landed for it. The one step with no named lemma yet is
-§11.2.
+Status: **PROSE-EXCLUDED / RETIRED-AS-WORKSTREAM**, not KERNEL-CLOSED. The
+argument is not formalized and closes no `sorry`. The one step with no named
+lemma yet is §11.2.
 
 ### 11.1 Two facts §10 missed
 
@@ -777,23 +791,27 @@ against the pentagon class, for any row.**
   hits are co-interior class points — which is the only configuration in which
   the bound has anything to say.
 
-**Net effect on §10.4.** Gap 1 is closed: the `≤ 1` route is dead for the whole
-pentagon, not just rows `u` and `xv`. Gap 2 (the covering-statement sweep of
-`Rigid221Placement.lean`) remains open. The §10.4 retraction stands unchanged —
-none of this rests on the §9 oracle.
+**Net effect on §10.4.** Gap 1's named `≤ 1` route is PROSE-EXCLUDED for the
+whole pentagon, not just rows `u` and `xv`; no Lean obligation is discharged.
+Gap 2 (the covering-statement sweep of `Rigid221Placement.lean`) remains open at
+this point. The §10.4 retraction stands unchanged — none of this rests on the
+§9 oracle.
 
-## 12. Gap 2 resolved: the covering statement runs the uninformative way (2026-08-05)
+## 12. Gap 2 — DIAGNOSTIC-ONLY: the named covering route is uninformative (2026-08-05)
 
-Closes §10's second open gap. Exhaustive sweep of `Rigid221Placement.lean` (read
-in full), `Rigid221SourceHeavy.lean`, and the four structure-definition files
+Classifies §10's second named route by source audit and prose counting; it does
+not kernel-close a theorem or the leaf. The reported sweep covered
+`Rigid221Placement.lean` (read in full), `Rigid221SourceHeavy.lean`, and the four
+structure-definition files
 `JointDeletionCore.lean`, `ExactFourRobustCapExpansion.lean`,
 `OriginalUniqueResidualDispatch.lean`.
 
-### 12.1 The grid's shape is genuinely absent — and the dual shape is present
+### 12.1 The searched scope lacks the grid's shape — and contains the dual shape
 
-No declaration or field anywhere in the Rigid221 chain has a shell support on the
-left of `⊆`/`=` with a union of `SelectedClass` terms on the right. That upgrades
-§10.3 from CONJECTURED to established **for the searched scope**.
+No declaration or field matching a shell support on the left of `⊆`/`=` with a
+union of `SelectedClass` terms on the right was found in the searched Rigid221
+files. That upgrades §10.3 from CONJECTURED to a negative source-audit result
+**for the searched snapshot and scope**, not to a mathematical theorem.
 
 But §10.3 asked the wrong question. The pentagon *does* carry a covering
 equality; it simply runs the other way. `physical_class`, a packet field at
@@ -845,9 +863,10 @@ disjunct of three, so selecting it is separate work.
 
 ### 12.3 Where §10–§12 leave the leaf — stated at the right scope
 
-Both routes **§10 named** are closed by argument rather than by search: the `≤ 1`
-bound cannot bite (§11), and the covering statement, though present, constrains
-the side of the count that carries no information (§12.1).
+Both routes **§10 named** are PROSE-EXCLUDED, not KERNEL-CLOSED: the `≤ 1`
+mechanism cannot bite by the argument in §11, and the particular covering
+statement examined in §12.1 constrains the side of that count that carries no
+information.
 
 **That is two named routes, not a layer.** An earlier draft of this section said
 "the cap-counting layer as a whole is non-closing on this leaf". **Withdrawn** —

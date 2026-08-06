@@ -329,13 +329,16 @@ end FreshThirdTwoCapSourceObstruction
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- The triple-shell escape is now paired with the canonical global cover at
-the escaped point.  This is the concrete FreshThird producer contract:
-global K4 supplies the escaping row, the critical-shell system supplies the
+/-- The triple-shell escape is paired with the canonical global cover at the
+escaped point.  This is a source-clean intermediate FreshThird packet: global
+K4 supplies the escaping row, the critical-shell system supplies the
 source-faithful cover and deletion obstruction, and distinct centers give the
-exact two-circle overlap bound.  No cyclic order or finite-cardinality
-assumption is hidden in this packet; those are the only clauses still needed
-by a terminal consumer. -/
+exact two-circle overlap bound.  It is not yet a consumer-ready producer: the
+existential seed membership does not identify which named source shell
+supplies `center`, and the packet does not prove the corresponding source
+endpoints lie in `K.support`.  Named seed-label transport, endpoint-support
+facts, and ingress to a terminal consumer remain missing in addition to any
+strict cyclic-order or cardinality argument that such a consumer may need. -/
 theorem exists_freshThird_escape_with_sourceFaithful_cover
     (source : CriticalShellSystem.CarrierVertex D.A) :
     ∃ center : ℝ²,
