@@ -781,3 +781,75 @@ against the pentagon class, for any row.**
 pentagon, not just rows `u` and `xv`. Gap 2 (the covering-statement sweep of
 `Rigid221Placement.lean`) remains open. The §10.4 retraction stands unchanged —
 none of this rests on the §9 oracle.
+
+## 12. Gap 2 resolved: the covering statement runs the uninformative way (2026-08-05)
+
+Closes §10's second open gap. Exhaustive sweep of `Rigid221Placement.lean` (read
+in full), `Rigid221SourceHeavy.lean`, and the four structure-definition files
+`JointDeletionCore.lean`, `ExactFourRobustCapExpansion.lean`,
+`OriginalUniqueResidualDispatch.lean`.
+
+### 12.1 The grid's shape is genuinely absent — and the dual shape is present
+
+No declaration or field anywhere in the Rigid221 chain has a shell support on the
+left of `⊆`/`=` with a union of `SelectedClass` terms on the right. That upgrades
+§10.3 from CONJECTURED to established **for the searched scope**.
+
+But §10.3 asked the wrong question. The pentagon *does* carry a covering
+equality; it simply runs the other way. `physical_class`, a packet field at
+`Rigid221SourceHeavy.lean:70`:
+
+    SelectedClass D.A S.oppApex2 P.rho = insert deleted ({u, xu} ∪ {v, xv})
+
+and its ancestor `ExactFourMutualOmissionRigid221GlobalDeletion.rigid`
+(`Rigid221Placement.lean:59`) says the same with `Iu`, `Iv` the two row traces,
+plus `Iu.card = 2`, `Iv.card = 2`, `Disjoint Iu Iv`.
+
+**Why that direction is inert for the squeeze, which is the real content of this
+section.** The grid's `shells_union_eq_classes_union` constrains *shell supports*
+— it forces the two non-class points of each four-point shell to be class points,
+which is exactly the information the counting needs. The pentagon's equality
+constrains the *class*, which `_hclassFive` and `P.hclassFive` already enumerate
+completely. It is a restatement of what is known, not a new restriction, so it
+contributes nothing to an upper bound. Worked through: the covering gives
+`class ∩ interior ⊆ ({u,xu} ∪ {v,xv} ∪ {deleted}) ∩ interior`, which is an
+identity. Against §10.1's `≥ 3` from below it yields no contradiction.
+
+So the correct statement is not "the pentagon lacks a covering statement" but
+**"the pentagon's covering statement constrains the wrong side of the count"**.
+
+One reachable statement does relate a class to a union of shell supports —
+`B1Live.lean:1129`, third disjunct of
+`b1_live_interior_joint_deletion_or_small_cover`:
+`class ∩ capInteriorByIndex oppIndex2 ⊆ {first.deleted, second.deleted} ∪
+(row_u.support ∪ row_v.support)`. Combined with the per-row `≤ 2` this bounds
+`|class ∩ interior| ≤ 6`, against `≥ 3` from below. No bite. It is also one
+disjunct of three, so selecting it is separate work.
+
+### 12.2 Two corrections to earlier sections
+
+- **§10.3 overstated what `sourceRowInteriorCount` proves.** I wrote that its
+  docstring "asserts" the rigid `2+2+1` packet bounds the count by two. In fact
+  **no lemma anywhere states anything about it** — every one of its eleven
+  occurrences is a hypothesis or a `by_cases` scrutineee. The docstring records
+  unproved intent. The bound is nonetheless real and available two ways: from
+  `globalDeletion.rigid.1 : Iu.card = 2` by `Finset.card_le_card`, or directly
+  as `actualLateRow_secondClassInterior_card_le_two`
+  (`ExactFourRobustCapExpansion.lean:296`), which *is* `sourceRowInteriorCount ≤ 2`
+  modulo `P.huSource` and `∩`-reassociation.
+- **`_hblockerInterior` is a redundant hypothesis of the anchored leaf.**
+  `exactFourRigid221_sourceHeavy_pentagon_blocker_mem_secondCapInterior`
+  (`Rigid221SourceHeavy.lean:3355`) proves it outright from `P`, `packet`,
+  `hxvA` and the single incidence `_huXvRow`, bottoming out in
+  `commonPhysicalPair_center_mem_secondCapInterior` exactly as §11.3 does.
+
+### 12.3 Where §10–§12 leave the leaf
+
+Both routes §10 named are now closed by argument rather than by search: the `≤ 1`
+bound cannot bite (§11), and the covering statement, though present, constrains
+the side of the count that carries no information (§12.1). The cap-counting layer
+as a whole is non-closing on this leaf.
+
+Untouched, and now the only named levers: the deletion/K4 semantics, the two
+off-class support points per shell that nothing places, and any argument counting
+the carrier globally rather than counting inside cap `oppIndex2`.
