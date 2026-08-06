@@ -1266,6 +1266,166 @@ theorem pairedGridCapPlacement
         Gr.deletedShell_subset_union Gr.deletedShell_inter_retained_eq
         O.deleted_mem_capInterior hdeletedPartnerOut hDelEqTwo }
 
+/-- **Two distinct first-apex class points outside the strict first-cap
+interior occupy different adjacent caps.**
+
+Each lands in one of the two closed caps adjacent to the first cap
+(`selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps`), and a first-apex
+class meets each adjacent cap in at most one point
+(`leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` and its right
+analogue), so two distinct such points cannot share a cap. -/
+private theorem class_outside_pair_distinct_adjacentCaps
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ} (hr : 0 < r)
+    {u v : ℝ²}
+    (hu : u ∈ SelectedClass D.A S.oppApex1 r)
+    (hv : v ∈ SelectedClass D.A S.oppApex1 r)
+    (huOut : u ∉ S.capInteriorByIndex S.oppIndex1)
+    (hvOut : v ∉ S.capInteriorByIndex S.oppIndex1)
+    (huv : u ≠ v) :
+    (u ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+        v ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+      (u ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+        v ∈ S.leftAdjacentCapByIndex S.oppIndex1) := by
+  classical
+  have hcover : ∀ z : ℝ², z ∈ SelectedClass D.A S.oppApex1 r →
+      z ∉ S.capInteriorByIndex S.oppIndex1 →
+      z ∈ SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex1) r ∩
+            S.leftAdjacentCapByIndex S.oppIndex1 ∨
+        z ∈ SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex1) r ∩
+            S.rightAdjacentCapByIndex S.oppIndex1 := by
+    intro z hz hzout
+    have hzIdx :
+        z ∈ SelectedClass D.A
+          (S.oppositeVertexByIndex S.oppIndex1) r := by simpa using hz
+    exact Finset.mem_union.mp
+      (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps S.oppIndex1
+        hr (Finset.mem_sdiff.mpr ⟨hzIdx, hzout⟩))
+  have hsame : ∀ T : Finset ℝ², T.card ≤ 1 → u ∈ T → v ∈ T → False := by
+    intro T hT h1 h2
+    have hlt : 1 < T.card := Finset.one_lt_card.mpr ⟨u, h1, v, h2, huv⟩
+    omega
+  have hleftLe :=
+    S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex
+      S.oppIndex1 r
+  have hrightLe :=
+    S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex
+      S.oppIndex1 r
+  rcases hcover _ hu huOut with hk | hk <;>
+    rcases hcover _ hv hvOut with hd | hd
+  · exact (hsame _ hleftLe hk hd).elim
+  · exact Or.inl ⟨(Finset.mem_inter.mp hk).2, (Finset.mem_inter.mp hd).2⟩
+  · exact Or.inr ⟨(Finset.mem_inter.mp hk).2, (Finset.mem_inter.mp hd).2⟩
+  · exact (hsame _ hrightLe hk hd).elim
+
+/-- **The two retained-class partners occupy *different* adjacent caps.**
+
+`PairedGridCapPlacement` pushes both retained-class partners out of the strict
+first-cap interior, and they are distinct because the retained shells are
+disjoint, so the retained class straddles all three caps around the first apex:
+two sources strictly inside the first cap and one partner in each neighbour. -/
+theorem grid_retainedPartners_mem_distinct_adjacentCaps
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O}
+    (place : PairedGridCapPlacement Gr) :
+    (Gr.keptPartner ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+        Gr.deletedPartner ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+      (Gr.keptPartner ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+        Gr.deletedPartner ∈ S.leftAdjacentCapByIndex S.oppIndex1) :=
+  class_outside_pair_distinct_adjacentCaps F.radius_pos
+    Gr.keptPartner_mem_retained Gr.deletedPartner_mem_retained
+    place.keptPartner_not_mem_capInterior
+    place.deletedPartner_not_mem_capInterior Gr.keptPartner_ne_deletedPartner
+
+/-- Exactly one of a named two-point shell slice lies in the strict first-cap
+interior, so the slice supplies exactly one escapee. -/
+private theorem grid_slice_exists_outside
+    {K C : Finset ℝ²} {s t : ℝ²}
+    (hne : s ≠ t) (hslice : K ∩ C = {s, t}) {I : Finset ℝ²}
+    (hcard : (K ∩ (C ∩ I)).card = 1) :
+    ∃ z, z ∈ ({s, t} : Finset ℝ²) ∧ z ∉ I := by
+  classical
+  by_contra hcon
+  push_neg at hcon
+  have hs : s ∈ I := hcon s (by simp)
+  have ht : t ∈ I := hcon t (by simp)
+  have hrw : K ∩ (C ∩ I) = ({s, t} : Finset ℝ²) ∩ I := by
+    rw [← Finset.inter_assoc, hslice]
+  have hsub : ({s, t} : Finset ℝ²) ⊆ ({s, t} : Finset ℝ²) ∩ I := by
+    intro z hz
+    refine Finset.mem_inter.mpr ⟨hz, ?_⟩
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    exacts [hs, ht]
+  have hlt : 1 < (({s, t} : Finset ℝ²) ∩ I).card :=
+    Finset.one_lt_card.mpr ⟨s, hsub (by simp), t, hsub (by simp), hne⟩
+  rw [hrw] at hcard
+  omega
+
+/-- **The two second-class escapees occupy different adjacent caps.**
+
+Each retained shell meets the second class in a named two-point set and hits the
+strict first-cap interior in exactly one of them, so each shell contributes
+exactly one second-class point outside that interior.  The two escapees lie in
+different shells, hence are distinct, hence occupy different adjacent caps —
+the second class straddles all three caps around the first apex exactly as the
+retained class does. -/
+theorem grid_otherClass_escapees_mem_distinct_adjacentCaps
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O}
+    (place : PairedGridCapPlacement Gr) :
+    ∃ u v : ℝ²,
+      u ∈ ({Gr.keptOtherFirst, Gr.keptOtherSecond} : Finset ℝ²) ∧
+        v ∈ ({Gr.deletedOtherFirst, Gr.deletedOtherSecond} : Finset ℝ²) ∧
+        u ∉ S.capInteriorByIndex S.oppIndex1 ∧
+        v ∉ S.capInteriorByIndex S.oppIndex1 ∧
+        ((u ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+            v ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+          (u ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+            v ∈ S.leftAdjacentCapByIndex S.oppIndex1)) := by
+  classical
+  obtain ⟨u, huMem, huOut⟩ :=
+    grid_slice_exists_outside Gr.keptOther_ne
+      Gr.keptShell_inter_other_eq place.keptShell_inter_other_capInterior_card
+  obtain ⟨v, hvMem, hvOut⟩ :=
+    grid_slice_exists_outside Gr.deletedOther_ne
+      Gr.deletedShell_inter_other_eq
+      place.deletedShell_inter_other_capInterior_card
+  have huShell :
+      u ∈ (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at huMem
+    rcases huMem with rfl | rfl
+    exacts [Gr.keptOtherFirst_mem_keptShell, Gr.keptOtherSecond_mem_keptShell]
+  have hvShell :
+      v ∈
+        (H.selectedAt O.deleted
+          O.deleted_mem_A).toCriticalFourShell.support := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hvMem
+    rcases hvMem with rfl | rfl
+    exacts [Gr.deletedOtherFirst_mem_deletedShell,
+      Gr.deletedOtherSecond_mem_deletedShell]
+  have huClass : u ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at huMem
+    rcases huMem with rfl | rfl
+    exacts [Gr.keptOtherFirst_mem_other, Gr.keptOtherSecond_mem_other]
+  have hvClass : v ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hvMem
+    rcases hvMem with rfl | rfl
+    exacts [Gr.deletedOtherFirst_mem_other, Gr.deletedOtherSecond_mem_other]
+  exact ⟨u, v, huMem, hvMem, huOut, hvOut,
+    class_outside_pair_distinct_adjacentCaps Gr.otherRadius_pos huClass hvClass
+      huOut hvOut
+      (Gr.ne_of_mem_keptShell_of_mem_deletedShell huShell hvShell)⟩
+
 /-- Escaping-source child of the paired common-deletion leaf.
 
 The retained common deletion renews at a carrier point on a first-apex class of

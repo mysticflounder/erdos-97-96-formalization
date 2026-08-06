@@ -90,6 +90,62 @@ the two retained sources plus one second-class hit from each shell — and both
 retained-class partners are pushed into the two adjacent caps, one each (an apex
 class meets each adjacent cap in at most one point).
 
+### Both classes named, and the partners separated
+
+Two consequences of the census, both kernel-clean.
+
+`PairedTwoRadiusGrid.retainedClass_eq` and `PairedTwoRadiusGrid.otherClass_eq`
+turn the two cardinality-four classes into explicit four-element `Finset`s:
+
+```
+SelectedClass D.A S.oppApex1 radius
+  = {O.kept, keptPartner, O.deleted, deletedPartner}
+SelectedClass D.A S.oppApex1 otherRadius
+  = {keptOtherFirst, keptOtherSecond, deletedOtherFirst, deletedOtherSecond}
+```
+
+Each class is the union of its two named shell slices because
+`shells_union_eq_classes_union` covers it by the two shells, so nothing in the
+class escapes both named pairs. The eight points are pairwise distinct: within a
+shell by the `*_ne` fields, across shells by `shells_disjoint`
+(`ne_of_mem_keptShell_of_mem_deletedShell` and its three named corollaries).
+
+The separation of the escapees is one generic mechanism applied twice. The
+private helper `class_outside_pair_distinct_adjacentCaps` (in
+`TriApexEndpointRetainedOmission.lean`, next to the placement producer) takes
+two *distinct* points of one first-apex class, both outside the strict first-cap
+interior, and puts them in *different* adjacent caps: both land in the two
+adjacent closed caps by
+`selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps`, and a first-apex
+class meets each adjacent cap in at most one point
+(`leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` and the right
+analogue), so they cannot share one.
+
+`grid_retainedPartners_mem_distinct_adjacentCaps` applies it to the retained
+class:
+
+```
+(keptPartner ∈ leftAdjacentCap oppIndex1 ∧ deletedPartner ∈ rightAdjacentCap oppIndex1)
+  ∨ (keptPartner ∈ rightAdjacentCap oppIndex1 ∧ deletedPartner ∈ leftAdjacentCap oppIndex1)
+```
+
+`grid_otherClass_escapees_mem_distinct_adjacentCaps` applies it to the second
+class. Each shell meets the second class in a named two-point set and hits the
+strict first-cap interior in exactly one of them
+(`keptShell_inter_other_capInterior_card`, `deletedShell_inter_other_capInterior_card`),
+so each shell contributes exactly one second-class escapee
+(`grid_slice_exists_outside`); the two escapees lie in different shells, hence
+are distinct, hence occupy different adjacent caps.
+
+So *both* four-point classes straddle all three caps around the first apex in
+the same pattern — two points strictly inside the first cap, one in each
+neighbour — which is the cyclic-order input any order model of the grid needs.
+
+These four theorems are supporting lemmas for the grid leaf, not a reduction of
+it: they add no `sorry` and remove none. They are consequences of
+`PairedGridCapPlacement`, so they are available inside the leaf proof without
+being wired as hypotheses.
+
 The grid leaf
 `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core` now takes
 `PairedGridCapPlacement Gr` as a hypothesis; the dispatcher supplies it from
@@ -189,6 +245,25 @@ misses:
 
 `Disjoint` appears in no statement of any of the three mining banks, and the
 banks contain no reflected-pair / opposite-signed-area shape.
+
+## Verdict semantics for the realizability probe
+
+A numerical realizability probe on the pinned local configuration is the current
+input to choosing the next lane. Its verdict is decisive in one direction only,
+and only for an encoding that is *over-constrained* relative to what is proved
+(the rule `flc-sharding-plan` established on the Rigid221 pentagon, convo #3103):
+
+* an encoding asserting a **superset** of the proved constraints that comes back
+  **SAT** is decisive — the true, weaker system is then realizable, so no
+  contradiction exists at that layer;
+* an encoding that **drops or relaxes** any proved constraint and comes back SAT
+  says nothing about the true system;
+* **UNSAT** of an over-constrained encoding is never decisive, since the extra
+  assertions could be what is infeasible;
+* **UNKNOWN** is counted separately and never folded into UNSAT.
+
+The two facts in "Both classes named, and the partners separated" are proved, so
+they belong in the encoding and push it in the over-constrained direction.
 
 ## Next targets
 

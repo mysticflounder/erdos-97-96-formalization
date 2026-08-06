@@ -324,6 +324,68 @@ theorem deletedPartner_mem_retained (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedPartner ∈ SelectedClass D.A S.oppApex1 radius :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_retained_eq (by simp)).2
 
+theorem keptOtherFirst_mem_keptShell (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptOtherFirst ∈
+      (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
+  (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).1
+
+theorem keptOtherFirst_mem_other (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptOtherFirst ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
+  (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).2
+
+theorem keptOtherSecond_mem_keptShell (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptOtherSecond ∈
+      (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
+  (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).1
+
+theorem keptOtherSecond_mem_other (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptOtherSecond ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
+  (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).2
+
+theorem deletedOtherFirst_mem_deletedShell (Gr : PairedTwoRadiusGrid O) :
+    Gr.deletedOtherFirst ∈
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
+  (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).1
+
+theorem deletedOtherFirst_mem_other (Gr : PairedTwoRadiusGrid O) :
+    Gr.deletedOtherFirst ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
+  (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).2
+
+theorem deletedOtherSecond_mem_deletedShell (Gr : PairedTwoRadiusGrid O) :
+    Gr.deletedOtherSecond ∈
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
+  (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).1
+
+theorem deletedOtherSecond_mem_other (Gr : PairedTwoRadiusGrid O) :
+    Gr.deletedOtherSecond ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
+  (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).2
+
+/-- Cross-shell distinctness: a kept-shell point is never a deleted-shell
+point, because the two retained shells are disjoint. -/
+theorem ne_of_mem_keptShell_of_mem_deletedShell (Gr : PairedTwoRadiusGrid O)
+    {u v : ℝ²}
+    (hu : u ∈ (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support)
+    (hv :
+      v ∈ (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support) :
+    u ≠ v := by
+  intro h
+  exact (Finset.disjoint_left.mp Gr.shells_disjoint) hu (h ▸ hv)
+
+theorem keptPartner_ne_deleted (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptPartner ≠ O.deleted :=
+  Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.keptPartner_mem_keptShell
+    Gr.deleted_mem_deletedShell
+
+theorem kept_ne_deletedPartner (Gr : PairedTwoRadiusGrid O) :
+    O.kept ≠ Gr.deletedPartner :=
+  Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.kept_mem_keptShell
+    Gr.deletedPartner_mem_deletedShell
+
+theorem keptPartner_ne_deletedPartner (Gr : PairedTwoRadiusGrid O) :
+    Gr.keptPartner ≠ Gr.deletedPartner :=
+  Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.keptPartner_mem_keptShell
+    Gr.deletedPartner_mem_deletedShell
+
 /-- The kept source and its retained-class partner fall on opposite sides of
 the chord from the first apex to the kept blocker. -/
 theorem keptRetainedPair_sep (Gr : PairedTwoRadiusGrid O) :
@@ -397,6 +459,52 @@ theorem not_sixPoint_class (Gr : PairedTwoRadiusGrid O) :
   rintro ⟨r, hr, hsix⟩
   have := Gr.classCard_le_four hr
   omega
+
+/-- Generic name-out step: a class contained in the union of the two shells is
+the union of its two named shell slices. -/
+private theorem class_eq_of_slices {K₁ K₂ C : Finset ℝ²} {a b c d : ℝ²}
+    (hsub : C ⊆ K₁ ∪ K₂) (h₁ : K₁ ∩ C = {a, b}) (h₂ : K₂ ∩ C = {c, d})
+    (ha : a ∈ C) (hb : b ∈ C) (hc : c ∈ C) (hd : d ∈ C) :
+    C = {a, b, c, d} := by
+  classical
+  apply Finset.Subset.antisymm
+  · intro z hz
+    rcases Finset.mem_union.mp (hsub hz) with h | h
+    · have hmem : z ∈ ({a, b} : Finset ℝ²) := by
+        rw [← h₁]; exact Finset.mem_inter.mpr ⟨h, hz⟩
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hmem ⊢
+      tauto
+    · have hmem : z ∈ ({c, d} : Finset ℝ²) := by
+        rw [← h₂]; exact Finset.mem_inter.mpr ⟨h, hz⟩
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hmem ⊢
+      tauto
+  · intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl | rfl | rfl
+    exacts [ha, hb, hc, hd]
+
+/-- **The retained first-apex class, named.**  It is exactly the two retained
+sources together with their two shell partners. -/
+theorem retainedClass_eq (Gr : PairedTwoRadiusGrid O) :
+    SelectedClass D.A S.oppApex1 radius =
+      {O.kept, Gr.keptPartner, O.deleted, Gr.deletedPartner} :=
+  class_eq_of_slices
+    (by rw [Gr.shells_union_eq_classes_union]; exact Finset.subset_union_left)
+    Gr.keptShell_inter_retained_eq Gr.deletedShell_inter_retained_eq
+    O.kept_mem_radius Gr.keptPartner_mem_retained O.deleted_mem_radius
+    Gr.deletedPartner_mem_retained
+
+/-- **The second first-apex class, named.**  It is exactly the four named
+second-class shell hits. -/
+theorem otherClass_eq (Gr : PairedTwoRadiusGrid O) :
+    SelectedClass D.A S.oppApex1 Gr.otherRadius =
+      {Gr.keptOtherFirst, Gr.keptOtherSecond, Gr.deletedOtherFirst,
+        Gr.deletedOtherSecond} :=
+  class_eq_of_slices
+    (by rw [Gr.shells_union_eq_classes_union]; exact Finset.subset_union_right)
+    Gr.keptShell_inter_other_eq Gr.deletedShell_inter_other_eq
+    Gr.keptOtherFirst_mem_other Gr.keptOtherSecond_mem_other
+    Gr.deletedOtherFirst_mem_other Gr.deletedOtherSecond_mem_other
 
 end PairedTwoRadiusGrid
 
