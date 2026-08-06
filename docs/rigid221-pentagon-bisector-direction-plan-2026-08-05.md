@@ -843,13 +843,44 @@ disjunct of three, so selecting it is separate work.
   `hxvA` and the single incidence `_huXvRow`, bottoming out in
   `commonPhysicalPair_center_mem_secondCapInterior` exactly as §11.3 does.
 
-### 12.3 Where §10–§12 leave the leaf
+### 12.3 Where §10–§12 leave the leaf — stated at the right scope
 
-Both routes §10 named are now closed by argument rather than by search: the `≤ 1`
+Both routes **§10 named** are closed by argument rather than by search: the `≤ 1`
 bound cannot bite (§11), and the covering statement, though present, constrains
-the side of the count that carries no information (§12.1). The cap-counting layer
-as a whole is non-closing on this leaf.
+the side of the count that carries no information (§12.1).
 
-Untouched, and now the only named levers: the deletion/K4 semantics, the two
-off-class support points per shell that nothing places, and any argument counting
-the carrier globally rather than counting inside cap `oppIndex2`.
+**That is two named routes, not a layer.** An earlier draft of this section said
+"the cap-counting layer as a whole is non-closing on this leaf". **Withdrawn** —
+that generalizes from two instances. No enumeration of cap-counting arguments was
+performed, and §12.1's own sweep surfaced further cap-counting machinery in scope
+whose bearing on this leaf is unexamined: `actualLateRow_secondClass_card_le_two`
+(`ExactFourRobustCapExpansion.lean:383`, no side hypotheses),
+`actualLateRow_secondClassInterior_card_le_two` (`:296`), and the `B1Live.lean:1129`
+third disjunct. §12.1's inertness computation likewise checked one count —
+`class ∩ interior` — not every count the covering could feed.
+
+Untouched, and the named levers: the deletion/K4 semantics, the two off-class
+support points per shell that nothing places, and any argument counting the
+carrier globally rather than inside cap `oppIndex2`.
+
+### 12.4 Provenance of §12, recorded because it bears on how much to trust it
+
+§12.1's sweep was performed by a subagent. It was committed **before** being
+validated, contrary to the project rule that agent output is checked first. The
+validation was then run and consists of four spot-checks, all passing:
+
+- `physical_class` at `Rigid221SourceHeavy.lean:70` — statement confirmed verbatim;
+- `..._pentagon_blocker_mem_secondCapInterior` at `:3355` — hypotheses confirmed
+  as exactly `P`, `packet`, `hxvA`, `huXvRow`, so `_hblockerInterior` is redundant;
+- `sourceRowInteriorCount` — 11 occurrences repo-wide, 0 of them declarations,
+  confirming no lemma bounds it;
+- the target shape repo-wide — 5 hits on `toCriticalFourShell.support ⊆`, of which
+  3 have a union-of-classes RHS (2 in the grid, 1 out-of-chain in
+  `TriApexEndpointRetainedOmission.lean:1083`). The remaining 2,
+  `U1LargeCapRouteBTail.lean:826` and `:1943`, were **not** in the subagent's
+  report; both are `support ⊆ {q, t1, t2, t3}`, an explicit finset, so the
+  negative survives.
+
+The exhaustive negative in §12.1 is therefore spot-checked, not independently
+re-derived. Exhaustive-absence claims are the kind most likely to be wrong, and
+this one has been verified at four points rather than end to end.
