@@ -317,8 +317,34 @@ and only for an encoding that is *over-constrained* relative to what is proved
   assertions could be what is infeasible;
 * **UNKNOWN** is counted separately and never folded into UNSAT.
 
-The two facts in "Both classes named, and the partners separated" are proved, so
-they belong in the encoding and push it in the over-constrained direction.
+### Which side of the proved system the encoding actually sits on
+
+Adding a proved fact to an encoding does *not* by itself make the encoding
+over-constrained. What decides the direction is whether the thing actually
+encoded **implies** the proved fact or is merely **implied by** it.
+
+The grid encoding trips exactly that distinction. The proved cap facts are
+membership in Moser caps — regions cut by chords between triangle vertices on
+the minimum enclosing circle. What an 11-label realizability encoding can state
+without the Moser vertices as labels is that each cap appears as a *contiguous
+arc* of the convex hull order. Contiguity is a **consequence** of the cap facts:
+proved implies contiguity, contiguity does not imply proved, since it forces
+neither a valid inscribed triangle nor the MEC condition. So on the cap layer
+such an encoding is **weaker** than what is proved, not stronger.
+
+An encoding that mixes strengthenings and weakenings is decisive in neither
+direction. The clean choices are:
+
+* encode only **consequences** of the proved facts — then UNSAT is decisive in
+  the *closing* direction (the proved system is unsatisfiable, so a
+  contradiction exists and the UNSAT core names the facts to mine), and SAT is
+  decisive only for the encoded set;
+* encode only **strengthenings** — then SAT is decisive for "not closable", and
+  UNSAT says nothing.
+
+The consequence-only route is the one taken here, so blocker coincidence
+(nothing proves the blockers differ from the eight grid points) is enumerated as
+a discrete branch rather than assumed away.
 
 ## Next targets
 
