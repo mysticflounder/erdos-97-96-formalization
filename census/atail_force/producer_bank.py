@@ -15,14 +15,14 @@ from __future__ import annotations
 
 import importlib.util
 import json
+from collections.abc import Callable, Mapping, Sequence
 from functools import lru_cache
 from itertools import combinations
 from pathlib import Path
 from types import ModuleType
-from typing import Any, Callable, Mapping, Sequence
+from typing import Any
 
 from census.global_confinement import metric_realizability_probe as metric
-
 
 MetricRow = metric.MetricRow
 CoreRecord = dict[str, Any]
@@ -46,6 +46,60 @@ _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_SOURCE = _ROOT / (
 _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_MODULE = (
     "Erdos9796Proof.P97.ATail.CapCrossingKalmanson"
 )
+
+_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_CONSUMER = (
+    "Problem97.CapCrossingKalmansonBridge."
+    "false_of_four_selected_rows_in_seven_ccw_order_C"
+)
+_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_REVERSE_CONSUMER = (
+    "Problem97.CapCrossingKalmansonBridge."
+    "false_of_four_selected_rows_in_seven_ccw_order_C_of_decreasing"
+)
+_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE = _ROOT / (
+    "lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean"
+)
+_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_MODULE = (
+    "Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas"
+)
+_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_F_CONSUMERS = (
+    (
+        "Problem97.CapCrossingKalmansonBridge."
+        "false_of_four_selected_rows_in_seven_ccw_order_F"
+    ),
+    (
+        "Problem97.CapCrossingKalmansonBridge."
+        "false_of_four_selected_rows_in_seven_ccw_order_F_of_decreasing"
+    ),
+)
+
+_SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_SOURCE = (
+    _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE
+)
+_SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_MODULE = (
+    _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_MODULE
+)
+_SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_CONSUMERS = {
+    "d": (
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_D"
+        ),
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_D_of_decreasing"
+        ),
+    ),
+    "e": (
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_E"
+        ),
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing"
+        ),
+    ),
+}
 
 
 class MissingLeanConsumerError(ValueError):
@@ -234,6 +288,241 @@ def _require_five_point_three_selected_row_kalmanson_consumer() -> None:
         )
 
 
+def _direct_seven_point_four_selected_row_kalmanson_c_core(
+    rows: Sequence[MetricRow], order: tuple[int, ...]
+) -> tuple[dict[str, int], int] | None:
+    """Find the first direct-row occurrence of seven-point schema C.
+
+    For cyclically ordered roles ``a < b < c < d < e < f < g``, schema C
+    requires direct selected-row incidences
+
+    * row ``a`` contains ``{f, b}``;
+    * row ``f`` contains ``{a, d, g}``;
+    * row ``c`` contains ``{d, g}``; and
+    * row ``e`` contains ``{f, b}``.
+
+    Only the supplied row supports are inspected.  In particular, equality
+    closure cannot manufacture one of the four selected rows consumed by the
+    checked Lean adapter.
+    """
+
+    supports_by_center: dict[int, list[frozenset[int]]] = {}
+    for row in rows:
+        supports_by_center.setdefault(row.center, []).append(
+            frozenset(row.support)
+        )
+
+    def contains(center: int, points: set[int]) -> bool:
+        return any(
+            points <= support
+            for support in supports_by_center.get(center, ())
+        )
+
+    for start in range(len(order)):
+        rotated = order[start:] + order[:start]
+        for positions in combinations(range(len(rotated)), 7):
+            point_a, point_b, point_c, point_d, point_e, point_f, point_g = (
+                rotated[position] for position in positions
+            )
+            if not contains(point_a, {point_f, point_b}):
+                continue
+            if not contains(point_f, {point_a, point_d, point_g}):
+                continue
+            if not contains(point_c, {point_d, point_g}):
+                continue
+            if not contains(point_e, {point_f, point_b}):
+                continue
+            return (
+                {
+                    "a": point_a,
+                    "b": point_b,
+                    "c": point_c,
+                    "d": point_d,
+                    "e": point_e,
+                    "f": point_f,
+                    "g": point_g,
+                },
+                start,
+            )
+    return None
+
+
+def _require_seven_point_four_selected_row_kalmanson_c_consumers() -> None:
+    """Fail closed unless both orientation adapters exist in Lean source."""
+
+    if not _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE.is_file():
+        raise MissingLeanConsumerError(
+            "missing production seven-point Kalmanson schema-C module"
+        )
+    source = _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE.read_text(
+        encoding="utf-8"
+    )
+    required_source_fragments = (
+        "namespace Problem97",
+        "namespace CapCrossingKalmansonBridge",
+        "theorem false_of_four_selected_rows_in_seven_ccw_order_C",
+        (
+            "theorem "
+            "false_of_four_selected_rows_in_seven_ccw_order_C_of_decreasing"
+        ),
+    )
+    if any(fragment not in source for fragment in required_source_fragments):
+        raise MissingLeanConsumerError(
+            "production seven-point Kalmanson schema-C module does not "
+            "declare both selected-row consumers"
+        )
+
+
+def _direct_seven_point_four_selected_row_kalmanson_f_core(
+    rows: Sequence[MetricRow], order: tuple[int, ...]
+) -> tuple[dict[str, int], int] | None:
+    """Find a direct-row occurrence of seven-point schema F."""
+
+    supports_by_center: dict[int, list[frozenset[int]]] = {}
+    for row in rows:
+        supports_by_center.setdefault(row.center, []).append(
+            frozenset(row.support)
+        )
+
+    def contains(center: int, points: set[int]) -> bool:
+        return any(
+            points <= support
+            for support in supports_by_center.get(center, ())
+        )
+
+    for start in range(len(order)):
+        rotated = order[start:] + order[:start]
+        for positions in combinations(range(len(rotated)), 7):
+            point_a, point_b, point_c, point_d, point_e, point_f, point_g = (
+                rotated[position] for position in positions
+            )
+            if not contains(point_a, {point_f, point_c}):
+                continue
+            if not contains(point_f, {point_a, point_g, point_c}):
+                continue
+            if not contains(point_b, {point_f, point_e}):
+                continue
+            if not contains(point_d, {point_b, point_e, point_g}):
+                continue
+            return (
+                {
+                    "a": point_a,
+                    "b": point_b,
+                    "c": point_c,
+                    "d": point_d,
+                    "e": point_e,
+                    "f": point_f,
+                    "g": point_g,
+                },
+                start,
+            )
+    return None
+
+
+def _require_seven_point_four_selected_row_kalmanson_f_consumers() -> None:
+    """Fail closed unless both schema-F orientation adapters exist."""
+
+    source_path = _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE
+    if not source_path.is_file():
+        raise MissingLeanConsumerError(
+            "missing production seven-point Kalmanson schema-F module"
+        )
+    source = source_path.read_text(encoding="utf-8")
+    required_source_fragments = (
+        "namespace Problem97",
+        "namespace CapCrossingKalmansonBridge",
+        "theorem false_of_four_selected_rows_in_seven_ccw_order_F",
+        (
+            "theorem "
+            "false_of_four_selected_rows_in_seven_ccw_order_F_of_decreasing"
+        ),
+    )
+    if any(fragment not in source for fragment in required_source_fragments):
+        raise MissingLeanConsumerError(
+            "production seven-point Kalmanson schema-F module does not "
+            "declare both selected-row consumers"
+        )
+
+
+def _direct_six_point_four_selected_row_kalmanson_core(
+    rows: Sequence[MetricRow], order: tuple[int, ...], *, schema: str
+) -> tuple[dict[str, int], int] | None:
+    """Find a direct-row occurrence of six-point schema D or E."""
+
+    supports_by_center: dict[int, list[frozenset[int]]] = {}
+    for row in rows:
+        supports_by_center.setdefault(row.center, []).append(
+            frozenset(row.support)
+        )
+
+    def contains(center: int, points: set[int]) -> bool:
+        return any(
+            points <= support
+            for support in supports_by_center.get(center, ())
+        )
+
+    for start in range(len(order)):
+        rotated = order[start:] + order[:start]
+        for positions in combinations(range(len(rotated)), 6):
+            point_a, point_b, point_c, point_d, point_e, point_f = (
+                rotated[position] for position in positions
+            )
+            if schema == "d":
+                matched = (
+                    contains(point_a, {point_e, point_b})
+                    and contains(point_e, {point_a, point_c, point_f})
+                    and contains(point_b, {point_e, point_f})
+                    and contains(point_d, {point_e, point_b, point_c})
+                )
+            elif schema == "e":
+                matched = (
+                    contains(point_a, {point_f, point_d})
+                    and contains(point_e, {point_b, point_c})
+                    and contains(point_b, {point_a, point_c, point_d})
+                    and contains(point_c, {point_f, point_b})
+                )
+            else:
+                raise ValueError(f"unknown six-point Kalmanson schema {schema!r}")
+            if matched:
+                return (
+                    {
+                        "a": point_a,
+                        "b": point_b,
+                        "c": point_c,
+                        "d": point_d,
+                        "e": point_e,
+                        "f": point_f,
+                    },
+                    start,
+                )
+    return None
+
+
+def _require_six_point_four_selected_row_kalmanson_consumers() -> None:
+    """Fail closed unless all schema-D/E orientation adapters exist."""
+
+    if not _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_SOURCE.is_file():
+        raise MissingLeanConsumerError(
+            "missing production six-point Kalmanson schema module"
+        )
+    source = _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_SOURCE.read_text(
+        encoding="utf-8"
+    )
+    required_source_fragments = (
+        "namespace Problem97",
+        "namespace CapCrossingKalmansonBridge",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_D",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_D_of_decreasing",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_E",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing",
+    )
+    if any(fragment not in source for fragment in required_source_fragments):
+        raise MissingLeanConsumerError(
+            "production six-point Kalmanson module does not declare all "
+            "schema-D/E selected-row consumers"
+        )
+
+
 def _metric_bank_matches(
     rows: Sequence[MetricRow],
     n: int,
@@ -374,6 +663,141 @@ def _metric_bank_matches(
                     ),
                 )
             )
+
+        schema_c_matches = (
+            (
+                _direct_seven_point_four_selected_row_kalmanson_c_core(
+                    rows, order
+                ),
+                "forward",
+                "equality-convex-seven-point-four-selected-row-kalmanson-c",
+                _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_CONSUMER,
+            ),
+            (
+                _direct_seven_point_four_selected_row_kalmanson_c_core(
+                    rows, tuple(reversed(order))
+                ),
+                "reverse",
+                (
+                    "equality-convex-seven-point-four-selected-row-"
+                    "kalmanson-c-reverse"
+                ),
+                _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_REVERSE_CONSUMER,
+            ),
+        )
+        for match, orientation, stage, consumer in schema_c_matches:
+            if match is None:
+                continue
+            _require_seven_point_four_selected_row_kalmanson_c_consumers()
+            schema_c_core, boundary_rotation_start = match
+            records.append(
+                canonical_core_record(
+                    {
+                        "stage": stage,
+                        "core": schema_c_core,
+                        "boundary_rotation_start": boundary_rotation_start,
+                        "requires_rotated_ccw_enumeration": (
+                            boundary_rotation_start != 0
+                        ),
+                        "lean_module": (
+                            _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_MODULE
+                        ),
+                    },
+                    source="metric-bank-direct-rows",
+                    orientation=orientation,
+                    lean_consumer=consumer,
+                )
+            )
+
+        schema_f_matches = (
+            (
+                _direct_seven_point_four_selected_row_kalmanson_f_core(
+                    rows, order
+                ),
+                "forward",
+                _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_F_CONSUMERS[0],
+            ),
+            (
+                _direct_seven_point_four_selected_row_kalmanson_f_core(
+                    rows, tuple(reversed(order))
+                ),
+                "reverse",
+                _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_F_CONSUMERS[1],
+            ),
+        )
+        for match, orientation, consumer in schema_f_matches:
+            if match is None:
+                continue
+            _require_seven_point_four_selected_row_kalmanson_f_consumers()
+            schema_f_core, boundary_rotation_start = match
+            reverse_suffix = "-reverse" if orientation == "reverse" else ""
+            records.append(
+                canonical_core_record(
+                    {
+                        "stage": (
+                            "equality-convex-seven-point-four-selected-row-"
+                            f"kalmanson-f{reverse_suffix}"
+                        ),
+                        "core": schema_f_core,
+                        "boundary_rotation_start": boundary_rotation_start,
+                        "requires_rotated_ccw_enumeration": (
+                            boundary_rotation_start != 0
+                        ),
+                        "lean_module": (
+                            _SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_MODULE
+                        ),
+                    },
+                    source="metric-bank-direct-rows",
+                    orientation=orientation,
+                    lean_consumer=consumer,
+                )
+            )
+
+        for schema in ("d", "e"):
+            consumers = _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_CONSUMERS[schema]
+            schema_matches = (
+                (
+                    _direct_six_point_four_selected_row_kalmanson_core(
+                        rows, order, schema=schema
+                    ),
+                    "forward",
+                    consumers[0],
+                ),
+                (
+                    _direct_six_point_four_selected_row_kalmanson_core(
+                        rows, tuple(reversed(order)), schema=schema
+                    ),
+                    "reverse",
+                    consumers[1],
+                ),
+            )
+            for match, orientation, consumer in schema_matches:
+                if match is None:
+                    continue
+                _require_six_point_four_selected_row_kalmanson_consumers()
+                schema_core, boundary_rotation_start = match
+                reverse_suffix = "-reverse" if orientation == "reverse" else ""
+                records.append(
+                    canonical_core_record(
+                        {
+                            "stage": (
+                                "equality-convex-six-point-four-selected-row-"
+                                f"kalmanson-{schema}{reverse_suffix}"
+                            ),
+                            "core": schema_core,
+                            "boundary_rotation_start": boundary_rotation_start,
+                            "requires_rotated_ccw_enumeration": (
+                                boundary_rotation_start != 0
+                            ),
+                            "lean_module": (
+                                _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_MODULE
+                            ),
+                        },
+                        source="metric-bank-direct-rows",
+                        orientation=orientation,
+                        lean_consumer=consumer,
+                    )
+                )
 
         reverse_order = tuple(reversed(order))
         ordered = (
