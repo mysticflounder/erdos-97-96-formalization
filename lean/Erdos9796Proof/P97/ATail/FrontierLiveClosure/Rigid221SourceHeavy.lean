@@ -4301,7 +4301,10 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
     rcases hCbetween with hCbetween | hCbetween <;>
       rcases hEbetween with hEbetween | hEbetween <;> omega
 
-private theorem
+/-- The off-physical-class deleted-row blocker forces seven named strict
+second-cap points, hence a nine-point second cap and a carrier of size at least
+fifteen. -/
+theorem
     exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -4581,6 +4584,36 @@ private theorem
   have hsum := S.capSum
   have hsurplus := S.surplus_card_gt_four
   have hfirst := P.surface.firstOppCap_card_ge_four
+  omega
+
+/-- Banked small-cardinality consequence of the off-class `BlockerV`
+residual: no such packet exists on a carrier of cardinality at most fourteen. -/
+theorem
+    false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_le_fourteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonBlockerVResidual P packet)
+    (hcenterV :
+      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 =
+        P.jointDeletion.deleted.1)
+    (hcenterDeletedInterior :
+      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2 ∈
+        S.capInteriorByIndex S.oppIndex2)
+    (hcenterDeletedOffClass :
+      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2 ∉
+        SelectedClass D.A S.oppApex2 P.rho)
+    (hcard : D.A.card ≤ 14) :
+    False := by
+  have hge :=
+    exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_fifteen
+      Q hcenterV hcenterDeletedInterior hcenterDeletedOffClass
   omega
 
 private theorem

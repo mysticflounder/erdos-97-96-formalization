@@ -19,8 +19,8 @@ points.
 This file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic
 separation of shared row pairs forces one of sixteen three-row metric motifs.
 The theorem is deliberately stated independently of the geometric ingress;
-`Rigid221SourceHeavy` supplies the exact profile, the four rows, and the
-separation hypotheses.
+`Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,
+and four realized rows.  Pairwise separation is derived here from those data.
 -/
 
 open scoped Convex EuclideanGeometry
@@ -127,14 +127,14 @@ def PairwiseSeparated (order : Fin 2) (rows : Fin 4 → OutsidePair) : Prop :=
     row₁.1 < row₂.1 → point₁.1 < point₂.1 →
     Hits rows row₁ point₁ → Hits rows row₁ point₂ →
     Hits rows row₂ point₁ → Hits rows row₂ point₂ →
-    SurplusCOMPGBank.btw
+    (SurplusCOMPGBank.btw
         (position order (centerLabel row₁))
         (position order (centerLabel row₂))
         (position order point₁) ↔
       ¬ SurplusCOMPGBank.btw
         (position order (centerLabel row₁))
         (position order (centerLabel row₂))
-        (position order point₂)
+        (position order point₂))
 
 instance (order : Fin 2) (rows : Fin 4 → OutsidePair) :
     Decidable (PairwiseSeparated order rows) := by
@@ -206,6 +206,100 @@ def RealizesRows {n : ℕ} (boundary : Fin n → ℝ²) (labelIndex : Fin 15 →
     Hits rows row point₁ → Hits rows row point₂ →
       dist (boundary (labelIndex (centerLabel row))) (boundary (labelIndex point₁)) =
         dist (boundary (labelIndex (centerLabel row))) (boundary (labelIndex point₂))
+
+/-- Each of the two encoded exact-fifteen orders is a permutation of the labels. -/
+theorem position_injective (order : Fin 2) :
+    Function.Injective (position order) := by
+  fin_cases order <;> decide
+
+/-- An order-preserving exact-fifteen label map is injective. -/
+theorem labelIndex_injective_of_positionEmbedding {n : ℕ} (order : Fin 2)
+    (labelIndex : Fin 15 → Fin n)
+    (hposition : PositionEmbedding order labelIndex) :
+    Function.Injective labelIndex := by
+  intro point₁ point₂ heq
+  by_contra hne
+  have hposne : position order point₁ ≠ position order point₂ := by
+    intro h
+    exact hne (position_injective order h)
+  rcases lt_or_gt_of_ne hposne with hlt | hgt
+  · exact (ne_of_lt (hposition point₁ point₂ hlt)) heq
+  · exact (ne_of_gt (hposition point₂ point₁ hgt)) heq
+
+/-- `PositionEmbedding` reflects as well as preserves comparisons between labels. -/
+theorem position_lt_iff_labelIndex_lt {n : ℕ} (order : Fin 2)
+    (labelIndex : Fin 15 → Fin n)
+    (hposition : PositionEmbedding order labelIndex)
+    (point₁ point₂ : Fin 15) :
+    position order point₁ < position order point₂ ↔
+      labelIndex point₁ < labelIndex point₂ := by
+  constructor
+  · exact hposition point₁ point₂
+  · intro hlt
+    rcases lt_trichotomy (position order point₁) (position order point₂) with h | h | h
+    · exact h
+    · have heq := position_injective order h
+      subst point₂
+      exact (lt_irrefl _ hlt).elim
+    · have hrev := hposition point₂ point₁ h
+      exact (not_lt_of_ge (le_of_lt hrev) hlt).elim
+
+/-- Pairwise separation is not an additional source-side ingress obligation:
+it follows from a realized row system in an injective CCW boundary embedding. -/
+theorem pairwiseSeparated_of_positionEmbedding_realizesRows
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (order : Fin 2) (labelIndex : Fin 15 → Fin n)
+    (rows : Fin 4 → OutsidePair)
+    (hposition : PositionEmbedding order labelIndex)
+    (hrows : RealizesRows boundary labelIndex rows) :
+    PairwiseSeparated order rows := by
+  intro row₁ row₂ point₁ point₂ hrow hpoint hp11 hp12 hp21 hp22
+  have hlabelInjective :=
+    labelIndex_injective_of_positionEmbedding order labelIndex hposition
+  have hcenters : centerLabel row₁ ≠ centerLabel row₂ := by
+    fin_cases row₁ <;> fin_cases row₂ <;> simp_all [centerLabel]
+  have hpoint₂_ne_center₁ : point₂ ≠ centerLabel row₁ := by
+    intro heq
+    subst point₂
+    fin_cases row₁ <;> simp [Hits, hitsBool, fixedHit₁, fixedHit₂,
+      centerLabel, outsideLabel] at hp12
+  have hpoint₂_ne_center₂ : point₂ ≠ centerLabel row₂ := by
+    intro heq
+    subst point₂
+    fin_cases row₂ <;> simp [Hits, hitsBool, fixedHit₁, fixedHit₂,
+      centerLabel, outsideLabel] at hp22
+  have hfirst :
+      dist (boundary (labelIndex point₁))
+          (boundary (labelIndex (centerLabel row₁))) =
+        dist (boundary (labelIndex point₂))
+          (boundary (labelIndex (centerLabel row₁))) := by
+    simpa only [dist_comm] using hrows row₁ point₁ point₂ hp11 hp12
+  have hsecond :
+      dist (boundary (labelIndex point₁))
+          (boundary (labelIndex (centerLabel row₂))) =
+        dist (boundary (labelIndex point₂))
+          (boundary (labelIndex (centerLabel row₂))) := by
+    simpa only [dist_comm] using hrows row₂ point₁ point₂ hp21 hp22
+  have hsep := SurplusCOMPGBank.btw_sep hboundaryCcw hboundaryInjective
+    (hlabelInjective.ne hcenters)
+    (hlabelInjective.ne hpoint₂_ne_center₁)
+    (hlabelInjective.ne hpoint₂_ne_center₂)
+    hfirst hsecond
+    (hboundaryInjective.ne (hlabelInjective.ne (ne_of_lt hpoint)))
+  have hbtw (x y z : Fin 15) :
+      SurplusCOMPGBank.btw
+          (position order x) (position order y) (position order z) ↔
+        SurplusCOMPGBank.btw
+          (labelIndex x) (labelIndex y) (labelIndex z) := by
+    unfold SurplusCOMPGBank.btw
+    rw [position_lt_iff_labelIndex_lt order labelIndex hposition x z,
+      position_lt_iff_labelIndex_lt order labelIndex hposition z y,
+      position_lt_iff_labelIndex_lt order labelIndex hposition y z,
+      position_lt_iff_labelIndex_lt order labelIndex hposition z x]
+  rw [hbtw, hbtw]
+  exact hsep
 
 attribute [local simp] and_assoc
 
@@ -422,6 +516,25 @@ theorem false_of_pairwiseSeparated_realizedRows
       (hposition 10 9 (by fin_cases order <;> decide))
       (hposition 9 14 (by fin_cases order <;> decide))
       (hrows 0 14 9 h014 h09) (hrows 3 14 8 h314 h38) (hrows 2 8 9 h28 h29)
+
+/-- Consumer-facing form of the exact-fifteen obstruction.  The source adapter
+only has to realize the two possible cyclic orders and the four shell rows;
+pairwise separation is a consequence of convex boundary geometry. -/
+theorem false_of_positionEmbedding_realizedRows
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {boundary : Fin A.card → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = A)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (order : Fin 2) (labelIndex : Fin 15 → Fin A.card)
+    (rows : Fin 4 → OutsidePair)
+    (hposition : PositionEmbedding order labelIndex)
+    (hrows : RealizesRows boundary labelIndex rows) :
+    False := by
+  exact false_of_pairwiseSeparated_realizedRows hA hboundaryInjective
+    hboundaryImage hboundaryCcw order labelIndex rows hposition hrows
+    (pairwiseSeparated_of_positionEmbedding_realizesRows
+      hboundaryInjective hboundaryCcw order labelIndex rows hposition hrows)
 
 end BlockerVExactFifteenFourRowCoverage
 end Problem97
