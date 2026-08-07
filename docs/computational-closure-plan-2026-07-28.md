@@ -1156,9 +1156,9 @@ The three metric kernels use only `propext`, `Classical.choice`, and
 `native_decide` compiler-trust boundary.  The dispatcher itself introduces no
 new obligation.
 
-The source adapter is now proved.  It derives the exact `(9, 5, 7)` cap
-profile at cardinality fifteen, exhausts the strict second-cap interior by the
-seven named points, constructs the cyclic label embedding and the four
+The source adapter is now proved.  It derives the exact `(5, 4, 9)` closed-cap
+profile at cardinality fifteen, exhausts the seven-point strict second-cap
+interior by the seven named points, constructs the cyclic label embedding and the four
 outside pairs, and proves `PositionEmbedding` and `RealizesRows` from the live
 Rigid221 packet.  The bank theorem
 `pairwiseSeparated_of_positionEmbedding_realizesRows` then derives
