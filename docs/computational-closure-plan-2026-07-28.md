@@ -1124,6 +1124,11 @@ uniqueness prove that `c` and `e` are distinct from each other and from all
 five points of `C`.  Hence that strict cap interior contains seven named
 points, the second closed cap has cardinality at least nine, and the cap-sum
 identity strengthens the residual bound from `12 ≤ |A|` to `15 ≤ |A|`.
+That producer is now public, together with the kernel-clean corollary
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_le_fourteen`.
+Thus the exact-12, exact-13, and exact-14 strata of this residual are explicitly
+banked rather than only discharged inside the coordinator; the corollary has
+axiom closure `propext`, `Classical.choice`, and `Quot.sound`.
 
 The selected row centered at `c` now also has at most one hit in `C`: two hits
 would put its actual blocker in the same strict cap as `c` and two distinct
@@ -1151,10 +1156,31 @@ The three metric kernels use only `propext`, `Classical.choice`, and
 `native_decide` compiler-trust boundary.  The dispatcher itself introduces no
 new obligation.
 
-This checkpoint is **BANKED-CONSUMER**, not closure of the live residual.  The
-remaining source ingress must construct the exact-profile label map and four
-outside pairs and prove `PositionEmbedding`, `RealizesRows`, and
-`PairwiseSeparated`.  Once that adapter is proved, the bank eliminates the
-cardinality-15 arm and narrows the existing universal leaf to `16 ≤ |A|`;
-until then, neither that stronger bound nor an exact-15 on-spine closure is
-claimed.  No new `sorry` or coordinator branch was introduced by the bank.
+The source adapter is now proved.  It derives the exact `(9, 5, 7)` cap
+profile at cardinality fifteen, exhausts the strict second-cap interior by the
+seven named points, constructs the cyclic label embedding and the four
+outside pairs, and proves `PositionEmbedding` and `RealizesRows` from the live
+Rigid221 packet.  The bank theorem
+`pairwiseSeparated_of_positionEmbedding_realizesRows` then derives
+`PairwiseSeparated` from the injective CCW boundary and the two-center
+bisector separation theorem; it is not a third source obligation.
+
+Consequently
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_fifteen`
+is a checked contradiction with no `sorryAx`.  Its axiom closure is exactly
+`propext`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, and
+`Quot.sound`, reflecting the accepted `native_decide` finite-coverage trust
+boundary.  The authoritative targeted build of
+`FrontierLiveClosure.Rigid221SourceHeavy` passes.
+
+The old universal leaf is now a proved coordinator: its cardinality-fifteen
+arm calls the theorem above, while its sole live child is the explicit
+`..._card_ge_sixteen` theorem carrying `16 ≤ D.A.card`.  Thus exact
+cardinalities 12, 13, 14, and 15 are closed for this Rigid221 residual.  This
+does **not** exclude all 15-point P97 counterexamples or close the universal
+parent branch; it narrows this one on-spine residual from `15 ≤ |A|` to
+`16 ≤ |A|` without increasing active constructor fan-out.
+
+During the bank audit a precedence bug in the original `PairwiseSeparated`
+definition was corrected by parenthesizing the entire betweenness equivalence,
+and the corrected `2 * 15^4` coverage was rerun and passed.

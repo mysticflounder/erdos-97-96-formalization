@@ -792,6 +792,48 @@ theorem capByIndex_cgn4g_strictCapBlockData
       S.circPacket3
       (by simpa [triangleByIndex] using S.circPacket3.inner_at_v1)
 
+/-- Every indexed cap has retained global-block data together with the
+orientation of its two Moser endpoints.  This is the non-forgetting version
+of `capByIndex_cgn4g_capData_oriented`: consumers may compare local cap order
+with the ambient cyclic boundary without reconstructing the CGN4g witness. -/
+theorem capByIndex_cgn4g_strictCapBlockData_oriented
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) :
+    ∃ B : Problem97.CGN.StrictCapBlockData A (S.capByIndex i),
+      (B.L.points (Problem97.CGN.firstIndex B.Packet.hm) =
+            (S.triangleByIndex i).v2 ∧
+          B.L.points (Problem97.CGN.lastIndex B.Packet.hm) =
+            (S.triangleByIndex i).v3) ∨
+        (B.L.points (Problem97.CGN.firstIndex B.Packet.hm) =
+            (S.triangleByIndex i).v3 ∧
+          B.L.points (Problem97.CGN.lastIndex B.Packet.hm) =
+            (S.triangleByIndex i).v2) := by
+  fin_cases i
+  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 0) (M := S.triangleByIndex 0)
+      hconv S.hncol (S.capByIndex_subset 0)
+      (S.capByIndex_arc_membership 0)
+      (S.triangleByIndex_v2_mem_capByIndex 0)
+      (S.triangleByIndex_v3_mem_capByIndex 0)
+      (by simpa [triangleByIndex] using S.circPacket)
+      (by simpa [triangleByIndex] using S.circPacket.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 1) (M := S.triangleByIndex 1)
+      hconv S.hncol (S.capByIndex_subset 1)
+      (S.capByIndex_arc_membership 1)
+      (S.triangleByIndex_v2_mem_capByIndex 1)
+      (S.triangleByIndex_v3_mem_capByIndex 1)
+      S.circPacket2
+      (by simpa [triangleByIndex] using S.circPacket2.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 2) (M := S.triangleByIndex 2)
+      hconv S.hncol (S.capByIndex_subset 2)
+      (S.capByIndex_arc_membership 2)
+      (S.triangleByIndex_v2_mem_capByIndex 2)
+      (S.triangleByIndex_v3_mem_capByIndex 2)
+      S.circPacket3
+      (by simpa [triangleByIndex] using S.circPacket3.inner_at_v1)
+
 /-- One-hit bound for an indexed support cap, viewed from its first support
 endpoint. -/
 theorem capByIndex_sameRadius_at_v2_card_le_one_of_convexIndep

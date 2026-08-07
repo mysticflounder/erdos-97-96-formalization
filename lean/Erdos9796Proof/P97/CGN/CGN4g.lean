@@ -82,6 +82,10 @@ structure StrictCapBlockData (A C : Finset ℝ²) where
   m : ℕ
   /-- Global boundary enumeration. -/
   phi : Fin n → ℝ²
+  /-- The retained global boundary enumeration is injective. -/
+  phi_injective : Function.Injective phi
+  /-- The retained global boundary enumeration is counterclockwise convex. -/
+  phi_ccw : EuclideanGeometry.IsCcwConvexPolygon phi
   /-- Local ordered cap cut out from the global enumeration. -/
   L : OrderedCap m
   /-- MEC packet for the local cap. -/
@@ -106,6 +110,139 @@ theorem cap_image (B : StrictCapBlockData A C) :
 theorem cap_subset_A (B : StrictCapBlockData A C) : C ⊆ A :=
   B.Block.cap_subset_A
 
+/-- The retained global enumeration has exactly the ambient cardinality. -/
+theorem ambient_card_eq (B : StrictCapBlockData A C) : B.n = A.card := by
+  have himageCard :
+      (Finset.univ.image B.phi).card = A.card := by
+    rw [B.Block.phi_image]
+  rw [Finset.card_image_of_injective _ B.phi_injective] at himageCard
+  simpa using himageCard
+
+/-- The retained local enumeration has exactly the support-cap cardinality. -/
+theorem cap_card_eq (B : StrictCapBlockData A C) : B.m = C.card := by
+  have himageCard :
+      (Finset.univ.image B.L.points).card = C.card := by
+    rw [B.Block.cap_image]
+  rw [Finset.card_image_of_injective _ B.L.injective] at himageCard
+  simpa using himageCard
+
+/-- The retained closed boundary interval has exactly as many indices as the
+local ordered cap.  This is the cardinality bridge used when a finite consumer
+re-cuts the ambient boundary at the left endpoint of the cap block. -/
+theorem block_interval_card (B : StrictCapBlockData A C) :
+    (Finset.Icc B.Block.lo B.Block.hi).card = B.m := by
+  have hrange :
+      Finset.univ.image B.Block.idx =
+        Finset.Icc B.Block.lo B.Block.hi := by
+    ext q
+    simp only [Finset.mem_image, Finset.mem_univ, true_and,
+      Finset.mem_Icc]
+    exact (B.Block.idx_range_exact q).symm
+  rw [← hrange,
+    Finset.card_image_of_injective _ B.Block.idx_strict.injective]
+  simp
+
+/-- Numeric span of the retained boundary block. -/
+theorem block_span (B : StrictCapBlockData A C) :
+    B.Block.hi.val + 1 - B.Block.lo.val = B.m := by
+  simpa [Fin.card_Icc] using B.block_interval_card
+
+/-- The retained increasing reindexing has no gaps: its `t`-th local point is
+exactly `t` ambient positions after the left endpoint. -/
+theorem idx_val_eq_lo_add (B : StrictCapBlockData A C) (t : Fin B.m) :
+    (B.Block.idx t).val = B.Block.lo.val + t.val := by
+  have hmpos : 0 < B.m :=
+    lt_of_lt_of_le (by decide : 0 < 2) B.Block.hm
+  letI : NeZero B.m := ⟨Nat.ne_of_gt hmpos⟩
+  have htBounds :
+      B.Block.lo ≤ B.Block.idx t ∧ B.Block.idx t ≤ B.Block.hi :=
+    (B.Block.idx_range_exact (B.Block.idx t)).2 ⟨t, rfl⟩
+  have himage :
+      (Finset.Iic t).image B.Block.idx =
+        Finset.Icc B.Block.lo (B.Block.idx t) := by
+    ext q
+    simp only [Finset.mem_image, Finset.mem_Iic, Finset.mem_Icc]
+    constructor
+    · rintro ⟨s, hst, rfl⟩
+      have hlo : B.Block.lo ≤ B.Block.idx s := by
+        calc
+          B.Block.lo = B.Block.idx (firstIndex B.Block.hm) :=
+            B.Block.idx_first.symm
+          _ ≤ B.Block.idx s :=
+            (B.Block.idx_strict.le_iff_le).2 (Fin.zero_le s)
+      exact ⟨hlo, (B.Block.idx_strict.le_iff_le).2 hst⟩
+    · rintro ⟨hloq, hqt⟩
+      have hqhi : q ≤ B.Block.hi := hqt.trans htBounds.2
+      rcases (B.Block.idx_range_exact q).1 ⟨hloq, hqhi⟩ with ⟨s, rfl⟩
+      exact ⟨s, (B.Block.idx_strict.le_iff_le).1 hqt, rfl⟩
+  have hcard := congrArg Finset.card himage
+  rw [Finset.card_image_of_injective _ B.Block.idx_strict.injective,
+    Fin.card_Iic, Fin.card_Icc] at hcard
+  omega
+
+/-- Cutting the ambient boundary enumeration at the left endpoint identifies
+the first `m` shifted slots with the local cap enumeration. -/
+theorem shifted_phi_cast_eq_points (B : StrictCapBlockData A C)
+    (t : Fin B.m) :
+    B.phi (Fin.castLE (by
+      have hspan := B.block_span
+      omega) t + B.Block.lo) = B.L.points t := by
+  rw [B.Block.points_eq]
+  apply congrArg B.phi
+  apply Fin.ext
+  have hidx := B.idx_val_eq_lo_add t
+  have hspan := B.block_span
+  rw [Fin.val_add_eq_ite]
+  change
+    (if B.n ≤ t.val + B.Block.lo.val then
+        t.val + B.Block.lo.val - B.n
+      else t.val + B.Block.lo.val) = (B.Block.idx t).val
+  split <;> omega
+
+/-- Cutting immediately after the cap block places its local enumeration in
+the final `m` shifted slots of the ambient boundary enumeration. -/
+theorem shifted_after_block_phi_cast_eq_points (B : StrictCapBlockData A C)
+    [NeZero B.n]
+    (t : Fin B.m) :
+    let offset : Fin B.n := ⟨B.n - B.m + t.val, by
+      have hspan := B.block_span
+      have hmpos := B.Block.hm
+      omega⟩
+    let cut : Fin B.n := ⟨(B.Block.hi.val + 1) % B.n,
+      Nat.mod_lt _ (by have := B.Block.hi.isLt; omega)⟩
+    B.phi (offset + cut) = B.L.points t := by
+  dsimp only
+  rw [B.Block.points_eq]
+  apply congrArg B.phi
+  apply Fin.ext
+  have hidx := B.idx_val_eq_lo_add t
+  have hspan := B.block_span
+  let offset : Fin B.n :=
+    ⟨B.n - B.m + t.val, by have hmpos := B.Block.hm; omega⟩
+  let cut : Fin B.n := ⟨(B.Block.hi.val + 1) % B.n,
+    Nat.mod_lt _ (by have := B.Block.hi.isLt; omega)⟩
+  have hoffset : offset.val = B.n - B.m + t.val := rfl
+  have hcut :
+      (cut.val = B.Block.hi.val + 1) ∨
+        (B.Block.hi.val + 1 = B.n ∧ cut.val = 0) := by
+    have hhiLe : B.Block.hi.val + 1 ≤ B.n := by
+      have := B.Block.hi.isLt
+      omega
+    by_cases hwrap : B.Block.hi.val + 1 = B.n
+    · right
+      refine ⟨hwrap, ?_⟩
+      dsimp only [cut]
+      simp [hwrap]
+    · left
+      dsimp only [cut]
+      rw [Nat.mod_eq_of_lt]
+      omega
+  change (offset + cut).val = (B.Block.idx t).val
+  rw [Fin.val_add_eq_ite, hoffset]
+  rcases hcut with hcut | ⟨hhi, hcut⟩ <;> rw [hcut]
+  · split <;> omega
+  · split <;> omega
+
 /-- The local cap has endpoints. -/
 theorem two_le (B : StrictCapBlockData A C) : 2 ≤ B.m :=
   B.Block.hm
@@ -123,6 +260,45 @@ theorem exists_index_of_mem_cap (B : StrictCapBlockData A C) {x : ℝ²}
   rw [← B.cap_image] at hx
   rcases Finset.mem_image.mp hx with ⟨i, _hi, hix⟩
   exact ⟨i, hix⟩
+
+/-- Every point in the retained local enumeration belongs to its support cap. -/
+theorem points_mem_cap (B : StrictCapBlockData A C) (i : Fin B.m) :
+    B.L.points i ∈ C := by
+  have hi : B.L.points i ∈ Finset.univ.image B.L.points :=
+    Finset.mem_image_of_mem B.L.points (Finset.mem_univ i)
+  simpa only [B.cap_image] using hi
+
+/-- A global boundary point belongs to the retained support cap exactly when
+its index lies in the retained closed interval. -/
+theorem phi_mem_cap_iff_block (B : StrictCapBlockData A C) (q : Fin B.n) :
+    B.phi q ∈ C ↔ B.Block.lo ≤ q ∧ q ≤ B.Block.hi := by
+  constructor
+  · intro hq
+    rcases B.exists_index_of_mem_cap hq with ⟨t, ht⟩
+    rw [B.Block.idx_range_exact]
+    refine ⟨t, ?_⟩
+    apply B.phi_injective
+    simpa only [B.Block.points_eq] using ht
+  · intro hq
+    rcases (B.Block.idx_range_exact q).1 hq with ⟨t, ht⟩
+    have htImage : B.L.points t ∈ Finset.univ.image B.L.points :=
+      Finset.mem_image.mpr ⟨t, Finset.mem_univ t, rfl⟩
+    have htCap : B.L.points t ∈ C := by
+      simpa only [B.Block.cap_image] using htImage
+    simpa only [B.Block.points_eq, ht] using htCap
+
+/-- After cutting the ambient cyclic enumeration at the left endpoint of the
+retained cap block, precisely the first `m` indices enumerate the cap. -/
+theorem shifted_phi_mem_cap_iff (B : StrictCapBlockData A C) (t : Fin B.n) :
+    B.phi (t + B.Block.lo) ∈ C ↔ t.val < B.m := by
+  rw [B.phi_mem_cap_iff_block]
+  have hspan := B.block_span
+  change
+    (B.Block.lo.val ≤ (t + B.Block.lo).val ∧
+        (t + B.Block.lo).val ≤ B.Block.hi.val) ↔
+      t.val < B.m
+  rw [Fin.val_add_eq_ite]
+  split <;> omega
 
 /-- Positive side of a retained subchord is exactly an intermediate local
 cap index. -/
@@ -1333,6 +1509,8 @@ theorem CGN4g_strictCapBlockData_of_supportCap_oriented
           rw [show (q - i1) + i1 = q by
             simpa [finCycle] using (Equiv.apply_symm_apply (finCycle i1) q)]
       _ = A := hphi_image
+  have hpsi_ccw : EuclideanGeometry.IsCcwConvexPolygon psi := by
+    exact isCcwConvexPolygon_cyclicShift hphi_inj hccw i1
   have hneg_shift :
       ∀ {i j k : Fin n}, i < j → j < k →
         Problem97.signedArea2 (psi i) (psi j) (psi k) < 0 := by
@@ -1481,6 +1659,8 @@ theorem CGN4g_strictCapBlockData_of_supportCap_oriented
       n := n
       m := m
       phi := psi
+      phi_injective := hpsi_inj
+      phi_ccw := hpsi_ccw
       L := L
       Packet := Packet
       Hside := Hside
@@ -1623,6 +1803,8 @@ theorem CGN4g_strictCapBlockData_of_supportCap_oriented
       n := n
       m := m
       phi := psi
+      phi_injective := hpsi_inj
+      phi_ccw := hpsi_ccw
       L := L
       Packet := Packet
       Hside := Hside
