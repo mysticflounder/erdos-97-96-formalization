@@ -1133,3 +1133,28 @@ The coordinator-interface frontier and immediate constructor fan-out remain
 one.  This is a genuine two-coordinate narrowing (`|A| ≥ 15` and
 `|selectedRow(c) ∩ C| ≤ 1`), but the surviving universal residual is still a
 load-bearing `sorry`.
+
+The exact-cardinality-15 four-row obstruction is now banked separately in
+`BlockerVExactFifteenFourRowCoverage`.  Its finite theorem exhausts the two
+source-compatible cyclic orders and all `15^4` choices of the four rows'
+two-point outside supports.  Under pairwise cyclic separation, every one of
+the `2 * 15^4` cases contains one of sixteen explicit three-row motifs.  A
+proof-facing dispatcher sends those motifs to three cardinality-independent
+strict-Kalmanson kernels in `KalmansonThreeEqualitySchemas`:
+
+- `false_of_six_ccw_three_shell_equalities_140_250_354`;
+- `false_of_five_ccw_three_shell_equalities_043_140_203`; and
+- `false_of_five_ccw_three_shell_equalities_103_243_340`.
+
+The three metric kernels use only `propext`, `Classical.choice`, and
+`Quot.sound`.  The finite coverage theorem uses the accepted
+`native_decide` compiler-trust boundary.  The dispatcher itself introduces no
+new obligation.
+
+This checkpoint is **BANKED-CONSUMER**, not closure of the live residual.  The
+remaining source ingress must construct the exact-profile label map and four
+outside pairs and prove `PositionEmbedding`, `RealizesRows`, and
+`PairwiseSeparated`.  Once that adapter is proved, the bank eliminates the
+cardinality-15 arm and narrows the existing universal leaf to `16 ≤ |A|`;
+until then, neither that stronger bound nor an exact-15 on-spine closure is
+claimed.  No new `sorry` or coordinator branch was introduced by the bank.

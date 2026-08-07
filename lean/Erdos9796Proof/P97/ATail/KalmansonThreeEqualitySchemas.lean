@@ -10,7 +10,7 @@ import Erdos9796Proof.P97.ATail.FivePointEuclideanObstruction
 /-!
 # Three-equality Kalmanson schemas
 
-This module records four irreducible three-equality contradictions from the
+This module records seven irreducible three-equality contradictions from the
 672-core equality-only CEGAR audit.  Each theorem is cardinality-independent:
 it assumes only that the displayed vertices occur in the stated order in one
 strictly convex CCW boundary enumeration.
@@ -173,6 +173,115 @@ theorem false_of_six_ccw_three_shell_equalities_013_235_415
       h12 (h23.trans h34) h45
   have h415' : dist (phi i1) (phi i4) = dist (phi i4) (phi i5) := by
     simpa only [dist_comm (phi i4) (phi i1)] using h415
+  linarith
+
+/-- The three distance equalities
+
+```text
+d(1,4) = d(1,0),  d(2,5) = d(2,0),  d(3,5) = d(3,4)
+```
+
+are incompatible with six vertices in the strict CCW order `0 < 1 < 2 < 3 < 4 < 5`.
+This is the middle-center orientation arising in the exact-fifteen four-row bank.
+-/
+theorem false_of_six_ccw_three_shell_equalities_140_250_354
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {phi : Fin A.card → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {i0 i1 i2 i3 i4 i5 : Fin A.card}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (h140 : dist (phi i1) (phi i4) = dist (phi i1) (phi i0))
+    (h250 : dist (phi i2) (phi i5) = dist (phi i2) (phi i0))
+    (h354 : dist (phi i3) (phi i5) = dist (phi i3) (phi i4)) :
+    False := by
+  have hcomp_0125 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+      hphi_image hccw h01 h12 (h23.trans (h34.trans h45))
+  have hmain_1245 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      h12 (h23.trans h34) h45
+  have hmain_2345 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      h23 h34 h45
+  have h140' : dist (phi i1) (phi i4) = dist (phi i0) (phi i1) := by
+    simpa only [dist_comm (phi i1) (phi i0)] using h140
+  have h250' : dist (phi i2) (phi i5) = dist (phi i0) (phi i2) := by
+    simpa only [dist_comm (phi i2) (phi i0)] using h250
+  linarith
+
+/-- The three distance equalities
+
+```text
+d(0,4) = d(0,3),  d(1,4) = d(1,0),  d(2,0) = d(2,3)
+```
+
+are incompatible with five vertices in the strict CCW order `0 < 1 < 2 < 3 < 4`.
+This is the overlap orientation arising in the exact-fifteen four-row bank.
+-/
+theorem false_of_five_ccw_three_shell_equalities_043_140_203
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {phi : Fin A.card → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {i0 i1 i2 i3 i4 : Fin A.card}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3) (h34 : i3 < i4)
+    (h043 : dist (phi i0) (phi i4) = dist (phi i0) (phi i3))
+    (h140 : dist (phi i1) (phi i4) = dist (phi i1) (phi i0))
+    (h203 : dist (phi i2) (phi i0) = dist (phi i2) (phi i3)) :
+    False := by
+  have hcomp_0124 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+      hphi_image hccw h01 h12 (h23.trans h34)
+  have hmain_0134 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      h01 (h12.trans h23) h34
+  have hmain_1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      h12 h23 h34
+  have h140' : dist (phi i1) (phi i4) = dist (phi i0) (phi i1) := by
+    simpa only [dist_comm (phi i1) (phi i0)] using h140
+  have h203' : dist (phi i0) (phi i2) = dist (phi i2) (phi i3) := by
+    simpa only [dist_comm (phi i2) (phi i0)] using h203
+  linarith
+
+/-- The three distance equalities
+
+```text
+d(1,0) = d(1,3),  d(2,4) = d(2,3),  d(3,4) = d(3,0)
+```
+
+are incompatible with five vertices in the strict CCW order `0 < 1 < 2 < 3 < 4`.
+This is the second overlap orientation arising in the exact-fifteen four-row bank.
+-/
+theorem false_of_five_ccw_three_shell_equalities_103_243_340
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {phi : Fin A.card → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {i0 i1 i2 i3 i4 : Fin A.card}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3) (h34 : i3 < i4)
+    (h103 : dist (phi i1) (phi i0) = dist (phi i1) (phi i3))
+    (h243 : dist (phi i2) (phi i4) = dist (phi i2) (phi i3))
+    (h340 : dist (phi i3) (phi i4) = dist (phi i3) (phi i0)) :
+    False := by
+  have hcomp_0124 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+      hphi_image hccw h01 h12 (h23.trans h34)
+  have hcomp_0234 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj
+      hphi_image hccw (h01.trans h12) h23 h34
+  have hmain_1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      h12 h23 h34
+  have h103' : dist (phi i0) (phi i1) = dist (phi i1) (phi i3) := by
+    simpa only [dist_comm (phi i1) (phi i0)] using h103
+  have h340' : dist (phi i3) (phi i4) = dist (phi i0) (phi i3) := by
+    simpa only [dist_comm (phi i3) (phi i0)] using h340
   linarith
 
 /-

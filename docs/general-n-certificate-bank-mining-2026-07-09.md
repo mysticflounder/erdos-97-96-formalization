@@ -68,6 +68,24 @@ Live theorem-bank additions made after the frozen census are recorded in:
   normalized Fano determinant obstruction while recording the still-missing
   full-circle geometric adapter.
 
+The live Lean bank also now contains three cardinality-independent cyclic
+metric consumers in `P97/ATail/KalmansonThreeEqualitySchemas.lean`:
+
+- `false_of_six_ccw_three_shell_equalities_140_250_354`;
+- `false_of_five_ccw_three_shell_equalities_043_140_203`; and
+- `false_of_five_ccw_three_shell_equalities_103_243_340`.
+
+Each has kernel closure `propext`, `Classical.choice`, and `Quot.sound`.  The
+exact-15 `BlockerV` bank in
+`P97/ATail/BlockerVExactFifteenFourRowCoverage.lean` exhausts `2 * 15^4`
+four-row outside-support patterns with `native_decide`, classifies every
+pairwise-separated pattern into sixteen explicit motifs, and dispatches every
+motif to one of these three consumers.  This is a reusable finite-to-metric
+consumer.  It does not yet close a live spine theorem: the missing producer is
+the source adapter establishing the exact label placement, row realization,
+and pairwise-separation hypotheses from the surviving `Rigid221SourceHeavy`
+packet.
+
 ## Census
 
 The scan covers 12,922 Lean files and 997,618 declarations. It finds 761
