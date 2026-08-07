@@ -81,10 +81,25 @@ exact-15 `BlockerV` bank in
 four-row outside-support patterns with `native_decide`, classifies every
 pairwise-separated pattern into sixteen explicit motifs, and dispatches every
 motif to one of these three consumers.  This is a reusable finite-to-metric
-consumer.  It does not yet close a live spine theorem: the missing producer is
-the source adapter establishing the exact label placement, row realization,
-and pairwise-separation hypotheses from the surviving `Rigid221SourceHeavy`
-packet.
+consumer.  Its source adapter is now proved and closes the exact-cardinality-15
+stratum of the live `Rigid221SourceHeavy` BlockerV residual.
+
+The live bank additionally contains four cardinality-independent cyclic
+metric consumers in `P97/ATail/KalmansonFourEqualitySchemas.lean`:
+
+- `false_of_seven_ccw_four_shell_equalities_A_of_increasing`;
+- `false_of_seven_ccw_four_shell_equalities_A_of_decreasing`;
+- `false_of_seven_ccw_four_shell_equalities_B_of_increasing`; and
+- `false_of_seven_ccw_four_shell_equalities_B_of_decreasing`.
+
+Each has kernel closure `propext`, `Classical.choice`, and `Quot.sound`.
+`P97/ATail/BlockerVExactSixteenFourRowCoverage.lean` exhausts
+`2 * 7 * choose(7, 2)^4` exact-sixteen cap-nine assignments and dispatches
+them to these two four-equality families or the previously banked B/C
+three-equality families.  Together with the cap-ten reduction to the
+exact-fifteen bank, the proved source adapters close the exact-cardinality-16
+stratum of that same live residual.  The remaining universal child starts at
+cardinality seventeen.
 
 ## Census
 

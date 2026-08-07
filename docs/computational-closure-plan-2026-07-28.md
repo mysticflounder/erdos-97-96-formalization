@@ -1184,3 +1184,30 @@ parent branch; it narrows this one on-spine residual from `15 ≤ |A|` to
 During the bank audit a precedence bug in the original `PairwiseSeparated`
 definition was corrected by parenthesizing the entire betweenness equivalence,
 and the corrected `2 * 15^4` coverage was rerun and passed.
+
+The exact-cardinality-16 stratum is now eliminated as well.  The cap-sum
+identity leaves two second-cap profiles.  In the cap-ten profile, the eighth
+strict-cap point belongs to none of the four selected rows, so deleting that
+gap reduces the complete row packet to the checked exact-fifteen bank.  In the
+cap-nine profile, the seven named points exhaust the strict cap interior and
+there are seven outside points.  The new
+`BlockerVExactSixteenFourRowCoverage` bank exhausts
+`2 * 7 * choose(7, 2)^4` assignments: two source-forced orders, seven cyclic
+positions for the anonymous outside point, and one outside pair for each of
+the four rows.
+
+Every pairwise-separated assignment contains one of the two previously
+banked three-equality motifs or one of two new seven-point four-equality
+motifs.  The latter are consumed by four orientation-neutral, general-cardinality
+theorems in `KalmansonFourEqualitySchemas`.  Their axiom closures are exactly
+`propext`, `Classical.choice`, and `Quot.sound`; only the finite coverage
+theorem uses the accepted `native_decide` compiler-trust boundary.
+
+The source adapters for both cap profiles are proved and the former
+`..._card_ge_sixteen` theorem is now a checked coordinator.  Its sole live
+child is
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen`.
+Thus exact cardinalities 12 through 16 are closed for this one on-spine
+Rigid221 residual, and its lower frontier is now `17 ≤ |A|`.  This does not
+exclude all 16-point P97 counterexamples.  Immediate constructor fan-out
+remains one.
