@@ -25,6 +25,11 @@ The next exact-seventeen wave produced two smaller six-point signatures.
 Schemas D and E below need only two and three strict Kalmanson inequalities,
 respectively.  As with schema C, their public adapters consume direct selected
 row incidences rather than equality-closure artifacts.
+
+A later exact-seventeen linear core produced schema G.  It is another
+six-point four-row obstruction, but needs only one equality from each row.
+The four strict Kalmanson inequalities in its proof sum to zero after those
+four shell equalities are substituted.
 -/
 
 open scoped Convex EuclideanGeometry
@@ -775,6 +780,132 @@ theorem false_of_four_selected_rows_in_seven_ccw_order_F_of_decreasing
   exact false_of_seven_ccw_six_shell_equalities_F_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe hgf hafc hfag hfac hbfe hdbe hdbg
+
+/-- Six increasingly ordered boundary vertices cannot support schema G from
+the exact-seventeen full-cover census. -/
+theorem false_of_six_ccw_four_shell_equalities_G_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hbcf : dist (phi b) (phi c) = dist (phi b) (phi f))
+    (hcbd : dist (phi c) (phi b) = dist (phi c) (phi d))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f)) : False := by
+  have hK1_abcf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab hbc (hcd.trans (hde.trans hef))
+  have hK2_acde := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans hbc) hcd hde
+  have hK1_acdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans hbc) hcd (hde.trans hef)
+  have hK1_adef := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans (hbc.trans hcd)) hde hef
+  simp only [dist_comm] at habd hbcf hcbd hecf
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_six_ccw_four_shell_equalities_G_of_increasing`. -/
+theorem false_of_six_ccw_four_shell_equalities_G_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hbcf : dist (phi b) (phi c) = dist (phi b) (phi f))
+    (hcbd : dist (phi c) (phi b) = dist (phi c) (phi d))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f)) : False := by
+  have hK1_abcf :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hba hcb
+        (hfe.trans (hed.trans hdc))
+  have hK2_acde := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw (hcb.trans hba) hdc hed
+  have hK1_acdf :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw (hcb.trans hba) hdc (hfe.trans hed)
+  have hK1_adef :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw (hdc.trans (hcb.trans hba)) hed hfe
+  simp only [dist_comm] at habd hbcf hcbd hecf
+  linarith
+
+/-- Four selected rows with the schema-G incidences are impossible when the
+six support points occur in increasing CCW boundary order. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_G
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support)
+    (hb_mem_CRow : boundary b ∈ CRow.support)
+    (hd_mem_CRow : boundary d ∈ CRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hbcf := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  have hcbd := (CRow.support_eq_radius _ hb_mem_CRow).trans
+    (CRow.support_eq_radius _ hd_mem_CRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  exact false_of_six_ccw_four_shell_equalities_G_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef habd hbcf hcbd hecf
+
+/-- Decreasing-index selected-row companion of
+`false_of_four_selected_rows_in_six_ccw_order_G`. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support)
+    (hb_mem_CRow : boundary b ∈ CRow.support)
+    (hd_mem_CRow : boundary d ∈ CRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hbcf := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  have hcbd := (CRow.support_eq_radius _ hb_mem_CRow).trans
+    (CRow.support_eq_radius _ hd_mem_CRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  exact false_of_six_ccw_four_shell_equalities_G_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe habd hbcf hcbd hecf
 
 end CapCrossingKalmansonBridge
 end Problem97

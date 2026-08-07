@@ -57,10 +57,21 @@ class ProducerBankTests(unittest.TestCase):
             row(3, (1, 4, 6, 8), exact=True),
         )
 
-    def test_direct_six_point_schema_d_and_e_matches(self) -> None:
+    @staticmethod
+    def _schema_g_rows() -> tuple[producer_bank.MetricRow, ...]:
+        row = producer_bank.MetricRow
+        return (
+            row(0, (1, 3, 6, 7), exact=True),
+            row(1, (2, 5, 6, 7), exact=False),
+            row(2, (1, 3, 6, 7), exact=False),
+            row(4, (2, 5, 6, 7), exact=True),
+        )
+
+    def test_direct_six_point_schema_d_e_and_g_matches(self) -> None:
         for schema, rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
+            ("g", self._schema_g_rows()),
         ):
             with self.subTest(schema=schema):
                 records = producer_bank.scan_all_formalized_cores(
@@ -127,10 +138,43 @@ class ProducerBankTests(unittest.TestCase):
                 match = next(record for record in records if record["stage"] == stage)
                 self.assertEqual(match["core"], expected)
 
-    def test_schema_d_and_e_match_need_each_direct_row(self) -> None:
+    def test_schema_g_matches_authenticated_exact17_linear_core(self) -> None:
+        row = producer_bank.MetricRow
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows = (
+            row(0, (1, 11), exact=False),
+            row(1, (0, 16), exact=False),
+            row(6, (0, 16), exact=False),
+            row(15, (1, 11), exact=False),
+        )
+        records = producer_bank.scan_all_formalized_cores(
+            rows,
+            17,
+            order,
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"]
+            == "equality-convex-six-point-four-selected-row-kalmanson-g-reverse"
+        )
+        self.assertEqual(
+            match["core"],
+            {"a": 6, "b": 0, "c": 1, "d": 16, "e": 15, "f": 11},
+        )
+        self.assertTrue(
+            match["lean_consumer"].endswith(
+                "six_ccw_order_G_of_decreasing"
+            )
+        )
+
+    def test_schema_d_e_and_g_match_need_each_direct_row(self) -> None:
         for schema, rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
+            ("g", self._schema_g_rows()),
         ):
             stages = {
                 (
@@ -155,12 +199,13 @@ class ProducerBankTests(unittest.TestCase):
                         stages.isdisjoint(record["stage"] for record in records)
                     )
 
-    def test_schema_d_and_e_use_reverse_consumers_after_reflection(self) -> None:
+    def test_schema_d_e_and_g_use_reverse_consumers_after_reflection(self) -> None:
         order = tuple(range(8))
         reflection = dict(zip(order, reversed(order), strict=True))
         for schema, original_rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
+            ("g", self._schema_g_rows()),
         ):
             rows = tuple(
                 producer_bank.MetricRow(
@@ -190,7 +235,7 @@ class ProducerBankTests(unittest.TestCase):
                     )
                 )
 
-    def test_schema_d_and_e_fail_closed_without_lean_consumers(self) -> None:
+    def test_schema_d_e_and_g_fail_closed_without_lean_consumers(self) -> None:
         missing = Path("/definitely/missing/KalmansonFourEqualitySchemas.lean")
         with mock.patch.object(
             producer_bank,
@@ -198,7 +243,7 @@ class ProducerBankTests(unittest.TestCase):
             missing,
         ), self.assertRaises(producer_bank.MissingLeanConsumerError):
             producer_bank.scan_all_formalized_cores(
-                self._schema_d_rows(),
+                self._schema_g_rows(),
                 8,
                 tuple(range(8)),
                 include_extended=False,

@@ -99,6 +99,16 @@ _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_CONSUMERS = {
             "false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing"
         ),
     ),
+    "g": (
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_G"
+        ),
+        (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing"
+        ),
+    ),
 }
 
 
@@ -447,7 +457,7 @@ def _require_seven_point_four_selected_row_kalmanson_f_consumers() -> None:
 def _direct_six_point_four_selected_row_kalmanson_core(
     rows: Sequence[MetricRow], order: tuple[int, ...], *, schema: str
 ) -> tuple[dict[str, int], int] | None:
-    """Find a direct-row occurrence of six-point schema D or E."""
+    """Find a direct-row occurrence of six-point schema D, E, or G."""
 
     supports_by_center: dict[int, list[frozenset[int]]] = {}
     for row in rows:
@@ -481,6 +491,13 @@ def _direct_six_point_four_selected_row_kalmanson_core(
                     and contains(point_b, {point_a, point_c, point_d})
                     and contains(point_c, {point_f, point_b})
                 )
+            elif schema == "g":
+                matched = (
+                    contains(point_a, {point_b, point_d})
+                    and contains(point_b, {point_c, point_f})
+                    and contains(point_c, {point_b, point_d})
+                    and contains(point_e, {point_c, point_f})
+                )
             else:
                 raise ValueError(f"unknown six-point Kalmanson schema {schema!r}")
             if matched:
@@ -499,7 +516,7 @@ def _direct_six_point_four_selected_row_kalmanson_core(
 
 
 def _require_six_point_four_selected_row_kalmanson_consumers() -> None:
-    """Fail closed unless all schema-D/E orientation adapters exist."""
+    """Fail closed unless all schema-D/E/G orientation adapters exist."""
 
     if not _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_SOURCE.is_file():
         raise MissingLeanConsumerError(
@@ -515,11 +532,13 @@ def _require_six_point_four_selected_row_kalmanson_consumers() -> None:
         "theorem false_of_four_selected_rows_in_six_ccw_order_D_of_decreasing",
         "theorem false_of_four_selected_rows_in_six_ccw_order_E",
         "theorem false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_G",
+        "theorem false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing",
     )
     if any(fragment not in source for fragment in required_source_fragments):
         raise MissingLeanConsumerError(
             "production six-point Kalmanson module does not declare all "
-            "schema-D/E selected-row consumers"
+            "schema-D/E/G selected-row consumers"
         )
 
 
@@ -753,7 +772,7 @@ def _metric_bank_matches(
                 )
             )
 
-        for schema in ("d", "e"):
+        for schema in ("d", "e", "g"):
             consumers = _SIX_POINT_FOUR_SELECTED_ROW_KALMANSON_CONSUMERS[schema]
             schema_matches = (
                 (

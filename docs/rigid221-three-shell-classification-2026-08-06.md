@@ -143,3 +143,37 @@ reached their iteration cap, so this census did not close exact-17.  Its 1,610
 deduplicated learned patterns seed the successor wave.  Thus D--F enlarge the
 cardinality-independent consumer bank and strengthen the exact-17 search, but
 do not by themselves close an on-spine `sorry`.
+
+## Successor selected-row obstruction G
+
+The source-frozen C--F successor wave exposed a further six-point obstruction:
+
+```text
+G: a:{b,d}, b:{c,f}, c:{b,d}, e:{c,f}.
+```
+
+The four displayed rows contribute exactly four shell equalities.  Four strict
+Kalmanson inequalities sum to an immediate contradiction after those
+equalities are substituted.  `KalmansonFourEqualitySchemas.lean` proves both
+cyclic orientations of the metric statement and direct selected-row consumers
+for both orientations.  All four declarations have axiom closure exactly
+`propext`, `Classical.choice`, and `Quot.sound`.
+
+The production matcher recognizes G directly from selected-row membership and
+fails closed unless both Lean consumers are present.  Its regression is the
+authenticated exact-17 record from seed 1801, iteration 41, with reverse-order
+roles
+
+```text
+(a,b,c,d,e,f) = (6,0,1,16,15,11).
+```
+
+An exact replay snapshot over the first 2,093 records of the still-running
+C--F successor waves found 15 G occurrences.  Thirteen were previously sent
+to exact linear arithmetic and two were already rejected by another theorem-
+bank entry.  Static admission of G contributes 148,512 unique clauses at
+exact-17.  This is measurable reuse and removes thirteen observed linear
+queries, but it is not terminal exact-17 coverage and does not close an
+on-spine `sorry` by itself.  The running waves remain authenticated to their
+pre-G source hashes; G belongs in their versioned successor rather than being
+inserted into the live source-frozen encoders.
