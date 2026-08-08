@@ -1108,6 +1108,126 @@ theorem v14Assign_base_low (cell : FrozenV14JobCoordinate)
   · rw [sourceBlocksEnd]
     omega
 
+/- ## Ordinary added-clause reflection -/
+
+/-- On a valid candidate variable, the complete v14 extension is true exactly
+when that candidate is the row selected by the source-faithful cover index. -/
+theorem v14Assign_xVar_eq_true_iff
+    (cell : FrozenV14JobCoordinate) (blocker : Fin 5 → Label)
+    (idx : Nat → Nat)
+    (hidx : ∀ p, p < 12 → idx p < SafeCoverCnf.candCount p)
+    {p i : Nat} (hp : p < 12) (hi : i < SafeCoverCnf.candCount p) :
+    v14Assign cell blocker idx (SafeCoverCnf.xVar p i) = true ↔
+      i = idx p := by
+  have hx : SafeCoverCnf.xVar p i ≤ SafeCoverCnf.baseNumVars := by
+    calc
+      SafeCoverCnf.xVar p i ≤ SafeCoverCnf.nX :=
+        SafeCoverCnf.xVar_le_nX hp hi
+      _ ≤ SafeCoverCnf.baseNumVars := by
+        rw [SafeCoverCnf.nX_eq, SafeCoverCnf.baseNumVars_eq]
+        omega
+  rw [v14Assign_base_low cell blocker idx hx,
+    SafeCoverCnf.finalAssign_x idx hp hi,
+    SafeCoverCnf.baseAssign_iff idx hidx hp hi]
+
+/-- The complete v14 extension is true at a blocker input exactly when that
+center is the semantic blocker selected for its physical source. -/
+theorem v14Assign_blockerVar_eq_true_iff
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (idx : Nat → Nat) (i : Fin 5) {center : Nat}
+    (hcenter : center ∈
+      blockerCenters ((physicalSources cell).getD i.val 0)) :
+    v14Assign cell blocker idx (blockerVar cell i center) = true ↔
+      center = (blocker i).val := by
+  have hmem : blockerVar cell i center ∈ sourceBlockerVars cell i :=
+    List.mem_map.mpr ⟨center, hcenter, rfl⟩
+  rw [v14Assign,
+    centerSinzAssign_low cell _ (blockerVar_le_sourceBlocksEnd cell i hcenter),
+    sourceSinzAssign_sourceBlockerVar cell _ i hmem]
+  exact blockerAssign_blockerVar_eq_true_iff cell hadded _ i hcenter
+
+/-- The blocker variable selected by a semantic blocker function is true in
+the complete v14 extension. -/
+theorem v14Assign_selectedBlockerVar_eq_true
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (idx : Nat → Nat) (i : Fin 5) :
+    v14Assign cell blocker idx
+      (blockerVar cell i (blocker i).val) = true := by
+  have hcenter := blocker_mem_blockerCenters_of_addedConstraints cell hadded i
+  exact (v14Assign_blockerVar_eq_true_iff cell hadded idx i hcenter).2 rfl
+
+/-- At-least-one blocker clause emitted after the ten implications of one
+physical source. -/
+def sourceSelectorClause (cell : FrozenV14JobCoordinate) (i : Fin 5) :
+    List Int :=
+  (sourceBlockerVars cell i).map Int.ofNat
+
+/-- The selected semantic blocker satisfies its source's at-least-one
+selector clause. -/
+theorem v14Assign_sat_sourceSelectorClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (idx : Nat → Nat) (i : Fin 5) :
+    evalClauseD (v14Assign cell blocker idx)
+      (sourceSelectorClause cell i) = true := by
+  have hcenter := blocker_mem_blockerCenters_of_addedConstraints cell hadded i
+  simp only [evalClauseD, List.any_eq_true]
+  refine ⟨Int.ofNat (blockerVar cell i (blocker i).val), ?_, ?_⟩
+  · apply List.mem_map.mpr
+    exact ⟨blockerVar cell i (blocker i).val,
+      List.mem_map.mpr ⟨(blocker i).val, hcenter, rfl⟩, rfl⟩
+  · rw [evalLitD_pos]
+    · exact (v14Assign_blockerVar_eq_true_iff cell hadded idx i hcenter).2 rfl
+    · have hvar := baseNumVars_lt_blockerVar cell i (blocker i).val
+      omega
+
+/-- The two positive units emitted by the compiler after the five source
+blocks, fixing the `6`-source blocker at `8` and the `8`-source blocker at
+`7`. -/
+def forcedBlockerClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
+  [[Int.ofNat (blockerVar cell 0 8)],
+    [Int.ofNat (blockerVar cell 4 7)]]
+
+/-- The semantic forced-blocker equalities satisfy both compiler units. -/
+theorem v14Assign_sat_forcedBlockerClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (idx : Nat → Nat) :
+    ∀ c ∈ forcedBlockerClauses cell,
+      evalClauseD (v14Assign cell blocker idx) c = true := by
+  have hblockerU : blocker 0 = 8 := hadded.2.2.2.1
+  have hblockerXv : blocker 4 = 7 := hadded.2.2.2.2.1
+  intro c hc
+  simp only [forcedBlockerClauses, List.mem_cons, List.not_mem_nil,
+    or_false] at hc
+  rcases hc with rfl | rfl
+  · simp only [evalClauseD, List.any_cons, List.any_nil, Bool.or_false]
+    rw [evalLitD_pos]
+    · have htrue := v14Assign_selectedBlockerVar_eq_true cell hadded idx 0
+      simpa [hblockerU] using htrue
+    · have hvar := baseNumVars_lt_blockerVar cell 0 8
+      omega
+  · simp only [evalClauseD, List.any_cons, List.any_nil, Bool.or_false]
+    rw [evalLitD_pos]
+    · have htrue := v14Assign_selectedBlockerVar_eq_true cell hadded idx 4
+      simpa [hblockerXv] using htrue
+    · have hvar := baseNumVars_lt_blockerVar cell 4 7
+      omega
+
 /-- The five source blocks occupy exactly one hundred variables. -/
 theorem sourceBlocksEnd_eq (cell : FrozenV14JobCoordinate) :
     sourceBlocksEnd cell = 42660 := by
