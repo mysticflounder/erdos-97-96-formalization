@@ -22,6 +22,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
@@ -38,6 +39,11 @@ STRUCTURAL_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cut.v2"
 STRUCTURAL_DETECTOR_CONTRACT = (
     "formalized order-independent metric core plus exact certificate replay"
 )
+# The current source-facing Lean endpoint reconstructs only
+# `List (DuplicateCenterNogood Label)`.  Other Python stages remain useful for
+# discovery, but admitting them here would let a mixed terminal CNF cross a
+# duplicate-center-only semantic boundary.
+LEAN_TERMINAL_STAGES = frozenset({"equality-duplicate-center"})
 STRUCTURAL_DETECTOR_FILES = (
     "census/card_head/exact12_v14_structural_cegar.py",
     "census/card_head/sat_encoding.py",
@@ -246,8 +252,8 @@ def _authenticate_structural_journal(
     *,
     summary: Mapping[str, Any],
     expected_detector_manifest: Sequence[Mapping[str, Any]],
-) -> None:
-    """Authenticate the structural journal chain without semantic replay."""
+) -> list[tuple[int, ...]]:
+    """Authenticate the structural journal and return its accepted clauses."""
 
     records = summary.get("records")
     if isinstance(records, bool) or not isinstance(records, int) or records < 0:
@@ -274,12 +280,13 @@ def _authenticate_structural_journal(
             )
         if journal_path is not None and journal_path.stat().st_size != 0:
             raise TerminalRupSourceError("empty structural journal is not empty")
-        return
+        return []
     if journal_path is None or not journal_path.is_file():
         raise TerminalRupSourceError("structural terminal journal is missing")
 
     parent = job_sha256
     count = 0
+    learned_clauses: list[tuple[int, ...]] = []
     with journal_path.open("rb") as handle:
         for line_number, raw_line in enumerate(handle, 1):
             if not raw_line.endswith(b"\n") or b"\r" in raw_line:
@@ -331,6 +338,24 @@ def _authenticate_structural_journal(
                 raise TerminalRupSourceError(
                     f"journal line {line_number} failed chain authentication"
                 )
+            if record.get("stage") not in LEAN_TERMINAL_STAGES:
+                raise TerminalRupSourceError(
+                    "structural terminal journal contains a stage without a "
+                    f"Lean terminal-bank consumer: {record.get('stage')!r}"
+                )
+            learned_clause = record["learned_clause"]
+            if (
+                any(
+                    isinstance(literal, bool)
+                    or not isinstance(literal, int)
+                    or literal == 0
+                    for literal in learned_clause
+                )
+                or len(learned_clause) != len(set(learned_clause))
+            ):
+                raise TerminalRupSourceError(
+                    f"journal line {line_number} has a malformed learned clause"
+                )
             for digest_field in (
                 "certificate_sha256",
                 "cube_sha256",
@@ -341,10 +366,134 @@ def _authenticate_structural_journal(
                         f"journal line {line_number} has malformed {digest_field}"
                     )
             parent = record_sha256
+            learned_clauses.append(tuple(learned_clause))
             count += 1
     if count != records or terminal_record != parent:
         raise TerminalRupSourceError(
             "structural terminal record count or chain head drifted"
+        )
+    return learned_clauses
+
+
+def _exact12_source_modules(repo_root: Path) -> tuple[Any, Any, Any]:
+    """Load the canonical exact-12 builders from the selected source tree."""
+
+    repo_root = repo_root.resolve()
+    root_text = str(repo_root)
+    if root_text not in sys.path:
+        sys.path.insert(0, root_text)
+    try:
+        from census.card_head import exact12_v14_bound_jobs as bound_jobs
+        from census.card_head import exact12_v14_schedule as schedule
+        from census.card_head import exact12_v14_structural_cegar as structural
+    except ImportError as exc:
+        raise TerminalRupSourceError(
+            "cannot load the canonical exact-12 source modules"
+        ) from exc
+    for module in (schedule, bound_jobs, structural):
+        module_file = getattr(module, "__file__", None)
+        if module_file is None or not Path(module_file).resolve().is_relative_to(repo_root):
+            raise TerminalRupSourceError(
+                "canonical exact-12 module was loaded outside the selected repository"
+            )
+    return schedule, bound_jobs, structural
+
+
+def _canonical_materialization(repo_root: Path, job: Mapping[str, Any]) -> Any:
+    """Rebuild and validate the bound job without trusting run metadata."""
+
+    schedule, bound_jobs, _ = _exact12_source_modules(repo_root)
+    try:
+        manifest = schedule.build_manifest(repo_root.resolve())
+        return bound_jobs.instantiate_validated_bound_job(
+            job, manifest, repo_root.resolve()
+        )
+    except (KeyError, OSError, TypeError, ValueError) as exc:
+        raise TerminalRupSourceError(
+            "bound job failed canonical source rebuild"
+        ) from exc
+
+
+def _semantic_replay_structural_journal(
+    repo_root: Path,
+    instance: Any,
+    journal_path: Path,
+    *,
+    summary: Mapping[str, Any],
+) -> frozenset[tuple[int, ...]]:
+    """Derive and install every journal cut through the detector replay."""
+
+    _, _, structural = _exact12_source_modules(repo_root)
+    try:
+        count, terminal_record, replayed = structural.replay_journal(
+            instance,
+            journal_path,
+            job_sha256=summary["job_sha256"],
+            detector_contract_sha256=summary["detector_contract_sha256"],
+            cell_index=summary["cell_index"],
+        )
+    except (KeyError, OSError, TypeError, ValueError) as exc:
+        raise TerminalRupSourceError(
+            "structural journal failed semantic certificate replay"
+        ) from exc
+    if (
+        count != summary.get("records")
+        or terminal_record != summary.get("terminal_record_sha256")
+    ):
+        raise TerminalRupSourceError(
+            "semantic journal replay record count or chain head drifted"
+        )
+    return replayed
+
+
+def _validate_formula_against_canonical_source(
+    discovery_cnf: Path,
+    terminal_cnf: Path,
+    *,
+    repo_root: Path,
+    summary: Mapping[str, Any],
+    job: Mapping[str, Any],
+    journal_path: Path | None,
+    expected_detector_manifest: Sequence[Mapping[str, Any]],
+) -> None:
+    """Require exact bytes from a source rebuild plus semantic cut replay."""
+
+    learned_clauses: list[tuple[int, ...]] = []
+    if summary.get("schema") == STRUCTURAL_RUN_SCHEMA:
+        learned_clauses = _authenticate_structural_journal(
+            journal_path,
+            summary=summary,
+            expected_detector_manifest=expected_detector_manifest,
+        )
+    materialized = _canonical_materialization(repo_root, job)
+    instance = materialized.instance
+    if learned_clauses:
+        if journal_path is None:
+            raise TerminalRupSourceError("structural terminal journal is missing")
+        replayed = _semantic_replay_structural_journal(
+            repo_root, instance, journal_path, summary=summary
+        )
+        if len(replayed) != len(learned_clauses) or replayed != frozenset(
+            learned_clauses
+        ):
+            raise TerminalRupSourceError(
+                "semantic journal replay learned-clause set drifted"
+            )
+    try:
+        expected = instance.dimacs().encode("ascii")
+        discovery_bytes = discovery_cnf.read_bytes()
+        terminal_bytes = terminal_cnf.read_bytes()
+    except (OSError, UnicodeError, UnicodeEncodeError) as exc:
+        raise TerminalRupSourceError(
+            "cannot render or read the canonical terminal formula"
+        ) from exc
+    if discovery_bytes != expected:
+        raise TerminalRupSourceError(
+            "discovery CNF differs from canonical source rebuild and journal replay"
+        )
+    if terminal_bytes != expected:
+        raise TerminalRupSourceError(
+            "terminal CNF differs from canonical source rebuild and journal replay"
         )
 
 
@@ -387,7 +536,7 @@ def validate_terminal_run(
         "proof": _validated_run_artifact(workdir, artifacts, "proof", "terminal.drat"),
         "job": _validated_run_artifact(workdir, artifacts, "job", "job.json"),
     }
-    if _sha256(paths["discovery_cnf"]) != _sha256(paths["terminal_cnf"]):
+    if paths["discovery_cnf"].read_bytes() != paths["terminal_cnf"].read_bytes():
         raise TerminalRupSourceError("discovery and terminal CNFs are not identical")
     job = _load_json_object(paths["job"], "bound job")
     cell_index = summary.get("cell_index")
@@ -417,9 +566,10 @@ def validate_terminal_run(
                 "cell formula artifacts do not match the bound job"
             )
     detector_paths: dict[str, Path] = {}
+    detector_manifest: list[dict[str, Any]] = []
+    journal_path: Path | None = None
     if schema == STRUCTURAL_RUN_SCHEMA:
         detector_manifest, detector_paths = _expected_detector_manifest(repo_root)
-        journal_path = None
         if artifacts.get("journal") is not None:
             journal_path = _validated_run_artifact(
                 workdir,
@@ -429,11 +579,15 @@ def validate_terminal_run(
                 allow_empty=True,
             )
             paths["journal"] = journal_path
-        _authenticate_structural_journal(
-            journal_path,
-            summary=summary,
-            expected_detector_manifest=detector_manifest,
-        )
+    _validate_formula_against_canonical_source(
+        paths["discovery_cnf"],
+        paths["terminal_cnf"],
+        repo_root=repo_root,
+        summary=summary,
+        job=job,
+        journal_path=journal_path,
+        expected_detector_manifest=detector_manifest,
+    )
     return summary, paths, detector_paths
 
 
@@ -595,14 +749,17 @@ def prepare_terminal_rup_source(
             raise TerminalRupSourceError("staged clause delta drifted from bound job")
         copied_cnf = staged_paths["terminal_cnf"]
         copied_drat = staged_paths["proof"]
-        if _sha256(staged_paths["discovery_cnf"]) != _sha256(copied_cnf):
+        if staged_paths["discovery_cnf"].read_bytes() != copied_cnf.read_bytes():
             raise TerminalRupSourceError("staged discovery and terminal CNFs differ")
-        if summary["schema"] == STRUCTURAL_RUN_SCHEMA:
-            _authenticate_structural_journal(
-                staged_paths.get("journal"),
-                summary=summary,
-                expected_detector_manifest=detector_manifest,
-            )
+        _validate_formula_against_canonical_source(
+            staged_paths["discovery_cnf"],
+            copied_cnf,
+            repo_root=repo_root,
+            summary=summary,
+            job=copied_job,
+            journal_path=staged_paths.get("journal"),
+            expected_detector_manifest=detector_manifest,
+        )
 
         raw_lrat = stage / "drat-trim.lrat"
         normalized_lrat = stage / "normalized.lrat"

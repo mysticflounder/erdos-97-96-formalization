@@ -22,6 +22,43 @@ p cnf 3 4
 3 0
 """
 
+STRUCTURAL_CNF = """\
+p cnf 3 5
+1 2 0
+-1 0
+-2 0
+3 0
+-1 -2 0
+"""
+
+CELL0_CUBE = {
+    0: [1, 3, 4, 7],
+    1: [0, 2, 6, 8],
+    2: [0, 1, 10, 11],
+    3: [0, 1, 4, 5],
+    4: [0, 2, 3, 5],
+    5: [0, 3, 4, 6],
+    6: [0, 7, 8, 10],
+    7: [1, 3, 6, 8],
+    8: [1, 5, 6, 9],
+    9: [1, 2, 7, 8],
+    10: [0, 7, 9, 11],
+    11: [1, 2, 9, 10],
+}
+
+
+class FakeCanonicalInstance:
+    def __init__(self) -> None:
+        self.rendered = CNF
+
+    def dimacs(self) -> str:
+        return self.rendered
+
+
+class FakeCanonicalMaterialization:
+    def __init__(self) -> None:
+        self.instance = FakeCanonicalInstance()
+
 
 def _run_artifact(path: Path) -> dict[str, object]:
     return {
@@ -49,7 +86,13 @@ def _terminal_workdir(root: Path, *, status: str = "UNSAT_DRAT_VERIFIED") -> Pat
         "schema": subject.BOUND_JOB_SCHEMA,
         "cell_index": 0,
         "clause_delta_artifact": clause_delta_value,
-        "cnf": {"sha256": subject._sha256(discovery)},
+        "cnf": {
+            "bytes": discovery.stat().st_size,
+            "encoding": "DIMACS",
+            "n_clauses": 4,
+            "n_variables": 3,
+            "sha256": subject._sha256(discovery),
+        },
     }
     job.write_text(
         json.dumps(job_value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
@@ -85,11 +128,17 @@ def _structural_terminal_workdir(root: Path) -> Path:
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     summary["schema"] = subject.STRUCTURAL_RUN_SCHEMA
     summary["artifacts"].pop("clause_delta")
+    for name in ("discovery.cnf", "terminal.cnf"):
+        (workdir / name).write_text(STRUCTURAL_CNF, encoding="ascii")
+    summary["artifacts"]["discovery_cnf"] = _run_artifact(
+        workdir / "discovery.cnf"
+    )
+    summary["artifacts"]["terminal_cnf"] = _run_artifact(workdir / "terminal.cnf")
     detector_manifest, _ = subject._expected_detector_manifest(
         Path(subject.__file__).resolve().parents[1]
     )
     detector_sha256 = subject._canonical_json_sha256(detector_manifest)
-    certificate = {"stage": "test", "payload": [1, 2]}
+    certificate = {"stage": "equality-duplicate-center", "payload": [1, 2]}
     cube = {str(center): [] for center in range(12)}
     cube["0"] = [1, 2]
     positive_variables = [1, 2]
@@ -166,7 +215,40 @@ class FakeDratTrim:
         return subprocess.CompletedProcess(command, 0, "s VERIFIED\n", "")
 
 
+class DynamicFakeDratTrim:
+    """Stand in only for drat-trim; all source and journal checks stay live."""
+
+    def __init__(self) -> None:
+        self.calls = 0
+
+    def __call__(self, command, **_kwargs):
+        self.calls += 1
+        cnf = rup.parse_dimacs(Path(command[1]))
+        addition_id = len(cnf.clauses) + 1
+        Path(command[command.index("-L") + 1]).write_text(
+            f"{addition_id} 0 1 0\n", encoding="ascii"
+        )
+        return subprocess.CompletedProcess(command, 0, "s VERIFIED\n", "")
+
+
 class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.canonical_rebuild = mock.patch.object(
+            subject,
+            "_canonical_materialization",
+            side_effect=lambda _repo_root, _job: FakeCanonicalMaterialization(),
+        ).start()
+
+        def replay(_repo_root, instance, _journal_path, *, summary):
+            self.assertEqual(summary["records"], 1)
+            instance.rendered = STRUCTURAL_CNF
+            return frozenset({(-1, -2)})
+
+        self.semantic_replay = mock.patch.object(
+            subject, "_semantic_replay_structural_journal", side_effect=replay
+        ).start()
+        self.addCleanup(mock.patch.stopall)
+
     def test_verified_terminal_run_publishes_dense_source(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:
             root = Path(raw_root)
@@ -315,6 +397,158 @@ class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
                 )
             self.assertEqual(runner.calls, 0)
 
+    def test_structural_unsupported_stage_fails_before_checker(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _structural_terminal_workdir(root)
+
+            def replace_stage(_summary, record):
+                record["stage"] = "equality-perpendicular-bisector-convex"
+                record["certificate"]["stage"] = record["stage"]
+                record["certificate_sha256"] = subject._canonical_json_sha256(
+                    record["certificate"]
+                )
+
+            _rewrite_structural_record(workdir, replace_stage)
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError,
+                "stage without a Lean terminal-bank consumer",
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+            self.assertFalse((root / "source").exists())
+
+    def test_structural_clause_suffix_must_match_journal(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _structural_terminal_workdir(root)
+            _rewrite_structural_record(
+                workdir,
+                lambda _summary, record: record.__setitem__(
+                    "learned_clause", [-1, -3]
+                ),
+            )
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError,
+                "semantic journal replay learned-clause set drifted",
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+    def test_self_consistent_job_and_formula_tamper_fails_source_rebuild(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _terminal_workdir(root)
+            tampered = CNF.replace("p cnf 3 4", "p cnf 4 4")
+            for name in ("discovery.cnf", "terminal.cnf"):
+                (workdir / name).write_text(tampered, encoding="ascii")
+            job_path = workdir / "job.json"
+            job = json.loads(job_path.read_text(encoding="utf-8"))
+            job["cnf"].update(
+                {
+                    "bytes": len(tampered.encode("ascii")),
+                    "n_variables": 4,
+                    "sha256": subject._sha256(workdir / "discovery.cnf"),
+                }
+            )
+            job_path.write_text(
+                json.dumps(job, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            summary_path = workdir / "summary.json"
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            summary["job_sha256"] = subject._canonical_json_sha256(job)
+            for key, name in (
+                ("job", "job.json"),
+                ("discovery_cnf", "discovery.cnf"),
+                ("terminal_cnf", "terminal.cnf"),
+            ):
+                summary["artifacts"][key] = _run_artifact(workdir / name)
+            summary_path.write_text(
+                json.dumps(summary, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            self.canonical_rebuild.side_effect = subject.TerminalRupSourceError(
+                "bound job failed canonical source rebuild"
+            )
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError, "failed canonical source rebuild"
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+    def test_noncanonical_dimacs_bytes_fail_before_checker(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _terminal_workdir(root)
+            noncanonical = "c alternate rendering\n" + CNF
+            for name in ("discovery.cnf", "terminal.cnf"):
+                (workdir / name).write_text(noncanonical, encoding="ascii")
+            job_path = workdir / "job.json"
+            job = json.loads(job_path.read_text(encoding="utf-8"))
+            job["cnf"].update(
+                {
+                    "bytes": len(noncanonical.encode("ascii")),
+                    "sha256": subject._sha256(workdir / "discovery.cnf"),
+                }
+            )
+            job_path.write_text(
+                json.dumps(job, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            summary_path = workdir / "summary.json"
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            summary["job_sha256"] = subject._canonical_json_sha256(job)
+            for key, name in (
+                ("job", "job.json"),
+                ("discovery_cnf", "discovery.cnf"),
+                ("terminal_cnf", "terminal.cnf"),
+            ):
+                summary["artifacts"][key] = _run_artifact(workdir / name)
+            summary_path.write_text(
+                json.dumps(summary, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError, "differs from canonical source rebuild"
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+    def test_semantic_certificate_replay_failure_precedes_checker(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _structural_terminal_workdir(root)
+
+            def mutate_certificate(_summary, record):
+                record["certificate"]["payload"] = [2, 1]
+                record["certificate_sha256"] = subject._canonical_json_sha256(
+                    record["certificate"]
+                )
+
+            _rewrite_structural_record(workdir, mutate_certificate)
+            self.semantic_replay.side_effect = subject.TerminalRupSourceError(
+                "structural journal failed semantic certificate replay"
+            )
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError, "failed semantic certificate replay"
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
     def test_structural_boolean_record_index_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:
             root = Path(raw_root)
@@ -348,6 +582,249 @@ class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
             runner = FakeDratTrim()
             with self.assertRaisesRegex(
                 subject.TerminalRupSourceError, "detector contract is malformed"
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+
+class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
+    """Exercise the live exact-12 compiler and structural replay boundary."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.repo_root = Path(subject.__file__).resolve().parents[1]
+        cls.schedule, cls.bound_jobs, cls.structural = subject._exact12_source_modules(
+            cls.repo_root
+        )
+        manifest = cls.schedule.build_manifest(cls.repo_root)
+        cls.job = cls.bound_jobs.build_bound_job(manifest, cls.repo_root, 0)
+
+    def _write_real_workdir(
+        self, root: Path, *, structural: bool
+    ) -> tuple[Path, bytes, dict[str, object] | None]:
+        workdir = root / "run"
+        workdir.mkdir()
+        job = json.loads(json.dumps(self.job))
+        job_sha256 = subject._canonical_json_sha256(job)
+        job_path = workdir / "job.json"
+        job_path.write_text(
+            json.dumps(job, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        proof_path = workdir / "terminal.drat"
+        proof_path.write_text("proof\n", encoding="ascii")
+        materialized = self.bound_jobs.materialize_cell(0)
+        artifacts = {
+            "job": _run_artifact(job_path),
+            "proof": _run_artifact(proof_path),
+        }
+        summary: dict[str, object] = {
+            "schema": (
+                subject.STRUCTURAL_RUN_SCHEMA if structural else subject.CELL_RUN_SCHEMA
+            ),
+            "cell_index": 0,
+            "job_sha256": job_sha256,
+            "status": "UNSAT_DRAT_VERIFIED",
+            "discovery_verdict": "UNSAT",
+            "terminal_verdict": "UNSAT",
+            "terminal_proof_verified": True,
+            "error": None,
+            "artifacts": artifacts,
+        }
+        record: dict[str, object] | None = None
+        if structural:
+            detector_manifest, _ = subject._expected_detector_manifest(self.repo_root)
+            detector_sha256 = subject._canonical_json_sha256(detector_manifest)
+            certificate = self.structural.detect_structural_certificate(CELL0_CUBE)
+            self.assertIsNotNone(certificate)
+            assert certificate is not None
+            clause = self.structural.learned_clause_for_certificate(
+                materialized.instance, certificate
+            )
+            selected = frozenset(
+                materialized.instance.choice_variables[
+                    (
+                        center,
+                        materialized.instance.candidate_index(
+                            center, CELL0_CUBE[center]
+                        ),
+                    )
+                ]
+                for center in range(12)
+            )
+            record = self.structural._make_record(
+                index=0,
+                parent_sha256=job_sha256,
+                job_sha256=job_sha256,
+                detector_contract_sha256=detector_sha256,
+                cell_index=0,
+                certificate=certificate,
+                learned_clause=clause,
+                cube=CELL0_CUBE,
+                positive_variables=selected,
+            )
+            journal_path = workdir / "journal.jsonl"
+            journal_path.write_text(
+                json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n",
+                encoding="utf-8",
+            )
+            count, terminal_record, _ = self.structural.replay_journal(
+                materialized.instance,
+                journal_path,
+                job_sha256=job_sha256,
+                detector_contract_sha256=detector_sha256,
+                cell_index=0,
+            )
+            self.assertEqual(count, 1)
+            formula = materialized.instance.dimacs().encode("ascii")
+            summary.update(
+                {
+                    "journal_replayed": True,
+                    "records": count,
+                    "terminal_record_sha256": terminal_record,
+                    "detector_contract_manifest": detector_manifest,
+                    "detector_contract_sha256": detector_sha256,
+                }
+            )
+            artifacts["journal"] = _run_artifact(journal_path)
+        else:
+            formula = materialized.instance.dimacs().encode("ascii")
+            clause_delta_path = workdir / "clause_delta.json"
+            clause_delta_path.write_text(
+                json.dumps(
+                    job["clause_delta_artifact"], indent=2, sort_keys=True
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            artifacts["clause_delta"] = _run_artifact(clause_delta_path)
+        for key, name in (
+            ("discovery_cnf", "discovery.cnf"),
+            ("terminal_cnf", "terminal.cnf"),
+        ):
+            path = workdir / name
+            path.write_bytes(formula)
+            artifacts[key] = _run_artifact(path)
+        (workdir / "summary.json").write_text(
+            json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        return workdir, formula, record
+
+    def test_real_structural_record_replays_and_preserves_exact_formula(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, formula, _ = self._write_real_workdir(root, structural=True)
+            runner = DynamicFakeDratTrim()
+            output = root / "source"
+            with mock.patch.object(
+                subject,
+                "_semantic_replay_structural_journal",
+                wraps=subject._semantic_replay_structural_journal,
+            ) as replay:
+                receipt = subject.prepare_terminal_rup_source(
+                    workdir, output, command_runner=runner
+                )
+            self.assertEqual(runner.calls, 1)
+            self.assertEqual(replay.call_count, 2)
+            self.assertIsNotNone(receipt["terminal_record_sha256"])
+            self.assertEqual((output / "terminal.cnf").read_bytes(), formula)
+            self.assertEqual((output / "discovery.cnf").read_bytes(), formula)
+
+    def test_real_cell_rejects_self_consistent_source_tamper_before_checker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, _, _ = self._write_real_workdir(root, structural=False)
+            n_variables = self.job["cnf"]["n_variables"]
+            tampered = (workdir / "discovery.cnf").read_text(encoding="ascii").replace(
+                f"p cnf {n_variables} ", f"p cnf {n_variables + 1} ", 1
+            )
+            for name in ("discovery.cnf", "terminal.cnf"):
+                (workdir / name).write_text(tampered, encoding="ascii")
+            job_path = workdir / "job.json"
+            job = json.loads(job_path.read_text(encoding="utf-8"))
+            job["cnf"].update(
+                {
+                    "bytes": len(tampered.encode("ascii")),
+                    "n_variables": n_variables + 1,
+                    "sha256": subject._sha256(workdir / "discovery.cnf"),
+                }
+            )
+            job_path.write_text(
+                json.dumps(job, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            summary_path = workdir / "summary.json"
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            summary["job_sha256"] = subject._canonical_json_sha256(job)
+            for key, name in (
+                ("job", "job.json"),
+                ("discovery_cnf", "discovery.cnf"),
+                ("terminal_cnf", "terminal.cnf"),
+            ):
+                summary["artifacts"][key] = _run_artifact(workdir / name)
+            summary_path.write_text(
+                json.dumps(summary, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            runner = DynamicFakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError, "failed canonical source rebuild"
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+    def test_real_structural_rejects_rehashed_certificate_tamper_before_checker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, _, _ = self._write_real_workdir(root, structural=True)
+
+            def mutate_certificate(_summary, record):
+                record["certificate"]["core"]["triple"] = [0, 1, 5]
+                record["certificate_sha256"] = subject._canonical_json_sha256(
+                    record["certificate"]
+                )
+
+            _rewrite_structural_record(workdir, mutate_certificate)
+            runner = DynamicFakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError,
+                "failed semantic certificate replay",
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+
+    def test_real_structural_rejects_alternate_dimacs_rendering_before_checker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, formula, _ = self._write_real_workdir(root, structural=True)
+            alternate = b"c alternate rendering\n" + formula
+            for name in ("discovery.cnf", "terminal.cnf"):
+                (workdir / name).write_bytes(alternate)
+            summary_path = workdir / "summary.json"
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+            for key, name in (
+                ("discovery_cnf", "discovery.cnf"),
+                ("terminal_cnf", "terminal.cnf"),
+            ):
+                summary["artifacts"][key] = _run_artifact(workdir / name)
+            summary_path.write_text(
+                json.dumps(summary, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            runner = DynamicFakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError,
+                "differs from canonical source rebuild",
             ):
                 subject.prepare_terminal_rup_source(
                     workdir, root / "source", command_runner=runner

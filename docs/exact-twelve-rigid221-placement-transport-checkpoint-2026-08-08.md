@@ -237,14 +237,22 @@ to match that job.  Cell summaries must carry the clause-delta artifact bound
 inside the job; structural summaries must carry a journal whose record count,
 parent chain, detector-contract digest, certificate/cube/assignment hashes, and
 terminal chain head all match the summary.  This postprocessor authenticates
-that structural chain but deliberately does not replace the production
-runner's semantic certificate replay.
+that structural chain, rejects every detector stage except the
+`equality-duplicate-center` stage consumed by the current Lean terminal-bank
+endpoint, and then independently invokes the production semantic certificate
+replay.  It compares the replayed learned-clause set with the authenticated
+journal clauses.  Independently of all run metadata, it rebuilds the current
+schedule manifest, validates and rematerializes the bound job through the
+canonical compiler, installs the replayed cuts, and requires both discovery
+and terminal DIMACS files to equal the resulting canonical bytes exactly.
 
 The staged source is self-contained: it includes the parsed summary, bound job,
 discovery and terminal CNFs, DRAT, the clause delta or structural journal, the
 exact detector-source files bound by the structural contract, and the derived
 LRAT files.  After copying, every ledger-bound staged artifact is
 rehashed before any checker is invoked, closing the validation-to-copy race.
+The canonical source rebuild and semantic journal replay are then repeated on
+the staged copies before `drat-trim` is invoked.
 The postprocessor reruns `drat-trim` only as an untrusted proposal/precheck and
 records its complete output; the receipt explicitly requires subsequent Lean
 compact-RUP replay and does not authenticate the checker executable or treat
@@ -258,29 +266,44 @@ then emits the generic authenticated pure-RUP source manifest, re-enters the
 generic strict loader before publication, and emits a separate exact-twelve
 receipt binding all copied provenance inputs, the checker transcript, terminal
 formula, raw proof, raw and normalized LRAT, and normalization counts.  Focused
-tests pass (`16 passed`,
-including `13` subtests), and Ruff is clean.  A smoke test using the installed
+tests pass (`19` adapter tests plus `4` structural replay tests), and Ruff is
+clean.  The adapter suite now includes unmocked source-backed tests that build
+the live cell-0 job, generate and replay a real duplicate-center certificate,
+check exact staged formula bytes, and reject a self-consistently rehashed job
+tamper, a rehashed semantic-certificate tamper, and an alternate DIMACS
+rendering before the checker.  A smoke test using the installed
 CaDiCaL and `drat-trim` confirmed the relevant sparse-ID behavior and the dense
 normalization.  No retained exact-twelve run currently has a terminal artifact,
 so this postprocessor has not yet produced a production certificate.
 
+The latest bounded twelve-cell structural wave learned 4,468 cuts but produced
+no terminal UNSAT: cells `1,2,4,5,7,8,11` remained unresolved and cells
+`0,3,6,9,10` reached their iteration limit.  Its mixed-stage journals cannot
+be promoted through the duplicate-center-only Lean endpoint.  An independent
+48-order diagnostic found complete finite order coverage in frozen cells
+`4,5,8`, partial coverage in `1,2,7,11`, and no aggregate placement theorem or
+universal lift.  These are finite diagnostics, not closure results.
+
 The next production target is therefore:
 
-1. implement the generated exact-twelve replay coordinator: materialize a
-   prepared pure-RUP source into compact checker windows, reconstruct the
-   authenticated learned-nogood bank, and prove the exact start-formula equality
-   against `terminalDimacs` without omitting the frozen base or cell delta;
-2. exercise that coordinator on the first real `UNSAT_DRAT_VERIFIED` cell and
-   obtain a checked `DimacsUnsatisfiable` theorem for its exact full terminal
-   formula;
-3. execute the authenticated CEGAR loop to verified terminal outcomes over every
-   required cell in the frozen 648-coordinate schedule;
-4. choose the scalable all-cell serialization/equality form—generated per-cell
+1. add a source-faithful order/placement predicate whose complete finite witness
+   can be replayed by a named Lean consumer; do not reuse the unsound
+   `exact=True` interpretation, because selected supports are not complete
+   ambient fibres;
+2. rerun the bounded twelve-cell diagnostic wave only with cuts from stages that
+   have an explicit Lean terminal-bank consumer, preserving authenticated
+   per-cell workdirs;
+3. if a cell reaches `UNSAT_DRAT_VERIFIED`, exercise the landed generated replay
+   coordinator and this postprocessor to obtain a checked
+   `DimacsUnsatisfiable` theorem for that exact full terminal formula;
+4. extend successful terminal production to every required cell in the frozen
+   648-coordinate schedule;
+5. choose the scalable all-cell serialization/equality form—generated per-cell
    checks or a schedule-parametric authenticated checker—without embedding 648
    redundant 1,280-clause lists unnecessarily;
-5. aggregate immutable terminal records while rejecting missing, duplicated,
+6. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-6. aggregate the per-cell terminal consumers and connect their schedule
+7. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains
