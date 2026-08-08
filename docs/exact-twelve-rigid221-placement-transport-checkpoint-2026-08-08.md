@@ -170,16 +170,22 @@ then every blocker/candidate binary clause in increasing center and candidate
 table order.  The semantic arm predicate proves that the canonical assignment
 satisfies every clause in this Lean family, and the targeted module check
 remains green.  This is certificate-ingress infrastructure only: the
-distinguished-`d` clauses are not yet reflected, and the parallel Lean clause
-families still need an explicit equality or inclusion bridge to the
-authenticated serialized job `clause_delta`.  There is still no terminal bank
-or live-leaf closure.
+module now also mirrors the complete distinguished-`d` family in compiler
+order: the positive eligible-row clause, optional source-`9` blocker unit, and
+the optional left-major forbidden-pair product.  The semantic distinguished
+row and missing-conjunction hypotheses prove that the canonical assignment
+satisfies every clause in this final local family, and the targeted direct
+module check remains green.  All local non-Sinz and Sinz families are therefore
+reflected separately.  They still need an ordered aggregate and an explicit
+equality bridge to an authenticated serialization of the actual emitted job
+`clause_delta`; the current artifact records only its hash.  There is still no
+terminal bank or live-leaf closure.
 
 The next production target is therefore:
 
-1. reflect the distinguished-`d` family, aggregate all exact per-cell
-   non-Sinz clauses, and prove the resulting list agrees with the authenticated
-   serialized v14 job `clause_delta`;
+1. aggregate every exact per-cell clause family in compiler order, serialize
+   the actual emitted v14 job `clause_delta`, and prove that the Lean aggregate
+   agrees with that authenticated ordered list and the complete DIMACS suffix;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the

@@ -1605,6 +1605,292 @@ theorem v14Assign_sat_namedDeletionArmClauses
   obtain ⟨center, hcenter, hc⟩ := hc
   exact v14Assign_sat_namedDeletionCenterClauses cell hrow hadded hcenter c hc
 
+/-- The positive distinguished-`d` selector clause, in candidate-table order:
+the selected row at `d` contains `7` and omits `9`. -/
+def distinguishedDEligibleClause (cell : FrozenV14JobCoordinate) : List Int :=
+  (varsMatching cell.2.2.1.val fun m =>
+    m.testBit (7 : Label).val && !(m.testBit (9 : Label).val)).map Int.ofNat
+
+/-- The distinguished label cannot be the blocker of the physical source `9`.
+For `d = 9` that blocker input does not exist and the compiler emits no unit. -/
+def distinguishedDBlockerClauses (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  if cell.2.2.1.val = 9 then []
+  else [[-Int.ofNat (blockerVar cell 1 cell.2.2.1.val)]]
+
+/-- Candidate indices at `d` containing both `1` and `6`. -/
+def distinguishedDLeftIndices (cell : FrozenV14JobCoordinate) : List Nat :=
+  candidateIndicesMatching cell.2.2.1.val fun m =>
+    m.testBit (1 : Label).val && m.testBit (6 : Label).val
+
+/-- Candidate indices at `7` containing both `1` and `d`. -/
+def distinguishedDRightIndices (cell : FrozenV14JobCoordinate) : List Nat :=
+  candidateIndicesMatching (7 : Label).val fun m =>
+    m.testBit (1 : Label).val && m.testBit cell.2.2.1.val
+
+/-- One forbidden pair in the distinguished-`d` arm. -/
+def distinguishedDPairClause (cell : FrozenV14JobCoordinate)
+    (left right : Nat) : List Int :=
+  [-Int.ofNat (SafeCoverCnf.xVar cell.2.2.1.val left),
+    -Int.ofNat (SafeCoverCnf.xVar (7 : Label).val right)]
+
+/-- The compiler emits the left-major Cartesian product of forbidden row pairs
+exactly when `d` belongs to the fixed row at center `1`. -/
+def distinguishedDPairClauses (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  if cell.2.2.1 ∈ frozenRowAtOne
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 then
+    (distinguishedDLeftIndices cell).flatMap fun left =>
+      (distinguishedDRightIndices cell).map fun right =>
+        distinguishedDPairClause cell left right
+  else []
+
+/-- Complete distinguished-`d` family in compiler order: the positive selector,
+optional blocker unit, then the optional left-major forbidden-pair product. -/
+def distinguishedDClauses (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  distinguishedDEligibleClause cell ::
+    (distinguishedDBlockerClauses cell ++ distinguishedDPairClauses cell)
+
+/-- The semantic distinguished row supplies a true literal to its positive
+eligible-row clause. -/
+theorem v14Assign_sat_distinguishedDEligibleClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (distinguishedDEligibleClause cell) = true := by
+  let d : Label := cell.2.2.1
+  let selected := SafeCoverIndexBridge.coverIndex row d.val
+  rcases hadded.2.2.2.2.2.2.2.2.2 with
+    ⟨_hd1, _hd7, _hd8, h7row, h9row, _hblocker, _hmissing⟩
+  have hi : selected < SafeCoverCnf.candCount d.val :=
+    SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow d.isLt
+  have h7bit :
+      ((SafeCoverCnf.candMasks d.val).getD selected 0).testBit
+          (7 : Label).val = true := by
+    dsimp only [selected]
+    rw [SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow d (7 : Label)]
+    exact decide_eq_true h7row
+  have h9bit :
+      ((SafeCoverCnf.candMasks d.val).getD selected 0).testBit
+          (9 : Label).val = false := by
+    dsimp only [selected]
+    rw [SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow d (9 : Label)]
+    exact decide_eq_false h9row
+  have hpredicate :
+      (((SafeCoverCnf.candMasks d.val).getD selected 0).testBit
+          (7 : Label).val &&
+        !(((SafeCoverCnf.candMasks d.val).getD selected 0).testBit
+          (9 : Label).val)) = true := by
+    rw [Bool.and_eq_true]
+    exact ⟨h7bit, by simp only [h9bit, Bool.not_false]⟩
+  have hnat : SafeCoverCnf.xVar d.val selected ∈
+      varsMatching d.val (fun m =>
+        m.testBit (7 : Label).val && !(m.testBit (9 : Label).val)) :=
+    xVar_mem_varsMatching hi hpredicate
+  have hint : Int.ofNat (SafeCoverCnf.xVar d.val selected) ∈
+      distinguishedDEligibleClause cell := by
+    apply List.mem_map.mpr
+    exact ⟨SafeCoverCnf.xVar d.val selected, hnat, rfl⟩
+  simp only [evalClauseD, List.any_eq_true]
+  refine ⟨Int.ofNat (SafeCoverCnf.xVar d.val selected), hint, ?_⟩
+  rw [evalLitD_pos]
+  · exact (v14Assign_xVar_eq_true_iff cell blocker
+      (SafeCoverIndexBridge.coverIndex row)
+      (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+      d.isLt hi).2 rfl
+  · exact SafeCoverCnf.one_le_xVar _ _
+
+/-- Every optional distinguished-`d` blocker unit is true under the semantic
+blocker assignment. -/
+theorem v14Assign_sat_distinguishedDBlockerClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ distinguishedDBlockerClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  let d : Label := cell.2.2.1
+  rcases hadded.2.2.2.2.2.2.2.2.2 with
+    ⟨hd1, _hd7, _hd8, _h7row, _h9row, hblocker, _hmissing⟩
+  by_cases hd9 : d.val = 9
+  · simp [distinguishedDBlockerClauses, d, hd9] at hc
+  · have hcenter : d.val ∈
+        blockerCenters ((physicalSources cell).getD (1 : Fin 5).val 0) := by
+      apply List.mem_filter.mpr
+      refine ⟨List.mem_range.mpr d.isLt, ?_⟩
+      simp only [physicalSources, List.getD_cons_succ, List.getD_cons_zero,
+        Bool.and_eq_true, bne_iff_ne]
+      constructor
+      · exact hd9
+      · intro hdOne
+        apply hd1
+        apply Fin.ext
+        exact hdOne
+    have hfalse :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (blockerVar cell 1 d.val) = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro htrue
+      have heq := (v14Assign_blockerVar_eq_true_iff cell hadded
+        (SafeCoverIndexBridge.coverIndex row) 1 hcenter).1 htrue
+      apply hblocker
+      apply Fin.ext
+      exact heq.symm
+    simp only [distinguishedDBlockerClauses, d, if_neg hd9,
+      List.mem_cons, List.not_mem_nil, or_false] at hc
+    subst c
+    have hfalse' :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (blockerVar cell 1 cell.2.2.1.val) = false := by
+      simpa only [d] using hfalse
+    simp only [evalClauseD, List.any_cons, List.any_nil, Bool.or_false,
+      evalLitD_negNat, hfalse', Bool.not_false]
+
+/-- One forbidden distinguished-`d` pair clause is true under the canonical
+source assignment. -/
+theorem v14Assign_sat_distinguishedDPairClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (hactive : cell.2.2.1 ∈ frozenRowAtOne
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
+    {left right : Nat}
+    (hleft : left ∈ distinguishedDLeftIndices cell)
+    (hright : right ∈ distinguishedDRightIndices cell) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (distinguishedDPairClause cell left right) = true := by
+  let d : Label := cell.2.2.1
+  have hleftMem := List.mem_filter.mp hleft
+  have hrightMem := List.mem_filter.mp hright
+  have hleftLt : left < SafeCoverCnf.candCount d.val :=
+    List.mem_range.mp hleftMem.1
+  have hrightLt : right < SafeCoverCnf.candCount (7 : Label).val :=
+    List.mem_range.mp hrightMem.1
+  have hleftBits :
+      ((SafeCoverCnf.candMasks d.val).getD left 0).testBit
+          (1 : Label).val = true ∧
+        ((SafeCoverCnf.candMasks d.val).getD left 0).testBit
+          (6 : Label).val = true := by
+    simpa only [Bool.and_eq_true] using hleftMem.2
+  have hrightBits :
+      ((SafeCoverCnf.candMasks (7 : Label).val).getD right 0).testBit
+          (1 : Label).val = true ∧
+        ((SafeCoverCnf.candMasks (7 : Label).val).getD right 0).testBit
+          d.val = true := by
+    simpa only [Bool.and_eq_true] using hrightMem.2
+  rcases hadded.2.2.2.2.2.2.2.2.2 with
+    ⟨_hd1, _hd7, _hd8, _h7row, _h9row, _hblocker, hmissing⟩
+  by_cases hxleft :
+      v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+        (SafeCoverCnf.xVar d.val left) = true
+  · have hleftEq := (v14Assign_xVar_eq_true_iff cell blocker
+      (SafeCoverIndexBridge.coverIndex row)
+      (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+      d.isLt hleftLt).1 hxleft
+    have hrightFalse :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (SafeCoverCnf.xVar (7 : Label).val right) = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro hxright
+      have hrightEq := (v14Assign_xVar_eq_true_iff cell blocker
+        (SafeCoverIndexBridge.coverIndex row)
+        (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+        (7 : Label).isLt hrightLt).1 hxright
+      have hdRowOne : d ∈ row 1 := by
+        rw [hadded.1]
+        exact hactive
+      have h1RowD := hleftBits.1
+      rw [hleftEq,
+        SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow d (1 : Label)]
+        at h1RowD
+      have h6RowD := hleftBits.2
+      rw [hleftEq,
+        SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow d (6 : Label)]
+        at h6RowD
+      have h1RowSeven := hrightBits.1
+      rw [hrightEq,
+        SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow (7 : Label)
+          (1 : Label)] at h1RowSeven
+      have hdRowSeven := hrightBits.2
+      rw [hrightEq,
+        SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow (7 : Label) d]
+        at hdRowSeven
+      exact hmissing ⟨hdRowOne, of_decide_eq_true h1RowD,
+        of_decide_eq_true h6RowD, of_decide_eq_true h1RowSeven,
+        of_decide_eq_true hdRowSeven⟩
+    have hxleft' :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (SafeCoverCnf.xVar cell.2.2.1.val left) = true := by
+      simpa only [d] using hxleft
+    simp only [distinguishedDPairClause, evalClauseD, List.any_cons,
+      List.any_nil, Bool.or_false, evalLitD_negNat, hxleft', hrightFalse,
+      Bool.not_true, Bool.not_false, Bool.true_or, Bool.or_true]
+  · have hxleftFalse := Bool.eq_false_of_not_eq_true hxleft
+    have hxleftFalse' :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (SafeCoverCnf.xVar cell.2.2.1.val left) = false := by
+      simpa only [d] using hxleftFalse
+    simp only [distinguishedDPairClause, evalClauseD, List.any_cons,
+      evalLitD_negNat, hxleftFalse', Bool.not_false, Bool.true_or]
+
+/-- Every optional forbidden-pair clause is true under the canonical source
+assignment. -/
+theorem v14Assign_sat_distinguishedDPairClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ distinguishedDPairClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  by_cases hactive : cell.2.2.1 ∈ frozenRowAtOne
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+  · simp only [distinguishedDPairClauses, if_pos hactive,
+      List.mem_flatMap] at hc
+    obtain ⟨left, hleft, hc⟩ := hc
+    obtain ⟨right, hright, rfl⟩ := List.mem_map.mp hc
+    exact v14Assign_sat_distinguishedDPairClause cell hrow hadded hactive
+      hleft hright
+  · simp [distinguishedDPairClauses, hactive] at hc
+
+/-- The canonical source assignment satisfies the complete distinguished-`d`
+clause family reconstructed in compiler order. -/
+theorem v14Assign_sat_distinguishedDClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ distinguishedDClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  have hc' : c = distinguishedDEligibleClause cell ∨
+      c ∈ distinguishedDBlockerClauses cell ++ distinguishedDPairClauses cell := by
+    simpa only [distinguishedDClauses, List.mem_cons] using hc
+  rcases hc' with hc | hc
+  · subst c
+    exact v14Assign_sat_distinguishedDEligibleClause cell hrow hadded
+  · rcases List.mem_append.mp hc with hc | hc
+    · exact v14Assign_sat_distinguishedDBlockerClauses cell hrow hadded c hc
+    · exact v14Assign_sat_distinguishedDPairClauses cell hrow hadded c hc
+
 /-- At-least-one blocker clause emitted after the ten implications of one
 physical source. -/
 def sourceSelectorClause (cell : FrozenV14JobCoordinate) (i : Fin 5) :
