@@ -40,7 +40,8 @@ producer/lift/consumer promotion      queueing and deduplication
 
 “Most SAT/CEGAR work through piqd” should mean:
 
-1. every production static CNF solve is submitted as an authenticated piqd job;
+1. every production static CNF solve is submitted as a content-addressed,
+   artifact-bound piqd job;
 2. every CEGAR iteration uses either a bound piqd session or a freshly
    materialized immutable piqd job;
 3. SAT and UNSAT artifacts return through one checked P97 adapter; and
@@ -49,6 +50,13 @@ producer/lift/consumer promotion      queueing and deduplication
 
 It should not mean moving mathematical source validation, CEGAR policy, Lean
 promotion, or theorem lifting into the daemon.
+
+This plan is scoped to the current local-only deployment. piqd accepts remote
+HTTP clients, but it does not presently supply authenticated submitter
+identities, transport security, a remote worker registry, or a multi-host
+scheduler. Those are required before treating an idle remote machine as part of
+one trusted daemon pool, but they do not block migrating the local P97 solver
+work described here.
 
 ## Current verified surface
 
@@ -63,6 +71,7 @@ the daemon as single-threaded is stale.
 | --- | --- | --- |
 | Raw DIMACS ingestion | Ready | `POST /jobs/prepare-cnf` preserves and hashes the exact bytes. |
 | CaDiCaL static SAT/UNSAT | Ready | Live daemon smoke completed on the installed `piqd` binary. |
+| Kissat static discovery | Ready without proof certification | The live runner dispatches Kissat and can return a parsed SAT model, but it has no proof-artifact path accepted for promoted UNSAT. |
 | Exact CNF retrieval and binding | Ready | The P97 client rejects job/CNF/hash disagreement. |
 | SAT model checking | Ready at CNF level | The P97 client independently checks that a complete returned assignment satisfies the submitted CNF. Source-semantic decoding remains workflow-specific. |
 | UNSAT proof production | Ready for CaDiCaL | piqd replays terminal UNSAT with binary DRAT and converts it to LRAT. |
@@ -74,7 +83,7 @@ the daemon as single-threaded is stale.
 | General P97 workflow adoption | Partial | One exact-12 normalized-v14 cell has completed source-semantic replay; exact-17 and older Phase-3 workers still include direct local solver paths. |
 
 The focused oracle/package/driver/campaign/replay test matrix currently passes
-96 tests. That green matrix does not yet exercise the full sealed-journal,
+108 tests. That green matrix does not yet exercise the full sealed-journal,
 cross-package, nonregular-file, malformed-record, threshold-overrun, or
 concurrent-admission boundary described in G11.
 The exact-12 normalized-v14 cell-0 live replay produced the accepted
@@ -143,7 +152,7 @@ variable-map, cell/order, model, and source-predicate checks.
 Remaining acceptance condition: extract the exact-12 implementation from the
 Phase-3-named modules into a stable producer-neutral library, then make
 exact-cardinality, projected-static, and one other P97 CNF producer call that
-library without copying lifecycle code. The 96-test focused matrix must remain
+library without copying lifecycle code. The 108-test focused matrix must remain
 green. Until this reuse exists, the project has a demonstrated production
 canary but not a general P97 package adapter.
 
@@ -317,8 +326,8 @@ support:
 - `march_cu` does not expose one compact proof through the current P97 adapter;
   per-cube proof manifests need retrieval, checking, aggregation, and Lean
   ingress;
-- `kissat` is named in the backend vocabulary but is not wired into the piqd
-  runner; and
+- Kissat is wired into the static runner and is usable for proof-free discovery,
+  but it has no proof artifact or P97-certified UNSAT path; and
 - piqd can hold cvc5/Z3 sessions, but P97 has no authenticated source-semantic
   adapter, exact-certificate route, or theorem-promotion classification for
   their results.
@@ -409,7 +418,7 @@ Owner: P97 integration.
 
 ### Stage 0 — preserve the proven boundary
 
-- Keep the existing Phase-3 piqd driver and 96-test focused matrix green.
+- Keep the existing Phase-3 piqd driver and 108-test focused matrix green.
 - Close G11 before treating the bounded campaign controller as an authenticated
   production scheduler.
 - Keep independent SAT-model checking and Lean LRAT replay mandatory.
@@ -451,9 +460,9 @@ path.
 
 ### Stage 4 — add backend breadth where it pays
 
-Implement `march_cu` proof aggregation first. Add Kissat or nonlinear SMT
-custody only when a named production lane has a measured need and an exact
-consumer contract.
+Implement `march_cu` proof aggregation first. Add a Kissat proof-certification
+route or broader nonlinear SMT custody only when a named production lane has a
+measured need and an exact consumer contract.
 
 ## Workflow migration matrix
 
