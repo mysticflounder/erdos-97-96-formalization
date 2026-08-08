@@ -1,0 +1,24 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedThreeRowCuts
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedUniversalThreeRowCuts
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedResidualCoverageCuts
+
+/-! Scratch transitive-axiom audit for the generalized ordered-v4 consumers. -/
+
+open Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress
+
+#print axioms false_of_threeRows_core_0_1_2_9_4
+#print axioms false_of_threeRows_core_0_1_2_10_4
+#print axioms false_of_threeRows_core_1_4_0_10_5
+#print axioms false_of_threeRows_core_0_9_1_8_3
+#print axioms false_of_threeRows_core_8_1_2_0_5
+#print axioms false_of_threeRows_core_5_0_11_3_2
+#print axioms false_of_threeRows_core_4_0_2_3_11
+#print axioms false_of_threeRows_core_8_1_2_9_4
+#print axioms false_of_threeRows_core_10_2_0_1_6
+#print axioms false_of_threeRows_core_3_6_0_11_4
+#print axioms false_of_threeRows_core_2_6_0_10_1
+#print axioms false_of_threeRows_core_2_3_0_4_1
+#print axioms false_of_threeRows_core_5_7_8_9_0
+#print axioms false_of_orderedCut_7808
+#print axioms false_of_orderedCut_8077
+#print axioms false_of_orderedCut_8556

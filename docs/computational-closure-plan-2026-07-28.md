@@ -7,6 +7,14 @@ landings. This plan supersedes the round-2 solve-prompt lane as the primary
 closure route; the bridge prompts remain valid side-channels if run, but
 nothing below depends on them.
 
+Exact-12 ordered-v4 checkpoint (2026-08-08): all 37 solver-selected ordered
+records have kernel consumers, with the promoted replay chain and reproducible
+artifact partition recorded in
+[the exact-12 replay checkpoint](exact-twelve-rigid221-ordered-v4-replay-checkpoint-2026-08-08.md).
+This closes learned-cut replay only. The run remains `ITERATION_LIMIT`, and
+source-exhaustive selector/arm/placement coverage plus its placement/signature
+lift are still required before either exact-12 live leaf can close.
+
 ## 1. Dated package baseline (2026-07-30; superseded for source counts)
 
 This section records the 18-obligation package census refreshed 2026-07-30,
