@@ -9,6 +9,7 @@ from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_byt
 from census.p97_search.phase3_piqd_oracle import (
     HttpResponse,
     PiqdOracleError,
+    PiqdProofUnavailable,
     PiqdRawDimacsClient,
     PreparedJob,
     raw_dimacs_identity,
@@ -349,6 +350,23 @@ def test_proof_hash_mismatch_is_rejected() -> None:
     )
     with pytest.raises(PiqdOracleError, match="X-Proof-Blob-Hash"):
         client.proof(prepared_job())
+
+
+def test_missing_proof_has_explicit_discovery_only_classification() -> None:
+    client = PiqdRawDimacsClient(
+        "http://piqd.test", transport=ScriptedTransport([HttpResponse(404, b"", {})])
+    )
+    with pytest.raises(PiqdProofUnavailable, match="no stored proof"):
+        client.proof(prepared_job())
+
+
+def test_transient_proof_http_failure_is_retryable() -> None:
+    client = PiqdRawDimacsClient(
+        "http://piqd.test", transport=ScriptedTransport([HttpResponse(503, b"", {})])
+    )
+    with pytest.raises(PiqdOracleError) as caught:
+        client.proof(prepared_job())
+    assert caught.value.retryable is True
 
 
 def test_march_proof_manifest_requires_per_cube_checker() -> None:

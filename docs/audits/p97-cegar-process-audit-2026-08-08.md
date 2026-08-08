@@ -16,15 +16,17 @@ The repository now has most of that control plane:
 - `p97-cegar-wave/v1` binds source, encoding, execution, and intended
   producer/lift/consumer ownership;
 - `phase3_piqd_driver.py` journals every piqd lifecycle event before retry or
-  return, archives exact response bytes, and seals the journal;
+  return, archives exact response bytes, independently replays available
+  CaDiCaL LRAT in Lean, and seals the journal;
 - the v3 resume gate treats `CHECKPOINT` idempotently and refuses v2/v3 output
   mixing; and
 - the productivity miner distinguishes local certificates, universal
   producers, and lifted consumers.
 
-This reduces repeated operational failure. It does not fill the current
-mathematical producer gaps, independently check an UNSAT proof, provide a
-general-cardinality lift, or close a live Lean consumer.
+This reduces repeated operational failure and closes the independent finite
+LRAT replay gate for CaDiCaL jobs with a proof artifact. It does not fill the
+current mathematical producer gaps, provide a general-cardinality lift, or
+close a live Lean consumer.
 
 ## Scope and evidence
 
@@ -59,7 +61,7 @@ are all present.
 | Producer/consumer mismatch | Exact-six material was provenance-blocked; first-fiber infrastructure existed but lacked a FreshThird bridge; the false rational-octagon incidence producer was refuted. | Theorem-bank volume did not translate into proof-spine progress. | Search the theorem bank and live consumers first. Require exact theorem provenance plus the first missing adapter. Keep refuted shapes as negative tests so miners do not rediscover them. |
 | Artifact volume mistaken for productivity | The retained-omission bank contained roughly 66,411 artifacts but only 64 substantive reports; raw SAT payloads and generated duplicates were not independent producers. | Storage and mining throughput overstated mathematical progress. | Rank unique consumer-addressable statements, not artifact count. Deduplicate by authenticated content and statement shape; park candidates without replayable finite consumers or universal Lean producers as `PARKED-SPEC`. |
 | Cache/checkpoint authority inversion | Prefix checkpoints and warm caches improve scan time but cannot prove semantic equivalence or terminality. | Fast-path state could silently become the publication authority. | Authenticate raw prefix bytes and order digests, but require full semantic replay and independently checked identities at promotion boundaries. Source replay remains authoritative. |
-| Backend/profile semantic drift | piqd currently accepts arbitrary raw solver-profile names even though its runner only gives special semantics to a small supported set. | Distinct job identities may claim distinct profiles while executing the same default command. | P97 rejects unsupported backend/profile pairs before submission. `PIQD-RAW-002` remains a candidate daemon bug requiring a live acceptance test. |
+| Backend/profile semantic drift | The audit found that raw job identities could name unsupported profiles. The piqd maintainer also corrected an operational misconception: an empty CaDiCaL profile intentionally selects `--sat`, while literal `default` selects CaDiCaL's default. | Unsupported names could detach identity from execution, while an omitted profile can silently bias an UNSAT-heavy run toward SAT discovery. | `PIQD-RAW-002` is fixed in piqd and P97 still rejects unsupported pairs. Wave manifests must spell `default` explicitly when intended; empty and `default` remain distinct valid identities. |
 | Weak stop/pivot criteria | After the mixed-law robustness repair, the field closed `n=10` but remained SAT at `n=11` through `n=15`; a class-size cap still left `n=15` SAT (`0d76b444`). | Additional syntactic cuts could consume waves without addressing the missing semantic field, coupling, or producer. | Define a pivot condition before launch: repeated source-faithful SAT survivors with the same missing invariant stop that family and create a named semantic-producer task. piqd can measure and preserve no-progress, but it cannot choose the mathematical pivot. |
 
 ## How piqd helps
@@ -73,7 +75,8 @@ piqd is valuable as a persistent static-oracle layer:
 3. It supports central scheduling and deduplication when many CEGAR workers
    submit the same structural query.
 4. The P97 adapter can re-read the stored CNF, independently check SAT models,
-   fetch exact paginated logs, and attach all bytes to an authenticated wave.
+   fetch exact paginated logs and compact LRAT, replay CaDiCaL LRAT in Lean,
+   and attach all bytes and the replay receipt to an authenticated wave.
 
 That makes piqd a good replacement for ad hoc subprocess custody in the static
 structural SAT/UNSAT part of a wave. It is not the CEGAR authority:
@@ -81,10 +84,10 @@ structural SAT/UNSAT part of a wave. It is not the CEGAR authority:
 - piqd stores a job identity, not the ordered sequence of P97 attempts and
   refinements;
 - a raw job cannot currently be reset or requeued after `UNKNOWN` or `failed`;
-- a solver log is not a checked UNSAT proof;
+- piqd does not independently replay DRAT/LRAT or issue the P97 hash receipt;
 - piqd does not know the Lean ingress, universal lift, or live consumer; and
-- the concurrent-prepare race must be fixed in piqd even though P97 can contain
-  its evidence-loss impact.
+- the remaining concurrent-prepare race is on the encoder endpoint; the P97
+  raw-CNF lane is unaffected.
 
 The correct composition is therefore:
 
@@ -111,7 +114,8 @@ live Lean consumer + ingress hash
 3. Journal an attempt before retrying; bound every retry/poll loop; retain
    solver unknown, daemon failure, and poll timeout as distinct reasons.
 4. Use piqd for static job persistence and artifact retrieval, then perform
-   independent model/proof checking outside the daemon.
+   independent model/proof checking outside the daemon. Keep missing proofs at
+   `DISCOVERY_UNSAT` and rejected replay at `ERROR`.
 5. Mine only from authenticated, semantically replayed journal prefixes.
 6. Promote only a candidate that names its source theorem, universal producer,
    optional lift, and direct live consumer. Otherwise classify it as local,
@@ -124,11 +128,14 @@ live Lean consumer + ingress hash
 
 ## Remaining gates
 
-- Reproduce or reject `PIQD-RAW-002` and `PIQD-SMT-001` against live piqd.
-- Fix `PIQD-RAW-001` in piqd with an atomic find-or-insert path and unique
-  temporary blob names, then add a concurrent acceptance test.
-- Add independent DRAT/LRAT checker and replay receipts before allowing any
-  piqd UNSAT result to advance beyond discovery.
+- Fix and reproduce `PIQD-ENC-001` on the encoder endpoint. The raw-CNF sibling,
+  raw profile validation, SMT model reachability, and `drat-trim` verdict gate
+  are fixed in the installed piqd release.
+- Exercise a generated P97 wave through the live daemon after its mathematical
+  producer contract is ready. The synthetic known-UNSAT daemon/replay smoke is
+  complete, but it does not test a P97 encoding or close a Lean consumer.
+- Keep independent replay mandatory even after the `PIQD-PROOF-001` fix; piqd
+  remains the proof-artifact producer, not the publication authority.
 - Decide whether piqd should expose a new raw-job requeue identity for terminal
   `UNKNOWN`/`failed`; current same-identity re-prepare cannot retry execution.
 - Continue the mathematical work at the named FreshThird/Rigid221 producer and
@@ -152,3 +159,28 @@ PYTHONPATH=. uv run --with pytest pytest -q \
 
 Result on 2026-08-08: 95 tests passed. This verifies the audited control-plane
 contracts only; it does not audit transitive Lean axioms or close Problem 97.
+
+After adding independent replay, the complete Phase 3 regression run reported
+421 tests and 2 subtests passed. The focused replay matrix includes a real
+known-UNSAT Lean acceptance, wrong-CNF rejection, tampered-LRAT rejection,
+missing-proof downgrade, hash binding, and failed-replay non-certification.
+Post-review hardening added direct job-CNF binding and strict replay-receipt
+validation, exact checker reconstruction, and a concrete-replayer-only
+certification gate. The replay command is now the non-configurable tuple
+`lake env lean`. Its focused oracle/driver/replay matrix reported 56 tests
+passed, including rejection of malformed and internally consistent forged
+successful replay results and rejection of command substitution.
+
+The daemon was then started on `127.0.0.1:7272`; `piqc version` identified piqd
+`0.1.0` at binary SHA-256
+`476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`,
+and `piqc solvers` reported two usable CaDiCaL workers. Live job
+`3c1d3805-71b5-486f-aafc-81bd0ba2a407` submitted a synthetic two-clause
+contradictory-unit CNF, downloaded piqd's compact LRAT, and passed independent
+pinned Lean replay. The driver emitted finite `CERTIFIED_UNSAT`; its 24-record
+journal seal is
+`f2853d9ecb9c63697791cf8e6e506695814c5a29ecac01f13675686933848010`,
+and its terminal attempt is
+`cd59472247fa266b6febde8517e2f462cd58b54d734997ef1fbccb78fa3751bc`.
+This closes the live integration smoke only. It is not evidence for a P97
+producer, lift, consumer, or transitive `sorryAx`-free theorem.

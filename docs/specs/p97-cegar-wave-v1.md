@@ -1,6 +1,7 @@
 # P97 CEGAR wave contract v1
 
-Status: implemented control-plane contract; not a theorem-closure claim.
+Status: implemented control-plane and CaDiCaL LRAT-replay contract; not a
+theorem-closure claim.
 
 `p97-cegar-wave/v1` is the immutable identity envelope for one P97 CEGAR
 mining wave. It prevents a solver result from being detached from the Lean
@@ -83,7 +84,7 @@ piqd is a static raw-DIMACS oracle for this contract, not the authoritative P97
 attempt ledger. The adapter must:
 
 - submit exact CNF and canonical producer-manifest bytes;
-- reject backend/profile pairs that piqd would silently normalize;
+- reject backend/profile pairs outside the supported execution vocabulary;
 - verify returned CNF and identity hashes before confirming a job;
 - re-read status after an ambiguous confirm retry;
 - retrieve the stored CNF and compare exact bytes;
@@ -106,8 +107,11 @@ The driver keeps these terminal cases distinct in the event artifact:
 - a raw solver timeout reported as `completed/UNKNOWN` is `SOLVER_UNKNOWN`;
 - a piqd lifecycle `failed` state is `DAEMON_FAILED`;
 - exhausted nonterminal polling is `POLL_TIMEOUT`;
-- checked SAT is `STRUCTURAL_SAT`; and
-- solver UNSAT plus an archived full log is only `DISCOVERY_UNSAT`.
+- checked SAT is `STRUCTURAL_SAT`;
+- solver UNSAT plus an archived full log but no replayable proof is
+  `DISCOVERY_UNSAT`; and
+- only an archived compact LRAT accepted by the independent Lean replay is
+  `CERTIFIED_UNSAT`.
 
 The frozen wave-attempt vocabulary has no raw-solver-unknown label, so the
 first three cases use outer outcome `ERROR`; they must not be mislabeled
@@ -115,20 +119,51 @@ first three cases use outer outcome `ERROR`; they must not be mislabeled
 preserves the finer reason without changing the v1 schema.
 
 The driver retrieves paginated solver logs as exact bytes, archives all event,
-model-response, and log artifacts by SHA-256, and writes a deterministic
+model-response, proof, checker, replay-receipt, and log artifacts by SHA-256,
+and writes a deterministic
 `p97-cegar-wave-journal-seal/v1` binding the manifest, record count, terminal
 attempt, and journal bytes. Reopening or reusing a journal rehashes every
 referenced artifact and revalidates the current journal and seal bytes. Append
 and seal operations share an exclusive lock, so a sealed journal cannot be
 extended or raced with a concurrent append.
-This recovers safely from `PIQD-RAW-001`: the HTTP 500 attempt is durable before
-re-prepare, so the later existing-job success cannot erase the race.
+This also preserves the containment tested for the now-fixed `PIQD-RAW-001`:
+an HTTP 500 attempt is durable before re-prepare, so a later existing-job
+success cannot erase the race.
+
+For a terminal CaDiCaL UNSAT job, the driver downloads `/proof` and verifies the
+response hash before replay. piqd's compact LRAT is relative to its
+order-preserving normalization: tautological clauses are removed and repeated
+literals in kept clauses are deduplicated. The independent replayer reproduces
+that normalization from the exact submitted CNF, embeds both canonical kept
+CNF and downloaded LRAT in a standalone Lean source, and applies
+`Std.Tactic.BVDecide.Reflect.verifyCert_correct` with `native_decide`. It does
+not use piqd's `/lean` emitter or a daemon replay verdict.
+
+The canonical `p97-piqd-lean-lrat-replay/v1` receipt binds the submitted and
+kept CNF hashes, the piqd job's CNF blob hash, proof hash, wave and remaining
+job identities, generated checker-source hash, launcher and effective Lean
+binary hashes, version output, exact argv and working directory, timeout,
+return code, and stdout/stderr. Before certification, the driver independently
+parses and validates this canonical receipt against the actual CNF, proof,
+checker bytes, manifest, job, normalization, and execution verdict. It also
+reconstructs the checker source from the actual CNF and proof. Only the
+concrete `LeanLratReplayer` may produce a certified outcome; an injected
+replayer's `verified` flag is never authoritative. Its replay command is the
+non-configurable tuple `lake env lean`; the receipt records the resolved
+launcher and effective Lean binary, their hashes, and the exact executed argv.
+The use of
+`native_decide` makes this Lean-checked finite evidence under the compiler
+trust boundary; it is not a source-clean universal theorem. A missing proof,
+including piqd's deliberate no-blob handling for an already-empty input clause,
+remains `DISCOVERY_UNSAT`. A malformed proof, hash mismatch, checker failure,
+or rejected replay is `ERROR`, never certified. `march_cu` remains unsupported
+because its per-cube proof manifest needs a separate all-cubes replay protocol.
 
 Example invocation:
 
 ```bash
 PYTHONPATH=. uv run python -m census.p97_search.phase3_piqd_driver \
-  --base-url http://127.0.0.1:8080 \
+  --base-url http://127.0.0.1:7272 \
   --wave-manifest scratch/wave.json \
   --cnf scratch/wave.cnf \
   --producer-manifest scratch/producer.json \
@@ -136,13 +171,16 @@ PYTHONPATH=. uv run python -m census.p97_search.phase3_piqd_driver \
 ```
 
 The CLI returns 0 for a checked structural SAT counterexample, 3 for
-discovery-only UNSAT, and 2 for operational error, timeout, or unknown. Code 3
-is intentionally nonzero so a shell wrapper cannot promote an unchecked UNSAT
-merely by testing process success; wrappers should parse the emitted outcome.
+discovery-only UNSAT, 4 for finite `CERTIFIED_UNSAT`, and 2 for operational
+error, timeout, or unknown. Codes 3 and 4 are intentionally nonzero so a shell
+wrapper cannot promote any UNSAT result merely by testing process success;
+wrappers must parse the emitted outcome and apply the downstream publication
+gate.
 
-This driver closes the control-plane journaling gate only. `DISCOVERY_UNSAT`
-still needs independent proof checking and replay before publication, and no
-driver result closes the live Lean theorem by itself.
+This driver closes the control-plane journaling gate and the independent replay
+gate for one available CaDiCaL compact LRAT. No driver result supplies the
+universal producer, lift, direct live consumer, or transitive axiom audit needed
+to close the live Lean theorem.
 
 piqd defects found while implementing this boundary are tracked in
 `docs/audits/piqd-integration-bugs-2026-08-07.md`.
@@ -155,5 +193,19 @@ Run the focused contract suite with:
 PYTHONPATH=. uv run --with pytest pytest -q \
   census/p97_search/tests/test_phase3_cegar_wave.py \
   census/p97_search/tests/test_phase3_piqd_oracle.py \
-  census/p97_search/tests/test_phase3_piqd_driver.py
+  census/p97_search/tests/test_phase3_piqd_driver.py \
+  census/p97_search/tests/test_phase3_piqd_replay.py
 ```
+
+Result on 2026-08-08 after command-pinning hardening: 56 focused
+oracle/driver/replay tests passed. The earlier complete Phase 3 regression run
+reported 421 tests and 2 subtests passed.
+
+A live known-result smoke against piqd on `127.0.0.1:7272` submitted the
+two-clause contradictory-unit CNF with SHA-256
+`230ad9c8503ad9cb51d7aacab0d3b599374853b13e22aa92e78ce036f9d22230`.
+Job `3c1d3805-71b5-486f-aafc-81bd0ba2a407` returned a compact LRAT which the
+independent pinned Lean replay accepted, producing `CERTIFIED_UNSAT`. The
+sealed 24-record journal has seal
+`f2853d9ecb9c63697791cf8e6e506695814c5a29ecac01f13675686933848010`.
+This is a synthetic finite integration smoke, not P97 theorem closure.

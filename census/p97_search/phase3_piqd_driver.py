@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from census.p97_search.phase3_cegar_wave import (
+    CERTIFIED_UNSAT,
     CHECKPOINT,
     DISCOVERY_UNSAT,
     ERROR,
@@ -37,8 +38,15 @@ from census.p97_search.phase3_cegar_wave import (
 from census.p97_search.phase3_piqd_oracle import (
     CheckedModel,
     PiqdOracleError,
+    PiqdProofUnavailable,
     PiqdRawDimacsClient,
     PreparedJob,
+)
+from census.p97_search.phase3_piqd_replay import (
+    LeanLratReplayer,
+    LratReplayError,
+    LratReplayResult,
+    validate_replay_result,
 )
 
 EVENT_SCHEMA = "p97-cegar-piqd-event/v1"
@@ -171,6 +179,20 @@ class PiqdClient(Protocol):
     def checked_model(self, job: PreparedJob, *, cnf: bytes) -> CheckedModel: ...
 
     def log(self, job: PreparedJob) -> tuple[bytes, str]: ...
+
+    def proof(self, job: PreparedJob) -> tuple[bytes, str]: ...
+
+
+class ProofReplayer(Protocol):
+    def replay(
+        self,
+        *,
+        job: PreparedJob,
+        wave_manifest: Mapping[str, Any],
+        cnf: bytes,
+        proof: bytes,
+        proof_sha256: str,
+    ) -> LratReplayResult: ...
 
 
 def _strict_json(raw: bytes, *, source: str) -> Mapping[str, Any]:
@@ -576,11 +598,13 @@ class PiqdCegarDriver:
         client: PiqdClient,
         journal: DurableAttemptJournal,
         policy: DriverPolicy | None = None,
+        proof_replayer: ProofReplayer | None = None,
         sleep: Callable[[float], None] = time.sleep,
     ) -> None:
         self.client = client
         self.journal = journal
         self.policy = policy or DriverPolicy()
+        self.proof_replayer = proof_replayer
         self.sleep = sleep
 
     def _append(
@@ -619,6 +643,7 @@ class PiqdCegarDriver:
         status: str | None = None,
         result: str | None = None,
         response: Mapping[str, Any] | None = None,
+        artifacts: Mapping[str, str | None] | None = None,
     ) -> dict[str, Any]:
         return self._append(
             event=_event(
@@ -634,6 +659,7 @@ class PiqdCegarDriver:
             ),
             outcome=ERROR,
             detail=f"{phase}: {detail}",
+            artifacts=artifacts,
         )
 
     def run(
@@ -851,7 +877,11 @@ class PiqdCegarDriver:
             if result == "SAT":
                 return self._finish_sat(job=job, cnf=cnf)
             if result == "UNSAT":
-                return self._finish_unsat(job=job)
+                return self._finish_unsat(
+                    job=job,
+                    cnf=cnf,
+                    wave_manifest=wave_manifest,
+                )
             raise PiqdDriverError(f"unhandled terminal solver result {result!r}")
 
         raise PiqdDriverError("poll loop ended without a terminal record")
@@ -898,7 +928,14 @@ class PiqdCegarDriver:
             return self._finish(record, job_id=job.job_id)
         raise PiqdDriverError("model loop ended without a terminal record")
 
-    def _finish_unsat(self, *, job: PreparedJob) -> DriverResult:
+    def _finish_unsat(
+        self,
+        *,
+        job: PreparedJob,
+        cnf: bytes,
+        wave_manifest: Mapping[str, Any],
+    ) -> DriverResult:
+        solver_log_hash: str | None = None
         for retry_index in range(self.policy.max_result_attempts):
             try:
                 solver_log, reported_hash = self.client.log(job)
@@ -922,6 +959,12 @@ class PiqdCegarDriver:
                 ):
                     return self._finish(record, job_id=job.job_id)
                 continue
+            solver_log_hash = reported_hash
+            break
+        if solver_log_hash is None:
+            raise PiqdDriverError("solver-log loop ended without a terminal record")
+
+        if self.proof_replayer is None:
             record = self._append(
                 event=_event(
                     phase="SOLVER_LOG",
@@ -937,10 +980,152 @@ class PiqdCegarDriver:
                     f"SOLVER_LOG: job {job.job_id} is discovery-only UNSAT; "
                     "independent proof checking remains"
                 ),
-                artifacts={"solver_log_sha256": reported_hash},
+                artifacts={"solver_log_sha256": solver_log_hash},
             )
             return self._finish(record, job_id=job.job_id)
-        raise PiqdDriverError("solver-log loop ended without a terminal record")
+
+        self._append(
+            event=_event(
+                phase="SOLVER_LOG",
+                disposition="SUCCESS",
+                job_id=job.job_id,
+                status="completed",
+                result="UNSAT",
+                detail="solver log archived; independent proof replay follows",
+            ),
+            outcome=CHECKPOINT,
+            detail=f"SOLVER_LOG: archived terminal log for job {job.job_id}",
+            artifacts={"solver_log_sha256": solver_log_hash},
+        )
+
+        proof: bytes | None = None
+        proof_hash: str | None = None
+        for retry_index in range(self.policy.max_result_attempts):
+            try:
+                proof, reported_proof_hash = self.client.proof(job)
+                archived_proof_hash = self.journal.store_artifact(proof)
+                if archived_proof_hash != reported_proof_hash:
+                    raise PiqdOracleError(
+                        "proof hash disagrees with archived response bytes"
+                    )
+                proof_hash = reported_proof_hash
+            except PiqdProofUnavailable as exc:
+                record = self._append(
+                    event=_event(
+                        phase="PROOF",
+                        disposition="ERROR",
+                        retry_index=retry_index,
+                        job_id=job.job_id,
+                        status="completed",
+                        result="UNSAT",
+                        detail=str(exc),
+                    ),
+                    outcome=DISCOVERY_UNSAT,
+                    detail=(
+                        f"PROOF: job {job.job_id} remains discovery-only; "
+                        "no proof artifact is available"
+                    ),
+                    artifacts={"solver_log_sha256": solver_log_hash},
+                )
+                return self._finish(record, job_id=job.job_id)
+            except PiqdOracleError as exc:
+                record = self._record_error(
+                    phase="PROOF",
+                    detail=str(exc),
+                    retry_index=retry_index,
+                    job_id=job.job_id,
+                    status="completed",
+                    result="UNSAT",
+                    artifacts={"solver_log_sha256": solver_log_hash},
+                )
+                if (
+                    not exc.retryable
+                    or retry_index + 1 == self.policy.max_result_attempts
+                ):
+                    return self._finish(record, job_id=job.job_id)
+                continue
+            break
+        if proof is None or proof_hash is None:
+            raise PiqdDriverError("proof loop ended without a terminal record")
+
+        try:
+            replay = self.proof_replayer.replay(
+                job=job,
+                wave_manifest=wave_manifest,
+                cnf=cnf,
+                proof=proof,
+                proof_sha256=proof_hash,
+            )
+            validate_replay_result(
+                result=replay,
+                job=job,
+                wave_manifest=wave_manifest,
+                cnf=cnf,
+                proof=proof,
+                proof_sha256=proof_hash,
+            )
+            if replay.verified and type(self.proof_replayer) is not LeanLratReplayer:
+                raise LratReplayError(
+                    "only the concrete Lean LRAT replayer may certify UNSAT"
+                )
+            checker_hash = self.journal.store_artifact(replay.checker_source)
+            replay_hash = self.journal.store_artifact(replay.receipt)
+        except LratReplayError as exc:
+            record = self._record_error(
+                phase="PROOF_REPLAY",
+                detail=str(exc),
+                job_id=job.job_id,
+                status="completed",
+                result="UNSAT",
+                artifacts={
+                    "solver_log_sha256": solver_log_hash,
+                    "proof_sha256": proof_hash,
+                },
+            )
+            return self._finish(record, job_id=job.job_id)
+
+        artifacts = {
+            "solver_log_sha256": solver_log_hash,
+            "proof_sha256": proof_hash,
+            "proof_checker_sha256": checker_hash,
+            "proof_replay_sha256": replay_hash,
+        }
+        if not replay.verified:
+            record = self._record_error(
+                phase="PROOF_REPLAY",
+                detail="Lean rejected the compact LRAT against the canonical kept CNF",
+                job_id=job.job_id,
+                status="completed",
+                result="UNSAT",
+                artifacts=artifacts,
+            )
+            return self._finish(record, job_id=job.job_id)
+
+        record = self._append(
+            event=_event(
+                phase="PROOF_REPLAY",
+                disposition="SUCCESS",
+                job_id=job.job_id,
+                status="completed",
+                result="UNSAT",
+                detail=(
+                    "independent Lean verifyCert_correct replay accepted the "
+                    "downloaded compact LRAT"
+                ),
+                response={
+                    "proof_sha256": proof_hash,
+                    "proof_checker_sha256": checker_hash,
+                    "proof_replay_sha256": replay_hash,
+                },
+            ),
+            outcome=CERTIFIED_UNSAT,
+            detail=(
+                f"PROOF_REPLAY: finite CNF for job {job.job_id} is certified UNSAT; "
+                "this is not theorem closure"
+            ),
+            artifacts=artifacts,
+        )
+        return self._finish(record, job_id=job.job_id)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -958,6 +1143,8 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--solver-timeout-s", type=int, default=900)
     parser.add_argument("--march-timeout-s", type=int, default=900)
     parser.add_argument("--project", default="erdos-97-96-formalization")
+    parser.add_argument("--replay-work-dir", type=Path)
+    parser.add_argument("--replay-timeout-s", type=int, default=300)
     return parser
 
 
@@ -966,6 +1153,8 @@ def _result_exit_code(outcome: str) -> int:
         return 0
     if outcome == DISCOVERY_UNSAT:
         return 3
+    if outcome == CERTIFIED_UNSAT:
+        return 4
     return 2
 
 
@@ -990,12 +1179,20 @@ def main(argv: list[str] | None = None) -> int:
             client=PiqdRawDimacsClient(args.base_url),
             journal=journal,
             policy=policy,
+            proof_replayer=LeanLratReplayer(
+                lean_root=Path(__file__).resolve().parents[2] / "lean",
+                work_dir=(
+                    args.replay_work_dir
+                    or args.journal.with_name(f"{args.journal.name}.replay-work")
+                ),
+                timeout_s=args.replay_timeout_s,
+            ),
         ).run(
             wave_manifest=manifest,
             cnf=args.cnf.read_bytes(),
             producer_manifest=args.producer_manifest.read_bytes(),
         )
-    except (OSError, PiqdDriverError, PiqdOracleError) as exc:
+    except (OSError, PiqdDriverError, PiqdOracleError, LratReplayError) as exc:
         print(f"phase3_piqd_driver: {exc}", file=sys.stderr)
         return 2
     print(canonical_json_bytes(result.__dict__).decode())

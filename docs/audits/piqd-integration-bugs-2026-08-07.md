@@ -1,7 +1,7 @@
 # piqd integration bug handoff — 2026-08-07
 
-Audit status: updated through 2026-08-08; one confirmed daemon bug and two
-source-audit candidates remain open.
+Audit status: updated through 2026-08-08; one encoder-path race remains open.
+Four findings have been fixed and verified in the installed release.
 
 This log records piqd defects found while implementing the P97
 `p97-cegar-wave/v1` integration. It is a handoff for a separate piqd agent; it
@@ -14,9 +14,34 @@ documented invariant, or internally required lifecycle semantics and has a
 reproducible test. Contract gaps that piqd never promised to cover are listed
 separately so they are not misfiled as bugs.
 
-## Confirmed bugs
+## Open bugs
+
+### PIQD-ENC-001: concurrent identical encoder prepares can return HTTP 500
+
+- **Current release:** piqd `0.1.0`, binary SHA-256
+  `476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`.
+- **Endpoint/state:** `POST /jobs/prepare`, the encoder path before the job
+  reaches `prepared`.
+- **Cause:** the path retains a lookup-then-insert race for concurrent
+  identical requests.
+- **Observed status:** reported by the piqd maintainer after fixing the raw-CNF
+  sibling; this P97 audit did not independently reproduce the encoder race.
+- **Expected:** concurrent identical prepares converge on one immutable job
+  identity without exposing a uniqueness conflict as HTTP 500.
+- **P97 impact:** none on the current P97 integration, which exclusively uses
+  raw `POST /jobs/prepare-cnf`.
+- **Owner:** piqd maintainer; keep the concurrent barrier acceptance test from
+  `PIQD-RAW-001`, adapted to the encoder endpoint.
+
+## Fixed bugs
 
 ### PIQD-RAW-001: concurrent identical prepares can return HTTP 500
+
+**Resolved 2026-08-08.** The installed piqd release contains the raw-CNF
+find-or-insert/blob-write repair and concurrent acceptance coverage. The raw
+P97 lane is no longer subject to this race. The original evidence and P97
+containment remain below because the append-before-retry rule is still part of
+the wave contract.
 
 - **Snapshot:** piqd revision `fb52766a4cfd04c3092a6fdd827517846b265745`;
   the relevant files were clean during reproduction.
@@ -48,9 +73,11 @@ separately so they are not misfiled as bugs.
   a barrier and assert the expected behavior above, including exact stored blob
   bytes.
 
-## Candidate bugs requiring focused reproduction
-
 ### PIQD-RAW-002: unknown raw solver profiles silently run the default profile
+
+**Resolved 2026-08-08.** piqd now validates the raw solver-profile vocabulary;
+the P97 adapter retains its own allowlist so unsupported backend/profile pairs
+fail before submission.
 
 `POST /jobs/prepare-cnf` accepts an arbitrary `solver_profile` string and folds
 that string into the raw-DIMACS job identity. The current CaDiCaL runner,
@@ -58,27 +85,79 @@ however, handles only `sat`, `unsat`, and `plain` specially; every other value
 silently takes the default command path. Two identities can therefore claim
 different execution profiles while running the same solver configuration.
 
-This is source-audit evidence, not yet a live HTTP reproduction. A focused
-acceptance test should submit an unknown profile and establish one of these
-contracts:
+The original source audit asked a focused acceptance test to establish one of
+these contracts:
 
 - the API rejects it with a client error; or
 - the API normalizes it before computing and returning the identity.
 
-The P97 adapter fails closed on the live supported profile set in the meantime.
+The fixed release chose validation. A separate operational distinction remains
+intentional: an empty raw profile selects CaDiCaL's `--sat` configuration,
+whereas the literal profile `default` selects CaDiCaL's default configuration.
+They are different immutable job identities. P97 waves must therefore spell
+`default` explicitly when that is the intended execution profile.
 
 ### PIQD-SMT-001: stored SMT SAT models appear unreachable through the HTTP API
+
+**Resolved 2026-08-08.** The piqd maintainer added public API reachability and
+acceptance coverage for stored SMT models. This remains outside the P97
+raw-DIMACS path.
 
 At the same snapshot, `piqd/src/runner.rs` stores `model_blob_hash` for SAT SMT
 jobs, but `piqd/src/http/status.rs` does not serialize that hash,
 `piqd/src/http/model.rs` rejects SMT while referring clients to it, and
 `piqd/src/http/blobs.rs` does not recognize the model hash as a job-owned blob.
 
-Proposed acceptance test: run a SAT Z3 or cvc5 job, obtain its stored model hash
-from the database, and request both job status and `/jobs/:id/blobs/:hash`. The
-public API should expose and serve the model; the source audit predicts that
-status omits the hash and blob retrieval returns 404. This is outside the P97
-raw-DIMACS adapter, so it was not reproduced during this integration slice.
+The original proposed acceptance test was: run a SAT Z3 or cvc5 job, obtain its
+stored model hash from the database, and request both job status and
+`/jobs/:id/blobs/:hash`. The public API should expose and serve the model; the
+source audit had predicted that status omitted the hash and blob retrieval
+returned 404. This is outside the P97 raw-DIMACS adapter, so it was not
+reproduced during this integration slice.
+
+### PIQD-PROOF-001: `drat-trim` output file could stand in for its verdict
+
+**Resolved and installed 2026-08-08** in commits `c6f71d7` and `e6874fc`.
+
+- **Affected code:** `piqd/src/proof.rs::run_drat_trim`.
+- **Original rule:** accept a generated LRAT when the output file was nonempty,
+  without also requiring checker exit code zero and an exact `s VERIFIED`
+  verdict line.
+- **Risk:** a checker failure that happened to leave nonempty output could be
+  stored and served as a proof. The audit did **not** demonstrate an unsound
+  certificate: the local negative smoke returned exit code 1, printed
+  `s NOT VERIFIED`, and left a zero-byte LRAT.
+- **Fixed rule:** delete any stale target first, require both exit code zero and
+  an exact `s VERIFIED` line before inspecting the LRAT, and delete rejected
+  output. Exact-line matching prevents a quoted verdict in a comment from
+  satisfying the gate.
+- **Acceptance evidence:** the maintainer reproduced the historical fail-open
+  shape with a stub checker that emitted a nonempty LRAT while returning 1 and
+  `s NOT VERIFIED`; the fixed daemon kept the job at solver-level UNSAT, served
+  no proof (`GET /jobs/:id/proof` returned 404), and removed the LRAT. The
+  daemon suite reported 212 passed, 2 ignored, with clippy clean.
+- **P97 policy:** independent Lean LRAT replay remains mandatory. Daemon-side
+  proof production is an artifact source, not the P97 proof authority.
+
+Current installed identities after this fix:
+
+- piqd `0.1.0`: `476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`;
+- piqc `0.1.0`: `13b9f765d4aa74806ebbd90114242d16d7547eb8e788e978ccd27507dae8c8f1`.
+
+Live P97-adapter integration on 2026-08-08 found no additional piqd defect.
+Known-UNSAT raw-CNF job `3c1d3805-71b5-486f-aafc-81bd0ba2a407`
+successfully produced a compact LRAT which the independent pinned Lean replay
+accepted. That concrete replayer invokes the non-configurable `lake env lean`
+command and records the resolved launcher/effective Lean hashes and exact argv.
+The driver's first fixture attempt rejected a producer manifest with
+a trailing newline because its declared SHA-256 did not name canonical JSON;
+that was correct fail-closed adapter behavior, not a daemon bug. The only open
+piqd issue in this audit remains `PIQD-ENC-001`.
+
+One deliberate edge case is relevant to P97: if the submitted CNF already
+contains an empty clause, `drat-trim` can verify it with an empty LRAT, and piqd
+publishes no proof blob. The driver must keep that result `DISCOVERY_UNSAT`
+because there are no proof bytes to replay.
 
 ## Contract gaps, not piqd bugs
 

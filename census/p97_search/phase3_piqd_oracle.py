@@ -37,6 +37,10 @@ class PiqdOracleError(RuntimeError):
         self.http_status = http_status
 
 
+class PiqdProofUnavailable(PiqdOracleError):
+    """A terminal UNSAT job has no proof artifact to replay."""
+
+
 @dataclass(frozen=True)
 class HttpResponse:
     status: int
@@ -477,9 +481,14 @@ class PiqdRawDimacsClient:
                 "require per-cube retrieval and checking"
             )
         response = self._request("GET", f"/jobs/{job.job_id}/proof")
+        if response.status == 404:
+            raise PiqdProofUnavailable(
+                f"piqd job {job.job_id} has no stored proof artifact"
+            )
         if response.status != 200:
             raise PiqdOracleError(
-                f"piqd proof retrieval returned HTTP {response.status}"
+                f"piqd proof retrieval returned HTTP {response.status}",
+                retryable=response.status in {408, 429} or response.status >= 500,
             )
         header_hash = next(
             (

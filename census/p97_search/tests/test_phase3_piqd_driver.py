@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 from census.p97_search.phase3_cegar_wave import (
+    CERTIFIED_UNSAT,
     DISCOVERY_UNSAT,
     ERROR,
     STRUCTURAL_SAT,
@@ -16,6 +17,7 @@ from census.p97_search.phase3_cegar_wave import (
     publication_assessment,
     sha256_bytes,
     validate_attempt_journal,
+    wave_manifest_sha256,
 )
 from census.p97_search.phase3_piqd_driver import (
     DriverPolicy,
@@ -28,7 +30,17 @@ from census.p97_search.phase3_piqd_driver import (
 from census.p97_search.phase3_piqd_oracle import (
     CheckedModel,
     PiqdOracleError,
+    PiqdProofUnavailable,
     PreparedJob,
+)
+from census.p97_search.phase3_piqd_replay import (
+    NORMALIZATION_SCHEMA,
+    REPLAY_SCHEMA,
+    LeanLratReplayer,
+    LratReplayError,
+    LratReplayResult,
+    canonical_kept_dimacs,
+    lean_checker_source,
 )
 
 CNF = b"p cnf 2 2\n1 0\n-1 2 0\n"
@@ -90,6 +102,44 @@ def prepared_job(*, existing: bool = False) -> PreparedJob:
     )
 
 
+def replay_fixture(
+    *, verified: bool, checker: bytes, proof: bytes
+) -> tuple[LratReplayResult, bytes]:
+    job = prepared_job()
+    manifest = wave_manifest()
+    kept_cnf = canonical_kept_dimacs(CNF)
+    expected_checker = lean_checker_source(kept_cnf=kept_cnf, proof=proof)
+    if checker != expected_checker:
+        raise AssertionError("fixture checker must be generated from CNF and proof")
+    receipt = canonical_json_bytes(
+        {
+            "schema": REPLAY_SCHEMA,
+            "normalization": {
+                "schema": NORMALIZATION_SCHEMA,
+                "submitted_cnf_sha256": sha256_bytes(CNF),
+                "canonical_kept_cnf_sha256": sha256_bytes(kept_cnf),
+                "submitted_bytes_equal_kept_bytes": CNF == kept_cnf,
+            },
+            "job": {
+                "id": job.job_id,
+                "backend": job.backend,
+                "solver_profile": job.solver_profile,
+                "identity_hash": job.identity_hash,
+                "cnf_blob_hash": job.cnf_blob_hash,
+            },
+            "wave_manifest_sha256": wave_manifest_sha256(manifest),
+            "proof_sha256": sha256_bytes(proof),
+            "checker_source_sha256": sha256_bytes(checker),
+            "execution": {
+                "returncode": 0 if verified else 1,
+                "error": None,
+            },
+            "verified": verified,
+        }
+    )
+    return LratReplayResult(verified, checker, receipt), receipt
+
+
 class FakeClient:
     def __init__(
         self,
@@ -99,6 +149,8 @@ class FakeClient:
         statuses: list[Mapping[str, Any] | PiqdOracleError] | None = None,
         model: CheckedModel | PiqdOracleError | None = None,
         solver_log: tuple[bytes, str] | PiqdOracleError | None = None,
+        proof: tuple[bytes, str] | PiqdOracleError | None = None,
+        expected_cnf: bytes = CNF,
     ) -> None:
         self.prepare_results = prepare or [prepared_job()]
         self.confirm_results = confirm or ["confirmed"]
@@ -107,6 +159,8 @@ class FakeClient:
         ]
         self.model_result = model
         self.log_result = solver_log
+        self.proof_result = proof
+        self.expected_cnf = expected_cnf
         self.calls: list[str] = []
 
     @staticmethod
@@ -124,7 +178,7 @@ class FakeClient:
 
     def confirm(self, job: PreparedJob, *, expected_cnf: bytes) -> str:
         assert job.job_id == "job-1"
-        assert expected_cnf == CNF
+        assert expected_cnf == self.expected_cnf
         self.calls.append("confirm")
         return self._take(self.confirm_results)
 
@@ -152,6 +206,30 @@ class FakeClient:
             raise self.log_result
         return self.log_result
 
+    def proof(self, job: PreparedJob) -> tuple[bytes, str]:
+        assert job.job_id == "job-1"
+        self.calls.append("proof")
+        if self.proof_result is None:
+            raise AssertionError("unexpected proof call")
+        if isinstance(self.proof_result, Exception):
+            raise self.proof_result
+        return self.proof_result
+
+
+class FakeReplayer:
+    def __init__(
+        self,
+        result: LratReplayResult | LratReplayError,
+    ) -> None:
+        self.result = result
+        self.calls = 0
+
+    def replay(self, **_: Any) -> LratReplayResult:
+        self.calls += 1
+        if isinstance(self.result, Exception):
+            raise self.result
+        return self.result
+
 
 class TracingJournal(DurableAttemptJournal):
     def __init__(
@@ -172,6 +250,7 @@ def driver(
     *,
     policy: DriverPolicy | None = None,
     journal_type: type[DurableAttemptJournal] = DurableAttemptJournal,
+    proof_replayer: FakeReplayer | None = None,
 ) -> tuple[PiqdCegarDriver, DurableAttemptJournal]:
     wave = wave_manifest()
     journal = journal_type(tmp_path / "attempts.jsonl", manifest=wave)
@@ -180,6 +259,7 @@ def driver(
             client=client,
             journal=journal,
             policy=policy or DriverPolicy(poll_interval_s=0),
+            proof_replayer=proof_replayer,
             sleep=lambda _: None,
         ),
         journal,
@@ -372,6 +452,178 @@ def test_unsat_stays_discovery_only_with_archived_solver_log(
     )
     assert assessment["publication_candidate"] is False
     assert "terminal_outcome_not_certified_unsat" in assessment["blockers"]
+
+
+def test_verified_replay_is_the_only_certified_unsat_path(tmp_path: Path) -> None:
+    unsat_cnf = b"p cnf 2 2\n1 0\n-1 0\n"
+    log = b"c piqd job job-1\ns UNSATISFIABLE\n"
+    proof = b"3 0 1 2 0\n"
+    wave = wave_manifest()
+    wave["encoding"] = dict(wave["encoding"], cnf_sha256=sha256_bytes(unsat_cnf))
+    job = PreparedJob(
+        job_id="job-1",
+        backend="cadical",
+        solver_profile="unsat",
+        cnf_blob_hash=sha256_bytes(unsat_cnf),
+        identity_hash=digest("4"),
+        num_vars=2,
+        num_clauses=2,
+        existing=False,
+    )
+    client = FakeClient(
+        prepare=[job],
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=(proof, sha256_bytes(proof)),
+        expected_cnf=unsat_cnf,
+    )
+    journal = DurableAttemptJournal(tmp_path / "attempts.jsonl", manifest=wave)
+    repository = Path(__file__).resolve().parents[3]
+    runner = PiqdCegarDriver(
+        client=client,
+        journal=journal,
+        policy=DriverPolicy(poll_interval_s=0),
+        proof_replayer=LeanLratReplayer(
+            lean_root=repository / "lean",
+            work_dir=tmp_path / "replay-work",
+            timeout_s=60,
+        ),
+        sleep=lambda _: None,
+    )
+    result = runner.run(
+        wave_manifest=wave, cnf=unsat_cnf, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == CERTIFIED_UNSAT
+    artifacts = journal.records[-1]["artifacts"]
+    assert artifacts["solver_log_sha256"] == sha256_bytes(log)
+    assert artifacts["proof_sha256"] == sha256_bytes(proof)
+    assert artifacts["proof_checker_sha256"] is not None
+    assert artifacts["proof_replay_sha256"] is not None
+    receipt = json.loads(
+        (journal.artifact_dir / artifacts["proof_replay_sha256"]).read_bytes()
+    )
+    assert receipt["verified"] is True
+    assert receipt["job"]["cnf_blob_hash"] == sha256_bytes(unsat_cnf)
+
+
+def test_missing_proof_preserves_discovery_only_unsat(tmp_path: Path) -> None:
+    log = b"s UNSATISFIABLE\n"
+    replayer = FakeReplayer(
+        LratReplayResult(True, b"must not run", b"must not run")
+    )
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=PiqdProofUnavailable("no stored proof"),
+    )
+    runner, journal = driver(tmp_path, client, proof_replayer=replayer)
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == DISCOVERY_UNSAT
+    assert replayer.calls == 0
+    assert journal.records[-1]["artifacts"]["proof_sha256"] is None
+
+
+def test_rejected_replay_fails_closed_with_receipt(tmp_path: Path) -> None:
+    log = b"s UNSATISFIABLE\n"
+    proof = b"malformed proof\n"
+    checker = lean_checker_source(
+        kept_cnf=canonical_kept_dimacs(CNF), proof=proof
+    )
+    replay, receipt = replay_fixture(verified=False, checker=checker, proof=proof)
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=(proof, sha256_bytes(proof)),
+    )
+    runner, journal = driver(
+        tmp_path,
+        client,
+        proof_replayer=FakeReplayer(replay),
+    )
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    artifacts = journal.records[-1]["artifacts"]
+    assert artifacts["proof_checker_sha256"] == sha256_bytes(checker)
+    assert artifacts["proof_replay_sha256"] == sha256_bytes(receipt)
+
+
+def test_forged_verified_replay_receipt_cannot_certify(tmp_path: Path) -> None:
+    log = b"s UNSATISFIABLE\n"
+    proof = b"3 0 1 2 0\n"
+    forged = canonical_json_bytes({"schema": "forged", "verified": True})
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=(proof, sha256_bytes(proof)),
+    )
+    runner, journal = driver(
+        tmp_path,
+        client,
+        proof_replayer=FakeReplayer(
+            LratReplayResult(True, b"forged checker", forged)
+        ),
+    )
+
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    assert journal.records[-1]["detail"].startswith("PROOF_REPLAY: invalid replay receipt")
+    assert journal.records[-1]["artifacts"]["proof_checker_sha256"] is None
+    assert journal.records[-1]["artifacts"]["proof_replay_sha256"] is None
+
+
+def test_internally_consistent_fake_replayer_cannot_certify(tmp_path: Path) -> None:
+    log = b"s UNSATISFIABLE\n"
+    proof = b"3 0 1 2 0\n"
+    checker = lean_checker_source(
+        kept_cnf=canonical_kept_dimacs(CNF), proof=proof
+    )
+    replay, _ = replay_fixture(verified=True, checker=checker, proof=proof)
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=(proof, sha256_bytes(proof)),
+    )
+    runner, journal = driver(
+        tmp_path, client, proof_replayer=FakeReplayer(replay)
+    )
+
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    assert "only the concrete Lean LRAT replayer" in journal.records[-1]["detail"]
+
+
+def test_replay_setup_error_cannot_be_certified(tmp_path: Path) -> None:
+    log = b"s UNSATISFIABLE\n"
+    proof = b"3 0 1 2 0\n"
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
+        solver_log=(log, sha256_bytes(log)),
+        proof=(proof, sha256_bytes(proof)),
+    )
+    runner, journal = driver(
+        tmp_path,
+        client,
+        proof_replayer=FakeReplayer(LratReplayError("Lean unavailable")),
+    )
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    assert journal.records[-1]["artifacts"]["proof_sha256"] == sha256_bytes(proof)
 
 
 def json_load(path: Path) -> dict[str, Any]:
@@ -578,4 +830,5 @@ def test_journal_rejects_driver_owned_artifact_override(tmp_path: Path) -> None:
 def test_cli_exit_status_does_not_promote_discovery_unsat() -> None:
     assert _result_exit_code(STRUCTURAL_SAT) == 0
     assert _result_exit_code(DISCOVERY_UNSAT) == 3
+    assert _result_exit_code(CERTIFIED_UNSAT) == 4
     assert _result_exit_code(ERROR) == 2
