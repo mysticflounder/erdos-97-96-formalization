@@ -161,10 +161,13 @@ two compiler units forcing the `6`-source blocker at `8` and the `8`-source
 blocker at `7`.  It additionally reflects the exact center-`1` row unit and
 the center-`7` physical-intersection clause, preserving the compiler's ordered
 candidate-literal list, and proves that the source-selected cover candidates
-satisfy both clauses.  A targeted direct module check passes.  This is
-certificate-ingress infrastructure only: the source implication clauses,
-named-arm clauses, and distinguished-`d` clauses are not yet all reflected,
-and there is still no terminal bank or live-leaf closure.
+satisfy both clauses.  It now also mirrors all ten ordered blocker-to-row
+implications in each of the five physical-source blocks and proves that the
+source-faithful blocker/row assignment satisfies all fifty clauses.  A
+targeted direct module check passes.  This is certificate-ingress
+infrastructure only: the named-arm clauses and distinguished-`d` clauses are
+not yet all reflected, and there is still no terminal bank or live-leaf
+closure.
 
 The next production target is therefore:
 

@@ -1279,6 +1279,160 @@ theorem v14Assign_selectedBlockerVar_eq_true
   have hcenter := blocker_mem_blockerCenters_of_addedConstraints cell hadded i
   exact (v14Assign_blockerVar_eq_true_iff cell hadded idx i hcenter).2 rfl
 
+/-- Candidate variables admitted by one physical-source/blocker implication,
+in the compiler's exact candidate-table order. -/
+def sourceAllowedVars (cell : FrozenV14JobCoordinate) (i : Fin 5)
+    (center : Nat) : List Nat :=
+  varsMatching center fun m =>
+    m.testBit ((physicalSources cell).getD i.val 0) &&
+      ((m &&& SafeCoverIndexBridge.classMask
+          (frozenPhysicalLabels
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)) ==
+        SafeCoverIndexBridge.classMask
+          (frozenPhysicalEdges
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i))
+
+/-- One compiler implication from a possible blocker center to an admissible
+selected row at that center. -/
+def sourceImplicationClause (cell : FrozenV14JobCoordinate) (i : Fin 5)
+    (center : Nat) : List Int :=
+  -Int.ofNat (blockerVar cell i center) ::
+    (sourceAllowedVars cell i center).map Int.ofNat
+
+/-- The ten source implications, in the increasing-center order emitted by
+the Python compiler. -/
+def sourceImplicationClauses (cell : FrozenV14JobCoordinate) (i : Fin 5) :
+    List (List Int) :=
+  (blockerCenters ((physicalSources cell).getD i.val 0)).map
+    (sourceImplicationClause cell i)
+
+/-- The source-faithful blocker and selected row satisfy one emitted physical
+cycle implication. -/
+theorem v14Assign_sat_sourceImplicationClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (i : Fin 5) {center : Nat}
+    (hcenter : center ∈
+      blockerCenters ((physicalSources cell).getD i.val 0)) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (sourceImplicationClause cell i center) = true := by
+  by_cases hselected : center = (blocker i).val
+  · subst center
+    let selected := SafeCoverIndexBridge.coverIndex row (blocker i).val
+    have hi : selected < SafeCoverCnf.candCount (blocker i).val :=
+      SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow (blocker i).isLt
+    have htrace :
+        row (blocker i) ∩ frozenPhysicalLabels
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 =
+          frozenPhysicalEdges
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i :=
+      hadded.2.2.2.2.2.2.2.1 i
+    have hsourceEdge :
+        frozenPhysicalSources
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i ∈
+          frozenPhysicalEdges
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i := by
+      fin_cases i <;>
+        simp [frozenPhysicalSources, frozenPhysicalEdges]
+    have hsourceRow :
+        frozenPhysicalSources
+            (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i ∈
+          row (blocker i) := by
+      have hsourceInter :
+          frozenPhysicalSources
+              (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 i ∈
+            row (blocker i) ∩ frozenPhysicalLabels
+              (cell.1.1 : Label × Label).1
+              (cell.1.1 : Label × Label).2 := by
+        rw [htrace]
+        exact hsourceEdge
+      exact (Finset.mem_inter.mp hsourceInter).1
+    have hmask :
+        (SafeCoverCnf.candMasks (blocker i).val).getD selected 0 =
+          SafeCoverIndexBridge.classMask (row (blocker i)) :=
+      SafeCoverIndexBridge.getD_coverIndex_of_safeCubeOK hrow (blocker i)
+    have hphysical :
+        (SafeCoverCnf.candMasks (blocker i).val).getD selected 0 &&&
+            SafeCoverIndexBridge.classMask
+              (frozenPhysicalLabels
+                (cell.1.1 : Label × Label).1
+                (cell.1.1 : Label × Label).2) =
+          SafeCoverIndexBridge.classMask
+            (frozenPhysicalEdges
+              (cell.1.1 : Label × Label).1
+              (cell.1.1 : Label × Label).2 i) := by
+      rw [hmask, SafeCoverIndexBridge.classMask_land_classMask]
+      exact congrArg SafeCoverIndexBridge.classMask htrace
+    have hsourceBit :
+        ((SafeCoverCnf.candMasks (blocker i).val).getD selected 0).testBit
+            (frozenPhysicalSources
+              (cell.1.1 : Label × Label).1
+              (cell.1.1 : Label × Label).2 i).val = true := by
+      rw [hmask, SafeCoverIndexBridge.classMask_testBit]
+      simp [hsourceRow]
+    have hpredicate :
+        (((SafeCoverCnf.candMasks (blocker i).val).getD selected 0).testBit
+              ((physicalSources cell).getD i.val 0) &&
+            (((SafeCoverCnf.candMasks (blocker i).val).getD selected 0 &&&
+                SafeCoverIndexBridge.classMask
+                  (frozenPhysicalLabels
+                    (cell.1.1 : Label × Label).1
+                    (cell.1.1 : Label × Label).2)) ==
+              SafeCoverIndexBridge.classMask
+                (frozenPhysicalEdges
+                  (cell.1.1 : Label × Label).1
+                  (cell.1.1 : Label × Label).2 i))) = true := by
+      rw [physicalSources_getD_eq_frozen, hsourceBit]
+      exact beq_iff_eq.mpr hphysical
+    have hnat : SafeCoverCnf.xVar (blocker i).val selected ∈
+        sourceAllowedVars cell i (blocker i).val :=
+      xVar_mem_varsMatching hi hpredicate
+    have htail : Int.ofNat (SafeCoverCnf.xVar (blocker i).val selected) ∈
+        (sourceAllowedVars cell i (blocker i).val).map Int.ofNat :=
+      List.mem_map.mpr
+        ⟨SafeCoverCnf.xVar (blocker i).val selected, hnat, rfl⟩
+    simp only [sourceImplicationClause, evalClauseD, List.any_eq_true]
+    refine ⟨Int.ofNat (SafeCoverCnf.xVar (blocker i).val selected),
+      List.mem_cons_of_mem _ htail, ?_⟩
+    rw [evalLitD_pos]
+    · exact (v14Assign_xVar_eq_true_iff cell blocker
+        (SafeCoverIndexBridge.coverIndex row)
+        (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+        (blocker i).isLt hi).2 rfl
+    · exact SafeCoverCnf.one_le_xVar _ _
+  · have hfalse :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (blockerVar cell i center) = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro htrue
+      exact hselected
+        ((v14Assign_blockerVar_eq_true_iff cell hadded
+          (SafeCoverIndexBridge.coverIndex row) i hcenter).1 htrue)
+    simp only [sourceImplicationClause, evalClauseD, List.any_cons]
+    rw [evalLitD_negNat, hfalse]
+    simp
+
+/-- The canonical source assignment satisfies every implication in one
+physical source block. -/
+theorem v14Assign_sat_sourceImplicationClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (i : Fin 5) :
+    ∀ c ∈ sourceImplicationClauses cell i,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  obtain ⟨center, hcenter, rfl⟩ := List.mem_map.mp hc
+  exact v14Assign_sat_sourceImplicationClause cell hrow hadded i hcenter
+
 /-- At-least-one blocker clause emitted after the ten implications of one
 physical source. -/
 def sourceSelectorClause (cell : FrozenV14JobCoordinate) (i : Fin 5) :
