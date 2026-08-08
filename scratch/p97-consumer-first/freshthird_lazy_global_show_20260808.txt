@@ -1,0 +1,66 @@
+===8RN36W
+def FreshThirdFivePointKalmansonOrder {n : ℕ}
+
+The four linear five-point orders forced by the exceptional FreshThird
+boundary packet.  `qOutside` is the shared endpoint outside the interval
+between the two shell centers, while `qBetween` is the shared endpoint inside
+that interval.  The canonical source point lies in the first opposite-cap
+block with the source center.
+
+This is an order producer, not a contradiction: a downstream Kalmanson
+consumer must additionally obtain the two order-selected deletion-row
+equalities.
+===Z9FAHM
+theorem freshThird_canonicalSource_differentFreshCap_sharedPairCyclicPacket
+
+Build the cyclic-order ingress for the exceptional FreshThird packet.
+
+The packet has two selected four-rows (the canonical source row and the
+fresh-blocker row) sharing the two fresh endpoints.  Rather than searching
+for a pre-existing global row pattern, choose those two rows explicitly in a
+`FaithfulCarrierPattern`, obtain a convex boundary indexing of the whole
+carrier, and apply the kernel-checked shared-pair separation theorem.  The
+cap facts are returned alongside the separation so the next consumer cannot
+silently forget the canonical/different-cap arm.
+
+This is a producer boundary, not a contradiction: the remaining consumer
+must turn the cyclic separation plus the cap packet into a cap-order or
+Kalmanson contradiction.
+===HZNZ5M
+theorem false_of_freshThird_orderSelectedEndpointDeletionObstructions
+
+The cardinality-free Kalmanson landing for the exact dynamic deletion
+contract.  Unlike the older sufficient interface, this consumes only the two
+deletion failures used by the realized order arm.
+===6Y1SFT
+theorem freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow
+
+The exact live complement of the canonical different-cap Kalmanson
+branch.  The order-selected deletion-obstruction outcome is impossible by the
+checked metric consumer, so every surviving instance supplies a named ambient
+selected four-row avoiding the canonical source or the other shared endpoint,
+together with a cap containing its center, at most two witnesses inside that
+cap, and at least two outside.
+
+This is the cardinality-free ingress expected by the dynamic survivor-row
+query: it removes the already-closed disjunct instead of asking the solver to
+rediscover it.
+===6VE5K2
+# Five-point Euclidean row obstruction
+
+This module kernel-checks the nonlinear five-point cut emitted by the induced
+metric CEGAR checker.  For five points in cyclic order `a < b < c < d < e`,
+the two row patterns
+
+```text
+b : {a,e}
+c : {a,b,d}
+```
+
+are impossible in the Euclidean plane.
+
+This obstruction is not a consequence of the abstract strict Kalmanson
+inequalities: its proof uses the two-dimensional dot/cross-product identity.
+The low-level theorem states exactly the four orientation inequalities and
+three metric equalities validated by the computational cut.  The public
+boundary adapter derives those orientations from `IsCcwConvexPolygon`.

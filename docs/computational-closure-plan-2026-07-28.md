@@ -1086,6 +1086,198 @@ finite, shard-local structural evidence.  Promotion still requires the
 five-part ingress/consumer/lift contract recorded in the migration note,
 including a general-cardinality theorem.
 
+### 13.16.7 Exact-support elimination and full deletion-fan frontier (2026-08-07)
+
+The exact-support arm of that residual is now kernel-proved in Lean 4.27.
+`false_of_freshThird_exactSupport_cyclicTriangle` cuts the boundary order at
+one shared source, reconstructs the three shared-pair cyclic separations for
+the source, fresh, and selected endpoint rows, and feeds the resulting strict
+six-point order directly to
+`TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities`.
+Thus the exact `2+2` common-radius support is impossible without any finite-`n`
+assumption or solver trust.
+
+The former load-bearing
+`false_of_freshThird_pinnedEndpoint_globalResidual` is consequently proved and
+is now a thin adapter into the stronger on-spine successor
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual`.  The coordinator
+frontier changes from one unresolved theorem with three immediate terminal
+alternatives
+
+1. off-endpoint row escape plus a deletion blocker;
+2. off-endpoint exact common-radius support; and
+3. endpoint row escape plus a deletion blocker,
+
+to one unresolved theorem with only alternatives 1 and 3.  The strict measure
+decrease is deletion of alternative 2 from the source-produced terminal sum;
+the raw `sorry` count remains one.  The successor also records explicitly the
+source center in the first-cap interior, the fresh center in a different cap,
+both fresh sources outside the first cap, and the selected endpoint row's
+non-first-cap `≤ 2` inside / `≥ 2` outside split.  Its immediate consumer is the
+proved global residual, which remains publish-reachable through the FreshThird
+coordinator.
+
+That normalization is now source-proved, uniformly over all four points of the
+selected row.  `SourceFaithfulSelectedFourDeletionFan` records for every support
+point its canonical blocker-cap location, genuine failure of the corresponding
+deleted K4 instance, and the complete equal-center/exact-support/non-robust versus
+distinct-center/at-most-two-overlap dichotomy.
+`sourceFaithfulDeletionFan_of_triApexAllLargeContext` constructs this packet from
+the existing global tri-apex context without a finite-cardinality assumption.
+Both remaining alternatives of
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual` now carry this complete
+four-point fan, rather than only one favorable outside-seed deletion.
+
+The live target is therefore the **fan-to-consumer lift**, not another blocker
+producer.  Four cap-localized blockers give a finite repeated-cap normalization,
+but that fact alone is not contradictory.  A closing lift must additionally
+produce one of the hypotheses accepted by an import-reachable terminal: two
+distinct same-cap centers bisecting a common outside pair, a shared pair with the
+required cyclic-arc placement, or a carrier-wide cap/row-count contradiction.
+The existing retained-collision localization bank does not supply this lift: it
+requires a `RetainedRadiusCollision` and joint membership of its two fixed sources
+in an actual row, neither of which follows from the FreshThird deletion fan.
+`FrontierCommonDeletionEscape` is not imported by the active chain and in any
+case ends at a conditional normal-form consumer requiring the missing
+contradiction externally.
+
+The corrected CEGAR round must encode precisely the complete four-point fan and
+all source-permitted aliases.  In particular, unnamed or cross-role points may
+not be forced distinct; distance positivity and strict order constraints may be
+asserted only for pairs proved distinct by the Lean ingress.  It must exhaust
+the equality partition of blocker centers and every permitted canonical-support
+intersection.  The earlier 416-row probe violated this alias requirement and is
+discarded as closure evidence.  After the corrected round, a global theorem-bank
+pass must test its exact survivor motifs before any new producer is formalized.
+
+Solver output remains theorem-discovery evidence only.  Production closure still
+requires a cardinality-independent Lean lift from the full fan to a checked
+terminal consumer.  No fixed-`n` `UNSAT` result by itself closes
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual`.
+
+#### 13.16.7.1 Corrected metric-core checkpoint (2026-08-08)
+
+The first sound assumption-tracked exact replay has now reduced one genuine
+motif-free structural survivor to five equal-radius assertions.  In its actual
+cyclic order the six roles are
+
+```text
+a1_2 < w0 < w1 < b1 < pinnedCenter < b0,
+```
+
+and the three actual selected rows contain the pairs
+
+```text
+b1:{a1_2,w1},   pinnedCenter:{w0,w1},   b0:{a1_2,w0}.
+```
+
+After renaming these six points in increasing order, this is exactly the
+support-first triangle consumed by
+`KalmansonThreeEqualitySchemas.false_of_support_first_two_k2_three_selected_rows_triangle`.
+The independent cvc5 replay agrees with the exact QF_LRA contradiction.  This
+is a bank hit, not a new metric theorem and not yet a Lean closure.
+
+This triangle is distinct from the endpoint exact-support triangle already
+eliminated by `false_of_freshThird_exactSupport_cyclicTriangle`.  It belongs to
+the surviving outside-seed deletion-fan arm: the pinned row supplies one pair,
+while two canonical blocker rows supply the other pairs through aliases that
+the source-faithful encoding permits.  The current Lean fan producer exposes
+the pinned row and the blocker rows, but it does not force the additional
+shared anonymous support point or one fixed six-role cyclic order.
+
+The corrected production question is therefore finite semantic coverage:
+does every source-faithful fan survivor contain one of the support-first,
+support-first reflected, center-first, or center-first reflected triangle
+motifs, after exhausting all point aliases, endpoint names, blocker
+partitions, both cross-deletion directions, and cyclic rotations?  The CEGAR
+loop must query the negation of the union of all such genuine motifs; finding
+one motif in one sampled model is insufficient.  A universal Boolean `UNSAT`
+result may be promoted only with a checked finite coverage theorem whose Lean
+adapter constructs the three `SelectedFourClass` rows and six boundary indices.
+A Boolean survivor must instead be preserved and passed to exact metric replay
+for the next semantic obstruction.  The current 29/30-literal projected cuts
+are temporary model blocks and must not be presented as the source-level lift.
+
+#### 13.16.7.2 Universal-triangle scope correction (2026-08-08)
+
+The first follow-up "universal" triangle-complement run was not universal and
+is retained only as a restricted regression.  Its `triangle_union` used the
+cap-synchronized pair and its one-way cross-deletion survivor, and enumerated
+only the three physical rows `(blocker z, pinned row, blocker w)`.  The
+independent mutual-cross pair supplied by
+`nonrobustCenter_or_exists_mutualCrossDeletionRows_of_sourceFaithfulFan` was
+present in the branch packet but was dead data in the motif union.  In
+particular, the repeated-cap pair and the mutual-cross pair are independent
+source witnesses and must not be identified.
+
+The resulting SAT model therefore proves only that the restricted
+blocker/pinned abstraction need not contain one of the four six-point triangle
+schemas.  It is not a survivor for the complete Lean ingress contract.  The
+reported fixed-model metric contradiction remains useful theorem-discovery
+evidence, but an artifact mismatch (`timeout` in the aggregate result versus
+`unsat` in the replay file) must be resolved before that replay is reused.
+
+The corrected coverage contract must keep the two witness pairs independent
+and range over every source-entitled actual selected row: the canonical-source
+row, fresh row, pinned row, order-selected endpoint row, the four canonical
+blocker rows, and any materialized cross-deletion survivor rows.  A triangle
+arm may enter the union only when the source packet supplies its three row
+origins, six positive support incidences, and an injective `BoundaryIndexing`
+with the required strict six-index order.  Rank aliases alone do not establish
+that ingress; indeed the frozen restricted survivor aliases several named
+roles and so cannot itself instantiate a consumer requiring an injective
+boundary.
+
+The existing bank provides the cardinality-independent terminal consumers,
+including the four orientation variants in
+`KalmansonThreeEqualitySchemas` and the bridge consumers in
+`CapCrossingKalmanson`.  The endpoint exact-support producer
+`freshThird_exactSupport_threeRowCyclicSeparations` already supplies and closes
+one different branch.  No banked theorem presently transports the remaining
+outside-seed cap/mutual fan to the needed positive support/order packet.  Thus
+the immediate target is the missing source producer or a sound exhaustive
+coverage theorem for precisely that packet, not another fixed-model metric
+cut.
+
+#### 13.16.7.3 Source-faithful lazy-round checkpoint (2026-08-08)
+
+The corrected coverage engine now keeps the repeated-cap and mutual-cross
+witness pairs independent and distinguishes canonical blocker rows from the
+materialized one-way and two-way cross-deletion rows.  Canonical blocker rows
+are unconditional consequences of the deletion fan; only materialized rows
+retain their source survival guards.  Required row-center equalities are part
+of each Kalmanson motif.  The obsolete monolithic `triangle_union`, whose
+blocker guard could discard valid canonical-row triples, has been removed in
+favor of model-local motif discovery and guarded blocking.
+
+The first configured branch slice is
+`outside_fresh_between_source_canonical`, with fresh and endpoint rows in cap
+1, repeated-cap witness `(0,1)`, and independent mutual witness `(0,1)`.
+Five successive exact metric cores were UNSAT in both Z3 and cvc5 and were
+blocked.  All five have the same tracked 5-assertion core of width 25; they use
+the active one-way cross survivor `1 -> 0` together with the independent
+mutual survivors `0 <-> 1`.  The sixth core is Z3-UNSAT but cvc5 timed out; it
+is unverified and was not blocked or promoted.  A structural SAT survivor
+therefore remains after the five verified cuts.  This run covers one branch
+only and establishes no universal result or Lean closure.
+
+The mandatory global theorem-bank pass found matching cardinality-independent
+consumers in `CapCrossingKalmansonBridge` and
+`FivePointEuclideanObstruction`, but no import-compatible producer for their
+ingress.  The first missing bridge is a universal source theorem that names
+the actual `SelectedFourClass` rows and their positive support incidences,
+preserves the repeated-cap and mutual-cross pairs as independent data, and
+uses `BoundaryIndexing` to transport those points injectively to one accepted
+strict CCW order schema.  The current computational artifacts are therefore
+theorem-discovery evidence for that producer, not a replacement for it.
+
+Artifacts:
+
+- `scratch/p97-consumer-first/freshthird_cross_row_kalmanson_universal_20260808.py`;
+- `scratch/p97-consumer-first/freshthird_cross_row_kalmanson_universal_20260808.results.md`;
+- `scratch/p97-consumer-first/freshthird_lazy_round_bank_pass_20260808.md`;
+- `scratch/p97-consumer-first/freshthird_row_origin_audit_20260808.md`.
+
 ## 13.17 Rigid221 `BlockerV` deleted-row class elimination (2026-08-06)
 
 The `v`-row-blocker-is-deleted branch has been reduced without increasing its

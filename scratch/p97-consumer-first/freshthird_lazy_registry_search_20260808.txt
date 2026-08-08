@@ -1,0 +1,29 @@
+===docs/general-n-certificate-bank-mining-2026-07-09.md
+72:metric consumers in `P97/ATail/KalmansonThreeEqualitySchemas.lean`:
+88:metric consumers in `P97/ATail/KalmansonFourEqualitySchemas.lean`:
+===certificates/p97_rvol_general_n_mining.md
+===certificates/p97_rvol_general_n_mining.json
+8021:      "statement": "theorem rowOffAnchors_erase_rowOffCenter_card_eq_three {D : CounterexampleData} {q v1 v3 qs w u z : \u211d\u00b2} (P : C5D3BSameSideTerminalPacket D q v1 v3 qs w u) (H : U5QAllowedAuditSupport D q v3 ({v1, qs, w} : Finset \u211d\u00b2) u) (hzrow : z \u2208 ({w, H.a0, H.a1} : Finset \u211d\u00b2)) : (({q, w, H.a0, H.a1} : Finset \u211d\u00b2).erase z).card = 3"
+8041:      "statement": "theorem qAllowedSelected_inter_rowOffAnchors_erase_center_card_eq_two_or_three {D : CounterexampleData} {q v1 v3 qs w u z : \u211d\u00b2} (P : C5D3BSameSideTerminalPacket D q v1 v3 qs w u) (H : U5QAllowedAuditSupport D q v3 ({v1, qs, w} : Finset \u211d\u00b2) u) (hz : z \u2208 U5BoundedAuditCenters D q v3 ({v1, qs, w} : Finset \u211d\u00b2) u H.a0 H.a1) (hzrow : z \u2208 ({w, H.a0, H.a1} : Finset \u211d\u00b2)) : (((H.selected_classes z hz).1) \u2229 (({q, w, H.a0, H.a1} : Finset \u211d\u00b2).erase z)).card = 2 \u2228 (((H.selected_classes z hz).1) \u2229 (({q, w, H.a0, H.a1} : Finset \u211d\u00b2).erase z)).card = 3"
+17068:      "fq_name": "Problem97.SelectedFourClass.support_nonempty",
+17081:      "statement": "theorem support_nonempty {A : Finset \u211d\u00b2} {center : \u211d\u00b2} (K : SelectedFourClass A center) : K.support.Nonempty"
+17088:      "fq_name": "Problem97.SelectedFourClass.exists_gauge_witness",
+17101:      "statement": "theorem exists_gauge_witness {A : Finset \u211d\u00b2} {center : \u211d\u00b2} (K : SelectedFourClass A center) : \u2203 q \u2208 K.support, q \u2208 A \u2227 center \u2260 q \u2227 dist center q = K.radius"
+17108:      "fq_name": "Problem97.SelectedFourClass.normalScale_support_unit",
+17121:      "statement": "theorem normalScale_support_unit {A : Finset \u211d\u00b2} {center : \u211d\u00b2} (K : SelectedFourClass A center) : \u2200 x \u2208 K.support, dist (normalScale center K.radius center) (normalScale center K.radius x) = 1"
+17128:      "fq_name": "Problem97.SelectedFourClass.inter_card_le_two",
+17141:      "statement": "theorem inter_card_le_two {A : Finset \u211d\u00b2} {x y : \u211d\u00b2} (Kx : SelectedFourClass A x) (Ky : SelectedFourClass A y) (hxy : x \u2260 y) : (Kx.support \u2229 Ky.support).card \u2264 2"
+17248:      "fq_name": "Problem97.CriticalSelectedFourClass.exists_of_shell",
+17261:      "statement": "theorem exists_of_shell {A : Finset \u211d\u00b2} {q center : \u211d\u00b2} (K : CriticalFourShell A q center) : \u2203 S : CriticalSelectedFourClass A q center, S.toCriticalFourShell = K"
+17268:      "fq_name": "Problem97.CriticalSelectedFourClass.mem_support_iff_named",
+17281:      "statement": "theorem mem_support_iff_named {A : Finset \u211d\u00b2} {q center z : \u211d\u00b2} (S : CriticalSelectedFourClass A q center) : z \u2208 S.toCriticalFourShell.support \u2194 z = S.l1 \u2228 z = S.l2 \u2228 z = S.l3 \u2228 z = S.l4"
+17288:      "fq_name": "Problem97.CriticalSelectedFourClass.l1_mem_support",
+17301:      "statement": "theorem l1_mem_support {A : Finset \u211d\u00b2} {q center : \u211d\u00b2} (S : CriticalSelectedFourClass A q center) : S.l1 \u2208 S.toCriticalFourShell.support"
+17308:      "fq_name": "Problem97.CriticalSelectedFourClass.l2_mem_support",
+17321:      "statement": "theorem l2_mem_support {A : Finset \u211d\u00b2} {q center : \u211d\u00b2} (S : CriticalSelectedFourClass A q center) : S.l2 \u2208 S.toCriticalFourShell.support"
+17328:      "fq_name": "Problem97.CriticalSelectedFourClass.l3_mem_support",
+17341:      "statement": "theorem l3_mem_support {A : Finset \u211d\u00b2} {q center : \u211d\u00b2} (S : CriticalSelectedFourClass A q center) : S.l3 \u2208 S.toCriticalFourShell.support"
+===certificates/erdos97_legacy_general_n_mining.md
+===certificates/erdos97_legacy_general_n_mining.json
+===certificates/erdos_general_theorem_p97_mining.md
+===certificates/erdos_general_theorem_p97_mining.json
