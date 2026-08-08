@@ -96,7 +96,7 @@ is stale.
 | Concurrent static solving | Implemented in piqd; not production-qualified for P97 | `--max-workers` starts independent worker loops and atomic claims prevent duplicate ownership. P97 still lacks resource weights, production concurrency canaries, and a general batch controller. |
 | Stateful SAT/SMT sessions | Implemented in piqd; not integrated with P97 | SAT sessions support durable clause append, assumptions, model/core results, restart recovery, and terminal CNF handoff. Z3/cvc5 sessions persist assertions and textual results. No public session-cancel route is exposed. |
 | Nonlinear SMT/Euclidean validation | Daemon custody exists; P97 validation is absent | The session API can run Z3/cvc5, but P97 has no source-semantic receipt, exact replay classification, or promotion contract for these results. |
-| General P97 workflow adoption | Partial | One exact-12 normalized-v14 cell has completed source-semantic replay; exact-17 and older Phase-3 workers still include direct local solver paths. |
+| General P97 workflow adoption | Partial | One exact-12 normalized-v14 cell has completed source-semantic replay and has a checked finite-local typed Lean record. That record is off-spine and explicitly denies executed-byte provenance, aggregate coverage, universal lift, and theorem closure. Exact-17 and older Phase-3 workers still include direct local solver paths. |
 
 The live daemon snapshot used for this audit is piqd `0.1.0`, protocol 1,
 binary SHA-256
@@ -113,8 +113,10 @@ multipart-body ceiling), so each migration must preflight the materialized
 artifact size rather than assume that every large exact-17 or Phase-3 formula
 can be submitted unchanged.
 
-The current oracle/package/driver/campaign/replay test matrix
-passes 120 tests. The piqd Rust library has 160 passing tests with two ignored,
+The original oracle/package/driver/campaign/replay test matrix passed 120
+tests. After the v2 campaign migration, stage-local classifier contract, and
+typed-ingress addition, the complete `test_phase3_piqd*.py` integration suite
+passes 161 tests. The piqd Rust library has 160 passing tests with two ignored,
 and the piqc library has 80 passing tests. The campaign hardening checkpointed
 at `6fcf51e4`
 adds descriptor-relative no-follow snapshots, transitive artifact binding,
@@ -130,13 +132,19 @@ replayer. These results validate one real SAT ingress/replay path and the
 control plane; they do not validate every P97 encoder, establish campaign
 coverage, or close a P97 theorem.
 
-A newer P97 working-tree follow-on upgrades the campaign/result schemas and
-source classifier to v2, snapshots every declared detector source exactly once,
-and restricts learned clauses to variables supported by the authenticated
-positive assignment witness. Its focused piqd matrix reports 143 passing tests.
-Those changes are useful partial progress on G5 and G7, but they are not counted
-as a durable capability here until they are committed and the existing v1
-campaign artifacts are explicitly regenerated.
+Checkpoint `946a1485` commits the exact-12 typed classifier ingress. The v2
+campaign and result schemas snapshot every declared detector source exactly
+once and restrict learned clauses to variables supported by the authenticated
+positive assignment witness. The committed generated Lean module constructs a
+`DuplicateCenterNogood (Fin 12)`, checks it by kernel computation, and proves
+that it equals the pre-existing normalized-v14 `record0`. The v2 three-cell
+canary was regenerated under the final contract.
+
+This is durable partial progress on G5 and G7, not their completion. The Lean
+hash strings remain metadata rather than kernel authentication of the executed
+classifier bytes, and the module is off-spine. It proves neither the five
+source-selected row memberships needed by the next consumer nor aggregate
+coverage, universal lift, or theorem closure.
 
 The practical critical path is:
 
@@ -197,8 +205,9 @@ variable-map, cell/order, model, and source-predicate checks.
 Remaining acceptance condition: extract the exact-12 implementation from the
 Phase-3-named modules into a stable producer-neutral library, then make
 exact-cardinality, projected-static, and one other P97 CNF producer call that
-library without copying lifecycle code. The 120-test focused matrix must remain
-green. Until this reuse exists, the project has a demonstrated production
+library without copying lifecycle code. The complete 161-test
+`test_phase3_piqd*.py` integration boundary must remain green. Until this reuse
+exists, the project has a demonstrated production
 canary but not a general P97 package adapter.
 
 Owner: P97 integration.
@@ -307,10 +316,10 @@ Acceptance condition: a small three-iteration fixture performs
 SAT → refinement → SAT → refinement → certified UNSAT, then reproduces the same
 chain after restart with every child bound to its parent.
 
-Status: partially complete in the current working tree. The v2 source
-classifier binds an exact detector-source snapshot and rejects learned clauses
-whose variables are absent from the authenticated positive witness. It does not
-yet provide a producer-neutral parent/child CNF chain, restartable multi-step
+Status: partially complete at checkpoint `946a1485`. The v2 source classifier
+binds an exact detector-source snapshot and rejects learned clauses whose
+variables are absent from the authenticated positive witness. It does not yet
+provide a producer-neutral parent/child CNF chain, restartable multi-step
 refinement, or certified terminal handoff.
 
 Owner: P97 integration, with one adapter per finite schema.
@@ -376,9 +385,12 @@ Acceptance condition: tampering with the source hash, variable map, decoded
 object, or validator revision invalidates the receipt, and a known encoder
 omission is caught by the negative fixture.
 
-Status: one exact-12 classifier has a source-bound v2 implementation in the
-current working tree. General adoption still requires a shared receipt schema
-and positive/negative semantic fixtures for every migrated producer family.
+Status: one exact-12 classifier has a committed source-bound v2 implementation
+and a checked finite-local Lean record. The record's digests are provenance
+metadata, not a kernel proof that those bytes were executed, and no source
+selection theorem currently places all five recorded rows in the intended live
+cover. General adoption still requires a shared receipt schema and
+positive/negative semantic fixtures for every migrated producer family.
 
 Owner: each P97 encoder, enforced by the shared P97 adapter.
 
@@ -466,17 +478,17 @@ Adversarial tests cover mutation after snapshot, malformed hashes, symlinks,
 duplicate and divergent concurrent admission, and result repair. An independent
 read-only audit found no remaining medium-or-higher custody defect.
 
-The uncommitted v2 follow-on strengthens source custody and learned-clause
-support, but intentionally invalidates v1 campaign manifests, records, and
-results. That migration must be checkpointed together with an explicit artifact
-regeneration note; it does not reopen the already-checkpointed v1 custody
-finding. The existing campaign-canary snapshots are still v1 and are rejected
-by the v2 validator, so a fresh v2 canary and corrected process-audit hashes are
-required before describing the v2 path as accepted.
+The committed v2 follow-on strengthens source custody and learned-clause
+support and intentionally rejects v1 campaign manifests, records, and results.
+The three-cell canary has been regenerated under v2 and is recorded in
+`docs/audits/p97-cegar-process-audit-2026-08-08.md`. This does not reopen the
+already-checkpointed v1 custody finding; it supersedes the old canary as the
+current accepted finite-local campaign fixture.
 
-Remaining action: keep the 120-test boundary green. Generalizing this
-controller into a scheduler and a coverage authority belongs to G1–G2; it is
-not a remaining G11 soundness task.
+Remaining action: keep the 161-test integration boundary green. Generalizing
+this controller into a scheduler and a coverage authority belongs to G1–G2;
+executed-byte authentication and reusable source-semantic receipts belong to
+G5–G7. They are not remaining G11 custody tasks.
 
 Owner: P97 integration.
 
@@ -509,7 +521,8 @@ claim.
 
 ### Stage 0 — preserve the proven boundary
 
-- Keep the existing Phase-3 piqd driver and 120-test focused matrix green.
+- Keep the existing Phase-3 piqd driver and complete 161-test PIQD integration
+  boundary green.
 - Preserve G11's authenticated custody boundary, while continuing to describe
   the bounded controller as stop/pivot control rather than a production
   scheduler or coverage authority.
