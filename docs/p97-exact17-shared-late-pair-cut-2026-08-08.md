@@ -5,7 +5,7 @@ Date: 2026-08-08
 ## Checked consumer
 
 The cap-nine source-faithful lane can use the kernel-clean theorem
-`Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair`.
+`Problem97.CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair`.
 For every increasing quadruple `a < b < c < d` in the one frozen boundary
 order, it forbids the four simultaneous selected-row incidences
 `a:{c,d}, b:{c,d}`.  This gives exactly `C(17,4) = 2,380` clauses.
