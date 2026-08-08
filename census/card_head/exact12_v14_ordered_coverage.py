@@ -14,6 +14,7 @@ or closure of a live sorry.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import itertools
 import json
@@ -42,20 +43,18 @@ KALMANSON_SOURCE_THEOREMS = (
         "Problem97.CapCrossingKalmansonBridge."
         "complementary_dist_add_dist_lt_diagonal_sum_of_ccw"
     ),
-    (
-        "Problem97.CapCrossingKalmansonBridge."
-        "dist_add_dist_lt_diagonal_sum_of_ccw"
-    ),
+    ("Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw"),
 )
 SHARED_LATE_SOURCE_THEOREMS = (
-    (
-        "Problem97.CapCrossingKalmansonBridge."
-        "dist_add_dist_lt_diagonal_sum_of_ccw"
-    ),
+    ("Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw"),
 )
 LEAN_CONSUMER = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
     "SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood"
+)
+LEAN_TERMINAL_CONSUMER = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "SourceOrderTerminalBankConsumer.false_of_terminalSourceOrderPositiveBank"
 )
 FROZEN_V8_LEAN_NOGOOD = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
@@ -80,6 +79,14 @@ FROZEN_V8_LEAN_COVERAGE_SOURCE = (
 FROZEN_V8_LEAN_COVERAGE_SOURCE_BYTES = 6545
 FROZEN_V8_LEAN_COVERAGE_SOURCE_SHA256 = (
     "3353d47ab72e2fa044b6c168900e2ce55933cd65bb1b47278c19b7d6646a5d26"
+)
+FROZEN_V8_LEAN_CONSUMER_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221SourceOrderTerminalBankConsumer.lean"
+)
+FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES = 6885
+FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256 = (
+    "74d8689d33b912e85f71714d33eed843b58c4fdbd59251b934c3adb8832f0250"
 )
 REQUIRED_SOURCE_HYPOTHESES = (
     "Realizes",
@@ -148,16 +155,25 @@ FROZEN_V8_CUBE = {
     "11": [1, 4, 5, 10],
 }
 FROZEN_V8_CUBE_SHA256 = _sha256_json(FROZEN_V8_CUBE)
+FROZEN_V8_LEAN_CHOICES = [
+    {"center": center, "support": list(FROZEN_V8_CUBE[str(center)])}
+    for center in (0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11)
+]
 FROZEN_V8_LEAN_BINDING = {
     "cube_sha256": FROZEN_V8_CUBE_SHA256,
     "nogood_declaration": FROZEN_V8_LEAN_NOGOOD,
     "coverage_declaration": FROZEN_V8_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": FROZEN_V8_LEAN_CHOICES,
     "source_path": FROZEN_V8_LEAN_SOURCE,
     "source_bytes": FROZEN_V8_LEAN_SOURCE_BYTES,
     "source_sha256": FROZEN_V8_LEAN_SOURCE_SHA256,
     "coverage_source_path": FROZEN_V8_LEAN_COVERAGE_SOURCE,
     "coverage_source_bytes": FROZEN_V8_LEAN_COVERAGE_SOURCE_BYTES,
     "coverage_source_sha256": FROZEN_V8_LEAN_COVERAGE_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
 
@@ -183,9 +199,7 @@ def _cube_payload(
         try:
             normalized = sorted(support)
         except TypeError as exc:
-            raise Exact12V14OrderedCoverageError(
-                "cube support is malformed"
-            ) from exc
+            raise Exact12V14OrderedCoverageError("cube support is malformed") from exc
         if len(normalized) != 4 or any(
             type(point) is not int or not 0 <= point < N for point in normalized
         ):
@@ -203,8 +217,7 @@ def _cube_payload(
 def _metric_rows(cube: Mapping[str, Sequence[int]]) -> tuple[metric.MetricRow, ...]:
     # False is essential: selected supports are not complete ambient fibres.
     return tuple(
-        metric.MetricRow(center, tuple(cube[str(center)]), False)
-        for center in range(N)
+        metric.MetricRow(center, tuple(cube[str(center)]), False) for center in range(N)
     )
 
 
@@ -213,7 +226,8 @@ def _cyclic_triple(order: Sequence[int], triple: Sequence[int]) -> bool:
         return False
     positions = [order.index(label) for label in triple]
     return any(
-        positions[(start + 0) % 3] < positions[(start + 1) % 3]
+        positions[(start + 0) % 3]
+        < positions[(start + 1) % 3]
         < positions[(start + 2) % 3]
         for start in range(3)
     )
@@ -280,8 +294,7 @@ def _closure_memberships(certificate: Mapping[str, Any]) -> MembershipKey:
                 (int(step["first"]), int(step["second"]))
             )
     key = tuple(
-        (center, tuple(sorted(points)))
-        for center, points in sorted(required.items())
+        (center, tuple(sorted(points))) for center, points in sorted(required.items())
     )
     if not key:
         raise Exact12V14OrderedCoverageError("closure proof used no row facts")
@@ -315,7 +328,10 @@ def _shared_late_pair(
 ) -> tuple[dict[str, Any], MembershipKey] | None:
     for ia, ib, ic, id_ in itertools.combinations(range(N), 4):
         a, b, c, d = (int(order[i]) for i in (ia, ib, ic, id_))
-        required: MembershipKey = ((a, tuple(sorted((c, d)))), (b, tuple(sorted((c, d)))))
+        required: MembershipKey = (
+            (a, tuple(sorted((c, d)))),
+            (b, tuple(sorted((c, d)))),
+        )
         if all(set(points) <= set(rows[center].support) for center, points in required):
             detection = {
                 "lean_source_theorems": list(SHARED_LATE_SOURCE_THEOREMS),
@@ -332,8 +348,7 @@ def _merge_memberships(keys: Sequence[MembershipKey]) -> MembershipKey:
         for center, points in key:
             required.setdefault(center, set()).update(points)
     return tuple(
-        (center, tuple(sorted(points)))
-        for center, points in sorted(required.items())
+        (center, tuple(sorted(points))) for center, points in sorted(required.items())
     )
 
 
@@ -433,13 +448,12 @@ def _build_body(cube: Mapping[str, Sequence[int]]) -> dict[str, Any] | None:
         "closure_certificates": [closures[key] for key in sorted(closures)],
         "coverage": coverage,
         "selected_memberships": [
-            {"center": center, "required": list(points)}
-            for center, points in merged
+            {"center": center, "required": list(points)} for center, points in merged
         ],
         "selected_rows": selected_rows,
     }
     if cube == FROZEN_V8_CUBE:
-        body["generated_lean_nogood"] = dict(FROZEN_V8_LEAN_BINDING)
+        body["generated_lean_nogood"] = copy.deepcopy(FROZEN_V8_LEAN_BINDING)
     return body
 
 
@@ -458,7 +472,10 @@ def detect_ordered_coverage(
 def detect_proof_backed_ordered_coverage(
     cube: Mapping[int | str, Collection[int]],
 ) -> dict[str, Any] | None:
-    """Return only coverage whose exact cube has a generated Lean nogood."""
+    """Return producer metadata only for an exact generated Lean nogood.
+
+    Runtime source authentication belongs to ``exact12_v14_source_order_bank``.
+    """
 
     certificate = detect_ordered_coverage(cube)
     if certificate is None or "generated_lean_nogood" not in certificate:
@@ -521,5 +538,17 @@ def learned_clause_for_proof_backed_ordered_coverage(
     if certificate.get("generated_lean_nogood") != FROZEN_V8_LEAN_BINDING:
         raise Exact12V14OrderedCoverageError(
             "ordered coverage has no generated Lean nogood binding"
+        )
+    expected_rows = [
+        {"center": row["center"], "support": row["support"], "exact": False}
+        for row in FROZEN_V8_LEAN_CHOICES
+    ]
+    if certificate.get("selected_rows") != expected_rows:
+        raise Exact12V14OrderedCoverageError(
+            "ordered coverage rows differ from generated Lean choices"
+        )
+    if len(clause) != len(FROZEN_V8_LEAN_CHOICES):
+        raise Exact12V14OrderedCoverageError(
+            "ordered learned clause differs from generated Lean choices"
         )
     return clause

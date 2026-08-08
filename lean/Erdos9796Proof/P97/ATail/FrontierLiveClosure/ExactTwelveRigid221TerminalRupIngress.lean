@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221TerminalBankConsumer
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceOrderTerminalBankConsumer
 import Erdos9796Proof.P97.Certificate.CheckpointedRupCompact
 import Erdos9796Proof.P97.Certificate.CheckpointedRupSemanticBoundary
 
@@ -89,6 +90,35 @@ theorem not_realizes_of_checkedCompactTerminal
     ¬ ∃ pointOf : Label → ℝ², Realizes row pointOf :=
   not_realizes_of_terminalDuplicateCenterBank cell hrow hadded bank hvalid
     hencodable
+    (dimacsUnsatisfiable_of_checkedCompactTerminal hstart hcheck hclauses)
+
+/-- Source-order exact-twelve certificate endpoint.  This is the semantic
+boundary for a terminal bank containing proof-carrying positive-row cuts;
+checked duplicate-center cuts can enter the same bank through
+`SourceOrderPositiveNogood.ofDuplicateCenter`. -/
+theorem false_of_checkedCompactSourceOrderTerminal
+    {row : RowPattern Label} {pointOf : Label → ℝ²}
+    {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (hreal : Realizes row pointOf)
+    (order : FrozenBoundaryOrder pointOf)
+    (hforced : FrozenForcedSecondCapOrder order.position)
+    (hconv : ConvexIndep (Finset.univ.image pointOf))
+    (bank : List SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood)
+    (hencodable : ∀ nogood ∈ bank, ∀ choice ∈ nogood.choices,
+      FrozenSafeCandidateAt choice.center choice.support)
+    {n : Nat} {startText actionText : String}
+    {start : Array (Option (DefaultClause n))}
+    (hstart : parseFormula (n := n) startText = some start)
+    (hcheck : checkTerminalCompact (n := n) startText actionText = true)
+    (hclauses : signedClausesOfFormula (DefaultFormula.ofArray start) =
+      SourceOrderTerminalBankConsumer.terminalDimacs cell bank) : False :=
+  SourceOrderTerminalBankConsumer.false_of_terminalSourceOrderPositiveBank
+    cell hrow hadded hreal order hforced hconv bank hencodable
     (dimacsUnsatisfiable_of_checkedCompactTerminal hstart hcheck hclauses)
 
 end TerminalRupIngress

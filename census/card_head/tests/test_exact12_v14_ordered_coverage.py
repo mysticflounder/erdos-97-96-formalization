@@ -10,6 +10,10 @@ from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_CUBE,
     FROZEN_V8_CUBE_SHA256,
     FROZEN_V8_LEAN_BINDING,
+    FROZEN_V8_LEAN_CHOICES,
+    FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
     FROZEN_V8_LEAN_COVERAGE_SOURCE,
     FROZEN_V8_LEAN_COVERAGE_SOURCE_BYTES,
     FROZEN_V8_LEAN_COVERAGE_SOURCE_SHA256,
@@ -17,6 +21,7 @@ from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_LEAN_SOURCE_BYTES,
     FROZEN_V8_LEAN_SOURCE_SHA256,
     LEAN_CONSUMER,
+    LEAN_TERMINAL_CONSUMER,
     ORDER_UNIVERSE_SHA256,
     REQUIRED_SOURCE_HYPOTHESES,
     SOURCE_ORDERS,
@@ -109,10 +114,27 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             list(REQUIRED_SOURCE_HYPOTHESES),
         )
         self.assertEqual(len(key), 11)
-        self.assertEqual(self.certificate["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING)
+        self.assertEqual(
+            self.certificate["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING
+        )
         self.assertEqual(
             self.certificate["generated_lean_nogood"]["cube_sha256"],
             FROZEN_V8_CUBE_SHA256,
+        )
+        self.assertEqual(
+            self.certificate["generated_lean_nogood"]["choices"],
+            FROZEN_V8_LEAN_CHOICES,
+        )
+        self.assertEqual(
+            self.certificate["generated_lean_nogood"]["terminal_consumer_declaration"],
+            LEAN_TERMINAL_CONSUMER,
+        )
+        self.assertEqual(
+            [
+                {"center": row["center"], "support": row["support"]}
+                for row in self.certificate["selected_rows"]
+            ],
+            FROZEN_V8_LEAN_CHOICES,
         )
         for center, required in key:
             self.assertLessEqual(set(required), set(FROZEN_CUBE[center]))
@@ -128,6 +150,11 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                 FROZEN_V8_LEAN_COVERAGE_SOURCE,
                 FROZEN_V8_LEAN_COVERAGE_SOURCE_BYTES,
                 FROZEN_V8_LEAN_COVERAGE_SOURCE_SHA256,
+            ),
+            (
+                FROZEN_V8_LEAN_CONSUMER_SOURCE,
+                FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+                FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
             ),
         ):
             source = (REPO_ROOT / relative).read_bytes()
@@ -165,6 +192,12 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                 materialize_cell(0).instance, diagnostic
             )
 
+    def test_certificate_binding_does_not_alias_module_constant(self) -> None:
+        mutated = detect_proof_backed_ordered_coverage(FROZEN_CUBE)
+        self.assertIsNotNone(mutated)
+        mutated["generated_lean_nogood"]["choices"].pop()
+        self.assertEqual(len(FROZEN_V8_LEAN_BINDING["choices"]), 11)
+
     def test_replay_rejects_order_coverage_and_closure_tampering(self) -> None:
         mutations = []
 
@@ -191,8 +224,9 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
         mutations.append(binding)
 
         for index, mutation in enumerate(mutations):
-            with self.subTest(mutation=index), self.assertRaisesRegex(
-                Exact12V14OrderedCoverageError, "exact replay"
+            with (
+                self.subTest(mutation=index),
+                self.assertRaisesRegex(Exact12V14OrderedCoverageError, "exact replay"),
             ):
                 replay_ordered_coverage(mutation)
 
