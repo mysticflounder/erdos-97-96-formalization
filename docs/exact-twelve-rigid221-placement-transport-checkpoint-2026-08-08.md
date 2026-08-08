@@ -164,15 +164,22 @@ candidate-literal list, and proves that the source-selected cover candidates
 satisfy both clauses.  It now also mirrors all ten ordered blocker-to-row
 implications in each of the five physical-source blocks and proves that the
 source-faithful blocker/row assignment satisfies all fifty clauses.  A
-targeted direct module check passes.  This is certificate-ingress
-infrastructure only: the named-arm clauses and distinguished-`d` clauses are
-not yet all reflected, and there is still no terminal bank or live-leaf
-closure.
+targeted direct module check passes.  The module now also mirrors the selected
+named-deletion arm in exact compiler order: the center-`2` blocker unit first,
+then every blocker/candidate binary clause in increasing center and candidate
+table order.  The semantic arm predicate proves that the canonical assignment
+satisfies every clause in this Lean family, and the targeted module check
+remains green.  This is certificate-ingress infrastructure only: the
+distinguished-`d` clauses are not yet reflected, and the parallel Lean clause
+families still need an explicit equality or inclusion bridge to the
+authenticated serialized job `clause_delta`.  There is still no terminal bank
+or live-leaf closure.
 
 The next production target is therefore:
 
-1. finish the exact per-cell clause reflection by proving satisfaction of every
-   non-Sinz added v14 job clause;
+1. reflect the distinguished-`d` family, aggregate all exact per-cell
+   non-Sinz clauses, and prove the resulting list agrees with the authenticated
+   serialized v14 job `clause_delta`;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the

@@ -1130,12 +1130,16 @@ theorem v14Assign_xVar_eq_true_iff
     SafeCoverCnf.finalAssign_x idx hp hi,
     SafeCoverCnf.baseAssign_iff idx hidx hp hi]
 
-/-- Candidate variables satisfying a numerical row predicate, in the exact
+/-- Candidate indices satisfying a numerical row predicate, in the exact
 table order used by Python's `enumerate(instance.candidates[center])`. -/
+def candidateIndicesMatching (p : Nat) (ok : Nat → Bool) : List Nat :=
+  (List.range (SafeCoverCnf.candCount p)).filter fun i =>
+    ok ((SafeCoverCnf.candMasks p).getD i 0)
+
+/-- Candidate variables satisfying a numerical row predicate, preserving the
+ordered matching-index list. -/
 def varsMatching (p : Nat) (ok : Nat → Bool) : List Nat :=
-  ((List.range (SafeCoverCnf.candCount p)).filter fun i =>
-    ok ((SafeCoverCnf.candMasks p).getD i 0)).map fun i =>
-      SafeCoverCnf.xVar p i
+  (candidateIndicesMatching p ok).map fun i => SafeCoverCnf.xVar p i
 
 /-- A valid candidate whose mask passes the predicate occurs in the ordered
 matching-variable list. -/
@@ -1432,6 +1436,174 @@ theorem v14Assign_sat_sourceImplicationClauses
   intro c hc
   obtain ⟨center, hcenter, rfl⟩ := List.mem_map.mp hc
   exact v14Assign_sat_sourceImplicationClause cell hrow hadded i hcenter
+
+/-- One binary named-deletion clause forbidding a selected blocker row that
+contains the arm's designated deletion label. -/
+def namedDeletionBinaryClause (cell : FrozenV14JobCoordinate)
+    (center k : Nat) : List Int :=
+  [-Int.ofNat
+      (blockerVar cell cell.2.1.blockerSourceIndex center),
+    -Int.ofNat (SafeCoverCnf.xVar center k)]
+
+/-- Clauses emitted at one blocker center for the selected named-deletion
+arm: the center-`2` unit first, then binary clauses in candidate-table order. -/
+def namedDeletionCenterClauses (cell : FrozenV14JobCoordinate)
+    (center : Nat) : List (List Int) :=
+  (if center = 2 then
+      [[-Int.ofNat
+        (blockerVar cell cell.2.1.blockerSourceIndex center)]]
+    else []) ++
+    (candidateIndicesMatching center fun m =>
+      m.testBit cell.2.1.deletionLabel.val).map fun k =>
+        namedDeletionBinaryClause cell center k
+
+/-- Complete named-deletion arm clause family in the compiler's increasing
+blocker-center order. -/
+def namedDeletionArmClauses (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  (blockerCenters ((physicalSources cell).getD
+      cell.2.1.blockerSourceIndex.val 0)).flatMap fun center =>
+    namedDeletionCenterClauses cell center
+
+/-- The selected named-deletion blocker is not center `2`, so its emitted
+negative blocker unit is true. -/
+theorem v14Assign_sat_namedDeletionCenterTwoUnit
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      [-Int.ofNat
+        (blockerVar cell cell.2.1.blockerSourceIndex 2)] = true := by
+  have hcenter : 2 ∈ blockerCenters ((physicalSources cell).getD
+      cell.2.1.blockerSourceIndex.val 0) := by
+    cases cell.2.1 <;>
+      simp [FrozenNamedDeletionArm.blockerSourceIndex, blockerCenters,
+        physicalSources]
+  have harm : cell.2.1.Holds row blocker :=
+    hadded.2.2.2.2.2.2.2.2.1
+  have hfalse :
+      v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+          (blockerVar cell cell.2.1.blockerSourceIndex 2) = false := by
+    apply Bool.eq_false_of_not_eq_true
+    intro htrue
+    have heq := (v14Assign_blockerVar_eq_true_iff cell hadded
+      (SafeCoverIndexBridge.coverIndex row) cell.2.1.blockerSourceIndex
+      hcenter).1 htrue
+    apply harm.1
+    apply Fin.ext
+    exact heq.symm
+  simp only [evalClauseD, List.any_cons, List.any_nil, Bool.or_false,
+    evalLitD_negNat, hfalse, Bool.not_false]
+
+/-- Every binary clause emitted for one named-deletion blocker center is true
+under the canonical source assignment. -/
+theorem v14Assign_sat_namedDeletionBinaryClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    {center k : Nat}
+    (hcenter : center ∈ blockerCenters ((physicalSources cell).getD
+      cell.2.1.blockerSourceIndex.val 0))
+    (hk : k ∈ candidateIndicesMatching center fun m =>
+      m.testBit cell.2.1.deletionLabel.val) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (namedDeletionBinaryClause cell center k) = true := by
+  have hcenterLt : center < 12 := by
+    have hmem := (List.mem_filter.mp hcenter).1
+    exact List.mem_range.mp hmem
+  have hkmem := List.mem_filter.mp hk
+  have hkLt : k < SafeCoverCnf.candCount center :=
+    List.mem_range.mp hkmem.1
+  have hkBit :
+      ((SafeCoverCnf.candMasks center).getD k 0).testBit
+          cell.2.1.deletionLabel.val = true :=
+    hkmem.2
+  by_cases hselected : center = (blocker cell.2.1.blockerSourceIndex).val
+  · subst center
+    have harm : cell.2.1.Holds row blocker :=
+      hadded.2.2.2.2.2.2.2.2.1
+    have hxfalse :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (SafeCoverCnf.xVar
+              (blocker cell.2.1.blockerSourceIndex).val k) = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro hxtrue
+      have hkEq := (v14Assign_xVar_eq_true_iff cell blocker
+        (SafeCoverIndexBridge.coverIndex row)
+        (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+        (blocker cell.2.1.blockerSourceIndex).isLt hkLt).1 hxtrue
+      have hselectedBit := hkBit
+      rw [hkEq,
+        SafeCoverIndexBridge.coverIndex_testBit_of_safeCubeOK hrow
+          (blocker cell.2.1.blockerSourceIndex)
+          cell.2.1.deletionLabel] at hselectedBit
+      exact harm.2 (of_decide_eq_true hselectedBit)
+    simp only [namedDeletionBinaryClause, evalClauseD, List.any_cons,
+      List.any_nil, Bool.or_false, evalLitD_negNat, hxfalse,
+      Bool.not_false, Bool.or_true]
+  · have hblockerFalse :
+        v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)
+            (blockerVar cell cell.2.1.blockerSourceIndex center) = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro htrue
+      exact hselected
+        ((v14Assign_blockerVar_eq_true_iff cell hadded
+          (SafeCoverIndexBridge.coverIndex row)
+          cell.2.1.blockerSourceIndex hcenter).1 htrue)
+    simp only [namedDeletionBinaryClause, evalClauseD, List.any_cons,
+      evalLitD_negNat, hblockerFalse, Bool.not_false, Bool.true_or]
+
+/-- Every clause emitted at one admissible named-deletion blocker center is
+true under the canonical source assignment. -/
+theorem v14Assign_sat_namedDeletionCenterClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    {center : Nat}
+    (hcenter : center ∈ blockerCenters ((physicalSources cell).getD
+      cell.2.1.blockerSourceIndex.val 0)) :
+    ∀ c ∈ namedDeletionCenterClauses cell center,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  by_cases htwo : center = 2
+  · subst center
+    rw [namedDeletionCenterClauses, if_pos rfl, List.mem_append] at hc
+    rcases hc with hc | hc
+    · simp only [List.mem_cons, List.not_mem_nil, or_false] at hc
+      subst c
+      exact v14Assign_sat_namedDeletionCenterTwoUnit cell hrow hadded
+    · obtain ⟨k, hk, rfl⟩ := List.mem_map.mp hc
+      exact v14Assign_sat_namedDeletionBinaryClause cell hrow hadded hcenter hk
+  · simp only [namedDeletionCenterClauses, if_neg htwo, List.nil_append] at hc
+    obtain ⟨k, hk, rfl⟩ := List.mem_map.mp hc
+    exact v14Assign_sat_namedDeletionBinaryClause cell hrow hadded hcenter hk
+
+/-- The canonical source assignment satisfies every exact clause emitted for
+the selected named-deletion arm. -/
+theorem v14Assign_sat_namedDeletionArmClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ namedDeletionArmClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c =
+          true := by
+  intro c hc
+  simp only [namedDeletionArmClauses, List.mem_flatMap] at hc
+  obtain ⟨center, hcenter, hc⟩ := hc
+  exact v14Assign_sat_namedDeletionCenterClauses cell hrow hadded hcenter c hc
 
 /-- At-least-one blocker clause emitted after the ten implications of one
 physical source. -/
