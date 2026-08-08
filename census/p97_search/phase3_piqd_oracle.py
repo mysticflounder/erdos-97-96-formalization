@@ -25,6 +25,17 @@ _HEX_DIGITS = frozenset("0123456789abcdef")
 class PiqdOracleError(RuntimeError):
     """Raised when piqd or its response violates the adapter contract."""
 
+    def __init__(
+        self,
+        message: str,
+        *,
+        retryable: bool = False,
+        http_status: int | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.retryable = retryable
+        self.http_status = http_status
+
 
 @dataclass(frozen=True)
 class HttpResponse:
@@ -49,6 +60,7 @@ class PreparedJob:
 class CheckedModel:
     assignment: tuple[int, ...]
     response_sha256: str
+    response_body: bytes
 
 
 Transport = Callable[[str, str, bytes | None, Mapping[str, str]], HttpResponse]
@@ -196,13 +208,19 @@ class PiqdRawDimacsClient:
                 method, f"{self.base_url}{path}", body, headers or {}
             )
         except OSError as exc:
-            raise PiqdOracleError(f"piqd transport failed: {exc}") from exc
+            raise PiqdOracleError(
+                f"piqd transport failed: {exc}", retryable=True
+            ) from exc
 
     @staticmethod
     def _json(response: HttpResponse, *, expected_status: int) -> Mapping[str, Any]:
         if response.status != expected_status:
             snippet = response.body[:400].decode("utf-8", errors="replace")
-            raise PiqdOracleError(f"piqd returned HTTP {response.status}: {snippet}")
+            raise PiqdOracleError(
+                f"piqd returned HTTP {response.status}: {snippet}",
+                retryable=response.status in {408, 429} or response.status >= 500,
+                http_status=response.status,
+            )
         try:
             value = json.loads(response.body)
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
@@ -348,7 +366,9 @@ class PiqdRawDimacsClient:
                 return str(state)
         snippet = response.body[:400].decode("utf-8", errors="replace")
         raise PiqdOracleError(
-            f"piqd confirm failed with HTTP {response.status}: {snippet}"
+            f"piqd confirm failed with HTTP {response.status}: {snippet}",
+            retryable=response.status in {408, 429} or response.status >= 500,
+            http_status=response.status,
         )
 
     def status(self, job_id: str) -> Mapping[str, Any]:
@@ -364,7 +384,11 @@ class PiqdRawDimacsClient:
             raise PiqdOracleError("expected CNF bytes do not match the prepared job")
         response = self._request("GET", f"/jobs/{job.job_id}/cnf")
         if response.status != 200:
-            raise PiqdOracleError(f"piqd CNF retrieval returned HTTP {response.status}")
+            raise PiqdOracleError(
+                f"piqd CNF retrieval returned HTTP {response.status}",
+                retryable=response.status in {408, 429} or response.status >= 500,
+                http_status=response.status,
+            )
         if response.body != expected_cnf:
             raise PiqdOracleError("piqd did not return the exact submitted CNF bytes")
         return sha256_bytes(response.body)
@@ -397,7 +421,54 @@ class PiqdRawDimacsClient:
         validate_dimacs_assignment(
             num_vars=num_vars, clauses=clauses, assignment=assignment
         )
-        return CheckedModel(tuple(assignment), sha256_bytes(response.body))
+        return CheckedModel(
+            tuple(assignment), sha256_bytes(response.body), response.body
+        )
+
+    def log(self, job: PreparedJob) -> tuple[bytes, str]:
+        """Retrieve a completed job's full paginated solver log."""
+
+        chunks: list[bytes] = []
+        offset = 0
+        expected_total: int | None = None
+        while expected_total is None or offset < expected_total:
+            query = urllib.parse.urlencode({"from": offset, "max": 1024 * 1024})
+            response = self._request("GET", f"/jobs/{job.job_id}/log?{query}")
+            if response.status != 200:
+                snippet = response.body[:400].decode("utf-8", errors="replace")
+                raise PiqdOracleError(
+                    f"piqd log retrieval returned HTTP {response.status}: {snippet}",
+                    retryable=response.status in {408, 429} or response.status >= 500,
+                    http_status=response.status,
+                )
+            total_header = next(
+                (
+                    value
+                    for key, value in response.headers.items()
+                    if key.lower() == "x-log-size-bytes"
+                ),
+                None,
+            )
+            try:
+                total = int(total_header) if total_header is not None else -1
+            except ValueError as exc:
+                raise PiqdOracleError(
+                    "piqd log response has invalid X-Log-Size-Bytes"
+                ) from exc
+            if total < 0:
+                raise PiqdOracleError("piqd log response is missing X-Log-Size-Bytes")
+            if expected_total is None:
+                expected_total = total
+            elif total != expected_total:
+                raise PiqdOracleError("piqd log size changed during retrieval")
+            if offset + len(response.body) > total:
+                raise PiqdOracleError("piqd log page exceeds its declared size")
+            if offset < total and not response.body:
+                raise PiqdOracleError("piqd log pagination made no progress")
+            chunks.append(response.body)
+            offset += len(response.body)
+        body = b"".join(chunks)
+        return body, sha256_bytes(body)
 
     def proof(self, job: PreparedJob) -> tuple[bytes, str]:
         if job.backend != "cadical":

@@ -93,12 +93,56 @@ attempt ledger. The adapter must:
 - reject `march_cu` proof manifests until every cube proof has been retrieved
   and independently checked.
 
-The reference adapter is deliberately one-shot: it does not poll, retry, or
-write the authoritative attempt journal. Production driver integration remains
-an explicit next gate. That driver must append every retry, transport timeout,
-HTTP/daemon failure, and solver `UNKNOWN` before it retries or returns. In
-particular it must preserve the failed request when recovering from
-`PIQD-RAW-001`; a successful re-prepare cannot erase that earlier attempt.
+The one-shot adapter lives in
+`census/p97_search/phase3_piqd_oracle.py`. The production lifecycle driver in
+`census/p97_search/phase3_piqd_driver.py` adds bounded prepare, confirm, poll,
+and result-retrieval loops around it. Before every retry or terminal return it
+stores a canonical `p97-cegar-piqd-event/v1` artifact and appends the matching
+hash-chained wave attempt. An append whose durability is uncertain stops all
+further oracle calls and exposes the exact pending record.
+
+The driver keeps these terminal cases distinct in the event artifact:
+
+- a raw solver timeout reported as `completed/UNKNOWN` is `SOLVER_UNKNOWN`;
+- a piqd lifecycle `failed` state is `DAEMON_FAILED`;
+- exhausted nonterminal polling is `POLL_TIMEOUT`;
+- checked SAT is `STRUCTURAL_SAT`; and
+- solver UNSAT plus an archived full log is only `DISCOVERY_UNSAT`.
+
+The frozen wave-attempt vocabulary has no raw-solver-unknown label, so the
+first three cases use outer outcome `ERROR`; they must not be mislabeled
+`METRIC_UNKNOWN`, which has metric-validation semantics. The structured event
+preserves the finer reason without changing the v1 schema.
+
+The driver retrieves paginated solver logs as exact bytes, archives all event,
+model-response, and log artifacts by SHA-256, and writes a deterministic
+`p97-cegar-wave-journal-seal/v1` binding the manifest, record count, terminal
+attempt, and journal bytes. Reopening or reusing a journal rehashes every
+referenced artifact and revalidates the current journal and seal bytes. Append
+and seal operations share an exclusive lock, so a sealed journal cannot be
+extended or raced with a concurrent append.
+This recovers safely from `PIQD-RAW-001`: the HTTP 500 attempt is durable before
+re-prepare, so the later existing-job success cannot erase the race.
+
+Example invocation:
+
+```bash
+PYTHONPATH=. uv run python -m census.p97_search.phase3_piqd_driver \
+  --base-url http://127.0.0.1:8080 \
+  --wave-manifest scratch/wave.json \
+  --cnf scratch/wave.cnf \
+  --producer-manifest scratch/producer.json \
+  --journal scratch/wave-attempts.jsonl
+```
+
+The CLI returns 0 for a checked structural SAT counterexample, 3 for
+discovery-only UNSAT, and 2 for operational error, timeout, or unknown. Code 3
+is intentionally nonzero so a shell wrapper cannot promote an unchecked UNSAT
+merely by testing process success; wrappers should parse the emitted outcome.
+
+This driver closes the control-plane journaling gate only. `DISCOVERY_UNSAT`
+still needs independent proof checking and replay before publication, and no
+driver result closes the live Lean theorem by itself.
 
 piqd defects found while implementing this boundary are tracked in
 `docs/audits/piqd-integration-bugs-2026-08-07.md`.
@@ -110,5 +154,6 @@ Run the focused contract suite with:
 ```bash
 PYTHONPATH=. uv run --with pytest pytest -q \
   census/p97_search/tests/test_phase3_cegar_wave.py \
-  census/p97_search/tests/test_phase3_piqd_oracle.py
+  census/p97_search/tests/test_phase3_piqd_oracle.py \
+  census/p97_search/tests/test_phase3_piqd_driver.py
 ```

@@ -189,6 +189,17 @@ def test_prepare_rejects_profile_that_piqd_would_silently_ignore() -> None:
         client.prepare_cnf(wave_manifest=wave, cnf=CNF, producer_manifest=PRODUCER)
 
 
+def test_http_500_is_explicitly_retryable_for_the_outer_driver() -> None:
+    transport = ScriptedTransport([json_response(500, {"error": "insert raced"})])
+    client = PiqdRawDimacsClient("http://piqd.test", transport=transport)
+    with pytest.raises(PiqdOracleError) as exc_info:
+        client.prepare_cnf(
+            wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+        )
+    assert exc_info.value.retryable is True
+    assert exc_info.value.http_status == 500
+
+
 @pytest.mark.parametrize(
     "producer",
     [b'{"source": "fixture", "encoder": "p97-test"}', b'{"value":NaN}'],
@@ -214,11 +225,55 @@ def test_confirm_409_rereads_status_instead_of_assuming_failure() -> None:
     assert [call[0] for call in transport.calls] == ["GET", "POST", "GET"]
 
 
+def test_confirm_500_is_retryable_after_exact_cnf_check() -> None:
+    transport = ScriptedTransport(
+        [HttpResponse(200, CNF, {}), json_response(500, {"error": "temporary"})]
+    )
+    client = PiqdRawDimacsClient("http://piqd.test", transport=transport)
+    with pytest.raises(PiqdOracleError) as exc_info:
+        client.confirm(prepared_job(), expected_cnf=CNF)
+    assert exc_info.value.retryable is True
+    assert exc_info.value.http_status == 500
+
+
+def test_stored_cnf_500_is_retryable() -> None:
+    client = PiqdRawDimacsClient(
+        "http://piqd.test",
+        transport=ScriptedTransport([json_response(500, {"error": "temporary"})]),
+    )
+    with pytest.raises(PiqdOracleError) as exc_info:
+        client.verify_stored_cnf(prepared_job(), CNF)
+    assert exc_info.value.retryable is True
+    assert exc_info.value.http_status == 500
+
+
 def test_stored_cnf_must_match_exact_submitted_bytes() -> None:
     transport = ScriptedTransport([HttpResponse(200, CNF + b"c changed\n", {})])
     client = PiqdRawDimacsClient("http://piqd.test", transport=transport)
     with pytest.raises(PiqdOracleError, match="exact submitted CNF"):
         client.verify_stored_cnf(prepared_job(), CNF)
+
+
+def test_log_retrieval_paginates_and_hashes_exact_bytes() -> None:
+    transport = ScriptedTransport(
+        [
+            HttpResponse(200, b"ab", {"X-Log-Size-Bytes": "3"}),
+            HttpResponse(200, b"c", {"x-log-size-bytes": "3"}),
+        ]
+    )
+    client = PiqdRawDimacsClient("http://piqd.test", transport=transport)
+    body, digest_value = client.log(prepared_job())
+    assert body == b"abc"
+    assert digest_value == sha256_bytes(body)
+    assert "from=0" in transport.calls[0][1]
+    assert "from=2" in transport.calls[1][1]
+
+
+def test_log_retrieval_rejects_nonprogressing_page() -> None:
+    transport = ScriptedTransport([HttpResponse(200, b"", {"X-Log-Size-Bytes": "1"})])
+    client = PiqdRawDimacsClient("http://piqd.test", transport=transport)
+    with pytest.raises(PiqdOracleError, match="made no progress"):
+        client.log(prepared_job())
 
 
 def test_confirm_refuses_to_post_when_stored_cnf_differs() -> None:

@@ -1,5 +1,8 @@
 # piqd integration bug handoff — 2026-08-07
 
+Audit status: updated through 2026-08-08; one confirmed daemon bug and two
+source-audit candidates remain open.
+
 This log records piqd defects found while implementing the P97
 `p97-cegar-wave/v1` integration. It is a handoff for a separate piqd agent; it
 does not track missing P97 features or desired piqd enhancements.
@@ -35,6 +38,12 @@ separately so they are not misfiled as bugs.
   even though the immutable raw-DIMACS identity was accepted by a sibling
   request. The wave journal must preserve the failed attempt and may recover by
   re-preparing/re-reading; it must not silently discard it.
+- **P97 containment now implemented:**
+  `census/p97_search/phase3_piqd_driver.py` treats HTTP 500 as retryable but
+  appends the exact failed `PREPARE` event before making the next request. The
+  retry remains bounded and a journal append with uncertain durability stops
+  the lifecycle immediately. This prevents evidence loss but does not repair
+  the piqd race.
 - **Regression test:** issue concurrent identical multipart submissions behind
   a barrier and assert the expected behavior above, including exact stored blob
   bytes.
