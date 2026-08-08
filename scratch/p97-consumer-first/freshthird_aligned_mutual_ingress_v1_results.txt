@@ -1,0 +1,8 @@
+campaign=freshthird_aligned_mutual_ingress_v1
+claim_scope=bounded structural diagnostic only; no universal closure
+source_model=only named retained producer facts; no stale metric cuts
+positive_contract=sat arms=0,0 row0_support=source0,source1,p2,q2 row1_support=source0,source1,p2,q2
+negative_overfull_row0=unsat
+unknown_policy=fail-closed
+positive_smt=/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_ingress_v1_positive.smt2
+overfull_smt=/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_ingress_v1_overfull_row.smt2
