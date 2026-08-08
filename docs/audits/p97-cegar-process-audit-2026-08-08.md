@@ -20,6 +20,9 @@ The repository now has most of that control plane:
   CaDiCaL LRAT in Lean, and seals the journal;
 - the v3 resume gate treats `CHECKPOINT` idempotently and refuses v2/v3 output
   mixing; and
+- `phase3_piqd_campaign.py` enforces the authenticated three-cell stop/pivot
+  policy and recomputes each source receipt and classifier from one no-follow
+  byte snapshot; and
 - the productivity miner distinguishes local certificates, universal
   producers, and lifted consumers.
 
@@ -54,6 +57,7 @@ are all present.
 | Relaxation confused with geometry | The rigid-base full metric gate was `UNKNOWN`, while a weaker K4 abstract-distance surface was SAT (`e5001be2`). Its Kalmanson and triangle constraints are necessary but not sufficient for planar realization. | A model of a relaxation could be reported as a geometric counterexample, while a timeout could be reported as evidence. | Name the exact encoded surface in every result. Keep structural SAT, metric SAT, metric unknown, and Euclidean/Lean proof separate; `UNKNOWN` proves nothing. Add a realizability or source-level bridge before consumption. |
 | Resume-state drift | The first projected-static v3 replay omitted `CHECKPOINT` from the completed-state set, so `--resume` ran the solver again and appended two raw-SAT records. | A nominal replay mutated the run and changed its evidence history. | Fixed in `6da139bf`; regression coverage requires no solver call and no new manifest generation. Keep resume acceptance explicit per terminal/checkpoint state and compare canonical output bytes. |
 | Schema/provenance mixing | The v3 migration found v2 learned streams incompatible with v3; exact-six candidates imported a retired off-spine module and did not match the live Rigid221 hypotheses. | Stale artifacts looked reusable but had no valid route into the current consumer. | Fresh output roots per schema; authenticated prefix ingress; wave hashes for Lean leaf, ingress hypotheses, CNF, variable map, order, backend, and profile; proof-blueprint anchor on the live consumer. |
+| Mutable detector contract imported across stages | Expanding the repository-wide exact12 detector from the equality-only contract to a tagged multi-stage contract made a preserved v2 equality classifier fail validation even though its embedded source snapshot and certificate had not changed. | An unrelated later detector stage could retroactively invalidate an authenticated historical artifact, or tempt callers to waive validation. | Pin a versioned contract string and complete source-file closure in the classifier stage itself. All derivation, hash, manifest, and validation paths now use those pins; a regression monkeypatches a future global expansion and revalidates the classifier. This was P97 adapter/contract coupling, not a piqd daemon bug. |
 | Orphaned producer snapshots | The first exact12 normalized-v14 cell-0 candidate named three producer-source hashes that no longer matched the worktree, and those exact bytes were absent from Git history. Regeneration from current source reproduced the same CNF and source-replayed model, but that empirical agreement cannot repair the old artifact's custody gap. | A source-faithful artifact can become unverifiable even when its DIMACS bytes remain stable; silently accepting current sources would sever the claimed source-to-CNF contract. | Reject the stale package. Archive a content-addressed producer-source bundle when each job is generated, bind every listed path, byte count, and digest into the package, and regenerate plus replay after drift rather than waiving it. This is a P97 artifact-lifecycle defect, not a piqd daemon bug. |
 | Evidence-class collapse | Bounded UNSAT, learned clauses, exact-rational realizations, solver logs, and successful builds repeatedly risked being read as universal closure. | Local computation could be promoted past missing proof replay, lift, or consumer bridges. | Frozen outcome taxonomy and fail-closed publication assessment. piqd UNSAT remains `DISCOVERY_UNSAT` until proof bytes, independent checker, and replay receipt exist; even `CERTIFIED_UNSAT` remains only a publication candidate. |
 | Retry history loss | A successful retry could previously obscure the request that timed out or failed. The confirmed piqd identical-prepare race returns a transient HTTP 500 to one concurrent caller. | Operational failure rates and oracle ambiguity became invisible; a later success appeared cleaner than the actual run. | Append the structured failure event and fsync the hash-chained attempt before every bounded retry. Stop immediately on uncertain journal durability. A successful re-prepare never replaces the earlier failure. |
@@ -142,15 +146,15 @@ live Lean consumer + ingress hash
 - Fix and reproduce `PIQD-ENC-001` on the encoder endpoint. The raw-CNF sibling,
   raw profile validation, SMT model reachability, and `drat-trim` verdict gate
   are fixed in the installed piqd release.
-- Encode the now-exercised three-cell stop/pivot rule in a campaign controller.
-  The current `p97-cegar-wave/v1` schema authenticates one job but does not
-  enforce an ordered cell set, repeated-survivor equivalence key, threshold, or
-  terminal pivot. Until that controller exists, do not extend the exact12
-  static sampling described below.
-- Repair the exact12 structural detector's source entitlement and the Lean
-  consumer boundary before resuming refinement. In particular, a selected
-  four-point support is not automatically a complete ambient fiber, and a
-  duplicate-center-only terminal consumer cannot consume mixed detector stages.
+- Keep the now-implemented three-cell campaign controller fail closed. It
+  enforces the ordered cell set, repeated-survivor key, threshold, and terminal
+  pivot; it does not authorize distributed scheduling or establish coverage.
+- Supply the remaining exact12 source selection theorem before consuming the
+  PIQD classifier: for every `choice` in the five-row record, prove
+  `RowChoiceSelectedByCoverIndex row choice`, or equivalently prove the recorded
+  learned clause evaluates to false. The typed ingress and duplicate-center
+  checker are present, but the live source hypotheses do not yet provide those
+  five arbitrary positive row memberships.
 - Keep independent replay mandatory even after the `PIQD-PROOF-001` fix; piqd
   remains the proof-artifact producer, not the publication authority.
 - Decide whether piqd should expose a new raw-job requeue identity for terminal
@@ -338,7 +342,8 @@ files byte-identical at, respectively,
 `1f144cc2b9f1181b73b78484921475436468608ef2b6e3f0cdef5da5c9a8a2c9`
 and
 `ecd01de7a0b96c1e9b78606c195b3fab18cacfa33c88ef2cad9c816961a71e95`.
-The complete focused integration suite has 143 passing tests.
+After the stage-local contract correction and typed-ingress addition, the
+complete `test_phase3_piqd*.py` integration suite has 161 passing tests.
 
 This closes the narrow stop/pivot-enforcement and artifact-custody gap for the
 three-cell canary. It does **not** prove the classifier's mathematical
@@ -375,11 +380,42 @@ and classifier from its no-follow byte snapshots and requires canonical byte
 equality with both submitted artifacts. A learned clause is admissible only
 when each negated variable is positive in the replayed witness.
 
-This remedy remains finite and local. The named downstream Lean endpoint is
-`Problem97.Phase3DuplicateCenterCertificate.DuplicateCenterCertificate.not_realizes_of_check`,
-but no source-to-typed-Lean adapter yet constructs its metric core, safe-row
-proofs, and checked certificate from the campaign artifact. Accordingly the
-classifier and campaign continue to deny ambient-fiber completeness,
-aggregate coverage, universal lift, and Lean theorem closure. The ordered
-Fin-12 stage remains a separate lane. None of these adapter findings is a piqd
-daemon bug.
+This remedy remains finite and local. The cardinality-generic checked endpoint
+is
+`Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.DuplicateCenterNogood.not_realizes_of_positiveCheck`,
+not the older Fin-10 Phase-3 checker. A generated exact12 module now constructs
+the typed `DuplicateCenterNogood (Fin 12)`, proves its check by kernel
+computation, proves it equals the pre-existing
+`ExactTwelveV14DuplicateCenterCanary.record0`, and computes the same learned
+clause `[-6, -55, -155, -175, -525]`. The classifier hash and input hashes in
+that module are metadata rather than kernel authentication. The logical
+duplicate-center obstruction and its conditional source consumers predated
+this adapter; its new value is the explicit mapping from the authenticated
+PIQD artifact into the existing typed record.
+
+The remaining live bridge is source selection, not certificate checking. A
+consumer still needs either
+`∀ choice ∈ record0.choices, RowChoiceSelectedByCoverIndex row choice` or the
+equivalent proof that `evalClauseD` makes the recorded learned clause false.
+The current source ingress supplies safe/canonical rows and partial roles, but
+not all five of those positive memberships. The generated module remains
+off-spine and continues to deny executed-byte provenance, aggregate coverage,
+universal lift, and Lean theorem closure. The ordered Fin-12 stage remains a
+separate lane. None of these adapter findings is a piqd daemon bug.
+
+For clean-checkout reproducibility, the exact 486,333-byte validated classifier
+is committed as the lossless 68,592-byte fixture
+`census/p97_search/tests/fixtures/p97_source_duplicate_center_classifier_0000.v2.json.xz`.
+Its compressed SHA-256 is
+`12ffe7ffb88b970f5d2c99cb7b741748e7feb123141597b3420b544036f28f5f`;
+its decompressed-byte SHA-256 is
+`b070d150237ebd135c365d27beeea8f1fb087ff27806298442969a1882c2d264`;
+and its canonical JSON SHA-256 is
+`f183e53818371bcb4b060ed981301e67db0b51d9fc7ed9072571f05fefb30c91`.
+The emitter accepts raw JSON or one bounded xz stream, rejects trailing or
+concatenated streams and decoded input above 2 MiB, revalidates the full v2
+contract, and regenerates the checked-in Lean file byte for byte. A targeted
+`proof-blueprint spine` audit reports the generated
+`not_realizes_of_positiveMatches` theorem source-clean at 0 open nodes out of
+36; this is a local conditional theorem and does not make the unimported module
+a live consumer.

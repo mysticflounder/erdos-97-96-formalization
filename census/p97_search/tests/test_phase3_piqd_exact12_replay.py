@@ -6,6 +6,7 @@ from types import SimpleNamespace
 
 import pytest
 
+from census.card_head import exact12_v14_structural_cegar as structural_cegar
 from census.p97_search import phase3_piqd_exact12_replay as replay
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -502,7 +503,7 @@ def test_detector_source_snapshot_rejects_symlink(
     target = tmp_path / "target.py"
     target.write_bytes(b"pass\n")
     (detector_root / "detector.py").symlink_to(target)
-    monkeypatch.setattr(replay, "DETECTOR_FILES", ("detector.py",))
+    monkeypatch.setattr(replay, "SOURCE_CLASSIFIER_DETECTOR_FILES", ("detector.py",))
     job, cnf, model = fixture_paths
     with pytest.raises(replay.Exact12PiqdReplayError, match="without following"):
         replay.derive_source_duplicate_center_classifier_snapshot(
@@ -533,7 +534,39 @@ def test_detector_source_bytes_are_opened_only_for_initial_snapshot(
 
     monkeypatch.setattr(replay, "_read_detector_source_no_follow", counted_read)
     _derive_classifier(fixture_paths)
-    assert opened == list(replay.DETECTOR_FILES)
+    assert opened == list(replay.SOURCE_CLASSIFIER_DETECTOR_FILES)
+
+
+def test_source_classifier_contract_is_independent_of_global_detector_expansion(
+    fixture_paths: tuple[Path, Path, Path],
+    stub_source: None,
+    duplicate_center_detector: dict,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _receipt, classifier = _derive_classifier(fixture_paths)
+    pinned_contract = replay.SOURCE_CLASSIFIER_DETECTOR_CONTRACT
+    pinned_files = replay.SOURCE_CLASSIFIER_DETECTOR_FILES
+
+    monkeypatch.setattr(
+        structural_cegar,
+        "DETECTOR_CONTRACT",
+        "expanded tagged detector contract introduced after classifier derivation",
+    )
+    monkeypatch.setattr(
+        structural_cegar,
+        "DETECTOR_FILES",
+        pinned_files + ("census/card_head/future_detector_stage.py",),
+    )
+
+    assert replay.SOURCE_CLASSIFIER_DETECTOR_CONTRACT == (
+        "formalized order-independent metric core plus exact certificate replay"
+    )
+    assert replay.SOURCE_CLASSIFIER_DETECTOR_CONTRACT == pinned_contract
+    assert replay.SOURCE_CLASSIFIER_DETECTOR_FILES == pinned_files
+    assert list(replay.SOURCE_CLASSIFIER_DETECTOR_FILES) == [
+        entry["path"] for entry in classifier["detector_source_manifest"]
+    ]
+    replay.validate_source_duplicate_center_classifier(classifier)
 
 
 @pytest.mark.parametrize(

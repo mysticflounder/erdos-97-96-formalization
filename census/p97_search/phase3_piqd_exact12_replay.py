@@ -27,8 +27,6 @@ from census.card_head.exact12_v14_bound_jobs import (
 from census.card_head.exact12_v14_cell_run import cnf_assignment_satisfies
 from census.card_head.exact12_v14_schedule import build_manifest, json_sha256
 from census.card_head.exact12_v14_structural_cegar import (
-    DETECTOR_CONTRACT,
-    DETECTOR_FILES,
     Exact12V14StructuralCegarError,
     _canonical_cube_payload,
     detect_structural_certificate,
@@ -56,6 +54,22 @@ SOURCE_CLASSIFIER_STATUS = (
     "FINITE_LOCAL_SOURCE_DERIVED_DUPLICATE_CENTER_WITH_RESIDENT_SOURCE_SNAPSHOT"
 )
 SOURCE_CLASSIFIER_STAGE = "equality-duplicate-center"
+SOURCE_CLASSIFIER_DETECTOR_CONTRACT = (
+    "formalized order-independent metric core plus exact certificate replay"
+)
+SOURCE_CLASSIFIER_DETECTOR_FILES: tuple[str, ...] = (
+    "census/card_head/exact12_v14_structural_cegar.py",
+    "census/card_head/sat_encoding.py",
+    "census/global_confinement/metric_realizability_probe.py",
+    "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+    "census/p97_search/phase3_classification_context.py",
+    "census/p97_search/phase3_order_universe.py",
+)
+# Compatibility names used by the campaign's artifact builders.  These are
+# local aliases of the stage-specific pins, not imports from the mutable global
+# structural-detector contract.
+DETECTOR_CONTRACT = SOURCE_CLASSIFIER_DETECTOR_CONTRACT
+DETECTOR_FILES = SOURCE_CLASSIFIER_DETECTOR_FILES
 SOURCE_CLASSIFIER_SCOPE = (
     "one authenticated finite exact12 source-job/CNF/model snapshot; selected "
     "positive support and replayed duplicate-center certificate only; detector "
@@ -204,7 +218,7 @@ def _detector_source_manifest(repo_root: Path) -> list[dict[str, Any]]:
     """Capture the complete declared detector source closure exactly once."""
 
     manifest: list[dict[str, Any]] = []
-    for relative in DETECTOR_FILES:
+    for relative in SOURCE_CLASSIFIER_DETECTOR_FILES:
         payload = _read_detector_source_no_follow(Path(repo_root), relative)
         manifest.append(
             {
@@ -218,11 +232,15 @@ def _detector_source_manifest(repo_root: Path) -> list[dict[str, Any]]:
 
 
 def _validate_detector_source_manifest(value: Any) -> list[Mapping[str, Any]]:
-    if not isinstance(value, list) or len(value) != len(DETECTOR_FILES):
+    if not isinstance(value, list) or len(value) != len(
+        SOURCE_CLASSIFIER_DETECTOR_FILES
+    ):
         raise Exact12PiqdReplayError(
             "source classifier detector source bundle is incomplete"
         )
-    for expected_path, item in zip(DETECTOR_FILES, value, strict=True):
+    for expected_path, item in zip(
+        SOURCE_CLASSIFIER_DETECTOR_FILES, value, strict=True
+    ):
         if not isinstance(item, Mapping) or set(item) != {
             "path",
             "bytes",
@@ -266,7 +284,10 @@ def _validate_detector_source_manifest(value: Any) -> list[Mapping[str, Any]]:
 
 def _detector_contract_sha256(manifest: Sequence[Mapping[str, Any]]) -> str:
     return _json_sha256(
-        {"detector_contract": DETECTOR_CONTRACT, "source_manifest": list(manifest)}
+        {
+            "detector_contract": SOURCE_CLASSIFIER_DETECTOR_CONTRACT,
+            "source_manifest": list(manifest),
+        }
     )
 
 
@@ -321,7 +342,7 @@ def validate_source_duplicate_center_classifier(value: Mapping[str, Any]) -> Non
         or value["status"] != SOURCE_CLASSIFIER_STATUS
         or value["scope"] != SOURCE_CLASSIFIER_SCOPE
         or value["stage"] != SOURCE_CLASSIFIER_STAGE
-        or value["detector_contract"] != DETECTOR_CONTRACT
+        or value["detector_contract"] != SOURCE_CLASSIFIER_DETECTOR_CONTRACT
         or value["detector_custody"] != SOURCE_CLASSIFIER_DETECTOR_CUSTODY
         or value["row_semantics"] != SOURCE_CLASSIFIER_SEMANTICS
         or value["claims"] != SOURCE_CLASSIFIER_CLAIMS
@@ -797,7 +818,7 @@ def derive_source_duplicate_center_classifier_snapshot(
         "source_bundle_sha256": _sha256(source_bundle_bytes),
         "cube": cube,
         "cube_sha256": _json_sha256(cube),
-        "detector_contract": DETECTOR_CONTRACT,
+        "detector_contract": SOURCE_CLASSIFIER_DETECTOR_CONTRACT,
         "detector_source_manifest": detector_manifest,
         "detector_custody": dict(SOURCE_CLASSIFIER_DETECTOR_CUSTODY),
         "detector_contract_sha256": _detector_contract_sha256(detector_manifest),
