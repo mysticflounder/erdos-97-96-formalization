@@ -1471,3 +1471,33 @@ Thus exact cardinalities 12 through 16 are closed for this one on-spine
 Rigid221 residual, and its lower frontier is now `17 ≤ |A|`.  This does not
 exclude all 16-point P97 counterexamples.  Immediate constructor fan-out
 remains one.
+
+## 13.23 Exact-17 cap reductions and cap-nine frontier (2026-08-07)
+
+The source packet itself gives a deterministic reduction for two of the three
+exact-17 second-cap profiles.  When the second cap has cardinality eleven, its
+strict interior has nine points.  The seven named Rigid221 points occupy seven
+of them, and the four source rows omit both remaining points.  Deleting those
+two gaps gives a cyclic-order-preserving double-skip embedding into the checked
+exact-15 four-row bank.  When the second cap has cardinality ten, the analogous
+single unused point reduces to the checked exact-16 bank.
+
+The corresponding Lean theorems
+`..._card_eq_seventeen_secondCapEleven` and
+`..._card_eq_seventeen_secondCapTen` are source-clean.  Their audited axiom
+closures are exactly `propext`, `Classical.choice`, `Lean.ofReduceBool`,
+`Lean.trustCompiler`, and `Quot.sound`: no `sorryAx`, with the compiler trust
+coming only from the accepted finite-bank `native_decide` boundary.
+
+The former single `17 ≤ |A|` child is therefore a checked coordinator with two
+live children:
+
+1. exact cardinality seventeen with second-cap cardinality nine; and
+2. `18 ≤ |A|`.
+
+This is a genuine two-coordinate narrowing, but it is not full exact-17 or
+full-P97 closure.  The cap-nine child is now the only exact-17 stratum of this
+Rigid221 residual and is the source-faithful CEGAR target.  Because the split
+replaces one live leaf by two narrower live leaves, immediate constructor
+fan-out changes from one to two even though the ten- and eleven-cap strata are
+closed.

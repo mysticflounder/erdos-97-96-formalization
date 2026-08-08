@@ -4,7 +4,7 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The remaining direct production proof surface is **20 `sorry`-carrying leaf
+The remaining direct production proof surface is **21 `sorry`-carrying leaf
 theorems**, all in the A-tail frontier below the route-B tail of the
 removable-vertex core (`P97/ATail/FrontierLiveClosure.lean`, four of them in
 its nested `TwoSourceExactCollisionRowsTerminal` namespace). The frontier's
@@ -24,6 +24,13 @@ closed.** The former companion repo
 `p97-rvol` is historical as of 2026-07-06: its U-lane route-B tail was
 imported here on 2026-07-05, and its status docs are superseded by this
 repo. See **Proof status** below for the kernel-reported state.
+
+Current Rigid221 checkpoint: exact cardinalities 12 through 16 are closed for
+the source-heavy BlockerV residual.  At exact 17, the second-cap-10 and
+second-cap-11 profiles reduce respectively to the checked exact-16 and
+exact-15 banks; only the exact-17/second-cap-9 profile remains, alongside the
+unbounded `|A| ≥ 18` continuation.  This is branch-local narrowing, not an
+exclusion of all 17-point P97 counterexamples.
 
 ## What is formalized
 
@@ -67,7 +74,7 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both published claims still reach `sorryAx` through twenty direct A-tail
+**Both published claims still reach `sorryAx` through twenty-one direct A-tail
 leaf theorems** (`proof-blueprint spine`, current as of this checkout). The
 hard core of the descent step —
 [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
