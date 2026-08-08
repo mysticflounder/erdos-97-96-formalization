@@ -277,9 +277,12 @@ closure, reinforcing the same decision. The prescribed work was, in order:
    against the source semantics; and
 4. implement the documented campaign-controller gap so the ordered cell set,
    eligibility gates, repetition key, threshold, and pivot reason are enforced
-   by a durable manifest rather than conversation discipline. This narrow
-   controller item is now complete; the first three mathematical and promotion
-   items remain open.
+   by a durable manifest rather than conversation discipline.
+
+The controller item is complete. The source-derived classifier described
+below also closes item 1 for the equality-duplicate-center stage and closes
+the artifact-binding half of item 2. The typed Lean consumer adapter in item 2
+and the separate ordered Fin-12 replay in item 3 remain open.
 
 Cells 1 and 2 also retain
 `UPSTREAM_DIGEST_ONLY_NOT_ARCHIVED_OR_REPLAYED` for the blocked-job input.
@@ -293,13 +296,15 @@ terminal obstruction, a universal producer or lift, a live consumer, or any
 
 The bounded canary is now executable policy rather than conversation-only
 discipline. `phase3_piqd_campaign.py` implements the frozen
-`p97-cegar-campaign/v1` contract for a dense ordered cell list, one
-predeclared diagnostic repetition key, threshold three, and at most one cell
-in flight. Under an exclusive campaign lock it authenticates the package,
+`p97-cegar-campaign/v2` contract for a dense ordered cell list, one
+predeclared source-derived repetition key, threshold three, and at most one
+cell in flight. Under an exclusive campaign lock it authenticates the package,
 wave, archived source bundle, sealed driver journal, terminal SAT checkpoint,
-model, source-semantic receipt, and diagnostic classifier before appending a
-hash-chained record. Three consecutive eligible records produce a canonical
-`PIVOT_REQUIRED` result; later admissions fail closed.
+model, source-semantic receipt, and source-derived classifier before appending
+a hash-chained record. Three consecutive eligible records produce a canonical
+`PIVOT_REQUIRED` result; later admissions fail closed. Legacy v1 campaign,
+record, result, and source-classifier artifacts are rejected with an explicit
+regeneration error.
 
 An adversarial review found and then closed custody and restart gaps in the
 first implementation: relabelled cells, package cross-binding omissions,
@@ -310,29 +315,71 @@ original paths only as canonical identity labels. The public path API and CLI
 delegate to that same core. Campaign admission snapshots the source job, CNF,
 and model once with no-follow reads and never reopens them during replay;
 mutation or deletion after admission therefore cannot change the accepted
-bytes. Malformed receipt hashes and noncanonical JSON are campaign errors, not
-uncaught exceptions or permissive fallbacks.
+bytes. The classifier also snapshots each declared detector source exactly
+once through component-wise no-follow regular-file opens and embeds the full
+base64 source bundle. This proves custody of the resident source snapshot, not
+that the already-imported Python interpreter executed those exact bytes; the
+artifact records `executed_byte_provenance = false`. Malformed receipt hashes
+and noncanonical JSON are campaign errors, not uncaught exceptions or
+permissive fallbacks.
 
 The final-code canary is preserved at
-`scratch/p97-piqd-campaign-canary-snapshot-2026-08-08-v2/`. Its canonical
+`scratch/p97-piqd-source-classifier-canary-2026-08-08-v2/`. Its canonical
 campaign SHA-256 is
-`92db78cd53a80ee33cc88feaa927efd3a1a610d43ad0f68037690e5d3e88fd3a`,
+`3459f294aca7ad1ffb91d3d3d877fc0ef9cb913a61e289bd590c44cc650596d9`,
 the final campaign record is
-`e6c8df9666e151055a600ee413eab0a9a915c8cd1345b48fb81d4f5cdc24328a`,
+`3f8d8665503d678055e09234c5222cf397b9afb6579300ba84664b086e3b7c8b`,
 and the canonical result is
-`4b894952369e5cf00059754e20ea3bf5528ee43ec2fc6fef0f6f31e1f8ea673b`.
+`10d7b93ed818139d15444e6e6100a4e5b56fd8606ca8a6b88d901ecb3da599dc`.
 The result is `PIVOT_REQUIRED` for ordinals 0 through 2 with pivot
-`repair-source-entitlement`. Re-admitting ordinal 2 left the state and result
+`repair-lean-duplicate-center-consumer`. Re-admitting ordinal 2 left the state
+and result
 files byte-identical at, respectively,
-`c6cf0d014a7b9bdd48cf99b4977d5232d734ccfc55705494ef82d0e23f20790f`
+`1f144cc2b9f1181b73b78484921475436468608ef2b6e3f0cdef5da5c9a8a2c9`
 and
-`d3117795c0de30363bae87d2ae53606643b000656ce5e82eb6f33afa51df0916`.
-The complete focused integration suite has 120 passing tests.
+`ecd01de7a0b96c1e9b78606c195b3fab18cacfa33c88ef2cad9c816961a71e95`.
+The complete focused integration suite has 143 passing tests.
 
 This closes the narrow stop/pivot-enforcement and artifact-custody gap for the
 three-cell canary. It does **not** prove the classifier's mathematical
 equivalence to a missing invariant, authorize parallel or distributed
-scheduling, establish aggregate cell coverage, repair source entitlement,
-connect the stage to a Lean consumer, or close a theorem. The result records
-`aggregate_coverage = false`, `source_entitlement = false`, and
-`theorem_closure = false`. No new piqd daemon bug was found during this work.
+scheduling, establish aggregate cell coverage, supply end-to-end source
+entitlement to a Lean consumer, or close a theorem.
+The result records
+`aggregate_coverage = false`, `universal_lift = false`, and
+`lean_theorem_closure = false`. No new piqd daemon bug was found during this
+work.
+
+## Source-derived duplicate-center classifier
+
+A follow-up audit corrected an initially misleading diagnosis of the live
+cell-0 evidence. The replay receipt and the structural classifier had not
+described different or stale cubes: one path hashed an integer-keyed Python
+mapping while the other explicitly normalized the same variable identifiers
+to JSON string keys. Those representations serialize to the same canonical
+JSON object. The defect was instead contractual: campaign admission trusted a
+self-declared diagnostic classifier rather than deriving the classification
+from the authenticated source job, discovery CNF, model, and archived source
+bundle.
+
+The narrow admissible stage is now `equality-duplicate-center`. It replays the
+authenticated exact12 bytes, retains one canonical decoded cube, derives and
+independently validates a duplicate-center certificate from selected positive
+support, and records every metric row with `exact = false`. This is deliberate:
+the certificate only needs the displayed support as a subset, so it does not
+claim that the four selected points exhaust an ambient geometric fiber. The
+classifier binds the complete cube and certificate, the learned clause, the
+detector contract, the raw input hashes, and a detector-source snapshot
+manifest. Campaign admission independently recomputes both the replay receipt
+and classifier from its no-follow byte snapshots and requires canonical byte
+equality with both submitted artifacts. A learned clause is admissible only
+when each negated variable is positive in the replayed witness.
+
+This remedy remains finite and local. The named downstream Lean endpoint is
+`Problem97.Phase3DuplicateCenterCertificate.DuplicateCenterCertificate.not_realizes_of_check`,
+but no source-to-typed-Lean adapter yet constructs its metric core, safe-row
+proofs, and checked certificate from the campaign artifact. Accordingly the
+classifier and campaign continue to deny ambient-fiber completeness,
+aggregate coverage, universal lift, and Lean theorem closure. The ordered
+Fin-12 stage remains a separate lane. None of these adapter findings is a piqd
+daemon bug.

@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 from census.p97_search import phase3_piqd_campaign as campaign
+from census.p97_search import phase3_piqd_exact12_replay as exact12_replay
 from census.p97_search.phase3_piqd_driver import DurableAttemptJournal
 
 
@@ -49,6 +50,57 @@ def _accepted_receipt(
         "gates": {"exact_cnf": {"ok": True}, "source_faithful_candidate": {"ok": True}},
         "status": "ACCEPTED",
         "job": {"cell_index": cell_index, "piqd_job_id": job_id},
+    }
+
+
+def _source_classifier(
+    *,
+    model_raw: bytes,
+    source_job_raw: bytes,
+    discovery_cnf_raw: bytes,
+    source_bundle_raw: bytes,
+) -> dict[str, Any]:
+    cube = {str(center): [(center + 1) % 12] for center in range(12)}
+    certificate = {
+        "stage": exact12_replay.SOURCE_CLASSIFIER_STAGE,
+        "rows": [{"center": 0, "support": [1], "exact": False}],
+    }
+    detector_source = b"x"
+    manifest = [
+        {
+            "path": "synthetic-detector.py",
+            "bytes": len(detector_source),
+            "sha256": campaign.sha256_bytes(detector_source),
+            "content_base64": "eA==",
+        }
+    ]
+    return {
+        "schema": exact12_replay.SOURCE_CLASSIFIER_SCHEMA,
+        "status": exact12_replay.SOURCE_CLASSIFIER_STATUS,
+        "scope": exact12_replay.SOURCE_CLASSIFIER_SCOPE,
+        "model_sha256": campaign.sha256_bytes(model_raw),
+        "source_job_sha256": campaign.sha256_bytes(source_job_raw),
+        "discovery_cnf_sha256": campaign.sha256_bytes(discovery_cnf_raw),
+        "source_bundle_sha256": campaign.sha256_bytes(source_bundle_raw),
+        "cube": cube,
+        "cube_sha256": campaign.sha256_json(cube),
+        "detector_contract": exact12_replay.DETECTOR_CONTRACT,
+        "detector_source_manifest": manifest,
+        "detector_custody": dict(exact12_replay.SOURCE_CLASSIFIER_DETECTOR_CUSTODY),
+        "detector_contract_sha256": campaign.sha256_json(
+            {
+                "detector_contract": exact12_replay.DETECTOR_CONTRACT,
+                "source_manifest": manifest,
+            }
+        ),
+        "certificate": certificate,
+        "certificate_sha256": campaign.sha256_json(certificate),
+        "learned_clause": [-1],
+        "selected_positive_variables": [1],
+        "selected_positive_variables_sha256": campaign.sha256_json([1]),
+        "stage": exact12_replay.SOURCE_CLASSIFIER_STAGE,
+        "row_semantics": dict(exact12_replay.SOURCE_CLASSIFIER_SEMANTICS),
+        "claims": dict(exact12_replay.SOURCE_CLASSIFIER_CLAIMS),
     }
 
 
@@ -222,8 +274,6 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
     receipts: list[Path] = []
     classifiers: list[Path] = []
     model_hashes: list[str] = []
-    source_hash = campaign.sha256_bytes(campaign.canonical_json_bytes({"bundle": 1}))
-    detector_hash = "d" * 64
 
     for ordinal in range(4):
         package, wave = _make_package(tmp_path, ordinal)
@@ -250,12 +300,11 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
         classifier = tmp_path / f"classifier-{ordinal}.json"
         campaign.write_canonical_json(
             classifier,
-            campaign.make_classifier(
-                model_sha256=model_hash,
-                source_bundle_sha256=source_hash,
-                detector_contract_sha256=detector_hash,
-                certificate_sha256=f"{ordinal + 1:064x}",
-                stage="equality-duplicate-center",
+            _source_classifier(
+                model_raw=model_path.read_bytes(),
+                source_job_raw=(package / "source-job.json").read_bytes(),
+                discovery_cnf_raw=(package / "discovery.cnf").read_bytes(),
+                source_bundle_raw=(package / "source-bundle.json").read_bytes(),
             ),
         )
         classifiers.append(classifier)
@@ -265,7 +314,7 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
     campaign.write_canonical_json(manifest_path, manifest)
     state = tmp_path / "campaign.jsonl"
 
-    def fake_replay(
+    def fake_derive(
         _repo_root: Path,
         *,
         source_job_path: Path,
@@ -274,8 +323,9 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
         discovery_cnf_bytes: bytes,
         model_path: Path,
         model_bytes: bytes,
+        source_bundle_bytes: bytes,
         expected_piqd_job_id: str,
-    ) -> dict[str, Any]:
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
         ordinal = int(expected_piqd_job_id.rsplit("-", 1)[1])
         receipt = _accepted_receipt(
             campaign.sha256_bytes(model_bytes),
@@ -289,9 +339,21 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
         receipt["hashes"]["discovery_cnf_sha256"] = campaign.sha256_bytes(
             discovery_cnf_bytes
         )
-        return receipt
+        return receipt, _source_classifier(
+            model_raw=model_bytes,
+            source_job_raw=source_job_bytes,
+            discovery_cnf_raw=discovery_cnf_bytes,
+            source_bundle_raw=source_bundle_bytes,
+        )
 
-    monkeypatch.setattr(campaign, "replay_exact12_model_snapshot", fake_replay)
+    monkeypatch.setattr(
+        campaign, "derive_source_duplicate_center_classifier_snapshot", fake_derive
+    )
+    monkeypatch.setattr(
+        campaign,
+        "validate_source_duplicate_center_classifier",
+        lambda _classifier: None,
+    )
     return {
         "manifest": manifest_path,
         "state": state,
@@ -303,6 +365,7 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
         "receipts": receipts,
         "classifiers": classifiers,
         "model_hashes": model_hashes,
+        "fake_derive": fake_derive,
         "tmp": tmp_path,
     }
 
@@ -332,6 +395,7 @@ def test_three_adjacent_survivors_require_predeclared_pivot(
     assert result["last_ordinal"] == 2
     assert result["consecutive_count"] == 3
     assert result["pivot_id"] == "repair-source-entitlement"
+    assert result["schema"] == "p97-cegar-campaign-result/v2"
     assert result["claims"] == campaign.NO_CLAIMS
     result_path = fixture["state"].with_name("campaign.jsonl.result.json")
     result_path.unlink()
@@ -346,6 +410,42 @@ def test_order_violation_fails_closed(fixture: dict[str, Any]) -> None:
         _admit(fixture, 1)
 
 
+def test_legacy_v1_campaign_manifest_is_explicitly_rejected(
+    fixture: dict[str, Any],
+) -> None:
+    manifest = json.loads(fixture["manifest"].read_text())
+    manifest["schema"] = "p97-cegar-campaign/v1"
+    campaign.write_canonical_json(fixture["manifest"], manifest)
+    with pytest.raises(campaign.PiqdCampaignError, match="legacy v1 campaign"):
+        _admit(fixture, 0)
+
+
+def test_legacy_v1_record_is_not_restart_admissible(
+    fixture: dict[str, Any],
+) -> None:
+    _admit(fixture, 0)
+    record = json.loads(fixture["state"].read_text())
+    record["schema"] = "p97-cegar-campaign-record/v1"
+    unsigned = dict(record)
+    unsigned.pop("record_sha256")
+    record["record_sha256"] = campaign.sha256_json(unsigned)
+    fixture["state"].write_bytes(campaign.canonical_json_bytes(record) + b"\n")
+    with pytest.raises(campaign.PiqdCampaignError, match="legacy v1 campaign record"):
+        _admit(fixture, 1)
+
+
+def test_legacy_v1_result_is_not_restart_admissible(
+    fixture: dict[str, Any],
+) -> None:
+    _admit(fixture, 0)
+    result_path = fixture["state"].with_name("campaign.jsonl.result.json")
+    result = json.loads(result_path.read_text())
+    result["schema"] = "p97-cegar-campaign-result/v1"
+    campaign.write_canonical_json(result_path, result)
+    with pytest.raises(campaign.PiqdCampaignError, match="legacy v1 campaign result"):
+        _admit(fixture, 1)
+
+
 def test_duplicate_is_idempotent_but_divergence_is_rejected(
     fixture: dict[str, Any],
 ) -> None:
@@ -354,7 +454,7 @@ def test_duplicate_is_idempotent_but_divergence_is_rejected(
     classifier = json.loads(fixture["classifiers"][0].read_text())
     classifier["stage"] = "different-stage"
     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
-    with pytest.raises(campaign.PiqdCampaignError, match="divergent duplicate"):
+    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
         _admit(fixture, 0)
 
 
@@ -369,10 +469,14 @@ def test_receipt_replay_tamper_fails_closed(
 
     receipt["gates"]["exact_cnf"]["ok"] = True
     campaign.write_canonical_json(fixture["receipts"][0], receipt)
+    classifier = json.loads(fixture["classifiers"][0].read_text())
     monkeypatch.setattr(
         campaign,
-        "replay_exact12_model_snapshot",
-        lambda *_args, **_kwargs: {**receipt, "scope": "fresh replay changed"},
+        "derive_source_duplicate_center_classifier_snapshot",
+        lambda *_args, **_kwargs: (
+            {**receipt, "scope": "fresh replay changed"},
+            classifier,
+        ),
     )
     with pytest.raises(campaign.PiqdCampaignError, match="differs byte-for-byte"):
         _admit(fixture, 0)
@@ -382,15 +486,37 @@ def test_classifier_model_and_hash_tamper_fail_closed(fixture: dict[str, Any]) -
     classifier = json.loads(fixture["classifiers"][0].read_text())
     classifier["model_sha256"] = "a" * 64
     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
-    with pytest.raises(
-        campaign.PiqdCampaignError, match="classifier model hash mismatch"
-    ):
+    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
         _admit(fixture, 0)
 
     classifier["model_sha256"] = fixture["model_hashes"][0]
     classifier["source_bundle_sha256"] = "b" * 64
     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
-    with pytest.raises(campaign.PiqdCampaignError, match="source bundle hash mismatch"):
+    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
+        _admit(fixture, 0)
+
+
+@pytest.mark.parametrize(
+    "tamper", ["missing-detector-manifest", "detector-contract", "certificate"]
+)
+def test_classifier_contract_and_certificate_tamper_fail_closed(
+    fixture: dict[str, Any], tamper: str
+) -> None:
+    classifier = json.loads(fixture["classifiers"][0].read_text())
+    if tamper == "missing-detector-manifest":
+        classifier.pop("detector_source_manifest")
+    elif tamper == "detector-contract":
+        classifier["detector_contract"] = "self-declared-detector"
+    else:
+        classifier["certificate"]["rows"][0]["support"] = [2]
+    campaign.write_canonical_json(fixture["classifiers"][0], classifier)
+    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
+        _admit(fixture, 0)
+
+
+def test_missing_receipt_fails_closed(fixture: dict[str, Any]) -> None:
+    fixture["receipts"][0].unlink()
+    with pytest.raises(campaign.PiqdCampaignError, match="source-semantic receipt"):
         _admit(fixture, 0)
 
 
@@ -413,7 +539,22 @@ def test_manifest_policy_and_classifier_constructor_are_exact() -> None:
     )
     assert set(classifier) == campaign._CLASSIFIER_KEYS
     assert classifier["status"] == campaign.DIAGNOSTIC_STATUS
-    assert classifier["scope"] == campaign.CAMPAIGN_SCOPE
+    assert classifier["scope"] == campaign.DIAGNOSTIC_SCOPE
+
+
+def test_old_diagnostic_classifier_cannot_pass_source_entitled_gate(
+    fixture: dict[str, Any],
+) -> None:
+    diagnostic = campaign.make_classifier(
+        model_sha256=fixture["model_hashes"][0],
+        source_bundle_sha256="2" * 64,
+        detector_contract_sha256="3" * 64,
+        certificate_sha256="4" * 64,
+        stage="equality-duplicate-center",
+    )
+    campaign.write_canonical_json(fixture["classifiers"][0], diagnostic)
+    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
+        _admit(fixture, 0)
 
 
 def test_noncanonical_receipt_and_symlink_state_fail_closed(
@@ -598,6 +739,7 @@ def test_campaign_replay_uses_authenticated_snapshots_without_reopening(
     fixture: dict[str, Any], monkeypatch: pytest.MonkeyPatch
 ) -> None:
     archived = json.loads(fixture["receipts"][0].read_text())
+    archived_classifier = json.loads(fixture["classifiers"][0].read_text())
     source_path = fixture["packages"][0] / "source-job.json"
     cnf_path = fixture["packages"][0] / "discovery.cnf"
     expected_source = source_path.read_bytes()
@@ -606,17 +748,23 @@ def test_campaign_replay_uses_authenticated_snapshots_without_reopening(
 
     def mutate_paths_after_snapshot(
         _repo_root: Path, **snapshot: Any
-    ) -> dict[str, Any]:
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
         assert snapshot["source_job_bytes"] == expected_source
         assert snapshot["discovery_cnf_bytes"] == expected_cnf
         assert campaign.sha256_bytes(snapshot["model_bytes"]) == expected_model_hash
+        assert (
+            snapshot["source_bundle_bytes"]
+            == (fixture["packages"][0] / "source-bundle.json").read_bytes()
+        )
         source_path.write_bytes(b"{}")
         cnf_path.write_bytes(b"p cnf 0 0\n")
         Path(snapshot["model_path"]).write_bytes(b"{}")
-        return archived
+        return archived, archived_classifier
 
     monkeypatch.setattr(
-        campaign, "replay_exact12_model_snapshot", mutate_paths_after_snapshot
+        campaign,
+        "derive_source_duplicate_center_classifier_snapshot",
+        mutate_paths_after_snapshot,
     )
     assert _admit(fixture, 0)["status"] == "CONTINUE"
 
@@ -654,10 +802,10 @@ def test_lock_and_result_symlink_targets_fail_closed(
     result_path = fixture["state"].with_name("campaign.jsonl.result.json")
     result_path.unlink()
     result_path.symlink_to(result_target)
-    with pytest.raises(campaign.PiqdCampaignError, match="write target"):
+    with pytest.raises(campaign.PiqdCampaignError, match="not a regular file"):
         _admit(fixture, 2)
     assert result_target.read_bytes() == b"keep"
-    assert len(fixture["state"].read_text().splitlines()) == 3
+    assert len(fixture["state"].read_text().splitlines()) == 2
 
     result_path.unlink()
     repaired = _admit(fixture, 2)
@@ -675,14 +823,18 @@ def test_concurrent_divergent_duplicate_has_one_winner(
 
     entered = Event()
     release = Event()
-    original_replay = campaign.replay_exact12_model_snapshot
+    original_derive = campaign.derive_source_duplicate_center_classifier_snapshot
 
-    def blocking_replay(*args: Any, **kwargs: Any) -> dict[str, Any]:
+    def blocking_derive(
+        *args: Any, **kwargs: Any
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
         entered.set()
         assert release.wait(timeout=5)
-        return original_replay(*args, **kwargs)
+        return original_derive(*args, **kwargs)
 
-    monkeypatch.setattr(campaign, "replay_exact12_model_snapshot", blocking_replay)
+    monkeypatch.setattr(
+        campaign, "derive_source_duplicate_center_classifier_snapshot", blocking_derive
+    )
     with ThreadPoolExecutor(max_workers=2) as executor:
         first = executor.submit(_admit, fixture, 0)
         assert entered.wait(timeout=5)
@@ -698,6 +850,8 @@ def test_concurrent_divergent_duplicate_has_one_winner(
         )
         release.set()
         assert first.result(timeout=5)["status"] == "CONTINUE"
-        with pytest.raises(campaign.PiqdCampaignError, match="divergent duplicate"):
+        with pytest.raises(
+            campaign.PiqdCampaignError, match="source-derived classifier"
+        ):
             second.result(timeout=5)
     assert len(fixture["state"].read_text().splitlines()) == 1

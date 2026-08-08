@@ -29,24 +29,32 @@ from census.p97_search.phase3_piqd_exact12_replay import (
     REPLAY_SCHEMA,
     Exact12PiqdReplayError,
     canonical_json_bytes,
-    replay_exact12_model_snapshot,
+    derive_source_duplicate_center_classifier_snapshot,
+    validate_source_duplicate_center_classifier,
 )
 
-CAMPAIGN_SCHEMA = "p97-cegar-campaign/v1"
+CAMPAIGN_SCHEMA = "p97-cegar-campaign/v2"
 CLASSIFIER_SCHEMA = "p97-cegar-diagnostic-classifier/v1"
-RECORD_SCHEMA = "p97-cegar-campaign-record/v1"
-RESULT_SCHEMA = "p97-cegar-campaign-result/v1"
+RECORD_SCHEMA = "p97-cegar-campaign-record/v2"
+RESULT_SCHEMA = "p97-cegar-campaign-result/v2"
 PACKAGE_IDENTITY_SCHEMA = "p97-phase3-piqd-package-identity/v1"
+_LEGACY_CAMPAIGN_SCHEMA = "p97-cegar-campaign/v1"
+_LEGACY_RECORD_SCHEMA = "p97-cegar-campaign-record/v1"
+_LEGACY_RESULT_SCHEMA = "p97-cegar-campaign-result/v1"
 DIAGNOSTIC_STATUS = "DIAGNOSTIC_ONLY_NOT_SOURCE_ENTITLED"
 CAMPAIGN_SCOPE = (
-    "bounded finite-local custody and repeated-survivor stop control only; "
-    "no scheduling, aggregate coverage, source entitlement, universal lift, "
-    "or Lean theorem closure"
+    "bounded finite-local source-derived custody and repeated-survivor stop "
+    "control only; no scheduling, aggregate coverage, universal lift, or Lean "
+    "theorem closure"
+)
+DIAGNOSTIC_SCOPE = (
+    "self-declared diagnostic classifier only; no source entitlement, campaign "
+    "admission, aggregate coverage, universal lift, or Lean theorem closure"
 )
 NO_CLAIMS = {
     "aggregate_coverage": False,
-    "source_entitlement": False,
-    "theorem_closure": False,
+    "universal_lift": False,
+    "lean_theorem_closure": False,
 }
 THRESHOLD = 3
 MAX_IN_FLIGHT = 1
@@ -596,6 +604,10 @@ def make_campaign_manifest(
 
 def validate_campaign_manifest(manifest: Mapping[str, Any]) -> None:
     _exact_keys(manifest, _CAMPAIGN_KEYS, "campaign")
+    if manifest["schema"] == _LEGACY_CAMPAIGN_SCHEMA:
+        raise PiqdCampaignError(
+            "legacy v1 campaign manifest is not admissible; regenerate a v2 campaign"
+        )
     if manifest["schema"] != CAMPAIGN_SCHEMA or manifest["scope"] != CAMPAIGN_SCOPE:
         raise PiqdCampaignError("campaign schema or scope mismatch")
     if manifest["claims"] != NO_CLAIMS:
@@ -649,7 +661,7 @@ def make_classifier(
     artifact = {
         "schema": CLASSIFIER_SCHEMA,
         "status": DIAGNOSTIC_STATUS,
-        "scope": CAMPAIGN_SCOPE,
+        "scope": DIAGNOSTIC_SCOPE,
         "model_sha256": _digest(model_sha256, "model_sha256"),
         "source_bundle_sha256": _digest(source_bundle_sha256, "source_bundle_sha256"),
         "detector_contract_sha256": _digest(
@@ -666,7 +678,7 @@ def validate_classifier(value: Mapping[str, Any]) -> None:
     _exact_keys(value, _CLASSIFIER_KEYS, "classifier")
     if value["schema"] != CLASSIFIER_SCHEMA or value["status"] != DIAGNOSTIC_STATUS:
         raise PiqdCampaignError("classifier schema or diagnostic status mismatch")
-    if value["scope"] != CAMPAIGN_SCOPE:
+    if value["scope"] != DIAGNOSTIC_SCOPE:
         raise PiqdCampaignError("classifier scope mismatch")
     for key in (
         "model_sha256",
@@ -823,7 +835,7 @@ def _authenticate_cell(
     if source_job.get("cell_index") != cell["cell_index"]:
         raise PiqdCampaignError("source-job cell_index changed during admission")
     try:
-        fresh = replay_exact12_model_snapshot(
+        fresh, source_classifier = derive_source_duplicate_center_classifier_snapshot(
             repo_root,
             source_job_path=Path(inputs["source_job"]),
             source_job_bytes=package_raw["source-job.json"],
@@ -831,6 +843,7 @@ def _authenticate_cell(
             discovery_cnf_bytes=package_raw["discovery.cnf"],
             model_path=Path(inputs["model"]),
             model_bytes=model_raw,
+            source_bundle_bytes=bundle_raw,
             expected_piqd_job_id=piqd_job_id,
         )
     except Exact12PiqdReplayError as exc:
@@ -843,11 +856,17 @@ def _authenticate_cell(
         )
 
     classifier, classifier_raw = _load_canonical_line(classifier_path, "classifier")
-    validate_classifier(classifier)
-    if classifier["model_sha256"] != model_sha256:
-        raise PiqdCampaignError("classifier model hash mismatch")
-    if classifier["source_bundle_sha256"] != cell["source_bundle_sha256"]:
-        raise PiqdCampaignError("classifier source bundle hash mismatch")
+    try:
+        validate_source_duplicate_center_classifier(classifier)
+    except Exact12PiqdReplayError as exc:
+        raise PiqdCampaignError(f"source classifier validation failed: {exc}") from exc
+    source_classifier_raw = canonical_json_bytes(source_classifier) + b"\n"
+    if source_classifier_raw != classifier_raw:
+        raise PiqdCampaignError(
+            "fresh source-derived classifier differs byte-for-byte from archived "
+            f"classifier: fresh={sha256_bytes(source_classifier_raw)}, "
+            f"archived={sha256_bytes(classifier_raw)}"
+        )
     unsigned = {
         "schema": RECORD_SCHEMA,
         "campaign_sha256": sha256_json(manifest),
@@ -861,7 +880,7 @@ def _authenticate_cell(
         "receipt_sha256": sha256_bytes(receipt_raw),
         "classifier_sha256": sha256_bytes(classifier_raw),
         "equivalence_key": _equivalence_key(classifier),
-        "evidence_status": "AUTHENTICATED_STRUCTURAL_SAT_SURVIVOR",
+        "evidence_status": "AUTHENTICATED_SOURCE_DERIVED_DUPLICATE_CENTER_SURVIVOR",
         "claims": dict(NO_CLAIMS),
     }
     return unsigned
@@ -870,6 +889,10 @@ def _authenticate_cell(
 def _validate_campaign_record(
     record: Mapping[str, Any], manifest: Mapping[str, Any], ordinal: int
 ) -> None:
+    if record.get("schema") == _LEGACY_RECORD_SCHEMA:
+        raise PiqdCampaignError(
+            "legacy v1 campaign record is not restart-admissible; regenerate v2 state"
+        )
     _exact_keys(record, _RECORD_KEYS, f"campaign record {ordinal}")
     if record["schema"] != RECORD_SCHEMA:
         raise PiqdCampaignError("campaign record schema mismatch")
@@ -902,7 +925,10 @@ def _validate_campaign_record(
     previous = record["previous_record_sha256"]
     if previous is not None:
         _digest(previous, f"campaign record {ordinal}.previous_record_sha256")
-    if record["evidence_status"] != "AUTHENTICATED_STRUCTURAL_SAT_SURVIVOR":
+    if (
+        record["evidence_status"]
+        != "AUTHENTICATED_SOURCE_DERIVED_DUPLICATE_CENTER_SURVIVOR"
+    ):
         raise PiqdCampaignError("campaign record evidence status mismatch")
     if record["claims"] != NO_CLAIMS:
         raise PiqdCampaignError("campaign record claims mismatch")
@@ -979,6 +1005,21 @@ def _result(
     return {**unsigned, "result_sha256": sha256_json(unsigned)}
 
 
+def _reject_incompatible_existing_result(path: Path) -> None:
+    """Reject legacy/unknown result contracts before mutating authoritative state."""
+
+    if not _regular_file_exists(path, "campaign result"):
+        return
+    result, _raw = _load_canonical_line(path, "campaign result")
+    schema = result.get("schema")
+    if schema == _LEGACY_RESULT_SCHEMA:
+        raise PiqdCampaignError(
+            "legacy v1 campaign result is not restart-admissible; regenerate v2 result"
+        )
+    if schema != RESULT_SCHEMA:
+        raise PiqdCampaignError("campaign result schema mismatch")
+
+
 def process_cell(
     manifest_path: Path,
     state_path: Path,
@@ -992,6 +1033,8 @@ def process_cell(
     """Authenticate and durably admit the next ordered campaign cell."""
 
     with _campaign_lock(state_path):
+        result_path = state_path.with_name(f"{state_path.name}.result.json")
+        _reject_incompatible_existing_result(result_path)
         manifest, _manifest_raw = _load_canonical_line(
             manifest_path, "campaign manifest"
         )
@@ -1017,7 +1060,7 @@ def process_cell(
             # The JSONL is authoritative. A locked idempotent retry deliberately
             # repairs a result missing after a crash between the two writes.
             _atomic_write(
-                state_path.with_name(f"{state_path.name}.result.json"),
+                result_path,
                 canonical_json_bytes(current_result) + b"\n",
             )
             return current_result
@@ -1049,7 +1092,7 @@ def process_cell(
         records.append(record)
         result = _result(manifest, records)
         _atomic_write(
-            state_path.with_name(f"{state_path.name}.result.json"),
+            result_path,
             canonical_json_bytes(result) + b"\n",
         )
         return result

@@ -8,12 +8,14 @@ are all authenticated before the independent exact12 predicates are run.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
 import stat
 import sys
-from collections.abc import Mapping, Sequence
+from collections.abc import Collection, Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +26,15 @@ from census.card_head.exact12_v14_bound_jobs import (
 )
 from census.card_head.exact12_v14_cell_run import cnf_assignment_satisfies
 from census.card_head.exact12_v14_schedule import build_manifest, json_sha256
+from census.card_head.exact12_v14_structural_cegar import (
+    DETECTOR_CONTRACT,
+    DETECTOR_FILES,
+    Exact12V14StructuralCegarError,
+    _canonical_cube_payload,
+    detect_structural_certificate,
+    learned_clause_for_certificate,
+    validate_structural_certificate,
+)
 from census.card_head.exact12_v14_valuation import (
     Exact12V14ValuationError,
     added_constraints_hold,
@@ -40,7 +51,67 @@ REPLAY_SCOPE = (
     "one authenticated finite normalized-v14 cell; source-semantic SAT-model "
     "replay only; no aggregate coverage, universal lift, or Lean closure"
 )
+SOURCE_CLASSIFIER_SCHEMA = "p97-cegar-source-derived-duplicate-center/v2"
+SOURCE_CLASSIFIER_STATUS = (
+    "FINITE_LOCAL_SOURCE_DERIVED_DUPLICATE_CENTER_WITH_RESIDENT_SOURCE_SNAPSHOT"
+)
+SOURCE_CLASSIFIER_STAGE = "equality-duplicate-center"
+SOURCE_CLASSIFIER_SCOPE = (
+    "one authenticated finite exact12 source-job/CNF/model snapshot; selected "
+    "positive support and replayed duplicate-center certificate only; detector "
+    "custody is an authenticated resident source-byte snapshot distinct from the "
+    "already-imported executed Python code; no executed-byte provenance, ambient "
+    "fiber completeness, aggregate coverage, universal lift, or Lean theorem closure"
+)
+SOURCE_CLASSIFIER_SEMANTICS = {
+    "certificate_rows_exact_false": True,
+    "certificate_support_is_selected_positive_subset": True,
+    "ambient_fiber_completeness": False,
+}
+SOURCE_CLASSIFIER_CLAIMS = {
+    "aggregate_coverage": False,
+    "universal_lift": False,
+    "lean_theorem_closure": False,
+}
+SOURCE_CLASSIFIER_DETECTOR_CUSTODY = {
+    "complete_declared_source_snapshot": True,
+    "no_follow_regular_files": True,
+    "executed_byte_provenance": False,
+}
 _MODEL_KEYS = frozenset({"job_id", "result", "num_assigned", "assignment"})
+_SOURCE_CLASSIFIER_KEYS = frozenset(
+    {
+        "schema",
+        "status",
+        "scope",
+        "model_sha256",
+        "source_job_sha256",
+        "discovery_cnf_sha256",
+        "source_bundle_sha256",
+        "cube",
+        "cube_sha256",
+        "detector_contract",
+        "detector_source_manifest",
+        "detector_custody",
+        "detector_contract_sha256",
+        "certificate",
+        "certificate_sha256",
+        "learned_clause",
+        "selected_positive_variables",
+        "selected_positive_variables_sha256",
+        "stage",
+        "row_semantics",
+        "claims",
+    }
+)
+
+
+@dataclass(frozen=True)
+class _Exact12ReplayEvidence:
+    receipt: dict[str, Any]
+    cube: Mapping[int, Collection[int]]
+    instance: Any
+    positive_variables: frozenset[int]
 
 
 class Exact12PiqdReplayError(ValueError):
@@ -63,11 +134,266 @@ def _sha256(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def _json_sha256(value: Any) -> str:
+    return _sha256(canonical_json_bytes(value))
+
+
+def _digest(value: Any, label: str) -> str:
+    if (
+        not isinstance(value, str)
+        or len(value) != 64
+        or any(character not in "0123456789abcdef" for character in value)
+    ):
+        raise Exact12PiqdReplayError(f"{label} must be a lowercase SHA-256 digest")
+    return value
+
+
 def _read_bytes(path: Path, label: str) -> bytes:
     try:
         return path.read_bytes()
     except OSError as exc:
         raise Exact12PiqdReplayError(f"cannot read {label}: {path}") from exc
+
+
+def _read_detector_source_no_follow(repo_root: Path, relative: str) -> bytes:
+    """Snapshot one declared detector source without following any relative symlink."""
+
+    parts = Path(relative).parts
+    if (
+        not parts
+        or Path(relative).is_absolute()
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        raise Exact12PiqdReplayError(f"detector source path is unsafe: {relative}")
+    directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    file_flags = os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW
+    directory_flags |= getattr(os, "O_CLOEXEC", 0)
+    file_flags |= getattr(os, "O_CLOEXEC", 0)
+    descriptors: list[int] = []
+    try:
+        descriptor = os.open(os.fspath(repo_root), directory_flags)
+        descriptors.append(descriptor)
+        for component in parts[:-1]:
+            descriptor = os.open(component, directory_flags, dir_fd=descriptor)
+            descriptors.append(descriptor)
+        source_fd = os.open(parts[-1], file_flags, dir_fd=descriptor)
+        descriptors.append(source_fd)
+        if not stat.S_ISREG(os.fstat(source_fd).st_mode):
+            raise Exact12PiqdReplayError(
+                f"detector source is not a regular file: {relative}"
+            )
+        chunks: list[bytes] = []
+        while chunk := os.read(source_fd, 1024 * 1024):
+            chunks.append(chunk)
+        return b"".join(chunks)
+    except Exact12PiqdReplayError:
+        raise
+    except OSError as exc:
+        raise Exact12PiqdReplayError(
+            f"cannot snapshot detector source without following symlinks: {relative}"
+        ) from exc
+    finally:
+        for descriptor in reversed(descriptors):
+            try:
+                os.close(descriptor)
+            except OSError:
+                pass
+
+
+def _detector_source_manifest(repo_root: Path) -> list[dict[str, Any]]:
+    """Capture the complete declared detector source closure exactly once."""
+
+    manifest: list[dict[str, Any]] = []
+    for relative in DETECTOR_FILES:
+        payload = _read_detector_source_no_follow(Path(repo_root), relative)
+        manifest.append(
+            {
+                "path": relative,
+                "bytes": len(payload),
+                "sha256": _sha256(payload),
+                "content_base64": base64.b64encode(payload).decode("ascii"),
+            }
+        )
+    return manifest
+
+
+def _validate_detector_source_manifest(value: Any) -> list[Mapping[str, Any]]:
+    if not isinstance(value, list) or len(value) != len(DETECTOR_FILES):
+        raise Exact12PiqdReplayError(
+            "source classifier detector source bundle is incomplete"
+        )
+    for expected_path, item in zip(DETECTOR_FILES, value, strict=True):
+        if not isinstance(item, Mapping) or set(item) != {
+            "path",
+            "bytes",
+            "sha256",
+            "content_base64",
+        }:
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle entry is malformed"
+            )
+        if item["path"] != expected_path:
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle path mismatch"
+            )
+        content = item["content_base64"]
+        if not isinstance(content, str):
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle content is malformed"
+            )
+        try:
+            payload = base64.b64decode(content, validate=True)
+        except (ValueError, base64.binascii.Error) as exc:
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle content is malformed"
+            ) from exc
+        if base64.b64encode(payload).decode("ascii") != content:
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle is not canonical base64"
+            )
+        if (
+            isinstance(item["bytes"], bool)
+            or not isinstance(item["bytes"], int)
+            or item["bytes"] != len(payload)
+            or item["sha256"] != _sha256(payload)
+        ):
+            raise Exact12PiqdReplayError(
+                "source classifier detector source bundle identity mismatch"
+            )
+        _digest(item["sha256"], "detector source sha256")
+    return value
+
+
+def _detector_contract_sha256(manifest: Sequence[Mapping[str, Any]]) -> str:
+    return _json_sha256(
+        {"detector_contract": DETECTOR_CONTRACT, "source_manifest": list(manifest)}
+    )
+
+
+def _validate_certificate_row_semantics(
+    certificate: Mapping[str, Any], cube: Mapping[str, list[int]]
+) -> None:
+    rows = certificate.get("rows")
+    if not isinstance(rows, list) or not rows:
+        raise Exact12PiqdReplayError("source classifier certificate rows are missing")
+    for row in rows:
+        if not isinstance(row, Mapping) or set(row) != {"center", "support", "exact"}:
+            raise Exact12PiqdReplayError(
+                "source classifier certificate row is malformed"
+            )
+        center = row["center"]
+        support = row["support"]
+        if row["exact"] is not False:
+            raise Exact12PiqdReplayError(
+                "source classifier certificate rows must all have exact=false"
+            )
+        if (
+            isinstance(center, bool)
+            or not isinstance(center, int)
+            or str(center) not in cube
+            or not isinstance(support, list)
+            or any(
+                isinstance(point, bool) or not isinstance(point, int)
+                for point in support
+            )
+            or len(support) != len(set(support))
+        ):
+            raise Exact12PiqdReplayError(
+                "source classifier certificate row is malformed"
+            )
+        if not set(support).issubset(cube[str(center)]):
+            raise Exact12PiqdReplayError(
+                "certificate support is not a subset of selected positive support"
+            )
+
+
+def validate_source_duplicate_center_classifier(value: Mapping[str, Any]) -> None:
+    """Validate a source-derived classifier and its embedded source snapshot."""
+
+    if value.get("schema") == "p97-cegar-source-derived-duplicate-center/v1":
+        raise Exact12PiqdReplayError(
+            "legacy v1 source classifier lacks v2 custody and witness semantics"
+        )
+    if set(value) != _SOURCE_CLASSIFIER_KEYS:
+        raise Exact12PiqdReplayError("source classifier fields differ from schema")
+    if (
+        value["schema"] != SOURCE_CLASSIFIER_SCHEMA
+        or value["status"] != SOURCE_CLASSIFIER_STATUS
+        or value["scope"] != SOURCE_CLASSIFIER_SCOPE
+        or value["stage"] != SOURCE_CLASSIFIER_STAGE
+        or value["detector_contract"] != DETECTOR_CONTRACT
+        or value["detector_custody"] != SOURCE_CLASSIFIER_DETECTOR_CUSTODY
+        or value["row_semantics"] != SOURCE_CLASSIFIER_SEMANTICS
+        or value["claims"] != SOURCE_CLASSIFIER_CLAIMS
+    ):
+        raise Exact12PiqdReplayError("source classifier contract metadata mismatch")
+    for field in (
+        "model_sha256",
+        "source_job_sha256",
+        "discovery_cnf_sha256",
+        "source_bundle_sha256",
+        "cube_sha256",
+        "detector_contract_sha256",
+        "certificate_sha256",
+        "selected_positive_variables_sha256",
+    ):
+        _digest(value[field], f"source classifier {field}")
+    try:
+        cube = _canonical_cube_payload(value["cube"], cardinality=12)
+    except (Exact12V14StructuralCegarError, TypeError, ValueError) as exc:
+        raise Exact12PiqdReplayError("source classifier cube is malformed") from exc
+    if value["cube"] != cube or value["cube_sha256"] != _json_sha256(cube):
+        raise Exact12PiqdReplayError(
+            "source classifier canonical cube identity mismatch"
+        )
+    manifest = _validate_detector_source_manifest(value["detector_source_manifest"])
+    if value["detector_contract_sha256"] != _detector_contract_sha256(manifest):
+        raise Exact12PiqdReplayError(
+            "source classifier detector contract hash mismatch"
+        )
+    certificate = value["certificate"]
+    if not isinstance(certificate, Mapping):
+        raise Exact12PiqdReplayError("source classifier certificate is malformed")
+    if certificate.get("stage") != SOURCE_CLASSIFIER_STAGE:
+        raise Exact12PiqdReplayError("source classifier certificate stage mismatch")
+    if value["certificate_sha256"] != _json_sha256(certificate):
+        raise Exact12PiqdReplayError("source classifier certificate hash mismatch")
+    if not validate_structural_certificate(certificate, n=12):
+        raise Exact12PiqdReplayError("source classifier certificate replay failed")
+    _validate_certificate_row_semantics(certificate, cube)
+    clause = value["learned_clause"]
+    if (
+        not isinstance(clause, list)
+        or not clause
+        or any(
+            isinstance(literal, bool) or not isinstance(literal, int) or literal >= 0
+            for literal in clause
+        )
+        or len(clause) != len(set(clause))
+    ):
+        raise Exact12PiqdReplayError("source classifier learned clause is malformed")
+    selected_positive = value["selected_positive_variables"]
+    if (
+        not isinstance(selected_positive, list)
+        or any(
+            isinstance(variable, bool) or not isinstance(variable, int) or variable <= 0
+            for variable in selected_positive
+        )
+        or selected_positive != sorted(set(selected_positive))
+    ):
+        raise Exact12PiqdReplayError(
+            "source classifier selected positive variables are malformed"
+        )
+    if value["selected_positive_variables_sha256"] != _json_sha256(selected_positive):
+        raise Exact12PiqdReplayError(
+            "source classifier selected positive variable identity mismatch"
+        )
+    selected_set = set(selected_positive)
+    if any(abs(literal) not in selected_set for literal in clause):
+        raise Exact12PiqdReplayError(
+            "source classifier learned clause is not falsified by the selected "
+            "positive assignment"
+        )
 
 
 def _strict_json(raw: bytes, *, source: str) -> Mapping[str, Any]:
@@ -136,7 +462,7 @@ def _assignment(
     return tuple(assignment)
 
 
-def replay_exact12_model_snapshot(
+def _replay_exact12_model_evidence_snapshot(
     repo_root: Path,
     *,
     source_job_path: Path,
@@ -146,8 +472,8 @@ def replay_exact12_model_snapshot(
     model_path: Path,
     model_bytes: bytes,
     expected_piqd_job_id: str,
-) -> dict[str, Any]:
-    """Replay immutable input snapshots and return a canonical finite-cell receipt.
+) -> _Exact12ReplayEvidence:
+    """Replay snapshots once and retain the decoded cube for trusted consumers.
 
     Any failed gate raises :class:`Exact12PiqdReplayError`.  The exception's
     ``receipt`` contains the failed gate whenever validation got far enough to
@@ -318,10 +644,14 @@ def replay_exact12_model_snapshot(
         n_variables=materialized.instance.cnf.n_variables,
     )
     _gate(gates, "exact_cnf", exact_cnf)
+    canonical_cube: dict[str, list[int]] | None = None
     try:
         cube = materialized.instance.decode_model(positive)
         candidate = source_faithful_cube_ok(materialized.instance.model, cube)
-    except (ValueError, TypeError, KeyError) as exc:
+        canonical_cube = _canonical_cube_payload(
+            cube, cardinality=materialized.instance.model.cardinality
+        )
+    except (Exact12V14StructuralCegarError, ValueError, TypeError, KeyError) as exc:
         cube = None
         candidate = False
         _gate(gates, "source_faithful_candidate", False, str(exc))
@@ -342,10 +672,10 @@ def replay_exact12_model_snapshot(
 
     overall = all(item["ok"] for item in gates.values())
     receipt["status"] = "ACCEPTED" if overall else "REJECTED"
-    if cube is not None:
-        receipt["decoded"] = {"cube_sha256": json_sha256(cube)}
+    if canonical_cube is not None:
+        receipt["decoded"] = {"cube_sha256": _json_sha256(canonical_cube)}
     if blockers is not None:
-        receipt["decoded"]["blockers"] = {
+        receipt.setdefault("decoded", {})["blockers"] = {
             str(source): center for source, center in sorted(blockers.items())
         }
     receipt["assignment"] = {
@@ -357,7 +687,133 @@ def replay_exact12_model_snapshot(
         error = "one or more source-semantic replay gates failed"
         receipt["failure"] = error
         raise Exact12PiqdReplayError(error, receipt=receipt)
-    return receipt
+    if cube is None:
+        raise Exact12PiqdReplayError("accepted replay is missing its decoded cube")
+    return _Exact12ReplayEvidence(
+        receipt=receipt,
+        cube=cube,
+        instance=materialized.instance,
+        positive_variables=positive,
+    )
+
+
+def replay_exact12_model_snapshot(
+    repo_root: Path,
+    *,
+    source_job_path: Path,
+    source_job_bytes: bytes,
+    discovery_cnf_path: Path,
+    discovery_cnf_bytes: bytes,
+    model_path: Path,
+    model_bytes: bytes,
+    expected_piqd_job_id: str,
+) -> dict[str, Any]:
+    """Replay immutable input snapshots and return a canonical finite-cell receipt.
+
+    The paths are identity labels only and are never reopened.  Source-derived
+    consumers use the same internal replay result rather than decoding via a
+    second path read.
+    """
+
+    return _replay_exact12_model_evidence_snapshot(
+        repo_root,
+        source_job_path=source_job_path,
+        source_job_bytes=source_job_bytes,
+        discovery_cnf_path=discovery_cnf_path,
+        discovery_cnf_bytes=discovery_cnf_bytes,
+        model_path=model_path,
+        model_bytes=model_bytes,
+        expected_piqd_job_id=expected_piqd_job_id,
+    ).receipt
+
+
+def derive_source_duplicate_center_classifier_snapshot(
+    repo_root: Path,
+    *,
+    source_job_path: Path,
+    source_job_bytes: bytes,
+    discovery_cnf_path: Path,
+    discovery_cnf_bytes: bytes,
+    model_path: Path,
+    model_bytes: bytes,
+    source_bundle_bytes: bytes,
+    expected_piqd_job_id: str,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Replay once and derive the only classifier admitted by the campaign."""
+
+    if not isinstance(source_bundle_bytes, bytes):
+        raise Exact12PiqdReplayError("source bundle snapshot must be immutable bytes")
+    detector_manifest = _detector_source_manifest(repo_root)
+    evidence = _replay_exact12_model_evidence_snapshot(
+        repo_root,
+        source_job_path=source_job_path,
+        source_job_bytes=source_job_bytes,
+        discovery_cnf_path=discovery_cnf_path,
+        discovery_cnf_bytes=discovery_cnf_bytes,
+        model_path=model_path,
+        model_bytes=model_bytes,
+        expected_piqd_job_id=expected_piqd_job_id,
+    )
+    if evidence.instance.model.cardinality != 12:
+        raise Exact12PiqdReplayError("source classifier requires exact cardinality 12")
+    cube = _canonical_cube_payload(evidence.cube, cardinality=12)
+    try:
+        certificate = detect_structural_certificate(evidence.cube, n=12)
+        if certificate is None:
+            raise Exact12PiqdReplayError(
+                "decoded cube has no replay-valid structural certificate"
+            )
+        if certificate.get("stage") != SOURCE_CLASSIFIER_STAGE:
+            raise Exact12PiqdReplayError(
+                "decoded cube is not classified at equality-duplicate-center"
+            )
+        if not validate_structural_certificate(certificate, n=12):
+            raise Exact12PiqdReplayError(
+                "detected duplicate-center certificate failed independent replay"
+            )
+        _validate_certificate_row_semantics(certificate, cube)
+        learned_clause = learned_clause_for_certificate(evidence.instance, certificate)
+    except Exact12PiqdReplayError:
+        raise
+    except (Exact12V14StructuralCegarError, KeyError, TypeError, ValueError) as exc:
+        raise Exact12PiqdReplayError(
+            f"source-derived structural classification failed: {exc}"
+        ) from exc
+    selected_positive_variables = sorted(evidence.positive_variables)
+    if any(
+        abs(literal) not in evidence.positive_variables for literal in learned_clause
+    ):
+        raise Exact12PiqdReplayError(
+            "source-derived learned clause is not falsified by the selected positive "
+            "assignment"
+        )
+    artifact = {
+        "schema": SOURCE_CLASSIFIER_SCHEMA,
+        "status": SOURCE_CLASSIFIER_STATUS,
+        "scope": SOURCE_CLASSIFIER_SCOPE,
+        "model_sha256": _sha256(model_bytes),
+        "source_job_sha256": _sha256(source_job_bytes),
+        "discovery_cnf_sha256": _sha256(discovery_cnf_bytes),
+        "source_bundle_sha256": _sha256(source_bundle_bytes),
+        "cube": cube,
+        "cube_sha256": _json_sha256(cube),
+        "detector_contract": DETECTOR_CONTRACT,
+        "detector_source_manifest": detector_manifest,
+        "detector_custody": dict(SOURCE_CLASSIFIER_DETECTOR_CUSTODY),
+        "detector_contract_sha256": _detector_contract_sha256(detector_manifest),
+        "certificate": dict(certificate),
+        "certificate_sha256": _json_sha256(certificate),
+        "learned_clause": list(learned_clause),
+        "selected_positive_variables": selected_positive_variables,
+        "selected_positive_variables_sha256": _json_sha256(selected_positive_variables),
+        "stage": SOURCE_CLASSIFIER_STAGE,
+        "row_semantics": dict(SOURCE_CLASSIFIER_SEMANTICS),
+        "claims": dict(SOURCE_CLASSIFIER_CLAIMS),
+    }
+    if artifact["cube_sha256"] != evidence.receipt["decoded"]["cube_sha256"]:
+        raise Exact12PiqdReplayError("replay and classifier cube identities diverged")
+    validate_source_duplicate_center_classifier(artifact)
+    return evidence.receipt, artifact
 
 
 def replay_exact12_model(
@@ -480,15 +936,33 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--expected-piqd-job-id", required=True)
     parser.add_argument("--receipt", type=Path)
+    parser.add_argument("--source-bundle", type=Path)
+    parser.add_argument("--classifier", type=Path)
     args = parser.parse_args(argv)
+    if (args.source_bundle is None) != (args.classifier is None):
+        parser.error("--source-bundle and --classifier must be supplied together")
+    classifier: dict[str, Any] | None = None
     try:
-        receipt = replay_exact12_model(
-            args.repo_root,
-            args.source_job,
-            args.discovery_cnf,
-            args.model,
-            args.expected_piqd_job_id,
-        )
+        if args.classifier is None:
+            receipt = replay_exact12_model(
+                args.repo_root,
+                args.source_job,
+                args.discovery_cnf,
+                args.model,
+                args.expected_piqd_job_id,
+            )
+        else:
+            receipt, classifier = derive_source_duplicate_center_classifier_snapshot(
+                args.repo_root,
+                source_job_path=args.source_job,
+                source_job_bytes=_read_bytes(args.source_job, "source job"),
+                discovery_cnf_path=args.discovery_cnf,
+                discovery_cnf_bytes=_read_bytes(args.discovery_cnf, "discovery CNF"),
+                model_path=args.model,
+                model_bytes=_read_bytes(args.model, "piqd model"),
+                source_bundle_bytes=_read_bytes(args.source_bundle, "source bundle"),
+                expected_piqd_job_id=args.expected_piqd_job_id,
+            )
         code = 0
     except Exact12PiqdReplayError as exc:
         receipt = exc.receipt or {
@@ -503,6 +977,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         write_receipt(args.receipt, receipt)
     else:
         sys.stdout.buffer.write(canonical_json_bytes(receipt) + b"\n")
+    if classifier is not None:
+        write_receipt(args.classifier, classifier)
     return code
 
 
