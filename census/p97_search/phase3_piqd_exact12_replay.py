@@ -54,7 +54,9 @@ class Exact12PiqdReplayError(ValueError):
 def canonical_json_bytes(value: Any) -> bytes:
     """Return the receipt's canonical JSON encoding."""
 
-    return json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return json.dumps(
+        value, sort_keys=True, separators=(",", ":"), allow_nan=False
+    ).encode("utf-8")
 
 
 def _sha256(payload: bytes) -> str:
@@ -134,18 +136,23 @@ def _assignment(
     return tuple(assignment)
 
 
-def replay_exact12_model(
+def replay_exact12_model_snapshot(
     repo_root: Path,
+    *,
     source_job_path: Path,
+    source_job_bytes: bytes,
     discovery_cnf_path: Path,
+    discovery_cnf_bytes: bytes,
     model_path: Path,
+    model_bytes: bytes,
     expected_piqd_job_id: str,
 ) -> dict[str, Any]:
-    """Replay a piqd model and return a canonical, finite-cell receipt.
+    """Replay immutable input snapshots and return a canonical finite-cell receipt.
 
     Any failed gate raises :class:`Exact12PiqdReplayError`.  The exception's
     ``receipt`` contains the failed gate whenever validation got far enough to
-    construct one.
+    construct one.  The paths are identity labels retained verbatim in the
+    receipt; this function never opens them.
     """
 
     repo_root = Path(repo_root)
@@ -154,9 +161,17 @@ def replay_exact12_model(
     model_path = Path(model_path)
     if not isinstance(expected_piqd_job_id, str) or not expected_piqd_job_id.strip():
         raise Exact12PiqdReplayError("expected_piqd_job_id must be a non-empty string")
-    job_raw = _read_bytes(source_job_path, "source job")
-    cnf_raw = _read_bytes(discovery_cnf_path, "discovery CNF")
-    model_raw = _read_bytes(model_path, "piqd model")
+    snapshots = {
+        "source job": source_job_bytes,
+        "discovery CNF": discovery_cnf_bytes,
+        "piqd model": model_bytes,
+    }
+    for label, payload in snapshots.items():
+        if not isinstance(payload, bytes):
+            raise Exact12PiqdReplayError(f"{label} snapshot must be immutable bytes")
+    job_raw = source_job_bytes
+    cnf_raw = discovery_cnf_bytes
+    model_raw = model_bytes
     gates: dict[str, Any] = {}
     input_hashes = {
         "source_job_sha256": _sha256(job_raw),
@@ -343,6 +358,30 @@ def replay_exact12_model(
         receipt["failure"] = error
         raise Exact12PiqdReplayError(error, receipt=receipt)
     return receipt
+
+
+def replay_exact12_model(
+    repo_root: Path,
+    source_job_path: Path,
+    discovery_cnf_path: Path,
+    model_path: Path,
+    expected_piqd_job_id: str,
+) -> dict[str, Any]:
+    """Read the three public path inputs once and delegate to snapshot replay."""
+
+    source_job_path = Path(source_job_path)
+    discovery_cnf_path = Path(discovery_cnf_path)
+    model_path = Path(model_path)
+    return replay_exact12_model_snapshot(
+        repo_root,
+        source_job_path=source_job_path,
+        source_job_bytes=_read_bytes(source_job_path, "source job"),
+        discovery_cnf_path=discovery_cnf_path,
+        discovery_cnf_bytes=_read_bytes(discovery_cnf_path, "discovery CNF"),
+        model_path=model_path,
+        model_bytes=_read_bytes(model_path, "piqd model"),
+        expected_piqd_job_id=expected_piqd_job_id,
+    )
 
 
 def _open_receipt_parent(absolute: Path) -> int:

@@ -63,7 +63,7 @@ are all present.
 | Artifact volume mistaken for productivity | The retained-omission bank contained roughly 66,411 artifacts but only 64 substantive reports; raw SAT payloads and generated duplicates were not independent producers. | Storage and mining throughput overstated mathematical progress. | Rank unique consumer-addressable statements, not artifact count. Deduplicate by authenticated content and statement shape; park candidates without replayable finite consumers or universal Lean producers as `PARKED-SPEC`. |
 | Cache/checkpoint authority inversion | Prefix checkpoints and warm caches improve scan time but cannot prove semantic equivalence or terminality. | Fast-path state could silently become the publication authority. | Authenticate raw prefix bytes and order digests, but require full semantic replay and independently checked identities at promotion boundaries. Source replay remains authoritative. |
 | Backend/profile semantic drift | The audit found that raw job identities could name unsupported profiles. The piqd maintainer also corrected an operational misconception: an empty CaDiCaL profile intentionally selects `--sat`, while literal `default` selects CaDiCaL's default. | Unsupported names could detach identity from execution, while an omitted profile can silently bias an UNSAT-heavy run toward SAT discovery. | `PIQD-RAW-002` is fixed in piqd and P97 still rejects unsupported pairs. Wave manifests must spell `default` explicitly when intended; empty and `default` remain distinct valid identities. |
-| Weak stop/pivot criteria | After the mixed-law robustness repair, the field closed `n=10` but remained SAT at `n=11` through `n=15`; a class-size cap still left `n=15` SAT (`0d76b444`). | Additional syntactic cuts could consume waves without addressing the missing semantic field, coupling, or producer. | Define a pivot condition before launch: repeated source-faithful SAT survivors with the same missing invariant stop that family and create a named semantic-producer task. piqd can measure and preserve no-progress, but it cannot choose the mathematical pivot. |
+| Weak stop/pivot criteria | After the mixed-law robustness repair, the field closed `n=10` but remained SAT at `n=11` through `n=15`; a class-size cap still left `n=15` SAT (`0d76b444`). | Additional syntactic cuts could consume waves without addressing the missing semantic field, coupling, or producer. | Define a pivot condition before launch: repeated source-faithful SAT survivors with the same missing invariant stop that family and create a named semantic-producer task. The exact12 campaign controller now enforces that rule for one ordered, sequential three-cell canary and rejects post-pivot overrun. General scheduling and coverage remain open. piqd can measure and preserve no-progress, but it cannot choose the mathematical pivot. |
 
 ## How piqd helps
 
@@ -265,7 +265,7 @@ that later detector invocation.
 The threshold therefore fired: stop this static cell-sampling family and pivot
 before spending more solver time. A separate exact12 refinement campaign had
 already accumulated 4,468 replayed cuts without an UNSAT terminal or live Lean
-closure, reinforcing the same decision. The next work is, in order:
+closure, reinforcing the same decision. The prescribed work was, in order:
 
 1. make certificate detection source-faithful by either proving ambient-fiber
    completeness or removing the unjustified `exact=True` interpretation of
@@ -277,7 +277,9 @@ closure, reinforcing the same decision. The next work is, in order:
    against the source semantics; and
 4. implement the documented campaign-controller gap so the ordered cell set,
    eligibility gates, repetition key, threshold, and pivot reason are enforced
-   by a durable manifest rather than conversation discipline.
+   by a durable manifest rather than conversation discipline. This narrow
+   controller item is now complete; the first three mathematical and promotion
+   items remain open.
 
 Cells 1 and 2 also retain
 `UPSTREAM_DIGEST_ONLY_NOT_ARCHIVED_OR_REPLAYED` for the blocked-job input.
@@ -286,3 +288,51 @@ upstream custody. These findings are P97 integration and promotion-boundary
 defects, not piqd daemon bugs. They do not establish aggregate coverage, a
 terminal obstruction, a universal producer or lift, a live consumer, or any
 `sorry` closure.
+
+## Durable campaign-controller remedy
+
+The bounded canary is now executable policy rather than conversation-only
+discipline. `phase3_piqd_campaign.py` implements the frozen
+`p97-cegar-campaign/v1` contract for a dense ordered cell list, one
+predeclared diagnostic repetition key, threshold three, and at most one cell
+in flight. Under an exclusive campaign lock it authenticates the package,
+wave, archived source bundle, sealed driver journal, terminal SAT checkpoint,
+model, source-semantic receipt, and diagnostic classifier before appending a
+hash-chained record. Three consecutive eligible records produce a canonical
+`PIVOT_REQUIRED` result; later admissions fail closed.
+
+An adversarial review found and then closed custody and restart gaps in the
+first implementation: relabelled cells, package cross-binding omissions,
+unsealed or symlinked inputs, threshold overrun, divergent concurrent writers,
+and a final time-of-check/time-of-use gap in fresh source replay. The replay
+core now accepts immutable authenticated byte snapshots while retaining the
+original paths only as canonical identity labels. The public path API and CLI
+delegate to that same core. Campaign admission snapshots the source job, CNF,
+and model once with no-follow reads and never reopens them during replay;
+mutation or deletion after admission therefore cannot change the accepted
+bytes. Malformed receipt hashes and noncanonical JSON are campaign errors, not
+uncaught exceptions or permissive fallbacks.
+
+The final-code canary is preserved at
+`scratch/p97-piqd-campaign-canary-snapshot-2026-08-08-v2/`. Its canonical
+campaign SHA-256 is
+`92db78cd53a80ee33cc88feaa927efd3a1a610d43ad0f68037690e5d3e88fd3a`,
+the final campaign record is
+`e6c8df9666e151055a600ee413eab0a9a915c8cd1345b48fb81d4f5cdc24328a`,
+and the canonical result is
+`4b894952369e5cf00059754e20ea3bf5528ee43ec2fc6fef0f6f31e1f8ea673b`.
+The result is `PIVOT_REQUIRED` for ordinals 0 through 2 with pivot
+`repair-source-entitlement`. Re-admitting ordinal 2 left the state and result
+files byte-identical at, respectively,
+`c6cf0d014a7b9bdd48cf99b4977d5232d734ccfc55705494ef82d0e23f20790f`
+and
+`d3117795c0de30363bae87d2ae53606643b000656ce5e82eb6f33afa51df0916`.
+The complete focused integration suite has 120 passing tests.
+
+This closes the narrow stop/pivot-enforcement and artifact-custody gap for the
+three-cell canary. It does **not** prove the classifier's mathematical
+equivalence to a missing invariant, authorize parallel or distributed
+scheduling, establish aggregate cell coverage, repair source entitlement,
+connect the stage to a Lean consumer, or close a theorem. The result records
+`aggregate_coverage = false`, `source_entitlement = false`, and
+`theorem_closure = false`. No new piqd daemon bug was found during this work.

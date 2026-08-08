@@ -109,6 +109,85 @@ def test_duplicate_json_key_is_rejected(
         run_replay(fixture_paths)
 
 
+def test_duplicate_source_job_key_is_rejected(
+    fixture_paths: tuple[Path, Path, Path], stub_source: None
+) -> None:
+    job, _cnf, _model = fixture_paths
+    job.write_text(
+        '{"schema":"x","job_id":"first","job_id":"second"}',
+        encoding="utf-8",
+    )
+    with pytest.raises(replay.Exact12PiqdReplayError, match="strict JSON"):
+        run_replay(fixture_paths)
+
+
+@pytest.mark.parametrize("constant", ["NaN", "Infinity", "-Infinity"])
+def test_nonfinite_json_constants_are_rejected(
+    fixture_paths: tuple[Path, Path, Path], stub_source: None, constant: str
+) -> None:
+    _job, _cnf, model = fixture_paths
+    model.write_text(
+        f'{{"job_id":"{PIQD_JOB_ID}","result":"SAT",'
+        f'"num_assigned":{constant},"assignment":[1]}}',
+        encoding="utf-8",
+    )
+    with pytest.raises(replay.Exact12PiqdReplayError, match="strict JSON"):
+        run_replay(fixture_paths)
+
+
+def test_canonical_json_rejects_nonfinite_values() -> None:
+    with pytest.raises(ValueError, match="JSON compliant"):
+        replay.canonical_json_bytes({"not_finite": float("nan")})
+
+
+def test_snapshot_replay_never_reopens_paths_and_preserves_path_spellings(
+    fixture_paths: tuple[Path, Path, Path], stub_source: None
+) -> None:
+    job, cnf, model = fixture_paths
+    job_raw = job.read_bytes()
+    cnf_raw = cnf.read_bytes()
+    model_raw = model.read_bytes()
+    source_label = Path("archive/../source-job.json")
+    cnf_label = Path("archive/../discovery.cnf")
+    model_label = Path("archive/../model.json")
+
+    job.write_bytes(b"not the authenticated job")
+    cnf.unlink()
+    model.write_bytes(b"not the authenticated model")
+    receipt = replay.replay_exact12_model_snapshot(
+        REPO_ROOT,
+        source_job_path=source_label,
+        source_job_bytes=job_raw,
+        discovery_cnf_path=cnf_label,
+        discovery_cnf_bytes=cnf_raw,
+        model_path=model_label,
+        model_bytes=model_raw,
+        expected_piqd_job_id=PIQD_JOB_ID,
+    )
+
+    assert receipt["status"] == "ACCEPTED"
+    assert receipt["inputs"]["source_job"] == str(source_label)
+    assert receipt["inputs"]["discovery_cnf"] == str(cnf_label)
+    assert receipt["inputs"]["model"] == str(model_label)
+
+
+def test_snapshot_replay_requires_immutable_bytes(
+    fixture_paths: tuple[Path, Path, Path], stub_source: None
+) -> None:
+    job, cnf, model = fixture_paths
+    with pytest.raises(replay.Exact12PiqdReplayError, match="immutable bytes"):
+        replay.replay_exact12_model_snapshot(
+            REPO_ROOT,
+            source_job_path=job,
+            source_job_bytes=bytearray(job.read_bytes()),  # type: ignore[arg-type]
+            discovery_cnf_path=cnf,
+            discovery_cnf_bytes=cnf.read_bytes(),
+            model_path=model,
+            model_bytes=model.read_bytes(),
+            expected_piqd_job_id=PIQD_JOB_ID,
+        )
+
+
 def test_wrong_piqd_job_id_is_rejected(
     fixture_paths: tuple[Path, Path, Path], stub_source: None
 ) -> None:
