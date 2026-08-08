@@ -2,7 +2,7 @@
 
 Date: 2026-08-08
 
-## Result
+## Placement transport result
 
 `ExactTwelveRigid221PlacementTransport.lean` now supplies the first checked
 source-level placement transport for the pentagon-off-class exact-twelve lane.
@@ -22,6 +22,30 @@ The targeted module build passes.  Explicit axiom checks for the cardinality,
 row transport, placement membership, and relabeling declarations report only
 `propext`, `Classical.choice`, and `Quot.sound`.
 
+The normalized extension now supplies the remaining source-side transport:
+
+- `ExactTwelveRigid221PlacementOrbits.lean` reduces the unrestricted
+  42-placement domain to 21 representatives under the admissible action on
+  the unnamed labels `3,4,5`;
+- after consuming the source-produced physical-pair separation facts, it
+  kernel-computes a 24-placement live domain and a stable 12-representative
+  list, without swapping the frozen named labels `10` and `11`;
+- `ExactTwelveRigid221NormalizedSafeIngress.lean` rederives the interior,
+  closed-cap, and safe-cube predicates after normalization;
+- `ExactTwelveRigid221BranchTransport.lean` transports the six-arm predicate
+  and both distinguished-`d` predicates; and
+- `ExactTwelveRigid221NormalizedV14Ingress.lean` carries the physical row,
+  actual blocker identities, five exact row traces, and all three v14 branch
+  predicates to one of the 12 representatives.
+
+A fresh targeted build of the aggregate normalized-v14 ingress module passes.
+Explicit axiom checks for the aggregate transport theorem and the separated
+12-representative cover report only `propext`, `Classical.choice`, and
+`Quot.sound`; neither depends on `sorryAx`.
+
+This is source ingress plus a placement-coordinate representative cover.  It
+is not full finite branch/certificate coverage and not a contradiction.
+
 ## Computational status
 
 The bounded v18 canary in the new `u/q`, `(jd,v)=(0,4)`, `d=4` cell classified
@@ -31,22 +55,35 @@ The cell remains `ITERATION_LIMIT`; this is not finite coverage and closes no
 Lean obligation.  The stop-scaling rule therefore applies to a broad
 arm-by-placement canary matrix.
 
+`census/card_head/exact12_v14_schedule.py` now freezes the resulting
+12 x 6 x 9 = 648 Cartesian coordinate schedule under schema
+`p97_rigid221_exact12_full_v14_schedule.v1`.  Its canonical payload hash is
+`b183cab096266e597362c6919df121cd311c7fc20e155f8b24ef12d23f4bd05b`.
+The manifest also binds the supplying Lean source-file bytes.  Six focused
+tests cover deterministic cardinalities plus omission, reorder, duplication,
+Boolean/integer type confusion, and source-metadata drift; Ruff and the tests
+pass.
+
+The schedule is deliberately `ENUMERATION_ONLY`.  Its arm and center fields
+are coordinates, not separately proved witnesses.  Cells may overlap or be
+empty, and the manifest does not validate theorem elaboration, execute a
+solver, establish coverage, replay a certificate, or close a Lean theorem.
+
 ## Exact remaining gate
 
-The relabeling theorem transports source geometry and row patterns, but it does
-not yet prove that the source-safe candidate predicate, six named-deletion
-arms, distinguished-`d` predicate, or replayed certificate checks are
-equivariant.  It therefore does not transport one fixed-cell result across all
-42 placements.
+Source transport is complete for the listed v14 predicates and justifies
+replacing the source-separated 24-placement domain by the 12 checked
+representatives.  Replay-check equivariance and finite coverage are still
+open.  The next production target is therefore:
 
-The next target is:
+1. execute a source-faithful CNF valuation for every required cell in the
+   frozen 648-coordinate schedule;
+2. record authenticated terminal outcomes rather than iteration-limited
+   canaries;
+3. independently replay every detector family used by those outcomes; and
+4. land an aggregate Lean consumer connecting that coverage to the two live
+   exact-twelve residual leaves.
 
-1. prove equivariance for each of those finite predicates under the admissible
-   relabelings;
-2. define and kernel-check a finite placement-orbit representative set; and
-3. prove every member of `frozenPlacementDomain` is transported from one of
-   those representatives.
-
-Only after those statements land can the CEGAR scheduler replace the raw
-42-placement matrix by a justified representative search.  No current theorem
-supports the earlier plan language about eight checked placement orbits.
+The historical eight-placement schedule swapped frozen named roles and remains
+only a search heuristic.  No terminal exact-twelve UNSAT certificate,
+aggregate 648-cell coverage theorem, or live-leaf closure currently exists.
