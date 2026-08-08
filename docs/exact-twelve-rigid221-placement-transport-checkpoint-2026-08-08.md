@@ -196,21 +196,40 @@ artifact check rather than a kernel-only certificate.  It covers one
 representative schedule cell only.  There is still no terminal bank or
 live-leaf closure.
 
+`ExactTwelveRigid221TerminalBankConsumer.lean` now supplies the complete
+per-cell logical consumer.  Its `terminalDimacs` is exactly the frozen base
+cover CNF, the cell's reconstructed 1,280-clause delta, and the learned
+duplicate-center clauses; the base formula is not omitted.  The theorem
+`not_realizes_of_terminalDuplicateCenterBank` proves that UNSAT of that complete
+formula rules out any realizable source-safe row satisfying the cell
+predicates.  Its learned-clause arm reuses the checked literal-reflection and
+duplicate-center consumer.  A targeted direct source check passes.  The base
+literal-range fact is evaluated with `native_decide`; the final theorem's
+audited axiom closure is exactly `propext`, `Classical.choice`,
+`Lean.ofReduceBool`, `Lean.trustCompiler`, and `Quot.sound`.  A source scan of
+the evaluated base-CNF definitions found no `unsafe`, `@[implemented_by]`, or
+`@[extern]` redirection.  This is therefore an explicit compiler-trusting
+consumer, not a kernel-only proof.  A wrapper build currently stops in the
+upstream `ExactTwelveRigid221V14JobCnf` module at the configured 16 GiB memory
+cap; that is a build-resource failure, while direct elaboration of the new
+module succeeds.  Most importantly, no terminal bank or proof of
+`DimacsUnsatisfiable` has yet been supplied, so this theorem closes no live
+leaf by itself.
+
 The next production target is therefore:
 
 1. choose and implement the scalable all-cell form of the cell-0 serialization
    bridge—either generated per-cell checks or a schedule-parametric authenticated
    checker—without embedding 648 redundant 1,280-clause lists unnecessarily;
-2. generate a checked Lean bank from authenticated terminal journals and prove
-   that terminal CNF coverage forces one learned clause to be false under that
-   source assignment (the learned-clause bridge then supplies the
-   `PositivelyMatches` witness);
+2. generate a checked Lean bank from authenticated terminal journals and
+   establish `DimacsUnsatisfiable` for each exact full terminal formula; the
+   new terminal-bank consumer then supplies the source contradiction;
 3. execute the authenticated CEGAR loop to verified terminal outcomes over every
    required cell in the frozen 648-coordinate schedule;
 4. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-5. land an aggregate Lean consumer connecting that coverage to the two live
-   exact-twelve residual leaves.
+5. aggregate the per-cell terminal consumers and connect their schedule
+   coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains
 only a search heuristic.  No terminal exact-twelve UNSAT certificate,
