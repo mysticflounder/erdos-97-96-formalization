@@ -332,12 +332,14 @@ theorem exists_source_normalized_v14_semanticJob
           ∃ cell : FrozenV14JobCoordinate,
             cell.1.1 =
                 (labeling.e P.jointDeletion.deleted, labeling.e P.v) ∧
+              FrozenSafeCubeOK
+                (labeledRowPattern carrierPattern labeling.e) ∧
               FrozenV14AddedConstraintsHold
                 (labeledRowPattern carrierPattern labeling.e) blocker
                 (labeling.e P.jointDeletion.deleted) (labeling.e P.v)
                 cell.2.1 cell.2.2.1 := by
   classical
-  obtain ⟨carrierPattern, labeling, hplacement, _hsafe, hphysicalRow,
+  obtain ⟨carrierPattern, labeling, hplacement, hsafe, hphysicalRow,
       _hdeletedRow, _hvRow, _hnotSurplus, _hnotFirst, blocker,
       hblockerInjective, hblockerU, hblockerXv, _hblockerActual,
       hblockerNeSource, hblockerNeOne, hrowTrace, harm, _hd, hdAway⟩ :=
@@ -392,7 +394,7 @@ theorem exists_source_normalized_v14_semanticJob
       or_assoc, or_left_comm, or_comm] using h
   obtain ⟨cell, hcellPlacement, hcellArm, hcellD⟩ :=
     exists_jobCoordinate_of_normalized_semantics hplacement harm hdAway
-  refine ⟨carrierPattern, labeling, blocker, cell, hcellPlacement, ?_⟩
+  refine ⟨carrierPattern, labeling, blocker, cell, hcellPlacement, hsafe, ?_⟩
   exact frozenV14AddedConstraintsHold_of_facts hrowOne hrowSeven
     hblockerInjective hblockerU hblockerXv hblockerNeFrozenSource
     hblockerNeOne hrowTraceFrozen hcellArm hcellD

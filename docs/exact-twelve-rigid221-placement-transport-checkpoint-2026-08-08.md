@@ -145,11 +145,21 @@ source-entitled at the semantic-predicate level.  This still does not prove
 that the corresponding DIMACS/Sinz extension satisfies every emitted clause,
 and it supplies no terminal coverage.
 
+`ExactTwelveRigid221V14JobCnf.lean` has begun the exact numbered-DIMACS
+reflection.  It mirrors the compiler's blocker-variable and auxiliary-variable
+layout, proves that each source has exactly one selected blocker and each
+center has at most one, and extends the source assignment through all five
+source-wise bound-one Sinz counters.  The aggregate theorem
+`sourceSinzAssign_sat_source` proves satisfaction of every emitted source-Sinz
+clause for every one of the five physical sources; the targeted module check
+passes.  This is certificate-ingress infrastructure only: center-wise Sinz
+clauses and the compiler's non-Sinz added clauses are not yet all reflected,
+and there is still no terminal bank or live-leaf closure.
+
 The next production target is therefore:
 
-1. prove that the normalized source packet's canonical assignment extends to
-   the per-cell auxiliary blocker variables and satisfies every added v14 job
-   clause;
+1. finish the exact per-cell clause reflection by proving satisfaction of all
+   twelve center-wise Sinz blocks and every non-Sinz added v14 job clause;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the
