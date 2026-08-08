@@ -1130,6 +1130,121 @@ theorem v14Assign_xVar_eq_true_iff
     SafeCoverCnf.finalAssign_x idx hp hi,
     SafeCoverCnf.baseAssign_iff idx hidx hp hi]
 
+/-- Candidate variables satisfying a numerical row predicate, in the exact
+table order used by Python's `enumerate(instance.candidates[center])`. -/
+def varsMatching (p : Nat) (ok : Nat → Bool) : List Nat :=
+  ((List.range (SafeCoverCnf.candCount p)).filter fun i =>
+    ok ((SafeCoverCnf.candMasks p).getD i 0)).map fun i =>
+      SafeCoverCnf.xVar p i
+
+/-- A valid candidate whose mask passes the predicate occurs in the ordered
+matching-variable list. -/
+theorem xVar_mem_varsMatching {p i : Nat} {ok : Nat → Bool}
+    (hi : i < SafeCoverCnf.candCount p)
+    (hok : ok ((SafeCoverCnf.candMasks p).getD i 0) = true) :
+    SafeCoverCnf.xVar p i ∈ varsMatching p ok := by
+  apply List.mem_map.mpr
+  refine ⟨i, ?_, rfl⟩
+  exact List.mem_filter.mpr ⟨List.mem_range.mpr hi, hok⟩
+
+/-- The first compiler clause: the exact normalized row at center `1`. -/
+def centerOneExactRowClause (cell : FrozenV14JobCoordinate) : List Int :=
+  [Int.ofNat (SafeCoverCnf.xVar 1
+    (SafeCoverIndexBridge.coverIndexAt (1 : Label)
+      (frozenRowAtOne
+        (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)))]
+
+/-- The source-selected row at center `1` satisfies the compiler's exact-row
+unit clause. -/
+theorem v14Assign_sat_centerOneExactRowClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (centerOneExactRowClause cell) = true := by
+  let jd : Label := (cell.1.1 : Label × Label).1
+  let v : Label := (cell.1.1 : Label × Label).2
+  have hK : FrozenSafeCandidateAt (1 : Label) (frozenRowAtOne jd v) := by
+    have hcandidate := (mem_frozenSafeCandidateClasses).1
+      (hrow.candidate_mem (1 : Label))
+    rw [hadded.1] at hcandidate
+    exact hcandidate
+  have hi : SafeCoverIndexBridge.coverIndexAt (1 : Label)
+      (frozenRowAtOne jd v) < SafeCoverCnf.candCount 1 :=
+    SafeCoverIndexBridge.coverIndexAt_lt _ _ hK
+  have hidx : SafeCoverIndexBridge.coverIndex row 1 =
+      SafeCoverIndexBridge.coverIndexAt (1 : Label)
+        (frozenRowAtOne jd v) := by
+    dsimp [jd, v]
+    simp [SafeCoverIndexBridge.coverIndex, hadded.1]
+  simp only [centerOneExactRowClause, evalClauseD, List.any_cons,
+    List.any_nil, Bool.or_false]
+  rw [evalLitD_pos]
+  · rw [v14Assign_xVar_eq_true_iff cell blocker
+      (SafeCoverIndexBridge.coverIndex row)
+      (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+      (by decide) hi]
+    exact hidx.symm
+  · exact SafeCoverCnf.one_le_xVar _ _
+
+/-- The second compiler clause: some center-`7` row has physical
+intersection exactly `{6,8}`.  `varsMatching` preserves the compiler's
+candidate-literal order. -/
+def centerSevenPhysicalIntersectionClause
+    (cell : FrozenV14JobCoordinate) : List Int :=
+  let physical := frozenPhysicalLabels
+    (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+  (varsMatching 7 fun m =>
+    (m &&& SafeCoverIndexBridge.classMask physical) ==
+      SafeCoverIndexBridge.classMask ({6, 8} : Finset Label)).map Int.ofNat
+
+/-- The source-selected row at center `7` satisfies the compiler's positive
+physical-intersection clause. -/
+theorem v14Assign_sat_centerSevenPhysicalIntersectionClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
+      (centerSevenPhysicalIntersectionClause cell) = true := by
+  let physical := frozenPhysicalLabels
+    (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+  let selected := SafeCoverIndexBridge.coverIndex row 7
+  have hi : selected < SafeCoverCnf.candCount 7 :=
+    SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow (by decide)
+  have hmask : (SafeCoverCnf.candMasks 7).getD selected 0 =
+      SafeCoverIndexBridge.classMask (row (7 : Label)) :=
+    SafeCoverIndexBridge.getD_coverIndex_of_safeCubeOK hrow (7 : Label)
+  have hphysical :
+      (SafeCoverCnf.candMasks 7).getD selected 0 &&&
+          SafeCoverIndexBridge.classMask physical =
+        SafeCoverIndexBridge.classMask ({6, 8} : Finset Label) := by
+    rw [hmask, SafeCoverIndexBridge.classMask_land_classMask]
+    exact congrArg SafeCoverIndexBridge.classMask hadded.2.1
+  have hnat : SafeCoverCnf.xVar 7 selected ∈
+      varsMatching 7 (fun m =>
+        (m &&& SafeCoverIndexBridge.classMask physical) ==
+          SafeCoverIndexBridge.classMask ({6, 8} : Finset Label)) := by
+    apply xVar_mem_varsMatching hi
+    simpa [hphysical]
+  have hmem : Int.ofNat (SafeCoverCnf.xVar 7 selected) ∈
+      centerSevenPhysicalIntersectionClause cell := by
+    apply List.mem_map.mpr
+    exact ⟨SafeCoverCnf.xVar 7 selected, hnat, rfl⟩
+  simp only [evalClauseD, List.any_eq_true]
+  refine ⟨Int.ofNat (SafeCoverCnf.xVar 7 selected), hmem, ?_⟩
+  rw [evalLitD_pos]
+  · exact (v14Assign_xVar_eq_true_iff cell blocker
+      (SafeCoverIndexBridge.coverIndex row)
+      (fun _ hp => SafeCoverIndexBridge.coverIndex_lt_of_safeCubeOK hrow hp)
+      (by decide) hi).2 rfl
+  · exact SafeCoverCnf.one_le_xVar _ _
+
 /-- The complete v14 extension is true at a blocker input exactly when that
 center is the semantic blocker selected for its physical source. -/
 theorem v14Assign_blockerVar_eq_true_iff
