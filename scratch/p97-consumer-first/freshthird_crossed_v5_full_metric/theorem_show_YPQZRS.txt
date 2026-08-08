@@ -1,0 +1,10 @@
+theorem false_of_three_selected_rows_bridged_late_pair
+
+Two selected rows with the same first center can transfer an equal-radius
+relation across one shared bridge point.  If the transferred pair is also a
+support pair of the selected row at the second vertex of an increasing
+boundary quadruple, the strict Kalmanson inequality is impossible.
+
+This is the exact equality-only consumer for the six-premise FreshThird CEGAR
+core: the two first-center rows need not have equal supports, only a common
+support point.

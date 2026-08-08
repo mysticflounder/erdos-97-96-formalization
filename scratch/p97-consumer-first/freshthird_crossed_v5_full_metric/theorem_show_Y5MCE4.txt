@@ -1,0 +1,6 @@
+theorem FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_oppositeFourth_blocker_ne_common
+
+The opposite unnamed point either supplies the shared fourth occurrence,
+or its actual blocker is genuinely new relative to the common crossed row.
+This isolates the exact complement that a blocker-map saturation argument must
+eliminate.
