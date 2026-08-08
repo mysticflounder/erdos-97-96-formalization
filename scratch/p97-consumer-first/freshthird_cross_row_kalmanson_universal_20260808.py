@@ -31,12 +31,17 @@ from freshthird_cross_deletion_cegar_20260807 import (  # noqa: E402
 from freshthird_cross_deletion_metric_cegar_20260808 import _metric_core_check  # noqa: E402
 from freshthird_rank_kalmanson_probe import ORDER_ARMS, ROW  # noqa: E402
 
-OUT = HERE / "freshthird_cross_row_kalmanson_universal_20260808.results.md"
+OUT = Path(os.environ.get(
+    "FRESHTHIRD_OUT",
+    str(HERE / "freshthird_cross_row_kalmanson_universal_20260808.results.md"),
+))
+BRANCH_START = int(os.environ.get("FRESHTHIRD_BRANCH_START", "1"))
 BRANCH_LIMIT = int(os.environ.get("FRESHTHIRD_BRANCH_LIMIT", "576"))
 TIMEOUT_MS = int(os.environ.get("FRESHTHIRD_STRUCTURAL_TIMEOUT_MS", "10000"))
 METRIC_TIMEOUT_MS = int(os.environ.get("FRESHTHIRD_METRIC_TIMEOUT_MS", "2000"))
 MAX_SURVIVORS = int(os.environ.get("FRESHTHIRD_MAX_SURVIVORS", "12"))
 MAX_LAZY_CUTS = int(os.environ.get("FRESHTHIRD_MAX_LAZY_CUTS", "8"))
+MAX_METRIC_CUTS = int(os.environ.get("FRESHTHIRD_MAX_METRIC_CUTS", "8"))
 
 SCHEMAS = (
     ((0, (3, 5)), (1, (4, 5)), (2, (3, 4))),
@@ -142,21 +147,41 @@ def _branch_assertions(order, fresh_cap, row_cap):
 
 def run():
     started = monotonic(); rows = []; counts = Counter(); survivors = 0
-    branches = 0
+    branch_index = 0; processed = 0
+
+    def checkpoint():
+        first = rows[0]["branch"] if rows else None
+        last = rows[-1]["branch"] if rows else None
+        lines = ["# FreshThird cross-row Kalmanson coverage query (2026-08-08)",
+                 "", "trust: source-faithful configured branch slice; no universal conclusion",
+                 "coverage: schemas=4, blocker_pairs=6, cap_witnesses=3, directions=2, row_permutations=6, six-index-orders=all strict chains",
+                 f"requested_branch_start={BRANCH_START}",
+                 f"branches_processed={processed}",
+                 f"processed_branch_range={first}..{last}",
+                 f"counts={dict(counts)}",
+                 f"survivors_recorded={min(survivors, MAX_SURVIVORS)}", "", "## traces", ""]
+        lines.extend(repr(r) for r in rows[:MAX_SURVIVORS + 20])
+        OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
     for order_name, order in ORDER_ARMS.items():
         for fresh_cap in NONFIRST_CAPS:
             for row_cap in NONFIRST_CAPS:
                 solver, context = _branch_assertions(order, fresh_cap, row_cap)
                 for cap_pair in PAIR_LIST:
                     for mutual_pair in PAIR_LIST:
-                        if branches >= BRANCH_LIMIT: break
-                        branches += 1; solver.push()
+                        branch_index += 1
+                        if branch_index < BRANCH_START:
+                            continue
+                        if processed >= BRANCH_LIMIT:
+                            break
+                        processed += 1; solver.push()
                         for p in PAIR_LIST:
                             solver.add(context["cross_active"][p] == (p == cap_pair))
                             solver.add(context["mutual_active"][p] == (p == mutual_pair))
                         base = list(solver.assertions()); cuts = 0; metric_cuts = 0
                         result = solver.check(); hit = None; terminal_metric = None
-                        while result == sat and cuts < MAX_LAZY_CUTS:
+                        while (result == sat and cuts < MAX_LAZY_CUTS
+                               and metric_cuts < MAX_METRIC_CUTS):
                             hit = _find_model_triangle(solver.model(), context)
                             if hit is not None:
                                 solver.add(Not(_motif_formula(context, *hit, cuts)))
@@ -170,12 +195,13 @@ def run():
                                                 for term in cut_terms]))
                                 metric_cuts += 1; result = solver.check(); continue
                             break
-                        info = {"branch": branches, "order": order_name,
+                        info = {"branch": branch_index, "order": order_name,
                                 "fresh_cap": fresh_cap, "row_cap": row_cap,
                                 "cap_pair": cap_pair, "mutual_pair": mutual_pair}
                         info["lazy_motif_cuts"] = cuts
                         info["verified_metric_cuts"] = metric_cuts
-                        if result == sat and hit is None:
+                        if (result == sat and hit is None
+                                and metric_cuts < MAX_METRIC_CUTS):
                             counts["sat_survivor"] += 1; survivors += 1
                             info["result"] = "sat_survivor_under_complement"
                             if survivors <= MAX_SURVIVORS:
@@ -199,18 +225,13 @@ def run():
                             info["result"] = "sat_after_cut_budget"
                         else:
                             counts["unknown"] += 1; info["result"] = "unknown"
-                        rows.append(info); solver.pop()
-                    if branches >= BRANCH_LIMIT: break
-                if branches >= BRANCH_LIMIT: break
-            if branches >= BRANCH_LIMIT: break
-        if branches >= BRANCH_LIMIT: break
-    lines = ["# FreshThird cross-row Kalmanson coverage query (2026-08-08)",
-             "", "trust: source-faithful configured branch slice; no universal conclusion",
-             "coverage: schemas=4, blocker_pairs=6, cap_witnesses=3, directions=2, row_permutations=6, six-index-orders=all strict chains",
-             f"branches={branches}", f"counts={dict(counts)}", f"survivors_recorded={min(survivors, MAX_SURVIVORS)}", "", "## traces", ""]
-    lines.extend(repr(r) for r in rows[:MAX_SURVIVORS + 20])
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"results_path={OUT}"); print(f"branches={branches} counts={dict(counts)} elapsed={monotonic()-started:.2f}s")
+                        rows.append(info); solver.pop(); checkpoint()
+                    if processed >= BRANCH_LIMIT: break
+                if processed >= BRANCH_LIMIT: break
+            if processed >= BRANCH_LIMIT: break
+        if processed >= BRANCH_LIMIT: break
+    checkpoint()
+    print(f"results_path={OUT}"); print(f"branches_processed={processed} counts={dict(counts)} elapsed={monotonic()-started:.2f}s")
 
 
 if __name__ == "__main__": run()

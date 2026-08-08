@@ -1286,6 +1286,66 @@ Artifacts:
 - `scratch/p97-consumer-first/freshthird_lazy_round_bank_pass_20260808.md`;
 - `scratch/p97-consumer-first/freshthird_row_origin_audit_20260808.md`.
 
+#### 13.16.7.4 Resumable coverage and call-6 replay checkpoint (2026-08-08)
+
+The sixth configured-branch metric core remains unauthenticated.  Its Z3
+result is `unsat`, but cvc5 timed out both in the original 120-second replay
+and in an independent 600-second replay using the four-job portfolio.  The
+exact 2,467,036-byte SMT2 input is now preserved as
+`freshthird_cross_row_kalmanson_universal_20260808.call6.core.smt2` with
+SHA-256
+`f05cc2958df24414d69e835887096cd1d392d759c7bc5790783d0ef0f08f6174`.
+This core remains unverified and is neither blocked nor promoted.
+
+The coverage runner now supports a deterministic `FRESHTHIRD_BRANCH_START`
+in addition to the number of slices requested by `FRESHTHIRD_BRANCH_LIMIT`,
+writes a completed-slice checkpoint after every branch, accepts a separate
+result path through `FRESHTHIRD_OUT`, and bounds metric cuts independently via
+`FRESHTHIRD_MAX_METRIC_CUTS`.  Previously every continuation restarted at
+branch 1 and metric cuts were not bounded by the motif-cut budget.  A smoke
+run starting at branch 2 processed exactly branch 2 and, with both cut budgets
+set to zero, correctly reported `sat_after_cut_budget` rather than a survivor.
+
+The configured structural product contains 576 slices:
+
+\[
+4\ \text{order arms}
+\times 2\ \text{fresh-cap choices}
+\times 2\ \text{row-cap choices}
+\times 6\ \text{repeated-cap pairs}
+\times 6\ \text{independent mutual pairs}.
+\]
+
+This is only the configured abstraction product.  Completing those 576 slices
+would not by itself prove exhaustive coverage of the Lean ingress: the
+source-to-encoder alias, endpoint/name, blocker-witness, positive-incidence,
+and boundary/CCW lift obligations in Sections 13.16.7.1--13.16.7.3 remain in
+force.  No `sorry` is closed at this checkpoint.
+
+The mandatory post-round theorem-bank audit found no producer matching the
+call-6 cross/mutual packet.  The nearest cardinality-independent consumers are
+`CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities_of_index_size`,
+`CapCrossingKalmansonBridge.false_of_six_ccw_two_k2_three_selected_rows`,
+`FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows`,
+and `false_of_freshThird_orderSelectedEndpointDeletionObstructions`.  Their
+weakest currently visible missing antecedent is a universal source theorem
+deriving the generic consumer's three named shell equalities from the active
+one-way cross survivor and the independent two-way mutual survivor, followed
+by the injective boundary/image, convexity, CCW, and strict-order lift.
+Retaining all three survivors as actual `SelectedFourClass` rows with positive
+support incidences would be a stronger sufficient producer.  The agentic Lean
+search exhausted the configured GPT-5.3-Codex-Spark quota, then its automatic
+fallback found the generic five-point consumer; scoped current-corpus search
+and the required general theorem registries confirmed that the producer is
+still absent.
+
+Additional artifacts:
+
+- `scratch/p97-consumer-first/freshthird_cross_row_kalmanson_universal_20260808.call6-replay.results.md`;
+- `scratch/p97-consumer-first/freshthird_cross_row_kalmanson_universal_20260808.call6-bank-audit.md`;
+- `scratch/p97-consumer-first/call6_agentic_search.txt`;
+- `scratch/p97-consumer-first/freshthird_cross_row_kalmanson_universal_20260808.resume-smoke.results.md`.
+
 ## 13.17 Rigid221 `BlockerV` deleted-row class elimination (2026-08-06)
 
 The `v`-row-blocker-is-deleted branch has been reduced without increasing its
