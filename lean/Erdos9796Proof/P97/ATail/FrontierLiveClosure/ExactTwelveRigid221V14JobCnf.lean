@@ -1980,6 +1980,165 @@ theorem finalNumVars_eq (cell : FrozenV14JobCoordinate) :
     _ = 42660 + 50 := by rw [sourceBlocksEnd_eq]
     _ = 42710 := by decide
 
+/- ## Ordered complete clause-delta reconstruction -/
+
+/-- The two clauses emitted before the physical-source blocks. -/
+def initialClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
+  [centerOneExactRowClause cell, centerSevenPhysicalIntersectionClause cell]
+
+/-- One complete physical-source block in compiler order: ten implications,
+the at-least-one selector, then the source-wise bound-one Sinz clauses. -/
+def sourceBlockClauses (cell : FrozenV14JobCoordinate) (i : Fin 5) :
+    List (List Int) :=
+  sourceImplicationClauses cell i ++
+    ([sourceSelectorClause cell i] ++
+      sinzClauses (sourceBlockerVars cell i) 1 (sourceSinzBase cell i))
+
+/-- The five physical-source blocks in source insertion order. -/
+def allSourceBlockClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
+  (List.finRange 5).flatMap (sourceBlockClauses cell)
+
+/-- The twelve center-wise bound-one Sinz blocks in increasing-center order. -/
+def allCenterSinzClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
+  (List.range 12).flatMap fun center ↦
+    sinzClauses (centerBlockerVars cell center) 1 (centerSinzBase cell center)
+
+/-- Exact ordered reconstruction of the clauses appended by `compile_cell`:
+initial row clauses, five source blocks, forced blockers, twelve center blocks,
+the named-deletion arm, and the distinguished-`d` family. -/
+def reconstructedClauseDelta (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  initialClauses cell ++
+    (allSourceBlockClauses cell ++
+      (forcedBlockerClauses cell ++
+        (allCenterSinzClauses cell ++
+          (namedDeletionArmClauses cell ++ distinguishedDClauses cell))))
+
+/-- The final center-wise extension preserves satisfaction of every clause in
+one source-wise Sinz block. -/
+theorem v14Assign_sat_sourceSinzClause
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (i : Fin 5) {c : List Int}
+    (hc : c ∈ sinzClauses (sourceBlockerVars cell i) 1
+      (sourceSinzBase cell i)) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  rw [v14Assign, Census554.CoverCnf.evalClauseD_congr
+    (σ' := sourceSinzAssign cell
+      (blockerAssign cell blocker
+        (SafeCoverCnf.finalAssign (SafeCoverIndexBridge.coverIndex row))))]
+  · exact sourceSinzAssign_sat_source cell hadded
+      (SafeCoverCnf.finalAssign (SafeCoverIndexBridge.coverIndex row)) i hc
+  · intro l hl
+    apply centerSinzAssign_low
+    have hbound := Census554.CoverCnf.sinzClauses_lit_bound
+      (sourceBlockerVars cell i) 1 (sourceSinzBase cell i) (by decide)
+      (fun v hv ↦ sourceBlockerVars_le_sourceSinzBase cell i hv) c hc l hl
+    have hend :
+        sourceSinzBase cell i + (sourceBlockerVars cell i).length ≤
+          sourceBlocksEnd cell := by
+      rw [sourceSinzEnd_eq, sourceBlocksEnd_eq, SafeCoverCnf.baseNumVars_eq]
+      omega
+    exact le_trans (by simpa using hbound) hend
+
+/-- The canonical assignment satisfies the two initial compiler clauses. -/
+theorem v14Assign_sat_initialClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ initialClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  intro c hc
+  simp only [initialClauses, List.mem_cons, List.not_mem_nil, or_false] at hc
+  rcases hc with hc | hc
+  · subst c
+    exact v14Assign_sat_centerOneExactRowClause cell hrow hadded
+  · subst c
+    exact v14Assign_sat_centerSevenPhysicalIntersectionClause cell hrow hadded
+
+/-- The canonical assignment satisfies one complete source block. -/
+theorem v14Assign_sat_sourceBlockClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1)
+    (i : Fin 5) :
+    ∀ c ∈ sourceBlockClauses cell i,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  intro c hc
+  rcases List.mem_append.mp hc with hc | hc
+  · exact v14Assign_sat_sourceImplicationClauses cell hrow hadded i c hc
+  · rcases List.mem_append.mp hc with hc | hc
+    · simp only [List.mem_singleton] at hc
+      subst c
+      exact v14Assign_sat_sourceSelectorClause cell hadded
+        (SafeCoverIndexBridge.coverIndex row) i
+    · exact v14Assign_sat_sourceSinzClause cell hadded i hc
+
+/-- The canonical assignment satisfies all five source blocks. -/
+theorem v14Assign_sat_allSourceBlockClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ allSourceBlockClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  intro c hc
+  obtain ⟨i, _hi, hc⟩ := List.mem_flatMap.mp hc
+  exact v14Assign_sat_sourceBlockClauses cell hrow hadded i c hc
+
+/-- The canonical assignment satisfies all twelve center-wise Sinz blocks. -/
+theorem v14Assign_sat_allCenterSinzClauses
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ allCenterSinzClauses cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  intro c hc
+  obtain ⟨center, hcenter, hc⟩ := List.mem_flatMap.mp hc
+  exact centerSinzAssign_sat_center cell hadded
+    (SafeCoverCnf.finalAssign (SafeCoverIndexBridge.coverIndex row))
+    (List.mem_range.mp hcenter) hc
+
+/-- The canonical source/blocker/Sinz assignment satisfies every clause in
+the complete ordered Lean reconstruction of the normalized-v14 job delta. -/
+theorem v14Assign_sat_reconstructedClauseDelta
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenV14AddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
+      cell.2.1 cell.2.2.1) :
+    ∀ c ∈ reconstructedClauseDelta cell,
+      evalClauseD
+        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  intro c hc
+  rcases List.mem_append.mp hc with hc | hc
+  · exact v14Assign_sat_initialClauses cell hrow hadded c hc
+  · rcases List.mem_append.mp hc with hc | hc
+    · exact v14Assign_sat_allSourceBlockClauses cell hrow hadded c hc
+    · rcases List.mem_append.mp hc with hc | hc
+      · exact v14Assign_sat_forcedBlockerClauses cell hadded
+          (SafeCoverIndexBridge.coverIndex row) c hc
+      · rcases List.mem_append.mp hc with hc | hc
+        · exact v14Assign_sat_allCenterSinzClauses cell hadded c hc
+        · rcases List.mem_append.mp hc with hc | hc
+          · exact v14Assign_sat_namedDeletionArmClauses cell hrow hadded c hc
+          · exact v14Assign_sat_distinguishedDClauses cell hrow hadded c hc
+
 end FrozenV14JobCnf
 end ExactTwelveRigid221Ingress
 end ATailFrontierLiveClosure

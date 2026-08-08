@@ -176,16 +176,21 @@ the optional left-major forbidden-pair product.  The semantic distinguished
 row and missing-conjunction hypotheses prove that the canonical assignment
 satisfies every clause in this final local family, and the targeted direct
 module check remains green.  All local non-Sinz and Sinz families are therefore
-reflected separately.  They still need an ordered aggregate and an explicit
-equality bridge to an authenticated serialization of the actual emitted job
-`clause_delta`; the current artifact records only its hash.  There is still no
-terminal bank or live-leaf closure.
+reflected separately.  The module now also aggregates those families in the
+exact compiler order—initial row clauses, five source blocks, forced blockers,
+twelve center-Sinz blocks, named-deletion arm, then distinguished-`d`—and proves
+that the canonical source/blocker/Sinz assignment satisfies every clause in
+that aggregate.  The ordered aggregate passes the targeted direct module
+check.  It still needs an explicit equality bridge to an authenticated
+serialization of the actual emitted job `clause_delta`; the Python artifact
+work is not yet part of this Lean checkpoint.  There is still no terminal bank
+or live-leaf closure.
 
 The next production target is therefore:
 
-1. aggregate every exact per-cell clause family in compiler order, serialize
-   the actual emitted v14 job `clause_delta`, and prove that the Lean aggregate
-   agrees with that authenticated ordered list and the complete DIMACS suffix;
+1. serialize the actual emitted v14 job `clause_delta` and prove that the Lean
+   aggregate agrees with that authenticated ordered list and the complete
+   DIMACS suffix;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the
