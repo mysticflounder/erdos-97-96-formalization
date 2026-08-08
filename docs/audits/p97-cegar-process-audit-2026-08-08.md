@@ -142,10 +142,15 @@ live Lean consumer + ingress hash
 - Fix and reproduce `PIQD-ENC-001` on the encoder endpoint. The raw-CNF sibling,
   raw profile validation, SMT model reachability, and `drat-trim` verdict gate
   are fixed in the installed piqd release.
-- Extend the live exercise beyond the completed exact12 normalized-v14 cell 0
-  survivor, but launch further cells only under a stated stop/pivot rule. One
-  source-bound `STRUCTURAL_SAT` cell tests the real boundary; it does not supply
-  aggregate 648-cell coverage, a terminal obstruction, or a Lean consumer.
+- Encode the now-exercised three-cell stop/pivot rule in a campaign controller.
+  The current `p97-cegar-wave/v1` schema authenticates one job but does not
+  enforce an ordered cell set, repeated-survivor equivalence key, threshold, or
+  terminal pivot. Until that controller exists, do not extend the exact12
+  static sampling described below.
+- Repair the exact12 structural detector's source entitlement and the Lean
+  consumer boundary before resuming refinement. In particular, a selected
+  four-point support is not automatically a complete ambient fiber, and a
+  duplicate-center-only terminal consumer cannot consume mixed detector stages.
 - Keep independent replay mandatory even after the `PIQD-PROOF-001` fix; piqd
   remains the proof-artifact producer, not the publication authority.
 - Decide whether piqd should expose a new raw-job requeue identity for terminal
@@ -230,3 +235,54 @@ constraints. Its canonical receipt is
 This establishes one authenticated finite survivor only: no 648-cell aggregate
 coverage, terminal obstruction, producer theorem, universal lift, live Lean
 consumer, or `sorry` closure follows.
+
+## Bounded three-cell piqd custody canary and stop/pivot
+
+Before launching more jobs, the project conversation recorded a deterministic
+canary over normalized-v14 cells 0, 1, and 2, with a threshold of three
+authenticated structural SAT survivors in the same diagnostic failure family.
+Eligibility required a piqd `STRUCTURAL_SAT` terminal result and independent
+source-semantic replay of the total assignment, exact CNF, current source
+rebuild, source candidate, blockers, and added constraints. The three eligible
+results were:
+
+| Cell | piqd job | Replay receipt SHA-256 | Decoded cube SHA-256 |
+| ---: | --- | --- | --- |
+| 0 | `cc4054b6-6e73-4bb6-9c09-ed4814f07c93` | `80dbbd70a6542d81248d2f85277c4bb5af296d8af23a30f95031e093c4182914` | `27b80fc03f2161a2feb4644aedad76684f78e3f15a22a6aef53798f7f850d693` |
+| 1 | `17287981-8e74-4fe1-9fe8-251433f6aab1` | `cc378a62c7eea0d011af6e0947d2842ca7855f975bdf28e3ec00f43cbba4b9f2` | `b4481f9ba7c112b70b25c9b9c2779d2c19acd5cbc1c9e098f702a54c0a58d658` |
+| 2 | `819d6242-cd27-40ec-848c-d8593625039b` | `0eca4c86596e558702139af820695e9c5b8fcfbfd5725b1d876f894f403a8d71` | `ad1e6eeac2e537e0e841efd5b9e7bf189aa1fbbc84fbfca6807acbb88c23d8f2` |
+
+All three packages bind the same eight-file source bundle at
+`51bf83555104a9045bdcdaf5b04c4980bc722fec7c149477fdbca84ca2a146b1`.
+A post-hoc run of the current detector manifest
+`3a0c79449acb5373c42bf36f3d40e78ef8b83e2a028112018c16c78f0ac21b48`
+classified all three models as `equality-duplicate-center`. The certificate,
+cube, and blocker hashes differ, so these are three distinct survivors, not
+one deduplicated model. The shared detector stage is used only as the
+predeclared operational no-progress signal; the live piqd journals do not bind
+that later detector invocation.
+
+The threshold therefore fired: stop this static cell-sampling family and pivot
+before spending more solver time. A separate exact12 refinement campaign had
+already accumulated 4,468 replayed cuts without an UNSAT terminal or live Lean
+closure, reinforcing the same decision. The next work is, in order:
+
+1. make certificate detection source-faithful by either proving ambient-fiber
+   completeness or removing the unjustified `exact=True` interpretation of
+   selected four-point supports;
+2. bind the detector contract and certificate to the authenticated attempt,
+   and dispatch each detector stage only to a matching Lean consumer rather
+   than sending mixed stages to the duplicate-center consumer;
+3. replay the missing Fin-12 ordered predicate, including its order witness,
+   against the source semantics; and
+4. implement the documented campaign-controller gap so the ordered cell set,
+   eligibility gates, repetition key, threshold, and pivot reason are enforced
+   by a durable manifest rather than conversation discipline.
+
+Cells 1 and 2 also retain
+`UPSTREAM_DIGEST_ONLY_NOT_ARCHIVED_OR_REPLAYED` for the blocked-job input.
+Their current source rebuild succeeds, but that does not recover historical
+upstream custody. These findings are P97 integration and promotion-boundary
+defects, not piqd daemon bugs. They do not establish aggregate coverage, a
+terminal obstruction, a universal producer or lift, a live consumer, or any
+`sorry` closure.
