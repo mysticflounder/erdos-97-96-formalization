@@ -216,19 +216,71 @@ module succeeds.  Most importantly, no terminal bank or proof of
 `DimacsUnsatisfiable` has yet been supplied, so this theorem closes no live
 leaf by itself.
 
+`ExactTwelveRigid221TerminalRupIngress.lean` now supplies the next logical
+boundary.  It transfers successful replay by the existing compact pure-RUP
+checker to `DimacsUnsatisfiable`, provided generated data proves both exact
+parsing of the checker start formula and exact equality of its signed clauses
+with the full `terminalDimacs` ledger.  The exact-twelve endpoint composes this
+fact with `not_realizes_of_terminalDuplicateCenterBank`.  Direct elaboration
+passes.  The generic replay transfer itself has audited axiom closure
+`propext`, `Classical.choice`, and `Quot.sound`; the final exact-twelve endpoint
+additionally inherits `Lean.ofReduceBool` and `Lean.trustCompiler` from the
+terminal-bank consumer's previously documented base-literal bound.  This
+module embeds no terminal certificate and proves no cell terminal.
+
+`scripts/prepare_exact12_v14_terminal_rup_source.py` now provides a fail-closed
+postprocessor for a future terminal v14 job.  It accepts only an authenticated
+`UNSAT_DRAT_VERIFIED` cell or structural summary, rechecks every bound artifact
+path, size, and SHA-256, requires discovery and terminal CNF identity, copies
+the bound job, and requires the summary's canonical job digest and cell index
+to match that job.  Cell summaries must carry the clause-delta artifact bound
+inside the job; structural summaries must carry a journal whose record count,
+parent chain, detector-contract digest, certificate/cube/assignment hashes, and
+terminal chain head all match the summary.  This postprocessor authenticates
+that structural chain but deliberately does not replace the production
+runner's semantic certificate replay.
+
+The staged source is self-contained: it includes the parsed summary, bound job,
+discovery and terminal CNFs, DRAT, the clause delta or structural journal, the
+exact detector-source files bound by the structural contract, and the derived
+LRAT files.  After copying, every ledger-bound staged artifact is
+rehashed before any checker is invoked, closing the validation-to-copy race.
+The postprocessor reruns `drat-trim` only as an untrusted proposal/precheck and
+records its complete output; the receipt explicitly requires subsequent Lean
+compact-RUP replay and does not authenticate the checker executable or treat
+its `s VERIFIED` line as trusted closure.  Because the installed `drat-trim -L`
+output can use sparse or
+nonmonotone addition identifiers, the postprocessor normalizes base,
+addition, hint, and deletion identifiers to the dense convention required by
+the compact materializer.  It rejects reused or inactive identifiers,
+negative/RAT hints, and any stream without a final empty-clause addition.  It
+then emits the generic authenticated pure-RUP source manifest, re-enters the
+generic strict loader before publication, and emits a separate exact-twelve
+receipt binding all copied provenance inputs, the checker transcript, terminal
+formula, raw proof, raw and normalized LRAT, and normalization counts.  Focused
+tests pass (`16 passed`,
+including `13` subtests), and Ruff is clean.  A smoke test using the installed
+CaDiCaL and `drat-trim` confirmed the relevant sparse-ID behavior and the dense
+normalization.  No retained exact-twelve run currently has a terminal artifact,
+so this postprocessor has not yet produced a production certificate.
+
 The next production target is therefore:
 
-1. choose and implement the scalable all-cell form of the cell-0 serialization
-   bridge—either generated per-cell checks or a schedule-parametric authenticated
-   checker—without embedding 648 redundant 1,280-clause lists unnecessarily;
-2. generate a checked Lean bank from authenticated terminal journals and
-   establish `DimacsUnsatisfiable` for each exact full terminal formula; the
-   new terminal-bank consumer then supplies the source contradiction;
+1. implement the generated exact-twelve replay coordinator: materialize a
+   prepared pure-RUP source into compact checker windows, reconstruct the
+   authenticated learned-nogood bank, and prove the exact start-formula equality
+   against `terminalDimacs` without omitting the frozen base or cell delta;
+2. exercise that coordinator on the first real `UNSAT_DRAT_VERIFIED` cell and
+   obtain a checked `DimacsUnsatisfiable` theorem for its exact full terminal
+   formula;
 3. execute the authenticated CEGAR loop to verified terminal outcomes over every
    required cell in the frozen 648-coordinate schedule;
-4. aggregate immutable terminal records while rejecting missing, duplicated,
+4. choose the scalable all-cell serialization/equality form—generated per-cell
+   checks or a schedule-parametric authenticated checker—without embedding 648
+   redundant 1,280-clause lists unnecessarily;
+5. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-5. aggregate the per-cell terminal consumers and connect their schedule
+6. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains
