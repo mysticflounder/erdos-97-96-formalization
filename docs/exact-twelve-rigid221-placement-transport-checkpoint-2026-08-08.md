@@ -151,15 +151,18 @@ layout, proves that each source has exactly one selected blocker and each
 center has at most one, and extends the source assignment through all five
 source-wise bound-one Sinz counters.  The aggregate theorem
 `sourceSinzAssign_sat_source` proves satisfaction of every emitted source-Sinz
-clause for every one of the five physical sources; the targeted module check
-passes.  This is certificate-ingress infrastructure only: center-wise Sinz
-clauses and the compiler's non-Sinz added clauses are not yet all reflected,
-and there is still no terminal bank or live-leaf closure.
+clause for every one of the five physical sources.  The theorem
+`centerSinzAssign_sat_center` then extends that assignment through all twelve
+center-wise bound-one counters and proves satisfaction of every emitted
+center-Sinz clause.  The targeted module check passes.  This is
+certificate-ingress infrastructure only: the compiler's non-Sinz added clauses
+are not yet all reflected, and there is still no terminal bank or live-leaf
+closure.
 
 The next production target is therefore:
 
-1. finish the exact per-cell clause reflection by proving satisfaction of all
-   twelve center-wise Sinz blocks and every non-Sinz added v14 job clause;
+1. finish the exact per-cell clause reflection by proving satisfaction of every
+   non-Sinz added v14 job clause;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the
