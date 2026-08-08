@@ -1,10 +1,19 @@
 from __future__ import annotations
 
 import itertools
+import tempfile
 import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from census.card_head.candidate_surface import build_model, cube_ok
-from census.card_head.sat_encoding import CNF, CoverInstance, EncodingError
+from census.card_head.sat_encoding import (
+    CNF,
+    CoverInstance,
+    EncodingError,
+    solve_cadical,
+)
 
 
 def clause_satisfied(clause, true_variables):
@@ -89,6 +98,34 @@ class SatEncodingTests(unittest.TestCase):
             self.instance.decode_model(set())
         malformed = {center: [0, 1, 2, 3] for center in range(12)}
         self.assertFalse(cube_ok(self.model, malformed))
+
+    def test_sat_result_preserves_the_positive_assignment(self):
+        class FakeInstance:
+            def dimacs(self, _extra_clauses=()):
+                return "p cnf 5 0\n"
+
+            def decode_model(self, positive_variables):
+                self.positive_variables = set(positive_variables)
+                return {0: [1, 2, 3, 4]}
+
+        fake = FakeInstance()
+        completed = SimpleNamespace(
+            returncode=10,
+            stdout="s SATISFIABLE\nv -1 2 5 0\n",
+            stderr="",
+        )
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "census.card_head.sat_encoding.subprocess.run",
+            return_value=completed,
+        ):
+            result = solve_cadical(
+                fake,
+                Path(directory) / "model.cnf",
+                timeout_seconds=1,
+            )
+        self.assertEqual(result.verdict, "SAT")
+        self.assertEqual(fake.positive_variables, {2, 5})
+        self.assertEqual(result.positive_variables, frozenset({2, 5}))
 
 
 if __name__ == "__main__":

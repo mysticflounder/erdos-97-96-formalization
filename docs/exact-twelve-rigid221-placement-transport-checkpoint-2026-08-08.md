@@ -103,13 +103,15 @@ only after the existing order-independent metric detector exports a certificate
 which the independent structural-certificate validator replays.  Each cut is
 then compiled to the exact selected-row variables and written to an
 append-only hash chain bound to the cell job and the detector implementation.
-The first cell-0 run learned a five-row equality-duplicate-center cut; a fresh
-run seeded from that journal authenticated the prior record and learned a
-second distinct cut.  Complete journal replay, certificate/chain tamper tests,
-SAT source/added-predicate/exact-CNF replay, and focused runner tests pass.
-Both canaries ended at `ITERATION_LIMIT`: neither is a terminal cell or a
-coverage result.  The pre-contract draft canary is explicitly marked invalid
-and must not be used for promotion.
+The journal-v2 contract stores the canonical cube and complete positive SAT
+assignment, recomputes both hashes during replay, checks that decoding the
+assignment gives exactly the recorded cube, and checks that the recorded
+witness falsifies the learned cut.  Its detector-source manifest now covers
+the six files in the actual semantic detector contract.  A fresh one-iteration
+cell-0 v2 run replayed all live SAT gates and learned the same five-row
+equality-duplicate-center certificate as the earlier canary.  It ended at
+`ITERATION_LIMIT`, not a terminal cell or coverage result.  The v1 journals are
+historical artifacts and are not promotion inputs for the v2 schema.
 
 ## Exact remaining gate
 
@@ -181,16 +183,24 @@ exact compiler order—initial row clauses, five source blocks, forced blockers,
 twelve center-Sinz blocks, named-deletion arm, then distinguished-`d`—and proves
 that the canonical source/blocker/Sinz assignment satisfies every clause in
 that aggregate.  The ordered aggregate passes the targeted direct module
-check.  It still needs an explicit equality bridge to an authenticated
-serialization of the actual emitted job `clause_delta`; the Python artifact
-work is not yet part of this Lean checkpoint.  There is still no terminal bank
-or live-leaf closure.
+check.  The representative cell-0 artifact now supplies the first explicit
+serialization bridge.  It authenticates the complete DIMACS bytes and their
+1,280-clause suffix, and the generated
+`ExactTwelveRigid221V14ClauseDeltaCell0000.lean` proves that this exact ordered
+suffix equals `reconstructedClauseDelta`.  The checked delta SHA-256 is
+`01cc5ecfca4bf068bd69e594a84017eeb75f87bf281cae43fecb05d32e482f3c`;
+the complete DIMACS SHA-256 is
+`cfc268f2915ff31eaf24a66a036e41e81f93aca0967e88c1b4a4158eb67a379`.
+The equality proof uses `native_decide`, so this is a compiler-trusting exact
+artifact check rather than a kernel-only certificate.  It covers one
+representative schedule cell only.  There is still no terminal bank or
+live-leaf closure.
 
 The next production target is therefore:
 
-1. serialize the actual emitted v14 job `clause_delta` and prove that the Lean
-   aggregate agrees with that authenticated ordered list and the complete
-   DIMACS suffix;
+1. choose and implement the scalable all-cell form of the cell-0 serialization
+   bridge—either generated per-cell checks or a schedule-parametric authenticated
+   checker—without embedding 648 redundant 1,280-clause lists unnecessarily;
 2. generate a checked Lean bank from authenticated terminal journals and prove
    that terminal CNF coverage forces one learned clause to be false under that
    source assignment (the learned-clause bridge then supplies the

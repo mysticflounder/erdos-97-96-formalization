@@ -4,10 +4,10 @@ CEGAR record.
 
 Source journal:
   scratch/rigid221-sourceheavy-anchor/
-    exact12-v14-structural-v1-canary-0000-2/journal.jsonl
+    exact12-v14-structural-v2-canary-0000-1/journal.jsonl
 
 Journal record SHA-256:
-  ace0330dab6f5f5adc1dfd0284678cc382acbe08da7ceb896782e14188aed486
+  b177dd73b6de679186bced6492941456c3d97c653b169273fe8f30b4705ae16f
 
 Certificate SHA-256:
   202acebee1d1d043f7c081ac042482a317aa1f603d8ea0f0f4465accd3683ca0

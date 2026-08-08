@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
-from collections.abc import Collection, Mapping, Sequence
+from collections.abc import Callable, Collection, Mapping, Sequence
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
@@ -23,18 +23,24 @@ from tempfile import TemporaryDirectory
 from typing import Any
 
 from .candidate_surface import (
-    CapHeadModel,
     CandidateSurfaceError,
+    CapHeadModel,
     build_model,
     candidate_classes,
     cube_ok,
 )
 
-
 SAT_SCOPE = (
     "EMPIRICALLY VERIFIED within the exact finite candidate-class CNF; "
     "not a geometric closure theorem"
 )
+
+CandidateProvider = Callable[
+    [CapHeadModel, int], tuple[tuple[int, int, int, int], ...]
+]
+CubeValidator = Callable[
+    [CapHeadModel, Mapping[int, Collection[int]]], bool
+]
 
 
 class EncodingError(ValueError):
@@ -98,10 +104,18 @@ class CNF:
 class CoverInstance:
     """One deterministic C1/C2/C4 candidate-cube coverage CNF."""
 
-    def __init__(self, model: CapHeadModel) -> None:
+    def __init__(
+        self,
+        model: CapHeadModel,
+        *,
+        candidate_provider: CandidateProvider = candidate_classes,
+        cube_validator: CubeValidator = cube_ok,
+    ) -> None:
         self.model = model
+        self.candidate_provider = candidate_provider
+        self.cube_validator = cube_validator
         self.candidates = {
-            center: candidate_classes(model, center)
+            center: candidate_provider(model, center)
             for center in range(model.cardinality)
         }
         self.cnf = CNF()
@@ -229,7 +243,7 @@ class CoverInstance:
                     f"SAT model selects {len(selected)} classes at center {center}"
                 )
             cube[center] = list(self.candidates[center][selected[0]])
-        if not cube_ok(self.model, cube):
+        if not self.cube_validator(self.model, cube):
             raise EncodingError("decoded SAT model fails independent cube_ok")
         return cube
 
@@ -241,6 +255,7 @@ class CadicalResult:
     returncode: int | None
     proof_verified: bool
     stdout_tail: str
+    positive_variables: frozenset[int] | None = None
 
 
 def solve_cadical(
@@ -295,7 +310,12 @@ def solve_cadical(
                     if int(token) > 0
                 )
         return CadicalResult(
-            "SAT", instance.decode_model(positive), completed.returncode, False, tail
+            "SAT",
+            instance.decode_model(positive),
+            completed.returncode,
+            False,
+            tail,
+            frozenset(positive),
         )
     if completed.returncode != 20:
         return CadicalResult("UNKNOWN", None, completed.returncode, False, tail)
