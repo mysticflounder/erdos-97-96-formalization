@@ -9,8 +9,9 @@ closure claim.
 
 piqd is ready to be the persistent oracle for a static, fully materialized CNF:
 it stores the exact submitted bytes, deduplicates jobs, runs a bounded solver,
-persists status and artifacts, returns SAT models, and can produce a CaDiCaL
-proof artifact for independent Lean replay.
+persists status and artifacts, returns SAT models, and attempts to produce a
+CaDiCaL proof artifact for independent Lean replay. A solver-level `UNSAT`
+remains uncertified when that second proof-production pass fails.
 
 The current daemon also has configurable concurrent workers and persistent SAT
 and SMT sessions. Those capabilities are implemented in piqd, but the P97
@@ -20,9 +21,12 @@ need to invent a new solver service.
 
 It is not yet the default path for most P97 SAT or CEGAR work. Current searches
 still invoke Z3, CaDiCaL, cvc5, or an IPASIR CaDiCaL instance directly. The
-existing P97 piqd driver and the exact-12 source-bound canary prove that the
-required trust boundary works for a real producer artifact, but they remain a
-one-job integration rather than a general campaign service.
+existing P97 piqd driver, exact-12 source-bound canary, and authenticated
+three-record stop/pivot controller prove that the required trust boundary works
+for a real producer artifact. They remain a sequential, exact-12-specific
+integration rather than a general campaign service: the controller deliberately
+sets `MAX_IN_FLIGHT = 1` and denies aggregate coverage, source entitlement, and
+theorem closure.
 
 The intended division of responsibility is:
 
@@ -44,48 +48,79 @@ producer/lift/consumer promotion      queueing and deduplication
    artifact-bound piqd job;
 2. every CEGAR iteration uses either a bound piqd session or a freshly
    materialized immutable piqd job;
-3. SAT and UNSAT artifacts return through one checked P97 adapter; and
-4. direct subprocess solves remain only for explicitly documented backend or
+3. every static SAT assignment is treated as log-derived data: the adapter
+   must require a complete assignment and retain the exact source log;
+4. SAT and UNSAT artifacts return through one checked P97 adapter; and
+5. direct subprocess solves remain only for explicitly documented backend or
    exploratory exceptions.
 
 It should not mean moving mathematical source validation, CEGAR policy, Lean
 promotion, or theorem lifting into the daemon.
 
+Here “authenticated” means hash-bound local byte custody and a replayable
+provenance chain. It does not mean authenticated submitter identity,
+authorization, or source-theorem entitlement; piqd treats the producer manifest
+as opaque caller-supplied bytes.
+
 This plan is scoped to the current local-only deployment. piqd accepts remote
 HTTP clients, but it does not presently supply authenticated submitter
-identities, transport security, a remote worker registry, or a multi-host
-scheduler. Those are required before treating an idle remote machine as part of
-one trusted daemon pool, but they do not block migrating the local P97 solver
-work described here.
+identities, transport security, a remote worker registry, a multi-host
+scheduler, or authorization for the shutdown route. In particular, any client
+that can reach the current unauthenticated `POST /shutdown` endpoint can stop
+the daemon. Loopback binding contains that risk in the present deployment;
+these controls are required before treating an idle remote machine as part of
+one trusted daemon pool. They do not block migrating the local P97 solver work
+described here.
 
 ## Current verified surface
 
 This surface was re-audited on 2026-08-08 against the installed `piqd` binary
-and the current Rust source checkout. `piqd --help` exposes
-`--max-workers` with default 32; P97 should still cap the local production
-budget at 24 total solver cores. The source contains both atomic multi-worker
-job claiming and persistent `/sessions` APIs. Older piqd skill text describing
-the daemon as single-threaded is stale.
+and the current Rust source checkout. `piqd --help` exposes `--max-workers`;
+its default is the host's detected parallelism, which is 32 on this machine,
+not a fixed daemon constant. P97 production launches must pass
+`--max-workers 24` explicitly to preserve the local solver-core budget. The
+source contains both atomic multi-worker job claiming and persistent
+`/sessions` APIs. Older piqd skill text describing the daemon as single-threaded
+is stale.
 
 | Capability | Current status | Evidence or limitation |
 | --- | --- | --- |
-| Raw DIMACS ingestion | Ready | `POST /jobs/prepare-cnf` preserves and hashes the exact bytes. |
+| Raw DIMACS ingestion | Ready within its current envelope | `POST /jobs/prepare-cnf` preserves and hashes exact bytes up to 256 MiB. It accepts CaDiCaL, Kissat, and `march_cu`, but currently validates every backend's profile string against the CaDiCaL profile vocabulary. |
 | CaDiCaL static SAT/UNSAT | Ready | Live daemon smoke completed on the installed `piqd` binary. |
-| Kissat static discovery | Ready without proof certification | The live runner dispatches Kissat and can return a parsed SAT model, but it has no proof-artifact path accepted for promoted UNSAT. |
+| Kissat static discovery | Implemented but unavailable on the current host | The runner can dispatch Kissat and parse a SAT model, but the executable is absent from the live solver inventory and there is no proof-artifact path accepted for promoted UNSAT. |
 | Exact CNF retrieval and binding | Ready | The P97 client rejects job/CNF/hash disagreement. |
-| SAT model checking | Ready at CNF level | The P97 client independently checks that a complete returned assignment satisfies the submitted CNF. Source-semantic decoding remains workflow-specific. |
-| UNSAT proof production | Ready for CaDiCaL | piqd replays terminal UNSAT with binary DRAT and converts it to LRAT. |
+| SAT model checking | Ready at CNF level | Static assignments are reparsed from retained solver-log `v` lines, not stored as dedicated model blobs. The P97 client requires a complete returned assignment and checks it against the submitted CNF; source-semantic decoding remains workflow-specific. |
+| UNSAT proof production | Implemented for CaDiCaL; promotion must fail closed when absent | piqd attempts binary-DRAT replay and LRAT conversion after terminal UNSAT. Proof generation can fail while the job remains solver-level `UNSAT`; then `/proof` returns 404 and P97 must retain `DISCOVERY_UNSAT`. |
 | Independent Lean LRAT replay | Ready for the current P97 adapter | Certification binds the job, CNF, backend/profile, proof, checker, exact replay command, and receipt. |
 | Durable P97 attempt journal | Ready for one-job waves | Retries and responses are append-only, hash chained, archived, and sealed. |
-| Concurrent static solving | Implemented in piqd; not production-qualified for P97 | `--max-workers` starts independent worker loops and atomic claims prevent duplicate ownership. P97 still lacks resource weights, campaign canaries, and a general batch controller. |
-| Stateful SAT/SMT sessions | Implemented in piqd; not integrated with P97 | SAT sessions support durable clause append, assumptions, model/core results, restart recovery, and terminal CNF handoff. Z3/cvc5 sessions persist assertions and textual results. |
+| Concurrent static solving | Implemented in piqd; not production-qualified for P97 | `--max-workers` starts independent worker loops and atomic claims prevent duplicate ownership. P97 still lacks resource weights, production concurrency canaries, and a general batch controller. |
+| Stateful SAT/SMT sessions | Implemented in piqd; not integrated with P97 | SAT sessions support durable clause append, assumptions, model/core results, restart recovery, and terminal CNF handoff. Z3/cvc5 sessions persist assertions and textual results. No public session-cancel route is exposed. |
 | Nonlinear SMT/Euclidean validation | Daemon custody exists; P97 validation is absent | The session API can run Z3/cvc5, but P97 has no source-semantic receipt, exact replay classification, or promotion contract for these results. |
 | General P97 workflow adoption | Partial | One exact-12 normalized-v14 cell has completed source-semantic replay; exact-17 and older Phase-3 workers still include direct local solver paths. |
 
-The focused oracle/package/driver/campaign/replay test matrix currently passes
-108 tests. That green matrix does not yet exercise the full sealed-journal,
-cross-package, nonregular-file, malformed-record, threshold-overrun, or
-concurrent-admission boundary described in G11.
+The live daemon snapshot used for this audit is piqd `0.1.0`, protocol 1,
+binary SHA-256
+`476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`.
+With `GET /jobs?limit=1000`, it reports 247 retained jobs: 240 completed and
+seven prepared, with no running jobs. It has no live sessions. This proves that
+the service is operational; it does not measure production throughput because
+the active exact-17 workers still run outside piqd.
+
+The live `/solvers` inventory currently exposes only CaDiCaL session workers.
+Source support for another backend does not establish executable availability
+on this host. The raw endpoint also rejects a CNF above 256 MiB (with a 272 MiB
+multipart-body ceiling), so each migration must preflight the materialized
+artifact size rather than assume that every large exact-17 or Phase-3 formula
+can be submitted unchanged.
+
+The current oracle/package/driver/campaign/replay test matrix
+passes 120 tests. The piqd Rust library has 160 passing tests with two ignored,
+and the piqc library has 80 passing tests. The campaign hardening checkpointed
+at `6fcf51e4`
+adds descriptor-relative no-follow snapshots, transitive artifact binding,
+locked idempotent admission, malformed-input rejection, threshold monotonicity,
+and replay-after-mutation tests. G11 is therefore a durable repository
+capability rather than an uncommitted working-tree claim.
 The exact-12 normalized-v14 cell-0 live replay produced the accepted
 source-semantic receipt
 `80dbbd70a6542d81248d2f85277c4bb5af296d8af23a30f95031e093c4182914`.
@@ -95,10 +130,18 @@ replayer. These results validate one real SAT ingress/replay path and the
 control plane; they do not validate every P97 encoder, establish campaign
 coverage, or close a P97 theorem.
 
+A newer P97 working-tree follow-on upgrades the campaign/result schemas and
+source classifier to v2, snapshots every declared detector source exactly once,
+and restricts learned clauses to variables supported by the authenticated
+positive assignment witness. Its focused piqd matrix reports 143 passing tests.
+Those changes are useful partial progress on G5 and G7, but they are not counted
+as a durable capability here until they are committed and the existing v1
+campaign artifacts are explicitly regenerated.
+
 The practical critical path is:
 
-1. finish and harden the producer-neutral package/client and batch controller
-   (G1–G2, G11);
+1. finish the producer-neutral package/client and production batch controller
+   (G1–G2), preserving the now-tested G11 custody boundary;
 2. authenticate the CEGAR refinement and source-semantic validation layers
    (G5–G7);
 3. production-qualify the concurrency already present in piqd (G3, G9); and
@@ -141,6 +184,8 @@ Required work:
   consume their contents;
 - retain the existing fail-closed result vocabulary and receipt validation;
 - provide a library entry point in addition to the one-shot CLI; and
+- preflight the raw-CNF size limit and either shard an artifact above 256 MiB
+  with authenticated coverage or record it as a direct-solver exception; and
 - migrate the existing Phase-3 driver onto that shared implementation without
   weakening its current tests.
 
@@ -152,7 +197,7 @@ variable-map, cell/order, model, and source-predicate checks.
 Remaining acceptance condition: extract the exact-12 implementation from the
 Phase-3-named modules into a stable producer-neutral library, then make
 exact-cardinality, projected-static, and one other P97 CNF producer call that
-library without copying lifecycle code. The 108-test focused matrix must remain
+library without copying lifecycle code. The 120-test focused matrix must remain
 green. Until this reuse exists, the project has a demonstrated production
 canary but not a general P97 package adapter.
 
@@ -164,9 +209,12 @@ Submitting one CLI process per cell or shard does not replace the existing
 24-worker SAT campaigns. P97 needs a controller above piqd that can prepare,
 confirm, reconcile, and collect many immutable jobs.
 
-`phase3_piqd_campaign.py` is a useful bounded diagnostic controller, but it
-sets `MAX_IN_FLIGHT = 1` and explicitly is not a scheduler. It should be the
-starting regression surface, not be mistaken for production batch adoption.
+`phase3_piqd_campaign.py` is a useful authenticated stop/pivot controller. Its
+three-record canary survives exact-byte snapshot replay, concurrent admission,
+and idempotent retry, and fails closed on malformed or relabeled artifacts. It
+still sets `MAX_IN_FLIGHT = 1`, explicitly denies aggregate coverage, and is not
+a scheduler. It should be the starting regression surface, not be mistaken for
+production batch adoption.
 
 Required work:
 
@@ -192,7 +240,9 @@ The basic concurrency mechanism is already implemented: piqd starts a
 configurable number of independent worker loops, and `claim_next_confirmed`
 uses an immediate SQLite transaction so one confirmed job is claimed once.
 What remains is proving that this mechanism safely replaces the existing P97
-worker launchers under realistic load.
+worker launchers under realistic load. Scheduling is currently one global FIFO
+queue with no priorities, weights, campaign groups, or per-job resource
+isolation.
 
 Required work:
 
@@ -257,6 +307,12 @@ Acceptance condition: a small three-iteration fixture performs
 SAT → refinement → SAT → refinement → certified UNSAT, then reproduces the same
 chain after restart with every child bound to its parent.
 
+Status: partially complete in the current working tree. The v2 source
+classifier binds an exact detector-source snapshot and rejects learned clauses
+whose variables are absent from the authenticated positive witness. It does not
+yet provide a producer-neutral parent/child CNF chain, restartable multi-step
+refinement, or certified terminal handoff.
+
 Owner: P97 integration, with one adapter per finite schema.
 
 ### G6. Integrate the existing stateful session API
@@ -276,6 +332,10 @@ Required P97 work:
 - append clauses with checked counts/hashes and record the source theorem or
   model defect justifying each learned cut;
 - bind every solve's assumptions and resource limits to its result;
+- either expose a public session-cancel operation with an auditable terminal
+  state or specify that timeout/process restart is the only supported
+  interruption path; SAT has an internal cancel frame, but neither it nor SMT
+  cancellation is available through the current HTTP API;
 - add a restart fixture that resumes the same authenticated session;
 - independently validate SAT models and distinguish SMT evidence from exact
   certificates; and
@@ -316,6 +376,10 @@ Acceptance condition: tampering with the source hash, variable map, decoded
 object, or validator revision invalidates the receipt, and a known encoder
 omission is caught by the negative fixture.
 
+Status: one exact-12 classifier has a source-bound v2 implementation in the
+current working tree. General adoption still requires a shared receipt schema
+and positive/negative semantic fixtures for every migrated producer family.
+
 Owner: each P97 encoder, enforced by the shared P97 adapter.
 
 ### G8. Finish backend-specific artifact support
@@ -326,11 +390,17 @@ support:
 - `march_cu` does not expose one compact proof through the current P97 adapter;
   per-cube proof manifests need retrieval, checking, aggregation, and Lean
   ingress;
-- Kissat is wired into the static runner and is usable for proof-free discovery,
-  but it has no proof artifact or P97-certified UNSAT path; and
+- Kissat is wired into the static runner for proof-free discovery, but it is
+  absent from the current host's live solver inventory and has no proof
+  artifact or P97-certified UNSAT path; and
 - piqd can hold cvc5/Z3 sessions, but P97 has no authenticated source-semantic
   adapter, exact-certificate route, or theorem-promotion classification for
   their results.
+
+The raw endpoint also applies CaDiCaL's solver-profile vocabulary to all three
+accepted DIMACS backends. Default profiles are usable, but backend-specific
+profile contracts must be separated before production Kissat or `march_cu`
+campaigns rely on identity-level profile claims.
 
 Required work should be demand driven. CaDiCaL is sufficient for the first
 migration wave. `march_cu` proof aggregation is the next useful backend feature
@@ -382,45 +452,67 @@ test.
 
 Owner: piqd.
 
-### G11. Harden campaign admission and cross-artifact provenance
+### G11. Campaign admission and cross-artifact provenance — checkpointed
 
-The bounded campaign controller is useful, but its current happy-path tests
-mock important replay and journal components. A source audit found admission
-paths that can follow symlinks/nonregular files and several bindings that are
-checked during manifest construction but not rechecked when an externally
-supplied manifest or journal is admitted.
+The checkpointed controller uses descriptor-relative no-follow
+snapshots for package, model, journal, classifier, and receipt inputs. It checks
+the transitive binding from the predeclared cell through the exact piqd job and
+CNF to the validated model and classifier, locks admission, makes the stop
+threshold monotone, and leaves idempotent replay byte-for-byte unchanged.
 
-Required work:
+The preserved three-record canary reaches `PIVOT_REQUIRED` with
+`aggregate_coverage`, `source_entitlement`, and `theorem_closure` all false.
+Adversarial tests cover mutation after snapshot, malformed hashes, symlinks,
+duplicate and divergent concurrent admission, and result repair. An independent
+read-only audit found no remaining medium-or-higher custody defect.
 
-- use descriptor-relative, no-follow regular-file reads for journals, seals,
-  package artifacts, classifiers, and receipts;
-- revalidate `cell_index`, wave `shard_id`, source-job identity, package
-  references, CNF/producer/variable-map hashes, terminal checkpoint job, model
-  job, and receipt job as one transitive binding;
-- validate the exact campaign-record schema and claims before recomputing any
-  aggregate result;
-- fail closed when a pivot-worthy prefix exists or the threshold is exceeded,
-  rather than allowing `consecutive == threshold` to become false again;
-- lock admission so concurrent writers cannot race or mutate an idempotent
-  replay; and
-- add adversarial tests for malformed or relabeled packages, symlinks/FIFOs,
-  job mismatch, threshold overrun, concurrent admission, and real sealed replay
-  without monkeypatching the trust boundary.
+The uncommitted v2 follow-on strengthens source custody and learned-clause
+support, but intentionally invalidates v1 campaign manifests, records, and
+results. That migration must be checkpointed together with an explicit artifact
+regeneration note; it does not reopen the already-checkpointed v1 custody
+finding. The existing campaign-canary snapshots are still v1 and are rejected
+by the v2 validator, so a fresh v2 canary and corrected process-audit hashes are
+required before describing the v2 path as accepted.
 
-Acceptance condition: every campaign record can be traced transitively to one
-predeclared source cell, one exact solver job, one checked model/receipt, and one
-validated classifier; hostile path or relabeling fixtures fail quickly and do
-not mutate campaign state.
+Remaining action: keep the 120-test boundary green. Generalizing this
+controller into a scheduler and a coverage authority belongs to G1–G2; it is
+not a remaining G11 soundness task.
 
 Owner: P97 integration.
+
+## Minimum implementation that reaches "most"
+
+The project does not need every gap below closed before making a useful
+majority-adoption claim. The smallest implementation set is:
+
+| Deliverable | Gaps consumed | Workloads unlocked | Acceptance gate |
+| --- | --- | --- | --- |
+| Producer-neutral immutable-CNF package/client | G1, minimum G7 | Exact-cardinality banks, exact-17 static queries, projected-static Phase 3, certificate replay | Three independent producer families use one library and each has positive and negative semantic fixtures. |
+| Restartable bounded multi-job controller | G2, G4 | Existing 16/24-shard static waves | A mixed SAT/UNSAT/UNKNOWN campaign restarts without duplicate logical attempts and emits authenticated complete-or-incomplete coverage. |
+| Authenticated CEGAR refinement adapter | G5, G7 | Exact-12/exact-17 source-faithful CEGAR and Phase-3 nonincremental CEGAR | Parent CNF, checked model, learned cut, child CNF, source validation, and resume checkpoint form one replayable hash chain. |
+| Production concurrency canary and minimal telemetry | minimum G3, G9 | Replacement of direct local worker launchers | A 24-single-core mixed queue respects the total core budget, survives restart, does not starve short proof jobs, and exposes queue/worker/disk pressure. |
+
+Together these cover the direct-CaDiCaL-heavy majority: exact-cardinality
+banks, the static portions of exact-17, Phase-3 projected-static work, and
+publication certificate replay. They do not require immediate migration of:
+
+- local IPASIR incremental discovery, provided its terminal CNF is handed to
+  the static piqd proof path;
+- Z3/cvc5 metric screening, which remains explicitly noncertifying;
+- `march_cu` aggregate proof custody; or
+- Kissat discovery/proof support.
+
+Those are named second-wave exceptions, not blockers to the initial "most"
+claim.
 
 ## Recommended migration order
 
 ### Stage 0 — preserve the proven boundary
 
-- Keep the existing Phase-3 piqd driver and 108-test focused matrix green.
-- Close G11 before treating the bounded campaign controller as an authenticated
-  production scheduler.
+- Keep the existing Phase-3 piqd driver and 120-test focused matrix green.
+- Preserve G11's authenticated custody boundary, while continuing to describe
+  the bounded controller as stop/pivot control rather than a production
+  scheduler or coverage authority.
 - Keep independent SAT-model checking and Lean LRAT replay mandatory.
 - Keep `DISCOVERY_UNSAT` distinct from `CERTIFIED_UNSAT`.
 - Do not treat a piqd receipt as source-semantic validation or theorem closure.
@@ -491,6 +583,8 @@ following are true:
 - UNKNOWN, daemon failure, poll timeout, and retry generations remain distinct;
 - every migrated encoder has source-semantic SAT fixtures and a bound variable
   map;
+- every migrated raw formula is within the daemon's admitted size envelope, or
+  has an authenticated sharding or direct-solver exception record;
 - every promoted UNSAT result has independent proof checking and Lean replay;
 - CEGAR parent/child/refinement history survives restart and is authenticated;
 - dashboards expose queue, worker, failure, and disk state; and
