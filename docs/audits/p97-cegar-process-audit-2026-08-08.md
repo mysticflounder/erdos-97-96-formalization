@@ -54,6 +54,7 @@ are all present.
 | Relaxation confused with geometry | The rigid-base full metric gate was `UNKNOWN`, while a weaker K4 abstract-distance surface was SAT (`e5001be2`). Its Kalmanson and triangle constraints are necessary but not sufficient for planar realization. | A model of a relaxation could be reported as a geometric counterexample, while a timeout could be reported as evidence. | Name the exact encoded surface in every result. Keep structural SAT, metric SAT, metric unknown, and Euclidean/Lean proof separate; `UNKNOWN` proves nothing. Add a realizability or source-level bridge before consumption. |
 | Resume-state drift | The first projected-static v3 replay omitted `CHECKPOINT` from the completed-state set, so `--resume` ran the solver again and appended two raw-SAT records. | A nominal replay mutated the run and changed its evidence history. | Fixed in `6da139bf`; regression coverage requires no solver call and no new manifest generation. Keep resume acceptance explicit per terminal/checkpoint state and compare canonical output bytes. |
 | Schema/provenance mixing | The v3 migration found v2 learned streams incompatible with v3; exact-six candidates imported a retired off-spine module and did not match the live Rigid221 hypotheses. | Stale artifacts looked reusable but had no valid route into the current consumer. | Fresh output roots per schema; authenticated prefix ingress; wave hashes for Lean leaf, ingress hypotheses, CNF, variable map, order, backend, and profile; proof-blueprint anchor on the live consumer. |
+| Orphaned producer snapshots | The first exact12 normalized-v14 cell-0 candidate named three producer-source hashes that no longer matched the worktree, and those exact bytes were absent from Git history. Regeneration from current source reproduced the same CNF and source-replayed model, but that empirical agreement cannot repair the old artifact's custody gap. | A source-faithful artifact can become unverifiable even when its DIMACS bytes remain stable; silently accepting current sources would sever the claimed source-to-CNF contract. | Reject the stale package. Archive a content-addressed producer-source bundle when each job is generated, bind every listed path, byte count, and digest into the package, and regenerate plus replay after drift rather than waiving it. This is a P97 artifact-lifecycle defect, not a piqd daemon bug. |
 | Evidence-class collapse | Bounded UNSAT, learned clauses, exact-rational realizations, solver logs, and successful builds repeatedly risked being read as universal closure. | Local computation could be promoted past missing proof replay, lift, or consumer bridges. | Frozen outcome taxonomy and fail-closed publication assessment. piqd UNSAT remains `DISCOVERY_UNSAT` until proof bytes, independent checker, and replay receipt exist; even `CERTIFIED_UNSAT` remains only a publication candidate. |
 | Retry history loss | A successful retry could previously obscure the request that timed out or failed. The confirmed piqd identical-prepare race returns a transient HTTP 500 to one concurrent caller. | Operational failure rates and oracle ambiguity became invisible; a later success appeared cleaner than the actual run. | Append the structured failure event and fsync the hash-chained attempt before every bounded retry. Stop immediately on uncertain journal durability. A successful re-prepare never replaces the earlier failure. |
 | Terminal-state conflation | piqd reports solver timeout as `completed/UNKNOWN`, while daemon failures use lifecycle `failed` (often with result `UNKNOWN`). Poll exhaustion is a third condition. | Different remedies and reliability signals were collapsed into one vague unknown. | Preserve `SOLVER_UNKNOWN`, `DAEMON_FAILED`, and `POLL_TIMEOUT` in `p97-cegar-piqd-event/v1`. The frozen outer vocabulary uses `ERROR` for all three; `METRIC_UNKNOWN` is reserved for metric validation. |
@@ -80,6 +81,16 @@ piqd is valuable as a persistent static-oracle layer:
 
 That makes piqd a good replacement for ad hoc subprocess custody in the static
 structural SAT/UNSAT part of a wave. It is not the CEGAR authority:
+
+`phase3_piqd_package.py` now supplies the previously missing fail-closed bridge
+for exact12 normalized-v14 cells. It authenticates the DIMACS dimensions and
+bytes, current source-to-CNF files, compiler and clause-delta manifests, Lean
+ingress files, cell/order identity, and an honest partial variable map. The map
+names only the blocker variables exposed by the compiler and classifies every
+other allocator range as opaque. The package also archives a content-addressed
+bundle of the exact source bytes, so those bytes remain available for later
+reconstruction if the worktree drifts. The current source-semantic replay still
+rebuilds from the live worktree and requires it to match the packaged CNF.
 
 - piqd stores a job identity, not the ordered sequence of P97 attempts and
   refinements;
@@ -131,9 +142,10 @@ live Lean consumer + ingress hash
 - Fix and reproduce `PIQD-ENC-001` on the encoder endpoint. The raw-CNF sibling,
   raw profile validation, SMT model reachability, and `drat-trim` verdict gate
   are fixed in the installed piqd release.
-- Exercise a generated P97 wave through the live daemon after its mathematical
-  producer contract is ready. The synthetic known-UNSAT daemon/replay smoke is
-  complete, but it does not test a P97 encoding or close a Lean consumer.
+- Extend the live exercise beyond the completed exact12 normalized-v14 cell 0
+  survivor, but launch further cells only under a stated stop/pivot rule. One
+  source-bound `STRUCTURAL_SAT` cell tests the real boundary; it does not supply
+  aggregate 648-cell coverage, a terminal obstruction, or a Lean consumer.
 - Keep independent replay mandatory even after the `PIQD-PROOF-001` fix; piqd
   remains the proof-artifact producer, not the publication authority.
 - Decide whether piqd should expose a new raw-job requeue identity for terminal
@@ -184,3 +196,37 @@ and its terminal attempt is
 `cd59472247fa266b6febde8517e2f462cd58b54d734997ef1fbccb78fa3751bc`.
 This closes the live integration smoke only. It is not evidence for a P97
 producer, lift, consumer, or transitive `sorryAx`-free theorem.
+
+The first source-bound P97 wave then exercised exact12 normalized-v14 cell 0.
+After adversarial review and hardening, the combined `test_phase3_piqd*.py`
+matrix reported 88 tests passed; Ruff check and format verification passed for
+the package and source-replay modules and their tests. The final adapters
+reject symlink/non-regular artifact paths, use durable atomic writes, keep the
+daemon UUID distinct from the stable source-job ID, and reject nonzero wave
+iterations until a parent checkpoint artifact can be authenticated rather than
+accepting a caller-supplied lineage digest.
+The fail-closed package bound a 42,710-variable, 369,355-clause DIMACS file at
+SHA-256
+`cfc268f2915ff31e1af24a66a036e41e81f93aca0967e88c1b4a4158eb67a379`,
+the exact ingress contract at
+`b2b959820c0cf6a87efa178e754c4f348a49302471e42dbf9af0740cbaac2321`,
+and an eight-file source bundle at
+`51bf83555104a9045bdcdaf5b04c4980bc722fec7c149477fdbca84ca2a146b1`.
+The manifest explicitly classifies the upstream blocked-job input as
+`UPSTREAM_DIGEST_ONLY_NOT_ARCHIVED_OR_REPLAYED` and the variable map as partial
+rather than claiming unavailable provenance or allocator coverage.
+
+Live piqd job `cc4054b6-6e73-4bb6-9c09-ed4814f07c93` returned a total SAT model
+with 31,257 positive literals. The P97 driver classified it
+`STRUCTURAL_SAT`; the six-record journal seal is
+`b12abbcc8c5bfca4c38cfc45006109b35cdeaf8c14017231502ff1cad186d8c8`,
+and the terminal record is
+`70f85cac9ee50ac5a9da99f59a449fd5d155aea7d7adb97372976a1db21b974c`.
+Independent source-semantic replay rebuilt the identical CNF, checked the full
+assignment against every clause, decoded the exact source model and blockers,
+and accepted both the source-faithful candidate predicate and the added
+constraints. Its canonical receipt is
+`80dbbd70a6542d81248d2f85277c4bb5af296d8af23a30f95031e093c4182914`.
+This establishes one authenticated finite survivor only: no 648-cell aggregate
+coverage, terminal obstruction, producer theorem, universal lift, live Lean
+consumer, or `sorry` closure follows.
