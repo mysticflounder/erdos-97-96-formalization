@@ -26,15 +26,13 @@ from pathlib import Path
 from typing import Any
 
 from .exact12_v14_ordered_coverage import (
-    FROZEN_V8_CUBE,
-    FROZEN_V8_LEAN_BINDING,
-    FROZEN_V8_LEAN_CHOICES,
+    PROOF_BACKED_CUBE_BINDINGS,
     detect_proof_backed_ordered_coverage,
     learned_clause_for_proof_backed_ordered_coverage,
 )
 from .sat_encoding import CoverInstance
 
-BANK_SCHEMA = "p97_rigid221_exact12_source_order_positive_bank.v1"
+BANK_SCHEMA = "p97_rigid221_exact12_source_order_positive_bank.v2"
 DETECTOR_CONTRACT = (
     "exact generated Lean source-order nogood plus current-source hash replay"
 )
@@ -90,26 +88,22 @@ def _source_record(repo_root: Path, relative: str) -> dict[str, Any]:
 
 
 def _current_lean_source_manifest(repo_root: Path) -> list[dict[str, Any]]:
-    binding = FROZEN_V8_LEAN_BINDING
-    expected = (
-        {
-            "path": binding["source_path"],
-            "bytes": binding["source_bytes"],
-            "sha256": binding["source_sha256"],
-        },
-        {
-            "path": binding["coverage_source_path"],
-            "bytes": binding["coverage_source_bytes"],
-            "sha256": binding["coverage_source_sha256"],
-        },
-        {
-            "path": binding["consumer_source_path"],
-            "bytes": binding["consumer_source_bytes"],
-            "sha256": binding["consumer_source_sha256"],
-        },
-    )
+    expected_by_path: dict[str, dict[str, Any]] = {}
+    for _cube, binding, _choices in PROOF_BACKED_CUBE_BINDINGS:
+        for prefix in ("", "coverage_", "consumer_"):
+            record = {
+                "path": binding[f"{prefix}source_path"],
+                "bytes": binding[f"{prefix}source_bytes"],
+                "sha256": binding[f"{prefix}source_sha256"],
+            }
+            previous = expected_by_path.setdefault(record["path"], record)
+            if previous != record:
+                raise Exact12V14SourceOrderBankError(
+                    "generated Lean bindings disagree on source bytes"
+                )
+    expected = [expected_by_path[path] for path in sorted(expected_by_path)]
     current = [_source_record(repo_root, record["path"]) for record in expected]
-    if current != list(expected):
+    if current != expected:
         raise Exact12V14SourceOrderBankError(
             "generated Lean nogood source bytes drifted"
         )
@@ -120,8 +114,8 @@ def _detector_manifest(repo_root: Path) -> list[dict[str, Any]]:
     return [_source_record(repo_root, relative) for relative in DETECTOR_FILES]
 
 
-def _frozen_cube() -> dict[int, list[int]]:
-    return {int(center): list(support) for center, support in FROZEN_V8_CUBE.items()}
+def _integer_cube(cube: Mapping[str, Sequence[int]]) -> dict[int, list[int]]:
+    return {int(center): list(support) for center, support in cube.items()}
 
 
 def _selected_variables(
@@ -135,7 +129,9 @@ def _selected_variables(
     )
 
 
-def _lean_choice_variables(instance: CoverInstance) -> list[int]:
+def _lean_choice_variables(
+    instance: CoverInstance, choices: Sequence[Mapping[str, Any]]
+) -> list[int]:
     return [
         instance.choice_variables[
             (
@@ -143,8 +139,51 @@ def _lean_choice_variables(instance: CoverInstance) -> list[int]:
                 instance.candidate_index(choice["center"], choice["support"]),
             )
         ]
-        for choice in FROZEN_V8_LEAN_CHOICES
+        for choice in choices
     ]
+
+
+def _build_entry(
+    instance: CoverInstance,
+    index: int,
+    string_cube: Mapping[str, Sequence[int]],
+    binding: Mapping[str, Any],
+    choices: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    cube = _integer_cube(string_cube)
+    certificate = detect_proof_backed_ordered_coverage(cube)
+    if certificate is None:
+        raise Exact12V14SourceOrderBankError(
+            "source-order cut lost its generated Lean binding"
+        )
+    clause = learned_clause_for_proof_backed_ordered_coverage(instance, certificate)
+    positive_variables = _selected_variables(instance, cube)
+    lean_choice_variables = _lean_choice_variables(instance, choices)
+    if clause != tuple(-variable for variable in lean_choice_variables):
+        raise Exact12V14SourceOrderBankError(
+            "proof-backed clause differs from the generated Lean choices"
+        )
+    if any(literal >= 0 or -literal not in positive_variables for literal in clause):
+        raise Exact12V14SourceOrderBankError(
+            "source-order witness does not falsify its proof-backed clause"
+        )
+    witness_cube = {str(center): cube[center] for center in range(12)}
+    return {
+        "index": index,
+        "certificate_kind": "source_order_positive_coverage",
+        "certificate_schema": certificate["schema"],
+        "certificate": certificate,
+        "certificate_sha256": _sha256_json(certificate),
+        "learned_clause": list(clause),
+        "learned_clause_sha256": _sha256_json(list(clause)),
+        "witness_cube": witness_cube,
+        "witness_cube_sha256": _sha256_json(witness_cube),
+        "witness_positive_variables": positive_variables,
+        "witness_positive_variables_sha256": _sha256_json(positive_variables),
+        "lean_choice_variables": lean_choice_variables,
+        "lean_choice_variables_sha256": _sha256_json(lean_choice_variables),
+        "generated_lean_nogood": copy.deepcopy(dict(binding)),
+    }
 
 
 def build_source_order_bank(repo_root: Path, instance: CoverInstance) -> dict[str, Any]:
@@ -157,48 +196,17 @@ def build_source_order_bank(repo_root: Path, instance: CoverInstance) -> dict[st
     repo_root = repo_root.resolve()
     lean_sources = _current_lean_source_manifest(repo_root)
     detector_manifest = _detector_manifest(repo_root)
-    cube = _frozen_cube()
-    certificate = detect_proof_backed_ordered_coverage(cube)
-    if certificate is None:
-        raise Exact12V14SourceOrderBankError(
-            "frozen source-order cut lost its generated Lean binding"
-        )
-    clause = learned_clause_for_proof_backed_ordered_coverage(instance, certificate)
-    positive_variables = _selected_variables(instance, cube)
-    lean_choice_variables = _lean_choice_variables(instance)
-    if clause != tuple(-variable for variable in lean_choice_variables):
-        raise Exact12V14SourceOrderBankError(
-            "proof-backed clause differs from the generated Lean choices"
-        )
-    if any(literal >= 0 or -literal not in positive_variables for literal in clause):
-        raise Exact12V14SourceOrderBankError(
-            "frozen witness does not falsify its proof-backed clause"
-        )
-    entry = {
-        "index": 0,
-        "certificate_kind": "source_order_positive_coverage",
-        "certificate_schema": certificate["schema"],
-        "certificate": certificate,
-        "certificate_sha256": _sha256_json(certificate),
-        "learned_clause": list(clause),
-        "learned_clause_sha256": _sha256_json(list(clause)),
-        "witness_cube": {str(center): cube[center] for center in range(12)},
-        "witness_cube_sha256": _sha256_json(
-            {str(center): cube[center] for center in range(12)}
-        ),
-        "witness_positive_variables": positive_variables,
-        "witness_positive_variables_sha256": _sha256_json(positive_variables),
-        "lean_choice_variables": lean_choice_variables,
-        "lean_choice_variables_sha256": _sha256_json(lean_choice_variables),
-        "generated_lean_nogood": copy.deepcopy(FROZEN_V8_LEAN_BINDING),
-    }
+    entries = [
+        _build_entry(instance, index, cube, binding, choices)
+        for index, (cube, binding, choices) in enumerate(PROOF_BACKED_CUBE_BINDINGS)
+    ]
     body = {
         "schema": BANK_SCHEMA,
         "detector_contract": DETECTOR_CONTRACT,
         "detector_manifest": detector_manifest,
         "detector_manifest_sha256": _sha256_json(detector_manifest),
         "lean_source_manifest": lean_sources,
-        "entries": [entry],
+        "entries": entries,
         "claims": {
             "lean_cut_proved": True,
             "terminal_unsat": False,

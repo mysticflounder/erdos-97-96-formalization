@@ -10,7 +10,10 @@ from pathlib import Path
 from unittest.mock import patch
 
 from census.card_head.exact12_v14_bound_jobs import materialize_cell
-from census.card_head.exact12_v14_ordered_coverage import FROZEN_V8_CUBE
+from census.card_head.exact12_v14_ordered_coverage import (
+    FROZEN_V8_CUBE,
+    MIXED_V3_CELL8_CUBE,
+)
 from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
     SOURCE_ORDER_DETECTOR_STAGE,
@@ -27,7 +30,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
     def setUp(self) -> None:
         self.instance = materialize_cell(0).instance
 
-    def test_admits_only_the_exact_proof_backed_cube(self) -> None:
+    def test_admits_exactly_the_two_proof_backed_cubes(self) -> None:
         admitted = detect_proof_backed_source_order_cut(
             REPO_ROOT, self.instance, FROZEN_V8_CUBE
         )
@@ -39,6 +42,14 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
             admitted.learned_clause,
             (-42, -55, -169, -312, -501, -868, -1605, -2024, -2317, -2573, -2884),
         )
+        cell8 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V3_CELL8_CUBE
+        )
+        self.assertIsNotNone(cell8)
+        assert cell8 is not None
+        self.assertEqual(cell8.certificate_kind, SOURCE_ORDER_CERTIFICATE_KIND)
+        self.assertEqual(cell8.detector_stage, SOURCE_ORDER_DETECTOR_STAGE)
+        self.assertEqual(cell8.learned_clause, (-55, -313, -2134))
 
         different = copy.deepcopy(FROZEN_V8_CUBE)
         different["0"] = [1, 3, 4, 7]

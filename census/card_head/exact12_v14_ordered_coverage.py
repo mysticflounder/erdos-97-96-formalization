@@ -5,11 +5,11 @@ the 24 direct or 24 mirror orders it is.  A certificate from this module is a
 row-pattern nogood only when every one of those 48 orders is covered by a
 positive-incidence obstruction already represented by a Lean consumer.
 
-This is deliberately not wired into the production CEGAR journal yet.  The
-typed Lean consumer is `SourceOrderPositiveNogood`, but each finite certificate
-still needs a generated Lean proof of that structure's `refutes` field.  This
-module does not prove source convexity, schedule coverage, a universal lift,
-or closure of a live sorry.
+The diagnostic detector is broader than the production proof-backed registry.
+Only exact cubes whose replay has a checked `SourceOrderPositiveNogood` Lean
+value may be admitted by CEGAR; the current registry contains the frozen V8
+cube and mixed-v3 cell 8.  This module does not prove schedule coverage, a
+universal lift, or closure of a live sorry.
 """
 
 from __future__ import annotations
@@ -87,6 +87,22 @@ FROZEN_V8_LEAN_CONSUMER_SOURCE = (
 FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES = 6885
 FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256 = (
     "74d8689d33b912e85f71714d33eed843b58c4fdbd59251b934c3adb8832f0250"
+)
+MIXED_V3_CELL8_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV3Cell8PositiveNogood"
+)
+MIXED_V3_CELL8_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_0_9_2_3_1"
+)
+MIXED_V3_CELL8_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV3Cell8PositiveCut.lean"
+)
+MIXED_V3_CELL8_LEAN_SOURCE_BYTES = 3712
+MIXED_V3_CELL8_LEAN_SOURCE_SHA256 = (
+    "c6311578addcd9bee044ab9d5c607c74d684b66fcc64544545cfed7eb64c1e58"
 )
 REQUIRED_SOURCE_HYPOTHESES = (
     "Realizes",
@@ -175,6 +191,60 @@ FROZEN_V8_LEAN_BINDING = {
     "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
+
+MIXED_V3_CELL8_CUBE = {
+    "0": [3, 4, 6, 10],
+    "1": [0, 2, 6, 8],
+    "2": [5, 6, 10, 11],
+    "3": [1, 2, 9, 11],
+    "4": [1, 2, 3, 5],
+    "5": [0, 4, 7, 9],
+    "6": [0, 4, 5, 11],
+    "7": [1, 3, 6, 8],
+    "8": [4, 5, 6, 9],
+    "9": [0, 2, 7, 10],
+    "10": [2, 3, 4, 8],
+    "11": [3, 5, 7, 10],
+}
+MIXED_V3_CELL8_CUBE_SHA256 = _sha256_json(MIXED_V3_CELL8_CUBE)
+MIXED_V3_CELL8_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V3_CELL8_CUBE[str(center)])}
+    for center in (1, 3, 9)
+]
+MIXED_V3_CELL8_LEAN_BINDING = {
+    "cube_sha256": MIXED_V3_CELL8_CUBE_SHA256,
+    "nogood_declaration": MIXED_V3_CELL8_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V3_CELL8_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V3_CELL8_LEAN_CHOICES,
+    "source_path": MIXED_V3_CELL8_LEAN_SOURCE,
+    "source_bytes": MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V3_CELL8_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+PROOF_BACKED_CUBE_BINDINGS = (
+    (FROZEN_V8_CUBE, FROZEN_V8_LEAN_BINDING, FROZEN_V8_LEAN_CHOICES),
+    (
+        MIXED_V3_CELL8_CUBE,
+        MIXED_V3_CELL8_LEAN_BINDING,
+        MIXED_V3_CELL8_LEAN_CHOICES,
+    ),
+)
+
+
+def _proof_backed_binding(
+    cube: Mapping[str, Sequence[int]],
+) -> tuple[dict[str, Any], list[dict[str, Any]]] | None:
+    for bound_cube, binding, choices in PROOF_BACKED_CUBE_BINDINGS:
+        if cube == bound_cube:
+            return binding, choices
+    return None
 
 
 def _cube_payload(
@@ -452,8 +522,10 @@ def _build_body(cube: Mapping[str, Sequence[int]]) -> dict[str, Any] | None:
         ],
         "selected_rows": selected_rows,
     }
-    if cube == FROZEN_V8_CUBE:
-        body["generated_lean_nogood"] = copy.deepcopy(FROZEN_V8_LEAN_BINDING)
+    proof_backed = _proof_backed_binding(cube)
+    if proof_backed is not None:
+        binding, _choices = proof_backed
+        body["generated_lean_nogood"] = copy.deepcopy(binding)
     return body
 
 
@@ -535,19 +607,28 @@ def learned_clause_for_proof_backed_ordered_coverage(
     """Compile a clause only after exact replay of a generated Lean binding."""
 
     clause = learned_clause_for_ordered_coverage(instance, certificate)
-    if certificate.get("generated_lean_nogood") != FROZEN_V8_LEAN_BINDING:
+    cube = certificate.get("cube")
+    if not isinstance(cube, Mapping):
+        raise Exact12V14OrderedCoverageError("ordered coverage cube is malformed")
+    proof_backed = _proof_backed_binding(cube)
+    if proof_backed is None:
         raise Exact12V14OrderedCoverageError(
             "ordered coverage has no generated Lean nogood binding"
         )
+    binding, choices = proof_backed
+    if certificate.get("generated_lean_nogood") != binding:
+        raise Exact12V14OrderedCoverageError(
+            "ordered coverage generated Lean nogood binding drifted"
+        )
     expected_rows = [
         {"center": row["center"], "support": row["support"], "exact": False}
-        for row in FROZEN_V8_LEAN_CHOICES
+        for row in choices
     ]
     if certificate.get("selected_rows") != expected_rows:
         raise Exact12V14OrderedCoverageError(
             "ordered coverage rows differ from generated Lean choices"
         )
-    if len(clause) != len(FROZEN_V8_LEAN_CHOICES):
+    if len(clause) != len(choices):
         raise Exact12V14OrderedCoverageError(
             "ordered learned clause differs from generated Lean choices"
         )

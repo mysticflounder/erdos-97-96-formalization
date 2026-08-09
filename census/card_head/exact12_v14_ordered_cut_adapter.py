@@ -2,13 +2,14 @@
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
 
-"""Typed admission for the proof-backed exact-12 source-order cut.
+"""Typed admission for proof-backed exact-12 source-order cuts.
 
 The ordered-coverage detector is broader than the theorem-backed bank.  This
-adapter admits only a certificate that is byte-for-byte equal to the single
-current bank entry, whose generated Lean sources are freshly authenticated by
-``build_source_order_bank``.  It deliberately has no structural-certificate
-fallback; the mixed-journal dispatcher owns that separate certificate family.
+adapter admits only a certificate that is byte-for-byte equal to the exact
+matching current bank entry, whose generated Lean sources are freshly
+authenticated by ``build_source_order_bank``.  It deliberately has no
+structural-certificate fallback; the mixed-journal dispatcher owns that
+separate certificate family.
 """
 
 from __future__ import annotations
@@ -20,7 +21,6 @@ from pathlib import Path
 from typing import Any
 
 from .exact12_v14_ordered_coverage import (
-    FROZEN_V8_CUBE,
     Exact12V14OrderedCoverageError,
     learned_clause_for_proof_backed_ordered_coverage,
 )
@@ -99,24 +99,32 @@ def detect_proof_backed_source_order_cut(
     instance: CoverInstance,
     cube: Mapping[int | str, Collection[int]],
 ) -> AdmittedCut | None:
-    """Admit the frozen cut only after a fresh theorem-backed bank rebuild."""
+    """Admit an exact cube only after a fresh theorem-backed bank rebuild."""
 
     payload = _cube_payload(cube, cardinality=instance.model.cardinality)
-    if payload != FROZEN_V8_CUBE:
-        return None
     try:
         bank = build_source_order_bank(repo_root, instance)
     except (Exact12V14OrderedCoverageError, Exact12V14SourceOrderBankError) as exc:
         raise Exact12V14OrderedCutAdapterError(str(exc)) from exc
     entries = bank.get("entries")
-    if not isinstance(entries, list) or len(entries) != 1:
+    if not isinstance(entries, list) or not entries:
         raise Exact12V14OrderedCutAdapterError(
-            "proof-backed source-order bank is not singleton"
+            "proof-backed source-order bank has no entries"
         )
-    entry = entries[0]
+    matches = [
+        entry
+        for entry in entries
+        if isinstance(entry, Mapping) and entry.get("witness_cube") == payload
+    ]
+    if not matches:
+        return None
+    if len(matches) != 1:
+        raise Exact12V14OrderedCutAdapterError(
+            "proof-backed source-order bank has duplicate cube entries"
+        )
+    entry = matches[0]
     if (
-        not isinstance(entry, Mapping)
-        or entry.get("certificate_kind") != SOURCE_ORDER_CERTIFICATE_KIND
+        entry.get("certificate_kind") != SOURCE_ORDER_CERTIFICATE_KIND
         or entry.get("witness_cube") != payload
     ):
         raise Exact12V14OrderedCutAdapterError(

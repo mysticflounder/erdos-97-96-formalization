@@ -22,6 +22,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_LEAN_SOURCE_SHA256,
     LEAN_CONSUMER,
     LEAN_TERMINAL_CONSUMER,
+    MIXED_V3_CELL8_CUBE,
+    MIXED_V3_CELL8_LEAN_BINDING,
+    MIXED_V3_CELL8_LEAN_CHOICES,
+    MIXED_V3_CELL8_LEAN_SOURCE,
+    MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
+    MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
     ORDER_UNIVERSE_SHA256,
     REQUIRED_SOURCE_HYPOTHESES,
     SOURCE_ORDERS,
@@ -33,6 +39,9 @@ from census.card_head.exact12_v14_ordered_coverage import (
 )
 
 FROZEN_CUBE = {int(center): support for center, support in FROZEN_V8_CUBE.items()}
+CELL8_CUBE = {
+    int(center): support for center, support in MIXED_V3_CELL8_CUBE.items()
+}
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
@@ -160,6 +169,35 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             source = (REPO_ROOT / relative).read_bytes()
             self.assertEqual(len(source), byte_count)
             self.assertEqual(hashlib.sha256(source).hexdigest(), digest)
+
+    def test_mixed_v3_cell8_has_one_proof_backed_three_row_cut(self) -> None:
+        certificate = detect_proof_backed_ordered_coverage(CELL8_CUBE)
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            certificate["generated_lean_nogood"], MIXED_V3_CELL8_LEAN_BINDING
+        )
+        self.assertEqual(
+            certificate["selected_rows"],
+            [
+                {"center": row["center"], "support": row["support"], "exact": False}
+                for row in MIXED_V3_CELL8_LEAN_CHOICES
+            ],
+        )
+        self.assertEqual(len(certificate["coverage"]), 48)
+        self.assertEqual(
+            {entry["rule"] for entry in certificate["coverage"]},
+            {"convex-five-point-common-orientation"},
+        )
+        clause = learned_clause_for_proof_backed_ordered_coverage(
+            materialize_cell(0).instance, certificate
+        )
+        self.assertEqual(clause, (-55, -313, -2134))
+        source = (REPO_ROOT / MIXED_V3_CELL8_LEAN_SOURCE).read_bytes()
+        self.assertEqual(len(source), MIXED_V3_CELL8_LEAN_SOURCE_BYTES)
+        self.assertEqual(
+            hashlib.sha256(source).hexdigest(), MIXED_V3_CELL8_LEAN_SOURCE_SHA256
+        )
 
     def test_learned_clause_uses_bound_selected_rows_and_is_falsified(self) -> None:
         instance = materialize_cell(0).instance
