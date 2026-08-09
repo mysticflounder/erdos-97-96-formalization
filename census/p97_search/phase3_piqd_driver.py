@@ -36,6 +36,8 @@ from census.p97_search.phase3_cegar_wave import (
     wave_manifest_sha256,
 )
 from census.p97_search.phase3_piqd_oracle import (
+    MAX_REQUESTED_CORE_LIMIT,
+    MIN_REQUESTED_CORE_LIMIT,
     CheckedModel,
     PiqdOracleError,
     PiqdProofUnavailable,
@@ -113,6 +115,7 @@ class DriverPolicy:
     solver_timeout_s: int = 900
     march_timeout_s: int = 900
     project: str = "erdos-97-96-formalization"
+    requested_core_limit: int | None = None
 
     def __post_init__(self) -> None:
         for field in (
@@ -137,9 +140,18 @@ class DriverPolicy:
             raise PiqdDriverError("poll_interval_s must be finite and non-negative")
         if not isinstance(self.project, str) or not self.project.strip():
             raise PiqdDriverError("project must be a non-empty string")
+        if self.requested_core_limit is not None and (
+            type(self.requested_core_limit) is not int
+            or not MIN_REQUESTED_CORE_LIMIT
+            <= self.requested_core_limit
+            <= MAX_REQUESTED_CORE_LIMIT
+        ):
+            raise PiqdDriverError(
+                "requested_core_limit must be a positive builtin int in range 1..1024"
+            )
 
     def as_dict(self) -> dict[str, Any]:
-        return {
+        value = {
             "max_prepare_attempts": self.max_prepare_attempts,
             "max_confirm_attempts": self.max_confirm_attempts,
             "max_polls": self.max_polls,
@@ -149,6 +161,9 @@ class DriverPolicy:
             "march_timeout_s": self.march_timeout_s,
             "project": self.project,
         }
+        if self.requested_core_limit is not None:
+            value["requested_core_limit"] = self.requested_core_limit
+        return value
 
 
 @dataclass(frozen=True)
@@ -170,6 +185,7 @@ class PiqdClient(Protocol):
         timeout_s: int,
         march_timeout_s: int,
         project: str,
+        requested_core_limit: int | None,
     ) -> PreparedJob: ...
 
     def confirm(self, job: PreparedJob, *, expected_cnf: bytes) -> str: ...
@@ -701,6 +717,7 @@ class PiqdCegarDriver:
                     timeout_s=self.policy.solver_timeout_s,
                     march_timeout_s=self.policy.march_timeout_s,
                     project=self.policy.project,
+                    requested_core_limit=self.policy.requested_core_limit,
                 )
             except PiqdOracleError as exc:
                 record = self._record_error(
@@ -848,18 +865,6 @@ class PiqdCegarDriver:
                 )
                 return self._finish(record, job_id=job.job_id)
 
-            if result == "UNKNOWN":
-                record = self._record_error(
-                    phase="SOLVER_UNKNOWN",
-                    detail="piqd completed with solver result UNKNOWN",
-                    poll_index=poll_index,
-                    job_id=job.job_id,
-                    status=state,
-                    result=result,
-                    response=payload,
-                )
-                return self._finish(record, job_id=job.job_id)
-
             self._append(
                 event=_event(
                     phase="POLL",
@@ -874,6 +879,23 @@ class PiqdCegarDriver:
                 outcome=CHECKPOINT,
                 detail=f"POLL: job {job.job_id} completed {result}",
             )
+            if result == "UNKNOWN":
+                solver_log_hash, _, log_error = self._archive_solver_log(
+                    job=job,
+                    result="UNKNOWN",
+                )
+                if log_error is not None:
+                    return self._finish(log_error, job_id=job.job_id)
+                record = self._record_error(
+                    phase="SOLVER_UNKNOWN",
+                    detail="piqd completed with solver result UNKNOWN",
+                    poll_index=poll_index,
+                    job_id=job.job_id,
+                    status=state,
+                    result=result,
+                    artifacts={"solver_log_sha256": solver_log_hash},
+                )
+                return self._finish(record, job_id=job.job_id)
             if result == "SAT":
                 return self._finish_sat(job=job, cnf=cnf)
             if result == "UNSAT":
@@ -886,59 +908,33 @@ class PiqdCegarDriver:
 
         raise PiqdDriverError("poll loop ended without a terminal record")
 
-    def _finish_sat(self, *, job: PreparedJob, cnf: bytes) -> DriverResult:
-        for retry_index in range(self.policy.max_result_attempts):
-            try:
-                model = self.client.checked_model(job, cnf=cnf)
-                archived_hash = self.journal.store_artifact(model.response_body)
-                if archived_hash != model.response_sha256:
-                    raise PiqdOracleError(
-                        "checked model hash disagrees with archived response bytes"
-                    )
-            except PiqdOracleError as exc:
-                record = self._record_error(
-                    phase="MODEL",
-                    detail=str(exc),
-                    retry_index=retry_index,
-                    job_id=job.job_id,
-                    status="completed",
-                    result="SAT",
-                )
-                if (
-                    not exc.retryable
-                    or retry_index + 1 == self.policy.max_result_attempts
-                ):
-                    return self._finish(record, job_id=job.job_id)
-                continue
-            record = self._append(
-                event=_event(
-                    phase="MODEL",
-                    disposition="SUCCESS",
-                    retry_index=retry_index,
-                    job_id=job.job_id,
-                    status="completed",
-                    result="SAT",
-                    detail="complete assignment independently satisfies submitted CNF",
-                    response={"num_assigned": len(model.assignment)},
-                ),
-                outcome=STRUCTURAL_SAT,
-                detail=f"MODEL: checked SAT assignment for job {job.job_id}",
-                artifacts={"model_sha256": model.response_sha256},
-            )
-            return self._finish(record, job_id=job.job_id)
-        raise PiqdDriverError("model loop ended without a terminal record")
-
-    def _finish_unsat(
+    def _archive_solver_log(
         self,
         *,
         job: PreparedJob,
-        cnf: bytes,
-        wave_manifest: Mapping[str, Any],
-    ) -> DriverResult:
-        solver_log_hash: str | None = None
+        result: str,
+        artifacts: Mapping[str, str | None] | None = None,
+    ) -> tuple[str | None, int, dict[str, Any] | None]:
         for retry_index in range(self.policy.max_result_attempts):
             try:
                 solver_log, reported_hash = self.client.log(job)
+                if type(solver_log) is not bytes or not solver_log:
+                    raise PiqdOracleError(
+                        "solver log must be a nonempty built-in bytes value"
+                    )
+                if (
+                    type(reported_hash) is not str
+                    or len(reported_hash) != 64
+                    or any(char not in _HEX_DIGITS for char in reported_hash)
+                ):
+                    raise PiqdOracleError(
+                        "solver log reported hash is not a lowercase SHA-256 digest"
+                    )
+                actual_hash = sha256_bytes(solver_log)
+                if actual_hash != reported_hash:
+                    raise PiqdOracleError(
+                        "solver log hash disagrees with retrieved response bytes"
+                    )
                 archived_hash = self.journal.store_artifact(solver_log)
                 if archived_hash != reported_hash:
                     raise PiqdOracleError(
@@ -951,18 +947,103 @@ class PiqdCegarDriver:
                     retry_index=retry_index,
                     job_id=job.job_id,
                     status="completed",
-                    result="UNSAT",
+                    result=result,
+                    artifacts=artifacts,
                 )
                 if (
                     not exc.retryable
                     or retry_index + 1 == self.policy.max_result_attempts
                 ):
-                    return self._finish(record, job_id=job.job_id)
+                    return None, retry_index, record
                 continue
-            solver_log_hash = reported_hash
+            return reported_hash, retry_index, None
+        raise PiqdDriverError("solver-log loop ended without a terminal record")
+
+    def _finish_sat(self, *, job: PreparedJob, cnf: bytes) -> DriverResult:
+        model_hash: str | None = None
+        for retry_index in range(self.policy.max_result_attempts):
+            try:
+                model = self.client.checked_model(job, cnf=cnf)
+                archived_hash = self.journal.store_artifact(model.response_body)
+                if archived_hash != model.response_sha256:
+                    raise PiqdOracleError(
+                        "checked model hash disagrees with archived response bytes"
+                    )
+            except PiqdOracleError as exc:
+                if exc.retryable and retry_index + 1 < self.policy.max_result_attempts:
+                    self._record_error(
+                        phase="MODEL",
+                        detail=str(exc),
+                        retry_index=retry_index,
+                        job_id=job.job_id,
+                        status="completed",
+                        result="SAT",
+                    )
+                    continue
+                solver_log_hash, _, log_error = self._archive_solver_log(
+                    job=job,
+                    result="SAT",
+                )
+                if log_error is not None:
+                    return self._finish(log_error, job_id=job.job_id)
+                record = self._record_error(
+                    phase="MODEL",
+                    detail=str(exc),
+                    retry_index=retry_index,
+                    job_id=job.job_id,
+                    status="completed",
+                    result="SAT",
+                    artifacts={"solver_log_sha256": solver_log_hash},
+                )
+                return self._finish(record, job_id=job.job_id)
+            model_hash = model.response_sha256
             break
-        if solver_log_hash is None:
-            raise PiqdDriverError("solver-log loop ended without a terminal record")
+        if model_hash is None:
+            raise PiqdDriverError("model loop ended without a terminal record")
+
+        solver_log_hash, _, log_error = self._archive_solver_log(
+            job=job,
+            result="SAT",
+            artifacts={"model_sha256": model_hash},
+        )
+        if log_error is not None:
+            return self._finish(log_error, job_id=job.job_id)
+        record = self._append(
+            event=_event(
+                phase="MODEL",
+                disposition="SUCCESS",
+                retry_index=retry_index,
+                job_id=job.job_id,
+                status="completed",
+                result="SAT",
+                detail=(
+                    "complete assignment independently satisfies submitted CNF; "
+                    "solver log archived"
+                ),
+                response={"num_assigned": len(model.assignment)},
+            ),
+            outcome=STRUCTURAL_SAT,
+            detail=f"MODEL: checked SAT assignment for job {job.job_id}",
+            artifacts={
+                "model_sha256": model_hash,
+                "solver_log_sha256": solver_log_hash,
+            },
+        )
+        return self._finish(record, job_id=job.job_id)
+
+    def _finish_unsat(
+        self,
+        *,
+        job: PreparedJob,
+        cnf: bytes,
+        wave_manifest: Mapping[str, Any],
+    ) -> DriverResult:
+        solver_log_hash, retry_index, log_error = self._archive_solver_log(
+            job=job,
+            result="UNSAT",
+        )
+        if log_error is not None:
+            return self._finish(log_error, job_id=job.job_id)
 
         if self.proof_replayer is None:
             record = self._append(
@@ -1143,6 +1224,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--solver-timeout-s", type=int, default=900)
     parser.add_argument("--march-timeout-s", type=int, default=900)
     parser.add_argument("--project", default="erdos-97-96-formalization")
+    parser.add_argument("--requested-core-limit", type=int)
     parser.add_argument("--replay-work-dir", type=Path)
     parser.add_argument("--replay-timeout-s", type=int, default=300)
     return parser
@@ -1173,6 +1255,7 @@ def main(argv: list[str] | None = None) -> int:
             solver_timeout_s=args.solver_timeout_s,
             march_timeout_s=args.march_timeout_s,
             project=args.project,
+            requested_core_limit=args.requested_core_limit,
         )
         journal = DurableAttemptJournal(args.journal, manifest=manifest)
         result = PiqdCegarDriver(

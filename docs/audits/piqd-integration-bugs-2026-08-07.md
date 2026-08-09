@@ -1,9 +1,10 @@
 # piqd integration bug handoff — 2026-08-07
 
 Audit status: updated through 2026-08-09; one defect remains open: the
-encoder-path prepare race. Thirteen findings have been fixed and verified in
-the installed release. One job-origin attestation gap is recorded below as an
-enhancement, not a bug. The
+encoder-path prepare race. Fourteen daemon findings have been fixed in
+maintainer releases and verified in the installed release. One PIQD README
+documentation defect was fixed without a daemon behavior change. One job-origin
+attestation gap is recorded below as an enhancement, not a bug. The
 six PIQD-MIN-001 session/receipt findings reported in nthdegree message #3839
 were fixed in maintainer commit
 `bd026ec51042db537b510406ed57bd28ae3cde90`; that release was initially
@@ -151,6 +152,42 @@ intentional: an empty raw profile selects CaDiCaL's `--sat` configuration,
 whereas the literal profile `default` selects CaDiCaL's default configuration.
 They are different immutable job identities. P97 waves must therefore spell
 `default` explicitly when that is the intended execution profile.
+
+### PIQD-MODEL-001: model endpoints could return silently partial assignments — fixed and live-verified
+
+**Fixed and pushed 2026-08-09** in PIQD commit `be8ef96`; release binary
+SHA-256 is
+`835c456052c080ccefca409d9ad4961d10b7416f695a9f4bf5f677eae811fc90`.
+
+- **Affected endpoints:** `GET /jobs/:id/model` and
+  `GET /jobs/:id/lean-model`; both previously re-parsed only the last 1 MiB of
+  the job log, with no completeness check against the prepared job width.
+- **Original reproduction:** a 200,000-variable job returned HTTP 200 with
+  131,218 assignments from a 1,533,371-byte log, dropping variables 1 through
+  68,782. The exact17 74,813-variable job was complete at 530,258 bytes.
+- **Fix and acceptance evidence:** both endpoints now compare recovered
+  assignments with the declared width from the stored CNF `p`-header and return
+  HTTP 409 when incomplete. Exact17 remains HTTP 200 with all 74,813
+  assignments; the 200,000-variable regression returns 409, and paginated
+  `/log` recovers all assignments.
+- **P97/live status:** the existing exact-length guard already protected the
+  current lane. Commit `7272` was still the old build when the bug was reported;
+  after stopping old PID `49426`, serving PID `2949` was restarted on
+  `127.0.0.1:7272` with the fixed binary. Read-only
+  `GET /jobs/ae19fa84-9b7b-40bd-b2bd-2741e3f93b51/model` returned SAT with
+  `num_assigned=74813` and assignment length `74813`. The fixed release is
+  installed and live-verified.
+
+### PIQD-DOC-001: README misidentified the model endpoint as a terminal-status source — fixed
+
+**Resolved 2026-08-09** in PIQD maintainer commit `c089ad1`; documentation-only,
+with no daemon behavior change.
+
+`GET /jobs/:id/model` returns SAT model data with `result` but no `status`; it is
+not a terminal-status source. Terminal status and result must come from
+`GET /jobs/:id`. The mismatch caused the P97 adapter to misread a later MODEL
+checkpoint as terminal; P97 now requires a status-bearing terminal envelope.
+The PIQD README was corrected in `c089ad1`.
 
 ### PIQD-SMT-001: stored SMT SAT models appear unreachable through the HTTP API
 

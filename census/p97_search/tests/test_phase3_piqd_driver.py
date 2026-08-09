@@ -158,10 +158,15 @@ class FakeClient:
             {"id": "job-1", "status": "completed", "result": "UNKNOWN"}
         ]
         self.model_result = model
-        self.log_result = solver_log
+        if solver_log is None:
+            default_log = b"c piqd job job-1\ns UNKNOWN\n"
+            self.log_result = (default_log, sha256_bytes(default_log))
+        else:
+            self.log_result = solver_log
         self.proof_result = proof
         self.expected_cnf = expected_cnf
         self.calls: list[str] = []
+        self.prepare_kwargs: list[dict[str, Any]] = []
 
     @staticmethod
     def _take(values: list[Any]) -> Any:
@@ -173,6 +178,7 @@ class FakeClient:
         return value
 
     def prepare_cnf(self, **_: Any) -> PreparedJob:
+        self.prepare_kwargs.append(dict(_))
         self.calls.append("prepare")
         return self._take(self.prepare_results)
 
@@ -379,6 +385,8 @@ def test_solver_unknown_and_daemon_failed_remain_distinct(tmp_path: Path) -> Non
         wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
     )
     assert unknown_journal.records[-1]["detail"].startswith("SOLVER_UNKNOWN:")
+    assert unknown_client.calls[-1] == "log"
+    assert unknown_journal.records[-1]["artifacts"]["solver_log_sha256"] is not None
 
     failed_client = FakeClient(
         statuses=[{"id": "job-1", "status": "failed", "result": "UNKNOWN"}]
@@ -388,6 +396,8 @@ def test_solver_unknown_and_daemon_failed_remain_distinct(tmp_path: Path) -> Non
         wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
     )
     assert failed_journal.records[-1]["detail"].startswith("DAEMON_FAILED:")
+    assert "log" not in failed_client.calls
+    assert failed_journal.records[-1]["artifacts"]["solver_log_sha256"] is None
 
 
 def test_failed_confirm_reconciliation_is_not_recorded_as_success(
@@ -416,17 +426,82 @@ def test_sat_model_response_is_archived_before_structural_sat(tmp_path: Path) ->
         }
     )
     model = CheckedModel((1, 2), sha256_bytes(body), body)
+    log = b"c piqd job job-1\ns SATISFIABLE\n"
     client = FakeClient(
         statuses=[{"id": "job-1", "status": "completed", "result": "SAT"}],
         model=model,
+        solver_log=(log, sha256_bytes(log)),
     )
     runner, journal = driver(tmp_path, client)
     result = runner.run(
         wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
     )
     assert result.outcome == STRUCTURAL_SAT
+    assert client.calls[-2:] == ["model", "log"]
     assert journal.records[-1]["artifacts"]["model_sha256"] == sha256_bytes(body)
+    assert journal.records[-1]["artifacts"]["solver_log_sha256"] == sha256_bytes(log)
     assert (journal.artifact_dir / sha256_bytes(body)).read_bytes() == body
+    assert (journal.artifact_dir / sha256_bytes(log)).read_bytes() == log
+
+
+@pytest.mark.parametrize(
+    "solver_log",
+    [
+        PiqdOracleError("solver log missing"),
+        (b"", sha256_bytes(b"")),
+        (b"s SATISFIABLE\n", digest("tampered-log-hash")),
+        (b"s SATISFIABLE\n", True),
+    ],
+)
+def test_sat_log_failure_prevents_structural_sat(
+    tmp_path: Path,
+    solver_log: tuple[bytes, str] | PiqdOracleError,
+) -> None:
+    body = canonical_json_bytes(
+        {
+            "job_id": "job-1",
+            "result": "SAT",
+            "assignment": [1, 2],
+            "num_assigned": 2,
+        }
+    )
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "SAT"}],
+        model=CheckedModel((1, 2), sha256_bytes(body), body),
+        solver_log=solver_log,
+    )
+    runner, journal = driver(tmp_path, client)
+
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    assert client.calls[-2:] == ["model", "log"]
+    assert journal.records[-1]["detail"].startswith("SOLVER_LOG:")
+    assert journal.records[-1]["artifacts"]["model_sha256"] == sha256_bytes(body)
+    assert journal.records[-1]["artifacts"]["solver_log_sha256"] is None
+
+
+def test_rejected_sat_model_still_archives_log_before_terminal_error(
+    tmp_path: Path,
+) -> None:
+    log = b"c piqd job job-1\ns SATISFIABLE\n"
+    client = FakeClient(
+        statuses=[{"id": "job-1", "status": "completed", "result": "SAT"}],
+        model=PiqdOracleError("model is incomplete"),
+        solver_log=(log, sha256_bytes(log)),
+    )
+    runner, journal = driver(tmp_path, client)
+
+    result = runner.run(
+        wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
+    )
+
+    assert result.outcome == ERROR
+    assert client.calls[-2:] == ["model", "log"]
+    assert journal.records[-1]["detail"].startswith("MODEL:")
+    assert journal.records[-1]["artifacts"]["solver_log_sha256"] == sha256_bytes(log)
 
 
 def test_unsat_stays_discovery_only_with_archived_solver_log(
@@ -490,9 +565,7 @@ def test_verified_replay_is_the_only_certified_unsat_path(tmp_path: Path) -> Non
         ),
         sleep=lambda _: None,
     )
-    result = runner.run(
-        wave_manifest=wave, cnf=unsat_cnf, producer_manifest=PRODUCER
-    )
+    result = runner.run(wave_manifest=wave, cnf=unsat_cnf, producer_manifest=PRODUCER)
 
     assert result.outcome == CERTIFIED_UNSAT
     artifacts = journal.records[-1]["artifacts"]
@@ -509,9 +582,7 @@ def test_verified_replay_is_the_only_certified_unsat_path(tmp_path: Path) -> Non
 
 def test_missing_proof_preserves_discovery_only_unsat(tmp_path: Path) -> None:
     log = b"s UNSATISFIABLE\n"
-    replayer = FakeReplayer(
-        LratReplayResult(True, b"must not run", b"must not run")
-    )
+    replayer = FakeReplayer(LratReplayResult(True, b"must not run", b"must not run"))
     client = FakeClient(
         statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
         solver_log=(log, sha256_bytes(log)),
@@ -530,9 +601,7 @@ def test_missing_proof_preserves_discovery_only_unsat(tmp_path: Path) -> None:
 def test_rejected_replay_fails_closed_with_receipt(tmp_path: Path) -> None:
     log = b"s UNSATISFIABLE\n"
     proof = b"malformed proof\n"
-    checker = lean_checker_source(
-        kept_cnf=canonical_kept_dimacs(CNF), proof=proof
-    )
+    checker = lean_checker_source(kept_cnf=canonical_kept_dimacs(CNF), proof=proof)
     replay, receipt = replay_fixture(verified=False, checker=checker, proof=proof)
     client = FakeClient(
         statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
@@ -566,9 +635,7 @@ def test_forged_verified_replay_receipt_cannot_certify(tmp_path: Path) -> None:
     runner, journal = driver(
         tmp_path,
         client,
-        proof_replayer=FakeReplayer(
-            LratReplayResult(True, b"forged checker", forged)
-        ),
+        proof_replayer=FakeReplayer(LratReplayResult(True, b"forged checker", forged)),
     )
 
     result = runner.run(
@@ -576,7 +643,9 @@ def test_forged_verified_replay_receipt_cannot_certify(tmp_path: Path) -> None:
     )
 
     assert result.outcome == ERROR
-    assert journal.records[-1]["detail"].startswith("PROOF_REPLAY: invalid replay receipt")
+    assert journal.records[-1]["detail"].startswith(
+        "PROOF_REPLAY: invalid replay receipt"
+    )
     assert journal.records[-1]["artifacts"]["proof_checker_sha256"] is None
     assert journal.records[-1]["artifacts"]["proof_replay_sha256"] is None
 
@@ -584,18 +653,14 @@ def test_forged_verified_replay_receipt_cannot_certify(tmp_path: Path) -> None:
 def test_internally_consistent_fake_replayer_cannot_certify(tmp_path: Path) -> None:
     log = b"s UNSATISFIABLE\n"
     proof = b"3 0 1 2 0\n"
-    checker = lean_checker_source(
-        kept_cnf=canonical_kept_dimacs(CNF), proof=proof
-    )
+    checker = lean_checker_source(kept_cnf=canonical_kept_dimacs(CNF), proof=proof)
     replay, _ = replay_fixture(verified=True, checker=checker, proof=proof)
     client = FakeClient(
         statuses=[{"id": "job-1", "status": "completed", "result": "UNSAT"}],
         solver_log=(log, sha256_bytes(log)),
         proof=(proof, sha256_bytes(proof)),
     )
-    runner, journal = driver(
-        tmp_path, client, proof_replayer=FakeReplayer(replay)
-    )
+    runner, journal = driver(tmp_path, client, proof_replayer=FakeReplayer(replay))
 
     result = runner.run(
         wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER
@@ -801,6 +866,28 @@ def test_policy_rejects_unbounded_or_negative_controls() -> None:
         DriverPolicy(poll_interval_s=-0.1)
     with pytest.raises(PiqdDriverError, match="poll_interval_s"):
         DriverPolicy(poll_interval_s=float("nan"))
+
+
+@pytest.mark.parametrize("value", [True, 0, -1, 1.0, 1025])
+def test_policy_rejects_invalid_requested_core_limit(value: object) -> None:
+    with pytest.raises(PiqdDriverError, match="requested_core_limit"):
+        DriverPolicy(requested_core_limit=value)  # type: ignore[arg-type]
+
+
+def test_policy_default_audit_omits_requested_core_limit() -> None:
+    assert "requested_core_limit" not in DriverPolicy().as_dict()
+    assert DriverPolicy(requested_core_limit=1).as_dict()["requested_core_limit"] == 1
+
+
+def test_driver_forwards_requested_core_limit(tmp_path: Path) -> None:
+    client = FakeClient()
+    runner, _ = driver(
+        tmp_path,
+        client,
+        policy=DriverPolicy(requested_core_limit=1, poll_interval_s=0),
+    )
+    runner.run(wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER)
+    assert client.prepare_kwargs[0]["requested_core_limit"] == 1
 
 
 def test_journal_rejects_driver_owned_artifact_override(tmp_path: Path) -> None:
