@@ -1,9 +1,11 @@
 # piqd integration bug handoff — 2026-08-07
 
-Audit status: updated through 2026-08-08; one defect remains open: the
-encoder-path prepare race. Five findings have been fixed and verified in the
-installed release. One job-origin
-attestation gap is recorded below as an enhancement, not a bug.
+Audit status: updated through 2026-08-08; seven defects remain open: the
+encoder-path prepare race and six PIQD-MIN-001 session/receipt defects found by
+source audit. Five earlier findings have been fixed and verified in the
+installed release. One job-origin attestation gap is recorded below as an
+enhancement, not a bug. The six new findings were reported to the piqd
+maintainer in nthdegree message #3839 and remain pending.
 
 This log records piqd defects found while implementing the P97
 `p97-cegar-wave/v1` integration. It is a handoff for a separate piqd agent; it
@@ -13,10 +15,145 @@ does not track missing P97 features or desired piqd enhancements.
 
 A finding belongs here only when current piqd behavior violates its live API,
 documented invariant, or internally required lifecycle semantics and has a
-reproducible test. Contract gaps that piqd never promised to cover are listed
-separately so they are not misfiled as bugs.
+reproducible test. Pending source-audit candidates are explicitly marked as
+not independently reproduced and are not treated as confirmed until the
+maintainer supplies the requested regression evidence. Contract gaps that piqd
+never promised to cover are listed separately so they are not misfiled as bugs.
 
 ## Open bugs
+
+The six PIQD-MIN-001 findings below come from the read-only source audit in
+nthdegree messages #3836–#3838. They have not been independently reproduced by
+this P97 audit. Until the maintainer supplies fixes, tests, and an installed
+binary identity, all session receipts remain `OBSERVATIONAL_ONLY`; fresh
+sequential canaries exercise the adapter but do not repair daemon trust.
+
+### PIQD-SESSION-001: base-prefix snapshot can race with clause append
+
+- **Severity:** high.
+- **Affected code/behavior:** `solve_sat` snapshots `base_clauses`,
+  `base_bytes`, and `base_sha256` under the journal mutex, then releases it
+  before the worker solve; `add_clauses` can append and queue work in between.
+- **Source-audit evidence:** `rustprojects/piqd/src/http/sessions.rs:319-340`
+  and `src/session/manager.rs:442-462`, reported in #3836; no live
+  reproduction in this audit.
+- **Risk:** a receipt can truthfully hash prefix N while the solver actually
+  runs after clauses N+K. The P97 adapter cannot detect that mismatch from the
+  receipt's self-consistent prefix fields.
+- **P97 mitigation:** classify current and fresh sequential canaries as
+  `OBSERVATIONAL_ONLY`; do not treat them as trusted solve attestation,
+  minimality evidence, or theorem closure.
+- **Acceptance test/fix criterion:** a barriered concurrent add/solve test must
+  prove that the recorded base prefix and the worker's actual clause input are
+  identical for every receipt, with no append interleaving. Serialize the
+  session operation or bind the snapshot and solve atomically; publish the fix
+  commit and installed binary SHA.
+- **Status:** reported to maintainer in #3839; pending.
+
+### PIQD-SESSION-002: concurrent solves can mix status with another solve's model/core
+
+- **Severity:** high.
+- **Affected code/behavior:** `solve_sat` performs solve, model, and core as
+  separate worker exchanges, while `Worker::request` only serializes each
+  individual exchange.
+- **Source-audit evidence:** `rustprojects/piqd/src/http/sessions.rs:327-375`
+  and `src/session/worker.rs:56-62,94-148`, reported in #3837; no live
+  reproduction in this audit.
+- **Risk:** solve A can record its assumptions/status together with solve B's
+  model/core. Opaque `result_sha256` values do not authenticate the association;
+  compatible mixed data could pass the P97 adapter.
+- **P97 mitigation:** `OBSERVATIONAL_ONLY` for all current and fresh
+  sequential canaries; sequential execution reduces exposure but is not a
+  daemon-level concurrency proof.
+- **Acceptance test/fix criterion:** a barriered two-solve test with distinct,
+  distinguishable outcomes must show that each receipt's status, model/core,
+  assumptions, and result identity belong to the same solve. Hold a
+  per-session operation lock across solve + model/core + receipt, and coordinate
+  it with clause appends; publish the fix commit and installed binary SHA.
+- **Status:** reported to maintainer in #3839; pending.
+
+### PIQD-JOURNAL-001: torn recovery tails can corrupt clause and receipt journals
+
+- **Severity:** high.
+- **Affected code/behavior:** journal recovery counts complete clauses but
+  retains a partial trailing line's bytes/hash; the next append can concatenate
+  with that tail. `ReceiptJournal` has the analogous partial-JSONL append hazard.
+- **Source-audit evidence:** `rustprojects/piqd/src/session/journal.rs:46-76,
+  124-149,163-203` and the receipt journal recovery path, reported in #3838;
+  no crash/restart reproduction in this audit.
+- **Risk:** a restart can replay a clause the client never acknowledged, while
+  bytes, count, and hash diverge. Subsequent receipts may be unusable and the
+  solver state may be wrong.
+- **P97 mitigation:** retain `OBSERVATIONAL_ONLY`; the adapter's canonical
+  prefix checks can reject some malformed receipts but cannot restore the
+  daemon's lost state or prove a clean recovery.
+- **Acceptance test/fix criterion:** inject a torn clause and torn receipt
+  JSONL tail, restart, and append. The daemon must either truncate to the last
+  complete newline before hashing/counting/appending or refuse revival; it must
+  never concatenate the tail, and recovered bytes/count/hash must describe only
+  canonical complete records.
+- **Status:** reported to maintainer in #3839; pending.
+
+### PIQD-SESSION-003: malformed worker protocol data is fail-open/coerced
+
+- **Severity:** medium/high.
+- **Affected code/behavior:** missing or non-string status defaults to
+  `UNKNOWN`; model/core arrays silently drop nonintegers, narrow values to
+  `i32`, and missing UNSAT cores default to empty.
+- **Source-audit evidence:** `rustprojects/piqd/src/http/sessions.rs:341-372`,
+  reported in #3836; no malformed-worker live reproduction in this audit.
+- **Risk:** malformed solver output can become a plausible UNKNOWN, SAT model,
+  or UNSAT core. An opaque result hash is not enough to prove what the worker
+  returned, and unselected malformed records may evade the adapter.
+- **P97 mitigation:** keep every receipt `OBSERVATIONAL_ONLY`; adapter checks
+  selected receipt shape, but it does not make daemon coercion trustworthy.
+- **Acceptance test/fix criterion:** protocol fixtures for missing/wrong-type
+  status, malformed model/core entries, out-of-range integers, and missing UNSAT
+  core must fail closed (request error or explicitly failed session) without a
+  receipt containing coerced data. Valid protocol responses must retain current
+  behavior; publish the fix commit and installed binary SHA.
+- **Status:** reported to maintainer in #3839; pending.
+
+### PIQD-RECEIPT-001: blank receipt JSONL lines are silently skipped
+
+- **Severity:** medium.
+- **Affected code/behavior:** `ReceiptJournal::read_all` skips blank lines even
+  though its documented behavior rejects unreadable middle records;
+  `GET /sessions/:id/receipts` reports only parsed-record count.
+- **Source-audit evidence:** `rustprojects/piqd/src/session/receipts.rs:235-261`
+  and `src/http/sessions.rs:643-676`, reported in #3836; no injected-line live
+  reproduction in this audit.
+- **Risk:** an injected or accidental blank line creates an audit hole while
+  the API still presents dense, apparently complete receipt indexes.
+- **P97 mitigation:** current and fresh sequential canaries remain
+  `OBSERVATIONAL_ONLY`; the adapter cannot see skipped raw lines or infer a
+  missing journal record from the GET response alone.
+- **Acceptance test/fix criterion:** insert blank lines at middle and tail
+  positions and require parsing/GET to fail closed (or expose a raw journal
+  digest and line-integrity/count evidence that makes the omission explicit).
+  Add regression coverage for the chosen contract; publish the fix commit and
+  installed binary SHA.
+- **Status:** reported to maintainer in #3839; pending.
+
+### PIQD-RECEIPT-002: DB solve metadata can precede durable receipt append
+
+- **Severity:** medium.
+- **Affected code/behavior:** `sessions.record_solve` persists solve metadata
+  before `solve_sat` durably appends the receipt; an append failure can return
+  an HTTP error after the DB count/status has advanced.
+- **Source-audit evidence:** `rustprojects/piqd/src/http/sessions.rs:379-408`,
+  reported in #3836; no append-failure live reproduction in this audit.
+- **Risk:** session metadata and the durable receipt journal can disagree after
+  a crash or I/O failure, undermining receipt counts and replay/audit decisions.
+- **P97 mitigation:** classify receipts as `OBSERVATIONAL_ONLY`; fresh
+  sequential canaries do not test crash consistency and cannot repair a
+  metadata/journal divergence.
+- **Acceptance test/fix criterion:** inject an append failure between DB update
+  and journal durability, restart, and reconcile. The daemon must either append
+  first, transactionally compensate, or fail closed until reconciliation; the
+  persisted solve count/status must equal the durable receipt set after recovery.
+  Publish the fix commit and installed binary SHA.
+- **Status:** reported to maintainer in #3839; pending.
 
 ### PIQD-ENC-001: concurrent identical encoder prepares can return HTTP 500
 
