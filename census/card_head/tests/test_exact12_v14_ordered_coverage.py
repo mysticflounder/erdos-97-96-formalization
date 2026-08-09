@@ -197,6 +197,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V6_CELL10_LEAN_SOURCE_BYTES,
     MIXED_V6_CELL10_LEAN_SOURCE_SHA256,
     MIXED_V7_CELL8_CUBE,
+    MIXED_V7_CELL8_EIGHTEENTH_CUBE,
+    MIXED_V7_CELL8_EIGHTEENTH_LEAN_BINDING,
+    MIXED_V7_CELL8_EIGHTEENTH_LEAN_CHOICES,
+    MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE,
+    MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE_BYTES,
+    MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE_SHA256,
     MIXED_V7_CELL8_EIGHTH_CUBE,
     MIXED_V7_CELL8_EIGHTH_LEAN_BINDING,
     MIXED_V7_CELL8_EIGHTH_LEAN_CHOICES,
@@ -770,6 +776,16 @@ MIXED_CASES = (
         MIXED_V7_CELL8_SEVENTEENTH_LEAN_SOURCE_SHA256,
         (-55, -163, -1069, -1630, -2024),
     ),
+    (
+        "v7-cell-8-eighteenth",
+        MIXED_V7_CELL8_EIGHTEENTH_CUBE,
+        MIXED_V7_CELL8_EIGHTEENTH_LEAN_BINDING,
+        MIXED_V7_CELL8_EIGHTEENTH_LEAN_CHOICES,
+        MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE,
+        MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE_BYTES,
+        MIXED_V7_CELL8_EIGHTEENTH_LEAN_SOURCE_SHA256,
+        (-368, -951, -1719, -2065, -2291, -2420, -2992),
+    ),
 )
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
@@ -968,6 +984,14 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                             for preferred in preferred_many
                         },
                     )
+                    expected_counts = (
+                        [24, 12, 12]
+                        if cell == "v7-cell-8-eighteenth"
+                        else [
+                            len(certificate["coverage"]) // len(preferred_many)
+                            for _preferred in preferred_many
+                        ]
+                    )
                     self.assertEqual(
                         [
                             sum(
@@ -976,10 +1000,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                             )
                             for preferred in preferred_many
                         ],
-                        [
-                            len(certificate["coverage"]) // len(preferred_many)
-                            for _preferred in preferred_many
-                        ],
+                        expected_counts,
                     )
                 clause = learned_clause_for_proof_backed_ordered_coverage(
                     instance, certificate
