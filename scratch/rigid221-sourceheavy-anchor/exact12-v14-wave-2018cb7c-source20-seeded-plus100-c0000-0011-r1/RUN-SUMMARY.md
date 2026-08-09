@@ -43,8 +43,10 @@ the source20 prefix:
 | 3 | `bbfcd74889fe70e290acc3fcffe76d37488ba2ec51803f99a58e49229e722b0e` | `(-299, -611, -2918)` |
 | 11 | `f12a1d2abdfa0fbd48f5077e5fbfe3c44a922e3ed657095a02f7d8739a2e20da` | `(-55, -223, -609, -1920, -2918)` |
 
-The source23 detector SHA-256 is
+The source23 ordered-coverage source SHA-256 is
 `c0add1ac9c0fd7e9947970228195aedba44acd38d6a3db366b2fec4bcec57646`.
+The complete source23 detector-contract manifest SHA-256 is
+`4e7e20ea36f9bba8b5f7557a9542483bbbdbf3c8fcfb3c882423e4952441cb61`.
 All three Lean files passed direct one-file elaboration. The focused Python
 checks passed 11 ordered-coverage tests, 7 source-order-bank tests, and 7
 ordered-cut-adapter tests; Ruff is clean. These cuts strengthen the next finite
