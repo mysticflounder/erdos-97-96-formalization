@@ -32,7 +32,7 @@ from .exact12_v14_ordered_coverage import (
 )
 from .sat_encoding import CoverInstance
 
-BANK_SCHEMA = "p97_rigid221_exact12_source_order_positive_bank.v2"
+BANK_SCHEMA = "p97_rigid221_exact12_source_order_positive_bank.v3"
 DETECTOR_CONTRACT = (
     "exact generated Lean source-order nogood plus current-source hash replay"
 )

@@ -331,41 +331,59 @@ predicate-mining round, not a finite or live closure result.
 The follow-up source-order audit found that the zero count was a registry
 limitation, not an absence of order geometry: all five terminal survivor cubes
 have 48-of-48 diagnostic coverage by the convex-five-point common-orientation
-consumer.  The smallest source-clean promotion is mixed-v3 cell 8.  Its rows
-at centers `1,3,9` force the five labels `(0,9,2,3,1)` into common orientation
-in every direct or mirror source order.  The checked Lean value
-`mixedV3Cell8PositiveNogood` now replays that contradiction, and source-order
-bank schema v2 records its exact learned clause `(-55,-313,-2134)` alongside
-the earlier frozen-V8 entry.  The other four survivor certificates remain
-diagnostic until they receive equally explicit Lean proofs.
+consumer.  All five survivor certificates now have checked Lean
+`SourceOrderPositiveNogood` values.  Source-order bank schema v3 records the
+five exact learned clauses
+`(-55,-410,-498)`, `(-896,-1170,-2053,-2162)`,
+`(-35,-172,-1363,-1620,-2493)`, `(-29,-55,-546,-939,-2894)`, and
+`(-55,-313,-2134)` for cells `2,4,5,7,8`, respectively, alongside the earlier
+frozen-V8 entry.  Each certificate replays all 48 direct/mirror source orders,
+and each Lean source elaborates without `sorryAx`.
 
-This is one replayable finite cut.  It is not a terminal cell result, coverage
-of the 648-cell schedule, a general-cardinality lift, or closure of either live
-exact-twelve residual.
+These are five replayable finite cuts.  They are not terminal cell results,
+coverage of the 648-cell schedule, a general-cardinality lift, or closure of
+either live exact-twelve residual.
+
+A fresh cell-8 canary under detector contract
+`6a65ee36bfa16027ae6a70ed727edc2c680af8f893aba11a6926d7eb0f73fa2b`
+confirmed the production behavior.  At journal offset 110, exactly where the
+old run had stopped on its survivor, the new stage admitted
+`source-order-positive-coverage` with clause `(-55,-313,-2134)`.  Search then
+continued through 29 additional structural cuts and stopped at the 140-record
+bound with `ITERATION_LIMIT`; the complete journal replayed successfully.
+Thus the canary validates the new refinement ingress but does not establish
+finite UNSAT.
+
+The same detector contract then replay-seeded that 140-record canary into a
+fresh workdir and ran 260 additional refinements.  The resulting 400-record
+journal again replayed successfully and ended `ITERATION_LIMIT`.  Its complete
+stage totals are 386 duplicate-center, seven perpendicular-bisector, four
+equilateral-bisector, two three-triad, and one source-order cut.  The terminal
+record hash is
+`ae6205ef62a600ec2b08c24ea358fede6418cd59307c5c9221cf599d81550bab`.
+This shows that the cell-8 order cut is productive but not by itself close to
+finite exhaustion; the next compute should use the expanded multi-survivor
+bank rather than merely increasing this one-cell limit again.
 
 The next production target is therefore:
 
-1. run a fresh cell-8 canary under source-order bank schema v2 and verify that
-   the promoted clause is admitted before search continues beyond the former
-   110-cut frontier;
+1. rerun the affected cells under one expanded proof-backed source-order bank,
+   extending cell 8 beyond the canary's 140-record frontier;
 2. retain the tagged-v3 journals as read-only mining evidence, but do not splice
    them into the new detector hash chain; install the expanded static bank and
    start fresh authenticated journals under the new contract;
-3. promote the other four survivor cubes only after each has independent
-   replay and a checked Lean `SourceOrderPositiveNogood`, then launch a bounded
-   fresh wave over the affected cells;
-4. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the landed postprocessor and
+3. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the landed postprocessor and
    standalone bank materializer, then generate the exact compact-RUP and DIMACS
    equality inputs required to obtain a checked
    `DimacsUnsatisfiable` theorem for that exact full terminal formula;
-5. extend successful terminal production to every required cell in the frozen
+4. extend successful terminal production to every required cell in the frozen
    648-coordinate schedule;
-6. choose the scalable all-cell serialization/equality form—generated per-cell
+5. choose the scalable all-cell serialization/equality form—generated per-cell
    checks or a schedule-parametric authenticated checker—without embedding 648
    redundant 1,280-clause lists unnecessarily;
-7. aggregate immutable terminal records while rejecting missing, duplicated,
+6. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-8. aggregate the per-cell terminal consumers and connect their schedule
+7. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains

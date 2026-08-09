@@ -22,6 +22,30 @@ from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_LEAN_SOURCE_SHA256,
     LEAN_CONSUMER,
     LEAN_TERMINAL_CONSUMER,
+    MIXED_V3_CELL2_CUBE,
+    MIXED_V3_CELL2_LEAN_BINDING,
+    MIXED_V3_CELL2_LEAN_CHOICES,
+    MIXED_V3_CELL2_LEAN_SOURCE,
+    MIXED_V3_CELL2_LEAN_SOURCE_BYTES,
+    MIXED_V3_CELL2_LEAN_SOURCE_SHA256,
+    MIXED_V3_CELL4_CUBE,
+    MIXED_V3_CELL4_LEAN_BINDING,
+    MIXED_V3_CELL4_LEAN_CHOICES,
+    MIXED_V3_CELL4_LEAN_SOURCE,
+    MIXED_V3_CELL4_LEAN_SOURCE_BYTES,
+    MIXED_V3_CELL4_LEAN_SOURCE_SHA256,
+    MIXED_V3_CELL5_CUBE,
+    MIXED_V3_CELL5_LEAN_BINDING,
+    MIXED_V3_CELL5_LEAN_CHOICES,
+    MIXED_V3_CELL5_LEAN_SOURCE,
+    MIXED_V3_CELL5_LEAN_SOURCE_BYTES,
+    MIXED_V3_CELL5_LEAN_SOURCE_SHA256,
+    MIXED_V3_CELL7_CUBE,
+    MIXED_V3_CELL7_LEAN_BINDING,
+    MIXED_V3_CELL7_LEAN_CHOICES,
+    MIXED_V3_CELL7_LEAN_SOURCE,
+    MIXED_V3_CELL7_LEAN_SOURCE_BYTES,
+    MIXED_V3_CELL7_LEAN_SOURCE_SHA256,
     MIXED_V3_CELL8_CUBE,
     MIXED_V3_CELL8_LEAN_BINDING,
     MIXED_V3_CELL8_LEAN_CHOICES,
@@ -39,9 +63,58 @@ from census.card_head.exact12_v14_ordered_coverage import (
 )
 
 FROZEN_CUBE = {int(center): support for center, support in FROZEN_V8_CUBE.items()}
-CELL8_CUBE = {
-    int(center): support for center, support in MIXED_V3_CELL8_CUBE.items()
-}
+MIXED_V3_CASES = (
+    (
+        2,
+        MIXED_V3_CELL2_CUBE,
+        MIXED_V3_CELL2_LEAN_BINDING,
+        MIXED_V3_CELL2_LEAN_CHOICES,
+        MIXED_V3_CELL2_LEAN_SOURCE,
+        MIXED_V3_CELL2_LEAN_SOURCE_BYTES,
+        MIXED_V3_CELL2_LEAN_SOURCE_SHA256,
+        (-55, -410, -498),
+    ),
+    (
+        4,
+        MIXED_V3_CELL4_CUBE,
+        MIXED_V3_CELL4_LEAN_BINDING,
+        MIXED_V3_CELL4_LEAN_CHOICES,
+        MIXED_V3_CELL4_LEAN_SOURCE,
+        MIXED_V3_CELL4_LEAN_SOURCE_BYTES,
+        MIXED_V3_CELL4_LEAN_SOURCE_SHA256,
+        (-896, -1170, -2053, -2162),
+    ),
+    (
+        5,
+        MIXED_V3_CELL5_CUBE,
+        MIXED_V3_CELL5_LEAN_BINDING,
+        MIXED_V3_CELL5_LEAN_CHOICES,
+        MIXED_V3_CELL5_LEAN_SOURCE,
+        MIXED_V3_CELL5_LEAN_SOURCE_BYTES,
+        MIXED_V3_CELL5_LEAN_SOURCE_SHA256,
+        (-35, -172, -1363, -1620, -2493),
+    ),
+    (
+        7,
+        MIXED_V3_CELL7_CUBE,
+        MIXED_V3_CELL7_LEAN_BINDING,
+        MIXED_V3_CELL7_LEAN_CHOICES,
+        MIXED_V3_CELL7_LEAN_SOURCE,
+        MIXED_V3_CELL7_LEAN_SOURCE_BYTES,
+        MIXED_V3_CELL7_LEAN_SOURCE_SHA256,
+        (-29, -55, -546, -939, -2894),
+    ),
+    (
+        8,
+        MIXED_V3_CELL8_CUBE,
+        MIXED_V3_CELL8_LEAN_BINDING,
+        MIXED_V3_CELL8_LEAN_CHOICES,
+        MIXED_V3_CELL8_LEAN_SOURCE,
+        MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
+        MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
+        (-55, -313, -2134),
+    ),
+)
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
@@ -170,34 +243,46 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             self.assertEqual(len(source), byte_count)
             self.assertEqual(hashlib.sha256(source).hexdigest(), digest)
 
-    def test_mixed_v3_cell8_has_one_proof_backed_three_row_cut(self) -> None:
-        certificate = detect_proof_backed_ordered_coverage(CELL8_CUBE)
-        self.assertIsNotNone(certificate)
-        assert certificate is not None
-        self.assertEqual(
-            certificate["generated_lean_nogood"], MIXED_V3_CELL8_LEAN_BINDING
-        )
-        self.assertEqual(
-            certificate["selected_rows"],
-            [
-                {"center": row["center"], "support": row["support"], "exact": False}
-                for row in MIXED_V3_CELL8_LEAN_CHOICES
-            ],
-        )
-        self.assertEqual(len(certificate["coverage"]), 48)
-        self.assertEqual(
-            {entry["rule"] for entry in certificate["coverage"]},
-            {"convex-five-point-common-orientation"},
-        )
-        clause = learned_clause_for_proof_backed_ordered_coverage(
-            materialize_cell(0).instance, certificate
-        )
-        self.assertEqual(clause, (-55, -313, -2134))
-        source = (REPO_ROOT / MIXED_V3_CELL8_LEAN_SOURCE).read_bytes()
-        self.assertEqual(len(source), MIXED_V3_CELL8_LEAN_SOURCE_BYTES)
-        self.assertEqual(
-            hashlib.sha256(source).hexdigest(), MIXED_V3_CELL8_LEAN_SOURCE_SHA256
-        )
+    def test_mixed_v3_survivors_have_proof_backed_positive_cuts(self) -> None:
+        instance = materialize_cell(0).instance
+        for (
+            cell,
+            cube,
+            binding,
+            choices,
+            source_path,
+            source_bytes,
+            source_sha256,
+            expected_clause,
+        ) in MIXED_V3_CASES:
+            with self.subTest(cell=cell):
+                certificate = detect_proof_backed_ordered_coverage(cube)
+                self.assertIsNotNone(certificate)
+                assert certificate is not None
+                self.assertEqual(certificate["generated_lean_nogood"], binding)
+                self.assertEqual(
+                    certificate["selected_rows"],
+                    [
+                        {
+                            "center": row["center"],
+                            "support": row["support"],
+                            "exact": False,
+                        }
+                        for row in choices
+                    ],
+                )
+                self.assertEqual(len(certificate["coverage"]), 48)
+                self.assertEqual(
+                    {entry["rule"] for entry in certificate["coverage"]},
+                    {"convex-five-point-common-orientation"},
+                )
+                clause = learned_clause_for_proof_backed_ordered_coverage(
+                    instance, certificate
+                )
+                self.assertEqual(clause, expected_clause)
+                source = (REPO_ROOT / source_path).read_bytes()
+                self.assertEqual(len(source), source_bytes)
+                self.assertEqual(hashlib.sha256(source).hexdigest(), source_sha256)
 
     def test_learned_clause_uses_bound_selected_rows_and_is_falsified(self) -> None:
         instance = materialize_cell(0).instance
