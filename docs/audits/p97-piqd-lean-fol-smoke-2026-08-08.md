@@ -93,6 +93,14 @@ Its theorem depends on `propext`, `Classical.choice`, `Lean.ofReduceBool`,
 toolchain mismatch while retaining the stated `native_decide` compiler-trust
 boundary.
 
+This closes `PIQD-LEAN-001` at the certificate-compatibility boundary.
+`ExactTwelvePiqdSourceTerminalIngress` now provides a conditional
+theorem-facing exact-12 edge, but it still needs a checked compact terminal
+certificate and an exact equality from its parsed starting clauses to the
+typed bank's `terminalDimacs` formula. The nearby mixed-v3 packet was produced
+with `DynamicFakeDratTrim`; it is a synthetic integration fixture and cannot
+discharge these premises.
+
 ## SAT model-decoding companion
 
 The locally checked companion statement exhibits a commutative binary
@@ -128,8 +136,9 @@ an apples-to-apples validation of the existing producer.
 
 ## Remedy order
 
-1. Keep `PIQD-LEAN-001` closed by requesting an explicit Lean toolchain and
-   independently compiling every emitted certificate downstream.
+1. Maintain the `PIQD-LEAN-001` closure regression by requiring an explicit
+   Lean toolchain and independently compiling every emitted certificate
+   downstream.
 2. Implement the Lean Phase-5 exporter so source, declaration, elaborated IR,
    and translation hash are machine-bound; add a Lean theorem relating the
    exported formula to the source proposition.

@@ -96,14 +96,15 @@ is stale.
 | Concurrent static solving | Implemented in piqd; not production-qualified for P97 | `--max-workers` starts independent worker loops and atomic claims prevent duplicate ownership. P97 still lacks resource weights, production concurrency canaries, and a general batch controller. |
 | Stateful SAT/SMT sessions | Implemented in piqd; not integrated with P97 | SAT sessions support durable clause append, assumptions, model/core results, restart recovery, and terminal CNF handoff. Z3/cvc5 sessions persist assertions and textual results. No public session-cancel route is exposed. |
 | Nonlinear SMT/Euclidean validation | Daemon custody exists; P97 validation is absent | The session API can run Z3/cvc5, but P97 has no source-semantic receipt, exact replay classification, or promotion contract for these results. |
-| General P97 workflow adoption | Partial | One exact-12 normalized-v14 cell has completed source-semantic replay and has a checked finite-local typed Lean record. That record is off-spine and explicitly denies executed-byte provenance, aggregate coverage, universal lift, and theorem closure. Exact-17 and older Phase-3 workers still include direct local solver paths. |
+| General P97 workflow adoption | Partial | The accepted v2 three-cell campaign is a finite-local fixture; one exact-12 normalized-v14 cell also has a checked typed Lean record. That record is off-spine and explicitly denies executed-byte provenance, aggregate coverage, universal lift, and theorem closure. Exact-17 and older Phase-3 workers still include direct local solver paths. |
 
-The live daemon snapshot used for this audit is piqd `0.1.0`, protocol 1,
-binary SHA-256
-`476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`.
-With `GET /jobs?limit=1000`, it reports 248 retained jobs: 241 completed and
-seven prepared, with no running jobs. The completed results split into 209 SAT,
-28 UNSAT, and four UNKNOWN jobs. One persistent SAT session is live: a
+The live daemon was restarted during an idle window onto piqd `0.1.0`, protocol
+1, binary SHA-256
+`b05181f9620be33d78b95f2b9d253524329fdbd85074b4203534120f913bec0c`.
+After restart, `GET /jobs?limit=1000` reports 251 retained jobs: 244 completed
+and seven prepared, with no confirmed or running jobs. The completed results
+split into 210 SAT, 30 UNSAT, and four UNKNOWN jobs. `GET /projects/demand`
+reports no queued demand. One persistent SAT session is retained: a
 three-clause CaDiCaL smoke session with three solves and terminal status UNSAT.
 This proves that the static and session services are operational; it does not
 measure production throughput because the active exact-17 workers still run
@@ -165,6 +166,19 @@ hash strings remain metadata rather than kernel authentication of the executed
 classifier bytes, and the module is off-spine. It proves neither the five
 source-selected row memberships needed by the next consumer nor aggregate
 coverage, universal lift, or theorem closure.
+
+`ExactTwelvePiqdSourceTerminalIngress` now supplies the theorem-facing typed
+singleton bank and conditionally invokes
+`ExactTwelveRigid221Ingress.TerminalRupIngress.not_realizes_of_checkedCompactTerminal`.
+The new endpoint still requires a real checked compact terminal certificate
+and an exact equality between its parsed starting clauses and `terminalDimacs`.
+Classifier, journal, sidecar, source-job, and CNF hashes are not consumed by
+that Lean theorem. No current artifact discharges those premises: the nearby
+mixed-v3 terminal packet uses `DynamicFakeDratTrim` and is a synthetic
+integration fixture, not terminal UNSAT evidence. A fresh immutable-input
+cell-1 replay is owned by Twelvefold Refiner; its authenticated prefix has
+advanced past record 518, but no terminal result has been reported, so this
+audit does not count it as closure evidence.
 
 The practical critical path is:
 
@@ -472,19 +486,19 @@ Owner: piqd operations plus P97 dashboard integration.
 
 ### G10. Close encoder and certificate defects without blocking raw adoption
 
-`PIQD-ENC-001` is a lookup/insert race for concurrent identical requests to
-the encoder endpoint `POST /jobs/prepare`. The current P97 route exclusively
-uses raw `POST /jobs/prepare-cnf`, whose corresponding race is fixed in the
-installed release. Therefore this defect should be repaired, but it is not a
-blocker for P97 raw-DIMACS migration.
+`PIQD-ENC-001`, the lookup/insert race for concurrent identical requests to
+`POST /jobs/prepare`, is closed by piqd commit `73c4b2f`. Both prepare paths now
+use the race-safe insert-or-reread operation. Barrier regressions require eight
+identical prepares to return HTTP 200, converge on one job and blob, retain one
+database row, and return the winning stored bytes. The fixed binary is the live
+daemon reported above.
 
-The first live `lean_fol` smoke also found `PIQD-LEAN-001`. The certificate
-emitter always generates the Lean 4.29 `Std.Sat.CNF` structure constructor,
-which does not compile under this repository's pinned Lean 4.27 list-based
-representation. A 4.27-specific one-line constructor change was independently
-verified, but the durable repair needs an explicit target-toolchain selection
-and compile regressions for every supported representation. This blocks the
-advertised Lean-certificate round trip, not the raw-DIMACS solver path.
+The first live `lean_fol` smoke also found `PIQD-LEAN-001`; that compatibility
+bug is now closed for the requested Lean 4.27 toolchain. The unmodified
+certificate emitted for job `78032d33-8fd9-442a-8551-cf69109cf12c` compiles
+under Lean 4.27.0. Keep explicit target-toolchain selection and downstream
+compilation regressions. The remaining limitation is the absent authenticated
+Lean-source exporter, not certificate compatibility.
 
 Acceptance condition: concurrent identical encoder prepares all return the
 same immutable job identity without HTTP 500, backed by a barrier regression
@@ -605,7 +619,7 @@ measured need and an exact consumer contract.
 
 | Workflow | Desired piqd role | Migration status | Blocking gaps |
 | --- | --- | --- | --- |
-| Exact-cardinality static CNF banks | Full job custody, model check, UNSAT proof replay | Exact-12 cell-0 canary passed; broad migration remains open | G1, G2, G7 |
+| Exact-cardinality static CNF banks | Full job custody, model check, UNSAT proof replay | The v2 three-cell finite-local fixture and exact-12 cell-0 replay passed; fresh cell-1 replay is pending and broad migration remains open | G1, G2, G7 |
 | Exact-17 source-faithful CEGAR | Static query and terminal-artifact oracle | Current active loop is local | G1, G2, G5, G7; production-qualify G3 before a large wave |
 | Phase-3 projected-static nonincremental mode | Full static oracle | Prototype driver exists | G1, G2, G5 |
 | Phase-3 IPASIR incremental mode | piqd SAT session, or measured local exception; terminal handoff always uses the static proof path | Daemon capability exists; P97 session adapter is absent | G5, G6, G7 |
