@@ -2,8 +2,8 @@
 
 Audit status: updated through 2026-08-09; one defect remains open: the
 encoder-path prepare race. Fourteen daemon findings have been fixed in
-maintainer releases and verified in the installed release. One PIQD README
-documentation defect was fixed without a daemon behavior change. One job-origin
+maintainer releases and verified in the installed release. Two PIQD README
+documentation defects were fixed without daemon behavior changes. One job-origin
 attestation gap is recorded below as an enhancement, not a bug. The
 six PIQD-MIN-001 session/receipt findings reported in nthdegree message #3839
 were fixed in maintainer commit
@@ -188,6 +188,33 @@ not a terminal-status source. Terminal status and result must come from
 `GET /jobs/:id`. The mismatch caused the P97 adapter to misread a later MODEL
 checkpoint as terminal; P97 now requires a status-bearing terminal envelope.
 The PIQD README was corrected in `c089ad1`.
+
+### PIQD-DOC-002: README did not specify model-response byte ordering — fixed
+
+**Resolved 2026-08-09** in PIQD maintainer commit `4a95f77`;
+documentation-only, with no daemon behavior change.  The maintainer classified
+the missing contract as a PIQD documentation defect in nthdegree conversation
+message 4066.
+
+- **Verified daemon:** upstream revision `be8ef96`, installed binary SHA-256
+  `835c456052c080ccefca409d9ad4961d10b7416f695a9f4bf5f677eae811fc90`.
+- **Endpoint/state:** `GET /jobs/:id/model` after completed raw-DIMACS SAT job
+  `b32f0b26-5044-4f46-9d8e-239d15583a8a`.
+- **Reproduction:** the endpoint returned 489,236 valid compact JSON bytes,
+  SHA-256 `310ad7e8367661fb354307570a3140f234936f03a03894fda18d093e40ef1226`,
+  with declaration-order keys `job_id`, `result`, `num_assigned`, and
+  `assignment`.  Sorted-key canonicalization instead hashes to
+  `be142b2a84f9b311365d066b410fcb5d74b913e143d6d5de2cfaf46656307f4a`.
+- **Observed impact:** the P97 adapter rejected the valid 74,813-literal model
+  after PIQD had completed SAT in 4,914 ms.  The daemon record survived, so the
+  corrected retry used `existing=true` and did not repeat the solve.
+- **Contract repair:** the README now states that response key order follows
+  Rust field declaration order rather than sorted canonical order and that
+  optional keys can be absent rather than `null`.
+- **P97 mitigation and regression:** authenticate the exact received bytes,
+  strict-parse and type-check them, and publish a separately labeled canonical
+  JSON artifact.  Tests require exact raw-journal custody, canonical published
+  bytes, object and assignment equality, and rejection of either-side tampering.
 
 ### PIQD-SMT-001: stored SMT SAT models appear unreachable through the HTTP API
 

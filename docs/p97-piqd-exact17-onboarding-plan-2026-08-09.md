@@ -168,8 +168,8 @@ artifacts.
 
 ### 2. Validate the PIQD boundary on tiny known results
 
-Status: runner implemented; bounded-identity seam and live preflights in
-progress.
+Status: complete.  Known-result preflights and the shared one-process boundary
+are covered by the existing exact17 runner and focused tests.
 
 Reuse the producer-neutral `PiqdRawDimacsClient` and durable one-job driver.
 Before uploading the 95.9 MB candidate, run one tiny known-SAT and one tiny
@@ -186,7 +186,9 @@ defects are posted to the conversation but are not mislabeled as daemon bugs.
 
 ### 3. Run one bounded exact17 canary
 
-Submit exactly one v12t job to the live daemon using CaDiCaL's SAT-oriented
+Status: complete for the pinned source-entitled v19 successor.
+
+Submit exactly one v19 job to the live daemon using CaDiCaL's SAT-oriented
 profile.  Request a core limit of one; require terminal attestation of one
 solver process with no parallelism flag; use one seed, no portfolio, and no
 concurrent wave.  Do not restate that process-topology evidence as OS-core or
@@ -205,7 +207,17 @@ Acceptance gate: the prepared job identity and every downloaded artifact are
 content-addressed and revalidated from the archived bytes.  A timeout or
 `UNKNOWN` is a valid diagnostic result and is not retried automatically.
 
+Live result: PIQD job `b32f0b26-5044-4f46-9d8e-239d15583a8a` completed `SAT`
+in 4,914 ms for CNF
+`ebca3272a22c945a235a3f1141c1646f1a9780f39eefec6164f57e48bbe84c7c`.
+The request and terminal record both attest one solver process with
+`SINGLE_PROCESS_NO_PARALLEL_FLAG`; they do not attest an OS CPU set or thread
+limit.  A corrected `existing=true` retry archived and revalidated the same
+job without a second solve.
+
 ### 4. Guard against vacuous SAT and stale semantics
+
+Status: complete for the pinned v19 finite packet.
 
 For `SAT`, require a complete assignment for all 74,813 variables and replay it
 against every DIMACS clause.  Then run the lane-owned source-model analyzer only
@@ -221,7 +233,16 @@ Acceptance gate: positive SAT fixture, deliberately weakened/vacuous fixture,
 partial-model fixture, and stale-validator fixture all produce the expected
 fail-closed classifications.
 
+The live total assignment has 74,813 literals.  The durable v19 output replays
+it against all 2,875,629 clauses and the authenticated source predicates.  The
+raw daemon model remains archived under SHA-256
+`310ad7e8367661fb354307570a3140f234936f03a03894fda18d093e40ef1226`;
+the separately published canonical model hashes to
+`be142b2a84f9b311365d066b410fcb5d74b913e143d6d5de2cfaf46656307f4a`.
+
 ### 5. Handle an unexpected UNSAT result
+
+Status: not triggered; the live v19 result was `SAT`.
 
 Fetch the exact CaDiCaL proof and solver log.  Independently run proof checking
 against the archived CNF, normalize the checked proof for the existing replay
@@ -234,6 +255,11 @@ coverage, and any source-to-production consumer remain separate later gates.
 
 ### 6. Audit and checkpoint
 
+Status: complete.  The live artifacts passed fresh local validation and an
+independent read-only audit.  The audit revalidated the full 2,875,629-clause
+model replay and all ten authenticated source predicates without rerunning the
+solver.
+
 Run the focused exact17 package tests plus the existing PIQD oracle, driver,
 and replay suites with one test worker.  Run Ruff check/format and a diff check.
 Post the exact hashes, classifications, resource use, and any defects to the
@@ -244,17 +270,19 @@ checkpoint; do not sweep up the shared dirty worktree.
 
 The package loader, corrected live-run receipt adapter, known-result live
 preflights, one-process v12t structural canary, and fresh-v19 source-semantic
-custody gate are complete.  The final one-worker oracle, driver, package,
-runner, and semantic suite passes 306 tests; Ruff check and format-check are
-clean.  An independent adversarial review found no remaining issue after the
-adapter was narrowed to the exact v19 artifact and noncanonical Base64 and
-metadata-substitution cases were made fail-closed.  No Lean declaration or
-proof-blueprint anchor moved.
+custody gate are complete.  The final one-worker oracle, driver, structural
+package/runner, semantic, and v19 package/runner suite passes 337 tests; Ruff
+check and format-check are clean.  Independent adversarial and live-artifact
+reviews found no remaining issue after the adapter was narrowed to the exact
+v19 artifact and noncanonical Base64, metadata-substitution, parent-path
+replacement, and raw-versus-canonical model cases were made fail-closed.  No
+Lean declaration or proof-blueprint anchor moved.
 
-The next exact17 slice is a durable PIQD run of the pinned v19 package through
-the existing one-process runner, followed by persistence and revalidation of
-the semantic package and receipt.  The archived v12t assignment already
-satisfies all v19 clauses and source predicates, so a deduplicated daemon result
-is acceptable only if its exact job, model, solver-log, package, and semantic
-receipt identities all rebind.  Coverage, universal lift, theorem closure, and
-Lean checking remain later gates.
+The durable pinned-v19 PIQD run is complete.  Its package is
+`scratch/p97-piqd-exact17-v19-package-2026-08-09-v1`; its validated output is
+`scratch/p97-piqd-exact17-v19-run-2026-08-09-v1`.  The exact job, raw and
+canonical model bytes, solver log, package, journal seal, semantic evidence,
+and semantic receipt all rebind.  The run result records finite source custody,
+finite semantic replay, and structural SAT only.  Aggregate coverage,
+universal lift, theorem closure, and Lean checking remain false and are later
+gates.
