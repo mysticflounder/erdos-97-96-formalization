@@ -418,6 +418,32 @@ theorem false_of_threeRows_core_11_0_3_10_2
     h011 h03 h211 h23 h103 h100 h102
     order.commonOrientation_core_11_0_3_10_2
 
+/-- Source-block-only direct core extracted from the source-46 cell-8 survivor. -/
+theorem FrozenBoundaryOrder.commonOrientation_core_0_6_2_3_1
+    {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf) :
+    CommonFiveOrientationAt order.position 0 6 2 3 1 := by
+  rcases order.blocks with hdirect | hmirror
+  · unfold CommonFiveOrientationAt CyclicTripleAt FrozenBoundaryOrder.position
+    have h6 := hdirect.secondOpposite_between 6 (by decide)
+    have h3 := hdirect.surplus_between 3 (by decide)
+    have hapex := hdirect.apex_order
+    omega
+  · unfold CommonFiveOrientationAt CyclicTripleAt FrozenBoundaryOrder.position
+    have h6 := hmirror.secondOpposite_after 6 (by decide)
+    have h3 := hmirror.surplus_between 3 (by decide)
+    have hapex := hmirror.apex_order
+    omega
+
+theorem false_of_threeRows_core_0_6_2_3_1
+    {row : RowPattern Label} {pointOf : Label → ℝ²}
+    (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
+    (h60 : 0 ∈ row 6) (h62 : 2 ∈ row 6)
+    (h10 : 0 ∈ row 1) (h12 : 2 ∈ row 1)
+    (h32 : 2 ∈ row 3) (h36 : 6 ∈ row 3) (h31 : 1 ∈ row 3) : False := by
+  exact false_of_direct_threeRow_core hreal order (by decide) (by decide)
+    h60 h62 h10 h12 h32 h36 h31
+    order.commonOrientation_core_0_6_2_3_1
+
 end ExactTwelveRigid221Ingress
 end ATailFrontierLiveClosure
 end Problem97
