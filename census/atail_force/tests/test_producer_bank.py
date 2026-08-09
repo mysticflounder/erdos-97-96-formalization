@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -169,6 +170,240 @@ class ProducerBankTests(unittest.TestCase):
                 "six_ccw_order_G_of_decreasing"
             )
         )
+
+    @staticmethod
+    def _exact17_two_kalmanson_rows() -> tuple[producer_bank.MetricRow, ...]:
+        row = producer_bank.MetricRow
+        return (
+            row(0, (1, 15), exact=False),
+            row(1, (0, 5), exact=False),
+            row(2, (0, 3), exact=False),
+            row(3, (1, 5, 15), exact=False),
+            row(4, (1, 3), exact=False),
+        )
+
+    def test_generic_two_kalmanson_matches_authenticated_exact17_core(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        records = producer_bank.scan_all_formalized_cores(
+            self._exact17_two_kalmanson_rows(),
+            17,
+            order,
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"] == "equality-convex-two-kalmanson-cancellation"
+        )
+        core = match["core"]
+        self.assertEqual(core["first_quad"], [0, 8, 9, 11])
+        self.assertEqual(core["first_form"], "adjacentSides")
+        self.assertEqual(core["second_quad"], [11, 12, 13, 14])
+        self.assertEqual(core["second_form"], "adjacentSides")
+        self.assertEqual(sorted(core["permutation"]), [0, 1, 2, 3])
+        self.assertEqual(len(core["paths"]), 4)
+        self.assertTrue(all(path is not None for path in core["paths"]))
+        self.assertEqual(
+            match["lean_consumer"],
+            "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate."
+            "false_of_twoKalmansonCancellationData_of_check",
+        )
+        self.assertEqual(
+            producer_bank.certify_two_kalmanson_cancellation(
+                self._exact17_two_kalmanson_rows(), 17, order, core
+            ),
+            match,
+        )
+
+    def test_generic_two_kalmanson_enumerates_all_checked_cores_deterministically(
+        self,
+    ) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows = self._exact17_two_kalmanson_rows()
+        records = producer_bank.enumerate_two_kalmanson_cancellations(
+            rows, 17, order
+        )
+        legacy = next(
+            record
+            for record in producer_bank.scan_all_formalized_cores(
+                rows,
+                17,
+                order,
+                include_extended=False,
+                include_common_system=False,
+            )
+            if record["stage"] == "equality-convex-two-kalmanson-cancellation"
+        )
+        self.assertTrue(records)
+        self.assertIn(legacy, records)
+        self.assertEqual(
+            records,
+            producer_bank.enumerate_two_kalmanson_cancellations(
+                tuple(reversed(rows)), 17, order
+            ),
+        )
+        for record in records:
+            self.assertEqual(
+                producer_bank.certify_two_kalmanson_cancellation(
+                    rows, 17, order, record["core"]
+                ),
+                record,
+            )
+
+    def test_generic_two_kalmanson_exact_replay_rejects_core_mutations(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows = self._exact17_two_kalmanson_rows()
+        match = next(
+            record
+            for record in producer_bank.scan_all_formalized_cores(
+                rows,
+                17,
+                order,
+                include_extended=False,
+                include_common_system=False,
+            )
+            if record["stage"] == "equality-convex-two-kalmanson-cancellation"
+        )
+        mutations = {
+            "boundary": lambda core: core["boundary_labels"].reverse(),
+            "quad": lambda core: core["first_quad"].__setitem__(1, 0),
+            "form": lambda core: core.__setitem__("first_form", "unknown"),
+            "permutation": lambda core: core["permutation"].__setitem__(
+                1, core["permutation"][0]
+            ),
+            "path": lambda core: core["paths"][0].__setitem__("last", [0, 1]),
+            "row_choice": lambda core: core["row_choices"][0]["support"].append(16),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                core = copy.deepcopy(match["core"])
+                mutate(core)
+                with self.assertRaises(ValueError):
+                    producer_bank.certify_two_kalmanson_cancellation(
+                        rows, 17, order, core
+                    )
+
+    def test_generic_two_kalmanson_replay_accepts_positive_row_superset(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows = self._exact17_two_kalmanson_rows()
+        match = next(
+            record
+            for record in producer_bank.scan_all_formalized_cores(
+                rows,
+                17,
+                order,
+                include_extended=False,
+                include_common_system=False,
+            )
+            if record["stage"] == "equality-convex-two-kalmanson-cancellation"
+        )
+        widened = (
+            producer_bank.MetricRow(0, (1, 6, 15), exact=False),
+            *rows[1:],
+        )
+        self.assertEqual(
+            producer_bank.certify_two_kalmanson_cancellation(
+                widened, 17, order, match["core"]
+            ),
+            match,
+        )
+
+    def test_generic_two_kalmanson_needs_every_fixture_row(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows = self._exact17_two_kalmanson_rows()
+        for omitted in range(len(rows)):
+            with self.subTest(omitted=omitted):
+                records = producer_bank.scan_all_formalized_cores(
+                    rows[:omitted] + rows[omitted + 1 :],
+                    17,
+                    order,
+                    include_extended=False,
+                    include_common_system=False,
+                )
+                self.assertNotIn(
+                    "equality-convex-two-kalmanson-cancellation",
+                    {record["stage"] for record in records},
+                )
+
+    def test_generic_two_kalmanson_fails_closed_without_consumer(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        missing = Path("/definitely/missing/GenericRowNogoodCertificate.lean")
+        with mock.patch.object(
+            producer_bank,
+            "_TWO_KALMANSON_CANCELLATION_SOURCE",
+            missing,
+        ), self.assertRaises(producer_bank.MissingLeanConsumerError):
+            producer_bank.scan_all_formalized_cores(
+                self._exact17_two_kalmanson_rows(),
+                17,
+                order,
+                include_extended=False,
+                include_common_system=False,
+            )
+
+    @staticmethod
+    def _exact17_weighted_kalmanson_fixture() -> tuple[
+        tuple[producer_bank.MetricRow, ...], tuple[dict[str, object], ...]
+    ]:
+        row = producer_bank.MetricRow
+        rows = (
+            row(2, (0, 3, 9), exact=False),
+            row(3, (5, 7), exact=False),
+            row(7, (9, 10), exact=False),
+            row(9, (4, 5, 7), exact=False),
+            row(13, (3, 10), exact=False),
+        )
+        terms: tuple[dict[str, object], ...] = (
+            {"quad": (0, 7, 2, 3), "form": "adjacentSides", "weight": 1},
+            {"quad": (0, 10, 7, 2), "form": "innerOuter", "weight": 1},
+            {"quad": (10, 9, 7, 2), "form": "innerOuter", "weight": 2},
+            {"quad": (10, 9, 2, 3), "form": "innerOuter", "weight": 1},
+            {"quad": (10, 9, 3, 4), "form": "innerOuter", "weight": 1},
+            {"quad": (10, 9, 4, 5), "form": "innerOuter", "weight": 1},
+            {"quad": (10, 3, 5, 13), "form": "innerOuter", "weight": 1},
+        )
+        return rows, terms
+
+    def test_weighted_kalmanson_certifies_authenticated_exact17_core(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows, terms = self._exact17_weighted_kalmanson_fixture()
+        record = producer_bank.certify_weighted_kalmanson_cancellation(
+            rows, 17, order, terms
+        )
+        self.assertEqual(
+            record["stage"], "equality-convex-weighted-kalmanson-cancellation"
+        )
+        self.assertEqual(len(record["core"]["terms"]), 7)
+        self.assertEqual(len(record["core"]["pairings"]), 16)
+        self.assertEqual(
+            record["lean_consumer"],
+            "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate."
+            "false_of_weightedKalmansonCancellationData_of_check",
+        )
+
+    def test_weighted_kalmanson_rejects_incorrect_weight(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows, terms = self._exact17_weighted_kalmanson_fixture()
+        changed = [dict(term) for term in terms]
+        changed[2]["weight"] = 1
+        with self.assertRaisesRegex(ValueError, "do not cancel"):
+            producer_bank.certify_weighted_kalmanson_cancellation(
+                rows, 17, order, changed
+            )
+
+    def test_weighted_kalmanson_fails_closed_without_consumer(self) -> None:
+        order = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+        rows, terms = self._exact17_weighted_kalmanson_fixture()
+        missing = Path("/definitely/missing/GenericRowNogoodCertificate.lean")
+        with mock.patch.object(
+            producer_bank,
+            "_WEIGHTED_KALMANSON_CANCELLATION_SOURCE",
+            missing,
+        ), self.assertRaises(producer_bank.MissingLeanConsumerError):
+            producer_bank.certify_weighted_kalmanson_cancellation(
+                rows, 17, order, terms
+            )
 
     def test_schema_d_e_and_g_match_need_each_direct_row(self) -> None:
         for schema, rows in (
