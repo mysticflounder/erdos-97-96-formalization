@@ -13,6 +13,7 @@ from census.card_head.exact12_v14_bound_jobs import materialize_cell
 from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_CUBE,
     MIXED_V4_CELL1_THIRD_CUBE,
+    MIXED_V4_CELL10_CUBE,
 )
 from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
@@ -239,9 +240,13 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
         third_ordered = detect_proof_backed_source_order_cut(
             REPO_ROOT, instance, MIXED_V4_CELL1_THIRD_CUBE
         )
+        fourth_ordered = detect_proof_backed_source_order_cut(
+            REPO_ROOT, instance, MIXED_V4_CELL10_CUBE
+        )
         assert ordered is not None
         assert structural is not None
         assert third_ordered is not None
+        assert fourth_ordered is not None
         self.assertEqual(ordered.certificate_kind, SOURCE_ORDER_CERTIFICATE_KIND)
         self.assertEqual(structural.certificate_kind, STRUCTURAL_CERTIFICATE_KIND)
 
@@ -267,6 +272,15 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                     instance.candidate_index(
                         center, MIXED_V4_CELL1_THIRD_CUBE[str(center)]
                     ),
+                )
+            ]
+            for center in range(12)
+        )
+        fourth_ordered_selected = frozenset(
+            instance.choice_variables[
+                (
+                    center,
+                    instance.candidate_index(center, MIXED_V4_CELL10_CUBE[str(center)]),
                 )
             ]
             for center in range(12)
@@ -301,10 +315,20 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
             cube=MIXED_V4_CELL1_THIRD_CUBE,
             positive_variables=third_ordered_selected,
         )
+        fourth = _make_record(
+            index=3,
+            parent_sha256=third["record_sha256"],
+            job_sha256=JOB_SHA256,
+            detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+            cell_index=0,
+            admitted_cut=fourth_ordered,
+            cube=MIXED_V4_CELL10_CUBE,
+            positive_variables=fourth_ordered_selected,
+        )
 
         with TemporaryDirectory() as temporary:
             journal = Path(temporary) / "mixed.jsonl"
-            self._write_records(journal, [first, second, third])
+            self._write_records(journal, [first, second, third, fourth])
             with mock.patch(
                 "census.card_head.exact12_v14_structural_cegar.build_source_order_bank",
                 wraps=build_source_order_bank,
@@ -318,7 +342,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                     cell_index=0,
                 )
             self.assertEqual(build_bank.call_count, 1)
-            self.assertEqual((count, parent), (3, third["record_sha256"]))
+            self.assertEqual((count, parent), (4, fourth["record_sha256"]))
             self.assertEqual(
                 clauses,
                 frozenset(
@@ -326,6 +350,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                         ordered.learned_clause,
                         structural.learned_clause,
                         third_ordered.learned_clause,
+                        fourth_ordered.learned_clause,
                     }
                 ),
             )

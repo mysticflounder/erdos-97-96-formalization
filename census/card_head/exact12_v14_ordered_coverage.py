@@ -232,6 +232,86 @@ MIXED_V4_CELL1_THIRD_LEAN_SOURCE_BYTES = 5447
 MIXED_V4_CELL1_THIRD_LEAN_SOURCE_SHA256 = (
     "6a26a86df175bb1242608f556690978c6f919e58a6ff849126bd1bed5e5eafb6"
 )
+MIXED_V4_CELL10_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell10PositiveNogood"
+)
+MIXED_V4_CELL10_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientationCoverage_mixedV4Cell10"
+)
+MIXED_V4_CELL10_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell10PositiveCut.lean"
+)
+MIXED_V4_CELL10_LEAN_SOURCE_BYTES = 6428
+MIXED_V4_CELL10_LEAN_SOURCE_SHA256 = (
+    "2b886575c31d1d690ce451b2ef5da8df2b32bf041b46f08894c48c15ab82575c"
+)
+MIXED_V4_CELL2_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell2PositiveNogood"
+)
+MIXED_V4_CELL2_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_5_6_1_7_10"
+)
+MIXED_V4_CELL2_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell2PositiveCut.lean"
+)
+MIXED_V4_CELL2_LEAN_SOURCE_BYTES = 3938
+MIXED_V4_CELL2_LEAN_SOURCE_SHA256 = (
+    "1328013ad3e0993932cb974af2811c1e31153334babf6158ef317597a1d59ebb"
+)
+MIXED_V4_CELL5_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell5PositiveNogood"
+)
+MIXED_V4_CELL5_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_3_0_1_5_10"
+)
+MIXED_V4_CELL5_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell5PositiveCut.lean"
+)
+MIXED_V4_CELL5_LEAN_SOURCE_BYTES = 3776
+MIXED_V4_CELL5_LEAN_SOURCE_SHA256 = (
+    "861bc3eeebb9ba658d9bda87d6870faceab12fb3479b277c091cb11e6aaeeeb2"
+)
+MIXED_V4_CELL8_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell8PositiveNogood"
+)
+MIXED_V4_CELL8_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_7_0_10_3_2"
+)
+MIXED_V4_CELL8_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell8PositiveCut.lean"
+)
+MIXED_V4_CELL8_LEAN_SOURCE_BYTES = 3795
+MIXED_V4_CELL8_LEAN_SOURCE_SHA256 = (
+    "b4da18ae85161e12fa695001f4f8d9f681762be6169cf7b5c71bd23bd96c0d9c"
+)
+MIXED_V4_CELL11_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell11PositiveNogood"
+)
+MIXED_V4_CELL11_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_1_7_6_11_9"
+)
+MIXED_V4_CELL11_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell11PositiveCut.lean"
+)
+MIXED_V4_CELL11_LEAN_SOURCE_BYTES = 4452
+MIXED_V4_CELL11_LEAN_SOURCE_SHA256 = (
+    "103aa7a5c8ff75ac31b033114d37be88e61758884bfaab35937256fa53dda187"
+)
 REQUIRED_SOURCE_HYPOTHESES = (
     "Realizes",
     "FrozenBoundaryOrder",
@@ -651,6 +731,193 @@ MIXED_V4_CELL1_THIRD_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+MIXED_V4_CELL10_CUBE = {
+    "0": [1, 3, 4, 6],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [0, 5, 9, 10],
+    "4": [2, 3, 7, 8],
+    "5": [0, 4, 6, 9],
+    "6": [4, 7, 9, 11],
+    "7": [1, 6, 8, 10],
+    "8": [3, 5, 6, 9],
+    "9": [0, 2, 7, 10],
+    "10": [2, 5, 6, 11],
+    "11": [1, 4, 7, 8],
+}
+MIXED_V4_CELL10_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL10_CUBE)
+MIXED_V4_CELL10_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(MIXED_V4_CELL10_CUBE[str(center)]),
+    }
+    for center in (3, 4, 5, 6, 8, 9)
+]
+MIXED_V4_CELL10_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL10_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL10_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL10_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL10_LEAN_CHOICES,
+    "source_path": MIXED_V4_CELL10_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL10_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL10_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL10_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL10_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL10_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+MIXED_V4_CELL2_CUBE = {
+    "0": [3, 4, 7, 11],
+    "1": [0, 2, 6, 8],
+    "2": [5, 6, 10, 11],
+    "3": [2, 5, 7, 8],
+    "4": [3, 5, 8, 9],
+    "5": [3, 9, 10, 11],
+    "6": [0, 1, 5, 9],
+    "7": [1, 6, 8, 10],
+    "8": [4, 6, 9, 11],
+    "9": [0, 2, 3, 10],
+    "10": [1, 3, 4, 5],
+    "11": [0, 4, 6, 7],
+}
+MIXED_V4_CELL2_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL2_CUBE)
+MIXED_V4_CELL2_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL2_CUBE[str(center)])}
+    for center in (6, 7, 10)
+]
+MIXED_V4_CELL2_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL2_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL2_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL2_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL2_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 5, "x": 6, "b": 1, "c": 7, "y": 10},
+    "source_path": MIXED_V4_CELL2_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL2_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL2_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL2_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL2_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL2_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+MIXED_V4_CELL5_CUBE = {
+    "0": [1, 3, 5, 7],
+    "1": [0, 2, 6, 8],
+    "2": [5, 9, 10, 11],
+    "3": [2, 7, 9, 11],
+    "4": [0, 3, 7, 9],
+    "5": [0, 1, 10, 11],
+    "6": [0, 2, 7, 10],
+    "7": [1, 6, 8, 11],
+    "8": [4, 5, 6, 9],
+    "9": [3, 4, 5, 8],
+    "10": [1, 3, 6, 9],
+    "11": [1, 2, 8, 10],
+}
+MIXED_V4_CELL5_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL5_CUBE)
+MIXED_V4_CELL5_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL5_CUBE[str(center)])}
+    for center in (0, 5, 10)
+]
+MIXED_V4_CELL5_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL5_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL5_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL5_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL5_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 3, "x": 0, "b": 1, "c": 5, "y": 10},
+    "source_path": MIXED_V4_CELL5_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL5_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL5_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL5_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL5_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL5_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+MIXED_V4_CELL8_CUBE = {
+    "0": [3, 5, 7, 10],
+    "1": [0, 2, 6, 8],
+    "2": [1, 7, 10, 11],
+    "3": [0, 2, 10, 11],
+    "4": [1, 2, 3, 10],
+    "5": [2, 4, 6, 7],
+    "6": [0, 3, 4, 9],
+    "7": [1, 4, 6, 8],
+    "8": [1, 3, 6, 9],
+    "9": [2, 3, 4, 8],
+    "10": [0, 3, 5, 6],
+    "11": [0, 1, 4, 7],
+}
+MIXED_V4_CELL8_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL8_CUBE)
+MIXED_V4_CELL8_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL8_CUBE[str(center)])}
+    for center in (0, 2, 3)
+]
+MIXED_V4_CELL8_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL8_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL8_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL8_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL8_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 7, "x": 0, "b": 10, "c": 3, "y": 2},
+    "source_path": MIXED_V4_CELL8_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL8_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL8_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL8_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL8_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL8_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+MIXED_V4_CELL11_CUBE = {
+    "0": [2, 3, 4, 11],
+    "1": [0, 2, 6, 8],
+    "2": [1, 8, 10, 11],
+    "3": [0, 2, 7, 11],
+    "4": [1, 2, 9, 10],
+    "5": [2, 3, 7, 8],
+    "6": [0, 4, 5, 7],
+    "7": [1, 4, 6, 8],
+    "8": [3, 6, 9, 10],
+    "9": [0, 1, 5, 6],
+    "10": [0, 4, 9, 11],
+    "11": [4, 6, 7, 9],
+}
+MIXED_V4_CELL11_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL11_CUBE)
+MIXED_V4_CELL11_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL11_CUBE[str(center)])}
+    for center in (7, 9, 11)
+]
+MIXED_V4_CELL11_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL11_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL11_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL11_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL11_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 1, "x": 7, "b": 6, "c": 11, "y": 9},
+    "source_path": MIXED_V4_CELL11_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL11_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL11_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL11_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL11_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL11_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
 PROOF_BACKED_CUBE_BINDINGS = (
     (FROZEN_V8_CUBE, FROZEN_V8_LEAN_BINDING, FROZEN_V8_LEAN_CHOICES),
     (
@@ -697,6 +964,31 @@ PROOF_BACKED_CUBE_BINDINGS = (
         MIXED_V4_CELL1_THIRD_CUBE,
         MIXED_V4_CELL1_THIRD_LEAN_BINDING,
         MIXED_V4_CELL1_THIRD_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL10_CUBE,
+        MIXED_V4_CELL10_LEAN_BINDING,
+        MIXED_V4_CELL10_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL2_CUBE,
+        MIXED_V4_CELL2_LEAN_BINDING,
+        MIXED_V4_CELL2_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL5_CUBE,
+        MIXED_V4_CELL5_LEAN_BINDING,
+        MIXED_V4_CELL5_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL8_CUBE,
+        MIXED_V4_CELL8_LEAN_BINDING,
+        MIXED_V4_CELL8_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL11_CUBE,
+        MIXED_V4_CELL11_LEAN_BINDING,
+        MIXED_V4_CELL11_LEAN_CHOICES,
     ),
 )
 

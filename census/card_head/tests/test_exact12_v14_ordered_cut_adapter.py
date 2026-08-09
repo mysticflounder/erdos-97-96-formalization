@@ -17,6 +17,7 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V4_CELL1_SECOND_CUBE,
     MIXED_V4_CELL1_THIRD_CUBE,
     MIXED_V4_CELL4_CUBE,
+    MIXED_V4_CELL10_CUBE,
 )
 from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
@@ -91,6 +92,16 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
         assert mixed_v4_cell1_third is not None
         self.assertEqual(mixed_v4_cell1_third.bank_index, 9)
         self.assertEqual(mixed_v4_cell1_third.learned_clause, (-160, -1383, -2548))
+        mixed_v4_cell10 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V4_CELL10_CUBE
+        )
+        self.assertIsNotNone(mixed_v4_cell10)
+        assert mixed_v4_cell10 is not None
+        self.assertEqual(mixed_v4_cell10.bank_index, 10)
+        self.assertEqual(
+            mixed_v4_cell10.learned_clause,
+            (-264, -704, -898, -1437, -2034, -2134),
+        )
 
         different = copy.deepcopy(FROZEN_V8_CUBE)
         different["0"] = [1, 3, 4, 7]
@@ -117,24 +128,27 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
             admitted = detect_proof_backed_source_order_cut(
                 None,
                 self.instance,
-                MIXED_V4_CELL1_THIRD_CUBE,
+                MIXED_V4_CELL10_CUBE,
                 source_order_bank=bank,
             )
 
         self.assertIsNotNone(admitted)
         assert admitted is not None
-        self.assertEqual(admitted.bank_index, 9)
-        self.assertEqual(admitted.learned_clause, (-160, -1383, -2548))
+        self.assertEqual(admitted.bank_index, 10)
+        self.assertEqual(
+            admitted.learned_clause,
+            (-264, -704, -898, -1437, -2034, -2134),
+        )
 
         tampered = copy.deepcopy(bank)
-        tampered["entries"][9]["learned_clause"][0] = -1
+        tampered["entries"][10]["learned_clause"][0] = -1
         with self.assertRaisesRegex(
             Exact12V14OrderedCutAdapterError, "schema or digest authentication"
         ):
             detect_proof_backed_source_order_cut(
                 None,
                 self.instance,
-                MIXED_V4_CELL1_THIRD_CUBE,
+                MIXED_V4_CELL10_CUBE,
                 source_order_bank=tampered,
             )
 

@@ -64,6 +64,48 @@ closures.  The standalone `ExactTwelveRigid221OrderedLongClosureCuts.lean`
 prototype duplicates those declaration names and is deliberately excluded
 from the promoted import chain.
 
+## Mixed-v4 12-cell continuation checkpoint
+
+A later bounded continuation ran all twelve exact-12 schedule cells against the
+current source-order contract.  It produced no terminal `UNSAT` cell:
+
+| Cell | Terminal status | Records |
+| ---: | --- | ---: |
+| 0 | `ITERATION_LIMIT` | 500 |
+| 1 | `ITERATION_LIMIT` | 891 |
+| 2 | `STRUCTURALLY_UNRESOLVED` | 462 |
+| 3 | `ITERATION_LIMIT` | 500 |
+| 4 | `ITERATION_LIMIT` | 900 |
+| 5 | `STRUCTURALLY_UNRESOLVED` | 480 |
+| 6 | `ITERATION_LIMIT` | 500 |
+| 7 | `ITERATION_LIMIT` | 500 |
+| 8 | `STRUCTURALLY_UNRESOLVED` | 471 |
+| 9 | `ITERATION_LIMIT` | 500 |
+| 10 | `STRUCTURALLY_UNRESOLVED` | 732 |
+| 11 | `STRUCTURALLY_UNRESOLVED` | 460 |
+
+Each of the five structurally unresolved terminal survivors nevertheless has
+all 48 frozen direct/mirror source orders covered by a checked
+`convex-five-point-common-orientation` core.  These finite obstructions are now
+represented by source-pinned Lean `SourceOrderPositiveNogood` consumers:
+
+- cell 2: three rows and learned clause `[-1156, -1640, -2537]`;
+- cell 5: three rows and learned clause `[-10, -846, -2550]`;
+- cell 8: three rows and learned clause `[-40, -160, -230]`;
+- cell 10: six rows and learned clause
+  `[-264, -704, -898, -1437, -2034, -2134]`; and
+- cell 11: three rows and learned clause `[-1620, -2096, -3017]`.
+
+The cell-2, cell-5, cell-8, and cell-11 certificates deliberately override the
+detector's greedy core ordering with audited singleton cores, so the Python
+replay selects exactly the three rows used by Lean.  With these additions the
+authenticated source-order bank contains 15 learned cuts pinned to a manifest
+of 17 Lean sources.  Direct one-file elaboration of all five new consumer
+modules passes, as do all 31 focused ordered-coverage, authenticated-bank,
+adapter, and structural-CEGAR tests.  This bank growth rejects those five
+concrete terminal survivors; it does not establish terminal exhaustion of any
+schedule cell.
+
 ## What remains open
 
 The v4 run stopped at `ITERATION_LIMIT` after 10,000 new classified records
