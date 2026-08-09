@@ -98,10 +98,11 @@ authenticated survivor data, but it is not itself a contradiction or a
 coverage result.
 
 `exact12_v14_structural_cegar.py` is now a tagged mixed-v4 refinement
-dispatcher over that binding.  It freshly rebuilds and authenticates the
-complete theorem-backed source-order bank, recompiles every stored certificate,
-and admits the lowest-index bank clause whose recorded selected-row choices are
-all selected by the current assignment.  This is deliberately broader than
+dispatcher over that binding.  It builds the complete theorem-backed
+source-order bank from a no-follow repository-source snapshot, checks the fixed
+Lean-source identities, recompiles every stored certificate, and admits the
+lowest-index bank clause whose recorded selected-row choices are all selected
+by the current assignment.  This is deliberately broader than
 exact-cube equality: the Lean `SourceOrderPositiveNogood` consumer depends only
 on positive matching of the recorded rows.  If no bank clause matches, the
 dispatcher falls back to the existing order-independent structural metric
@@ -110,12 +111,16 @@ to the exact selected-row variables and written to an append-only hash chain
 bound to the cell job and the semantic detector contract.  The v4 journal tags
 the certificate family, schema, and detector stage, records the deterministic
 source-order bank index or `null` for structural cuts, and stores the canonical
-cube and complete positive SAT assignment.  Replay rebuilds the current bank,
-requires the same lowest matching index and exact stored certificate, and then
-checks the cube, assignment, learned clause, cut falsification, and exact
-family-specific proof.  Legacy v2 and tagged-v3 journals are rejected rather
-than silently migrated.  The retained earlier waves remain historical
-nonterminal diagnostics; a fresh v4 wave is required for promotion.
+cube and complete positive SAT assignment.  Replay reuses the path-built bank
+snapshot, canonically recompiles it, requires the same lowest matching index
+and exact stored certificate, and then checks the cube, assignment, learned
+clause, cut falsification, and exact family-specific proof.  A supplied bank
+snapshot is not, by itself, a claim that live repository paths still equal its
+recorded Python manifest; the migrator establishes that stronger provenance by
+capturing and checking the source bytes before path-free replay.  Legacy v2 and
+tagged-v3 journals are rejected rather than silently migrated.  The retained
+earlier waves remain historical nonterminal diagnostics; a fresh v4 wave is
+required for promotion.
 
 ## Exact remaining gate
 
@@ -454,6 +459,87 @@ halves of the frozen direct/mirror universe.  The checked Lean value
 contradiction.  Its Python binding compiles the selected rows to
 `(-160,-2312,-2864)` at appended bank index `8`.
 
+The committed nine-entry bank was then replay-seeded from that authenticated
+541-record prefix.  Bank index `8` fired at record `541`; the next 99 learned
+cuts were structural metric cores (97 equality-duplicate-center, one
+equality-equilateral-bisector-collision, and one
+equality-perpendicular-bisector-convex).  The run reached its 641-record bound
+with `ITERATION_LIMIT`, no saved survivor, and no terminal UNSAT.  Its journal
+has SHA-256
+`fc5c9e68985821ee7dc2c9f0d0ff92a5509f645caed43d222db3e06261a17041`
+and terminal record hash
+`0f0546c70e3780a46f8bba0418d2a3bc85a5d64725c59b728add86b4d9af5588`.
+An independent current-source migration replay authenticated all 641 records.
+The hardened migrator rejects final and intermediate symlinks, requires working
+`O_NOFOLLOW`/directory-descriptor primitives, snapshots the authenticated
+source journal and every detector/Lean source into immutable in-memory bytes,
+rebuilds the source-order bank from only those bytes, and replays the rewritten
+journal against that prebuilt bank without reopening repository source paths.
+The ordinary runner likewise snapshots path- or stream-backed journals before
+replay, opens the repository sources to build at most one source-order bank per
+replay/run, and passes that frozen snapshot to every source-order record.  Each
+admission still canonically revalidates the supplied snapshot; this checkpoint
+does not claim that the compilation work itself is memoized.  A caller-supplied
+bank is accepted only if its complete canonical recompilation agrees, so
+recomputing the bank's self-hash after changing an entry, generated Lean
+binding, or source manifest does not authenticate the mutation.
+
+Publication remains descriptor-bound and no-overwrite: the migrator binds the
+output parent and created file by descriptor and inode, content-binds the
+candidate before and during publication, rehashes the destination through the
+retained descriptor, verifies the output name/inode and parent identity, and
+sets a successful output to mode `0400`.  A failed post-create publication
+deliberately leaves an explicit unverified residue rather than risking a raced
+unlink.  Every later consumer must still reopen the path without following
+symlinks and rehash the returned receipt, because an ordinary path cannot be
+made immutable against a malicious same-UID process after return.  The final
+focused hardening gate has 34 passing tests, including caller-resealed bank
+mutations and a two-source-order-record/one-build assertion; the broad
+exact-v14 gate has 77 passing tests plus the generated-Lean test.  This
+strengthens the nonterminal replay evidence; it remains neither cell closure
+nor universal proof ingress.
+
+A second bounded continuation replayed the 641-record prefix and learned 100
+more structural metric cuts: 99 equality-duplicate-center cores and one
+equality-equilateral-bisector-collision core.  It reached its 741-record bound
+with `ITERATION_LIMIT`, no saved survivor, and no terminal UNSAT.  Its journal
+has SHA-256
+`a28e02241a7a3dab05b31d2bb1590fb6e47a4e2abce34cf7d676f6040fdd9076`
+and terminal record hash
+`2f168a02a6147f4457962494d66249db0e062d6bad2203c237fcdbf973dcb6c2`.
+The hardened migrator independently replayed all 741 records and reproduced
+that journal byte-for-byte.  This migration hardening does not by itself repair
+the separate terminal-RUP postprocessor issue described below.
+
+The next bounded continuation replayed the 741-record prefix and learned 50
+more checked cuts: 49 equality-duplicate-center cores and one
+equality-perpendicular-bisector-convex core.  It reached
+`STRUCTURALLY_UNRESOLVED` at record `791`, with no terminal CNF and no terminal
+UNSAT proof.  The complete journal has SHA-256
+`2f6b613ea0937082dff02a139be48e5e3250c202482118995c5df969fade1267`
+and terminal record hash
+`cf76307d4a460e3ffb25d3619c07be5d047678814df12e02526c605aa7f7e8fe`;
+the survivor has SHA-256
+`520774fdbc42d610accfc76d845a945fecb10f410d36ba78d7715434f376822f`.
+
+Source-order diagnosis of that survivor found a third checked three-row
+predicate on centers `2`, `6`, and `10`.  The two common-orientation cores
+`(1,2,7,6,10)` and `(1,10,7,6,2)` cover the two orderings of labels `6` and
+`7`, hence all 48 frozen direct/mirror orders.  The directly elaborated Lean
+value `mixedV4Cell1ThirdPositiveNogood` proves the source-level contradiction;
+its Python binding compiles to `(-160,-1383,-2548)` at appended bank index `9`.
+This is one proved reusable finite cut, not proof that the cell or schedule is
+UNSAT.
+
+The real 791-record migration canary was then rerun under the final immutable
+input and exact-bank-recompilation rules.  It published 133,536,048 bytes at
+mode `0400`, with journal SHA-256
+`026f5c4e147ad5717ddb29ceed82d001029ee4e1ea6215a00a3376428431f3b0`
+and migrated terminal record hash
+`b8f10058945a3e050d9b50267305adbd731cf7b51c4f7e279b4fae6ac8b0cacf`.
+All 791 records passed current-source semantic replay from the frozen source
+bundle and single prebuilt bank.
+
 In parallel, the replay-seeded cell-`4` continuation reached its new
 362-record bound with `ITERATION_LIMIT`.  Its complete journal replayed
 successfully and has terminal record hash
@@ -472,9 +558,10 @@ current postprocessor.
 
 The next production target is therefore:
 
-1. finish the independent registry tests and authenticated binding for bank
-   index `8`, then replay the exact record-`541` cell-`1` survivor and continue
-   that cell under the resulting nine-entry detector contract;
+1. commit the third checked source-order predicate and continue cell `1` from
+   the independently replayed 791-record seed in bounded tranches until it
+   either exposes a new survivor for predicate mining or reaches
+   proof-verified terminal UNSAT;
 2. if that continuation exposes another survivor, classify it before
    increasing the bound; do not spend another cell-`4` tranche without either
    a new checked predicate or a newly exposed survivor to diagnose;

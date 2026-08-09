@@ -16,12 +16,13 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
+import io
 import json
 import os
 import shutil
 from collections.abc import Collection, Mapping
 from pathlib import Path
-from typing import Any
+from typing import Any, BinaryIO
 
 from census.global_confinement import (
     cap_selected_nogood_certificate_probe as certificates,
@@ -42,6 +43,12 @@ from .exact12_v14_ordered_cut_adapter import (
     replay_proof_backed_source_order_cut,
 )
 from .exact12_v14_schedule import build_manifest, json_sha256
+from .exact12_v14_source_order_bank import (
+    Exact12V14SourceOrderBankError,
+    _source_record,
+    build_source_order_bank,
+    snapshot_source_order_bank,
+)
 from .exact12_v14_valuation import added_constraints_hold, decode_blockers
 from .sat_encoding import CadicalResult, CoverInstance, EncodingError, solve_cadical
 from .source_faithful_candidate_surface import source_faithful_cube_ok
@@ -110,9 +117,14 @@ def _canonical_cube_payload(
                 "journal cube support is malformed"
             ) from exc
         if (
-            any(isinstance(point, bool) or not isinstance(point, int) for point in normalized)
+            any(
+                isinstance(point, bool) or not isinstance(point, int)
+                for point in normalized
+            )
             or len(normalized) != len(set(normalized))
-            or any(not 0 <= point < cardinality or point == center for point in normalized)
+            or any(
+                not 0 <= point < cardinality or point == center for point in normalized
+            )
         ):
             raise Exact12V14StructuralCegarError("journal cube support is malformed")
         payload[str(center)] = normalized
@@ -134,16 +146,13 @@ def _canonical_positive_variables(
         raise Exact12V14StructuralCegarError(
             "journal positive-variable assignment is malformed"
         ) from exc
-    if (
-        any(
-            isinstance(variable, bool)
-            or not isinstance(variable, int)
-            or variable <= 0
-            or (n_variables is not None and variable > n_variables)
-            for variable in positive
-        )
-        or len(positive) != len(set(positive))
-    ):
+    if any(
+        isinstance(variable, bool)
+        or not isinstance(variable, int)
+        or variable <= 0
+        or (n_variables is not None and variable > n_variables)
+        for variable in positive
+    ) or len(positive) != len(set(positive)):
         raise Exact12V14StructuralCegarError(
             "journal positive-variable assignment is malformed"
         )
@@ -191,21 +200,12 @@ def _artifact(path: Path) -> dict[str, Any] | None:
 
 
 def _detector_manifest(repo_root: Path) -> list[dict[str, Any]]:
-    manifest: list[dict[str, Any]] = []
-    for relative in DETECTOR_FILES:
-        path = repo_root / relative
-        if not path.is_file():
-            raise Exact12V14StructuralCegarError(
-                f"missing detector contract file: {relative}"
-            )
-        manifest.append(
-            {
-                "path": relative,
-                "bytes": path.stat().st_size,
-                "sha256": _sha256_file(path),
-            }
-        )
-    return manifest
+    try:
+        return [_source_record(repo_root, relative) for relative in DETECTOR_FILES]
+    except Exact12V14SourceOrderBankError as exc:
+        raise Exact12V14StructuralCegarError(
+            "detector contract source snapshot failed"
+        ) from exc
 
 
 def _claim_workdir(workdir: Path) -> Path:
@@ -323,14 +323,21 @@ def learned_clause_for_certificate(
 
 
 def detect_admitted_cut(
-    repo_root: Path,
+    repo_root: Path | None,
     instance: CoverInstance,
     cube: Mapping[int | str, Collection[int]],
+    *,
+    source_order_bank: Mapping[str, Any] | None = None,
 ) -> AdmittedCut | None:
     """Prefer a theorem-backed source-order cut, then structural replay."""
 
     try:
-        ordered = detect_proof_backed_source_order_cut(repo_root, instance, cube)
+        ordered = detect_proof_backed_source_order_cut(
+            repo_root,
+            instance,
+            cube,
+            source_order_bank=source_order_bank,
+        )
     except Exact12V14OrderedCutAdapterError as exc:
         raise Exact12V14StructuralCegarError(str(exc)) from exc
     if ordered is not None:
@@ -348,7 +355,7 @@ def detect_admitted_cut(
 
 
 def replay_tagged_cut(
-    repo_root: Path,
+    repo_root: Path | None,
     instance: CoverInstance,
     cube: Mapping[int | str, Collection[int]],
     *,
@@ -357,6 +364,7 @@ def replay_tagged_cut(
     detector_stage: str,
     certificate: Mapping[str, Any],
     bank_index: int | None = None,
+    source_order_bank: Mapping[str, Any] | None = None,
 ) -> tuple[int, ...]:
     """Replay one tagged certificate through only its declared family."""
 
@@ -379,6 +387,7 @@ def replay_tagged_cut(
                 detector_stage=detector_stage,
                 certificate=certificate,
                 bank_index=bank_index,
+                source_order_bank=source_order_bank,
             )
         except Exact12V14OrderedCutAdapterError as exc:
             raise Exact12V14StructuralCegarError(str(exc)) from exc
@@ -437,23 +446,54 @@ def _append_record(path: Path, record: Mapping[str, Any]) -> None:
 
 
 def replay_journal(
-    repo_root: Path,
+    repo_root: Path | None,
     instance: CoverInstance,
-    journal_path: Path,
+    journal_path: Path | BinaryIO,
     *,
     job_sha256: str,
     detector_contract_sha256: str,
     cell_index: int,
+    source_order_bank: Mapping[str, Any] | None = None,
 ) -> tuple[int, str, frozenset[tuple[int, ...]]]:
     """Authenticate, replay, and install every durable learned clause."""
 
-    if not journal_path.is_file():
-        return 0, job_sha256, frozenset()
+    try:
+        replay_bank = (
+            None
+            if source_order_bank is None
+            else snapshot_source_order_bank(instance, source_order_bank)
+        )
+    except Exact12V14SourceOrderBankError as exc:
+        raise Exact12V14StructuralCegarError(str(exc)) from exc
+    if isinstance(journal_path, Path):
+        if not journal_path.is_file():
+            return 0, job_sha256, frozenset()
+        try:
+            with journal_path.open("rb") as journal_handle:
+                journal_payload = journal_handle.read()
+        except OSError as exc:
+            raise Exact12V14StructuralCegarError(
+                "journal path could not be snapshotted"
+            ) from exc
+        journal_context = io.BytesIO(journal_payload)
+    else:
+        try:
+            journal_path.seek(0)
+            journal_payload = journal_path.read()
+        except (AttributeError, OSError, ValueError) as exc:
+            raise Exact12V14StructuralCegarError(
+                "journal stream could not be snapshotted"
+            ) from exc
+        if type(journal_payload) is not bytes:
+            raise Exact12V14StructuralCegarError(
+                "journal stream snapshot is not immutable bytes"
+            )
+        journal_context = io.BytesIO(journal_payload)
     parent = job_sha256
     seen: set[tuple[int, ...]] = set()
     pending_clauses: list[tuple[int, ...]] = []
     count = 0
-    with journal_path.open("rb") as handle:
+    with journal_context as handle:
         for line_number, raw in enumerate(handle, 1):
             if not raw.endswith(b"\n"):
                 raise Exact12V14StructuralCegarError(
@@ -469,7 +509,10 @@ def replay_journal(
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} is not strict JSON"
                 ) from exc
-            if isinstance(record, Mapping) and record.get("schema") == LEGACY_RECORD_SCHEMA:
+            if (
+                isinstance(record, Mapping)
+                and record.get("schema") == LEGACY_RECORD_SCHEMA
+            ):
                 raise Exact12V14StructuralCegarError(
                     "legacy v2 journals require an explicit migration; start a fresh v4 run"
                 )
@@ -529,14 +572,15 @@ def replay_journal(
                 record.get("positive_variables"),
                 n_variables=instance.cnf.n_variables,
             )
-            if record.get("cube") != cube or record.get("cube_sha256") != _sha256_json(cube):
+            if record.get("cube") != cube or record.get("cube_sha256") != _sha256_json(
+                cube
+            ):
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} cube hash drifted"
                 )
-            if (
-                record.get("positive_variables") != positive_variables
-                or record.get("assignment_sha256") != _sha256_json(positive_variables)
-            ):
+            if record.get("positive_variables") != positive_variables or record.get(
+                "assignment_sha256"
+            ) != _sha256_json(positive_variables):
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} assignment hash drifted"
                 )
@@ -578,6 +622,13 @@ def replay_journal(
                     raise Exact12V14StructuralCegarError(
                         f"journal line {line_number} has malformed source-order bank index"
                     )
+                if replay_bank is None and repo_root is not None:
+                    try:
+                        replay_bank = snapshot_source_order_bank(
+                            instance, build_source_order_bank(repo_root, instance)
+                        )
+                    except Exact12V14SourceOrderBankError as exc:
+                        raise Exact12V14StructuralCegarError(str(exc)) from exc
             elif bank_index is not None:
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} has an unexpected source-order bank index"
@@ -591,6 +642,7 @@ def replay_journal(
                 detector_stage=detector_stage,
                 certificate=certificate,
                 bank_index=bank_index,
+                source_order_bank=replay_bank,
             )
             if record.get("learned_clause") != list(clause) or clause in seen:
                 raise Exact12V14StructuralCegarError(
@@ -647,6 +699,7 @@ def run_structural_cegar(
     ):
         raise Exact12V14StructuralCegarError("invalid solver timeout or nice value")
 
+    repo_root = repo_root.resolve()
     lock = _claim_workdir(workdir)
     try:
         schedule_manifest = build_manifest(repo_root)
@@ -659,6 +712,12 @@ def run_structural_cegar(
         job_sha256 = json_sha256(job)
         detector_manifest = _detector_manifest(repo_root)
         detector_contract_sha256 = _sha256_json(detector_manifest)
+        try:
+            source_order_bank = snapshot_source_order_bank(
+                instance, build_source_order_bank(repo_root, instance)
+            )
+        except Exact12V14SourceOrderBankError as exc:
+            raise Exact12V14StructuralCegarError(str(exc)) from exc
         job_path = workdir / "job.json"
         _write_json(job_path, job)
         expected_job_artifact_sha256 = _sha256_file(job_path)
@@ -674,6 +733,7 @@ def run_structural_cegar(
             job_sha256=job_sha256,
             detector_contract_sha256=detector_contract_sha256,
             cell_index=cell_index,
+            source_order_bank=source_order_bank,
         )
         seen_clauses = set(seen)
         status = "ITERATION_LIMIT"
@@ -741,7 +801,12 @@ def run_structural_cegar(
                 error = "SAT assignment failed a source, predicate, or CNF replay gate"
                 break
 
-            admitted_cut = detect_admitted_cut(repo_root, instance, cube)
+            admitted_cut = detect_admitted_cut(
+                None,
+                instance,
+                cube,
+                source_order_bank=source_order_bank,
+            )
             if admitted_cut is None:
                 status = "STRUCTURALLY_UNRESOLVED"
                 _write_json(
@@ -787,6 +852,7 @@ def run_structural_cegar(
             job_sha256=job_sha256,
             detector_contract_sha256=detector_contract_sha256,
             cell_index=cell_index,
+            source_order_bank=source_order_bank,
         )
         journal_replayed = (
             audit_count == record_count

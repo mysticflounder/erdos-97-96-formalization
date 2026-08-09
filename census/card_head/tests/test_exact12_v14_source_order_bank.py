@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import copy
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -19,14 +20,18 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V3_CELL8_LEAN_BINDING,
     MIXED_V4_CELL1_LEAN_BINDING,
     MIXED_V4_CELL1_SECOND_LEAN_BINDING,
+    MIXED_V4_CELL1_THIRD_LEAN_BINDING,
     MIXED_V4_CELL4_LEAN_BINDING,
 )
 from census.card_head.exact12_v14_source_order_bank import (
     BANK_SCHEMA,
     Exact12V14SourceOrderBankError,
+    _sha256_json,
     _source_record,
     build_source_order_bank,
+    build_source_order_bank_from_authenticated_sources,
     install_source_order_bank,
+    snapshot_source_order_bank,
     validate_source_order_bank,
 )
 
@@ -38,12 +43,12 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         self.materialized = materialize_cell(0)
         self.instance = self.materialized.instance
 
-    def test_builds_nine_lean_proved_static_cuts(self) -> None:
+    def test_builds_ten_lean_source_pinned_static_cuts(self) -> None:
         bank = build_source_order_bank(REPO_ROOT, self.instance)
         entry = bank["entries"][0]
 
         self.assertEqual(bank["schema"], BANK_SCHEMA)
-        self.assertEqual(len(bank["entries"]), 9)
+        self.assertEqual(len(bank["entries"]), 10)
         self.assertEqual(entry["certificate_kind"], "source_order_positive_coverage")
         self.assertEqual(entry["certificate_schema"], entry["certificate"]["schema"])
         self.assertEqual(entry["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING)
@@ -51,7 +56,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             entry["learned_clause"],
             [-variable for variable in entry["lean_choice_variables"]],
         )
-        self.assertEqual(len(bank["lean_source_manifest"]), 11)
+        self.assertEqual(len(bank["lean_source_manifest"]), 12)
         self.assertEqual(
             entry["learned_clause"],
             [-42, -55, -169, -312, -501, -868, -1605, -2024, -2317, -2573, -2884],
@@ -65,13 +70,14 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             (MIXED_V4_CELL4_LEAN_BINDING, [-55, -387, -703, -1605, -1935]),
             (MIXED_V4_CELL1_LEAN_BINDING, [-43, -164, -1171]),
             (MIXED_V4_CELL1_SECOND_LEAN_BINDING, [-160, -2312, -2864]),
+            (MIXED_V4_CELL1_THIRD_LEAN_BINDING, [-160, -1383, -2548]),
         )
         for bank_entry, (binding, clause) in zip(
             bank["entries"][1:], expected, strict=True
         ):
             self.assertEqual(bank_entry["generated_lean_nogood"], binding)
             self.assertEqual(bank_entry["learned_clause"], clause)
-        self.assertTrue(bank["claims"]["lean_cut_proved"])
+        self.assertTrue(bank["claims"]["lean_cut_source_pinned"])
         self.assertFalse(bank["claims"]["terminal_unsat"])
         self.assertFalse(bank["claims"]["live_theorem_closure"])
         validate_source_order_bank(REPO_ROOT, self.instance, bank)
@@ -81,12 +87,114 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         bank = install_source_order_bank(REPO_ROOT, self.instance)
         clauses = [tuple(entry["learned_clause"]) for entry in bank["entries"]]
 
-        self.assertEqual(len(self.instance.cnf.clauses), before + 9)
-        self.assertEqual(self.instance.cnf.clauses[-9:], clauses)
+        self.assertEqual(len(self.instance.cnf.clauses), before + 10)
+        self.assertEqual(self.instance.cnf.clauses[-10:], clauses)
         with self.assertRaisesRegex(
             Exact12V14SourceOrderBankError, "already installed"
         ):
             install_source_order_bank(REPO_ROOT, self.instance)
+
+    def test_authenticated_bytes_rebuild_exact_bank_without_path_reopen(self) -> None:
+        expected = build_source_order_bank(REPO_ROOT, self.instance)
+        source_records = {
+            record["path"]: record
+            for manifest_name in ("detector_manifest", "lean_source_manifest")
+            for record in expected[manifest_name]
+        }
+        source_bytes = {
+            relative: (REPO_ROOT / relative).read_bytes() for relative in source_records
+        }
+
+        rebuilt = build_source_order_bank_from_authenticated_sources(
+            self.instance, source_bytes
+        )
+
+        self.assertEqual(rebuilt, expected)
+        lean_path = expected["lean_source_manifest"][0]["path"]
+        tampered = dict(source_bytes)
+        tampered[lean_path] += b"\n"
+        with self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError,
+            "authenticated Lean nogood source bytes drifted",
+        ):
+            build_source_order_bank_from_authenticated_sources(self.instance, tampered)
+
+        bytes_subclass = dict(source_bytes)
+        bytes_subclass[lean_path] = type("BytesSubclass", (bytes,), {})(
+            source_bytes[lean_path]
+        )
+        with self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "not immutable bytes"
+        ):
+            build_source_order_bank_from_authenticated_sources(
+                self.instance, bytes_subclass
+            )
+
+    def test_supplied_bank_snapshot_requires_complete_self_authentication(self) -> None:
+        bank = build_source_order_bank(REPO_ROOT, self.instance)
+        snapshot = snapshot_source_order_bank(self.instance, bank)
+        self.assertEqual(snapshot, bank)
+        bank["entries"][0]["index"] = 99
+        self.assertNotEqual(snapshot, bank)
+
+        bank = build_source_order_bank(REPO_ROOT, self.instance)
+        wrong_self_hash = copy.deepcopy(bank)
+        wrong_self_hash["bank_sha256"] = "0" * 64
+        with self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "schema or digest authentication"
+        ):
+            snapshot_source_order_bank(self.instance, wrong_self_hash)
+
+        wrong_manifest_hash = copy.deepcopy(bank)
+        wrong_manifest_hash["detector_manifest_sha256"] = "0" * 64
+        body = copy.deepcopy(wrong_manifest_hash)
+        body.pop("bank_sha256")
+        wrong_manifest_hash["bank_sha256"] = _sha256_json(body)
+        with self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "schema or digest authentication"
+        ):
+            snapshot_source_order_bank(self.instance, wrong_manifest_hash)
+
+        wrong_claim = copy.deepcopy(bank)
+        wrong_claim["claims"]["terminal_unsat"] = True
+        body = copy.deepcopy(wrong_claim)
+        body.pop("bank_sha256")
+        wrong_claim["bank_sha256"] = _sha256_json(body)
+        with self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "schema or digest authentication"
+        ):
+            snapshot_source_order_bank(self.instance, wrong_claim)
+
+        for field, mutate in (
+            (
+                "Lean binding",
+                lambda value: value["entries"][0]["generated_lean_nogood"].__setitem__(
+                    "nogood_declaration", "Fake"
+                ),
+            ),
+            (
+                "Lean source manifest",
+                lambda value: value["lean_source_manifest"][0].__setitem__(
+                    "sha256", "0" * 64
+                ),
+            ),
+            (
+                "entry certificate digest",
+                lambda value: value["entries"][0].__setitem__(
+                    "certificate_sha256", "0" * 64
+                ),
+            ),
+        ):
+            resealed = build_source_order_bank(REPO_ROOT, self.instance)
+            mutate(resealed)
+            body = copy.deepcopy(resealed)
+            body.pop("bank_sha256")
+            resealed["bank_sha256"] = _sha256_json(body)
+            with (
+                self.subTest(field=field),
+                self.assertRaises(Exact12V14SourceOrderBankError),
+            ):
+                snapshot_source_order_bank(self.instance, resealed)
 
     def test_tampering_fails_fresh_rebuild_gate(self) -> None:
         bank = build_source_order_bank(REPO_ROOT, self.instance)
@@ -126,7 +234,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             _source_record(REPO_ROOT, "../outside.py")
 
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
+            root = Path(temporary).resolve()
             target = root / "target.lean"
             target.write_text("theorem target : True := by trivial\n")
             (root / "link.lean").symlink_to(target)
@@ -134,6 +242,28 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
                 Exact12V14SourceOrderBankError, "missing regular"
             ):
                 _source_record(root, "link.lean")
+
+            target_directory = root / "target"
+            target_directory.mkdir()
+            (target_directory / "source.lean").write_text(
+                "theorem nestedTarget : True := by trivial\n"
+            )
+            (root / "nested").symlink_to(target_directory, target_is_directory=True)
+            with self.assertRaisesRegex(
+                Exact12V14SourceOrderBankError, "missing regular"
+            ):
+                _source_record(root, "nested/source.lean")
+
+    def test_source_snapshot_rejects_fifo_without_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            fifo = root / "source.lean"
+            os.mkfifo(fifo)
+
+            with self.assertRaisesRegex(
+                Exact12V14SourceOrderBankError, "missing regular"
+            ):
+                _source_record(root, fifo.name)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@
 """Typed admission for proof-backed exact-12 source-order cuts.
 
 The ordered-coverage detector is broader than the theorem-backed bank.  This
-adapter admits an authenticated bank certificate whenever its compiled
+adapter admits a canonically recompiled bank certificate whenever its compiled
 all-negative clause is falsified by the current canonical assignment.  It
 deliberately has no structural-certificate fallback; the mixed-journal
 dispatcher owns that separate certificate family.
@@ -26,6 +26,7 @@ from .exact12_v14_ordered_coverage import (
 from .exact12_v14_source_order_bank import (
     Exact12V14SourceOrderBankError,
     build_source_order_bank,
+    snapshot_source_order_bank,
 )
 from .sat_encoding import CoverInstance
 
@@ -95,15 +96,25 @@ def _cube_payload(
 
 
 def detect_proof_backed_source_order_cut(
-    repo_root: Path,
+    repo_root: Path | None,
     instance: CoverInstance,
     cube: Mapping[int | str, Collection[int]],
+    *,
+    source_order_bank: Mapping[str, Any] | None = None,
 ) -> AdmittedCut | None:
-    """Admit every authenticated bank cut falsified by the current assignment."""
+    """Admit each recompiled bank cut falsified by the current assignment."""
 
     payload = _cube_payload(cube, cardinality=instance.model.cardinality)
     try:
-        bank = build_source_order_bank(repo_root, instance)
+        if source_order_bank is None:
+            if repo_root is None:
+                raise Exact12V14OrderedCutAdapterError(
+                    "source-order replay requires a repository or recompiled bank snapshot"
+                )
+            source_order_bank = build_source_order_bank(repo_root, instance)
+        bank: Mapping[str, Any] = snapshot_source_order_bank(
+            instance, source_order_bank
+        )
     except (Exact12V14OrderedCoverageError, Exact12V14SourceOrderBankError) as exc:
         raise Exact12V14OrderedCutAdapterError(str(exc)) from exc
     entries = bank.get("entries")
@@ -144,7 +155,9 @@ def detect_proof_backed_source_order_cut(
         seen_indices.add(bank_index)
         normalized_entries.append((bank_index, entry))
 
-    matches: list[tuple[int, Mapping[str, Any], tuple[int, ...], str, dict[str, Any]]] = []
+    matches: list[
+        tuple[int, Mapping[str, Any], tuple[int, ...], str, dict[str, Any]]
+    ] = []
     for bank_index, entry in normalized_entries:
         certificate_kind = entry.get("certificate_kind")
         certificate = entry.get("certificate")
@@ -183,8 +196,7 @@ def detect_proof_backed_source_order_cut(
         if (
             not compiled_clause
             or tuple(learned_clause) != compiled_clause
-            or tuple(-variable for variable in lean_choice_variables)
-            != compiled_clause
+            or tuple(-variable for variable in lean_choice_variables) != compiled_clause
             or any(
                 literal >= 0 or -literal > instance.cnf.n_variables
                 for literal in compiled_clause
@@ -220,7 +232,7 @@ def detect_proof_backed_source_order_cut(
 
 
 def replay_proof_backed_source_order_cut(
-    repo_root: Path,
+    repo_root: Path | None,
     instance: CoverInstance,
     cube: Mapping[int | str, Collection[int]],
     *,
@@ -228,10 +240,16 @@ def replay_proof_backed_source_order_cut(
     detector_stage: str,
     certificate: Mapping[str, Any],
     bank_index: int | None = None,
+    source_order_bank: Mapping[str, Any] | None = None,
 ) -> tuple[int, ...]:
-    """Rebuild the bank and require exact equality with the recorded cut."""
+    """Recompile the bank snapshot and require equality with the recorded cut."""
 
-    admitted = detect_proof_backed_source_order_cut(repo_root, instance, cube)
+    admitted = detect_proof_backed_source_order_cut(
+        repo_root,
+        instance,
+        cube,
+        source_order_bank=source_order_bank,
+    )
     if admitted is None:
         raise Exact12V14OrderedCutAdapterError(
             "recorded cube has no proof-backed source-order cut"
