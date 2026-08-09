@@ -68,11 +68,43 @@ class ProducerBankTests(unittest.TestCase):
             row(4, (2, 5, 6, 7), exact=True),
         )
 
-    def test_direct_six_point_schema_d_e_and_g_matches(self) -> None:
+    @staticmethod
+    def _schema_k_rows() -> tuple[producer_bank.MetricRow, ...]:
+        row = producer_bank.MetricRow
+        return (
+            row(4, (3, 1, 5, 6), exact=True),
+            row(3, (0, 2, 6, 7), exact=False),
+            row(0, (4, 1, 2, 7), exact=False),
+            row(1, (0, 5, 6, 7), exact=True),
+        )
+
+    @staticmethod
+    def _schema_l_rows() -> tuple[producer_bank.MetricRow, ...]:
+        row = producer_bank.MetricRow
+        return (
+            row(6, (3, 0, 7, 8), exact=True),
+            row(2, (4, 1, 7, 8), exact=False),
+            row(4, (6, 1, 3, 8), exact=False),
+            row(5, (4, 0, 7, 8), exact=True),
+        )
+
+    @staticmethod
+    def _schema_m_rows() -> tuple[producer_bank.MetricRow, ...]:
+        row = producer_bank.MetricRow
+        return (
+            row(0, (3, 1, 7, 8), exact=True),
+            row(6, (0, 1, 8, 9), exact=False),
+            row(3, (2, 7, 8, 9), exact=False),
+            row(4, (2, 5, 8, 9), exact=False),
+            row(1, (0, 5, 8, 9), exact=True),
+        )
+
+    def test_direct_six_point_schema_d_e_g_and_k_matches(self) -> None:
         for schema, rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
             ("g", self._schema_g_rows()),
+            ("k", self._schema_k_rows()),
         ):
             with self.subTest(schema=schema):
                 records = producer_bank.scan_all_formalized_cores(
@@ -405,11 +437,12 @@ class ProducerBankTests(unittest.TestCase):
                 rows, 17, order, terms
             )
 
-    def test_schema_d_e_and_g_match_need_each_direct_row(self) -> None:
+    def test_schema_d_e_g_and_k_match_need_each_direct_row(self) -> None:
         for schema, rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
             ("g", self._schema_g_rows()),
+            ("k", self._schema_k_rows()),
         ):
             stages = {
                 (
@@ -434,13 +467,14 @@ class ProducerBankTests(unittest.TestCase):
                         stages.isdisjoint(record["stage"] for record in records)
                     )
 
-    def test_schema_d_e_and_g_use_reverse_consumers_after_reflection(self) -> None:
+    def test_schema_d_e_g_and_k_use_reverse_consumers_after_reflection(self) -> None:
         order = tuple(range(8))
         reflection = dict(zip(order, reversed(order), strict=True))
         for schema, original_rows in (
             ("d", self._schema_d_rows()),
             ("e", self._schema_e_rows()),
             ("g", self._schema_g_rows()),
+            ("k", self._schema_k_rows()),
         ):
             rows = tuple(
                 producer_bank.MetricRow(
@@ -470,7 +504,7 @@ class ProducerBankTests(unittest.TestCase):
                     )
                 )
 
-    def test_schema_d_e_and_g_fail_closed_without_lean_consumers(self) -> None:
+    def test_schema_d_e_g_and_k_fail_closed_without_lean_consumers(self) -> None:
         missing = Path("/definitely/missing/KalmansonFourEqualitySchemas.lean")
         with mock.patch.object(
             producer_bank,
@@ -478,7 +512,7 @@ class ProducerBankTests(unittest.TestCase):
             missing,
         ), self.assertRaises(producer_bank.MissingLeanConsumerError):
             producer_bank.scan_all_formalized_cores(
-                self._schema_g_rows(),
+                self._schema_k_rows(),
                 8,
                 tuple(range(8)),
                 include_extended=False,
@@ -505,6 +539,189 @@ class ProducerBankTests(unittest.TestCase):
         )
         self.assertEqual(match["orientation"], "forward")
         self.assertTrue(match["lean_consumer"].endswith("seven_ccw_order_F"))
+
+    def test_direct_seven_point_schema_l_match(self) -> None:
+        records = producer_bank.scan_all_formalized_cores(
+            self._schema_l_rows(),
+            9,
+            tuple(range(9)),
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"]
+            == "equality-convex-seven-point-four-selected-row-kalmanson-l"
+        )
+        self.assertEqual(
+            match["core"],
+            {"a": 0, "b": 1, "c": 2, "d": 3, "e": 4, "f": 5, "g": 6},
+        )
+        self.assertEqual(match["orientation"], "forward")
+        self.assertTrue(match["lean_consumer"].endswith("seven_ccw_order_L"))
+
+    def test_schema_l_match_needs_each_direct_row(self) -> None:
+        rows = self._schema_l_rows()
+        stages = {
+            "equality-convex-seven-point-four-selected-row-kalmanson-l",
+            "equality-convex-seven-point-four-selected-row-kalmanson-l-reverse",
+        }
+        for omitted in range(4):
+            with self.subTest(omitted=omitted):
+                records = producer_bank.scan_all_formalized_cores(
+                    tuple(row for i, row in enumerate(rows) if i != omitted),
+                    9,
+                    tuple(range(9)),
+                    include_extended=False,
+                    include_common_system=False,
+                )
+                self.assertTrue(
+                    stages.isdisjoint(record["stage"] for record in records)
+                )
+
+    def test_schema_l_uses_reverse_consumer_after_reflection(self) -> None:
+        order = tuple(range(9))
+        reflection = dict(zip(order, reversed(order), strict=True))
+        rows = tuple(
+            producer_bank.MetricRow(
+                reflection[item.center],
+                tuple(reflection[label] for label in item.support),
+                exact=item.exact,
+            )
+            for item in self._schema_l_rows()
+        )
+        records = producer_bank.scan_all_formalized_cores(
+            rows,
+            9,
+            order,
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"]
+            == (
+                "equality-convex-seven-point-four-selected-row-"
+                "kalmanson-l-reverse"
+            )
+        )
+        self.assertEqual(match["orientation"], "reverse")
+        self.assertTrue(
+            match["lean_consumer"].endswith("seven_ccw_order_L_of_decreasing")
+        )
+
+    def test_schema_l_fails_closed_without_lean_consumers(self) -> None:
+        missing = Path("/definitely/missing/KalmansonFourEqualitySchemas.lean")
+        with mock.patch.object(
+            producer_bank,
+            "_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE",
+            missing,
+        ), self.assertRaises(producer_bank.MissingLeanConsumerError):
+            producer_bank.scan_all_formalized_cores(
+                self._schema_l_rows(),
+                9,
+                tuple(range(9)),
+                include_extended=False,
+                include_common_system=False,
+            )
+
+    def test_direct_eight_point_schema_m_match(self) -> None:
+        records = producer_bank.scan_all_formalized_cores(
+            self._schema_m_rows(),
+            10,
+            tuple(range(10)),
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"]
+            == "equality-convex-eight-point-five-selected-row-kalmanson-m"
+        )
+        self.assertEqual(
+            match["core"],
+            {
+                "a": 0,
+                "b": 1,
+                "c": 2,
+                "d": 3,
+                "e": 4,
+                "f": 5,
+                "g": 6,
+                "h": 7,
+            },
+        )
+        self.assertEqual(match["orientation"], "forward")
+        self.assertTrue(match["lean_consumer"].endswith("eight_ccw_order_M"))
+
+    def test_schema_m_match_needs_each_direct_row(self) -> None:
+        rows = self._schema_m_rows()
+        stages = {
+            "equality-convex-eight-point-five-selected-row-kalmanson-m",
+            "equality-convex-eight-point-five-selected-row-kalmanson-m-reverse",
+        }
+        for omitted in range(5):
+            with self.subTest(omitted=omitted):
+                records = producer_bank.scan_all_formalized_cores(
+                    tuple(row for i, row in enumerate(rows) if i != omitted),
+                    10,
+                    tuple(range(10)),
+                    include_extended=False,
+                    include_common_system=False,
+                )
+                self.assertTrue(
+                    stages.isdisjoint(record["stage"] for record in records)
+                )
+
+    def test_schema_m_uses_reverse_consumer_after_reflection(self) -> None:
+        order = tuple(range(10))
+        reflection = dict(zip(order, reversed(order), strict=True))
+        rows = tuple(
+            producer_bank.MetricRow(
+                reflection[item.center],
+                tuple(reflection[label] for label in item.support),
+                exact=item.exact,
+            )
+            for item in self._schema_m_rows()
+        )
+        records = producer_bank.scan_all_formalized_cores(
+            rows,
+            10,
+            order,
+            include_extended=False,
+            include_common_system=False,
+        )
+        match = next(
+            record
+            for record in records
+            if record["stage"]
+            == (
+                "equality-convex-eight-point-five-selected-row-"
+                "kalmanson-m-reverse"
+            )
+        )
+        self.assertEqual(match["orientation"], "reverse")
+        self.assertTrue(
+            match["lean_consumer"].endswith("eight_ccw_order_M_of_decreasing")
+        )
+
+    def test_schema_m_fails_closed_without_lean_consumers(self) -> None:
+        missing = Path("/definitely/missing/KalmansonFourEqualitySchemas.lean")
+        with mock.patch.object(
+            producer_bank,
+            "_SEVEN_POINT_FOUR_SELECTED_ROW_KALMANSON_C_SOURCE",
+            missing,
+        ), self.assertRaises(producer_bank.MissingLeanConsumerError):
+            producer_bank.scan_all_formalized_cores(
+                self._schema_m_rows(),
+                10,
+                tuple(range(10)),
+                include_extended=False,
+                include_common_system=False,
+            )
 
     def test_schema_f_matches_authenticated_exact17_terminal_roles(self) -> None:
         rows = (

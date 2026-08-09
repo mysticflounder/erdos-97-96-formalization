@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+import Erdos9796Proof.P97.ATail.TwoKalmansonLabelCut
 
 /-!
 # Four- and five-equality Kalmanson schemas
@@ -35,6 +36,11 @@ Subsequent survivor-wide motif audits produced schemas H, I, and J.  They are
 again six-point four-row obstructions.  Schema H uses three strict Kalmanson
 inequalities, while schemas I and J each use two inequalities that force
 opposite strict comparisons between the same pair of chord lengths.
+
+Schema K was obtained by deleting every boundary vertex not named by a
+selected-row equality from a global exact-seventeen linear certificate.  Its
+five strict Kalmanson inequalities cancel after six shell equalities are
+substituted, so it is another cardinality-independent six-point obstruction.
 -/
 
 open scoped Convex EuclideanGeometry
@@ -1561,6 +1567,559 @@ theorem false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift_of_decreasing
     hba hcb hdc hed hfe ARow BRow ERow FRow
     hb_mem_ARow hd_mem_ARow ha_mem_BRow hc_mem_BRow
     ha_mem_ERow hb_mem_ERow hc_mem_FRow hd_mem_FRow
+
+/-- Six increasingly ordered boundary vertices cannot support schema K mined
+by compressing an exact-seventeen global Kalmanson certificate to the vertices
+named by its four selected rows. -/
+theorem false_of_six_ccw_six_shell_equalities_K_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (hedb : dist (phi e) (phi d) = dist (phi e) (phi b))
+    (hedf : dist (phi e) (phi d) = dist (phi e) (phi f))
+    (hdac : dist (phi d) (phi a) = dist (phi d) (phi c))
+    (haeb : dist (phi a) (phi e) = dist (phi a) (phi b))
+    (haec : dist (phi a) (phi e) = dist (phi a) (phi c))
+    (hbaf : dist (phi b) (phi a) = dist (phi b) (phi f)) : False := by
+  have hK2_abcd := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab hbc hcd
+  have hK2_abcf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab hbc (hcd.trans (hde.trans hef))
+  have hK1_abde := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab (hbc.trans hcd) hde
+  have hK2_acdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans hbc) hcd (hde.trans hef)
+  have hK2_adef := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw
+      (hab.trans (hbc.trans hcd)) hde hef
+  simp only [dist_comm] at hedb hedf hdac haeb haec hbaf hK2_abcd hK2_abcf hK1_abde hK2_acdf hK2_adef
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_six_ccw_six_shell_equalities_K_of_increasing`. -/
+theorem false_of_six_ccw_six_shell_equalities_K_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (hedb : dist (phi e) (phi d) = dist (phi e) (phi b))
+    (hedf : dist (phi e) (phi d) = dist (phi e) (phi f))
+    (hdac : dist (phi d) (phi a) = dist (phi d) (phi c))
+    (haeb : dist (phi a) (phi e) = dist (phi a) (phi b))
+    (haec : dist (phi a) (phi e) = dist (phi a) (phi c))
+    (hbaf : dist (phi b) (phi a) = dist (phi b) (phi f)) : False := by
+  have hK2_abcd := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hba hcb hdc
+  have hK2_abcf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hba hcb (hfe.trans (hed.trans hdc))
+  have hK1_abde := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hba (hdc.trans hcb) hed
+  have hK2_acdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw (hcb.trans hba) hdc (hfe.trans hed)
+  have hK2_adef := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw (hdc.trans (hcb.trans hba)) hed hfe
+  simp only [dist_comm] at hedb hedf hdac haeb haec hbaf hK2_abcd hK2_abcf hK1_abde hK2_acdf hK2_adef
+  linarith
+
+/-- Four selected rows with the schema-K incidences are impossible when the
+six support points occur in increasing CCW boundary order. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_K
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ERow : SelectedFourClass carrier (boundary e))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (ha_mem_DRow : boundary a ∈ DRow.support)
+    (hc_mem_DRow : boundary c ∈ DRow.support)
+    (he_mem_ARow : boundary e ∈ ARow.support)
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hc_mem_ARow : boundary c ∈ ARow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support) : False := by
+  have hedb := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hedf := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hdac := (DRow.support_eq_radius _ ha_mem_DRow).trans
+    (DRow.support_eq_radius _ hc_mem_DRow).symm
+  have haeb := (ARow.support_eq_radius _ he_mem_ARow).trans
+    (ARow.support_eq_radius _ hb_mem_ARow).symm
+  have haec := (ARow.support_eq_radius _ he_mem_ARow).trans
+    (ARow.support_eq_radius _ hc_mem_ARow).symm
+  have hbaf := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  exact false_of_six_ccw_six_shell_equalities_K_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef hedb hedf hdac haeb haec hbaf
+
+/-- Decreasing-order selected-row companion of schema K. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_K_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ERow : SelectedFourClass carrier (boundary e))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (ha_mem_DRow : boundary a ∈ DRow.support)
+    (hc_mem_DRow : boundary c ∈ DRow.support)
+    (he_mem_ARow : boundary e ∈ ARow.support)
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hc_mem_ARow : boundary c ∈ ARow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support) : False := by
+  have hedb := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hedf := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hdac := (DRow.support_eq_radius _ ha_mem_DRow).trans
+    (DRow.support_eq_radius _ hc_mem_DRow).symm
+  have haeb := (ARow.support_eq_radius _ he_mem_ARow).trans
+    (ARow.support_eq_radius _ hb_mem_ARow).symm
+  have haec := (ARow.support_eq_radius _ he_mem_ARow).trans
+    (ARow.support_eq_radius _ hc_mem_ARow).symm
+  have hbaf := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  exact false_of_six_ccw_six_shell_equalities_K_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe hedb hedf hdac haeb haec hbaf
+
+/-- Cyclic-shift form of the increasing schema-K selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_K_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (ha_mem_DRow : boundary (a + cut) ∈ DRow.support)
+    (hc_mem_DRow : boundary (c + cut) ∈ DRow.support)
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hc_mem_ARow : boundary (c + cut) ∈ ARow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i ↦ boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_K
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ERow DRow ARow BRow
+    hd_mem_ERow hb_mem_ERow hf_mem_ERow ha_mem_DRow hc_mem_DRow
+    he_mem_ARow hb_mem_ARow hc_mem_ARow ha_mem_BRow hf_mem_BRow
+
+/-- Cyclic-shift form of the decreasing schema-K selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_K_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (ha_mem_DRow : boundary (a + cut) ∈ DRow.support)
+    (hc_mem_DRow : boundary (c + cut) ∈ DRow.support)
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hc_mem_ARow : boundary (c + cut) ∈ ARow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i ↦ boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_K_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ERow DRow ARow BRow
+    hd_mem_ERow hb_mem_ERow hf_mem_ERow ha_mem_DRow hc_mem_DRow
+    he_mem_ARow hb_mem_ARow hc_mem_ARow ha_mem_BRow hf_mem_BRow
+
+/-- Seven increasingly ordered boundary vertices cannot support schema L,
+the smallest remaining local obstruction in the post-K exact-seventeen bank. -/
+theorem false_of_seven_ccw_five_shell_equalities_L_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f g : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g)
+    (hgda : dist (phi g) (phi d) = dist (phi g) (phi a))
+    (hceb : dist (phi c) (phi e) = dist (phi c) (phi b))
+    (hegb : dist (phi e) (phi g) = dist (phi e) (phi b))
+    (hegd : dist (phi e) (phi g) = dist (phi e) (phi d))
+    (hfea : dist (phi f) (phi e) = dist (phi f) (phi a)) : False := by
+  have hK1_abce := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab hbc (hcd.trans hde)
+  have hK1_abfg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab
+      (hbc.trans (hcd.trans (hde.trans hef))) hfg
+  have hK2_acdg := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans hbc) hcd
+      (hde.trans (hef.trans hfg))
+  have hK2_adeg := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans (hbc.trans hcd)) hde
+      (hef.trans hfg)
+  have hK1_bcfg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc (hcd.trans (hde.trans hef)) hfg
+  have hK1_cdef := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hcd hde hef
+  have hK1_cdfg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hcd (hde.trans hef) hfg
+  have hK1_defg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hde hef hfg
+  simp only [dist_comm] at hgda hceb hegb hegd hfea
+  linarith
+
+/-- Decreasing-index companion of schema L. -/
+theorem false_of_seven_ccw_five_shell_equalities_L_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f g : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f)
+    (hgda : dist (phi g) (phi d) = dist (phi g) (phi a))
+    (hceb : dist (phi c) (phi e) = dist (phi c) (phi b))
+    (hegb : dist (phi e) (phi g) = dist (phi e) (phi b))
+    (hegd : dist (phi e) (phi g) = dist (phi e) (phi d))
+    (hfea : dist (phi f) (phi e) = dist (phi f) (phi a)) : False := by
+  have hK1_abce := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hba hcb (hed.trans hdc)
+  have hK1_abfg := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hba
+      (hfe.trans (hed.trans (hdc.trans hcb))) hgf
+  have hK2_acdg := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw (hcb.trans hba) hdc
+      (hgf.trans (hfe.trans hed))
+  have hK2_adeg := complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw (hdc.trans (hcb.trans hba)) hed
+      (hgf.trans hfe)
+  have hK1_bcfg := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hcb (hfe.trans (hed.trans hdc)) hgf
+  have hK1_cdef := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hdc hed hfe
+  have hK1_cdfg := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hdc (hfe.trans hed) hgf
+  have hK1_defg := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hed hfe hgf
+  simp only [dist_comm] at hgda hceb hegb hegd hfea
+  linarith
+
+/-- Four selected rows with schema-L incidences are impossible in increasing
+CCW boundary order. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_L
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f g : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g)
+    (GRow : SelectedFourClass carrier (boundary g))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hd_mem_GRow : boundary d ∈ GRow.support)
+    (ha_mem_GRow : boundary a ∈ GRow.support)
+    (he_mem_CRow : boundary e ∈ CRow.support)
+    (hb_mem_CRow : boundary b ∈ CRow.support)
+    (hg_mem_ERow : boundary g ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (he_mem_FRow : boundary e ∈ FRow.support)
+    (ha_mem_FRow : boundary a ∈ FRow.support) : False := by
+  have hgda := (GRow.support_eq_radius _ hd_mem_GRow).trans
+    (GRow.support_eq_radius _ ha_mem_GRow).symm
+  have hceb := (CRow.support_eq_radius _ he_mem_CRow).trans
+    (CRow.support_eq_radius _ hb_mem_CRow).symm
+  have hegb := (ERow.support_eq_radius _ hg_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hegd := (ERow.support_eq_radius _ hg_mem_ERow).trans
+    (ERow.support_eq_radius _ hd_mem_ERow).symm
+  have hfea := (FRow.support_eq_radius _ he_mem_FRow).trans
+    (FRow.support_eq_radius _ ha_mem_FRow).symm
+  exact false_of_seven_ccw_five_shell_equalities_L_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef hfg hgda hceb hegb hegd hfea
+
+/-- Decreasing-order selected-row companion of schema L. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_L_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f g : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f)
+    (GRow : SelectedFourClass carrier (boundary g))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hd_mem_GRow : boundary d ∈ GRow.support)
+    (ha_mem_GRow : boundary a ∈ GRow.support)
+    (he_mem_CRow : boundary e ∈ CRow.support)
+    (hb_mem_CRow : boundary b ∈ CRow.support)
+    (hg_mem_ERow : boundary g ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (he_mem_FRow : boundary e ∈ FRow.support)
+    (ha_mem_FRow : boundary a ∈ FRow.support) : False := by
+  have hgda := (GRow.support_eq_radius _ hd_mem_GRow).trans
+    (GRow.support_eq_radius _ ha_mem_GRow).symm
+  have hceb := (CRow.support_eq_radius _ he_mem_CRow).trans
+    (CRow.support_eq_radius _ hb_mem_CRow).symm
+  have hegb := (ERow.support_eq_radius _ hg_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hegd := (ERow.support_eq_radius _ hg_mem_ERow).trans
+    (ERow.support_eq_radius _ hd_mem_ERow).symm
+  have hfea := (FRow.support_eq_radius _ he_mem_FRow).trans
+    (FRow.support_eq_radius _ ha_mem_FRow).symm
+  exact false_of_seven_ccw_five_shell_equalities_L_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe hgf hgda hceb hegb hegd hfea
+
+/-- Eight increasingly ordered boundary vertices cannot support schema M.
+This is the exact ten-term weighted Kalmanson cancellation extracted from the
+first successor after installing schemas K and L in the exact-seventeen
+`BlockerV` census. -/
+theorem false_of_eight_ccw_six_shell_equalities_M_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f g h : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g) (hgh : g < h)
+    (hadb : dist (phi a) (phi d) = dist (phi a) (phi b))
+    (hadh : dist (phi a) (phi d) = dist (phi a) (phi h))
+    (hgab : dist (phi g) (phi a) = dist (phi g) (phi b))
+    (hdch : dist (phi d) (phi c) = dist (phi d) (phi h))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f))
+    (hbaf : dist (phi b) (phi a) = dist (phi b) (phi f)) : False := by
+  have hK2_abde := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab (hbc.trans hcd) hde
+  have hK2_abgh := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab
+      (hbc.trans (hcd.trans (hde.trans (hef.trans hfg)))) hgh
+  have hK1_adeh := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw
+      (hab.trans (hbc.trans hcd)) hde (hef.trans (hfg.trans hgh))
+  have hK2_bcde := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc hcd hde
+  have hK2_bcfg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc (hcd.trans (hde.trans hef)) hfg
+  have hK2_bcgh := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc
+      (hcd.trans (hde.trans (hef.trans hfg))) hgh
+  have hK2_cdfg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hcd (hde.trans hef) hfg
+  have hK2_cdgh := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hcd (hde.trans (hef.trans hfg)) hgh
+  have hK2_defg := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hde hef hfg
+  have hK2_degh := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hde (hef.trans hfg) hgh
+  simp only [dist_comm] at *
+  linarith
+
+/-- Decreasing-index companion of schema M. -/
+theorem false_of_eight_ccw_six_shell_equalities_M_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f g h : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f) (hhg : h < g)
+    (hadb : dist (phi a) (phi d) = dist (phi a) (phi b))
+    (hadh : dist (phi a) (phi d) = dist (phi a) (phi h))
+    (hgab : dist (phi g) (phi a) = dist (phi g) (phi b))
+    (hdch : dist (phi d) (phi c) = dist (phi d) (phi h))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f))
+    (hbaf : dist (phi b) (phi a) = dist (phi b) (phi f)) : False := by
+  have hK2_abde :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hba (hdc.trans hcb) hed
+  have hK2_abgh :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hba
+        (hgf.trans (hfe.trans (hed.trans (hdc.trans hcb)))) hhg
+  have hK1_adeh :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw
+      (hdc.trans (hcb.trans hba)) hed (hhg.trans (hgf.trans hfe))
+  have hK2_bcde :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hcb hdc hed
+  have hK2_bcfg :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hcb (hfe.trans (hed.trans hdc)) hgf
+  have hK2_bcgh :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hcb
+        (hgf.trans (hfe.trans (hed.trans hdc))) hhg
+  have hK2_cdfg :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hdc (hfe.trans hed) hgf
+  have hK2_cdgh :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hdc (hgf.trans (hfe.trans hed)) hhg
+  have hK2_defg :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hed hfe hgf
+  have hK2_degh :=
+    dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hed (hgf.trans hfe) hhg
+  simp only [dist_comm] at *
+  linarith
+
+/-- Five selected rows with schema-M incidences are impossible in increasing
+CCW boundary order. -/
+theorem false_of_five_selected_rows_in_eight_ccw_order_M
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f g h : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g) (hgh : g < h)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (GRow : SelectedFourClass carrier (boundary g))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hh_mem_ARow : boundary h ∈ ARow.support)
+    (ha_mem_GRow : boundary a ∈ GRow.support)
+    (hb_mem_GRow : boundary b ∈ GRow.support)
+    (hc_mem_DRow : boundary c ∈ DRow.support)
+    (hh_mem_DRow : boundary h ∈ DRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support) : False := by
+  have hadb := (ARow.support_eq_radius _ hd_mem_ARow).trans
+    (ARow.support_eq_radius _ hb_mem_ARow).symm
+  have hadh := (ARow.support_eq_radius _ hd_mem_ARow).trans
+    (ARow.support_eq_radius _ hh_mem_ARow).symm
+  have hgab := (GRow.support_eq_radius _ ha_mem_GRow).trans
+    (GRow.support_eq_radius _ hb_mem_GRow).symm
+  have hdch := (DRow.support_eq_radius _ hc_mem_DRow).trans
+    (DRow.support_eq_radius _ hh_mem_DRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hbaf := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  exact false_of_eight_ccw_six_shell_equalities_M_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef hfg hgh hadb hadh hgab hdch hecf hbaf
+
+/-- Decreasing-order selected-row companion of schema M. -/
+theorem false_of_five_selected_rows_in_eight_ccw_order_M_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f g h : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f) (hhg : h < g)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (GRow : SelectedFourClass carrier (boundary g))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hh_mem_ARow : boundary h ∈ ARow.support)
+    (ha_mem_GRow : boundary a ∈ GRow.support)
+    (hb_mem_GRow : boundary b ∈ GRow.support)
+    (hc_mem_DRow : boundary c ∈ DRow.support)
+    (hh_mem_DRow : boundary h ∈ DRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support) : False := by
+  have hadb := (ARow.support_eq_radius _ hd_mem_ARow).trans
+    (ARow.support_eq_radius _ hb_mem_ARow).symm
+  have hadh := (ARow.support_eq_radius _ hd_mem_ARow).trans
+    (ARow.support_eq_radius _ hh_mem_ARow).symm
+  have hgab := (GRow.support_eq_radius _ ha_mem_GRow).trans
+    (GRow.support_eq_radius _ hb_mem_GRow).symm
+  have hdch := (DRow.support_eq_radius _ hc_mem_DRow).trans
+    (DRow.support_eq_radius _ hh_mem_DRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hbaf := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  exact false_of_eight_ccw_six_shell_equalities_M_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe hgf hhg hadb hadh hgab hdch hecf hbaf
 
 end CapCrossingKalmansonBridge
 end Problem97
