@@ -1,0 +1,29 @@
+{
+  "schema": "p97_exact12_v14_journal_migration_set.v1",
+  "source_contract_commit": "2018cb7c449089a4fcd83500196053c988785dec",
+  "detector_contract_sha256": "2db45953b026644ab591ffaa021d8fc6d2f3567d5578f2e64bca22ca191cac95",
+  "source_root": "scratch/rigid221-sourceheavy-anchor/exact12-v14-wave-2bde8bd6-source18-seeded-plus100-c0000-0011-r1",
+  "total_records": 9050,
+  "current_source_replayed": true,
+  "source_snapshot_replayed": true,
+  "claims": {
+    "terminal_unsat": false,
+    "all_cell_coverage": false,
+    "universal_lift": false,
+    "live_theorem_closure": false
+  },
+  "cells": [
+    {"cell": 0, "records": 700, "output_sha256": "38c7dcdeefa1ccf4da56fcd99838b5ab0e7cf73d51e973b3984f3cda674ba88e", "terminal_record_sha256": "5d35389e479a55dbaf68a0f6ffd09ffef8ec8d450746815cded893357ccb7bff"},
+    {"cell": 1, "records": 1051, "output_sha256": "672ec4021c130c7ecc45915d46c4127ae61e120554aeaff6b8fa20f9bdd6022d", "terminal_record_sha256": "764f3de1782abbe51a2fcf73a8a02f2154f6cea8330a0441ca18def3eecaf24c"},
+    {"cell": 2, "records": 623, "output_sha256": "e98335520e249d226f9037db8a072ac27bb6cfccd5846d7ed5fd821367dee12a", "terminal_record_sha256": "4874de416918231e66c5604d1c60ddd73036291a5fcba6334215e6e7455b0a4a"},
+    {"cell": 3, "records": 700, "output_sha256": "94162d2dd6c7782353b83c3f980f1a94fe1693a180858c8047dd684ce2794b6e", "terminal_record_sha256": "860b359cacb69f222a2ad8ddedca125ef91da2d7dd757a71762212605d3d746e"},
+    {"cell": 4, "records": 1004, "output_sha256": "475c25d13af50b0249c4255b4f76e44cf3009c4e2da89b00c6e487f9f12b4444", "terminal_record_sha256": "46077d342ba8328254e9245a9e0936937244c792e02df1a80a83cb31947f715c"},
+    {"cell": 5, "records": 680, "output_sha256": "1cc31c35250a53131a7696eb0f7059872148192027207992013d5d4844d18c1d", "terminal_record_sha256": "5e45780885d62f81c4fe225e64297dd66c80eea2b4697c0a68499210831aa058"},
+    {"cell": 6, "records": 700, "output_sha256": "6fad3e9d4ae5f1680c3a021bfc397c9ca5a2c73cc2fa893d86971297b7977029", "terminal_record_sha256": "bddd4d8c1a9245ea482c359a719d048ba2cb55f4659043b318bedaf63bca30de"},
+    {"cell": 7, "records": 700, "output_sha256": "be0bf804f4e0afd0e9ad54d5884f5598652e8baf02ffb0db215d5574bda10e6a", "terminal_record_sha256": "7918d57efc22afea85f23f9d906b0b24c23f0fc9dc38bda68a760a516b39bc9e"},
+    {"cell": 8, "records": 671, "output_sha256": "4717a2e46d679ea5e85c538f1ad328b4e338763cf63dfd932174aea3548e9691", "terminal_record_sha256": "fce1fe2f7ccf5f9b6e06bd4b10da0a293db7d49e1234d57c111fa82c6e40ddfd"},
+    {"cell": 9, "records": 642, "output_sha256": "83f87683ffbacaf5abe035434fdbf54d8a0928880d78712f331ceddc5ca0c4c8", "terminal_record_sha256": "0671e1fa498092a8d2a722b0e1005f0545afcaca49d07126b4a0b4763dcb47bb"},
+    {"cell": 10, "records": 919, "output_sha256": "0c6b879e8c4bd604dd3f6ded606dcb42eedc769690b1691dbefebaf34c681bff", "terminal_record_sha256": "9a322085138178ff912da0d1f69ec87e8197c70aeb3f14ef6da0bd2df2bc89ca"},
+    {"cell": 11, "records": 660, "output_sha256": "909e7e56fc3241a611c3d9dff9db4f05e29248f7269f3e9db68b44ea7beda018", "terminal_record_sha256": "5d2e95dec48d2a021d51643f626b9bbf89a900f60c7927ab7474237e78c12db1"}
+  ]
+}
