@@ -569,6 +569,13 @@ learned cuts and authenticates 20 Lean sources.  These are three reusable
 finite predicates, not terminal cell proofs, schedule coverage, a universal
 lift, or live-sorry closure.
 
+The source-order bank is append-only because its numeric entry indices are
+authenticated certificate data in retained journals.  The original fifteen
+cuts therefore remain at indices `0` through `14`; the three new cuts are
+appended at indices `15`, `16`, and `17`.  Journal migration re-chains and
+replays records under the current detector contract but deliberately does not
+reinterpret or remap an existing certificate's bank index.
+
 An independent promotion audit found one remaining postprocessor hardening
 task: detector files are copied and hash-checked into the staged source, but the
 second semantic replay still loads the live repository paths.  No terminal

@@ -79,20 +79,20 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             (MIXED_V4_CELL1_LEAN_BINDING, [-43, -164, -1171]),
             (MIXED_V4_CELL1_SECOND_LEAN_BINDING, [-160, -2312, -2864]),
             (MIXED_V4_CELL1_THIRD_LEAN_BINDING, [-160, -1383, -2548]),
-            (MIXED_V4_CELL1_FOURTH_LEAN_BINDING, [-22, -168, -1177]),
             (
                 MIXED_V4_CELL10_LEAN_BINDING,
                 [-264, -704, -898, -1437, -2034, -2134],
             ),
+            (MIXED_V4_CELL2_LEAN_BINDING, [-1156, -1640, -2537]),
+            (MIXED_V4_CELL5_LEAN_BINDING, [-10, -846, -2550]),
+            (MIXED_V4_CELL8_LEAN_BINDING, [-40, -160, -230]),
+            (MIXED_V4_CELL11_LEAN_BINDING, [-1620, -2096, -3017]),
+            (MIXED_V4_CELL1_FOURTH_LEAN_BINDING, [-22, -168, -1177]),
+            (MIXED_V4_CELL2_SECOND_LEAN_BINDING, [-55, -704, -991]),
             (
                 MIXED_V4_CELL10_SECOND_LEAN_BINDING,
                 [-26, -834, -1200, -2034, -2310],
             ),
-            (MIXED_V4_CELL2_LEAN_BINDING, [-1156, -1640, -2537]),
-            (MIXED_V4_CELL2_SECOND_LEAN_BINDING, [-55, -704, -991]),
-            (MIXED_V4_CELL5_LEAN_BINDING, [-10, -846, -2550]),
-            (MIXED_V4_CELL8_LEAN_BINDING, [-40, -160, -230]),
-            (MIXED_V4_CELL11_LEAN_BINDING, [-1620, -2096, -3017]),
         )
         for bank_entry, (binding, clause) in zip(
             bank["entries"][1:], expected, strict=True
