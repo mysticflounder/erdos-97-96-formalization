@@ -1,9 +1,11 @@
 # P97 PIQD statement-bank receipts v1
 
 Status: implemented strict adapter for PIQD-MIN-001 stage-1 SAT-session
-receipts. The result is observational evidence relative to one supplied bank.
-It is not a solver proof, source-entitlement proof, global-minimum proof, or
-theorem closure.
+receipts and the proposed stage-2 batch receipt quartet. The stage-2 daemon
+request and response schema is provisional pending PIQD maintainer
+implementation. The result is observational evidence relative to one supplied
+bank. It is not a solver proof, source-entitlement proof, global-minimum proof,
+or theorem closure.
 
 ## Boundary
 
@@ -17,7 +19,10 @@ theorem closure.
    snapshot;
 4. one explicit baseline `solve_index`;
 5. an exact `statement_id -> solve_index` map; and
-6. the expected deterministic `conflict_limit`.
+6. the expected deterministic `conflict_limit`; and
+7. for batch receipts only, an explicit caller-authenticated
+   `AuthenticatedBatchBinding` containing the expected batch key, full size,
+   and canonical request digest.
 
 The main entry point is:
 
@@ -29,6 +34,17 @@ adapt_authenticated_piqd_receipts(
     baseline_solve_index=1,
     statement_solve_indexes={"A": 2, "B": 3},
     expected_conflict_limit=10_000,
+)
+```
+
+The existing non-batch call remains unchanged. A stage-2 call additionally
+passes:
+
+```python
+expected_batch_binding=AuthenticatedBatchBinding(
+    batch_key="e038a1cd-0768-4d82-8277-88f84c156ba4",
+    batch_size=3,
+    batch_request_sha256="a" * 64,
 )
 ```
 
@@ -65,8 +81,17 @@ status, model_recorded, result_sha256, at
 Only these optional fields are accepted:
 
 ```text
-conflict_limit, timeout_ms, interrupted_by, core
+conflict_limit, timeout_ms, interrupted_by, core,
+batch_key, batch_position, batch_size, batch_request_sha256
 ```
+
+The four `batch_*` fields are an atomic quartet: every receipt contains either
+all four or none. `batch_key` is a byte-for-byte canonical lowercase hyphenated
+UUID. `batch_position` is a JSON integer in `0..4095`; `batch_size` is a JSON
+integer in `1..4096`; and `batch_position < batch_size` is required. The 4096
+cap is the stage-2 limit accepted by the PIQD maintainer.
+`batch_request_sha256` is lowercase 64-hex. Booleans are not integers for these
+checks.
 
 Unknown fields, missing required fields, present optional fields with null
 values, Boolean-as-integer values, out-of-range values, or wrongly typed fields
@@ -85,7 +110,45 @@ does not selectively recompute the digest in easier cases.
 
 All receipts in the response are schema-checked. Only the explicitly selected
 baseline and omission receipts are used for interpretation; unrelated earlier
-or later session solves may remain in the response.
+or later session solves may remain in the response. If any returned receipt
+contains the batch quartet, the caller must supply an authenticated expected
+batch binding. This prevents a stage-2 record from being silently accepted by
+the legacy non-batch API path.
+
+## Provisional stage-2 batch binding
+
+`AuthenticatedBatchBinding` is a caller authentication boundary, parallel to
+`AuthenticatedJournalSnapshot`. Merely decoding `batch_key`, `batch_size`, and
+`batch_request_sha256` from the daemon response does not authenticate them.
+The adapter revalidates every field of the typed binding before comparison.
+
+When a binding is supplied, the complete selected query set must itself be the
+complete batch:
+
+1. `batch_size` must equal `1 + len(selector_allocation)`;
+2. every selected receipt must contain the quartet and exactly match the
+   expected key, size, and request digest;
+3. the baseline must have `batch_position = 0`, followed by omission receipts
+   at positions `1..n-1` in canonical `selector_allocation` order;
+4. those positions must also be ordered by the receipts' increasing
+   `solve_index`; and
+5. every response receipt carrying the expected `batch_key` must have the same
+   size and digest, and those receipts must be exactly the selected full batch.
+
+The authenticated batch path additionally requires a positive
+`conflict_limit`, omitted `timeout_ms`, and `model_recorded = false` on every
+selected receipt. These are the deterministic P97 batch request constraints;
+legacy non-batch receipts retain the stage-1 rules.
+
+Thus a prefix of a declared batch, a duplicate or gap, a reordered solve, a
+mixed selected batch/non-batch set, or a reused key with inconsistent metadata
+fails before verdict interpretation. Unrelated records with a different batch
+key, and unrelated legacy records, remain schema-checked but unselected.
+
+These field names and constraints are the adapter's proposed v1 contract. They
+do not claim that the PIQD daemon currently emits the quartet; daemon support
+remains pending maintainer implementation and must preserve the same canonical
+JSON request digest before live use.
 
 ## Query and budget binding
 
@@ -102,8 +165,10 @@ Reordering an assumption list, swapping two selection bindings, selecting one
 receipt twice, or selecting a receipt for a different query is an error.
 
 Every selected receipt must record exactly `expected_conflict_limit`. Zero is a
-valid deterministic limit. A selected receipt must omit `timeout_ms`; even a
-well-typed wall timeout makes the observation non-reproducible and is rejected.
+valid deterministic limit only for a non-batch receipt; the proposed batch
+contract requires a positive value. A selected receipt must omit `timeout_ms`;
+even a well-typed wall timeout makes the observation non-reproducible and is
+rejected.
 If a selected status is `UNKNOWN`, its `interrupted_by` value must be exactly
 `conflict_limit`; cancellation and timeout observations are not deterministic
 budget evidence.
@@ -153,7 +218,10 @@ baseline guard:
 
 The separate hashed `audit` record captures the selected indices, result-hash
 identifiers, conflict limit, plan/session/journal/base bindings, and the policy
-`OPAQUE_64_HEX_NOT_RECOMPUTED`. It explicitly records:
+`OPAQUE_64_HEX_NOT_RECOMPUTED`. For an authenticated batch it also captures the
+key, size, request digest, and baseline/omission positions; these fields are
+covered by `adapter_sha256`. A non-batch call retains the previous audit shape
+and hash inputs. The audit explicitly records:
 
 ```json
 {
@@ -205,4 +273,7 @@ missing, extra, swapped, duplicated, and absent selection bindings; exact query
 assumptions; deterministic conflict limits; wall-timeout refusal; cross-receipt
 base agreement; plan base count/length/hash equality; full-snapshot and prefix
 rehashing; truncated, tampered, and alternately rendered journals; opaque result
-hashes; authenticated journal suffixes; and baseline-guarded interpretation.
+hashes; authenticated journal suffixes; baseline-guarded interpretation; atomic
+batch quartet parsing; canonical batch scalars; binding mismatches; mixed
+selected batch/non-batch records; duplicate, gapped, and reordered positions;
+inconsistent key reuse; incomplete prefixes; and non-batch audit regression.

@@ -1,4 +1,4 @@
-"""Authenticate PIQD stage-1 receipts against a P97 selector plan.
+"""Authenticate PIQD stage-1 and proposed stage-2 receipts against a plan.
 
 The adapter is intentionally observational.  It checks that selected receipt
 records describe exact plan queries over exact authenticated journal bytes, but
@@ -39,7 +39,19 @@ _RECEIPT_REQUIRED_KEYS = frozenset(
     }
 )
 _RECEIPT_OPTIONAL_KEYS = frozenset(
-    {"conflict_limit", "core", "interrupted_by", "timeout_ms"}
+    {
+        "batch_key",
+        "batch_position",
+        "batch_request_sha256",
+        "batch_size",
+        "conflict_limit",
+        "core",
+        "interrupted_by",
+        "timeout_ms",
+    }
+)
+_RECEIPT_BATCH_KEYS = frozenset(
+    {"batch_key", "batch_position", "batch_request_sha256", "batch_size"}
 )
 _LOWER_HEX_64 = re.compile(r"[0-9a-f]{64}\Z")
 _I32_MIN = -(2**31)
@@ -47,6 +59,7 @@ _I32_MAX = 2**31 - 1
 _I64_MIN = -(2**63)
 _I64_MAX = 2**63 - 1
 _U64_MAX = 2**64 - 1
+_BATCH_MAX_SIZE = 4096
 
 
 class StatementBankReceiptError(statement_bank.StatementBankError):
@@ -65,6 +78,20 @@ class AuthenticatedJournalSnapshot:
     session_id: str
     journal_bytes: bytes
     journal_sha256: str
+
+
+@dataclass(frozen=True)
+class AuthenticatedBatchBinding:
+    """Expected identity of one complete, caller-authenticated solve batch.
+
+    Construction is an authentication boundary.  The adapter validates the
+    values again and requires the selected receipts to exhaust the batch in
+    canonical query order.
+    """
+
+    batch_key: str
+    batch_size: int
+    batch_request_sha256: str
 
 
 @dataclass(frozen=True)
@@ -91,6 +118,10 @@ class _Receipt:
     model_recorded: bool
     result_sha256: str
     at: int
+    batch_key: str | None
+    batch_position: int | None
+    batch_size: int | None
+    batch_request_sha256: str | None
 
 
 def _fail(message: str) -> None:
@@ -159,6 +190,10 @@ def _parse_receipt(value: object, *, position: int) -> _Receipt:
     if missing or extra:
         _fail(f"{where} has missing or extra keys")
 
+    batch_keys = keys & _RECEIPT_BATCH_KEYS
+    if batch_keys and batch_keys != _RECEIPT_BATCH_KEYS:
+        _fail(f"{where} must contain all batch fields or none")
+
     solve_index = _exact_int(
         value["solve_index"], where=f"{where}.solve_index", minimum=1, maximum=_U64_MAX
     )
@@ -214,6 +249,31 @@ def _parse_receipt(value: object, *, position: int) -> _Receipt:
         value["at"], where=f"{where}.at", minimum=_I64_MIN, maximum=_I64_MAX
     )
 
+    batch_key: str | None = None
+    batch_position: int | None = None
+    batch_size: int | None = None
+    batch_request_sha256: str | None = None
+    if batch_keys:
+        batch_key = _session_id(value["batch_key"], where=f"{where}.batch_key")
+        batch_position = _exact_int(
+            value["batch_position"],
+            where=f"{where}.batch_position",
+            minimum=0,
+            maximum=_BATCH_MAX_SIZE - 1,
+        )
+        batch_size = _exact_int(
+            value["batch_size"],
+            where=f"{where}.batch_size",
+            minimum=1,
+            maximum=_BATCH_MAX_SIZE,
+        )
+        if batch_position >= batch_size:
+            _fail(f"{where}.batch_position must be less than batch_size")
+        batch_request_sha256 = _hex_sha256(
+            value["batch_request_sha256"],
+            where=f"{where}.batch_request_sha256",
+        )
+
     if status is statement_bank.SolverVerdict.UNSAT:
         if core is None:
             _fail(f"{where}.core is required for UNSAT")
@@ -241,6 +301,10 @@ def _parse_receipt(value: object, *, position: int) -> _Receipt:
         model_recorded=model_recorded,
         result_sha256=result_sha256,
         at=at,
+        batch_key=batch_key,
+        batch_position=batch_position,
+        batch_size=batch_size,
+        batch_request_sha256=batch_request_sha256,
     )
 
 
@@ -327,6 +391,26 @@ def _query_map(
     return baseline, {query["statement_id"]: query for query in omissions}
 
 
+def _validate_batch_binding(value: object) -> AuthenticatedBatchBinding:
+    if not isinstance(value, AuthenticatedBatchBinding):
+        _fail("expected batch binding has the wrong in-memory type")
+    return AuthenticatedBatchBinding(
+        batch_key=_session_id(
+            value.batch_key, where="expected batch binding batch_key"
+        ),
+        batch_size=_exact_int(
+            value.batch_size,
+            where="expected batch binding batch_size",
+            minimum=1,
+            maximum=_BATCH_MAX_SIZE,
+        ),
+        batch_request_sha256=_hex_sha256(
+            value.batch_request_sha256,
+            where="expected batch binding batch_request_sha256",
+        ),
+    )
+
+
 def adapt_authenticated_piqd_receipts(
     plan: statement_bank.SelectorPlan,
     receipts_response: object,
@@ -335,6 +419,7 @@ def adapt_authenticated_piqd_receipts(
     baseline_solve_index: int,
     statement_solve_indexes: Mapping[str, int],
     expected_conflict_limit: int,
+    expected_batch_binding: AuthenticatedBatchBinding | None = None,
 ) -> ReceiptAdapterResult:
     """Bind selected PIQD receipts to exact plan queries and interpret them."""
 
@@ -353,6 +438,15 @@ def adapt_authenticated_piqd_receipts(
         _fail("journal snapshot sha256 does not match its bytes")
 
     _, receipts = _parse_response(receipts_response, expected_session_id=session_id)
+    batch_receipts = tuple(
+        receipt for receipt in receipts.values() if receipt.batch_key is not None
+    )
+    batch_binding: AuthenticatedBatchBinding | None = None
+    if expected_batch_binding is None:
+        if batch_receipts:
+            _fail("batch receipts require an authenticated expected batch binding")
+    else:
+        batch_binding = _validate_batch_binding(expected_batch_binding)
     baseline_index = _exact_int(
         baseline_solve_index, where="baseline_solve_index", minimum=1, maximum=_U64_MAX
     )
@@ -398,6 +492,75 @@ def adapt_authenticated_piqd_receipts(
             _fail(f"receipt assumptions do not exactly equal query for {statement_id}")
         selected_receipts.append(receipt)
         leave_one_out[statement_id] = receipt.status
+
+    batch_audit: dict[str, Any] | None = None
+    if batch_binding is not None:
+        if conflict_limit == 0:
+            _fail("authenticated batches require a positive conflict_limit")
+        if batch_binding.batch_size != len(selected_receipts):
+            _fail(
+                "expected batch_size does not equal the complete selected query count"
+            )
+        expected_batch_identity = (
+            batch_binding.batch_key,
+            batch_binding.batch_size,
+            batch_binding.batch_request_sha256,
+        )
+        for receipt in selected_receipts:
+            if receipt.batch_key is None:
+                _fail("selected receipts must not mix batch and non-batch records")
+            if receipt.model_recorded:
+                _fail("selected batch receipts must have model_recorded false")
+            if (
+                receipt.batch_key,
+                receipt.batch_size,
+                receipt.batch_request_sha256,
+            ) != expected_batch_identity:
+                _fail("selected receipt does not match the expected batch binding")
+
+        expected_positions = list(range(batch_binding.batch_size))
+        selected_positions = [receipt.batch_position for receipt in selected_receipts]
+        if selected_positions != expected_positions:
+            _fail(
+                "selected batch positions must be ordered and dense from zero "
+                "in canonical query order"
+            )
+
+        batch_members = [
+            receipt
+            for receipt in batch_receipts
+            if receipt.batch_key == batch_binding.batch_key
+        ]
+        if any(
+            (receipt.batch_size, receipt.batch_request_sha256)
+            != (batch_binding.batch_size, batch_binding.batch_request_sha256)
+            for receipt in batch_members
+        ):
+            _fail("the expected batch_key has inconsistent digest or size metadata")
+        if len(batch_members) != batch_binding.batch_size:
+            _fail("the complete expected batch is not present in the receipts response")
+        ordered_members = sorted(batch_members, key=lambda receipt: receipt.solve_index)
+        if [
+            receipt.batch_position for receipt in ordered_members
+        ] != expected_positions:
+            _fail("the expected batch is not ordered and dense by solve_index")
+        if {receipt.solve_index for receipt in batch_members} != set(selected_indexes):
+            _fail("the selected receipts do not exhaust the complete expected batch")
+
+        batch_audit = {
+            "batch_key": batch_binding.batch_key,
+            "batch_request_sha256": batch_binding.batch_request_sha256,
+            "batch_size": batch_binding.batch_size,
+            "positions": {
+                "baseline": baseline_receipt.batch_position,
+                "leave_one_out": {
+                    statement_id: receipts[
+                        selected_by_statement[statement_id]
+                    ].batch_position
+                    for statement_id in statement_ids
+                },
+            },
+        }
 
     for receipt in selected_receipts:
         if receipt.conflict_limit != conflict_limit:
@@ -496,6 +659,8 @@ def adapt_authenticated_piqd_receipts(
         "session_id": session_id,
         "status": ADAPTER_STATUS,
     }
+    if batch_audit is not None:
+        audit_body["batch"] = batch_audit
     audit = {
         **audit_body,
         "adapter_sha256": statement_bank.sha256_json(audit_body),

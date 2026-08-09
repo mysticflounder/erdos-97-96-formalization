@@ -9,6 +9,8 @@ from census.p97_search import phase3_piqd_statement_bank as bank
 from census.p97_search import phase3_piqd_statement_bank_receipts as adapter
 
 SESSION_ID = "60d64e0a-828d-4cc4-ab8d-eeea25429dfc"
+BATCH_KEY = "e038a1cd-0768-4d82-8277-88f84c156ba4"
+BATCH_REQUEST_SHA256 = "a" * 64
 CONFLICT_LIMIT = 10_000
 
 
@@ -78,6 +80,33 @@ def _response() -> dict:
     }
 
 
+def _batch_response() -> dict:
+    response = _response()
+    for position, receipt in enumerate(response["receipts"]):
+        receipt.update(
+            {
+                "batch_key": BATCH_KEY,
+                "batch_position": position,
+                "batch_request_sha256": BATCH_REQUEST_SHA256,
+                "batch_size": 3,
+            }
+        )
+    return response
+
+
+def _batch_binding(
+    *,
+    batch_key: str = BATCH_KEY,
+    batch_size: int = 3,
+    batch_request_sha256: str = BATCH_REQUEST_SHA256,
+) -> adapter.AuthenticatedBatchBinding:
+    return adapter.AuthenticatedBatchBinding(
+        batch_key=batch_key,
+        batch_size=batch_size,
+        batch_request_sha256=batch_request_sha256,
+    )
+
+
 def _adapt(
     *,
     plan: bank.SelectorPlan | None = None,
@@ -86,6 +115,7 @@ def _adapt(
     baseline_solve_index: int = 1,
     statement_solve_indexes: dict[str, int] | None = None,
     conflict_limit: int = CONFLICT_LIMIT,
+    expected_batch_binding: adapter.AuthenticatedBatchBinding | None = None,
 ) -> adapter.ReceiptAdapterResult:
     return adapter.adapt_authenticated_piqd_receipts(
         _plan() if plan is None else plan,
@@ -98,6 +128,7 @@ def _adapt(
             else statement_solve_indexes
         ),
         expected_conflict_limit=conflict_limit,
+        expected_batch_binding=expected_batch_binding,
     )
 
 
@@ -137,6 +168,259 @@ def test_live_shape_is_bound_and_interpreted_only_relative_to_supplied_bank() ->
         key: value for key, value in result.audit.items() if key != "adapter_sha256"
     }
     assert result.audit["adapter_sha256"] == bank.sha256_json(body)
+
+
+def test_complete_authenticated_batch_is_bound_into_audit() -> None:
+    result = _adapt(response=_batch_response(), expected_batch_binding=_batch_binding())
+
+    assert result.audit["batch"] == {
+        "batch_key": BATCH_KEY,
+        "batch_request_sha256": BATCH_REQUEST_SHA256,
+        "batch_size": 3,
+        "positions": {
+            "baseline": 0,
+            "leave_one_out": {"A": 1, "B": 2},
+        },
+    }
+    body = {
+        key: value for key, value in result.audit.items() if key != "adapter_sha256"
+    }
+    assert result.audit["adapter_sha256"] == bank.sha256_json(body)
+
+
+def test_batch_receipts_require_explicit_authenticated_binding() -> None:
+    with pytest.raises(
+        adapter.StatementBankReceiptError, match="authenticated expected batch binding"
+    ):
+        _adapt(response=_batch_response())
+
+
+@pytest.mark.parametrize(
+    "missing_key",
+    ["batch_key", "batch_position", "batch_request_sha256", "batch_size"],
+)
+def test_batch_receipt_requires_all_four_fields(missing_key: str) -> None:
+    response = _batch_response()
+    del response["receipts"][0][missing_key]
+    with pytest.raises(adapter.StatementBankReceiptError, match="all batch fields"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_batch_receipt_still_rejects_unknown_extra_field() -> None:
+    response = _batch_response()
+    response["receipts"][0]["batch_extra"] = 0
+    with pytest.raises(adapter.StatementBankReceiptError, match="missing or extra"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("batch_key", "E038A1CD-0768-4D82-8277-88F84C156BA4", "canonical UUID"),
+        ("batch_key", None, "canonical UUID"),
+        ("batch_position", True, "must be an integer"),
+        ("batch_position", 1.0, "must be an integer"),
+        ("batch_position", -1, "must be an integer"),
+        ("batch_position", 4096, "must be an integer"),
+        ("batch_position", 3, "less than batch_size"),
+        ("batch_size", True, "must be an integer"),
+        ("batch_size", 3.0, "must be an integer"),
+        ("batch_size", 0, "must be an integer"),
+        ("batch_size", 4097, "must be an integer"),
+        ("batch_request_sha256", "A" * 64, "lowercase 64-hex"),
+        ("batch_request_sha256", None, "lowercase 64-hex"),
+    ],
+)
+def test_rejects_malformed_batch_receipt_fields(
+    field: str, value: object, message: str
+) -> None:
+    response = _batch_response()
+    response["receipts"][0][field] = value
+    with pytest.raises(adapter.StatementBankReceiptError, match=message):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+@pytest.mark.parametrize(
+    ("binding", "message"),
+    [
+        (
+            _batch_binding(batch_key="4d077863-e96c-4988-8f65-5b4bb38a0b76"),
+            "expected batch binding",
+        ),
+        (_batch_binding(batch_size=2), "complete selected query count"),
+        (
+            _batch_binding(batch_request_sha256="b" * 64),
+            "expected batch binding",
+        ),
+    ],
+)
+def test_rejects_wrong_expected_batch_binding(
+    binding: adapter.AuthenticatedBatchBinding, message: str
+) -> None:
+    with pytest.raises(adapter.StatementBankReceiptError, match=message):
+        _adapt(response=_batch_response(), expected_batch_binding=binding)
+
+
+def test_revalidates_expected_batch_binding_fields() -> None:
+    with pytest.raises(adapter.StatementBankReceiptError, match="in-memory type"):
+        _adapt(response=_batch_response(), expected_batch_binding=True)  # type: ignore[arg-type]
+    with pytest.raises(adapter.StatementBankReceiptError, match="canonical UUID"):
+        _adapt(
+            response=_batch_response(),
+            expected_batch_binding=_batch_binding(batch_key=BATCH_KEY.upper()),
+        )
+    with pytest.raises(adapter.StatementBankReceiptError, match="must be an integer"):
+        _adapt(
+            response=_batch_response(),
+            expected_batch_binding=_batch_binding(batch_size=True),
+        )
+    with pytest.raises(adapter.StatementBankReceiptError, match="must be an integer"):
+        _adapt(
+            response=_batch_response(),
+            expected_batch_binding=_batch_binding(batch_size=4097),
+        )
+    with pytest.raises(adapter.StatementBankReceiptError, match="lowercase 64-hex"):
+        _adapt(
+            response=_batch_response(),
+            expected_batch_binding=_batch_binding(batch_request_sha256="A" * 64),
+        )
+
+
+def test_rejects_mixed_selected_batch_and_nonbatch_receipts() -> None:
+    response = _batch_response()
+    for key in (
+        "batch_key",
+        "batch_position",
+        "batch_request_sha256",
+        "batch_size",
+    ):
+        del response["receipts"][1][key]
+    with pytest.raises(adapter.StatementBankReceiptError, match="must not mix"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+    with pytest.raises(adapter.StatementBankReceiptError, match="must not mix"):
+        _adapt(response=_response(), expected_batch_binding=_batch_binding())
+
+
+@pytest.mark.parametrize("positions", [[0, 1, 1], [0, 2, 1], [1, 0, 2]])
+def test_rejects_duplicate_gapped_or_reordered_batch_positions(
+    positions: list[int],
+) -> None:
+    response = _batch_response()
+    for receipt, position in zip(response["receipts"], positions, strict=True):
+        receipt["batch_position"] = position
+    with pytest.raises(adapter.StatementBankReceiptError, match="ordered and dense"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_rejects_incomplete_batch_prefix_before_interpretation() -> None:
+    response = _batch_response()
+    for receipt in response["receipts"]:
+        receipt["batch_size"] = 4
+    with pytest.raises(
+        adapter.StatementBankReceiptError, match="complete selected query count"
+    ):
+        _adapt(
+            response=response,
+            expected_batch_binding=_batch_binding(batch_size=4),
+        )
+
+
+def test_rejects_truncated_batch_response_before_interpretation() -> None:
+    response = _batch_response()
+    response["receipts"].pop()
+    response["count"] = 2
+    with pytest.raises(adapter.StatementBankReceiptError, match="absent"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_rejects_additional_member_of_expected_batch() -> None:
+    response = _batch_response()
+    extra = _receipt(4, [], "SAT", "4")
+    extra.update(
+        {
+            "batch_key": BATCH_KEY,
+            "batch_position": 2,
+            "batch_request_sha256": BATCH_REQUEST_SHA256,
+            "batch_size": 3,
+        }
+    )
+    response["receipts"].append(extra)
+    response["count"] = 4
+    with pytest.raises(
+        adapter.StatementBankReceiptError, match="complete expected batch"
+    ):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_rejects_extra_or_inconsistent_receipt_reusing_expected_batch_key() -> None:
+    response = _batch_response()
+    extra = _receipt(4, [], "SAT", "4")
+    extra.update(
+        {
+            "batch_key": BATCH_KEY,
+            "batch_position": 3,
+            "batch_request_sha256": BATCH_REQUEST_SHA256,
+            "batch_size": 4,
+        }
+    )
+    response["receipts"].append(extra)
+    response["count"] = 4
+    with pytest.raises(adapter.StatementBankReceiptError, match="inconsistent"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_batch_requires_positive_limit_and_omitted_models() -> None:
+    response = _batch_response()
+    for receipt in response["receipts"]:
+        receipt["conflict_limit"] = 0
+    with pytest.raises(
+        adapter.StatementBankReceiptError, match="positive conflict_limit"
+    ):
+        _adapt(
+            response=response,
+            conflict_limit=0,
+            expected_batch_binding=_batch_binding(),
+        )
+
+    response = _batch_response()
+    response["receipts"][1]["model_recorded"] = True
+    with pytest.raises(adapter.StatementBankReceiptError, match="model_recorded false"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_batch_rejects_wall_clock_timeout() -> None:
+    response = _batch_response()
+    response["receipts"][1]["timeout_ms"] = 1
+    with pytest.raises(adapter.StatementBankReceiptError, match="wall-clock timeout"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+@pytest.mark.parametrize("interrupted_by", ["cancel", "timeout"])
+def test_batch_rejects_nondeterministic_unknown_cutoff(interrupted_by: str) -> None:
+    response = _batch_response()
+    baseline = response["receipts"][0]
+    baseline["status"] = "UNKNOWN"
+    del baseline["core"]
+    baseline["interrupted_by"] = interrupted_by
+    with pytest.raises(adapter.StatementBankReceiptError, match="conflict_limit"):
+        _adapt(response=response, expected_batch_binding=_batch_binding())
+
+
+def test_nonbatch_audit_shape_remains_unchanged() -> None:
+    result = _adapt()
+    assert "batch" not in result.audit
+    assert (
+        result.audit["adapter_sha256"]
+        == "160f22c47e02493d335254bcc5cc04bd18bbd345974d6a2e0a2ba51fb80d6686"
+    )
+
+    response = _response()
+    for receipt in response["receipts"]:
+        receipt["conflict_limit"] = 0
+    response["receipts"][1]["model_recorded"] = True
+    legacy = _adapt(response=response, conflict_limit=0)
+    assert "batch" not in legacy.audit
 
 
 @pytest.mark.parametrize(
