@@ -8,8 +8,9 @@ Status: live integration smoke; no P97 theorem-closure claim.
 
 PIQD's `lean_fol` encoder and small SAT-model decoder work end to end on the
 installed daemon. The first live UNSAT job also exposed one genuine PIQD bug:
-the generated Lean certificate uses the Lean 4.29 `Std.Sat.CNF` constructor and
-does not compile under this repository's pinned Lean 4.27 toolchain.
+the generated Lean certificate used the Lean 4.29 `Std.Sat.CNF` constructor and
+did not compile under this repository's pinned Lean 4.27 toolchain. PIQD commit
+`b6718ee` fixed the emitter, and the live acceptance rerun below now compiles.
 
 This is not yet Lean-source-to-SAT integration. The two Lean statements were
 checked locally, but their matching `LeanSatIr` inputs were hand-authored.
@@ -77,8 +78,20 @@ the expected compiler-trust boundary.
 
 This bug is tracked as `PIQD-LEAN-001` in
 `docs/audits/piqd-integration-bugs-2026-08-07.md` and was reported in nthdegree
-conversation messages 3756-3757. The durable fix is a toolchain-aware emitter
-plus compile tests for every supported `Std.Sat.CNF` representation.
+conversation messages 3756-3757. The maintainer reported the toolchain-aware
+fix in message 3763.
+
+After restarting onto PIQD binary
+`e4307c725f0f4f797c00ce77cec10403a646b5417206d4eb5ec26b3d4db24ad9`, the exact
+command
+`piqc lean cert 78032d33-8fd9-442a-8551-cf69109cf12c --toolchain leanprover/lean4:v4.27.0`
+emitted a 1,254-byte certificate with SHA-256
+`0da44478d036f6adeb218b89ceeddaf72b764f66fd61e1d4329a6a4f6452ea6d`.
+That unmodified emitted file elaborates under this repository's Lean 4.27.0.
+Its theorem depends on `propext`, `Classical.choice`, `Lean.ofReduceBool`,
+`Lean.trustCompiler`, and `Quot.sound`, with no `sorryAx`. This resolves the
+toolchain mismatch while retaining the stated `native_decide` compiler-trust
+boundary.
 
 ## SAT model-decoding companion
 
@@ -115,8 +128,8 @@ an apples-to-apples validation of the existing producer.
 
 ## Remedy order
 
-1. Fix `PIQD-LEAN-001` with a declared target Lean/Std version and compilation
-   regressions, rather than silently rewriting certificates downstream.
+1. Keep `PIQD-LEAN-001` closed by requesting an explicit Lean toolchain and
+   independently compiling every emitted certificate downstream.
 2. Implement the Lean Phase-5 exporter so source, declaration, elaborated IR,
    and translation hash are machine-bound; add a Lean theorem relating the
    exported formula to the source proposition.

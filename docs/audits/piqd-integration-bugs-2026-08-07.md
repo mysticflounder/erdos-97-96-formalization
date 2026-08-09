@@ -1,8 +1,8 @@
 # piqd integration bug handoff — 2026-08-07
 
-Audit status: updated through 2026-08-08; two defects remain open: the
-encoder-path prepare race and the Lean-certificate toolchain mismatch. Four
-findings have been fixed and verified in the installed release. One job-origin
+Audit status: updated through 2026-08-08; one defect remains open: the
+encoder-path prepare race. Five findings have been fixed and verified in the
+installed release. One job-origin
 attestation gap is recorded below as an enhancement, not a bug.
 
 This log records piqd defects found while implementing the P97
@@ -35,18 +35,21 @@ separately so they are not misfiled as bugs.
 - **Owner:** piqd maintainer; keep the concurrent barrier acceptance test from
   `PIQD-RAW-001`, adapted to the encoder endpoint.
 
+## Fixed bugs
+
 ### PIQD-LEAN-001: generated UNSAT certificate does not compile on Lean 4.27
 
-**Open, reported 2026-08-08 in nthdegree conversation message 3756.**
-The piqd maintainer independently reproduced and root-caused it in message
-3757.
+**Resolved 2026-08-08 in PIQD commit `b6718ee`; live acceptance verified after
+the daemon restart in nthdegree conversation message 3781.** The bug was
+reported in message 3756, independently reproduced and root-caused in message
+3757, and the maintainer reported the fix in message 3763.
 
-- **Installed daemon:** piqd `0.1.0`, SHA-256
-  `476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`.
+- **Verified daemon:** piqd `0.1.0`, SHA-256
+  `e4307c725f0f4f797c00ce77cec10403a646b5417206d4eb5ec26b3d4db24ad9`.
 - **Affected endpoint:** `GET /jobs/:id/lean`, exercised by
   `piqc lean cert` after completed `lean_fol` UNSAT job
   `78032d33-8fd9-442a-8551-cf69109cf12c`.
-- **Reproduction:** from this repository's `lean/` root, run
+- **Original reproduction:** from this repository's `lean/` root, run
   `LAKE_BUILD_NO_REFRESH=1 lake env lean
   ../scratch/p97-piqd-lean-fol-smoke-2026-08-08-v1/PiqdCertificate.lean`.
 - **Observed behavior:** Lean 4.27 rejects generated line 28 because
@@ -68,17 +71,17 @@ The piqd maintainer independently reproduced and root-caused it in message
   `56c2c5d03574e86f173efff0897c63b8abddea0b2562741b78de49fc5633fcc5`;
   its 10-byte proof has SHA-256
   `a5b81e42c8304a84b7b8b897301cac5db9feaed0b2a9b8a8e0dd354dbf45433e`.
-- **P97 impact:** the encoder and solver smoke reached a valid UNSAT result,
-  but the advertised Lean round trip is blocked. This output cannot be treated
-  as a checked certificate or as theorem closure.
-- **Acceptance condition:** make the emitter select a representation compatible
-  with the requested/pinned Lean toolchain, then add end-to-end regressions
-  that generate and compile certificates under every supported Lean/Std shape
-  (currently at least 4.27/4.28 list form and 4.29 structure form). The test
-  must fail on any parser/type error and only accept the endpoint as healthy
-  after the emitted theorem elaborates successfully.
-
-## Fixed bugs
+- **Verified fix:** after requesting
+  `--toolchain leanprover/lean4:v4.27.0`, PIQD emitted the 1,254-byte
+  `PiqdCertificate.lean427-fixed.lean` with SHA-256
+  `0da44478d036f6adeb218b89ceeddaf72b764f66fd61e1d4329a6a4f6452ea6d`.
+  The exact emitted file elaborated under Lean 4.27.0. Its theorem depends on
+  `propext`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, and
+  `Quot.sound`, with no `sorryAx`; the compiler-trust boundary remains explicit.
+- **P97 impact:** the tiny Lean-FOL UNSAT round trip is no longer blocked by
+  toolchain mismatch. It remains an integration fixture, not P97 theorem
+  closure, because the `LeanSatIr` was hand-authored and has no authenticated
+  Lean-source exporter or source-to-CNF theorem.
 
 ### PIQD-RAW-001: concurrent identical prepares can return HTTP 500
 
@@ -198,7 +201,7 @@ command and records the resolved launcher/effective Lean hashes and exact argv.
 The driver's first fixture attempt rejected a producer manifest with
 a trailing newline because its declared SHA-256 did not name canonical JSON;
 that was correct fail-closed adapter behavior, not a daemon bug. Later live
-`lean_fol` use found `PIQD-LEAN-001`, recorded under open bugs above.
+`lean_fol` use found `PIQD-LEAN-001`, now recorded as fixed above.
 
 One deliberate edge case is relevant to P97: if the submitted CNF already
 contains an empty clause, `drat-trim` can verify it with an empty LRAT, and piqd
