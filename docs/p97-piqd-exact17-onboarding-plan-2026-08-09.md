@@ -50,6 +50,29 @@ this exact17 model as complete at 74,813/74,813.  Wider lanes retain the P97
 exact-cardinality guard as defense in depth and can recover a complete model
 through the paginated `/log` route.
 
+The source-semantic checkpoint now uses a fresh current-source successor at
+`scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v19-piqd-source-entitled-20260809`.
+Its exact manifest and CNF SHA-256 values are respectively
+`19fe9d3ee8e24e9bdcefc2a0dfb62c81e484d784d3ff37fe5b291d8d7081d63a`
+and `ebca3272a22c945a235a3f1141c1646f1a9780f39eefec6164f57e48bbe84c7c`;
+the CNF has 74,813 variables and 2,875,629 clauses.  The canonical
+runner-recorded provenance sidecar has SHA-256
+`0d6aa93747da652a0fbb4517c1193fb643ef6e01bcaa978589fc133aded45378`.
+It records the observed command and runtime but is not an execution
+attestation.
+
+The semantic adapter is deliberately artifact-specific.  It pins the exact
+v19 manifest, CNF, dimensions, scope, and complete clause, learned-record, and
+cut-admission inventories.  It captures nine current producer sources and 45
+manifest inputs, reconstructs the complete variable map, checks every CNF
+clause against the total archived assignment, and independently replays all ten
+pinned finite source predicates.  The source-bundle SHA-256 is
+`4c7b7446894d812c5d160c7274546cfe51978bfa9b2d64c5da1776ed4f2cb5dd`,
+and the semantic receipt self-hash is
+`ca03ec14e8d6a4299ac4d42c97b50f69c835b1e8df2efa55729732044ecddd1f`.
+This is finite source-semantic evidence only: aggregate coverage, universal
+lift, theorem closure, and Lean checking remain false.
+
 ## Objective
 
 Onboard one existing exact-17 cap-nine static DIMACS artifact into PIQD as a
@@ -220,14 +243,18 @@ checkpoint; do not sweep up the shared dirty worktree.
 ## Immediate implementation slice
 
 The package loader, corrected live-run receipt adapter, known-result live
-preflights, and one-process v12t structural canary are complete.  The combined
-one-worker oracle, driver, package, and runner suite passes 277 tests, with Ruff
-check and format clean.  No Lean declaration or proof-blueprint anchor moved.
+preflights, one-process v12t structural canary, and fresh-v19 source-semantic
+custody gate are complete.  The final one-worker oracle, driver, package,
+runner, and semantic suite passes 306 tests; Ruff check and format-check are
+clean.  An independent adversarial review found no remaining issue after the
+adapter was narrowed to the exact v19 artifact and noncanonical Base64 and
+metadata-substitution cases were made fail-closed.  No Lean declaration or
+proof-blueprint anchor moved.
 
-The next exact17 slice is source-semantic custody.  The current artifact exposes
-only an unauthenticated partition of variables 1--74,813 and an intentionally
-opaque partial map.  Before any source-level promotion, capture the exact
-producer and source snapshots, emit a complete authenticated variable map,
-decode every assignment component, replay the source predicates, and bind that
-evidence in a new receipt.  Until then, source semantics, source entitlement,
-coverage, universal lift, and theorem closure remain false.
+The next exact17 slice is a durable PIQD run of the pinned v19 package through
+the existing one-process runner, followed by persistence and revalidation of
+the semantic package and receipt.  The archived v12t assignment already
+satisfies all v19 clauses and source predicates, so a deduplicated daemon result
+is acceptable only if its exact job, model, solver-log, package, and semantic
+receipt identities all rebind.  Coverage, universal lift, theorem closure, and
+Lean checking remain later gates.
