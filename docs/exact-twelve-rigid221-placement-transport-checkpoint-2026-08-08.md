@@ -422,10 +422,44 @@ selects that core without changing the legacy certificates and compiles the
 three row choices to `(-43, -164, -1171)` at appended bank index `7`.
 
 This is another finite learned predicate, not terminal cell UNSAT, schedule
-coverage, a universal lift, or live-sorry closure.  In particular, the saved
-cell-1 journal predates the predicate; it must be replayed under a fresh
-committed detector snapshot before the cut can count as a production search
-event.
+coverage, a universal lift, or live-sorry closure.  The saved 432-record
+cell-1 journal predates the predicate, so it was not accepted directly under
+the new detector contract.  Instead, a fail-closed migration authenticated the
+complete old chain, changed only its detector and chain metadata, and replayed
+every certificate, assignment witness, and learned clause under the committed
+current source before atomically publishing a new seed journal.  The production
+runner then replayed that complete migrated prefix independently.
+
+At record `432`, exactly at the saved survivor frontier, the new run admitted
+`source-order-positive-coverage` with bank index `7` and clause
+`(-43,-164,-1171)`.  It then learned nineteen additional duplicate-center cuts
+and reached a 452-record `ITERATION_LIMIT`.  The complete current-source journal
+replayed successfully; its terminal record hash is
+`0bed4a5925784d7fc5b54e3b90274865a6f93e8bcaad2f4d79c7efe833f6e2e9`.
+Thus the new cut is now a production search event, but it has not produced a
+cell UNSAT or a new structurally unresolved survivor.
+
+The next bounded cell-`1` continuation replayed that 452-record prefix and
+learned 89 more checked cuts before reaching `STRUCTURALLY_UNRESOLVED` at
+record `541`.  The complete journal replayed successfully.  Its terminal
+record hash is
+`0c905b8c361d2642ca5e4affae24c63e687bda47c0ae31c39907325f36a66f00`,
+and the saved survivor has SHA-256
+`e83c1417fb6c4453b70edc7b474513512e8adaf2680e138f8afff5d17e396075`.
+Source-order diagnosis found a second three-row predicate, now on centers
+`2`, `9`, and `11`: the two swapped common-five cores
+`(a,x,b,c,y) = (1,2,10,9,11)` and `(1,11,10,9,2)` cover the two 24-order
+halves of the frozen direct/mirror universe.  The checked Lean value
+`mixedV4Cell1SecondPositiveNogood` proves the resulting source-level
+contradiction.  Its Python binding compiles the selected rows to
+`(-160,-2312,-2864)` at appended bank index `8`.
+
+In parallel, the replay-seeded cell-`4` continuation reached its new
+362-record bound with `ITERATION_LIMIT`.  Its complete journal replayed
+successfully and has terminal record hash
+`ba1d4617c8bdb80c1f22103f8e04e65601d6e1db8fbd010b7a56f9fbfb9a9e21`.
+It exposed neither a saved survivor nor terminal UNSAT, so it is lower priority
+than replaying the explicit cell-`1` survivor against bank index `8`.
 
 An independent promotion audit found one remaining postprocessor hardening
 task: detector files are copied and hash-checked into the staged source, but the
@@ -438,12 +472,12 @@ current postprocessor.
 
 The next production target is therefore:
 
-1. replay cell `1` from a fresh authenticated journal with the new three-row
-   source-order predicate enabled, and verify that bank index `7` rejects the
-   saved survivor before increasing the iteration bound;
-2. continue the already-mined cell `4` follow-up under the same committed
-   eight-entry bank, then classify any newly exposed survivor before increasing
-   the iteration bound;
+1. finish the independent registry tests and authenticated binding for bank
+   index `8`, then replay the exact record-`541` cell-`1` survivor and continue
+   that cell under the resulting nine-entry detector contract;
+2. if that continuation exposes another survivor, classify it before
+   increasing the bound; do not spend another cell-`4` tranche without either
+   a new checked predicate or a newly exposed survivor to diagnose;
 3. inspect the remaining iteration-limit tails only for recurring generalized
    predicates with a source-level Lean entitlement, rather than mining exact
    assignment blockers;
