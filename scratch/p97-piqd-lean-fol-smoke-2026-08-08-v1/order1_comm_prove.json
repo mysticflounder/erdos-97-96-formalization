@@ -1,0 +1,63 @@
+{
+  "input": {
+    "ir_version": 1,
+    "source": {
+      "module": "P97LeanFolCanary",
+      "decl": "p97PiqdOrderOneCommutativityCanary"
+    },
+    "query": "Prove",
+    "domains": [
+      {
+        "name": "M",
+        "card": 1
+      }
+    ],
+    "functions": [
+      {
+        "name": "mul",
+        "args": ["M", "M"],
+        "codomain": "M"
+      }
+    ],
+    "predicates": [],
+    "bool_atoms": [],
+    "formula": {
+      "Forall": {
+        "var": "x",
+        "domain": "M",
+        "body": {
+          "Forall": {
+            "var": "y",
+            "domain": "M",
+            "body": {
+              "Eq": [
+                {
+                  "App": {
+                    "fn": "mul",
+                    "args": [
+                      {"Var": "x"},
+                      {"Var": "y"}
+                    ]
+                  }
+                },
+                {
+                  "App": {
+                    "fn": "mul",
+                    "args": [
+                      {"Var": "y"},
+                      {"Var": "x"}
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "backend": "cadical",
+  "project": "p97-lean-fol-smoke-2026-08-08",
+  "timeout_s": 30,
+  "march_timeout_s": 30
+}

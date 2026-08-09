@@ -1,0 +1,9 @@
+{
+  "cnf_blob_hash": "56c2c5d03574e86f173efff0897c63b8abddea0b2562741b78de49fc5633fcc5",
+  "existing": false,
+  "identity_hash": "1552c7e3e2f38baffe6e19bd11f22c18b78fcee72543001a7ed675ba5b8bf9f5",
+  "job_id": "b8f3e3dd-0d4e-4c29-bc89-e0f987bc3de8",
+  "num_clauses": 6,
+  "num_vars": 3,
+  "preview": "c lean_fol source P97LeanFolCanary :: p97PiqdOrderOneCommutativityCanary\nc query Prove (encoding negation; UNSAT = proved)\nc domains M=1\np cnf 3 6\n1 0\n2 0\n3 0\n-3 1 0\n3 -1 0\n-3 0\n"
+}

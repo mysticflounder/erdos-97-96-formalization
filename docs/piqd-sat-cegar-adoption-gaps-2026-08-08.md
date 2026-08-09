@@ -101,10 +101,14 @@ is stale.
 The live daemon snapshot used for this audit is piqd `0.1.0`, protocol 1,
 binary SHA-256
 `476585dd8e11c93dd1d03c5ec9d4b9e52735eae9fdda0895f60508f7d20ea865`.
-With `GET /jobs?limit=1000`, it reports 247 retained jobs: 240 completed and
-seven prepared, with no running jobs. It has no live sessions. This proves that
-the service is operational; it does not measure production throughput because
-the active exact-17 workers still run outside piqd.
+With `GET /jobs?limit=1000`, it reports 248 retained jobs: 241 completed and
+seven prepared, with no running jobs. The completed results split into 209 SAT,
+28 UNSAT, and four UNKNOWN jobs. One persistent SAT session is live: a
+three-clause CaDiCaL smoke session with three solves and terminal status UNSAT.
+This proves that the static and session services are operational; it does not
+measure production throughput because the active exact-17 workers still run
+outside piqd. In particular, the live session is an API/restart smoke, not a
+P97 session-adapter or campaign-throughput qualification.
 
 The live `/solvers` inventory currently exposes only CaDiCaL session workers.
 Source support for another backend does not establish executable availability
@@ -113,10 +117,26 @@ multipart-body ceiling), so each migration must preflight the materialized
 artifact size rather than assume that every large exact-17 or Phase-3 formula
 can be submitted unchanged.
 
+The current exact-17 source-faithful terminal CNF is inside that envelope:
+`pinned-direct5-complete-static-o0-p0-1.cnf` is 95,683,986 bytes, with 74,813
+variables and 2,502,570 clauses. Its SHA-256 is
+`1403caafec67f1472dce6e253c60d2131a25a829da628fc8ffc48b7914eea495`.
+Its adjacent manifest still has `producer_manifest_sha256: null`, so this
+artifact is technically submit-ready but not publication-ready. G1/G5/G7—not
+the raw upload limit—are the blockers to putting this exact-17 query under the
+accepted PIQD custody contract.
+
 The original oracle/package/driver/campaign/replay test matrix passed 120
 tests. After the v2 campaign migration, stage-local classifier contract, and
 typed-ingress addition, the complete `test_phase3_piqd*.py` integration suite
-passes 161 tests. The piqd Rust library has 160 passing tests with two ignored,
+passes 176 tests. The exact reproduction command in this checkout is:
+
+```bash
+uv run --with pytest env PYTHONPATH=. pytest -q census/p97_search/tests/test_phase3_piqd_*.py
+```
+
+The piqd Rust library has 160
+passing tests with two ignored,
 and the piqc library has 80 passing tests. The campaign hardening checkpointed
 at `6fcf51e4`
 adds descriptor-relative no-follow snapshots, transitive artifact binding,
@@ -205,7 +225,7 @@ variable-map, cell/order, model, and source-predicate checks.
 Remaining acceptance condition: extract the exact-12 implementation from the
 Phase-3-named modules into a stable producer-neutral library, then make
 exact-cardinality, projected-static, and one other P97 CNF producer call that
-library without copying lifecycle code. The complete 161-test
+library without copying lifecycle code. The complete 176-test
 `test_phase3_piqd*.py` integration boundary must remain green. Until this reuse
 exists, the project has a demonstrated production
 canary but not a general P97 package adapter.
@@ -450,7 +470,7 @@ solver identity drift and can report queue/worker/disk pressure before launch.
 
 Owner: piqd operations plus P97 dashboard integration.
 
-### G10. Close the remaining daemon defect without blocking raw adoption
+### G10. Close encoder and certificate defects without blocking raw adoption
 
 `PIQD-ENC-001` is a lookup/insert race for concurrent identical requests to
 the encoder endpoint `POST /jobs/prepare`. The current P97 route exclusively
@@ -458,9 +478,21 @@ uses raw `POST /jobs/prepare-cnf`, whose corresponding race is fixed in the
 installed release. Therefore this defect should be repaired, but it is not a
 blocker for P97 raw-DIMACS migration.
 
+The first live `lean_fol` smoke also found `PIQD-LEAN-001`. The certificate
+emitter always generates the Lean 4.29 `Std.Sat.CNF` structure constructor,
+which does not compile under this repository's pinned Lean 4.27 list-based
+representation. A 4.27-specific one-line constructor change was independently
+verified, but the durable repair needs an explicit target-toolchain selection
+and compile regressions for every supported representation. This blocks the
+advertised Lean-certificate round trip, not the raw-DIMACS solver path.
+
 Acceptance condition: concurrent identical encoder prepares all return the
 same immutable job identity without HTTP 500, backed by a barrier regression
 test.
+
+Certificate acceptance condition: an emitted certificate must compile under
+the requested Lean/Std toolchain before any client classifies it as checked.
+See `docs/audits/p97-piqd-lean-fol-smoke-2026-08-08.md` for the live evidence.
 
 Owner: piqd.
 
@@ -485,7 +517,7 @@ The three-cell canary has been regenerated under v2 and is recorded in
 already-checkpointed v1 custody finding; it supersedes the old canary as the
 current accepted finite-local campaign fixture.
 
-Remaining action: keep the 161-test integration boundary green. Generalizing
+Remaining action: keep the 176-test integration boundary green. Generalizing
 this controller into a scheduler and a coverage authority belongs to G1–G2;
 executed-byte authentication and reusable source-semantic receipts belong to
 G5–G7. They are not remaining G11 custody tasks.
@@ -521,7 +553,7 @@ claim.
 
 ### Stage 0 — preserve the proven boundary
 
-- Keep the existing Phase-3 piqd driver and complete 161-test PIQD integration
+- Keep the existing Phase-3 piqd driver and complete 176-test PIQD integration
   boundary green.
 - Preserve G11's authenticated custody boundary, while continuing to describe
   the bounded controller as stop/pivot control rather than a production

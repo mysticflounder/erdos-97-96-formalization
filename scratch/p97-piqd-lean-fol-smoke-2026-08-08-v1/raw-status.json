@@ -1,0 +1,32 @@
+{
+  "backend": "cadical",
+  "completed_at": 1786240800,
+  "confirmed_at": 1786240798,
+  "created_at": 1786240793,
+  "id": "b8f3e3dd-0d4e-4c29-bc89-e0f987bc3de8",
+  "log_size_bytes": 3848,
+  "march_timeout_s": 900,
+  "model_blob_hash": null,
+  "progress": {
+    "backend": "cadical",
+    "conflicts": null,
+    "cubes_done": null,
+    "cubes_sat": null,
+    "cubes_total": null,
+    "cubes_unknown": null,
+    "cubes_unsat": null,
+    "decisions": null,
+    "elapsed_s": 0,
+    "last_line": "c exit 20",
+    "restarts": null,
+    "solver_version": null
+  },
+  "project": "p97-lean-fol-raw-replay-2026-08-08",
+  "result": "UNSAT",
+  "running_for_s": null,
+  "started_at": 1786240800,
+  "status": "completed",
+  "timeout_s": 30,
+  "wall_human": "0.0s",
+  "wall_ms": 3
+}

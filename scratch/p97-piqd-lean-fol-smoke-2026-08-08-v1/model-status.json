@@ -1,0 +1,32 @@
+{
+  "backend": "cadical",
+  "completed_at": 1786240860,
+  "confirmed_at": 1786240859,
+  "created_at": 1786240855,
+  "id": "3de06d39-282f-4352-9d20-3f6c83b71af8",
+  "log_size_bytes": 4005,
+  "march_timeout_s": 900,
+  "model_blob_hash": null,
+  "progress": {
+    "backend": "cadical",
+    "conflicts": null,
+    "cubes_done": null,
+    "cubes_sat": null,
+    "cubes_total": null,
+    "cubes_unknown": null,
+    "cubes_unsat": null,
+    "decisions": null,
+    "elapsed_s": 0,
+    "last_line": "c exit 10",
+    "restarts": null,
+    "solver_version": null
+  },
+  "project": "p97-lean-fol-model-smoke-2026-08-08",
+  "result": "SAT",
+  "running_for_s": null,
+  "started_at": 1786240860,
+  "status": "completed",
+  "timeout_s": 900,
+  "wall_human": "0.0s",
+  "wall_ms": 2
+}

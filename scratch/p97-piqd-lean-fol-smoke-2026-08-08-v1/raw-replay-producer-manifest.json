@@ -1,0 +1,16 @@
+{
+  "schema": "p97-piqd-lean-fol-raw-replay-producer/v1",
+  "purpose": "byte-identical raw-DIMACS replay of one PIQD lean_fol encoder output",
+  "source_lean_fol_job_id": "78032d33-8fd9-442a-8551-cf69109cf12c",
+  "encoder_version": "piqd-encoder/0.1.0+alg7",
+  "input_ir_sha256": "56b8b340f4b1442aeb90ebefbd45403512c0e91554ea57b0d90d3f271e43d33d",
+  "scratch_lean_statement_sha256": "4c242ec4ff09038db21970c2ec0f27d88f0a3c45780afce48df8651f3e3b086c",
+  "cnf_bytes": 178,
+  "cnf_sha256": "56c2c5d03574e86f173efff0897c63b8abddea0b2562741b78de49fc5633fcc5",
+  "claims": {
+    "byte_identical_to_encoder_output": true,
+    "lean_source_export_authenticated": false,
+    "p97_production_theorem": false,
+    "universal_closure": false
+  }
+}

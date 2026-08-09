@@ -1,0 +1,3 @@
+../scratch/p97-piqd-lean-fol-smoke-2026-08-08-v1/PiqdCertificate.lean:28:2: error: invalid {...} notation, structure type expected
+  List (CNF.Clause Nat)
+../scratch/p97-piqd-lean-fol-smoke-2026-08-08-v1/PiqdCertificate.lean:47:41: error: Tactic `native_decide` failed: Could not evaluate decidable instance. Error: cannot evaluate code because 'parseDimacs' uses 'sorry' and/or contains errors

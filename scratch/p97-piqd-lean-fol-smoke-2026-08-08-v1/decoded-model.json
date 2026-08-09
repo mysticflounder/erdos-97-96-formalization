@@ -1,0 +1,48 @@
+{
+  "job_id": "3de06d39-282f-4352-9d20-3f6c83b71af8",
+  "model": {
+    "bool_atoms": [],
+    "functions": [
+      {
+        "arg_domains": [
+          "M",
+          "M"
+        ],
+        "codomain": "M",
+        "name": "mul",
+        "rows": [
+          {
+            "args": [
+              0,
+              0
+            ],
+            "value": 1
+          },
+          {
+            "args": [
+              0,
+              1
+            ],
+            "value": 1
+          },
+          {
+            "args": [
+              1,
+              0
+            ],
+            "value": 1
+          },
+          {
+            "args": [
+              1,
+              1
+            ],
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "predicates": []
+  },
+  "result": "SAT"
+}

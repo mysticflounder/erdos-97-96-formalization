@@ -66,6 +66,8 @@ are all present.
 | Producer/consumer mismatch | Exact-six material was provenance-blocked; first-fiber infrastructure existed but lacked a FreshThird bridge; the false rational-octagon incidence producer was refuted. | Theorem-bank volume did not translate into proof-spine progress. | Search the theorem bank and live consumers first. Require exact theorem provenance plus the first missing adapter. Keep refuted shapes as negative tests so miners do not rediscover them. |
 | Artifact volume mistaken for productivity | The retained-omission bank contained roughly 66,411 artifacts but only 64 substantive reports; raw SAT payloads and generated duplicates were not independent producers. | Storage and mining throughput overstated mathematical progress. | Rank unique consumer-addressable statements, not artifact count. Deduplicate by authenticated content and statement shape; park candidates without replayable finite consumers or universal Lean producers as `PARKED-SPEC`. |
 | Cache/checkpoint authority inversion | Prefix checkpoints and warm caches improve scan time but cannot prove semantic equivalence or terminality. | Fast-path state could silently become the publication authority. | Authenticate raw prefix bytes and order digests, but require full semantic replay and independently checked identities at promotion boundaries. Source replay remains authoritative. |
+| Synthetic verifier authority leak | The mixed-bank integration canary injected fake solver and `drat-trim` callbacks yet emitted the same `UNSAT_DRAT_VERIFIED` status as a live independently checked run. Its six-byte proof fails real `drat-trim` with `s NOT VERIFIED`. | A useful schema/code-generation fixture could be mistaken for terminal mathematical evidence. | Give synthetic runs a distinct schema and status namespace, record `evidence_class = synthetic_fixture`, forbid publication consumers from accepting it, and add a regression that rechecks every purported live proof with the real verifier executable. |
+| Detector monoculture and source-order starvation | The fresh real 12-cell mixed-v3 wave `cb329a7e` learned 3,875 cuts: 3,777 (97.5%) were duplicate-center cuts, while the frozen source-order stage admitted zero. Five cells became `STRUCTURALLY_UNRESOLVED`; the other seven exhausted 400 iterations. | Larger iteration budgets mostly rediscover one local obstruction family and do not manufacture the missing source entitlement or terminal proof. | Treat repeated duplicate-center hits as a pivot signal. Deduplicate authenticated PIQD cuts at ingress, census the unresolved survivors by missing source predicate, and spend the next detector budget on source-faithful producer stages. Require a new semantic family or a smaller documented survivor frontier before extending iteration limits. |
 | Backend/profile semantic drift | The audit found that raw job identities could name unsupported profiles. The piqd maintainer also corrected an operational misconception: an empty CaDiCaL profile intentionally selects `--sat`, while literal `default` selects CaDiCaL's default. | Unsupported names could detach identity from execution, while an omitted profile can silently bias an UNSAT-heavy run toward SAT discovery. | `PIQD-RAW-002` is fixed in piqd and P97 still rejects unsupported pairs. Wave manifests must spell `default` explicitly when intended; empty and `default` remain distinct valid identities. |
 | Weak stop/pivot criteria | After the mixed-law robustness repair, the field closed `n=10` but remained SAT at `n=11` through `n=15`; a class-size cap still left `n=15` SAT (`0d76b444`). | Additional syntactic cuts could consume waves without addressing the missing semantic field, coupling, or producer. | Define a pivot condition before launch: repeated source-faithful SAT survivors with the same missing invariant stop that family and create a named semantic-producer task. The exact12 campaign controller now enforces that rule for one ordered, sequential three-cell canary and rejects post-pivot overrun. General scheduling and coverage remain open. piqd can measure and preserve no-progress, but it cannot choose the mathematical pivot. |
 
@@ -159,6 +161,12 @@ live Lean consumer + ingress hash
   remains the proof-artifact producer, not the publication authority.
 - Decide whether piqd should expose a new raw-job requeue identity for terminal
   `UNKNOWN`/`failed`; current same-identity re-prepare cannot retry execution.
+- If job-lane origin custody becomes a publication requirement, add daemon and
+  solver identity fields to each PIQD job/result record. The current session
+  lane binds solver identity, but job-lane `GET /version` and `GET /solvers`
+  identities are only out-of-band observations; adapters must therefore keep
+  `piqd_daemon_origin_custody = false` even when local package and driver
+  custody validate.
 - Continue the mathematical work at the named FreshThird/Rigid221 producer and
   adapter gaps. The control plane can prevent false progress, but it cannot
   synthesize those missing universal theorems.
@@ -285,8 +293,10 @@ closure, reinforcing the same decision. The prescribed work was, in order:
 
 The controller item is complete. The source-derived classifier described
 below also closes item 1 for the equality-duplicate-center stage and closes
-the artifact-binding half of item 2. The typed Lean consumer adapter in item 2
-and the separate ordered Fin-12 replay in item 3 remain open.
+the artifact-binding half of item 2. Its typed Lean ingress now maps the exact
+classifier to the pre-existing checked `record0`; the remaining half of item 2
+is source entitlement or exact terminal-bank consumption, not certificate
+checking. The separate ordered Fin-12 replay in item 3 remains its own lane.
 
 Cells 1 and 2 also retain
 `UPSTREAM_DIGEST_ONLY_NOT_ARCHIVED_OR_REPLAYED` for the blocked-job input.
@@ -419,3 +429,187 @@ contract, and regenerates the checked-in Lean file byte for byte. A targeted
 `not_realizes_of_positiveMatches` theorem source-clean at 0 open nodes out of
 36; this is a local conditional theorem and does not make the unimported module
 a live consumer.
+
+## Consumer-first reachability and terminal-promotion remedy
+
+A consumer-first follow-up found no current theorem-bank producer for either
+form of the remaining source-selection input. The generated PIQD module proves
+only certificate validity, equality with `record0`, and the learned clause. Its
+five selected-row variables are
+
+| Center | Learned literal |
+| ---: | ---: |
+| 0 | `-6` |
+| 1 | `-55` |
+| 2 | `-155` |
+| 3 | `-175` |
+| 4 | `-525` |
+
+Those literals were false under the captured finite PIQD assignment. That does
+not prove that an arbitrary source-facing `RowPattern` selects the same five
+supports. Neither the production `FrontierLiveClosure` import path nor any live
+consumer currently imports the generated PIQD module or the exact-twelve
+canary. Importing them without a new premise producer would therefore be dead
+wiring, not promotion.
+
+There is, however, a narrower certificate route that does not require a new
+universal five-row membership theorem. The existing
+`SourceOrderTerminalBankConsumer.false_of_terminalSourceOrderPositiveBank`
+starts from an exact full-bank `DimacsUnsatisfiable` proof. If the canonical
+source assignment falsifies one learned clause, that consumer derives the
+corresponding `selectedByCoverIndex` facts internally and invokes the stored
+semantic obstruction. `TerminalRupIngress` already transfers a checked compact
+RUP replay with exact signed-DIMACS equality into this consumer.
+
+The missing producer on that route is a checked terminal certificate for the
+*complete mixed bank*, not another duplicate-center checker. The authenticated
+source-order bank currently records `terminal_unsat = false`, and the live
+tagged CEGAR run remains `ITERATION_LIMIT`.
+
+A subsequent two-record mixed-bank integration canary exercises the proposed
+packet and Lean-bank generators, but it is deliberately synthetic evidence. Its
+first tagged record has the same cube SHA-256
+`ac75e36047af69bfa66959d5d6e706c48b77b4497bf3e83cd1ca8c30479a35dc`,
+certificate SHA-256
+`202acebee1d1d043f7c081ac042482a317aa1f603d8ea0f0f4465accd3683ca0`,
+and learned clause `[-6,-55,-155,-175,-525]` as the PIQD classifier, but the
+journal does not bind the classifier or replay receipt and its assignment hash
+differs. It therefore demonstrates independent rediscovery and compatible
+typed data, not operational reuse of the PIQD artifact. More importantly, the
+canary's six-byte `terminal.drat` contains `proof`; a fresh real `drat-trim`
+check against its 5,128,538-byte terminal CNF exits 1 with `no conflict` and
+`s NOT VERIFIED`. Its callback-produced `UNSAT_DRAT_VERIFIED` label and
+generated two-entry Lean bank are contract-test results, not a terminal proof.
+Synthetic terminal fixtures must be labeled in the artifact itself and must
+never share a proof-status vocabulary with independently checked live runs.
+
+The subsequent real 12-cell mixed-v3 wave
+`exact12-v14-wave-cb329a7e-mixedv3-i400-c0000-0011-r3` reached neither a
+terminal proof nor a complete structural bank. Cells `2, 4, 5, 7, 8` stopped
+as `STRUCTURALLY_UNRESOLVED`; cells `0, 1, 3, 6, 9, 10, 11` reached the
+400-iteration limit. All 12 journals replay, with 3,875 authenticated records
+in total. Their detector distribution is 3,777 duplicate-center, 48
+equilateral-bisector collision, 29 perpendicular-bisector-convex, 11
+three-triad, seven equal-K4, and three rarer circle-family cuts. The frozen
+source-order stage contributed no record. This is strong empirical evidence
+that the current loop is detector-limited and source-entitlement-limited, not
+merely under-budgeted. More iterations are justified only after a new semantic
+stage reduces one of the five unresolved survivor classes or materially changes
+that distribution.
+
+The post-wave source-order diagnostic sharpens that pivot: it reports that
+convex-five-point cores cover all five unresolved survivors. Commit `50d18ad1`
+has since promoted all five exact finite certificates to source-clean Lean
+values and source-order bank schema v3. The new clauses are cell 2
+`(-55, -410, -498)`, cell 4 `(-896, -1170, -2053, -2162)`, cell 5
+`(-35, -172, -1363, -1620, -2493)`, cell 7
+`(-29, -55, -546, -939, -2894)`, and cell 8 `(-55, -313, -2134)`; together
+with the frozen V8 theorem, the authenticated bank now contains six
+Lean-backed cuts. These are real finite source-order cuts, but they are not
+aggregate coverage or a live universal lift. Because the promotion changes the
+detector manifest, the `cb329a7e` journals remain read-only mining evidence and
+must not be spliced into a fresh run.
+
+The exact PIQD classifier is also semantically identical to cell 0 journal
+record 0: its selected-assignment, cube, certificate, learned clause, and
+source-job hashes match. The new
+`census/p97_search/phase3_piqd_structural_seed.py` adapter turns that classifier
+into a locally authenticated one-record tagged-v3 journal. It reopens the
+classifier, source job, and 5,128,454-byte base CNF with bounded no-follow reads,
+rebuilds the exact job/CNF, checks the selected positive assignment, replays the
+certificate and compiled clause, and publishes a journal, binding sidecar, and
+commit marker with commit-last semantics.
+
+The pre-`50d18ad1` live canary is preserved read-only at
+`scratch/p97-piqd-structural-seed-canary-2026-08-08-v2/`. Its seed journal
+SHA-256 is
+`12283bcffdbf5975ed88ab9a9c99a04c391d69909793c234db5a67d9ca0b6e03`;
+its record SHA-256 is
+`ae2a991e613433339ca7d10b477bce2e9e56404a7170b7e1302e1f258d06c295`;
+and replay returns the exact learned clause
+`[-6, -55, -155, -175, -525]`. A real one-iteration structural run consumed
+that seed byte for byte as journal record 0, added a second duplicate-center
+record, and stopped `ITERATION_LIMIT` with discovery verdict `SAT`, two records,
+`journal_replayed = true`, all three replay checks true, and
+`terminal_proof_verified = false`. The complete Phase-3 PIQD integration suite
+has 176 passing tests; the adapter-focused suite has 15 passing tests, with
+Ruff check and format-check clean.
+
+A custody audit of the preserved cell-0 PIQD run found that its package,
+wave manifest, sealed six-record driver journal, terminal SAT model, and
+checkpoint still validate against one another. The old
+`source-semantic-replay.json`, however, has cube SHA-256
+`27b80fc03f2161a2feb4644aedad76684f78e3f15a22a6aef53798f7f850d693` and no
+longer equals a fresh replay from those immutable inputs. It is stale and must
+be rejected, not grandfathered. A fresh replay in
+`scratch/p97-piqd-receipt-refresh-2026-08-08-v1/` is accepted with receipt
+SHA-256
+`41c07ced340650a122e1ecd569ac28034e0135b14d0afbe6a4951b484139bf9f`,
+cube SHA-256
+`ac75e36047af69bfa66959d5d6e706c48b77b4497bf3e83cd1ca8c30479a35dc`,
+source-job SHA-256
+`8b597e1cc2092cdbf2c4b4dc06b5dc5e3ae9f57e21cf7107e14259c1e81d1191`,
+CNF SHA-256
+`cfc268f2915ff31e1af24a66a036e41e81f93aca0967e88c1b4a4158eb67a379`,
+model SHA-256
+`1c9c7ef27850fa1c2d50d49b3fe886f24ce0d6aba7d74cbe9fdffcdeafd3557e`,
+and PIQD job ID `cc4054b6-6e73-4bb6-9c09-ed4814f07c93`. Its refreshed classifier
+has file SHA-256
+`9a4f3062aa659f2b2015f25ddfe3dad35855924219c6841039f74b35f80a5935`
+and rederives the same certificate and learned clause. This establishes a
+viable local package-and-driver custody chain after receipt regeneration. It
+does not establish daemon-origin custody: the producer manifest binds a local
+package and upstream digest but carries no signed PIQD-daemon attestation. The
+PIQD maintainer confirmed that this is a job-lane product gap: session records
+bind solver identity, but job records do not bind either daemon or solver
+identity. It is an enhancement to schedule, not a current API violation.
+
+This demonstrates operational cut reuse, not authenticated PIQD-daemon
+custody. The adapter does not ingest a PIQD package/producer receipt, and the
+structural runner consumes only the raw journal rather than the seed sidecar and
+commit marker. The sidecar therefore states
+`piqd_producer_receipt_present = false`,
+`piqd_daemon_origin_custody = false`, and
+`downstream_seed_packet_custody = false`, in addition to denying source
+entitlement, aggregate coverage, universal lift, executed-byte provenance, and
+Lean closure. Closing that custody gap requires a later packet-aware runner or
+an authenticated wrapper that snapshots the verified journal into the runner;
+the present seed removes duplicate work rather than adding a new obstruction
+family.
+
+Consequently the promotion order is:
+
+1. retain each PIQD-derived classifier only as an authenticated finite tagged
+   cut whose clause is recompiled from its exact source certificate;
+2. materialize the base CNF, exact cell delta, and every replayed structural or
+   source-order cut into one byte- and clause-identical terminal formula;
+3. require an independently verified terminal proof and convert it to the
+   checked compact-RUP ingress without dropping or retyping mixed records;
+4. bind the generated Lean data to that exact formula and terminal bank; and
+5. only then add the live cell/source adapter and aggregate cell-coverage
+   theorem needed by the production frontier.
+
+This makes PIQD useful as a survivor generator and refinement accelerator while
+keeping the proof boundary honest. A PIQD SAT result, a false learned clause for
+its own captured model, an `ITERATION_LIMIT` journal, or a source-clean local
+consumer is not terminal UNSAT and does not close the active theorem. No PIQD
+daemon bug was found in this reachability audit; the gaps are in P97 terminal
+promotion, source entitlement, and end-to-end packet custody.
+
+## Lean-FOL encoder smoke addendum
+
+A later serial live smoke exercised PIQD's `lean_fol` path for the first time
+on this daemon. The alg7 encoder, CaDiCaL execution, exact raw-DIMACS replay,
+and small SAT-model decoder all worked. The run also found `PIQD-LEAN-001`:
+the generated Lean UNSAT certificate hard-codes the Lean 4.29 `Std.Sat.CNF`
+structure representation and fails to compile under this repository's Lean
+4.27 list representation. The maintainer reproduced and root-caused the bug;
+a one-line 4.27 compatibility edit makes the remaining LRAT theorem compile.
+
+This does not alter the reachability conclusion above: the smoke used
+hand-authored `LeanSatIr`, because PIQD's Lean-source exporter is not yet
+implemented, and no exact12/Rigid221 encoder input exists. Current P97
+exact-12 work should continue through the raw-DIMACS path with project-owned
+source/variable-map/model validation. Full evidence and remedy order are in
+`docs/audits/p97-piqd-lean-fol-smoke-2026-08-08.md`; the defect record is in
+`docs/audits/piqd-integration-bugs-2026-08-07.md`.

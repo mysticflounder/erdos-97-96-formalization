@@ -1,0 +1,24 @@
+{
+  "blob_hash": "56c2c5d03574e86f173efff0897c63b8abddea0b2562741b78de49fc5633fcc5",
+  "canonical_view": {
+    "key_counts": {
+      "bool_atoms": 0,
+      "domains": 1,
+      "functions": 1,
+      "predicates": 0
+    },
+    "parameters": {
+      "decl": "p97PiqdOrderOneCommutativityCanary",
+      "domain.M": "1",
+      "ir_version": "1",
+      "module": "P97LeanFolCanary",
+      "query": "Prove"
+    },
+    "summary": "lean_fol P97LeanFolCanary::p97PiqdOrderOneCommutativityCanary [Prove] — 1 domain(s), 1 function(s), 0 predicate(s), 0 bool atom(s)"
+  },
+  "encoded": "c lean_fol source P97LeanFolCanary :: p97PiqdOrderOneCommutativityCanary\nc query Prove (encoding negation; UNSAT = proved)\nc domains M=1\np cnf 3 6\n1 0\n2 0\n3 0\n-3 1 0\n3 -1 0\n-3 0\n",
+  "encoded_size": 178,
+  "encoder_version": "piqd-encoder/0.1.0+alg7",
+  "existing": false,
+  "job_id": "78032d33-8fd9-442a-8551-cf69109cf12c"
+}

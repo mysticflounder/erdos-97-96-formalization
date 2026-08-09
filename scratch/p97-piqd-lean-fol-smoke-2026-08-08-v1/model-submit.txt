@@ -1,0 +1,24 @@
+{
+  "blob_hash": "b89c5de9bb80e16edd10a450fcc2df245b03a87218244d8611159a78e0c98769",
+  "canonical_view": {
+    "key_counts": {
+      "bool_atoms": 0,
+      "domains": 1,
+      "functions": 1,
+      "predicates": 0
+    },
+    "parameters": {
+      "decl": "p97PiqdOrderTwoCommutativityWitness",
+      "domain.M": "2",
+      "ir_version": "1",
+      "module": "P97LeanFolModelCanary",
+      "query": "FindModel"
+    },
+    "summary": "lean_fol P97LeanFolModelCanary::p97PiqdOrderTwoCommutativityWitness [FindModel] — 1 domain(s), 1 function(s), 0 predicate(s), 0 bool atom(s)"
+  },
+  "encoded": "c lean_fol source P97LeanFolModelCanary :: p97PiqdOrderTwoCommutativityWitness\nc query FindModel (SAT = witness)\nc domains M=2\np cnf 28 67\n1 2 0\n-1 -2 0\n3 4 0\n-3 -4 0\n5 6 0\n-5 -6 0\n7 8 0\n-7 -8 0\n9 0\n10 11 0\n-10 -11 0\n-10 1 0\n10 -1 0\n-11 2 0\n11 -2 0\n12 -10 0\n12 -11 0\n-12 10 11 0\n13 14 0\n-13 -14 0\n-13 3 0\n13 -3 0\n-14 4 0\n14 -4 0\n15 16 0\n-15 -16 0\n-15 5 0\n15 -5 0\n-16 6 0\n16 -6 0\n-17 13 0\n-17 15 0\n17 -13 -15 0\n-18 14 0\n-18 16 0\n18 -14 -16 0\n19 -17 0\n19 -18 0\n-19 17 18 0\n-20 12 0\n-20 19 0\n20 -12 -19 0\n-21 15 0\n-21 13 0\n21 -15 -13 0\n-22 16 0\n-22 14 0\n22 -16 -14 0\n23 -21 0\n23 -22 0\n-23 21 22 0\n24 25 0\n-24 -25 0\n-24 7 0\n24 -7 0\n-25 8 0\n25 -8 0\n26 -24 0\n26 -25 0\n-26 24 25 0\n-27 23 0\n-27 26 0\n27 -23 -26 0\n-28 20 0\n-28 27 0\n28 -20 -27 0\n28 0\n",
+  "encoded_size": 741,
+  "encoder_version": "piqd-encoder/0.1.0+alg7",
+  "existing": false,
+  "job_id": "3de06d39-282f-4352-9d20-3f6c83b71af8"
+}
