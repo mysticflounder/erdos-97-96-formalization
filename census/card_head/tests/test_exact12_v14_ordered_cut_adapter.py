@@ -13,6 +13,7 @@ from census.card_head.exact12_v14_bound_jobs import materialize_cell
 from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_CUBE,
     MIXED_V3_CELL8_CUBE,
+    MIXED_V4_CELL4_CUBE,
 )
 from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
@@ -30,7 +31,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
     def setUp(self) -> None:
         self.instance = materialize_cell(0).instance
 
-    def test_admits_exactly_the_two_proof_backed_cubes(self) -> None:
+    def test_admits_representative_proof_backed_cubes(self) -> None:
         admitted = detect_proof_backed_source_order_cut(
             REPO_ROOT, self.instance, FROZEN_V8_CUBE
         )
@@ -50,6 +51,15 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
         self.assertEqual(cell8.certificate_kind, SOURCE_ORDER_CERTIFICATE_KIND)
         self.assertEqual(cell8.detector_stage, SOURCE_ORDER_DETECTOR_STAGE)
         self.assertEqual(cell8.learned_clause, (-55, -313, -2134))
+        mixed_v4_cell4 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V4_CELL4_CUBE
+        )
+        self.assertIsNotNone(mixed_v4_cell4)
+        assert mixed_v4_cell4 is not None
+        self.assertEqual(mixed_v4_cell4.bank_index, 6)
+        self.assertEqual(
+            mixed_v4_cell4.learned_clause, (-55, -387, -703, -1605, -1935)
+        )
 
         different = copy.deepcopy(FROZEN_V8_CUBE)
         different["0"] = [1, 3, 4, 7]

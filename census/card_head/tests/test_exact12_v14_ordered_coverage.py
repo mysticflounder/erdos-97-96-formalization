@@ -52,6 +52,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V3_CELL8_LEAN_SOURCE,
     MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
     MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
+    MIXED_V4_CELL4_CUBE,
+    MIXED_V4_CELL4_LEAN_BINDING,
+    MIXED_V4_CELL4_LEAN_CHOICES,
+    MIXED_V4_CELL4_LEAN_SOURCE,
+    MIXED_V4_CELL4_LEAN_SOURCE_BYTES,
+    MIXED_V4_CELL4_LEAN_SOURCE_SHA256,
     ORDER_UNIVERSE_SHA256,
     REQUIRED_SOURCE_HYPOTHESES,
     SOURCE_ORDERS,
@@ -63,7 +69,7 @@ from census.card_head.exact12_v14_ordered_coverage import (
 )
 
 FROZEN_CUBE = {int(center): support for center, support in FROZEN_V8_CUBE.items()}
-MIXED_V3_CASES = (
+MIXED_CASES = (
     (
         2,
         MIXED_V3_CELL2_CUBE,
@@ -113,6 +119,16 @@ MIXED_V3_CASES = (
         MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
         MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
         (-55, -313, -2134),
+    ),
+    (
+        "v4-cell-4",
+        MIXED_V4_CELL4_CUBE,
+        MIXED_V4_CELL4_LEAN_BINDING,
+        MIXED_V4_CELL4_LEAN_CHOICES,
+        MIXED_V4_CELL4_LEAN_SOURCE,
+        MIXED_V4_CELL4_LEAN_SOURCE_BYTES,
+        MIXED_V4_CELL4_LEAN_SOURCE_SHA256,
+        (-55, -387, -703, -1605, -1935),
     ),
 )
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -243,7 +259,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             self.assertEqual(len(source), byte_count)
             self.assertEqual(hashlib.sha256(source).hexdigest(), digest)
 
-    def test_mixed_v3_survivors_have_proof_backed_positive_cuts(self) -> None:
+    def test_mixed_survivors_have_proof_backed_positive_cuts(self) -> None:
         instance = materialize_cell(0).instance
         for (
             cell,
@@ -254,7 +270,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             source_bytes,
             source_sha256,
             expected_clause,
-        ) in MIXED_V3_CASES:
+        ) in MIXED_CASES:
             with self.subTest(cell=cell):
                 certificate = detect_proof_backed_ordered_coverage(cube)
                 self.assertIsNotNone(certificate)

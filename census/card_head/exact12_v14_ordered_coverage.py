@@ -8,8 +8,8 @@ positive-incidence obstruction already represented by a Lean consumer.
 The diagnostic detector is broader than the production proof-backed registry.
 Only exact cubes whose replay has a checked `SourceOrderPositiveNogood` Lean
 value may be admitted by CEGAR; the current registry contains the frozen V8
-cube and the Lean-promoted mixed-v3 survivor cuts.  This module does not prove schedule coverage, a
-universal lift, or closure of a live sorry.
+cube and the Lean-promoted mixed-v3 and mixed-v4 survivor cuts.  This module
+does not prove schedule coverage, a universal lift, or closure of a live sorry.
 """
 
 from __future__ import annotations
@@ -167,6 +167,22 @@ MIXED_V3_CELL7_LEAN_SOURCE = (
 MIXED_V3_CELL7_LEAN_SOURCE_BYTES = 8376
 MIXED_V3_CELL7_LEAN_SOURCE_SHA256 = (
     "087361deae14a17ac3b4fd63cd7ebb715a257539162ac021460ff3089aa01718"
+)
+MIXED_V4_CELL4_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell4PositiveNogood"
+)
+MIXED_V4_CELL4_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientationCoverage_mixedV4Cell4"
+)
+MIXED_V4_CELL4_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell4PositiveCut.lean"
+)
+MIXED_V4_CELL4_LEAN_SOURCE_BYTES = 8701
+MIXED_V4_CELL4_LEAN_SOURCE_SHA256 = (
+    "2c309210ee23484779ce5323162fcf7b551f3bd7b035c3ff87b2b6b83f9c750f"
 )
 REQUIRED_SOURCE_HYPOTHESES = (
     "Realizes",
@@ -436,6 +452,42 @@ MIXED_V3_CELL7_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+MIXED_V4_CELL4_CUBE = {
+    "0": [3, 4, 5, 9],
+    "1": [0, 2, 6, 8],
+    "2": [5, 7, 10, 11],
+    "3": [2, 4, 8, 10],
+    "4": [2, 3, 6, 11],
+    "5": [0, 4, 6, 7],
+    "6": [0, 2, 3, 10],
+    "7": [1, 3, 6, 8],
+    "8": [1, 4, 6, 9],
+    "9": [4, 5, 8, 11],
+    "10": [0, 5, 8, 9],
+    "11": [0, 7, 9, 10],
+}
+MIXED_V4_CELL4_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL4_CUBE)
+MIXED_V4_CELL4_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL4_CUBE[str(center)])}
+    for center in (1, 3, 4, 7, 8)
+]
+MIXED_V4_CELL4_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL4_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL4_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL4_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL4_LEAN_CHOICES,
+    "source_path": MIXED_V4_CELL4_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL4_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL4_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL4_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL4_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL4_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
 PROOF_BACKED_CUBE_BINDINGS = (
     (FROZEN_V8_CUBE, FROZEN_V8_LEAN_BINDING, FROZEN_V8_LEAN_CHOICES),
     (
@@ -462,6 +514,11 @@ PROOF_BACKED_CUBE_BINDINGS = (
         MIXED_V3_CELL8_CUBE,
         MIXED_V3_CELL8_LEAN_BINDING,
         MIXED_V3_CELL8_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL4_CUBE,
+        MIXED_V4_CELL4_LEAN_BINDING,
+        MIXED_V4_CELL4_LEAN_CHOICES,
     ),
 )
 

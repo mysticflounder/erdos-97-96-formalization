@@ -371,6 +371,44 @@ This shows that the cell-8 order cut is productive but not by itself close to
 finite exhaustion; the next compute should use the expanded multi-survivor
 bank rather than merely increasing this one-cell limit again.
 
+The ensuing fresh mixed-v4 wave used all twelve authorized workers against
+cells `0` through `11`, starting from empty journals under commit `ec013bfd`.
+All 4,662 retained records replay exactly, including exact CNF replay.  The
+five newly admitted source-order cuts all fired in live search at their old
+survivor frontiers: cell `2` at record 208 (bank index 1), cell `4` at record
+257 (index 2), cell `5` at record 229 (index 3), cell `7` at record 270
+(index 4), and cell `8` at record 110 (index 5).  The frozen-V8 entry at bank
+index 0 did not fire.  The complete stage totals are 4,529 duplicate-center
+cuts, 60 equilateral-bisector collisions, 41 perpendicular-bisector-convex
+cuts, 16 three-triad collisions, eight equal-K4 cuts, five source-order cuts,
+and one cut from each of the seven-point twin-four-circle, seven-point
+six-circle, and eight-point five-circle families.
+
+Eleven cells reached the 400-record iteration limit.  Cell `4` passed its
+source-order cut, learned four further structural refinements, and exposed a
+new structurally unresolved survivor at record 262.  Its survivor hash is
+`15e7be554ec876f7622a8ec9543ed6c58c77952a2cb3e89805c414d91fca5a28`.
+No cell produced terminal UNSAT, DRAT, a production terminal bank, aggregate
+coverage, a universal lift, or a live Lean closure.  The retained wave is
+documented at
+`scratch/rigid221-sourceheavy-anchor/exact12-v14-wave-ec013bfd-mixedv4-i400-c0000-0011-r2/RUN-SUMMARY.md`.
+An earlier `r1` launcher attempt created its cell directories before invoking
+the fail-closed runner, so every invocation rejected the non-fresh workdir and
+wrote no journal; it is inert launch-failure evidence, not a search run.
+
+Post-wave triage of the saved cell-4 survivor found a sixth source-entitled
+positive-order predicate.  Five selected rows force one of the two
+convex-five-point cores `(a,x,b,c,y) = (2,1,6,8,4)` and
+`(2,1,8,7,3)`; the cores split the 48 frozen boundary orders into four groups
+of twelve (direct/mirror and forward/reverse).  The checked Lean value
+`mixedV4Cell4PositiveNogood` records the source-level contradiction, while the
+authenticated Python binding compiles its five row choices to
+`(-55, -387, -703, -1605, -1935)` at appended bank index `6`.  This is one
+finite learned predicate obtained from the survivor.  It is not a terminal
+cell proof, schedule coverage, a universal lift, or a live-sorry closure; a
+fresh cell-4 run under the new detector contract is required to measure what
+it exposes next.
+
 An independent promotion audit found one remaining postprocessor hardening
 task: detector files are copied and hash-checked into the staged source, but the
 second semantic replay still loads the live repository paths.  No terminal
@@ -382,24 +420,27 @@ current postprocessor.
 
 The next production target is therefore:
 
-1. rerun the affected cells under the expanded proof-backed source-order bank
-   and the mixed-v4 positive-match adapter, extending cell 8 beyond the
-   canary's 140-record frontier;
-2. retain the tagged-v3 journals as read-only mining evidence, but do not splice
-   them into the new detector hash chain; start fresh authenticated v4 journals
-   under the new contract;
-3. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the landed postprocessor and
-   standalone bank materializer, then generate the exact compact-RUP and DIMACS
-   equality inputs required to obtain a checked
-   `DimacsUnsatisfiable` theorem for that exact full terminal formula;
-4. extend successful terminal production to every required cell in the frozen
+1. rerun cell `4` from a fresh authenticated journal with the sixth
+   source-order predicate enabled, then classify any newly exposed survivor
+   before increasing the iteration bound;
+2. inspect the eleven iteration-limit tails only for recurring generalized
+   predicates with a source-level Lean entitlement, rather than mining exact
+   assignment blockers;
+3. after such a predicate and its independent replay land, run a focused fresh
+   mixed-v4 follow-up under a new authenticated detector contract;
+4. if a cell reaches `UNSAT_DRAT_VERIFIED`, first require the terminal
+   postprocessor TOCTOU hardening, then run the standalone bank materializer
+   and generate the exact compact-RUP and DIMACS equality inputs required to
+   obtain a checked `DimacsUnsatisfiable` theorem for that exact full terminal
+   formula;
+5. extend successful terminal production to every required cell in the frozen
    648-coordinate schedule;
-5. choose the scalable all-cell serialization/equality form—generated per-cell
+6. choose the scalable all-cell serialization/equality form—generated per-cell
    checks or a schedule-parametric authenticated checker—without embedding 648
    redundant 1,280-clause lists unnecessarily;
-6. aggregate immutable terminal records while rejecting missing, duplicated,
+7. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-7. aggregate the per-cell terminal consumers and connect their schedule
+8. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains
