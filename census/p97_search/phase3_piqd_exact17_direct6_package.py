@@ -1364,19 +1364,29 @@ def build_direct6_root_refinement_package(
             "package-result.json": result_bytes,
         }
         _emit_immutable(output_dir, files)
-        artifact_hashes = MappingProxyType(
-            {name: sha256_bytes(payload) for name, payload in sorted(files.items())}
+        packet_wave = _strict_canonical_json(
+            wave_bytes, path="constructed packet wave manifest"
         )
+        packet_hashes = {
+            name: sha256_bytes(payload) for name, payload in sorted(files.items())
+        }
+        artifact_hashes = MappingProxyType(dict(packet_hashes))
         packet = RunPacket(
             packet_id=WAVE_ID,
             cnf=aggregate_bytes,
             producer_manifest=manifest_snapshot.content,
-            wave_manifest=MappingProxyType(wave),
-            package_hashes=artifact_hashes,
+            # The public generic runner serializes these mappings directly.
+            # Give it exact JSON containers, isolated from immutable internal
+            # package state, rather than MappingProxyType wrappers.
+            wave_manifest=packet_wave,
+            package_hashes=dict(packet_hashes),
             exact17_package=True,
         )
         if (
             packet.packet_id != wave["wave_id"]
+            or canonical_json_bytes(packet.wave_manifest) != wave_bytes
+            or packet.package_hashes["wave-manifest.json"]
+            != sha256_bytes(canonical_json_bytes(packet.wave_manifest))
             or packet.package_hashes["discovery.cnf"] != sha256_bytes(packet.cnf)
             or packet.package_hashes["producer-manifest.json"]
             != sha256_bytes(packet.producer_manifest)

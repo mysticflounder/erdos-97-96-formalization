@@ -189,8 +189,12 @@ package-result.json
 Existing byte-identical files allow idempotent verification; different files,
 extra directory entries, symlinks, link/inode changes, output-file mutation,
 and output-directory replacement fail closed.  The package result and artifact
-hash mapping are immutable.  The optional public `RunPacket` is bound to the
-same CNF, manifest, wave, and artifact hashes and is suitable only for a later
+hash mapping are immutable.  At the generic runner boundary, `RunPacket` gets
+fresh exact built-in JSON dictionaries/lists for `wave_manifest` and a fresh
+built-in dictionary for `package_hashes`; the shared runner serializes these
+containers directly.  These boundary copies are validated and self-hash-bound
+to the emitted artifacts before return, and do not expose the immutable
+`PackageResult` mapping.  The public packet is suitable only for a later
 one-job canary.
 
 ## Frozen instance and authenticated local probe

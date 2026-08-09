@@ -10,7 +10,13 @@ from typing import Any
 import pytest
 
 from census.p97_search import phase3_piqd_exact17_direct6_package as package
-from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_bytes
+from census.p97_search.phase3_cegar_wave import (
+    canonical_json_bytes,
+    sha256_bytes,
+    wave_manifest_sha256,
+)
+from census.p97_search.phase3_piqd_exact17_runner import run_packet
+from census.p97_search.phase3_piqd_oracle import PiqdOracleError
 
 
 @dataclass
@@ -363,6 +369,48 @@ def test_known_tiny_sat_package_is_deterministic_and_immutable(tmp_path: Path) -
     assert packet_a.package_hashes["discovery.cnf"] == sha256_bytes(fixture.aggregate)
     with pytest.raises(TypeError):
         result_a.artifact_hashes["new"] = "0" * 64  # type: ignore[index]
+
+
+def test_run_packet_uses_builtin_json_at_shared_prepare_boundary(
+    tmp_path: Path,
+) -> None:
+    fixture = _make_fixture(tmp_path)
+    packet, _result = _build(fixture)
+
+    assert type(packet.wave_manifest) is dict
+    assert type(packet.wave_manifest["source"]) is dict
+    assert type(packet.wave_manifest["encoding"]) is dict
+    assert type(packet.wave_manifest["execution"]) is dict
+    assert type(packet.wave_manifest["promotion"]) is dict
+    assert type(packet.package_hashes) is dict
+    assert type(packet.producer_manifest) is bytes
+    assert wave_manifest_sha256(packet.wave_manifest) == sha256_bytes(
+        canonical_json_bytes(packet.wave_manifest)
+    )
+
+    class RejectingBoundaryClient:
+        prepared = False
+
+        def prepare_cnf(self, **kwargs: Any) -> None:
+            self.prepared = True
+            assert type(kwargs["wave_manifest"]) is dict
+            assert type(kwargs["wave_manifest"]["encoding"]) is dict
+            assert type(kwargs["producer_manifest"]) is bytes
+            raise PiqdOracleError("intentional fake prepare boundary stop")
+
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    client = RejectingBoundaryClient()
+    run = run_packet(
+        packet,
+        client=client,  # type: ignore[arg-type]
+        journal_path=run_dir / "attempts.jsonl",
+        receipt_path=run_dir / "receipt.json",
+        max_polls=1,
+        poll_interval_s=0,
+    )
+    assert client.prepared
+    assert run.receipt["terminal_outcome"] == "ERROR"
 
 
 def test_known_tiny_unsat_is_classified_discovery_only(tmp_path: Path) -> None:
