@@ -1,11 +1,13 @@
 # piqd integration bug handoff — 2026-08-07
 
 Audit status: updated through 2026-08-09; one defect remains open: the
-encoder-path prepare race. Eleven findings have been fixed and verified in the
-installed release. One job-origin attestation gap is recorded below as an
-enhancement, not a bug. The six PIQD-MIN-001 session/receipt findings reported
-in nthdegree message #3839 are fixed in maintainer commit
-`bd026ec51042db537b510406ed57bd28ae3cde90` and deployed as binary SHA-256
+encoder-path prepare race. Thirteen findings have been fixed and verified in
+the installed release. One job-origin attestation gap is recorded below as an
+enhancement, not a bug. The
+six PIQD-MIN-001 session/receipt findings reported in nthdegree message #3839
+were fixed in maintainer commit
+`bd026ec51042db537b510406ed57bd28ae3cde90`; that release was initially
+deployed as binary SHA-256
 `1af29eb71661158fc1067879b2d1852360afd984c1b3b944e2e325c78bbd79f1`.
 
 This log records piqd defects found while implementing the P97
@@ -26,7 +28,7 @@ never promised to cover are listed separately so they are not misfiled as bugs.
 ### PIQD-ENC-001: concurrent identical encoder prepares can return HTTP 500
 
 - **Current release:** piqd `0.1.0`, binary SHA-256
-  `1af29eb71661158fc1067879b2d1852360afd984c1b3b944e2e325c78bbd79f1`.
+  `cc356a51ddd62f99172263ab31c133291d5865d981959467e833cb7fdacf175f`.
 - **Endpoint/state:** `POST /jobs/prepare`, the encoder path before the job
   reaches `prepared`.
 - **Cause:** the path retains a lookup-then-insert race for concurrent
@@ -194,11 +196,13 @@ reproduced during this integration slice.
 
 ### PIQD-MIN-001 session/receipt fixes
 
-The six findings reported in nthdegree messages #3836–#3839 are fixed and
-deployed in maintainer commit
-`bd026ec51042db537b510406ed57bd28ae3cde90`. The installed and live piqd
-binary has SHA-256
-`1af29eb71661158fc1067879b2d1852360afd984c1b3b944e2e325c78bbd79f1`.
+The six findings reported in nthdegree messages #3836–#3839 are fixed in
+maintainer commit
+`bd026ec51042db537b510406ed57bd28ae3cde90`. That original session/receipt
+release had binary SHA-256
+`1af29eb71661158fc1067879b2d1852360afd984c1b3b944e2e325c78bbd79f1`;
+the current live daemon identity is recorded below with the later signed-
+literal fix.
 The fix validation reports 195 library tests, 14 integration binaries, and
 clippy clean. The old-code concurrent-solve race reproduced 4/5 times; the
 base-prefix race was structurally confirmed; and the torn-tail corruption was
@@ -314,9 +318,69 @@ minimality evidence, or theorem closure.
   do not exercise crash consistency.
 - **Status:** fixed and deployed in `bd026ec`.
 
+### PIQD-SESSION-004: `i32::MIN` clause/assumption literals could overflow `abs()` — fixed and live
+
+- **Original severity:** high.
+- **Affected behavior:** session clauses accepted signed `i32` values including
+  `i32::MIN`, while journal processing called `lit.abs()` and could overflow
+  or miscompute `max_var`.
+- **Evidence and fix:** the source/type-level finding was reported in nthdegree
+  #3853–#3854 without a P97 live reproduction. Maintainer Rust commit
+  `ad1d37fa94a935678e5941bd1406ce7e77f71c89` is pushed and remote-verified;
+  it fixes the signed-literal overflow and the zero-literal issue at the same
+  ingress.
+- **Deployed/live fix:** maintainer Rust commit
+  `ad1d37fa94a935678e5941bd1406ce7e77f71c89` is pushed and remote-verified;
+  after the daemon restart, `/version` serves binary SHA-256
+  `4efca3db46e6759a0d27bcfdbf032f0007e164953b76a8523d8eae6472e83c2e`.
+- **Live canary:** fresh session
+  `dfe58da6-f589-41cc-88af-9b83ca9cf9ab` rejected an `i32::MIN` clause with
+  HTTP 400 and an `i32::MIN` assumption with HTTP 422. The journal remained
+  empty (`e3b0c442...b855`, 0 bytes), and state stayed
+  `clauses=0/max_var=0/solves=0/last_status=null`. A valid `[1]` add followed
+  by `[-1]` solve then returned UNSAT at index 1; close state was
+  `clauses=1/max_var=1/solves=1`.
+- **Acceptance criterion:** passed in the deployed binary: both signed-literal
+  paths reject before session, journal, or receipt mutation, and the same
+  ingress also fixes the corresponding zero-literal issue. The regression
+  tests and published deployed SHA are recorded above.
+- **P97 mitigation:** the hardened runner continues to preflight literals to
+  `-i32::MAX..i32::MAX`. Session receipts remain `OBSERVATIONAL_ONLY` because
+  daemon and solver origin are not attested; this sequential canary does not
+  establish crash/recovery or concurrency acceptance.
+- **Status:** fixed, pushed, restarted, and live-verified.
+
+### PIQD-SESSION-005: near-`i32::MAX` literals could trigger resource exhaustion — fixed and live
+
+- **Original severity:** high.
+- **Affected behavior:** a near-`i32::MAX` literal was accepted by the session
+  ingress, after which the worker attempted an enormous variable-space
+  reservation and could hang. The maintainer's test hung for more than 10
+  minutes and was killed; this was reported in nthdegree #3860. It was not
+  reproduced by the P97 live runner.
+- **Fix and deployment:** maintainer Rust commit `6d8b984` is pushed and
+  remote-verified. The live binary SHA-256 is
+  `cc356a51ddd62f99172263ab31c133291d5865d981959467e833cb7fdacf175f`, and
+  `/version` exposes `limits.max_var=1000000`.
+- **Live canary:** fresh session `a55acf76-10d8-4385-8006-7a39cbe12fcf`
+  rejected clause `[1000001]` with HTTP 400 and assumption `[1000001]` with
+  HTTP 422. The journal stayed at 0 bytes with SHA `e3b0c442...b855`, and
+  state remained `clauses=0/max_var=0/solves=0/last_status=null`. A valid `[1]`
+  add followed by `[-1]` solve returned UNSAT, followed by a clean close.
+  No allocation at the configured ceiling was attempted.
+- **Acceptance criterion:** passed in the deployed binary: the configurable
+  default cap is 1,000,000 and over-cap clauses and assumptions reject with 4xx
+  before session, journal, or receipt mutation; boundary and near-maximum
+  regression coverage is recorded by the maintainer.
+- **P97 mitigation:** current P97's maximum variable count is 74,813, and the
+  hardened runner continues to preflight literals before session creation.
+  Session receipts remain `OBSERVATIONAL_ONLY`; this sequential canary does not
+  attest daemon/solver origin or establish resource behavior at the ceiling.
+- **Status:** fixed, pushed, deployed, restarted, and live-verified.
+
 Current installed identities after the session/receipt fix:
 
-- piqd `0.1.0`: `1af29eb71661158fc1067879b2d1852360afd984c1b3b944e2e325c78bbd79f1`;
+- piqd `0.1.0`: `cc356a51ddd62f99172263ab31c133291d5865d981959467e833cb7fdacf175f`;
 - piqc `0.1.0`: `13b9f765d4aa74806ebbd90114242d16d7547eb8e788e978ccd27507dae8c8f1`.
 
 The raw-CNF P97-adapter integration on 2026-08-08 found no additional piqd
