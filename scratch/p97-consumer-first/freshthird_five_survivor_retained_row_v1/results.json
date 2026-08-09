@@ -1,0 +1,162 @@
+[
+  {
+    "name": "qsource_radius_base",
+    "arm": "qsource",
+    "choice": "radius",
+    "control": null,
+    "sha256": "b5b4282dd5daa4dc16f8f42449f7e437b8a534876abfa9aac1ef5ff011c0f016",
+    "N": 17,
+    "z3": "sat",
+    "cvc5": "sat"
+  },
+  {
+    "name": "qsource_rho_base",
+    "arm": "qsource",
+    "choice": "rho",
+    "control": null,
+    "sha256": "7a63d6886771c33d224032c55a71b7c8c1b715d8e301b06c14484781bd6ad95a",
+    "N": 17,
+    "z3": "sat",
+    "cvc5": "sat"
+  },
+  {
+    "name": "qother_radius_base",
+    "arm": "qother",
+    "choice": "radius",
+    "control": null,
+    "sha256": "a1bec341564fc3f60e01bf7b40d469e2da5241e5e5f57d423ba129bf2d035ed5",
+    "N": 17,
+    "z3": "sat",
+    "cvc5": "sat"
+  },
+  {
+    "name": "qother_rho_base",
+    "arm": "qother",
+    "choice": "rho",
+    "control": null,
+    "sha256": "567bea15e440503c62c67e82ba9e7376961c1e98745d8f329a85f407783f143e",
+    "N": 17,
+    "z3": "sat",
+    "cvc5": "sat"
+  },
+  {
+    "name": "qsource_radius_positive",
+    "arm": "qsource",
+    "choice": "radius",
+    "control": "positive",
+    "sha256": "53c96b4e54a3f12b9965a239e119ff698fac6916dc3ad3842c83ff7bf2a6aa09",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qsource_radius_non_exact",
+    "arm": "qsource",
+    "choice": "radius",
+    "control": "non_exact",
+    "sha256": "d15b690f99eacf2875932a99c2114260d573a14312ea1b1eb6b6b81e32360abf",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qsource_radius_neither",
+    "arm": "qsource",
+    "choice": "radius",
+    "control": "neither",
+    "sha256": "3bdf298268c7c852c08a0cbf4a0d304a4a5161c3a46dda3277d578e61f94ff5a",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qsource_rho_positive",
+    "arm": "qsource",
+    "choice": "rho",
+    "control": "positive",
+    "sha256": "a94b5546e36fc9178fa87af01e9a3a041a8da0e812fa267a09205ad6c9f81a02",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qsource_rho_non_exact",
+    "arm": "qsource",
+    "choice": "rho",
+    "control": "non_exact",
+    "sha256": "12871c1d7c5d525dc2d66ac4f52248a5b08ae225abf07d42e44280f258389c85",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qsource_rho_neither",
+    "arm": "qsource",
+    "choice": "rho",
+    "control": "neither",
+    "sha256": "f3bcf3052f648c78b36b4e19342c19dabf2549e70a65c548d3c8c488534f0767",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_radius_positive",
+    "arm": "qother",
+    "choice": "radius",
+    "control": "positive",
+    "sha256": "048dce459eb52bdf8e1e725cee5ce2f6330a2388d82f9f540e7b8109bcc4ebd2",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_radius_non_exact",
+    "arm": "qother",
+    "choice": "radius",
+    "control": "non_exact",
+    "sha256": "8d86e0b87ac9f6c032a9c3c80e32efbebe5e2cd60e22bcaf5fc9fea666f0fc3a",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_radius_neither",
+    "arm": "qother",
+    "choice": "radius",
+    "control": "neither",
+    "sha256": "c302ad952e041e0b4ab0c2750a1ac558a293c2f3a13ab83b696f57c81ef1b628",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_rho_positive",
+    "arm": "qother",
+    "choice": "rho",
+    "control": "positive",
+    "sha256": "84ea56858b25dd5849b80799b214c0b629fa05c0ad111c82d0e74b3bc22d8fb6",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_rho_non_exact",
+    "arm": "qother",
+    "choice": "rho",
+    "control": "non_exact",
+    "sha256": "6f272fdee3928c99d85fb5a62c167108c30c1d1b01e4807336c08a422058b135",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  {
+    "name": "qother_rho_neither",
+    "arm": "qother",
+    "choice": "rho",
+    "control": "neither",
+    "sha256": "dc9c36fac39eb9514ae22f456c59c414ad803624ffc91e89e1e749f27e00851b",
+    "N": 17,
+    "z3": "unsat",
+    "cvc5": "unsat"
+  }
+]

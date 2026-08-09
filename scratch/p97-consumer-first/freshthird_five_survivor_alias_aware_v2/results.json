@@ -1,0 +1,950 @@
+[
+  {
+    "name": "control_known_base_sat",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 285,
+    "sha256": "c5268a893a18f7d111129f2c052e9b87b206105b7db3f5eb6e2127f1b026a716",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "control_allowed_db_cp_alias_sat",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 286,
+    "sha256": "8b807e931661f246f6705f210dfee2f9ed0f92ec1f22fa06ceb57a8dd5eb6444",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "control_deleted_in_B4_unsat",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "f46d6b777a6b4cd75d87dd40ce4434bc6f554c708e199c8071a60c929c9c812f",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "control_b0_unlinked_unsat",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "ad21d65829bb7ab3b38103f7d14c49edeea4aadda58da75922f5caff844308e9",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "control_B3_card_three_unsat",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "2e9ce3e728a69fac722e57a0b24e286454c541fc2f65aca55ab0c1e1dced0ea4",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_radius_ingress",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 286,
+    "sha256": "20349602c7b4ebbea0bb47d8d0254a826165acdc86e866010e1ce091922d2486",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_radius_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "ea92942bc1f5541517b47f545e6206371a18c852fb377d2dc0655b1ab729ae81",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_radius_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "d90867f439846785eacc4bf9d20f35d522e6813bfd14b9333d0fb7ebac089274",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_radius_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "0003d1e6c06e64f741fbfe0d226dffba2b296d9386defedaf7ef6e3accfe08bd",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_rho_ingress",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 286,
+    "sha256": "d384d0ce53ef16c11622c585474f751bdcf048fb0bb70ace9ce1a2c91f93d23a",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_rho_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "c90a458d8fe199a732e1b99135c2861501ec8dff70609b436b7b785d19d168b1",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_rho_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "910f42b69ce09a0aaa2296b7b26a473ff799d4ae53b20932602017dc4c265d1b",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qsource_rho_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "766f8ab3c9464e987bb3a9664463d186c7e1f7fbd2922ed49c9957e9e7f99a5c",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_radius_ingress",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 285,
+    "sha256": "c5268a893a18f7d111129f2c052e9b87b206105b7db3f5eb6e2127f1b026a716",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_radius_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "92b9aa758755df8615cb6e010aa0e501739b0d403f3771355ee911dd761166f0",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_radius_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "055021eaf19ca750cafcca302e6fa230a006b3869d2482df7c2e58c740f8d6f4",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_radius_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "ce43c23867c78a9b916769bc5c0eadc8c940f368bf01347e42b80e181fb08843",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_rho_ingress",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 285,
+    "sha256": "479627a4faa1f61e24bb54c53bc348fd668bb1864eb25604ac8be5322f009fc3",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_rho_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "b2ccef042a6c4a44dd40316c12dc6d0c327a6beaa3601927fb62c769ec79584a",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_rho_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "e8dde329af64f91ab73d12baaec887f50e9d84fd2ffa42f7e4974645219792e8",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_first_qother_rho_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "first",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "53d5af7944a4b98aff26f933aeeade3a5bfe6ce297cb61d8d1ab425201ce6873",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_radius_ingress",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 286,
+    "sha256": "620970084fec625609fc8addbedf341180859299e4a1ca9cb0ea4b7954a2555f",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_radius_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "f4705670d0cb30d687f5e2d978b2cc255375648fb239ace7b0a1219724775362",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_radius_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "da5dda77ab17af802093c5bd7c0928236d4dd74b57de124a8ae7aab4e9988839",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_radius_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "a5bb3e95a944448146fcf9024ad124771edb229cb85291739f5082b94773264b",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_rho_ingress",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 286,
+    "sha256": "eed4358a029c167c8b95be6a23a5f58a58051cd8c347655a831717d6c370eaee",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_rho_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "702fac73495c79b483069d7ed5da2f4a535569578d6fbbbb77e2a87e262a1868",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_rho_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "6ef4c3eec8d650bd7758a4ae71e768f6725602091b59a22f718311a6876b30be",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qsource_rho_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qsource",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 287,
+    "sha256": "dbb8e7b7ea1f92a1af9d1460968e136b3e3cb511ab1bc387ec2abdca247f3420",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_radius_ingress",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 285,
+    "sha256": "9aaf053f762a9cc9eb3cd60728e6b8a9947ecba894bc0b33b8793e9196cdbc8c",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_radius_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "d9e1074098a113527f8c220e03c16fa6461dbf042ad35e5b96b0e7f9d2bb8f35",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_radius_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "f35d21f6a509063977a0f7062cd4db526957fab2ff5777e0994fccbf49620add",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_radius_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "radius"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "3de54782bce6046b19e7c2a2fe477240871ea0e1a2473889a0131af2eda59030",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_rho_ingress",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "sat",
+    "assertion_count": 285,
+    "sha256": "a10f119fbd174ffb47db6e47ef092d9b1fd2fc684898917f6e85d207eb2f0a8e",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "cvc5": {
+        "status": "sat",
+        "model_values": 238,
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_rho_force_explicit_overlap_ge_three",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "c34f8fb8877e4bb18ef3db4b7f656b3818dfa878925a6611a69458528d70e312",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_rho_force_both_outside_hits_and_pair_hit",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "d0e5c4d9dc793584d61ae4b8685a2c1dc69e23007bceeb0670836136133d65fe",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  },
+  {
+    "name": "main_second_qother_rho_force_cap_center_two_outside_hits",
+    "tag": {
+      "orientation": "second",
+      "deleted": "qother",
+      "b2_choice": "rho"
+    },
+    "query": "base",
+    "expected": "unsat",
+    "assertion_count": 286,
+    "sha256": "416c1b5f21002a2a1c90d0862a78d7fb990bfc150b2a237a7a7be7247d1fdb1b",
+    "N": 17,
+    "solvers": {
+      "z3": {
+        "status": "unsat"
+      },
+      "cvc5": {
+        "status": "unsat"
+      }
+    },
+    "agreement": true,
+    "expected_ok": true,
+    "validators_ok": true
+  }
+]
