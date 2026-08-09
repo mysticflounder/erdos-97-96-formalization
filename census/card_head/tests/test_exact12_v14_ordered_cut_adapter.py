@@ -18,6 +18,8 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V4_CELL1_THIRD_CUBE,
     MIXED_V4_CELL4_CUBE,
     MIXED_V4_CELL10_CUBE,
+    MIXED_V5_CELL4_CUBE,
+    MIXED_V5_CELL9_CUBE,
 )
 from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
@@ -101,6 +103,26 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
         self.assertEqual(
             mixed_v4_cell10.learned_clause,
             (-264, -704, -898, -1437, -2034, -2134),
+        )
+        mixed_v5_cell4 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V5_CELL4_CUBE
+        )
+        self.assertIsNotNone(mixed_v5_cell4)
+        assert mixed_v5_cell4 is not None
+        self.assertEqual(mixed_v5_cell4.bank_index, 18)
+        self.assertEqual(
+            mixed_v5_cell4.learned_clause,
+            (-29, -55, -165, -1342, -2138),
+        )
+        mixed_v5_cell9 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V5_CELL9_CUBE
+        )
+        self.assertIsNotNone(mixed_v5_cell9)
+        assert mixed_v5_cell9 is not None
+        self.assertEqual(mixed_v5_cell9.bank_index, 19)
+        self.assertEqual(
+            mixed_v5_cell9.learned_clause,
+            (-55, -370, -1170, -2207, -2560),
         )
 
         different = copy.deepcopy(FROZEN_V8_CUBE)

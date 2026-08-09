@@ -118,6 +118,18 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V4_CELL11_LEAN_SOURCE,
     MIXED_V4_CELL11_LEAN_SOURCE_BYTES,
     MIXED_V4_CELL11_LEAN_SOURCE_SHA256,
+    MIXED_V5_CELL4_CUBE,
+    MIXED_V5_CELL4_LEAN_BINDING,
+    MIXED_V5_CELL4_LEAN_CHOICES,
+    MIXED_V5_CELL4_LEAN_SOURCE,
+    MIXED_V5_CELL4_LEAN_SOURCE_BYTES,
+    MIXED_V5_CELL4_LEAN_SOURCE_SHA256,
+    MIXED_V5_CELL9_CUBE,
+    MIXED_V5_CELL9_LEAN_BINDING,
+    MIXED_V5_CELL9_LEAN_CHOICES,
+    MIXED_V5_CELL9_LEAN_SOURCE,
+    MIXED_V5_CELL9_LEAN_SOURCE_BYTES,
+    MIXED_V5_CELL9_LEAN_SOURCE_SHA256,
     ORDER_UNIVERSE_SHA256,
     REQUIRED_SOURCE_HYPOTHESES,
     SOURCE_ORDERS,
@@ -289,6 +301,26 @@ MIXED_CASES = (
         MIXED_V4_CELL11_LEAN_SOURCE_BYTES,
         MIXED_V4_CELL11_LEAN_SOURCE_SHA256,
         (-1620, -2096, -3017),
+    ),
+    (
+        "v5-cell-4",
+        MIXED_V5_CELL4_CUBE,
+        MIXED_V5_CELL4_LEAN_BINDING,
+        MIXED_V5_CELL4_LEAN_CHOICES,
+        MIXED_V5_CELL4_LEAN_SOURCE,
+        MIXED_V5_CELL4_LEAN_SOURCE_BYTES,
+        MIXED_V5_CELL4_LEAN_SOURCE_SHA256,
+        (-29, -55, -165, -1342, -2138),
+    ),
+    (
+        "v5-cell-9",
+        MIXED_V5_CELL9_CUBE,
+        MIXED_V5_CELL9_LEAN_BINDING,
+        MIXED_V5_CELL9_LEAN_CHOICES,
+        MIXED_V5_CELL9_LEAN_SOURCE,
+        MIXED_V5_CELL9_LEAN_SOURCE_BYTES,
+        MIXED_V5_CELL9_LEAN_SOURCE_SHA256,
+        (-55, -370, -1170, -2207, -2560),
     ),
 )
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -471,7 +503,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                         ],
                         [24, 24],
                     )
-                if cell == "v4-cell-10-second":
+                if "preferred_common_five_cores" in binding:
                     preferred_many = binding["preferred_common_five_cores"]
                     self.assertEqual(
                         {
