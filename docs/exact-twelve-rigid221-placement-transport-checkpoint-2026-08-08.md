@@ -97,19 +97,25 @@ identical-CNF DRAT-producing rerun before accepting UNSAT.  Cell 0 is a real
 authenticated survivor data, but it is not itself a contradiction or a
 coverage result.
 
-`exact12_v14_structural_cegar.py` is now a tagged mixed-v3 refinement
-dispatcher over that binding.  It first admits the single current
-theorem-backed source-order cut after freshly rebuilding and authenticating its
-Lean source bank, then falls back to the existing order-independent structural
-metric detector and independent certificate replay.  Every admitted cut is
-recompiled to the exact selected-row variables and written to an append-only
-hash chain bound to the cell job and the nine-file semantic detector contract.
-The v3 journal tags the certificate family, schema, and detector stage; stores
-the canonical cube and complete positive SAT assignment; and on replay checks
-the cube, assignment, certificate, learned clause, cut falsification, and exact
-family-specific bank or structural proof.  Legacy v2 journals are rejected
-rather than silently migrated.  The retained v2 waves remain historical
-nonterminal diagnostics; a fresh v3 wave is required for promotion.
+`exact12_v14_structural_cegar.py` is now a tagged mixed-v4 refinement
+dispatcher over that binding.  It freshly rebuilds and authenticates the
+complete theorem-backed source-order bank, recompiles every stored certificate,
+and admits the lowest-index bank clause whose recorded selected-row choices are
+all selected by the current assignment.  This is deliberately broader than
+exact-cube equality: the Lean `SourceOrderPositiveNogood` consumer depends only
+on positive matching of the recorded rows.  If no bank clause matches, the
+dispatcher falls back to the existing order-independent structural metric
+detector and independent certificate replay.  Every admitted cut is recompiled
+to the exact selected-row variables and written to an append-only hash chain
+bound to the cell job and the semantic detector contract.  The v4 journal tags
+the certificate family, schema, and detector stage, records the deterministic
+source-order bank index or `null` for structural cuts, and stores the canonical
+cube and complete positive SAT assignment.  Replay rebuilds the current bank,
+requires the same lowest matching index and exact stored certificate, and then
+checks the cube, assignment, learned clause, cut falsification, and exact
+family-specific proof.  Legacy v2 and tagged-v3 journals are rejected rather
+than silently migrated.  The retained earlier waves remain historical
+nonterminal diagnostics; a fresh v4 wave is required for promotion.
 
 ## Exact remaining gate
 
@@ -247,7 +253,7 @@ to match that job.  Cell summaries must carry the clause-delta artifact bound
 inside the job; structural summaries must carry a journal whose record count,
 parent chain, detector-contract digest, certificate/cube/assignment hashes, and
 terminal chain head all match the summary.  This postprocessor authenticates
-the tagged v3 chain and admits only certificate families with an explicit typed
+the tagged v4 chain and admits only certificate families with an explicit typed
 Lean ingress: replay-checked equality-duplicate-center records, or the exact
 named theorem binding from the freshly authenticated source-order bank.  It
 emits `terminal-bank-manifest.json` in journal order, compares every
@@ -278,8 +284,8 @@ then emits the generic authenticated pure-RUP source manifest, re-enters the
 generic strict loader before publication, and emits a separate exact-twelve
 receipt binding all copied provenance inputs, the checker transcript, terminal
 formula, raw proof, raw and normalized LRAT, and normalization counts.  The
-focused mixed-v3 adapter, replay, postprocessor, and materializer suites pass
-(`35` tests total), and Ruff is clean.  The adapter suite now includes
+mixed-v4 exact-v14 and postprocessor suites pass (`58` and `21` tests,
+respectively), and Ruff is clean.  The adapter suite now includes
 unmocked source-backed tests that build
 the live cell-0 job, generate and replay a real duplicate-center certificate,
 check exact staged formula bytes, and reject a self-consistently rehashed job
@@ -365,13 +371,23 @@ This shows that the cell-8 order cut is productive but not by itself close to
 finite exhaustion; the next compute should use the expanded multi-survivor
 bank rather than merely increasing this one-cell limit again.
 
+An independent promotion audit found one remaining postprocessor hardening
+task: detector files are copied and hash-checked into the staged source, but the
+second semantic replay still loads the live repository paths.  No terminal
+artifact may be promoted until that validation-to-replay TOCTOU is removed or
+the live bytes are otherwise proved identical to the authenticated snapshots
+throughout replay.  This does not invalidate retained nonterminal journals or
+prevent a fresh search wave; it blocks only terminal publication through the
+current postprocessor.
+
 The next production target is therefore:
 
-1. rerun the affected cells under one expanded proof-backed source-order bank,
-   extending cell 8 beyond the canary's 140-record frontier;
+1. rerun the affected cells under the expanded proof-backed source-order bank
+   and the mixed-v4 positive-match adapter, extending cell 8 beyond the
+   canary's 140-record frontier;
 2. retain the tagged-v3 journals as read-only mining evidence, but do not splice
-   them into the new detector hash chain; install the expanded static bank and
-   start fresh authenticated journals under the new contract;
+   them into the new detector hash chain; start fresh authenticated v4 journals
+   under the new contract;
 3. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the landed postprocessor and
    standalone bank materializer, then generate the exact compact-RUP and DIMACS
    equality inputs required to obtain a checked

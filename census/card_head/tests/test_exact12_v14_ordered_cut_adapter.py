@@ -57,6 +57,34 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
             detect_proof_backed_source_order_cut(REPO_ROOT, self.instance, different)
         )
 
+    def test_admits_assignment_that_matches_authenticated_choice_subset(self) -> None:
+        alternate = copy.deepcopy(FROZEN_V8_CUBE)
+        alternate["6"] = [0, 1, 4, 7]
+        admitted = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, alternate
+        )
+        self.assertIsNotNone(admitted)
+        assert admitted is not None
+        self.assertEqual(admitted.bank_index, 0)
+
+    def test_matching_bank_tie_chooses_lowest_index_independent_of_order(self) -> None:
+        bank = copy.deepcopy(build_source_order_bank(REPO_ROOT, self.instance))
+        first = copy.deepcopy(bank["entries"][0])
+        first["index"] = 9
+        second = copy.deepcopy(bank["entries"][0])
+        second["index"] = 3
+        bank["entries"] = [first, second]
+        with patch(
+            "census.card_head.exact12_v14_ordered_cut_adapter.build_source_order_bank",
+            return_value=bank,
+        ):
+            admitted = detect_proof_backed_source_order_cut(
+                REPO_ROOT, self.instance, FROZEN_V8_CUBE
+            )
+        self.assertIsNotNone(admitted)
+        assert admitted is not None
+        self.assertEqual(admitted.bank_index, 3)
+
     def test_replay_requires_exact_family_payload(self) -> None:
         admitted = detect_proof_backed_source_order_cut(
             REPO_ROOT, self.instance, FROZEN_V8_CUBE
@@ -69,6 +97,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
             certificate_schema=admitted.certificate_schema,
             detector_stage=admitted.detector_stage,
             certificate=admitted.certificate,
+            bank_index=admitted.bank_index,
         )
         self.assertEqual(clause, admitted.learned_clause)
 
@@ -84,6 +113,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
                 certificate_schema=admitted.certificate_schema,
                 detector_stage=admitted.detector_stage,
                 certificate=tampered,
+                bank_index=admitted.bank_index,
             )
 
         with self.assertRaisesRegex(
@@ -96,6 +126,20 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
                 certificate_schema="wrong-schema",
                 detector_stage=admitted.detector_stage,
                 certificate=admitted.certificate,
+                bank_index=admitted.bank_index,
+            )
+
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "bank index or certificate"
+        ):
+            replay_proof_backed_source_order_cut(
+                REPO_ROOT,
+                self.instance,
+                FROZEN_V8_CUBE,
+                certificate_schema=admitted.certificate_schema,
+                detector_stage=admitted.detector_stage,
+                certificate=admitted.certificate,
+                bank_index=admitted.bank_index + 1,
             )
 
     def test_rejects_bank_clause_that_does_not_recompile(self) -> None:
@@ -109,6 +153,36 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
             self.assertRaisesRegex(
                 Exact12V14OrderedCutAdapterError, "exact recompilation"
             ),
+        ):
+            detect_proof_backed_source_order_cut(
+                REPO_ROOT, self.instance, FROZEN_V8_CUBE
+            )
+
+    def test_rejects_nonnegative_unique_bank_index_violation(self) -> None:
+        for bad_index in (-1, True):
+            bank = copy.deepcopy(build_source_order_bank(REPO_ROOT, self.instance))
+            bank["entries"][0]["index"] = bad_index
+            with (
+                patch(
+                    "census.card_head.exact12_v14_ordered_cut_adapter.build_source_order_bank",
+                    return_value=bank,
+                ),
+                self.assertRaisesRegex(
+                    Exact12V14OrderedCutAdapterError, "indices"
+                ),
+            ):
+                detect_proof_backed_source_order_cut(
+                    REPO_ROOT, self.instance, FROZEN_V8_CUBE
+                )
+
+        bank = copy.deepcopy(build_source_order_bank(REPO_ROOT, self.instance))
+        bank["entries"][1]["index"] = bank["entries"][0]["index"]
+        with (
+            patch(
+                "census.card_head.exact12_v14_ordered_cut_adapter.build_source_order_bank",
+                return_value=bank,
+            ),
+            self.assertRaisesRegex(Exact12V14OrderedCutAdapterError, "indices"),
         ):
             detect_proof_backed_source_order_cut(
                 REPO_ROOT, self.instance, FROZEN_V8_CUBE

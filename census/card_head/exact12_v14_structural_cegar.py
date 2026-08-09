@@ -46,8 +46,8 @@ from .exact12_v14_valuation import added_constraints_hold, decode_blockers
 from .sat_encoding import CadicalResult, CoverInstance, EncodingError, solve_cadical
 from .source_faithful_candidate_surface import source_faithful_cube_ok
 
-RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v3"
-RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v3"
+RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v4"
+RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v4"
 LEGACY_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cut.v2"
 STRUCTURAL_CERTIFICATE_KIND = "structural_metric_core"
 STRUCTURAL_CERTIFICATE_SCHEMA = "p97_phase3_structural_certificate_payload.v1"
@@ -356,6 +356,7 @@ def replay_tagged_cut(
     certificate_schema: str,
     detector_stage: str,
     certificate: Mapping[str, Any],
+    bank_index: int | None = None,
 ) -> tuple[int, ...]:
     """Replay one tagged certificate through only its declared family."""
 
@@ -377,6 +378,7 @@ def replay_tagged_cut(
                 certificate_schema=certificate_schema,
                 detector_stage=detector_stage,
                 certificate=certificate,
+                bank_index=bank_index,
             )
         except Exact12V14OrderedCutAdapterError as exc:
             raise Exact12V14StructuralCegarError(str(exc)) from exc
@@ -412,6 +414,7 @@ def _record_body(
         "detector_stage": admitted_cut.detector_stage,
         "certificate": certificate_payload,
         "certificate_sha256": _sha256_json(certificate_payload),
+        "source_order_bank_index": admitted_cut.bank_index,
         "learned_clause": list(admitted_cut.learned_clause),
         "cube": cube_payload,
         "cube_sha256": _sha256_json(cube_payload),
@@ -468,7 +471,7 @@ def replay_journal(
                 ) from exc
             if isinstance(record, Mapping) and record.get("schema") == LEGACY_RECORD_SCHEMA:
                 raise Exact12V14StructuralCegarError(
-                    "legacy v2 journals require an explicit migration; start a fresh v3 run"
+                    "legacy v2 journals require an explicit migration; start a fresh v4 run"
                 )
             expected_fields = {
                 "schema",
@@ -483,6 +486,7 @@ def replay_journal(
                 "detector_stage",
                 "certificate",
                 "certificate_sha256",
+                "source_order_bank_index",
                 "learned_clause",
                 "cube",
                 "cube_sha256",
@@ -564,6 +568,20 @@ def replay_journal(
             assert isinstance(certificate_kind, str)
             assert isinstance(certificate_schema, str)
             assert isinstance(detector_stage, str)
+            bank_index = record.get("source_order_bank_index")
+            if certificate_kind == SOURCE_ORDER_CERTIFICATE_KIND:
+                if (
+                    isinstance(bank_index, bool)
+                    or not isinstance(bank_index, int)
+                    or bank_index < 0
+                ):
+                    raise Exact12V14StructuralCegarError(
+                        f"journal line {line_number} has malformed source-order bank index"
+                    )
+            elif bank_index is not None:
+                raise Exact12V14StructuralCegarError(
+                    f"journal line {line_number} has an unexpected source-order bank index"
+                )
             clause = replay_tagged_cut(
                 repo_root,
                 instance,
@@ -572,6 +590,7 @@ def replay_journal(
                 certificate_schema=certificate_schema,
                 detector_stage=detector_stage,
                 certificate=certificate,
+                bank_index=bank_index,
             )
             if record.get("learned_clause") != list(clause) or clause in seen:
                 raise Exact12V14StructuralCegarError(

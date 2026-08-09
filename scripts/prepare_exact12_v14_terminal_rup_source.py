@@ -31,11 +31,11 @@ from typing import Any
 import materialize_checkpointed_rup as rup
 
 CELL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_cell_run.v1"
-STRUCTURAL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v3"
+STRUCTURAL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v4"
 RUN_SCHEMAS = frozenset({CELL_RUN_SCHEMA, STRUCTURAL_RUN_SCHEMA})
 RECEIPT_SCHEMA = "p97_rigid221_exact12_terminal_rup_source.v1"
 BOUND_JOB_SCHEMA = "p97_rigid221_exact12_full_v14_bound_job.v1"
-STRUCTURAL_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v3"
+STRUCTURAL_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v4"
 STRUCTURAL_CERTIFICATE_KIND = "structural_metric_core"
 STRUCTURAL_CERTIFICATE_SCHEMA = "p97_phase3_structural_certificate_payload.v1"
 SOURCE_ORDER_CERTIFICATE_KIND = "source_order_positive_coverage"
@@ -88,6 +88,7 @@ STRUCTURAL_RECORD_FIELDS = frozenset(
         "detector_stage",
         "certificate",
         "certificate_sha256",
+        "source_order_bank_index",
         "learned_clause",
         "cube",
         "cube_sha256",
@@ -354,6 +355,18 @@ def _authenticate_structural_journal(
                 or not isinstance(record.get("detector_stage"), str)
                 or record.get("certificate_sha256")
                 != _canonical_json_sha256(certificate)
+                or (
+                    record.get("certificate_kind") == SOURCE_ORDER_CERTIFICATE_KIND
+                    and (
+                        isinstance(record.get("source_order_bank_index"), bool)
+                        or not isinstance(record.get("source_order_bank_index"), int)
+                        or record.get("source_order_bank_index") < 0
+                    )
+                )
+                or (
+                    record.get("certificate_kind") != SOURCE_ORDER_CERTIFICATE_KIND
+                    and record.get("source_order_bank_index") is not None
+                )
                 or record.get("cube_sha256") != _canonical_json_sha256(cube)
                 or record.get("assignment_sha256")
                 != _canonical_json_sha256(positive_variables)
@@ -432,6 +445,7 @@ def _authenticate_structural_journal(
                     "certificate_schema": certificate_schema,
                     "detector_stage": detector_stage,
                     "certificate_sha256": record["certificate_sha256"],
+                    "source_order_bank_index": record["source_order_bank_index"],
                     "learned_clause": learned_clause,
                     "learned_clause_sha256": _canonical_json_sha256(learned_clause),
                     "lean_ingress": lean_ingress,

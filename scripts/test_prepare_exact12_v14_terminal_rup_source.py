@@ -155,6 +155,7 @@ def _structural_terminal_workdir(root: Path) -> Path:
         "detector_stage": certificate["stage"],
         "certificate": certificate,
         "certificate_sha256": subject._canonical_json_sha256(certificate),
+        "source_order_bank_index": None,
         "learned_clause": [-1, -2],
         "cube": cube,
         "cube_sha256": subject._canonical_json_sha256(cube),
@@ -433,6 +434,7 @@ class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
             def replace_family(_summary, record):
                 record["certificate_kind"] = "source_order_positive_coverage"
                 record["certificate_schema"] = "source-order-test.v1"
+                record["source_order_bank_index"] = 0
 
             _rewrite_structural_record(workdir, replace_family)
             runner = FakeDratTrim()
@@ -755,6 +757,7 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
         self.assertEqual(
             admitted_cut.certificate_kind, subject.SOURCE_ORDER_CERTIFICATE_KIND
         )
+        self.assertEqual(admitted_cut.bank_index, 0)
         positive_variables = frozenset(
             materialized.instance.choice_variables[
                 (
@@ -776,6 +779,7 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
             cube=FROZEN_V8_CUBE,
             positive_variables=positive_variables,
         )
+        self.assertEqual(record["source_order_bank_index"], admitted_cut.bank_index)
         records.append(record)
         journal_path.write_text(
             "".join(
@@ -836,10 +840,16 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
             formula = self._extend_with_real_source_order_record(workdir)
             runner = DynamicFakeDratTrim()
             output = root / "source"
-            receipt = subject.prepare_terminal_rup_source(
-                workdir, output, command_runner=runner
-            )
+            with mock.patch.object(
+                subject,
+                "_semantic_replay_structural_journal",
+                wraps=subject._semantic_replay_structural_journal,
+            ) as replay:
+                receipt = subject.prepare_terminal_rup_source(
+                    workdir, output, command_runner=runner
+                )
             self.assertEqual(runner.calls, 1)
+            self.assertEqual(replay.call_count, 2)
             self.assertEqual(receipt["terminal_bank"]["entries"], 2)
             self.assertEqual(
                 receipt["terminal_bank"]["lean_terminal_consumer"],
@@ -863,6 +873,7 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
                 manifest["entries"][1]["lean_ingress"]["kind"],
                 "named_source_order_positive_nogood",
             )
+            self.assertEqual(manifest["entries"][1]["source_order_bank_index"], 0)
             self.assertEqual((output / "terminal.cnf").read_bytes(), formula)
 
     def test_real_cell_rejects_self_consistent_source_tamper_before_checker(

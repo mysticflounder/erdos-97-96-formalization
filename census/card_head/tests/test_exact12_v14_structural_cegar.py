@@ -132,6 +132,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
         record = self._record()
         self.assertEqual(record["schema"], RECORD_SCHEMA)
         self.assertEqual(record["certificate_kind"], STRUCTURAL_CERTIFICATE_KIND)
+        self.assertIsNone(record["source_order_bank_index"])
 
         with TemporaryDirectory() as temporary:
             journal = Path(temporary) / "journal.jsonl"
@@ -249,6 +250,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
 
             laundered = copy.deepcopy(second)
             laundered["certificate_kind"] = SOURCE_ORDER_CERTIFICATE_KIND
+            laundered["source_order_bank_index"] = ordered.bank_index
             body = dict(laundered)
             body.pop("record_sha256")
             laundered["record_sha256"] = _sha256_json(body)
