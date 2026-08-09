@@ -547,6 +547,28 @@ successfully and has terminal record hash
 It exposed neither a saved survivor nor terminal UNSAT, so it is lower priority
 than replaying the explicit cell-`1` survivor against bank index `8`.
 
+The next whole-schedule checkpoint authenticated and migrated all twelve
+retained journals, comprising 6,896 records, to the then-current 15-cut source
+contract.  A bounded continuation allowed at most 100 new classifications per
+cell.  Cells `0,3,4,5,6,7,8,9,11` reached their new iteration bounds; cells
+`1`, `2`, and `10` instead exposed structurally unresolved survivors at records
+951, 523, and 819.  No cell produced terminal UNSAT.
+
+Source-order diagnosis produced one checked finite obstruction for each new
+survivor.  `mixedV4Cell1FourthPositiveNogood` uses rows centered at `0`, `2`,
+and `6` and compiles to `(-22,-168,-1177)`.
+`mixedV4Cell2SecondPositiveNogood` uses rows centered at `1`, `4`, and `5` and
+compiles to `(-55,-704,-991)`.  The five-row
+`mixedV4Cell10SecondPositiveNogood` compiles to
+`(-26,-834,-1200,-2034,-2310)`; its complete 48-order coverage is the union of
+two explicitly ordered common-five cores, each covering 24 orders.  Supporting
+an authenticated ordered list of preferred cores was necessary to make the
+Python replay select exactly the five rows proved contradictory in Lean,
+rather than the detector's larger greedy union.  The resulting bank has 18
+learned cuts and authenticates 20 Lean sources.  These are three reusable
+finite predicates, not terminal cell proofs, schedule coverage, a universal
+lift, or live-sorry closure.
+
 An independent promotion audit found one remaining postprocessor hardening
 task: detector files are copied and hash-checked into the staged source, but the
 second semantic replay still loads the live repository paths.  No terminal
@@ -558,18 +580,16 @@ current postprocessor.
 
 The next production target is therefore:
 
-1. commit the third checked source-order predicate and continue cell `1` from
-   the independently replayed 791-record seed in bounded tranches until it
-   either exposes a new survivor for predicate mining or reaches
-   proof-verified terminal UNSAT;
-2. if that continuation exposes another survivor, classify it before
-   increasing the bound; do not spend another cell-`4` tranche without either
-   a new checked predicate or a newly exposed survivor to diagnose;
-3. inspect the remaining iteration-limit tails only for recurring generalized
-   predicates with a source-level Lean entitlement, rather than mining exact
-   assignment blockers;
-4. after such a predicate and its independent replay land, run a focused fresh
-   mixed-v4 follow-up under a new authenticated detector contract;
+1. land the three new checked source-order predicates, their exact Python
+   bindings, and the 18-cut/20-source authenticated-bank replay tests;
+2. migrate the latest twelve journals from the 15-cut contract to the committed
+   18-cut contract, replay every retained record independently, and continue
+   all twelve cells in bounded tranches under the authorized 12-core limit;
+3. classify every newly exposed survivor before increasing that cell's bound,
+   and prioritize preservation and checking of any terminal UNSAT artifact;
+4. inspect iteration-limit tails only for recurring generalized predicates
+   with a source-level Lean entitlement, rather than mining exact-assignment
+   blockers;
 5. if a cell reaches `UNSAT_DRAT_VERIFIED`, first require the terminal
    postprocessor TOCTOU hardening, then run the standalone bank materializer
    and generate the exact compact-RUP and DIMACS equality inputs required to

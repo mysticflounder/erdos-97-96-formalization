@@ -98,13 +98,28 @@ represented by source-pinned Lean `SourceOrderPositiveNogood` consumers:
 
 The cell-2, cell-5, cell-8, and cell-11 certificates deliberately override the
 detector's greedy core ordering with audited singleton cores, so the Python
-replay selects exactly the three rows used by Lean.  With these additions the
-authenticated source-order bank contains 15 learned cuts pinned to a manifest
-of 17 Lean sources.  Direct one-file elaboration of all five new consumer
-modules passes, as do all 31 focused ordered-coverage, authenticated-bank,
-adapter, and structural-CEGAR tests.  This bank growth rejects those five
-concrete terminal survivors; it does not establish terminal exhaustion of any
-schedule cell.
+replay selects exactly the three rows used by Lean.  At that checkpoint the
+authenticated source-order bank contained 15 learned cuts pinned to a manifest
+of 17 Lean sources.
+
+A later authenticated migration and bounded 12-cell continuation exposed three
+more structurally unresolved survivors: cell 1 at record 951, cell 2 at record
+523, and cell 10 at record 819.  Their checked source-order consumers add:
+
+- cell 1: three rows and learned clause `[-22, -168, -1177]`;
+- cell 2: three rows and learned clause `[-55, -704, -991]`; and
+- cell 10: five rows and learned clause
+  `[-26, -834, -1200, -2034, -2310]`.
+
+The cell-10 predicate requires two explicitly ordered preferred
+common-five cores, each covering 24 of the 48 frozen direct/mirror orders.  The
+Python binding therefore authenticates and replays that two-core union rather
+than accepting the detector's larger greedy row set.  With these additions the
+authenticated source-order bank contains 18 learned cuts pinned to a manifest
+of 20 Lean sources.  Direct one-file elaboration of the three new consumer
+modules passes, as do the 25 focused ordered-coverage, authenticated-bank, and
+adapter tests.  This bank growth rejects eight concrete terminal survivors in
+total; it does not establish terminal exhaustion of any schedule cell.
 
 ## What remains open
 

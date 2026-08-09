@@ -97,7 +97,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
         )
         self.assertIsNotNone(mixed_v4_cell10)
         assert mixed_v4_cell10 is not None
-        self.assertEqual(mixed_v4_cell10.bank_index, 10)
+        self.assertEqual(mixed_v4_cell10.bank_index, 11)
         self.assertEqual(
             mixed_v4_cell10.learned_clause,
             (-264, -704, -898, -1437, -2034, -2134),
@@ -134,14 +134,14 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
 
         self.assertIsNotNone(admitted)
         assert admitted is not None
-        self.assertEqual(admitted.bank_index, 10)
+        self.assertEqual(admitted.bank_index, 11)
         self.assertEqual(
             admitted.learned_clause,
             (-264, -704, -898, -1437, -2034, -2134),
         )
 
         tampered = copy.deepcopy(bank)
-        tampered["entries"][10]["learned_clause"][0] = -1
+        tampered["entries"][11]["learned_clause"][0] = -1
         with self.assertRaisesRegex(
             Exact12V14OrderedCutAdapterError, "schema or digest authentication"
         ):

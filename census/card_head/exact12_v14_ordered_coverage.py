@@ -232,6 +232,22 @@ MIXED_V4_CELL1_THIRD_LEAN_SOURCE_BYTES = 5447
 MIXED_V4_CELL1_THIRD_LEAN_SOURCE_SHA256 = (
     "6a26a86df175bb1242608f556690978c6f919e58a6ff849126bd1bed5e5eafb6"
 )
+MIXED_V4_CELL1_FOURTH_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell1FourthPositiveNogood"
+)
+MIXED_V4_CELL1_FOURTH_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_10_0_4_6_2"
+)
+MIXED_V4_CELL1_FOURTH_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell1FourthPositiveCut.lean"
+)
+MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_BYTES = 3661
+MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_SHA256 = (
+    "5a8293ac237bb8109207bfd3329be4e403edecb39a3126c55544e5c9ac60492f"
+)
 MIXED_V4_CELL10_LEAN_NOGOOD = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
     "mixedV4Cell10PositiveNogood"
@@ -248,6 +264,22 @@ MIXED_V4_CELL10_LEAN_SOURCE_BYTES = 6428
 MIXED_V4_CELL10_LEAN_SOURCE_SHA256 = (
     "2b886575c31d1d690ce451b2ef5da8df2b32bf041b46f08894c48c15ab82575c"
 )
+MIXED_V4_CELL10_SECOND_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell10SecondPositiveNogood"
+)
+MIXED_V4_CELL10_SECOND_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientationCoverage_mixedV4Cell10Second"
+)
+MIXED_V4_CELL10_SECOND_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell10SecondPositiveCut.lean"
+)
+MIXED_V4_CELL10_SECOND_LEAN_SOURCE_BYTES = 6265
+MIXED_V4_CELL10_SECOND_LEAN_SOURCE_SHA256 = (
+    "432bcd66bfdcc135210dd98fbf3ba19a5734b36080556e73a0ff64f3adafdfd0"
+)
 MIXED_V4_CELL2_LEAN_NOGOOD = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
     "mixedV4Cell2PositiveNogood"
@@ -263,6 +295,22 @@ MIXED_V4_CELL2_LEAN_SOURCE = (
 MIXED_V4_CELL2_LEAN_SOURCE_BYTES = 3938
 MIXED_V4_CELL2_LEAN_SOURCE_SHA256 = (
     "1328013ad3e0993932cb974af2811c1e31153334babf6158ef317597a1d59ebb"
+)
+MIXED_V4_CELL2_SECOND_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell2SecondPositiveNogood"
+)
+MIXED_V4_CELL2_SECOND_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_2_4_8_5_1"
+)
+MIXED_V4_CELL2_SECOND_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell2SecondPositiveCut.lean"
+)
+MIXED_V4_CELL2_SECOND_LEAN_SOURCE_BYTES = 3551
+MIXED_V4_CELL2_SECOND_LEAN_SOURCE_SHA256 = (
+    "f2eaace5f6c41f621b6e8ff67293b1bcf69573792e4a109b4a64853eee498605"
 )
 MIXED_V4_CELL5_LEAN_NOGOOD = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
@@ -731,6 +779,46 @@ MIXED_V4_CELL1_THIRD_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+MIXED_V4_CELL1_FOURTH_CUBE = {
+    "0": [2, 4, 5, 10],
+    "1": [0, 2, 6, 8],
+    "2": [4, 7, 10, 11],
+    "3": [0, 8, 10, 11],
+    "4": [3, 5, 9, 10],
+    "5": [0, 1, 6, 11],
+    "6": [0, 2, 4, 7],
+    "7": [1, 3, 6, 8],
+    "8": [4, 5, 6, 9],
+    "9": [2, 3, 6, 11],
+    "10": [1, 2, 5, 8],
+    "11": [0, 7, 9, 10],
+}
+MIXED_V4_CELL1_FOURTH_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL1_FOURTH_CUBE)
+MIXED_V4_CELL1_FOURTH_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(MIXED_V4_CELL1_FOURTH_CUBE[str(center)]),
+    }
+    for center in (0, 2, 6)
+]
+MIXED_V4_CELL1_FOURTH_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL1_FOURTH_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL1_FOURTH_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL1_FOURTH_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL1_FOURTH_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 10, "x": 0, "b": 4, "c": 6, "y": 2},
+    "source_path": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
 MIXED_V4_CELL10_CUBE = {
     "0": [1, 3, 4, 6],
     "1": [0, 2, 6, 8],
@@ -770,6 +858,49 @@ MIXED_V4_CELL10_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+MIXED_V4_CELL10_SECOND_CUBE = {
+    "0": [3, 4, 5, 8],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [0, 2, 7, 11],
+    "4": [1, 2, 5, 7],
+    "5": [0, 1, 6, 9],
+    "6": [0, 3, 4, 9],
+    "7": [1, 6, 8, 10],
+    "8": [3, 5, 6, 9],
+    "9": [2, 4, 8, 10],
+    "10": [4, 5, 6, 7],
+    "11": [0, 1, 4, 10],
+}
+MIXED_V4_CELL10_SECOND_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL10_SECOND_CUBE)
+MIXED_V4_CELL10_SECOND_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(MIXED_V4_CELL10_SECOND_CUBE[str(center)]),
+    }
+    for center in (0, 5, 6, 8, 9)
+]
+MIXED_V4_CELL10_SECOND_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL10_SECOND_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL10_SECOND_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL10_SECOND_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL10_SECOND_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 0, "x": 5, "b": 9, "c": 8, "y": 6},
+        {"a": 8, "x": 0, "b": 4, "c": 6, "y": 9},
+    ],
+    "source_path": MIXED_V4_CELL10_SECOND_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL10_SECOND_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL10_SECOND_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL10_SECOND_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL10_SECOND_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL10_SECOND_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
 MIXED_V4_CELL2_CUBE = {
     "0": [3, 4, 7, 11],
     "1": [0, 2, 6, 8],
@@ -802,6 +933,46 @@ MIXED_V4_CELL2_LEAN_BINDING = {
     "coverage_source_path": MIXED_V4_CELL2_LEAN_SOURCE,
     "coverage_source_bytes": MIXED_V4_CELL2_LEAN_SOURCE_BYTES,
     "coverage_source_sha256": MIXED_V4_CELL2_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+MIXED_V4_CELL2_SECOND_CUBE = {
+    "0": [3, 4, 9, 11],
+    "1": [0, 2, 6, 8],
+    "2": [5, 9, 10, 11],
+    "3": [0, 6, 7, 10],
+    "4": [2, 3, 7, 8],
+    "5": [1, 4, 8, 11],
+    "6": [0, 2, 5, 10],
+    "7": [4, 5, 6, 8],
+    "8": [1, 3, 6, 9],
+    "9": [1, 5, 6, 7],
+    "10": [0, 1, 5, 9],
+    "11": [7, 8, 9, 10],
+}
+MIXED_V4_CELL2_SECOND_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL2_SECOND_CUBE)
+MIXED_V4_CELL2_SECOND_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(MIXED_V4_CELL2_SECOND_CUBE[str(center)]),
+    }
+    for center in (1, 4, 5)
+]
+MIXED_V4_CELL2_SECOND_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL2_SECOND_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL2_SECOND_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL2_SECOND_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL2_SECOND_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 2, "x": 4, "b": 8, "c": 5, "y": 1},
+    "source_path": MIXED_V4_CELL2_SECOND_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL2_SECOND_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL2_SECOND_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL2_SECOND_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL2_SECOND_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL2_SECOND_LEAN_SOURCE_SHA256,
     "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
     "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
@@ -966,14 +1137,29 @@ PROOF_BACKED_CUBE_BINDINGS = (
         MIXED_V4_CELL1_THIRD_LEAN_CHOICES,
     ),
     (
+        MIXED_V4_CELL1_FOURTH_CUBE,
+        MIXED_V4_CELL1_FOURTH_LEAN_BINDING,
+        MIXED_V4_CELL1_FOURTH_LEAN_CHOICES,
+    ),
+    (
         MIXED_V4_CELL10_CUBE,
         MIXED_V4_CELL10_LEAN_BINDING,
         MIXED_V4_CELL10_LEAN_CHOICES,
     ),
     (
+        MIXED_V4_CELL10_SECOND_CUBE,
+        MIXED_V4_CELL10_SECOND_LEAN_BINDING,
+        MIXED_V4_CELL10_SECOND_LEAN_CHOICES,
+    ),
+    (
         MIXED_V4_CELL2_CUBE,
         MIXED_V4_CELL2_LEAN_BINDING,
         MIXED_V4_CELL2_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL2_SECOND_CUBE,
+        MIXED_V4_CELL2_SECOND_LEAN_BINDING,
+        MIXED_V4_CELL2_SECOND_LEAN_CHOICES,
     ),
     (
         MIXED_V4_CELL5_CUBE,
@@ -1185,23 +1371,40 @@ def _build_body(cube: Mapping[str, Sequence[int]]) -> dict[str, Any] | None:
     if proof_backed is not None:
         binding, _choices = proof_backed
         preferred = binding.get("preferred_common_five_core")
-        if preferred is not None:
+        preferred_many = binding.get("preferred_common_five_cores")
+        if preferred is not None and preferred_many is not None:
+            raise Exact12V14OrderedCoverageError(
+                "generated binding has singular and plural preferred cores"
+            )
+        if preferred is not None or preferred_many is not None:
+            raw_preferred = [preferred] if preferred is not None else preferred_many
+            if not isinstance(raw_preferred, list) or not raw_preferred:
+                raise Exact12V14OrderedCoverageError(
+                    "preferred common-five cores are malformed"
+                )
             core_keys = ("a", "x", "b", "c", "y")
-            if (
-                not isinstance(preferred, dict)
-                or set(preferred) != set(core_keys)
-                or any(type(preferred[key]) is not int for key in core_keys)
-            ):
-                raise Exact12V14OrderedCoverageError(
-                    "preferred common-five core is malformed"
-                )
-            preferred_core = {key: preferred[key] for key in core_keys}
-            if preferred_core not in cores:
-                raise Exact12V14OrderedCoverageError(
-                    "preferred common-five core does not replay"
-                )
-            cores = (preferred_core,) + tuple(
-                core for core in cores if core != preferred_core
+            preferred_cores: list[dict[str, int]] = []
+            for raw_core in raw_preferred:
+                if (
+                    not isinstance(raw_core, dict)
+                    or set(raw_core) != set(core_keys)
+                    or any(type(raw_core[key]) is not int for key in core_keys)
+                ):
+                    raise Exact12V14OrderedCoverageError(
+                        "preferred common-five core is malformed"
+                    )
+                preferred_core = {key: raw_core[key] for key in core_keys}
+                if preferred_core not in cores:
+                    raise Exact12V14OrderedCoverageError(
+                        "preferred common-five core does not replay"
+                    )
+                if preferred_core in preferred_cores:
+                    raise Exact12V14OrderedCoverageError(
+                        "preferred common-five core is duplicated"
+                    )
+                preferred_cores.append(preferred_core)
+            cores = tuple(preferred_cores) + tuple(
+                core for core in cores if core not in preferred_cores
             )
     closures: dict[str, dict[str, Any]] = {}
     membership_keys: list[MembershipKey] = []

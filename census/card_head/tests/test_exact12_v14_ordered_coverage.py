@@ -53,6 +53,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
     MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
     MIXED_V4_CELL1_CUBE,
+    MIXED_V4_CELL1_FOURTH_CUBE,
+    MIXED_V4_CELL1_FOURTH_LEAN_BINDING,
+    MIXED_V4_CELL1_FOURTH_LEAN_CHOICES,
+    MIXED_V4_CELL1_FOURTH_LEAN_SOURCE,
+    MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_BYTES,
+    MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_SHA256,
     MIXED_V4_CELL1_LEAN_BINDING,
     MIXED_V4_CELL1_LEAN_CHOICES,
     MIXED_V4_CELL1_LEAN_SOURCE,
@@ -70,6 +76,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V4_CELL2_LEAN_SOURCE,
     MIXED_V4_CELL2_LEAN_SOURCE_BYTES,
     MIXED_V4_CELL2_LEAN_SOURCE_SHA256,
+    MIXED_V4_CELL2_SECOND_CUBE,
+    MIXED_V4_CELL2_SECOND_LEAN_BINDING,
+    MIXED_V4_CELL2_SECOND_LEAN_CHOICES,
+    MIXED_V4_CELL2_SECOND_LEAN_SOURCE,
+    MIXED_V4_CELL2_SECOND_LEAN_SOURCE_BYTES,
+    MIXED_V4_CELL2_SECOND_LEAN_SOURCE_SHA256,
     MIXED_V4_CELL4_CUBE,
     MIXED_V4_CELL4_LEAN_BINDING,
     MIXED_V4_CELL4_LEAN_CHOICES,
@@ -94,6 +106,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V4_CELL10_LEAN_SOURCE,
     MIXED_V4_CELL10_LEAN_SOURCE_BYTES,
     MIXED_V4_CELL10_LEAN_SOURCE_SHA256,
+    MIXED_V4_CELL10_SECOND_CUBE,
+    MIXED_V4_CELL10_SECOND_LEAN_BINDING,
+    MIXED_V4_CELL10_SECOND_LEAN_CHOICES,
+    MIXED_V4_CELL10_SECOND_LEAN_SOURCE,
+    MIXED_V4_CELL10_SECOND_LEAN_SOURCE_BYTES,
+    MIXED_V4_CELL10_SECOND_LEAN_SOURCE_SHA256,
     MIXED_V4_CELL11_CUBE,
     MIXED_V4_CELL11_LEAN_BINDING,
     MIXED_V4_CELL11_LEAN_CHOICES,
@@ -193,6 +211,16 @@ MIXED_CASES = (
         (-160, -1383, -2548),
     ),
     (
+        "v4-cell-1-fourth",
+        MIXED_V4_CELL1_FOURTH_CUBE,
+        MIXED_V4_CELL1_FOURTH_LEAN_BINDING,
+        MIXED_V4_CELL1_FOURTH_LEAN_CHOICES,
+        MIXED_V4_CELL1_FOURTH_LEAN_SOURCE,
+        MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_BYTES,
+        MIXED_V4_CELL1_FOURTH_LEAN_SOURCE_SHA256,
+        (-22, -168, -1177),
+    ),
+    (
         "v4-cell-10",
         MIXED_V4_CELL10_CUBE,
         MIXED_V4_CELL10_LEAN_BINDING,
@@ -203,6 +231,16 @@ MIXED_CASES = (
         (-264, -704, -898, -1437, -2034, -2134),
     ),
     (
+        "v4-cell-10-second",
+        MIXED_V4_CELL10_SECOND_CUBE,
+        MIXED_V4_CELL10_SECOND_LEAN_BINDING,
+        MIXED_V4_CELL10_SECOND_LEAN_CHOICES,
+        MIXED_V4_CELL10_SECOND_LEAN_SOURCE,
+        MIXED_V4_CELL10_SECOND_LEAN_SOURCE_BYTES,
+        MIXED_V4_CELL10_SECOND_LEAN_SOURCE_SHA256,
+        (-26, -834, -1200, -2034, -2310),
+    ),
+    (
         "v4-cell-2",
         MIXED_V4_CELL2_CUBE,
         MIXED_V4_CELL2_LEAN_BINDING,
@@ -211,6 +249,16 @@ MIXED_CASES = (
         MIXED_V4_CELL2_LEAN_SOURCE_BYTES,
         MIXED_V4_CELL2_LEAN_SOURCE_SHA256,
         (-1156, -1640, -2537),
+    ),
+    (
+        "v4-cell-2-second",
+        MIXED_V4_CELL2_SECOND_CUBE,
+        MIXED_V4_CELL2_SECOND_LEAN_BINDING,
+        MIXED_V4_CELL2_SECOND_LEAN_CHOICES,
+        MIXED_V4_CELL2_SECOND_LEAN_SOURCE,
+        MIXED_V4_CELL2_SECOND_LEAN_SOURCE_BYTES,
+        MIXED_V4_CELL2_SECOND_LEAN_SOURCE_SHA256,
+        (-55, -704, -991),
     ),
     (
         "v4-cell-5",
@@ -420,6 +468,28 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                                 for entry in certificate["coverage"]
                             )
                             for orientation in ("forward", "reverse")
+                        ],
+                        [24, 24],
+                    )
+                if cell == "v4-cell-10-second":
+                    preferred_many = binding["preferred_common_five_cores"]
+                    self.assertEqual(
+                        {
+                            tuple(sorted(entry["core"].items()))
+                            for entry in certificate["coverage"]
+                        },
+                        {
+                            tuple(sorted(preferred.items()))
+                            for preferred in preferred_many
+                        },
+                    )
+                    self.assertEqual(
+                        [
+                            sum(
+                                entry["core"] == preferred
+                                for entry in certificate["coverage"]
+                            )
+                            for preferred in preferred_many
                         ],
                         [24, 24],
                     )
