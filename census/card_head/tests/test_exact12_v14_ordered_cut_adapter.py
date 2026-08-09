@@ -13,6 +13,7 @@ from census.card_head.exact12_v14_bound_jobs import materialize_cell
 from census.card_head.exact12_v14_ordered_coverage import (
     FROZEN_V8_CUBE,
     MIXED_V3_CELL8_CUBE,
+    MIXED_V4_CELL1_CUBE,
     MIXED_V4_CELL4_CUBE,
 )
 from census.card_head.exact12_v14_ordered_cut_adapter import (
@@ -57,9 +58,14 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
         self.assertIsNotNone(mixed_v4_cell4)
         assert mixed_v4_cell4 is not None
         self.assertEqual(mixed_v4_cell4.bank_index, 6)
-        self.assertEqual(
-            mixed_v4_cell4.learned_clause, (-55, -387, -703, -1605, -1935)
+        self.assertEqual(mixed_v4_cell4.learned_clause, (-55, -387, -703, -1605, -1935))
+        mixed_v4_cell1 = detect_proof_backed_source_order_cut(
+            REPO_ROOT, self.instance, MIXED_V4_CELL1_CUBE
         )
+        self.assertIsNotNone(mixed_v4_cell1)
+        assert mixed_v4_cell1 is not None
+        self.assertEqual(mixed_v4_cell1.bank_index, 7)
+        self.assertEqual(mixed_v4_cell1.learned_clause, (-43, -164, -1171))
 
         different = copy.deepcopy(FROZEN_V8_CUBE)
         different["0"] = [1, 3, 4, 7]
@@ -177,9 +183,7 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
                     "census.card_head.exact12_v14_ordered_cut_adapter.build_source_order_bank",
                     return_value=bank,
                 ),
-                self.assertRaisesRegex(
-                    Exact12V14OrderedCutAdapterError, "indices"
-                ),
+                self.assertRaisesRegex(Exact12V14OrderedCutAdapterError, "indices"),
             ):
                 detect_proof_backed_source_order_cut(
                     REPO_ROOT, self.instance, FROZEN_V8_CUBE

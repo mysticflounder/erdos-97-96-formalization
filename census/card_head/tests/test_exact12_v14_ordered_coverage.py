@@ -52,6 +52,12 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V3_CELL8_LEAN_SOURCE,
     MIXED_V3_CELL8_LEAN_SOURCE_BYTES,
     MIXED_V3_CELL8_LEAN_SOURCE_SHA256,
+    MIXED_V4_CELL1_CUBE,
+    MIXED_V4_CELL1_LEAN_BINDING,
+    MIXED_V4_CELL1_LEAN_CHOICES,
+    MIXED_V4_CELL1_LEAN_SOURCE,
+    MIXED_V4_CELL1_LEAN_SOURCE_BYTES,
+    MIXED_V4_CELL1_LEAN_SOURCE_SHA256,
     MIXED_V4_CELL4_CUBE,
     MIXED_V4_CELL4_LEAN_BINDING,
     MIXED_V4_CELL4_LEAN_CHOICES,
@@ -129,6 +135,16 @@ MIXED_CASES = (
         MIXED_V4_CELL4_LEAN_SOURCE_BYTES,
         MIXED_V4_CELL4_LEAN_SOURCE_SHA256,
         (-55, -387, -703, -1605, -1935),
+    ),
+    (
+        "v4-cell-1",
+        MIXED_V4_CELL1_CUBE,
+        MIXED_V4_CELL1_LEAN_BINDING,
+        MIXED_V4_CELL1_LEAN_CHOICES,
+        MIXED_V4_CELL1_LEAN_SOURCE,
+        MIXED_V4_CELL1_LEAN_SOURCE_BYTES,
+        MIXED_V4_CELL1_LEAN_SOURCE_SHA256,
+        (-43, -164, -1171),
     ),
 )
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -292,6 +308,25 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                     {entry["rule"] for entry in certificate["coverage"]},
                     {"convex-five-point-common-orientation"},
                 )
+                if cell == "v4-cell-1":
+                    preferred = binding["preferred_common_five_core"]
+                    self.assertEqual(
+                        {
+                            tuple(sorted(entry["core"].items()))
+                            for entry in certificate["coverage"]
+                        },
+                        {tuple(sorted(preferred.items()))},
+                    )
+                    self.assertEqual(
+                        [
+                            sum(
+                                entry["orientation"] == orientation
+                                for entry in certificate["coverage"]
+                            )
+                            for orientation in ("forward", "reverse")
+                        ],
+                        [24, 24],
+                    )
                 clause = learned_clause_for_proof_backed_ordered_coverage(
                     instance, certificate
                 )

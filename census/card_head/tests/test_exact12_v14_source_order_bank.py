@@ -17,6 +17,7 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V3_CELL5_LEAN_BINDING,
     MIXED_V3_CELL7_LEAN_BINDING,
     MIXED_V3_CELL8_LEAN_BINDING,
+    MIXED_V4_CELL1_LEAN_BINDING,
     MIXED_V4_CELL4_LEAN_BINDING,
 )
 from census.card_head.exact12_v14_source_order_bank import (
@@ -36,12 +37,12 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         self.materialized = materialize_cell(0)
         self.instance = self.materialized.instance
 
-    def test_builds_seven_lean_proved_static_cuts(self) -> None:
+    def test_builds_eight_lean_proved_static_cuts(self) -> None:
         bank = build_source_order_bank(REPO_ROOT, self.instance)
         entry = bank["entries"][0]
 
         self.assertEqual(bank["schema"], BANK_SCHEMA)
-        self.assertEqual(len(bank["entries"]), 7)
+        self.assertEqual(len(bank["entries"]), 8)
         self.assertEqual(entry["certificate_kind"], "source_order_positive_coverage")
         self.assertEqual(entry["certificate_schema"], entry["certificate"]["schema"])
         self.assertEqual(entry["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING)
@@ -49,7 +50,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             entry["learned_clause"],
             [-variable for variable in entry["lean_choice_variables"]],
         )
-        self.assertEqual(len(bank["lean_source_manifest"]), 9)
+        self.assertEqual(len(bank["lean_source_manifest"]), 10)
         self.assertEqual(
             entry["learned_clause"],
             [-42, -55, -169, -312, -501, -868, -1605, -2024, -2317, -2573, -2884],
@@ -61,6 +62,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             (MIXED_V3_CELL7_LEAN_BINDING, [-29, -55, -546, -939, -2894]),
             (MIXED_V3_CELL8_LEAN_BINDING, [-55, -313, -2134]),
             (MIXED_V4_CELL4_LEAN_BINDING, [-55, -387, -703, -1605, -1935]),
+            (MIXED_V4_CELL1_LEAN_BINDING, [-43, -164, -1171]),
         )
         for bank_entry, (binding, clause) in zip(
             bank["entries"][1:], expected, strict=True
@@ -77,8 +79,8 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         bank = install_source_order_bank(REPO_ROOT, self.instance)
         clauses = [tuple(entry["learned_clause"]) for entry in bank["entries"]]
 
-        self.assertEqual(len(self.instance.cnf.clauses), before + 7)
-        self.assertEqual(self.instance.cnf.clauses[-7:], clauses)
+        self.assertEqual(len(self.instance.cnf.clauses), before + 8)
+        self.assertEqual(self.instance.cnf.clauses[-8:], clauses)
         with self.assertRaisesRegex(
             Exact12V14SourceOrderBankError, "already installed"
         ):

@@ -409,6 +409,24 @@ cell proof, schedule coverage, a universal lift, or a live-sorry closure; a
 fresh cell-4 run under the new detector contract is required to measure what
 it exposes next.
 
+A replay-seeded continuation of cell `1` subsequently exhausted its structural
+portfolio at record `432` and saved a new survivor with SHA-256
+`6564ae0b3005354d934d68c14ae15d486c75613ea60b578c58cc3be3b94f656b`.
+Exhaustive source-order triage found a strictly smaller seventh predicate: the
+single convex-five-point core `(a,x,b,c,y) = (11,0,3,6,2)` covers all 48 frozen
+orders, using only the selected rows centered at `0`, `2`, and `6`.  It appears
+in forward orientation for all 24 direct orders and reverse orientation for all
+24 mirror orders.  The checked Lean value `mixedV4Cell1PositiveNogood` records
+this source-level contradiction.  Its authenticated Python binding explicitly
+selects that core without changing the legacy certificates and compiles the
+three row choices to `(-43, -164, -1171)` at appended bank index `7`.
+
+This is another finite learned predicate, not terminal cell UNSAT, schedule
+coverage, a universal lift, or live-sorry closure.  In particular, the saved
+cell-1 journal predates the predicate; it must be replayed under a fresh
+committed detector snapshot before the cut can count as a production search
+event.
+
 An independent promotion audit found one remaining postprocessor hardening
 task: detector files are copied and hash-checked into the staged source, but the
 second semantic replay still loads the live repository paths.  No terminal
@@ -420,27 +438,30 @@ current postprocessor.
 
 The next production target is therefore:
 
-1. rerun cell `4` from a fresh authenticated journal with the sixth
-   source-order predicate enabled, then classify any newly exposed survivor
-   before increasing the iteration bound;
-2. inspect the eleven iteration-limit tails only for recurring generalized
+1. replay cell `1` from a fresh authenticated journal with the new three-row
+   source-order predicate enabled, and verify that bank index `7` rejects the
+   saved survivor before increasing the iteration bound;
+2. continue the already-mined cell `4` follow-up under the same committed
+   eight-entry bank, then classify any newly exposed survivor before increasing
+   the iteration bound;
+3. inspect the remaining iteration-limit tails only for recurring generalized
    predicates with a source-level Lean entitlement, rather than mining exact
    assignment blockers;
-3. after such a predicate and its independent replay land, run a focused fresh
+4. after such a predicate and its independent replay land, run a focused fresh
    mixed-v4 follow-up under a new authenticated detector contract;
-4. if a cell reaches `UNSAT_DRAT_VERIFIED`, first require the terminal
+5. if a cell reaches `UNSAT_DRAT_VERIFIED`, first require the terminal
    postprocessor TOCTOU hardening, then run the standalone bank materializer
    and generate the exact compact-RUP and DIMACS equality inputs required to
    obtain a checked `DimacsUnsatisfiable` theorem for that exact full terminal
    formula;
-5. extend successful terminal production to every required cell in the frozen
+6. extend successful terminal production to every required cell in the frozen
    648-coordinate schedule;
-6. choose the scalable all-cell serialization/equality form—generated per-cell
+7. choose the scalable all-cell serialization/equality form—generated per-cell
    checks or a schedule-parametric authenticated checker—without embedding 648
    redundant 1,280-clause lists unnecessarily;
-7. aggregate immutable terminal records while rejecting missing, duplicated,
+8. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-8. aggregate the per-cell terminal consumers and connect their schedule
+9. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains

@@ -184,6 +184,22 @@ MIXED_V4_CELL4_LEAN_SOURCE_BYTES = 8701
 MIXED_V4_CELL4_LEAN_SOURCE_SHA256 = (
     "2c309210ee23484779ce5323162fcf7b551f3bd7b035c3ff87b2b6b83f9c750f"
 )
+MIXED_V4_CELL1_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "mixedV4Cell1PositiveNogood"
+)
+MIXED_V4_CELL1_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.commonOrientation_core_11_0_3_6_2"
+)
+MIXED_V4_CELL1_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221MixedV4Cell1PositiveCut.lean"
+)
+MIXED_V4_CELL1_LEAN_SOURCE_BYTES = 3691
+MIXED_V4_CELL1_LEAN_SOURCE_SHA256 = (
+    "aef0fdd93f31fa17ffc4f37ecc2e199285c5c6d749b634c5d2662cb0f52f4bf8"
+)
 REQUIRED_SOURCE_HYPOTHESES = (
     "Realizes",
     "FrozenBoundaryOrder",
@@ -488,6 +504,43 @@ MIXED_V4_CELL4_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+MIXED_V4_CELL1_CUBE = {
+    "0": [3, 5, 8, 11],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [2, 4, 9, 10],
+    "4": [0, 5, 7, 9],
+    "5": [2, 4, 6, 7],
+    "6": [0, 2, 3, 7],
+    "7": [6, 8, 10, 11],
+    "8": [4, 5, 6, 9],
+    "9": [0, 5, 6, 10],
+    "10": [1, 2, 3, 8],
+    "11": [0, 3, 9, 10],
+}
+MIXED_V4_CELL1_CUBE_SHA256 = _sha256_json(MIXED_V4_CELL1_CUBE)
+MIXED_V4_CELL1_LEAN_CHOICES = [
+    {"center": center, "support": list(MIXED_V4_CELL1_CUBE[str(center)])}
+    for center in (0, 2, 6)
+]
+MIXED_V4_CELL1_LEAN_BINDING = {
+    "cube_sha256": MIXED_V4_CELL1_CUBE_SHA256,
+    "nogood_declaration": MIXED_V4_CELL1_LEAN_NOGOOD,
+    "coverage_declaration": MIXED_V4_CELL1_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": MIXED_V4_CELL1_LEAN_CHOICES,
+    "preferred_common_five_core": {"a": 11, "x": 0, "b": 3, "c": 6, "y": 2},
+    "source_path": MIXED_V4_CELL1_LEAN_SOURCE,
+    "source_bytes": MIXED_V4_CELL1_LEAN_SOURCE_BYTES,
+    "source_sha256": MIXED_V4_CELL1_LEAN_SOURCE_SHA256,
+    "coverage_source_path": MIXED_V4_CELL1_LEAN_SOURCE,
+    "coverage_source_bytes": MIXED_V4_CELL1_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": MIXED_V4_CELL1_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
 PROOF_BACKED_CUBE_BINDINGS = (
     (FROZEN_V8_CUBE, FROZEN_V8_LEAN_BINDING, FROZEN_V8_LEAN_CHOICES),
     (
@@ -519,6 +572,11 @@ PROOF_BACKED_CUBE_BINDINGS = (
         MIXED_V4_CELL4_CUBE,
         MIXED_V4_CELL4_LEAN_BINDING,
         MIXED_V4_CELL4_LEAN_CHOICES,
+    ),
+    (
+        MIXED_V4_CELL1_CUBE,
+        MIXED_V4_CELL1_LEAN_BINDING,
+        MIXED_V4_CELL1_LEAN_CHOICES,
     ),
 )
 
@@ -711,6 +769,28 @@ def _build_body(cube: Mapping[str, Sequence[int]]) -> dict[str, Any] | None:
     rows = _metric_rows(cube)
     rows_by_center = {row.center: row for row in rows}
     cores = _common_five_point_cores(rows)
+    proof_backed = _proof_backed_binding(cube)
+    if proof_backed is not None:
+        binding, _choices = proof_backed
+        preferred = binding.get("preferred_common_five_core")
+        if preferred is not None:
+            core_keys = ("a", "x", "b", "c", "y")
+            if (
+                not isinstance(preferred, dict)
+                or set(preferred) != set(core_keys)
+                or any(type(preferred[key]) is not int for key in core_keys)
+            ):
+                raise Exact12V14OrderedCoverageError(
+                    "preferred common-five core is malformed"
+                )
+            preferred_core = {key: preferred[key] for key in core_keys}
+            if preferred_core not in cores:
+                raise Exact12V14OrderedCoverageError(
+                    "preferred common-five core does not replay"
+                )
+            cores = (preferred_core,) + tuple(
+                core for core in cores if core != preferred_core
+            )
     closures: dict[str, dict[str, Any]] = {}
     membership_keys: list[MembershipKey] = []
     coverage: list[dict[str, Any]] = []
@@ -807,7 +887,6 @@ def _build_body(cube: Mapping[str, Sequence[int]]) -> dict[str, Any] | None:
         ],
         "selected_rows": selected_rows,
     }
-    proof_backed = _proof_backed_binding(cube)
     if proof_backed is not None:
         binding, _choices = proof_backed
         body["generated_lean_nogood"] = copy.deepcopy(binding)
