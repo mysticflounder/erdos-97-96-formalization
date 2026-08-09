@@ -7,10 +7,19 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from census.card_head.exact12_v14_bound_jobs import materialize_cell
+from census.card_head.exact12_v14_ordered_coverage import FROZEN_V8_CUBE
+from census.card_head.exact12_v14_ordered_cut_adapter import (
+    SOURCE_ORDER_CERTIFICATE_KIND,
+    detect_proof_backed_source_order_cut,
+)
 from census.card_head.exact12_v14_structural_cegar import (
+    LEGACY_RECORD_SCHEMA,
+    RECORD_SCHEMA,
+    STRUCTURAL_CERTIFICATE_KIND,
     Exact12V14StructuralCegarError,
     _make_record,
     _sha256_json,
+    detect_admitted_cut,
     detect_structural_certificate,
     learned_clause_for_certificate,
     replay_journal,
@@ -33,6 +42,7 @@ CELL0_CUBE = {
 }
 JOB_SHA256 = "a" * 64
 DETECTOR_CONTRACT_SHA256 = "d" * 64
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 class Exact12V14StructuralCegarTest(unittest.TestCase):
@@ -48,8 +58,11 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
         return certificate
 
     def _record(self) -> dict[str, object]:
-        certificate = self._certificate()
-        clause = learned_clause_for_certificate(self.materialized.instance, certificate)
+        admitted_cut = detect_admitted_cut(
+            REPO_ROOT, self.materialized.instance, CELL0_CUBE
+        )
+        self.assertIsNotNone(admitted_cut)
+        assert admitted_cut is not None
         selected = frozenset(
             self.materialized.instance.choice_variables[
                 (center, self.materialized.instance.candidate_index(center, CELL0_CUBE[center]))
@@ -62,8 +75,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
             job_sha256=JOB_SHA256,
             detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
             cell_index=0,
-            certificate=certificate,
-            learned_clause=clause,
+            admitted_cut=admitted_cut,
             cube=CELL0_CUBE,
             positive_variables=selected,
         )
@@ -72,6 +84,16 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
     def _write_journal(path: Path, record: dict[str, object]) -> None:
         path.write_text(
             json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n",
+            encoding="utf-8",
+        )
+
+    @staticmethod
+    def _write_records(path: Path, records: list[dict[str, object]]) -> None:
+        path.write_text(
+            "".join(
+                json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n"
+                for record in records
+            ),
             encoding="utf-8",
         )
 
@@ -108,11 +130,14 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
 
     def test_authenticated_journal_replay_and_tampering_rejection(self) -> None:
         record = self._record()
+        self.assertEqual(record["schema"], RECORD_SCHEMA)
+        self.assertEqual(record["certificate_kind"], STRUCTURAL_CERTIFICATE_KIND)
 
         with TemporaryDirectory() as temporary:
             journal = Path(temporary) / "journal.jsonl"
             self._write_journal(journal, record)
             count, parent, clauses = replay_journal(
+                REPO_ROOT,
                 self.materialized.instance,
                 journal,
                 job_sha256=JOB_SHA256,
@@ -133,12 +158,117 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                 Exact12V14StructuralCegarError, "certificate hash"
             ):
                 replay_journal(
+                    REPO_ROOT,
                     materialize_cell(0).instance,
                     certificate_journal,
                     job_sha256=JOB_SHA256,
                     detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
                     cell_index=0,
                 )
+
+    def test_mixed_tagged_journal_and_legacy_rejection(self) -> None:
+        instance = materialize_cell(0).instance
+        record = self._record()
+        ordered = detect_proof_backed_source_order_cut(
+            REPO_ROOT, instance, FROZEN_V8_CUBE
+        )
+        structural = detect_admitted_cut(REPO_ROOT, instance, CELL0_CUBE)
+        assert ordered is not None
+        assert structural is not None
+        self.assertEqual(ordered.certificate_kind, SOURCE_ORDER_CERTIFICATE_KIND)
+        self.assertEqual(structural.certificate_kind, STRUCTURAL_CERTIFICATE_KIND)
+
+        ordered_selected = frozenset(
+            instance.choice_variables[
+                (
+                    center,
+                    instance.candidate_index(center, FROZEN_V8_CUBE[str(center)]),
+                )
+            ]
+            for center in range(12)
+        )
+        structural_selected = frozenset(
+            instance.choice_variables[
+                (center, instance.candidate_index(center, CELL0_CUBE[center]))
+            ]
+            for center in range(12)
+        )
+        first = _make_record(
+            index=0,
+            parent_sha256=JOB_SHA256,
+            job_sha256=JOB_SHA256,
+            detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+            cell_index=0,
+            admitted_cut=ordered,
+            cube=FROZEN_V8_CUBE,
+            positive_variables=ordered_selected,
+        )
+        second = _make_record(
+            index=1,
+            parent_sha256=first["record_sha256"],
+            job_sha256=JOB_SHA256,
+            detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+            cell_index=0,
+            admitted_cut=structural,
+            cube=CELL0_CUBE,
+            positive_variables=structural_selected,
+        )
+
+        with TemporaryDirectory() as temporary:
+            journal = Path(temporary) / "mixed.jsonl"
+            self._write_records(journal, [first, second])
+            count, parent, clauses = replay_journal(
+                REPO_ROOT,
+                materialize_cell(0).instance,
+                journal,
+                job_sha256=JOB_SHA256,
+                detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+                cell_index=0,
+            )
+            self.assertEqual((count, parent), (2, second["record_sha256"]))
+            self.assertEqual(
+                clauses,
+                frozenset({ordered.learned_clause, structural.learned_clause}),
+            )
+
+            legacy = copy.deepcopy(first)
+            legacy["schema"] = LEGACY_RECORD_SCHEMA
+            legacy_path = Path(temporary) / "legacy.jsonl"
+            self._write_journal(legacy_path, legacy)
+            with self.assertRaisesRegex(
+                Exact12V14StructuralCegarError, "explicit migration"
+            ):
+                replay_journal(
+                    REPO_ROOT,
+                    materialize_cell(0).instance,
+                    legacy_path,
+                    job_sha256=JOB_SHA256,
+                    detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+                    cell_index=0,
+                )
+
+            laundered = copy.deepcopy(second)
+            laundered["certificate_kind"] = SOURCE_ORDER_CERTIFICATE_KIND
+            body = dict(laundered)
+            body.pop("record_sha256")
+            laundered["record_sha256"] = _sha256_json(body)
+            laundered_path = Path(temporary) / "laundered.jsonl"
+            self._write_records(laundered_path, [first, laundered])
+            replay_instance = materialize_cell(0).instance
+            clauses_before = len(replay_instance.cnf.clauses)
+            with self.assertRaisesRegex(
+                Exact12V14StructuralCegarError,
+                "no proof-backed source-order cut",
+            ):
+                replay_journal(
+                    REPO_ROOT,
+                    replay_instance,
+                    laundered_path,
+                    job_sha256=JOB_SHA256,
+                    detector_contract_sha256=DETECTOR_CONTRACT_SHA256,
+                    cell_index=0,
+                )
+            self.assertEqual(len(replay_instance.cnf.clauses), clauses_before)
 
             chain_tampered = copy.deepcopy(record)
             chain_tampered["parent_sha256"] = "b" * 64
@@ -151,6 +281,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                 Exact12V14StructuralCegarError, "chain authentication"
             ):
                 replay_journal(
+                    REPO_ROOT,
                     materialize_cell(0).instance,
                     chain_journal,
                     job_sha256=JOB_SHA256,
@@ -169,6 +300,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                 Exact12V14StructuralCegarError, "cube hash"
             ):
                 replay_journal(
+                    REPO_ROOT,
                     materialize_cell(0).instance,
                     cube_journal,
                     job_sha256=JOB_SHA256,
@@ -188,6 +320,7 @@ class Exact12V14StructuralCegarTest(unittest.TestCase):
                 Exact12V14StructuralCegarError, "assignment hash"
             ):
                 replay_journal(
+                    REPO_ROOT,
                     materialize_cell(0).instance,
                     assignment_journal,
                     job_sha256=JOB_SHA256,

@@ -150,7 +150,9 @@ def _structural_terminal_workdir(root: Path) -> Path:
         "detector_contract_sha256": detector_sha256,
         "cell_index": 0,
         "detector_contract": subject.STRUCTURAL_DETECTOR_CONTRACT,
-        "stage": certificate["stage"],
+        "certificate_kind": subject.STRUCTURAL_CERTIFICATE_KIND,
+        "certificate_schema": subject.STRUCTURAL_CERTIFICATE_SCHEMA,
+        "detector_stage": certificate["stage"],
         "certificate": certificate,
         "certificate_sha256": subject._canonical_json_sha256(certificate),
         "learned_clause": [-1, -2],
@@ -403,8 +405,8 @@ class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
             workdir = _structural_terminal_workdir(root)
 
             def replace_stage(_summary, record):
-                record["stage"] = "equality-perpendicular-bisector-convex"
-                record["certificate"]["stage"] = record["stage"]
+                record["detector_stage"] = "equality-perpendicular-bisector-convex"
+                record["certificate"]["stage"] = record["detector_stage"]
                 record["certificate_sha256"] = subject._canonical_json_sha256(
                     record["certificate"]
                 )
@@ -413,7 +415,30 @@ class PrepareExact12TerminalRupSourceTest(unittest.TestCase):
             runner = FakeDratTrim()
             with self.assertRaisesRegex(
                 subject.TerminalRupSourceError,
-                "stage without a Lean terminal-bank consumer",
+                "without a typed Lean terminal-bank ingress",
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(runner.calls, 0)
+            self.assertFalse((root / "source").exists())
+
+    def test_structural_unsupported_certificate_family_fails_before_checker(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir = _structural_terminal_workdir(root)
+
+            def replace_family(_summary, record):
+                record["certificate_kind"] = "source_order_positive_coverage"
+                record["certificate_schema"] = "source-order-test.v1"
+
+            _rewrite_structural_record(workdir, replace_family)
+            runner = FakeDratTrim()
+            with self.assertRaisesRegex(
+                subject.TerminalRupSourceError,
+                "without a typed Lean terminal-bank ingress",
             ):
                 subject.prepare_terminal_rup_source(
                     workdir, root / "source", command_runner=runner
@@ -636,12 +661,11 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
         if structural:
             detector_manifest, _ = subject._expected_detector_manifest(self.repo_root)
             detector_sha256 = subject._canonical_json_sha256(detector_manifest)
-            certificate = self.structural.detect_structural_certificate(CELL0_CUBE)
-            self.assertIsNotNone(certificate)
-            assert certificate is not None
-            clause = self.structural.learned_clause_for_certificate(
-                materialized.instance, certificate
+            admitted_cut = self.structural.detect_admitted_cut(
+                self.repo_root, materialized.instance, CELL0_CUBE
             )
+            self.assertIsNotNone(admitted_cut)
+            assert admitted_cut is not None
             selected = frozenset(
                 materialized.instance.choice_variables[
                     (
@@ -659,8 +683,7 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
                 job_sha256=job_sha256,
                 detector_contract_sha256=detector_sha256,
                 cell_index=0,
-                certificate=certificate,
-                learned_clause=clause,
+                admitted_cut=admitted_cut,
                 cube=CELL0_CUBE,
                 positive_variables=selected,
             )
@@ -670,6 +693,7 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
                 encoding="utf-8",
             )
             count, terminal_record, _ = self.structural.replay_journal(
+                self.repo_root,
                 materialized.instance,
                 journal_path,
                 job_sha256=job_sha256,
@@ -711,6 +735,80 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
         )
         return workdir, formula, record
 
+    def _extend_with_real_source_order_record(self, workdir: Path) -> bytes:
+        from census.card_head.exact12_v14_ordered_coverage import FROZEN_V8_CUBE
+
+        summary_path = workdir / "summary.json"
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        journal_path = workdir / "journal.jsonl"
+        records = [
+            json.loads(line)
+            for line in journal_path.read_text(encoding="utf-8").splitlines()
+        ]
+        self.assertEqual(len(records), 1)
+        materialized = self.bound_jobs.materialize_cell(0)
+        admitted_cut = self.structural.detect_admitted_cut(
+            self.repo_root, materialized.instance, FROZEN_V8_CUBE
+        )
+        self.assertIsNotNone(admitted_cut)
+        assert admitted_cut is not None
+        self.assertEqual(
+            admitted_cut.certificate_kind, subject.SOURCE_ORDER_CERTIFICATE_KIND
+        )
+        positive_variables = frozenset(
+            materialized.instance.choice_variables[
+                (
+                    center,
+                    materialized.instance.candidate_index(
+                        center, FROZEN_V8_CUBE[str(center)]
+                    ),
+                )
+            ]
+            for center in range(12)
+        )
+        record = self.structural._make_record(
+            index=1,
+            parent_sha256=records[0]["record_sha256"],
+            job_sha256=summary["job_sha256"],
+            detector_contract_sha256=summary["detector_contract_sha256"],
+            cell_index=0,
+            admitted_cut=admitted_cut,
+            cube=FROZEN_V8_CUBE,
+            positive_variables=positive_variables,
+        )
+        records.append(record)
+        journal_path.write_text(
+            "".join(
+                json.dumps(item, sort_keys=True, separators=(",", ":")) + "\n"
+                for item in records
+            ),
+            encoding="utf-8",
+        )
+        count, terminal_record, _ = self.structural.replay_journal(
+            self.repo_root,
+            materialized.instance,
+            journal_path,
+            job_sha256=summary["job_sha256"],
+            detector_contract_sha256=summary["detector_contract_sha256"],
+            cell_index=0,
+        )
+        self.assertEqual(count, 2)
+        formula = materialized.instance.dimacs().encode("ascii")
+        for name in ("discovery.cnf", "terminal.cnf"):
+            (workdir / name).write_bytes(formula)
+        summary["records"] = count
+        summary["terminal_record_sha256"] = terminal_record
+        for key, name in (
+            ("journal", "journal.jsonl"),
+            ("discovery_cnf", "discovery.cnf"),
+            ("terminal_cnf", "terminal.cnf"),
+        ):
+            summary["artifacts"][key] = _run_artifact(workdir / name)
+        summary_path.write_text(
+            json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        return formula
+
     def test_real_structural_record_replays_and_preserves_exact_formula(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:
             root = Path(raw_root)
@@ -730,6 +828,42 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
             self.assertIsNotNone(receipt["terminal_record_sha256"])
             self.assertEqual((output / "terminal.cnf").read_bytes(), formula)
             self.assertEqual((output / "discovery.cnf").read_bytes(), formula)
+
+    def test_real_mixed_journal_publishes_typed_source_order_bank(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, _, _ = self._write_real_workdir(root, structural=True)
+            formula = self._extend_with_real_source_order_record(workdir)
+            runner = DynamicFakeDratTrim()
+            output = root / "source"
+            receipt = subject.prepare_terminal_rup_source(
+                workdir, output, command_runner=runner
+            )
+            self.assertEqual(runner.calls, 1)
+            self.assertEqual(receipt["terminal_bank"]["entries"], 2)
+            self.assertEqual(
+                receipt["terminal_bank"]["lean_terminal_consumer"],
+                subject.LEAN_TERMINAL_CONSUMER,
+            )
+            manifest = json.loads(
+                (output / "terminal-bank-manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                [entry["certificate_kind"] for entry in manifest["entries"]],
+                [
+                    subject.STRUCTURAL_CERTIFICATE_KIND,
+                    subject.SOURCE_ORDER_CERTIFICATE_KIND,
+                ],
+            )
+            self.assertEqual(
+                manifest["entries"][0]["lean_ingress"]["adapter_declaration"],
+                subject.LEAN_DUPLICATE_CENTER_ADAPTER,
+            )
+            self.assertEqual(
+                manifest["entries"][1]["lean_ingress"]["kind"],
+                "named_source_order_positive_nogood",
+            )
+            self.assertEqual((output / "terminal.cnf").read_bytes(), formula)
 
     def test_real_cell_rejects_self_consistent_source_tamper_before_checker(
         self,

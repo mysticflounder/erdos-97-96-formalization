@@ -14,11 +14,12 @@ does not establish 648-cell coverage, the universal lift, or Lean closure.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
 import shutil
-from collections.abc import Collection, Mapping, Sequence
+from collections.abc import Collection, Mapping
 from pathlib import Path
 from typing import Any
 
@@ -33,21 +34,34 @@ from .exact12_v14_bound_jobs import (
     instantiate_validated_bound_job,
 )
 from .exact12_v14_cell_run import cnf_assignment_satisfies
+from .exact12_v14_ordered_cut_adapter import (
+    SOURCE_ORDER_CERTIFICATE_KIND,
+    AdmittedCut,
+    Exact12V14OrderedCutAdapterError,
+    detect_proof_backed_source_order_cut,
+    replay_proof_backed_source_order_cut,
+)
 from .exact12_v14_schedule import build_manifest, json_sha256
 from .exact12_v14_valuation import added_constraints_hold, decode_blockers
 from .sat_encoding import CadicalResult, CoverInstance, EncodingError, solve_cadical
 from .source_faithful_candidate_surface import source_faithful_cube_ok
 
-RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v2"
-RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cut.v2"
+RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v3"
+RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v3"
+LEGACY_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cut.v2"
+STRUCTURAL_CERTIFICATE_KIND = "structural_metric_core"
+STRUCTURAL_CERTIFICATE_SCHEMA = "p97_phase3_structural_certificate_payload.v1"
 DETECTOR_CONTRACT = (
-    "formalized order-independent metric core plus exact certificate replay"
+    "tagged structural replay or exact Lean-backed source-order bank replay"
 )
 # Complete semantic source closure for certificate detection, replay, and
 # selected-row clause compilation.  This intentionally excludes eager imports
 # which are not reached by that contract.
 DETECTOR_FILES: tuple[str, ...] = (
     "census/card_head/exact12_v14_structural_cegar.py",
+    "census/card_head/exact12_v14_ordered_cut_adapter.py",
+    "census/card_head/exact12_v14_ordered_coverage.py",
+    "census/card_head/exact12_v14_source_order_bank.py",
     "census/card_head/sat_encoding.py",
     "census/global_confinement/metric_realizability_probe.py",
     "census/global_confinement/cap_selected_nogood_certificate_probe.py",
@@ -308,6 +322,69 @@ def learned_clause_for_certificate(
     return clause
 
 
+def detect_admitted_cut(
+    repo_root: Path,
+    instance: CoverInstance,
+    cube: Mapping[int | str, Collection[int]],
+) -> AdmittedCut | None:
+    """Prefer a theorem-backed source-order cut, then structural replay."""
+
+    try:
+        ordered = detect_proof_backed_source_order_cut(repo_root, instance, cube)
+    except Exact12V14OrderedCutAdapterError as exc:
+        raise Exact12V14StructuralCegarError(str(exc)) from exc
+    if ordered is not None:
+        return ordered
+    certificate = detect_structural_certificate(cube, n=instance.model.cardinality)
+    if certificate is None:
+        return None
+    return AdmittedCut(
+        certificate_kind=STRUCTURAL_CERTIFICATE_KIND,
+        certificate_schema=STRUCTURAL_CERTIFICATE_SCHEMA,
+        detector_stage=certificate["stage"],
+        certificate=copy.deepcopy(dict(certificate)),
+        learned_clause=learned_clause_for_certificate(instance, certificate),
+    )
+
+
+def replay_tagged_cut(
+    repo_root: Path,
+    instance: CoverInstance,
+    cube: Mapping[int | str, Collection[int]],
+    *,
+    certificate_kind: str,
+    certificate_schema: str,
+    detector_stage: str,
+    certificate: Mapping[str, Any],
+) -> tuple[int, ...]:
+    """Replay one tagged certificate through only its declared family."""
+
+    if certificate_kind == STRUCTURAL_CERTIFICATE_KIND:
+        if (
+            certificate_schema != STRUCTURAL_CERTIFICATE_SCHEMA
+            or detector_stage != certificate.get("stage")
+        ):
+            raise Exact12V14StructuralCegarError(
+                "recorded structural certificate tag drifted"
+            )
+        return learned_clause_for_certificate(instance, certificate)
+    if certificate_kind == SOURCE_ORDER_CERTIFICATE_KIND:
+        try:
+            return replay_proof_backed_source_order_cut(
+                repo_root,
+                instance,
+                cube,
+                certificate_schema=certificate_schema,
+                detector_stage=detector_stage,
+                certificate=certificate,
+            )
+        except Exact12V14OrderedCutAdapterError as exc:
+            raise Exact12V14StructuralCegarError(str(exc)) from exc
+    raise Exact12V14StructuralCegarError(
+        f"unknown tagged certificate family: {certificate_kind!r}"
+    )
+
+
 def _record_body(
     *,
     index: int,
@@ -315,13 +392,13 @@ def _record_body(
     job_sha256: str,
     detector_contract_sha256: str,
     cell_index: int,
-    certificate: Mapping[str, Any],
-    learned_clause: Sequence[int],
+    admitted_cut: AdmittedCut,
     cube: Mapping[int | str, Collection[int]],
     positive_variables: Collection[int],
 ) -> dict[str, Any]:
     cube_payload = _canonical_cube_payload(cube)
     assignment_payload = _canonical_positive_variables(positive_variables)
+    certificate_payload = copy.deepcopy(admitted_cut.certificate)
     return {
         "schema": RECORD_SCHEMA,
         "index": index,
@@ -330,10 +407,12 @@ def _record_body(
         "detector_contract_sha256": detector_contract_sha256,
         "cell_index": cell_index,
         "detector_contract": DETECTOR_CONTRACT,
-        "stage": certificate["stage"],
-        "certificate": dict(certificate),
-        "certificate_sha256": _sha256_json(certificate),
-        "learned_clause": list(learned_clause),
+        "certificate_kind": admitted_cut.certificate_kind,
+        "certificate_schema": admitted_cut.certificate_schema,
+        "detector_stage": admitted_cut.detector_stage,
+        "certificate": certificate_payload,
+        "certificate_sha256": _sha256_json(certificate_payload),
+        "learned_clause": list(admitted_cut.learned_clause),
         "cube": cube_payload,
         "cube_sha256": _sha256_json(cube_payload),
         "positive_variables": assignment_payload,
@@ -355,6 +434,7 @@ def _append_record(path: Path, record: Mapping[str, Any]) -> None:
 
 
 def replay_journal(
+    repo_root: Path,
     instance: CoverInstance,
     journal_path: Path,
     *,
@@ -368,6 +448,7 @@ def replay_journal(
         return 0, job_sha256, frozenset()
     parent = job_sha256
     seen: set[tuple[int, ...]] = set()
+    pending_clauses: list[tuple[int, ...]] = []
     count = 0
     with journal_path.open("rb") as handle:
         for line_number, raw in enumerate(handle, 1):
@@ -385,6 +466,10 @@ def replay_journal(
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} is not strict JSON"
                 ) from exc
+            if isinstance(record, Mapping) and record.get("schema") == LEGACY_RECORD_SCHEMA:
+                raise Exact12V14StructuralCegarError(
+                    "legacy v2 journals require an explicit migration; start a fresh v3 run"
+                )
             expected_fields = {
                 "schema",
                 "index",
@@ -393,7 +478,9 @@ def replay_journal(
                 "detector_contract_sha256",
                 "cell_index",
                 "detector_contract",
-                "stage",
+                "certificate_kind",
+                "certificate_schema",
+                "detector_stage",
                 "certificate",
                 "certificate_sha256",
                 "learned_clause",
@@ -431,10 +518,6 @@ def replay_journal(
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} certificate hash drifted"
                 )
-            if record.get("stage") != certificate.get("stage"):
-                raise Exact12V14StructuralCegarError(
-                    f"journal line {line_number} detector stage drifted"
-                )
             cube = _canonical_cube_payload(
                 record.get("cube"), cardinality=instance.model.cardinality
             )
@@ -468,7 +551,28 @@ def replay_journal(
                     raise Exact12V14StructuralCegarError(
                         f"journal line {line_number} has malformed {hash_field}"
                     )
-            clause = learned_clause_for_certificate(instance, certificate)
+            certificate_kind = record.get("certificate_kind")
+            certificate_schema = record.get("certificate_schema")
+            detector_stage = record.get("detector_stage")
+            if not all(
+                isinstance(value, str)
+                for value in (certificate_kind, certificate_schema, detector_stage)
+            ):
+                raise Exact12V14StructuralCegarError(
+                    f"journal line {line_number} has malformed certificate tags"
+                )
+            assert isinstance(certificate_kind, str)
+            assert isinstance(certificate_schema, str)
+            assert isinstance(detector_stage, str)
+            clause = replay_tagged_cut(
+                repo_root,
+                instance,
+                cube,
+                certificate_kind=certificate_kind,
+                certificate_schema=certificate_schema,
+                detector_stage=detector_stage,
+                certificate=certificate,
+            )
             if record.get("learned_clause") != list(clause) or clause in seen:
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} learned clause drifted or repeated"
@@ -481,10 +585,12 @@ def replay_journal(
                 raise Exact12V14StructuralCegarError(
                     f"journal line {line_number} witness does not falsify its cut"
                 )
-            instance.cnf.add_clause(clause)
             seen.add(clause)
+            pending_clauses.append(clause)
             parent = record_sha256
             count += 1
+    for clause in pending_clauses:
+        instance.cnf.add_clause(clause)
     return count, parent, frozenset(seen)
 
 
@@ -543,6 +649,7 @@ def run_structural_cegar(
                 raise Exact12V14StructuralCegarError("seed journal is missing")
             shutil.copyfile(seed_journal, journal_path)
         record_count, parent_sha256, seen = replay_journal(
+            repo_root,
             instance,
             journal_path,
             job_sha256=job_sha256,
@@ -615,8 +722,8 @@ def run_structural_cegar(
                 error = "SAT assignment failed a source, predicate, or CNF replay gate"
                 break
 
-            certificate = detect_structural_certificate(cube)
-            if certificate is None:
+            admitted_cut = detect_admitted_cut(repo_root, instance, cube)
+            if admitted_cut is None:
                 status = "STRUCTURALLY_UNRESOLVED"
                 _write_json(
                     workdir / "survivor.json",
@@ -630,7 +737,7 @@ def run_structural_cegar(
                     },
                 )
                 break
-            clause = learned_clause_for_certificate(instance, certificate)
+            clause = admitted_cut.learned_clause
             if clause in seen_clauses:
                 status = "DETECTOR_REPEAT"
                 error = "detector repeated a replayed learned clause"
@@ -641,8 +748,7 @@ def run_structural_cegar(
                 job_sha256=job_sha256,
                 detector_contract_sha256=detector_contract_sha256,
                 cell_index=cell_index,
-                certificate=certificate,
-                learned_clause=clause,
+                admitted_cut=admitted_cut,
                 cube=cube,
                 positive_variables=positive,
             )
@@ -656,6 +762,7 @@ def run_structural_cegar(
             job, schedule_manifest, repo_root
         )
         audit_count, audit_parent, audit_seen = replay_journal(
+            repo_root,
             audit_materialized.instance,
             journal_path,
             job_sha256=job_sha256,
@@ -685,8 +792,9 @@ def run_structural_cegar(
         summary = {
             "schema": RUN_SCHEMA,
             "scope": (
-                "one finite normalized-v14 cell under order-independent metric "
-                "CEGAR; no aggregate coverage, universal lift, or Lean closure"
+                "one finite normalized-v14 cell under tagged structural and "
+                "proof-backed source-order CEGAR; no aggregate coverage, "
+                "universal lift, or Lean closure"
             ),
             "bound_job_schema": BOUND_JOB_SCHEMA,
             "job_sha256": job_sha256,

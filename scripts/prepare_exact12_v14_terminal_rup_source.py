@@ -31,21 +31,42 @@ from typing import Any
 import materialize_checkpointed_rup as rup
 
 CELL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_cell_run.v1"
-STRUCTURAL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v2"
+STRUCTURAL_RUN_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cegar_run.v3"
 RUN_SCHEMAS = frozenset({CELL_RUN_SCHEMA, STRUCTURAL_RUN_SCHEMA})
 RECEIPT_SCHEMA = "p97_rigid221_exact12_terminal_rup_source.v1"
 BOUND_JOB_SCHEMA = "p97_rigid221_exact12_full_v14_bound_job.v1"
-STRUCTURAL_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_structural_cut.v2"
-STRUCTURAL_DETECTOR_CONTRACT = (
-    "formalized order-independent metric core plus exact certificate replay"
+STRUCTURAL_RECORD_SCHEMA = "p97_rigid221_exact12_full_v14_tagged_cut.v3"
+STRUCTURAL_CERTIFICATE_KIND = "structural_metric_core"
+STRUCTURAL_CERTIFICATE_SCHEMA = "p97_phase3_structural_certificate_payload.v1"
+SOURCE_ORDER_CERTIFICATE_KIND = "source_order_positive_coverage"
+SOURCE_ORDER_CERTIFICATE_SCHEMA = (
+    "p97_rigid221_exact12_source_order_positive_coverage.v3"
 )
-# The current source-facing Lean endpoint reconstructs only
-# `List (DuplicateCenterNogood Label)`.  Other Python stages remain useful for
-# discovery, but admitting them here would let a mixed terminal CNF cross a
-# duplicate-center-only semantic boundary.
+SOURCE_ORDER_DETECTOR_STAGE = "source-order-positive-coverage"
+STRUCTURAL_DETECTOR_CONTRACT = (
+    "tagged structural replay or exact Lean-backed source-order bank replay"
+)
 LEAN_TERMINAL_STAGES = frozenset({"equality-duplicate-center"})
+TERMINAL_BANK_MANIFEST_SCHEMA = (
+    "p97_rigid221_exact12_source_order_terminal_bank_manifest.v1"
+)
+LEAN_TERMINAL_BANK_TYPE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood"
+)
+LEAN_TERMINAL_CONSUMER = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "false_of_checkedCompactSourceOrderTerminal"
+)
+LEAN_DUPLICATE_CENTER_ADAPTER = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood.ofDuplicateCenter"
+)
 STRUCTURAL_DETECTOR_FILES = (
     "census/card_head/exact12_v14_structural_cegar.py",
+    "census/card_head/exact12_v14_ordered_cut_adapter.py",
+    "census/card_head/exact12_v14_ordered_coverage.py",
+    "census/card_head/exact12_v14_source_order_bank.py",
     "census/card_head/sat_encoding.py",
     "census/global_confinement/metric_realizability_probe.py",
     "census/global_confinement/cap_selected_nogood_certificate_probe.py",
@@ -62,7 +83,9 @@ STRUCTURAL_RECORD_FIELDS = frozenset(
         "detector_contract_sha256",
         "cell_index",
         "detector_contract",
-        "stage",
+        "certificate_kind",
+        "certificate_schema",
+        "detector_stage",
         "certificate",
         "certificate_sha256",
         "learned_clause",
@@ -252,8 +275,8 @@ def _authenticate_structural_journal(
     *,
     summary: Mapping[str, Any],
     expected_detector_manifest: Sequence[Mapping[str, Any]],
-) -> list[tuple[int, ...]]:
-    """Authenticate the structural journal and return its accepted clauses."""
+) -> tuple[list[tuple[int, ...]], dict[str, Any]]:
+    """Authenticate a tagged journal and describe its typed Lean bank ingress."""
 
     records = summary.get("records")
     if isinstance(records, bool) or not isinstance(records, int) or records < 0:
@@ -280,13 +303,14 @@ def _authenticate_structural_journal(
             )
         if journal_path is not None and journal_path.stat().st_size != 0:
             raise TerminalRupSourceError("empty structural journal is not empty")
-        return []
+        return [], _terminal_bank_manifest([])
     if journal_path is None or not journal_path.is_file():
         raise TerminalRupSourceError("structural terminal journal is missing")
 
     parent = job_sha256
     count = 0
     learned_clauses: list[tuple[int, ...]] = []
+    terminal_bank_entries: list[dict[str, Any]] = []
     with journal_path.open("rb") as handle:
         for line_number, raw_line in enumerate(handle, 1):
             if not raw_line.endswith(b"\n") or b"\r" in raw_line:
@@ -325,7 +349,9 @@ def _authenticate_structural_journal(
                 or record.get("cell_index") != cell_index
                 or record.get("detector_contract") != STRUCTURAL_DETECTOR_CONTRACT
                 or not isinstance(certificate, dict)
-                or record.get("stage") != certificate.get("stage")
+                or not isinstance(record.get("certificate_kind"), str)
+                or not isinstance(record.get("certificate_schema"), str)
+                or not isinstance(record.get("detector_stage"), str)
                 or record.get("certificate_sha256")
                 != _canonical_json_sha256(certificate)
                 or record.get("cube_sha256") != _canonical_json_sha256(cube)
@@ -338,10 +364,41 @@ def _authenticate_structural_journal(
                 raise TerminalRupSourceError(
                     f"journal line {line_number} failed chain authentication"
                 )
-            if record.get("stage") not in LEAN_TERMINAL_STAGES:
+            certificate_kind = record["certificate_kind"]
+            certificate_schema = record["certificate_schema"]
+            detector_stage = record["detector_stage"]
+            if (
+                certificate_kind == STRUCTURAL_CERTIFICATE_KIND
+                and certificate_schema == STRUCTURAL_CERTIFICATE_SCHEMA
+                and detector_stage in LEAN_TERMINAL_STAGES
+                and detector_stage == certificate.get("stage")
+            ):
+                lean_ingress = {
+                    "kind": "checked_duplicate_center_adapter",
+                    "adapter_declaration": LEAN_DUPLICATE_CENTER_ADAPTER,
+                }
+            elif (
+                certificate_kind == SOURCE_ORDER_CERTIFICATE_KIND
+                and certificate_schema == SOURCE_ORDER_CERTIFICATE_SCHEMA
+                and detector_stage == SOURCE_ORDER_DETECTOR_STAGE
+            ):
+                generated_lean_nogood = certificate.get("generated_lean_nogood")
+                if not isinstance(generated_lean_nogood, dict) or not isinstance(
+                    generated_lean_nogood.get("nogood_declaration"), str
+                ):
+                    raise TerminalRupSourceError(
+                        "source-order terminal certificate lacks its named Lean binding"
+                    )
+                lean_ingress = {
+                    "kind": "named_source_order_positive_nogood",
+                    "binding": generated_lean_nogood,
+                    "binding_sha256": _canonical_json_sha256(generated_lean_nogood),
+                }
+            else:
                 raise TerminalRupSourceError(
-                    "structural terminal journal contains a stage without a "
-                    f"Lean terminal-bank consumer: {record.get('stage')!r}"
+                    "tagged terminal journal contains a certificate family or stage "
+                    "without a typed Lean terminal-bank ingress: "
+                    f"{certificate_kind!r}/{certificate_schema!r}/{detector_stage!r}"
                 )
             learned_clause = record["learned_clause"]
             if (
@@ -367,12 +424,39 @@ def _authenticate_structural_journal(
                     )
             parent = record_sha256
             learned_clauses.append(tuple(learned_clause))
+            terminal_bank_entries.append(
+                {
+                    "index": count,
+                    "journal_record_sha256": record_sha256,
+                    "certificate_kind": certificate_kind,
+                    "certificate_schema": certificate_schema,
+                    "detector_stage": detector_stage,
+                    "certificate_sha256": record["certificate_sha256"],
+                    "learned_clause": learned_clause,
+                    "learned_clause_sha256": _canonical_json_sha256(learned_clause),
+                    "lean_ingress": lean_ingress,
+                }
+            )
             count += 1
     if count != records or terminal_record != parent:
         raise TerminalRupSourceError(
             "structural terminal record count or chain head drifted"
         )
-    return learned_clauses
+    return learned_clauses, _terminal_bank_manifest(terminal_bank_entries)
+
+
+def _terminal_bank_manifest(entries: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    body = {
+        "schema": TERMINAL_BANK_MANIFEST_SCHEMA,
+        "lean_bank_type": LEAN_TERMINAL_BANK_TYPE,
+        "lean_terminal_consumer": LEAN_TERMINAL_CONSUMER,
+        "entries": [dict(entry) for entry in entries],
+        "scope": (
+            "typed finite exact-12 cell bank ingress only; not aggregate coverage, "
+            "a universal lift, or live theorem closure"
+        ),
+    }
+    return {**body, "manifest_sha256": _canonical_json_sha256(body)}
 
 
 def _exact12_source_modules(repo_root: Path) -> tuple[Any, Any, Any]:
@@ -426,6 +510,7 @@ def _semantic_replay_structural_journal(
     _, _, structural = _exact12_source_modules(repo_root)
     try:
         count, terminal_record, replayed = structural.replay_journal(
+            repo_root,
             instance,
             journal_path,
             job_sha256=summary["job_sha256"],
@@ -455,12 +540,13 @@ def _validate_formula_against_canonical_source(
     job: Mapping[str, Any],
     journal_path: Path | None,
     expected_detector_manifest: Sequence[Mapping[str, Any]],
-) -> None:
+) -> dict[str, Any]:
     """Require exact bytes from a source rebuild plus semantic cut replay."""
 
     learned_clauses: list[tuple[int, ...]] = []
+    terminal_bank_manifest = _terminal_bank_manifest([])
     if summary.get("schema") == STRUCTURAL_RUN_SCHEMA:
-        learned_clauses = _authenticate_structural_journal(
+        learned_clauses, terminal_bank_manifest = _authenticate_structural_journal(
             journal_path,
             summary=summary,
             expected_detector_manifest=expected_detector_manifest,
@@ -495,13 +581,14 @@ def _validate_formula_against_canonical_source(
         raise TerminalRupSourceError(
             "terminal CNF differs from canonical source rebuild and journal replay"
         )
+    return terminal_bank_manifest
 
 
 def validate_terminal_run(
     workdir: Path,
     *,
     repo_root: Path,
-) -> tuple[dict[str, Any], dict[str, Path], dict[str, Path]]:
+) -> tuple[dict[str, Any], dict[str, Path], dict[str, Path], dict[str, Any]]:
     """Authenticate one completed exact-12 terminal run and its proof files."""
 
     workdir = workdir.resolve()
@@ -579,7 +666,7 @@ def validate_terminal_run(
                 allow_empty=True,
             )
             paths["journal"] = journal_path
-    _validate_formula_against_canonical_source(
+    terminal_bank_manifest = _validate_formula_against_canonical_source(
         paths["discovery_cnf"],
         paths["terminal_cnf"],
         repo_root=repo_root,
@@ -588,7 +675,7 @@ def validate_terminal_run(
         journal_path=journal_path,
         expected_detector_manifest=detector_manifest,
     )
-    return summary, paths, detector_paths
+    return summary, paths, detector_paths, terminal_bank_manifest
 
 
 def normalize_dense_pure_rup(
@@ -698,8 +785,8 @@ def prepare_terminal_rup_source(
         raise TerminalRupSourceError("timeout_seconds must be positive")
     if repo_root is None:
         repo_root = Path(__file__).resolve().parents[1]
-    summary, source_paths, detector_paths = validate_terminal_run(
-        workdir, repo_root=repo_root
+    summary, source_paths, detector_paths, terminal_bank_manifest = (
+        validate_terminal_run(workdir, repo_root=repo_root)
     )
     artifact_ledger = summary["artifacts"]
     output_dir = output_dir.resolve()
@@ -751,7 +838,7 @@ def prepare_terminal_rup_source(
         copied_drat = staged_paths["proof"]
         if staged_paths["discovery_cnf"].read_bytes() != copied_cnf.read_bytes():
             raise TerminalRupSourceError("staged discovery and terminal CNFs differ")
-        _validate_formula_against_canonical_source(
+        staged_terminal_bank_manifest = _validate_formula_against_canonical_source(
             staged_paths["discovery_cnf"],
             copied_cnf,
             repo_root=repo_root,
@@ -759,6 +846,12 @@ def prepare_terminal_rup_source(
             job=copied_job,
             journal_path=staged_paths.get("journal"),
             expected_detector_manifest=detector_manifest,
+        )
+        if staged_terminal_bank_manifest != terminal_bank_manifest:
+            raise TerminalRupSourceError("staged typed terminal-bank manifest drifted")
+        terminal_bank_manifest_path = stage / "terminal-bank-manifest.json"
+        terminal_bank_manifest_path.write_bytes(
+            _json_bytes(staged_terminal_bank_manifest)
         )
 
         raw_lrat = stage / "drat-trim.lrat"
@@ -806,6 +899,14 @@ def prepare_terminal_rup_source(
             "cell_index": summary.get("cell_index"),
             "job_sha256": summary.get("job_sha256"),
             "terminal_record_sha256": summary.get("terminal_record_sha256"),
+            "terminal_bank": {
+                "schema": staged_terminal_bank_manifest["schema"],
+                "entries": len(staged_terminal_bank_manifest["entries"]),
+                "manifest_sha256": staged_terminal_bank_manifest["manifest_sha256"],
+                "lean_terminal_consumer": staged_terminal_bank_manifest[
+                    "lean_terminal_consumer"
+                ],
+            },
             "drat_trim_precheck": {
                 "command": checker,
                 "exit_code": checked.returncode,
@@ -861,6 +962,10 @@ def prepare_terminal_rup_source(
                 ),
                 "source_manifest": rup.artifact_record(
                     manifest_path, relative_path=manifest_path.name
+                ),
+                "terminal_bank_manifest": rup.artifact_record(
+                    terminal_bank_manifest_path,
+                    relative_path=terminal_bank_manifest_path.name,
                 ),
             },
         }

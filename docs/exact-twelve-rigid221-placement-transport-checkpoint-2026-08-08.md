@@ -97,21 +97,19 @@ identical-CNF DRAT-producing rerun before accepting UNSAT.  Cell 0 is a real
 authenticated survivor data, but it is not itself a contradiction or a
 coverage result.
 
-`exact12_v14_structural_cegar.py` now supplies the first source-entitled
-geometric refinement adapter over that binding.  It accepts a learned clause
-only after the existing order-independent metric detector exports a certificate
-which the independent structural-certificate validator replays.  Each cut is
-then compiled to the exact selected-row variables and written to an
-append-only hash chain bound to the cell job and the detector implementation.
-The journal-v2 contract stores the canonical cube and complete positive SAT
-assignment, recomputes both hashes during replay, checks that decoding the
-assignment gives exactly the recorded cube, and checks that the recorded
-witness falsifies the learned cut.  Its detector-source manifest now covers
-the six files in the actual semantic detector contract.  A fresh one-iteration
-cell-0 v2 run replayed all live SAT gates and learned the same five-row
-equality-duplicate-center certificate as the earlier canary.  It ended at
-`ITERATION_LIMIT`, not a terminal cell or coverage result.  The v1 journals are
-historical artifacts and are not promotion inputs for the v2 schema.
+`exact12_v14_structural_cegar.py` is now a tagged mixed-v3 refinement
+dispatcher over that binding.  It first admits the single current
+theorem-backed source-order cut after freshly rebuilding and authenticating its
+Lean source bank, then falls back to the existing order-independent structural
+metric detector and independent certificate replay.  Every admitted cut is
+recompiled to the exact selected-row variables and written to an append-only
+hash chain bound to the cell job and the nine-file semantic detector contract.
+The v3 journal tags the certificate family, schema, and detector stage; stores
+the canonical cube and complete positive SAT assignment; and on replay checks
+the cube, assignment, certificate, learned clause, cut falsification, and exact
+family-specific bank or structural proof.  Legacy v2 journals are rejected
+rather than silently migrated.  The retained v2 waves remain historical
+nonterminal diagnostics; a fresh v3 wave is required for promotion.
 
 ## Exact remaining gate
 
@@ -193,7 +191,7 @@ the complete DIMACS SHA-256 is
 `cfc268f2915ff31eaf24a66a036e41e81f93aca0967e88c1b4a4158eb67a379`.
 The equality proof uses `native_decide`, so this is a compiler-trusting exact
 artifact check rather than a kernel-only certificate.  It covers one
-representative schedule cell only.  There is still no terminal bank or
+representative schedule cell only.  There is still no production terminal bank or
 live-leaf closure.
 
 `ExactTwelveRigid221TerminalBankConsumer.lean` now supplies the complete
@@ -212,17 +210,29 @@ the evaluated base-CNF definitions found no `unsafe`, `@[implemented_by]`, or
 consumer, not a kernel-only proof.  A wrapper build currently stops in the
 upstream `ExactTwelveRigid221V14JobCnf` module at the configured 16 GiB memory
 cap; that is a build-resource failure, while direct elaboration of the new
-module succeeds.  Most importantly, no terminal bank or proof of
+module succeeds.  Most importantly, no production terminal bank or proof of
 `DimacsUnsatisfiable` has yet been supplied, so this theorem closes no live
 leaf by itself.
+
+`ExactTwelveRigid221SourceOrderTerminalBankConsumer.lean` generalizes that
+finite endpoint to a list of proof-carrying `SourceOrderPositiveNogood` values.
+Each value stores its selected row choices and a semantic refutation of every
+source realization positively matching those choices.  Structural
+`DuplicateCenterNogood` values enter through the checked
+`SourceOrderPositiveNogood.ofDuplicateCenter` adapter, while the current frozen
+V8 order theorem supplies a native source-order value directly.  The complete
+terminal formula still contains the frozen base CNF and reconstructed cell
+delta before the learned clauses.  This is a typed mixed-bank consumer, not a
+bank, terminal UNSAT proof, aggregate result, or live closure.
 
 `ExactTwelveRigid221TerminalRupIngress.lean` now supplies the next logical
 boundary.  It transfers successful replay by the existing compact pure-RUP
 checker to `DimacsUnsatisfiable`, provided generated data proves both exact
 parsing of the checker start formula and exact equality of its signed clauses
-with the full `terminalDimacs` ledger.  The exact-twelve endpoint composes this
-fact with `not_realizes_of_terminalDuplicateCenterBank`.  Direct elaboration
-passes.  The generic replay transfer itself has audited axiom closure
+with the full `terminalDimacs` ledger.  The current exact-twelve endpoint
+`false_of_checkedCompactSourceOrderTerminal` composes this fact with the mixed
+source-order bank consumer.  Direct elaboration passes.  The generic replay
+transfer itself has audited axiom closure
 `propext`, `Classical.choice`, and `Quot.sound`; the final exact-twelve endpoint
 additionally inherits `Lean.ofReduceBool` and `Lean.trustCompiler` from the
 terminal-bank consumer's previously documented base-literal bound.  This
@@ -237,14 +247,16 @@ to match that job.  Cell summaries must carry the clause-delta artifact bound
 inside the job; structural summaries must carry a journal whose record count,
 parent chain, detector-contract digest, certificate/cube/assignment hashes, and
 terminal chain head all match the summary.  This postprocessor authenticates
-that structural chain, rejects every detector stage except the
-`equality-duplicate-center` stage consumed by the current Lean terminal-bank
-endpoint, and then independently invokes the production semantic certificate
-replay.  It compares the replayed learned-clause set with the authenticated
-journal clauses.  Independently of all run metadata, it rebuilds the current
-schedule manifest, validates and rematerializes the bound job through the
-canonical compiler, installs the replayed cuts, and requires both discovery
-and terminal DIMACS files to equal the resulting canonical bytes exactly.
+the tagged v3 chain and admits only certificate families with an explicit typed
+Lean ingress: replay-checked equality-duplicate-center records, or the exact
+named theorem binding from the freshly authenticated source-order bank.  It
+emits `terminal-bank-manifest.json` in journal order, compares every
+family-specific replayed learned clause with the authenticated record, rebuilds
+the current schedule manifest, validates and rematerializes the bound job
+through the canonical compiler, installs the replayed cuts, and requires both
+discovery and terminal DIMACS files to equal the resulting canonical bytes
+exactly.  The manifest is provenance and typing data; structural Lean objects
+must still be reconstructed from the richer authenticated journal records.
 
 The staged source is self-contained: it includes the parsed summary, bound job,
 discovery and terminal CNFs, DRAT, the clause delta or structural journal, the
@@ -265,9 +277,10 @@ negative/RAT hints, and any stream without a final empty-clause addition.  It
 then emits the generic authenticated pure-RUP source manifest, re-enters the
 generic strict loader before publication, and emits a separate exact-twelve
 receipt binding all copied provenance inputs, the checker transcript, terminal
-formula, raw proof, raw and normalized LRAT, and normalization counts.  Focused
-tests pass (`19` adapter tests plus `4` structural replay tests), and Ruff is
-clean.  The adapter suite now includes unmocked source-backed tests that build
+formula, raw proof, raw and normalized LRAT, and normalization counts.  The
+focused mixed-v3 adapter, replay, postprocessor, and materializer suites pass
+(`35` tests total), and Ruff is clean.  The adapter suite now includes
+unmocked source-backed tests that build
 the live cell-0 job, generate and replay a real duplicate-center certificate,
 check exact staged formula bytes, and reject a self-consistently rehashed job
 tamper, a rehashed semantic-certificate tamper, and an alternate DIMACS
@@ -276,34 +289,50 @@ CaDiCaL and `drat-trim` confirmed the relevant sparse-ID behavior and the dense
 normalization.  No retained exact-twelve run currently has a terminal artifact,
 so this postprocessor has not yet produced a production certificate.
 
+`scripts/generate_exact12_v14_terminal_bank_lean.py` now closes the separate
+standalone materialization gate.  It reauthenticates the prepared receipt and
+all copied artifacts, reruns the tagged journal replay, requires exact equality
+with the typed terminal-bank manifest, recompiles every recorded choice to the
+recorded learned clause, and verifies the hashes of every named source-order
+Lean declaration.  It emits bounded Lean shards in journal order: structural
+records become checked `DuplicateCenterNogood` values adapted by
+`SourceOrderPositiveNogood.ofDuplicateCenter`, and theorem-backed order records
+refer to their authenticated named declaration.  Generation also fails closed
+unless the output directory suffix agrees with the declared Lean module
+prefix, so the emitted sibling imports are addressable from the same module
+root.  A two-record mixed contract
+canary (one record of each family) and its coordinator elaborate directly in
+Lean.  That canary uses the test harness's synthetic checker callback and fake
+proof bytes; it is materialization evidence only and must not be cited as a
+real terminal UNSAT/DRAT result.  No retained production run is terminal.
+
 The latest bounded twelve-cell structural wave learned 4,468 cuts but produced
 no terminal UNSAT: cells `1,2,4,5,7,8,11` remained unresolved and cells
 `0,3,6,9,10` reached their iteration limit.  Its mixed-stage journals cannot
-be promoted through the duplicate-center-only Lean endpoint.  An independent
+be promoted because they predate the tagged v3 contract and are explicitly
+rejected by the current replay.  An independent
 48-order diagnostic found complete finite order coverage in frozen cells
 `4,5,8`, partial coverage in `1,2,7,11`, and no aggregate placement theorem or
 universal lift.  These are finite diagnostics, not closure results.
 
 The next production target is therefore:
 
-1. add a source-faithful order/placement predicate whose complete finite witness
-   can be replayed by a named Lean consumer; do not reuse the unsound
-   `exact=True` interpretation, because selected supports are not complete
-   ambient fibres;
-2. rerun the bounded twelve-cell diagnostic wave only with cuts from stages that
-   have an explicit Lean terminal-bank consumer, preserving authenticated
-   per-cell workdirs;
-3. if a cell reaches `UNSAT_DRAT_VERIFIED`, exercise the landed generated replay
-   coordinator and this postprocessor to obtain a checked
+1. rerun the bounded twelve-cell wave under tagged v3, using only the structural
+   duplicate-center and theorem-backed frozen-order families that have explicit
+   Lean terminal-bank ingress, and preserve immutable authenticated per-cell
+   workdirs;
+2. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the landed postprocessor and
+   standalone bank materializer, then generate the exact compact-RUP and DIMACS
+   equality inputs required to obtain a checked
    `DimacsUnsatisfiable` theorem for that exact full terminal formula;
-4. extend successful terminal production to every required cell in the frozen
+3. extend successful terminal production to every required cell in the frozen
    648-coordinate schedule;
-5. choose the scalable all-cell serialization/equality form—generated per-cell
+4. choose the scalable all-cell serialization/equality form—generated per-cell
    checks or a schedule-parametric authenticated checker—without embedding 648
    redundant 1,280-clause lists unnecessarily;
-6. aggregate immutable terminal records while rejecting missing, duplicated,
+5. aggregate immutable terminal records while rejecting missing, duplicated,
    nonterminal, or unverified cells; and
-7. aggregate the per-cell terminal consumers and connect their schedule
+6. aggregate the per-cell terminal consumers and connect their schedule
    coverage to the two live exact-twelve residual leaves.
 
 The historical eight-placement schedule swapped frozen named roles and remains
