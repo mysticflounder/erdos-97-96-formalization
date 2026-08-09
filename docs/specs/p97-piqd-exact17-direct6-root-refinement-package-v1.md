@@ -10,7 +10,7 @@ second dialect under that schema.
 
 The adapter authenticates custody artifacts, reconstructs one finite normalized
 formula, emits an immutable local package, and may expose a generic
-`phase3_piqd_exact17_runner.RunPacket` for a later one-job canary.  It does not
+`phase3_piqd_exact17_runner.RunPacket` for a separate one-job canary.  It does not
 run PIQD, a SAT solver, a replay program, Lean, or Git.  SAT or UNSAT status of
 the reconstructed formula is discovery-only and is not inferred by the
 adapter.
@@ -194,8 +194,8 @@ fresh exact built-in JSON dictionaries/lists for `wave_manifest` and a fresh
 built-in dictionary for `package_hashes`; the shared runner serializes these
 containers directly.  These boundary copies are validated and self-hash-bound
 to the emitted artifacts before return, and do not expose the immutable
-`PackageResult` mapping.  The public packet is suitable only for a later
-one-job canary.
+`PackageResult` mapping.  The public packet is suitable only for a separate
+one-job canary executed by the generic runner.
 
 ## Frozen instance and authenticated local probe
 
@@ -218,6 +218,24 @@ The preserved audit package is
 `scratch/p97-exact17-direct6-adapter-live-probe-e025d750/`.  This is a local
 custody/reconstruction PASS only.  No PIQD daemon, solver process, submission,
 Lean check, universal lift, or theorem closure was performed.
+
+## Live one-job canary result
+
+The separately executed generic-runner canary completed as
+`SAT` / `STRUCTURAL_SAT` in PIQD job
+`dfba235e-4833-45b2-a5a2-8a1a2b22aa30`.  The request and terminal response
+both bind `requested_core_limit = 1`; the terminal response attests one solver
+process with basis `SINGLE_PROCESS_NO_PARALLEL_FLAG`.  The generic runner
+independently replayed the total SAT model before sealing the run.
+
+The durable audit directory is
+`scratch/p97-exact17-direct6-live-canary-e025d750-v2/`.  Its receipt self-hash
+is `0578f93b223f14a1ec8ed39e36c5548a37514affcc478335e81080aea5bb4033`,
+and its journal SHA-256 is
+`32e495c0bb09560a632dced4f13516508fde155ca716606a8cec176c26ace392`.
+This remains finite discovery evidence: source semantics, source entitlement,
+complete source coverage, aggregate order-case coverage, universal lift, and
+theorem closure are all false.
 
 ## Synthetic test policy
 
