@@ -120,8 +120,154 @@ A future `UNSAT` result would additionally require an exact proof replay and
 the existing source-to-finite Lean ingress before it could close the on-spine
 cap-nine theorem.
 
+## Cyclic schema H and the v13 canary
+
+The recurring-motif audit isolated a source-clean six-point obstruction,
+schema H.  In increasing cyclic order `a < b < c < d < e < f`, it uses the
+four selected-row incidences
+
+- row `a` contains `b,d`;
+- row `c` contains `e,f`;
+- row `e` contains `d,f`; and
+- row `f` contains `b,e`.
+
+Three strict Kalmanson inequalities and the four shell equalities contradict
+by linear arithmetic.  Increasing- and decreasing-order metric theorems,
+direct selected-row consumers, and cyclic-shift adapters are banked in
+`KalmansonFourEqualitySchemas.lean`.  Their declarations do not depend on
+`sorryAx` or compiler trust.
+
+The authenticated v13 export added 148,512 schema-H clauses.  It has 74,813
+variables and 2,652,861 clauses; independent regeneration and validation
+terminated `PASS`.  Four fresh CaDiCaL seeds (2101--2104) remained `SAT`.
+
+## Analyzer audit and canonical replay
+
+An obsolete scratch analyzer was found to mark exact rows from the legacy
+fixed-center list and to scan the legacy default cyclic order.  It did not
+decode the selected fifth exact row from the DIMACS assignment.  This defect
+affected only that diagnostic analyzer, not the source CNF or its independent
+validator.
+
+The production analyzer is
+`analyze_source_faithful_boolean_model.py`.  It pins the complete DIMACS
+assignment back into the source Z3 model, derives exactness from the decoded
+metric rows, runs the independent model checker, and records the normalized
+cyclic order.  Replaying all four v13 canaries through this canonical path
+passed every gate.  Their selected fifth exact centers are respectively
+`6, 7, 7, 6`, and all four still hit the source-clean generic
+two-Kalmanson-cancellation consumer.
+
+The cyclic motif census gives a useful negative strategic result.  The four
+v13 canaries contain 87 exact cancellations across 62 normalized motifs, but
+none requires a new motif class: motifs already seen in v10 cover all four.
+A greedy historical cover uses three motifs.  This supports compiling exact
+generic cancellation certificates rather than continuing a one-schema-at-a-
+time staircase.
+
+## Corrected all-history v14b replay
+
+The first v14 all-history export was internally sound and independently
+validated, but its input list contained only 48 analyses: the twenty v10,
+twenty-four v11, and four v13 reports.  It accidentally omitted all twenty-four
+v12t reports.  It is therefore retained as a valid but incomplete diagnostic,
+not as the intended monotone all-history successor.
+
+The corrected v14b export replayed all 72 authenticated analyses.  It produced:
+
+- 74,813 variables;
+- 2,653,460 clauses;
+- 1,160 learned nogoods;
+- 1,749 equality-label clauses; and
+- CNF SHA-256
+  `6ea9fec71c7bb85f8260593a33bc4f22e28b7088d3c454bea0237a9d112b03da`.
+
+The independent validator regenerated the candidate exactly, checked all
+145,975 structural clauses and thirteen static theorem families, round-tripped
+three source models, and terminated `PASS`.  Four fresh CaDiCaL seeds
+(2201--2204) remained `SAT`.  All four assignments passed DIMACS checking,
+source-Z3 pinning, the independent source checker, and the direct-CNF theorem
+bank check.  Thus v14b still does not close exact 17.
+
+## Cyclic schema I and the v15 successor
+
+Although each v14b assignment still had an exact two-Kalmanson cancellation,
+the normalized historical motif census found a stronger reusable fact: one
+six-point motif already present in v10 occurs in all four v14b assignments.
+For cyclic order `a < b < c < d < e < f`, schema I uses
+
+- row `a` containing `b,e`;
+- row `d` containing `b,e`;
+- row `b` containing `c,f`; and
+- row `e` containing `c,f`.
+
+The Kalmanson inequalities on `(a,b,e,f)` and `(b,c,d,e)` reduce under these
+four shell equalities to the contradictory strict comparisons `ec < bc` and
+`bc < ec`.  Increasing- and decreasing-order metric theorems, direct
+selected-row consumers, and both cyclic-shift adapters are now banked in
+`KalmansonFourEqualitySchemas.lean`.  Lean elaboration is clean; all six new
+declarations have axiom closure exactly `propext`, `Classical.choice`, and
+`Quot.sound`.
+
+The direct exporter and independent validator now generate schema I as a
+separate static clause family.  The exporter additionally fails closed unless
+the named increasing, decreasing, and cyclic-shift Lean consumers for schemas
+G, H, and I are present, hashes that Lean source into the artifact provenance,
+and records the consumer names in `cut_admission`.
+
+The authenticated v15 export replayed all 72 analyses and added 74,256
+schema-I clauses.  It has 285 variables and 2,328,167 clauses, with CNF
+SHA-256
+`b2e94d13ac45a54e497d4967af24c9a6fa0c785d508c8aa3e1fe50dfb5b40d15`.
+The independent validator regenerated the candidate exactly, checked all
+145,975 structural clauses and fourteen static theorem families, round-tripped
+three source models, and terminated `PASS`.  Four fresh CaDiCaL seeds
+(2301--2304) remained `SAT`.  Every assignment passed DIMACS checking,
+source-Z3 pinning, the independent source checker, and the direct-CNF theorem
+bank check.  The four seeds normalized to the same selected-row model, with
+fifth exact center `6`.
+
+## Cyclic schema J and the v16 successor
+
+Mining that canonical v15 survivor produced another source-clean six-point
+obstruction.  In cyclic order `a < b < c < d < e < f`, schema J uses
+
+- row `a` containing `b,d`;
+- row `b` containing `a,c`;
+- row `e` containing `a,b`; and
+- row `f` containing `c,d`.
+
+The strict Kalmanson inequality on `(a,b,d,e)` reduces under the first and
+third shell equalities to `bd < ab`.  The complementary strict Kalmanson
+inequality on `(b,c,d,f)` reduces under the second and fourth shell equalities
+to `ab < bd`.  Increasing- and decreasing-order metric theorems, direct
+selected-row consumers, and both cyclic-shift adapters are banked in
+`KalmansonFourEqualitySchemas.lean`.  Lean elaboration is clean; all six
+declarations have axiom closure exactly `propext`, `Classical.choice`, and
+`Quot.sound`.
+
+The authenticated v16 successor added schema J as an independently regenerated
+static clause family and replayed the 72 inherited analyses plus the four
+authenticated v15 canaries.  It has 285 variables and 2,476,680 clauses, with
+CNF SHA-256
+`3000260a6d56798a27c6c5b3f094e6bed772786e44644e7a3a6dc06c4b3301b3`.
+The independent validator regenerated the candidate exactly, checked all
+145,975 structural clauses and fifteen static theorem families, round-tripped
+three source models, and terminated `PASS`.
+
+Four fresh CaDiCaL seeds (2401--2404) remained `SAT`.  All four assignments
+passed DIMACS checking, source-Z3 pinning, the independent source checker, and
+the direct-CNF theorem-bank check.  They normalized to the same selected-row
+model, with fifth exact center `4`.  Unlike the preceding rounds, that model
+needs no new geometric schema: it has eight hits in the existing formalized
+bank, including two-circle bisector-order, convex-five-point, metric-alternative,
+generic two-Kalmanson, exact-off-circle, duplicate-center, and perpendicular-
+bisector consumers.  The v17 successor therefore replays those existing
+consumer-backed cuts rather than adding another large static motif family.
+
 ## Status classification
 
-This work is a **finite CEGAR soundness repair and strengthened search round**.
-The source-facing replay contract is materially stronger, but no theorem or
-production `sorry` has been closed by the results recorded above.
+This work is a **finite CEGAR soundness repair, reusable theorem promotion, and
+strengthened search round**.  Schemas I and J are cardinality-independent
+geometric theorems, but the finite cap-nine target remains open and no
+production `sorry` has yet been closed by the results recorded above.

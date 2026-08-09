@@ -30,6 +30,11 @@ A later exact-seventeen linear core produced schema G.  It is another
 six-point four-row obstruction, but needs only one equality from each row.
 The four strict Kalmanson inequalities in its proof sum to zero after those
 four shell equalities are substituted.
+
+Subsequent survivor-wide motif audits produced schemas H, I, and J.  They are
+again six-point four-row obstructions.  Schema H uses three strict Kalmanson
+inequalities, while schemas I and J each use two inequalities that force
+opposite strict comparisons between the same pair of chord lengths.
 -/
 
 open scoped Convex EuclideanGeometry
@@ -906,6 +911,656 @@ theorem false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing
   exact false_of_six_ccw_four_shell_equalities_G_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe habd hbcf hcbd hecf
+
+/-- Cyclic-shift form of the increasing schema-G selected-row consumer.  This
+is the ingress used by matchers that choose their six vertices in a cyclic
+window which may cross the distinguished boundary index zero. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_G_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (hb_mem_CRow : boundary (b + cut) ∈ CRow.support)
+    (hd_mem_CRow : boundary (d + cut) ∈ CRow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_G
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow BRow CRow ERow
+    hb_mem_ARow hd_mem_ARow hc_mem_BRow hf_mem_BRow
+    hb_mem_CRow hd_mem_CRow hc_mem_ERow hf_mem_ERow
+
+/-- Cyclic-shift form of the decreasing schema-G selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_G_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (hb_mem_CRow : boundary (b + cut) ∈ CRow.support)
+    (hd_mem_CRow : boundary (d + cut) ∈ CRow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow BRow CRow ERow
+    hb_mem_ARow hd_mem_ARow hc_mem_BRow hf_mem_BRow
+    hb_mem_CRow hd_mem_CRow hc_mem_ERow hf_mem_ERow
+
+/-- Six increasingly ordered boundary vertices cannot support schema H mined
+from the recurring exact-seventeen two-Kalmanson cores. -/
+theorem false_of_six_ccw_four_shell_equalities_H_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hcef : dist (phi c) (phi e) = dist (phi c) (phi f))
+    (hedf : dist (phi e) (phi d) = dist (phi e) (phi f))
+    (hfbe : dist (phi f) (phi b) = dist (phi f) (phi e)) : False := by
+  have hK1_abcf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab hbc (hcd.trans (hde.trans hef))
+  have hK1_acdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw (hab.trans hbc) hcd (hde.trans hef)
+  have hK2_cdef := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hcd hde hef
+  simp only [dist_comm] at habd hcef hedf hfbe
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_six_ccw_four_shell_equalities_H_of_increasing`. -/
+theorem false_of_six_ccw_four_shell_equalities_H_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hcef : dist (phi c) (phi e) = dist (phi c) (phi f))
+    (hedf : dist (phi e) (phi d) = dist (phi e) (phi f))
+    (hfbe : dist (phi f) (phi b) = dist (phi f) (phi e)) : False := by
+  have hK1_abcf :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hba hcb
+        (hfe.trans (hed.trans hdc))
+  have hK1_acdf :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw (hcb.trans hba) hdc
+        (hfe.trans hed)
+  have hK2_cdef := dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+    hA hphi_inj hphi_image hccw hdc hed hfe
+  simp only [dist_comm] at habd hcef hedf hfbe
+  linarith
+
+/-- Four selected rows with the schema-H incidences are impossible when the
+six support points occur in increasing CCW boundary order. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_H
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (he_mem_CRow : boundary e ∈ CRow.support)
+    (hf_mem_CRow : boundary f ∈ CRow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (hb_mem_FRow : boundary b ∈ FRow.support)
+    (he_mem_FRow : boundary e ∈ FRow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hcef := (CRow.support_eq_radius _ he_mem_CRow).trans
+    (CRow.support_eq_radius _ hf_mem_CRow).symm
+  have hedf := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hfbe := (FRow.support_eq_radius _ hb_mem_FRow).trans
+    (FRow.support_eq_radius _ he_mem_FRow).symm
+  exact false_of_six_ccw_four_shell_equalities_H_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef habd hcef hedf hfbe
+
+/-- Decreasing-index selected-row companion of
+`false_of_four_selected_rows_in_six_ccw_order_H`. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_H_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (CRow : SelectedFourClass carrier (boundary c))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (he_mem_CRow : boundary e ∈ CRow.support)
+    (hf_mem_CRow : boundary f ∈ CRow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support)
+    (hb_mem_FRow : boundary b ∈ FRow.support)
+    (he_mem_FRow : boundary e ∈ FRow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hcef := (CRow.support_eq_radius _ he_mem_CRow).trans
+    (CRow.support_eq_radius _ hf_mem_CRow).symm
+  have hedf := (ERow.support_eq_radius _ hd_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  have hfbe := (FRow.support_eq_radius _ hb_mem_FRow).trans
+    (FRow.support_eq_radius _ he_mem_FRow).symm
+  exact false_of_six_ccw_four_shell_equalities_H_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe habd hcef hedf hfbe
+
+/-- Cyclic-shift form of the increasing schema-H selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_H_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (he_mem_CRow : boundary (e + cut) ∈ CRow.support)
+    (hf_mem_CRow : boundary (f + cut) ∈ CRow.support)
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (hb_mem_FRow : boundary (b + cut) ∈ FRow.support)
+    (he_mem_FRow : boundary (e + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_H
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow CRow ERow FRow
+    hb_mem_ARow hd_mem_ARow he_mem_CRow hf_mem_CRow
+    hd_mem_ERow hf_mem_ERow hb_mem_FRow he_mem_FRow
+
+/-- Cyclic-shift form of the decreasing schema-H selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_H_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (he_mem_CRow : boundary (e + cut) ∈ CRow.support)
+    (hf_mem_CRow : boundary (f + cut) ∈ CRow.support)
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (hb_mem_FRow : boundary (b + cut) ∈ FRow.support)
+    (he_mem_FRow : boundary (e + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_H_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow CRow ERow FRow
+    hb_mem_ARow hd_mem_ARow he_mem_CRow hf_mem_CRow
+    hd_mem_ERow hf_mem_ERow hb_mem_FRow he_mem_FRow
+
+/-- Six increasingly ordered boundary vertices cannot support schema I mined
+from a motif recurring in every survivor after replaying all exact cores. -/
+theorem false_of_six_ccw_four_shell_equalities_I_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (habe : dist (phi a) (phi b) = dist (phi a) (phi e))
+    (hdbe : dist (phi d) (phi b) = dist (phi d) (phi e))
+    (hbcf : dist (phi b) (phi c) = dist (phi b) (phi f))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f)) : False := by
+  have hK1_abef := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab (hbc.trans (hcd.trans hde)) hef
+  have hK1_bcde := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc hcd hde
+  simp only [dist_comm] at habe hdbe hbcf hecf
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_six_ccw_four_shell_equalities_I_of_increasing`. -/
+theorem false_of_six_ccw_four_shell_equalities_I_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (habe : dist (phi a) (phi b) = dist (phi a) (phi e))
+    (hdbe : dist (phi d) (phi b) = dist (phi d) (phi e))
+    (hbcf : dist (phi b) (phi c) = dist (phi b) (phi f))
+    (hecf : dist (phi e) (phi c) = dist (phi e) (phi f)) : False := by
+  have hK1_abef :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hba (hed.trans (hdc.trans hcb)) hfe
+  have hK1_bcde :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
+      hA hphi_inj hphi_image hccw hcb hdc hed
+  simp only [dist_comm] at habe hdbe hbcf hecf
+  linarith
+
+/-- Four selected rows with the schema-I incidences are impossible when the
+six support points occur in increasing CCW boundary order. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_I
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (he_mem_ARow : boundary e ∈ ARow.support)
+    (hb_mem_DRow : boundary b ∈ DRow.support)
+    (he_mem_DRow : boundary e ∈ DRow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support) : False := by
+  have habe := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ he_mem_ARow).symm
+  have hdbe := (DRow.support_eq_radius _ hb_mem_DRow).trans
+    (DRow.support_eq_radius _ he_mem_DRow).symm
+  have hbcf := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  exact false_of_six_ccw_four_shell_equalities_I_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef habe hdbe hbcf hecf
+
+/-- Decreasing-order selected-row companion of schema I. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_I_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (DRow : SelectedFourClass carrier (boundary d))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (he_mem_ARow : boundary e ∈ ARow.support)
+    (hb_mem_DRow : boundary b ∈ DRow.support)
+    (he_mem_DRow : boundary e ∈ DRow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hf_mem_BRow : boundary f ∈ BRow.support)
+    (hc_mem_ERow : boundary c ∈ ERow.support)
+    (hf_mem_ERow : boundary f ∈ ERow.support) : False := by
+  have habe := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ he_mem_ARow).symm
+  have hdbe := (DRow.support_eq_radius _ hb_mem_DRow).trans
+    (DRow.support_eq_radius _ he_mem_DRow).symm
+  have hbcf := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hf_mem_BRow).symm
+  have hecf := (ERow.support_eq_radius _ hc_mem_ERow).trans
+    (ERow.support_eq_radius _ hf_mem_ERow).symm
+  exact false_of_six_ccw_four_shell_equalities_I_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe habe hdbe hbcf hecf
+
+/-- Cyclic-shift form of the increasing schema-I selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_I_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_I
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow DRow BRow ERow
+    hb_mem_ARow he_mem_ARow hb_mem_DRow he_mem_DRow
+    hc_mem_BRow hf_mem_BRow hc_mem_ERow hf_mem_ERow
+
+/-- Cyclic-shift form of the decreasing schema-I selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_I_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_I_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow DRow BRow ERow
+    hb_mem_ARow he_mem_ARow hb_mem_DRow he_mem_DRow
+    hc_mem_BRow hf_mem_BRow hc_mem_ERow hf_mem_ERow
+
+/-- Six increasingly ordered boundary vertices cannot support schema J mined
+from the first survivors of the source-faithful schema-I replay. -/
+theorem false_of_six_ccw_four_shell_equalities_J_of_increasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hbac : dist (phi b) (phi a) = dist (phi b) (phi c))
+    (heab : dist (phi e) (phi a) = dist (phi e) (phi b))
+    (hfcd : dist (phi f) (phi c) = dist (phi f) (phi d)) : False := by
+  have hK2_abde := dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hab (hbc.trans hcd) hde
+  have hK1_bcdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hA hphi_inj hphi_image hccw hbc hcd (hde.trans hef)
+  simp only [dist_comm] at habd hbac heab hfcd hK2_abde hK1_bcdf
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_six_ccw_four_shell_equalities_J_of_increasing`. -/
+theorem false_of_six_ccw_four_shell_equalities_J_of_decreasing
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {n : ℕ} {phi : Fin n → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {a b c d e f : Fin n}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (habd : dist (phi a) (phi b) = dist (phi a) (phi d))
+    (hbac : dist (phi b) (phi a) = dist (phi b) (phi c))
+    (heab : dist (phi e) (phi a) = dist (phi e) (phi b))
+    (hfcd : dist (phi f) (phi c) = dist (phi f) (phi d)) : False := by
+  have hK2_abde := dist_add_dist_lt_diagonal_sum_of_ccw
+    (ia := e) (ib := d) (ic := b) (id := a)
+    hA hphi_inj hphi_image hccw hed (hdc.trans hcb) hba
+  have hK1_bcdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    (ia := f) (ib := d) (ic := c) (id := b)
+    hA hphi_inj hphi_image hccw (hfe.trans hed) hdc hcb
+  simp only [dist_comm] at habd hbac heab hfcd hK2_abde hK1_bcdf
+  linarith
+
+/-- Four selected rows with the schema-J incidences are impossible when the
+six support points occur in increasing CCW boundary order. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_J
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (ha_mem_ERow : boundary a ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hc_mem_FRow : boundary c ∈ FRow.support)
+    (hd_mem_FRow : boundary d ∈ FRow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hbac := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hc_mem_BRow).symm
+  have heab := (ERow.support_eq_radius _ ha_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hfcd := (FRow.support_eq_radius _ hc_mem_FRow).trans
+    (FRow.support_eq_radius _ hd_mem_FRow).symm
+  exact false_of_six_ccw_four_shell_equalities_J_of_increasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hab hbc hcd hde hef habd hbac heab hfcd
+
+/-- Decreasing-order selected-row companion of schema J. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_J_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary a))
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hb_mem_ARow : boundary b ∈ ARow.support)
+    (hd_mem_ARow : boundary d ∈ ARow.support)
+    (ha_mem_BRow : boundary a ∈ BRow.support)
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (ha_mem_ERow : boundary a ∈ ERow.support)
+    (hb_mem_ERow : boundary b ∈ ERow.support)
+    (hc_mem_FRow : boundary c ∈ FRow.support)
+    (hd_mem_FRow : boundary d ∈ FRow.support) : False := by
+  have habd := (ARow.support_eq_radius _ hb_mem_ARow).trans
+    (ARow.support_eq_radius _ hd_mem_ARow).symm
+  have hbac := (BRow.support_eq_radius _ ha_mem_BRow).trans
+    (BRow.support_eq_radius _ hc_mem_BRow).symm
+  have heab := (ERow.support_eq_radius _ ha_mem_ERow).trans
+    (ERow.support_eq_radius _ hb_mem_ERow).symm
+  have hfcd := (FRow.support_eq_radius _ hc_mem_FRow).trans
+    (FRow.support_eq_radius _ hd_mem_FRow).symm
+  exact false_of_six_ccw_four_shell_equalities_J_of_decreasing
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hba hcb hdc hed hfe habd hbac heab hfcd
+
+/-- Cyclic-shift form of the increasing schema-J selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i ↦ boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_J
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow BRow ERow FRow
+    hb_mem_ARow hd_mem_ARow ha_mem_BRow hc_mem_BRow
+    ha_mem_ERow hb_mem_ERow hc_mem_FRow hd_mem_FRow
+
+/-- Cyclic-shift form of the decreasing schema-J selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i ↦ boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_J_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow BRow ERow FRow
+    hb_mem_ARow hd_mem_ARow ha_mem_BRow hc_mem_BRow
+    ha_mem_ERow hb_mem_ERow hc_mem_FRow hd_mem_FRow
 
 end CapCrossingKalmansonBridge
 end Problem97
