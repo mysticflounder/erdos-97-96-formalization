@@ -7754,44 +7754,71 @@ residual, as at this checkpoint.
 
 #### 13.24.1.2 First-non-hit retained-core audit (2026-08-10)
 
-The first bounded audit of the new anchor keeps the complete structural
-constructor product:
+The 128 source-labelled QF_LIA slices remain only a structural diagnostic:
+all 128 are `SAT` in Z3 and cvc5, while the malformed controls are `UNSAT`.
+They establish no Euclidean model, counterexample, finite coverage theorem,
+general-cardinality lift, Lean theorem, or closure of
+`false_of_freshThird_firstNonHit`.
 
-1. two `FreshThirdCapSourceNonHit` constructors;
-2. four `FreshThirdCapSourceInteraction` constructors; and
-3. all sixteen raw retained x/y endpoint-deletion choices for the two
-   canonical sources.
+The retained/common packet does not entail the previously proposed
+boundary/order bridge.  For the first source, the two non-hit constructors
+make that bridge impossible: `sameBlocker` contradicts the bridge's required
+center inequality, while `sourceRowOmission` contradicts one of its required
+Q-row endpoint memberships.  Retract the prior authorization for another
+boundary/order computation.
 
-This gives 128 source-labelled QF_LIA slices.  Z3 and cvc5 both report `SAT`
-on all 128, every independently reconstructed assignment passes readback, and
-the malformed overfull-row and selected-endpoint-present controls are `UNSAT`
-in both solvers.  Common omitted endpoints occur only as derived conditional
-tags; they are not universal ingress.  This is a structural consistency
-diagnostic, not a Euclidean model, counterexample, finite coverage theorem,
-general-cardinality lift, Lean theorem, or closure of the anchor.
+Minimal-core normalization adds no contradiction.  For each
+`MinimalDeletionCore`, `MinimalDeletionCore.shellAt_radius_eq` identifies a
+`P`-endpoint shell with the retained `radius` exact-four class and a
+`Pρ`-endpoint shell with the retained `ρ` class.  Pairwise-disjoint supports
+then only restate separation of distinct exact-radius classes.  Common
+deletion does not force equal witness cores, equal partners, a shared shell,
+or an endpoint collision; the resulting disjoint classes are compatible with
+`firstCap.card ≥ 8` and with the singleton source slices.
 
-The mandatory post-wave global theorem-bank audit found no source-clean
-cardinality-independent consumer that combines this retained packet with the
-non-hit/interaction product.  The nearest declarations require stronger
-inputs that the packet does not supply: a source-faithful universal deletion
-fan, mutual cross-membership with distinct blockers, or explicit cap-index and
-boundary-order endpoint-deletion obstructions.  The apparently direct
-`firstNonHit`, reflected, and common-radius-surviving-row closers inherit
-`sorryAx` and therefore cannot be reused as closure.
+The source-clean local producer
+`freshThird_alignedCommonDeletionCorePairPacket_of_commonOmission` constructs
+the common-deletion packet, but no source-clean terminal consumes that packet.
+The same-blocker/same-blocker subbranch does yield equal source-row centers and
+mutual source incidence.  The apparent mutual-first-fiber adapter is not a
+consumer for this branch: it requires `FreshOutsideFirstBlockerFiber`, whereas
+the anchor supplies `FreshThirdBlockerFiber`; its downstream hard-residual
+terminal is also still a `sorry`.
 
 The common-radius ingress was audited separately.  Its existential surface is
-independent of the current `C`, `Q`, non-hit, and interaction at the type
-level; current adapters do not transport its radius/cardinality data to those
-objects.  It therefore supplies no direct clean consumer for this leaf.
+not connected at the type level to the current `C`, `Q`, non-hit, or second
+interaction, and current adapters do not transport its radius/cardinality data
+to them.  It therefore supplies no independent clean consumer for this leaf.
+The existing source-clean global multiplicity ingress
+`collisionRows_sourceCleanMultiplicityIngress` stops at
+`CollisionCrossHit ∨ (GeometricMultiplicityResidual ∧
+TwoCollisionGlobalSplit)`; neither arm currently implies a terminal accepted
+by this residual.
 
-Do not repeat or enlarge the local 128-case incidence wave.  The next
-computational experiment is authorized only after a source-faithful
-boundary/order ingress is stated that retains the existing constructor and
-endpoint choices while adding the exact universal-fan, cap-index, and endpoint
-order fields consumed by the clean deletion-obstruction theorem.  The
-preferred proof milestone remains a cardinality-independent Lean producer of
-that bridge; a finite experiment may test its shape but cannot replace its
-general-cardinality proof.
+The precise clean landing contract is now a common-row overlap producer.  In
+the context of `false_of_freshThird_firstNonHit`, prove
+
+```lean
+∃ source : CriticalShellSystem.CarrierVertex D.A,
+  H.centerAt source.1 source.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2 ∧
+  3 ≤
+    ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+      (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support).card
+```
+
+The source-clean terminal
+`false_of_centerAt_selectedFourClass_inter_card_ge_three` then closes the
+anchor immediately by taking the Q row as the selected four-class.  No current
+source-clean theorem supplies this producer from the retained/common ingress
+and the non-hit/interaction product.
+
+Hard gate: do not repeat or enlarge the local 128-case incidence wave and do
+not add another alignment or case-split residual.  A new solver experiment is
+authorized only after a source-clean theorem supplies the displayed overlap
+packet, or another equally explicit packet accepted by a clean terminal.  A
+finite experiment may test a fixed candidate shape, but it cannot replace the
+cardinality-independent producer or a proved finite-to-universal lift.
 
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
