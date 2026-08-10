@@ -1,0 +1,16 @@
+Query: four row Kalmanson cancellation adjacent sides inner outer selected rows
+Corpus: erdos-97-96-formalization-lean, indexed 2026-08-10 06:00 UTC, source 25d3a976
+
+Top relevant results:
+- false_of_two_selected_rows_shared_late_pair
+- false_of_twoKalmansonCancellationData_of_check
+- false_of_twoKalmansonLabelCancellationData
+- false_of_four_selected_rows_in_six_ccw_order_K_of_decreasing
+- TwoKalmansonLabelCancellationData
+- false_of_four_selected_rows_in_six_ccw_order_I_of_decreasing
+- false_of_four_selected_rows_in_six_ccw_order_J_of_decreasing
+
+Conclusion: Wave 28 repeats Wave 27's four-row exact linear core through a
+different mixed-form Kalmanson certificate. The generic two-Kalmanson consumer
+still applies. Repeated recurrence would motivate a unit four-row-core blocker
+rather than enumerating certificate pairings.

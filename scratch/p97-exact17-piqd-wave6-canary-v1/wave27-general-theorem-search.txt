@@ -1,0 +1,15 @@
+Query: two Kalmanson cancellation four selected rows six cyclic vertices
+Corpus: erdos-97-96-formalization-lean, indexed 2026-08-10 06:00 UTC, source 25d3a976
+
+Top relevant results:
+- false_of_two_selected_rows_shared_late_pair
+- false_of_eight_ccw_six_shell_equalities_M_of_increasing
+- false_of_six_ccw_two_k2_three_selected_rows
+- false_of_four_selected_rows_in_six_ccw_order_K_cyclicShift
+- false_of_six_ccw_six_shell_equalities_K_of_increasing
+- TwoKalmansonLabelCancellationData
+- false_of_one_k1_three_cyclic_selected_rows
+
+Conclusion: Wave 27 has a four-row adjacent-sides cancellation and one direct
+generic two-Kalmanson bank replay. The indexed specialized schemas do not yield
+a stronger closure for this model.

@@ -1,0 +1,15 @@
+Query: checked generic two Kalmanson cancellation finite selected rows cyclic order
+Corpus: erdos-97-96-formalization-lean, indexed 2026-08-10 06:00 UTC, source 25d3a976
+
+Top relevant results:
+- false_of_twoKalmansonCancellationData_of_check
+- TwoKalmansonLabelCancellationData
+- false_of_four_selected_rows_in_six_ccw_order_K_cyclicShift
+- false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift
+- OrderedQuadData.kalmanson_lt
+- false_of_weightedKalmansonCancellationData_of_check
+- false_of_two_selected_rows_shared_late_pair
+
+Conclusion: Wave 26 has a four-row exact linear core and one direct generic
+two-Kalmanson bank replay. The specialized four-row search results do not give
+a stronger closure for this instance, so the generic consumer is used.

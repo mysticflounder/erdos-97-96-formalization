@@ -1,0 +1,20 @@
+Wave 30 mandatory general-theorem search
+
+Query:
+- five row cyclic Kalmanson schema M selected supports
+
+Indexed source: erdos-97-96-formalization-lean at 25d3a976.
+
+Relevant existing declarations:
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M_of_decreasing
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check
+
+Assessment:
+An exact combinatorial check found no increasing- or decreasing-order embedding
+of the Wave 30 minimized five-row core into named schema M.  The theorem gate
+did find a certified two-Kalmanson bank instance.  Its eight required incidence
+atoms give a stronger single lazy clause than the fourteen-atom conjunction of
+the complete five-row weighted core, so use the existing two-cancellation
+consumer for this wave.

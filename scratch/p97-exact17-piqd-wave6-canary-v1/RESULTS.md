@@ -127,3 +127,37 @@ PIQD exported this root byte-for-byte after the final one-clause append. Relativ
 to the 5,895,177-clause eager checkpoint, eleven lazy waves have added only eleven
 clauses. Exact 17 remains SAT and open; these refinements are theorem-bank reuse,
 not a coverage certificate or a production-`sorry` closure.
+
+## Waves 26--31: repeated-core audit and lazy continuation
+
+The next six waves again added exactly one authenticated clause apiece:
+
+| Wave | Solve time | Family hits | Bank hits | Linear core rows | Refinement | Successor clauses |
+| ---: | ---: | ---: | ---: | ---: | --- | ---: |
+| 26 | 14.015 s | 0 | 1 | 4 | generic two-Kalmanson witness | 5,895,189 |
+| 27 | 1.659 s | 0 | 1 | 4 | generic two-Kalmanson witness | 5,895,190 |
+| 28 | 0.155 s | 0 | 1 | 4 | generic two-Kalmanson witness | 5,895,191 |
+| 29 | 6.383 s | 0 | 1 | 5 | weighted Kalmanson witness | 5,895,192 |
+| 30 | 1.946 s | 0 | 1 | 5 | generic two-Kalmanson witness | 5,895,193 |
+| 31 | 13.829 s | 1 | 1 | 7 | generic two-Kalmanson witness | 5,895,194 |
+
+Waves 27 and 28 had the same minimized four-row strict-LRA core even though the
+bank matcher selected different two-Kalmanson presentations. This establishes a
+useful repeated-core diagnostic: if a bank witness does not remove a stable
+linear support pattern, the weighted consumer can block that minimized support
+directly. Wave 29 used that route on its distinct five-row core; its exact
+certificate contains 46 Kalmanson terms with positive integer weights at most
+two. Wave 30's five-row core did not embed into the existing named increasing or
+decreasing schema M, but it did admit a shorter eight-atom generic-bank witness.
+
+Wave 31 is the first model in this segment already hit by the accumulated generic
+family. Its survival was therefore a consequence of lazy orbit materialization,
+not a new theorem gap. The mandatory indexed general-theorem search was run after
+every wave and is recorded in `wave26-general-theorem-search.txt` through
+`wave31-general-theorem-search.txt`.
+
+The current root is `postgate-wave31-witness.cnf`, with 5,895,194 clauses and
+SHA-256
+`1333770e0ed5eb5df7bea029ccaf08816fe785505a6fdbba80e06b9936d0ea27`.
+PIQD exported this root byte-for-byte after the final append. Exact 17 remains
+SAT and open; no production `sorry` is closed by these six refinements.

@@ -1,0 +1,18 @@
+Wave 31 mandatory general-theorem search
+
+Query:
+- two Kalmanson cancellation eight selected-row incidence atoms checked certificate
+
+Indexed source: erdos-97-96-formalization-lean at e26db6e9.
+
+Relevant existing declarations:
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.TwoKalmansonCancellationData
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.TwoKalmansonCancellationData.check
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+
+Assessment:
+The Wave 31 assignment violates one clause already present in the authenticated
+accumulated theorem family and also admits certified two-Kalmanson bank matches.
+This is an orbit-coverage miss caused by lazy materialization, not a new theorem
+gap.  Append one shortest eight-atom certified instance; no new Lean declaration
+is warranted.

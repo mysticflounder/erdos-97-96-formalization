@@ -1,0 +1,22 @@
+Wave 29 mandatory general-theorem search
+
+Queries:
+- five selected rows Kalmanson cancellation equal distance cyclic order
+- weighted Kalmanson cancellation selected row support path contradiction
+
+Indexed source: erdos-97-96-formalization-lean at 25d3a976.
+
+Relevant existing declarations:
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.WeightedKalmansonCancellationData
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M_of_decreasing
+- Problem97.OrdinalKalmansonCycle.SelectedRowOrdinalComparison
+
+Assessment:
+The model has an exact five-row strict-LRA core, but its supports do not directly
+present the named eight-point schema-M interface.  The already banked generic
+weighted Kalmanson consumer is the source-clean theorem matching the minimized
+core without adding a new specialized theorem.  Generate and replay one exact
+weighted certificate for this core, then append only its single falsified
+selected-row clause.
