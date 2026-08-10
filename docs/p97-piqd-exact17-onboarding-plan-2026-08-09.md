@@ -286,3 +286,19 @@ and semantic receipt all rebind.  The run result records finite source custody,
 finite semantic replay, and structural SAT only.  Aggregate coverage,
 universal lift, theorem closure, and Lean checking remain false and are later
 gates.
+
+The first stateful exact-17 refinement replay is also complete. PIQD session
+`0e9760fd-aff7-46c9-9630-79f2b5fd1f67` was seeded from the exact frozen root,
+then accepted all eight ordered Rank-Four DirectSix fragments. Its initial
+export matched the 4,118,501-clause root byte-for-byte, and its final export
+matched the 4,254,176-clause aggregate byte-for-byte at SHA-256
+`2aa85c2368c3f271caebe47c4a6b861cc7e64d177cd349e58697a724c4b43605`.
+The session was closed after zero solves. The observational receipt is
+`scratch/p97-exact17-direct6-piqd-refinement-replay-v1/replay.json`; the full
+contract and qualification record are in
+`docs/specs/p97-piqd-exact17-refinement-session-v1.md`.
+
+This closes the first large stateful custody/replay gate, not the CEGAR
+production gate. The next step is to regenerate a fresh theorem-backed delta
+over this exact parent, append it through the checked journal, and qualify
+solve/restart and terminal static-handoff behavior.

@@ -365,8 +365,12 @@ incremental clause append, assumptions, timeout/conflict limits, model or
 assumption-core results, a durable clause journal, restart recovery pinned to
 the solver binary/protocol, and `piqc session handoff` to materialize the exact
 terminal CNF through the static proof path. SMT sessions persist Z3/cvc5
-assertions and textual results. P97 currently uses none of this through a
-shared authenticated adapter.
+assertions and textual results. P97 now has one lane-specific authenticated
+adapter: the exact-17 Rank-Four DirectSix replay qualified a 4,118,501-clause
+root plus eight ordered fragments and reproduced the 4,254,176-clause final CNF
+byte-for-byte. That session performed zero solves. Restartable solve/refine
+cycles, fresh learned-delta provenance, and terminal static handoff remain
+open; there is not yet a shared adapter for other P97 lanes.
 
 Required P97 work:
 
@@ -620,9 +624,9 @@ measured need and an exact consumer contract.
 | Workflow | Desired piqd role | Migration status | Blocking gaps |
 | --- | --- | --- | --- |
 | Exact-cardinality static CNF banks | Full job custody, model check, UNSAT proof replay | The v2 three-cell finite-local fixture and exact-12 cell-0 replay passed; fresh cell-1 replay is pending and broad migration remains open | G1, G2, G7 |
-| Exact-17 source-faithful CEGAR | Static query and terminal-artifact oracle | Current active loop is local | G1, G2, G5, G7; production-qualify G3 before a large wave |
+| Exact-17 source-faithful CEGAR | Static query and terminal-artifact oracle | Frozen root-plus-eight refinement custody replay is PIQD-qualified; fresh learned-delta solve/restart and terminal handoff remain open | G1, G2, G5, G6, G7; production-qualify G3 before a large wave |
 | Phase-3 projected-static nonincremental mode | Full static oracle | Prototype driver exists | G1, G2, G5 |
-| Phase-3 IPASIR incremental mode | piqd SAT session, or measured local exception; terminal handoff always uses the static proof path | Daemon capability exists; P97 session adapter is absent | G5, G6, G7 |
+| Phase-3 IPASIR incremental mode | piqd SAT session, or measured local exception; terminal handoff always uses the static proof path | Daemon capability exists; only the exact-17 lane-specific replay adapter is qualified | G5, G6, G7 |
 | `march_cu` cube-and-conquer | Scheduling plus aggregate proof custody | Incomplete certification adapter | G3, G8 |
 | Metric/Euclidean Z3 and cvc5 checks | Stateful custody with explicitly non-certificate semantics | piqd session lane exists; P97 adapter is absent | G6, G7, G8 |
 | Lean certificate replay | Independent P97 authority consuming piqd artifacts | Ready for CaDiCaL LRAT | Preserve Stage-0 gates |

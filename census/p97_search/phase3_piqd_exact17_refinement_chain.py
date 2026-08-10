@@ -420,3 +420,22 @@ def reconstruct_aggregate(chain: FrozenRefinementChain, destination: Path) -> No
     if actual != expected:
         destination.unlink(missing_ok=True)
         raise Exact17RefinementChainError("written aggregate identity mismatch")
+
+
+def load_fragment_clauses(
+    refinement: Refinement, *, max_var: int
+) -> tuple[tuple[int, ...], ...]:
+    """Decode one already-authenticated fragment for a PIQD clause append.
+
+    The shared fragment validator remains the single authority for DIMACS
+    syntax, clause count, termination, and the frozen root variable domain.
+    """
+
+    return tuple(
+        tuple(int(field) for field in line.split()[:-1])
+        for line in _iter_clause_lines(
+            refinement.fragment.path,
+            max_var=max_var,
+            expected_count=refinement.clause_count,
+        )
+    )
