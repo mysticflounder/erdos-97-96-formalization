@@ -381,3 +381,30 @@ closure theorem.  PIQD admitted seven authenticated orbit batches totaling
 This confirms that the theorem-search output is feeding the stateful CEGAR
 loop correctly.  It is not yet a terminal exact-17 result or a universal
 lifting theorem.
+
+The next wave stopped after eight further authenticated SAT models, before
+launching any successor solve.  Its mandatory general-theorem search found
+eight new cardinality-independent unit-weight Kalmanson cancellation
+instances.  They are distinct from one another and from the 24,256 historical
+tracked supports, but they use the existing kernel-clean generic Lean
+consumer rather than introducing a new theorem family.  The deterministic
+search result is
+`scratch/p97-exact17-piqd-refinement-round3-v1/postwave-theorem-search-wave2/postwave-theorem-search.json`.
+
+The eight exact-17 dihedral orbits contain 272 candidate clauses.  A complete
+novelty scan against the 4,255,460-clause normalized root and the 3,289 clauses
+in the eight-receipt refinement chain found 46 already subsumed images and 226
+novel clauses.  Those 226 clauses were admitted to PIQD, moving live session
+`4876f14c-554d-4cce-9f1a-fb9a15f5dc53` from 4,258,749 to 4,258,975 clauses.
+The resulting normalized formula has SHA-256
+`e41f2fdfa3b05b3f7dc3a66260344ecd277758fbefb46180f4bf05f1649a7759`.
+The compiler manifest and PIQD admission receipt are respectively
+`postwave-wave2-weighted-orbits.manifest.json` and
+`postwave-wave2-piqd-admission.json` in the same scratch directory.
+
+This establishes the production cadence for this lane: every bounded CEGAR
+wave must stop at its sealed boundary, run the general-theorem search and
+historical deduplication, bank every accepted generic instance through a named
+Lean consumer, and only then begin a successor wave.  A bank hit or a static
+clause admission is branch contraction; it is not exact-cardinality coverage,
+a universal lift, or a production `sorry` closure.
