@@ -402,3 +402,80 @@ PIQD exported the 267,117,628-byte root byte-for-byte after the one-clause
 append. The complete orbit would have 148,512 clauses; the lazy loop emitted
 only this witnessed instance. Exact 17 remains SAT and open; no production
 `sorry` is closed.
+
+## Wave 43: accumulated-family hit and one lazy generic instance
+
+Wave 43 solved SAT in 14.588 seconds. Its total model satisfied the exact Wave
+42 root, but was already rejected by accumulated-family motif 2, one existing
+generic theorem-bank obstruction, and exact linear arithmetic. This is another
+lazy materialization gap rather than a new mathematical obstruction.
+
+The mandatory indexed theorem search found several more specialized selected-
+row consumers, including the increasing sparse six-point two-row theorem. The
+authenticated model has no occurrence of that sparse pattern. The source-clean
+generic two-Kalmanson consumer applies. Across the complete authenticated model
+rows, the appender found 71 normalized candidate motifs; the shortest chosen
+instance uses six points and eight selected-row atoms and yields the single
+clause
+
+`-254 -249 -175 -170 -141 -137 -79 -72 0`.
+
+The current root is `postgate-wave43-generic-witness.cnf`, with 5,895,206
+clauses and SHA-256
+`a050e08d19f1b7146be92d541747166481c6e857970d077d93430cf58f1a6d81`.
+PIQD exported the 267,117,668-byte root byte-for-byte after the one-clause
+append. The complete orbit would have 148,512 clauses; the lazy loop emitted
+only this witnessed instance. Exact 17 remains SAT and open; no production
+`sorry` is closed.
+
+## Wave 44: new family miss, existing generic theorem hit
+
+Wave 44 solved SAT in 21.823 seconds. Its total model satisfied the exact Wave
+43 root and missed all 13 motifs in the accumulated family, but it hit one
+existing generic theorem-bank obstruction and was rejected by exact linear
+arithmetic. The obstruction combines an inner/outer Kalmanson equality with an
+adjacent-sides equality through selected-row equality paths.
+
+The mandatory indexed theorem search recovered the generic consumer and
+several more specialized direct selected-row consumers. A direct-consumer
+audit found no occurrence of the committed five-point, shared-pair, or six-
+point schemas, and the authenticated model again had no increasing sparse six-
+point two-row occurrence. The generic two-Kalmanson consumer is therefore the
+shortest applicable banked theorem. Across the complete authenticated model
+rows, the appender found 12 normalized candidate motifs; the chosen six-point,
+eight-atom instance yields the single clause
+
+`-235 -233 -219 -211 -174 -169 -14 -2 0`.
+
+The current root is `postgate-wave44-generic-witness.cnf`, with 5,895,207
+clauses and SHA-256
+`18bca6d7d2c930912ba6a684d3bd20bf690e2c915d442008b953f4e69c9023b1`.
+PIQD exported the 267,117,707-byte root byte-for-byte after the one-clause
+append. The complete orbit would have 148,512 clauses; the lazy loop emitted
+only this witnessed instance. Exact 17 remains SAT and open; no production
+`sorry` is closed.
+
+## Wave 45: sparse six-point theorem beats the generic fallback
+
+Wave 45 solved SAT in 12.274 seconds. Its total model satisfied the exact Wave
+44 root and missed all 13 motifs in the accumulated family, but it hit one
+existing generic theorem-bank obstruction and was rejected by exact linear
+arithmetic. The generic obstruction combines two adjacent-sides Kalmanson
+equalities through selected-row equality paths.
+
+The mandatory indexed theorem search also recovered the source-clean sparse
+six-point consumer. The general direct-consumer audit found no occurrence of
+the other committed five-point, shared-pair, or six-point schemas, but the
+specialized sparse matcher found two increasing occurrences of
+`SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`. The
+chosen six-point occurrence needs only six selected-row atoms and yields the
+single clause
+
+`-254 -252 -242 -14 -11 -1 0`.
+
+This is strictly smaller than the available eight-atom generic fallback. The
+current root is `postgate-wave45-sparse-six-witness.cnf`, with 5,895,208
+clauses and SHA-256
+`9a07b3bc8cfc4365ab83e8560fe922941a2cf9b64f104e885adc593b12a075ba`.
+PIQD exported the 267,117,735-byte root byte-for-byte after the one-clause
+append. Exact 17 remains SAT and open; no production `sorry` is closed.
