@@ -1531,11 +1531,11 @@ def _status_assessment(payload: dict[str, Any] | None) -> tuple[str, str]:
         )
     requested_core_limit = payload["requested_core_limit"]
     if requested_core_limit is not None and (
-        type(requested_core_limit) is not int or requested_core_limit <= 0
+        type(requested_core_limit) is not int or requested_core_limit != 1
     ):
         return (
             INVALID_STATUS_ATTESTATION,
-            "requested_core_limit must be null or a positive built-in integer",
+            "requested_core_limit must be null or the exact built-in integer one",
         )
     progress = payload.get("progress")
     if type(progress) is not dict:
@@ -1556,8 +1556,8 @@ def _status_assessment(payload: dict[str, Any] | None) -> tuple[str, str]:
     if type(basis) is not str:
         return INVALID_STATUS_ATTESTATION, "attestation_basis must be a string"
 
-    # Classification is driven by the run-written basis/process count pair.
-    # Lifecycle, result, and progress must still agree with that pair.
+    # Classification is driven by the run-written basis/process count pair and
+    # the echoed one-core request. Lifecycle, result, and progress must agree.
     if processes == 0 and basis == _NO_SOLVER_ATTESTATION_BASIS:
         if solver_started is not False or result != "UNKNOWN":
             return (
@@ -1566,6 +1566,11 @@ def _status_assessment(payload: dict[str, Any] | None) -> tuple[str, str]:
             )
         return DEPLOYMENT_NO_SOLVER, "PIQD attests that no solver process started"
     if processes == 1 and basis == _STARTED_ATTESTATION_BASIS:
+        if requested_core_limit is None:
+            return (
+                INVALID_STATUS_ATTESTATION,
+                "started solver requires exact built-in requested_core_limit=1",
+            )
         if solver_started is not True:
             return (
                 INVALID_STATUS_ATTESTATION,

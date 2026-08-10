@@ -193,22 +193,28 @@ honestly records `terminal_status_identity_scope = "JOB_ID_ONLY"`; the adapter
 does not claim that fields absent from the current endpoint were authenticated.
 
 Result text alone is never treated as evidence that a solver ran. Classification
-uses only the run-written attestation pair. Exactly one attested process with
-`attestation_basis = "SINGLE_PROCESS_NO_PARALLEL_FLAG"` makes SAT or UNSAT an
-`ATTESTED_SOLVER_RESULT`; UNKNOWN with the same pair is the distinct fail-closed
-`SOLVER_UNKNOWN` classification.
+uses the run-written attestation pair together with the echoed request metadata.
+Exactly one attested process with
+`attestation_basis = "SINGLE_PROCESS_NO_PARALLEL_FLAG"` and exact built-in
+integer `requested_core_limit = 1` makes SAT or UNSAT an
+`ATTESTED_SOLVER_RESULT`; UNKNOWN with the same exact triple is the distinct
+fail-closed `SOLVER_UNKNOWN` classification. The requested limit remains request
+metadata, not a one-core or one-process attestation.
 
 Zero attested processes with
 `attestation_basis = "SOLVER_DID_NOT_START"` is
 `DEPLOYMENT_NO_SOLVER`, not a solver outcome. This rule deliberately does not
 branch on whether the lifecycle spelling is `completed` or `failed`.
-`requested_core_limit` is caller-supplied request metadata, never attestation;
-the adapter records it and accepts the current null-or-positive-integer shape
-without using its value to classify the run. `progress.solver_started` is also
-recorded and type-checked but not promoted over the exact attestation pair.
-Missing fields, invalid lifecycle/result shapes, attestation disagreement,
-negative or multiple process counts, wrong strings or counts, and bool/float
-substitutions for integer fields fail closed as `INVALID_STATUS_ATTESTATION`.
+The current no-solver lifecycle may report `requested_core_limit = null` or the
+exact built-in integer one; null is accepted only with the exact zero-process,
+did-not-start attestation. `progress.solver_started` is recorded and
+type-checked but not promoted over the exact attestation pair. Missing fields,
+invalid lifecycle/result shapes, attestation disagreement, negative or multiple
+process counts, wrong strings or counts, null on a started run, any integer
+other than one, and bool/float substitutions for integer fields fail closed as
+`INVALID_STATUS_ATTESTATION`. Archiving substituted raw status bytes and
+recomputing their raw/canonical hashes, receipt hash, and custody seal does not
+turn a wrong core limit into a valid attestation.
 
 Current PIQD raw ingress intentionally rejects every zero-clause formula under
 `PIQD-VAC-001`. After exact local DIMACS parsing and before reserving an attempt,

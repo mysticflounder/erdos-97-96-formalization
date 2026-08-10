@@ -474,10 +474,12 @@ def test_missing_status_attestation_fields_fail_closed(
 @pytest.mark.parametrize(
     ("field", "value"),
     [
+        ("requested_core_limit", None),
         ("requested_core_limit", True),
         ("requested_core_limit", 1.0),
         ("requested_core_limit", -1),
         ("requested_core_limit", 0),
+        ("requested_core_limit", 2),
         ("progress", {"solver_started": 1}),
         ("progress", {"solver_started": 1.0}),
         ("attested_solver_processes", True),
@@ -488,7 +490,7 @@ def test_missing_status_attestation_fields_fail_closed(
         ("attestation_basis", "SOLVER_DID_NOT_START"),
     ],
 )
-def test_wrong_bool_or_float_status_attestation_fails_closed(
+def test_malformed_or_wrong_status_attestation_fails_closed(
     tmp_path: Path, field: str, value: object
 ) -> None:
     _source, producer = _manifests()
@@ -501,6 +503,37 @@ def test_wrong_bool_or_float_status_attestation_fails_closed(
     assert json.loads(result.stdout)["status_classification"] == (
         INVALID_STATUS_ATTESTATION
     )
+    assert not any(path.endswith("/proof") for _, path in api.calls)
+
+
+@pytest.mark.parametrize("result", ["SAT", "UNSAT", "UNKNOWN"])
+def test_rehashed_started_status_core_substitution_fails_closed(
+    tmp_path: Path, result: str
+) -> None:
+    _source, producer = _manifests()
+    api = FakeCurrentPiqd(
+        cnf=CNF,
+        producer=producer,
+        result=result,
+        assignment=[1, 2, 3] if result == "SAT" else None,
+    )
+    substituted = {
+        **api.status_payload,
+        "id": api.job_id,
+        "requested_core_limit": 2,
+    }
+    raw = canonical_json_bytes(substituted)
+    api.raw_status_body = raw
+
+    observed = _runner(tmp_path, api)(_write_cnf(tmp_path), 5, None)
+
+    assert observed.verdict == "UNKNOWN"
+    receipt = json.loads(observed.stdout)
+    assert receipt["status_classification"] == INVALID_STATUS_ATTESTATION
+    assert receipt["terminal_status"] == substituted
+    assert receipt["terminal_status_raw_sha256"] == sha256_bytes(raw)
+    assert receipt["terminal_status_canonical_sha256"] == sha256_bytes(raw)
+    _assert_published_custody(receipt)
     assert not any(path.endswith("/proof") for _, path in api.calls)
 
 

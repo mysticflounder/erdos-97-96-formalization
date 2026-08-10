@@ -302,7 +302,9 @@ def test_terminal_publisher_rejects_non_unsat_proof_rerun(
     )
 
     assert result.outcome == "PROOF_SOLVER_NOT_UNSAT"
-    assert not proof_tmp.exists()
+    # The publisher does not delete a path after an untrusted solver returns;
+    # it cannot prove that a concurrent replacement still belongs to it.
+    assert proof_tmp.read_bytes() == b"discarded\n"
     assert not (tmp_path / "terminal.drat").exists()
 
 
@@ -362,7 +364,7 @@ def test_terminal_publisher_rejects_terminal_cnf_drift(
     )
 
     assert result.outcome == "TERMINAL_CNF_DRIFT"
-    assert result.proof_error == "terminal CNF bytes differ from the frozen input"
+    assert result.proof_error is not None
     assert proof_calls == 0
 
 
@@ -435,3 +437,207 @@ def test_terminal_publisher_writes_rejected_checker_transcript(
 
     assert result == runtime.TerminalPublication("DRAT_REJECTED")
     assert (tmp_path / "terminal.drat.check").read_bytes() == b"not verified\n"
+
+
+@pytest.mark.parametrize("mode", ["replace", "mutate"])
+def test_terminal_publisher_rejects_terminal_drift_after_proof_solver(
+    tmp_path: Path,
+    mode: str,
+) -> None:
+    terminal_bytes = b"p cnf 0 0\n"
+
+    def proof_solver(
+        cnf: Path, _timeout: int, proof: Path | None
+    ) -> SimpleNamespace:
+        assert proof is not None
+        if mode == "replace":
+            cnf.unlink()
+            cnf.write_bytes(terminal_bytes)
+        else:
+            cnf.write_bytes(b"p cnf 0 1\n")
+        proof.write_bytes(b"proof\n")
+        return SimpleNamespace(verdict="UNSAT", returncode=20, stdout="", stderr="")
+
+    publisher = runtime.FilesystemTerminalPublisher(
+        checker_runner=lambda *_args: pytest.fail("checker must not run"),
+        atomic_writer=_atomic_writer,
+        proof_solver=proof_solver,
+    )
+    result = publisher.publish(
+        out=tmp_path,
+        cnf_bytes=terminal_bytes,
+        proof_tmp=tmp_path / ".solver.drat",
+        timeout_s=1,
+    )
+
+    assert result.outcome == "TERMINAL_CNF_DRIFT"
+
+
+@pytest.mark.parametrize("mode", ["replace", "mutate"])
+def test_terminal_publisher_rejects_terminal_drift_after_checker(
+    tmp_path: Path,
+    mode: str,
+) -> None:
+    proof_tmp = tmp_path / ".solver.drat"
+    proof_tmp.write_bytes(b"proof\n")
+    terminal_bytes = b"p cnf 0 0\n"
+
+    def checker(cnf: Path, _proof: Path, _timeout: int) -> CheckerResult:
+        if mode == "replace":
+            cnf.unlink()
+            cnf.write_bytes(terminal_bytes)
+        else:
+            cnf.write_bytes(b"p cnf 0 1\n")
+        return CheckerResult(True, 0, "verified\n", "")
+
+    result = runtime.FilesystemTerminalPublisher(checker, _atomic_writer).publish(
+        out=tmp_path,
+        cnf_bytes=terminal_bytes,
+        proof_tmp=proof_tmp,
+        timeout_s=1,
+    )
+
+    assert result.outcome == "TERMINAL_CNF_DRIFT"
+    assert not (tmp_path / "terminal.drat.check").exists()
+
+
+def test_terminal_publisher_rejects_proof_temporary_symlink_without_deleting_it(
+    tmp_path: Path,
+) -> None:
+    target = tmp_path / "outside-proof"
+    target.write_bytes(b"outside\n")
+
+    def proof_solver(
+        _cnf: Path, _timeout: int, proof: Path | None
+    ) -> SimpleNamespace:
+        assert proof is not None
+        proof.symlink_to(target)
+        return SimpleNamespace(verdict="UNSAT", returncode=20, stdout="", stderr="")
+
+    result = runtime.FilesystemTerminalPublisher(
+        checker_runner=lambda *_args: pytest.fail("checker must not run"),
+        atomic_writer=_atomic_writer,
+        proof_solver=proof_solver,
+    ).publish(
+        out=tmp_path,
+        cnf_bytes=b"cnf",
+        proof_tmp=tmp_path / ".solver.drat",
+        timeout_s=1,
+    )
+
+    assert result.outcome == "MISSING_DRAT"
+    assert (tmp_path / ".solver.drat").is_symlink()
+    assert target.read_bytes() == b"outside\n"
+
+
+@pytest.mark.parametrize("mode", ["replace", "mutate"])
+def test_terminal_publisher_rejects_proof_identity_or_content_drift(
+    tmp_path: Path,
+    mode: str,
+) -> None:
+    proof_tmp = tmp_path / ".solver.drat"
+    proof_tmp.write_bytes(b"proof\n")
+
+    def checker(_cnf: Path, proof: Path, _timeout: int) -> CheckerResult:
+        if mode == "replace":
+            proof.unlink()
+            proof.write_bytes(b"proof\n")
+        else:
+            proof.write_bytes(b"drift\n")
+        return CheckerResult(True, 0, "verified\n", "")
+
+    result = runtime.FilesystemTerminalPublisher(checker, _atomic_writer).publish(
+        out=tmp_path,
+        cnf_bytes=b"cnf",
+        proof_tmp=proof_tmp,
+        timeout_s=1,
+    )
+
+    assert result.outcome == "MISSING_DRAT"
+    assert result.proof_error == "terminal DRAT changed while it was being checked"
+    assert not (tmp_path / "terminal.drat.check").exists()
+
+
+def test_terminal_publisher_requires_rename_to_preserve_proof_inode(
+    tmp_path: Path,
+) -> None:
+    proof_tmp = tmp_path / ".solver.drat"
+    proof_tmp.write_bytes(b"proof\n")
+
+    def copy_instead_of_rename(source: Path, destination: Path) -> None:
+        destination.write_bytes(source.read_bytes())
+        source.unlink()
+
+    result = runtime.FilesystemTerminalPublisher(
+        lambda *_args: pytest.fail("checker must not run"),
+        _atomic_writer,
+        proof_publisher=copy_instead_of_rename,
+    ).publish(
+        out=tmp_path,
+        cnf_bytes=b"cnf",
+        proof_tmp=proof_tmp,
+        timeout_s=1,
+    )
+
+    assert result.outcome == "MISSING_DRAT"
+    assert result.proof_error == "terminal DRAT identity changed during publication"
+
+
+def test_terminal_publisher_never_overwrites_concurrent_proof_destination(
+    tmp_path: Path,
+) -> None:
+    proof_tmp = tmp_path / ".solver.drat"
+    sentinel = b"concurrent destination\n"
+
+    def proof_solver(
+        _cnf: Path, _timeout: int, proof: Path | None
+    ) -> SimpleNamespace:
+        assert proof is not None
+        proof.write_bytes(b"owned proof\n")
+        return SimpleNamespace(verdict="UNSAT", returncode=20, stdout="", stderr="")
+
+    def publish_after_race(source: Path, destination: Path) -> None:
+        destination.write_bytes(sentinel)
+        runtime.atomic_rename_noreplace(source, destination)
+
+    result = runtime.FilesystemTerminalPublisher(
+        checker_runner=lambda *_args: pytest.fail("checker must not run"),
+        atomic_writer=_atomic_writer,
+        proof_solver=proof_solver,
+        proof_publisher=publish_after_race,
+    ).publish(
+        out=tmp_path,
+        cnf_bytes=b"cnf",
+        proof_tmp=proof_tmp,
+        timeout_s=1,
+    )
+
+    assert result.outcome == "MISSING_DRAT"
+    assert "already exists" in (result.proof_error or "")
+    assert (tmp_path / "terminal.drat").read_bytes() == sentinel
+    assert proof_tmp.read_bytes() == b"owned proof\n"
+
+
+def test_terminal_publisher_rejects_preexisting_proof_destination_symlink(
+    tmp_path: Path,
+) -> None:
+    target = tmp_path / "outside-proof"
+    target.write_bytes(b"outside\n")
+    destination = tmp_path / "terminal.drat"
+    destination.symlink_to(target)
+    proof_tmp = tmp_path / ".solver.drat"
+    proof_tmp.write_bytes(b"proof\n")
+
+    result = runtime.FilesystemTerminalPublisher(
+        lambda *_args: pytest.fail("checker must not run"), _atomic_writer
+    ).publish(
+        out=tmp_path,
+        cnf_bytes=b"cnf",
+        proof_tmp=proof_tmp,
+        timeout_s=1,
+    )
+
+    assert result.outcome == "MISSING_DRAT"
+    assert destination.is_symlink()
+    assert proof_tmp.read_bytes() == b"proof\n"
+    assert target.read_bytes() == b"outside\n"

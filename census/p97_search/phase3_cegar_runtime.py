@@ -8,9 +8,12 @@ publishes the authenticated manifest.
 
 from __future__ import annotations
 
-import contextlib
+import ctypes
+import errno
 import hashlib
 import os
+import stat
+import sys
 from collections import Counter
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
@@ -55,8 +58,357 @@ class AtomicWriter(Protocol):
     def __call__(self, path: Path, data: bytes) -> None: ...
 
 
+class ProofPublisher(Protocol):
+    def __call__(self, source: Path, destination: Path) -> None: ...
+
+
 class DirectorySync(Protocol):
     def __call__(self, path: Path) -> None: ...
+
+
+class ExactFileCaptureError(ValueError):
+    """A bounded no-follow regular-file capture could not be authenticated."""
+
+
+@dataclass(frozen=True)
+class ExactFileCapture:
+    """Stable identity and exact content digest for one captured file."""
+
+    device: int
+    inode: int
+    byte_count: int
+    link_count: int
+    sha256: str
+    data: bytes | None
+
+    def same_identity_and_content(self, other: ExactFileCapture) -> bool:
+        return (
+            self.device,
+            self.inode,
+            self.byte_count,
+            self.link_count,
+            self.sha256,
+        ) == (
+            other.device,
+            other.inode,
+            other.byte_count,
+            other.link_count,
+            other.sha256,
+        )
+
+
+def _file_identity(info: os.stat_result) -> tuple[int, ...]:
+    return (
+        info.st_dev,
+        info.st_ino,
+        info.st_mode,
+        info.st_nlink,
+        info.st_size,
+        info.st_mtime_ns,
+        info.st_ctime_ns,
+    )
+
+
+def _inode_anchor(info: os.stat_result) -> tuple[int, int, int]:
+    return info.st_dev, info.st_ino, stat.S_IFMT(info.st_mode)
+
+
+def capture_exact_regular_file(
+    path: Path,
+    *,
+    max_bytes: int,
+    require_nonempty: bool = False,
+    require_single_link: bool = False,
+    keep_bytes: bool = True,
+    label: str = "file",
+) -> ExactFileCapture:
+    """Capture a bounded regular file through a held absolute no-follow chain.
+
+    Every parent directory and the final component is opened without following
+    links and revalidated before the held descriptors are released.  This
+    detects substitution during capture; callers that span an external action
+    must capture again afterward and compare the returned identity and digest.
+    """
+
+    if type(max_bytes) is not int or max_bytes < 0:
+        raise ExactFileCaptureError("max_bytes must be a nonnegative integer")
+    if not hasattr(os, "O_NOFOLLOW"):
+        raise ExactFileCaptureError("this platform lacks no-follow file opens")
+    absolute = Path(os.path.abspath(os.fspath(path)))
+    parts = absolute.parts
+    if not parts or parts[0] != os.path.sep or len(parts) == 1:
+        raise ExactFileCaptureError(
+            f"{label} path must name a file below the filesystem root"
+        )
+
+    directory_flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_DIRECTORY", 0)
+        | os.O_NOFOLLOW
+    )
+    file_flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_NONBLOCK", 0)
+        | os.O_NOFOLLOW
+    )
+    directory_descriptors: list[int] = []
+    directory_chain: list[tuple[int, str, int, os.stat_result]] = []
+    descriptor: int | None = None
+    try:
+        root_descriptor = os.open(os.path.sep, directory_flags)
+        directory_descriptors.append(root_descriptor)
+        root_before = os.fstat(root_descriptor)
+        if not stat.S_ISDIR(root_before.st_mode):
+            raise ExactFileCaptureError("filesystem root is not a directory")
+
+        parent_descriptor = root_descriptor
+        for component in parts[1:-1]:
+            child_descriptor = os.open(
+                component, directory_flags, dir_fd=parent_descriptor
+            )
+            directory_descriptors.append(child_descriptor)
+            child_before = os.fstat(child_descriptor)
+            if not stat.S_ISDIR(child_before.st_mode):
+                raise ExactFileCaptureError(
+                    f"every {label} parent component must be a directory"
+                )
+            named_child = os.stat(
+                component, dir_fd=parent_descriptor, follow_symlinks=False
+            )
+            if _inode_anchor(named_child) != _inode_anchor(child_before):
+                raise ExactFileCaptureError(
+                    f"{label} parent changed while it was being opened"
+                )
+            directory_chain.append(
+                (parent_descriptor, component, child_descriptor, child_before)
+            )
+            parent_descriptor = child_descriptor
+
+        descriptor = os.open(parts[-1], file_flags, dir_fd=parent_descriptor)
+        before = os.fstat(descriptor)
+        if not stat.S_ISREG(before.st_mode):
+            raise ExactFileCaptureError(f"{label} must be a regular file")
+        if require_single_link and before.st_nlink != 1:
+            raise ExactFileCaptureError(f"{label} must have link count one")
+        if require_nonempty and before.st_size == 0:
+            raise ExactFileCaptureError(f"{label} must be nonempty")
+        if before.st_size > max_bytes:
+            raise ExactFileCaptureError(
+                f"{label} exceeds the {max_bytes}-byte capture bound"
+            )
+        named_before = os.stat(
+            parts[-1], dir_fd=parent_descriptor, follow_symlinks=False
+        )
+        if _file_identity(named_before) != _file_identity(before):
+            raise ExactFileCaptureError(
+                f"{label} changed while it was being opened"
+            )
+
+        chunks: list[bytes] | None = [] if keep_bytes else None
+        digest = hashlib.sha256()
+        byte_count = 0
+        remaining = max_bytes + 1
+        while remaining:
+            chunk = os.read(descriptor, min(1 << 20, remaining))
+            if not chunk:
+                break
+            digest.update(chunk)
+            byte_count += len(chunk)
+            if chunks is not None:
+                chunks.append(chunk)
+            remaining -= len(chunk)
+        if byte_count > max_bytes:
+            raise ExactFileCaptureError(
+                f"{label} exceeds the {max_bytes}-byte capture bound"
+            )
+        after = os.fstat(descriptor)
+        if (
+            _file_identity(before) != _file_identity(after)
+            or byte_count != before.st_size
+            or (require_single_link and after.st_nlink != 1)
+        ):
+            raise ExactFileCaptureError(
+                f"{label} changed while it was being captured"
+            )
+
+        root_after = os.fstat(root_descriptor)
+        named_root = os.stat(os.path.sep, follow_symlinks=False)
+        if _file_identity(root_before) != _file_identity(root_after) or (
+            _inode_anchor(named_root) != _inode_anchor(root_after)
+        ):
+            raise ExactFileCaptureError(
+                f"{label} filesystem root changed during capture"
+            )
+        for held_parent, component, held_child, child_before in directory_chain:
+            child_after = os.fstat(held_child)
+            named_child = os.stat(
+                component, dir_fd=held_parent, follow_symlinks=False
+            )
+            if _file_identity(child_before) != _file_identity(child_after) or (
+                _inode_anchor(named_child) != _inode_anchor(child_after)
+            ):
+                raise ExactFileCaptureError(
+                    f"{label} parent changed or was repointed during capture"
+                )
+
+        final_after = os.fstat(descriptor)
+        named_after = os.stat(
+            parts[-1], dir_fd=parent_descriptor, follow_symlinks=False
+        )
+        if (
+            _file_identity(after) != _file_identity(final_after)
+            or _file_identity(named_after) != _file_identity(final_after)
+            or (require_single_link and final_after.st_nlink != 1)
+        ):
+            raise ExactFileCaptureError(
+                f"{label} changed or was repointed during final revalidation"
+            )
+        return ExactFileCapture(
+            device=final_after.st_dev,
+            inode=final_after.st_ino,
+            byte_count=byte_count,
+            link_count=final_after.st_nlink,
+            sha256=digest.hexdigest(),
+            data=None if chunks is None else b"".join(chunks),
+        )
+    except ExactFileCaptureError:
+        raise
+    except OSError as exc:
+        raise ExactFileCaptureError(f"cannot capture {label}: {exc}") from exc
+    finally:
+        if descriptor is not None:
+            os.close(descriptor)
+        for directory_descriptor in reversed(directory_descriptors):
+            os.close(directory_descriptor)
+
+
+class AtomicNoReplaceError(RuntimeError):
+    """A proof path could not be published with native no-replace semantics."""
+
+
+def _rename_noreplace_at(root_fd: int, source: str, destination: str) -> None:
+    """Use the platform's atomic same-directory no-replace rename primitive."""
+
+    libc = ctypes.CDLL(None, use_errno=True)
+    source_bytes = os.fsencode(source)
+    destination_bytes = os.fsencode(destination)
+    if sys.platform == "darwin" and hasattr(libc, "renameatx_np"):
+        renameatx_np = libc.renameatx_np
+        renameatx_np.argtypes = [
+            ctypes.c_int,
+            ctypes.c_char_p,
+            ctypes.c_int,
+            ctypes.c_char_p,
+            ctypes.c_uint,
+        ]
+        renameatx_np.restype = ctypes.c_int
+        result = renameatx_np(
+            root_fd,
+            source_bytes,
+            root_fd,
+            destination_bytes,
+            0x4,  # RENAME_EXCL
+        )
+    elif sys.platform.startswith("linux") and hasattr(libc, "renameat2"):
+        renameat2 = libc.renameat2
+        renameat2.argtypes = [
+            ctypes.c_int,
+            ctypes.c_char_p,
+            ctypes.c_int,
+            ctypes.c_char_p,
+            ctypes.c_uint,
+        ]
+        renameat2.restype = ctypes.c_int
+        result = renameat2(
+            root_fd,
+            source_bytes,
+            root_fd,
+            destination_bytes,
+            0x1,  # RENAME_NOREPLACE
+        )
+    else:
+        raise AtomicNoReplaceError(
+            "platform lacks atomic no-replace proof publication"
+        )
+    if result == 0:
+        return
+    error = ctypes.get_errno()
+    if error in {errno.EEXIST, errno.ENOTEMPTY}:
+        raise FileExistsError(
+            error,
+            "proof destination already exists",
+            destination,
+        )
+    if error == errno.ENOENT:
+        raise FileNotFoundError(error, os.strerror(error), source)
+    raise AtomicNoReplaceError(
+        f"cannot atomically publish proof: {os.strerror(error)}"
+    )
+
+
+def atomic_rename_noreplace(source: Path, destination: Path) -> None:
+    """Atomically rename one regular file without replacing any destination.
+
+    Both names must be in the same directory.  A held no-follow descriptor for
+    that directory anchors the native operation, and the destination inode is
+    required to be the source inode afterward.  Linux ``renameat2`` and macOS
+    ``renameatx_np`` are the supported platform seams.
+    """
+
+    if not hasattr(os, "O_NOFOLLOW"):
+        raise AtomicNoReplaceError("this platform lacks no-follow directory opens")
+    source_absolute = Path(os.path.abspath(os.fspath(source)))
+    destination_absolute = Path(os.path.abspath(os.fspath(destination)))
+    if source_absolute.parent != destination_absolute.parent:
+        raise AtomicNoReplaceError(
+            "atomic proof publication requires one common directory"
+        )
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_DIRECTORY", 0)
+        | os.O_NOFOLLOW
+    )
+    try:
+        parent_fd = os.open(source_absolute.parent, flags)
+    except OSError as exc:
+        raise AtomicNoReplaceError(
+            f"cannot open proof output directory without following it: {exc}"
+        ) from exc
+    try:
+        source_before = os.stat(
+            source_absolute.name,
+            dir_fd=parent_fd,
+            follow_symlinks=False,
+        )
+        if not stat.S_ISREG(source_before.st_mode):
+            raise AtomicNoReplaceError("proof source must be a regular file")
+        _rename_noreplace_at(
+            parent_fd,
+            source_absolute.name,
+            destination_absolute.name,
+        )
+        destination_after = os.stat(
+            destination_absolute.name,
+            dir_fd=parent_fd,
+            follow_symlinks=False,
+        )
+        if _inode_anchor(source_before) != _inode_anchor(destination_after):
+            raise AtomicNoReplaceError(
+                "proof inode changed during atomic no-replace publication"
+            )
+    except AtomicNoReplaceError:
+        raise
+    except (FileExistsError, FileNotFoundError):
+        raise
+    except OSError as exc:
+        raise AtomicNoReplaceError(
+            f"cannot atomically publish proof: {exc}"
+        ) from exc
+    finally:
+        os.close(parent_fd)
 
 
 def manifest_generation_name(generation: int) -> str:
@@ -327,6 +679,9 @@ class LearnedRunLedger:
         )
 
 
+MAX_TERMINAL_PROOF_BYTES = 8 * 1024 * 1024 * 1024
+
+
 TerminalOutcome = Literal[
     "VERIFIED",
     "TERMINAL_CNF_DRIFT",
@@ -363,12 +718,16 @@ class FilesystemTerminalPublisher:
     Discovery is deliberately separate from this boundary.  The publisher
     writes the exact terminal CNF, optionally runs a fresh proof-producing
     solver on that path, rejects any terminal-CNF drift or non-UNSAT result,
-    and only then moves and checks the nonempty DRAT artifact.
+    and only then moves and checks the nonempty DRAT artifact.  The output
+    directory remains a trusted same-user boundary; these checks detect
+    accidental/concurrent substitution but are not a hostile-filesystem
+    sandbox.
     """
 
     checker_runner: CheckerRunner
     atomic_writer: AtomicWriter
     proof_solver: SolverBackend | None = None
+    proof_publisher: ProofPublisher = atomic_rename_noreplace
 
     def publish(
         self,
@@ -382,41 +741,50 @@ class FilesystemTerminalPublisher:
         proof_path = out / "terminal.drat"
         self.atomic_writer(terminal_path, cnf_bytes)
 
-        # The proof-producing rerun must consume exactly the bytes that the
-        # coordinator authenticated as the terminal formula.  This check is
-        # intentionally at the terminal boundary, outside the hot discovery
-        # loop, and makes a changed writer fail closed before any proof is
-        # accepted.
         try:
-            terminal_bytes = terminal_path.read_bytes()
-        except OSError as exc:
+            frozen_terminal = capture_exact_regular_file(
+                terminal_path,
+                max_bytes=len(cnf_bytes),
+                require_single_link=True,
+                label="terminal CNF",
+            )
+        except ExactFileCaptureError as exc:
             return TerminalPublication(
                 "TERMINAL_CNF_DRIFT",
-                proof_error=f"terminal CNF could not be reread: {exc}",
+                proof_error=str(exc),
             )
-        if terminal_bytes != cnf_bytes:
+        if frozen_terminal.data != cnf_bytes:
             return TerminalPublication(
                 "TERMINAL_CNF_DRIFT",
                 proof_error="terminal CNF bytes differ from the frozen input",
             )
 
+        if proof_path.exists() or proof_path.is_symlink():
+            return TerminalPublication(
+                "MISSING_DRAT",
+                proof_error="terminal DRAT destination already exists",
+            )
         if self.proof_solver is not None:
-            with contextlib.suppress(FileNotFoundError):
-                proof_tmp.unlink()
+            if proof_tmp.exists() or proof_tmp.is_symlink():
+                return TerminalPublication(
+                    "MISSING_DRAT",
+                    proof_error="proof temporary path already exists",
+                )
             try:
                 proof_result = self.proof_solver(
                     terminal_path, timeout_s, proof_tmp
                 )
             except Exception as exc:  # noqa: BLE001
-                with contextlib.suppress(FileNotFoundError):
-                    proof_tmp.unlink()
                 return TerminalPublication(
                     "PROOF_SOLVER_EXCEPTION",
                     proof_error=f"{type(exc).__name__}: {exc}",
                 )
+            terminal_error = self._terminal_drift(
+                terminal_path, frozen_terminal, len(cnf_bytes)
+            )
+            if terminal_error is not None:
+                return terminal_error
             if proof_result.verdict != "UNSAT":
-                with contextlib.suppress(FileNotFoundError):
-                    proof_tmp.unlink()
                 return TerminalPublication(
                     "PROOF_SOLVER_NOT_UNSAT",
                     proof_error=(
@@ -426,14 +794,79 @@ class FilesystemTerminalPublisher:
                     ),
                 )
 
-        if not proof_tmp.is_file() or proof_tmp.stat().st_size == 0:
+        try:
+            proof_named = os.lstat(proof_tmp)
+        except FileNotFoundError:
             return TerminalPublication("MISSING_DRAT")
+        if stat.S_ISREG(proof_named.st_mode) and proof_named.st_size == 0:
+            return TerminalPublication("MISSING_DRAT")
+        try:
+            frozen_proof = capture_exact_regular_file(
+                proof_tmp,
+                max_bytes=MAX_TERMINAL_PROOF_BYTES,
+                require_nonempty=True,
+                require_single_link=True,
+                keep_bytes=False,
+                label="proof temporary file",
+            )
+        except ExactFileCaptureError as exc:
+            return TerminalPublication("MISSING_DRAT", proof_error=str(exc))
 
-        os.replace(proof_tmp, proof_path)
+        try:
+            self.proof_publisher(proof_tmp, proof_path)
+        except (AtomicNoReplaceError, FileExistsError, FileNotFoundError) as exc:
+            return TerminalPublication(
+                "MISSING_DRAT",
+                proof_error=f"atomic proof publication failed: {exc}",
+            )
+        try:
+            published_proof = capture_exact_regular_file(
+                proof_path,
+                max_bytes=MAX_TERMINAL_PROOF_BYTES,
+                require_nonempty=True,
+                require_single_link=True,
+                keep_bytes=False,
+                label="terminal DRAT",
+            )
+        except ExactFileCaptureError as exc:
+            return TerminalPublication("MISSING_DRAT", proof_error=str(exc))
+        if not frozen_proof.same_identity_and_content(published_proof):
+            return TerminalPublication(
+                "MISSING_DRAT",
+                proof_error="terminal DRAT identity changed during publication",
+            )
+
+        checked: CheckerResultLike | None = None
+        checker_error: Exception | None = None
         try:
             checked = self.checker_runner(terminal_path, proof_path, timeout_s)
         except Exception as exc:  # noqa: BLE001
-            return TerminalPublication("CHECKER_EXCEPTION", str(exc))
+            checker_error = exc
+
+        terminal_error = self._terminal_drift(
+            terminal_path, frozen_terminal, len(cnf_bytes)
+        )
+        if terminal_error is not None:
+            return terminal_error
+        try:
+            checked_proof = capture_exact_regular_file(
+                proof_path,
+                max_bytes=MAX_TERMINAL_PROOF_BYTES,
+                require_nonempty=True,
+                require_single_link=True,
+                keep_bytes=False,
+                label="terminal DRAT",
+            )
+        except ExactFileCaptureError as exc:
+            return TerminalPublication("MISSING_DRAT", proof_error=str(exc))
+        if not published_proof.same_identity_and_content(checked_proof):
+            return TerminalPublication(
+                "MISSING_DRAT",
+                proof_error="terminal DRAT changed while it was being checked",
+            )
+        if checker_error is not None:
+            return TerminalPublication("CHECKER_EXCEPTION", str(checker_error))
+        assert checked is not None
 
         self.atomic_writer(
             out / "terminal.drat.check",
@@ -445,3 +878,25 @@ class FilesystemTerminalPublisher:
         if checked.verified is not True:
             return TerminalPublication("DRAT_REJECTED")
         return TerminalPublication("VERIFIED")
+
+    @staticmethod
+    def _terminal_drift(
+        path: Path,
+        frozen: ExactFileCapture,
+        byte_count: int,
+    ) -> TerminalPublication | None:
+        try:
+            current = capture_exact_regular_file(
+                path,
+                max_bytes=byte_count,
+                require_single_link=True,
+                label="terminal CNF",
+            )
+        except ExactFileCaptureError as exc:
+            return TerminalPublication("TERMINAL_CNF_DRIFT", proof_error=str(exc))
+        if not frozen.same_identity_and_content(current):
+            return TerminalPublication(
+                "TERMINAL_CNF_DRIFT",
+                proof_error="terminal CNF identity or bytes changed",
+            )
+        return None
