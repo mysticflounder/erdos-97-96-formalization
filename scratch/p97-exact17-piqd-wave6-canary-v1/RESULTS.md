@@ -660,3 +660,37 @@ append.
 
 Exact 17 remains SAT and open.  Wave 50 closed no production `sorry` and proved
 no exact-cardinality or universal theorem.
+
+## Wave 51: generic bank hits and one lazy eight-atom refinement
+
+Wave 51 solved the authenticated Wave 50 successor SAT in 0.882 seconds at
+solve index 46.  The total model passed the independent gate: exact linear
+arithmetic was UNSAT.  The complete theorem bank found the forward
+`innerOuter`/`innerOuter` arm of
+`GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`.
+The accumulated motif family also rejected the model through motifs 6 and 11,
+with two and one violated instances respectively.
+
+The mandatory indexed general-theorem search tested every smaller direct
+consumer against this exact model.  It found zero four-point hits among 2,380
+ordered quadruples, zero five-point hits among 6,188 ordered quintuples, and
+zero six-point hits among 12,376 ordered six-subsets.  A separate search for
+`false_of_one_k1_three_cyclic_selected_rows` also found zero hits among the
+2,380 ordered quadruples.  Therefore the existing generic
+Kalmanson-cancellation theorem remained the smallest applicable direct
+consumer found by the post-wave search.
+
+There were two equally short eight-literal motif hits.  The deterministic
+candidate ordering selected one motif-6 witness, and the lazy policy admitted
+only its witnessed clause:
+
+`-270 -259 -230 -226 -93 -82 -21 -18 0`.
+
+The authorized successor is `postgate-wave51-generic-witness.cnf`, with
+5,895,214 clauses and SHA-256
+`ed6826da2eff8d235a2a129116f5b95a30cba197f15b6efc737b8fc0064581f1`.
+PIQD's live export matched that successor byte-for-byte after the single-clause
+append.  The live frontier remains at solve index 46 and is ready for Wave 52.
+
+Exact 17 remains SAT and open.  Wave 51 closed no production `sorry` and proved
+no exact-cardinality or universal theorem.
