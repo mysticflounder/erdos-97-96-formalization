@@ -82,7 +82,9 @@ class SourceFaithfulFiveOmissionLeanExportTests(unittest.TestCase):
         record = _make_record(
             index=0,
             parent_sha256="",
+            raw_base_formula_sha256=base_formula_sha256,
             base_formula_sha256=base_formula_sha256,
+            shared_bank_document_sha256=None,
             formula_contract_sha256=formula_contract_sha256,
             detector_contract_sha256=detector_contract_sha256,
             deleted_label=deleted_label,
@@ -104,13 +106,26 @@ class SourceFaithfulFiveOmissionLeanExportTests(unittest.TestCase):
             "scope": "test fixture; record-validity only",
             "finite_instance_schema": SOURCE_FAITHFUL_FIVE_OMISSION_SCHEMA,
             "deleted_label": deleted_label,
+            "raw_base_formula_sha256": base_formula_sha256,
             "base_formula_sha256": base_formula_sha256,
             "current_formula_sha256": hashlib.sha256(
                 instance.dimacs().encode("utf-8")
             ).hexdigest(),
             "n_variables": instance.cnf.n_variables,
+            "raw_base_clause_count": base_clause_count,
             "base_clause_count": base_clause_count,
             "current_clause_count": base_clause_count + 1,
+            "shared_bank": {
+                "enabled": False,
+                "schema": None,
+                "artifact_sha256": None,
+                "artifact_bytes": None,
+                "document_sha256": None,
+                "bootstrap_clause_list_sha256": None,
+                "record_count": 0,
+                "source_run_count": 0,
+                "source_contract": None,
+            },
             "selector_variables": {
                 "deleted": list(instance.deleted_variables.values()),
                 "blocker": list(instance.blocker_variables.values()),
@@ -140,6 +155,7 @@ class SourceFaithfulFiveOmissionLeanExportTests(unittest.TestCase):
             "timeout_seconds": 60,
             "artifacts": {
                 "journal": journal_artifact,
+                "shared_bank": None,
                 "discovery_cnf": None,
                 "terminal_cnf": None,
                 "proof": None,
@@ -150,7 +166,7 @@ class SourceFaithfulFiveOmissionLeanExportTests(unittest.TestCase):
         _write_json(workdir / "summary.json", summary)
         return workdir, record
 
-    def test_valid_v2_snapshot_selects_detector_stage_without_legacy_alias(self) -> None:
+    def test_valid_v3_snapshot_selects_detector_stage_without_legacy_alias(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             workdir, record = self._fixture(Path(temporary))
             self.assertNotIn("stage", record)

@@ -48,9 +48,16 @@ from .source_faithful_five_omission import (
     FiveOmissionWitness,
     SourceFaithfulFiveOmissionInstance,
 )
+from .source_faithful_five_omission_shared_bank import (
+    SHARED_BANK_SCHEMA,
+    AuthenticatedSharedFiveOmissionBank,
+    load_shared_bank,
+)
 
-RUN_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cegar_run.v2"
-RECORD_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cut.v2"
+LEGACY_RUN_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cegar_run.v2"
+LEGACY_RECORD_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cut.v2"
+RUN_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cegar_run.v3"
+RECORD_SCHEMA = "p97_rigid221_exact12_five_omission_structural_cut.v3"
 DETECTOR_CONTRACT = "replayed order-independent MetricCoreAlternative certificate"
 MAX_JOURNAL_LINE_BYTES = 8 * 1024 * 1024
 MAX_JOURNAL_TOTAL_BYTES = 1024 * 1024 * 1024
@@ -62,7 +69,9 @@ RECORD_BODY_KEYS = frozenset(
         "schema",
         "index",
         "parent_sha256",
+        "raw_base_formula_sha256",
         "base_formula_sha256",
+        "shared_bank_document_sha256",
         "formula_contract_sha256",
         "detector_contract",
         "detector_contract_sha256",
@@ -89,6 +98,7 @@ FORMULA_FILES = (
     "census/card_head/sat_encoding.py",
     "census/card_head/source_faithful_candidate_surface.py",
     "census/card_head/source_faithful_five_omission.py",
+    "census/card_head/source_faithful_five_omission_shared_bank.py",
     "census/card_head/source_faithful_five_omission_cegar.py",
 )
 DETECTOR_FILES = (
@@ -511,7 +521,9 @@ def _record_body(
     *,
     index: int,
     parent_sha256: str,
+    raw_base_formula_sha256: str,
     base_formula_sha256: str,
+    shared_bank_document_sha256: str | None,
     formula_contract_sha256: str,
     detector_contract_sha256: str,
     deleted_label: int,
@@ -529,7 +541,9 @@ def _record_body(
         "schema": RECORD_SCHEMA,
         "index": index,
         "parent_sha256": parent_sha256,
+        "raw_base_formula_sha256": raw_base_formula_sha256,
         "base_formula_sha256": base_formula_sha256,
+        "shared_bank_document_sha256": shared_bank_document_sha256,
         "formula_contract_sha256": formula_contract_sha256,
         "detector_contract": DETECTOR_CONTRACT,
         "detector_contract_sha256": detector_contract_sha256,
@@ -590,7 +604,10 @@ def replay_journal(
     instance: SourceFaithfulFiveOmissionInstance,
     journal_path: Path | BinaryIO,
     *,
+    raw_base_formula_sha256: str,
     base_formula_sha256: str,
+    shared_bank_document_sha256: str | None,
+    bootstrap_clauses: Collection[tuple[int, ...]] = (),
     formula_contract_sha256: str,
     detector_contract_sha256: str,
     deleted_label: int,
@@ -601,9 +618,14 @@ def replay_journal(
         instance.dimacs().encode("utf-8")
     ).hexdigest()
     if (
-        not _is_sha256(base_formula_sha256)
+        not _is_sha256(raw_base_formula_sha256)
+        or not _is_sha256(base_formula_sha256)
         or not _is_sha256(formula_contract_sha256)
         or not _is_sha256(detector_contract_sha256)
+        or (
+            shared_bank_document_sha256 is not None
+            and not _is_sha256(shared_bank_document_sha256)
+        )
         or base_formula_sha256 != recomputed_base_sha256
     ):
         raise FiveOmissionCegarError("journal replay contract is malformed or stale")
@@ -611,9 +633,16 @@ def replay_journal(
     handle, should_close = _open_journal(journal_path)
     count = 0
     parent = ""
-    seen: set[tuple[int, ...]] = set()
+    bootstrap = tuple(bootstrap_clauses)
+    seen: set[tuple[int, ...]] = set(bootstrap)
+    if len(seen) != len(bootstrap):
+        raise FiveOmissionCegarError("bootstrap clause list contains duplicates")
     pending: list[tuple[int, ...]] = []
     base_clauses = tuple(instance.cnf.clauses)
+    if not seen.issubset(set(base_clauses)):
+        raise FiveOmissionCegarError(
+            "bootstrap clause list is not installed in the effective base formula"
+        )
     total_bytes = 0
     try:
         for line_number, raw_line in enumerate(handle, 1):
@@ -648,7 +677,11 @@ def replay_journal(
                 or record.get("schema") != RECORD_SCHEMA
                 or record.get("index") != count
                 or record.get("parent_sha256") != parent
+                or record.get("raw_base_formula_sha256")
+                != raw_base_formula_sha256
                 or record.get("base_formula_sha256") != base_formula_sha256
+                or record.get("shared_bank_document_sha256")
+                != shared_bank_document_sha256
                 or record.get("formula_contract_sha256") != formula_contract_sha256
                 or record.get("detector_contract") != DETECTOR_CONTRACT
                 or record.get("detector_contract_sha256") != detector_contract_sha256
@@ -669,6 +702,12 @@ def replay_journal(
             ):
                 raise FiveOmissionCegarError(
                     f"journal line {line_number} has an invalid certificate"
+                )
+
+            clause = learned_clause_for_certificate(instance, certificate)
+            if record.get("learned_clause") != list(clause) or clause in seen or not clause:
+                raise FiveOmissionCegarError(
+                    f"journal line {line_number} learned clause failed replay"
                 )
 
             cube = _canonical_cube_payload(record.get("cube"))
@@ -705,13 +744,7 @@ def replay_journal(
                     f"journal line {line_number} failed exact witness replay"
                 )
 
-            clause = learned_clause_for_certificate(instance, certificate)
-            if (
-                record.get("learned_clause") != list(clause)
-                or clause in seen
-                or not clause
-                or any(literal >= 0 or -literal not in positive for literal in clause)
-            ):
+            if any(literal >= 0 or -literal not in positive for literal in clause):
                 raise FiveOmissionCegarError(
                     f"journal line {line_number} learned clause failed replay"
                 )
@@ -752,6 +785,54 @@ def _new_instance(deleted_label: int) -> SourceFaithfulFiveOmissionInstance:
     return instance
 
 
+def _install_shared_bank(
+    instance: SourceFaithfulFiveOmissionInstance,
+    bank_path: Path | None,
+) -> AuthenticatedSharedFiveOmissionBank | None:
+    """Replay and install one stable bank, rejecting redundant base clauses."""
+
+    if bank_path is None:
+        return None
+    bank = load_shared_bank(bank_path, target_instance=instance)
+    existing = set(instance.cnf.clauses)
+    for clause in bank.clauses:
+        if clause in existing:
+            raise FiveOmissionCegarError(
+                "shared-bank clause is already present in the raw shard formula"
+            )
+        instance.cnf.add_clause(clause)
+        existing.add(clause)
+    return bank
+
+
+def _shared_bank_summary(
+    bank: AuthenticatedSharedFiveOmissionBank | None,
+) -> dict[str, Any]:
+    if bank is None:
+        return {
+            "enabled": False,
+            "schema": None,
+            "artifact_sha256": None,
+            "artifact_bytes": None,
+            "document_sha256": None,
+            "bootstrap_clause_list_sha256": None,
+            "record_count": 0,
+            "source_run_count": 0,
+            "source_contract": None,
+        }
+    return {
+        "enabled": True,
+        "schema": SHARED_BANK_SCHEMA,
+        "artifact_sha256": bank.artifact_sha256,
+        "artifact_bytes": bank.artifact_bytes,
+        "document_sha256": bank.document_sha256,
+        "bootstrap_clause_list_sha256": bank.bootstrap_clause_list_sha256,
+        "record_count": len(bank.records),
+        "source_run_count": len(bank.source_runs),
+        "source_contract": bank.source_contract,
+    }
+
+
 def _journal_replay_matches(
     audit_instance: SourceFaithfulFiveOmissionInstance,
     *,
@@ -785,6 +866,7 @@ def run_five_omission_cegar(
     timeout_seconds: int = 60,
     nice: int = 10,
     seed_journal: Path | None = None,
+    shared_bank: Path | None = None,
 ) -> dict[str, Any]:
     """Run one replay-gated deleted-label shard."""
 
@@ -815,6 +897,20 @@ def run_five_omission_cegar(
         tool_manifest = _tool_manifest()
         tool_contract_sha256 = _sha256_json(tool_manifest)
         instance = _new_instance(deleted_label)
+        raw_base_clause_count = len(instance.cnf.clauses)
+        raw_base_formula_sha256 = hashlib.sha256(
+            instance.dimacs().encode("utf-8")
+        ).hexdigest()
+        bank_path: Path | None = None
+        if shared_bank is not None:
+            bank_path = workdir / "shared-bank.json"
+            _copy_regular_exclusive(shared_bank, bank_path)
+        bank = _install_shared_bank(instance, bank_path)
+        bootstrap_clauses = bank.clauses if bank is not None else ()
+        shared_bank_document_sha256 = (
+            bank.document_sha256 if bank is not None else None
+        )
+        base_clause_count = len(instance.cnf.clauses)
         base_formula_sha256 = hashlib.sha256(
             instance.dimacs().encode("utf-8")
         ).hexdigest()
@@ -828,7 +924,10 @@ def run_five_omission_cegar(
         record_count, parent_sha256, replayed = replay_journal(
             instance,
             journal_path,
+            raw_base_formula_sha256=raw_base_formula_sha256,
             base_formula_sha256=base_formula_sha256,
+            shared_bank_document_sha256=shared_bank_document_sha256,
+            bootstrap_clauses=bootstrap_clauses,
             formula_contract_sha256=formula_contract_sha256,
             detector_contract_sha256=detector_contract_sha256,
             deleted_label=deleted_label,
@@ -944,7 +1043,9 @@ def run_five_omission_cegar(
             record = _make_record(
                 index=record_count,
                 parent_sha256=parent_sha256,
+                raw_base_formula_sha256=raw_base_formula_sha256,
                 base_formula_sha256=base_formula_sha256,
+                shared_bank_document_sha256=shared_bank_document_sha256,
                 formula_contract_sha256=formula_contract_sha256,
                 detector_contract_sha256=detector_contract_sha256,
                 deleted_label=deleted_label,
@@ -968,10 +1069,25 @@ def run_five_omission_cegar(
         ).hexdigest()
 
         audit_instance = _new_instance(deleted_label)
+        if hashlib.sha256(audit_instance.dimacs().encode("utf-8")).hexdigest() != (
+            raw_base_formula_sha256
+        ):
+            raise FiveOmissionCegarError("raw shard formula changed before final replay")
+        audit_bank = _install_shared_bank(audit_instance, bank_path)
+        audit_bootstrap_clauses = audit_bank.clauses if audit_bank is not None else ()
+        if (
+            (audit_bank.document_sha256 if audit_bank is not None else None)
+            != shared_bank_document_sha256
+            or audit_bootstrap_clauses != bootstrap_clauses
+        ):
+            raise FiveOmissionCegarError("shared bank changed before final replay")
         audit_count, audit_parent, audit_seen = replay_journal(
             audit_instance,
             journal_path,
+            raw_base_formula_sha256=raw_base_formula_sha256,
             base_formula_sha256=base_formula_sha256,
+            shared_bank_document_sha256=shared_bank_document_sha256,
+            bootstrap_clauses=audit_bootstrap_clauses,
             formula_contract_sha256=formula_contract_sha256,
             detector_contract_sha256=detector_contract_sha256,
             deleted_label=deleted_label,
@@ -1000,6 +1116,7 @@ def run_five_omission_cegar(
             tools_rechecked = False
         artifacts = {
             "journal": _artifact_no_follow(journal_path),
+            "shared_bank": _artifact_no_follow(bank_path) if bank_path else None,
             "discovery_cnf": _artifact_no_follow(workdir / "discovery.cnf"),
             "terminal_cnf": _artifact_no_follow(workdir / "terminal.cnf"),
             "proof": _artifact_no_follow(workdir / "terminal.drat"),
@@ -1020,11 +1137,14 @@ def run_five_omission_cegar(
             ),
             "finite_instance_schema": SOURCE_FAITHFUL_FIVE_OMISSION_SCHEMA,
             "deleted_label": deleted_label,
+            "raw_base_formula_sha256": raw_base_formula_sha256,
             "base_formula_sha256": base_formula_sha256,
             "current_formula_sha256": current_formula_sha256,
             "n_variables": instance.cnf.n_variables,
-            "base_clause_count": len(instance.cnf.clauses) - record_count,
+            "raw_base_clause_count": raw_base_clause_count,
+            "base_clause_count": base_clause_count,
             "current_clause_count": len(instance.cnf.clauses),
+            "shared_bank": _shared_bank_summary(bank),
             "selector_variables": {
                 "deleted": list(instance.deleted_variables.values()),
                 "blocker": list(instance.blocker_variables.values()),
@@ -1071,6 +1191,7 @@ def main() -> int:
     parser.add_argument("--timeout-seconds", type=int, default=60)
     parser.add_argument("--nice", type=int, default=10)
     parser.add_argument("--seed-journal", type=Path)
+    parser.add_argument("--shared-bank", type=Path)
     args = parser.parse_args()
     try:
         summary = run_five_omission_cegar(
@@ -1081,6 +1202,7 @@ def main() -> int:
             timeout_seconds=args.timeout_seconds,
             nice=args.nice,
             seed_journal=args.seed_journal,
+            shared_bank=args.shared_bank,
         )
     except (FiveOmissionCegarError, EncodingError, OSError, ValueError) as exc:
         print(json.dumps({"status": "PIPELINE_ERROR", "error": str(exc)}))

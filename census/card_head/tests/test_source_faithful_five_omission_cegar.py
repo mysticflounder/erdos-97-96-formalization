@@ -75,7 +75,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
             record = _make_record(
                 index=0,
                 parent_sha256="",
+                raw_base_formula_sha256=base_formula_sha256,
                 base_formula_sha256=base_formula_sha256,
+                shared_bank_document_sha256=None,
                 formula_contract_sha256=formula_contract_sha256,
                 detector_contract_sha256=detector_contract_sha256,
                 deleted_label=2,
@@ -94,7 +96,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
             count, parent, clauses = replay_journal(
                 replay_instance,
                 journal,
+                raw_base_formula_sha256=base_formula_sha256,
                 base_formula_sha256=base_formula_sha256,
+                shared_bank_document_sha256=None,
                 formula_contract_sha256=formula_contract_sha256,
                 detector_contract_sha256=detector_contract_sha256,
                 deleted_label=2,
@@ -102,6 +106,122 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
             self.assertEqual(count, 1)
             self.assertEqual(parent, record["record_sha256"])
             self.assertEqual(clauses, frozenset({clause}))
+
+            seeded_instance = _new_instance(2)
+            self._force_known_witness(seeded_instance)
+            seeded_raw_sha256 = hashlib.sha256(
+                seeded_instance.dimacs().encode("utf-8")
+            ).hexdigest()
+            absent_variable = next(
+                variable
+                for variable in range(1, seeded_instance.cnf.n_variables + 1)
+                if variable not in positive
+            )
+            benign_bootstrap_clause = (-absent_variable,)
+            seeded_instance.cnf.add_clause(benign_bootstrap_clause)
+            seeded_effective_sha256 = hashlib.sha256(
+                seeded_instance.dimacs().encode("utf-8")
+            ).hexdigest()
+            seeded_bank_sha256 = "3" * 64
+            seeded_record = _make_record(
+                index=0,
+                parent_sha256="",
+                raw_base_formula_sha256=seeded_raw_sha256,
+                base_formula_sha256=seeded_effective_sha256,
+                shared_bank_document_sha256=seeded_bank_sha256,
+                formula_contract_sha256=formula_contract_sha256,
+                detector_contract_sha256=detector_contract_sha256,
+                deleted_label=2,
+                cube=cube,
+                witness=boundary,
+                positive_variables=positive,
+                certificate=certificate,
+                learned_clause=clause,
+            )
+            seeded_path = root / "seeded-local.jsonl"
+            seeded_path.touch()
+            _append_record(seeded_path, seeded_record)
+            seeded_count, seeded_parent, seeded_clauses = replay_journal(
+                seeded_instance,
+                seeded_path,
+                raw_base_formula_sha256=seeded_raw_sha256,
+                base_formula_sha256=seeded_effective_sha256,
+                shared_bank_document_sha256=seeded_bank_sha256,
+                bootstrap_clauses=(benign_bootstrap_clause,),
+                formula_contract_sha256=formula_contract_sha256,
+                detector_contract_sha256=detector_contract_sha256,
+                deleted_label=2,
+            )
+            self.assertEqual(seeded_count, 1)
+            self.assertEqual(seeded_parent, seeded_record["record_sha256"])
+            self.assertEqual(
+                seeded_clauses, frozenset({benign_bootstrap_clause, clause})
+            )
+
+            bootstrap_instance = _new_instance(2)
+            self._force_known_witness(bootstrap_instance)
+            raw_base_sha256 = hashlib.sha256(
+                bootstrap_instance.dimacs().encode("utf-8")
+            ).hexdigest()
+            bootstrap_instance.cnf.add_clause(clause)
+            effective_base_sha256 = hashlib.sha256(
+                bootstrap_instance.dimacs().encode("utf-8")
+            ).hexdigest()
+            shared_bank_sha256 = "2" * 64
+            duplicate_record = _make_record(
+                index=0,
+                parent_sha256="",
+                raw_base_formula_sha256=raw_base_sha256,
+                base_formula_sha256=effective_base_sha256,
+                shared_bank_document_sha256=shared_bank_sha256,
+                formula_contract_sha256=formula_contract_sha256,
+                detector_contract_sha256=detector_contract_sha256,
+                deleted_label=2,
+                cube=cube,
+                witness=boundary,
+                positive_variables=positive,
+                certificate=certificate,
+                learned_clause=clause,
+            )
+            duplicate_path = root / "bootstrap-duplicate.jsonl"
+            duplicate_path.touch()
+            _append_record(duplicate_path, duplicate_record)
+            with self.assertRaisesRegex(
+                FiveOmissionCegarError, "learned clause failed replay"
+            ):
+                replay_journal(
+                    bootstrap_instance,
+                    duplicate_path,
+                    raw_base_formula_sha256=raw_base_sha256,
+                    base_formula_sha256=effective_base_sha256,
+                    shared_bank_document_sha256=shared_bank_sha256,
+                    bootstrap_clauses=(clause,),
+                    formula_contract_sha256=formula_contract_sha256,
+                    detector_contract_sha256=detector_contract_sha256,
+                    deleted_label=2,
+                )
+
+            missing_bootstrap_instance = _new_instance(2)
+            self._force_known_witness(missing_bootstrap_instance)
+            missing_base_sha256 = hashlib.sha256(
+                missing_bootstrap_instance.dimacs().encode("utf-8")
+            ).hexdigest()
+            empty_journal = root / "empty.jsonl"
+            empty_journal.touch()
+            with self.assertRaisesRegex(
+                FiveOmissionCegarError, "not installed in the effective base formula"
+            ):
+                replay_journal(
+                    missing_bootstrap_instance,
+                    empty_journal,
+                    raw_base_formula_sha256=missing_base_sha256,
+                    base_formula_sha256=missing_base_sha256,
+                    shared_bank_document_sha256=shared_bank_sha256,
+                    bootstrap_clauses=(clause,),
+                    formula_contract_sha256=formula_contract_sha256,
+                    detector_contract_sha256=detector_contract_sha256,
+                    deleted_label=2,
+                )
 
             malformed = dict(record)
             malformed["unexpected"] = True
@@ -116,7 +236,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
                 replay_journal(
                     malformed_instance,
                     malformed_path,
+                    raw_base_formula_sha256=base_formula_sha256,
                     base_formula_sha256=base_formula_sha256,
+                    shared_bank_document_sha256=None,
                     formula_contract_sha256=formula_contract_sha256,
                     detector_contract_sha256=detector_contract_sha256,
                     deleted_label=2,
@@ -130,7 +252,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
                 replay_journal(
                     truncated_instance,
                     truncated_path,
+                    raw_base_formula_sha256=base_formula_sha256,
                     base_formula_sha256=base_formula_sha256,
+                    shared_bank_document_sha256=None,
                     formula_contract_sha256=formula_contract_sha256,
                     detector_contract_sha256=detector_contract_sha256,
                     deleted_label=2,
@@ -149,7 +273,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
                 replay_journal(
                     bounded_instance,
                     journal,
+                    raw_base_formula_sha256=base_formula_sha256,
                     base_formula_sha256=base_formula_sha256,
+                    shared_bank_document_sha256=None,
                     formula_contract_sha256=formula_contract_sha256,
                     detector_contract_sha256=detector_contract_sha256,
                     deleted_label=2,
@@ -168,7 +294,9 @@ class SourceFaithfulFiveOmissionCegarTests(unittest.TestCase):
                 replay_journal(
                     count_bounded_instance,
                     journal,
+                    raw_base_formula_sha256=base_formula_sha256,
                     base_formula_sha256=base_formula_sha256,
+                    shared_bank_document_sha256=None,
                     formula_contract_sha256=formula_contract_sha256,
                     detector_contract_sha256=detector_contract_sha256,
                     deleted_label=2,
@@ -245,7 +373,9 @@ class SourceFaithfulFiveOmissionCustodyTests(unittest.TestCase):
             replay_journal(
                 instance,
                 Path("does-not-need-to-exist.jsonl"),
+                raw_base_formula_sha256=base_formula_sha256,
                 base_formula_sha256=base_formula_sha256,
+                shared_bank_document_sha256=None,
                 formula_contract_sha256="not-a-digest",
                 detector_contract_sha256="0" * 64,
                 deleted_label=2,

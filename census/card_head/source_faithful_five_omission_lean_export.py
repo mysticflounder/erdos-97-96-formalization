@@ -1,12 +1,13 @@
-"""Export one authenticated five-omission journal to a Lean nogood bank.
+"""Export one authenticated five-omission v3 run to a Lean nogood bank.
 
-This adapter accepts only the source-faithful v2 run/journal schemas.  It
+This adapter accepts only the source-faithful v3 run/journal schemas.  It
 recomputes the live formula, detector, and tool contracts, replays the complete
-journal from an immutable snapshot, checks the resulting CNF hash and the
-record-relevant summary fields against that snapshot, and only then delegates
-record rendering to the generic certificate exporter.  Discovery/terminal
-solver artifacts in the same summary are outside this record-validity adapter;
-terminal proof ingress authenticates those separately.
+journal from an immutable snapshot, replays any authenticated shared bootstrap,
+checks the resulting CNF hash and the record-relevant summary fields against
+that snapshot, and only then delegates record rendering to the generic
+certificate exporter.  Discovery/terminal solver artifacts in the same summary
+are outside this record-validity adapter; terminal proof ingress authenticates
+those separately.
 
 The generated bank proves record validity only.  It is not a terminal UNSAT,
 all-shard coverage, universal lift, or live-theorem closure certificate.
@@ -30,12 +31,14 @@ from .source_faithful_five_omission_cegar import (
     RECORD_KEYS,
     RUN_SCHEMA,
     FiveOmissionCegarError,
+    _install_shared_bank,
     _json_object_without_duplicates,
     _new_instance,
     _read_regular_bytes_no_follow,
     _regular_unlinked_snapshot,
     _reject_json_constant,
     _sha256_json,
+    _shared_bank_summary,
     _source_manifest,
     _tool_manifest,
     _write_regular_bytes,
@@ -60,11 +63,14 @@ SUMMARY_KEYS = frozenset(
         "journal_replayed",
         "max_iterations",
         "n_variables",
+        "raw_base_clause_count",
+        "raw_base_formula_sha256",
         "records",
         "replay",
         "schema",
         "scope",
         "selector_variables",
+        "shared_bank",
         "source_manifests_rechecked",
         "status",
         "terminal_proof_verified",
@@ -79,19 +85,28 @@ SUMMARY_KEYS = frozenset(
 )
 MAX_SUMMARY_BYTES = 8 * 1024 * 1024
 ARTIFACT_KEYS = frozenset(
-    {"journal", "discovery_cnf", "terminal_cnf", "proof", "survivor"}
+    {
+        "journal",
+        "shared_bank",
+        "discovery_cnf",
+        "terminal_cnf",
+        "proof",
+        "survivor",
+    }
 )
 
 
 @dataclass(frozen=True)
 class AuthenticatedFiveOmissionRun:
-    """One stable, fully replayed source-faithful v2 run snapshot."""
+    """One stable, fully replayed source-faithful v3 run snapshot."""
 
     workdir: Path
     deleted_label: int
     summary: dict[str, Any]
     summary_artifact: dict[str, Any]
     journal_artifact: dict[str, Any]
+    bootstrap_records: tuple[dict[str, Any], ...]
+    bootstrap_clauses: tuple[tuple[int, ...], ...]
     records: tuple[dict[str, Any], ...]
     terminal_record_sha256: str | None
 
@@ -137,7 +152,7 @@ def _records_from_replayed_snapshot(stream: BinaryIO) -> tuple[dict[str, Any], .
 def load_authenticated_run(
     repo_root: Path, workdir: Path, deleted_label: int
 ) -> AuthenticatedFiveOmissionRun:
-    """Authenticate a stable v2 run and return its exact replayed records."""
+    """Authenticate a stable v3 run and return bootstrap and local records."""
 
     repo_root = repo_root.resolve()
     workdir = workdir.resolve()
@@ -158,16 +173,35 @@ def load_authenticated_run(
     formula_contract_sha256 = _sha256_json(formula_manifest)
     detector_contract_sha256 = _sha256_json(detector_manifest)
     instance = _new_instance(deleted_label)
+    raw_base_clause_count = len(instance.cnf.clauses)
+    raw_base_formula_sha256 = hashlib.sha256(
+        instance.dimacs().encode("utf-8")
+    ).hexdigest()
+    shared_bank_summary = summary.get("shared_bank")
+    if not isinstance(shared_bank_summary, dict):
+        raise FiveOmissionCegarError("run summary shared-bank table is malformed")
+    shared_bank_path = workdir / "shared-bank.json"
+    bank = _install_shared_bank(
+        instance,
+        shared_bank_path if shared_bank_summary.get("enabled") is True else None,
+    )
     base_clause_count = len(instance.cnf.clauses)
     base_formula_sha256 = hashlib.sha256(
         instance.dimacs().encode("utf-8")
     ).hexdigest()
+    shared_bank_document_sha256 = (
+        bank.document_sha256 if bank is not None else None
+    )
+    bootstrap_clauses = bank.clauses if bank is not None else ()
 
     with _regular_unlinked_snapshot(journal_path) as (snapshot, journal_artifact):
         count, terminal_record_sha256, _learned_clauses = replay_journal(
             instance,
             snapshot,
+            raw_base_formula_sha256=raw_base_formula_sha256,
             base_formula_sha256=base_formula_sha256,
+            shared_bank_document_sha256=shared_bank_document_sha256,
+            bootstrap_clauses=bootstrap_clauses,
             formula_contract_sha256=formula_contract_sha256,
             detector_contract_sha256=detector_contract_sha256,
             deleted_label=deleted_label,
@@ -187,31 +221,60 @@ def load_authenticated_run(
     artifacts = summary.get("artifacts")
     if not isinstance(artifacts, dict) or set(artifacts) != ARTIFACT_KEYS:
         raise FiveOmissionCegarError("run summary artifact table is malformed")
-    checks = (
-        summary.get("finite_instance_schema")
-        == SOURCE_FAITHFUL_FIVE_OMISSION_SCHEMA,
-        summary.get("base_formula_sha256") == base_formula_sha256,
-        summary.get("formula_source_manifest") == formula_manifest,
-        summary.get("formula_contract_sha256") == formula_contract_sha256,
-        summary.get("detector_source_manifest") == detector_manifest,
-        summary.get("detector_contract_sha256") == detector_contract_sha256,
-        summary.get("tool_manifest") == tool_manifest,
-        summary.get("tool_contract_sha256") == _sha256_json(tool_manifest),
-        summary.get("n_variables") == instance.cnf.n_variables,
-        summary.get("base_clause_count") == base_clause_count,
-        summary.get("current_clause_count") == base_clause_count + count,
-        summary.get("current_formula_sha256") == current_formula_sha256,
-        summary.get("selector_variables") == expected_selectors,
-        summary.get("records") == count == len(records),
-        summary.get("terminal_record_sha256") == expected_terminal,
-        artifacts.get("journal") == journal_artifact,
-        summary.get("journal_replayed") is True,
-        summary.get("source_manifests_rechecked") is True,
-        summary.get("tools_rechecked") is True,
+    expected_shared_bank_artifact = (
+        {
+            "path": "shared-bank.json",
+            "sha256": bank.artifact_sha256,
+            "bytes": bank.artifact_bytes,
+        }
+        if bank is not None
+        else None
     )
-    if not all(checks):
+    checks = {
+        "finite_instance_schema": summary.get("finite_instance_schema")
+        == SOURCE_FAITHFUL_FIVE_OMISSION_SCHEMA,
+        "raw_base_formula_sha256": summary.get("raw_base_formula_sha256")
+        == raw_base_formula_sha256,
+        "base_formula_sha256": summary.get("base_formula_sha256")
+        == base_formula_sha256,
+        "formula_source_manifest": summary.get("formula_source_manifest")
+        == formula_manifest,
+        "formula_contract_sha256": summary.get("formula_contract_sha256")
+        == formula_contract_sha256,
+        "detector_source_manifest": summary.get("detector_source_manifest")
+        == detector_manifest,
+        "detector_contract_sha256": summary.get("detector_contract_sha256")
+        == detector_contract_sha256,
+        "tool_manifest": summary.get("tool_manifest") == tool_manifest,
+        "tool_contract_sha256": summary.get("tool_contract_sha256")
+        == _sha256_json(tool_manifest),
+        "n_variables": summary.get("n_variables") == instance.cnf.n_variables,
+        "raw_base_clause_count": summary.get("raw_base_clause_count")
+        == raw_base_clause_count,
+        "base_clause_count": summary.get("base_clause_count") == base_clause_count,
+        "current_clause_count": summary.get("current_clause_count")
+        == base_clause_count + count,
+        "current_formula_sha256": summary.get("current_formula_sha256")
+        == current_formula_sha256,
+        "selector_variables": summary.get("selector_variables")
+        == expected_selectors,
+        "shared_bank": summary.get("shared_bank") == _shared_bank_summary(bank),
+        "records": summary.get("records") == count == len(records),
+        "terminal_record_sha256": summary.get("terminal_record_sha256")
+        == expected_terminal,
+        "journal_artifact": artifacts.get("journal") == journal_artifact,
+        "shared_bank_artifact": artifacts.get("shared_bank")
+        == expected_shared_bank_artifact,
+        "journal_replayed": summary.get("journal_replayed") is True,
+        "source_manifests_rechecked": summary.get("source_manifests_rechecked")
+        is True,
+        "tools_rechecked": summary.get("tools_rechecked") is True,
+    }
+    failed_checks = sorted(name for name, valid in checks.items() if not valid)
+    if failed_checks:
         raise FiveOmissionCegarError(
-            "run summary disagrees with the authenticated journal snapshot"
+            "run summary disagrees with the authenticated journal snapshot: "
+            + ", ".join(failed_checks)
         )
 
     return AuthenticatedFiveOmissionRun(
@@ -220,6 +283,8 @@ def load_authenticated_run(
         summary=summary,
         summary_artifact=summary_artifact,
         journal_artifact=journal_artifact,
+        bootstrap_records=bank.records if bank is not None else (),
+        bootstrap_clauses=bootstrap_clauses,
         records=records,
         terminal_record_sha256=expected_terminal,
     )

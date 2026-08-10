@@ -107,6 +107,8 @@ class AuthenticatedSharedFiveOmissionBank:
     artifact_sha256: str
     artifact_bytes: int
     document_sha256: str
+    source_contract: dict[str, Any]
+    bootstrap_clause_list_sha256: str
     source_runs: tuple[dict[str, Any], ...]
     records: tuple[dict[str, Any], ...]
     clauses: tuple[tuple[int, ...], ...]
@@ -638,6 +640,8 @@ def load_shared_bank(
         artifact_sha256=hashlib.sha256(payload).hexdigest(),
         artifact_bytes=len(payload),
         document_sha256=document_sha256,
+        source_contract=dict(source_contract),
+        bootstrap_clause_list_sha256=document["bootstrap_clause_list_sha256"],
         source_runs=tuple(sources),
         records=tuple(records),
         clauses=tuple(clauses),

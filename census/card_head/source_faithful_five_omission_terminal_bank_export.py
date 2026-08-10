@@ -221,7 +221,8 @@ def records_for_terminal_bank(
 ) -> tuple[dict[str, Any], ...]:
     if limit is not None and limit <= 0:
         raise ValueError("limit must be positive")
-    records = run.records if limit is None else run.records[:limit]
+    combined = run.bootstrap_records + run.records
+    records = combined if limit is None else combined[:limit]
     unsupported = sorted(
         {record.get("detector_stage") for record in records}
         - SUPPORTED_STAGES,
@@ -260,11 +261,20 @@ def render_terminal_bank(
     )
     declarations_source = "\n".join(declarations)
     encodability_source = _bank_encodability_lean(len(records))
+    shared_bank = run.summary.get("shared_bank")
+    shared_bank_document_sha256 = (
+        shared_bank.get("document_sha256")
+        if isinstance(shared_bank, dict) and shared_bank.get("enabled") is True
+        else None
+    )
     return f"""import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221FiveOmissionTerminalBankConsumer
 
 /-!
-Generated from {run.workdir.as_posix()}/journal.jsonl
+Generated from authenticated bootstrap plus {run.workdir.as_posix()}/journal.jsonl
+Shared-bank document SHA-256: {shared_bank_document_sha256}
 Journal SHA-256: {run.journal_artifact['sha256']}
+Authenticated bootstrap records: {len(run.bootstrap_records)}
+Authenticated local records: {len(run.records)}
 Authenticated records emitted: {len(records)} ({count_comment})
 
 Every item is a source-uniform typed cut with its exact four-row CNF choices.
@@ -317,7 +327,7 @@ def main() -> int:
     if args.manifest is not None:
         stage_counts = Counter(record["detector_stage"] for record in records)
         manifest = {
-            "schema": "p97_source_faithful_five_omission_typed_bank.v1",
+            "schema": "p97_source_faithful_five_omission_typed_bank.v2",
             "scope": "typed cut validity only; no terminal UNSAT or coverage",
             "source": {
                 "run_summary": (run.workdir / "summary.json").as_posix(),
@@ -326,7 +336,18 @@ def main() -> int:
                 "journal_sha256": run.journal_artifact["sha256"],
                 "journal_bytes": run.journal_artifact["bytes"],
                 "deleted_label": run.deleted_label,
-                "authenticated_record_count": len(run.records),
+                "shared_bank_document_sha256": run.summary["shared_bank"][
+                    "document_sha256"
+                ],
+                "shared_bank_clause_list_sha256": run.summary["shared_bank"][
+                    "bootstrap_clause_list_sha256"
+                ],
+                "authenticated_bootstrap_record_count": len(
+                    run.bootstrap_records
+                ),
+                "authenticated_local_record_count": len(run.records),
+                "authenticated_record_count": len(run.bootstrap_records)
+                + len(run.records),
                 "emitted_record_count": len(records),
                 "terminal_record_sha256": run.terminal_record_sha256,
                 "formula_contract_sha256": run.summary["formula_contract_sha256"],

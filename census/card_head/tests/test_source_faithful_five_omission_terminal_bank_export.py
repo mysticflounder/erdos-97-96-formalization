@@ -34,16 +34,31 @@ class SourceFaithfulFiveOmissionTerminalBankExportTests(unittest.TestCase):
         }
 
     @staticmethod
-    def _run(records: list[dict[str, object]]) -> AuthenticatedFiveOmissionRun:
+    def _run(
+        records: list[dict[str, object]],
+        *,
+        bootstrap_records: list[dict[str, object]] | None = None,
+    ) -> AuthenticatedFiveOmissionRun:
         return AuthenticatedFiveOmissionRun(
             workdir=Path("authenticated-run"),
             deleted_label=0,
             summary={
                 "formula_contract_sha256": "1" * 64,
                 "detector_contract_sha256": "2" * 64,
+                "shared_bank": {
+                    "enabled": bootstrap_records is not None,
+                    "document_sha256": "6" * 64
+                    if bootstrap_records is not None
+                    else None,
+                    "bootstrap_clause_list_sha256": "7" * 64
+                    if bootstrap_records is not None
+                    else None,
+                },
             },
             summary_artifact={"sha256": "3" * 64},
             journal_artifact={"sha256": "4" * 64, "bytes": 123},
+            bootstrap_records=tuple(bootstrap_records or ()),
+            bootstrap_clauses=(),
             records=tuple(records),
             terminal_record_sha256="5" * 64,
         )
@@ -104,6 +119,15 @@ class SourceFaithfulFiveOmissionTerminalBankExportTests(unittest.TestCase):
 
         with self.assertRaisesRegex(FiveOmissionCegarError, "unsupported"):
             exporter.records_for_terminal_bank(run)
+
+    def test_bootstrap_precedes_local_records_and_limit_is_combined(self) -> None:
+        bootstrap = self._record(index=9, certificate=self._duplicate_certificate())
+        local = self._record(index=0, certificate=self._bisector_certificate())
+        run = self._run([local], bootstrap_records=[bootstrap])
+
+        selected = exporter.records_for_terminal_bank(run)
+        self.assertEqual(selected, (bootstrap, local))
+        self.assertEqual(exporter.records_for_terminal_bank(run, 1), (bootstrap,))
 
     def test_learned_clause_mismatch_is_rejected(self) -> None:
         record = self._record(

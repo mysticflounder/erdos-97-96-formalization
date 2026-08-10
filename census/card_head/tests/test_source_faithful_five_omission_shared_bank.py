@@ -10,14 +10,14 @@ from census.card_head.exact12_v14_structural_cegar import (
     STRUCTURAL_CERTIFICATE_SCHEMA,
 )
 from census.card_head.source_faithful_five_omission_cegar import (
-    RECORD_SCHEMA,
-    RUN_SCHEMA,
     _new_instance,
     _sha256_json,
     detect_structural_certificate,
     learned_clause_for_certificate,
 )
 from census.card_head.source_faithful_five_omission_shared_bank import (
+    EXPECTED_RECORD_SCHEMA,
+    EXPECTED_RUN_SCHEMA,
     SharedFiveOmissionBankError,
     build_shared_bank_document,
     load_shared_bank,
@@ -34,7 +34,7 @@ class SourceFaithfulFiveOmissionSharedBankTests(unittest.TestCase):
         clause = learned_clause_for_certificate(instance, certificate)
         base_formula_sha256 = f"{deleted_label + 37:064x}"
         record = {
-            "schema": RECORD_SCHEMA,
+            "schema": EXPECTED_RECORD_SCHEMA,
             "index": source_index,
             "base_formula_sha256": base_formula_sha256,
             "formula_contract_sha256": "a" * 64,
@@ -51,7 +51,7 @@ class SourceFaithfulFiveOmissionSharedBankTests(unittest.TestCase):
             deleted_label=deleted_label,
             records=(record,),
             summary={
-                "schema": RUN_SCHEMA,
+                "schema": EXPECTED_RUN_SCHEMA,
                 "status": "ITERATION_LIMIT",
                 "base_formula_sha256": base_formula_sha256,
                 "current_formula_sha256": f"{deleted_label + 49:064x}",
@@ -105,6 +105,20 @@ class SourceFaithfulFiveOmissionSharedBankTests(unittest.TestCase):
             write_new_shared_bank(path, document)
             with self.assertRaisesRegex(
                 SharedFiveOmissionBankError, "learned clause failed replay"
+            ):
+                load_shared_bank(path, _new_instance(2))
+
+    def test_rehashed_bootstrap_clause_digest_tampering_is_rejected(self) -> None:
+        document = build_shared_bank_document(self._runs(), self._targets())
+        document["bootstrap_clause_list_sha256"] = "0" * 64
+        body = dict(document)
+        body.pop("document_sha256")
+        document["document_sha256"] = _sha256_json(body)
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "bank.json"
+            write_new_shared_bank(path, document)
+            with self.assertRaisesRegex(
+                SharedFiveOmissionBankError, "bootstrap clause-list digest failed"
             ):
                 load_shared_bank(path, _new_instance(2))
 
