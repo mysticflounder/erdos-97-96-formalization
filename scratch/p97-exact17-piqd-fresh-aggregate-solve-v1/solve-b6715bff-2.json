@@ -1,0 +1,37 @@
+{
+  "model_literals": 74813,
+  "model_log": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-exact17-piqd-fresh-aggregate-solve-v1/model-b6715bff-2.log",
+  "model_log_sha256": "5d1a8ad0b68d3604b41db6645d631b379c7618e8e5597a24ac8baeb8671a149b",
+  "schema": "p97-piqd-sat-session-model-capture-v1",
+  "session_before": {
+    "clauses": 4254296,
+    "created_at": 1786321775,
+    "id": "b6715bff-6e85-48ea-988d-b7e081e69298",
+    "journal_path": "/Users/adam/.piqd/sessions/b6715bff-6e85-48ea-988d-b7e081e69298/journal.cnf",
+    "label": "P97 exact17 aggregate CEGAR admission after daemon restart",
+    "lane": "sat",
+    "last_status": "SAT",
+    "max_var": 74813,
+    "protocol_version": 1,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "solver_stats": {
+      "active": 64704,
+      "clauses_added": 4254296,
+      "irredundant": 2335439,
+      "solve_ms_total": 9785,
+      "solves": 1,
+      "vars": 74813
+    },
+    "solves": 1,
+    "state": "live",
+    "updated_at": 1786321958
+  },
+  "solve_response": {
+    "result_sha256": "d901c71bc1809ff00f5e68b1fa893424c584a0981bbd6ade5c3d7d808b34ead2",
+    "solve_index": 2,
+    "solve_ms": 6428,
+    "status": "SAT"
+  }
+}

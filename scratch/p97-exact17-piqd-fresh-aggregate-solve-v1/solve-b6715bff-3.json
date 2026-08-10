@@ -1,0 +1,35 @@
+{
+  "model_log": null,
+  "session_before": {
+    "clauses": 4254382,
+    "created_at": 1786321775,
+    "id": "b6715bff-6e85-48ea-988d-b7e081e69298",
+    "journal_path": "/Users/adam/.piqd/sessions/b6715bff-6e85-48ea-988d-b7e081e69298/journal.cnf",
+    "label": "P97 exact17 aggregate CEGAR admission after daemon restart",
+    "lane": "sat",
+    "last_status": "SAT",
+    "max_var": 74813,
+    "protocol_version": 1,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "solver_stats": {
+      "active": 64669,
+      "clauses_added": 4254382,
+      "irredundant": 2310112,
+      "solve_ms_total": 16213,
+      "solves": 2,
+      "vars": 74813
+    },
+    "solves": 2,
+    "state": "live",
+    "updated_at": 1786322201
+  },
+  "solve_response": {
+    "interrupted_by": "conflict_limit",
+    "result_sha256": "c9e62ce96c5df5bd8b22eac68ce92a2a43249b5be2d275b1f42a840a1a9e27aa",
+    "solve_index": 3,
+    "solve_ms": 6118,
+    "status": "UNKNOWN"
+  }
+}

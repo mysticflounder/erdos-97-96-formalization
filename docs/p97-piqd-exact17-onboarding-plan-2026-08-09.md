@@ -73,6 +73,21 @@ and the semantic receipt self-hash is
 This is finite source-semantic evidence only: aggregate coverage, universal
 lift, theorem closure, and Lean checking remain false.
 
+The stateful refinement lane has now also completed two live, source-connected
+append/re-solve rounds from the frozen 4,254,176-clause aggregate.  The two
+admitted batches contain 120 and 86 clauses; the final 4,254,382-clause formula
+remains SAT.  The full receipt is summarized in
+`scratch/p97-exact17-piqd-fresh-aggregate-solve-v1/RESULTS.md`.  This validates
+the finite CEGAR transport, not exact-17 coverage or a production-leaf closure.
+
+One proof-publication gap remains outside that SAT transport.  PIQD's current
+certificate preparation detautologizes the submitted CNF and can therefore
+renumber input clauses.  A terminal LRAT handoff must consume an explicit
+session-clause-to-certificate-clause map, including dropped entries; it must
+not infer certificate IDs from session positions.  The exact-17 append gate
+already rejects tautological and repeated-literal learned cuts, so this does not
+invalidate the completed SAT refinements.
+
 ## Objective
 
 Onboard one existing exact-17 cap-nine static DIMACS artifact into PIQD as a
@@ -298,7 +313,33 @@ The session was closed after zero solves. The observational receipt is
 contract and qualification record are in
 `docs/specs/p97-piqd-exact17-refinement-session-v1.md`.
 
-This closes the first large stateful custody/replay gate, not the CEGAR
-production gate. The next step is to regenerate a fresh theorem-backed delta
-over this exact parent, append it through the checked journal, and qualify
-solve/restart and terminal static-handoff behavior.
+This closes the first large stateful custody/replay gate.
+
+The first production-shaped CEGAR transition is now also qualified.  A fresh
+session, `b6715bff-6e85-48ea-988d-b7e081e69298`, exported the authenticated
+4,254,176-clause aggregate byte-for-byte and produced a complete SAT model.
+The source-faithful analyzer replayed all root clauses and source predicates,
+then found the already banked two-Kalmanson cancellation consumer.  The new
+clause-admission gate checked the proposed clauses against the complete root,
+the captured model, and every earlier receipt before allowing PIQD to append
+them.
+
+Two same-session refinement rounds admitted 120 and 86 clauses.  Their ordered
+digests are respectively
+`47bdfd2a8db63a35e06d377c59dce0b58ff005721a3be989af6b9fc2fab1189d`
+and
+`f1c8baa53e0fffd4a23017ff1f3d00e4c08312f8d96e6da6ae602ab7aeb03bc4`.
+The final 4,254,382-clause export has SHA-256
+`cf1787a45bb8d0e7b434cf2f733581b08b8a83baebbba22d7efae3aad8cf74bd`
+and was byte-compared with the root plus the two receipt batches.  The second
+refinement first exhausted a 50,000-conflict canary, then returned SAT without
+that diagnostic limit in 5,629 ms.  Its total model was independently replayed
+against all 4,254,382 clauses and the source semantics.
+
+The exact gate is specified in
+`docs/specs/p97-piqd-clause-admission-v1.md`, and the finite run ledger is
+`scratch/p97-exact17-piqd-fresh-aggregate-solve-v1/RESULTS.md`.  This is a
+working, source-connected PIQD CEGAR loop, not exact-17 coverage, universal
+lift, a proof-producing UNSAT handoff, or closure of a Lean `sorry`.  The
+latest model still contains a bank hit, so the next production action is
+another checked refinement rather than a closure claim.
