@@ -1,0 +1,778 @@
+{
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "appended_receipt_assignment_verified": true,
+  "appended_receipt_clauses": 2948,
+  "appended_receipt_clauses_checked": 2948,
+  "auxiliary_variables": 74528,
+  "bank_hits": [
+    {
+      "core": {
+        "boundary_labels": [
+          0,
+          6,
+          8,
+          11,
+          10,
+          9,
+          12,
+          7,
+          2,
+          15,
+          16,
+          3,
+          4,
+          5,
+          1,
+          13,
+          14
+        ],
+        "first_form": "innerOuter",
+        "first_quad": [
+          0,
+          1,
+          2,
+          8
+        ],
+        "paths": [
+          {
+            "first": [
+              1,
+              2
+            ],
+            "last": [
+              2,
+              16
+            ],
+            "steps": [
+              {
+                "first": 1,
+                "kind": "flip",
+                "second": 2
+              },
+              {
+                "center": 2,
+                "first": 1,
+                "kind": "row",
+                "second": 16
+              }
+            ]
+          },
+          {
+            "first": [
+              0,
+              8
+            ],
+            "last": [
+              0,
+              2
+            ],
+            "steps": [
+              {
+                "center": 0,
+                "first": 8,
+                "kind": "row",
+                "second": 2
+              }
+            ]
+          },
+          {
+            "first": [
+              2,
+              12
+            ],
+            "last": [
+              1,
+              12
+            ],
+            "steps": [
+              {
+                "first": 2,
+                "kind": "flip",
+                "second": 12
+              },
+              {
+                "center": 12,
+                "first": 2,
+                "kind": "row",
+                "second": 1
+              },
+              {
+                "first": 12,
+                "kind": "flip",
+                "second": 1
+              }
+            ]
+          },
+          {
+            "first": [
+              1,
+              16
+            ],
+            "last": [
+              1,
+              8
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 16,
+                "kind": "row",
+                "second": 8
+              }
+            ]
+          }
+        ],
+        "permutation": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "row_choices": [
+          {
+            "center": 0,
+            "support": [
+              2,
+              4,
+              8,
+              13
+            ]
+          },
+          {
+            "center": 1,
+            "support": [
+              0,
+              3,
+              8,
+              16
+            ]
+          },
+          {
+            "center": 2,
+            "support": [
+              1,
+              5,
+              15,
+              16
+            ]
+          },
+          {
+            "center": 3,
+            "support": [
+              2,
+              4,
+              9,
+              14
+            ]
+          },
+          {
+            "center": 4,
+            "support": [
+              2,
+              5,
+              10,
+              13
+            ]
+          },
+          {
+            "center": 5,
+            "support": [
+              1,
+              7,
+              11,
+              12
+            ]
+          },
+          {
+            "center": 6,
+            "support": [
+              3,
+              7,
+              9,
+              16
+            ]
+          },
+          {
+            "center": 7,
+            "support": [
+              0,
+              3,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 8,
+            "support": [
+              4,
+              5,
+              9,
+              15
+            ]
+          },
+          {
+            "center": 9,
+            "support": [
+              7,
+              11,
+              14,
+              16
+            ]
+          },
+          {
+            "center": 10,
+            "support": [
+              2,
+              3,
+              7,
+              12
+            ]
+          },
+          {
+            "center": 11,
+            "support": [
+              9,
+              10,
+              12,
+              16
+            ]
+          },
+          {
+            "center": 12,
+            "support": [
+              1,
+              2,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 13,
+            "support": [
+              8,
+              11,
+              14,
+              15
+            ]
+          },
+          {
+            "center": 14,
+            "support": [
+              0,
+              8,
+              10,
+              12
+            ]
+          },
+          {
+            "center": 15,
+            "support": [
+              0,
+              1,
+              9,
+              13
+            ]
+          },
+          {
+            "center": 16,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          }
+        ],
+        "second_form": "innerOuter",
+        "second_quad": [
+          1,
+          2,
+          12,
+          16
+        ]
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+      "metadata": {
+        "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+      },
+      "orientation": "forward",
+      "source": "metric-bank-equality-closure",
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "cadical_log": "scratch/p97-exact17-piqd-refinement-round3-v1/wave4-model-3.log",
+  "clauses": 4270621,
+  "cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/postwave-wave3-base.cnf + 2 ordered PIQD cut receipts",
+  "cnf_assignment_verified": true,
+  "cut_receipt_chain_verified": true,
+  "cut_receipt_sha256s": [
+    "ecb40f48e6b7db4ecf475680ac88a185ea74153053f1cd27228dab8028547591",
+    "5e431d2f22a4daf933223c712aec61ba0cc0b9e916001446facf3a1722a1184a"
+  ],
+  "cut_receipts": [
+    "scratch/p97-exact17-piqd-refinement-round3-v1/wave4-cut-1.json",
+    "scratch/p97-exact17-piqd-refinement-round3-v1/wave4-cut-2.json"
+  ],
+  "fifth_center": 6,
+  "first_bank_hit_replayed": true,
+  "formula_ingress": "authenticated-root-dimacs-plus-ordered-piqd-cut-receipts",
+  "linear_core_rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        2,
+        8
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        16
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        4,
+        14,
+        16
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        6,
+        8
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        13
+      ]
+    },
+    {
+      "center": 6,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        14
+      ]
+    },
+    {
+      "center": 8,
+      "exact": false,
+      "support": [
+        6,
+        13
+      ]
+    }
+  ],
+  "linear_replay_requested": true,
+  "linear_status": "unsat",
+  "minimized_bank_witnesses": null,
+  "minimized_first_bank_rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        2,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        4,
+        16
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        9,
+        10,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        4,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3,
+        13
+      ]
+    },
+    {
+      "center": 6,
+      "exact": true,
+      "support": [
+        0,
+        2,
+        11,
+        14
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        0,
+        1,
+        5,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        6,
+        9,
+        13,
+        14
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        3,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        5,
+        8,
+        9,
+        16
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        1,
+        8,
+        10,
+        15
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        7,
+        11,
+        14,
+        15
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        0,
+        5,
+        6,
+        15
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        3,
+        11,
+        12,
+        15
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        1,
+        3,
+        7,
+        14
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        4,
+        7,
+        8,
+        11
+      ]
+    }
+  ],
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "piqd_session_id": "4876f14c-554d-4cce-9f1a-fb9a15f5dc53",
+  "piqd_solve_receipt_verified": true,
+  "primary_variables": 285,
+  "root_clauses": 4267673,
+  "root_cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/postwave-wave3-base.cnf",
+  "root_cnf_assignment_verified": true,
+  "root_cnf_sha256": "2014454229278675eed61af89c3a4c6cad1b02829c8070f2ab66b549cbf8c1a8",
+  "rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        2,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        4,
+        16
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        9,
+        10,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        4,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        6,
+        8,
+        9,
+        12
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3,
+        13
+      ]
+    },
+    {
+      "center": 6,
+      "exact": true,
+      "support": [
+        0,
+        2,
+        11,
+        14
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        0,
+        1,
+        5,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        6,
+        9,
+        13,
+        14
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        3,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        5,
+        8,
+        9,
+        16
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        1,
+        8,
+        10,
+        15
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        7,
+        11,
+        14,
+        15
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        0,
+        5,
+        6,
+        15
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        3,
+        11,
+        12,
+        15
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        1,
+        3,
+        7,
+        14
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        4,
+        7,
+        8,
+        11
+      ]
+    }
+  ],
+  "schema": "p97-rigid221-exact17-source-faithful-piqd-model-analysis-v1",
+  "solve_receipt": "scratch/p97-exact17-piqd-refinement-round3-v1/wave4-solve-3.json",
+  "solve_receipt_sha256": "a823fdf461db710e9dbe9d4ba68c1a19458fc37b3939f9b5ec11d37635572fad",
+  "source_independent_model_checker_verified": true,
+  "source_structural_cut_counts": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_z3_assignment_verified": true,
+  "static_bank_assignment_verified_via_direct_cnf": true,
+  "unreplayed_bank_hit_proposals": [],
+  "variables": 74813
+}

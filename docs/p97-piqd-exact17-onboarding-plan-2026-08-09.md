@@ -427,3 +427,21 @@ formula `postwave-wave3-base.cnf` has SHA-256
 Exact-17 remains SAT/open: this is another completed theorem-search and banking
 checkpoint, not finite coverage, a universal lift, or a production `sorry`
 closure.
+
+Wave 4 has now completed the same mandatory boundary.  Eight additional SAT
+models passed source replay and exact linear replay, adding 8,031 authenticated
+model-specific clauses.  Before any wave 5 solve, the global theorem search
+scanned 24,256 prior canonical supports across both historical exact-17 banks.
+All eight new supports were novel.  Six are unit cancellations and two require
+positive non-unit weights, but every instance is already covered by the
+cardinality-generic Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`.  This is new reusable
+theorem-bank data, not a new theorem family.
+
+The eight orbit expansions contained 272 checked candidates.  Forty-two were
+subsumed by the complete formula chain and 230 were novel.  PIQD admitted those
+230 clauses, leaving live session
+`4876f14c-554d-4cce-9f1a-fb9a15f5dc53` at 4,275,934 clauses.  The normalized
+root `postwave-wave4-base.cnf` has SHA-256
+`9fe6583cebeee38fc4874781a08ca9c8cc35b86590ba4889302511171bdab417`.
+Exact-17 and the production `sorry` remain open.

@@ -113,7 +113,12 @@ def main() -> None:
     parser.add_argument(
         "--historical-root",
         type=Path,
-        default=LANE,
+        action="append",
+        default=[],
+        help=(
+            "root containing prior theorem-search summaries; repeat to deduplicate "
+            "against multiple banks (defaults to the exact-17 lane)"
+        ),
     )
     parser.add_argument(
         "--output-dir",
@@ -129,9 +134,18 @@ def main() -> None:
     replay = load_module(
         "postwave_replay", LANE / "replay_weighted_kalmanson_consumer.py"
     )
-    historical_records, historical_counts, historical_files = (
-        historical_canonical_counts(args.historical_root)
-    )
+    historical_roots = args.historical_root or [LANE]
+    historical_records = 0
+    historical_files = 0
+    historical_counts: dict[str, int] = {}
+    for historical_root in historical_roots:
+        root_records, root_counts, root_files = historical_canonical_counts(
+            historical_root
+        )
+        historical_records += root_records
+        historical_files += root_files
+        for digest, count in root_counts.items():
+            historical_counts[digest] = historical_counts.get(digest, 0) + count
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     results = []
@@ -233,14 +247,14 @@ def main() -> None:
         "records": len(results),
         "certified_weighted_instances": len(results),
         "historical_scan": {
-            "root": repo_path(args.historical_root),
+            "roots": [repo_path(root) for root in historical_roots],
             "json_files_with_canonical_supports": historical_files,
             "canonical_support_records": historical_records,
         },
         "results": results,
         "sources": [file_evidence(path) for path in sources],
         "conclusion": (
-            "Three new dihedral support signatures instantiate an existing "
+            f"{len(results)} support signatures instantiate an existing "
             "cardinality-generic weighted-Kalmanson Lean theorem. They are "
             "reusable theorem-bank cuts, not exact-17 or universal closure."
         ),

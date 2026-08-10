@@ -185,3 +185,40 @@ and live admission receipt are `wave3-weighted-orbits.manifest.json` and
 `wave3-piqd-admission.json`.  All custody claims explicitly record
 `exact17_coverage = false`, `exact17_closure = false`, and
 `production_sorry_closure = false`.  Exact-17 therefore remains open.
+
+## Bounded wave 4
+
+Wave 4 stopped after eight further source-verified SAT models.  Every model
+independently replayed as exact-linear `UNSAT` and produced one generic
+weighted-Kalmanson certificate before any successor wave was allowed to run.
+The eight model-specific dihedral cuts added 8,031 clauses to the authenticated
+wave-3 root.
+
+The mandatory general-theorem search scanned both historical exact-17 banks:
+24,256 canonical support records in 80 JSON files.  All eight supports were
+historically new.  Six are unit-weight cancellations and two require genuinely
+weighted positive combinations, with coefficient vectors
+`[1,1,1,1,2,2,1,1,1,1,1,1,1,1]` and
+`[1,1,1,1,1,1,2,1,1,1,1,1,1]`.  All eight are accepted by the existing
+cardinality-generic, kernel-clean Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`.  This expands the
+instance bank but does not introduce a new theorem family.
+
+The eight exact-17 dihedral orbits supplied 272 checked candidate clauses.  A
+complete subsumption scan against the 4,267,673-clause wave-3 root and the
+8,031 model-specific cuts found 42 already covered images and 230 novel
+clauses.  `bank_wave4_weighted_orbits.py` admitted exactly those 230 clauses.
+The resulting normalized formula `postwave-wave4-base.cnf` has:
+
+- 74,813 variables;
+- 4,275,934 clauses;
+- SHA-256
+  `9fe6583cebeee38fc4874781a08ca9c8cc35b86590ba4889302511171bdab417`.
+
+The theorem-search aggregate is
+`wave4-theorem-search/postwave-theorem-search.json`; the static-bank manifest
+and PIQD admission receipt are `wave4-weighted-orbits.manifest.json` and
+`wave4-piqd-admission.json`.  The live session agrees with the normalized
+formula.  Its custody claims explicitly keep `exact17_coverage`,
+`exact17_closure`, and `production_sorry_closure` false.  Exact-17 remains
+open.
