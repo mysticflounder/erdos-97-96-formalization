@@ -1,0 +1,42 @@
+Wave 42 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: ef0f87e8 (2026-08-10)
+
+Query
+-----
+
+two Kalmanson cancellation accumulated family motif shared late pair eight
+atoms selected row sparse six point
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.SixPointSparseEuclideanObstruction.
+  normalized_sparse_six_point_incompatible
+* Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair
+* Problem97.CapCrossingKalmanson.false_of_three_selected_rows_bridged_late_pair
+* Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_row_equalities
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The authenticated model violated one clause of accumulated family motif 5,
+and exact linear arithmetic was UNSAT. The stronger sparse six-point/two-row
+consumer had no increasing occurrence in this model. The existing generic
+two-Kalmanson consumer did apply: the complete authenticated model rows
+contained 23 normalized candidate motifs, and the shortest selected motif used
+six points and eight selected-row atoms:
+
+  (0,1), (0,2), (1,0), (1,2),
+  (4,1), (4,3), (5,0), (5,3).
+
+The single fresh-model clause
+
+  -185 -182 -169 -164 -84 -81 -53 -49 0
+
+was appended. Its complete exact-17 orbit would contain 148,512 clauses, but
+the lazy policy deliberately emitted only the witnessed instance.

@@ -1,0 +1,42 @@
+Wave 41 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: ef0f87e8 (2026-08-10)
+
+Query
+-----
+
+two Kalmanson cancellation adjacent sides shared pair selected row generic
+obstruction
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+* Problem97.CapCrossingKalmanson.false_of_three_selected_rows_bridged_late_pair
+* Problem97.CapCrossingKalmanson.
+  false_of_two_selected_middle_rows_shared_endpoint_pair
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_weightedKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The accumulated 13-motif family had no hit. The authenticated static theorem
+bank found one forward-orientation instance of
+`false_of_twoKalmansonCancellationData_of_check`, and exact linear arithmetic
+was UNSAT. The complete authenticated model rows contain three normalized
+generic motifs. The shortest uses seven points and ten selected-row atoms:
+
+  (0,1), (0,2), (1,0), (1,3), (3,1),
+  (3,5), (4,0), (4,3), (6,2), (6,5).
+
+The single fresh-model clause
+
+  -254 -241 -223 -217 -191 -185 -141 -137 -121 -113 0
+
+was appended. Its complete exact-17 orbit would contain 272,272 clauses, but
+the lazy policy deliberately emitted only the witnessed instance.

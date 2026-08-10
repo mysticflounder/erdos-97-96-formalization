@@ -334,3 +334,71 @@ clauses and SHA-256
 PIQD exported it byte-for-byte after the one-clause append. The complete orbit
 would have 148,512 clauses; the lazy loop emitted only this witnessed instance.
 Exact 17 remains SAT and open; no production `sorry` is closed.
+
+## Wave 40: fast solve and another lazy generic instance
+
+Wave 40 solved SAT in 0.610 seconds. Its total model satisfied the exact Wave 39
+root, missed the accumulated 13-motif family, hit one existing generic theorem-
+bank obstruction in the forward orientation, and was rejected by exact linear
+arithmetic.
+
+The mandatory indexed theorem search again confirmed the source-clean generic
+two-Kalmanson consumer. The complete authenticated model rows contained four
+normalized candidate motifs. The shortest uses six points and eight selected-
+row atoms and yields the single clause
+
+`-272 -259 -204 -195 -191 -187 -43 -42 0`.
+
+The current root is `postgate-wave40-generic-witness.cnf`, with 5,895,203
+clauses and SHA-256
+`b4e8708b02a5b5d2a153be9a195e07f429d576f92ea0b60ff988b35bdd5ebc7f`.
+PIQD exported the 267,117,538-byte root byte-for-byte after the one-clause
+append. The complete orbit would have 148,512 clauses; the lazy loop emitted
+only this witnessed instance. Exact 17 remains SAT and open; no production
+`sorry` is closed.
+
+## Wave 41: generic seven-point instance
+
+Wave 41 solved SAT in 0.111 seconds. Its total model satisfied the exact Wave 40
+root, missed the accumulated 13-motif family, hit one existing generic theorem-
+bank obstruction in the forward orientation, and was rejected by exact linear
+arithmetic.
+
+The mandatory indexed theorem search again confirmed the source-clean generic
+two-Kalmanson consumer. The complete authenticated model rows contained three
+normalized candidate motifs. The shortest uses seven points and ten selected-
+row atoms and yields the single clause
+
+`-254 -241 -223 -217 -191 -185 -141 -137 -121 -113 0`.
+
+The current root is `postgate-wave41-generic-witness.cnf`, with 5,895,204
+clauses and SHA-256
+`ce812f3fa9a77d58b0d062f287cfe765c8f408556e18d3046ed1c41d811238cb`.
+PIQD exported the 267,117,590-byte root byte-for-byte after the one-clause
+append. The complete orbit would have 272,272 clauses; the lazy loop emitted
+only this witnessed instance. Exact 17 remains SAT and open; no production
+`sorry` is closed.
+
+## Wave 42: accumulated-family hit with generic strengthening
+
+Wave 42 solved SAT in 12.442 seconds. Its total model satisfied the exact Wave
+41 root, but was already rejected by one clause from accumulated family motif
+5, one existing generic theorem-bank obstruction, and exact linear arithmetic.
+Its survival was therefore caused by lazy orbit materialization, not by a new
+mathematical gap.
+
+The mandatory indexed theorem search found the source-clean sparse six-point
+consumer, but the authenticated model had no increasing occurrence. The
+existing generic two-Kalmanson consumer applies. The complete authenticated
+model rows contained 23 normalized candidate motifs; the shortest uses six
+points and eight selected-row atoms and yields the single clause
+
+`-185 -182 -169 -164 -84 -81 -53 -49 0`.
+
+The current root is `postgate-wave42-generic-witness.cnf`, with 5,895,205
+clauses and SHA-256
+`5d148b6111ce75922c97bf048da14d3d3917017b6a9db6003c71b3ba4a50b272`.
+PIQD exported the 267,117,628-byte root byte-for-byte after the one-clause
+append. The complete orbit would have 148,512 clauses; the lazy loop emitted
+only this witnessed instance. Exact 17 remains SAT and open; no production
+`sorry` is closed.
