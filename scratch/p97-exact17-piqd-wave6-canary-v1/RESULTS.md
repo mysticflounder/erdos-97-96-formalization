@@ -479,3 +479,77 @@ clauses and SHA-256
 `9a07b3bc8cfc4365ab83e8560fe922941a2cf9b64f104e885adc593b12a075ba`.
 PIQD exported the 267,117,735-byte root byte-for-byte after the one-clause
 append. Exact 17 remains SAT and open; no production `sorry` is closed.
+
+## Wave 46: accumulated-family hit still needs lazy materialization
+
+Wave 46 solved SAT in 7.116 seconds. Its total model satisfied the exact Wave
+45 root, but the full source/model gate rejected it in three independent ways:
+the accumulated motif family hit indices 2 and 11, the generic theorem bank
+found an `innerOuter`/`adjacentSides` two-Kalmanson cancellation, and exact
+linear arithmetic was UNSAT. The CNF assignment, independent source checker,
+Z3 assignment checker, and static-bank direct-CNF checker all passed.
+
+The mandatory indexed theorem search recovered the relevant generic and
+specialized consumers. The authenticated source rows contain no increasing
+sparse six-point two-row instance and no direct shared-middle, five-point
+three-row, or six-point three-row consumer instance. Thus the generic
+two-Kalmanson consumer is the shortest directly applicable banked theorem.
+
+The minimized first bank rows expose 54 normalized candidate motifs (80 total
+occurrences). The shortest chosen motif uses five points and eight selected-row
+atoms. Its complete exact-17 orbit would contain 61,880 clauses, but the lazy
+loop emitted only the one occurrence violated by this model:
+
+`-215 -214 -157 -151 -102 -97 -93 -81 0`.
+
+The current root is `postgate-wave46-generic-witness.cnf`, with 5,895,209
+clauses and SHA-256
+`8ed691396ee4dc15aac25c07a5fc8f8eb8b87fd64bd3b64c37bfe593f0eab4d3`.
+PIQD exported the 267,117,774-byte root byte-for-byte after the one-clause
+append. This wave discovered no new theorem: it demonstrates that a model can
+violate a banked family at an occurrence whose blocking clause has not yet been
+materialized. Exact 17 remains SAT and open; no production `sorry` is closed.
+
+## Wave 47: sparse six-point consumer recurs
+
+Wave 47 solved SAT in 0.612 seconds. Its total model satisfied the exact Wave
+46 root. The complete gate passed the independent source, CNF-assignment, Z3,
+and direct static-bank checks, then rejected the model through accumulated
+motif 2, an `innerOuter`/`adjacentSides` generic two-Kalmanson cancellation,
+and exact linear arithmetic.
+
+The mandatory indexed theorem search recovered the committed sparse six-point
+consumer. The authenticated model contains exactly one increasing occurrence,
+on points `(8, 9, 2, 16, 3, 5)`. It needs six selected-row atoms and yields the
+single clause
+
+`-144 -137 -134 -48 -41 -35 0`.
+
+This is shorter than the available eight-atom generic fallback. The current
+root is `postgate-wave47-sparse-six-witness.cnf`, with 5,895,210 clauses and
+SHA-256
+`2695a7dfc0777f0d6c7fd4059f91f08f9f94db7c46b7d4f2f15d0d18e15fe09b`.
+PIQD exported the 267,117,803-byte root byte-for-byte after the one-clause
+append. Exact 17 remains SAT and open; no production `sorry` is closed.
+
+## Wave 48: accumulated lazy family misses, sparse consumer still applies
+
+Wave 48 solved SAT in 10.403 seconds. Its total model satisfied the exact Wave
+47 root and was the first model in this checkpoint batch missed by the
+accumulated lazy motif family. The complete gate nevertheless rejected it via
+the generic theorem bank and exact linear arithmetic. The CNF assignment,
+independent source checker, Z3 assignment checker, and static-bank direct-CNF
+checker all passed.
+
+The mandatory indexed theorem search again recovered the committed sparse
+six-point consumer. The authenticated model contains exactly one increasing
+occurrence, on points `(0, 6, 8, 15, 1, 13)`. It needs six selected-row atoms
+and yields the single clause
+
+`-143 -135 -130 -15 -13 -6 0`.
+
+This is shorter than the generic theorem-bank fallback. The current root is
+`postgate-wave48-sparse-six-witness.cnf`, with 5,895,211 clauses and SHA-256
+`e2a7821a0c167fce28c9f3436e87d4e24df529e681035e9f11ccb2113d9dd733`.
+PIQD exported the 267,117,831-byte root byte-for-byte after the one-clause
+append. Exact 17 remains SAT and open; no production `sorry` is closed.
