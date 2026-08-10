@@ -1,0 +1,15 @@
+Query: generic two Kalmanson label cancellation checked selected row equalities
+Corpus: erdos-97-96-formalization-lean, indexed 2026-08-10 06:00 UTC, source 25d3a976
+
+Top relevant results:
+- false_of_twoKalmansonCancellationData_of_check
+- TwoKalmansonLabelCancellationData
+- TwoKalmansonCancellationData
+- false_of_weightedKalmansonCancellationData_of_check
+- false_of_two_selected_rows_shared_late_pair
+- FrozenBoundaryOrder.false_of_selectedRowsKalmanson
+- TwoKalmansonCancellationData.check
+
+Conclusion: Wave 25 has one direct replay through the existing generic
+two-Kalmanson consumer. The search found no stronger theorem that changes the
+refinement or closes the exact-17 residual.

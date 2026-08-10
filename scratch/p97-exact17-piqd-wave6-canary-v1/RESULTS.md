@@ -99,3 +99,31 @@ Lazy refinement keeps formula growth essentially flat, but it does not by
 itself prove convergence: the campaign remains SAT after Wave 20. The next
 step is Wave 21 followed by the same mandatory theorem-bank and general-theorem
 gate.
+
+## Waves 21--25: continued lazy refinement
+
+The next five waves preserved the one-witness-clause policy:
+
+| Wave | Solve time | Family hits | Bank hits | Linear core rows | Refinement | Successor clauses |
+| ---: | ---: | ---: | ---: | ---: | --- | ---: |
+| 21 | 0.121 s | 0 | 0 | 8 | weighted Kalmanson witness | 5,895,184 |
+| 22 | 6.429 s | 0 | 1 | 7 | generic two-Kalmanson witness | 5,895,185 |
+| 23 | 13.387 s | 0 | 0 | 4 | weighted Kalmanson witness | 5,895,186 |
+| 24 | 0.515 s | 2 | 2 | 6 | generic two-Kalmanson witness | 5,895,187 |
+| 25 | 12.320 s | 0 | 1 | 9 | generic two-Kalmanson witness | 5,895,188 |
+
+All five total models satisfied their exact predecessor CNFs and were rejected
+by exact linear arithmetic. Waves 21 and 23 use the existing source-clean
+weighted cancellation consumer; Waves 22, 24, and 25 use the existing
+source-clean generic two-Kalmanson consumer. A mandatory indexed general-theorem
+search followed every wave. Wave 23's notably small four-row core is retained as
+a candidate for later named-theorem mining, but the existing generic weighted
+consumer already suffices for its admitted cut.
+
+The current root is `postgate-wave25-witness.cnf`, with 5,895,188 clauses and
+SHA-256
+`546069bb7406f3f766dad5b111f9e80c0d03a51fb0e8484dcf74ee7043b740ec`.
+PIQD exported this root byte-for-byte after the final one-clause append. Relative
+to the 5,895,177-clause eager checkpoint, eleven lazy waves have added only eleven
+clauses. Exact 17 remains SAT and open; these refinements are theorem-bank reuse,
+not a coverage certificate or a production-`sorry` closure.
