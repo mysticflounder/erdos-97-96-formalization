@@ -7676,3 +7676,43 @@ direct consumer over a complete generic orbit.  A further refinement is
 justified only after the same mandatory search shows what reusable theorem or
 previously banked consumer rejects the fresh model.  This checkpoint is finite
 branch contraction only: exact-17 coverage, universal P97 closure, and a
+production `sorry` closure all remain false.
+
+## 13.27 Exact-17 lazy PIQD Waves54-55 checkpoint (2026-08-10)
+
+The authenticated Wave53 successor has now been admitted to the live PIQD
+session, followed by two further lazy refinement waves.  Wave54 solved the
+5,895,216-clause root in 11.154 seconds of CaDiCaL time.  The mandatory
+general-theorem search found six anchored five-point matches and six anchored
+six-point matches, with no anchored four-point match.  The smallest selected
+reusable consumer was
+`SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`, so the
+post-wave gate authorized only the witnessed six-literal clause
+`[-269, -261, -260, -108, -100, -98]`.  This produced the
+5,895,217-clause root with SHA-256
+`48b6a0fad3c7afb939b546a265d1428a168780d8ff32b8fc8774aca01c261218`.
+
+Wave55 solved that authenticated root in 7.987 seconds of CaDiCaL time.  Its
+mandatory search found two direct and four reversed-second anchored five-point
+matches, with no anchored four- or six-point match.  The selected direct
+consumer
+`FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows` authorized
+the single five-literal clause `[-169, -174, -120, -122, -114]`.  The current
+live and byte-for-byte re-exported PIQD root therefore has 74,813 variables,
+5,895,218 clauses, and SHA-256
+`5549a26a422e8ae388717aabe29e39c85effda9047c13b2d9959039667a4aa29`.
+
+Thus Waves54-55 grew the inherited root by exactly two clauses rather than by
+two full theorem orbits.  The one-witness policy is controlling formula growth.
+Both models nevertheless missed the accumulated static family and were
+rejected only by complete theorem-bank matching plus exact linear arithmetic;
+the static family bank is therefore still incomplete.  The main wall-clock
+cost is now PIQD root custody and hashing rather than SAT solving.
+
+Continue for exactly one Wave56 refinement under the same discipline: solve
+the authenticated live root, run the mandatory repository-wide theorem search,
+and admit at most one smallest source-backed witnessed clause after the
+post-wave gate.  Do not expand a generic orbit merely because a known theorem
+matches.  These waves remain finite Rigid221 exact-17 branch contraction; they
+do not close exact-17 globally, a universal P97 leaf, or any production
+`sorry`.

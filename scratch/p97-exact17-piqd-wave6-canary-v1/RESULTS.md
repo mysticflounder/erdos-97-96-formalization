@@ -730,3 +730,39 @@ even when the incremental solve is cheap.
 
 Exact 17 remains SAT and open.  Neither wave closed a production `sorry` or
 proved an exact-cardinality or universal theorem.
+
+## Waves 54-55: one-witness refinements keep root growth flat
+
+Wave 54 solved the authenticated 5,895,216-clause Wave 53 successor SAT at
+solve index 49; CaDiCaL reported 11.154 seconds.  The model was total and
+satisfied the complete root.  The accumulated family missed it, while exact
+linear arithmetic and the complete theorem bank rejected it.  The mandatory
+theorem-shape search found six anchored five-point and six anchored six-point
+matches, with no anchored four-point match.  The existing sparse-six consumer
+provided a six-literal witness on increasing points `[6, 12, 16, 3, 4, 1]`:
+
+`-269 -261 -260 -108 -100 -98 0`.
+
+Only that clause was admitted.  The live PIQD export matched the resulting
+5,895,217-clause root byte-for-byte, with SHA-256
+`48b6a0fa8cc66638151b0e291c2d20932fab7a34c0dc7c33b35bf15f14b0a434`.
+
+Wave 55 solved this root SAT at solve index 50; CaDiCaL reported 7.987 seconds.
+The same complete gate passed: total-model and CNF replay succeeded, the
+accumulated family missed, and both exact linear arithmetic and the complete
+theorem bank rejected the model.  The mandatory theorem search found two
+anchored direct and four anchored reversed-second five-point matches, but no
+anchored four- or six-point match.  The direct five-point producer selected
+points `[8, 10, 7, 1, 14]` and emitted only:
+
+`-169 -174 -120 -122 -114 0`.
+
+The post-wave gate authorized this exact instance, and the live PIQD export
+now matches the 5,895,218-clause successor byte-for-byte, with SHA-256
+`5549a26a422e8ae388717aabe29e39c85effda9047c13b2d9959039667a4aa29`.
+The session remains at solve index 50, ready for Wave 56.
+
+These two waves added two clauses total.  They reuse cardinality-independent
+Lean consumers and avoid another 148,512-clause orbit expansion, but they do
+not provide exact-17 coverage, universal P97 closure, or production-`sorry`
+closure.

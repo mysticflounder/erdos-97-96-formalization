@@ -1,0 +1,83 @@
+{
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave54-sparse-six-witness.fragment.cnf",
+  "fragment_sha256": "26da2f2b5b27edb823b05bfdf0f64ae7ab650f38108959754f4eb4499a85c101",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave54-preappended.theorem-gate-report.json",
+    "gate_report_sha256": "b216526862a685bf97de96d4fecd8e8665841a1acd7e1e2d374349a51f819fae",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave54-preappended.model.json",
+    "model_sha256": "e7cea93707f60cfbef95d6d3341b2f05e608848830762f24a254b71da3b69963",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave53-five-point-direct-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave53-five-point-direct-witness.receipt.json",
+    "root_receipt_sha256": "ff591a7071971b2fec895ff305b0fa699507b2dbd5172fdeee6d7c6c0ea311c2",
+    "root_sha256": "140c27618f8d12528cefd52a943caa3d254406163f461731f713a775f9a351b5"
+  },
+  "lean_consumer": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows",
+  "output_clauses": 5895217,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave54-sparse-six-witness.cnf",
+  "output_root_sha256": "48b6a0fa8cc66638151b0e291c2d20932fab7a34c0dc7c33b35bf15f14b0a434",
+  "output_variables": 74813,
+  "pattern": {
+    "chosen_points": [
+      6,
+      12,
+      16,
+      3,
+      4,
+      1
+    ],
+    "clause": [
+      -269,
+      -261,
+      -260,
+      -108,
+      -100,
+      -98
+    ],
+    "increasing_occurrence_count": 2,
+    "required_atoms": [
+      [
+        6,
+        12
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        16,
+        12
+      ],
+      [
+        16,
+        3
+      ],
+      [
+        16,
+        4
+      ]
+    ]
+  },
+  "schema": "p97-exact17-sparse-six-point-two-row-witness/v1",
+  "source_checks": {
+    "cnf_assignment_verified": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true
+  },
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/ATail/SixPointSparseEuclideanObstruction.lean": "a6d35435cc34c1927a0a40ccd647464a9ec3b76b03fe2625dc934289b28be56a",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_sparse_six_point_two_row_witness.py": "dd0e8f06c6477751c881f92884882dc73cb97f70f8a4cba289220ee97502d375",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This appends one exact-17 instance of a cardinality-generic Lean theorem; it is not exact-17 coverage or universal P97 closure."
+}

@@ -1,0 +1,61 @@
+Exact17 PIQD Wave54 mandatory post-wave general theorem search
+================================================================
+
+Scope
+-----
+
+- input root: `postgate-wave53-five-point-direct-witness.cnf`
+- root SHA-256: `140c27618f8d12528cefd52a943caa3d254406163f461731f713a775f9a351b5`
+- solve index: 49 (Wave54; predecessor solve index 48)
+- model SHA-256: `e7cea93707f60cfbef95d6d3341b2f05e608848830762f24a254b71da3b69963`
+- theorem-gate report SHA-256: `b216526862a685bf97de96d4fecd8e8665841a1acd7e1e2d374349a51f819fae`
+- selected-row witness SHA-256: `c38403ef44f951565e7ab8f59c1d576be21d25e93c79a854060a318069313b68`
+- theorem-shape matcher report SHA-256: `66639c9c35b7f94142a31c498ceb9ed2530e38bc0f0c0cd21661a69831576cb8`
+
+Authenticated gate result
+-------------------------
+
+The PIQD model is total and satisfies all 5,895,216 input clauses.  Exact
+linear arithmetic rejects its selected-row equality system.  The accumulated
+static family has no hit, but the full theorem bank has one source-backed hit:
+
+`Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`.
+
+Thus Wave54 is another fresh static-family miss, not a new mathematical
+obstruction.
+
+Repository-wide theorem search
+------------------------------
+
+The current Lean corpus was searched for five-point, six-point, selected-row,
+Kalmanson, and reusable exact17 Euclidean obstructions.  The canonical seven
+general-n mining registry files were also searched directly; they contain no
+more specific entry for the direct consumers below.
+
+Running the complete selected-row theorem-shape matcher found:
+
+- six anchored five-point matches, comprising one direct second-row match and
+  five reversed-second-row matches;
+- six anchored six-point matches, comprising two sparse-six matches and four
+  two-triple-row matches;
+- no anchored four-point match;
+- 19 active shared-pair cases, all separated.
+
+The first sparse-six occurrence uses increasing boundary points
+`[6, 12, 16, 3, 4, 1]` and is consumed by
+`Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`.
+Its source is unchanged from its previously authenticated uses, with SHA-256
+`a6d35435cc34c1927a0a40ccd647464a9ec3b76b03fe2625dc934289b28be56a`.
+A fresh project build is not launched here because another Lean build owns the
+workspace build lock; the post-wave receipt still binds the current source
+hash.
+
+Decision
+--------
+
+Authorize exactly one witnessed six-literal sparse-six clause,
+`[-269, -261, -260, -108, -100, -98]`.  Do not expand its full orbit.  A
+five-literal second-orientation match also exists, but using the existing
+authenticated sparse-six producer avoids changing a receipt-bound producer
+for no mathematical gain.  This is reuse of a cardinality-independent theorem,
+not exact17, universal-P97, or production-`sorry` closure.

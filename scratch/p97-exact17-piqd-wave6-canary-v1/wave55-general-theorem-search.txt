@@ -1,0 +1,52 @@
+Exact17 PIQD Wave55 mandatory post-wave general theorem search
+================================================================
+
+Scope
+-----
+
+- input root: `postgate-wave54-sparse-six-witness.cnf`
+- root SHA-256: `48b6a0fa8cc66638151b0e291c2d20932fab7a34c0dc7c33b35bf15f14b0a434`
+- solve index: 50 (Wave55; predecessor solve index 49)
+- model SHA-256: `e4ad6b5fd35d5281077ba02a25bc6b3675fc7b551978e2502e404ecd7bf7c4b8`
+- theorem-gate report SHA-256: `c7f6641020288d107afa8c916823a3619807ebcf6bf14de32dba6e0fe3e51b40`
+- selected-row witness SHA-256: `6a24bbfe304e4518ec54cca8bf4837c87fc899bfe0e8dc61750b7dcac97b1751`
+- theorem-shape matcher report SHA-256: `0c62e624891aa2d00889b7deac680422a8d576eac1994964e8f801731b7bd32b`
+
+Authenticated gate result
+-------------------------
+
+The PIQD model is total and satisfies all 5,895,217 input clauses.  Exact
+linear arithmetic rejects its selected-row equality system.  The accumulated
+static family again has no hit, while the full theorem bank has one
+source-backed Kalmanson-cancellation hit.  Wave55 is therefore another fresh
+static-family miss, not a new mathematical obstruction.
+
+Repository-wide theorem search
+------------------------------
+
+The current Lean corpus was searched for five-point selected-row Euclidean
+obstructions, including the reversed-second orientation.  The canonical seven
+general-n mining registry files were checked again.  The corpus points to the
+existing five-point consumer family; the registries contain no smaller or more
+specific new consumer for this model.
+
+The complete selected-row theorem-shape matcher found:
+
+- six anchored five-point matches: two direct and four reversed-second;
+- no anchored four-point or six-point match;
+- 27 five-point and eight six-point matches only after cyclic recutting, which
+  are diagnostic unless their cyclic-shift consumers are used explicitly.
+
+The direct producer selects increasing boundary points `[8, 10, 7, 1, 14]`
+and the theorem
+`Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`.
+Its source is unchanged from Waves52-53, with SHA-256
+`4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c`.
+
+Decision
+--------
+
+Authorize exactly one witnessed five-literal clause,
+`[-169, -174, -120, -122, -114]`.  Do not expand the full theorem orbit.  This
+is reuse of a cardinality-independent theorem, not exact17, universal-P97, or
+production-`sorry` closure.
