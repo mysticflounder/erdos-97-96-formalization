@@ -408,3 +408,22 @@ historical deduplication, bank every accepted generic instance through a named
 Lean consumer, and only then begin a successor wave.  A bank hit or a static
 clause admission is branch contraction; it is not exact-cardinality coverage,
 a universal lift, or a production `sorry` closure.
+
+The following eight-model wave has now passed the same gate.  All eight models
+were source-verified, had a static theorem-bank hit, and independently replayed
+as exact-linear `UNSAT`.  The global search found eight unit-weight Kalmanson
+cancellation instances: seven support signatures were absent from the 24,256
+historical records and one occurred once.  Every instance is accepted by the
+existing cardinality-generic Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`; no new theorem family
+was required.
+
+Their 272 exact-17 dihedral images were checked against the complete formula
+chain.  Forty-three were already subsumed and 229 were novel.  The novel
+clauses were admitted under `wave3-piqd-admission.json`, moving live session
+`4876f14c-554d-4cce-9f1a-fb9a15f5dc53` to 4,267,673 clauses.  The normalized
+formula `postwave-wave3-base.cnf` has SHA-256
+`2014454229278675eed61af89c3a4c6cad1b02829c8070f2ab66b549cbf8c1a8`.
+Exact-17 remains SAT/open: this is another completed theorem-search and banking
+checkpoint, not finite coverage, a universal lift, or a production `sorry`
+closure.

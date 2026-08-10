@@ -145,3 +145,43 @@ models that are immediately discharged by the older two-Kalmanson equality
 closure theorem, and PIQD records the corresponding exact refinements.  The
 session remains SAT, so exact-17, the universal Rigid221 branch, and every
 production `sorry` remain open.
+
+## Bounded waves 2 and 3
+
+The next two waves used an eight-model boundary.  Successor generation stopped
+after each eighth source-verified model, and the mandatory global theorem
+search ran before any further solve.  Every one of the sixteen models had one
+static bank hit and independently replayed as exact-linear `UNSAT` after its
+selected-row equalities were combined with strict Kalmanson inequalities.
+
+Wave 2 produced eight pairwise distinct unit-weight cancellation supports,
+none found among 24,256 historical tracked supports.  Their 272 dihedral
+images contained 226 clauses novel against the authenticated formula chain.
+Those clauses moved the live session to 4,258,975 clauses.  The normalized
+formula `postwave-wave2-base.cnf` has SHA-256
+`e41f2fdfa3b05b3f7dc3a66260344ecd277758fbefb46180f4bf05f1649a7759`.
+
+Wave 3 again produced eight unit-weight supports.  One support had one exact
+historical match; the other seven had none.  The support sizes ranged from
+seven to eleven points, with two to ten strict Kalmanson inequalities.  All
+eight certify through the existing cardinality-generic Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`; this is reuse of a
+general theorem, not a new theorem family.
+
+The wave-3 dihedral expansion again yielded 272 candidates.  A complete
+subsumption scan over the 4,258,975-clause root plus 8,469 authenticated
+model-specific refinement clauses found 43 candidates already subsumed and
+229 novel clauses.  `bank_wave3_weighted_orbits.py` admitted exactly those 229
+clauses to the live PIQD session.  The resulting normalized formula has:
+
+- 74,813 variables;
+- 4,267,673 clauses;
+- SHA-256
+  `2014454229278675eed61af89c3a4c6cad1b02829c8070f2ab66b549cbf8c1a8`.
+
+The theorem-search aggregate is
+`wave3-theorem-search/postwave-theorem-search.json`; the static-bank manifest
+and live admission receipt are `wave3-weighted-orbits.manifest.json` and
+`wave3-piqd-admission.json`.  All custody claims explicitly record
+`exact17_coverage = false`, `exact17_closure = false`, and
+`production_sorry_closure = false`.  Exact-17 therefore remains open.

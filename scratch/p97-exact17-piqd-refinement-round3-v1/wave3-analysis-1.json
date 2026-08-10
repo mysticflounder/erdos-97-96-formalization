@@ -1,0 +1,754 @@
+{
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "appended_receipt_assignment_verified": true,
+  "appended_receipt_clauses": 0,
+  "appended_receipt_clauses_checked": 0,
+  "auxiliary_variables": 74528,
+  "bank_hits": [
+    {
+      "core": {
+        "boundary_labels": [
+          0,
+          6,
+          8,
+          11,
+          10,
+          9,
+          12,
+          7,
+          2,
+          15,
+          16,
+          3,
+          4,
+          5,
+          1,
+          13,
+          14
+        ],
+        "first_form": "innerOuter",
+        "first_quad": [
+          1,
+          2,
+          4,
+          9
+        ],
+        "paths": [
+          {
+            "first": [
+              2,
+              4
+            ],
+            "last": [
+              4,
+              11
+            ],
+            "steps": [
+              {
+                "first": 2,
+                "kind": "flip",
+                "second": 4
+              },
+              {
+                "center": 4,
+                "first": 2,
+                "kind": "row",
+                "second": 11
+              }
+            ]
+          },
+          {
+            "first": [
+              1,
+              9
+            ],
+            "last": [
+              1,
+              6
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 9,
+                "kind": "row",
+                "second": 6
+              }
+            ]
+          },
+          {
+            "first": [
+              1,
+              4
+            ],
+            "last": [
+              1,
+              4
+            ],
+            "steps": []
+          },
+          {
+            "first": [
+              6,
+              11
+            ],
+            "last": [
+              2,
+              9
+            ],
+            "steps": [
+              {
+                "first": 6,
+                "kind": "flip",
+                "second": 11
+              },
+              {
+                "center": 11,
+                "first": 6,
+                "kind": "row",
+                "second": 15
+              },
+              {
+                "first": 11,
+                "kind": "flip",
+                "second": 15
+              },
+              {
+                "center": 15,
+                "first": 11,
+                "kind": "row",
+                "second": 2
+              },
+              {
+                "first": 15,
+                "kind": "flip",
+                "second": 2
+              },
+              {
+                "center": 2,
+                "first": 15,
+                "kind": "row",
+                "second": 9
+              }
+            ]
+          }
+        ],
+        "permutation": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "row_choices": [
+          {
+            "center": 0,
+            "support": [
+              1,
+              2,
+              14,
+              16
+            ]
+          },
+          {
+            "center": 1,
+            "support": [
+              3,
+              6,
+              9,
+              13
+            ]
+          },
+          {
+            "center": 2,
+            "support": [
+              1,
+              5,
+              9,
+              15
+            ]
+          },
+          {
+            "center": 3,
+            "support": [
+              2,
+              4,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 4,
+            "support": [
+              2,
+              5,
+              11,
+              16
+            ]
+          },
+          {
+            "center": 5,
+            "support": [
+              1,
+              7,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 6,
+            "support": [
+              3,
+              4,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "support": [
+              0,
+              3,
+              8,
+              12
+            ]
+          },
+          {
+            "center": 8,
+            "support": [
+              3,
+              5,
+              11,
+              13
+            ]
+          },
+          {
+            "center": 9,
+            "support": [
+              7,
+              8,
+              10,
+              12
+            ]
+          },
+          {
+            "center": 10,
+            "support": [
+              6,
+              8,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 11,
+            "support": [
+              0,
+              6,
+              7,
+              15
+            ]
+          },
+          {
+            "center": 12,
+            "support": [
+              9,
+              10,
+              13,
+              15
+            ]
+          },
+          {
+            "center": 13,
+            "support": [
+              1,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 14,
+            "support": [
+              0,
+              9,
+              12,
+              16
+            ]
+          },
+          {
+            "center": 15,
+            "support": [
+              2,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 16,
+            "support": [
+              1,
+              3,
+              7,
+              11
+            ]
+          }
+        ],
+        "second_form": "adjacentSides",
+        "second_quad": [
+          1,
+          4,
+          6,
+          11
+        ]
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+      "metadata": {
+        "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+      },
+      "orientation": "forward",
+      "source": "metric-bank-equality-closure",
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "cadical_log": "scratch/p97-exact17-piqd-refinement-round3-v1/wave3-model-1.log",
+  "clauses": 4258975,
+  "cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/postwave-wave2-base.cnf + 0 ordered PIQD cut receipts",
+  "cnf_assignment_verified": true,
+  "cut_receipt_chain_verified": true,
+  "cut_receipt_sha256s": [],
+  "cut_receipts": [],
+  "fifth_center": 6,
+  "first_bank_hit_replayed": true,
+  "formula_ingress": "authenticated-root-dimacs-plus-ordered-piqd-cut-receipts",
+  "linear_core_rows": [
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        15
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        0,
+        13
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        5,
+        13
+      ]
+    },
+    {
+      "center": 6,
+      "exact": false,
+      "support": [
+        5,
+        15
+      ]
+    }
+  ],
+  "linear_replay_requested": true,
+  "linear_status": "unsat",
+  "minimized_bank_witnesses": null,
+  "minimized_first_bank_rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        1,
+        6,
+        8,
+        14
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        4,
+        14,
+        15
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        3,
+        5,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        0,
+        7,
+        12,
+        13
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        5,
+        13,
+        15,
+        16
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        2,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "center": 6,
+      "exact": true,
+      "support": [
+        5,
+        11,
+        12,
+        15
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        4,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        6,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        1,
+        6,
+        7,
+        16
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        3,
+        8,
+        9,
+        14
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        4,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        7,
+        10,
+        11,
+        15
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        3,
+        8,
+        12,
+        16
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        3,
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        2,
+        4,
+        7,
+        16
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3,
+        12
+      ]
+    }
+  ],
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "piqd_session_id": "4876f14c-554d-4cce-9f1a-fb9a15f5dc53",
+  "piqd_solve_receipt_verified": true,
+  "primary_variables": 285,
+  "root_clauses": 4258975,
+  "root_cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/postwave-wave2-base.cnf",
+  "root_cnf_assignment_verified": true,
+  "root_cnf_sha256": "e41f2fdfa3b05b3f7dc3a66260344ecd277758fbefb46180f4bf05f1649a7759",
+  "rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        1,
+        6,
+        8,
+        14
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        4,
+        14,
+        15
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        3,
+        5,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        0,
+        7,
+        12,
+        13
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        5,
+        13,
+        15,
+        16
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        2,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "center": 6,
+      "exact": true,
+      "support": [
+        5,
+        11,
+        12,
+        15
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        4,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        6,
+        9,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        1,
+        6,
+        7,
+        16
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        3,
+        8,
+        9,
+        14
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        4,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        7,
+        10,
+        11,
+        15
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        3,
+        8,
+        12,
+        16
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        3,
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        2,
+        4,
+        7,
+        16
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3,
+        12
+      ]
+    }
+  ],
+  "schema": "p97-rigid221-exact17-source-faithful-piqd-model-analysis-v1",
+  "solve_receipt": "scratch/p97-exact17-piqd-refinement-round3-v1/wave3-solve-1.json",
+  "solve_receipt_sha256": "5f49e08e87c700b219866ffca53ec3b3ba657cc9eebb1753de83f5cc3a40eb98",
+  "source_independent_model_checker_verified": true,
+  "source_structural_cut_counts": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_z3_assignment_verified": true,
+  "static_bank_assignment_verified_via_direct_cnf": true,
+  "unreplayed_bank_hit_proposals": [],
+  "variables": 74813
+}

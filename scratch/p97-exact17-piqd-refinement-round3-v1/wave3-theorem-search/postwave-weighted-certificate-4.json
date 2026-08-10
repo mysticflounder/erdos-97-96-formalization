@@ -1,0 +1,1032 @@
+{
+  "canonical_support_sha256": "735c832793f0066417286ce997c3bca6c9aa51271e2bf1794883e30b432ea1a4",
+  "classification": {
+    "equality_count": 6,
+    "inequality_count": 3,
+    "inequality_kinds": {
+      "k2": 3
+    },
+    "iteration": 4,
+    "journal": "scratch/p97-exact17-piqd-refinement-round3-v1/wave3-analysis-4.json",
+    "point_count": 10,
+    "positive_rational_cancellation": true,
+    "pure_kalmanson": true,
+    "unit_cancellation": true,
+    "weights": [
+      1,
+      1,
+      1
+    ]
+  },
+  "historical_exact_matches": 0,
+  "input": {
+    "bytes": 12726,
+    "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave3-analysis-4.json",
+    "sha256": "01dc867b5caec21b04b8790099032c329d0b6d16d1e17e0fc10c9d6fba48f139"
+  },
+  "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+  "linear_core_rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        2,
+        15
+      ]
+    },
+    {
+      "center": 8,
+      "exact": false,
+      "support": [
+        5,
+        9,
+        15
+      ]
+    },
+    {
+      "center": 10,
+      "exact": false,
+      "support": [
+        3,
+        9
+      ]
+    }
+  ],
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "proof_status": "accepted by the existing kernel-clean generic Lean consumer; not exact-17 coverage and not a universal leaf closure",
+  "rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "center": 1,
+      "exact": true,
+      "support": [
+        11,
+        13,
+        14,
+        16
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        7,
+        11,
+        12,
+        16
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        2,
+        4,
+        5,
+        11
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        1,
+        2,
+        12,
+        13
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        1,
+        4,
+        15,
+        16
+      ]
+    },
+    {
+      "center": 6,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        8,
+        14
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        2,
+        10,
+        12,
+        15
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        5,
+        6,
+        9,
+        15
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        1,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        3,
+        8,
+        9,
+        13
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        8,
+        10,
+        14,
+        16
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        2,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        4,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        0,
+        1,
+        5,
+        12
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        3,
+        7,
+        9,
+        14
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        0,
+        4,
+        7,
+        13
+      ]
+    }
+  ],
+  "schema": "p97-exact17-piqd-postwave-weighted-instance-v1",
+  "scope": "cardinality-generic weighted-Kalmanson theorem instance; discovered in an exact-17 PIQD SAT model",
+  "status": "certified",
+  "support": {
+    "atoms": [
+      [
+        "eq",
+        [
+          [
+            0,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            9
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            0,
+            7
+          ]
+        ],
+        [
+          [
+            0,
+            9
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            8
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            1,
+            6
+          ]
+        ],
+        [
+          [
+            1,
+            8
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            7
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            4,
+            6
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            0,
+            6
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            0,
+            7
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        [
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            6
+          ]
+        ]
+      ]
+    ],
+    "canonical": [
+      [
+        "eq",
+        [
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            1,
+            6
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            2,
+            7
+          ]
+        ],
+        [
+          [
+            4,
+            7
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            3,
+            6
+          ]
+        ],
+        [
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            3,
+            8
+          ]
+        ],
+        [
+          [
+            8,
+            9
+          ]
+        ]
+      ],
+      [
+        "eq",
+        [
+          [
+            4,
+            7
+          ]
+        ],
+        [
+          [
+            7,
+            9
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            6
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            2,
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        [
+          [
+            2,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ]
+      ],
+      [
+        "k2",
+        [
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            8
+          ]
+        ]
+      ]
+    ],
+    "names": [
+      "E_0_0_1_2",
+      "E_0_0_1_3",
+      "E_1_7_2_15",
+      "E_2_8_5_15",
+      "E_2_8_5_9",
+      "E_3_10_3_9",
+      "K2_0_10_15_3",
+      "K2_0_7_2_15",
+      "K2_8_10_9_15"
+    ],
+    "status": "unsat",
+    "used_points": [
+      0,
+      8,
+      10,
+      9,
+      7,
+      2,
+      15,
+      3,
+      5,
+      1
+    ]
+  },
+  "support_sha256": "c32333677876d67663302a24e75806037e168e3899382406c716fd1520ad0af9",
+  "weighted_certificate": {
+    "core": {
+      "boundary_labels": [
+        0,
+        6,
+        8,
+        11,
+        10,
+        9,
+        12,
+        7,
+        2,
+        15,
+        16,
+        3,
+        4,
+        5,
+        1,
+        13,
+        14
+      ],
+      "pairings": [
+        {
+          "left": [
+            7,
+            8
+          ],
+          "path": {
+            "first": [
+              7,
+              8
+            ],
+            "last": [
+              7,
+              9
+            ],
+            "steps": [
+              {
+                "center": 7,
+                "first": 8,
+                "kind": "row",
+                "second": 9
+              }
+            ]
+          },
+          "right": [
+            7,
+            9
+          ]
+        },
+        {
+          "left": [
+            0,
+            9
+          ],
+          "path": {
+            "first": [
+              0,
+              9
+            ],
+            "last": [
+              0,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            9
+          ]
+        },
+        {
+          "left": [
+            4,
+            9
+          ],
+          "path": {
+            "first": [
+              4,
+              9
+            ],
+            "last": [
+              4,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            9
+          ]
+        },
+        {
+          "left": [
+            0,
+            11
+          ],
+          "path": {
+            "first": [
+              0,
+              11
+            ],
+            "last": [
+              0,
+              8
+            ],
+            "steps": [
+              {
+                "center": 0,
+                "first": 11,
+                "kind": "row",
+                "second": 8
+              }
+            ]
+          },
+          "right": [
+            0,
+            8
+          ]
+        },
+        {
+          "left": [
+            4,
+            5
+          ],
+          "path": {
+            "first": [
+              4,
+              5
+            ],
+            "last": [
+              4,
+              11
+            ],
+            "steps": [
+              {
+                "center": 4,
+                "first": 5,
+                "kind": "row",
+                "second": 11
+              }
+            ]
+          },
+          "right": [
+            4,
+            11
+          ]
+        },
+        {
+          "left": [
+            2,
+            9
+          ],
+          "path": {
+            "first": [
+              2,
+              9
+            ],
+            "last": [
+              2,
+              5
+            ],
+            "steps": [
+              {
+                "center": 2,
+                "first": 9,
+                "kind": "row",
+                "second": 5
+              }
+            ]
+          },
+          "right": [
+            2,
+            5
+          ]
+        }
+      ],
+      "row_choices": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            8,
+            11,
+            14
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            8,
+            16
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            5,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            2,
+            4,
+            10,
+            16
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            5,
+            11,
+            15
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            7,
+            12,
+            14
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            7,
+            8,
+            13
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            4,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            5,
+            7,
+            11,
+            16
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            7,
+            12,
+            15
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            3,
+            8,
+            12,
+            13
+          ]
+        },
+        {
+          "center": 12,
+          "support": [
+            6,
+            8,
+            14,
+            15
+          ]
+        },
+        {
+          "center": 13,
+          "support": [
+            9,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "support": [
+            3,
+            10,
+            15,
+            16
+          ]
+        },
+        {
+          "center": 15,
+          "support": [
+            1,
+            2,
+            4,
+            12
+          ]
+        },
+        {
+          "center": 16,
+          "support": [
+            0,
+            6,
+            13,
+            14
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 7,
+            "c": 8,
+            "d": 9
+          },
+          "quad_labels": [
+            0,
+            7,
+            2,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 4,
+            "c": 9,
+            "d": 11
+          },
+          "quad_labels": [
+            0,
+            10,
+            15,
+            3
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 2,
+            "b": 4,
+            "c": 5,
+            "d": 9
+          },
+          "quad_labels": [
+            8,
+            10,
+            9,
+            15
+          ],
+          "weight": 1
+        }
+      ]
+    },
+    "cyclic_orientation": "forward",
+    "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+    "metadata": {
+      "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+    },
+    "orientation": "forward",
+    "source": "metric-bank-proposed-exact-linear-certificate",
+    "stage": "equality-convex-weighted-kalmanson-cancellation"
+  },
+  "weighted_terms": [
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        7,
+        2,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        10,
+        15,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        8,
+        10,
+        9,
+        15
+      ],
+      "weight": 1
+    }
+  ]
+}
