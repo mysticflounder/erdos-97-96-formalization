@@ -1,0 +1,205 @@
+{
+  "adapter": "circle-isosceles-schema-over-direct-appender",
+  "candidate_inventory": [
+    {
+      "atoms": [
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          12,
+          11
+        ],
+        [
+          12,
+          10
+        ]
+      ],
+      "clause": [
+        -104,
+        -106,
+        -108,
+        -204,
+        -203
+      ],
+      "points": [
+        6,
+        8,
+        11,
+        10,
+        12
+      ]
+    },
+    {
+      "atoms": [
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "clause": [
+        -170,
+        -165,
+        -166,
+        -83,
+        -85
+      ],
+      "points": [
+        10,
+        9,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "atoms": [
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "clause": [
+        -170,
+        -165,
+        -166,
+        -95,
+        -85
+      ],
+      "points": [
+        10,
+        9,
+        15,
+        4,
+        5
+      ]
+    }
+  ],
+  "chosen": {
+    "atoms": [
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        6,
+        12
+      ],
+      [
+        12,
+        11
+      ],
+      [
+        12,
+        10
+      ]
+    ],
+    "clause": [
+      -104,
+      -106,
+      -108,
+      -204,
+      -203
+    ],
+    "clause_length": 5,
+    "fresh_model_blocking": true,
+    "points": [
+      6,
+      8,
+      11,
+      10,
+      12
+    ],
+    "previously_present": false
+  },
+  "emission_mode": "one-fresh-model-witness",
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave60-five-point-circle-isosceles-witness.cnf",
+  "fragment_sha256": "819953dd6acf0ffe9d4be53f0bcd390a22f2ebe41d6349f879b180b74ea2954f",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave60-preappended.theorem-gate-report.json",
+    "gate_report_sha256": "afa4683d5efc81bd1732f931ada18f4add30193a7e44d56fdde0f34b1567d55e",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave60-preappended.model.json",
+    "model_sha256": "d95027590c0ef30d6424779c6e234487671f271f64a294084122bab839c182e4",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave59-five-point-direct-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave59-five-point-direct-witness.receipt.json",
+    "root_receipt_sha256": "3f7c028d5ed8c6a83169d58e3ad583c14d5e5c43baca1b74ecdaa97fe4ef6a65",
+    "root_sha256": "a184553d3d1b0cb36002e9cf656d9d22e114039bbe61ac2f204ba83adb84c4ff"
+  },
+  "lean_consumer": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw",
+  "novel_clause_count": 1,
+  "output_clauses": 5895223,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave60-five-point-circle-isosceles-witness.cnf",
+  "output_root_sha256": "8483bfaf7502d2d8f7fa9523c36b0edc7ded81f9d079ab73312c6e094d2a491d",
+  "output_variables": 74813,
+  "schema": "p97-exact17-five-point-circle-isosceles-witness/v1",
+  "selection_policy": "lexicographically-first-violated-anchored-occurrence",
+  "source_checks": {
+    "bank_replay_ok": true,
+    "bank_replay_required": true,
+    "cnf_assignment_verified": true,
+    "first_bank_hit_replayed": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "row_source": "complete-authenticated-model-rows",
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "static_bank_hit_count": 1
+  },
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean": "8bc3c830ea56705db9c37b1c3ce722e6ef29ef1d9a7dd28ad36db5aed748ae46",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_circle_isosceles_witness.py": "c7637729b942b8a59eceec878664d7af07491459b6a6a2df73aa77cb9f7f4e7f",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_direct_consumer_witness.py": "880f39f517c9a041e7bbf66159d170079a4580f0c104fbc68dc202339ce62c9f",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This appends one exact-17 instance of the cardinality-generic circle-isosceles Lean consumer; it is not exact-17 coverage or universal P97 closure."
+}

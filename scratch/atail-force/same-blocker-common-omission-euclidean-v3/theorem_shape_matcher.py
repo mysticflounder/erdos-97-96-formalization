@@ -30,6 +30,8 @@ SCHEMAS = [
      {3: (0, 2, 4), 4: (0, 1)}),
     ("FivePointEuclideanObstruction.false_of_five_ccw_reversed_second_two_selected_rows", 5,
      {1: (0, 2, 4), 0: (3, 4)}),
+    ("Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw", 5,
+     {0: (1, 3, 4), 4: (2, 3)}),
     ("CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order", 5,
      {2: (0, 3), 0: (3, 4), 1: (4, 0)}),
     ("KalmansonThreeEqualitySchemas.false_of_five_ccw_three_shell_equalities_012_124_314", 5,

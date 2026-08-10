@@ -1,0 +1,129 @@
+{
+  "adapter": "circle-isosceles-schema-over-direct-appender",
+  "candidate_inventory": [
+    {
+      "atoms": [
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          13,
+          3
+        ],
+        [
+          13,
+          4
+        ]
+      ],
+      "clause": [
+        -137,
+        -133,
+        -141,
+        -212,
+        -213
+      ],
+      "points": [
+        8,
+        9,
+        3,
+        4,
+        13
+      ]
+    }
+  ],
+  "chosen": {
+    "atoms": [
+      [
+        8,
+        9
+      ],
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        13
+      ],
+      [
+        13,
+        3
+      ],
+      [
+        13,
+        4
+      ]
+    ],
+    "clause": [
+      -137,
+      -133,
+      -141,
+      -212,
+      -213
+    ],
+    "clause_length": 5,
+    "fresh_model_blocking": true,
+    "points": [
+      8,
+      9,
+      3,
+      4,
+      13
+    ],
+    "previously_present": false
+  },
+  "emission_mode": "one-fresh-model-witness",
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave61-five-point-circle-isosceles-witness.cnf",
+  "fragment_sha256": "0a334f8cc4e38ae02c37d706bbb9c24e6669a452e7d1676291cd48e136cbc45f",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave61-preappended.theorem-gate-report.json",
+    "gate_report_sha256": "9e8928f7dfc9e02cfeed19063b4da046cbcc41062ac0504df8a55e7e3ed5fa96",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave61-preappended.model.json",
+    "model_sha256": "dd98208ab2f82631695cef78acabed25bc9f51b04b9b975fa047eb6d7a82349f",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave60-five-point-circle-isosceles-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave60-five-point-circle-isosceles-witness.receipt.json",
+    "root_receipt_sha256": "39d75914ef7cd33b0428021c28f6f43b89cc35430422ce70f1c7c5ffcf4aff52",
+    "root_sha256": "8483bfaf7502d2d8f7fa9523c36b0edc7ded81f9d079ab73312c6e094d2a491d"
+  },
+  "lean_consumer": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw",
+  "novel_clause_count": 1,
+  "output_clauses": 5895224,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave61-five-point-circle-isosceles-witness.cnf",
+  "output_root_sha256": "cb1fa32e6b9892aea7f200df4a710884b1d463a0db0f9defa9a1b92e658e31c4",
+  "output_variables": 74813,
+  "schema": "p97-exact17-five-point-circle-isosceles-witness/v1",
+  "selection_policy": "lexicographically-first-violated-anchored-occurrence",
+  "source_checks": {
+    "bank_replay_ok": true,
+    "bank_replay_required": true,
+    "cnf_assignment_verified": true,
+    "first_bank_hit_replayed": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "row_source": "complete-authenticated-model-rows",
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "static_bank_hit_count": 1
+  },
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean": "8bc3c830ea56705db9c37b1c3ce722e6ef29ef1d9a7dd28ad36db5aed748ae46",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_circle_isosceles_witness.py": "c7637729b942b8a59eceec878664d7af07491459b6a6a2df73aa77cb9f7f4e7f",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_direct_consumer_witness.py": "880f39f517c9a041e7bbf66159d170079a4580f0c104fbc68dc202339ce62c9f",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This appends one exact-17 instance of the cardinality-generic circle-isosceles Lean consumer; it is not exact-17 coverage or universal P97 closure."
+}

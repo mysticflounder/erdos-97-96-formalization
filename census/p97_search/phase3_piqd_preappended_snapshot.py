@@ -195,33 +195,6 @@ def _root_identity(path: Path) -> RootIdentity:
     )
 
 
-def _body_prefix_sha256(path: Path, *, header_bytes: int, prefix_bytes: int) -> str:
-    if type(prefix_bytes) is not int or prefix_bytes < 0:
-        raise PiqdPreappendedSnapshotError("receipt base byte count is invalid")
-    digest = hashlib.sha256()
-    remaining = prefix_bytes
-    descriptor, opened = _open_stable_regular(Path(path))
-    with os.fdopen(descriptor, "rb", closefd=True) as stream:
-        if len(stream.read(header_bytes)) != header_bytes:
-            raise PiqdPreappendedSnapshotError("root header became unreadable")
-        while remaining:
-            chunk = stream.read(min(1024 * 1024, remaining))
-            if not chunk:
-                raise PiqdPreappendedSnapshotError(
-                    "receipt base exceeds the current journal body"
-                )
-            digest.update(chunk)
-            remaining -= len(chunk)
-        finished = os.fstat(stream.fileno())
-    after = os.lstat(path)
-    stable_fields = ("st_dev", "st_ino", "st_size", "st_mtime_ns")
-    if any(
-        getattr(opened, key) != getattr(finished, key) for key in stable_fields
-    ) or any(getattr(opened, key) != getattr(after, key) for key in stable_fields):
-        raise PiqdPreappendedSnapshotError("root changed during prefix authentication")
-    return digest.hexdigest()
-
-
 def _safe_output_path(path: Path) -> Path:
     """Require an existing, symlink-free custody directory."""
 
@@ -340,8 +313,9 @@ class PiqdPreappendedSnapshotRunner:
         self._export_digest = export_digest or _default_export_digest
         self._root = _root_identity(self.root_path)
         self._consumed = False
-        session, receipts = self._authenticate_present_snapshot()
-        self._authenticate_dimacs_receipt_history(receipts)
+        session, receipts = self._authenticate_present_snapshot(
+            authenticate_history=True
+        )
         self._session_before = session
         self._receipts_before = receipts
 
@@ -542,6 +516,7 @@ class PiqdPreappendedSnapshotRunner:
             by_boundary.setdefault(receipt["base_bytes"], []).append(receipt)
         pending_boundaries = sorted(by_boundary)
         boundary_index = 0
+        full_digest = hashlib.sha256()
         body_digest = hashlib.sha256()
         body_bytes = 0
         clause_count = 0
@@ -553,11 +528,13 @@ class PiqdPreappendedSnapshotRunner:
                 raise PiqdPreappendedSnapshotError(
                     "root header changed during history authentication"
                 )
+            full_digest.update(header)
             for raw_line in stream:
                 if not raw_line.endswith(b"\n"):
                     raise PiqdPreappendedSnapshotError(
                         "PIQD journal clause lacks a newline boundary"
                     )
+                full_digest.update(raw_line)
                 body_digest.update(raw_line)
                 body_bytes += len(raw_line)
                 try:
@@ -615,7 +592,10 @@ class PiqdPreappendedSnapshotRunner:
                 "historical receipt exceeds the current journal body"
             )
         if (
-            body_bytes != self._root.body_bytes
+            (opened.st_dev, opened.st_ino)
+            != (self._root.device, self._root.inode)
+            or full_digest.hexdigest() != self._root.sha256
+            or body_bytes != self._root.body_bytes
             or body_digest.hexdigest() != self._root.body_sha256
             or clause_count != self._root.clauses
         ):
@@ -693,9 +673,9 @@ class PiqdPreappendedSnapshotRunner:
                 "PIQD latest solve state is inconsistent"
             )
 
-    def _authenticate_present_snapshot(self) -> tuple[dict[str, Any], dict[str, Any]]:
-        if _root_identity(self.root_path) != self._root:
-            raise PiqdPreappendedSnapshotError("local root changed during custody")
+    def _authenticate_present_snapshot(
+        self, *, authenticate_history: bool = False
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
         session = self._json("GET", f"/sessions/{self._session_id}")
         receipt_payload = self._json("GET", f"/sessions/{self._session_id}/receipts")
         receipts = self._check_receipts(receipt_payload)
@@ -710,17 +690,6 @@ class PiqdPreappendedSnapshotRunner:
             raise PiqdPreappendedSnapshotError(
                 "pending clause count does not reconcile with the latest solve receipt"
             )
-        if (
-            _body_prefix_sha256(
-                self.root_path,
-                header_bytes=self._root.header_bytes,
-                prefix_bytes=latest["base_bytes"],
-            )
-            != latest["base_sha256"]
-        ):
-            raise PiqdPreappendedSnapshotError(
-                "latest solve receipt does not authenticate the root body prefix"
-            )
         remote_sha = self._export_digest(
             f"{self.base_url}/sessions/{self._session_id}/cnf"
         )
@@ -728,6 +697,10 @@ class PiqdPreappendedSnapshotRunner:
             raise PiqdPreappendedSnapshotError(
                 "PIQD export differs from the local root"
             )
+        if authenticate_history:
+            self._authenticate_dimacs_receipt_history(receipt_payload)
+        elif _root_identity(self.root_path) != self._root:
+            raise PiqdPreappendedSnapshotError("local root changed during custody")
         return session, receipt_payload
 
     def _validate_model(self, model: Any) -> tuple[int, ...]:

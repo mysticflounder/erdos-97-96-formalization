@@ -1,0 +1,61 @@
+Wave 61 mandatory general-theorem search
+Date: 2026-08-10
+Lane: exact17-rigid221-lazy
+
+Source gate
+-----------
+
+- PIQD solve 56 is SAT; this is not closure.
+- Independent replay verified the complete CNF assignment and reported
+  bank_hit_count = 1, family_hit_count = 0, and linear_status = unsat.
+- The model therefore exposes no new linear obstruction family: an existing
+  source-clean theorem-bank entry already rejects it.
+
+Global Lean-corpus searches
+---------------------------
+
+Corpus: erdos-97-96-formalization-lean
+
+1. five cyclic points two selected rows circle isosceles contradiction
+
+   This rediscovered
+   Problem97.Census554.FivePointCircleIsoscelesOrderBridge.
+     false_of_two_selected_rows_of_ccw.
+
+2. six cyclic points two sparse selected rows Euclidean obstruction
+
+   The first agentic result did not identify the exact theorem.  An exact-name
+   corpus check then found the already-indexed source-clean declaration
+   Problem97.SixPointSparseEuclideanObstruction.
+     false_of_six_ccw_two_selected_rows.
+
+Ordered theorem-shape audit
+---------------------------
+
+The matcher found one anchored five-point circle-isosceles occurrence and two
+anchored six-point sparse-Euclidean occurrences.  The five-point occurrence is
+
+  [8, 9, 3, 4, 13]
+
+in boundary order.  It asserts that selected row 8 contains 9, 4, and 13,
+while selected row 13 contains 3 and 4.  The corresponding selected-row atoms
+are (8,9), (8,4), (8,13), (13,3), and (13,4).
+
+Decision
+--------
+
+Authorize exactly that one witnessed five-point occurrence through
+append_five_point_circle_isosceles_witness.py.  Do not append either six-point
+occurrence and do not expand a symmetry orbit.  The successor therefore gains
+one five-literal clause only.
+
+This is reuse of an existing cardinality-generic Lean theorem discovered in one
+finite exact-17 model.  It is not exact-17 coverage, universal P97 closure, or
+closure of a production `sorry`.
+
+Clause-count interpretation
+---------------------------
+
+The Wave 61 input contains 5,895,223 clauses, of which 5,895,218 predate the
+Wave 56--60 lazy refinements.  The new clause is intentionally narrow: the
+large total is inherited infrastructure, not five million newly learned cuts.

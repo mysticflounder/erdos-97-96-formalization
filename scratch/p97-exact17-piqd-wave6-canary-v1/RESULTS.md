@@ -808,3 +808,32 @@ successor checks.
 
 Exact 17 remains SAT and open.  These waves close no production `sorry` and
 prove neither exact-cardinality nor universal P97 closure.
+
+## Waves 60-61: circle-isosceles reuse and measured custody cost
+
+Waves 60 and 61 remained SAT at PIQD solve indices 55 and 56.  Their CaDiCaL
+solves took 0.090 and 15.371 seconds.  Both mandatory theorem searches found
+only existing cardinality-generic Lean consumers; neither wave produced a new
+theorem family.
+
+Wave 60 reused
+`FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw` on
+`[6, 8, 11, 10, 12]`.  Wave 61 reused it on `[8, 9, 3, 4, 13]` and admitted:
+
+`-137 -133 -141 -212 -213 0`.
+
+Wave 61 also contained two instances of the already-banked six-point sparse
+Euclidean obstruction, but the one-clause-per-wave policy deliberately did not
+append them.  The authenticated successor now has 5,895,224 clauses and
+SHA-256
+`cb1fa32e6b9892aea7f200df4a710884b1d463a0db0f9defa9a1b92e658e31c4`.
+
+The Wave 61 post-wave receipt validates through the complete predecessor
+chain.  That check took 416 seconds, versus 15.371 seconds for SAT.  The
+preappended-snapshot adapter now consolidates constructor authentication into
+one full history scan and its focused suite has 23 passing tests, including
+mutation and scan-count regressions.  This removes a redundant pass without
+weakening custody; it does not remove the larger recursive-ancestry cost.
+
+Exact 17 remains SAT and open.  Waves 60-61 add two finite witnessed clauses,
+not exact-17 coverage, universal P97 closure, or production-`sorry` closure.

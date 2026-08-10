@@ -9,3 +9,9 @@ dependencies = [
     "sympy>=1.14.0",
     "z3-solver>=4.16.0.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.2",
+]

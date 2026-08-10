@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from census.p97_search import phase3_piqd_oracle
+from census.p97_search import phase3_piqd_oracle, phase3_piqd_preappended_snapshot
 from census.p97_search.phase3_piqd_incremental_discovery import (
     HttpResponse,
     _result_digest,
@@ -270,9 +270,60 @@ def test_pending_clause_mismatch_stops_before_solve(tmp_path: Path) -> None:
 
 def test_receipt_prefix_hash_mismatch_stops_before_solve(tmp_path: Path) -> None:
     transport = FakeSnapshotTransport(prefix_sha256="e" * 64)
-    with pytest.raises(PiqdPreappendedSnapshotError, match="body prefix"):
+    with pytest.raises(PiqdPreappendedSnapshotError, match="historical receipt"):
         _runner(tmp_path, transport)
     assert all(method != "POST" for method, _url, _body in transport.calls)
+
+
+def test_constructor_history_rejects_root_mutated_during_export(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "root.cnf"
+    root.write_bytes(ROOT)
+    transport = FakeSnapshotTransport()
+    expected_digest = hashlib.sha256(ROOT).hexdigest()
+
+    def mutate_after_initial_identity(_url: str) -> str:
+        root.write_bytes(ROOT + b"1 -2 0\n")
+        return expected_digest
+
+    with pytest.raises(PiqdPreappendedSnapshotError, match="authenticated dimensions"):
+        PiqdPreappendedSnapshotRunner(
+            "http://piqd.test",
+            SESSION,
+            root,
+            expected_solve_count=1,
+            expected_solver_sha256=SOLVER,
+            expected_pending_clauses=1,
+            snapshot_path=tmp_path / "snapshot.json",
+            raw_response_path=tmp_path / "solve.raw.json",
+            capture_path=tmp_path / "capture.json",
+            model_path=tmp_path / "model.json",
+            transport=transport,
+            export_digest=mutate_after_initial_identity,
+        )
+
+    assert all(method != "POST" for method, _url, _body in transport.calls)
+
+
+def test_successful_constructor_and_solve_hash_root_four_times(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    calls = 0
+    original = phase3_piqd_preappended_snapshot._root_identity
+
+    def counted_root_identity(path: Path):
+        nonlocal calls
+        calls += 1
+        return original(path)
+
+    monkeypatch.setattr(
+        phase3_piqd_preappended_snapshot, "_root_identity", counted_root_identity
+    )
+    runner = _runner(tmp_path, FakeSnapshotTransport())
+    runner.solve()
+
+    assert calls == 4
 
 
 def test_bad_sat_model_preserves_raw_evidence_but_not_capture(tmp_path: Path) -> None:

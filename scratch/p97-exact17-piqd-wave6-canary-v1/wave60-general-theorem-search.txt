@@ -1,0 +1,90 @@
+Wave 60 mandatory general-theorem search
+Date: 2026-08-10
+Lane: exact17-rigid221-lazy
+
+Source gate
+-----------
+
+- PIQD solve 55 is SAT; this is not closure.
+- The independent gate verified the CNF assignment and reported:
+  bank_hit_count = 1, family_hit_count = 1, linear_status = unsat.
+- The accumulated theorem family already rejects this model.  No new theorem
+  family was inferred from the exact linear oracle.
+
+Global Lean-corpus searches
+---------------------------
+
+Corpus: erdos-97-96-formalization-lean
+
+1. two Kalmanson cancellation selected rows convex cyclic contradiction
+
+   This returned existing bank entries already covered by the active matcher.
+
+2. five cyclic points first selected row contains second fourth fifth and
+   fifth selected row contains third fourth circle isosceles contradiction
+
+   This rediscovered the source-clean theorem
+   Problem97.Census554.FivePointCircleIsoscelesOrderBridge.
+     false_of_two_selected_rows_of_ccw.
+   The theorem was present in an older dual-row CEGAR family, but absent from
+   the active theorem-shape matcher.  That omission is now repaired.
+
+Ordered theorem-shape audit
+---------------------------
+
+In cyclic order W < F < P < X < Z, the recovered schema requires:
+
+- selected row W contains F, X, and Z;
+- selected row Z contains P and X.
+
+Wave 60 has three anchored occurrences:
+
+- [6, 8, 11, 10, 12]
+- [10, 9, 2, 4, 5]
+- [10, 9, 15, 4, 5]
+
+After adding this already-banked schema, anchored matcher counts are 4:0,
+5:5, 6:3.  The circle-isosceles theorem contributes the three new five-point
+matches.  A targeted build of its Lean module succeeded, and `#print axioms`
+reported only [propext, Classical.choice, Quot.sound], with no `sorryAx` and
+no compiler-trust axiom.
+
+Decision
+--------
+
+Authorize exactly the lexicographically first witnessed occurrence
+[6, 8, 11, 10, 12] through
+append_five_point_circle_isosceles_witness.py.  This contributes one
+five-literal clause.  Do not add the other two occurrences and do not expand a
+symmetry orbit.  This is one finite exact-17 refinement only; it is not
+exact-17, universal, or production-sorry closure.
+
+Authenticated source snapshots
+------------------------------
+
+- certificates/erdos97_legacy_general_n_mining.json
+  54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444
+- certificates/erdos97_legacy_general_n_mining.md
+  3987241b4be66a237810c476af9c9050427549f7e93be6ada22d3da3679d228d
+- certificates/erdos_general_theorem_p97_mining.json
+  18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e
+- certificates/erdos_general_theorem_p97_mining.md
+  dd851b4993e3742ef1fe5727e27ac293f26eb0ff839b6d2ab07e857aeaed02b1
+- certificates/p97_rvol_general_n_mining.json
+  818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8
+- certificates/p97_rvol_general_n_mining.md
+  4b6b38f1c8623122267e22fc386fd6afab4d7d393d3ea62a46f10f2424bb0b46
+- docs/general-n-certificate-bank-mining-2026-07-09.md
+  7c49141a3e7d082288f9e8c1bd1081a2bbee1e8688ca24526e6f7c9a4859c4bc
+- lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean
+  8bc3c830ea56705db9c37b1c3ce722e6ef29ef1d9a7dd28ad36db5aed748ae46
+
+Wave artifacts
+--------------
+
+- wave60-preappended.model.json
+  d95027590c0ef30d6424779c6e234487671f271f64a294084122bab839c182e4
+- wave60-preappended.theorem-gate-report.json
+  afa4683d5efc81bd1732f931ada18f4add30193a7e44d56fdde0f34b1567d55e
+- wave60-theorem-shape-match-report.json
+  133c2fc60c6fb69fe3eeda421cfe792cf72169d94a4ea2118af67044057c7936

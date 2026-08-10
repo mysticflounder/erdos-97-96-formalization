@@ -1,0 +1,2517 @@
+{
+  "kind": "solver-free ordered incidence theorem-shape audit",
+  "witness": "scratch/p97-exact17-piqd-wave6-canary-v1/wave61-selected-row-witness.json",
+  "cyclic_order": [
+    "0",
+    "6",
+    "8",
+    "11",
+    "10",
+    "9",
+    "12",
+    "7",
+    "2",
+    "15",
+    "16",
+    "3",
+    "4",
+    "5",
+    "1",
+    "13",
+    "14"
+  ],
+  "schemas": [
+    {
+      "theorem": "CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_two_selected_middle_rows_shared_endpoint_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 6,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "2",
+            "5",
+            "14",
+            "8",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "5",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "2",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "14",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "2",
+                "5",
+                "8"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "2",
+            "5",
+            "14",
+            "8",
+            "7"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "5",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "2",
+                "7"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "14",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "2",
+                "5",
+                "8"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "2",
+            "5",
+            "14",
+            "12",
+            "7"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "5",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "2",
+                "7"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "14",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "2",
+                "5",
+                "12"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "3",
+            "4",
+            "13",
+            "11",
+            "16"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "3",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "13",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "3",
+                "4",
+                "11"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "3",
+            "4",
+            "13",
+            "10",
+            "16"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "3",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "13",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "3",
+                "4",
+                "10"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "4",
+            "13",
+            "8",
+            "9",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "13",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "4",
+                "3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "8",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "4",
+                "13",
+                "9"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 7,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "10",
+            "15",
+            "3",
+            "13",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "10",
+                "3",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "11",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "10",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "10",
+            "15",
+            "4",
+            "13",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "10",
+                "4",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "11",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "10",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "10",
+            "16",
+            "3",
+            "13",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "10",
+                "3",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "11",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "10",
+                "16"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "10",
+            "16",
+            "4",
+            "13",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "10",
+                "4",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "11",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "10",
+                "16"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "14",
+            "8",
+            "10",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "10",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "8",
+                "3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "3",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "5",
+                "14"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "1",
+            "10",
+            "16",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "16",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "10",
+                "4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "4",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "5",
+                "1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "1",
+            "12",
+            "16",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "16",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "12",
+                "4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "4",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "5",
+                "1"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_reversed_second_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 6,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "5",
+            "14",
+            "8",
+            "11",
+            "2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "14",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "8",
+                "2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "5",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "11",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "14",
+            "8",
+            "7",
+            "2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "14",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "8",
+                "2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "5",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "14",
+            "12",
+            "7",
+            "2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "14",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "5",
+                "12",
+                "2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "5",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "4",
+            "13",
+            "11",
+            "16",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "4",
+                "11",
+                "3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "4",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "4",
+            "13",
+            "10",
+            "16",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "4",
+                "10",
+                "3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "4",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "13",
+            "8",
+            "9",
+            "3",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "8",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "13",
+                "9",
+                "4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "13",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "3",
+                "4"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw",
+      "arity": 5,
+      "anchored_match_count": 1,
+      "anchored_matches": [
+        {
+          "points": [
+            "8",
+            "9",
+            "3",
+            "4",
+            "13"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "8",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "9",
+                "4",
+                "13"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "13",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "3",
+                "4"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 6,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "8",
+            "9",
+            "3",
+            "4",
+            "13"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "8",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "9",
+                "4",
+                "13"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "13",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "3",
+                "4"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "13",
+            "11",
+            "16",
+            "3",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "13",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "11",
+                "3",
+                "4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "4",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "13",
+            "10",
+            "16",
+            "3",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "13",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "10",
+                "3",
+                "4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "4",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "14",
+            "8",
+            "11",
+            "2",
+            "5"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "14",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "2",
+                "5"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "5",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "11",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "14",
+            "8",
+            "7",
+            "2",
+            "5"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "14",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "2",
+                "5"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "5",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "14",
+            "12",
+            "7",
+            "2",
+            "5"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "14",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "12",
+                "2",
+                "5"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "5",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_five_ccw_three_shell_equalities_012_124_314",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "SixPointEuclideanObstruction.false_of_six_ccw_three_selected_rows",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows",
+      "arity": 6,
+      "anchored_match_count": 2,
+      "anchored_matches": [
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "15",
+            "1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "16",
+            "1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "16"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 7,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "15",
+            "1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "16",
+            "1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "16"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "15",
+            "0"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "0"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "6",
+            "8",
+            "11",
+            "10",
+            "16",
+            "0"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "8",
+                "10",
+                "0"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "11",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "8",
+                "10",
+                "16"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "8",
+            "9",
+            "2",
+            "4",
+            "0",
+            "6"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "8",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "9",
+                "4",
+                "6"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "9",
+                "4",
+                "0"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "10",
+            "3",
+            "4",
+            "5",
+            "1",
+            "8"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "10",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "3",
+                "5",
+                "8"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "4",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "3",
+                "5",
+                "1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "2",
+            "0",
+            "6",
+            "8",
+            "10",
+            "9"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "2",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "0",
+                "8",
+                "9"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "6",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "0",
+                "8",
+                "10"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "SixPointEuclideanObstruction.false_of_six_ccw_mirror_interleaving_row_equalities",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 17,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "10",
+            "15",
+            "3",
+            "1",
+            "0",
+            "6"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "15",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "10",
+                "3",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "6",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "10",
+                "1",
+                "0"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "10",
+            "12",
+            "7",
+            "16",
+            "8",
+            "11"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "12",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "10",
+                "7",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "11",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "10",
+                "16",
+                "8"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "7",
+            "15",
+            "3",
+            "1",
+            "14",
+            "9"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "15",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "3",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "9",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "1",
+                "14"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "7",
+            "15",
+            "3",
+            "1",
+            "6",
+            "9"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "15",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "3",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "9",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "1",
+                "6"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "7",
+            "15",
+            "3",
+            "10",
+            "9",
+            "12"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "15",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "3",
+                "10"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "12",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "10",
+                "9"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "7",
+            "15",
+            "1",
+            "10",
+            "9",
+            "12"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "15",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "7",
+                "1",
+                "10"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "12",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "7",
+                "10",
+                "9"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "2",
+            "5",
+            "0",
+            "11",
+            "9",
+            "7"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "5",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "2",
+                "0",
+                "11"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "7",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "2",
+                "11",
+                "9"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "3",
+            "4",
+            "5",
+            "1",
+            "10",
+            "15"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "4",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "3",
+                "5",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "15",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "3",
+                "1",
+                "10"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "3",
+            "4",
+            "5",
+            "1",
+            "7",
+            "15"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "4",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "3",
+                "5",
+                "1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "15",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "3",
+                "1",
+                "7"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "3",
+            "13",
+            "11",
+            "10",
+            "7",
+            "15"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "3",
+                "11",
+                "10"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "15",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "3",
+                "10",
+                "7"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "1",
+            "6",
+            "8",
+            "10",
+            "7",
+            "15"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "6",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "1",
+                "8",
+                "10"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "15",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "1",
+                "10",
+                "7"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "4",
+            "13",
+            "11",
+            "10",
+            "12",
+            "16"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "13",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "4",
+                "11",
+                "10"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "16",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "4",
+                "10",
+                "12"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "14",
+            "8",
+            "2",
+            "15",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "14",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "5",
+                "8",
+                "2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "5",
+                "2",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "14",
+            "12",
+            "2",
+            "15",
+            "3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "14",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "5",
+                "12",
+                "2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "5",
+                "2",
+                "15"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "1",
+            "13",
+            "16",
+            "3",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "1",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "5",
+                "13",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "4",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "5",
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "5",
+            "1",
+            "0",
+            "16",
+            "3",
+            "4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "1",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "5",
+                "0",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "4",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "5",
+                "16",
+                "3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "13",
+            "0",
+            "11",
+            "16",
+            "5",
+            "1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "0",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "13",
+                "11",
+                "16"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "1",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "13",
+                "16",
+                "5"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_013_412_523",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_012_325_415",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_013_235_415",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    }
+  ],
+  "total_anchored_matches_by_arity": {
+    "4": 0,
+    "5": 1,
+    "6": 2
+  },
+  "total_cyclic_rotation_matches_by_arity": {
+    "4": 0,
+    "5": 25,
+    "6": 24
+  },
+  "phase3_shared_pair_separation": {
+    "active_case_count": 18,
+    "all_separated": true,
+    "cases": [
+      {
+        "centers": [
+          "0",
+          "1"
+        ],
+        "points": [
+          "13",
+          "16"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "6",
+          "11"
+        ],
+        "points": [
+          "10",
+          "8"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "6",
+          "2"
+        ],
+        "points": [
+          "0",
+          "8"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "6",
+          "15"
+        ],
+        "points": [
+          "1",
+          "10"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "8",
+          "2"
+        ],
+        "points": [
+          "4",
+          "9"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "11",
+          "12"
+        ],
+        "points": [
+          "10",
+          "16"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "10",
+          "2"
+        ],
+        "points": [
+          "8",
+          "9"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "10",
+          "4"
+        ],
+        "points": [
+          "3",
+          "5"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "10",
+          "14"
+        ],
+        "points": [
+          "5",
+          "8"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "9",
+          "15"
+        ],
+        "points": [
+          "1",
+          "7"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "12",
+          "15"
+        ],
+        "points": [
+          "10",
+          "7"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "7",
+          "5"
+        ],
+        "points": [
+          "11",
+          "2"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "15",
+          "4"
+        ],
+        "points": [
+          "1",
+          "3"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "15",
+          "13"
+        ],
+        "points": [
+          "10",
+          "3"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "16",
+          "13"
+        ],
+        "points": [
+          "10",
+          "4"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "16",
+          "14"
+        ],
+        "points": [
+          "12",
+          "5"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "3",
+          "14"
+        ],
+        "points": [
+          "2",
+          "5"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "4",
+          "1"
+        ],
+        "points": [
+          "16",
+          "5"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      }
+    ]
+  }
+}
