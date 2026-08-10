@@ -1,0 +1,67 @@
+Exact17 PIQD Wave57 mandatory post-wave general theorem search
+================================================================
+
+Scope
+-----
+
+- input root: `postgate-wave56-five-point-second-witness.cnf`
+- root SHA-256: `3cb5605e8a3e9ef4df2ab91a0661b939f6c6d2161864fcfd8fd5078bbca69f2d`
+- solve index: 52 (Wave57; predecessor solve index 51)
+- model SHA-256: `707fa79483d3c58e1c803ca7910b2f55c213725fa4a6da9a7f608d37f4c6a133`
+- theorem-gate report SHA-256: `ed201dc909c48b9e7db0c6f74399ef8ee7ee13b3e9ace2b271b3573bcdbf1506`
+
+Authenticated gate result
+-------------------------
+
+The PIQD model is total and satisfies all 5,895,219 input clauses. Exact
+linear arithmetic rejects its selected-row equality system. The accumulated
+static family has one hit and the full theorem bank has two replayed
+source-backed hits. Wave57 is therefore a known mathematical obstruction, not
+a new obstruction family.
+
+Repository-wide theorem search
+------------------------------
+
+The current Lean corpus was searched for four-point Kalmanson selected-row
+cuts, five-point selected-row Euclidean obstructions in the direct, second,
+and reversed-second orientations, and sparse or two-triple-row six-point
+obstructions. The complete canonical general-n theorem-bank registry was
+checked again; its hashes remain:
+
+- `erdos97_legacy_general_n_mining.json`: `54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444`
+- `erdos97_legacy_general_n_mining.md`: `3987241b4be66a237810c476af9c9050427549f7e93be6ada22d3da3679d228d`
+- `erdos_general_theorem_p97_mining.json`: `18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e`
+- `erdos_general_theorem_p97_mining.md`: `dd851b4993e3742ef1fe5727e27ac293f26eb0ff839b6d2ab07e857aeaed02b1`
+- `p97_rvol_general_n_mining.json`: `818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8`
+- `p97_rvol_general_n_mining.md`: `4b6b38f1c8623122267e22fc386fd6afab4d7d393d3ea62a46f10f2424bb0b46`
+- `general-n-certificate-bank-mining-2026-07-09.md`: `7c49141a3e7d082288f9e8c1bd1081a2bbee1e8688ca24526e6f7c9a4859c4bc`
+
+The source-level selected-row audit found:
+
+- no increasing four-point selected-row obstruction;
+- one increasing direct five-point match;
+- no increasing second-orientation five-point match;
+- one increasing reversed-second five-point match;
+- no increasing sparse six-point match;
+- no increasing two-triple-row six-point match.
+
+The smallest source-backed consumer is therefore five literals. The unique
+direct occurrence uses increasing boundary points `[10, 2, 16, 4, 5]` and
+the theorem
+`Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`.
+Its selected incidences are
+`2:{10,5}` and `16:{10,2,4}`. The Lean source SHA-256 is
+`4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c`.
+The available two-triple-row source SHA-256 is
+`91bc2d5e71d3ecc7cc57634853913d7c88382cb8a8784549cb6bd1da62a79a62`.
+No smaller or new general theorem family was found.
+
+Decision
+--------
+
+Authorize exactly one witnessed five-literal direct-consumer clause
+`[-42,-37,-267,-259,-261]`, subject to the authenticated appender and
+post-wave theorem gate. Do not expand its full orbit and do not additionally
+append the larger accumulated-family hit. This is reuse of a
+cardinality-independent theorem, not exact17, universal-P97, or
+production-`sorry` closure.

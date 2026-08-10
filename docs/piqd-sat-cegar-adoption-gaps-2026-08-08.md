@@ -350,11 +350,22 @@ Acceptance condition: a small three-iteration fixture performs
 SAT → refinement → SAT → refinement → certified UNSAT, then reproduces the same
 chain after restart with every child bound to its parent.
 
-Status: partially complete at checkpoint `946a1485`. The v2 source classifier
-binds an exact detector-source snapshot and rejects learned clauses whose
-variables are absent from the authenticated positive witness. It does not yet
-provide a producer-neutral parent/child CNF chain, restartable multi-step
-refinement, or certified terminal handoff.
+Status: the iteration contract is qualified, but it is not yet
+producer-neutral.  The exact-17 lazy lane has
+now run through Wave 59 with an authenticated parent/child CNF chain, total
+model replay, a mandatory theorem-bank search, and one source-backed witnessed
+clause per refinement.  Waves 56--59 added four clauses total to the inherited
+5,895,218-clause root.  This validates the iteration contract on a live large
+formula, but the implementation is still exact-17-specific and has not reached
+a certified terminal handoff.
+
+The current implementation also revalidates the complete predecessor receipt
+chain recursively.  On this 5.9-million-clause lane, CaDiCaL takes roughly
+11--15 seconds per SAT solve while the custody adapter can spend about five
+minutes hashing and replaying roots and ancestors.  Before broader migration,
+replace this repeated work with a fail-closed rolling lineage index or another
+content-addressed validation cache; the optimization must preserve full-model,
+parent-root, refinement, and successor-root checks.
 
 Owner: P97 integration, with one adapter per finite schema.
 
@@ -368,9 +379,11 @@ terminal CNF through the static proof path. SMT sessions persist Z3/cvc5
 assertions and textual results. P97 now has one lane-specific authenticated
 adapter: the exact-17 Rank-Four DirectSix replay qualified a 4,118,501-clause
 root plus eight ordered fragments and reproduced the 4,254,176-clause final CNF
-byte-for-byte. That session performed zero solves. Restartable solve/refine
-cycles, fresh learned-delta provenance, and terminal static handoff remain
-open; there is not yet a shared adapter for other P97 lanes.
+byte-for-byte.  The newer exact-17 lazy session has additionally completed
+multiple fresh solve/refine cycles through solve index 54, with every delta
+bound to an existing cardinality-independent Lean consumer.  A
+producer-neutral adapter, explicit daemon-restart fixture, and terminal static
+handoff remain open; there is not yet a shared adapter for other P97 lanes.
 
 Required P97 work:
 
@@ -624,7 +637,7 @@ measured need and an exact consumer contract.
 | Workflow | Desired piqd role | Migration status | Blocking gaps |
 | --- | --- | --- | --- |
 | Exact-cardinality static CNF banks | Full job custody, model check, UNSAT proof replay | The v2 three-cell finite-local fixture and exact-12 cell-0 replay passed; fresh cell-1 replay is pending and broad migration remains open | G1, G2, G7 |
-| Exact-17 source-faithful CEGAR | Static query and terminal-artifact oracle | Frozen root-plus-eight refinement custody replay is PIQD-qualified; fresh learned-delta solve/restart and terminal handoff remain open | G1, G2, G5, G6, G7; production-qualify G3 before a large wave |
+| Exact-17 source-faithful CEGAR | Stateful solve/refine custody plus terminal-artifact oracle | Fresh learned-delta cycles are PIQD-qualified through lazy Wave 59; producer-neutralization, lineage-replay performance, daemon-restart qualification, and terminal handoff remain open | G1, G2, G5, G6, G7; production-qualify G3 before a large wave |
 | Phase-3 projected-static nonincremental mode | Full static oracle | Prototype driver exists | G1, G2, G5 |
 | Phase-3 IPASIR incremental mode | piqd SAT session, or measured local exception; terminal handoff always uses the static proof path | Daemon capability exists; only the exact-17 lane-specific replay adapter is qualified | G5, G6, G7 |
 | `march_cu` cube-and-conquer | Scheduling plus aggregate proof custody | Incomplete certification adapter | G3, G8 |

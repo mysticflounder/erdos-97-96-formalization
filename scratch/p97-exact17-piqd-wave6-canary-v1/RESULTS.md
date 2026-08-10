@@ -766,3 +766,45 @@ These two waves added two clauses total.  They reuse cardinality-independent
 Lean consumers and avoid another 148,512-clause orbit expansion, but they do
 not provide exact-17 coverage, universal P97 closure, or production-`sorry`
 closure.
+
+## Waves 56-59: four more witnessed clauses, no new theorem family
+
+Waves 56--59 continued the authenticated lazy policy.  Their PIQD solves were
+all SAT at solve indices 51--54 and took 13.989, 14.798, 12.332, and 10.636
+seconds respectively.  Every post-wave review reran the complete source gate
+and the mandatory general-theorem search.  The searches found only existing
+cardinality-independent theorem-bank families, so no new mathematical theorem
+was claimed.
+
+Wave 56 used the reversed-second five-point consumer on points
+`[0, 11, 10, 2, 1]` and admitted:
+
+`-33 -42 -34 -17 -27 0`.
+
+Wave 57 used the direct five-point consumer on `[10, 2, 16, 4, 5]`:
+
+`-42 -37 -267 -259 -261 0`.
+
+Wave 58 used the same direct consumer on `[10, 2, 16, 4, 13]`:
+
+`-42 -45 -267 -259 -261 0`.
+
+Wave 59 used it on `[2, 4, 5, 1, 13]`:
+
+`-67 -77 -83 -85 -82 0`.
+
+Thus these four waves add four five-literal clauses total, growing the inherited
+root from 5,895,218 to 5,895,222 clauses.  The authenticated Wave 59 successor
+is `postgate-wave59-five-point-direct-witness.cnf`, with SHA-256
+`a184553d3d1b0cb36002e9cf656d9d22e114039bbe61ac2f204ba83adb84c4ff`.
+The lane deliberately did not add the full orbit of any hit.
+
+The runtime is now dominated by custody rather than SAT.  A solve takes about
+11--15 seconds, while recursive predecessor validation repeatedly hashes and
+replays the multi-million-clause roots and can take about five minutes.  A
+rolling content-addressed lineage cache is therefore the next PIQD onboarding
+optimization, provided it preserves fail-closed model, parent, refinement, and
+successor checks.
+
+Exact 17 remains SAT and open.  These waves close no production `sorry` and
+prove neither exact-cardinality nor universal P97 closure.

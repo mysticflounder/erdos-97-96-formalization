@@ -1,0 +1,91 @@
+Wave 59 mandatory general-theorem search
+Date: 2026-08-10
+Lane: exact17-rigid221-lazy
+
+Source gate
+-----------
+
+- PIQD solve 54 is SAT; this is not closure.
+- The independent gate verified the CNF assignment and reported:
+  bank_hit_count = 1, family_hit_count = 1, linear_status = unsat.
+- Existing bank hit:
+  Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+    false_of_twoKalmansonCancellationData_of_check
+- The accumulated family hit is motif index 11.  It is already represented by
+  the authenticated family receipt; this wave did not expose a new family.
+
+Global Lean-corpus searches
+---------------------------
+
+Corpus: erdos-97-96-formalization-lean
+
+1. two Kalmanson cancellation selected four point rows adjacent sides inner
+   outer convex cyclic contradiction
+
+   The agentic search returned the existing TwoKalmansonLabelCancellationData
+   / false_of_twoKalmansonCancellationData_of_check route.  This is the exact
+   source-clean bank consumer already reported by the independent gate.
+
+2. six centers selected rows eight incidence motif Kalmanson obstruction a has
+   b d b has d f c has a f e has a b
+
+   No additional indexed Lean result was returned.
+
+Ordered theorem-shape audit
+---------------------------
+
+The solver-free matcher was rerun on the Wave 59 selected rows in the fixed
+cyclic order.  Anchored matches by arity were 4:0, 5:3, 6:3.  The existing
+source-clean consumers with anchored matches were:
+
+- FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows: 1
+  first occurrence [2, 4, 5, 1, 13]
+- FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows: 2
+  first occurrence [0, 11, 10, 15, 13]
+- SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows: 2
+  first occurrence [6, 8, 11, 10, 16, 13]
+- TwoTripleRowSixPointEuclideanObstruction.
+    false_of_six_ccw_two_triple_row_equalities: 1
+  first occurrence [11, 12, 7, 2, 3, 4]
+
+Decision
+--------
+
+Use the unique anchored direct five-point occurrence.  It is the smallest
+existing source-clean consumer (five incidence literals), so authorize exactly
+one witnessed clause through append_five_point_direct_consumer_witness.py.  Do
+not add an orbit and do not introduce a new theorem family.  This is one finite
+exact-17 refinement only; it is not exact-17, universal, or production-sorry
+closure.
+
+Authenticated source snapshots
+------------------------------
+
+- certificates/erdos97_legacy_general_n_mining.json
+  54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444
+- certificates/erdos97_legacy_general_n_mining.md
+  3987241b4be66a237810c476af9c9050427549f7e93be6ada22d3da3679d228d
+- certificates/erdos_general_theorem_p97_mining.json
+  18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e
+- certificates/erdos_general_theorem_p97_mining.md
+  dd851b4993e3742ef1fe5727e27ac293f26eb0ff839b6d2ab07e857aeaed02b1
+- certificates/p97_rvol_general_n_mining.json
+  818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8
+- certificates/p97_rvol_general_n_mining.md
+  4b6b38f1c8623122267e22fc386fd6afab4d7d393d3ea62a46f10f2424bb0b46
+- docs/general-n-certificate-bank-mining-2026-07-09.md
+  7c49141a3e7d082288f9e8c1bd1081a2bbee1e8688ca24526e6f7c9a4859c4bc
+- lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean
+  4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c
+- lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean
+  91bc2d5e71d3ecc7cc57634853913d7c88382cb8a8784549cb6bd1da62a79a62
+
+Wave artifacts
+--------------
+
+- wave59-preappended.model.json
+  2c00c03f85a76a68d81b13832931df71fd24470d795761d354241d34641d766b
+- wave59-preappended.theorem-gate-report.json
+  80724c239194c9bfede66a5236d69bd489e5c1b7f6be5eb66c562a5ebbfefc2d
+- wave59-theorem-shape-match-report.json
+  f8e5ae20c9b22169597a4d7fe06bc784632ab91a7af50c296d2f04c81e8cc677
