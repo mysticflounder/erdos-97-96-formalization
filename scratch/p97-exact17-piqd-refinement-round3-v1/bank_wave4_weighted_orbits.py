@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile and admit the authenticated wave-4 weighted theorem bank."""
+"""Compile and admit an authenticated bounded-wave weighted theorem bank."""
 
 from __future__ import annotations
 
@@ -35,6 +35,22 @@ ROOT_CLAUSES = 4_267_673
 CHAIN_CLAUSES = 4_275_704
 SESSION_ID = "4876f14c-554d-4cce-9f1a-fb9a15f5dc53"
 BASE_URL = "http://127.0.0.1:7272"
+
+WAVE = int(os.environ.get("PIQD_BANK_WAVE", "4"))
+if WAVE == 5:
+    CERTIFICATE_DIR = HERE / "wave5-theorem-search"
+    ROOT_CNF = HERE / "postwave-wave4-base.cnf"
+    RECEIPTS = tuple(HERE / f"wave5-cut-{index}.json" for index in range(1, 9))
+    FRAGMENT = HERE / "wave5-weighted-orbits.dimacs"
+    AGGREGATE = HERE / "postwave-wave5-base.cnf"
+    MANIFEST = HERE / "wave5-weighted-orbits.manifest.json"
+    ADMISSION = HERE / "wave5-piqd-admission.json"
+    MANIFEST_SCHEMA = "p97-exact17-piqd-wave5-weighted-orbits/v1"
+    ROOT_SHA256 = "9fe6583cebeee38fc4874781a08ca9c8cc35b86590ba4889302511171bdab417"
+    ROOT_CLAUSES = 4_275_934
+    CHAIN_CLAUSES = 4_280_013
+elif WAVE != 4:
+    raise ValueError(f"unsupported PIQD theorem-bank wave: {WAVE}")
 
 
 def sha256(path: Path) -> str:
@@ -134,12 +150,12 @@ def main() -> int:
         if output.exists():
             raise FileExistsError(f"refusing to overwrite existing output: {output}")
     if sha256(ROOT_CNF) != ROOT_SHA256:
-        raise ValueError("wave-4 root SHA-256 mismatch")
+        raise ValueError(f"wave-{WAVE} root SHA-256 mismatch")
 
-    helper = load_module("wave4_bank_helper", BASE_COMPILER)
-    formula_chain = load_module("wave4_formula_chain", FORMULA_CHAIN)
-    orbit = load_module("wave4_weighted_orbit_compiler", ORBIT_COMPILER)
-    uploader = load_module("wave4_piqd_uploader", UPLOADER)
+    helper = load_module(f"wave{WAVE}_bank_helper", BASE_COMPILER)
+    formula_chain = load_module(f"wave{WAVE}_formula_chain", FORMULA_CHAIN)
+    orbit = load_module(f"wave{WAVE}_weighted_orbit_compiler", ORBIT_COMPILER)
+    uploader = load_module(f"wave{WAVE}_piqd_uploader", UPLOADER)
     source_paths = (
         Path(__file__).resolve(),
         BASE_COMPILER,
@@ -164,7 +180,7 @@ def main() -> int:
 
     certificates = sorted(CERTIFICATE_DIR.glob("postwave-weighted-certificate-*.json"))
     if len(certificates) != 8:
-        raise ValueError("expected exactly eight wave-4 certificates")
+        raise ValueError(f"expected exactly eight wave-{WAVE} certificates")
     payloads = [json.loads(path.read_text()) for path in certificates]
     order = tuple(int(label) for label in payloads[0]["order"])
     if any(tuple(payload["order"]) != order for payload in payloads):
@@ -198,7 +214,9 @@ def main() -> int:
             }
         )
     if raw_count != 272 or len(proposed) != 272:
-        raise ValueError("wave-4 certificate orbits are not eight disjoint sets")
+        raise ValueError(
+            f"wave-{WAVE} certificate orbits are not eight disjoint sets"
+        )
 
     proposed_ordered = tuple(sorted(proposed))
     candidate_sets = tuple(frozenset(clause) for clause in proposed_ordered)
@@ -223,7 +241,9 @@ def main() -> int:
         clause for index, clause in enumerate(proposed_ordered) if index not in subsumed
     )
     if not novel:
-        raise ValueError("wave-4 theorem bank contributes no novel exact-17 clauses")
+        raise ValueError(
+            f"wave-{WAVE} theorem bank contributes no novel exact-17 clauses"
+        )
 
     helper.write_fragment(FRAGMENT, novel)
     write_aggregate(AGGREGATE, chain, novel)

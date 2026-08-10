@@ -222,3 +222,35 @@ and PIQD admission receipt are `wave4-weighted-orbits.manifest.json` and
 formula.  Its custody claims explicitly keep `exact17_coverage`,
 `exact17_closure`, and `production_sorry_closure` false.  Exact-17 remains
 open.
+
+## Bounded wave 5
+
+Wave 5 stopped after eight additional source-verified SAT models.  All eight
+independently replayed as exact-linear `UNSAT`; seven had one static theorem-bank
+hit and one had two.  Their authenticated model-specific orbit batches added
+4,079 clauses.
+
+The mandatory cross-bank theorem search again scanned 24,256 canonical support
+records in 80 JSON files.  All eight minimized supports were historically new.
+Seven are unit-weight cancellations.  The remaining thirteen-point support is
+a larger positive weighted cancellation with 35 strict Kalmanson inequalities.
+Every instance is accepted by the existing cardinality-generic Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`.  The two-hit model did
+not require a new composition theorem: one minimized generic certificate was
+already sufficient.
+
+The eight dihedral orbits supplied 272 checked candidates.  A complete scan
+against the 4,275,934-clause wave-4 root and the 4,079 model-specific cuts found
+47 subsumed images and 225 novel clauses.  The live PIQD session admitted those
+225 clauses.  The normalized formula `postwave-wave5-base.cnf` has:
+
+- 74,813 variables;
+- 4,280,238 clauses;
+- SHA-256
+  `3de22b62ce5cff1b406718d86ae2c059f81b9c21d601379774add89cf33978b6`.
+
+The theorem-search aggregate is
+`wave5-theorem-search/postwave-theorem-search.json`; the bank manifest and PIQD
+receipt are `wave5-weighted-orbits.manifest.json` and
+`wave5-piqd-admission.json`.  They explicitly record no exact-17 coverage,
+exact-17 closure, or production `sorry` closure.

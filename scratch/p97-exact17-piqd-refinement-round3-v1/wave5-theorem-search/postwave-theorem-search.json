@@ -1,0 +1,313 @@
+{
+  "certified_weighted_instances": 8,
+  "conclusion": "8 support signatures instantiate an existing cardinality-generic weighted-Kalmanson Lean theorem. They are reusable theorem-bank cuts, not exact-17 or universal closure.",
+  "historical_scan": {
+    "canonical_support_records": 24256,
+    "json_files_with_canonical_supports": 80,
+    "roots": [
+      "scratch/rigid221-blockerv-exact17-20260806",
+      "scratch/p97-exact17-piqd-refinement-round3-v1"
+    ]
+  },
+  "records": 8,
+  "results": [
+    {
+      "canonical_support_sha256": "249e60c42c42066485c134ee694087f2bcee09500d836ba1ef710c42c4d30c3f",
+      "certificate": {
+        "bytes": 22734,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-1.json",
+        "sha256": "a0a1e8a7aa4ff0ac2cb50f432ed5e3075bd27745237cf5f0249f298aabbe4b52"
+      },
+      "equality_count": 8,
+      "historical_exact_matches": 0,
+      "inequality_count": 6,
+      "inequality_kinds": {
+        "k1": 1,
+        "k2": 5
+      },
+      "input": {
+        "bytes": 12322,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-1.json",
+        "sha256": "23f13ef5614c4fa1fbc74e4dffa891a478467b245dfa285715cc5ebbbc8bb2a8"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 11,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "19a8f24710b30efdd3a2df0e5883c1b2fe92f8166a066aa827fa3e2af8f85ccd",
+      "certificate": {
+        "bytes": 19275,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-2.json",
+        "sha256": "fd6def8dc284f5bfe8d1bfc79798dbc0239f121161dfea85ed89f3347390ac7e"
+      },
+      "equality_count": 8,
+      "historical_exact_matches": 0,
+      "inequality_count": 4,
+      "inequality_kinds": {
+        "k2": 4
+      },
+      "input": {
+        "bytes": 13106,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-2.json",
+        "sha256": "222228b0a397f7342328d26f84d5d049784a47d0ffe26c3c64492c22f1676d29"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 10,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "26885523044130ead512895ac0bfaa88d0302a5eafe7509f32c567ee38f18e38",
+      "certificate": {
+        "bytes": 14544,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-3.json",
+        "sha256": "65f5faca517792bf0e21df76c1c647228c7370a416eabd4a7d4a6a1916f37239"
+      },
+      "equality_count": 7,
+      "historical_exact_matches": 0,
+      "inequality_count": 2,
+      "inequality_kinds": {
+        "k2": 2
+      },
+      "input": {
+        "bytes": 12603,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-3.json",
+        "sha256": "0426b37b10bc740e45834426718255a0973efddc78233987b247cce902725e07"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 9,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "7ca3f95cf6ae7fe3cb78b4ba97991b0d8a79bf4afdbb040ffd201ba78b22c33b",
+      "certificate": {
+        "bytes": 14926,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-4.json",
+        "sha256": "949d2098c57ca19ecfdb85f094e566d771c46ca0c4ded7251e8b658f8bc7ded9"
+      },
+      "equality_count": 8,
+      "historical_exact_matches": 0,
+      "inequality_count": 2,
+      "inequality_kinds": {
+        "k2": 2
+      },
+      "input": {
+        "bytes": 12749,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-4.json",
+        "sha256": "cae9569d86f8d5c2c196b9b048ac0f6b6db42dd09f6a8ebc03d1e7f76afd2b79"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 9,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "ac7d3851a74b9976af348a0fa9bac940cb396cdc0968e1c0e268aad33434916e",
+      "certificate": {
+        "bytes": 14409,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-5.json",
+        "sha256": "2501f1af5c13ee1d99e1ad720c955fdc51fa209eaeea30cc4c454b43dd3c62ca"
+      },
+      "equality_count": 6,
+      "historical_exact_matches": 0,
+      "inequality_count": 2,
+      "inequality_kinds": {
+        "k2": 2
+      },
+      "input": {
+        "bytes": 13507,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-5.json",
+        "sha256": "3b20af4930eb9ff5ec83476cc5bb6366d033caa128309e02fc64eb4cf934cc4b"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 7,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "87a241d8e868e00e05361e5b1ade4d92a34486071b10f464a26631b7d1fb49b7",
+      "certificate": {
+        "bytes": 24209,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-6.json",
+        "sha256": "53a0b82464504a862753a03bf7985472072ef344d62e41524c3370bc259493ff"
+      },
+      "equality_count": 8,
+      "historical_exact_matches": 0,
+      "inequality_count": 7,
+      "inequality_kinds": {
+        "k1": 3,
+        "k2": 4
+      },
+      "input": {
+        "bytes": 12131,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-6.json",
+        "sha256": "c77faa29e71551e5d29fed8a5f0cb1d541a81fa23e9578c38d1381876797ccf2"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 9,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "29897f44dadc35aa135728136ffde7298fb307fee3099b46bce6c2e6c9e41d23",
+      "certificate": {
+        "bytes": 83660,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-7.json",
+        "sha256": "dc9324fe7e30af82e91f4debcfa1b8f5954450f70737680e8654bb242de580f8"
+      },
+      "equality_count": 11,
+      "historical_exact_matches": 0,
+      "inequality_count": 35,
+      "inequality_kinds": {
+        "k1": 9,
+        "k2": 26
+      },
+      "input": {
+        "bytes": 14092,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-7.json",
+        "sha256": "4698ca9d548939648ab8c7ff35c14bcd289edd9ec6bf3fc1b4ae0ac6b20da371"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 13,
+      "unit_cancellation": false,
+      "weights": [
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "canonical_support_sha256": "16e0175f933b3d7e13460cba74cdc8580ff0c2efc83d22e4d03ef901a3fb116e",
+      "certificate": {
+        "bytes": 30080,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-theorem-search/postwave-weighted-certificate-8.json",
+        "sha256": "fe96ac6fa6b756eee828ad00af7feb4a2d0461f1e595b6f095655e497add3634"
+      },
+      "equality_count": 8,
+      "historical_exact_matches": 0,
+      "inequality_count": 10,
+      "inequality_kinds": {
+        "k1": 4,
+        "k2": 6
+      },
+      "input": {
+        "bytes": 13798,
+        "path": "scratch/p97-exact17-piqd-refinement-round3-v1/wave5-analysis-8.json",
+        "sha256": "7527b4dbc5f7afc7dea6c5b831e58a080cabad071015aa43f875ef420b0f8596"
+      },
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+      "point_count": 12,
+      "unit_cancellation": true,
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "schema": "p97-exact17-piqd-postwave-theorem-search-v1",
+  "sources": [
+    {
+      "bytes": 10577,
+      "path": "scratch/p97-exact17-piqd-refinement-round3-v1/postwave_weighted_search.py",
+      "sha256": "edbfa2f2a1d659f4b1287edf2fc4581844d33907e856bf58860bb01d0f87373b"
+    },
+    {
+      "bytes": 12413,
+      "path": "scratch/rigid221-blockerv-exact17-20260806/mine_tracked_linear_supports.py",
+      "sha256": "1de75c0c9363e6d445083e42f39036aff27203ee228337093fa169e37ac6fe9f"
+    },
+    {
+      "bytes": 7015,
+      "path": "scratch/rigid221-blockerv-exact17-20260806/classify_unmatched_linear_supports.py",
+      "sha256": "11742bd1f4135d15acbde9404508008fff40f08cd8817e92efd78ada48caa434"
+    },
+    {
+      "bytes": 7176,
+      "path": "scratch/rigid221-blockerv-exact17-20260806/replay_weighted_kalmanson_consumer.py",
+      "sha256": "af0216b95898a0ee72ae354e27bbed32f8600a3f21b93904c9b5a0d21a648923"
+    },
+    {
+      "bytes": 75752,
+      "path": "census/atail_force/producer_bank.py",
+      "sha256": "d1a13526ecf8786e716fc6bb36954c53f0e7787d771b6cadaf0f30a84e76f820"
+    },
+    {
+      "bytes": 42287,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean",
+      "sha256": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d"
+    }
+  ],
+  "status": "complete"
+}

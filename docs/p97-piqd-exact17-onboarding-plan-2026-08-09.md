@@ -445,3 +445,19 @@ subsumed by the complete formula chain and 230 were novel.  PIQD admitted those
 root `postwave-wave4-base.cnf` has SHA-256
 `9fe6583cebeee38fc4874781a08ca9c8cc35b86590ba4889302511171bdab417`.
 Exact-17 and the production `sorry` remain open.
+
+Wave 5 repeated the gate before any further solve.  Eight source-verified SAT
+models all replayed as exact-linear contradictions and supplied 4,079
+model-specific clauses.  The mandatory search over the same 24,256 historical
+supports found eight new cardinality-independent weighted-Kalmanson instances.
+Seven use unit weights; one thirteen-point instance uses a larger positive
+combination over 35 strict inequalities.  The existing generic Lean consumer
+accepts all eight, so this is theorem-bank instance growth rather than a new
+theorem family.
+
+The 272 orbit candidates reduced to 225 novel clauses after 47 complete-chain
+subsumptions.  PIQD admitted those clauses and now agrees with normalized root
+`postwave-wave5-base.cnf`: 74,813 variables, 4,280,238 clauses, SHA-256
+`3de22b62ce5cff1b406718d86ae2c059f81b9c21d601379774add89cf33978b6`.
+The manifest remains explicit that exact-17 coverage, exact-17 closure, and
+production `sorry` closure are false.
