@@ -42,10 +42,30 @@ suffix has a concrete `CompiledNextRowJob` adapter.  The adapter proves source
 satisfiability of `baseDimacs ++ reconstructedClauseDelta` and agreement with
 the canonical source assignment on all base variables.  Targeted elaboration
 is green and its axiom audit contains no `sorryAx`; it inherits
-`Lean.trustCompiler` from the frozen native-evaluated encoding anchors.  The
-next gate is equality with each authenticated Python serialization.  There is
-still no terminal UNSAT cell, all-cell coverage, arbitrary-cardinality lift,
-or live closure.
+`Lean.trustCompiler` from the frozen native-evaluated encoding anchors.
+
+The current-source embedded-list replay checkpoint now materializes all twelve
+scheduled cells under `certificates/p97_exact12_next_row/`.  Every artifact
+records the semantic coordinate, frozen base and candidate hashes, a
+lane-specific source inventory, the exact 384-clause ordered suffix, and its
+complete DIMACS hash.  The generator rechecks the recorded inventory before
+publication; shared candidate/SAT code is pinned extensionally by the frozen
+candidate table, complete base-clause, complete DIMACS, and ordered-suffix
+hashes rather than claimed as a transitive source lockfile.  Twelve generated
+Lean modules embed the corresponding lists, prove ordered-list equality with
+`reconstructedClauseDelta`, prove the 384-clause length, and instantiate the
+conditional source-satisfiability `CompiledNextRowJob`.  Their aggregate import
+and the explicit first/last-cell axiom audit are green with no `sorryAx` and the
+documented native trust axioms.  Lean does not parse the JSON files or prove
+their SHA-256 string constants; the kernel-checked statement is equality with
+the embedded lists.  The aggregate is an import collection, not a coverage
+theorem.  The generator refuses overwrite, rejects coordinate/count/hash and
+frozen-input tampering, and has a byte-exact `--check` mode.  This establishes
+current Python generation and independent Lean reconstruction agree on those
+twelve embedded ordered lists only.  The next gate is a checked learned
+terminal bank or terminal RUP/UNSAT certificate consumed through these typed
+jobs.  There is still no terminal UNSAT cell, all-cell learned-bank coverage,
+arbitrary-cardinality lift, or live closure.
 
 Five-omission v3 checkpoint (2026-08-10): the authenticated twelve-shard wave
 completed 275 local refinements in every deleted-label shard.  Every run ended

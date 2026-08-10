@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221NextRowClauseDeltaArtifacts
+
+/-! Axiom audit for the current-source exact-12 clause-delta ingress. -/
+
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowClauseDeltaArtifact.cell0000ClauseDelta_eq
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowClauseDeltaArtifact.cell0011ClauseDelta_eq
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowCompiledJob.serializedCompiledNextRowJob

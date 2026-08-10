@@ -109,6 +109,24 @@ def reconstructedCompiledNextRowJob (cell : FrozenNextRowCell) :
         cell hrow hadded
     exact ⟨nextRowAssign cell blocker row d, hbase, hformula⟩
 
+/-- Transport the reconstructed source witness to an explicit serialized
+clause delta once the generated artifact proves ordered-list equality. -/
+def serializedCompiledNextRowJob (cell : FrozenNextRowCell)
+    (serializedDelta : List (List Int))
+    (hserialized : reconstructedClauseDelta cell = serializedDelta) :
+    CompiledNextRowJob
+      (cell.1 : Label × Label).1 (cell.1 : Label × Label).2 where
+  dimacs := SafeCoverCnf.baseDimacs ++ serializedDelta
+  sourceWitness := by
+    intro row blocker hrow hadded
+    obtain ⟨σ, hbase, hformula⟩ :=
+      (reconstructedCompiledNextRowJob cell).sourceWitness hrow hadded
+    refine ⟨σ, hbase, ?_⟩
+    intro c hc
+    apply hformula c
+    change c ∈ reconstructedCompleteDimacs cell
+    simpa [reconstructedCompleteDimacs, hserialized] using hc
+
 end FrozenNextRowCompiledJob
 end ExactTwelveRigid221Ingress
 end ATailFrontierLiveClosure
