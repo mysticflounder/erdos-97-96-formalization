@@ -343,3 +343,31 @@ working, source-connected PIQD CEGAR loop, not exact-17 coverage, universal
 lift, a proof-producing UNSAT handoff, or closure of a Lean `sorry`.  The
 latest model still contains a bank hit, so the next production action is
 another checked refinement rather than a closure claim.
+
+A third authenticated session has continued that refinement loop.  Session
+`667fd23e-3588-4e02-b555-44f806c8c6ac` reconstructed the exact
+4,254,382-clause endpoint above, then admitted two more source-backed
+two-Kalmanson batches containing 118 and 858 clauses.  The clause-admission
+gate checked all 976 clauses as model-violated, novel, and covered by
+`false_of_twoKalmansonLabelCancellationData`.  The resulting 4,255,358-clause
+export has SHA-256
+`8bf247e1cf12283aca6e4e5f520cd90eccecd146ba295781da743308322e04ab`.
+
+PIQD returned SAT after each refinement, and all three total models passed
+source-semantic replay.  The last model still contains another theorem-bank
+hit, so this is further branch contraction and theorem-bank reuse, not
+exact-17 closure.  The session was frozen and closed to permit deployment of
+PIQD's proof-certificate clause-map endpoint.  The detailed finite ledger is
+`scratch/p97-exact17-piqd-refinement-round3-v1/RESULTS.md`.
+
+The mandatory post-wave general-theorem search is now complete for all three
+models. Direct scans of the previously named short motifs were negative, but
+forced exact linear replay found three previously unseen dihedral support
+signatures. Each is a positive weighted Kalmanson cancellation accepted by
+the existing cardinality-generic kernel-clean consumer
+`false_of_weightedKalmansonCancellationData_of_check`; two use unit weights,
+while the ten-point instance uses one coefficient of two. None occurs among
+24,256 historical tracked supports. The replayable evidence is
+`scratch/p97-exact17-piqd-refinement-round3-v1/postwave-theorem-search.json`.
+This is reusable theorem-bank expansion and supplies the next static cuts; it
+does not establish exact-17 coverage or close a production `sorry`.

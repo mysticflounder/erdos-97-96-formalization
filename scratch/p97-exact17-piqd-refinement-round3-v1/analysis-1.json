@@ -1,0 +1,546 @@
+{
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "appended_receipt_assignment_verified": true,
+  "appended_receipt_clauses": 0,
+  "appended_receipt_clauses_checked": 0,
+  "auxiliary_variables": 74528,
+  "bank_hits": [
+    {
+      "core": {
+        "boundary_labels": [
+          0,
+          6,
+          8,
+          11,
+          10,
+          9,
+          12,
+          7,
+          2,
+          15,
+          16,
+          3,
+          4,
+          5,
+          1,
+          13,
+          14
+        ],
+        "first_form": "innerOuter",
+        "first_quad": [
+          0,
+          7,
+          11,
+          14
+        ],
+        "paths": [
+          {
+            "first": [
+              7,
+              11
+            ],
+            "last": [
+              7,
+              14
+            ],
+            "steps": [
+              {
+                "center": 7,
+                "first": 11,
+                "kind": "row",
+                "second": 14
+              }
+            ]
+          },
+          {
+            "first": [
+              0,
+              14
+            ],
+            "last": [
+              1,
+              14
+            ],
+            "steps": [
+              {
+                "first": 0,
+                "kind": "flip",
+                "second": 14
+              },
+              {
+                "center": 14,
+                "first": 0,
+                "kind": "row",
+                "second": 1
+              },
+              {
+                "first": 14,
+                "kind": "flip",
+                "second": 1
+              }
+            ]
+          },
+          {
+            "first": [
+              13,
+              14
+            ],
+            "last": [
+              13,
+              15
+            ],
+            "steps": [
+              {
+                "center": 13,
+                "first": 14,
+                "kind": "row",
+                "second": 15
+              }
+            ]
+          },
+          {
+            "first": [
+              1,
+              15
+            ],
+            "last": [
+              0,
+              11
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 15,
+                "kind": "row",
+                "second": 0
+              },
+              {
+                "first": 1,
+                "kind": "flip",
+                "second": 0
+              },
+              {
+                "center": 0,
+                "first": 1,
+                "kind": "row",
+                "second": 11
+              }
+            ]
+          }
+        ],
+        "permutation": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "row_choices": [
+          {
+            "center": 0,
+            "support": [
+              1,
+              2,
+              11,
+              16
+            ]
+          },
+          {
+            "center": 1,
+            "support": [
+              0,
+              3,
+              9,
+              15
+            ]
+          },
+          {
+            "center": 2,
+            "support": [
+              1,
+              5,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 3,
+            "support": [
+              2,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "support": [
+              2,
+              5,
+              12,
+              15
+            ]
+          },
+          {
+            "center": 5,
+            "support": [
+              1,
+              7,
+              10,
+              16
+            ]
+          },
+          {
+            "center": 6,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "support": [
+              3,
+              5,
+              11,
+              14
+            ]
+          },
+          {
+            "center": 8,
+            "support": [
+              4,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "support": [
+              3,
+              4,
+              8,
+              16
+            ]
+          },
+          {
+            "center": 10,
+            "support": [
+              2,
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "center": 11,
+            "support": [
+              3,
+              6,
+              10,
+              12
+            ]
+          },
+          {
+            "center": 12,
+            "support": [
+              4,
+              10,
+              13,
+              15
+            ]
+          },
+          {
+            "center": 13,
+            "support": [
+              9,
+              12,
+              14,
+              15
+            ]
+          },
+          {
+            "center": 14,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 15,
+            "support": [
+              4,
+              6,
+              12,
+              13
+            ]
+          },
+          {
+            "center": 16,
+            "support": [
+              0,
+              2,
+              10,
+              12
+            ]
+          }
+        ],
+        "second_form": "innerOuter",
+        "second_quad": [
+          1,
+          13,
+          14,
+          15
+        ]
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+      "metadata": {
+        "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+      },
+      "orientation": "forward",
+      "source": "metric-bank-equality-closure",
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "cadical_log": "scratch/p97-exact17-piqd-refinement-round3-v1/model-1.log",
+  "clauses": 4254382,
+  "cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/pre-round3.cnf + 0 ordered PIQD cut receipts",
+  "cnf_assignment_verified": true,
+  "cut_receipt_chain_verified": true,
+  "cut_receipt_sha256s": [],
+  "cut_receipts": [],
+  "fifth_center": 6,
+  "first_bank_hit_replayed": true,
+  "formula_ingress": "authenticated-root-dimacs-plus-ordered-piqd-cut-receipts",
+  "linear_core_rows": null,
+  "linear_replay_requested": false,
+  "linear_status": null,
+  "minimized_bank_witnesses": null,
+  "minimized_first_bank_rows": null,
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "piqd_session_id": "667fd23e-3588-4e02-b555-44f806c8c6ac",
+  "piqd_solve_receipt_verified": true,
+  "primary_variables": 285,
+  "root_clauses": 4254382,
+  "root_cnf": "scratch/p97-exact17-piqd-refinement-round3-v1/pre-round3.cnf",
+  "root_cnf_assignment_verified": true,
+  "root_cnf_sha256": "cf1787a45bb8d0e7b434cf2f733581b08b8a83baebbba22d7efae3aad8cf74bd",
+  "rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "support": [
+        3,
+        6,
+        8,
+        14
+      ]
+    },
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        0,
+        2,
+        6,
+        9
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        3,
+        7,
+        10,
+        16
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        4,
+        11,
+        12,
+        16
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "support": [
+        5,
+        10,
+        13,
+        16
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "support": [
+        1,
+        4,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 6,
+      "exact": true,
+      "support": [
+        0,
+        11,
+        13,
+        15
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "support": [
+        1,
+        3,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "exact": true,
+      "support": [
+        1,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "center": 9,
+      "exact": true,
+      "support": [
+        6,
+        7,
+        14,
+        16
+      ]
+    },
+    {
+      "center": 10,
+      "exact": true,
+      "support": [
+        4,
+        8,
+        9,
+        13
+      ]
+    },
+    {
+      "center": 11,
+      "exact": true,
+      "support": [
+        3,
+        8,
+        10,
+        15
+      ]
+    },
+    {
+      "center": 12,
+      "exact": false,
+      "support": [
+        7,
+        9,
+        10,
+        15
+      ]
+    },
+    {
+      "center": 13,
+      "exact": false,
+      "support": [
+        4,
+        5,
+        10,
+        12
+      ]
+    },
+    {
+      "center": 14,
+      "exact": false,
+      "support": [
+        0,
+        4,
+        8,
+        16
+      ]
+    },
+    {
+      "center": 15,
+      "exact": false,
+      "support": [
+        2,
+        10,
+        11,
+        14
+      ]
+    },
+    {
+      "center": 16,
+      "exact": false,
+      "support": [
+        2,
+        5,
+        7,
+        8
+      ]
+    }
+  ],
+  "schema": "p97-rigid221-exact17-source-faithful-piqd-model-analysis-v1",
+  "solve_receipt": "scratch/p97-exact17-piqd-refinement-round3-v1/solve-1.json",
+  "solve_receipt_sha256": "40f667afcbb449e0e36807352a9655019b2b253e1b9aafc4341c445170f2ad72",
+  "source_independent_model_checker_verified": true,
+  "source_structural_cut_counts": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_z3_assignment_verified": true,
+  "static_bank_assignment_verified_via_direct_cnf": true,
+  "unreplayed_bank_hit_proposals": [],
+  "variables": 74813
+}

@@ -1,0 +1,37 @@
+{
+  "model_literals": 74813,
+  "model_log": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-exact17-piqd-refinement-round3-v1/model-1.log",
+  "model_log_sha256": "8c99713f7df2e1ab7d054977c6290ad3feb066740e4f23e39ffe0123054fc6d2",
+  "schema": "p97-piqd-sat-session-model-capture-v1",
+  "session_before": {
+    "clauses": 4254382,
+    "created_at": 1786323240,
+    "id": "667fd23e-3588-4e02-b555-44f806c8c6ac",
+    "journal_path": "/Users/adam/.piqd/sessions/667fd23e-3588-4e02-b555-44f806c8c6ac/journal.cnf",
+    "label": "P97 exact17 Rank-Four checked refinement round 3",
+    "lane": "sat",
+    "last_status": null,
+    "max_var": 74813,
+    "protocol_version": 1,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "solver_stats": {
+      "active": 74781,
+      "clauses_added": 4254382,
+      "irredundant": 3523190,
+      "solve_ms_total": 0,
+      "solves": 0,
+      "vars": 74813
+    },
+    "solves": 0,
+    "state": "live",
+    "updated_at": 1786323284
+  },
+  "solve_response": {
+    "result_sha256": "e6fc622febc7a3387c07c02ee675a889144fe4bb3a4563ce0859a6b1dbb026c3",
+    "solve_index": 1,
+    "solve_ms": 6502,
+    "status": "SAT"
+  }
+}
