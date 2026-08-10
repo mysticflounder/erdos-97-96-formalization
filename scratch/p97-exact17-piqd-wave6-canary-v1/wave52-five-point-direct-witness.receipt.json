@@ -1,0 +1,127 @@
+{
+  "candidate_inventory": [
+    {
+      "atoms": [
+        [
+          7,
+          11
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          15,
+          11
+        ],
+        [
+          15,
+          7
+        ],
+        [
+          15,
+          5
+        ]
+      ],
+      "clause": [
+        -123,
+        -114,
+        -252,
+        -248,
+        -246
+      ],
+      "points": [
+        11,
+        7,
+        15,
+        5,
+        1
+      ]
+    }
+  ],
+  "chosen": {
+    "atoms": [
+      [
+        7,
+        11
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        15,
+        11
+      ],
+      [
+        15,
+        7
+      ],
+      [
+        15,
+        5
+      ]
+    ],
+    "clause": [
+      -123,
+      -114,
+      -252,
+      -248,
+      -246
+    ],
+    "clause_length": 5,
+    "fresh_model_blocking": true,
+    "points": [
+      11,
+      7,
+      15,
+      5,
+      1
+    ],
+    "previously_present": false
+  },
+  "emission_mode": "one-fresh-model-witness",
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave52-five-point-direct-witness.fragment.cnf",
+  "fragment_sha256": "920ff61daf7b89bf909fafe4a4b3a6dfe4781f09b3bd2b34b074e07378b0b3ae",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave52-preappended.theorem-gate-report.json",
+    "gate_report_sha256": "8694deadca9c50d7c1842da361bef79f74d5303e4e8c6ba8f97384c98cf00ad9",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave52-preappended.model.json",
+    "model_sha256": "3c2128bc99b0177d8ef3146d0e7733ecb73de23bec34f707b319805a700cbfb3",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave51-generic-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave51-generic-witness.receipt.json",
+    "root_receipt_sha256": "6491e9d7215bc89559fcc79062fe3953b056d0d38567f86b060c97126d9777e5",
+    "root_sha256": "ed6826da2eff8d235a2a129116f5b95a30cba197f15b6efc737b8fc0064581f1"
+  },
+  "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+  "novel_clause_count": 1,
+  "output_clauses": 5895215,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave52-five-point-direct-witness.cnf",
+  "output_root_sha256": "ad26e1202787b0b5ce9bc0923b1b7406edecbc15c70584a299b156da9ad43aa9",
+  "output_variables": 74813,
+  "schema": "p97-exact17-five-point-direct-consumer-witness/v1",
+  "selection_policy": "lexicographically-first-violated-anchored-occurrence",
+  "source_checks": {
+    "bank_replay_ok": true,
+    "bank_replay_required": true,
+    "cnf_assignment_verified": true,
+    "first_bank_hit_replayed": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "row_source": "complete-authenticated-model-rows",
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "static_bank_hit_count": 1
+  },
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean": "4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_direct_consumer_witness.py": "880f39f517c9a041e7bbf66159d170079a4580f0c104fbc68dc202339ce62c9f",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This appends one exact-17 instance of a cardinality-generic Lean consumer; it is not exact-17 coverage or universal P97 closure."
+}

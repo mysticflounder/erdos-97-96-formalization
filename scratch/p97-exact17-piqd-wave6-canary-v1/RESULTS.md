@@ -694,3 +694,39 @@ append.  The live frontier remains at solve index 46 and is ready for Wave 52.
 
 Exact 17 remains SAT and open.  Wave 51 closed no production `sorry` and proved
 no exact-cardinality or universal theorem.
+
+## Waves 52-53: direct five-point consumers replace generic orbit growth
+
+Wave 52 solved the authenticated Wave 51 successor SAT at solve index 47.
+The total model passed complete CNF replay and was rejected by exact linear
+arithmetic and the existing generic two-Kalmanson-cancellation theorem.  The
+mandatory selected-row matcher then found a smaller fixed-order instance of
+`FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`.  The lazy
+policy admitted only its witnessed five-literal clause:
+
+`-123 -114 -252 -248 -246 0`.
+
+The live PIQD export matched the resulting 5,895,215-clause root byte-for-byte,
+with SHA-256
+`ad26e1202787b0b5ce9bc0923b1b7406edecbc15c70584a299b156da9ad43aa9`.
+
+Wave 53 solved that authenticated root SAT at solve index 48.  The static
+accumulated family missed the model, while exact linear replay and the complete
+theorem bank again rejected it.  The required general-theorem search found one
+anchored main five-point instance, three anchored reversed-second instances,
+and one anchored two-triple-row six-point instance.  The smallest fixed-order
+consumer authorizes only:
+
+`-123 -125 -252 -248 -246 0`.
+
+This is one clause, not the 148,512-clause generic orbit.  The authenticated
+successor has 5,895,216 clauses and SHA-256
+`140c27618f8d12528cefd52a943caa3d254406163f461731f713a775f9a351b5`.
+At this checkpoint it has not yet been appended to the live session.  The
+Wave 53 controller took about 155.5 seconds end-to-end after encountering a
+detached session, although the reported CaDiCaL solve itself took 130 ms; the
+large root is therefore imposing a substantial rehydration and custody cost
+even when the incremental solve is cheap.
+
+Exact 17 remains SAT and open.  Neither wave closed a production `sorry` or
+proved an exact-cardinality or universal theorem.

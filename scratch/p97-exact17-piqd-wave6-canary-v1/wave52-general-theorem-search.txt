@@ -1,0 +1,101 @@
+Wave52 mandatory global theorem search (2026-08-10)
+====================================================
+
+Authenticated inputs
+--------------------
+
+- frozen root: `postgate-wave51-generic-witness.cnf`
+- frozen root SHA256:
+  `ed6826da2eff8d235a2a129116f5b95a30cba197f15b6efc737b8fc0064581f1`
+- fresh model: `wave52-preappended.model.json`
+- fresh model SHA256:
+  `3c2128bc99b0177d8ef3146d0e7733ecb73de23bec34f707b319805a700cbfb3`
+- solve capture: `wave52-preappended.capture.json`
+- solve-capture SHA256:
+  `00c2ee02c544488d21abd681ea8046ffc8222a003d038f5d8be0e384aa9f8489`
+- theorem-gate report: `wave52-preappended.theorem-gate-report.json`
+- theorem-gate SHA256:
+  `8694deadca9c50d7c1842da361bef79f74d5303e4e8c6ba8f97384c98cf00ad9`
+
+The gate report authenticates a total PIQD model, independent CNF-assignment
+replay, all seventeen selected rows, and exact-arithmetic rejection by the
+existing generic theorem bank.  Its accumulated-family matcher tested
+1,967,784 clauses from thirteen motifs and found no already-materialized
+instance.
+
+Indexed theorem-bank search
+---------------------------
+
+The live Lean corpus at source `c327a7d3` was searched for five-point,
+six-point, UniqueFour Kalmanson, and generic cancellation consumers.  Relevant
+verified hits included:
+
+- `Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`
+  (`18GT3Z`);
+- `Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities`
+  (module hit `F5NSKY`);
+- `Problem97.UniqueFourKalmansonCores.false_of_one_k1_three_cyclic_selected_rows`
+  (`MMG8F1`);
+- `Problem97.UniqueFourKalmansonCores.false_of_one_k2_two_k1_three_selected_rows`
+  (`N9T718`); and
+- `Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`
+  (`7KY6QX`).
+
+The seven historical general-n registry artifacts were also searched directly
+for these declaration names; none of the direct five-point, two-triple-row, or
+UniqueFour declarations occurs in those registries.  The source-indexed Lean
+corpus is therefore load-bearing for this wave's broader bank coverage.
+
+Exact direct scan of the authenticated Wave52 rows
+--------------------------------------------------
+
+`wave52-selected-row-witness.json` was derived from the authenticated theorem
+gate and replayed through `theorem_shape_matcher.py`.  The resulting
+`wave52-theorem-shape-match-report.json` has SHA256
+`a07d8da0350b622c8c39c5db281f9e6622610b46290bec5a4195a953d80a1f1b`.
+For the fixed increasing boundary order it found:
+
+- zero four-point direct-consumer hits;
+- one `false_of_five_ccw_two_selected_rows` hit, on
+  `[11, 7, 15, 5, 1]`;
+- two reversed-five-point hits;
+- one `false_of_six_ccw_two_triple_row_equalities` hit, on
+  `[11, 7, 2, 16, 5, 14]`;
+- zero anchored sparse-six hits;
+- zero `false_of_one_k1_three_cyclic_selected_rows` hits among 2,380
+  increasing quadruples; and
+- zero `false_of_one_k2_two_k1_three_selected_rows` hits among 6,188
+  increasing quintuples.
+
+The matcher also reports cyclic-rotation candidates.  They are diagnostic only
+in this refinement: the emitted clause uses the fixed increasing-order ingress
+whose Lean consumer and exact-17 atom map have both been checked.
+
+Reusable general theorem selected
+---------------------------------
+
+The smallest anchored obstruction is
+`FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`.  Its five
+selected-row atoms are
+
+    (7,11), (7,1), (15,11), (15,7), (15,5),
+
+which map to the previously absent exact-17 clause
+
+    -123 -114 -252 -248 -246 0
+
+and are all true in the fresh model.  The targeted Lean module build succeeded,
+and `#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound`;
+there is no `sorryAx` or compiler-trust dependency.  The checked Lean source
+SHA256 is
+`4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c`.
+
+The one-clause witness receipt is
+`wave52-five-point-direct-witness.receipt.json` with SHA256
+`54c3a4917912204e149fd612ad32c7861df8074f5214305657684250116edc77`.
+Its proposed successor has 5,895,215 clauses and SHA256
+`ad26e1202787b0b5ce9bc0923b1b7406edecbc15c70584a299b156da9ad43aa9`.
+
+This is one exact-17 instance of a cardinality-generic theorem.  It eliminates
+only the fresh abstract model.  Exact-17, the universal Rigid221 residual, and
+full P97 remain open.

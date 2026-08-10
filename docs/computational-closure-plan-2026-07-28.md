@@ -7635,3 +7635,44 @@ theorem.
 This checkpoint is a **finite CEGAR soundness repair and strengthened search
 round**, not exact-17 closure, not closure of the Rigid221 production leaf, and
 not full P97 closure.
+
+## 13.26 Exact-17 lazy PIQD Wave53 checkpoint (2026-08-10)
+
+The later lazy PIQD lane has reached Wave53 without changing the claim
+boundary.  The Wave53 controller processed the authenticated
+5,895,215-clause root `postgate-wave52-five-point-direct-witness.cnf` as `SAT`
+in 155.5 seconds end-to-end after encountering a detached session.  PIQD
+reported only 130 ms inside CaDiCaL; the remaining time is root rehydration
+and custody overhead.
+The returned model is total and satisfies the complete DIMACS root.  Source
+replay and exact linear arithmetic reject its selected-row equality system.
+The accumulated static family missed the model, but the complete theorem bank
+found an existing cardinality-independent two-Kalmanson-cancellation
+certificate.
+
+The mandatory post-wave search then ran the complete selected-row theorem
+matcher rather than admitting the large generic orbit.  It found one anchored
+instance of
+`FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`, three
+anchored instances of its reversed-second companion, and one anchored instance
+of
+`TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities`.
+There was no anchored four-point consumer.  The smallest fixed-order ingress
+therefore authorizes exactly the five-literal clause
+`[-123, -125, -252, -248, -246]` on boundary points
+`[11, 7, 15, 5, 13]`.
+
+The authenticated but not-yet-live successor is
+`postgate-wave53-five-point-direct-witness.cnf`: 74,813 variables,
+5,895,216 clauses, SHA-256
+`140c27618f8d12528cefd52a943caa3d254406163f461731f713a775f9a351b5`.
+The Wave53 post-wave receipt validates and binds the solve, model, source
+analysis, repository-wide theorem search, Lean consumer, one-clause fragment,
+and successor root.
+
+At nearly 5.9 million clauses, formula growth is now a material engineering
+cost.  Future lazy waves should prefer one witnessed clause from the smallest
+direct consumer over a complete generic orbit.  A further refinement is
+justified only after the same mandatory search shows what reusable theorem or
+previously banked consumer rejects the fresh model.  This checkpoint is finite
+branch contraction only: exact-17 coverage, universal P97 closure, and a

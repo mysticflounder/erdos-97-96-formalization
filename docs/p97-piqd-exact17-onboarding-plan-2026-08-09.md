@@ -505,3 +505,32 @@ directory.  This confirms the mandatory cadence: authenticate, search the
 accumulated data for a general theorem, verify or bank its Lean consumer, and
 only then refine.  Exact-17, universal coverage, and the production `sorry`
 remain open.
+
+### Lazy-lane status after Wave53
+
+The active exact-17 session is
+`66835651-f5f2-4034-8de7-f047524fa305`.  Its Wave53 solve returned a total SAT
+model at solve index 48 for the 5,895,215-clause root with SHA-256
+`ad26e1202787b0b5ce9bc0923b1b7406edecbc15c70584a299b156da9ad43aa9`.
+The preappended controller took 155.5 seconds end-to-end after encountering a
+detached session, while PIQD reported only 130 ms inside CaDiCaL.  The
+difference is root rehydration and custody overhead, so the 5.9-million-clause
+formula is already expensive even when the incremental solve is cheap.  The
+complete static accumulated family missed the model, while the source-backed
+theorem bank and exact linear replay both rejected it.
+
+The mandatory general-theorem search found several direct fixed-order
+consumers in the existing Lean bank.  The smallest is the five-point theorem
+`Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`.
+Its source remains axiom-clean apart from `propext`, `Classical.choice`, and
+`Quot.sound`.  The resulting successor adds only the witnessed five-literal
+clause `[-123, -125, -252, -248, -246]`; it deliberately does not add the
+148,512-clause generic orbit.
+
+The successor root has 5,895,216 clauses and SHA-256
+`140c27618f8d12528cefd52a943caa3d254406163f461731f713a775f9a351b5`.
+At this checkpoint it is authenticated but has not yet been appended to the
+live PIQD session.  The next operation is therefore exactly one receipt-gated
+`add` followed by export/hash comparison; only then may Wave54 run.  No second
+daemon should be launched against the current data directory before the
+running daemon is deliberately restarted onto the fixed startup-order binary.

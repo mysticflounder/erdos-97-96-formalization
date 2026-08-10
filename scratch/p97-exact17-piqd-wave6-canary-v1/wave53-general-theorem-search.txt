@@ -1,0 +1,58 @@
+Exact17 PIQD Wave53 mandatory post-wave general theorem search
+================================================================
+
+Scope
+-----
+
+- input root: `postgate-wave52-five-point-direct-witness.cnf`
+- root SHA-256: `ad26e1202787b0b5ce9bc0923b1b7406edecbc15c70584a299b156da9ad43aa9`
+- solve index: 48 (Wave53; predecessor solve index 47)
+- model SHA-256: `3b9a21e44aaabc6602b1955114f37537b0c3f4969dcac7bc31ea8822ead48942`
+- theorem-gate report SHA-256: `fd37dd8063f3a5516c2bb1bd675157aa54053170da9ac77460b63913ced5389e`
+- selected-row witness SHA-256: `b156f04832b9daa546087a54e4d73326387d67c43350e1f4ff18d91b38849afe`
+- theorem-shape matcher report SHA-256: `f19d3677f90689632834d2c1a81d15496049b6a91e15eb528d7a3bfff0c83229`
+
+Authenticated gate result
+-------------------------
+
+The PIQD model is total and satisfies all 5,895,215 input clauses.  Exact
+linear arithmetic rejects its selected-row equality system.  The accumulated
+static family has no hit, but the full theorem bank has one source-backed hit:
+
+`Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`.
+
+Thus Wave53 is a fresh static-family miss, not a new mathematical obstruction.
+
+Repository-wide theorem search
+------------------------------
+
+The Lean corpus was searched for five-point, six-point, selected-row,
+Kalmanson-cancellation, and exact17 reusable Euclidean obstructions.  The
+canonical seven general-n mining registry files were also searched directly.
+The latter contain no direct entry for the consumers below.
+
+Running the complete selected-row theorem-shape matcher found:
+
+- one anchored match for
+  `FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`, on
+  increasing boundary points `[11, 7, 15, 5, 13]`;
+- three anchored matches for
+  `FivePointEuclideanObstruction.false_of_five_ccw_reversed_second_two_selected_rows`;
+- one anchored match for
+  `TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities`;
+- no anchored four-point match.
+
+There are additional cyclic-rotation diagnostics, but only fixed increasing-
+order matches count as direct production ingress.  The smallest direct
+consumer is therefore the five-point theorem already built and axiom-audited
+for Wave52.  Its source file is unchanged, with SHA-256
+`4b6f865890a298126c0df72fa2363850ee5b50c5160ccee70bdade22522f3d1c`, and
+its axiom set is `[propext, Classical.choice, Quot.sound]`.
+
+Decision
+--------
+
+Authorize at most the single five-literal clause corresponding to the fixed
+increasing-order match `[11, 7, 15, 5, 13]`.  Do not expand the whole generic
+orbit.  This is reuse of a cardinality-independent theorem, not exact17,
+universal-P97, or production-`sorry` closure.
