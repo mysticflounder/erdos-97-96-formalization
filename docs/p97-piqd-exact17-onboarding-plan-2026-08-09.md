@@ -477,3 +477,31 @@ subsumptions.  PIQD admitted those clauses and agrees with normalized root
 The next solver wave remains gated on analysis of the accumulated wave data for
 a stronger recurring theorem or motif.  Exact-17 and the production `sorry`
 remain open.
+
+The accumulated-data canary and its next two successors have now completed
+that stronger gate.  A deterministic audit of 43 source-verified historical
+models found 1,025 exact two-Kalmanson witnesses and 528 cyclic motifs.  No
+single motif covered every historical model, so the resulting thirteen-motif
+family is diagnostic rather than a finite coverage theorem.  Each motif is,
+however, an instance of the existing cardinality-generic Lean theorem
+`false_of_twoKalmansonCancellationData_of_check`.
+
+Starting from the 4,286,333-clause wave-6 root, the first fresh PIQD model hit
+motifs 0 and 8.  Their two complete dihedral orbits contributed 297,024 novel
+clauses.  The next authenticated model hit motif 3, and the following model
+hit motif 1; each contributed another 148,512 novel clauses.  Every model was
+total, independently checked against its complete DIMACS root, replayed
+through the source semantics, and rejected by exact linear arithmetic.  A
+fresh Lean axiom audit of the shared consumer reported only `propext`,
+`Classical.choice`, and `Quot.sound`, with neither `sorryAx` nor compiler
+trust.
+
+The next frozen root is
+`scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave8-motif1.cnf`:
+74,813 variables, 4,880,381 clauses, SHA-256
+`8547bd6b3675e7db0dc7088bdba19ba28ec9851f7f0616c518d87b1870616250`.
+The detailed receipts and theorem-gate reports are in the same scratch
+directory.  This confirms the mandatory cadence: authenticate, search the
+accumulated data for a general theorem, verify or bank its Lean consumer, and
+only then refine.  Exact-17, universal coverage, and the production `sorry`
+remain open.

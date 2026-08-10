@@ -1,0 +1,72 @@
+{
+  "already_present_clause_count": 0,
+  "candidate_clause_count": 148512,
+  "candidate_clause_count_before_cross_motif_dedup": 148512,
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave8-motif1.fragment.cnf",
+  "fragment_sha256": "e592007104c8b336d864a465bc3f3121f0a7c7be444c62ab96bb5d341b3cd2d0",
+  "inputs": {
+    "compiler_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-exact17-piqd-refinement-round3-v1/compile_accumulated_two_kalmanson_motif_family.py",
+    "compiler_source_sha256": "9b2e10c63e5204cf821787cbb7c27a82e071be5c8449984dbcf7f2279e35d881",
+    "exporter_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py",
+    "exporter_source_sha256": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3",
+    "family_receipt": "scratch/p97-exact17-piqd-refinement-round3-v1/accumulated-cost-aware-family.receipt.json",
+    "family_receipt_sha256": "4cc74fca72a57239931675bc0c2b53fd3c44711597e18c8698ff4ed69607f6d1",
+    "lean_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean",
+    "lean_source_sha256": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave7-motif3.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave7-motif3.receipt.json",
+    "root_receipt_sha256": "bc15ea75ccb8f3c78251e8ca98927f19217e112ad0d7dc7250b9505d8ee91f93",
+    "root_sha256": "082ba16211c9e516db51088cf6437e552a0f36b8f4d23751484b9d73e7a272ef"
+  },
+  "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+  "motifs": [
+    {
+      "candidate_clause_count": 148512,
+      "candidate_clause_sha256": "3437baefa7cb6e4e8530b0137c81f259719e4522b1d5822d78f646832c9ff5de",
+      "index": 1,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ]
+    }
+  ],
+  "novel_clause_count": 148512,
+  "output_clauses": 4880381,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave8-motif1.cnf",
+  "output_root_sha256": "8547bd6b3675e7db0dc7088bdba19ba28ec9851f7f0616c518d87b1870616250",
+  "output_variables": 74813,
+  "schema": "p97-exact17-two-kalmanson-hit-orbits/v1",
+  "status": "checked-source-backed-refinement"
+}

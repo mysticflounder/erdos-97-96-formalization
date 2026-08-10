@@ -1,0 +1,861 @@
+{
+  "cnf_assignment_verified": true,
+  "family": {
+    "family_sha256": "6972f2636b04e1e529bff82bee8290ccfa98dd8352af2a0e5d7ed9d85cd310d4",
+    "hit_count": 1,
+    "hits": [
+      {
+        "first_violated_clause": [
+          -224,
+          -217,
+          -185,
+          -182,
+          -144,
+          -141,
+          -77,
+          -69
+        ],
+        "motif": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "motif_index": 1,
+        "violated_clause_count": 1
+      }
+    ],
+    "motif_count": 13,
+    "tested_clause_count": 1967784
+  },
+  "inputs": {
+    "cnf": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave7-motif3.cnf",
+    "cnf_sha256": "082ba16211c9e516db51088cf6437e552a0f36b8f4d23751484b9d73e7a272ef",
+    "family_receipt": "scratch/p97-exact17-piqd-refinement-round3-v1/accumulated-cost-aware-family.receipt.json",
+    "family_receipt_sha256": "4cc74fca72a57239931675bc0c2b53fd3c44711597e18c8698ff4ed69607f6d1",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave8-model.json",
+    "model_sha256": "db86dc7d01c8139353af4453fbf3f36d8efd077fb36ca6d24716d1ac1320f087",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave7-motif3.receipt.json",
+    "root_receipt_sha256": "bc15ea75ccb8f3c78251e8ca98927f19217e112ad0d7dc7250b9505d8ee91f93"
+  },
+  "piqd_model_total": true,
+  "schema": "p97-exact17-piqd-postwave-family-gate/v2",
+  "source_analysis": {
+    "anonymous_positions": [
+      0,
+      1
+    ],
+    "auxiliary_variables": 74528,
+    "bank_hits": [
+      {
+        "core": {
+          "boundary_labels": [
+            0,
+            6,
+            8,
+            11,
+            10,
+            9,
+            12,
+            7,
+            2,
+            15,
+            16,
+            3,
+            4,
+            5,
+            1,
+            13,
+            14
+          ],
+          "first_form": "adjacentSides",
+          "first_quad": [
+            1,
+            3,
+            13,
+            16
+          ],
+          "paths": [
+            {
+              "first": [
+                1,
+                3
+              ],
+              "last": [
+                2,
+                5
+              ],
+              "steps": [
+                {
+                  "center": 1,
+                  "first": 3,
+                  "kind": "row",
+                  "second": 2
+                },
+                {
+                  "first": 1,
+                  "kind": "flip",
+                  "second": 2
+                },
+                {
+                  "center": 2,
+                  "first": 1,
+                  "kind": "row",
+                  "second": 5
+                }
+              ]
+            },
+            {
+              "first": [
+                13,
+                16
+              ],
+              "last": [
+                1,
+                13
+              ],
+              "steps": [
+                {
+                  "center": 13,
+                  "first": 16,
+                  "kind": "row",
+                  "second": 1
+                },
+                {
+                  "first": 13,
+                  "kind": "flip",
+                  "second": 1
+                }
+              ]
+            },
+            {
+              "first": [
+                2,
+                3
+              ],
+              "last": [
+                3,
+                16
+              ],
+              "steps": [
+                {
+                  "first": 2,
+                  "kind": "flip",
+                  "second": 3
+                },
+                {
+                  "center": 3,
+                  "first": 2,
+                  "kind": "row",
+                  "second": 16
+                }
+              ]
+            },
+            {
+              "first": [
+                5,
+                7
+              ],
+              "last": [
+                3,
+                7
+              ],
+              "steps": [
+                {
+                  "first": 5,
+                  "kind": "flip",
+                  "second": 7
+                },
+                {
+                  "center": 7,
+                  "first": 5,
+                  "kind": "row",
+                  "second": 3
+                },
+                {
+                  "first": 7,
+                  "kind": "flip",
+                  "second": 3
+                }
+              ]
+            }
+          ],
+          "permutation": [
+            2,
+            0,
+            1,
+            3
+          ],
+          "row_choices": [
+            {
+              "center": 0,
+              "support": [
+                1,
+                6,
+                11,
+                14
+              ]
+            },
+            {
+              "center": 1,
+              "support": [
+                2,
+                3,
+                12,
+                16
+              ]
+            },
+            {
+              "center": 2,
+              "support": [
+                1,
+                5,
+                10,
+                15
+              ]
+            },
+            {
+              "center": 3,
+              "support": [
+                2,
+                4,
+                13,
+                16
+              ]
+            },
+            {
+              "center": 4,
+              "support": [
+                2,
+                5,
+                9,
+                14
+              ]
+            },
+            {
+              "center": 5,
+              "support": [
+                1,
+                7,
+                11,
+                12
+              ]
+            },
+            {
+              "center": 6,
+              "support": [
+                4,
+                5,
+                7,
+                10
+              ]
+            },
+            {
+              "center": 7,
+              "support": [
+                0,
+                3,
+                5,
+                8
+              ]
+            },
+            {
+              "center": 8,
+              "support": [
+                0,
+                4,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 9,
+              "support": [
+                0,
+                6,
+                7,
+                12
+              ]
+            },
+            {
+              "center": 10,
+              "support": [
+                3,
+                4,
+                7,
+                14
+              ]
+            },
+            {
+              "center": 11,
+              "support": [
+                4,
+                6,
+                9,
+                13
+              ]
+            },
+            {
+              "center": 12,
+              "support": [
+                0,
+                11,
+                13,
+                15
+              ]
+            },
+            {
+              "center": 13,
+              "support": [
+                1,
+                7,
+                9,
+                16
+              ]
+            },
+            {
+              "center": 14,
+              "support": [
+                8,
+                12,
+                13,
+                16
+              ]
+            },
+            {
+              "center": 15,
+              "support": [
+                2,
+                10,
+                11,
+                13
+              ]
+            },
+            {
+              "center": 16,
+              "support": [
+                0,
+                8,
+                14,
+                15
+              ]
+            }
+          ],
+          "second_form": "adjacentSides",
+          "second_quad": [
+            2,
+            3,
+            5,
+            7
+          ]
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+        "metadata": {
+          "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+        },
+        "orientation": "forward",
+        "source": "metric-bank-equality-closure",
+        "stage": "equality-convex-two-kalmanson-cancellation"
+      }
+    ],
+    "cadical_log": "scratch/p97-exact17-piqd-wave6-canary-v1/wave8-model.json",
+    "clauses": 4731869,
+    "cnf": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave7-motif3.cnf",
+    "cnf_assignment_verified": true,
+    "fifth_center": 6,
+    "first_bank_hit_replayed": true,
+    "linear_core_rows": [
+      {
+        "center": 0,
+        "exact": false,
+        "support": [
+          1,
+          3,
+          12
+        ]
+      },
+      {
+        "center": 1,
+        "exact": false,
+        "support": [
+          2,
+          14
+        ]
+      },
+      {
+        "center": 2,
+        "exact": false,
+        "support": [
+          0,
+          10
+        ]
+      },
+      {
+        "center": 3,
+        "exact": false,
+        "support": [
+          5,
+          10,
+          12
+        ]
+      },
+      {
+        "center": 4,
+        "exact": false,
+        "support": [
+          0,
+          3
+        ]
+      },
+      {
+        "center": 6,
+        "exact": false,
+        "support": [
+          4,
+          14
+        ]
+      },
+      {
+        "center": 7,
+        "exact": false,
+        "support": [
+          0,
+          2
+        ]
+      },
+      {
+        "center": 9,
+        "exact": false,
+        "support": [
+          3,
+          4
+        ]
+      },
+      {
+        "center": 14,
+        "exact": false,
+        "support": [
+          0,
+          1
+        ]
+      }
+    ],
+    "linear_replay_requested": true,
+    "linear_status": "unsat",
+    "minimized_bank_witnesses": null,
+    "minimized_first_bank_rows": [
+      {
+        "center": 0,
+        "exact": false,
+        "support": [
+          1,
+          3,
+          6,
+          12
+        ]
+      },
+      {
+        "center": 1,
+        "exact": false,
+        "support": [
+          2,
+          4,
+          5,
+          14
+        ]
+      },
+      {
+        "center": 2,
+        "exact": false,
+        "support": [
+          0,
+          3,
+          10,
+          15
+        ]
+      },
+      {
+        "center": 3,
+        "exact": false,
+        "support": [
+          5,
+          10,
+          12,
+          15
+        ]
+      },
+      {
+        "center": 4,
+        "exact": false,
+        "support": [
+          0,
+          3,
+          5,
+          13
+        ]
+      },
+      {
+        "center": 5,
+        "exact": false,
+        "support": [
+          6,
+          7,
+          14,
+          15
+        ]
+      },
+      {
+        "center": 6,
+        "exact": true,
+        "support": [
+          4,
+          8,
+          11,
+          14
+        ]
+      },
+      {
+        "center": 7,
+        "exact": false,
+        "support": [
+          0,
+          2,
+          9,
+          11
+        ]
+      },
+      {
+        "center": 8,
+        "exact": true,
+        "support": [
+          6,
+          9,
+          13,
+          16
+        ]
+      },
+      {
+        "center": 9,
+        "exact": true,
+        "support": [
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      {
+        "center": 10,
+        "exact": true,
+        "support": [
+          1,
+          8,
+          9,
+          15
+        ]
+      },
+      {
+        "center": 11,
+        "exact": true,
+        "support": [
+          5,
+          8,
+          10,
+          14
+        ]
+      },
+      {
+        "center": 12,
+        "exact": false,
+        "support": [
+          7,
+          9,
+          10,
+          16
+        ]
+      },
+      {
+        "center": 13,
+        "exact": false,
+        "support": [
+          3,
+          5,
+          8,
+          16
+        ]
+      },
+      {
+        "center": 14,
+        "exact": false,
+        "support": [
+          0,
+          1,
+          2,
+          13
+        ]
+      },
+      {
+        "center": 15,
+        "exact": false,
+        "support": [
+          0,
+          4,
+          7,
+          12
+        ]
+      },
+      {
+        "center": 16,
+        "exact": false,
+        "support": [
+          1,
+          7,
+          10,
+          11
+        ]
+      }
+    ],
+    "order": [
+      0,
+      6,
+      8,
+      11,
+      10,
+      9,
+      12,
+      7,
+      2,
+      15,
+      16,
+      3,
+      4,
+      5,
+      1,
+      13,
+      14
+    ],
+    "order_index": 0,
+    "primary_variables": 285,
+    "rows": [
+      {
+        "center": 0,
+        "exact": false,
+        "support": [
+          1,
+          3,
+          6,
+          12
+        ]
+      },
+      {
+        "center": 1,
+        "exact": false,
+        "support": [
+          2,
+          4,
+          5,
+          14
+        ]
+      },
+      {
+        "center": 2,
+        "exact": false,
+        "support": [
+          0,
+          3,
+          10,
+          15
+        ]
+      },
+      {
+        "center": 3,
+        "exact": false,
+        "support": [
+          5,
+          10,
+          12,
+          15
+        ]
+      },
+      {
+        "center": 4,
+        "exact": false,
+        "support": [
+          0,
+          3,
+          5,
+          13
+        ]
+      },
+      {
+        "center": 5,
+        "exact": false,
+        "support": [
+          6,
+          7,
+          14,
+          15
+        ]
+      },
+      {
+        "center": 6,
+        "exact": true,
+        "support": [
+          4,
+          8,
+          11,
+          14
+        ]
+      },
+      {
+        "center": 7,
+        "exact": false,
+        "support": [
+          0,
+          2,
+          9,
+          11
+        ]
+      },
+      {
+        "center": 8,
+        "exact": true,
+        "support": [
+          6,
+          9,
+          13,
+          16
+        ]
+      },
+      {
+        "center": 9,
+        "exact": true,
+        "support": [
+          3,
+          4,
+          6,
+          7
+        ]
+      },
+      {
+        "center": 10,
+        "exact": true,
+        "support": [
+          1,
+          8,
+          9,
+          15
+        ]
+      },
+      {
+        "center": 11,
+        "exact": true,
+        "support": [
+          5,
+          8,
+          10,
+          14
+        ]
+      },
+      {
+        "center": 12,
+        "exact": false,
+        "support": [
+          7,
+          9,
+          10,
+          16
+        ]
+      },
+      {
+        "center": 13,
+        "exact": false,
+        "support": [
+          3,
+          5,
+          8,
+          16
+        ]
+      },
+      {
+        "center": 14,
+        "exact": false,
+        "support": [
+          0,
+          1,
+          2,
+          13
+        ]
+      },
+      {
+        "center": 15,
+        "exact": false,
+        "support": [
+          0,
+          4,
+          7,
+          12
+        ]
+      },
+      {
+        "center": 16,
+        "exact": false,
+        "support": [
+          1,
+          7,
+          10,
+          11
+        ]
+      }
+    ],
+    "schema": "p97-exact17-piqd-wave6-canary-analysis/v1",
+    "source_independent_model_checker_verified": true,
+    "source_structural_cut_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "unreplayed_bank_hit_proposals": [],
+    "variables": 74813
+  },
+  "status": "fresh-model-hit-by-accumulated-family"
+}
