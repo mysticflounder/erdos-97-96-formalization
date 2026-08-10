@@ -11,6 +11,7 @@ from census.global_confinement.cap_selected_nogood_certificate_probe import (
     _certificate_for_detection,
     _closure_path,
     _key_from_rows_json,
+    _sha256_json,
     _subsumption_minimize,
     _validate_certificate,
     _validate_closure_path,
@@ -209,6 +210,12 @@ class CapSelectedNogoodCertificateProbeTests(unittest.TestCase):
         self.assertEqual(len(certificate["rows"]), 2)
         self.assertEqual(certificate["max_closure_path_length"], 1)
         self.assertTrue(_validate_certificate(certificate, n=10))
+
+        tampered = dict(certificate)
+        tampered["direct_row_equality_replay"] = "false"
+        tampered.pop("proof_sha256")
+        tampered["proof_sha256"] = _sha256_json(tampered)
+        self.assertFalse(_validate_certificate(tampered, n=10))
 
     def test_transitive_path_records_only_concrete_row_steps_and_flips(self) -> None:
         rows = (

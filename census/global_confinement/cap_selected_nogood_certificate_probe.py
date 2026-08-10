@@ -1034,7 +1034,7 @@ def _validate_certificate(certificate: Mapping[str, Any], n: int = 11) -> bool:
             return False
         if not _validate_closure_path(rows, path):
             return False
-    return bool(certificate["direct_row_equality_replay"])
+    return certificate["direct_row_equality_replay"] is True
 
 
 def _replay_placement_job(
