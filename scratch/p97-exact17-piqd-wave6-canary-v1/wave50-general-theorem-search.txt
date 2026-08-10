@@ -1,0 +1,33 @@
+The best cardinality-independent targets are the direct six-point four-row Kalmanson consumers:
+
+- Schemas H, I, and J consume selected-row incidences directly. H uses three strict Kalmanson inequalities; I and J use only two, forcing opposite strict comparisons. (H0YJ1V, BYF9PH, 09C1XX)
+- Schema K is especially relevant to exact17: it is a six-point obstruction obtained by deleting irrelevant boundary vertices from a global exact-seventeen certificate. It uses six shell equalities and five strict inequalities, with cyclic-shift variants. (H0YJ1V, 78FS29)
+
+Thus, the current six-point `innerOuter/innerOuter` equality component should be matched against schemas I/J first, then H/K.
+
+A cheaper subpattern does exist. Three selected rows forming the two-`K2` support triangle already give a cardinality-generic contradiction on six vertices. An even smaller five-point consumer uses one `K2` and two `K1` inequalities with three selected-row equalities. (M6C3RE, 3AM2HH, N9T718)
+
+The six-point two-circle Euclidean core is another reusable fallback, but it requires its specific metric equalities and cyclic-order orientations rather than merely the selected-row/Kalmanson pattern. (ZSANAQ)
+  handles: H0YJ1V 78FS29 BYF9PH 09C1XX M6C3RE 3AM2HH N9T718 ZSANAQ  (read with `nthdegree docs show <handle>`)
+searched: nthdegree docs show VACS5G --corpus erdos-97-96-formalization-lean, nthdegree docs show ZSANAQ --corpus erdos-97-96-formalization-lean, nthdegree docs show NX7NRF --corpus erdos-97-96-formalization-lean, nthdegree docs show A0ZS33 --corpus erdos-97-96-formalization-lean, nthdegree docs search --corpus erdos-97-96-formalization-lean --limit 8 "SelectedFourClass direct consumer cardinality i…, nthdegree docs search --corpus erdos-97-96-formalization-lean --limit 8 "six-point two Kalmanson innerOuter equality com…, nthdegree docs search --corpus erdos-97-96-formalization-lean --limit 8 "cheaper subpattern theorem selected four-class …, nthdegree docs show H0YJ1V --corpus erdos-97-96-formalization-lean, nthdegree docs show BYF9PH --corpus erdos-97-96-formalization-lean, nthdegree docs show M6C3RE --corpus erdos-97-96-formalization-lean, nthdegree docs show 78FS29 --corpus erdos-97-96-formalization-lean, nthdegree docs show ADATGY --corpus erdos-97-96-formalization-lean, nthdegree docs show 09C1XX --corpus erdos-97-96-formalization-lean, nthdegree docs search --corpus erdos-97-96-formalization-lean --limit 10 "cardinality-generic three selected rows two K2…, nthdegree docs search --corpus erdos-97-96-formalization-lean --limit 10 "exact-seventeen 17 selected four-class rows cy…, nthdegree docs show 3AM2HH --corpus erdos-97-96-formalization-lean, nthdegree docs show N9T718 --corpus erdos-97-96-formalization-lean, nthdegree docs show 78FS29 --corpus erdos-97-96-formalization-lean, nthdegree docs show M6C3RE --corpus erdos-97-96-formalization-lean, nthdegree docs show 09C1XX --corpus erdos-97-96-formalization-lean, nthdegree docs show 1004TS --corpus erdos-97-96-formalization-lean
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
+
+Wave50 exact model follow-up (2026-08-10)
+-----------------------------------------
+
+The direct selected-row scan used the authenticated cyclic order and all 17
+selected rows from `wave50-preappended.theorem-gate-report.json`.
+
+- `false_of_two_selected_rows_shared_late_pair`: 0 hits among all 2,380
+  increasing ordered quadruples.
+- `false_of_one_k2_two_k1_three_selected_rows`: 0 hits among all 6,188
+  increasing ordered quintuples.
+- `false_of_six_ccw_two_k2_three_selected_rows`: 0 hits among all 12,376
+  increasing ordered six-subsets.
+
+The complete theorem-bank classifier found one reusable cardinality-independent
+consumer:
+`Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`,
+in the forward `innerOuter`/`innerOuter` orientation.  Wave50 therefore uses one
+10-literal witness-only instance of that theorem.  No new theorem was required,
+and no full exact-17 or universal P97 closure follows from this wave.

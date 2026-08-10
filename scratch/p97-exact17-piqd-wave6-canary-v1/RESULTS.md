@@ -628,3 +628,35 @@ custody chain.
 
 Exact 17 remains SAT and open.  Wave 49 closed no production `sorry` and proved
 no exact-cardinality or universal theorem.
+
+## Wave 50: generic theorem reused after smaller-motif exclusion
+
+Wave 50 solved the authenticated Wave 49 successor SAT in 10.100 seconds at
+solve index 45.  The total model passed the independent gate: exact linear
+arithmetic was UNSAT, and the complete theorem bank again found
+`GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`,
+in its forward `innerOuter`/`innerOuter` orientation.
+
+The mandatory indexed general-theorem search then tested the smaller direct
+consumers against this exact model.  It found zero occurrences of the banked
+four-point shared-late-pair motif among 2,380 ordered quadruples, zero
+occurrences of the five-point one-K2/two-K1 motif among 6,188 ordered
+quintuples, and zero occurrences of the six-point two-K2 motif among 12,376
+ordered six-subsets.  Thus the generic Kalmanson-cancellation consumer is the
+appropriate existing theorem for this survivor, rather than a missed cheaper
+bank entry.
+
+The chosen occurrence uses ten selected-row atoms.  Its complete exact-17
+candidate orbit has 272,272 clauses; the lazy policy admitted only the witnessed
+clause:
+
+`-236 -231 -216 -215 -158 -152 -123 -114 -110 -98 0`.
+
+The authorized successor is `postgate-wave50-generic-witness.cnf`, with
+5,895,213 clauses and SHA-256
+`31229ec74c7c481b39252f09edf2cdca9bf545ea30b76b81e2a399b211b9ab67`.
+PIQD's live export matched that successor byte-for-byte after the single-clause
+append.
+
+Exact 17 remains SAT and open.  Wave 50 closed no production `sorry` and proved
+no exact-cardinality or universal theorem.

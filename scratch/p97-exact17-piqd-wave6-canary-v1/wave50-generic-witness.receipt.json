@@ -1,0 +1,894 @@
+{
+  "already_present_clause_count": 0,
+  "candidate_inventory": [
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    }
+  ],
+  "chosen": {
+    "atom_count": 10,
+    "candidate_clause_count": 272272,
+    "candidate_clause_sha256": "8733f4922656e1b0112aa4afc72e32e467942a8c5f18b68491883090a5a867da",
+    "checked_images": [
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "ffe1c1cdfd8ca88a584ec1d25c8886bd36460b980cffb8b9415fcbac0da3d8cc"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "a7f0f8b33a0bd06946e0dda5bb3b5173264ed3f258cde2f945b87ac9dc9ee28e"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "6de224c76d19110afa2fcb4070807be4ca7b39845d524f18d32359c407a3fc6e"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            3
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "7343c8c200905bc0cd77e7fbaaa7015a63b0f60d04fbef274f80536b5582d3a4"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "292eef8b4e20850daedc63adf8d36ed35e18be6361e90fbab08bf9154cc23c99"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "817410f6aeaa0618aa2bb3b7c717d84d539e35a0fd13686a2e61f265a63fdeee"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "d5d3e25c359546d5812436546c884223abb880f399dc9c9fa05c128b76d4da6b"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "11fe398921517ff1984f806d2450150a1a5a01e926e020e0d20555b6d48bfa09"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "edcf0d06c107b7899e5c8b14735bfaf0681aee6dd2caf60b0c730683fc13385c"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            2
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "2c95c026678f7c34de685062a055a12a2fa7d3cd924b5bb214301cd38917ed4d"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "36b8449a82a3b3b3ab087c1fa4c13e6711fafa9fd92d286d93e11e6c5e57a8ff"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "450c49bd6e22726f0497a6bc6d2a5a93d4062eaf3a8928fa237b352d13279703"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "588466cb2e2499b9d47620206e526ca62b7a9e432aa71cff60f5907574707ef2"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            4
+          ]
+        ],
+        "matching_records": 1,
+        "record_sha256": "5c2197d8a2820e3aabd1d012bdf86528a70dee0e5000e5769b4b08998e88687b"
+      }
+    ],
+    "dihedral_orbit_size": 14,
+    "emitted_clause_count": 1,
+    "emitted_clause_sha256": "2f2ece2bfbdfb3291a9af1d67e34133ed10d3ecd4eb1a9dc86fc8db4cd19b379",
+    "expected_exact17_clause_count": 272272,
+    "fresh_model_blocking_clause_count": 1,
+    "fresh_model_blocking_clause_sha256": "2f2ece2bfbdfb3291a9af1d67e34133ed10d3ecd4eb1a9dc86fc8db4cd19b379",
+    "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+    "motif": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        4
+      ]
+    ],
+    "occurrence_count": 1,
+    "point_count": 7
+  },
+  "emission_mode": "witness-only",
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave50-generic-witness.fragment.cnf",
+  "fragment_sha256": "2f2ece2bfbdfb3291a9af1d67e34133ed10d3ecd4eb1a9dc86fc8db4cd19b379",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave50-preappended.theorem-gate-report.json",
+    "gate_report_sha256": "bacf46411beb0d48525b2ef34e901c80e670aa66e87ffbf2bbb82636b355ab29",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave50-preappended.model.json",
+    "model_sha256": "db118bed4e743a28812740119bae9186828a296eb705d83e920456e6255f542b",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave49-generic-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave49-generic-witness.receipt.json",
+    "root_receipt_sha256": "391f99dc46a6d61cb33037471714ab646e1d3022434b8cc0d102e9de6188a5e7",
+    "root_sha256": "9d8fbca2f83f8430befe04829aa8192a4519308d14f1c4282853f44e98200d25"
+  },
+  "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+  "novel_clause_count": 1,
+  "output_clauses": 5895213,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave50-generic-witness.cnf",
+  "output_root_sha256": "31229ec74c7c481b39252f09edf2cdca9bf545ea30b76b81e2a399b211b9ab67",
+  "output_variables": 74813,
+  "schema": "p97-exact17-fresh-bank-motif-orbits/v2",
+  "selection_policy": "minimum-(point-count,atom-count,canonical-motif);fresh-model-witnesses-only",
+  "source_checks": {
+    "bank_replay_ok": true,
+    "bank_replay_required": true,
+    "cnf_assignment_verified": true,
+    "first_bank_hit_replayed": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "row_source": "minimized-first-bank-witness",
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "static_bank_hit_count": 1
+  },
+  "source_hashes": {
+    "census/atail_force/producer_bank.py": "d1a13526ecf8786e716fc6bb36954c53f0e7787d771b6cadaf0f30a84e76f820",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d",
+    "scratch/p97-exact17-piqd-refinement-round3-v1/compile_accumulated_two_kalmanson_motif_family.py": "9b2e10c63e5204cf821787cbb7c27a82e071be5c8449984dbcf7f2279e35d881",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_fresh_bank_motif_orbits.py": "80a16fc46f7db8a854f4dc67837187e3a6cbee0f692268e7ccdbd26313b6c2b2",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This authenticates a cardinality-generic theorem motif and appends only its fresh-model-blocking exact-17 instances; it is not exact-17 coverage or universal P97 closure."
+}
