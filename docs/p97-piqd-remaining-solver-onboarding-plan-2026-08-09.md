@@ -2,6 +2,8 @@
 
 Date: 2026-08-09
 
+Updated: 2026-08-10
+
 ## Outcome
 
 Move every active solver boundary behind PIQD without weakening the existing
@@ -39,12 +41,12 @@ false until separate source-clean consumers establish them.
 | 1 | Exact17 static and seeded CaDiCaL | Onboarded canaries; finite only | Continue through strict shared adapters; no legacy attestation reuse |
 | 2 | Rank-four direct-six refinement | Onboarded SAT canary; finite only | Use authenticated PIQD session roots and mandatory theorem-bank search after each wave |
 | 3 | Exact12 source54 static CaDiCaL | Onboarded and pushed | Reuse as the custody baseline for other exact12 cells |
-| 4 | Frontier A-core static CaDiCaL | Source-faithful package, durable runner, and standalone replay green; first live attempt reached `UNKNOWN` because the deployed daemon could not spawn CaDiCaL | Maintainer repair `#4375`, new daemon identity, then a fresh one-process live canary and independent replay |
+| 4 | Frontier A-core static CaDiCaL | Source-faithful package, durable runner, and standalone replay green; the first live attempt reached deployment-caused `UNKNOWN`; the repaired raw-job lane and producer-neutral static boundary are now independently qualified | Re-run the exact A-core packet against daemon `63aeb78f…` in a fresh create-once directory, then independently replay its lane-specific receipt |
 | 5 | Exact12 v14 CardHead static CaDiCaL | Production canary CLI and standalone authenticated replay green with 25 fake-transport tests; no live receipt | One-process live SAT total-model or observational UNSAT qualification after A-core |
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
-| 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | Active direct subprocesses remain; subprocess-only substitution was rejected because the shared boundary lacks authenticated source/map custody and total-model replay | Producer-neutral source package and runner derived from the qualified A-core and CardHead contracts |
-| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Active direct subprocesses remain | Reuse static adapter where possible; SAT-SESSION-001 for incremental mutation and assumption custody |
-| 9 | Other direct Z3/cvc5 diagnostics | SMT backend exists, but source-semantic receipts and lane adapters are absent | One source-faithful adapter per input dialect plus independent semantic replay |
+| 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | Producer-neutral source package and runner are green; a fresh post-restart nonvacuous SAT canary and independent total-model/custody replay pass | Bind each remaining producer dialect and replace its direct subprocess without copying adjacent hashes or widening finite claims |
+| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared incremental adapter is green; a live SAT→append→UNSAT canary recovered a deliberately truncated local journal from authoritative frontier/receipts without replaying mutations | Route each active phase3 caller through the qualified static or incremental boundary; keep unsupported mutation/retry shapes fail-closed |
+| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green; fresh sequential Z3 and cvc5 live sessions plus separate archived replays pass on a constrained-symbol packet | Add one authenticated source descriptor and semantic verifier per remaining SMT input dialect, then remove the direct subprocess |
 | 10 | Active msolve and Singular algebra probes | No PIQD backend or receipt | PIQD-BACKEND-002 typed algebra execution, or an explicit unsupported disposition |
 | 11 | Certificate and Lean ingress | Clause-map consumer green; handoff incomplete | CERT-001 immutable source-to-certificate manifest and authenticated checker/replay receipt |
 | 12 | Theorem/candidate bank in PIQD | BANK-001 live but arbitrary payload ingestion incomplete | Hash-verifying atomic payload upload, stable error codes, remaining concurrency/cursor/rollback tests, strict P97 client, dry-run migration, byte-for-byte export audit |
@@ -145,6 +147,64 @@ frozen packet. This qualifies the FreshThird PIQD execution and replay lane as
 finite diagnostic infrastructure only. Every theorem, universal-closure,
 source-entitlement, solver-attestation, daemon-attestation, Euclidean, and Lean
 claim remains explicitly false.
+
+### Repaired shared-boundary qualifications
+
+The launchd environment was repaired and PIQD daemon
+`63aeb78f408d74b17d91d5f19d9effd4929d74b12f8c3b0747e452b8438a529c`
+was started on 2026-08-10. Three bounded post-restart qualifications now pass.
+
+The producer-neutral static boundary submitted the nonvacuous CNF
+`p cnf 1 1\n1 0\n`, SHA
+`6642f3ff4fae6f869a53f303bc768802cec0a16af731686c6bf03f342cf0489e`,
+as fresh job `85df9325-d50a-411d-b332-b713892fdd48`. Preparation recorded
+`existing=false`; the daemon recorded a started, completed `SAT` run with
+requested core limit one, one attested solver process, and basis
+`SINGLE_PROCESS_NO_PARALLEL_FLAG`. The total assignment `[1]` independently
+replays. The adapter receipt is
+`60131469ea6df429ea0d704b3a6d014d171712e7197d5cec9a04ecce788f5c1e`
+and the durable journal seal is
+`7741f2835f0eb91d5e8439d37b3b23af8de9aaac23beed2bf53dbcfd7cf3685a`.
+Both a local read-only custody audit and the PIQD maintainer independently
+validated the preserved artifacts; see convo `#4464`, `#4466`, and `#4469`.
+
+The incremental-session boundary then authenticated that exact job-scoped CNF
+and opened fresh session `e59fced0-d4fa-441e-a4f1-63004892afcd`. Its first
+solve returned `SAT` with total assignment `[1]`; after appending exact clause
+`[-1]`, its second assumption-free solve returned `UNSAT` with empty core. The
+canary deliberately truncated the local journal to its open-plus-SAT prefix.
+A second process recovered the committed append and UNSAT receipt from the
+authoritative remote frontier, sent no repeated append or solve and no model
+request, and closed the session exactly once. The recovery result SHA is
+`c9a330b76968ec01d9757449751df0dbefee9dc304fd9ccee9775c2870560c8d`;
+see convo `#4468` and `#4470`. Historical solve receipts do not carry a
+`terminal_unsat` field: recovery derives terminality exactly from `UNSAT` plus
+an empty assumptions list, while the current session row exposes
+`last_terminal_unsat`; the maintainer verified both directions in `#4471` and
+independently reproduced the receipt digests in `#4473`. A separate read-only
+artifact audit validated the exact repair, close-once behavior, canonical
+hash chains, and 15-file inventory in `#4475`. Its one explicit upstream
+boundary is that the static producer names a variable-map hash whose bytes are
+not among that inherited attempt's sealed 14 artifacts; the seed, source, and
+producer identities used by this canary are sealed.
+
+Finally, the source-semantic SMT boundary ran one constrained-symbol packet in
+fresh sequential Z3 and cvc5 sessions. Both returned `SAT`, both authenticated
+semantic replayers accepted, and both response/receipt digests matched the
+locally recomputed PIQD digest contract. Separate offline processes replayed
+the complete 22-file archive for each engine. The create-once `result.json`
+file SHA is
+`62d90a684eb964bdcb8b67783ce7aa9904c1118860ef97cd298760a7583eab22`;
+the maintainer additionally confirmed distinct solver executable identities in
+convo `#4467`.
+
+These qualifications establish working shared transport, custody, replay, and
+recovery boundaries. They do not migrate a caller by themselves. Each active
+producer still needs an authenticated lane-specific source descriptor and a
+semantic or model replay before its direct subprocess can be removed. One
+attested solver process and a no-parallel flag are not hardware CPU affinity or
+thread-count attestations, and every source-entitlement, theorem-coverage,
+aggregate, universal, Euclidean, Lean, and proof-spine claim remains false.
 
 ## Rollout protocol
 
