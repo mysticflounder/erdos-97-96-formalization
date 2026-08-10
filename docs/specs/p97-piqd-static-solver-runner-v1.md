@@ -1,8 +1,10 @@
 # P97 PIQD static SolverRunner adapter v1
 
-Status: #4398/#4402/#4427/#4443 fake-transport hardening implemented; production
-discovery wiring and live execution remain blocked until the maintainer posts a
-repaired deployment. No live raw job was used for this version.
+Status: #4398/#4402/#4427/#4443 fake-transport hardening implemented. The
+repaired daemon was qualified on 2026-08-10 by one fresh nonvacuous static SAT
+job, a local read-only custody audit, and an independent daemon-side audit
+(#4464, #4466, #4469). Caller wiring is tracked separately from this shared
+boundary qualification.
 
 This boundary adapts one already-materialized static DIMACS file to the existing
 `SolverRunner(Path, timeout_s, proof_path)` injection point used by
@@ -298,13 +300,52 @@ PYTHONPATH=. uv run --with pytest --with pytest-xdist \
   census/p97_search/tests/test_phase3_piqd_static_solver_runner.py
 ```
 
-The recommended next one-lane canary is a single SAT-discovery invocation from
-one `sat_generate` exact package, injected only through `solver_runner=runner`
-and capped at one returned model. It should first compare the adapter's locally
-replayed total assignment with the caller's existing decode/semantic replay.
-An UNSAT result in that canary must remain diagnostic because no DRAT path is
-written. Frontier-package onboarding should follow only after this single-lane
-SAT custody check.
+## Repaired-deployment qualification
+
+The bounded live canary used exact nonvacuous bytes `p cnf 1 1\n1 0\n`, SHA-256
+`6642f3ff4fae6f869a53f303bc768802cec0a16af731686c6bf03f342cf0489e`.
+PIQD created fresh job `85df9325-d50a-411d-b332-b713892fdd48`, recorded
+`existing=false`, and returned a total SAT assignment `[1]` that replayed
+locally. The adapter receipt is
+`60131469ea6df429ea0d704b3a6d014d171712e7197d5cec9a04ecce788f5c1e`;
+the durable journal seal is
+`7741f2835f0eb91d5e8439d37b3b23af8de9aaac23beed2bf53dbcfd7cf3685a`.
+The deployed status reported requested core limit one, one attested solver
+process, and `SINGLE_PROCESS_NO_PARALLEL_FLAG`. Those fields do not attest CPU
+affinity or OS thread count, and all source-entitlement, theorem, universal,
+Lean, proof, and closure claims remain false.
+
+The next caller qualification must inject this runner only at a discovery
+boundary where `proof_path is None`, then compare the total assignment with the
+caller's existing decoder and semantic replay. A separate local
+CaDiCaL-to-DRAT route remains required for terminal publication until CERT-001
+provides authenticated source-to-proof linkage. PIQD `UNKNOWN` must never
+silently fall back to a direct discovery solve.
+
+## Projected-static-v3 caller route
+
+`phase3_structural_cegar_projected_static_v3.py` now exposes an opt-in caller
+route with the four required flags `--piqd-base-url`, `--piqd-journal-root`,
+`--piqd-source-manifest`, and `--piqd-producer-manifest`. The group is
+all-or-none. The initial route also requires sequential mode, one worker, and
+no persistent-discovery adapter. With no PIQD flags, the exact prior local
+`sat.run_cadical` default remains in force.
+
+The route is deliberately split at the existing `SolverRunner` contract:
+
+- calls with `proof_path is None` use the authenticated PIQD static runner;
+- calls with a non-null proof path continue to use local CaDiCaL, preserving
+  terminal DRAT generation and the existing checker path; and
+- a PIQD `UNKNOWN` or adapter error remains fail-closed and does not trigger a
+  second local discovery solve.
+
+The focused caller suite exercises the split through `run_driver`, including a
+verified terminal publication, UNKNOWN propagation, incompatible-mode
+rejection, exact manifest-byte handoff, and the unchanged local default. The
+adjacent shared-adapter suite also passes. This is fake-transport caller
+qualification, not a lane-specific live projected-static-v3 canary; a live
+canary still requires exact canonical source and producer manifests for the
+chosen v3 producer invocation.
 
 Proof-blueprint session `019fdf9c` is unchanged, open, and off-spine. This
 adapter closes no proof-blueprint leaf and makes no theorem-coverage or closure

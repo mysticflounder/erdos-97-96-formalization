@@ -34,6 +34,7 @@ import tempfile
 import time
 from collections import Counter, defaultdict
 from collections.abc import Iterator, Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -575,8 +576,98 @@ SolverRunner = cegar_runtime.SolverBackend
 CheckerRunner = cegar_runtime.CheckerRunner
 
 
+@dataclass(frozen=True)
+class _StaticPiqdCallerConfig:
+    base_url: str
+    journal_root: Path
+    source_manifest: Path
+    producer_manifest: Path
+
+
 class StructuralCegarError(RuntimeError):
     """An encoding, certificate, solver, resume, or artifact failure."""
+
+
+def _static_piqd_caller_config(
+    args: argparse.Namespace,
+) -> _StaticPiqdCallerConfig | None:
+    inputs = (
+        args.piqd_base_url,
+        args.piqd_journal_root,
+        args.piqd_source_manifest,
+        args.piqd_producer_manifest,
+    )
+    if any(value is not None for value in inputs) and not all(
+        value is not None for value in inputs
+    ):
+        raise StructuralCegarError(
+            "--piqd-base-url, --piqd-journal-root, --piqd-source-manifest, "
+            "and --piqd-producer-manifest must be provided together"
+        )
+    if not any(value is not None for value in inputs):
+        return None
+    if args.persistent_discovery:
+        raise StructuralCegarError(
+            "PIQD discovery cannot be combined with --persistent-discovery"
+        )
+    if args.parallel_mode != "sequential":
+        raise StructuralCegarError(
+            "PIQD discovery currently requires --parallel-mode sequential"
+        )
+    if args.workers != 1:
+        raise StructuralCegarError("PIQD discovery currently requires --workers 1")
+    return _StaticPiqdCallerConfig(
+        base_url=args.piqd_base_url,
+        journal_root=args.piqd_journal_root,
+        source_manifest=args.piqd_source_manifest,
+        producer_manifest=args.piqd_producer_manifest,
+    )
+
+
+def _split_static_piqd_solver_runner(
+    piqd_discovery_runner: SolverRunner,
+    *,
+    local_proof_runner: SolverRunner = sat.run_cadical,
+) -> SolverRunner:
+    def run(cnf_path: Path, timeout_s: int, proof_path: Path | None) -> Any:
+        if proof_path is None:
+            # UNKNOWN and exceptions deliberately propagate to run_driver's
+            # fail-closed handling; local CaDiCaL is not a discovery fallback.
+            return piqd_discovery_runner(cnf_path, timeout_s, None)
+        return local_proof_runner(cnf_path, timeout_s, proof_path)
+
+    return run
+
+
+def _make_static_piqd_solver_runner(
+    *,
+    base_url: str,
+    journal_root: Path,
+    source_manifest: bytes,
+    producer_manifest: bytes,
+) -> SolverRunner:
+    static_piqd_solver_runner = importlib.import_module(
+        "census.p97_search.phase3_piqd_static_solver_runner"
+    )
+    return static_piqd_solver_runner.make_static_piqd_solver_runner(
+        base_url=base_url,
+        journal_root=journal_root,
+        source_manifest=source_manifest,
+        producer_manifest=producer_manifest,
+    )
+
+
+def _solver_runner_from_cli_args(args: argparse.Namespace) -> SolverRunner:
+    config = _static_piqd_caller_config(args)
+    if config is None:
+        return sat.run_cadical
+    piqd_discovery_runner = _make_static_piqd_solver_runner(
+        base_url=config.base_url,
+        journal_root=config.journal_root,
+        source_manifest=config.source_manifest.read_bytes(),
+        producer_manifest=config.producer_manifest.read_bytes(),
+    )
+    return _split_static_piqd_solver_runner(piqd_discovery_runner)
 
 
 def _manifest_schema(encoding: Any) -> str:
@@ -10983,6 +11074,19 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
             "set P97_CADICAL_IPASIR_LIB to a shared library"
         ),
     )
+    piqd_group = parser.add_argument_group("PIQD static discovery")
+    piqd_group.add_argument("--piqd-base-url")
+    piqd_group.add_argument("--piqd-journal-root", type=Path)
+    piqd_group.add_argument(
+        "--piqd-source-manifest",
+        type=Path,
+        help="path to the exact canonical PIQD source-manifest bytes",
+    )
+    piqd_group.add_argument(
+        "--piqd-producer-manifest",
+        type=Path,
+        help="path to the exact canonical PIQD producer-manifest bytes",
+    )
     parser.add_argument(
         "--productivity-telemetry",
         action="store_true",
@@ -11025,6 +11129,10 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-new-raw", type=int)
     args = parser.parse_args(argv)
+    try:
+        _static_piqd_caller_config(args)
+    except StructuralCegarError as exc:
+        parser.error(str(exc))
     if args.learned_core_limit < 1000:
         parser.error("--learned-core-limit must be at least 1000")
     if (args.shard_depth is None) != (args.shard_index is None):
@@ -11063,6 +11171,7 @@ def main() -> int:
         coverage = verify_shard_coverage(args.verify_shards)
         print(json.dumps(coverage, indent=2, sort_keys=True))
         return 0
+    solver_runner = _solver_runner_from_cli_args(args)
     manifest = run_driver(
         args.out,
         timeout_s=args.timeout,
@@ -11101,6 +11210,7 @@ def main() -> int:
         ),
         resume=args.resume,
         max_new_raw=args.max_new_raw,
+        solver_runner=solver_runner,
     )
     print(json.dumps(manifest, indent=2, sort_keys=True))
     return 0 if manifest["status"] != "UNKNOWN" else 2
