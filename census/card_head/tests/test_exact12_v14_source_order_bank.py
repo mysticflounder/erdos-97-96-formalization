@@ -65,6 +65,7 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V7_CELL8_TWENTIETH_LEAN_BINDING,
     MIXED_V7_CELL8_TWENTY_FIRST_LEAN_BINDING,
     MIXED_V7_CELL8_TWENTY_SECOND_LEAN_BINDING,
+    MIXED_V7_CELL8_TWENTY_THIRD_LEAN_BINDING,
 )
 from census.card_head.exact12_v14_source_order_bank import (
     BANK_SCHEMA,
@@ -86,12 +87,12 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         self.materialized = materialize_cell(0)
         self.instance = self.materialized.instance
 
-    def test_builds_fifty_three_lean_source_pinned_static_cuts(self) -> None:
+    def test_builds_fifty_four_lean_source_pinned_static_cuts(self) -> None:
         bank = build_source_order_bank(REPO_ROOT, self.instance)
         entry = bank["entries"][0]
 
         self.assertEqual(bank["schema"], BANK_SCHEMA)
-        self.assertEqual(len(bank["entries"]), 53)
+        self.assertEqual(len(bank["entries"]), 54)
         self.assertEqual(entry["certificate_kind"], "source_order_positive_coverage")
         self.assertEqual(entry["certificate_schema"], entry["certificate"]["schema"])
         self.assertEqual(entry["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING)
@@ -99,7 +100,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             entry["learned_clause"],
             [-variable for variable in entry["lean_choice_variables"]],
         )
-        self.assertEqual(len(bank["lean_source_manifest"]), 55)
+        self.assertEqual(len(bank["lean_source_manifest"]), 56)
         self.assertEqual(
             entry["learned_clause"],
             [-42, -55, -169, -312, -501, -868, -1605, -2024, -2317, -2573, -2884],
@@ -213,6 +214,10 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             (
                 MIXED_V7_CELL8_TWENTY_SECOND_LEAN_BINDING,
                 [-323, -1605, -2074],
+            ),
+            (
+                MIXED_V7_CELL8_TWENTY_THIRD_LEAN_BINDING,
+                [-21, -290, -936],
             ),
         )
         for bank_entry, (binding, clause) in zip(
