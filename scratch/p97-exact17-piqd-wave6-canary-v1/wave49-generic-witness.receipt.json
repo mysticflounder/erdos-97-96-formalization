@@ -1,0 +1,1047 @@
+{
+  "already_present_clause_count": 0,
+  "candidate_inventory": [
+    {
+      "atom_count": 8,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "occurrence_count": 2,
+      "point_count": 6
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 6
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 10,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 11,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 12,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 7
+    },
+    {
+      "atom_count": 12,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 8
+    },
+    {
+      "atom_count": 12,
+      "motif": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "occurrence_count": 1,
+      "point_count": 8
+    }
+  ],
+  "chosen": {
+    "atom_count": 8,
+    "candidate_clause_count": 148512,
+    "candidate_clause_sha256": "92de1fdc73a7bf082face159797f46ea1f2088cddd476803b59ea0d9b803e960",
+    "checked_images": [
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "7123085f4962a9471324c8a3899277e50b3671bac154db837c615fdc252dd3dd"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "d77b12a0d469431741d44412a5e4197ee9e433b3aebd610e44110dbffafd1ee5"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "a3d4e793902b95349066158daf1591b32c932e5da1d19ca94892acaa4d5881e2"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "a706386567789dd127b7dfd8d51b1abac8a6f35fdf3ed41b48d70e4cad5dc8d6"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "9dd6dd9f421f1c5d1b41f54070ca8047ec6001e4a027c7bf05d5a992860aff87"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "00c9daa952117f37fd00921ba46d802941c389bdfecfbaf5dc02484b5181ac27"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "3d0a6d9cb715545fd9c46a6fcf807d5977d5ca46a93318b722847bb5c6e8b8cd"
+      },
+      {
+        "atoms": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "a6407930a006ced980042c9d458a98fe5e75a97151a91cae849a94f9d94ce487"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "d491cad80f73d672a11177502e887128162d4847549d47d7257b5cb5ebf31977"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "ae2f4341616fe11056ba1629b092b48ef648d7ca73d0019d3f1106e18b6922d2"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "f8e133dc278c6036261f4d81c852025abfb75942ccf4af1cdc0c1a0705aa61a6"
+      },
+      {
+        "atoms": [
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "matching_records": 2,
+        "record_sha256": "d86c88ab11860f4d809d64ab5d8eca1abcd864cee182f7a4510d72bd4e3a62a2"
+      }
+    ],
+    "dihedral_orbit_size": 12,
+    "emitted_clause_count": 1,
+    "emitted_clause_sha256": "2ba94c34f9f814f614af04985b62927bcf2f0a6d39a5b4e49100a0b504370d5f",
+    "expected_exact17_clause_count": 148512,
+    "fresh_model_blocking_clause_count": 1,
+    "fresh_model_blocking_clause_sha256": "2ba94c34f9f814f614af04985b62927bcf2f0a6d39a5b4e49100a0b504370d5f",
+    "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+    "motif": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "occurrence_count": 2,
+    "point_count": 6
+  },
+  "emission_mode": "witness-only",
+  "fragment": "scratch/p97-exact17-piqd-wave6-canary-v1/wave49-generic-witness.fragment.cnf",
+  "fragment_sha256": "2ba94c34f9f814f614af04985b62927bcf2f0a6d39a5b4e49100a0b504370d5f",
+  "inputs": {
+    "gate_report": "scratch/p97-exact17-piqd-wave6-canary-v1/wave49-preappended-attempt2.theorem-gate-report.json",
+    "gate_report_sha256": "bffe5f431413bbb47158132d9f4491b7980f2404b008df8833b255d52608abcd",
+    "manifest": "scratch/p97-exact17-piqd-refinement-round3-v1/wave6-weighted-orbits.manifest.json",
+    "manifest_sha256": "ae7fb04c533b968c10baae91848b06c2f734c18825ed1d72b99806991510c125",
+    "model": "scratch/p97-exact17-piqd-wave6-canary-v1/wave49-preappended-attempt2.model.json",
+    "model_sha256": "4b7b8c8f6269b15fb1842117792c8a5ccf94e3cd66470f5686418647b94f5af6",
+    "root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave48-sparse-six-witness.cnf",
+    "root_receipt": "scratch/p97-exact17-piqd-wave6-canary-v1/wave48-sparse-six-witness.receipt.json",
+    "root_receipt_sha256": "6a73473e1d13c5ef16ba3374d1c98baac03289229ac2c3132f682a463a47c468",
+    "root_sha256": "e2a7821a0c167fce28c9f3436e87d4e24df529e681035e9f11ccb2113d9dd733"
+  },
+  "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+  "novel_clause_count": 1,
+  "output_clauses": 5895212,
+  "output_root": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave49-generic-witness.cnf",
+  "output_root_sha256": "9d8fbca2f83f8430befe04829aa8192a4519308d14f1c4282853f44e98200d25",
+  "output_variables": 74813,
+  "schema": "p97-exact17-fresh-bank-motif-orbits/v2",
+  "selection_policy": "minimum-(point-count,atom-count,canonical-motif);fresh-model-witnesses-only",
+  "source_checks": {
+    "bank_replay_ok": true,
+    "bank_replay_required": true,
+    "cnf_assignment_verified": true,
+    "first_bank_hit_replayed": true,
+    "linear_status": "unsat",
+    "piqd_model_total": true,
+    "row_source": "minimized-first-bank-witness",
+    "selected_row_count": 17,
+    "source_independent_model_checker_verified": true,
+    "source_z3_assignment_verified": true,
+    "static_bank_assignment_verified_via_direct_cnf": true,
+    "static_bank_hit_count": 1
+  },
+  "source_hashes": {
+    "census/atail_force/producer_bank.py": "d1a13526ecf8786e716fc6bb36954c53f0e7787d771b6cadaf0f30a84e76f820",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d",
+    "scratch/p97-exact17-piqd-refinement-round3-v1/compile_accumulated_two_kalmanson_motif_family.py": "9b2e10c63e5204cf821787cbb7c27a82e071be5c8449984dbcf7f2279e35d881",
+    "scratch/p97-exact17-piqd-wave6-canary-v1/append_fresh_bank_motif_orbits.py": "80a16fc46f7db8a854f4dc67837187e3a6cbee0f692268e7ccdbd26313b6c2b2",
+    "scratch/rigid221-blockerv-exact17-20260806/export_source_faithful_boolean_cnf.py": "7b1e01d282c6b48f234ade7f27e48fe17737642b20364e5ceb0704938716a5f3"
+  },
+  "status": "checked-source-backed-witness-instance-refinement",
+  "warning": "This authenticates a cardinality-generic theorem motif and appends only its fresh-model-blocking exact-17 instances; it is not exact-17 coverage or universal P97 closure."
+}

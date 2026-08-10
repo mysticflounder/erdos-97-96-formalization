@@ -1,0 +1,757 @@
+Wave 49 mandatory general-theorem search
+
+
+
+Source model: scratch/p97-exact17-piqd-wave6-canary-v1/wave49-preappended-attempt2.model.json
+
+Source analysis: scratch/p97-exact17-piqd-wave6-canary-v1/wave49-preappended-attempt2.theorem-gate-report.json
+
+Corpus: erdos-97-96-formalization-lean
+
+
+
+QUERY: six cyclically ordered carrier points two selected equidistant rows Euclidean obstruction
+[
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_second_three_rows_of_four_orientations\n\nThe second direct Euclidean five-point obstruction emitted by the exact\nterminal-row computation.\n\nFor cyclically ordered `a,b,c,d,e`, it is impossible for `d` to be\nequidistant from `a,c,e` while `e` is equidistant from `a,b`.  Only the four\ndisplayed orientation inequalities are used.",
+    "embed_text": "theorem false_of_second_three_rows_of_four_orientations\n\nThe second direct Euclidean five-point obstruction emitted by the exact\nterminal-row computation.\n\nFor cyclically ordered `a,b,c,d,e`, it is impossible for `d` to be\nequidistant from `a,c,e` while `e` is equidistant from `a,b`.  Only the four\ndisplayed orientation inequalities are used.",
+    "id": "00XCXNFK7F3C87V2CCWP8AY2N1",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9513484928609204,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FivePointEuclideanObstruction",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:131",
+      "decl:false_of_second_three_rows_of_four_orientations",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_six_ccw_three_selected_rows\n\nSelected-row consumer for the six-point Euclidean CEGAR cut.",
+    "embed_text": "theorem false_of_six_ccw_three_selected_rows\n\nSelected-row consumer for the six-point Euclidean CEGAR cut.",
+    "id": "3KXN329MEKBQ30Z811D2NX7NRF",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.7269736842105263,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.SixPointEuclideanObstruction",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:843",
+      "decl:false_of_six_ccw_three_selected_rows",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero\n\nThe three FreshThird shared-pair separations already contain a direct\nsix-point Euclidean obstruction.  After cyclically cutting at `sharedPoint`,\nthe source/fresh separation puts the endpoint center between the two row\ncenters.  One canonical point then lies between the source and endpoint, and\none remainder point lies between the fresh and endpoint.  These are exactly\nthe two triple rows consumed by\n`false_of_six_ccw_two_triple_row_equalities`.\n\nThis theorem deliberately does not assume that all eight named roles are\ndistinct.  The two points selected by strict betweenness are automatically\ndistinct from the six vertices used in the obstruction.",
+    "embed_text": "theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero\n\nThe three FreshThird shared-pair separations already contain a direct\nsix-point Euclidean obstruction.  After cyclically cutting at `sharedPoint`,\nthe source/fresh separation puts the endpoint center between the two row\ncenters.  One canonical point then lies between the source and endpoint, and\none remainder point lies between the fresh and endpoint.  These are exactly\nthe two triple rows consumed by\n`false_of_six_ccw_two_triple_row_equalities`.\n\nThis theorem deliberately does not assume that all eight named roles are\ndistinct.  The two points selected by strict betweenness are automatically\ndistinct from the six vertices used in the obstruction.",
+    "id": "2FK5FPBAP3D9BHPQHYB7JH6F4P",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.6270825948245304,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual",
+      "commit:5760bd0d",
+      "kind:theorem",
+      "line:2529",
+      "decl:false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Exact-fifteen four-row coverage for the BlockerV residual\n\nAt carrier cardinality fifteen, the second opposite cap in the surviving\n`BlockerV` residual has seven strict-interior points.  Four selected rows have\ntwo fixed hits in this cap and hence exactly two hits among the six points\noutside it.  There are only two possible cyclic orders for the seven interior\npoints.\n\nThis file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic\nseparation of shared row pairs forces one of sixteen three-row metric motifs.\nThe theorem is deliberately stated independently of the geometric ingress;\n`Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,\nand four realized rows.  Pairwise separation is derived here from those data.",
+    "embed_text": "# Exact-fifteen four-row coverage for the BlockerV residual\n\nAt carrier cardinality fifteen, the second opposite cap in the surviving\n`BlockerV` residual has seven strict-interior points.  Four selected rows have\ntwo fixed hits in this cap and hence exactly two hits among the six points\noutside it.  There are only two possible cyclic orders for the seven interior\npoints.\n\nThis file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic\nseparation of shared row pairs forces one of sixteen three-row metric motifs.\nThe theorem is deliberately stated independently of the geometric ingress;\n`Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,\nand four realized rows.  Pairwise separation is derived here from those data.",
+    "id": "22NMY45Y49ZGQF5Q8MYFHVGFYM",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.5800344234079176,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage",
+      "commit:2f99e274",
+      "kind:module",
+      "line:10",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_six_ccw_two_k2_three_selected_rows\n\nThree selected rows centered at the first three vertices of an increasing\nsix-vertex boundary chain cannot have pairwise supports forming the displayed\ntriangle on the last three vertices.  This is the cardinality-generic\nproduction form of the two-`K2` obstruction used by the finite theorem bank.",
+    "embed_text": "theorem false_of_six_ccw_two_k2_three_selected_rows\n\nThree selected rows centered at the first three vertices of an increasing\nsix-vertex boundary chain cannot have pairwise supports forming the displayed\ntriangle on the last three vertices.  This is the cardinality-generic\nproduction form of the two-`K2` obstruction used by the finite theorem bank.",
+    "id": "7XB8DHW7DFDZX0S2BJSKM6C3RE",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.5752508361204014,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:863",
+      "decl:false_of_six_ccw_two_k2_three_selected_rows",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem carrier_card_ge_fourteen_of_both_opposite_caps_ge_six\n\nIf both non-surplus closed caps have at least six points, the carrier has\nat least fourteen points.",
+    "embed_text": "theorem carrier_card_ge_fourteen_of_both_opposite_caps_ge_six\n\nIf both non-surplus closed caps have at least six points, the carrier has\nat least fourteen points.",
+    "id": "786DN4JMBP3BM8YF1FA02KZAW5",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.4653760238272522,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.OrientedPhysicalApexIngress",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:119",
+      "decl:carrier_card_ge_fourteen_of_both_opposite_caps_ge_six",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem no_third_bisectorCenter_of_obstructionCenters_eq\n\nIn the exact five-point case with coincident selected obstruction\ncenters, no third carrier point is equidistant from the frontier pair.",
+    "embed_text": "theorem no_third_bisectorCenter_of_obstructionCenters_eq\n\nIn the exact five-point case with coincident selected obstruction\ncenters, no third carrier point is equidistant from the frontier pair.",
+    "id": "748VTAY9J7VATG2PW2V12WS6WG",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.451048951048951,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FirstApexInteriorPairGeometry",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:369",
+      "decl:no_third_bisectorCenter_of_obstructionCenters_eq",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Arbitrary-carrier bridge for the four-point two-circle order core\n\nThis module turns six selected-row memberships on a `FaithfulCarrierPattern`\ninto the two equality closures required by\n`FourPointTwoCircleBisectorOrderCore`.  A cyclic boundary subsequence\n`q,u,y,v` then puts `u,y` on the same strict side of the center chord and\ncloses the pattern.\n\nOnly the rows centered at `q,u,y` are used.  The bridge is independent of any\nfixed carrier cardinality or finite-census label assignment.",
+    "embed_text": "# Arbitrary-carrier bridge for the four-point two-circle order core\n\nThis module turns six selected-row memberships on a `FaithfulCarrierPattern`\ninto the two equality closures required by\n`FourPointTwoCircleBisectorOrderCore`.  A cyclic boundary subsequence\n`q,u,y,v` then puts `u,y` on the same strict side of the center chord and\ncloses the pattern.\n\nOnly the rows centered at `q,u,y` are used.  The bridge is independent of any\nfixed carrier cardinality or finite-census label assignment.",
+    "id": "1BAQPXKX6XBD9KYHXHJ0KVEKAT",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.4493927125506074,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderBridge",
+      "commit:2f99e274",
+      "kind:module",
+      "line:11",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem exists_seven_carrierVertices_outside_two_selected_supports\n\nChoose exactly seven carrier vertices whose underlying points lie outside\nboth selected four-point supports.",
+    "embed_text": "theorem exists_seven_carrierVertices_outside_two_selected_supports\n\nChoose exactly seven carrier vertices whose underlying points lie outside\nboth selected four-point supports.",
+    "id": "111BK6E4YHPNHVCNTGVGVCCEXY",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.4459745762711864,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.SevenSourcesOutsideTwoShells",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:41",
+      "decl:exists_seven_carrierVertices_outside_two_selected_supports",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_three_rows_of_four_orientations\n\nA direct Euclidean five-point obstruction.\n\nThe four signed-area hypotheses say that `a,b,c,d,e` occur in this cyclic\norder (in the descending-sign convention used by the project).  The two\ndisplayed equidistant rows, centered at `b` and `c`, are incompatible with\nthat order.\n\nThis is genuinely Euclidean: the corresponding abstract metric satisfies all\nstrict triangle and strict Kalmanson inequalities.",
+    "embed_text": "theorem false_of_three_rows_of_four_orientations\n\nA direct Euclidean five-point obstruction.\n\nThe four signed-area hypotheses say that `a,b,c,d,e` occur in this cyclic\norder (in the descending-sign convention used by the project).  The two\ndisplayed equidistant rows, centered at `b` and `c`, are incompatible with\nthat order.\n\nThis is genuinely Euclidean: the corresponding abstract metric satisfies all\nstrict triangle and strict Kalmanson inequalities.",
+    "id": "4AMA5A9GZTEH68C0H153CY6PZJ",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.3968957871396896,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FivePointEuclideanObstruction",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:451",
+      "decl:false_of_three_rows_of_four_orientations",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]
+
+QUERY: innerOuter two Kalmanson cancellation selected rows exact17 reusable theorem
+[
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_two_selected_rows_shared_late_pair\n\nTwo selected rows at the first two vertices of an increasing boundary\nquadruple cannot share the last two support vertices.\n\nFor `ia < ib < ic < id`, the strict Kalmanson inequality\n\n```text\ndist ia id + dist ib ic < dist ia ic + dist ib id\n```\n\ncontradicts the two row equalities after direct cancellation.",
+    "embed_text": "theorem false_of_two_selected_rows_shared_late_pair\n\nTwo selected rows at the first two vertices of an increasing boundary\nquadruple cannot share the last two support vertices.\n\nFor `ia < ib < ic < id`, the strict Kalmanson inequality\n\n```text\ndist ia id + dist ib ic < dist ia ic + dist ib id\n```\n\ncontradicts the two row equalities after direct cancellation.",
+    "id": "60W9CSD08HX6AS5ZXXD0034XSD",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9513484928609204,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:427",
+      "decl:false_of_two_selected_rows_shared_late_pair",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "structure TwoKalmansonLabelCancellationData (α : Type*) where\n\nThe order, forms, and permutation needed for a direct two-Kalmanson\ndistance-label cancellation.",
+    "embed_text": "structure TwoKalmansonLabelCancellationData (α : Type*) where\n\nThe order, forms, and permutation needed for a direct two-Kalmanson\ndistance-label cancellation.",
+    "id": "72N3KZAZM4V924BMA7HKN5MERG",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8330223880597016,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.TwoKalmansonLabelCut",
+      "commit:9b41f08e",
+      "kind:structure",
+      "line:32",
+      "decl:TwoKalmansonLabelCancellationData",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/TwoKalmansonLabelCut.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_eight_ccw_six_shell_equalities_M_of_increasing\n\nEight increasingly ordered boundary vertices cannot support schema M.\nThis is the exact ten-term weighted Kalmanson cancellation extracted from the\nfirst successor after installing schemas K and L in the exact-seventeen\n`BlockerV` census.",
+    "embed_text": "theorem false_of_eight_ccw_six_shell_equalities_M_of_increasing\n\nEight increasingly ordered boundary vertices cannot support schema M.\nThis is the exact ten-term weighted Kalmanson cancellation extracted from the\nfirst successor after installing schemas K and L in the exact-seventeen\n`BlockerV` census.",
+    "id": "1A4TS2J8E7GKJY8Y9SA8X4P5GH",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8055243655962272,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas",
+      "commit:9b41f08e",
+      "kind:theorem",
+      "line:1946",
+      "decl:false_of_eight_ccw_six_shell_equalities_M_of_increasing",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_twoKalmansonCancellationData_of_check\n\nChecked row equalities cannot cancel the strict sides of two Kalmanson\ninequalities against their diagonals.  This is cardinality-generic and consumes\nonly positive incidences from the recorded source rows.",
+    "embed_text": "theorem false_of_twoKalmansonCancellationData_of_check\n\nChecked row equalities cannot cancel the strict sides of two Kalmanson\ninequalities against their diagonals.  This is cardinality-generic and consumes\nonly positive incidences from the recorded source rows.",
+    "id": "20Z2MH06JTR8EVKXAE7T7KY6QX",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.5035377358490565,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:513",
+      "decl:false_of_twoKalmansonCancellationData_of_check",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "inductive SelectedRowOrdinalComparison\n\nOne source-valid selected-row Kalmanson comparison between two named\ndistance terms.",
+    "embed_text": "inductive SelectedRowOrdinalComparison\n\nOne source-valid selected-row Kalmanson comparison between two named\ndistance terms.",
+    "id": "2PA85NGCHHVNPRXEXA20PRGHDR",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.500465983224604,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.OrdinalKalmansonCycle",
+      "commit:2f99e274",
+      "kind:inductive",
+      "line:30",
+      "decl:SelectedRowOrdinalComparison",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "structure TwoKalmansonCancellationData (α : Type*) where\n\nA checked two-Kalmanson cancellation certificate.  Four equality-closure\npaths identify, up to a checked permutation, the four left-hand distances of\ntwo strict Kalmanson inequalities with their four right-hand distances.",
+    "embed_text": "structure TwoKalmansonCancellationData (α : Type*) where\n\nA checked two-Kalmanson cancellation certificate.  Four equality-closure\npaths identify, up to a checked permutation, the four left-hand distances of\ntwo strict Kalmanson inequalities with their four right-hand distances.",
+    "id": "3RDMDS1VMAM9Z9QNDXFM22YKEN",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.2818780611383211,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate",
+      "commit:2f99e274",
+      "kind:structure",
+      "line:438",
+      "decl:TwoKalmansonCancellationData",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Sixteen-equality Kalmanson contradiction\n\nThis module packages a fixed linear consequence of ten strict Kalmanson inequalities as a\nreusable general-cardinality theorem.",
+    "embed_text": "# Sixteen-equality Kalmanson contradiction\n\nThis module packages a fixed linear consequence of ten strict Kalmanson inequalities as a\nreusable general-cardinality theorem.",
+    "id": "5TCBEMV9S9D4WE56WAS6A29G7M",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.2739541160593792,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.KalmansonSixteenEqualitySchema",
+      "commit:2f99e274",
+      "kind:module",
+      "line:9",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/KalmansonSixteenEqualitySchema.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_three_selected_rows_bridged_late_pair\n\nTwo selected rows with the same first center can transfer an equal-radius\nrelation across one shared bridge point.  If the transferred pair is also a\nsupport pair of the selected row at the second vertex of an increasing\nboundary quadruple, the strict Kalmanson inequality is impossible.\n\nThis is the exact equality-only consumer for the six-premise FreshThird CEGAR\ncore: the two first-center rows need not have equal supports, only a common\nsupport point.",
+    "embed_text": "theorem false_of_three_selected_rows_bridged_late_pair\n\nTwo selected rows with the same first center can transfer an equal-radius\nrelation across one shared bridge point.  If the transferred pair is also a\nsupport pair of the selected row at the second vertex of an increasing\nboundary quadruple, the strict Kalmanson inequality is impossible.\n\nThis is the exact equality-only consumer for the six-premise FreshThird CEGAR\ncore: the two first-center rows need not have equal supports, only a common\nsupport point.",
+    "id": "4YPTTX61ZJNP9FW7TJRWYPQZRS",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.2728808786257393,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:464",
+      "decl:false_of_three_selected_rows_bridged_late_pair",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_two_selected_middle_rows_shared_endpoint_pair\n\nSelected-row adapter for\n`false_of_four_ccw_middle_centers_bisect_endpoint_pair`.",
+    "embed_text": "theorem false_of_two_selected_middle_rows_shared_endpoint_pair\n\nSelected-row adapter for\n`false_of_four_ccw_middle_centers_bisect_endpoint_pair`.",
+    "id": "3RVTHN3HTB5SZYD4K2GQRE7YW9",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.1416592759816173,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:834",
+      "decl:false_of_two_selected_middle_rows_shared_endpoint_pair",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem selectedSupports_inter_eq_sources_of_mutualCrossMembership_distinctBlockers\n\nTwo mutually incident selected exact-four rows with distinct blocker\nvalues overlap at exactly their two source points.",
+    "embed_text": "theorem selectedSupports_inter_eq_sources_of_mutualCrossMembership_distinctBlockers\n\nTwo mutually incident selected exact-four rows with distinct blocker\nvalues overlap at exactly their two source points.",
+    "id": "4C12RAJ34SZT6BMB8PMNSYSQNM",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.0966925146383921,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber",
+      "commit:cc60068c",
+      "kind:theorem",
+      "line:1747",
+      "decl:selectedSupports_inter_eq_sources_of_mutualCrossMembership_distinctBlockers",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]
+
+QUERY: CEGAR accumulated exact17 row motifs general cardinality-independent obstruction
+[
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_threeRows_core_0_1_2_9_4\n\nCardinality-independent row-membership replay of the common obstruction\nmined at ordered CEGAR iterations 8391 and 8922.",
+    "embed_text": "theorem false_of_threeRows_core_0_1_2_9_4\n\nCardinality-independent row-membership replay of the common obstruction\nmined at ordered CEGAR iterations 8391 and 8922.",
+    "id": "5YMW4D2N2EJN6WAQF5YG1HSARK",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9672131147540985,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedThreeRowCuts",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:51",
+      "decl:false_of_threeRows_core_0_1_2_9_4",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedThreeRowCuts.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Six-point-cap S-profile mutual-class-pair obstruction\n\nFor any cap of cardinality six, a positive-radius apex class of cardinality at\nleast six contains the entire strict interior of that cap.  This promotes the\nrecurrent four-literal CEGAR motif to the already-banked mutual-class-pair\ncontradiction.  The exact-fifteen all-large-cap statements are retained as\nconvenient corollaries.\n\nThis module is a sound general theorem bank.  It does not by itself prove that\nevery exact-fifteen retained-omission assignment contains the motif; that\nfinite coverage certificate remains a separate obligation.",
+    "embed_text": "# Six-point-cap S-profile mutual-class-pair obstruction\n\nFor any cap of cardinality six, a positive-radius apex class of cardinality at\nleast six contains the entire strict interior of that cap.  This promotes the\nrecurrent four-literal CEGAR motif to the already-banked mutual-class-pair\ncontradiction.  The exact-fifteen all-large-cap statements are retained as\nconvenient corollaries.\n\nThis module is a sound general theorem bank.  It does not by itself prove that\nevery exact-fifteen retained-omission assignment contains the motif; that\nfinite coverage certificate remains a separate obligation.",
+    "id": "69PVB5NPVH2VXK3MZQEKYXYMMT",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8605769230769231,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.ExactFifteenSProfileMutualClassPair",
+      "commit:2f99e274",
+      "kind:module",
+      "line:10",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "def motif (index : Fin 16) : List PairHit\n\nThe sixteen concrete metric motifs covering the finite four-row search.",
+    "embed_text": "def motif (index : Fin 16) : List PairHit\n\nThe sixteen concrete metric motifs covering the finite four-row search.",
+    "id": "2NA7KARFR2YZQPWA0XGQWE35NP",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.777875329236172,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage",
+      "commit:2f99e274",
+      "kind:def",
+      "line:234",
+      "decl:motif",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Further universal three-row cuts for exact-twelve Rigid221\n\nSeveral later ordered-v4 CEGAR records contain a single direct three-row\nfive-point core whose common orientation follows from the frozen cap blocks\nalone.  The resulting consumers are cardinality-independent row-membership\nschemas; they do not require exact row identities.\n\nThese theorems promote individual learned cuts.  They do not prove that the\nfinite search covers every source model and do not close the live Rigid221\nresidual by themselves.",
+    "embed_text": "# Further universal three-row cuts for exact-twelve Rigid221\n\nSeveral later ordered-v4 CEGAR records contain a single direct three-row\nfive-point core whose common orientation follows from the frozen cap blocks\nalone.  The resulting consumers are cardinality-independent row-membership\nschemas; they do not require exact row identities.\n\nThese theorems promote individual learned cuts.  They do not prove that the\nfinite search covers every source model and do not close the live Rigid221\nresidual by themselves.",
+    "id": "6T9BX24DXYEVRW9EEW9Y2ZEEBP",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.763191763191763,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedUniversalThreeRowCuts",
+      "commit:102c756d",
+      "kind:module",
+      "line:9",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedUniversalThreeRowCuts.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Exact-fifteen four-row coverage for the BlockerV residual\n\nAt carrier cardinality fifteen, the second opposite cap in the surviving\n`BlockerV` residual has seven strict-interior points.  Four selected rows have\ntwo fixed hits in this cap and hence exactly two hits among the six points\noutside it.  There are only two possible cyclic orders for the seven interior\npoints.\n\nThis file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic\nseparation of shared row pairs forces one of sixteen three-row metric motifs.\nThe theorem is deliberately stated independently of the geometric ingress;\n`Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,\nand four realized rows.  Pairwise separation is derived here from those data.",
+    "embed_text": "# Exact-fifteen four-row coverage for the BlockerV residual\n\nAt carrier cardinality fifteen, the second opposite cap in the surviving\n`BlockerV` residual has seven strict-interior points.  Four selected rows have\ntwo fixed hits in this cap and hence exactly two hits among the six points\noutside it.  There are only two possible cyclic orders for the seven interior\npoints.\n\nThis file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic\nseparation of shared row pairs forces one of sixteen three-row metric motifs.\nThe theorem is deliberately stated independently of the geometric ingress;\n`Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,\nand four realized rows.  Pairwise separation is derived here from those data.",
+    "id": "22NMY45Y49ZGQF5Q8MYFHVGFYM",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.4955223880597015,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage",
+      "commit:2f99e274",
+      "kind:module",
+      "line:10",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem metricObstructionOccurs_of_pairwiseSeparated :\n\nExhaustive coverage of the exact-sixteen four-row core by four reusable\nmetric obstruction families.",
+    "embed_text": "theorem metricObstructionOccurs_of_pairwiseSeparated :\n\nExhaustive coverage of the exact-sixteen four-row core by four reusable\nmetric obstruction families.",
+    "id": "0DGC3FYPKN6P6QBCM3T7EGT4YC",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.3095238095238095,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.BlockerVExactSixteenFourRowCoverage",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:246",
+      "decl:metricObstructionOccurs_of_pairwiseSeparated",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/BlockerVExactSixteenFourRowCoverage.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Five-point Euclidean row obstruction\n\nThis module kernel-checks the nonlinear five-point cut emitted by the induced\nmetric CEGAR checker.  For five points in cyclic order `a < b < c < d < e`,\nthe two row patterns\n\n```text\nb : {a,e}\nc : {a,b,d}\n```\n\nare impossible in the Euclidean plane.\n\nThis obstruction is not a consequence of the abstract strict Kalmanson\ninequalities: its proof uses the two-dimensional dot/cross-product identity.\nThe low-level theorem states exactly the four orientation inequalities and\nthree metric equalities validated by the computational cut.  The public\nboundary adapter derives those orientations from `IsCcwConvexPolygon`.",
+    "embed_text": "# Five-point Euclidean row obstruction\n\nThis module kernel-checks the nonlinear five-point cut emitted by the induced\nmetric CEGAR checker.  For five points in cyclic order `a < b < c < d < e`,\nthe two row patterns\n\n```text\nb : {a,e}\nc : {a,b,d}\n```\n\nare impossible in the Euclidean plane.\n\nThis obstruction is not a consequence of the abstract strict Kalmanson\ninequalities: its proof uses the two-dimensional dot/cross-product identity.\nThe low-level theorem states exactly the four orientation inequalities and\nthree metric equalities validated by the computational cut.  The public\nboundary adapter derives those orientations from `IsCcwConvexPolygon`.",
+    "id": "5KEDHFM7XHFP12D735M0A0ZS33",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.2084398976982098,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FivePointEuclideanObstruction",
+      "commit:2f99e274",
+      "kind:module",
+      "line:4",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FivePointEuclideanObstruction.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem false_of_six_ccw_row_equalities\n\nBoundary-order adapter for the six-point Euclidean CEGAR cut.",
+    "embed_text": "theorem false_of_six_ccw_row_equalities\n\nBoundary-order adapter for the six-point Euclidean CEGAR cut.",
+    "id": "12P7GGN03Z1YHVEAK6WJ31QV5P",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.0302066772655007,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.SixPointEuclideanObstruction",
+      "commit:2f99e274",
+      "kind:theorem",
+      "line:769",
+      "decl:false_of_six_ccw_row_equalities",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "theorem pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows\n\nThe three concrete rows used by the exact-twelve common-arm CEGAR lane\ncan be realized in one faithful carrier pattern.  We prescribe the physical\napex row to be the physical five-class with `xu` removed.  At the two blocker\ncenters, critical-shell uniqueness then forces every selected carrier row to\nbe exactly `Kxv` and `Kc`.\n\nThis is the checked geometric ingress for a finite classifier over\n`GeneralCarrierBridge.rowPattern`; it is a producer, not a coverage result.",
+    "embed_text": "theorem pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows\n\nThe three concrete rows used by the exact-twelve common-arm CEGAR lane\ncan be realized in one faithful carrier pattern.  We prescribe the physical\napex row to be the physical five-class with `xu` removed.  At the two blocker\ncenters, critical-shell uniqueness then forces every selected carrier row to\nbe exactly `Kxv` and `Kc`.\n\nThis is the checked geometric ingress for a finite classifier over\n`GeneralCarrierBridge.rowPattern`; it is a producer, not a coverage result.",
+    "id": "2GX8QQABX21ACBQ4S93JJ0MXD6",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.0044017607042817,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy",
+      "commit:794e945f",
+      "kind:theorem",
+      "line:12588",
+      "decl:pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization-lean",
+    "display_text": "# Three-equality Kalmanson schemas\n\nThis module records irreducible three-equality contradictions from the\nequality-only CEGAR audits.  Each theorem is cardinality-independent:\nit assumes only that the displayed vertices occur in the stated order in one\nstrictly convex CCW boundary enumeration.",
+    "embed_text": "# Three-equality Kalmanson schemas\n\nThis module records irreducible three-equality contradictions from the\nequality-only CEGAR audits.  Each theorem is cardinality-independent:\nit assumes only that the displayed vertices occur in the stated order in one\nstrictly convex CCW boundary enumeration.",
+    "id": "6N2P3N4F5CTQ8CYTBK0AG19QWF",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 0.967741935483871,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:erdos-97-96-formalization-lean",
+      "module:Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas",
+      "commit:2f99e274",
+      "kind:module",
+      "line:11",
+      "project:erdos-97-96-formalization-lean",
+      "source:lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]
+
+=== AUDITED WAVE49 CONCLUSION ===
+
+The authenticated Wave49 source/model gate found exactly one directly
+applicable theorem-bank obstruction:
+
+Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+
+It is an increasing-order innerOuter/innerOuter two-Kalmanson cancellation.
+The accumulated 13-motif family has zero hits.  Exhaustive matching of all
+12,376 fixed-order sparse-six candidate clauses has zero hits.  The direct
+static theorem-bank CNF checker and first-hit theorem replay both pass, so no
+shorter direct five-point, shared-pair, sparse-six, or three-row consumer is
+applicable to this model.  The chosen source-backed generic witness uses six
+points and eight selected-row atoms and emits the single clause
+
+-135 -133 -72 -70 -61 -52 -13 -8 0
+
+The complete generic orbit contains 148,512 clauses; the lazy refinement
+materializes only this one model-violated instance.  This is reuse of an
+existing cardinality-independent Lean theorem, not discovery of a new theorem
+and not exact-17 or universal P97 closure.

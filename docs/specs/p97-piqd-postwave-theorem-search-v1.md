@@ -48,11 +48,12 @@ a migration boundary, not a claim that the old text logs were already canonical
 receipts.
 
 Because the wave-48 bootstrap binds a legacy results index rather than an
-immutable predecessor receipt, that index and the canonical bootstrap receipt
-must be frozen and committed together before the first successor solve.  Any
-later edit invalidates the bootstrap digest and therefore the successor chain;
-it must not be repaired in place after wave 49 begins.  Subsequent waves use
-immutable predecessor receipts and do not inherit this migration-only seam.
+immutable predecessor receipt, the validator requires the canonical committed
+wave-48 snapshot, not the live campaign `RESULTS.md`.  That snapshot and the
+canonical bootstrap receipt must be frozen together before the first successor
+solve.  Later edits to the campaign log therefore cannot invalidate or silently
+repair the custody chain.  Subsequent waves use immutable predecessor receipts
+and do not inherit this migration-only seam.
 
 The validator independently checks that:
 
@@ -61,7 +62,8 @@ The validator independently checks that:
 - every file digest matches;
 - the input DIMACS dimensions agree with the PIQD session and total model, and
   an independent streaming pass verifies that model against every root clause;
-- the solve was live, assumption-free, SAT, and the next dense solve index;
+- the source session was resumable (`live` or `detached`, never `closed`), the
+  solve was assumption-free and SAT, and it used the next dense solve index;
 - the authorization exposes that exact PIQD session identity and solve index,
   so a controller cannot consume the receipt from another session or after a
   later solve;

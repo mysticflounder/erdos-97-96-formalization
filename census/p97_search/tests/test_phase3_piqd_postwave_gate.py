@@ -10,6 +10,7 @@ import pytest
 from census.p97_search.phase3_piqd_postwave_gate import (
     LEAN_CORPUS,
     LEGACY_BOOTSTRAP_ORDINAL,
+    LEGACY_BOOTSTRAP_RESULTS_SNAPSHOT,
     LEGACY_BOOTSTRAP_ROLES,
     REFINEMENT_STATUS,
     SCHEMA,
@@ -84,7 +85,9 @@ def _fixture(root: Path, *, no_lift: bool = False) -> dict[str, Any]:
     search = _write(root, "artifacts/search.txt", b"theorem hit one\ntheorem hit two\n")
     legacy_artifacts = {
         "legacy-results-index": _write(
-            root, "artifacts/RESULTS.md", b"legacy waves 1 through 48\n"
+            root,
+            LEGACY_BOOTSTRAP_RESULTS_SNAPSHOT,
+            b"legacy waves 1 through 48\n",
         ),
         "accumulated-family-receipt": _write(
             root, "artifacts/accumulated.json", b"{}\n"
@@ -206,6 +209,31 @@ def test_declared_variable_universe_may_exceed_observed_max(tmp_path: Path) -> N
     assert authorization.successor_authorized
 
 
+def test_detached_assumption_free_session_is_resumable(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    solve_path = tmp_path / receipt["artifacts"]["solve_receipt"]["path"]
+    solve = json.loads(solve_path.read_text())
+    solve["session_before"]["state"] = "detached"
+    solve_path.write_text(json.dumps(solve, sort_keys=True))
+    receipt["artifacts"]["solve_receipt"]["sha256"] = _sha(solve_path.read_bytes())
+
+    authorization = validate_postwave_receipt(receipt, repo_root=tmp_path)
+
+    assert authorization.successor_authorized
+
+
+def test_closed_session_is_not_resumable(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    solve_path = tmp_path / receipt["artifacts"]["solve_receipt"]["path"]
+    solve = json.loads(solve_path.read_text())
+    solve["session_before"]["state"] = "closed"
+    solve_path.write_text(json.dumps(solve, sort_keys=True))
+    receipt["artifacts"]["solve_receipt"]["sha256"] = _sha(solve_path.read_bytes())
+
+    with pytest.raises(PostwaveGateError, match="resumable assumption-free"):
+        validate_postwave_receipt(receipt, repo_root=tmp_path)
+
+
 def test_clause_admission_failure_is_a_gate_error(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -307,6 +335,22 @@ def test_legacy_bootstrap_is_only_the_exact_wave48_migration(tmp_path: Path) -> 
     receipt = _fixture(tmp_path)
     receipt["history"]["evidence"].pop()
     with pytest.raises(PostwaveGateError, match="exact pre-gate evidence set"):
+        validate_postwave_receipt(receipt, repo_root=tmp_path)
+
+
+def test_legacy_bootstrap_rejects_mutable_results_index(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    mutable = _write(
+        tmp_path,
+        "scratch/p97-exact17-piqd-wave6-canary-v1/RESULTS.md",
+        b"mutable campaign log\n",
+    )
+    for entry in receipt["history"]["evidence"]:
+        if entry["role"] == "legacy-results-index":
+            entry["artifact"] = mutable
+            break
+
+    with pytest.raises(PostwaveGateError, match="immutable wave-48 results snapshot"):
         validate_postwave_receipt(receipt, repo_root=tmp_path)
 
 

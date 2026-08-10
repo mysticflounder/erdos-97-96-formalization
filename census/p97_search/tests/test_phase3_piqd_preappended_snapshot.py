@@ -2,20 +2,24 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
 import pytest
 
+from census.p97_search import phase3_piqd_oracle
 from census.p97_search.phase3_piqd_incremental_discovery import (
     HttpResponse,
     _result_digest,
 )
 from census.p97_search.phase3_piqd_preappended_snapshot import (
     CAPTURE_SCHEMA,
+    PREAPPENDED_HTTP_TIMEOUT_SECONDS,
     SCHEMA,
     PiqdPreappendedSnapshotError,
     PiqdPreappendedSnapshotRunner,
+    _preappended_transport,
 )
 
 SESSION = "11111111-1111-4111-8111-111111111111"
@@ -33,6 +37,35 @@ def _response(status: int, value: Any) -> HttpResponse:
     )
 
 
+def test_preappended_transport_uses_recovery_timeout(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    captured: dict[str, Any] = {}
+
+    def fake_transport(
+        method: str,
+        url: str,
+        body: bytes | None,
+        headers: Mapping[str, str],
+        *,
+        timeout_seconds: float,
+    ) -> HttpResponse:
+        captured.update(
+            method=method,
+            url=url,
+            body=body,
+            headers=headers,
+            timeout_seconds=timeout_seconds,
+        )
+        return HttpResponse(200, b"{}", {})
+
+    monkeypatch.setattr(phase3_piqd_oracle, "_stdlib_transport", fake_transport)
+    response = _preappended_transport("GET", "http://piqd.test/session", None, {})
+
+    assert response.status == 200
+    assert captured["timeout_seconds"] == PREAPPENDED_HTTP_TIMEOUT_SECONDS
+
+
 class FakeSnapshotTransport:
     def __init__(
         self,
@@ -41,12 +74,14 @@ class FakeSnapshotTransport:
         prefix_sha256: str | None = None,
         post_base_sha256: str | None = None,
         max_var: Any = 2,
+        initial_state: str = "live",
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.model = [1, 2] if model is None else model
         self.prefix_sha256 = prefix_sha256 or hashlib.sha256(PREFIX).hexdigest()
         self.post_base_sha256 = post_base_sha256
         self.max_var = max_var
+        self.state = initial_state
         first_result = _result_digest("SAT", None, None, [1, 2])
         self.receipts: list[dict[str, Any]] = [
             {
@@ -67,7 +102,7 @@ class FakeSnapshotTransport:
         return {
             "id": SESSION,
             "lane": "sat",
-            "state": "live",
+            "state": self.state,
             "solver_name": "fake-cadical",
             "solver_sha256": SOLVER,
             "solver_signature": "fake-cadical",
@@ -113,6 +148,7 @@ class FakeSnapshotTransport:
         if method == "POST" and path == f"sessions/{SESSION}/solve":
             request = json.loads((body or b"").decode())
             assert request == {"assumptions": [], "include_model": True}
+            self.state = "live"
             result = _result_digest("SAT", None, None, self.model)
             self.receipts.append(
                 {
@@ -195,6 +231,27 @@ def test_successful_one_shot_captures_and_replays_model(tmp_path: Path) -> None:
     }
     with pytest.raises(PiqdPreappendedSnapshotError, match="one-shot"):
         runner.solve()
+
+
+def test_detached_session_revives_during_authorized_solve(tmp_path: Path) -> None:
+    transport = FakeSnapshotTransport(initial_state="detached")
+    runner = _runner(tmp_path, transport)
+
+    result = runner.solve()
+
+    assert result.status == "SAT"
+    snapshot = json.loads((tmp_path / "snapshot.json").read_text())
+    assert snapshot["session_before"]["state"] == "detached"
+    assert transport.state == "live"
+
+
+def test_closed_session_is_rejected_before_solve(tmp_path: Path) -> None:
+    transport = FakeSnapshotTransport(initial_state="closed")
+
+    with pytest.raises(PiqdPreappendedSnapshotError, match="identity/state"):
+        _runner(tmp_path, transport)
+
+    assert all(method != "POST" for method, _url, _body in transport.calls)
 
 
 def test_wrong_remote_export_stops_before_solve(tmp_path: Path) -> None:

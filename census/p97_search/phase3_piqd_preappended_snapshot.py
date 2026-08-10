@@ -51,6 +51,7 @@ from census.p97_search.phase3_piqd_theorem_gated_discovery import (
 SCHEMA = "p97-piqd-preappended-snapshot-v1"
 CAPTURE_SCHEMA = "p97-piqd-sat-session-model-capture-v1"
 MODEL_SCHEMA = "p97-piqd-captured-model-v1"
+PREAPPENDED_HTTP_TIMEOUT_SECONDS = 180.0
 
 
 class PiqdPreappendedSnapshotError(RuntimeError):
@@ -58,6 +59,24 @@ class PiqdPreappendedSnapshotError(RuntimeError):
 
 
 ExportDigest = Callable[[str], str]
+
+
+def _preappended_transport(
+    method: str,
+    url: str,
+    body: bytes | None,
+    headers: Mapping[str, str],
+) -> HttpResponse:
+    """Give recovery solves enough time to replay their durable journal."""
+    from census.p97_search.phase3_piqd_oracle import _stdlib_transport
+
+    return _stdlib_transport(
+        method,
+        url,
+        body,
+        headers,
+        timeout_seconds=PREAPPENDED_HTTP_TIMEOUT_SECONDS,
+    )
 
 
 @dataclass(frozen=True)
@@ -316,9 +335,7 @@ class PiqdPreappendedSnapshotRunner:
             raise PiqdPreappendedSnapshotError("capture paths must be distinct")
         self._require_vacant_outputs()
         if transport is None:
-            from census.p97_search.phase3_piqd_oracle import _stdlib_transport
-
-            transport = _stdlib_transport
+            transport = _preappended_transport
         self._transport = transport
         self._export_digest = export_digest or _default_export_digest
         self._root = _root_identity(self.root_path)
@@ -615,7 +632,7 @@ class PiqdPreappendedSnapshotRunner:
         if (
             payload["id"] != self._session_id
             or payload["lane"] != "sat"
-            or payload["state"] != "live"
+            or payload["state"] not in {"live", "detached"}
         ):
             raise PiqdPreappendedSnapshotError("PIQD session identity/state mismatch")
         if payload["solver_sha256"] != self._solver_sha256:

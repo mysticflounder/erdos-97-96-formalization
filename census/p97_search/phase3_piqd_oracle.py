@@ -319,6 +319,8 @@ def _stdlib_transport(
     url: str,
     body: bytes | MultipartBody | None,
     headers: Mapping[str, str],
+    *,
+    timeout_seconds: float = DEFAULT_HTTP_TIMEOUT_SECONDS,
 ) -> HttpResponse:
     parsed = urllib.parse.urlsplit(url)
     if parsed.scheme not in {"http", "https"} or not parsed.hostname:
@@ -333,7 +335,7 @@ def _stdlib_transport(
         else http.client.HTTPConnection
     )
     connection = connection_type(
-        parsed.hostname, port=port, timeout=DEFAULT_HTTP_TIMEOUT_SECONDS
+        parsed.hostname, port=port, timeout=timeout_seconds
     )
     try:
         target = parsed.path or "/"

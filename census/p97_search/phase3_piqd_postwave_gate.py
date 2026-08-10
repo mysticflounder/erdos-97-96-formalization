@@ -53,6 +53,10 @@ THEOREM_BANK_PATHS = frozenset(
 REFINEMENT_STATUS = "checked-source-backed-witness-instance-refinement"
 LEGACY_BOOTSTRAP_LANE = "exact17-rigid221-lazy"
 LEGACY_BOOTSTRAP_ORDINAL = 48
+LEGACY_BOOTSTRAP_RESULTS_SNAPSHOT = (
+    "scratch/p97-exact17-piqd-wave6-canary-v1/"
+    "wave48-legacy-results-index.snapshot.md"
+)
 LEGACY_BOOTSTRAP_ROLES = frozenset(
     {
         "legacy-results-index",
@@ -371,10 +375,10 @@ def _check_solve_and_model(
         _fail("post-wave theorem search requires a captured SAT model")
     if (
         session.get("lane") != "sat"
-        or session.get("state") != "live"
+        or session.get("state") not in {"live", "detached"}
         or session.get("last_assumption_free") is not True
     ):
-        _fail("solve receipt is not from a live assumption-free session")
+        _fail("solve receipt is not from a resumable assumption-free session")
     session_id = _string(session.get("id"), label="solve receipt session id")
     solver_sha256 = _sha256_string(
         session.get("solver_sha256"), label="solve receipt solver sha256"
@@ -610,6 +614,7 @@ def validate_postwave_receipt(
     if type(evidence) is not list or not evidence:
         _fail("history.evidence must be a nonempty list")
     evidence_roles: set[str] = set()
+    evidence_paths: dict[str, str] = {}
     predecessor_path: Path | None = None
     for index, item in enumerate(evidence):
         entry = _object(item, label=f"history.evidence[{index}]")
@@ -623,6 +628,7 @@ def validate_postwave_receipt(
             repo_root=root,
             label=f"history.evidence[{index}].artifact",
         )
+        evidence_paths[role] = path.relative_to(root).as_posix()
         if role == "predecessor-theorem-search-receipt":
             predecessor_path = path
     if mode == "predecessor-receipt":
@@ -656,6 +662,11 @@ def validate_postwave_receipt(
             _fail("legacy bootstrap is allowed only at the exact wave-48 migration")
         if first_wave != 1 or evidence_roles != LEGACY_BOOTSTRAP_ROLES:
             _fail("legacy bootstrap does not bind the exact pre-gate evidence set")
+        if (
+            evidence_paths["legacy-results-index"]
+            != LEGACY_BOOTSTRAP_RESULTS_SNAPSHOT
+        ):
+            _fail("legacy bootstrap must bind the immutable wave-48 results snapshot")
 
     search = _object(receipt["search"], label="search")
     _keys(

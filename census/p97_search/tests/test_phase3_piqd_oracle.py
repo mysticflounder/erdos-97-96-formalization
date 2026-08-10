@@ -307,6 +307,7 @@ class _RecordingConnection:
     instance: _RecordingConnection | None = None
 
     def __init__(self, *_args: object, **_kwargs: object) -> None:
+        self.kwargs = _kwargs
         self.sock = _RecordingSocket()
         self.requests: list[object] = []
         self.headers: list[tuple[str, str]] = []
@@ -358,6 +359,27 @@ def test_stdlib_transport_writes_exact_segmented_body(
     )
     assert ("Content-Length", str(body.content_length)) in connection.headers
     assert connection.closed
+
+
+def test_stdlib_transport_accepts_scoped_timeout(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    body = MultipartBody((memoryview(b"payload"),), len(b"payload"))
+    monkeypatch.setattr(
+        phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
+    )
+
+    phase3_piqd_oracle._stdlib_transport(
+        "POST",
+        "http://piqd.test/jobs/prepare-cnf",
+        body,
+        {"Content-Length": str(body.content_length)},
+        timeout_seconds=180.0,
+    )
+
+    connection = _RecordingConnection.instance
+    assert connection is not None
+    assert connection.kwargs["timeout"] == 180.0
 
 
 def test_stdlib_transport_rejects_short_write(

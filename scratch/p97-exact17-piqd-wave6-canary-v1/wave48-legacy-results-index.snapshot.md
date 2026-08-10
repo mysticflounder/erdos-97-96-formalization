@@ -554,25 +554,6 @@ This is shorter than the generic theorem-bank fallback. The current root is
 PIQD exported the 267,117,831-byte root byte-for-byte after the one-clause
 append. Exact 17 remains SAT and open; no production `sorry` is closed.
 
-## Wave 49 attempt 1: legacy worker model-read failure, no state advance
-
-The first authorized Wave 49 solve request did not return a successful PIQD
-response.  The legacy `piqd-satworker-cadical-3.0.0` worker logged a CaDiCaL
-`val` call outside the satisfied state while `include_model=true`.  PIQD did
-not create a solve receipt: the live session still has 43 solves, its latest
-solve index is 43, and the Wave 48 successor still has 5,895,211 clauses.
-
-`wave49-preappended-snapshot.json` preserves the complete authenticated
-pre-request session, receipt history, and successor-root identity.  No raw
-response artifact was produced because the initial snapshot controller
-rejected the non-2xx response before publication.  The controller now
-publishes a non-2xx response body before rejecting it, with a focused
-regression test.  No retry is authorized until the PIQD maintainer supplies a
-supported recovery path for this solver-pinned legacy session.
-
-This attempt produced no SAT/UNSAT/UNKNOWN result, no refinement, no exact-17
-coverage, and no production `sorry` closure.
-
 ## Prepared complete sparse-six family: not appended
 
 The cardinality-independent Lean consumer used in Waves 45, 47, and 48 has
@@ -595,36 +576,3 @@ Status: **prepared only**.  These 5,917 clauses have not been appended to the
 live PIQD session and have not been solved.  The existing post-wave
 authorization covers only the one-clause Wave 48 successor, not this batch.
 Exact 17 therefore remains SAT and open; no production `sorry` is closed.
-
-## Wave 49: generic banked theorem, one lazy clause
-
-After the supported PIQD recovery, the detached source session resumed at the
-authenticated Wave 48 successor and completed solve 44.  The 5,895,211-clause
-root was SAT in 20.057 seconds, with a total 74,813-variable model.  The exact
-input root, solve receipt, total model, and independent source/model analysis
-all verified.
-
-The accumulated 13-motif family missed this model across 1,967,784 tested
-clauses, and the exhaustive increasing sparse-six matcher found no occurrence
-among 12,376 candidates.  Exact linear arithmetic was nevertheless UNSAT.  The
-complete theorem bank found one direct source-backed obstruction:
-`GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`,
-in its increasing `innerOuter`/`innerOuter` arm.  The mandatory indexed search
-confirmed that this was reuse of an existing cardinality-independent theorem,
-not a newly discovered theorem.
-
-The applicable occurrence uses six points and eight selected-row atoms.  Its
-complete exact-17 orbit would contain 148,512 clauses, but the lazy policy
-admitted only the witnessed clause:
-
-`-135 -133 -72 -70 -61 -52 -13 -8 0`.
-
-The authorized successor is `postgate-wave49-generic-witness.cnf`, with
-5,895,212 clauses and SHA-256
-`9d8fbca2f83f8430befe04829aa8192a4519308d14f1c4282853f44e98200d25`.
-The canonical Wave 49 post-wave receipt validates through the immutable Wave
-48 bootstrap snapshot, so later edits to this campaign log do not affect the
-custody chain.
-
-Exact 17 remains SAT and open.  Wave 49 closed no production `sorry` and proved
-no exact-cardinality or universal theorem.
