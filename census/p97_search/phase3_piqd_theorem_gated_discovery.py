@@ -118,6 +118,36 @@ def run_authorized_successor[ResultT](
     authorization = _load_authorization(
         postwave_receipt=postwave_receipt, repo_root=repo_root
     )
+    return run_validated_successor(
+        runner,
+        authorization=authorization,
+        timeout_ms=timeout_ms,
+        conflict_limit=conflict_limit,
+    )
+
+
+def run_validated_successor[ResultT](
+    runner: IncrementalDiscoveryRunner[ResultT],
+    *,
+    authorization: PostwaveAuthorization,
+    timeout_ms: int | None = None,
+    conflict_limit: int | None = None,
+) -> tuple[PostwaveAuthorization, ResultT]:
+    """Consume one already-validated post-wave authorization token.
+
+    This entry point lets a caller cold-validate a long receipt lineage once,
+    retain its opaque authorization, and perform the single append/solve
+    transition without replaying that lineage a second time.
+    """
+
+    if not authorization.successor_authorized:
+        raise TheoremGatedDiscoveryError(
+            "post-wave review found no source-backed reusable theorem"
+        )
+    if authorization.successor_root_sha256 is None:
+        raise TheoremGatedDiscoveryError(
+            "post-wave authorization does not name a successor root"
+        )
     _check_source_solve(runner, authorization)
     if runner.exported_cnf_sha256 != authorization.input_root_sha256:
         raise TheoremGatedDiscoveryError(
@@ -178,4 +208,5 @@ __all__ = [
     "TheoremGatedDiscoveryError",
     "run_authorized_preappended_successor",
     "run_authorized_successor",
+    "run_validated_successor",
 ]

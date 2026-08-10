@@ -10,6 +10,7 @@ from census.p97_search.phase3_piqd_theorem_gated_discovery import (
     TheoremGatedDiscoveryError,
     run_authorized_preappended_successor,
     run_authorized_successor,
+    run_validated_successor,
 )
 
 INPUT = "1" * 64
@@ -90,6 +91,34 @@ def test_appends_exact_fragment_then_runs_one_successor(
     assert result == "SAT"
     assert runner.appended == [CLAUSES]
     assert runner.solve_calls == [{"timeout_ms": 30_000, "conflict_limit": 50_000}]
+
+
+def test_validated_authorization_avoids_receipt_reload(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        "census.p97_search.phase3_piqd_theorem_gated_discovery.load_postwave_authorization",
+        lambda *_args, **_kwargs: pytest.fail("authorization was reloaded"),
+    )
+    runner = FakeRunner()
+
+    authorization, result = run_validated_successor(
+        runner,
+        authorization=_authorization(),
+        timeout_ms=30_000,
+    )
+
+    assert authorization.wave_ordinal == 48
+    assert result == "SAT"
+    assert runner.appended == [CLAUSES]
+
+
+def test_validated_negative_authorization_stops_before_append() -> None:
+    runner = FakeRunner()
+    with pytest.raises(TheoremGatedDiscoveryError, match="no source-backed"):
+        run_validated_successor(runner, authorization=_authorization(authorized=False))
+    assert not runner.appended
+    assert not runner.solve_calls
 
 
 def test_negative_review_stops_before_append_or_solve(

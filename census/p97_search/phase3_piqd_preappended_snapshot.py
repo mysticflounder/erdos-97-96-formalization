@@ -275,6 +275,7 @@ class PiqdPreappendedSnapshotRunner:
         model_path: Path,
         transport: Transport | None = None,
         export_digest: ExportDigest | None = None,
+        authenticate_history: bool = True,
     ) -> None:
         self.base_url = _string(base_url, label="base_url").rstrip("/")
         self._session_id = _uuid(session_id, label="session_id")
@@ -288,7 +289,7 @@ class PiqdPreappendedSnapshotRunner:
         self.expected_pending_clauses = _integer(
             expected_pending_clauses,
             label="expected_pending_clauses",
-            minimum=1,
+            minimum=0,
         )
         self.snapshot_path = _safe_output_path(snapshot_path)
         self.raw_response_path = _safe_output_path(raw_response_path)
@@ -314,7 +315,7 @@ class PiqdPreappendedSnapshotRunner:
         self._root = _root_identity(self.root_path)
         self._consumed = False
         session, receipts = self._authenticate_present_snapshot(
-            authenticate_history=True
+            authenticate_history=authenticate_history
         )
         self._session_before = session
         self._receipts_before = receipts
@@ -592,8 +593,7 @@ class PiqdPreappendedSnapshotRunner:
                 "historical receipt exceeds the current journal body"
             )
         if (
-            (opened.st_dev, opened.st_ino)
-            != (self._root.device, self._root.inode)
+            (opened.st_dev, opened.st_ino) != (self._root.device, self._root.inode)
             or full_digest.hexdigest() != self._root.sha256
             or body_bytes != self._root.body_bytes
             or body_digest.hexdigest() != self._root.body_sha256
@@ -683,9 +683,14 @@ class PiqdPreappendedSnapshotRunner:
             raise PiqdPreappendedSnapshotError("PIQD solve frontier changed")
         latest = receipts[-1]
         self._check_session(session, solve_count=self._solve_count, latest=latest)
+        pending_bytes_reconcile = (
+            latest["base_bytes"] == self._root.body_bytes
+            if self.expected_pending_clauses == 0
+            else latest["base_bytes"] < self._root.body_bytes
+        )
         if (
             self._root.clauses - latest["base_clauses"] != self.expected_pending_clauses
-            or latest["base_bytes"] >= self._root.body_bytes
+            or not pending_bytes_reconcile
         ):
             raise PiqdPreappendedSnapshotError(
                 "pending clause count does not reconcile with the latest solve receipt"
