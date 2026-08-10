@@ -441,7 +441,7 @@ def _read_exact_cnf(path: Path, *, limit: int) -> bytes:
             raise StaticPiqdRunnerError(
                 f"cannot revalidate the CNF root: {exc}"
             ) from exc
-        if _file_identity(root_before) != _file_identity(root_after) or _inode_anchor(
+        if _inode_anchor(root_before) != _inode_anchor(root_after) or _inode_anchor(
             named_root
         ) != _inode_anchor(root_after):
             raise StaticPiqdRunnerError("CNF filesystem root changed during capture")
@@ -461,7 +461,7 @@ def _read_exact_cnf(path: Path, *, limit: int) -> bytes:
                 raise StaticPiqdRunnerError(
                     f"CNF parent component disappeared during capture: {exc}"
                 ) from exc
-            if _file_identity(child_before) != _file_identity(
+            if _inode_anchor(child_before) != _inode_anchor(
                 child_after
             ) or _inode_anchor(named_child) != _inode_anchor(child_after):
                 raise StaticPiqdRunnerError(

@@ -72,8 +72,10 @@ wave manifest and PIQD raw identity.
 The CNF path is made absolute lexically and captured from a held filesystem-root
 descriptor. Every parent component is opened with `O_DIRECTORY|O_NOFOLLOW` and
 held through the read and final checks; each named parent is compared with its
-held device/inode and its descriptor metadata is checked for changes. The final
-component is opened relative to the held parent with `O_NOFOLLOW|O_NONBLOCK`,
+held device/inode/file-kind before and after capture. Directory size and
+timestamps are deliberately excluded because unrelated child-list mutations do
+not change path custody. The final component is opened relative to the held
+parent with `O_NOFOLLOW|O_NONBLOCK`,
 must be a regular file with link count exactly one, is bounded (1 GiB by
 default), and is read only from that held descriptor. Its full device, inode,
 mode, link-count, size, modification-time, and change-time identity is checked
@@ -288,9 +290,9 @@ it starts no daemon, solver, or Lean process. It covers:
 - zero- and positive-variable clause-free preflight with zero transport, plus
   the distinct positive-variable empty-clause observational UNSAT path;
 - strict source/producer crossing and claim rejection;
-- bounded, rooted component-wise no-follow CNF snapshots, including parent
-  rename/repoint, intermediate/final symlink, and pre-open or during-read
-  hardlink attacks; and
+- bounded, rooted component-wise no-follow CNF snapshots, including permitted
+  unrelated ancestor-sibling mutation, rejected parent rename/repoint,
+  intermediate/final symlink, and pre-open or during-read hardlink attacks; and
 - descriptor/inode rejection for journal, lock, driver-seal, artifact, receipt,
   and custody-seal symlink or replacement attacks;
 - canonical failure sealing, explicit unsealed-reservation cleanup, and no

@@ -1069,6 +1069,43 @@ def test_cnf_snapshot_rejects_intermediate_symlink(tmp_path: Path) -> None:
     assert api.calls == []
 
 
+def test_cnf_snapshot_allows_unrelated_ancestor_sibling_mutation_during_read(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _source, producer = _manifests()
+    api = FakeCurrentPiqd(
+        cnf=CNF,
+        producer=producer,
+        result="SAT",
+        assignment=[1, 2, 3],
+    )
+    input_parent = tmp_path / "input-parent"
+    input_parent.mkdir()
+    cnf_path = input_parent / "query.cnf"
+    cnf_path.write_bytes(CNF)
+    unrelated_sibling = tmp_path / "unrelated-sibling"
+    runner = _runner(tmp_path, api)
+    original_read = static_runner.os.read
+    mutated = False
+
+    def mutate_unrelated_sibling(descriptor: int, size: int) -> bytes:
+        nonlocal mutated
+        if not mutated:
+            mutated = True
+            unrelated_sibling.write_bytes(b"unrelated")
+        return original_read(descriptor, size)
+
+    monkeypatch.setattr(static_runner.os, "read", mutate_unrelated_sibling)
+
+    result = runner(cnf_path, 5, None)
+
+    assert mutated
+    assert unrelated_sibling.read_bytes() == b"unrelated"
+    assert result.verdict == "SAT"
+    assert api.calls[0] == ("POST", "/jobs/prepare-cnf")
+
+
 def test_cnf_snapshot_rejects_hardlinked_input(tmp_path: Path) -> None:
     _source, producer = _manifests()
     api = FakeCurrentPiqd(

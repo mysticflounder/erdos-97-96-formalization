@@ -22,13 +22,17 @@ specified terminal interface.  It is not a proof of
 from __future__ import annotations
 
 import shutil
+from collections.abc import Callable, Collection, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
-from typing import Collection, Iterable, Mapping, Sequence
 
-from census.card_head.sat_encoding import CNF, CadicalResult, EncodingError, solve_cadical
-
+from census.card_head.sat_encoding import (
+    CNF,
+    CadicalResult,
+    EncodingError,
+    solve_cadical,
+)
 
 SAT_SCOPE = (
     "EMPIRICALLY VERIFIED only for the finite F-Gamma incidence abstraction; "
@@ -103,8 +107,10 @@ def _at_least(variables: Sequence[int], bound: int) -> tuple[tuple[int, ...], ..
 def _clause_satisfied(clause: Collection[int], positive: Collection[int]) -> bool:
     true_variables = set(positive)
     return any(
-        literal > 0 and literal in true_variables
-        or literal < 0 and -literal not in true_variables
+        literal > 0
+        and literal in true_variables
+        or literal < 0
+        and -literal not in true_variables
         for literal in clause
     )
 
@@ -235,7 +241,8 @@ class FGammaInstance:
         positive = set(positive_variables)
         return {
             row.row_id: [
-                point for point in TRACKED_POINTS
+                point
+                for point in TRACKED_POINTS
                 if self.variable(row, point) in positive
             ]
             for row in (self.first_row, self.cap_source_row)
@@ -250,9 +257,7 @@ class FGammaInstance:
         realization of a geometric configuration.
         """
 
-        positive = {
-            self.variable(self.first_row, point) for point in FIRST_FIBER
-        }
+        positive = {self.variable(self.first_row, point) for point in FIRST_FIBER}
         positive.add(self.variable(self.cap_source_row, G))
 
         # Sinz counters encode prefix thresholds.  With all four overlap
@@ -305,8 +310,20 @@ class FGammaInstance:
         )
 
 
+BaseDiscovery = Callable[[FGammaInstance, Path, int], CadicalResult]
+
+
+def _require_base_solver() -> None:
+    if shutil.which("cadical") is None:
+        raise EncodingError(
+            "F-Gamma base discovery fails closed: local cadical is missing"
+        )
+
+
 def _require_certified_solver() -> None:
-    missing = [command for command in ("cadical", "drat-trim") if shutil.which(command) is None]
+    missing = [
+        command for command in ("cadical", "drat-trim") if shutil.which(command) is None
+    ]
     if missing:
         raise EncodingError(
             "F-Gamma smoke gates fail closed: certified solver path missing "
@@ -314,19 +331,27 @@ def _require_certified_solver() -> None:
         )
 
 
-def run_smoke(workdir: Path, timeout_seconds: int = 30) -> Mapping[str, CadicalResult | bool]:
+def run_smoke(
+    workdir: Path,
+    timeout_seconds: int = 30,
+    *,
+    base_discovery: BaseDiscovery | None = None,
+) -> Mapping[str, CadicalResult | bool]:
     """Run base SAT and both UNSAT terminal gates, with verified DRAT proofs."""
 
-    _require_certified_solver()
     instance = FGammaInstance()
     hand_assignment = instance.handcrafted_total_assignment()
     if not instance.validates_total_assignment(hand_assignment):
         raise EncodingError("handcrafted F-Gamma base assignment does not satisfy CNF")
 
     workdir.mkdir(parents=True, exist_ok=True)
-    base = solve_cadical(
-        instance, workdir / "f_gamma_base.cnf", timeout_seconds=timeout_seconds
-    )
+    if base_discovery is None:
+        _require_base_solver()
+        base = solve_cadical(
+            instance, workdir / "f_gamma_base.cnf", timeout_seconds=timeout_seconds
+        )
+    else:
+        base = base_discovery(instance, workdir / "f_gamma_base.cnf", timeout_seconds)
     if base.verdict != "SAT":
         raise EncodingError(f"F-Gamma base must be SAT, got {base.verdict}")
 
@@ -334,6 +359,7 @@ def run_smoke(workdir: Path, timeout_seconds: int = 30) -> Mapping[str, CadicalR
         "handcrafted_base_assignment": True,
         "base": base,
     }
+    _require_certified_solver()
     for gate in (instance.overlap_smoke_gate(), instance.two_cap_centers_smoke_gate()):
         result = solve_cadical(
             instance,
