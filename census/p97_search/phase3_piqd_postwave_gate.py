@@ -85,6 +85,31 @@ class PostwaveAuthorization:
     admitted_clauses: tuple[tuple[int, ...], ...]
 
 
+@dataclass(frozen=True)
+class ValidatedPostwaveReceipt:
+    """Opaque receipt token whose complete prefix has already been validated."""
+
+    path: Path
+    receipt_sha256: str
+    lane: str
+    first_wave: int
+    wave_ordinal: int
+    authorization: PostwaveAuthorization
+
+
+@dataclass(frozen=True)
+class PostwaveLineage:
+    """An oldest-to-newest, exactly-once validation of a receipt chain."""
+
+    receipts: tuple[ValidatedPostwaveReceipt, ...]
+
+    @property
+    def latest(self) -> ValidatedPostwaveReceipt:
+        if not self.receipts:
+            raise PostwaveGateError("post-wave lineage is empty")
+        return self.receipts[-1]
+
+
 def _fail(message: str) -> None:
     raise PostwaveGateError(message)
 
@@ -526,10 +551,13 @@ def _check_refinement(
     return successor_sha, consumer, fragment_clauses
 
 
-def validate_postwave_receipt(
-    receipt: Mapping[str, Any], *, repo_root: Path
+def _validate_postwave_receipt_local(
+    receipt: Mapping[str, Any],
+    *,
+    repo_root: Path,
+    predecessor: ValidatedPostwaveReceipt | None,
 ) -> PostwaveAuthorization:
-    """Validate a parsed post-wave receipt and return its authorization."""
+    """Validate one receipt against an already validated immediate predecessor."""
 
     root = Path(repo_root).resolve(strict=True)
     if not root.is_dir():
@@ -616,6 +644,7 @@ def validate_postwave_receipt(
     evidence_roles: set[str] = set()
     evidence_paths: dict[str, str] = {}
     predecessor_path: Path | None = None
+    predecessor_sha256: str | None = None
     for index, item in enumerate(evidence):
         entry = _object(item, label=f"history.evidence[{index}]")
         _keys(entry, {"role", "artifact"}, label=f"history.evidence[{index}]")
@@ -623,41 +652,56 @@ def validate_postwave_receipt(
         if role in evidence_roles:
             _fail("history evidence roles must be unique")
         evidence_roles.add(role)
-        path, _ = _artifact(
-            entry["artifact"],
-            repo_root=root,
-            label=f"history.evidence[{index}].artifact",
-        )
+        artifact_label = f"history.evidence[{index}].artifact"
+        if role == "predecessor-theorem-search-receipt" and predecessor is not None:
+            artifact = _object(entry["artifact"], label=artifact_label)
+            _keys(artifact, {"path", "sha256"}, label=artifact_label)
+            relative = _repo_path(artifact["path"], label=f"{artifact_label}.path")
+            declared_sha = _sha256_string(
+                artifact["sha256"], label=f"{artifact_label}.sha256"
+            )
+            path = root.joinpath(*relative.parts)
+            if path != predecessor.path or declared_sha != predecessor.receipt_sha256:
+                _fail("predecessor evidence does not match the validated receipt token")
+        else:
+            path, declared_sha = _artifact(
+                entry["artifact"],
+                repo_root=root,
+                label=artifact_label,
+            )
         evidence_paths[role] = path.relative_to(root).as_posix()
         if role == "predecessor-theorem-search-receipt":
             predecessor_path = path
+            predecessor_sha256 = declared_sha
     if mode == "predecessor-receipt":
         if evidence_roles != {"predecessor-theorem-search-receipt"}:
             _fail("predecessor history must contain exactly its predecessor receipt")
         assert predecessor_path is not None
-        predecessor = load_postwave_receipt(predecessor_path, repo_root=root)
-        predecessor_wave = _object(predecessor["wave"], label="predecessor wave")
-        predecessor_history = _object(
-            predecessor["history"], label="predecessor history"
-        )
-        if predecessor_wave["ordinal"] + 1 != ordinal:
+        assert predecessor_sha256 is not None
+        if predecessor is None:
+            predecessor = load_postwave_lineage(
+                predecessor_path, repo_root=root
+            ).latest
+        if predecessor.path != predecessor_path:
+            _fail("predecessor evidence path disagrees with the validated token")
+        if predecessor.receipt_sha256 != predecessor_sha256:
+            _fail("predecessor evidence SHA-256 disagrees with the validated token")
+        if predecessor.wave_ordinal + 1 != ordinal:
             _fail("predecessor receipt is not the immediately preceding wave")
-        if predecessor.get("lane") != lane:
+        if predecessor.lane != lane:
             _fail("predecessor receipt changes the CEGAR lane")
-        if predecessor_history["first_wave"] != first_wave:
+        if predecessor.first_wave != first_wave:
             _fail("predecessor history changes the first wave")
-        predecessor_outcome = _object(
-            predecessor["outcome"], label="predecessor outcome"
-        )
-        if predecessor_outcome.get("kind") != "reusable-theorem":
+        if not predecessor.authorization.successor_authorized:
             _fail("predecessor did not authorize a successor")
-        previous_root = _object(
-            predecessor_outcome.get("successor_root"),
-            label="predecessor successor_root",
-        )
-        if previous_root.get("sha256") != artifact_hashes["input_root"]:
+        if (
+            predecessor.authorization.successor_root_sha256
+            != artifact_hashes["input_root"]
+        ):
             _fail("current input root is not the predecessor successor root")
     else:
+        if predecessor is not None:
+            _fail("legacy bootstrap cannot have a validated predecessor")
         if lane != LEGACY_BOOTSTRAP_LANE or ordinal != LEGACY_BOOTSTRAP_ORDINAL:
             _fail("legacy bootstrap is allowed only at the exact wave-48 migration")
         if first_wave != 1 or evidence_roles != LEGACY_BOOTSTRAP_ROLES:
@@ -809,12 +853,144 @@ def _read_canonical_postwave_receipt(path: Path) -> Mapping[str, Any]:
     return value
 
 
+def _receipt_path(path: Path, *, repo_root: Path) -> Path:
+    candidate = Path(path)
+    if not candidate.is_absolute():
+        candidate = repo_root / candidate
+    try:
+        resolved = candidate.resolve(strict=True)
+        resolved.relative_to(repo_root)
+    except (OSError, ValueError) as exc:
+        raise PostwaveGateError("post-wave receipt must be inside repo_root") from exc
+    if not resolved.is_file():
+        _fail("post-wave receipt must be a regular file")
+    return resolved
+
+
+def _declared_predecessor(
+    receipt: Mapping[str, Any], *, repo_root: Path
+) -> tuple[Path, str] | None:
+    """Resolve and authenticate only the predecessor edge of ``receipt``."""
+
+    history = _object(receipt.get("history"), label="history")
+    mode = history.get("mode")
+    if mode == "legacy-bootstrap":
+        return None
+    if mode != "predecessor-receipt":
+        _fail("history.mode is unsupported")
+    evidence = history.get("evidence")
+    if type(evidence) is not list:
+        _fail("history.evidence must be a list")
+    matches: list[Any] = []
+    for index, item in enumerate(evidence):
+        entry = _object(item, label=f"history.evidence[{index}]")
+        if entry.get("role") == "predecessor-theorem-search-receipt":
+            matches.append(entry.get("artifact"))
+    if len(matches) != 1:
+        _fail("predecessor history must name exactly one predecessor receipt")
+    return _artifact(
+        matches[0],
+        repo_root=repo_root,
+        label="history predecessor artifact",
+    )
+
+
+def load_postwave_lineage(path: Path, *, repo_root: Path) -> PostwaveLineage:
+    """Cold-load a receipt lineage and validate each node exactly once."""
+
+    root = Path(repo_root).resolve(strict=True)
+    if not root.is_dir():
+        _fail("repo_root must be a directory")
+    current = _receipt_path(path, repo_root=root)
+    current_sha = _hash_file(current)
+    newest_to_oldest: list[tuple[Path, str, Mapping[str, Any]]] = []
+    seen_paths: set[Path] = set()
+    seen_hashes: set[str] = set()
+    while True:
+        if current in seen_paths or current_sha in seen_hashes:
+            _fail("post-wave receipt lineage contains a cycle or duplicate")
+        seen_paths.add(current)
+        seen_hashes.add(current_sha)
+        value = _read_canonical_postwave_receipt(current)
+        newest_to_oldest.append((current, current_sha, value))
+        predecessor = _declared_predecessor(value, repo_root=root)
+        if predecessor is None:
+            break
+        current, current_sha = predecessor
+
+    validated: list[ValidatedPostwaveReceipt] = []
+    predecessor_token: ValidatedPostwaveReceipt | None = None
+    for receipt_path, receipt_sha, value in reversed(newest_to_oldest):
+        authorization = _validate_postwave_receipt_local(
+            value, repo_root=root, predecessor=predecessor_token
+        )
+        history = _object(value["history"], label="history")
+        token = ValidatedPostwaveReceipt(
+            path=receipt_path,
+            receipt_sha256=receipt_sha,
+            lane=_string(value["lane"], label="lane"),
+            first_wave=_integer(
+                history["first_wave"], label="history.first_wave", minimum=1
+            ),
+            wave_ordinal=authorization.wave_ordinal,
+            authorization=authorization,
+        )
+        validated.append(token)
+        predecessor_token = token
+    return PostwaveLineage(tuple(validated))
+
+
+def validate_postwave_successor(
+    predecessor: ValidatedPostwaveReceipt,
+    path: Path,
+    *,
+    repo_root: Path,
+) -> ValidatedPostwaveReceipt:
+    """Validate one new receipt without replaying its authenticated prefix."""
+
+    root = Path(repo_root).resolve(strict=True)
+    if _hash_file(predecessor.path) != predecessor.receipt_sha256:
+        _fail("validated predecessor receipt changed on disk")
+    receipt_path = _receipt_path(path, repo_root=root)
+    value = _read_canonical_postwave_receipt(receipt_path)
+    authorization = _validate_postwave_receipt_local(
+        value, repo_root=root, predecessor=predecessor
+    )
+    history = _object(value["history"], label="history")
+    return ValidatedPostwaveReceipt(
+        path=receipt_path,
+        receipt_sha256=_hash_file(receipt_path),
+        lane=_string(value["lane"], label="lane"),
+        first_wave=_integer(
+            history["first_wave"], label="history.first_wave", minimum=1
+        ),
+        wave_ordinal=authorization.wave_ordinal,
+        authorization=authorization,
+    )
+
+
+def validate_postwave_receipt(
+    receipt: Mapping[str, Any], *, repo_root: Path
+) -> PostwaveAuthorization:
+    """Validate parsed receipt data and its complete predecessor lineage."""
+
+    root = Path(repo_root).resolve(strict=True)
+    predecessor_ref = _declared_predecessor(receipt, repo_root=root)
+    predecessor = (
+        None
+        if predecessor_ref is None
+        else load_postwave_lineage(predecessor_ref[0], repo_root=root).latest
+    )
+    return _validate_postwave_receipt_local(
+        receipt, repo_root=root, predecessor=predecessor
+    )
+
+
 def load_postwave_receipt(path: Path, *, repo_root: Path) -> Mapping[str, Any]:
     """Load canonical receipt bytes and validate their full artifact chain."""
 
-    value = _read_canonical_postwave_receipt(path)
-    validate_postwave_receipt(value, repo_root=repo_root)
-    return value
+    lineage = load_postwave_lineage(path, repo_root=repo_root)
+    return _read_canonical_postwave_receipt(lineage.latest.path)
 
 
 def load_postwave_authorization(
@@ -822,8 +998,7 @@ def load_postwave_authorization(
 ) -> PostwaveAuthorization:
     """Load and validate a receipt once, returning its solver authorization."""
 
-    value = _read_canonical_postwave_receipt(path)
-    return validate_postwave_receipt(value, repo_root=repo_root)
+    return load_postwave_lineage(path, repo_root=repo_root).latest.authorization
 
 
 def write_postwave_receipt(

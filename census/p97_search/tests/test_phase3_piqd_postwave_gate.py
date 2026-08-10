@@ -7,6 +7,7 @@ from typing import Any
 
 import pytest
 
+import census.p97_search.phase3_piqd_postwave_gate as postwave_gate
 from census.p97_search.phase3_piqd_postwave_gate import (
     LEAN_CORPUS,
     LEGACY_BOOTSTRAP_ORDINAL,
@@ -19,8 +20,10 @@ from census.p97_search.phase3_piqd_postwave_gate import (
     PostwaveGateError,
     canonical_json_bytes,
     load_postwave_authorization,
+    load_postwave_lineage,
     load_postwave_receipt,
     validate_postwave_receipt,
+    validate_postwave_successor,
     write_postwave_receipt,
 )
 from census.p97_search.phase3_piqd_theorem_gated_discovery import (
@@ -173,6 +176,105 @@ def _fixture(root: Path, *, no_lift: bool = False) -> dict[str, Any]:
             "theorem_closure": False,
         },
     }
+
+
+def _two_receipt_lineage(root: Path) -> tuple[Path, Path]:
+    predecessor = _fixture(root)
+    predecessor_relative = "artifacts/wave48-postwave.json"
+    predecessor_path = root / predecessor_relative
+    predecessor_path.write_bytes(canonical_json_bytes(predecessor) + b"\n")
+    predecessor_artifact = {
+        "path": predecessor_relative,
+        "sha256": _sha(predecessor_path.read_bytes()),
+    }
+
+    input_root = predecessor["outcome"]["successor_root"]
+    model = _json(
+        root, "artifacts/wave49-model.json", {"vars": 3, "model": [1, 2, 3]}
+    )
+    solve = _json(
+        root,
+        "artifacts/wave49-solve.json",
+        {
+            "model_literals": 3,
+            "session_before": {
+                "id": "11111111-1111-4111-8111-111111111111",
+                "lane": "sat",
+                "state": "live",
+                "last_assumption_free": True,
+                "clauses": 2,
+                "declared_num_vars": 3,
+                "max_var": 3,
+                "solver_sha256": "a" * 64,
+                "solves": 5,
+            },
+            "solve_response": {"status": "SAT", "solve_index": 6},
+        },
+    )
+    analysis = _json(
+        root,
+        "artifacts/wave49-analysis.json",
+        {
+            "cnf_assignment_verified": True,
+            "piqd_model_total": True,
+            "inputs": {
+                "cnf_sha256": input_root["sha256"],
+                "model_sha256": model["sha256"],
+            },
+        },
+    )
+    search = _write(
+        root,
+        "artifacts/wave49-search.txt",
+        b"theorem bank checked\ncurrent model checked\n",
+    )
+    current = {
+        "schema": SCHEMA,
+        "status": STATUS,
+        "lane": predecessor["lane"],
+        "wave": {"ordinal": 49, "label": "wave49"},
+        "artifacts": {
+            "input_root": input_root,
+            "solve_receipt": solve,
+            "model": model,
+            "source_analysis": analysis,
+        },
+        "history": {
+            "mode": "predecessor-receipt",
+            "first_wave": 1,
+            "last_wave": 49,
+            "evidence": [
+                {
+                    "role": "predecessor-theorem-search-receipt",
+                    "artifact": predecessor_artifact,
+                }
+            ],
+        },
+        "search": {
+            "artifact": search,
+            "corpus": LEAN_CORPUS,
+            "queries": ["general obstruction matching the current model"],
+            "results_examined": 2,
+            "current_wave_checked": True,
+            "accumulated_history_checked": True,
+            "theorem_banks": predecessor["search"]["theorem_banks"],
+        },
+        "outcome": {
+            "kind": "no-justified-lift",
+            "reason": "no source-entitled reusable consumer was found",
+            "proposed_refinement_count": 0,
+        },
+        "claims": {
+            "finite_theorem_search": True,
+            "source_backed_refinement": False,
+            "successor_authorized": False,
+            "universal_closure": False,
+            "theorem_closure": False,
+        },
+    }
+    current_path = root / "artifacts/wave49-postwave.json"
+    current_path.write_bytes(canonical_json_bytes(current) + b"\n")
+    return predecessor_path, current_path
 
 
 def test_reusable_theorem_authorizes_only_bound_successor(tmp_path: Path) -> None:
@@ -382,6 +484,52 @@ def test_canonical_receipt_round_trip(tmp_path: Path) -> None:
     assert authorization.successor_authorized
     assert output.read_bytes() == canonical_json_bytes(receipt) + b"\n"
     assert load_postwave_receipt(output, repo_root=tmp_path) == receipt
+
+
+def test_cold_lineage_validates_each_receipt_once(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _predecessor_path, current_path = _two_receipt_lineage(tmp_path)
+    original = postwave_gate._validate_postwave_receipt_local
+    waves: list[int] = []
+
+    def counted(*args: Any, **kwargs: Any) -> Any:
+        receipt = args[0] if args else kwargs["receipt"]
+        waves.append(receipt["wave"]["ordinal"])
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(
+        postwave_gate, "_validate_postwave_receipt_local", counted
+    )
+    lineage = load_postwave_lineage(current_path, repo_root=tmp_path)
+
+    assert waves == [48, 49]
+    assert tuple(token.wave_ordinal for token in lineage.receipts) == (48, 49)
+
+
+def test_incremental_successor_reuses_validated_prefix(tmp_path: Path) -> None:
+    predecessor_path, current_path = _two_receipt_lineage(tmp_path)
+    predecessor = load_postwave_lineage(
+        predecessor_path, repo_root=tmp_path
+    ).latest
+
+    current = validate_postwave_successor(
+        predecessor, current_path, repo_root=tmp_path
+    )
+
+    assert current.wave_ordinal == 49
+    assert not current.authorization.successor_authorized
+
+
+def test_incremental_successor_rejects_mutated_predecessor(tmp_path: Path) -> None:
+    predecessor_path, current_path = _two_receipt_lineage(tmp_path)
+    predecessor = load_postwave_lineage(
+        predecessor_path, repo_root=tmp_path
+    ).latest
+    predecessor_path.write_bytes(predecessor_path.read_bytes() + b"\n")
+
+    with pytest.raises(PostwaveGateError, match="changed on disk"):
+        validate_postwave_successor(predecessor, current_path, repo_root=tmp_path)
 
 
 def test_noncanonical_receipt_fails_closed(tmp_path: Path) -> None:
