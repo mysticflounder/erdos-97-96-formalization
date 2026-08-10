@@ -1,0 +1,73 @@
+{
+  "schema": "p97-exact17-theorem-shape-match-report/v1",
+  "kind": "solver-free ordered incidence theorem-shape audit",
+  "inputs": {
+    "gate_report": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-legacy-successor.theorem-gate-report.json",
+      "sha256": "91f6eb8f2a86609ec974d52ff0ec61d96d06ca6b6fbf9374ebf8bfaab41f5aa2"
+    },
+    "model": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-legacy-successor.model.json",
+      "sha256": "a93f9a05017151b8dffdf23f39767f80e5de056bec186be405c8f19d3f23be34"
+    },
+    "root": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave61-five-point-circle-isosceles-witness.cnf",
+      "sha256": "cb1fa32e6b9892aea7f200df4a710884b1d463a0db0f9defa9a1b92e658e31c4"
+    }
+  },
+  "cyclic_order": [0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14],
+  "bank": {
+    "hit_count": 1,
+    "family_hit_count": 0,
+    "linear_status": "unsat",
+    "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check"
+  },
+  "schemas": [
+    {
+      "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+      "match_count": 2,
+      "matches": [
+        {
+          "points": [11, 7, 16, 4, 1],
+          "atoms": [[7, 11], [7, 1], [16, 11], [16, 7], [16, 4]],
+          "clause": [-123, -114, -268, -264, -261]
+        },
+        {
+          "points": [11, 7, 16, 5, 1],
+          "atoms": [[7, 11], [7, 1], [16, 11], [16, 7], [16, 5]],
+          "clause": [-123, -114, -268, -264, -262]
+        }
+      ]
+    },
+    {
+      "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+      "match_count": 0,
+      "matches": []
+    },
+    {
+      "lean_consumer": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw",
+      "match_count": 0,
+      "matches": []
+    },
+    {
+      "lean_consumer": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows",
+      "match_count": 0,
+      "matches": []
+    }
+  ],
+  "authorized": {
+    "mode": "one-fresh-model-witness",
+    "points": [11, 7, 16, 4, 1],
+    "clause": [-123, -114, -268, -264, -261],
+    "symmetry_orbit_expanded": false,
+    "novel_clause_count": 1,
+    "successor_root_sha256": "bb2303a1eb9d9a5c52b01e70b01875b7816c034464017215a760560451c7fcb8"
+  },
+  "claims": {
+    "finite_theorem_shape_audit": true,
+    "source_backed_refinement": true,
+    "exact17_closure": false,
+    "universal_closure": false,
+    "production_sorry_closure": false
+  }
+}

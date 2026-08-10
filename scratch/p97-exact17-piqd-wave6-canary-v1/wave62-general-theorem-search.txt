@@ -1,0 +1,80 @@
+Wave 62 mandatory general-theorem search
+Date: 2026-08-10
+Lane: exact17-rigid221-lazy
+
+Source gate
+-----------
+
+- PIQD solve 57 is SAT after 1,107 ms; this is not closure.
+- The authenticated source root has 74,813 variables and 5,895,224 clauses.
+- Independent replay verified the complete assignment and reported
+  bank_hit_count = 1, family_hit_count = 0, and linear_status = unsat.
+- The existing bank hit is
+  Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+    false_of_twoKalmansonCancellationData_of_check.
+- No new theorem family was identified by the current-wave or accumulated-bank
+  review.
+
+Global Lean-corpus searches
+---------------------------
+
+Corpus: erdos-97-96-formalization-lean (indexed source 5e18fcff)
+
+1. five cyclic points direct two selected rows Euclidean contradiction
+
+   This rediscovered the source-clean cardinality-generic declaration
+   Problem97.FivePointEuclideanObstruction.
+     false_of_five_ccw_two_selected_rows.
+
+2. six cyclic points sparse two selected rows Euclidean obstruction
+
+   This rechecked the existing source-clean sparse six-point family; the Wave
+   62 assignment contains no instance.
+
+3. two Kalmanson cancellation selected rows
+
+   This rediscovered the theorem-bank consumer reported by the authenticated
+   gate.  It is reuse, not a new general theorem.
+
+Ordered theorem-shape audit
+---------------------------
+
+The complete selected-row assignment was checked against four cardinality-
+generic theorem shapes:
+
+- direct five-point: 2 witnessed occurrences;
+- second five-point: 0 occurrences;
+- circle-isosceles five-point: 0 occurrences;
+- sparse six-point: 0 occurrences.
+
+The direct occurrences, in boundary order, are
+
+  [11, 7, 16, 4, 1]
+  [11, 7, 16, 5, 1].
+
+Both use selected-row atoms (7,11), (7,1), (16,11), and (16,7); the
+first additionally uses (16,4), while the second uses (16,5).
+
+Decision
+--------
+
+Authorize exactly the lexicographically first witnessed direct occurrence,
+
+  [11, 7, 16, 4, 1],
+
+through append_five_point_direct_consumer_witness.py.  Its exact clause is
+
+  -123 -114 -268 -264 -261 0
+
+Do not append the second occurrence and do not expand a symmetry orbit.  The
+successor gains one five-literal clause only.
+
+This is one finite instance of an existing general Lean consumer.  It is not
+exact-17 coverage, universal P97 closure, or closure of a production `sorry`.
+
+Clause-count interpretation
+---------------------------
+
+The 5,895,224-clause Wave 62 input is inherited from the established exact-17
+root and six preceding lazy refinements.  The authorized successor adds one
+clause, reaching 5,895,225; the large total is not a new learned clause bank.

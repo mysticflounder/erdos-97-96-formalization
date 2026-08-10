@@ -534,3 +534,38 @@ live PIQD session.  The next operation is therefore exactly one receipt-gated
 `add` followed by export/hash comparison; only then may Wave54 run.  No second
 daemon should be launched against the current data directory before the
 running daemon is deliberately restarted onto the fixed startup-order binary.
+
+### Lazy-lane status after Wave62
+
+Waves 54--62 continued the receipt-gated one-model cadence without expanding
+whole dihedral orbits.  The current live PIQD session remains
+`66835651-f5f2-4034-8de7-f047524fa305`; Wave62 advanced it from solve 56 to
+solve 57 on the authenticated 74,813-variable, 5,895,224-clause root with
+SHA-256 `cb1fa32e6b9892aea7f200df4a710884b1d463a0db0f9defa9a1b92e658e31c4`.
+PIQD returned a total SAT model in 1,107 ms.  Independent root replay and the
+source-semantic gate passed, the accumulated motif family missed, and exact
+linear replay found an existing generic two-Kalmanson bank hit.  This is still
+an open exact-17 branch, not closure.
+
+The mandatory post-wave search checked the current model, the complete
+canonical theorem-bank registry, and the indexed Lean corpus.  It found no new
+theorem family.  A direct theorem-shape scan found two instances of the
+existing cardinality-generic consumer
+`Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows`
+and no instance of the second-five-point, circle-isosceles, or sparse-six-point
+consumers.  Only the first witnessed occurrence, on cyclic points
+`[11, 7, 16, 4, 1]`, is authorized.  It compiles to the single five-literal
+clause `[-123, -114, -268, -264, -261]`; no symmetry orbit is added.
+
+The authenticated successor root is
+`scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave62-five-point-direct-witness.cnf`:
+5,895,225 clauses, SHA-256
+`bb2303a1eb9d9a5c52b01e70b01875b7816c034464017215a760560451c7fcb8`.
+The complete lineage gate is
+`wave62-postwave-theorem-search.receipt.json` in the same directory.  At this
+checkpoint that successor is authorized offline but has not been appended to
+the live session.  Wave63 may perform exactly that authenticated append and
+one successor solve, after which the mandatory theorem search repeats.  The
+5.9-million-clause total is inherited infrastructure; Wave62 learned one
+clause, not millions.  Neither exact-17, full P97, nor a production `sorry` is
+closed by this checkpoint.
