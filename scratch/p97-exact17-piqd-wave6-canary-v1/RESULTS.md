@@ -554,6 +554,25 @@ This is shorter than the generic theorem-bank fallback. The current root is
 PIQD exported the 267,117,831-byte root byte-for-byte after the one-clause
 append. Exact 17 remains SAT and open; no production `sorry` is closed.
 
+## Wave 49 attempt 1: legacy worker model-read failure, no state advance
+
+The first authorized Wave 49 solve request did not return a successful PIQD
+response.  The legacy `piqd-satworker-cadical-3.0.0` worker logged a CaDiCaL
+`val` call outside the satisfied state while `include_model=true`.  PIQD did
+not create a solve receipt: the live session still has 43 solves, its latest
+solve index is 43, and the Wave 48 successor still has 5,895,211 clauses.
+
+`wave49-preappended-snapshot.json` preserves the complete authenticated
+pre-request session, receipt history, and successor-root identity.  No raw
+response artifact was produced because the initial snapshot controller
+rejected the non-2xx response before publication.  The controller now
+publishes a non-2xx response body before rejecting it, with a focused
+regression test.  No retry is authorized until the PIQD maintainer supplies a
+supported recovery path for this solver-pinned legacy session.
+
+This attempt produced no SAT/UNSAT/UNKNOWN result, no refinement, no exact-17
+coverage, and no production `sorry` closure.
+
 ## Prepared complete sparse-six family: not appended
 
 The cardinality-independent Lean consumer used in Waves 45, 47, and 48 has

@@ -137,6 +137,12 @@ the exported root must already equal the authenticated successor root.  These
 checks make the operation one-shot; after the successor solve increments the
 solve count, replaying the same authorization fails closed.
 
+The preappended controller publishes the raw solve-response body before it
+interprets the HTTP status or response schema.  A non-2xx response therefore
+still leaves an exclusive evidence artifact and then fails closed; it does not
+produce a normalized capture or model artifact.  Distinct output paths are
+required for any later, separately authorized recovery attempt.
+
 The gate authenticates the recorded theorem-search queries, searched corpus,
 complete bank set, result artifact, and reviewer claims.  It does not replay
 the semantic search engine itself.  This is an explicit human-attestation seam,

@@ -17,12 +17,14 @@ SUCCESSOR = "2" * 64
 CLAUSES = ((-1, 2),)
 SESSION_ID = "11111111-1111-4111-8111-111111111111"
 SOLVE_INDEX = 43
+SOLVER_SHA256 = "3" * 64
 
 
 class FakeRunner:
     def __init__(self, *, root: str = INPUT, successor: str = SUCCESSOR) -> None:
         self.session_id = SESSION_ID
         self.solve_count = SOLVE_INDEX
+        self.solver_sha256 = SOLVER_SHA256
         self.exported_cnf_sha256 = root
         self.successor = successor
         self.appended: list[tuple[tuple[int, ...], ...]] = []
@@ -55,6 +57,7 @@ def _authorization(*, authorized: bool = True) -> PostwaveAuthorization:
         successor_authorized=authorized,
         source_session_id=SESSION_ID,
         source_solve_index=SOLVE_INDEX,
+        source_solver_sha256=SOLVER_SHA256,
         input_root_sha256=INPUT,
         successor_root_sha256=SUCCESSOR if authorized else None,
         lean_consumer="Problem97.Example.false_of_pattern" if authorized else None,
@@ -62,7 +65,9 @@ def _authorization(*, authorized: bool = True) -> PostwaveAuthorization:
     )
 
 
-def _install_authorization(monkeypatch: pytest.MonkeyPatch, *, authorized: bool) -> None:
+def _install_authorization(
+    monkeypatch: pytest.MonkeyPatch, *, authorized: bool
+) -> None:
     monkeypatch.setattr(
         "census.p97_search.phase3_piqd_theorem_gated_discovery.load_postwave_authorization",
         lambda _path, *, repo_root: _authorization(authorized=authorized),
