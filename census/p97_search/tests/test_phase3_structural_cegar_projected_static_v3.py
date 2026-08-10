@@ -1635,6 +1635,125 @@ def test_absent_static_piqd_flags_preserve_local_solver_default() -> None:
     assert v3._solver_runner_from_cli_args(v3._parse_args([])) is v3.sat.run_cadical
 
 
+def _incremental_piqd_cli_args(tmp_path: Path) -> list[str]:
+    return [
+        "--persistent-discovery",
+        "--projected-static-v3",
+        *_static_piqd_cli_args(tmp_path),
+        "--piqd-producer-job-id",
+        "22222222-2222-4222-8222-222222222222",
+        "--piqd-solver-name",
+        "fake-cadical",
+    ]
+
+
+def test_incremental_piqd_cli_inputs_are_an_all_or_none_group(
+    tmp_path: Path,
+) -> None:
+    complete = _incremental_piqd_cli_args(tmp_path)
+    group_start = 2
+    for index in range(group_start, len(complete), 2):
+        incomplete = complete[:index] + complete[index + 2 :]
+        with pytest.raises(SystemExit):
+            v3._parse_args(incomplete)
+
+    config = v3._incremental_piqd_caller_config(v3._parse_args(complete))
+    assert config == v3._IncrementalPiqdCallerConfig(
+        base_url="http://127.0.0.1:7272",
+        custody_root=tmp_path / "journal",
+        source_manifest=tmp_path / "source-manifest.json",
+        producer_manifest=tmp_path / "producer-manifest.json",
+        producer_job_id="22222222-2222-4222-8222-222222222222",
+        solver_name="fake-cadical",
+    )
+
+
+@pytest.mark.parametrize(
+    "incompatible",
+    [
+        ["--parallel-mode", "cube-batch"],
+        ["--workers", "2"],
+        ["--shard-local-simplification"],
+        ["--resume"],
+    ],
+)
+def test_incremental_piqd_cli_rejects_incompatible_modes(
+    tmp_path: Path,
+    incompatible: list[str],
+) -> None:
+    with pytest.raises(SystemExit):
+        v3._parse_args([*_incremental_piqd_cli_args(tmp_path), *incompatible])
+
+
+def test_incremental_piqd_cli_rejects_missing_mode_and_mixed_static_inputs(
+    tmp_path: Path,
+) -> None:
+    without_projected = [
+        value
+        for value in _incremental_piqd_cli_args(tmp_path)
+        if value != "--projected-static-v3"
+    ]
+    with pytest.raises(SystemExit):
+        v3._parse_args(without_projected)
+    with pytest.raises(SystemExit):
+        v3._parse_args(
+            [
+                *_static_piqd_cli_args(tmp_path),
+                "--piqd-producer-job-id",
+                "22222222-2222-4222-8222-222222222222",
+            ]
+        )
+
+
+def test_incremental_piqd_factory_receives_exact_manifest_bytes_and_values(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    source_bytes = b'{"canonical":"incremental-source"}\n'
+    producer_bytes = b'{"canonical":"incremental-producer"}\n'
+    (tmp_path / "source-manifest.json").write_bytes(source_bytes)
+    (tmp_path / "producer-manifest.json").write_bytes(producer_bytes)
+    config = v3._incremental_piqd_caller_config(
+        v3._parse_args(_incremental_piqd_cli_args(tmp_path))
+    )
+    assert config is not None
+    captured: dict[str, Any] = {}
+    sentinel = object()
+
+    def factory(**kwargs: Any) -> Any:
+        captured.update(kwargs)
+        return sentinel
+
+    def local_proof(*_args: Any) -> Any:
+        raise AssertionError("not called")
+
+    monkeypatch.setattr(v3, "_make_incremental_piqd_solver_runner", factory)
+    result = v3._incremental_solver_runner_from_config(
+        config,
+        base_cnf_path=tmp_path / "out" / "base.cnf",
+        local_proof_runner=local_proof,
+    )
+
+    assert result is sentinel
+    assert captured == {
+        "base_url": "http://127.0.0.1:7272",
+        "custody_root": tmp_path / "journal",
+        "base_cnf_path": tmp_path / "out" / "base.cnf",
+        "source_manifest": source_bytes,
+        "producer_manifest": producer_bytes,
+        "producer_job_id": "22222222-2222-4222-8222-222222222222",
+        "solver_name": "fake-cadical",
+        "local_proof_runner": local_proof,
+    }
+
+
+def test_local_persistent_cli_path_is_preserved_without_piqd_inputs() -> None:
+    args = v3._parse_args(["--persistent-discovery"])
+    assert v3._incremental_piqd_caller_config(args) is None
+    assert v3._static_piqd_caller_config(args) is None
+    assert v3._solver_runner_from_cli_args(args) is v3.sat.run_cadical
+
+
 def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
     tmp_path: Path,
 ) -> None:

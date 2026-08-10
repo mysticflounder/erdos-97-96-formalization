@@ -584,6 +584,16 @@ class _StaticPiqdCallerConfig:
     producer_manifest: Path
 
 
+@dataclass(frozen=True)
+class _IncrementalPiqdCallerConfig:
+    base_url: str
+    custody_root: Path
+    source_manifest: Path
+    producer_manifest: Path
+    producer_job_id: str
+    solver_name: str
+
+
 class StructuralCegarError(RuntimeError):
     """An encoding, certificate, solver, resume, or artifact failure."""
 
@@ -604,12 +614,20 @@ def _static_piqd_caller_config(
             "--piqd-base-url, --piqd-journal-root, --piqd-source-manifest, "
             "and --piqd-producer-manifest must be provided together"
         )
+    if args.persistent_discovery:
+        # A complete persistent PIQD group is validated by the incremental
+        # selector.  With no PIQD inputs, the existing local IPASIR path stays
+        # selected.
+        _incremental_piqd_caller_config(args)
+        return None
+    incremental_inputs = (args.piqd_producer_job_id, args.piqd_solver_name)
+    if any(value is not None for value in incremental_inputs):
+        raise StructuralCegarError(
+            "--piqd-producer-job-id and --piqd-solver-name require "
+            "--persistent-discovery and the common PIQD inputs"
+        )
     if not any(value is not None for value in inputs):
         return None
-    if args.persistent_discovery:
-        raise StructuralCegarError(
-            "PIQD discovery cannot be combined with --persistent-discovery"
-        )
     if args.parallel_mode != "sequential":
         raise StructuralCegarError(
             "PIQD discovery currently requires --parallel-mode sequential"
@@ -621,6 +639,61 @@ def _static_piqd_caller_config(
         journal_root=args.piqd_journal_root,
         source_manifest=args.piqd_source_manifest,
         producer_manifest=args.piqd_producer_manifest,
+    )
+
+
+def _incremental_piqd_caller_config(
+    args: argparse.Namespace,
+) -> _IncrementalPiqdCallerConfig | None:
+    inputs = (
+        args.piqd_base_url,
+        args.piqd_journal_root,
+        args.piqd_source_manifest,
+        args.piqd_producer_manifest,
+        args.piqd_producer_job_id,
+        args.piqd_solver_name,
+    )
+    if not args.persistent_discovery:
+        if args.piqd_producer_job_id is not None or args.piqd_solver_name is not None:
+            raise StructuralCegarError(
+                "--piqd-producer-job-id and --piqd-solver-name require "
+                "--persistent-discovery"
+            )
+        return None
+    if not any(value is not None for value in inputs):
+        return None
+    if not all(value is not None for value in inputs):
+        raise StructuralCegarError(
+            "persistent PIQD discovery requires --piqd-base-url, "
+            "--piqd-journal-root, --piqd-source-manifest, "
+            "--piqd-producer-manifest, --piqd-producer-job-id, and "
+            "--piqd-solver-name together"
+        )
+    if args.parallel_mode != "sequential":
+        raise StructuralCegarError(
+            "persistent PIQD discovery requires --parallel-mode sequential"
+        )
+    if args.workers != 1:
+        raise StructuralCegarError("persistent PIQD discovery requires --workers 1")
+    if args.shard_local_simplification:
+        raise StructuralCegarError(
+            "persistent PIQD discovery requires an unsimplified append-only CNF"
+        )
+    if args.resume:
+        raise StructuralCegarError(
+            "persistent PIQD discovery v1 does not support --resume"
+        )
+    if not args.projected_static_v3:
+        raise StructuralCegarError(
+            "persistent PIQD discovery requires --projected-static-v3"
+        )
+    return _IncrementalPiqdCallerConfig(
+        base_url=args.piqd_base_url,
+        custody_root=args.piqd_journal_root,
+        source_manifest=args.piqd_source_manifest,
+        producer_manifest=args.piqd_producer_manifest,
+        producer_job_id=args.piqd_producer_job_id,
+        solver_name=args.piqd_solver_name,
     )
 
 
@@ -654,6 +727,50 @@ def _make_static_piqd_solver_runner(
         journal_root=journal_root,
         source_manifest=source_manifest,
         producer_manifest=producer_manifest,
+    )
+
+
+def _make_incremental_piqd_solver_runner(
+    *,
+    base_url: str,
+    custody_root: Path,
+    base_cnf_path: Path,
+    source_manifest: bytes,
+    producer_manifest: bytes,
+    producer_job_id: str,
+    solver_name: str,
+    local_proof_runner: SolverRunner,
+) -> SolverRunner:
+    incremental_v3 = importlib.import_module(
+        "census.p97_search.phase3_piqd_incremental_v3"
+    )
+    return incremental_v3.make_piqd_incremental_v3_solver_runner(
+        base_url=base_url,
+        custody_root=custody_root,
+        base_cnf_path=base_cnf_path,
+        source_manifest=source_manifest,
+        producer_manifest=producer_manifest,
+        producer_job_id=producer_job_id,
+        solver_name=solver_name,
+        local_proof_runner=local_proof_runner,
+    )
+
+
+def _incremental_solver_runner_from_config(
+    config: _IncrementalPiqdCallerConfig,
+    *,
+    base_cnf_path: Path,
+    local_proof_runner: SolverRunner,
+) -> SolverRunner:
+    return _make_incremental_piqd_solver_runner(
+        base_url=config.base_url,
+        custody_root=config.custody_root,
+        base_cnf_path=base_cnf_path,
+        source_manifest=config.source_manifest.read_bytes(),
+        producer_manifest=config.producer_manifest.read_bytes(),
+        producer_job_id=config.producer_job_id,
+        solver_name=config.solver_name,
+        local_proof_runner=local_proof_runner,
     )
 
 
@@ -5314,6 +5431,7 @@ def _base_configuration(
     shard_depth: int | None = None,
     shard_index: int | None = None,
     persistent_discovery: bool = False,
+    piqd_incremental_discovery: bool = False,
     productivity_telemetry: bool = False,
 ) -> dict[str, Any]:
     cube_variables = (
@@ -5452,18 +5570,30 @@ def _base_configuration(
         },
         "solver_protocol": {
             "discovery": (
-                "proof-free persistent incremental CaDiCaL/IPASIR session"
-                if persistent_discovery
-                else "proof-free CaDiCaL invocation"
+                "proof-free persistent PIQD incremental CaDiCaL session"
+                if piqd_incremental_discovery
+                else (
+                    "proof-free persistent incremental CaDiCaL/IPASIR session"
+                    if persistent_discovery
+                    else "proof-free CaDiCaL invocation"
+                )
             ),
             "terminal": "fresh proof-producing rerun on exact terminal.cnf",
             "cube_local_unsat": "unverified and non-terminal",
             "terminal_cnf_drift": "fail-closed",
             "incremental": {
                 "enabled": persistent_discovery,
-                "schema": incremental_cadical.SCHEMA,
+                "schema": (
+                    "p97-piqd-incremental-v3-caller/v1"
+                    if piqd_incremental_discovery
+                    else incremental_cadical.SCHEMA
+                ),
                 "append_only_formula": True,
-                "resume": "rebuild from authenticated CNF/journals",
+                "resume": (
+                    "fresh session only; resume rejected"
+                    if piqd_incremental_discovery
+                    else "rebuild from authenticated CNF/journals"
+                ),
                 "proof_boundary": "outside incremental session",
             },
         },
@@ -9296,6 +9426,7 @@ def run_driver(
     persistent_discovery: bool = False,
     productivity_telemetry: bool = False,
     incremental_solver_factory: Any | None = None,
+    piqd_incremental_config: _IncrementalPiqdCallerConfig | None = None,
     resume: bool = False,
     max_new_raw: int | None = None,
     solver_runner: SolverRunner = sat.run_cadical,
@@ -9337,6 +9468,25 @@ def run_driver(
     if incremental_solver_factory is not None and not persistent_discovery:
         raise StructuralCegarError(
             "incremental_solver_factory requires persistent_discovery=True"
+        )
+    if piqd_incremental_config is not None and not persistent_discovery:
+        raise StructuralCegarError(
+            "piqd_incremental_config requires persistent_discovery=True"
+        )
+    if (
+        piqd_incremental_config is not None
+        and incremental_solver_factory is not None
+    ):
+        raise StructuralCegarError(
+            "PIQD incremental discovery cannot use incremental_solver_factory"
+        )
+    if piqd_incremental_config is not None and not projected_static_v3:
+        raise StructuralCegarError(
+            "PIQD incremental discovery requires projected_static_v3=True"
+        )
+    if piqd_incremental_config is not None and resume:
+        raise StructuralCegarError(
+            "PIQD incremental discovery v1 does not support resume"
         )
     if persistent_discovery and parallel_mode != "sequential":
         raise StructuralCegarError(
@@ -9415,16 +9565,24 @@ def run_driver(
             "three-rhombus prefix cache requires an authenticated prefix bank"
         )
 
+    out = Path(out_dir)
     solver_backend: SolverRunner = solver_runner
     if persistent_discovery:
-        if incremental_solver_factory is None:
-            incremental_solver_factory = (
-                incremental_cadical.IpasirCadicalFactory.from_environment()
+        if piqd_incremental_config is not None:
+            solver_backend = _incremental_solver_runner_from_config(
+                piqd_incremental_config,
+                base_cnf_path=out / "base.cnf",
+                local_proof_runner=solver_runner,
             )
-        solver_backend = incremental_cadical.PersistentDiscoveryRunner(
-            incremental_solver_factory,
-            proof_solver=solver_runner,
-        )
+        else:
+            if incremental_solver_factory is None:
+                incremental_solver_factory = (
+                    incremental_cadical.IpasirCadicalFactory.from_environment()
+                )
+            solver_backend = incremental_cadical.PersistentDiscoveryRunner(
+                incremental_solver_factory,
+                proof_solver=solver_runner,
+            )
     terminal_publisher: cegar_runtime.TerminalPublisher = (
         cegar_runtime.FilesystemTerminalPublisher(
             checker_runner=checker_runner,
@@ -9432,7 +9590,6 @@ def run_driver(
             proof_solver=solver_backend,
         )
     )
-    out = Path(out_dir)
     bootstrap = None if bootstrap_results is None else Path(bootstrap_results)
     if bootstrap is not None and not bootstrap.is_file():
         raise StructuralCegarError(f"bootstrap results do not exist: {bootstrap}")
@@ -9555,6 +9712,7 @@ def run_driver(
         shard_depth=shard_depth,
         shard_index=shard_index,
         persistent_discovery=persistent_discovery,
+        piqd_incremental_discovery=piqd_incremental_config is not None,
         productivity_telemetry=productivity_telemetry,
     )
     shard_literals = (
@@ -9713,7 +9871,11 @@ def run_driver(
     else:
         if out.exists() and any(out.iterdir()):
             raise StructuralCegarError("output directory is nonempty; pass resume=True")
-        out.mkdir(parents=True, exist_ok=True)
+        out.mkdir(
+            parents=True,
+            exist_ok=True,
+            mode=0o700 if piqd_incremental_config is not None else 0o777,
+        )
         _atomic_bytes(out / "base.cnf", base_cnf_bytes)
         smoke = _run_smoke_gates()
         _atomic_json(out / "smoke.json", smoke)
@@ -11070,11 +11232,11 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         "--persistent-discovery",
         action="store_true",
         help=(
-            "use the opt-in persistent IPASIR CaDiCaL discovery adapter; "
-            "set P97_CADICAL_IPASIR_LIB to a shared library"
+            "use persistent discovery: local IPASIR when PIQD inputs are "
+            "absent, or PIQD incremental v1 when its full input group is set"
         ),
     )
-    piqd_group = parser.add_argument_group("PIQD static discovery")
+    piqd_group = parser.add_argument_group("PIQD discovery")
     piqd_group.add_argument("--piqd-base-url")
     piqd_group.add_argument("--piqd-journal-root", type=Path)
     piqd_group.add_argument(
@@ -11086,6 +11248,17 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         "--piqd-producer-manifest",
         type=Path,
         help="path to the exact canonical PIQD producer-manifest bytes",
+    )
+    piqd_group.add_argument(
+        "--piqd-producer-job-id",
+        help=(
+            "externally prepared producer job UUID whose seed blob is exact "
+            "out/base.cnf; requires --persistent-discovery"
+        ),
+    )
+    piqd_group.add_argument(
+        "--piqd-solver-name",
+        help="PIQD incremental SAT solver name; requires --persistent-discovery",
     )
     parser.add_argument(
         "--productivity-telemetry",
@@ -11131,6 +11304,7 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     args = parser.parse_args(argv)
     try:
         _static_piqd_caller_config(args)
+        _incremental_piqd_caller_config(args)
     except StructuralCegarError as exc:
         parser.error(str(exc))
     if args.learned_core_limit < 1000:
@@ -11172,6 +11346,7 @@ def main() -> int:
         print(json.dumps(coverage, indent=2, sort_keys=True))
         return 0
     solver_runner = _solver_runner_from_cli_args(args)
+    piqd_incremental_config = _incremental_piqd_caller_config(args)
     manifest = run_driver(
         args.out,
         timeout_s=args.timeout,
@@ -11200,6 +11375,7 @@ def main() -> int:
         shard_local_simplification=args.shard_local_simplification,
         persistent_discovery=args.persistent_discovery,
         productivity_telemetry=args.productivity_telemetry,
+        piqd_incremental_config=piqd_incremental_config,
         three_rhombus_prefix_bank=args.three_rhombus_prefix_bank,
         three_rhombus_prefix_cache=args.three_rhombus_prefix_cache,
         three_rhombus_prefix_root_sha256=(

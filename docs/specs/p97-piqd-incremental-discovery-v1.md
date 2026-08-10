@@ -137,8 +137,33 @@ fails later validation, cleanup follows the same uncertain-close contract.
 Adapter obligations not supplied as first-class PIQD data are strict
 descriptor-rooted local custody, raw producer/source identity, local journal
 authentication, restart/revive rebinding, total-model replay, and the
-fail-closed no-proof boundary. The current PIQD model route has a separately
-tracked non-SAT safety bug (#4428); v1 avoids it with the current-session
-`last_status == "SAT"` gate above. This is a PIQD core bug, not an adapter
-contract gap. Any future first-class attestation or proof handoff is a
+fail-closed no-proof boundary. The former PIQD non-SAT model-route defect
+(#4428) is fixed in the deployed daemon; v1 still enforces the independent
+current-session `last_status == "SAT"` gate. Any future first-class attestation
+or proof handoff is a
 maintainer feature, not assumed by v1.
+
+## Projected-static-v3 caller profile
+
+`phase3_piqd_incremental_v3.py` is the strict caller profile for
+`phase3_structural_cegar_projected_static_v3.py`. It seeds a fresh PIQD session
+from the exact private `out/base.cnf` bytes owned by the prepared producer job.
+The current `out/.solver.cnf` may already contain bootstrap, restored, learned,
+and survivor clauses; the generic adapter authenticates the stable base prefix
+and appends only that ordered suffix. The caller refuses any other seed
+basename, path outside the configured custody root, resume, local shard
+simplification, parallel scheduling, or worker count other than one.
+
+Discovery calls have `proof_path = None` and never fall back to a local solver
+after PIQD `UNKNOWN`, transport failure, or contract rejection. A non-null
+proof path is dispatched only to the unchanged fresh local CaDiCaL runner, so
+terminal DRAT production and checking remain outside PIQD. The wrapper checks
+the exact result type, status, positive solve/frontier counters, lowercase
+hashes, receipt/result identity, assignment shape, and false proof/closure
+claims before returning the legacy `10`/`20`/`0` result boundary.
+
+Caller metadata always uses `p97-piqd-incremental-v3-caller/v1`; after lazy
+session creation it nests the producer-neutral session metadata rather than
+changing its own schema. This is finite solver-discovery infrastructure only.
+It does not authenticate a Lean theorem, verify an UNSAT proof, establish
+source entitlement, or close the proof-blueprint anchor.
