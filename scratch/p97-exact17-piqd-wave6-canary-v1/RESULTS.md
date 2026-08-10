@@ -270,3 +270,67 @@ SHA-256
 `3b81ad37b9fb45882b76ac535ac3598596366ad03a94f36776f87c9e33b9885b`.
 PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
 and open; no production `sorry` is closed.
+
+## Wave 37: unique sparse-six strengthening
+
+Wave 37 solved SAT in 2.377 seconds. Its total model satisfied the exact Wave 36
+root, missed the accumulated 13-motif family, hit one existing generic theorem-
+bank instance, and was rejected by exact linear arithmetic.
+
+The mandatory indexed theorem search found no embedding of either simpler
+two-row shared-pair consumer, but exactly one embedding of the stronger
+source-clean sparse six-point/two-row consumer. The authenticated occurrence
+`(9, 7, 2, 15, 3, 13)` yields the six-atom clause
+
+`-159 -157 -152 -47 -39 -35 0`.
+
+The current root is
+`postgate-wave37-sparse-six-point-witness.cnf`, with 5,895,200 clauses and
+SHA-256
+`274870a0beaeaefd41ec9b522915f01f9fb0d62bcfc26c11eddc9a35b23e6db3`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.
+
+## Wave 38: shortest certified bank hit from complete model rows
+
+Wave 38 solved SAT in 13.790 seconds. Its total model satisfied the exact Wave
+37 root, missed the accumulated 13-motif family, hit two existing theorem-bank
+obstructions, and was rejected by exact linear arithmetic.
+
+The mandatory indexed theorem search found a reverse-orientation arc-overtake
+consumer using nine selected-row atoms. It also found two reverse occurrences
+of the three-selected-row six-point obstruction, but no source-clean reverse
+selected-row adapter. The existing generic two-Kalmanson consumer applies
+without such an adapter and yields the shorter eight-atom clause
+
+`-269 -268 -107 -97 -86 -81 -12 -6 0`.
+
+The appender was extended with an explicit `--complete-model-rows` selector so
+that it can inspect a later static-bank hit without replacing the authenticated
+gate's minimized first-hit witness. The receipt records that row source.
+
+The current root is `postgate-wave38-generic-witness.cnf`, with 5,895,201
+clauses and SHA-256
+`f099171fce443935289db19436377ed67e15374ea1cb18af6c6e82b7fcf7e527`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.
+
+## Wave 39: another lazy generic Kalmanson instance
+
+Wave 39 solved SAT in 18.111 seconds. Its total model satisfied the exact Wave
+38 root, missed the accumulated 13-motif family, hit one existing generic
+theorem-bank obstruction, and was rejected by exact linear arithmetic.
+
+The mandatory indexed theorem search confirmed the source-clean generic
+two-Kalmanson consumer. The complete authenticated model rows contained two
+normalized generic motifs; the shortest uses six points and eight selected-row
+atoms and yields the single clause
+
+`-261 -258 -180 -178 -75 -68 -43 -36 0`.
+
+The current root is `postgate-wave39-generic-witness.cnf`, with 5,895,202
+clauses and SHA-256
+`3e4087340deed0e8ef3cdbdc6678d9ffb2aeb5ecd199ca564c4053f6146d01e5`.
+PIQD exported it byte-for-byte after the one-clause append. The complete orbit
+would have 148,512 clauses; the lazy loop emitted only this witnessed instance.
+Exact 17 remains SAT and open; no production `sorry` is closed.

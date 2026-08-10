@@ -118,6 +118,14 @@ def main() -> int:
             "the receipt still authenticates the complete generic orbit"
         ),
     )
+    parser.add_argument(
+        "--complete-model-rows",
+        action="store_true",
+        help=(
+            "enumerate generic motifs from the complete authenticated model rows "
+            "instead of the minimized witness for the first bank hit"
+        ),
+    )
     args = parser.parse_args()
 
     compiler = load_module("fresh_bank_motif_compiler", COMPILER_SOURCE)
@@ -172,7 +180,7 @@ def main() -> int:
         raise ValueError("invalid exact-17 cyclic order")
 
     minimized_rows = source.get("minimized_first_bank_rows")
-    if minimized_rows is None:
+    if args.complete_model_rows or minimized_rows is None:
         row_payloads = source.get("rows")
         row_source = "complete-authenticated-model-rows"
     else:

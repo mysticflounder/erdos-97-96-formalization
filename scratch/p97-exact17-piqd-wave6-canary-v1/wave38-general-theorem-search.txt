@@ -1,0 +1,53 @@
+Wave 38 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: a28edbc7 (2026-08-10)
+
+Query
+-----
+
+SixPointTwoCircleArcOvertakeOrderCore selected rows six point two circle
+reverse orientation consumer
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core_of_neg
+* Problem97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge.
+  false_of_three_rows_and_cyclic_subsequence
+* Problem97.SixPointEuclideanObstruction.false_of_six_ccw_three_selected_rows
+* Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows
+* Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair
+* Problem97.CapCrossingKalmanson.
+  false_of_two_selected_middle_rows_shared_endpoint_pair
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The Wave 38 model has no embedding of either shared-pair consumer or the sparse
+six-point/two-row consumer. It has one reverse-orientation arc-overtake bank
+hit, with labels O=7, A=9, C=16, D=8, E=1, F=3, and its exact rows are:
+
+  center 7: 1, 8, 9, 16
+  center 8: 1, 3, 6, 9
+  center 9: 5, 6, 7, 16
+
+The direct arc-overtake carrier bridge would require nine selected-row atoms.
+The model also has two reverse occurrences of the three-selected-row
+SixPointEuclideanObstruction pattern, but the indexed declaration is stated for
+the forward cyclic orientation and no source-clean reverse selected-row adapter
+was found. Those occurrences were therefore not used.
+
+The existing generic two-Kalmanson consumer has seven candidate normalized
+motifs in the complete authenticated model rows. The smallest uses six points
+and eight selected-row atoms, so the single fresh-model instance
+
+  -269 -268 -107 -97 -86 -81 -12 -6 0
+
+was appended. This is shorter than the applicable nine-atom arc-overtake
+consumer and does not assume an unproved orientation adapter. The accumulated
+13-motif family had no hit, while the static bank had two hits and exact linear
+arithmetic was UNSAT.

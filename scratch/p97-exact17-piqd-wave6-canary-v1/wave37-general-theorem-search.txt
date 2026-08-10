@@ -1,0 +1,40 @@
+Wave 37 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: 4249b3c9 (2026-08-10 06:44 UTC)
+
+Query
+-----
+
+six cyclically ordered points two selected rows Euclidean Kalmanson
+obstruction shared endpoint pair sparse support
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair
+* Problem97.CapCrossingKalmanson.
+  false_of_two_selected_middle_rows_shared_endpoint_pair
+* Problem97.SixPointSparseEuclideanObstruction.
+  false_of_six_ccw_two_selected_rows
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The Wave 37 model has no increasing embedding of either two-row shared-pair
+consumer. It has exactly one increasing embedding of the stronger sparse
+six-point/two-row consumer:
+
+  (9, 7, 2, 15, 3, 13).
+
+The corresponding six-atom clause is
+
+  -159 -157 -152 -47 -39 -35 0
+
+The model missed the accumulated 13-motif family but hit one existing generic
+theorem-bank obstruction and was exact-linearly infeasible. The sparse-six
+instance is a smaller source-clean explanation, so only this one clause was
+appended.
