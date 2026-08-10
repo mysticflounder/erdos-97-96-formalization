@@ -55,6 +55,8 @@ def _fixture(root: Path, *, no_lift: bool = False) -> dict[str, Any]:
         {
             "model_literals": 3,
             "session_before": {
+                "id": "11111111-1111-4111-8111-111111111111",
+                "lane": "sat",
                 "state": "live",
                 "last_assumption_free": True,
                 "clauses": 1,
@@ -175,6 +177,8 @@ def test_reusable_theorem_authorizes_only_bound_successor(tmp_path: Path) -> Non
     authorization = validate_postwave_receipt(receipt, repo_root=tmp_path)
     assert authorization.successor_authorized
     assert authorization.wave_ordinal == LEGACY_BOOTSTRAP_ORDINAL
+    assert authorization.source_session_id == "11111111-1111-4111-8111-111111111111"
+    assert authorization.source_solve_index == 5
     assert authorization.lean_consumer == "Problem97.Example.false_of_pattern"
     assert authorization.admitted_clauses == ((-1, 2),)
 
@@ -336,6 +340,8 @@ def test_real_receipt_loader_drives_controller_without_mock(tmp_path: Path) -> N
     output.write_bytes(canonical_json_bytes(receipt) + b"\n")
 
     class Runner:
+        session_id = "11111111-1111-4111-8111-111111111111"
+        solve_count = 5
         exported_cnf_sha256 = receipt["artifacts"]["input_root"]["sha256"]
         closed = False
 

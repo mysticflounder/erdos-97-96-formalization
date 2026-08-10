@@ -8,16 +8,21 @@ import pytest
 from census.p97_search.phase3_piqd_postwave_gate import PostwaveAuthorization
 from census.p97_search.phase3_piqd_theorem_gated_discovery import (
     TheoremGatedDiscoveryError,
+    run_authorized_preappended_successor,
     run_authorized_successor,
 )
 
 INPUT = "1" * 64
 SUCCESSOR = "2" * 64
 CLAUSES = ((-1, 2),)
+SESSION_ID = "11111111-1111-4111-8111-111111111111"
+SOLVE_INDEX = 43
 
 
 class FakeRunner:
     def __init__(self, *, root: str = INPUT, successor: str = SUCCESSOR) -> None:
+        self.session_id = SESSION_ID
+        self.solve_count = SOLVE_INDEX
         self.exported_cnf_sha256 = root
         self.successor = successor
         self.appended: list[tuple[tuple[int, ...], ...]] = []
@@ -36,6 +41,7 @@ class FakeRunner:
         self.solve_calls.append(
             {"timeout_ms": timeout_ms, "conflict_limit": conflict_limit}
         )
+        self.solve_count += 1
         return "SAT"
 
     def close(self) -> None:
@@ -47,6 +53,8 @@ def _authorization(*, authorized: bool = True) -> PostwaveAuthorization:
         wave_ordinal=48,
         outcome="reusable-theorem" if authorized else "no-justified-lift",
         successor_authorized=authorized,
+        source_session_id=SESSION_ID,
+        source_solve_index=SOLVE_INDEX,
         input_root_sha256=INPUT,
         successor_root_sha256=SUCCESSOR if authorized else None,
         lean_consumer="Problem97.Example.false_of_pattern" if authorized else None,
@@ -105,6 +113,34 @@ def test_frontier_mismatch_stops_before_append(
     assert not runner.solve_calls
 
 
+def test_source_session_mismatch_stops_before_append(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _install_authorization(monkeypatch, authorized=True)
+    runner = FakeRunner()
+    runner.session_id = "22222222-2222-4222-8222-222222222222"
+    with pytest.raises(TheoremGatedDiscoveryError, match="source solve"):
+        run_authorized_successor(
+            runner, postwave_receipt=tmp_path / "postwave.json", repo_root=tmp_path
+        )
+    assert not runner.appended
+    assert not runner.solve_calls
+
+
+def test_source_solve_frontier_mismatch_stops_before_append(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _install_authorization(monkeypatch, authorized=True)
+    runner = FakeRunner()
+    runner.solve_count += 1
+    with pytest.raises(TheoremGatedDiscoveryError, match="solve frontier"):
+        run_authorized_successor(
+            runner, postwave_receipt=tmp_path / "postwave.json", repo_root=tmp_path
+        )
+    assert not runner.appended
+    assert not runner.solve_calls
+
+
 def test_successor_mismatch_stops_before_solve(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -154,4 +190,41 @@ def test_append_exception_terminalizes_session(
             runner, postwave_receipt=tmp_path / "postwave.json", repo_root=tmp_path
         )
     assert runner.close_calls == 1
+    assert not runner.solve_calls
+
+
+def test_preappended_successor_solves_once_without_reappend(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _install_authorization(monkeypatch, authorized=True)
+    runner = FakeRunner(root=SUCCESSOR)
+    authorization, result = run_authorized_preappended_successor(
+        runner,
+        postwave_receipt=tmp_path / "postwave.json",
+        repo_root=tmp_path,
+        timeout_ms=30_000,
+    )
+    assert authorization.wave_ordinal == 48
+    assert result == "SAT"
+    assert not runner.appended
+    assert runner.solve_calls == [{"timeout_ms": 30_000, "conflict_limit": None}]
+
+
+def test_preappended_successor_rejects_wrong_root_or_repeated_solve(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _install_authorization(monkeypatch, authorized=True)
+    runner = FakeRunner(root=INPUT)
+    with pytest.raises(TheoremGatedDiscoveryError, match="preappended successor"):
+        run_authorized_preappended_successor(
+            runner, postwave_receipt=tmp_path / "postwave.json", repo_root=tmp_path
+        )
+    assert not runner.solve_calls
+
+    runner = FakeRunner(root=SUCCESSOR)
+    runner.solve_count += 1
+    with pytest.raises(TheoremGatedDiscoveryError, match="solve frontier"):
+        run_authorized_preappended_successor(
+            runner, postwave_receipt=tmp_path / "postwave.json", repo_root=tmp_path
+        )
     assert not runner.solve_calls

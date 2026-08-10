@@ -55,6 +55,9 @@ The validator independently checks that:
 - the input DIMACS dimensions agree with the PIQD session and total model, and
   an independent streaming pass verifies that model against every root clause;
 - the solve was live, assumption-free, SAT, and the next dense solve index;
+- the authorization exposes that exact PIQD session identity and solve index,
+  so a controller cannot consume the receipt from another session or after a
+  later solve;
 - the source analysis binds the same root and model and verified both;
 - the theorem search examined the current wave and accumulated history;
 - the complete theorem-bank registry was bound;
@@ -118,6 +121,14 @@ The controller treats append as a state transition.  Any append exception,
 acknowledged-count mismatch, or exported-successor mismatch terminalizes the
 PIQD session before returning an error; no solve is attempted from an uncertain
 frontier.
+
+For a legacy session where the authenticated fragment was appended before this
+controller took custody, the controller also has a narrowly scoped
+preappended-successor path.  It permits no append: the live session id and solve
+count must still equal the source solve recorded in the post-wave receipt, and
+the exported root must already equal the authenticated successor root.  These
+checks make the operation one-shot; after the successor solve increments the
+solve count, replaying the same authorization fails closed.
 
 The gate authenticates the recorded theorem-search queries, searched corpus,
 complete bank set, result artifact, and reviewer claims.  It does not replay

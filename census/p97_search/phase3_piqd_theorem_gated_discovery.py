@@ -23,6 +23,12 @@ class IncrementalDiscoveryRunner[ResultT](Protocol):
     @property
     def exported_cnf_sha256(self) -> str: ...
 
+    @property
+    def session_id(self) -> str: ...
+
+    @property
+    def solve_count(self) -> int: ...
+
     def append_clauses(self, clauses: Sequence[Sequence[int]]) -> int: ...
 
     def close(self) -> None: ...
@@ -50,6 +56,42 @@ def _terminalize_failed_transition[ResultT](
     raise error from cause
 
 
+def _load_authorization(
+    *, postwave_receipt: Path, repo_root: Path
+) -> PostwaveAuthorization:
+    try:
+        authorization = load_postwave_authorization(
+            postwave_receipt, repo_root=repo_root
+        )
+    except (OSError, PostwaveGateError) as exc:
+        raise TheoremGatedDiscoveryError(
+            "post-wave theorem-search receipt failed validation"
+        ) from exc
+    if not authorization.successor_authorized:
+        raise TheoremGatedDiscoveryError(
+            "post-wave review found no source-backed reusable theorem"
+        )
+    if authorization.successor_root_sha256 is None:
+        raise TheoremGatedDiscoveryError(
+            "post-wave authorization does not name a successor root"
+        )
+    return authorization
+
+
+def _check_source_solve[ResultT](
+    runner: IncrementalDiscoveryRunner[ResultT],
+    authorization: PostwaveAuthorization,
+) -> None:
+    if runner.session_id != authorization.source_session_id:
+        raise TheoremGatedDiscoveryError(
+            "PIQD session does not match the authorized source solve"
+        )
+    if runner.solve_count != authorization.source_solve_index:
+        raise TheoremGatedDiscoveryError(
+            "PIQD solve frontier does not match the authorized source solve"
+        )
+
+
 def run_authorized_successor[ResultT](
     runner: IncrementalDiscoveryRunner[ResultT],
     *,
@@ -66,18 +108,10 @@ def run_authorized_successor[ResultT](
     is terminal for this call.
     """
 
-    try:
-        authorization = load_postwave_authorization(
-            postwave_receipt, repo_root=repo_root
-        )
-    except (OSError, PostwaveGateError) as exc:
-        raise TheoremGatedDiscoveryError(
-            "post-wave theorem-search receipt failed validation"
-        ) from exc
-    if not authorization.successor_authorized:
-        raise TheoremGatedDiscoveryError(
-            "post-wave review found no source-backed reusable theorem"
-        )
+    authorization = _load_authorization(
+        postwave_receipt=postwave_receipt, repo_root=repo_root
+    )
+    _check_source_solve(runner, authorization)
     if runner.exported_cnf_sha256 != authorization.input_root_sha256:
         raise TheoremGatedDiscoveryError(
             "PIQD frontier does not match the authorized input root"
@@ -103,8 +137,38 @@ def run_authorized_successor[ResultT](
     return authorization, result
 
 
+def run_authorized_preappended_successor[ResultT](
+    runner: IncrementalDiscoveryRunner[ResultT],
+    *,
+    postwave_receipt: Path,
+    repo_root: Path,
+    timeout_ms: int | None = None,
+    conflict_limit: int | None = None,
+) -> tuple[PostwaveAuthorization, ResultT]:
+    """Solve one authorized successor whose fragment is already appended.
+
+    This is the fail-closed recovery path for an append that completed before
+    the theorem-gated controller took custody.  The receipt must identify the
+    runner's exact session and latest solve, and the daemon export must already
+    equal the authenticated successor root.  A repeated call after a solve is
+    rejected by the solve-frontier check.
+    """
+
+    authorization = _load_authorization(
+        postwave_receipt=postwave_receipt, repo_root=repo_root
+    )
+    _check_source_solve(runner, authorization)
+    if runner.exported_cnf_sha256 != authorization.successor_root_sha256:
+        raise TheoremGatedDiscoveryError(
+            "PIQD frontier does not match the authorized preappended successor root"
+        )
+    result = runner.solve(timeout_ms=timeout_ms, conflict_limit=conflict_limit)
+    return authorization, result
+
+
 __all__ = [
     "IncrementalDiscoveryRunner",
     "TheoremGatedDiscoveryError",
+    "run_authorized_preappended_successor",
     "run_authorized_successor",
 ]

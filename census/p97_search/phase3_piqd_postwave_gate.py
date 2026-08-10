@@ -72,6 +72,8 @@ class PostwaveAuthorization:
     wave_ordinal: int
     outcome: str
     successor_authorized: bool
+    source_session_id: str
+    source_solve_index: int
     input_root_sha256: str
     successor_root_sha256: str | None
     lean_consumer: str | None
@@ -353,22 +355,33 @@ def _fragment_clauses(path: Path, *, max_var: int) -> tuple[tuple[int, ...], ...
 
 def _check_solve_and_model(
     *, solve_path: Path, model_path: Path, root_path: Path
-) -> None:
+) -> tuple[str, int]:
     variables, clauses = _dimacs_header(root_path)
     solve = _load_json_artifact(solve_path, label="solve receipt")
     session = _object(solve.get("session_before"), label="solve receipt session_before")
     response = _object(solve.get("solve_response"), label="solve receipt solve_response")
     if response.get("status") != "SAT":
         _fail("post-wave theorem search requires a captured SAT model")
-    if session.get("state") != "live" or session.get("last_assumption_free") is not True:
+    if (
+        session.get("lane") != "sat"
+        or session.get("state") != "live"
+        or session.get("last_assumption_free") is not True
+    ):
         _fail("solve receipt is not from a live assumption-free session")
+    session_id = _string(session.get("id"), label="solve receipt session id")
     if session.get("clauses") != clauses:
         _fail("solve receipt clause count does not match the input root")
     if session.get("declared_num_vars") != variables or session.get("max_var") != variables:
         _fail("solve receipt variable count does not match the input root")
     if solve.get("model_literals") != variables:
         _fail("solve receipt does not claim a total model")
-    if response.get("solve_index") != session.get("solves", -2) + 1:
+    prior_solves = _integer(
+        session.get("solves"), label="solve receipt prior solve count"
+    )
+    solve_index = _integer(
+        response.get("solve_index"), label="solve receipt solve index", minimum=1
+    )
+    if solve_index != prior_solves + 1:
         _fail("solve receipt index is not the session successor")
 
     model = _load_json_artifact(model_path, label="captured model")
@@ -381,6 +394,7 @@ def _check_solve_and_model(
         if type(literal) is not int or abs(literal) != index:
             _fail("captured model is not in canonical variable order")
     _verify_model_satisfies_root(root_path, literals=literals)
+    return session_id, solve_index
 
 
 def _artifact_path(value: Any, *, label: str) -> str:
@@ -530,7 +544,7 @@ def validate_postwave_receipt(
             value, repo_root=root, label=f"artifacts.{name}"
         )
 
-    _check_solve_and_model(
+    source_session_id, source_solve_index = _check_solve_and_model(
         solve_path=artifact_paths["solve_receipt"],
         model_path=artifact_paths["model"],
         root_path=artifact_paths["input_root"],
@@ -731,6 +745,8 @@ def validate_postwave_receipt(
         wave_ordinal=ordinal,
         outcome=kind,
         successor_authorized=successor_authorized,
+        source_session_id=source_session_id,
+        source_solve_index=source_solve_index,
         input_root_sha256=artifact_hashes["input_root"],
         successor_root_sha256=successor_sha,
         lean_consumer=consumer,
