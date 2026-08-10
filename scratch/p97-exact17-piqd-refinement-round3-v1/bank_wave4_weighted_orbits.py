@@ -49,6 +49,18 @@ if WAVE == 5:
     ROOT_SHA256 = "9fe6583cebeee38fc4874781a08ca9c8cc35b86590ba4889302511171bdab417"
     ROOT_CLAUSES = 4_275_934
     CHAIN_CLAUSES = 4_280_013
+elif WAVE == 6:
+    CERTIFICATE_DIR = HERE / "wave6-theorem-search"
+    ROOT_CNF = HERE / "postwave-wave5-base.cnf"
+    RECEIPTS = tuple(HERE / f"wave6-cut-{index}.json" for index in range(1, 9))
+    FRAGMENT = HERE / "wave6-weighted-orbits.dimacs"
+    AGGREGATE = HERE / "postwave-wave6-base.cnf"
+    MANIFEST = HERE / "wave6-weighted-orbits.manifest.json"
+    ADMISSION = HERE / "wave6-piqd-admission.json"
+    MANIFEST_SCHEMA = "p97-exact17-piqd-wave6-weighted-orbits/v1"
+    ROOT_SHA256 = "3de22b62ce5cff1b406718d86ae2c059f81b9c21d601379774add89cf33978b6"
+    ROOT_CLAUSES = 4_280_238
+    CHAIN_CLAUSES = 4_286_098
 elif WAVE != 4:
     raise ValueError(f"unsupported PIQD theorem-bank wave: {WAVE}")
 

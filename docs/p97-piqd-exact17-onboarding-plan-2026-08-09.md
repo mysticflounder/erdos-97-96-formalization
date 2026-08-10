@@ -461,3 +461,19 @@ subsumptions.  PIQD admitted those clauses and now agrees with normalized root
 `3de22b62ce5cff1b406718d86ae2c059f81b9c21d601379774add89cf33978b6`.
 The manifest remains explicit that exact-17 coverage, exact-17 closure, and
 production `sorry` closure are false.
+
+Wave 6 has also completed the mandatory boundary.  Eight further SAT models
+passed source replay and exact-linear contradiction checking.  Their
+model-specific orbit batches added 5,860 clauses.  The theorem search compared
+their minimized supports with 24,256 historical records and found all eight
+novel: seven unit cancellations and one twelve-point weighted cancellation.
+Every instance is accepted by the existing cardinality-generic Lean consumer;
+this remains theorem-instance growth, not a new theorem family.
+
+The 272 orbit candidates reduced to 235 novel clauses after 37 complete-chain
+subsumptions.  PIQD admitted those clauses and agrees with normalized root
+`postwave-wave6-base.cnf`: 74,813 variables, 4,286,333 clauses, SHA-256
+`8d63c8058da1959bce5cb5e86b5459314386c23f6168eed53cd227ea58627ed5`.
+The next solver wave remains gated on analysis of the accumulated wave data for
+a stronger recurring theorem or motif.  Exact-17 and the production `sorry`
+remain open.

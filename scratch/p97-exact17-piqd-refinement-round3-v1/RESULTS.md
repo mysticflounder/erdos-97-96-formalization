@@ -254,3 +254,37 @@ The theorem-search aggregate is
 receipt are `wave5-weighted-orbits.manifest.json` and
 `wave5-piqd-admission.json`.  They explicitly record no exact-17 coverage,
 exact-17 closure, or production `sorry` closure.
+
+## Bounded wave 6
+
+Wave 6 stopped after eight further source-verified SAT models.  Every model
+independently replayed as exact-linear `UNSAT`; six had one static bank hit and
+two had two.  Their authenticated model-specific orbit batches added 5,860
+clauses before the mandatory theorem gate.
+
+The cross-bank search compared the eight minimized supports with 24,256
+historical support records.  All eight were historically new.  Seven are
+unit-weight cancellations.  The remaining twelve-point instance uses weights
+`[1,1,1,2,2,2,2,1,1,1,2,2]` across twelve strict Kalmanson inequalities.
+Two of the unit certificates are particularly small: each uses seven points
+and only two strict inequalities.  All eight are accepted by the existing
+cardinality-generic Lean consumer
+`false_of_weightedKalmansonCancellationData_of_check`; no new theorem family
+is claimed.
+
+The eight dihedral orbits supplied 272 checked candidates.  A complete scan
+against the 4,280,238-clause wave-5 root and the 5,860 model-specific cuts found
+37 subsumed images and 235 novel clauses.  PIQD admitted exactly those 235
+clauses.  The normalized formula `postwave-wave6-base.cnf` has:
+
+- 74,813 variables;
+- 4,286,333 clauses;
+- SHA-256
+  `8d63c8058da1959bce5cb5e86b5459314386c23f6168eed53cd227ea58627ed5`.
+
+The theorem-search aggregate is
+`wave6-theorem-search/postwave-theorem-search.json`; the bank manifest and PIQD
+receipt are `wave6-weighted-orbits.manifest.json` and
+`wave6-piqd-admission.json`.  The live session agrees with the normalized
+formula.  Exact-17 coverage, exact-17 closure, and production `sorry` closure
+remain false.
