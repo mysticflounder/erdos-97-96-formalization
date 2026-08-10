@@ -1,0 +1,23 @@
+Wave 33 mandatory general-theorem search
+
+Queries:
+- six selected rows cyclic Kalmanson equality contradiction
+- six row selected support Kalmanson motif exact17
+- weighted Kalmanson cancellation six rows
+
+Indexed source: erdos-97-96-formalization-lean at e26db6e9.
+
+Relevant existing declarations:
+- Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows
+- Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_three_selected_rows
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check
+
+Assessment:
+Exact enumeration found the increasing six-point occurrence
+(0, 8, 11, 3, 1, 13) of the existing sparse two-row consumer.  Its six selected
+atoms give a strictly stronger cut than the theorem gate's generic eight-atom
+two-cancellation instance.  Append only this one concrete six-atom instance.
+The hit also identifies a matcher-coverage gap: the cardinality-generic sparse
+two-row theorem was banked in Lean but was absent from the accumulated static
+matcher used by the Wave 33 gate.

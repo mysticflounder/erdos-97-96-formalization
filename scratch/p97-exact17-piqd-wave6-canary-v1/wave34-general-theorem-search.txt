@@ -1,0 +1,38 @@
+Wave 34 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: 4249b3c9 (2026-08-10 06:44 UTC)
+
+Queries
+-------
+
+1. five selected rows on convex cyclic boundary force a Kalmanson
+   contradiction from equal distances
+2. agentic search using the exact five minimized row supports at centers
+   0, 5, 7, 8, and 12
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.CapCrossingKalmanson.false_of_five_ccw_three_shell_equalities
+* Problem97.CapCrossingKalmanson.false_of_two_selected_middle_rows_shared_endpoint_pair
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The Wave 34 selected-row assignment has no embedding of the normalized
+five-point three-shell-equality consumer, including all cyclic rotations and
+both orientations. It also has no four-point embedding in which both middle
+selected rows contain the same two endpoints. The agentic search's proposed
+normalization to the first theorem is therefore not valid for this model.
+
+The existing generic two-Kalmanson consumer does apply. Its smallest matched
+six-point motif has eight selected-row atoms and two occurrences. The lazy
+refinement emits only one fresh-model-blocking instance:
+
+  -229 -226 -135 -133 -104 -98 -8 -6 0
+
+This search found no stronger already-banked named consumer for Wave 34.

@@ -161,3 +161,112 @@ SHA-256
 `1333770e0ed5eb5df7bea029ccaf08816fe785505a6fdbba80e06b9936d0ea27`.
 PIQD exported this root byte-for-byte after the final append. Exact 17 remains
 SAT and open; no production `sorry` is closed by these six refinements.
+
+## Wave 32: lazy continuation
+
+Wave 32 solved SAT in 0.340 seconds. The total assignment satisfied the exact
+Wave 31 root, missed the accumulated 13-motif family, and was rejected by exact
+linear arithmetic. The theorem gate found one existing source-clean generic
+two-Kalmanson cancellation instance. The mandatory indexed theorem search also
+found the named five-row schema M, but an exact check of both cyclic orientations
+found no schema-M embedding in this model. One certified eight-atom bank clause
+was therefore appended:
+
+`-270 -259 -240 -238 -219 -211 -64 -58 0`
+
+The current root is `postgate-wave32-witness.cnf`, with 5,895,195 clauses and
+SHA-256
+`d803aa8cb7ca712fd9247c10b27e1c8509df6ca42fddbb7d0b68d4e7a5f34640`.
+PIQD exported it byte-for-byte. Exact 17 remains SAT and open.
+
+## Wave 33: stronger sparse six-point consumer
+
+Wave 33 solved SAT in 27.871 seconds. The total assignment satisfied the exact
+Wave 32 root, missed the accumulated 13-motif family, hit one generic theorem-
+bank instance, and was rejected by exact linear arithmetic.
+
+The mandatory indexed general-theorem search found a strictly stronger existing
+consumer:
+`Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`.
+In the authenticated cyclic order the model contains the six-point occurrence
+`(0, 8, 11, 3, 1, 13)`. Its two selected rows produce the six-atom clause
+
+`-185 -180 -178 -13 -8 -3 0`
+
+rather than the generic bank's eight-atom clause. A targeted Lean axiom audit
+found only `propext`, `Classical.choice`, and `Quot.sound`; in particular, the
+consumer does not depend on `sorryAx` or compiler trust. This occurrence also
+identifies a matcher-coverage gap: the source-clean sparse consumer is not yet
+recognized by the accumulated 13-motif family.
+
+The current root is
+`postgate-wave33-sparse-six-point-witness.cnf`, with 5,895,196 clauses and
+SHA-256
+`66ca91799491e1514dc178331fc1ae3b675aa5c10a7d6c97133c61be4ac06fdc`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.
+
+## Wave 34: generic witness after named-consumer audit
+
+Wave 34 solved SAT in 0.509 seconds. Its total model satisfied the exact Wave 33
+root, missed the accumulated 13-motif family, hit one existing generic theorem-
+bank instance, and was rejected by exact linear arithmetic on five selected
+rows.
+
+The mandatory indexed theorem search found the normalized five-point
+three-shell-equality theorem and the four-point shared-endpoint theorem. Exact
+enumeration over every cyclic rotation and both orientations found no embedding
+of either named consumer in this model, so the agentic search's suggested
+normalization was rejected. The generic two-Kalmanson consumer applies and
+yields the eight-atom clause
+
+`-229 -226 -135 -133 -104 -98 -8 -6 0`.
+
+The current root is `postgate-wave34-witness.cnf`, with 5,895,197 clauses and
+SHA-256
+`277a220b52d8168dc06adef03c1c64775610643bef654f1f50967fe2bea39488`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.
+
+## Wave 35: accumulated-family hit shortened by theorem search
+
+Wave 35 solved SAT in 0.111 seconds. Its total model satisfied the exact Wave 34
+root, but was already rejected by one clause from the accumulated 13-motif
+family, one existing generic theorem-bank instance, and exact linear arithmetic.
+Its survival was therefore caused by lazy orbit materialization, not by a new
+mathematical gap.
+
+The mandatory indexed theorem search found sixteen embeddings of the stronger
+source-clean sparse six-point/two-row consumer and no embedding of the simpler
+shared-pair consumers. The authenticated occurrence
+`(0, 10, 7, 16, 1, 13)` yields the six-atom clause
+
+`-128 -122 -114 -16 -13 -10 0`.
+
+The current root is
+`postgate-wave35-sparse-six-point-witness.cnf`, with 5,895,198 clauses and
+SHA-256
+`13be01413c42a4310a8d85e21fd00105ec410a4994c14bd3047e23c4d4ab7937`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.
+
+## Wave 36: repeated sparse-six strengthening
+
+Wave 36 solved SAT in 10.257 seconds. Its total model satisfied the exact Wave
+35 root, but was already rejected by one accumulated-family clause, one generic
+theorem-bank instance, and exact linear arithmetic. As in Wave 35, this is lazy
+orbit materialization rather than a new theorem gap.
+
+The mandatory indexed theorem search found twelve embeddings of the stronger
+sparse six-point/two-row consumer and no embedding of the simpler shared-pair
+consumers. The authenticated occurrence `(8, 9, 15, 16, 4, 5)` yields the
+six-atom clause
+
+`-256 -250 -245 -144 -137 -134 0`.
+
+The current root is
+`postgate-wave36-sparse-six-point-witness.cnf`, with 5,895,199 clauses and
+SHA-256
+`3b81ad37b9fb45882b76ac535ac3598596366ad03a94f36776f87c9e33b9885b`.
+PIQD exported it byte-for-byte after the one-clause append. Exact 17 remains SAT
+and open; no production `sorry` is closed.

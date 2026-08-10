@@ -1,0 +1,22 @@
+Wave 32 mandatory general-theorem search
+
+Queries:
+- five selected rows cyclic order equal-distance contradiction Kalmanson chain
+- two Kalmanson cancellation selected row generic nogood
+- weighted Kalmanson cancellation five rows
+
+Indexed source: erdos-97-96-formalization-lean at e26db6e9.
+
+Relevant existing declarations:
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M
+- Problem97.false_of_five_selected_rows_in_eight_ccw_order_M_of_decreasing
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+- Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check
+
+Assessment:
+An exact combinatorial check over all eight-label subsequences of both cyclic
+orientations found no embedding of the Wave 32 selected rows into named schema
+M.  The theorem gate did find a certified two-Kalmanson cancellation instance,
+while the accumulated 13-motif family did not hit.  Use one shortest certified
+eight-atom instance of the existing source-clean two-cancellation consumer as
+the lazy refinement; a full weighted five-row core would be weaker.

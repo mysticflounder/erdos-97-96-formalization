@@ -1,0 +1,43 @@
+Wave 35 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: 4249b3c9 (2026-08-10 06:44 UTC)
+
+Queries
+-------
+
+1. two Kalmanson cancellation selected rows shared endpoints convex cyclic
+   order general obstruction
+2. exact selected-row paths from the Wave 35 generic two-Kalmanson bank hit
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair
+* Problem97.CapCrossingKalmanson.false_of_three_selected_rows_bridged_late_pair
+* Problem97.CapCrossingKalmanson.
+  false_of_two_selected_middle_rows_shared_endpoint_pair
+* Problem97.SixPointSparseEuclideanObstruction.
+  false_of_six_ccw_two_selected_rows
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.
+  false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The Wave 35 model has no embedding of either two-row shared-pair consumer,
+including all cyclic rotations and both orientations. It does contain sixteen
+oriented embeddings of the stronger sparse six-point/two-row consumer. The
+canonical witness selected by the authenticated appender is
+
+  (0, 10, 7, 16, 1, 13).
+
+The two selected rows produce the six-atom clause
+
+  -128 -122 -114 -16 -13 -10 0
+
+rather than the accumulated family's eight-atom generic cancellation clause.
+Only this one fresh-model-blocking instance was appended. This is the second
+wave in this segment where mandatory theorem search strictly shortened the
+learned clause.
