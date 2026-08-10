@@ -21,6 +21,32 @@ This closes learned-cut replay only.  The run remains `ITERATION_LIMIT`, and
 source-exhaustive selector/arm/placement coverage plus its placement/signature
 lift are still required before either exact-12 live leaf can close.
 
+Exact-12 next-row successor checkpoint (2026-08-10): the source-to-finite
+`nextRowOnlyHit` ingress and independent compiler v2 remain green.  The former
+cell-3 order diagnostic is now proof-backed by the no-`sorryAx` declaration
+`nextRowCell3PositiveNogood`, whose 48 source orders split into 42
+common-five-point and six selected-row Kalmanson cases.  It is entry 56 of the
+57-entry authenticated source-order bank.  Tagged runner v4 checks structural
+certificates first and then admits only the lowest matching theorem-backed
+source-order clause.  Every v4 journal record binds the exact bank digest;
+replay reattests the live Lean and detector bytes and validates the complete
+journal on a shadow CNF before installing any cut.  Legacy v2/v3 journals fail
+closed.
+
+The fresh twelve-cell v4 wave completed 100 authenticated records in every
+cell and ended `ITERATION_LIMIT` throughout.  Its mandatory theorem-family
+search found no missing local geometry family.  The lane-specific v5 terminal
+consumer now rejects the historical v14 formula mismatch, and the exact Lean
+reconstruction of the shared physical-cycle prefix plus next-row selector
+suffix has a concrete `CompiledNextRowJob` adapter.  The adapter proves source
+satisfiability of `baseDimacs ++ reconstructedClauseDelta` and agreement with
+the canonical source assignment on all base variables.  Targeted elaboration
+is green and its axiom audit contains no `sorryAx`; it inherits
+`Lean.trustCompiler` from the frozen native-evaluated encoding anchors.  The
+next gate is equality with each authenticated Python serialization.  There is
+still no terminal UNSAT cell, all-cell coverage, arbitrary-cardinality lift,
+or live closure.
+
 Five-omission v3 checkpoint (2026-08-10): the authenticated twelve-shard wave
 completed 275 local refinements in every deleted-label shard.  Every run ended
 `ITERATION_LIMIT`, with no terminal proof.  Each run produced 259
@@ -1811,7 +1837,7 @@ q-free K4 rows and the distinct actual blocker where deletion fails.  Its
 downstream `ExactTwelveRigid221Ingress` declaration is now only a compatibility
 wrapper around the live source theorem.
 
-The stronger source normalization currently under targeted validation is
+The stronger source normalization
 `pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision`.
 It proves a precise binary interface:
 
@@ -1824,11 +1850,150 @@ It proves a precise binary interface:
 
 The proof rules out the deleted-source and `v`-row center collisions from the
 existing live row traces.  The only remaining duplicate-center branch is thus
-the explicit reciprocal `xu` collision.  Until the active full build releases
-the build lock and the new normalization passes a targeted build and direct
-axiom audit, this paragraph records an implementation checkpoint, not a green
-theorem claim.  Even after validation it is finite ingress, not a terminal
-contradiction and not a closed `sorry`.
+the explicit reciprocal `xu` collision.  This source normalization now passes
+targeted validation.  It remains finite ingress, not a terminal contradiction
+and not a closed `sorry`.
+
+A second, CEGAR-facing checkpoint now packages the same source theorem without
+discarding either arm.  `FrozenNextRowOnlyHitDichotomy` records the actual
+blocker `d` of frozen source `7`, the exact selected-row signs
+`7,9 ∈ row d` and `6,8 ∉ row d`, and the source-proved alternative that either
+the five relevant centers are distinct or `d = blocker 1` with reciprocal
+incidence `7 ∈ row (blocker 1)`.  The theorem
+`frozenNextRowOnlyHitDichotomy_of_actualBlockers` proves this predicate from
+the live source packet, and `FrozenNextRowOnlyHitDichotomy.reindex` proves that
+it survives every admissible placement normalization.  Finally,
+`exists_source_normalized_physicalCycle_nextRowOnlyHitDichotomy` installs the
+predicate together with `FrozenSafeCubeOK`, the complete five-cycle row trace,
+the actual-blocker identifications, and one of the twelve checked placement
+representatives.  Both new modules pass direct Lean elaboration and contain no
+local `sorry` or axiom declaration; the first also passes the targeted Lake
+build.
+
+The exact successor-job contract is now explicit in
+`ExactTwelveRigid221NextRowJobSemantics.lean`.  Its theorem
+`exists_source_normalized_nextRowOnlyHitJob` combines the normalized source
+packet with the v14 source-job bridge only at the theorem-bank level: it exports
+the exact frozen physical class and row-at-one, the physical five-cycle and
+actual blockers, the pinned blocker centers, and the full next-row dichotomy.
+The targeted Lake build passes.  Its transitive axiom report contains only
+`propext`, `Classical.choice`, and `Quot.sound`, with no `sorryAx`.  This is the
+source-to-finite semantic ingress for the successor job; it is not a proof that
+the Python emitter reflects Lean syntax and is not a finite contradiction.
+
+This predicate is compiled as a separate successor schema.  It cannot be
+conjoined with the historical v14 distinguished-row contract: the new source
+theorem proves `9 ∈ row d`, whereas v14 assumes `9 ∉ row d`.  The next bounded
+compiler is `p97_rigid221_exact12_next_row_only_hit_compiler.v2` in
+`census/card_head/exact12_next_row_valuation.py`.  Unlike its first draft, v2
+does not import the private v14 semantic compiler.  It reconstructs the frozen
+source-safe instance, exact physical class/row traces, actual blocker cycle,
+and distinguished-row disjunction directly, then independently decodes and
+replays both dichotomy arms.  Its focused compiler tests pass.
+
+The fail-closed one-cell runner is
+`census/card_head/exact12_next_row_cell_run.py`, schema
+`p97_rigid221_exact12_next_row_only_hit_cell_run.v1`.  It authenticates the
+compiler and Lean source inventory, materializes a fresh source-faithful CNF,
+uses proof-free discovery, and accepts SAT only after candidate, successor, and
+exact-CNF replay.  Discovery UNSAT is accepted only after a fresh identical-CNF
+run produces a DRAT proof verified by the existing adapter.  Runner and
+compiler tests currently pass 16 tests plus 4 subtests, and Ruff is clean.
+The one-cell canary and its 25-cut resume passed every replay gate.  The
+authorized twelve-core/twelve-cell wave then ran under schema v2 to 100 local
+refinements per cell.  Fresh post-wave replay reconstructs every job and
+current CNF, authenticates and semantically replays all 1,182 journal records,
+and replays the persisted unresolved survivor against its exact post-journal
+formula.  The aggregate is 1,167 duplicate-center, 11
+equilateral-bisector, three three-triad, and one perpendicular-bisector cut;
+11 cells are `ITERATION_LIMIT`, while cell 3 is
+`STRUCTURALLY_UNRESOLVED` after 82 cuts.  The replay report is
+`scratch/rigid221-sourceheavy-anchor/exact12-next-row-structural-cegar-wave-i100-20260810-v2/postwave-theorem-search.json`,
+with the trust and route classification in that directory's `REPORT.md`.
+
+The four admitted detector families already have generic geometric theorem
+families in `Census554`; the post-wave pass therefore did not discover a
+missing consumer for an admitted cut.  It instead exposed the actual next
+predicate gap: the cell-3 survivor satisfies the complete current finite CNF
+but has no order-independent `MetricCoreAlternative` certificate.  Do not
+raise the iteration limit on that cell under the unchanged detector.
+
+The source-entitled order diagnostic has now been promoted to a checked finite
+cut.  `ExactTwelveRigid221NextRowCell3PositiveCut.lean` proves the complete
+48-order split and packages it as `nextRowCell3PositiveNogood`; the exact
+binding is bank entry 56.  Tagged journal v4 records the certificate family,
+bank index, exact bank SHA-256, selected-row clause, cube, and complete positive
+SAT assignment.  Replay recompiles the supplied bank, reattests its live Lean
+and detector sources, and commits no clause until the complete journal passes
+on a shadow instance.  This deliberately supersedes the unauthenticated-bank
+v3 canary rather than migrating it.
+
+The fresh v4 cell-3 canary under
+`scratch/rigid221-sourceheavy-anchor/exact12-next-row-tagged-cegar-canary-cell3-i84-20260810-v4`
+replayed all 84 records.  Record 82 uses bank entry 56; the aggregate is 82
+duplicate-center, one source-order positive-coverage, and one
+perpendicular-bisector/convex cut.  The run ended `ITERATION_LIMIT`, with bank
+SHA-256
+`f3aef3b9b7ad921f3dccff027f1cbb82ca147d3c5369cc92142c65ba5586ab47`
+and no terminal proof.
+
+The fresh twelve-cell v4 wave under
+`scratch/rigid221-sourceheavy-anchor/exact12-next-row-tagged-cegar-wave-i100-20260810-v4`
+has now completed with 100 authenticated records in every cell.  All twelve
+cells ended `ITERATION_LIMIT`; there is no terminal CNF or DRAT proof.  Across
+the 1,200 records, 1,184 are duplicate-center cuts, eleven are
+equilateral-bisector collisions, three are three-triad collisions, one is a
+perpendicular-bisector/convex cut, and one is the source-order bank entry 56.
+The mandatory post-wave theorem search is recorded at
+`exact12-next-row-tagged-cegar-wave-i100-20260810-v4/postwave-theorem-search.json`.
+It found no new local theorem family: the non-source-order cuts match existing
+`Census554` obstruction families, while entry 56 already has its checked
+positive nogood.  Matching a Python certificate to such a family is not a
+typed journal-to-Lean consumer; the structural records therefore carry a null
+direct-consumer field until generated Lean nogoods are supplied.
+
+That replay exposed a typed-ingress defect rather than a missing local metric
+lemma.  The shared source-order bank named
+`SourceOrderTerminalBankConsumer.false_of_terminalSourceOrderPositiveBank`,
+but that theorem constructs the historical v14 formula using
+`FrozenV14JobCnf.reconstructedClauseDelta`.  It is not a direct consumer for
+the successor predicate `FrozenNextRowOnlyHitAddedConstraintsHold`.
+`ExactTwelveRigid221NextRowTerminalBankConsumer.lean` now supplies a separate
+conditional terminal interface.  A generated `CompiledNextRowJob` must prove
+that its exact serialized finite formula has a source assignment agreeing with
+the canonical selected-row assignment on all base variables.  Only then may a
+terminal UNSAT fact and a bank of proof-carrying positive nogoods yield
+`False`.  Tagged journals move to v5 and record this lane-specific consumer
+only for proof-carrying source-order entries.  Structural entries record no
+direct Lean consumer.  The v4 records are retained as historical diagnostics
+and rejected by live v5 replay rather than silently reinterpreted.
+
+The mathematical half of that typed ingress is now explicit.
+`ExactTwelveRigid221V14JobSemantics.lean` isolates the shared physical-cycle
+predicate used by the common clause prefix; its final two `True` fields only
+forget the two v14-specific suffix conjuncts and are not new geometric
+assumptions.  `ExactTwelveRigid221NextRowJobCnf.lean` reconstructs the exact
+ordered selector suffix, including the compiler's guarded blocker clauses,
+and proves that a source-produced next-row assignment satisfies the complete
+common-prefix-plus-selector delta below the exact variable ceiling 42,730.
+`ExactTwelveRigid221NextRowCompiledJob.lean` adds the base-CNF agreement and
+satisfaction proofs and packages
+`baseDimacs ++ reconstructedClauseDelta cell` as a concrete
+`CompiledNextRowJob`.  Targeted 32 GB direct elaboration is green; the higher
+cap is currently needed because the imported frozen-v14 native computation
+exceeds the ordinary 16 GB wrapper cap.  The axiom audit contains no
+`sorryAx`, but does contain `Lean.trustCompiler` through those existing native
+encoding checks.
+
+This object is deliberately named `reconstructedCompiledNextRowJob`: it does
+not yet authenticate that the Python emitter serialized the same ordered
+clause list.  The next exact target is an emitted per-cell clause artifact and
+a checked equality
+`serializedClauseDelta = reconstructedClauseDelta cell`, following the
+existing v14 cell-0000 pattern.  That equality upgrades the reconstruction to
+an authenticated `CompiledNextRowJob`; only then should a fresh v5 canary and
+another bounded wave run.  This checkpoint still has no terminal DRAT proof,
+all-cell coverage, universal lift, or live `sorry` closure.
 
 A fresh theorem-family search over the last 100 records of all twelve
 `86017f66` cells classified 1,145 duplicate-center cores, 24

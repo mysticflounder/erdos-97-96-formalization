@@ -163,6 +163,22 @@ def frozenPhysicalLabels (jointDeletion v : Label) : Finset Label :=
 def frozenRowAtOne (jointDeletion v : Label) : Finset Label :=
   {6, jointDeletion, v, 8}
 
+/-- Semantic replay of the common physical-cycle constraints emitted before a
+job-specific suffix.  The final two trivial fields deliberately preserve the
+conjunction shape of `FrozenV14AddedConstraintsHold`, allowing the existing
+clause-layout proofs to be weakened without rewriting their projections. -/
+def FrozenPhysicalCycleCnfAddedConstraintsHold (row : RowPattern Label)
+    (blocker : Fin 5 → Label) (jointDeletion v : Label) : Prop :=
+  row 1 = frozenRowAtOne jointDeletion v ∧
+    row 7 ∩ frozenPhysicalLabels jointDeletion v = {6, 8} ∧
+    Function.Injective blocker ∧
+    blocker 0 = 8 ∧ blocker 4 = 7 ∧
+    (∀ i, blocker i ≠ frozenPhysicalSources jointDeletion v i) ∧
+    (∀ i, blocker i ≠ 1) ∧
+    (∀ i, row (blocker i) ∩ frozenPhysicalLabels jointDeletion v =
+      frozenPhysicalEdges jointDeletion v i) ∧
+    True ∧ True
+
 /-- Semantic replay of all non-base constraints added by one normalized-v14
 job.  This predicate intentionally stays above DIMACS variable numbering; the
 next compiler-reflection layer proves that it yields a satisfying extension
@@ -180,6 +196,20 @@ def FrozenV14AddedConstraintsHold (row : RowPattern Label)
       frozenPhysicalEdges jointDeletion v i) ∧
     arm.Holds row blocker ∧
     FrozenDistinguishedDAt row blocker d
+
+/-- Forget the V14-only suffix while preserving every fact used by the common
+physical-cycle clause prefix. -/
+theorem frozenPhysicalCycleCnfAddedConstraintsHold_of_v14
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    {jointDeletion v : Label} {arm : FrozenNamedDeletionArm} {d : Label}
+    (h : FrozenV14AddedConstraintsHold row blocker jointDeletion v arm d) :
+    FrozenPhysicalCycleCnfAddedConstraintsHold
+      row blocker jointDeletion v := by
+  rcases h with
+    ⟨hrowOne, hrowSeven, hinjective, hblockerU, hblockerXv,
+      hneSource, hneOne, hrowTrace, _harm, _hd⟩
+  exact ⟨hrowOne, hrowSeven, hinjective, hblockerU, hblockerXv,
+    hneSource, hneOne, hrowTrace, trivial, trivial⟩
 
 /-- Assemble the compiler-facing semantic replay from the individual facts
 returned by normalized source ingress and fixed-cell witness selection. -/

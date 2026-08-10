@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221NextRowCompiledJob
+
+/-! Axiom audit for the reconstructed exact-twelve next-row compiled job. -/
+
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowCompiledJob.nextRowAssign_agreesOnBase
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowCompiledJob.nextRowAssign_sat_baseDimacs
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNextRowCompiledJob.exists_nextRowAssign_sat_reconstructedCompleteDimacs

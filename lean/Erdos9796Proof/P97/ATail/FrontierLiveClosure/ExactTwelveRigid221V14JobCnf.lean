@@ -204,9 +204,9 @@ block. -/
 theorem blocker_mem_blockerCenters_of_addedConstraints
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) (i : Fin 5) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
+    (i : Fin 5) :
     (blocker i).val ∈
       blockerCenters ((physicalSources cell).getD i.val 0) := by
   rcases hadded with
@@ -282,9 +282,8 @@ the semantically selected center for that source. -/
 theorem blockerAssign_blockerVar_eq_true_iff
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) (i : Fin 5) {center : Nat}
     (hcenter : center ∈
       blockerCenters ((physicalSources cell).getD i.val 0)) :
@@ -313,9 +312,8 @@ semantic assignment. -/
 theorem sourceBlockerVars_filter_blockerAssign_length
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) (i : Fin 5) :
     ((sourceBlockerVars cell i).filter
       (blockerAssign cell blocker σ)).length = 1 := by
@@ -354,9 +352,8 @@ blocker-input block satisfy its at-most-one premise. -/
 theorem centerBlockerVars_filter_blockerAssign_length_le_one
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) (center : Nat) :
     ((centerBlockerVars cell center).filter
       (blockerAssign cell blocker σ)).length ≤ 1 := by
@@ -466,9 +463,8 @@ the first source block. -/
 theorem sourceSinzAssign_sat_source_zero
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell 0) 1
       (sourceSinzBase cell 0)) :
@@ -529,9 +525,8 @@ the second source block. -/
 theorem sourceSinzAssign_sat_source_one
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell 1) 1
       (sourceSinzBase cell 1)) :
@@ -593,9 +588,8 @@ the third source block. -/
 theorem sourceSinzAssign_sat_source_two
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell 2) 1
       (sourceSinzBase cell 2)) :
@@ -657,9 +651,8 @@ the fourth source block. -/
 theorem sourceSinzAssign_sat_source_three
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell (Fin.succ 2)) 1
       (sourceSinzBase cell (Fin.succ 2))) :
@@ -723,9 +716,8 @@ the fifth source block. -/
 theorem sourceSinzAssign_sat_source_four
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses
       (sourceBlockerVars cell (Fin.succ (Fin.succ 2))) 1
@@ -781,9 +773,8 @@ any of the five physical-source counters. -/
 theorem sourceSinzAssign_sat_source
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) (i : Fin 5) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell i) 1
       (sourceSinzBase cell i)) :
@@ -983,9 +974,8 @@ each of the twelve center counters. -/
 theorem centerSinzAssign_sat_center
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (σ : Nat → Bool) {center : Nat} (hcenter : center < 12)
     {c : List Int}
     (hc : c ∈ sinzClauses (centerBlockerVars cell center) 1
@@ -1163,9 +1153,8 @@ unit clause. -/
 theorem v14Assign_sat_centerOneExactRowClause
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2) :
     evalClauseD
       (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
       (centerOneExactRowClause cell) = true := by
@@ -1210,9 +1199,8 @@ physical-intersection clause. -/
 theorem v14Assign_sat_centerSevenPhysicalIntersectionClause
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2) :
     evalClauseD
       (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row))
       (centerSevenPhysicalIntersectionClause cell) = true := by
@@ -1254,9 +1242,8 @@ center is the semantic blocker selected for its physical source. -/
 theorem v14Assign_blockerVar_eq_true_iff
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (idx : Nat → Nat) (i : Fin 5) {center : Nat}
     (hcenter : center ∈
       blockerCenters ((physicalSources cell).getD i.val 0)) :
@@ -1274,9 +1261,8 @@ the complete v14 extension. -/
 theorem v14Assign_selectedBlockerVar_eq_true
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (idx : Nat → Nat) (i : Fin 5) :
     v14Assign cell blocker idx
       (blockerVar cell i (blocker i).val) = true := by
@@ -1315,9 +1301,8 @@ cycle implication. -/
 theorem v14Assign_sat_sourceImplicationClause
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (i : Fin 5) {center : Nat}
     (hcenter : center ∈
       blockerCenters ((physicalSources cell).getD i.val 0)) :
@@ -1425,9 +1410,8 @@ physical source block. -/
 theorem v14Assign_sat_sourceImplicationClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (i : Fin 5) :
     ∀ c ∈ sourceImplicationClauses cell i,
       evalClauseD
@@ -1489,7 +1473,8 @@ theorem v14Assign_sat_namedDeletionCenterTwoUnit
           (blockerVar cell cell.2.1.blockerSourceIndex 2) = false := by
     apply Bool.eq_false_of_not_eq_true
     intro htrue
-    have heq := (v14Assign_blockerVar_eq_true_iff cell hadded
+    have heq := (v14Assign_blockerVar_eq_true_iff cell
+      (frozenPhysicalCycleCnfAddedConstraintsHold_of_v14 hadded)
       (SafeCoverIndexBridge.coverIndex row) cell.2.1.blockerSourceIndex
       hcenter).1 htrue
     apply harm.1
@@ -1553,7 +1538,8 @@ theorem v14Assign_sat_namedDeletionBinaryClause
       apply Bool.eq_false_of_not_eq_true
       intro htrue
       exact hselected
-        ((v14Assign_blockerVar_eq_true_iff cell hadded
+        ((v14Assign_blockerVar_eq_true_iff cell
+          (frozenPhysicalCycleCnfAddedConstraintsHold_of_v14 hadded)
           (SafeCoverIndexBridge.coverIndex row)
           cell.2.1.blockerSourceIndex hcenter).1 htrue)
     simp only [namedDeletionBinaryClause, evalClauseD, List.any_cons,
@@ -1740,7 +1726,8 @@ theorem v14Assign_sat_distinguishedDBlockerClauses
             (blockerVar cell 1 d.val) = false := by
       apply Bool.eq_false_of_not_eq_true
       intro htrue
-      have heq := (v14Assign_blockerVar_eq_true_iff cell hadded
+      have heq := (v14Assign_blockerVar_eq_true_iff cell
+        (frozenPhysicalCycleCnfAddedConstraintsHold_of_v14 hadded)
         (SafeCoverIndexBridge.coverIndex row) 1 hcenter).1 htrue
       apply hblocker
       apply Fin.ext
@@ -1902,9 +1889,8 @@ selector clause. -/
 theorem v14Assign_sat_sourceSelectorClause
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (idx : Nat → Nat) (i : Fin 5) :
     evalClauseD (v14Assign cell blocker idx)
       (sourceSelectorClause cell i) = true := by
@@ -1930,9 +1916,8 @@ def forcedBlockerClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
 theorem v14Assign_sat_forcedBlockerClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (idx : Nat → Nat) :
     ∀ c ∈ forcedBlockerClauses cell,
       evalClauseD (v14Assign cell blocker idx) c = true := by
@@ -2003,6 +1988,15 @@ def allCenterSinzClauses (cell : FrozenV14JobCoordinate) : List (List Int) :=
   (List.range 12).flatMap fun center ↦
     sinzClauses (centerBlockerVars cell center) 1 (centerSinzBase cell center)
 
+/-- Exact ordered clause prefix shared by the normalized-v14 and next-row-only
+jobs: initial rows, five source blocks, forced blockers, and twelve center-wise
+bound-one blocks.  The job-specific clauses begin after this list. -/
+def commonPhysicalCycleClauseDelta (cell : FrozenV14JobCoordinate) :
+    List (List Int) :=
+  initialClauses cell ++
+    (allSourceBlockClauses cell ++
+      (forcedBlockerClauses cell ++ allCenterSinzClauses cell))
+
 /-- Exact ordered reconstruction of the clauses appended by `compile_cell`:
 initial row clauses, five source blocks, forced blockers, twelve center blocks,
 the named-deletion arm, and the distinguished-`d` family. -/
@@ -2019,9 +2013,8 @@ one source-wise Sinz block. -/
 theorem v14Assign_sat_sourceSinzClause
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (i : Fin 5) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell i) 1
       (sourceSinzBase cell i)) :
@@ -2049,9 +2042,8 @@ theorem v14Assign_sat_sourceSinzClause
 theorem v14Assign_sat_initialClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2) :
     ∀ c ∈ initialClauses cell,
       evalClauseD
         (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
@@ -2067,9 +2059,8 @@ theorem v14Assign_sat_initialClauses
 theorem v14Assign_sat_sourceBlockClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
     (i : Fin 5) :
     ∀ c ∈ sourceBlockClauses cell i,
       evalClauseD
@@ -2088,9 +2079,8 @@ theorem v14Assign_sat_sourceBlockClauses
 theorem v14Assign_sat_allSourceBlockClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2) :
     ∀ c ∈ allSourceBlockClauses cell,
       evalClauseD
         (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
@@ -2102,9 +2092,8 @@ theorem v14Assign_sat_allSourceBlockClauses
 theorem v14Assign_sat_allCenterSinzClauses
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)
-    (hadded : FrozenV14AddedConstraintsHold row blocker
-      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2
-      cell.2.1 cell.2.2.1) :
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2) :
     ∀ c ∈ allCenterSinzClauses cell,
       evalClauseD
         (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
@@ -2113,6 +2102,25 @@ theorem v14Assign_sat_allCenterSinzClauses
   exact centerSinzAssign_sat_center cell hadded
     (SafeCoverCnf.finalAssign (SafeCoverIndexBridge.coverIndex row))
     (List.mem_range.mp hcenter) hc
+
+/-- The canonical assignment satisfies the complete clause prefix shared by
+every physical-cycle job with this placement. -/
+theorem v14Assign_sat_commonPhysicalCycleClauseDelta
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    (cell : FrozenV14JobCoordinate) (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenPhysicalCycleCnfAddedConstraintsHold row blocker
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)
+    {c : List Int} (hc : c ∈ commonPhysicalCycleClauseDelta cell) :
+    evalClauseD
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  rcases List.mem_append.mp hc with hc | hc
+  · exact v14Assign_sat_initialClauses cell hrow hadded c hc
+  · rcases List.mem_append.mp hc with hc | hc
+    · exact v14Assign_sat_allSourceBlockClauses cell hrow hadded c hc
+    · rcases List.mem_append.mp hc with hc | hc
+      · exact v14Assign_sat_forcedBlockerClauses cell hadded
+          (SafeCoverIndexBridge.coverIndex row) c hc
+      · exact v14Assign_sat_allCenterSinzClauses cell hadded c hc
 
 /-- The canonical source/blocker/Sinz assignment satisfies every clause in
 the complete ordered Lean reconstruction of the normalized-v14 job delta. -/
@@ -2124,17 +2132,18 @@ theorem v14Assign_sat_reconstructedClauseDelta
       cell.2.1 cell.2.2.1) :
     ∀ c ∈ reconstructedClauseDelta cell,
       evalClauseD
-        (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+      (v14Assign cell blocker (SafeCoverIndexBridge.coverIndex row)) c = true := by
+  have hprefix := frozenPhysicalCycleCnfAddedConstraintsHold_of_v14 hadded
   intro c hc
   rcases List.mem_append.mp hc with hc | hc
-  · exact v14Assign_sat_initialClauses cell hrow hadded c hc
+  · exact v14Assign_sat_initialClauses cell hrow hprefix c hc
   · rcases List.mem_append.mp hc with hc | hc
-    · exact v14Assign_sat_allSourceBlockClauses cell hrow hadded c hc
+    · exact v14Assign_sat_allSourceBlockClauses cell hrow hprefix c hc
     · rcases List.mem_append.mp hc with hc | hc
-      · exact v14Assign_sat_forcedBlockerClauses cell hadded
+      · exact v14Assign_sat_forcedBlockerClauses cell hprefix
           (SafeCoverIndexBridge.coverIndex row) c hc
       · rcases List.mem_append.mp hc with hc | hc
-        · exact v14Assign_sat_allCenterSinzClauses cell hadded c hc
+        · exact v14Assign_sat_allCenterSinzClauses cell hprefix c hc
         · rcases List.mem_append.mp hc with hc | hc
           · exact v14Assign_sat_namedDeletionArmClauses cell hrow hadded c hc
           · exact v14Assign_sat_distinguishedDClauses cell hrow hadded c hc
