@@ -1,0 +1,5438 @@
+{
+  "campaign": "freshthird_first_nonhit_retained_core_128",
+  "case_count": 128,
+  "cvc5_statuses": {
+    "sat": 128,
+    "unsat": 0
+  },
+  "raw_case_count": 128,
+  "records": [
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm00_x0y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm01_x0y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm02_x0y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm03_x0y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm04_x0y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm05_x0y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm06_x0y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm07_x0y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm08_x1y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm09_x1y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm10_x1y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm11_x1y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm12_x1y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm13_x1y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm14_x1y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameBlocker_arm15_x1y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm00_x0y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm01_x0y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm02_x0y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm03_x0y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm04_x0y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm05_x0y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm06_x0y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm07_x0y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm08_x1y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm09_x1y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm10_x1y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm11_x1y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm12_x1y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm13_x1y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm14_x1y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sourceRowOmission_arm15_x1y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm00_x0y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm01_x0y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm02_x0y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm03_x0y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm04_x0y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm05_x0y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm06_x0y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm07_x0y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm08_x1y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm09_x1y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm10_x1y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm11_x1y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm12_x1y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm13_x1y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm14_x1y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps_arm15_x1y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm00_x0y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm01_x0y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm02_x0y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm03_x0y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm04_x0y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm05_x0y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm06_x0y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm07_x0y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm08_x1y0_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm09_x1y0_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm10_x1y0_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm11_x1y0_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm12_x1y1_x0y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm13_x1y1_x0y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm14_x1y1_x1y0",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource_arm15_x1y1_x1y1",
+      "pair_id": "nh_sameBlocker__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm00_x0y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm01_x0y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm02_x0y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm03_x0y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm04_x0y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm05_x0y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm06_x0y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm07_x0y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm08_x1y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm09_x1y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm10_x1y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm11_x1y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm12_x1y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm13_x1y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm14_x1y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameBlocker_arm15_x1y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameBlocker",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm00_x0y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm01_x0y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm02_x0y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm03_x0y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm04_x0y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm05_x0y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm06_x0y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm07_x0y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm08_x1y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm09_x1y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm10_x1y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm11_x1y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm12_x1y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm13_x1y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm14_x1y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sourceRowOmission_arm15_x1y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sourceRowOmission",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm00_x0y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm01_x0y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm02_x0y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm03_x0y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm04_x0y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm05_x0y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm06_x0y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm07_x0y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm08_x1y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm09_x1y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm10_x1y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm11_x1y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm12_x1y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm13_x1y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm14_x1y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps_arm15_x1y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_distinctBlockersDifferentCaps",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 0,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm00_x0y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 1,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm01_x0y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 2,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm02_x0y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 3,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm03_x0y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 4,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm04_x0y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 5,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm05_x0y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 6,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm06_x0y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 7,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm07_x0y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "arm_index": 8,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm08_x1y0_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "arm_index": 9,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm09_x1y0_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "arm_index": 10,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm10_x1y0_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "arm_index": 11,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm11_x1y0_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "arm_index": 12,
+      "common_endpoint_omission": {
+        "applicable": false,
+        "kind": "derived_conditional_tag",
+        "side": null,
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm12_x1y1_x0y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "arm_index": 13,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm13_x1y1_x0y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "arm_index": 14,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm14_x1y1_x1y0",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "arm": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "arm_index": 15,
+      "common_endpoint_omission": {
+        "applicable": true,
+        "kind": "derived_conditional_tag",
+        "side": "x+y",
+        "solver_constraint": false
+      },
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource_arm15_x1y1_x1y1",
+      "pair_id": "nh_sourceRowOmission__interaction_sameCapWithInternalFiberSource",
+      "readback": {
+        "choices": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y0"
+          ]
+        ]
+      },
+      "z3": "sat"
+    }
+  ],
+  "smoke": [
+    {
+      "cvc5": "sat",
+      "expected": "sat",
+      "label": "smoke_known_sat",
+      "readback": {
+        "choices": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "row_supports": [
+          [
+            "source0",
+            "source1",
+            "x1",
+            "y1"
+          ],
+          [
+            "source0",
+            "source1",
+            "x0",
+            "y1"
+          ]
+        ]
+      },
+      "z3": "sat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "label": "smoke_malformed_overfull",
+      "readback": null,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "label": "smoke_malformed_endpoint_present",
+      "readback": null,
+      "z3": "unsat"
+    }
+  ],
+  "smoke_count": 3,
+  "status": "PASS",
+  "wave_mode": "full",
+  "z3_statuses": {
+    "sat": 128,
+    "unsat": 0
+  }
+}

@@ -7732,6 +7732,47 @@ No further FreshThird fan-out should be introduced unless a child is closed in
 the same change or the replacement theorem is a demonstrably stricter single
 residual, as at this checkpoint.
 
+#### 13.24.1.2 First-non-hit retained-core audit (2026-08-10)
+
+The first bounded audit of the new anchor keeps the complete structural
+constructor product:
+
+1. two `FreshThirdCapSourceNonHit` constructors;
+2. four `FreshThirdCapSourceInteraction` constructors; and
+3. all sixteen raw retained x/y endpoint-deletion choices for the two
+   canonical sources.
+
+This gives 128 source-labelled QF_LIA slices.  Z3 and cvc5 both report `SAT`
+on all 128, every independently reconstructed assignment passes readback, and
+the malformed overfull-row and selected-endpoint-present controls are `UNSAT`
+in both solvers.  Common omitted endpoints occur only as derived conditional
+tags; they are not universal ingress.  This is a structural consistency
+diagnostic, not a Euclidean model, counterexample, finite coverage theorem,
+general-cardinality lift, Lean theorem, or closure of the anchor.
+
+The mandatory post-wave global theorem-bank audit found no source-clean
+cardinality-independent consumer that combines this retained packet with the
+non-hit/interaction product.  The nearest declarations require stronger
+inputs that the packet does not supply: a source-faithful universal deletion
+fan, mutual cross-membership with distinct blockers, or explicit cap-index and
+boundary-order endpoint-deletion obstructions.  The apparently direct
+`firstNonHit`, reflected, and common-radius-surviving-row closers inherit
+`sorryAx` and therefore cannot be reused as closure.
+
+The common-radius ingress was audited separately.  Its existential surface is
+independent of the current `C`, `Q`, non-hit, and interaction at the type
+level; current adapters do not transport its radius/cardinality data to those
+objects.  It therefore supplies no direct clean consumer for this leaf.
+
+Do not repeat or enlarge the local 128-case incidence wave.  The next
+computational experiment is authorized only after a source-faithful
+boundary/order ingress is stated that retains the existing constructor and
+endpoint choices while adding the exact universal-fan, cap-index, and endpoint
+order fields consumed by the clean deletion-obstruction theorem.  The
+preferred proof milestone remains a cardinality-independent Lean producer of
+that bridge; a finite experiment may test its shape but cannot replace its
+general-cardinality proof.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
