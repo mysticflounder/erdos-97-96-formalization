@@ -1,0 +1,37 @@
+{
+  "model_literals": 74813,
+  "model_log": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-exact17-piqd-refinement-round3-v1/postwave-model-3.log",
+  "model_log_sha256": "9697491bf63978388707852312e7ea4d2fdb2b5468153b85928e48183188a77a",
+  "schema": "p97-piqd-sat-session-model-capture-v1",
+  "session_before": {
+    "clauses": 4255579,
+    "created_at": 1786326158,
+    "id": "4876f14c-554d-4cce-9f1a-fb9a15f5dc53",
+    "journal_path": "/Users/adam/.piqd/sessions/4876f14c-554d-4cce-9f1a-fb9a15f5dc53/journal.cnf",
+    "label": "P97 exact17 weighted post-wave refinement",
+    "lane": "sat",
+    "last_status": "SAT",
+    "max_var": 74813,
+    "protocol_version": 1,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "solver_stats": {
+      "active": 64936,
+      "clauses_added": 4255579,
+      "irredundant": 2270255,
+      "solve_ms_total": 24115,
+      "solves": 2,
+      "vars": 74813
+    },
+    "solves": 2,
+    "state": "live",
+    "updated_at": 1786326610
+  },
+  "solve_response": {
+    "result_sha256": "0ff645270e720c554a5b20d9137020fb65d33659d794038fa5b8e528e652d2d7",
+    "solve_index": 3,
+    "solve_ms": 5787,
+    "status": "SAT"
+  }
+}

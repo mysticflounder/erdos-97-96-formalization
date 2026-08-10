@@ -371,3 +371,13 @@ while the ten-point instance uses one coefficient of two. None occurs among
 `scratch/p97-exact17-piqd-refinement-round3-v1/postwave-theorem-search.json`.
 This is reusable theorem-bank expansion and supplies the next static cuts; it
 does not establish exact-17 coverage or close a production `sorry`.
+
+Those static cuts are now live in PIQD.  The three certificates compiled to
+102 checked dihedral clauses and seeded session
+`4876f14c-554d-4cce-9f1a-fb9a15f5dc53` at 4,255,460 clauses.  Seven subsequent
+source-faithful SAT models all hit the existing generic two-Kalmanson equality
+closure theorem.  PIQD admitted seven authenticated orbit batches totaling
+3,029 further clauses, leaving the live session SAT at 4,258,489 clauses.
+This confirms that the theorem-search output is feeding the stateful CEGAR
+loop correctly.  It is not yet a terminal exact-17 result or a universal
+lifting theorem.

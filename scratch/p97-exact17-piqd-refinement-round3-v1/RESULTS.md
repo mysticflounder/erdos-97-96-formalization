@@ -113,3 +113,35 @@ These instances are cardinality-generic mathematical cuts, but this artifact
 does not yet compile their exact-17 dihedral clause orbits into a new PIQD
 receipt. It is therefore theorem-bank expansion, not exact-17 coverage,
 universal closure, or closure of a Lean `sorry`.
+
+## Post-wave PIQD continuation
+
+The three weighted certificates were next compiled into all 34 dihedral
+images available in the fixed exact-17 order.  All images passed the exact
+certificate checker.  The resulting static fragment contains 102 distinct
+clauses, with no overlap between the three certificate orbits and ordered
+SHA-256
+`35dc61848058a0bc2a9864ed5bac25e5e1d20ac570117b09fd6119e193167e33`.
+The compiler and authenticated manifest are
+`compile_postwave_weighted_orbits.py` and
+`postwave-weighted-orbits.manifest.json`.
+
+PIQD session `4876f14c-554d-4cce-9f1a-fb9a15f5dc53` was seeded from the
+4,255,358-clause frozen endpoint and admitted those 102 static clauses.  Its
+normalized exported root has 74,813 variables, 4,255,460 clauses, and SHA-256
+`ef3d0063b9447b49fc467cfaeb9947070c5df956d195c1628c96bb4df6d8f5e1`.
+
+Seven complete SAT models were captured from that root and its successive
+refinements.  Every model passed source replay and exact linear replay.  Every
+one was rejected by the already banked cardinality-generic consumer
+`false_of_twoKalmansonCancellationData_of_check`; no new theorem family was
+needed in this subwave.  The seven authenticated model-specific orbit batches
+contain respectively 119, 69, 66, 533, 1,059, 299, and 884 clauses, for 3,029
+new clauses total.  The live PIQD session therefore currently contains
+4,258,489 clauses.
+
+This is a successful theorem-reuse wave: the new weighted certificates expose
+models that are immediately discharged by the older two-Kalmanson equality
+closure theorem, and PIQD records the corresponding exact refinements.  The
+session remains SAT, so exact-17, the universal Rigid221 branch, and every
+production `sorry` remain open.
