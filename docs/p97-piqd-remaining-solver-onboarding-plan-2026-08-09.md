@@ -41,7 +41,7 @@ false until separate source-clean consumers establish them.
 | 1 | Exact17 static and seeded CaDiCaL | Onboarded canaries; finite only | Continue through strict shared adapters; no legacy attestation reuse |
 | 2 | Rank-four direct-six refinement | Onboarded SAT canary; finite only | Use authenticated PIQD session roots and mandatory theorem-bank search after each wave |
 | 3 | Exact12 source54 static CaDiCaL | Onboarded and pushed | Reuse as the custody baseline for other exact12 cells |
-| 4 | Frontier A-core static CaDiCaL | Source-faithful package, durable runner, and standalone replay green; the first live attempt reached deployment-caused `UNKNOWN`; the repaired raw-job lane and producer-neutral static boundary are now independently qualified | Re-run the exact A-core packet against daemon `63aeb78f…` in a fresh create-once directory, then independently replay its lane-specific receipt |
+| 4 | Frontier A-core static CaDiCaL | Onboarded: source-faithful retry package, durable runner, one-process live SAT canary, and authenticated no-argument standalone replay are green; receipt `643ebab4…ed40`, finite only | Reuse the qualified retry-aware boundary; preserve false source-entitlement, theorem-coverage, universal-lift, and Lean-closure claims |
 | 5 | Exact12 v14 CardHead static CaDiCaL | Onboarded and pushed; live SAT canary and independent total-model/custody replay pass, receipt `d74c396e…` | Reuse the qualified producer-specific boundary; preserve finite-only and false source-entitlement claims |
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
 | 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | CardHead and the F-Gamma base-discovery call are onboarded. F-Gamma job `5b9afcf1…` returned a total 23-variable SAT model; independent source/map/CNF/model/custody replay and daemon-side corroboration pass | Bind the remaining frontier producer dialects; keep F-Gamma's two proof-producing DRAT gates local until PIQD has an authenticated certificate path |
@@ -111,15 +111,32 @@ adapter result. It is reported in nthdegree convo message `#4375` and
 root-caused in `#4380`: the launchd daemon's `PATH` excludes
 `/Users/adam/bin`, while raw-DIMACS job backends are launched by bare name.
 Consequently the entire raw-DIMACS job lane, including CaDiCaL and march_cu,
-waits for Adam to repair the launchd environment. The failed create-once output
-is preserved at
-`scratch/p97-piqd-a-core-canary-2026-08-09-v1/`; the repaired qualification must
-use a fresh directory and a newly verified daemon identity. It established no
-SAT/UNSAT, source-entitlement, coverage, universal-lift, Lean, or theorem-bank
-claim. CardHead also waits because it uses the raw-DIMACS job lane. FreshThird
-may qualify in the meantime: Z3 and cvc5 SMT sessions resolve executables from
-PIQD's solver directory and are explicitly unaffected by this deployment bug;
-its 24 sessions still run strictly sequentially with one solver process.
+was blocked until the launchd environment was repaired. The failed create-once
+output is preserved at `scratch/p97-piqd-a-core-canary-2026-08-09-v1/`. It
+established no SAT/UNSAT, source-entitlement, coverage, universal-lift, Lean,
+or theorem-bank claim. The same deployment issue blocked CardHead until the
+repair because it also uses the raw-DIMACS job lane. FreshThird was unaffected:
+Z3 and cvc5 SMT sessions resolve executables from PIQD's solver directory; its
+24 sessions still run strictly sequentially with one solver process.
+
+The repaired A-core qualification used daemon build
+`6087acb84cf179821240625b60f93502e37eb8b5362840a70b810103c9d1b464` and
+fresh job `f0f47542-e4ff-4c65-bfcd-4b941f4c68fa`. The exact 889-variable,
+21,101-clause packet completed `SAT` with `existing=false` and one requested
+solver process. The adapter preserved the raw PIQD model bytes exactly, then
+strictly parsed the total 889-literal assignment and independently replayed
+every CNF clause. A separate no-argument offline replay authenticated the
+archived retry-v2 producer bytes, rebuilt the exact packet, and reproduced
+receipt
+`643ebab437026c0a3f312e88b595350ae9c4a2559b48b46a9e7a29326e97ed40`.
+The model SHA-256 is
+`0f846cd99e562de70b0e01182b1ca5851f405573721d34dcd87318b157942b2e`.
+The create-once output is preserved at
+`scratch/p97-piqd-a-core-canary-2026-08-10-retry1-6087acb8/`. The daemon build
+digest in the retry producer is caller-supplied identity material, not a
+per-job daemon attestation; `PIQD-BUILDBIND-001` remains open. This remains a
+finite canary and establishes no source-entitlement, theorem-coverage,
+universal-lift, Lean, or theorem-bank claim.
 
 The first FreshThird live wave did exercise all 24 sessions and produced
 create-once receipt
