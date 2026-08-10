@@ -16,6 +16,7 @@ from census.p97_search.phase3_piqd_oracle import (
     PreparedJob,
     raw_dimacs_identity,
     scan_dimacs,
+    stdlib_http_transport,
 )
 
 CNF = b"p cnf 2 2\n1 0\n-1 2 0\n"
@@ -67,10 +68,16 @@ def wave_manifest() -> dict:
 class ScriptedTransport:
     def __init__(self, responses: list[HttpResponse]) -> None:
         self.responses = responses
-        self.calls: list[tuple[str, str, bytes | None, Mapping[str, str]]] = []
+        self.calls: list[
+            tuple[str, str, bytes | MultipartBody | None, Mapping[str, str]]
+        ] = []
 
     def __call__(
-        self, method: str, url: str, body: bytes | None, headers: Mapping[str, str]
+        self,
+        method: str,
+        url: str,
+        body: bytes | MultipartBody | None,
+        headers: Mapping[str, str],
     ) -> HttpResponse:
         self.calls.append((method, url, body, headers))
         assert self.responses, "unexpected HTTP request"
@@ -78,7 +85,10 @@ class ScriptedTransport:
 
 
 def failing_transport(
-    method: str, url: str, body: bytes | None, headers: Mapping[str, str]
+    method: str,
+    url: str,
+    body: bytes | MultipartBody | None,
+    headers: Mapping[str, str],
 ) -> HttpResponse:
     del method, url, body, headers
     raise TimeoutError("fixture timeout")
@@ -227,6 +237,50 @@ def test_segmented_multipart_is_byte_equivalent_and_exact_length() -> None:
     )
 
 
+def test_public_stdlib_transport_preserves_private_alias_identity() -> None:
+    assert phase3_piqd_oracle._stdlib_transport is stdlib_http_transport
+    assert PiqdRawDimacsClient(
+        "http://piqd.test", transport=stdlib_http_transport
+    )._segmented_transport
+
+
+def test_segmented_multipart_can_cross_a_validating_transport_wrapper() -> None:
+    wave = wave_manifest()
+    identity = raw_dimacs_identity(
+        backend="cadical",
+        solver_profile="unsat",
+        cnf_sha256=sha256_bytes(CNF),
+        producer_manifest_sha256=sha256_bytes(PRODUCER),
+    )
+    transport = ScriptedTransport(
+        [
+            json_response(
+                200,
+                {
+                    "job_id": "job-segmented-wrapper",
+                    "cnf_blob_hash": sha256_bytes(CNF),
+                    "identity_hash": identity,
+                    "num_vars": 2,
+                    "num_clauses": 2,
+                    "existing": False,
+                },
+            )
+        ]
+    )
+    client = PiqdRawDimacsClient(
+        "http://piqd.test", transport=transport, segmented_multipart=True
+    )
+
+    client.prepare_cnf(wave_manifest=wave, cnf=CNF, producer_manifest=PRODUCER)
+
+    body = transport.calls[0][2]
+    assert isinstance(body, MultipartBody)
+    assert any(
+        isinstance(segment, memoryview) and segment.obj is CNF
+        for segment in body.segments
+    )
+
+
 def test_prepare_default_path_keeps_large_cnf_as_a_segment(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -267,7 +321,7 @@ def test_prepare_default_path_keeps_large_cnf_as_a_segment(
             },
         )
 
-    monkeypatch.setattr(phase3_piqd_oracle, "_stdlib_transport", capture)
+    monkeypatch.setattr(phase3_piqd_oracle, "stdlib_http_transport", capture)
     monkeypatch.setattr(
         PiqdRawDimacsClient,
         "_multipart",
@@ -334,6 +388,69 @@ class _RecordingConnection:
         self.closed = True
 
 
+def test_multipart_body_accepts_exact_zero_copy_segment_types() -> None:
+    immutable = b"a"
+    mutable = bytearray(b"bc")
+    viewed = memoryview(b"def")
+
+    body = MultipartBody((immutable, mutable, viewed), 6)
+
+    assert body.segments[0] is immutable
+    assert body.segments[1] is mutable
+    assert body.segments[2] is viewed
+
+
+@pytest.mark.parametrize(
+    "segment",
+    [
+        True,
+        1,
+        "bytes",
+        object(),
+        type("BytesSubclass", (bytes,), {})(b"x"),
+        type("BytearraySubclass", (bytearray,), {})(b"x"),
+    ],
+)
+def test_multipart_body_rejects_nonexact_segment_types(segment: object) -> None:
+    with pytest.raises(TypeError, match="exact bytes, bytearray, or memoryview"):
+        MultipartBody((segment,), 1)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize(
+    "segment",
+    [
+        memoryview(b"abcd")[::2],
+        memoryview(b"abcd").cast("B", shape=[2, 2]),
+        memoryview(b"\x00\x00").cast("H"),
+    ],
+)
+def test_multipart_body_rejects_unsupported_memoryview_shapes(
+    segment: memoryview,
+) -> None:
+    with pytest.raises(
+        TypeError, match="one-dimensional, byte-sized, and C-contiguous"
+    ):
+        MultipartBody((segment,), segment.nbytes)
+
+
+def test_multipart_body_rejects_released_memoryview() -> None:
+    segment = memoryview(b"payload")
+    segment.release()
+    with pytest.raises(TypeError, match="released"):
+        MultipartBody((segment,), 7)
+
+
+def test_multipart_body_rejects_nonexact_structure_and_length() -> None:
+    with pytest.raises(TypeError, match="exact tuple"):
+        MultipartBody([b"x"], 1)  # type: ignore[arg-type]
+    with pytest.raises(TypeError, match="exact integer"):
+        MultipartBody((b"x",), True)  # type: ignore[arg-type]
+    with pytest.raises(ValueError, match="nonnegative"):
+        MultipartBody((b"x",), -1)
+    with pytest.raises(ValueError, match="does not match"):
+        MultipartBody((b"x",), 2)
+
+
 def test_stdlib_transport_writes_exact_segmented_body(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -344,7 +461,7 @@ def test_stdlib_transport_writes_exact_segmented_body(
         phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
     )
 
-    response = phase3_piqd_oracle._stdlib_transport(
+    response = stdlib_http_transport(
         "POST",
         "http://piqd.test/jobs/prepare-cnf",
         body,
@@ -369,7 +486,7 @@ def test_stdlib_transport_accepts_scoped_timeout(
         phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
     )
 
-    phase3_piqd_oracle._stdlib_transport(
+    stdlib_http_transport(
         "POST",
         "http://piqd.test/jobs/prepare-cnf",
         body,
@@ -396,7 +513,7 @@ def test_stdlib_transport_rejects_short_write(
         phase3_piqd_oracle.http.client, "HTTPConnection", ShortConnection
     )
     with pytest.raises(OSError, match="short write"):
-        phase3_piqd_oracle._stdlib_transport(
+        stdlib_http_transport(
             "POST",
             "http://piqd.test/jobs/prepare-cnf",
             body,
@@ -414,12 +531,56 @@ def test_stdlib_transport_rejects_nonexact_content_length(
         phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
     )
     with pytest.raises(OSError, match="Content-Length is not exact"):
-        phase3_piqd_oracle._stdlib_transport(
+        stdlib_http_transport(
             "POST",
             "http://piqd.test/jobs/prepare-cnf",
             body,
             {"Content-Length": str(body.content_length - 1)},
         )
+
+
+def test_stdlib_transport_revalidates_forged_multipart_before_connection(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    body = MultipartBody((b"payload",), 7)
+    object.__setattr__(body, "segments", (object(),))
+    _RecordingConnection.instance = None
+    monkeypatch.setattr(
+        phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
+    )
+
+    with pytest.raises(OSError, match="malformed multipart body: multipart segments"):
+        stdlib_http_transport(
+            "POST",
+            "http://piqd.test/jobs/prepare-cnf",
+            body,
+            {"Content-Length": "7"},
+        )
+
+    assert _RecordingConnection.instance is None
+
+
+def test_stdlib_transport_rejects_multipart_body_subclass_before_connection(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class MultipartBodySubclass(MultipartBody):
+        pass
+
+    body = MultipartBodySubclass((b"payload",), 7)
+    _RecordingConnection.instance = None
+    monkeypatch.setattr(
+        phase3_piqd_oracle.http.client, "HTTPConnection", _RecordingConnection
+    )
+
+    with pytest.raises(OSError, match="concrete type is not exact"):
+        stdlib_http_transport(
+            "POST",
+            "http://piqd.test/jobs/prepare-cnf",
+            body,
+            {"Content-Length": "7"},
+        )
+
+    assert _RecordingConnection.instance is None
 
 
 def test_raw_identity_preserves_legacy_preimage_and_separates_core_limit() -> None:

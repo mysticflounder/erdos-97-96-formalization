@@ -70,7 +70,40 @@ class CheckedModel:
     response_body: bytes
 
 
-MultipartSegment = bytes | memoryview
+MultipartSegment = bytes | bytearray | memoryview
+
+
+def _multipart_segment_length(segment: object) -> int:
+    if type(segment) in {bytes, bytearray}:
+        return len(segment)  # type: ignore[arg-type]
+    if type(segment) is not memoryview:
+        raise TypeError(
+            "multipart segments must be exact bytes, bytearray, or memoryview values"
+        )
+    try:
+        if segment.ndim != 1 or segment.itemsize != 1 or not segment.c_contiguous:
+            raise TypeError(
+                "multipart memoryview segments must be one-dimensional, "
+                "byte-sized, and C-contiguous"
+            )
+        return segment.nbytes
+    except ValueError as exc:
+        raise TypeError("multipart memoryview segment is released") from exc
+
+
+def _validated_multipart_content_length(
+    segments: object, content_length: object
+) -> int:
+    if type(segments) is not tuple:
+        raise TypeError("multipart segments must be an exact tuple")
+    if type(content_length) is not int:
+        raise TypeError("multipart content length must be an exact integer")
+    if content_length < 0:
+        raise ValueError("multipart content length must be nonnegative")
+    actual = sum(_multipart_segment_length(segment) for segment in segments)
+    if actual != content_length:
+        raise ValueError("multipart content length does not match its segmented body")
+    return actual
 
 
 @dataclass(frozen=True)
@@ -81,14 +114,12 @@ class MultipartBody:
     content_length: int
 
     def __post_init__(self) -> None:
-        actual = sum(len(segment) for segment in self.segments)
-        if actual != self.content_length:
-            raise ValueError(
-                "multipart content length does not match its segmented body"
-            )
+        _validated_multipart_content_length(self.segments, self.content_length)
 
 
-Transport = Callable[[str, str, bytes | None, Mapping[str, str]], HttpResponse]
+Transport = Callable[
+    [str, str, bytes | MultipartBody | None, Mapping[str, str]], HttpResponse
+]
 
 _PIQD_PROFILES = {
     "cadical": frozenset({"sat", "unsat", "plain", "default"}),
@@ -314,7 +345,7 @@ def _send_segmented_body(
         raise OSError("multipart body write length mismatch")
 
 
-def _stdlib_transport(
+def stdlib_http_transport(
     method: str,
     url: str,
     body: bytes | MultipartBody | None,
@@ -322,6 +353,20 @@ def _stdlib_transport(
     *,
     timeout_seconds: float = DEFAULT_HTTP_TIMEOUT_SECONDS,
 ) -> HttpResponse:
+    """Send one bounded PIQD HTTP request with the Python standard library.
+
+    ``MultipartBody`` is streamed segment-by-segment so large producer CNFs are
+    not copied into a second joined request body.
+    """
+
+    if isinstance(body, MultipartBody):
+        if type(body) is not MultipartBody:
+            raise OSError("malformed multipart body: concrete type is not exact")
+        try:
+            _validated_multipart_content_length(body.segments, body.content_length)
+        except (TypeError, ValueError) as exc:
+            raise OSError(f"malformed multipart body: {exc}") from exc
+
     parsed = urllib.parse.urlsplit(url)
     if parsed.scheme not in {"http", "https"} or not parsed.hostname:
         raise OSError(f"unsupported piqd URL: {url}")
@@ -334,9 +379,7 @@ def _stdlib_transport(
         if parsed.scheme == "https"
         else http.client.HTTPConnection
     )
-    connection = connection_type(
-        parsed.hostname, port=port, timeout=timeout_seconds
-    )
+    connection = connection_type(parsed.hostname, port=port, timeout=timeout_seconds)
     try:
         target = parsed.path or "/"
         if parsed.query:
@@ -368,13 +411,32 @@ def _stdlib_transport(
         connection.close()
 
 
+# Compatibility for callers that imported the former private spelling.  This
+# must remain an alias, rather than a wrapper, because transport identity is how
+# the client recognizes the segmented multipart implementation.
+_stdlib_transport = stdlib_http_transport
+
+
 class PiqdRawDimacsClient:
     """One-shot piqd operations; the P97 outer loop owns polling and retries."""
 
-    def __init__(self, base_url: str, *, transport: Transport | None = None) -> None:
+    def __init__(
+        self,
+        base_url: str,
+        *,
+        transport: Transport | None = None,
+        segmented_multipart: bool | None = None,
+    ) -> None:
+        if segmented_multipart is not None and type(segmented_multipart) is not bool:
+            raise TypeError("segmented_multipart must be a builtin bool or None")
         self.base_url = base_url.rstrip("/")
-        self._transport = transport or _stdlib_transport
-        self._segmented_transport = transport is None or transport is _stdlib_transport
+        self._transport = stdlib_http_transport if transport is None else transport
+        if segmented_multipart is None:
+            self._segmented_transport = (
+                transport is None or transport is stdlib_http_transport
+            )
+        else:
+            self._segmented_transport = segmented_multipart
 
     def _request(
         self,
