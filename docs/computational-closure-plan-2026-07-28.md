@@ -1,9 +1,15 @@
-# Computational closure plan — remaining frontier (updated 2026-08-03)
+# Computational closure plan — remaining frontier (updated 2026-08-10)
 
-Premise: no further deep-thinker input is assumed. Every remaining obligation
-is attacked with in-repo computational machinery (SAT, exact-rational
-certificates, counting/Farkas certificates) feeding kernel-checked Lean
-landings. This plan supersedes the round-2 solve-prompt lane as the primary
+Evidence-status terms in this plan follow the
+[closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
+
+Operating premise (audited 2026-08-04): computation is the certified
+theorem-mining and finite-coverage substrate, not a self-contained replacement
+for the missing universal Lean theorems.  SAT, exact-rational certificates,
+counting/Farkas certificates, and CEGAR cuts may propose or certify finite
+obstructions; they receive closure credit only after a source-level producer
+or lifting theorem connects them to a live universal leaf and a kernel-checked
+consumer.  This plan supersedes the round-2 solve-prompt lane as the primary
 closure route; the bridge prompts remain valid side-channels if run, but
 nothing below depends on them.
 
@@ -11,18 +17,76 @@ Exact-12 ordered-v4 checkpoint (2026-08-08): all 37 solver-selected ordered
 records have kernel consumers, with the promoted replay chain and reproducible
 artifact partition recorded in
 [the exact-12 replay checkpoint](exact-twelve-rigid221-ordered-v4-replay-checkpoint-2026-08-08.md).
-This closes learned-cut replay only. The run remains `ITERATION_LIMIT`, and
+This closes learned-cut replay only.  The run remains `ITERATION_LIMIT`, and
 source-exhaustive selector/arm/placement coverage plus its placement/signature
 lift are still required before either exact-12 live leaf can close.
 
+Five-omission v3 checkpoint (2026-08-10): the authenticated twelve-shard wave
+completed 275 local refinements in every deleted-label shard.  Every run ended
+`ITERATION_LIMIT`, with no terminal proof.  Each run produced 259
+duplicate-center, 14 equilateral-bisector, and two equal-K4 cuts (aggregate
+3,108/168/24).  A compact layered successor keeps the 441-cut frozen bootstrap
+separate from 275 distinct new local cuts, with zero overlap, and exposes their
+716-cut union only as a derived projection.  This is replayable finite
+structural evidence, not terminal UNSAT, a universal producer or lift, or live
+Lean closure.
+
+## 0. Universal-ingress contract (binding, 2026-08-04)
+
+Before a computational campaign is called production, record all five parts of
+its landing contract:
+
+1. the exact live-leaf hypotheses available at ingress;
+2. the source-level theorem extracting the finite object or bounded
+   obstruction represented by the encoder;
+3. the symmetry/coverage argument showing that the finite search covers every
+   extracted object;
+4. the cardinality scope (including any upper bound, overflow state, or
+   general-cardinality lift); and
+5. the authenticated replay theorem and named kernel consumer that the result
+   feeds.
+
+An `UNSAT` result without this contract is a bounded diagnostic, not a
+universal contradiction.  A finite exact-cardinality certificate is likewise
+only an exact-cardinality theorem until a deletion/minimality or bounded-core
+lift is proved.  In particular, unqualified `CLOSED` means `KERNEL-CLOSED`;
+finite probes are `DIAGNOSTIC-ONLY`, and source theorems that still lack a
+checked terminal consumer are `PROVEN-PRODUCER` or `CLOSED-TO-RESIDUAL`, not
+closure of the live leaf.
+
+### A-core cardinality scope correction
+
+The A-core encoder formerly used exact-one values `0, ..., 24` and rejected
+every `(N1)` sum above 24, imposing an unsound hidden `n ≤ 24` scope on live
+leaves that assume only `12 ≤ D.A.card`. This was repaired on 2026-08-04:
+each cardinality now has exact buckets `0,...,24` plus a sound `GE25` overflow
+bucket, and every concrete `(N1)` tuple has an abstract image. The dedicated
+`G-OVERFLOW` gate realizes `(nSig,nO1,nO2)=(24,2,3)` (concrete `n=32`) and
+passes with `nGE25`; all eight refreshed package runs remain SAT. Thus the
+encoder scope defect is repaired, but no A leaf is `KERNEL-CLOSED`.
+
+The same scope audit still applies to every other universal-package encoder
+with a finite exact-cardinality domain.
+
+A dated 2026-08-08 blueprint refresh reported 30 explicit on-spine FLC theorem
+sorries plus the synthetic `sorryAx` node.  That number is not asserted as the
+current spine count because the present working tree has uncommitted Lean
+changes and a stale blueprint index.  The older 18-obligation package count is
+retained below only as historical coordinator bookkeeping; three
+graph-unimported `FidelityCheck` declarations were parked outside the publish
+spine in that dated refresh.
+
 ## 1. Dated package baseline (2026-07-30; superseded for source counts)
 
-This section records the 18-obligation package census refreshed 2026-07-30,
+This section records the historical 18-obligation package census refreshed
+2026-07-30,
 which was identical for
 `Problem97.erdos97_rhs` and `Problem96.erdos96_rhs`; kernel `#print axioms`
 is the arbiter — the refs miner has a known dropped-edge bug. All were in
 `ATail/FrontierLiveClosure.lean` (FLC), namespace
-`Problem97.ATailFrontierLiveClosure`. Recomposed 2026-07-28 by the landed
+`Problem97.ATailFrontierLiveClosure` (since 2026-08-05, `9feb86f6`, sharded
+into 15 files under `ATail/FrontierLiveClosure/` with the original path as an
+umbrella import; FQNs unchanged). Recomposed 2026-07-28 by the landed
 simplification refactor (`a0f73bc1`): initially 19 leaves, with A dropping 8→6
 (two `blockerV` arms closed; `blockerVRowOther_*` renamed `blockerVRow_*`)
 and B growing 1→3 (B2/B3 are live named leaves again). A later source-clean
@@ -62,6 +126,10 @@ four-workstream decomposition are recorded below.
 | F-Γ | 2 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSourceThirdCanonicalRowSurface` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
+The 18 in this historical table is a coordinator/package granularity, not a
+current declaration-level leaf count; use the recorded snapshot below only as
+a dated closure-frontier inventory.
+
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
 swap. Hypothesis lists must be re-read from the tree at encode time; the
 solve-prompt family docs are the unfolded plain-math references. The B
@@ -75,6 +143,2046 @@ six-center route remain checked compatibility material, but no longer narrow
 the live frontier.  This document records the consolidated source frontier
 only; no focused Lean 4.27 elaboration or fresh kernel/blueprint verification
 is claimed here.
+
+### Recorded sorry inventory (snapshot; current count not asserted)
+
+The package table above is historical.  The current closure gate is
+declaration- and spine-based, not a raw token count.  The 2026-08-10
+`proof-blueprint status` reports a stale index during the ongoing Lean
+refactor, so this plan deliberately does not assert an exact current kernel
+count.  The list below records 25 named residual leaves from the last
+reconciled family inventory; it may omit newly split or renamed leaves until a
+fresh build and `proof-blueprint refs --refresh` make the graph reproducible.
+
+The 25 recorded leaves are:
+
+* **Rigid221 / exact-four (13).**
+  `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`;
+  `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`;
+  `false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`;
+  `false_of_exactFourMutualOmissionRigid221_minimalCore`;
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted`;
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy`;
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy`;
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows`;
+  `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge`;
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU`;
+  `false_of_exactFourMutualOmissionRigid221_nonphysicalCollision`;
+  `false_of_exactFourPostCardElevenTwoRadiusBranch`;
+  `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome`.
+  These feed the exact-four/Rigid221 dispatchers and the post-card-11 or
+  swapped-unique-four residual consumers.  No sound, source-entitled
+  row-counting/metric producer or replayable SAT/certificate artifact currently
+  closes any of the 13 leaves.  Existing finite incidence shadows are
+  diagnostics only; the next required producer is a general-capacity
+  incidence/metric contradiction, followed by a focused Lake and transitive
+  axiom check.
+
+* **First-apex unique-radius exact-five residual (2).**
+  `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual`;
+  `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual`.
+  They are consumed by the exact-four residual and original-frontier unique
+  radius arms.  The current banks provide only thin support and role splits;
+  there is no exhaustive terminal, kernel-checkable certificate, or other
+  computational route to `False` for either leaf.
+
+* **Retained omission / E1 (8).**
+  `false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`;
+  `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core`.
+  Proved dispatchers consume these leaves through
+  `false_of_retainedOmission_triApexAllLarge_core` and its reverse-hit/fresh
+  adapters.  CEGAR rounds v35--v38, exact-15 archetypes, and endpoint SAT or
+  `UNKNOWN` results do not close a universal leaf.  The first missing
+  source-entitled producer is an order-sensitive metric contradiction (or a
+  global full-carrier/K4 deletion-row coupling) for the one-inside/one-outside
+  cap arm; no current computational artifact supplies it.
+
+* **FreshThird / F-Γ (2 on-spine leaves).**
+  `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`;
+  `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber`.
+  The outside-first theorem is the active load-bearing FreshThird leaf; the
+  other on-spine FreshThird leaf is
+  `false_of_crossBlockerCoincidence`, while the second-fiber theorem is a swap
+  adapter.  The normalized-remaining, first-non-hit, and first-fiber
+  declarations are compatibility code off the current publish spine.  The cap-profile census, Boolean shadows, and
+  v36--v38 SAT/`UNKNOWN` runs remain finite diagnostics, not universal proofs.
+
+Thus **all 25 leaves listed in this snapshot are computationally unclosed**;
+this sentence is not an authoritative current sorry count.  “No route” here
+means that the available SAT, CEGAR,
+exact-rational, counting, and certificate pipelines have not produced a
+source-entitled kernel-checkable contradiction; it is not evidence that the
+mathematical statements are false.  A future computational result closes a
+leaf only after it is landed in Lean and passes the focused build, refreshed
+spine, and transitive-axiom gates.
+
+#### Rigid221 off-class-blocker coordinator update (2026-08-06)
+
+Before this change, the immediate coordinator-interface frontier at
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker`
+was one on-spine theorem obligation.  The checked parent now consumes an
+exhaustive fan-out-two producer:
+
+1. an exact-cardinality-12 leaf carrying `D.A.card = 12`, the exact closed-cap
+   profile `S.surplusCap.card = 5`, `S.oppCap1.card = 4`, and
+   `S.oppCap2.card = 6`, together with the exact four-point strict interior;
+2. a `13 ≤ D.A.card` leaf carrying one named endpoint deletion whose selected
+   four-classes survive at three pairwise-distinct centers.
+
+Both children are explicit theorem obligations consumed immediately by the
+proved parent, and the existing publish-target consumer path is unchanged.
+The retained parent residual preserves all of the old hypotheses, so neither
+branch closes by erasing data or calling the parent cyclically.
+
+Chosen granularity: two theorem leaves.  No proposition-valued outcome or
+closer packet is introduced: the public residual is the explicit
+data-preserving child interface, and the proved split/profile producers are
+reusable source-level API.  The
+per-leaf narrowing measure is the singleton cardinality and exact profile in
+the first arm, and the stricter cardinality range plus explicit same-deletion
+survival data in the second.  Immediate constructor fan-out is two.  The local
+load-bearing `sorry` count changes from one to two; neither child is yet
+discharged, so this is auditable decomposition and not kernel closure.  The
+28-leaf inventory above is the preceding audited snapshot; its global count
+must be refreshed from the built proof spine rather than adjusted by prose.
+
+The `deleted = xv` ingress now has a checked three-row incidence producer,
+`pentagonOffClassBlocker_xvDeletion_threeExactRows_common_u`.  For any two
+sources furnished by that arm it retains the complete q-deleted selected rows
+at their two actual blockers and the complete q-deleted physical row at
+`S.oppApex2`; all three contain the named point `u`, and the physical row has
+cardinality exactly four.  The general metric consumer
+`U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` has been
+ported from the sibling general-`n` theorem bank into the reusable local
+module `U5GlobalIncidenceQDeletedTetrahedron`, with a focused build passing.
+The ATail adapter
+`pentagonOffClassBlocker_xvDeletion_false_of_tetrahedron_incidences` records
+the exact remaining producer contract: it closes once the following five
+positive cross-incidences are available, writing `O` for the physical apex
+and `c₁,c₂` for the two actual blockers:
+
+```text
+c₁ ∈ BO,   O ∈ K₁,   c₂ ∈ K₁,   O ∈ K₂,   c₁ ∈ K₂.
+```
+
+These five facts are not presently source-proved.  The new module and adapter
+are therefore a checked consumer boundary, not closure of the unbounded leaf.
+They reduce the previously implicit eight-incidence tetrahedron sketch to one
+explicit five-incidence producer obligation and give future CEGAR/theorem
+mining a precise source-level predicate vocabulary.
+
+The unbounded leaf is now a checked nested fan-out-two coordinator.  In both
+endpoint arms the complete five-incidence packet is discharged by a checked
+tetrahedron consumer.  The `deleted = xv` arm leaves only
+`...threeCenterDeletion_xv_missingIncidence`, which assumes the negation of
+that packet.  The `deleted = u` arm now ignores the old arbitrary-source
+witnesses and switches to the source-clean fixed pair `xu` and
+`jointDeletion.deleted`; its only load-bearing child is
+`...uDeletion_fixedPhysicalPair_missingIncidence`, which assumes the negation
+of the corresponding five-incidence packet.  The old
+`...threeCenterDeletion_u` declaration is now a proved compatibility adapter,
+not part of the obligation frontier.  Thus the unbounded coordinator retains
+two strictly narrower on-spine `sorry`s while the complete-incidence subcase
+has been eliminated in each arm.
+The top-level anchor still has immediate fan-out two (exact 12 versus
+cardinality at least 13); the nested unbounded constructor has fan-out two.
+This is a genuine case elimination and a more precise producer frontier, but
+it is not closure because both residual children remain open.
+
+The deletion partition is now source-level rather than merely a proposed
+search vocabulary.  The focused-built theorem
+`pentagonOffClassBlocker_largeCard_threeColor_pair` proves that when
+`17 ≤ D.A.card`, the sources outside the `xv` row contain two sources with
+distinct actual blockers in one of three uniform profiles:
+
+1. both fail after deleting `u` and survive after deleting `xv`;
+2. both survive after deleting `u` and fail after deleting `xv`;
+3. both survive both endpoint deletions.
+
+The first survival in profile 1 is forced by the existing pair-deletion
+theorem, so simultaneous failure is not a fourth color.  The threshold is
+exactly the counting threshold supplied by thirteen outside sources: three
+color classes of size at most four cannot cover them.  This leaves the finite
+cardinality range `13 ≤ D.A.card ≤ 16` as a separate bounded stratum rather
+than mixing it into an unbounded survivor leaf.
+
+Profile 2 now has a symmetric checked incidence path.  The theorems
+`pentagonOffClassBlocker_uDeletion_crossedRow` and
+`pentagonOffClassBlocker_uDeletion_threeExactRows_common_xv` retain two
+selected rows and the physical row after deleting `u`; all three contain
+`xv`.  The checked adapter
+`pentagonOffClassBlocker_uDeletion_false_of_tetrahedron_incidences` closes the
+complete five-center-incidence packet just as in profile 1.  Those five
+positive incidences are not source-proved in either orientation.  Profile 3
+also has no current contradiction consumer.  Therefore the three-color
+theorem is a genuine uniform producer and a justified route change, but not a
+closure claim and not yet an additional on-spine case split.
+
+The profile-3 ingress is now exact rather than prose-only.  The checked
+adapter
+`pentagonOffClassBlocker_biSurvival_commonDeletionRectangle` turns two
+distinct actual blockers surviving both endpoint deletions into two
+`CommonDeletionTwoCenterPacket`s with the same ordered pair of centers: one
+packet for deletion of `u`, and one for deletion of `xv`.  Together these form
+a two-deletion/two-center rectangle of exact q-deleted four-point rows, with
+the existing overlap and actual-blocker separation fields available to a
+consumer.  The theorem-bank audit found no existing contradiction theorem for
+this rectangle.  In particular, the nearby mutual-omission joint-deletion
+terminal requires physical-class and row-omission ingress that these arbitrary
+outside sources do not supply.  The missing result is therefore a rectangle
+comparison consumer (or a producer of those stronger ingress facts), not an
+adapter from raw survival data.
+
+The previously missing source entitlement for the exact-12 lane's
+order-sensitive restriction is now proved as
+`pentagonOffClassBlocker_exists_forced_secondCap_order`.  It extracts a CGN
+ordering of the physical second cap and names the indices of
+
+```text
+u, c = centerAt xv, xv, xu.
+```
+
+The source row gives `dist xv u = dist xv xu`, and the `xv` row gives
+`dist c u = dist c xv`.  CGN one-sided distance injectivity therefore forces
+exactly
+
+```text
+u < c < xv < xu
+```
+
+or its reversal.  This is a general-cardinality Lean producer with the exact
+ordered-cap packet and point-identification witnesses retained; it is not a
+contradiction and does not discharge either live child.  Any CEGAR use must
+encode this chain behind a landing contract that reconstructs these four
+named points and the same physical second-cap order.  Adding an anonymous
+four-position ordering clause to the old row-only schema would be unsound.
+
+The existing exact-12 probe already enumerates precisely these two chains in
+`metric_order_mine.py::boundary_orders`: under its frozen labels
+`(u,c,xv,xu) = (6,7,8,9)`, the 24 global boundary orders restrict those four
+labels to `(6,7,8,9)` or `(9,8,7,6)`.  The new Lean theorem therefore justifies
+a restriction that the computation was already using; it does not add a new
+CNF predicate or retroactively turn the learned row clauses into a Lean
+certificate.  The immediate computational follow-up is to record and
+fail-closed test an explicit source-to-frozen-label/order replay contract,
+without changing the frozen schema's semantics, and then ask which additional
+source-entitled predicate turns the chain into a replayable obstruction.  A
+kernel-checked source-to-CNF/global-order adapter is still absent, so the lane
+remains theorem-mining evidence rather than closure.
+
+Two further constraints that the exact-12 encoder already imposed now also
+have general-cardinality source proofs in the live module.
+`pentagonOffClassBlocker_exact_physical_cycle_traces` proves that the selected
+rows at the five physical sources `(u,xu,deleted,v,xv)` meet the exact physical
+five-class in the five cycle edges
+
+```text
+{u,xu}, {xu,deleted}, {deleted,v}, {v,xv}, {xv,u}.
+```
+
+`pentagonOffClassBlocker_physical_cycle_actualBlockers_injective` then proves
+that the five corresponding actual blockers are pairwise distinct.  These
+theorems source-entitle `probe.py::trace_edges` and its per-center at-most-one
+constraints.  They do not change the CNF, prove an obstruction, or supply the
+missing kernel-checked source-to-CNF adapter.  The source-sensitive run records
+their theorem names in its ingress metadata so a future replay cannot silently
+treat these pre-existing encoder constraints as anonymous assumptions.
+
+The strongest fixed pair supplied by those traces is now packaged by the
+checked theorem `pentagonOffClassBlocker_fixedPhysicalPair_biDeletion`.  It
+chooses the consecutive physical sources `xu` and `jointDeletion.deleted` and
+proves, uniformly and without a cardinality bound, that both sources lie
+outside the selected `xv` row, their actual blockers are distinct and differ
+from the physical apex, and both selected rows plus the physical-apex radius
+class survive deletion of either endpoint `u` or `xv`.  Thus the source side
+of a two-source/two-deletion bi-survival rectangle is no longer existential or
+CEGAR-derived: its sources and exact physical-cycle rows are fixed in Lean.
+No theorem-bank consumer currently turns this rectangle into a contradiction.
+For deletion of `u`, the checked exporter
+`pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted`
+now turns the two fixed selected rows and the physical-apex class into three
+exact q-deleted classes sharing the named point `deleted`.  The checked
+consumer
+`pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_false_of_tetrahedron_incidences`
+closes the subcase in which
+
+```text
+cXu ∈ BO,  O ∈ Kxu,  cDeleted ∈ Kxu,
+O ∈ Kdeleted,  cXu ∈ Kdeleted.
+```
+
+Consequently the live `u`-deletion obligation is no longer arbitrary
+three-center survival.  It is precisely the negation of this conjunction for
+the fixed pair, under `13 ≤ D.A.card`.  The load-bearing leaf count on this
+local nested frontier is unchanged: one broad `u` leaf was replaced by one
+strictly narrowed fixed-pair missing-incidence leaf, while the complete packet
+was proved impossible.  This is genuine case elimination, not anchor closure.
+
+The next mathematical target is therefore to force one of the absent
+cross-incidences—or derive a contradiction from its absence—using a comparison
+theorem forcing a third `{u,xv}`-bisector point, a three-point overlap between
+one fixed row and another exact four-class, or a saturated blocker-fiber
+consequence.  Adding more arbitrary common-deletion packets does not address
+this boundary.
+
+The separate `metric-order-mining.json` report of `24/24` UNSAT orders is not
+a universal obstruction.  It analyzes one completed incidence SAT survivor
+whose otherwise unconstrained selected-row slots were filled by that model.
+The source-forced-core replay over the source journal found no source-forced
+order core in any sampled survivor (`0/300`) and no survivor covering all
+orders.  Accordingly the `24/24` report remains theorem-discovery evidence;
+it does not authorize a learned cut or close the exact-12 child.
+
+The next promotion step on this route is consumer-first: prove a checked
+contradiction comparing the two endpoint-indexed common-deletion packets, or
+prove a source-level reason that one of the two endpoint survivals must fail.
+Once that consumer exists,
+split the current unbounded coordinator into the bounded `13..16` stratum and
+the three exhaustive `≥17` profiles, eliminating each complete tetrahedron
+incidence subcase in the two crossed arms.  Do not add the four new terminal
+obligations before this consumer check; the present producer is reusable
+without inflating the proof frontier.
+
+The `xv` child also retains, for both selected blocker centers, the
+source-proved failures of K4 after deleting `u`; these were already established
+by the two-color construction and had previously been discarded at the
+coordinator interface.  The two centers therefore survive deletion of `xv`
+but fail deletion of `u`.  No current theorem consumes that crossed-deletion
+pair by itself.  Three centers surviving one deletion likewise do not imply
+the full `HasNEquidistantProperty 4` needed to invoke counterexample minimality.
+
+A new cardinality-free geometric producer is also checked:
+`pentagonOffClassBlocker_nextRow_strictTriple_card_le_one`.  If `c` is the
+off-class blocker of the `xv` row and `Kc` is the row reselected at `c`, then
+
+```text
+|(Kc.support ∩ {u, xu, xv})| ≤ 1.
+```
+
+Its proof localizes the blocker of `Kc` to the strict second cap from any two
+of those three physical-class hits and applies the existing four-point
+strict-cap equidistance contradiction.  The theorem-bank audit found no direct
+consumer.  The smallest missing complementary producer is two distinct hits
+of `{u, xu, xv}` in `Kc`; the current source data instead forces other
+physical-class memberships (`xu`, `deleted`, and `v`) in a different selected
+row.  Consequently this result is banked geometry, not a discharged child.
+
+The complementary fixed-center deletion fan is now promoted as
+`pentagonOffClassBlocker_physicalClass_commonDeletionFan`.  It proves that at
+least three points of the exact physical five-class are omitted by `Kc`, and
+each such point is a common deletion preserving K4 at both the next actual
+blocker `centerAt c` and the physical apex.  Together with
+`pentagonOffClassBlocker_secondCap_commonDeletionFan`, the live source now
+contains the two fan families proposed by the deep audit: a four-source
+second-cap fan at `(c,O)` and a three-source physical-class fan at
+`(centerAt c,O)`.  No checked theorem currently compares these families, so
+this is a producer landing and not closure.  The next consumer target must use
+their shared robust apex and fixed first rows to force a third `{u,xv}`
+bisector point, a three-cap-point selected row, two distinct prescribed joint
+deletions, or an `M44` contradiction.
+
+The exact-12 source-sensitive CEGAR diagnostic has also reached 10,000 learned
+row clauses under persistent CaDiCaL/IPASIR discovery (`39,733` variables and
+`325,923` clauses) and remains `ITERATION_LIMIT`.  The run added no source-level
+clauses or variables and its learned clauses are row-only.  It therefore does
+not encode the new reselected-row theorem and cannot promote an exact-12
+result even if later UNSAT: the current journal has no source-level Lean
+adapter preserving the actual-blocker endomap, fan data, and certificate
+semantics.  The next computational action is now branch-specific: extend the
+explicit exact-12 ingress contract with either the named interior source plus
+surviving `q`/`w` deletion, or the two exact radius classes plus their checked
+two-by-two partition of `{u,c,xv,xu}`.  Extending the same undifferentiated
+row-only journal is diagnostic enumeration, not a closure route.
+
+That successor experiment is now instantiated in a fresh Class-C v4
+namespace.  It replays the 10,000 inherited row clauses and adds 780 clauses
+from checked source producers: 245 for the frozen second-cap pair predicate and
+535 for the conditional next-row strict-triple bound.  A negated-predicate
+novelty probe found the first family already implied by the inherited bank
+(verified DRAT) but exhibited a SAT violation of the second, so the
+next-row-triple family is a genuine strengthening.  The frozen namespace now
+contains 1,250 v4 records (11,250 learned clauses including the inherited
+bank) and remains `ITERATION_LIMIT` at 39,733 variables and 327,953 clauses.
+A second verified novelty query shows that the checked two-off-center
+second-cap fan conclusion is also already implied and would add no cut.  This
+is not closure: the Python source-to-CNF adapter is not kernel checked, and no
+finite contradiction has been found.  A future promoted result here would
+close only the checked exact-cardinality-12 branch; the separate
+`13 ≤ D.A.card` siblings remain independent.  Do not extend this detector
+loop again without a new source producer.  The next useful producer must
+force either a saturated actual-blocker fiber or a cross-fan blocker
+collision/second-iterate incidence accepted by an existing checked consumer.
+The detailed scope, validation, and artifact pointers are recorded in
+`scratch/pentagon-offclass-exact12-v2/source-constraints-v4-report-2026-08-06.md`.
+
+The v4 namespace is narrower than a complete exact-12 role-placement run: it
+inherits the first SAT placement chosen by the feasibility probe
+(`deleted=0,v=2`).  A new exhaustive base-abstraction diagnostic tested all 42
+ordered outside-interior placements.  All 42 were SAT; only the two endpoint
+permutations placed both `deleted` and `v` on the second-cap endpoints.  This
+refutes the proposed shortcut that the two checked deletion fans must overlap
+in a named physical-class source.  The overlap observed in the frozen `d0-v2`
+model is placement-specific, not a checked producer.  Therefore the next
+producer must be placement-independent: either a cardinality argument over
+the full carrier, an actual-blocker image/fiber theorem, or a new global
+transport from the two fan packets into an existing collision or
+second-iterate consumer.  Do not formalize the endpoint-overlap statement.
+The diagnostic table and replay script are
+`scratch/pentagon-offclass-exact12-v2/all-placement-audit.json` and
+`scratch/pentagon-offclass-exact12-v2/audit_all_placements.py`.
+
+The exact-12 coordinator is already in the fully robust physical-second-apex
+context: `P.surface.secondApex_robust` is a field of the inherited
+`ExactFourPostCardElevenRobustSurface`.  An attempted robust-versus-critical
+split was therefore rejected before build: the robust arm added no
+information, while a `PhysicalSecondApexCriticalResidual` arm contradicted an
+inherited hypothesis.  It must not be counted as a narrowing or as a live
+route.
+
+The corrected source-level split uses the checked robust radius normal form
+`interiorPairGood_or_twoDistinctExactFourInteriorRows`.  The single broad
+`...pentagonOffClassBlocker_exactTwelve` obligation is refactored through a
+dispatcher to two data-preserving leaves:
+
+1. `...exactTwelve_interiorDeletion`, retaining a positive five-point radius,
+   an actual source in the strict second-cap interior, its identification with
+   one of the four named interior points `{u,c,xv,xu}`, and a surviving
+   `interior_q`- or `interior_w`-deletion;
+2. `...exactTwelve_twoRadiusPartition`, retaining the no-five alternative,
+   two distinct exact four-point radius classes and disjoint selected rows,
+   together with the checked exact two-by-two partition of the four named
+   strict-interior points.
+
+The per-leaf narrowing measure is the unresolved robust-radius-classification
+constructor count, which drops from two to one; each leaf also retains the
+full exact-12 endpoint packet and the constructor-specific witnesses.  The
+anchor's outer exact-12-versus-`card ≥ 13` fan-out remains two, and the
+nested exact-12 fan-out is two.  In the local coordinator-interface frontier,
+one broad exact-12 obligation is replaced by two strictly narrower explicit
+theorem obligations; the two existing unbounded missing-incidence leaves are
+unchanged.
+
+The two-radius child is now closed in Lean.  Its inherited physical context
+already contains a positive radius `P.rho` with a selected class of cardinality
+at least five, contradicting the child packet's universal no-five hypothesis.
+This removes one load-bearing `sorry`; it does not close the exact-12
+dispatcher because the interior-deletion child remains open.
+
+The interior-deletion child is also strictly narrower than the interface
+listed above.  The checked sharp two-radius cap bound and
+`S.oppCap2.card = 6` force its arbitrary five-point radius to equal the
+physical radius `P.rho`.  After that identification, `Q.hblockerNotClass`
+eliminates the off-class center `c` from the four named source choices.  The
+proved adapter now feeds one explicit physical-radius leaf whose only source
+roles are `{u,xv,xu}` and which retains the surviving `interior_q`- or
+`interior_w`-deletion.  The coordinator-interface frontier therefore changes
+from two exact-12 leaves to one open exact-12 leaf: the no-five constructor is
+discharged, while the five-point constructor loses its free radius and one of
+four source placements.  This is real narrowing plus one leaf closure, not
+closure of the parent off-class-blocker theorem.
+
+The general five-point robust consumer in `Rigid221Closure` remains downstream
+of `Rigid221SourceHeavy` and itself relies transitively on open robust leaves;
+it cannot be imported back as evidence that this residue is proved.  The next
+exact-12 computation must therefore encode the three physical source roles,
+the actual-blocker map, and the surviving named deletion.  The old row-only v4
+journal still lacks that ingress and cannot promote a result for this leaf.
+
+The historical scratch v5 adapter encoded that finite ingress for the
+frozen `d = 0`, `v = 2` placement.  It separates the six branches
+`{u,xv,xu} × {q,w}`, forbids the selected source's actual blocker from being
+the first apex, and uses
+`cross_deletion_survives_iff_not_mem_selected_support` to require the selected
+blocker row to omit the named deleted point.  Its contract self-test passes all
+six branches, with 801 branch clauses in each case.  A one-iteration smoke for
+every branch replays the 11,250 inherited v2--v4 records, validates the decoded
+source/deletion predicates, and learns an equality-duplicate-center cut; every
+branch is still SAT after that refinement.  These runs validated their
+then-current data contract and supply theorem-mining survivors.  They do not
+prove the Lean leaf:
+the source-to-CNF adapter is not kernel checked, the run covers only one frozen
+placement, and no branch has reached certified UNSAT.
+
+The first bounded v5 wave is now complete at 101 recorded refinements per
+branch (606 records total) using the persistent proof-free CaDiCaL discovery
+backend.  Every branch stopped at `ITERATION_LIMIT`; none reached UNSAT.  The
+streaming replay in
+`scratch/pentagon-offclass-exact12-v2/analyze_source_role_deletion_v5.py`
+revalidated all recorded source/deletion predicates.  Across the 606 rejected
+models, the selected source's blocker fibre has size at most two and the global
+maximum blocker-fibre size is at most four, but these observations are already
+covered by the checked physical-trace/fibre facts or by the existing general
+fibre bound.  The branchwise row intersections likewise reproduce the admitted
+physical-cycle traces rather than a new invariant.  The required wave-boundary
+theorem-bank search found no independent pair-deletion or blocker-basin theorem
+that subsumes these records.  Accordingly, no new cut is admitted from this
+wave.  Its result is empirical theorem-mining evidence only; the next wave must
+either add a newly proved source predicate or continue the same authenticated
+search without changing the schema.
+
+The later theorem
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow`
+is not an independent consumer for this residue.  Its proof passes through the
+five-cycle/pentagon dispatcher and returns transitively to the current
+pentagon-off-class-blocker anchor.  Moving it earlier would expose a dependency
+cycle rather than close a leaf.  It must not be cited as a closed downstream
+route for the exact-12 residue.
+
+Direct Lean 4.27 source verification now passes for
+`Rigid221SourceHeavy.lean`, including the physical-radius adapter and the
+closed no-five child.  A transitive Lake rebuild is being rerun separately
+after the ongoing `Census554` import refactor; until that finishes, this is a
+focused source-check result rather than a refreshed transitive-axiom claim.
+
+An independent refresh of the source-model journal counted 4,999 records
+(4,900 with decoded source cubes).  The observed blocker-fiber and fan
+statistics still supplied no invariant that replays for every survivor; in
+particular, the stronger-looking three-fan-blocker pattern remains finite
+CEGAR evidence rather than a universal Lean producer.  No new learned cut is
+authorized by that audit.
+
+The current source frontier must be kept split by cardinality.  There are four
+load-bearing leaves below this anchor: the two exact-12 residuals
+`...physicalRadius_commonDeletion_missingIncidence` and
+`...physicalRadius_nextRowOnlyHit`, plus the two `13 ≤ D.A.card`
+missing-incidence leaves for the fixed `u` deletion and the arbitrary-pair
+`xv` deletion.  The checked five-incidence tetrahedron consumers
+belong only to the latter unbounded stratum.  Measuring their antecedents in
+the exact-12 v5 journals is therefore a cross-stratum diagnostic, not evidence
+for choosing a producer for the exact-12 leaf.  The analyzer now labels that
+scope mismatch explicitly.
+
+The proposed saturated-fibre fan-feeding predicate also fails the survivor
+test.  Among the 4,999 source-v3 models, 132 have a blocker fibre of size four,
+but none has a size-four fibre reached within two blocker iterates by every
+member of the second-cap fan.  The same predicate occurs in none of the 606 v5
+source/deletion models; the only saturated v5 cases are 82 models in the
+`xu`/`w` branch, and all 82 fail full fan feeding.  The isolated final SAT map
+that motivated the conjecture was therefore not representative.  No
+fan-feeding theorem or learned cut is authorized.
+
+The placement-complete exact-12 diagnostic is now finished.  The schema-v3 script
+`audit_all_source_role_deletion_placements.py` checked all 42 ordered
+`(deleted,v)` placements and all six `{u,xv,xu} × {q,w}` source/deletion
+branches, for 252 base-abstraction queries in total.  It found 240 `SAT` and 12
+`UNSAT`.  The 12 `UNSAT` instances are exactly the direct trace/deletion
+collisions: the source is `xu`, the selected deletion is `q` with
+`jointDeletion.deleted = q`, or the selected deletion is `w` with
+`jointDeletion.deleted = w`.  In those cases the exact `xu` selected row
+contains `jointDeletion.deleted`, so that row cannot retain four points after
+deleting the same point.  All other 240 branches are `SAT` in the base
+abstraction.  The artifact records and mechanically checks that the
+`UNSAT` set equals this collision set, with zero unexpected `UNSAT` instances
+and zero collision instances reported `SAT`.  It now also records the two
+source-entitled common-deletion fans.  Of the 240 survivors, 11 have no selected
+fan deletion crossed by both fans, 160 have one, and 69 have two.  More sharply,
+all 229 survivors in which `xu` misses the row reselected at the `xv` row's
+actual blocker have `xu` in both deletion fans; all 11 survivors in which `xu`
+hits that next row have empty fan intersection.  Thus the complete finite grid
+exposes a two-arm predicate rather than a contradiction.
+
+This is a source-local narrowing candidate, not closure and not a new global
+geometric obstruction.  The diagnostic deliberately omits the
+placement-specific v2--v4 journals and supplies one witness per satisfiable
+query, so it can refute candidate invariants but cannot establish them.  The
+next exact-12 predicate must distinguish some of the 240 surviving branches,
+survive the complete placement grid, and then be proved from the live source
+packet before it enters a production CEGAR schema.  The immediate Lean-facing
+task is to expose the direct collision as a checked deletion-survival adapter;
+it should narrow the search without splitting the load-bearing leaf unless a
+subsequent producer closes one of the resulting cases.
+
+The direct-collision adapter has now been written as
+`pentagonOffClassBlocker_xuRow_survival_forces_deleted_ne`.  It combines
+`Q.hdeletedXuRow` with
+`cross_deletion_survives_iff_not_mem_selected_support`, proving for an
+arbitrary erased point `z` that survival of the `xu` row forces
+`jointDeletion.deleted.1 ≠ z`.  As of this plan update the source edit is
+awaiting a build covering the edited source; even after validation it remains
+a proved narrowing adapter, not closure of the exact-12 leaf.
+
+The source-level form of the new two-arm predicate is implemented as
+`pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit`.  It says
+that either deleting `xu` preserves K4 at the consecutive blocker centers and
+the robust physical apex (packaged as two `CommonDeletionTwoCenterPacket`s), or
+the next row contains `xu` and omits both `u` and `xv`.  The latter omissions
+come from the already proved strict-triple cardinality bound.  This producer is
+still narrowing, not closure: no imported theorem currently contradicts the
+three-center common-deletion arm, and no imported theorem contradicts the
+next-row-only-`xu` arm.  The next computational query must therefore run these
+two arms separately and mine the missing exact-row cross-incidences or an
+orientation-sensitive metric predicate required by a checked terminal.
+The live language server reports a complete proof with no diagnostics in the
+edited declaration; a fresh Lake build covering this source is still pending.
+
+The first consumer audit rejects the obvious tetrahedron route rather than
+supporting it.  The schema-v1 script
+`audit_dichotomy_tetrahedron_predicates.py` keeps the live v5
+source/deletion ingress, fixes one checked dichotomy arm, and asks both
+polarities of each candidate incidence.  In the canonical `(d,v)=(0,2)`
+smoke over all six source/deletion branches, the existing fixed-pair
+`u`-deletion consumer requires two incidences whose positive forms are
+`UNSAT` in both arms: the `xu` blocker cannot lie in the physical row after
+deleting `u`, and the robust physical apex cannot lie in the deleted-source
+row.  For the natural next-row-only-`xu` instantiation, every one of the five
+missing center cross-incidences has both a `SAT` positive query and a `SAT`
+negative query.  The 606 existing v5 journal models likewise contain no model
+satisfying all five incidences for either the natural hit-arm or miss-arm
+instantiation.  These are finite diagnostics, not impossibility proofs, but
+they are enough to stop treating the tetrahedron consumer as the immediate
+exact-12 target.  A placement-complete repetition of this already-refuted
+predicate set is not scheduled.
+
+The computational continuation is now the fresh schema-v6 driver
+`dichotomy_arm_cegar_v6.py`.  It fixes either `xu` absence (the
+common-deletion-packet arm) or `xu` presence (the next-row-only-hit arm) in the
+row selected at `centerAt c`, replays the complete v2--v5 journal stack for
+the selected source/deletion branch, and then continues the existing exact
+metric and ordered-cover detector.  Its twelve clause-contract self-tests
+pass.  One end-to-end `(d,v)=(0,2)`, source `u`, deletion `q` smoke iteration
+passes in each arm, including inherited-journal replay, decoded-model arm
+validation, certificate generation, and certificate replay.  Both smoke
+models were eliminated by equality-duplicate-center certificates (nine rows
+in the common-deletion arm and five in the hit arm); neither run is terminal.
+The hit arm has since completed a ten-iteration bounded continuation for the
+same canonical source/deletion branch.  All ten survivors were eliminated by
+distinct replayable equality-duplicate-center certificates, with minimized
+cores ranging from four to ten rows.  The run stopped at `ITERATION_LIMIT`, so
+this is detector-throughput evidence, not a terminal result.
+
+The two v6 arms did not have equal semantic status.  The hit arm fully encoded
+its checked consequence: `xu` membership was added by v6 and the `u`/`xv`
+omissions were inherited from the v4 strict-triple clauses.  The common arm
+encoded only the antecedent `xu ∉ Kc.support`, not the two
+`CommonDeletionTwoCenterPacket` witnesses returned by the Lean producer.
+Accordingly, common-arm v6 output remains diagnostic and must not be described
+as packet-complete.
+
+That ingress gap is now repaired at the theorem-mining interface, but it is not
+a Lean closure.  The checked theorem
+`pentagonOffClassBlocker_xuCommonArm_threeConcreteExactRows` identifies the two
+packet first rows with the actual critical rows at `xv` and at its next
+blocker, and supplies the physical five-class with `xu` erased as a third
+exact-four row.  All three rows omit `xu`, and the theorem exports their three
+pairwise C2 overlap bounds.  The separate checked theorem
+`pentagonOffClassBlocker_xuCommonArm_blockerAvoidsConcreteCenters` says that
+the actual blocker of `xu` avoids both nonphysical row centers.  Lean
+elaboration and `lean_verify` pass for both with only the standard axioms.
+
+`common_concrete_rows_cegar_v7.py` implements the resulting frozen exact-12
+adapter.  It maps `Kxv` to the selected row at the fixed center `C`, `Kc` to
+the selected row at `blocker(C)`, and `BO` to the physical class minus `xu`.
+It adds 865 producer clauses: 90 fixed-row `xu` omissions, 765 conditional
+next-row `xu` omissions, and ten blocker-avoidance clauses.  Pairwise C2 is not
+duplicated: `Kxv`/`Kc` is inherited from `CoverInstance._build_c2`, while the
+two `BO` overlaps are consequences of the stronger physical-circle C2 units
+in `probe.build_case`.  Likewise, the no-common-pair C4 restriction is a
+**separate global physical-circle constraint** inherited from
+`probe.build_case`; it is not an output of the concrete-row theorem, and the
+physical circle is counted once.
+
+The packet-row consumer now exists.  The checked Lean theorem
+`pentagonOffClassBlocker_xuCommonArm_false_of_tetrahedron_incidences` applies
+`U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` to the
+three concrete rows.  Its complete additional antecedent is the five positive
+incidences
+
+```text
+d ∈ BO,  oppApex2 ∈ Kc,  u ∈ Kc,  oppApex2 ∈ Kxv,  d ∈ Kxv,
+```
+
+where `d = blocker(C)`.  The consumer derives the other three tetrahedron
+incidences from the source packet.  `lean_verify` reports only the standard
+axioms.  v7 maps this theorem to 440 guarded ternary clauses of the exact form
+
+```text
+¬blocker(C,d) ∨ ¬choice(C,Kxv) ∨ ¬choice(d,Kc)
+```
+
+for `d ∈ BO` and rows satisfying the displayed memberships.  Thus the current
+adapter adds 1,305 clauses in total: the 865 producer clauses plus 440 checked
+consumer clauses.  This is a consumer landing, not a producer of the five
+incidences and not closure.
+
+The v7 contract self-test covers all six source/deletion placements and ten
+positive/negative semantic cases.  In addition to the concrete-row checks, it
+tests activation of the all-five predicate, each one-incidence omission, and
+differential equality between every emitted ternary clause and the expected
+guarded clause family.  A clean one-record smoke run in
+`cegar-d0-v2-common-v7-u-q-consumer-final-smoke` replayed all 11,351 inherited
+records, used 330,161 clauses, and eliminated its survivor with a five-row
+`equality-duplicate-center` certificate.  Its manifest records 440 consumer
+clauses, `kernel_checked_source_to_cnf = false`, and `bankable = false`.  The
+earlier corrected smoke remains producer-only evidence, and the 25-iteration
+pre-blocker run remains superseded diagnostic data.
+
+The initial 50-survivor incidence census in
+`cegar-d0-v2-common-v7-u-q-mask-census-50/incidence-mask-census.json` has now
+been superseded for theorem selection by a 500-survivor continuation in
+`cegar-d0-v2-common-v7-u-q-mask-census-500/incidence-mask-census.json`.  The
+larger run stopped at `ITERATION_LIMIT`; every survivor was eliminated by an
+existing replayable detector, led by 364 equality-duplicate-center cores, but
+the branch is not terminal.  In bit order
+`(d∈BO, O∈Kc, u∈Kc, O∈Kxv, d∈Kxv)`, the true counts were respectively
+`382, 357, 41, 182, 59`, and no survivor satisfied all five.  Thus neither the
+50-model observation `d∈BO` nor the absence of `u∈Kc` was stable.  No single
+named incidence should be promoted as the missing producer from these data.
+
+The same artifact audits all six row-role permutations and every common point
+of the three exact rows.  No orientation matches the generic tetrahedron
+consumer.  The best deficits are one fact for 8 survivors, two for 112, three
+for 313, four for 63, and five for 4.  In the closest recurring orientation
+`Kx=BO`, `Ky=Kc`, `Kb=Kxv`, the eight one-fact cases split again: four lack a
+triple-common point, two lack `O∈Kc`, and two lack `d∈BO`.  The only observed
+triple-common points in that orientation were `u` (41 records) and `xv` (36
+records).  Consequently the sound full `S₃` clause family for
+`three_exact_classes_tetrahedron_incompatibility` would eliminate zero of the
+500 recorded survivors.  It should not be added merely because the generic
+consumer exists.  These are finite-model statistics, not source theorems.
+
+A read-only audit of the other direct `U5QDeletedK4Class` consumers found no
+cheaper replacement consumer.  The six alternatives require additional
+metric/equilateral structure, a fourth exact class, or larger cross-incidence
+packets that the current source branch does not provide.  The remaining mined
+U5 class families consume `U5QCriticalTripleClass`, and no checked adapter from
+the three concrete K4 rows to that interface is currently available.  Thus the
+next step is not a mechanical consumer substitution.
+
+The arbitrary-cardinality metric consumer now has an exact checked ingress
+from this branch.  The axiom-clean theorem
+`pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows`
+constructs a `FaithfulCarrierPattern D.A` whose row at the physical second apex
+is exactly the physical five-class with `xu` removed.  Critical-shell
+uniqueness then forces its rows at the two consecutive blocker centers to be
+the concrete `Kxv` and `Kc` rows already exported by the common-arm theorem.
+This removes the geometric existence/mapping ambiguity: the finite object to
+classify is a faithful carrier pattern with one prescribed physical row, not
+an ad hoc three-row incidence structure.
+
+The companion axiom-clean theorem
+`pentagonOffClassBlocker_false_of_xuConcreteRows_shellMetricCoverage` records
+the precise landing contract.  If every faithful carrier pattern with that
+prescribed physical row and the two theorem-forced consecutive blocker rows
+contains a
+`Census554.GeneralCarrierBridge.ShellMetricCoreAlternative`, then the existing
+arbitrary-cardinality consumer `false_of_shellMetricCoreAlternative` supplies
+`False`.  The theorem is deliberately a conditional consumer boundary: its
+higher-order coverage premise is still missing, so it closes no `sorry` and
+must not be counted as proof progress.  Targeted diagnostics and
+`lean_verify` pass for both declarations with only the standard Lean axioms;
+a Lake build covering the concurrent source edits remains pending.
+
+This changes the next finite target.  Do not continue choosing one of the five
+tetrahedron incidences from survivor frequencies.  The checked generic and
+carrier layers now exist in
+`GenericRowNogoodCertificate.lean` and `ExactTwelveCarrierIngress.lean`:
+an exact-twelve carrier is relabeled by `Fin 12`, every faithful row is
+transported to a complete labeled row, and geometric realization is preserved.
+The carrier module builds, and the three central ingress declarations have only
+the standard Lean axioms in the targeted audit.
+
+The source layer is implemented in `ExactTwelveRigid221Ingress.lean`.  Its
+fixed-role theorem pins the three Moser apices and the six named cap-interior
+roles.  `FrozenRoleLabeling` then proves that the joint-deletion point and
+`P.v` occupy two distinct members of the seven-label variable vocabulary,
+reducing every source model to one of 42 ordered `(d,v)` placements.  The
+fixed-role and 42-placement proofs pass direct source checking.
+`FrozenRoleLabeling.interiorProfile` now proves the exact strict-interior
+label blocks `{3,4,5}`, `{10,11}`, and `{6,7,8,9}` from the three exact cap
+sizes and the named second-cap interior.  Its companion
+`FrozenInteriorProfile.closedCapProfile` proves the corresponding exact closed
+caps `{1,2,3,4,5}`, `{0,1,10,11}`, and `{0,2,6,7,8,9}`.  The complete module,
+including the `C1/C2/C4` source cube, passes targeted checking, and an explicit
+axiom audit reports only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The source-valid candidate-admission layer is now substantially sharper.
+`labeledRowPattern_inter_labelsOf_card_eq` transports source intersection
+cardinalities exactly through the frozen relabeling.  Using that adapter,
+`FrozenRoleLabeling.moserOneHit` proves all six Moser-center adjacent-cap
+one-hit filters, while `FrozenRoleLabeling.basicCandidateCuts` proves the two
+general post-`SUB2` families: every row has `moserCount ≤ 2`, and a row centered
+in one of the three strict cap interiors has `sameCapCount ≤ 2`.  These
+declarations pass targeted Lean checking, and the updated axiom audit again
+reports only the standard Lean axioms.  The stronger mixed filter
+`moserCount ≥ 2 -> sameCapCount = 0` is deliberately absent: no source theorem
+currently proves it.
+
+`ExactTwelveRigid221SafeCandidate.lean` now packages those results as an
+executable finite semantic contract.  `FrozenSafeCandidateAt` states exactly
+the source-proved row filters, `frozenSafeCandidateClasses` enumerates their
+finite candidate sets, and
+`FrozenRoleLabeling.row_mem_frozenSafeCandidateClasses` proves that every
+selected source row is admitted.  `FrozenRoleLabeling.safeCubeOK` combines
+that membership with the independent `C1/C2/C4` source cube.  The new module
+passes targeted checking and the explicit axiom audit with no `sorryAx`.
+This completes semantic source-to-candidate admission.
+
+The candidate-index and SAT-valuation ingress are now implemented as well.
+`ExactTwelveRigid221SafeCoverCnf.lean` freezes the same twelve candidate tables,
+choice-variable offsets, pairwise-C2 clauses, and Sinz-encoded C4 clauses as
+the Python contract.  Its checked anchors are 3,040 choice variables, 42,560
+total variables, 368,075 clauses, and 268,031 C2 clauses.
+`ExactTwelveRigid221SafeCoverIndexBridge.lean` proves that every semantic safe
+candidate has an index in the frozen table and transports the source `C2/C4`
+conditions to those indices.  `ExactTwelveRigid221SafeBaseSat.lean` constructs
+the corresponding choice and Sinz auxiliary valuation and proves that it
+satisfies the complete base CNF.  The latter theorem's explicit axiom audit
+contains only `propext`, `Classical.choice`, and `Quot.sound`; in particular it
+has no `sorryAx` and does not depend on native-code evaluation.
+
+`ExactTwelveRigid221SafeCoverSat.lean` composes these layers: every
+`FrozenSafeCubeOK` row family induces a satisfying assignment of the frozen
+base CNF.  Its axiom audit additionally contains `Lean.ofReduceBool` and
+`Lean.trustCompiler`, inherited from the exhaustive finite candidate-table and
+mask equivalences in the index bridge, and still contains no `sorryAx`.  This
+is the required soundness direction for any later certified UNSAT result.  The
+source-to-finite composition is now explicit in
+`ExactTwelveRigid221SourceSafeIngress.lean`: the live exact-twelve residual's
+checked `(5,4,6)` cap/interior producer, the concrete-row role labeling, and
+the semantic candidate theorem yield `FrozenSafeCubeOK`, hence a satisfying
+CNF valuation.  A serialized targeted build of that final composition remains
+pending behind the repository-wide build lock.  This is ingress, not a
+contradiction, and closes no live `sorry`.
+
+The corresponding Python contract is now explicit rather than implicit.
+`source_faithful_candidate_surface.py` introduces schema
+`p97_rigid221_exact12_source_safe_candidate.v1`, enumerates exactly the safe
+per-center rules above, and lists the unsupported mixed cut and the diagnostic
+`probe.py` physical constraints as exclusions.  `CoverInstance` now accepts an
+explicit candidate provider and independent cube validator; its defaults remain
+the historical surface, while `SourceFaithfulCoverInstance` selects the new
+exact-twelve contract.  It requires Python frozen profile `(5,6,4)`, whose last
+two cap slots represent the theorem-facing profile `(5,4,6)` in reversed order.
+The representative mixed row `(0,1,4,5)` at center `3` is rejected by the
+historical surface and admitted by the safe surface, as required.  The complete
+card-head unit suite passes (58 tests).  The contract test freezes all twelve
+candidate counts, the aggregate choice-variable count, and the generated base
+CNF variable/clause counts so drift in the proof-facing surface is detected
+before a certificate run.  As finite regression data, that center
+has 283 historical candidates and 322 safe candidates (39 restored rows), and
+the safe base C1/C2/C4 CNF has 42,560 variables and 368,075 clauses.  These are
+Python implementation facts independently mirrored by the checked Lean
+encoding anchors.
+
+That terminal base run has now been performed against the frozen source-safe
+contract.  CaDiCaL returns **SAT**, not UNSAT: 42,560 variables, 368,075
+clauses, and CNF SHA-256
+`a52baadf6084ffd84b92804a25d6ed6decf7da2e4a6bc485f314a35b514b794e`.
+The decoded twelve-row cube was independently replayed through
+`source_faithful_cube_ok`, so this is a semantically checked witness for the
+frozen abstraction rather than a raw solver model.  The reproducible runner
+is `census/card_head/source_faithful_run.py`; its authenticated artifacts live
+under `scratch/pentagon-offclass-exact12-v2/source-safe-v1/`.  Thus `C1/C2/C4`
+plus the currently proved safe candidate filters cannot close the exact-12
+residual.
+
+The next exact computational target is **not** another run of this base CNF.
+It is to mine the verified SAT witness family for a predicate that (i) fails on
+those survivors, (ii) has a source-level theorem under the live exact-twelve
+residual, and (iii) is added behind a new explicit schema before rerunning
+CEGAR.  Until such a producer lands, further clauses from the older diagnostic
+surfaces are not promotion-safe.
+
+The first such predicate is now isolated.  The concrete producer fixes the
+physical-apex row to the physical five-class with `xu` removed, so under the
+frozen role labeling that row contains labels `6`, `8`, the joint-deletion
+label, and the `v` label.  The already proved second-apex one-hit inequalities
+then forbid the latter two distinct labels from lying together in either
+adjacent closed cap.  This eliminates exactly 18 of the 42 ordered placements
+and leaves the 24 cross-cap placements.  The finite pair-separation lemma is
+Lean-clean in `ExactTwelveRigid221ConcreteBranchSurface.lean`.  Its geometric
+source adapter is isolated separately in
+`ExactTwelveRigid221SourceConcreteBranchIngress.lean`; that adapter's
+serialized targeted build is pending behind the repository-wide build lock.
+Once the adapter builds, this is a checked source narrowing, not a
+contradiction and not a license to mutate the frozen v1 schema.
+
+A preliminary `nextRowOnlyHit` sidecar which added only the existential next
+row condition eliminated no additional placement: all 24 cross-cap placements
+were SAT.  Its first witness failed the separately proved row-7 physical trace,
+so that run is intentionally classified as underconstrained empirical evidence.
+A refined sidecar then added
+`row[7] ∩ {6,9,d,v,8} = {6,8}`.  All 24 cross-cap placements remained SAT.
+Adding the full five-blocker-cycle surface in a separate variant also left all
+24 placements SAT.  The authenticated empirical record is
+`probe_nextrowonlyhit_sourcefaithful_row7cycle_20260807_b7c9.json`.  Thus the
+physical-apex row, exact row-7 trace, and blocker-cycle structure are useful
+source constraints but do not supply the missing contradiction.  The next
+predicate must feed one of the two exact-12 terminal consumers directly:
+common-deletion missing incidence or the exact next-row-only-hit obstruction.
+No result from either sidecar counts as closure without a new schema, source
+ingress, exhaustive certificate, and Lean consumer.
+
+The first equality-only CEGAR pass on the common-deletion arm reached an honest
+frontier rather than an `UNSAT`: after 706 independently replayed
+duplicate-center nogoods, CaDiCaL produced a survivor for which the existing
+formalized unordered metric detector found no core.  The previously missing
+**same-boundary transport is now kernel-checked**.
+`ExactTwelveRigid221BoundaryOrderIngress.lean` retains one global zero-cut CCW
+boundary indexing for all three cap blocks, and
+`ExactTwelveRigid221SameBoundaryOrderIngress.lean` transports the source-proved
+local order `u, blocker(xv), xv, xu` (or its reverse) into that same indexing.
+The theorem supplies 48 literal source orders: 24 direct cap-block orders and
+24 mirror cap-block orders.  It does **not** by itself justify quotienting those
+48 orders to the older 24 mirror-normalized representatives; that quotient
+would require an additional reflection transport for the complete retained
+row/metric packet.  Consequently future proof-facing ordered searches must
+either check all 48 source orders or first land that reflection adapter.  The
+older weaker second-cap-only universe, with 216 survivors among 2,880 orders,
+is no longer the proof-facing ingress contract.
+
+The first ordered detector nevertheless encoded a stronger condition than the
+Lean consumer: it required all five core roles to form one cyclic subsequence,
+whereas `ConvexFivePointCore` needs only the two triples `(a,x,b)` and `(b,c,y)`
+to have one common cyclic orientation.  That mismatch caused a false stop at
+iteration 707 and is not evidence against the route.  The explicit frozen v4
+schema `p97_exact12_sourcefaithful_common_ordered_structural_cegar.v4` corrects
+the detector to this two-turn contract without changing the v2/v3 schemas or
+their replay.  In the first 3,000 v4 records it classified every model: 2,993
+by replayed unordered structural cores and seven by exhaustive 24-order
+coverage at iterations 706, 707, 1479, 1601, 2118, 2653, and 2751.  The run
+ended only at its iteration limit, not in `UNSAT`.  The resumed extension has
+now also reached its configured limit.  Its terminal journal contains 10,000
+new classified records through iteration 10705: 9,963 unordered structural
+cuts and thirty-seven ordered cuts.  The ordered set is the previous eighteen
+plus iterations 6302, 6303, 6956, 7536, 7808, 7952, 8077, 8391, 8515, 8556,
+8674, 8713, 8922, 9306, 9976, 10137, 10138, 10182, and 10349.  The summary
+reports 10,706 learned clauses including the 706 bootstrapped cuts and
+380,973 final CNF clauses.  Its status is `ITERATION_LIMIT`, with neither
+`UNSAT` nor an unclassified survivor.
+
+`ExactTwelveRigid221OrderedCoreConsumer.lean` now gives kernel-checked replays
+of the first two ordered cuts, including the six-row iteration-707 cut.
+`ExactTwelveRigid221OrderedCoverageCuts.lean` now contains exact replays for
+all sixteen remaining cuts in the first eighteen-cut snapshot.  All eighteen
+now pass targeted kernel builds.  In particular,
+`ExactTwelveRigid221OrderedCoverageCuts.lean` directly includes the two long
+closures at iterations 4723 and 4898 and replays their recorded five-step
+flip/row/flip/row/flip paths.  The standalone
+`ExactTwelveRigid221OrderedLongClosureCuts.lean` prototype duplicates those
+declaration names and is not part of the promoted import chain.  Several
+records strengthen during replay:
+iterations 4669, 5959, and 6116 collapse to one three-row core independent of
+the retained block order.
+
+The newer iterations 8391 and 8922 collapse further to the same seven-fact
+three-row membership schema.  Iteration 9976 supplies a second such schema;
+iterations 10137 and 10138 share a third; and one of the five iteration-10349
+cores alone supplies a fourth.  Their source is recorded in
+`ExactTwelveRigid221OrderedThreeRowCuts.lean`; unlike the learned records, these
+theorems do not assume exact row identities or retained within-block orders.
+All four schemas cover every one of the 24 normalized orders and jointly replay
+six learned records.  Their post-refactor targeted build is green.  The other
+thirteen cuts after iteration 6196 are now replayed by the universal-three-row
+and residual-coverage modules described below.  This completes learned-cut
+replay only; it does not supply aggregate candidate coverage or terminal
+`UNSAT`.
+
+The next search schema is now implemented as the isolated sidecar
+`membership_core_structural_cegar.py`.  Its v5 clauses retain every unordered
+v4 cut as an exact-row clause, but replace an ordered exact-row union by the
+row-membership facts actually used in a deterministic minimum cover of the 24
+orders.  Crucially, those facts are extracted from the independently replayed
+`closure_paths`; they are not inferred merely from the five geometric roles.
+That distinction is necessary for iterations 1601 and 4898, whose selected
+cores use nontrivial equality paths.  An earlier direct-role prototype was
+rejected on this check and its audit and 25-iteration smoke artifacts are
+quarantined in directories explicitly named `invalid-direct-core`; they are
+not evidence.
+
+The corrected full bootstrap audit replays all 706 frozen v1 cuts and all
+10,000 frozen v4 records.  The thirty-seven ordered records deduplicate to
+thirty-two sound membership clauses.  Twenty-five records use one direct
+seven-membership core; iteration 4898 uses one nine-membership core through
+its recorded five-step equality path; the other eleven records need minimum
+covers of two, three, or four cores.  The corrected 25-iteration smoke and a
+second complete journal replay both pass.  Those 25 new records are unordered
+structural cuts, and the smoke ends at `ITERATION_LIMIT`; this is a schema and
+replay validation, not finite exhaustion or Lean closure.
+
+The corrected v5 production run has now finished and replayed deterministically.
+It adds 4,567 records beyond the 10,706-record bootstrap and stops at iteration
+15,273 with `ORDERED_STRUCTURALLY_UNRESOLVED`, not `UNSAT`.  The stable journal
+SHA-256 is
+`1d97513e76c7a141840e0b3fe1a7192faa1d00e29aad3867a12167c7f935eaf3`.
+Thus the v5 exact-row plus ordered membership-core portfolio is exhausted on
+one fixed `(jd,v) = (0,2)` placement without a contradiction.
+
+The v6 sidecar `all_membership_structural_cegar.py` strengthens every replayed
+unordered equality-path certificate to the positive row memberships actually
+used by that path.  It authenticates old numeric v5 clauses in the original v5
+variable-allocation context and then re-encodes their semantic membership keys
+in v6; direct reuse of those numeric literals was rejected as unsound.  Replaying
+all 15,273 v1/v4/v5 records yields 8,652 distinct membership nogoods and 6,621
+duplicate generalizations.  Two complete bootstrap audits agree byte-for-byte
+(run SHA-256
+`2563002625a8e7a299c0f4841dfe75d78650821d0c2415c5414cc97d65c780f7`).
+The follow-up learned 92 further membership cuts and then reached another
+`ORDERED_STRUCTURALLY_UNRESOLVED` cube at iteration 15,365.  Its stable journal
+SHA-256 is
+`bfc116fe4ad44003ea3b1fe6394fda8cadbc7661a64b8f0c4739734ced4696d3`.
+So stronger membership generalization alone still does not close the fixed
+placement.
+
+That v6 survivor now gives a sharper next predicate.  Across each literal
+24-order direct and mirror family, ordinary common-orientation five-point cores
+cover 22 orders.  The remaining two direct orders satisfy the rotated
+three-shell schema `124/423/034`; the remaining two mirror orders satisfy
+`314/140/201`.  Both schemas use only three selected rows, and the forced
+second-cap order is supplied in the same retained boundary indexing.  This is
+a source-entitled Kalmanson consumer target, not yet finite exhaustion.  The v7
+search must check all 48 literal source orders and independently replay these
+two exact schemas; it must not reactivate the older 24-order Kalmanson detector
+under an unproved reflection normalization.
+
+That v7 check is now complete and negative as a closure result.  The
+`same_boundary_kalmanson_cegar.py` runner replays all 48 literal orders, passes
+its tamper tests, and authenticated the complete v1/v4/v5 bootstrap.  Its first
+production wave learned 402 new membership clauses (286 unordered structural
+cuts and 116 same-boundary ordered cuts), reaching 9,054 distinct membership
+nogoods, then stopped at iteration 15,675 with
+`ORDERED_STRUCTURALLY_UNRESOLVED`.  The v7 journal SHA-256 is
+`90eac5f9a18f23728fdd2c28024f4ead48c9239d3f642c736b3b447d2b2f4554`.
+This is another SAT survivor of the finite abstraction, not finite exhaustion.
+
+The new survivor exposed portfolio incompleteness rather than a new metric
+schema: common-orientation cores cover 42 of its 48 literal source orders, and
+the already formalized generic three-selected-row Kalmanson theorem covers the
+remaining six (three direct and three mirror).  The v8 successor
+`all_source_order_kalmanson_cegar.py` therefore uses that generic theorem over
+all 48 literal orders instead of adding more hard-coded rotated schemas.  Its
+20 sidecar CEGAR regression tests passed, including tamper rejection, and a full
+mixed-version bootstrap audit replayed the 15,273 source records plus all 402
+v7 records to the same 9,054 distinct membership nogoods.  A source-facing
+generic Lean adapter has been written in
+`ExactTwelveRigid221KalmansonConsumer.lean`; targeted validation is still
+pending behind the concurrent refactor.  The completed v8 production wave
+learned 264 further clauses (92 all-source-order and 172 unordered structural
+cuts), reaching 9,318 distinct membership nogoods.  It then stopped at
+iteration 15,939 with `ORDERED_STRUCTURALLY_UNRESOLVED`; its 666-record journal
+has SHA-256
+`b434a1a891622b2e7489045f34fe7b84a61def2ed43212cba401f70b2ccf2acd`.
+Thus v8 also leaves a finite survivor rather than proving `UNSAT`.
+
+That survivor has one and only one uncovered literal source order after the
+v8 portfolio: direct order
+`(0,9,8,7,6,2,5,3,4,1,11,10)` (source-order 21).  An exact rational QF_LRA
+probe with positivity, all selected-row equalities, every strict triangle
+inequality, and every strict Kalmanson inequality is `UNSAT`.  Its minimized
+five-constraint core uses only the increasing quadruple `(0,9,8,5)`, the row-0
+equalities `d(0,5)=d(0,8)`, the row-9 equalities `d(9,5)=d(9,8)`, and the one
+strict Kalmanson inequality these equalities cancel.  This is exactly the
+already kernel-proved cardinality-independent theorem
+`CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair`, not
+a new assumption.  The v9 sidecar `shared_late_pair_cegar.py` adds that
+four-membership detector with independent semantic replay and tamper rejection;
+all 24 CEGAR regression tests pass.  Its complete authenticated mixed-version
+bootstrap audit also passes, replaying the 15,273 source records and all 666
+v6/v7/v8 records to the same 9,318 distinct membership nogoods.  Three v9
+production waves then learned 1,334 further clauses (693 shared-late-pair
+ordered cuts and 641 unordered structural cuts), reaching 10,652 distinct
+membership nogoods at global iteration 17,273.  All three stopped only at
+their planned journal caps with status `ITERATION_LIMIT`; the 2,000-record
+authenticated journal has SHA-256
+`b226e1a52dcf8b23a7736610b0b882edd9e8142a083935696e7422abfc0dda43`.
+This is neither a solver failure nor closure: no terminal `UNSAT` and no new
+unclassified survivor was obtained.  The continued one-cut-per-survivor
+behavior is evidence that the current portfolio has not yet exposed a compact
+invariant; a continuation from that authenticated journal remains diagnostic.
+Even terminal v9 `UNSAT` would
+cover only the fixed `(jd,v) = (0,2)` exact-12 cell; the placement/symmetry
+coverage and non-exact-12 three-center branch remain separate load-bearing
+obligations.
+
+The v10 discovery sidecar `symmetry_lift_cegar.py` now closes each replayed
+membership cut under the exact anonymous-label action
+`S3({3,4,5}) × S2({10,11})` for this fixed cell.  This is deliberately an
+untrusted acceleration, not a promoted proof rule.  Its fail-closed finite
+contract checks all 12 label maps, all 48 literal source orders
+orientation-by-orientation, and the complete source-faithful candidate table;
+all 30 v10-era sidecar CEGAR tests pass.  A full mixed-version audit replays the 10,652
+primary nogoods before allocating symmetry images and expands them to 76,504
+distinct orbit nogoods.  The first 100-record v10 production probe added 921
+new orbit nogoods, reaching 77,425, but again stopped at its planned cap with
+`ITERATION_LIMIT`, not `UNSAT`.  Its 2,100-record journal has SHA-256
+`8a26aaabcf726248179dfd1d301ca738d784482f691466d8fd9a22e7083f1c68`.
+All 100 new records represent previously unseen symmetry orbits, so the lift
+is eliminating whole 12-label equivalence classes but has not yet exposed a
+small closing invariant.  Promotion still requires independent replay of the
+image clauses and a Lean label-renaming argument; fixed-cell terminality would
+still leave the placement-complete and non-exact-12 lifts open.
+
+The v11 diagnostic `blocker_observer_cegar.py` now preserves the raw positive
+SAT assignment and records the five already source-proved physical-cycle
+actual-blocker choices without changing the CNF or the learned clause.  Its
+full 2,100-record v10 bootstrap audit passes, and all 33 current sidecar CEGAR
+tests pass.  The first 100 v11 survivors again ended at the planned
+`ITERATION_LIMIT`; the resulting 2,200-record journal has SHA-256
+`809f0c521dd6c15d68e4c73d7a1acd5cf7ea0f190f0f372cb24b6e00b4d7d491`.
+Those survivors have exactly two symmetry-canonical *selected-model* blocker
+signatures.  In all 100 selected assignments, the observed blockers at the
+four sources `u`, the joint-deletion point, `v`, and `xv` are fixed; only the
+selected `xu` blocker splits: 13 assignments choose `u`, while 87 choose one
+of the two frozen labels for `R.interior_q` and `R.interior_w`.  These are
+CaDiCaL witnesses, not complete blocker domains: the same row cube can admit
+more than one auxiliary blocker assignment.  They therefore do not establish
+a source dichotomy or justify blocker-sensitive Lean arms.
+
+The v12 diagnostic `blocker_domain_observer_cegar.py` repairs that
+interpretive gap without changing the CNF or learned clauses.  It reconstructs
+every injective physical-cycle blocker map admitted by the selected row cube,
+including the source-proved identities, and verifies that the solver-selected
+map belongs to that family.  The frozen 2,200-record v11 bootstrap replay
+passes and all 35 sidecar tests pass.  In the first 100 new records, 71 cubes
+have one compatible blocker map and 29 have two.  The complete possible-center
+domain for `actualBlocker(xu)` is `{interior_q}` in 41 cubes, `{interior_w}` in
+one, `{u}` in 29, `{u, interior_q}` in seven, and `{u, interior_w}` in 22.
+The only other varying coordinate is the joint-deletion source, whose blocker
+is either `xu` or an anonymous surplus-interior label; after symmetry there are
+three complete-map signatures.  The 2,300-record v12 journal has SHA-256
+`1c2a66d8b3e5b5f1c1ecb518c7cfaa76a3eedf7d74c3fd08d20c04b8193f6477`.
+This is finite theorem-mining evidence only: it covers five physical sources
+in one placement, not the carrier-wide endomap, and no coverage theorem yet
+says that these domains exhaust the live Lean leaf.  The next producer target
+is not the earlier three-signature conjecture.  It is the source-exact six-arm
+adapter supplied by the live named-source and deletion-survival hypotheses,
+followed immediately by a terminal consumer for at least one arm.
+
+The live leaf gives a more source-faithful split than the earlier
+signature-only proposal: the named source is one of `u`, `xv`, and `xu`, and
+one of the two named interior deletions `q` and `w` survives at that source's
+actual blocker; membership in `outsideFirstApexFiber` also excludes the frozen
+first-apex label as that blocker center.  This is an exact six-arm source
+cover, not a guessed blocker-signature trichotomy.  Replaying these predicates
+against the 100 v12 diagnostic cubes leaves respectively `100, 100, 47, 75,
+58, 7` cubes in the arms `u/q`, `u/w`, `xv/q`, `xv/w`, `xu/q`, and `xu/w`.
+The existential union therefore eliminates none of the 100 cubes, but the
+`xu/w` arm is a useful narrow first production cell.
+
+`named_deletion_arm_cegar.py` is the explicit v13 diagnostic compiler for one
+of those six arms.  It authenticates the full 2,300-record v12 seed, adds the
+exact blocker-to-row omission implications and first-apex exclusion, and
+preserves the inherited proof-replay path.  Its unit tests pass.  The first real `xu/w`
+window added 100 replayable cuts (81 unordered and 19 ordered), producing a
+2,400-record journal with SHA-256
+`7d0ac755c9a932b7a1d2dcfbe0c70982deb481e29724294349c647fc9081792b`.
+It ended at `ITERATION_LIMIT`, not `UNSAT`.  This is still one arm of one fixed
+placement, so it is neither six-arm coverage nor a live-sorry closure.  The
+planned extension has now added 600 further arm-local records, for 700 v13
+`xu/w` records beyond the authenticated 2,300-record v12 prefix.  The combined
+3,000-record journal covers iteration numbers 15,273 through 18,272 and again
+ended at `ITERATION_LIMIT`, not `UNSAT`; it has SHA-256
+`cb21d6f02bc613bb0e6fb74d89894713649e193f5d5dda876cce3b4b0db040fe`.
+Blindly extending the same cell is therefore not the immediate leverage
+point.  The next computational milestone is either a new source-entitled
+generalization that materially shrinks this survivor family or a terminal
+outcome for the cell; only then should the other five arms and the checked
+placement transport be scheduled.
+
+An August 7 source-faithfulness audit found a separate defect in the inherited
+common-missing-incidence base beneath v13.  The Lean branch supplies one
+distinguished next center
+`d = Hlate.centerAt c hcA`; the Python base instead negated the tetrahedron
+incidence conjunction, and excluded the `xu` blocker, for **every** center
+whose selected row contains `c` and omits `xu`.  No source theorem identifies
+all such centers with `d`.  That universalization strengthens the finite
+model, so the v13 run is diagnostic data only even within its fixed placement
+and arm.  Its SAT/`ITERATION_LIMIT` result remains valid evidence that this
+stronger model was not exhausted, but no future `UNSAT` from that frozen
+schema would be promotable.  The next schema must introduce an explicit
+distinguished-`d` selector and guard both the missing-incidence condition and
+the blocker inequality by that selector.  The frozen v13 schema and journal
+remain unchanged for reproducibility.
+
+That repair is now implemented as the v14 `xu/w` branch.  It authenticates
+and replays the frozen 3,000-record v13 journal but allocates a one-hot
+distinguished-`d` selector before the first new solve; only the selected row
+is required to contain `c` and omit `xu`, and both the tetrahedron negation and
+`b(xu) ≠ d` are guarded by that selector.  Unit and prefix-authentication
+tests pass.  The initially reported one-iteration canary and 100-iteration
+window in fact executed zero new solves: the inherited runner interprets
+`--max-new-iterations` as an absolute output-journal target, despite its name,
+so a value below the 3,000-record resume prefix makes the loop empty.  Those
+summaries are not SAT evidence.  A corrected run, with the target set to
+3,100, added 100 genuine replayable certificates and ended at
+`ITERATION_LIMIT`, not `UNSAT`; the resulting journal has SHA-256
+`952602e5d025ac7be55dee5fe2a5ca30b694b5efad09b706f1f0ae501ed738a9`.
+The selected-`d` counts were `0:7, 2:69, 4:12, 5:11, 6:1`.  The v13 records
+remain usable only as independently replayed learned geometric cuts, not as
+evidence for the soundness of the old v13 base.  The same unrestricted run has
+now been extended to 3,600 records and remains at `ITERATION_LIMIT` with
+12,252 membership nogoods; the journal SHA-256 is
+`569954ad445a11619f35aab0fdbf9366db60304b583e5877745ce48400c72bc3`.
+The new 500-record suffix selected
+`d = 0:28, 2:322, 3:34, 4:38, 5:72, 6:1, 9:3, 10:2`.
+In particular, the unrestricted source-faithful solver continues to expose
+out-of-row witnesses; absence of `d = 8` or `11` from this finite suffix is
+sampling evidence only, not a source exclusion.
+
+The next attempted restriction was not source-faithful.  V15 forced
+`d ∈ row[1]`, where the fixed row is `{6,0,2,8}`.  In the live Lean leaf,
+however, this membership occurs only as one conjunct of the five-incidence
+tuple negated by `hmissing`; neither `hcommon` nor the checked v14 ingress
+proves it independently.  Consequently the v14 records with `d = 4` or `5`
+cannot be discarded as source-impossible.  V15 is a strictly stronger
+diagnostic branch, not a production successor.  Its authenticated 3,200-record
+journal remains a reproducible diagnostic.  The v16 fixed-selector shards need
+a more precise classification: once an in-row label `d = k` is pinned, v15's
+units disabling every out-of-row selector are redundant with selector
+one-hotness.  Each of `d = 0,2,6,8` is therefore a source-faithful v14 subcase,
+but the four shards are not source-exhaustive because the live source also
+permits out-of-row `d`.  The `d = 8` shard reaches fresh-solve `UNSAT` with a
+verified DRAT proof, while `d = 0,2,6` remain at `ITERATION_LIMIT`.  This
+eliminates one finite selector subcase after independent Lean replay; it does
+not close the fixed cell or a live leaf.  Production coverage must resume from
+unrestricted v14 or add fixed-`d` shards for every remaining eligible label.
+The v17 fixed-selector wrapper implements the latter decomposition without
+adding v15's unsound row-membership restriction.  Its ten source-eligible
+shards are exactly `d ∈ {0,2,3,4,5,6,8,9,10,11}`: all twelve finite labels
+except the source-proved exclusions `d ≠ 1` and `d ≠ 7`.  It authenticates
+the frozen 3,200-record v15 journal only as a bank of independently replayed
+geometric cuts, then rebuilds the v14 base and pins one selector.  Focused
+wrapper, authentication, and selector tests pass (21 tests across the v14–v17
+suite).  An out-of-row `d = 5` canary added one fresh, replayable certificate,
+confirming that the wrapper is not silently retaining v15's selector-domain
+restriction.  The `d = 8` v17 shard is terminal `UNSAT` at the frozen
+3,200-record boundary with 46,083 variables and 483,739 clauses; the fresh
+CaDiCaL proof passes `drat-trim`.  Its CNF and DRAT SHA-256 values are
+`cee2fdb254c79380397e402b67f4675f2957f35cac8747b59c904ab2aef59f1f`
+and `94f0f0fb1019b3f9fe75efbd3990436f2b488900e4d4c2556ea4b31a4fbec84e`
+respectively.  This reproduces the v16 `d = 8` result through the corrected
+v17 contract.  Core extraction then exposed a much smaller source-level
+reason for the contradiction.  `drat-trim -c`
+reduces the 483,739-clause formula to 472 clauses with 270 proof lemmas, 4,362
+resolution steps, and no RAT steps.  The core SHA-256 is
+`da11bc7594ad093e6c0f9eb14c13daf3b1e6bc16eb7ab069a6d5999221cbac91`;
+it is byte-identical to the earlier v16 `d = 8` core, so the six removed v15
+row-selector units were irrelevant.  Canonical clause provenance gives 467
+input clauses from the already ported safe-cover base and only five later
+source clauses.  Those five are the fixed first-row trace, the physical-cycle
+blocker unit and its row-incidence implication, and the `d = 8` selector unit
+and its missing-incidence implication.  Semantically they force both `9 ∈
+row 8` and `9 ∉ row 8`.  The 23 clauses matching frozen-journal records (12
+`all-source-order-coverage-v9` and 11 `unordered-membership-v6`) occur only as
+DRAT proof lemmas; they are not trusted input axioms of the extracted core.
+
+This source reason is now kernel checked rather than left at finite-UNSAT
+status.  `FrozenDistinguishedDCommonMissingAwayFromEight` records the sharpened
+selector domain, and
+`frozenDistinguishedDCommonMissingAwayFromEight_of_firstTrace` proves `d ≠ 8`
+from the first-row trace, the physical-cycle blocker, and the source-faithful
+missing-incidence packet.  The v14 source-ingress theorem now exports that
+sharpening.  A direct targeted check of
+`ExactTwelveRigid221PhysicalCycleIngress.lean` passes.  This eliminates the
+`d = 8` selector at source level; it does not close the fixed named arm or the
+live leaf.
+
+The initial v17 pilot wave is recorded in
+`scratch/sidecar-sourcefaithful-common-missing-20260807-a7f3c1/distinguished-d-all-v17-wave-manifest.md`.
+The complete pilot matrix has one terminal finite result (`d = 8`) and nine
+`ITERATION_LIMIT` survivors.  Each surviving shard produced one fresh
+replayable geometric cut.  After the kernel source exclusion, the remaining
+selector domain is exactly `d ∈ {0,2,3,4,5,6,9,10,11}` for this fixed
+`xu/w`, `(jd,v)=(0,2)` cell.  Closing those nine selectors would still leave
+the other five named-deletion arms, placement transport, and the live Lean
+consumer before this campaign could count as leaf closure.
+
+The fixed-selector incidence audit is now exhaustive at the Boolean ingress
+level.  Across the nine surviving selectors, the five incidences required by
+the existing tetrahedron consumer are not forced.  For `d = 0,2` the 32
+signatures reduce to four SAT signatures, all forcing `d ∈ B(O)`, `u ∉ K(c)`,
+and `d ∉ K(xv)` while leaving the two `O` incidences free; `d = 6` has the same
+four signatures except that `d ∈ K(xv)`.  Selectors `d = 3,4,5,10,11` retain
+16 of 32 signatures and force only `d ∉ B(O)`, while `d = 9` retains eight and
+also forces `d ∉ K(xv)`.  This is a finite source-faithful no-go for using the
+current five-incidence consumer as complete coverage of this cell.  It is not
+a theorem that no stronger source producer exists.
+
+The surviving v17 shards share geometric cuts through an authenticated
+cross-shard epoch compiler, but the first compiler contract required a
+correction.  Epochs 1--4 were compiled by v1/v2 and happened to pass ordinary
+replay under the tested selectors.  A 50-model-per-selector wave then exposed
+that raw membership-clause integers are not portable: `pattern_variable` is
+allocated lazily, so reordering independently generated journals can assign a
+different variable to the same semantic membership.  The v1/v2 compiled
+epochs are therefore historical experiments and must not be reused as banks;
+the underlying selector-local source journals remain independently
+replayable.
+
+Compiler v3 authenticates the same 3,200-record prefix and every source
+journal, deduplicates only by the canonical `selected_memberships` key,
+preserves each source numeric clause as provenance, and marks the semantic key
+for local rematerialization during ordinary replay.  Detector-specific replay
+then rechecks the retained geometric certificate and the exact semantic key
+before accepting the locally derived clause.  The repaired epoch 5 contains
+3,729 records: 529 unique suffix records retained from 1,341 copies, with 812
+duplicates removed; its SHA-256 is
+`ebda16e235f25ab1630138fba5517638f50141955b5eca0d1e0d2a25cac61449`.
+It passes the ordinary v17 replay path under `d = 4`, yielding 12,381
+membership nogoods.  Focused tests cover semantic deduplication, harmless
+certificate variants, local literal rematerialization, and rejection of a
+record that ambiguously carries both portable semantics and a numeric payload.
+
+The deeper wave classified 450 models but produced 430 new unique semantic
+cores; none of those 430 was independently rediscovered by two selectors.
+That is decisive empirical evidence that further depth in this fixed
+`xu/w`, `(jd,v)=(0,2)` cell is mostly shard-local discovery rather than useful
+cross-selector theorem mining.  The new cuts include 194 ordered-coverage,
+110 duplicate-center, 68 perpendicular-bisector, 28 equilateral-bisector, and
+21 triad cores.  The shortest three-row perpendicular-bisector instance is
+already an application of the cardinality-independent
+`false_of_convexIndep_of_perpBisectorCore`, not new geometry.  This campaign
+therefore stops scaling the fixed cell.  The next computational target is a
+source-faithful arm/placement-parametric adapter followed by small replay
+canaries in a genuinely new named-deletion arm; no symmetry-orbit reduction
+may be claimed until the corresponding Lean renaming theorem exists.  The
+full corrected artifact contract is recorded in
+`scratch/sidecar-sourcefaithful-common-missing-20260807-a7f3c1/distinguished-d-all-v17-cross-shard-epoch-report.md`.
+
+That arm/placement adapter now exists as
+`arm_placement_distinguished_d_shard_cegar.py` (v18).  It varies only the six
+source-entitled named-deletion arms, the ordered `(jd,v)` placement, and the
+distinguished-`d` selector; it explicitly records that historical v10 orbit
+allocation is replay machinery, not a placement-transport claim.  Full
+ordinary replay succeeds for the new `u/q`, `(jd,v)=(0,3)`, `d=4` cell.  A
+runner audit also caught a historical interface trap: despite its name,
+`--max-new-iterations` denoted a target total journal length, so requesting
+five against a 3,729-record bank performed no solves.  The runner now exposes
+the tested resume-safe `--additional-iterations` mode and records the initial
+and target journal sizes.
+
+The corrected canaries classified ten actual models: five in `u/q` and one in
+each of the other five arms at `(0,3),d=4`.  Every one yielded an independently
+replayable equality-duplicate-center certificate.  Semantic deduplication
+retained seven cuts; the `xv/q` and `xv/w` cuts coincide, and the `xu/q` and
+`xu/w` cuts coincide with one already found in `u/q`.  These cuts instantiate
+the existing cardinality-independent `DuplicateCenterCore` consumer.  They
+are useful shared exclusions, not a new producer and not leaf closure.
+
+The seven cuts are compiled above the authenticated epoch-5 prefix into the
+3,736-record portable arm/placement epoch with SHA-256
+`b4e8820a750007ba1045febe00e97b9088bcb35b74c6a4f19965e5542b87d32a`.
+Ordinary replay of that epoch succeeds in a second genuinely new placement,
+`u/q`, `(jd,v)=(0,4)`, `d=4`, with 12,388 membership nogoods.  This establishes
+portable certificate reuse across the sampled cells only.  The bounded
+new-placement canary has now run: its one newly classified model produced only
+an equality-duplicate-center certificate already covered by the generic
+`DuplicateCenterCore` consumer, and the cell remains `ITERATION_LIMIT`.  This
+triggers the planned stop-scaling rule; a broad arm-by-placement matrix is not
+the next target.
+
+The first source transport layer is now kernel checked in
+`ExactTwelveRigid221PlacementTransport.lean`.  It defines the exact finite
+placement domain, proves its cardinality is 42 with kernel reduction, proves
+that every `FrozenRoleLabeling` lands in that domain, and constructs a new
+fully realized frozen labeling after any carrier-label permutation which fixes
+the nine named roles and preserves the variable-role domain.
+`labeledRowPattern_trans` identifies the transported rows exactly with generic
+row-pattern reindexing.  `ExactTwelveRigid221PlacementOrbits.lean` now supplies
+two finite layers.  On the unrestricted placement domain, its deterministic
+admissible permutation of the unnamed labels `3,4,5` reduces 42 ordered
+placements to 21 representatives.  The imported source packet supplies the
+physical-pair separation facts; this finite layer consumes them to restrict
+the live domain to exactly 24 placements, and the same admissible action
+reduces those to a stable proof-facing list of 12 representatives.  No swap of
+the frozen named labels `10` and `11` is used.  The companion
+`ExactTwelveRigid221NormalizedSafeIngress.lean` rederives the interior profile,
+closed-cap profile, and `FrozenSafeCubeOK` from the geometric source after
+normalization; this avoids assuming a generic candidate-table symmetry.
+`ExactTwelveRigid221BranchTransport.lean` proves reindexing invariance for all
+three v14 branch predicates, and
+`ExactTwelveRigid221NormalizedV14Ingress.lean` transports the complete
+source-produced packet--physical row, actual blocker identities, five exact
+row traces, six-arm predicate, and both distinguished-`d` predicates--to one
+of the 12 representatives while rederiving the safe cube.
+The aggregate normalized-v14 target now passes a fresh targeted build.  Axiom
+audits of that theorem and the separated 12-representative cover report only
+`propext`, `Classical.choice`, and `Quot.sound`, with no `sorryAx` dependency.
+
+These are source ingress, transport, and placement-coordinate representative
+cover results, not full branch/certificate coverage theorems.  The first
+complete finite schedule is now explicit: 12 placement representatives times
+six named-deletion arms times the nine distinguished-`d` coordinate values
+permitted by the `AwayFromEight` exclusions, for 648 cells.
+`census/card_head/exact12_v14_schedule.py` now freezes that Cartesian schedule
+under schema `p97_rigid221_exact12_full_v14_schedule.v1`, authenticates its
+canonical payload, and hash-binds the schedule manifest to the listed Lean
+source-file bytes.  It rejects omitted, reordered, duplicated, type-confused,
+or source-drifted manifests; it does not itself validate Lean elaboration or
+terminal semantics.  It is a data-only enumeration contract: arm names and
+center indices are coordinates, not independently proved semantic witnesses.
+`census/card_head/exact12_v14_jobs.py` now adds a deterministic per-cell job
+descriptor and an authenticated complete 648-job set.  Every v1 job is
+deliberately `SOURCE_TO_CNF_UNVERIFIED` with execution `BLOCKED`: validation
+rejects schedule/source drift, coordinate tampering, type confusion, and
+missing, duplicated, or reordered job-set entries, but no job may reach the
+solver until a reviewed source-predicate-to-literal valuation contract is
+hash-bound in a future executable schema.  The existing scratch v18 runner can
+probe an individual arm/placement/center cell, and the existing epoch compiler
+combines sampled records only; neither is that source-to-CNF contract or
+supplies exhaustive cell coverage.
+
+The follow-on finite binding is now implemented separately rather than
+weakening that v1 history.  `exact12_v14_valuation.py` compiles the physical
+five-cycle, six named-deletion arms, and distinguished-`d` predicates and
+replays them independently on decoded rows and blocker centers.  It pins the
+exact source-faithful candidate table and base CNF hashes, so a same-sized
+lookalike surface fails closed.  A full regression compiles all 648 cells.  In
+particular, the 72 `d = xu` cells correctly treat
+`blocker(xu) != xu` as automatic from blocker-source exclusion; an earlier
+draft incorrectly rejected those cells.
+
+`exact12_v14_bound_jobs.py` now binds one blocked coordinate job to the exact
+compiler source, variable map, and DIMACS bytes under a distinct finite-only
+schema.  `exact12_v14_cell_run.py` uses that binding for one-cell discovery,
+checks SAT assignments against every CNF clause and both independent semantic
+replayers, and accepts a discovery `UNSAT` only after a fresh identical-CNF
+proof run verifies DRAT.  The first real canary, cell 0, is
+`SAT_WITNESS_REPLAYED`, with candidate, added-predicate, and exact-CNF replay
+all true.  Thus the source-safe incidence layer is now producing authenticated
+survivor data, but is not itself the missing contradiction.
+
+That first geometric-refinement checkpoint is now implemented in
+`exact12_v14_structural_cegar.py`.  The runner replays each SAT witness against
+the source candidate surface, added v14 predicates, and exact current CNF;
+accepts a cut only through the existing exact structural-certificate validator;
+and journals it in an append-only chain bound to the job and detector sources.
+Cell 0 first produced a five-row equality-duplicate-center cut.  A seeded
+resume authenticated that record and produced a second distinct cut.  The
+complete journals replay, and focused certificate, clause, tamper, and runner
+tests pass.  Both canaries remain `ITERATION_LIMIT`, so this establishes the
+refinement contract and resumability, not a terminal cell or finite coverage.
+
+The first Lean record-ingress canary is now explicit in
+`ExactTwelveV14DuplicateCenterCanary.lean`.  It translates the first
+authenticated cell-0 journal certificate to
+`DuplicateCenterNogood (Fin 12)`, kernel-checks the closure paths, and supplies
+both exact- and positive-row-match source consumers.  A targeted build passes;
+axiom audit of the positive consumer reports only `propext`,
+`Classical.choice`, and `Quot.sound`.  The reusable
+`ExactTwelveRigid221LearnedClauseBridge.lean` now closes the next semantic seam:
+falsification of an emitted negative selected-row clause under the canonical
+source `finalAssign` implies that every recorded row is the source-selected
+candidate and therefore that the record `PositivelyMatches`.  The canary
+kernel-checks encodability of all five rows and composes that exact Boolean
+premise to `False`; its targeted build passes, and proof-blueprint mines zero
+edges into axioms.
+
+This completes record validity, literal reflection, and the conditional source
+contradiction.  The semantic source/job seam is now kernel checked too.
+`ExactTwelveRigid221V14JobSemantics.lean` defines the exact 648-element job
+coordinate type and `FrozenV14AddedConstraintsHold`; the source bridge
+`exists_source_normalized_v14_semanticJob` proves that every normalized
+geometric packet selects one concrete cell and satisfies that complete
+semantic predicate.  It includes the exact row-1 and row-7 constraints, all
+five physical source/blocker exclusions and edge traces, and the selected
+named-deletion and distinguished-`d` predicates.  Its targeted build passes,
+and its axiom audit reports only `propext`, `Classical.choice`, and
+`Quot.sound`.
+
+The remaining source/job-clause gate is therefore narrower and exact: extend
+the canonical source assignment to the emitted blocker and Sinz auxiliary
+variables and prove satisfaction of the compiler's numbered DIMACS clauses.
+This semantic theorem alone does **not** prove that compiler reflection, that a
+journal is terminal, or that terminal CNF coverage forces one learned clause
+to be false.  After the exact clause reflection lands, a generated terminal
+bank plus the generic Boolean coverage step can feed the learned-clause bridge.
+Only verified terminal cells should be scaled and aggregated across the
+648-cell schedule.
+
+This is not yet a proved disjoint partition: both the source arm and
+distinguished-center predicates are existential/disjunctive, so overlap and
+empty cells are allowed.  Promotion still requires a Lean ingress theorem for
+every emitted detector family, contract-valid records for every required cell,
+verified terminal outcomes, replay of every detector family used, and one
+aggregate Lean coverage consumer.  A blocked, missing,
+nonterminal, or unverified job is incomplete and contributes no coverage.  No
+current learned bank certifies even that 648-cell union, and neither live leaf
+is closed.
+
+The source half of this contract is now kernel checked.  The public theorem
+`outsideFirstApexFiber_centerAt_ne_firstApex` exposes the blocker-center
+exclusion, and
+`pentagonOffClassBlocker_namedSource_survival_sixArm` combines it with
+`cross_deletion_survives_iff_not_mem_selected_support` and the live named-source
+dichotomy to produce exactly the six source/deletion arms compiled by v13.  A
+targeted build of `Rigid221SourceHeavy` passes.  This is a producer result, not
+finite coverage: the normalized transport now preserves the arm predicate,
+but the finite runner must still cover every required arm/placement/selector
+cell, reach terminal outcomes, and replay those outcomes in Lean before either
+exact-twelve live leaf can close.
+
+The source-to-finite valuation for the physical blocker cycle and named
+deletion arm is now kernel checked in
+`ExactTwelveRigid221PhysicalCycleIngress.lean`.
+`mem_labeledRow_at_actualBlocker_iff` translates a row literal at the actual
+blocker label exactly to membership in the geometric selected shell.  The
+strengthened
+`exists_source_safeCubeOK_with_physicalCycleBlockers` constructs the
+source-safe cube and injective five-source blocker map, identifies every
+finite blocker with the corresponding geometric `centerAt`, proves every
+blocker differs from its source and from the second-apex label, retains the
+fixed identities `b(u)=8` and `b(xv)=7`, and retains all five exact
+`frozenNamedDeletionSixArm_of_actualBlockers` compiles the geometric six-arm
+producer into the exact finite predicate `FrozenNamedDeletionSixArm`, and
+`exists_source_safeCubeOK_with_physicalCycleBlockers_and_namedDeletionSixArm`
+packages that predicate with the full ingress valuation.  A direct targeted
+Lean check of the module passes.  The source-faithful selector ingress is now
+also kernel checked.  `FrozenDistinguishedDCommonMissing` is the finite
+predicate used by v14.  It correctly guards the five-way tuple by one selected
+`d`; it does not and must not assert `d ∈ row[1]` independently.
+`frozenDistinguishedDCommonMissing_of_actualRows` labels the actual
+`d = centerAt c`, proves its selected row contains `c` and omits `xu`, and
+transports both `b(xu) ≠ d` and the missing tetrahedron incidence only at that
+label.  The combined producer
+`exists_source_v14_physicalCycle_namedArm_distinguishedD` supplies one common
+witness satisfying the safe cube, physical row, five-cycle blockers, six-arm
+disjunction, and distinguished-`d` predicate.  Direct targeted checks of both
+ingress modules pass.  This completes the fixed-placement source-to-v14
+semantic ingress.  The normalized-v14 transport above now discharges the
+separate source placement-transport obligation and exposes the exact 648-cell
+finite schedule.  It does **not** provide exhaustive six-arm/placement/selector
+coverage, terminal `UNSAT`, certificate replay, or closure of either
+exact-twelve live leaf.  The new full-v14 schema freezes the 648-cell
+coordinate grid, and the blocked v1 job contract authenticates its per-cell
+operational identities only.  The current v17 nine-selector partition and v18
+arm/placement adapter remain canary machinery until a reviewed valuation
+binding, terminal records, and Lean replay/coverage consumers exist.  No
+current result justifies the historical eight-orbit claim.
+
+The complete set of 37 ordered-v4 convex-core records has now been replayed by
+kernel-checked cardinality-independent consumers.  Eighteen are the earlier
+exact replays, six are subsumed by the four schemas in
+`ExactTwelveRigid221OrderedThreeRowCuts.lean`, ten by the direct schemas in
+`ExactTwelveRigid221OrderedUniversalThreeRowCuts.lean`, and the final records
+7808, 8077, and 8556 by two-core arithmetic coverage in
+`ExactTwelveRigid221OrderedResidualCoverageCuts.lean`.  Record 9306 and two of
+the residual coverage theorems honestly retain the source-proved internal
+second-cap order; the other direct schemas do not assume it.  Targeted builds
+of all three new consumer modules pass.  This closes the **learned-cut replay
+subtask only**.  The v4 run itself remains `ITERATION_LIMIT` after 10,000 new
+records (10,706 total), not terminal `UNSAT`, and neither source-exhaustive
+placement/signature coverage nor a live `sorry` has been obtained.
+
+These are promoted or promotion-pending learned clauses, not closure.  A
+future terminal `UNSAT` from the present row-only schemas would still not by
+itself establish the blocker-sensitive source theorem suggested by v12, and
+one fixed source-faithful placement still needs the exhaustive
+placement/symmetry lift before it can close the universal live leaf.  The
+equality-only journal and all earlier schemas remain frozen.
+
+The final composition with
+`pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows` is
+isolated in `ExactTwelveRigid221ConcreteRowsBridge.lean`; the new
+`ExactTwelveRigid221SourceSafeIngress.lean` consumes it and the already proved
+`pentagonOffClassBlocker_card_twelve_exact_cap_profile` theorem to produce the
+complete `FrozenSafeCubeOK` row family.  Serialized targeted builds now pass
+for the concrete-row bridge, source-safe ingress, same-boundary order ingress,
+and all seven ordered-cut consumers from the first 3,000-record tranche after
+the concurrent `Rigid221SourceHeavy` refactor.  The remaining gap is therefore no longer a
+vague source-to-safe adapter.  It is certified finite exhaustion plus the
+placement/symmetry lift needed to connect that exhaustion to the universal
+leaf.  No current closure claim is based on the still-running finite search.
+
+The older Python adapters remain unsuitable for promotion.  In
+`scratch/pentagon-offclass-exact12-v2/probe.py`, the physical-apex row is only
+chosen as a four-subset of a five-point physical class, so it does not justify
+the later claim that this row witnesses every physical pair.  The same probe
+imposes pairwise distinctness on all five physical blocker centers, while the
+checked source theorem currently supplies only two specific blocker
+inequalities.  Separately, `candidate_surface.py` still includes the unsupported
+mixed `moserCount`/`sameCapCount` filter even though its one-hit and two basic
+post-`SUB2` families now have checked source producers.  Therefore neither the
+historical candidate surface nor `probe.py` is wholly proof-facing.  The new
+`p97_rigid221_exact12_source_safe_candidate.v1` Python contract is the explicit
+replacement: it disables the mixed cut and freezes the proof-facing candidate
+table and base CNF.  The candidate-table/index equivalence and satisfying
+choice-variable/Sinz valuation theorem are now implemented in
+`ExactTwelveRigid221SafeCoverIndexBridge.lean`,
+`ExactTwelveRigid221SafeBaseSat.lean`, and
+`ExactTwelveRigid221SafeCoverSat.lean`.  The remaining work is not another
+base-valuation theorem; it is a stronger source-proved branch predicate plus
+an explicitly versioned finite coverage/UNSAT certificate.  No live `sorry`
+has been closed by this ingress work.
+
+Certificate replay has also started.  `ExactTwelveDuplicateCenterRecords.lean`
+contains the first authenticated v7 duplicate-center record; its Boolean check
+and generic no-realization consequence pass direct Lean checking.  This is one
+sound learned row cut, not finite coverage.  The remaining promotion work is
+now represented by an explicit finite-bank contract.  The generic checker
+defines `DuplicateCenterNogood`, separately proves closed record validity, and
+rules out a row pattern only after consuming an independent semantic-coverage
+witness.  `FrozenRoleLabeling.false_of_duplicateCenterBank` specializes that
+contract to this source branch.
+
+The journal rows are marked `exact := false`, so their honest semantics is
+positive incidence, not row equality.  The generic checker now exposes
+`PositiveRowsMatch` and proves that positive containment becomes exact when
+both the source row and recorded support have cardinality four.
+`FrozenRoleLabeling.false_of_positiveDuplicateCenterBank` combines this with
+`labeledRowPattern_card`.  Thus the row-arity bridge is checked; it is no
+longer an implicit Python assumption.
+
+`census/p97_search/export_generic_duplicate_center_bank.py` streams the v7
+journal, independently replays each selected duplicate-center certificate,
+checks its four-positive-incidence row shape, and emits generic Lean bank data
+plus closed validity and four-support checks.  One-record and 100-record smoke
+banks pass direct Lean checking.  This still proves only validity.  The exact
+missing closure object is a theorem that every source-faithful frozen-role
+pattern is **positively covered** by some bank member (or by the union of bank
+members for all supported detector families).  The current partial journal
+does not supply that theorem.
+
+The remaining promotion work is therefore to serialize the checked full-v14
+source-to-CNF valuation without weakening its branch predicates, prove
+aggregate coverage against `FrozenRoleLabeling`, replay every detector family
+used by a terminal run into its proof-facing alternative, and obtain terminal
+proofs rather than iteration-limited journals.  The proved normalization uses
+only the `S3({3,4,5})` action allowed while all nine named roles remain fixed:
+42 unrestricted placements reduce to 21, while the source-proved separation
+first restricts the live domain to 24 and then reduces it to the explicit 12
+representatives.  The full promotion grid is therefore 12 x 6 x 9 = 648
+cells.  The historical eight-cell schedule additionally swapped frozen named
+roles and remains only a search heuristic.  No terminal exact-twelve UNSAT
+certificate or aggregate 648-cell coverage theorem currently exists.
+
+#### Exact-12 source32–56 wave-boundary theorem gate (2026-08-09)
+
+A general-theorem search has now been run over proof-backed source sequence
+numbers 32 through 56 rather than merely mining the next survivor.  All 25
+certificates replay over all 48 source boundary orders.  Twenty-four are
+instances of the existing convex five-point common-orientation obstruction;
+source37 is the one source-independent structural collision.  Eighteen cuts
+use three selected positive rows, four use five, two use six, and one uses
+seven.  The only literally repeated labeled five-point core is
+`(a,x,b,c,y) = (2,9,0,10,1)`, in sources 40, 41, 42, and 55.  Its seven required
+incidences are already compressed by the cardinality-independent row theorem
+`false_of_threeRows_core_2_9_0_10_1`.
+
+The gate therefore found no missing local geometry consumer.  The reusable
+equality-closure, five-point, Kalmanson, cap-crossing, and label-transport
+interfaces already cover the observed proof shapes.  In particular, proving
+another fixed exact-12 five-point contradiction would duplicate existing
+infrastructure.  The next theorem target is upstream: a source-level producer
+from the live Rigid221 residual hypotheses to a finite disjunction of
+order-covered positive cores, followed by complete placement/cell coverage and
+either a universal-cardinality lift or a source-entitled exact-12 preserved
+subconfiguration theorem.
+
+This conclusion is deliberately negative about closure.  Seven cuts do not
+reduce to one direct three-row support, two five-point cuts require explicit
+equality closure, and the structural cut is genuinely different.  No broad
+named-role relabeling was used; only literally equal frozen labels were
+compared.  The report and replayable JSON live under
+`scratch/rigid221-sourceheavy-anchor/exact12-v14-source32-56-general-theorem-search-2026-08-09.*`.
+The current post-source56 survivor has a diagnostic 48/48 two-core proposal,
+but that is only a candidate source57 cut until its Lean source-order theorem,
+nogood, and proof-backed binding are checked.
+
+The Lean spine now exposes that conclusion directly.  The former single
+`...exactTwelve_interiorDeletion_physicalRadius` obligation is a checked
+dispatcher through
+`pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit`.  Its
+complete common-deletion incidence arm is discharged by the checked
+tetrahedron consumer.  Two narrower on-spine leaves remain:
+
+* `...physicalRadius_commonDeletion_missingIncidence`, retaining the exact-12
+  source/deletion-survival packet, the concrete common-deletion witnesses, and
+  the negation of the five-incidence tuple; and
+* `...physicalRadius_nextRowOnlyHit`, retaining the complementary theorem-proved
+  row trace `xu∈Kc`, `u∉Kc`, `xv∉Kc`.
+
+Targeted Lean diagnostics pass for the dispatcher.  Its axiom audit still
+contains `sorryAx` exactly because the two named leaves are open.  This is a
+one-to-two on-spine narrowing with checked fan-out, not closure.
+
+The `nextRowOnlyHit` arm now has a source-clean exact-deletion ingress.  The
+theorem
+`pentagonOffClassBlocker_uDeletion_exactEleven_fiveSurvivorRows_of_u_not_mem_nextRow`
+combines `D.A.card = 12`, the proved `u ∉ Kc` trace, and the five-center
+survival theorem to produce `(D.A.erase u).card = 11` together with five exact
+q-free K4 rows and the distinct actual blocker where deletion fails.  Its
+downstream `ExactTwelveRigid221Ingress` declaration is now only a compatibility
+wrapper around the live source theorem.
+
+The stronger source normalization currently under targeted validation is
+`pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision`.
+It proves a precise binary interface:
+
+* either all five surviving centers are distinct and the five exact rows are
+  installed in a `FiveSurvivorFaithfulCarrierBoundary` on a faithful pattern
+  over the original exact-twelve carrier (the rows themselves are extracted
+  from the exact-eleven deletion); or
+* the iterated blocker center equals the `xu` blocker center, and the two
+  selected rows contain each other's sources.
+
+The proof rules out the deleted-source and `v`-row center collisions from the
+existing live row traces.  The only remaining duplicate-center branch is thus
+the explicit reciprocal `xu` collision.  Until the active full build releases
+the build lock and the new normalization passes a targeted build and direct
+axiom audit, this paragraph records an implementation checkpoint, not a green
+theorem claim.  Even after validation it is finite ingress, not a terminal
+contradiction and not a closed `sorry`.
+
+A fresh theorem-family search over the last 100 records of all twelve
+`86017f66` cells classified 1,145 duplicate-center cores, 24
+equilateral-bisector collisions, 22 perpendicular-bisector/convex cores,
+seven three-triad collisions, one six-point five-circle collision, and one
+source-order positive-coverage cut.  Every structural family is already an
+arm of `Census554.MetricCoreAlternative`, consumed generally by
+`Census554.false_of_metricCoreAlternative`.  The report is
+`scratch/rigid221-sourceheavy-anchor/exact12-v14-wave-86017f66-plus100-general-theorem-search-2026-08-09.md`.
+It therefore identifies no missing local geometry consumer and proves no
+coverage theorem.
+
+The next exact targets are now two independent source producers:
+
+1. map the exact-twelve `FiveSurvivorFaithfulCarrierBoundary`, together with
+   only source-entitled role/order data, to `Census554.MetricCoreAlternative`;
+2. consume the reciprocal `xu` collision through an existing or new
+   pinned-multiplicity, duplicate-center, or third-bisector terminal.
+
+The finite adapter now being validated for target 1 is
+`FrozenFiveOmissionBoundary`.  It records exactly one deleted label, a
+five-element set of selected-row centers all omitting that label, and the
+deleted label's distinct actual blocker outside that center set whose row
+contains it.  The source theorem
+`exists_frozenRoleLabeling_with_fiveOmissionBoundary` transports this packet
+through a `FrozenRoleLabeling` for the same faithful carrier pattern and
+packages `FrozenSafeCubeOK` for that exact same labeling.  This shared witness
+is required: separate existential labelings for the base candidate cube and
+the five-omission predicate would not justify their conjunction in one CNF.
+The source adapter and same-labeling transport now pass targeted elaboration.
+Live axiom checks report only `propext`, `Classical.choice`, and `Quot.sound`,
+with no `sorryAx`.  This is a green source-to-finite ingress theorem, not a
+finite contradiction or a closure theorem.
+
+A fresh indexed theorem-bank search found no existing terminal for either
+branch.  The closest reciprocal-incidence result,
+`blocker_centers_eq_iff_mutual_cross_membership_of_first_apex_double_deletion_survives`,
+requires its own robust double-deletion packet and characterizes blocker
+equality; it does not contradict the reciprocal collision already produced
+here.  Likewise,
+`third_fiber_or_larger_known_fiber_of_three_omissions` assumes three values
+omitted globally by one finite self-map and two pre-existing collision fibers.
+The five-omission boundary instead says that one deleted source is absent from
+five selected rows.  Those are different quantifier patterns, so the latter
+cannot be used as the former's omission ingress without a new source theorem.
+This search therefore confirms, rather than removes, the two producer gaps.
+
+The older v14 job is not automatically a consumer for this packet: its
+distinguished rows are tied to different frozen source roles, while the new
+boundary chooses arbitrary exact `u`-deleted K4 witnesses at five proved
+centers.  Any further finite search must encode one of the two exact interfaces
+above and return a replayable named core for the same carrier pattern.  Another
+unconstrained exact-12 row-pattern wave, or reuse of v14 cuts without a new row
+identification theorem, does not consume the new source data.
+
+The smallest source-faithful implementation path is the generic exact-twelve
+selected-row universe in `census/card_head/source_faithful_candidate_surface.py`
+and `sat_encoding.py`, with independent complete-cube replay through
+`source_faithful_cube_ok`.  For labels `0,...,11`, a boundary witness is a
+triple `(deleted, blocker, centers)` with `blocker != deleted`, five centers
+chosen outside the blocker, `deleted` present in the blocker row, and
+`deleted` absent from every center row.  There are 60,984 such label triples.
+The source contract does **not** prove that `deleted` is outside `centers`, so
+an encoder imposing that extra exclusion would be unsound.  The first bounded
+run must either post-filter complete cubes or introduce explicit witness
+variables with both CNF and decoded-predicate replay.  It must not use
+`CoverInstance.pattern_variable` as a biconditional: that helper currently
+encodes only selection implies pattern.  Only after this can the loop shape of
+the v14 structural runner be reused; its v14 materializer and detector are not
+valid unchanged for this packet.
+
+That separate finite schema now exists as
+`p97_rigid221_exact12_source_safe_five_omission.v1` in
+`census/card_head/source_faithful_five_omission.py`.  It deliberately leaves
+the frozen source-safe base untouched and adds one-hot deleted/blocker
+selectors, exactly five omission-center selectors, the source-entitled role
+separations, and exact selected-row incidence clauses.  Its allocation is
+42,680 variables and 405,266 clauses before fixing a deleted-label shard;
+selector identities and those totals are regression-pinned.  Focused Python
+tests replay the decoded boundary on the same complete SAT assignment and
+reject role collisions and non-exact-twelve construction.
+
+The authenticated structural CEGAR runner is now schema v2 and fixes several
+custody gaps found in adversarial review.  Journal records bind the complete
+formula-source manifest as well as the base DIMACS and detector manifest;
+complete journal replay recomputes the base formula from the finite instance;
+formula and detector transitive source manifests are explicit; and the runner
+reads each persisted CNF through one no-follow regular descriptor and sends
+those exact verified bytes to CaDiCaL on standard input.  This removes the
+earlier hash/pathname/reopen gap.  A discovery UNSAT is accepted only after a
+fresh byte-identical terminal rerun emits a nonempty DRAT proof; `drat-trim`
+then receives unlinked snapshots of the exact CNF bytes and the descriptor-read
+proof bytes.  Journal replay has independent per-line, total-byte, and record-
+count bounds.  Formula, detector, and tool manifests are rechecked at run end,
+and recorded executable bytes are checked around every subprocess call.  The
+final journal replay also hashes the fully reconstructed current DIMACS bytes
+rather than checking only record count, chain head, and learned-clause set.
+Detector replay accepts `direct_row_equality_replay` only when its JSON value
+is the literal Boolean `true`; truthy strings and other non-Boolean values fail
+closed even if the surrounding proof digest is recomputed.
+Malformed positive assignments, malformed contract digests, duplicate JSON
+keys, truncated or oversized journals, symlink artifacts, formula mutation,
+and failed terminal custody all fail closed.  The runner explicitly records
+that adversarial same-user executable swap-and-restore remains outside its
+trust boundary on macOS; it does not claim `fexecve`-strength tool custody.
+The focused tests for runner replay, detector validation, and typed-bank
+export, together with their Ruff checks, pass.  This hardening improves
+artifact trust only; it proves no finite coverage or source theorem.
+
+The historical schema-v2 authenticated canary fixed deleted label `2`.  The
+shard formula therefore had 405,267 clauses and SHA-256
+`76567bd3dd62ed8e64093841e0f6b07e545caa9d7b830026066dd86736c9f1dd`.
+One SAT iteration replayed the complete assignment and same-labeling boundary,
+then produced a replay-valid `equality-duplicate-center` cut: blocker `11`,
+omission centers `4,5,6,7,8`, and rows centered at `8,10` sharing the triple
+`2,3,4`.  The current stdin-bound authenticated journal is under
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-stdin-canary-deleted2-i1/`.
+It has journal SHA-256
+`22b39cbae847580058da16da6459ade9a729875af0ae51ab74d5432b923646d7`
+and terminal record SHA-256
+`5f4f20724ee9947ea609413557c9b626f62c1dc0c91116a499d7f1070af9cac9`.
+The complete journal, source manifests, tool manifest, exact CNF assignment,
+and same-labeling boundary all replayed under that recorded contract.  Its
+status is `ITERATION_LIMIT`, not terminal UNSAT.  Because detector and terminal
+replay have since been hardened as described above, this directory is
+historical finite-mining evidence and intentionally fails current manifest
+validation; it is not current promotion ingress.
+
+The same-labeling Lean ingress subsequently passed targeted elaboration in
+`ExactTwelveRigid221SourceSafeIngress.lean`.  Live `#print axioms` checks on
+the five theorem-facing declarations reported only `propext`,
+`Classical.choice`, and `Quot.sound`, with no `sorryAx`.  This validates the
+source-to-finite five-omission adapter and the `nextRowOnlyHit` disjunction;
+it does not produce a contradiction.  The initial 25-refinement wave was then
+extended by 250 refinements per deleted-label shard.  The aggregate checkpoint
+under
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-wave-seed25-plus250-20260809T2232/`
+contains 12 `ITERATION_LIMIT` summaries and 3,300 records that were
+authenticated and replay-valid under their recorded contracts: 3,286
+`equality-duplicate-center` cuts and 14
+`equality-equilateral-bisector-collision` cuts.  There is still no terminal
+UNSAT shard, terminal proof, survivor, replay failure, coverage theorem, or
+live `sorry` closure.  The aggregate classification and custody boundary are
+recorded in that directory's `REPORT.md`.  These directories are not rewritten
+after a contract change and no longer satisfy the current source-manifest
+check, so they remain theorem-mining evidence rather than current promotion
+artifacts.
+
+A later fixed-code deleted-label-`0` diagnostic reached 202 cuts before its
+iteration limit: 201 `equality-duplicate-center` records followed by one
+`equality-equilateral-bisector-collision` record at index 201.  The generated
+heterogeneous `Bank-v5.lean` proves each emitted learned-clause identity and
+each cut's `FrozenSafeCandidateAt` encodability, and directly elaborated at
+that checkpoint.  The run is under
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-fixed-bisector-smoke-20260810/deleted-0/`.
+It is still neither UNSAT nor closure, and the subsequent strict-Boolean and
+full-DIMACS replay hardening makes its recorded manifest stale.
+
+That current-contract execution gate has now been rerun.  A fresh deleted-label
+`0` one-record canary passed exact-CNF, same-labeling, journal, source-manifest,
+and tool replay.  A fresh 202-record reproduction then recovered the same stage
+distribution and final formula SHA-256
+`4ebcd31a40312b632f4d1cd2048dfb0bca8ddad732eb227f6070316242afa9f4`
+under the hardened contract.  Its authenticated heterogeneous bank contains
+all 202 cuts, has SHA-256
+`9b994be7f466f1ec449ba029036a7cf792631d8f6d5dff4ad05e879b6b833aad`,
+and directly elaborates in Lean.  The fresh artifacts live under
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-bisector-repro-20260810/`.
+This clears the current-contract replay and typed-bank packaging gate for a
+bounded 12-shard wave; the reproduced shard remains `ITERATION_LIMIT`, so it
+does not clear the terminal UNSAT, all-shard coverage, or live-closure gates.
+
+The ensuing current-schema bounded wave ran 275 authenticated refinements in
+each of the twelve deleted-label shards under
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-wave-i275-20260810/`.
+All twelve shards again stopped at `ITERATION_LIMIT`; the 3,300 replayed
+records comprise 3,286 duplicate-center and 14 equilateral-bisector cuts, with
+no terminal CNF/proof or UNSAT shard.  Exact-clause deduplication leaves 441
+portable cuts: 437 duplicate-center and four equilateral-bisector records.  The
+strict shared-bank artifact is
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-shared-bank-v2-i275-20260810.json`;
+its file SHA-256 is
+`cf38e9e1bba56a4772b67de70404c2c7b87cb4f4b28923b7037bffce1427d698`,
+its document SHA-256 is
+`560765255fd5c52d552d84e5bf3ee108d7f50d27dc5c81913cfdeb93f5a9b4d6`,
+and its ordered clause-list SHA-256 is
+`904c5cf0bb4f38e97a04a34d49f8241fa6b2509c77951f5f7b2618fc7e5fccc2`.
+The v2 loader preserves all 3,300 source occurrences, authenticates the twelve
+source-run contracts, and recompiles every certificate to the same clause
+against every deleted-label target.  This is a reusable finite bootstrap bank,
+not terminal evidence, a universal producer, or a live closure.
+
+That successor checkpoint is now complete.  The schema-v3 runner binds the
+frozen bank into the effective CNF, run summary, and each subsequent journal.
+The fresh wave under
+`scratch/rigid221-sourceheavy-anchor/five-omission-shared-v3-wave-i275-20260810/`
+again ran 275 local refinements in each of twelve deleted-label shards.  All
+twelve runs ended `ITERATION_LIMIT`, with no terminal proof.  The local
+sequence is identical at the clause, stage, and certificate levels across all
+twelve shards: 259 duplicate-center, 14 equilateral-bisector, and two equal-K4
+cuts per shard, or 3,108/168/24 records in aggregate.  The full journal records
+are deliberately not claimed identical because their shard provenance differs.
+
+The fail-closed layered successor is
+`scratch/rigid221-sourceheavy-anchor/five-omission-v2-plus-v3-i275-successor-v1-20260810.json`.
+It contains 441 authenticated bootstrap records and 275 distinct local records,
+with zero clause overlap, and exposes their 716-clause union only as a derived
+projection.  Its artifact SHA-256 is
+`238155f0f5ba5ae7cb98567566b3d5fb7c1a0ab0c9e93f51b997998288c3ad63`,
+its document SHA-256 is
+`7385bd97ffc28f0896aa00da09551faf30b44e2b4de862127c571ece4d629cf9`,
+and its derived clause-list SHA-256 is
+`30f774f47855ac4e26a8e868276366363bf389ceb2fd851d791041aa53697775`.
+The loader independently replays both layers against all twelve target shards.
+
+The typed exporter now consumes this successor artifact directly.  The complete
+716-cut generated bank contains 696 duplicate-center, 18
+equilateral-bisector, and two equal-K4 cuts; it proves every typed obstruction,
+exact learned-clause identity, and frozen-candidate encodability.  The generated
+source SHA-256 is
+`7312bec9304ca8accff6451237338d3b87943e3a908ce964a5d9f7de3fdf8510`.
+Targeted direct Lean elaboration passes.  This typed validity result still does
+not supply terminal UNSAT, exhaustive coverage, a universal lift, or a live
+closure.
+
+The mandatory post-wave theorem-bank search found no source-clean theorem that
+uniformly constructs one of these duplicate-center nogoods from the source-heavy
+pentagon traces.  The first concrete theorem-discovery target is a
+`PositiveRowsMatch` proof for the stored record44 pattern (support triple
+`{2,3,11}`), followed by a uniform statement that some checked bank member
+positively matches the source labeling.  This theorem route and the terminal
+finite-coverage route are complementary; neither has yet discharged a live
+leaf.
+
+The mandatory search was repeated over the 275 distinct v3 local cuts.  All
+cuts instantiate the existing duplicate-center, equilateral-bisector, or
+equal-K4 obstruction families.  No source-clean cross-center theorem was found
+that forces one of those patterns from an arbitrary live Rigid221 packet, and
+the cuts do not produce the missing cross-center incidence facts required by
+the current residual leaves.  Thus the v3 wave added a stronger finite bank but
+no new universal producer or live closure.  Another wave using only these same
+three predicates is not the next theorem-discovery target.
+
+The corresponding post-wave theorem audit found no unconditional theorem from
+`FrozenFiveOmissionBoundary` alone to `PositiveRowsMatch` or
+`MetricCoreAlternative`; that is expected and is not the terminal-bank route's
+missing premise.  For a **falsified learned clause**, the existing
+`DuplicateCenterNogood.positivelyMatches_of_learnedClause_false` theorem already
+derives the selected-row facts from `FrozenSafeCubeOK` and the clause's frozen
+candidate encoding.  The generic duplicate-center checker then supplies the
+geometric contradiction (equivalently, two distinct selected rows cannot share
+three labels; see `labeledRowPattern_inter_card_le_two`).  Consequently a
+separate source theorem identifying every mined row in advance is unnecessary
+for the duplicate-center cuts in terminal coverage: complete-formula UNSAT
+forces some learned clause to be falsified by the source assignment.  This
+conclusion does not promote other detector families; each such stage still
+needs its own row-uniform typed source core.
+
+The exact Lean ingress and conditional consumer are now implemented and green
+under targeted elaboration.  `ExactTwelveRigid221FiveOmissionCnf.lean` mirrors
+the Python allocation and exact 405,266-clause common formula;
+`ExactTwelveRigid221FiveOmissionFormulaSat.lean` proves that every
+`FrozenSafeCubeOK` row with a `FrozenFiveOmissionBoundary` source witness
+satisfies the common formula and its deleted-label shard; and
+`ExactTwelveRigid221FiveOmissionTerminalBankConsumer.lean` consumes a
+heterogeneous typed bank of source-proved positive-row cuts together with a
+`DimacsUnsatisfiable` proof.  Duplicate-center cuts use the existing typed
+constructor.  Equilateral-bisector and equal-K4 cuts now have their own generic
+row-uniform certificate constructors as well, so the stored equality paths are
+replayed from arbitrary positive realizations of each cut's complete selected
+rows rather than assumed from one decoded SAT assignment.
+The transitive axiom audit found no `sorryAx`; the executable selector and CNF
+anchors use the governed `native_decide` boundary (`Lean.ofReduceBool` and
+`Lean.trustCompiler`) in addition to standard Lean axioms.
+
+This exact-12 route directly targets only the two exact-12 residual children,
+`...physicalRadius_commonDeletion_missingIncidence` and
+`...physicalRadius_nextRowOnlyHit`.  The same anchor has two additional
+cardinality-at-least-13 residual children,
+`...uDeletion_fixedPhysicalPair_missingIncidence` and
+`...threeCenterDeletion_xv_missingIncidence`; exact-12 terminal evidence would
+not consume either of them.  A fresh mandatory theorem-bank search found no
+existing source-clean shortcut from these four residual interfaces to a
+checked terminal.
+
+The remaining exact-12 promotion gap is fresh terminal evidence and its final
+packaging:
+computation must reach a terminal byte-identical DRAT-verified UNSAT formula,
+postprocess it to the checked compact-RUP/`DimacsUnsatisfiable` boundary, and
+package every learned record in the terminal bank as the corresponding typed
+source-order nogood under one unchanged current contract.  The typed
+heterogeneous bank generator now packages the complete 716-cut successor as
+conditional cut validity; it does not supply the absent terminal proof or
+all-shard coverage.  Until those artifacts exist, the historical waves, the
+new schema-v3 wave, and the 716-cut successor remain finite theorem-mining and
+regression evidence, not a producer, coverage theorem, or live closure.
+
+The next missing object is therefore split in two at both theorem and
+promotion boundaries.  For theorem discovery, mine a source theorem or a new
+consumer for the **disjunctive** missing-incidence patterns rather than one
+arbitrarily chosen bit, and audit the next-row-only-hit leaf independently.
+For promotion, preserve the checked base extraction/label transport and add
+each stronger `blocker`/`choice`, source-role, row-trace, and deletion-role
+predicate behind an explicit new schema with its own source theorem.  The historical
+500-model run is only the canonical `u`/`q` slice, and the later v7 run on that
+same slice stopped at its iteration limit rather than terminal `UNSAT`.
+Until CNF semantics and exhaustive finite coverage are proved, even a future
+terminal finite `UNSAT` would not close the common-deletion leaf, the exact-12
+parent, or the universal parent.
+
+Separately, when a cardinality-at-least-13 encoder is introduced, the fixed
+`u`-deletion leaf should precede the arbitrary-source `xv` leaf: its sources
+are canonically `xu` and `jointDeletion.deleted`, and its checked consumer has
+one explicit five-incidence antecedent.  That campaign needs a new
+cardinality-sound ingress; exact-12 journals cannot be reused as evidence for
+it.
+
+#### Unreachable or intentionally parked placeholders
+
+These are included so the inventory is complete, but they do not currently
+block `Problem97.erdos97_rhs` because they have no publish-spine path:
+
+* `Problem97.U1LargeCapRouteBTail.DoubleApexOffSurplusSharedRadiusPair`
+  (`lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2446`), with a local
+  U1 consumer but no current target reachability (one body placeholder).  It
+  has no computational closure route recorded.
+* `oppCap2_endpointEscape_false` and
+  `surplusEscape_pinnedFamily_sep_false` in
+  `attic/U2OppCap2Escape.lean` (two inline body placeholders); both have local
+  attic consumers but the attic module is not imported.  No computational
+  closure route is recorded.
+* `Problem97.CPackageBankFidelity.fidelity_c1`,
+  `Problem97.CPackageBankFidelity.fidelity_c2`, and
+  `Problem97.EPackageBankFidelity.fidelity_e1` in the two
+  `lean/scratch/*/FidelityCheck.lean` files (three body placeholders).  They
+  are explicitly parked fidelity checks, not production obligations; their
+  banked source-clean companions do not close the live leaves.
+* `comparator/Challenge.lean` contains 30 intentional challenge stubs.  They
+  are discharged by `comparator/Solution.lean` and are not a production
+  target.  Root `scratch/` also contains stale exploratory placeholders in
+  `live-bank-match/routeBTail_HEAD.lean` (50 body placeholders),
+  `p1b-fidelity-audit/{baseline,candidate}.lean` (50 and 56),
+  `f3-anchor-slice.lean` (2), `current-freshthird-anchor-slice.lean` (2),
+  `atail-arm1/UniqueArmReduction.lean` (2), and
+  `atail-arm2/SI1CardFiveCollisionResidual.lean` (1); these 163 body-level
+  occurrences are a hygiene inventory, not 163 publish obligations.  They
+  must remain marked `PARKED-SPEC` (or be removed/wired deliberately) and must
+  not be counted as closure progress.
+
+The source scan also finds prose mentions of `sorry` and generated/commented
+examples in other Lean files.  They are not declaration bodies and are omitted
+from the recorded inventory above.  Do not edit the generated
+`docs/live-blueprint.md` by hand; regenerate it only after the source/build
+state is reproducible.
 
 Cardinality scopes must not be conflated.  The all-large tri-apex parent has
 cap floor `(6,6,6)` and therefore carrier floor `|A| ≥ 15`; its first
@@ -109,7 +2217,7 @@ tri-apex wrappers, and finally
 
 Do not make an exact-card-12 or exact-card-13 census the next production
 milestone.  Cards 11–13 remain regression/fallback evidence only.  A landing
-on this route counts only when all four E1 terminal leaves are proved and the existing
+on this route counts only when all eight E1 terminal leaves are proved and the existing
 adapter/coordinator chain passes the focused Lake build plus refreshed
 proof-blueprint reference and transitive-axiom checks; a source-clean wrapper
 alone is not closure.  The D-R two-radius and D-E unique-arm residuals remain
@@ -239,7 +2347,8 @@ fallback after the two cap-local branches have been exploited.
 #### A = X shared-blocker checkpoint (2026-08-02)
 
 The shared-blocker theorem bank has four further proved declarations in the
-current `ATail/FrontierLiveClosure.lean` block around lines 7736--7950:
+current `ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean`
+block starting at line 1480:
 `endpointFresh_criticalShell_inter_frontierRadiusClass_eq_pair_of_sharedBlocker`,
 `endpointFresh_sharedBlocker_frontierRadius_fourth_packet`, and the left- and
 right-adjacent-cap singleton-intersection theorems.  Together they lift the
@@ -310,6 +2419,31 @@ combines that adapter with global minimality and the exact-six theorem.  Thus
 **every** simultaneous choice of rows at the six seed centers has an escaping
 chosen row.  Focused `lean_verify` checks report only `propext`,
 `Classical.choice`, and `Quot.sound`; neither theorem adds an obligation.
+
+The quantifier reduction has now also been banked for every nonempty proper
+carrier subset, not only this endpoint seed.
+`exists_center_all_selectedFourClass_escape_of_proper_subset` extracts one
+subset center at which **every** selected four-class escapes, and
+`exists_center_selectedClass_inter_card_le_three_of_proper_subset` proves the
+equivalent encoder-facing statement that every positive-radius full
+`SelectedClass` at that center meets the subset in at most three points.  The
+endpoint declarations
+`endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker`
+and
+`endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker`
+are specializations to the proved exact six-point seed.  Focused
+`lean_verify` checks for the two general declarations report only `propext`,
+`Classical.choice`, and `Quot.sound`.
+The endpoint bank further proves
+`endpointFresh_exists_seedCenter_ne_firstApex_ne_sharedBlocker_selectedClass_seed_card_le_three`:
+the pinned center cannot be the first apex or the common blocker, because each
+of those centers already has an exposed four-point positive shell inside the
+seed.  This removes two center roles but does not identify the pinned center
+with any of the six seed labels or place it in an adjacent cap.
+This replaces the raw six-center simultaneous-row assignment by one pinned
+center with a full-multiplicity cap.  It is a measured producer and search
+constraint, not a contradiction: it still supplies no adjacent-cap role,
+two-hit overlap with `Q.row`, or cyclic placement for an escaping point.
 
 #### V33 endpoint shared-blocker selected-seed slice (2026-08-03)
 
@@ -403,13 +2537,23 @@ frontier remains unchanged. Full evidence is in
 The 2026-08-03 checkpoint builds the complete
 `Erdos9796Proof.P97.ATail.FrontierLiveClosure` target and repairs the stale
 constructor arities in the already-committed normalized fresh-third adapter.
-The proof-blueprint refresh reports 31 declarations with `sorry` in the
-project, 28 on the `Problem97.erdos97_rhs` spine, and zero off-spine.  At the
-chosen coordinator granularity,
-`false_of_retainedOmission_triApexAllLarge_core` still reaches the same eight
-terminal leaves described above.  Thus the coordinator-interface frontier and
-its immediate fan-out are unchanged by this selected-row adapter: it is a
-banked producer and quantifier correction, not a leaf closure or a new split.
+The latest cached proof-blueprint snapshot reported 31 indexed declarations
+with `sorry`: 28 on the `Problem97.erdos97_rhs` spine and three
+graph-unimported parked `FidelityCheck` declarations.  That dated snapshot is
+superseded by the 2026-08-08 refresh: 40 sorry-bearing declarations total,
+with 30 on-spine theorem sorries, seven off-spine theorem sorries, and three
+graph-unimported `FidelityCheck` declarations.  A source scan also finds
+the unreachable U1/attic declarations and the comparator/scratch placeholders
+listed in the recorded inventory above; they are not publish-spine
+obligations.  Because current Lean files were uncommitted after that build,
+the older paragraph is a dated reachability snapshot, not current-source
+validation.  The current refs check is clean at build `422328c8b6f2`; retain
+this paragraph only as historical provenance.  At the chosen coordinator
+granularity, `false_of_retainedOmission_triApexAllLarge_core` still reaches the
+same eight terminal leaves described above.  Thus the coordinator-interface
+frontier and its immediate fan-out are unchanged by this selected-row adapter:
+it is a banked producer and quantifier correction, not a leaf closure or a new
+split.
 
 The remaining query must be order-sensitive.  Merely producing an escaping
 row whose center lies in the adjacent cap containing `J` and whose support has
@@ -423,6 +2567,40 @@ put both common points outside the chosen adjacent cap, which is consumed by
 `selectedFourClass_outside_overlap_card_le_one`.  Producing either predicate
 is still conjectural.
 
+#### V36--V37 terminal Boolean diagnosis (2026-08-03)
+
+The bounded v36/v37 pilots disprove the sufficiency of the weaker proposed
+successor. V36 remained 12/12 SAT after global selected-row alternation. V37
+remained 12/12 SAT after additionally forcing a branch-localized escaping row
+with two `Q.row` hits and imposing the banked exact adjacent-cap singleton
+theorem. The forced pair can split across the cap boundary.
+
+The post-v37 theorem-bank audit nevertheless gives a strict localizer.  The
+carrier-level theorem
+`SelectedFourClass.exact_overlap_of_cap_singleton` is now banked in
+`P97/U1CarrierInjection.lean`: the two-circle overlap bound, an exact singleton
+cap trace, a common point, and overlap cardinality at least two force the
+overlap to be exactly `{J, x_out}`, with the outside overlap exactly
+`{x_out}`.  The later `selectedFourClass_outside_overlap_card_le_one` theorem
+is not needed for this deduction.  This is a proved producer, not a terminal;
+the live retained-omission packet still has to produce the two selected full
+classes and the two-hit premise, and no banked theorem excludes the resulting
+mixed placement.
+
+The bounded symmetry-orbit census described next is complete.  Do not resume
+aggregate metric CEGAR unless a new endpoint-specific theorem excludes one of
+its surviving placements or produces a cyclic signature consumed by an
+existing terminal.
+
+That bounded census is now complete. Of the six oriented cyclic-order classes
+for `(first apex, branch center, J, x_out)`, the shared-pair separation theorem
+eliminates four and leaves exactly the two alternating classes
+`A,J,B,x_out` and `A,x_out,B,J`. Neither surviving class matches an existing
+Kalmanson terminal. This is a finite diagnosis, not a Euclidean closure: the
+next mathematical target must use endpoint/branch-specific packet data to
+contradict those two alternating mixed placements. The existing aggregate
+selected-row contract is exhausted.
+
 The quantifier polarity remains load-bearing.  The finite counterexample query
 is the base model together with valid selected rows at all six seed centers,
 existence of an escaping chosen row, and `Esc(c) -> not Good(c, row_c)` for
@@ -430,6 +2608,25 @@ every seed center.  Authenticated UNSAT would then prove that every
 selected-row choice pattern has a good escaping row in the frozen exact-15
 relaxation.  A single existentially chosen row does not establish that
 statement.
+
+#### V38 pinned physical-multiplicity canary (2026-08-03)
+
+V38 encoded the new pinned-center theorem in the full metric model, not in the
+Boolean relaxation.  It adds an exact-one selector over the fifteen carrier
+labels and 210 guarded representative-shell constraints saying that every
+positive physical shell at the selected seed center meets the exact-six seed
+in at most three points.  The full formula itself already entails that the pin
+is neither the first apex nor the shared blocker; focused regression checks
+prove both contrary role assumptions `UNSAT`, so no ad hoc role-exclusion
+clauses were added.
+
+The only metric run was the canonical `fresh_DDD_k0_d2_f1` canary with a
+20-second solver timeout.  It returned `UNKNOWN` (`canceled`) after 28.647
+seconds total wall time.  Since v38 inherits v37's hypothetical forced
+branch-two-hit producer, even a future `UNSAT` here would be conditional.  No
+broad round is justified, no retained-core leaf closes, and the eight-leaf
+coordinator frontier is unchanged.  The exact bounded evidence is in
+`scratch/retained-omission-e1/round5-general-cegar/V38-PINNED-SEED-CENTER-MULTIPLICITY-CANARY.md`.
 
 #### Endpoint local-geometry retirement and global-coupling retarget (2026-08-04)
 
@@ -447,13 +2644,17 @@ failures.  The constructive artifacts are
 
 The source-faithful packet boundary is now corrected.  The existing theorem
 `ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell`
-identifies the delete-M packet's `B2` support with `Sigma_A` and the delete-K
-packet's `B2` support with `Sigma_B`.  Thus only the two O-centered `B1`
-supports remain anonymous; each has an overlap of at most two with its
-corresponding exact selected shell.  The earlier diagnostic wording that
-treated both erased rows as fully decoupled is superseded.  Any new endpoint
-schema must encode these exact `B2` identifications and overlap caps, but must
-not promote either O-row to a full physical circle.
+identifies the delete-M packet's `B2` support with `Sigma_A` and the
+delete-K packet's `B2` support with `Sigma_B`.  Thus only the two O-centered
+`B1` supports remain anonymous in the general-cardinality interface; each has
+an overlap of at most two with its corresponding exact selected shell.  The
+exact-15 D44 producer now identifies those rows in its narrower branch, but
+that chain requires `|A| = 15` and currently ends in a theorem with no live
+consumer.  It therefore does not repair the general interface or close an
+endpoint leaf.  The earlier diagnostic wording that treated both erased rows
+as fully decoupled is superseded.  Any new endpoint schema must encode these
+exact `B2` identifications and overlap caps, but must not promote either O-row
+to a full physical circle.
 
 The exact QF_NRA audit checked all 120 insertions of `M,B` into the four
 residual orders: 22 exact-rational named-local SAT witnesses, 82
@@ -467,7 +2668,12 @@ global K4 exclusion.  The detailed report is
 
 The next producer target is therefore global full-carrier/deletion-row
 coupling, beginning with the proved `B2 = Sigma_A/Sigma_B` identifications and
-the two overlap-at-most-two constraints.  Do not rerun the retired named-role
+the two overlap-at-most-two constraints.  It must be selected backward from a
+kernel-complete contradiction consumer: record the live source theorem, the
+exact produced proposition, the adapter, and the consumer before promoting it
+as a closure target.  The exact-15 D44 row-identification chain and the
+five-role Kalmanson placement bank are presently disconnected producer and
+consumer fragments, respectively.  Do not rerun the retired named-role
 relaxation or treat its SAT witnesses as global models; do not treat
 solver-trusted Kalmanson UNSAT or QF_NRA `UNKNOWN` as independently checked
 closure.
@@ -554,9 +2760,258 @@ for this interface.  Therefore the computational work order is: prioritize
 handling the `m = 2` stratum (by a uniform producer, a geometric impossibility,
 or a profile-independent terminal); separately audit/prove a full
 index-transport producer if the growing-slack largest-cap route is desired;
-and do not add an `n`-specific production enumerator.  The live target
-`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
-`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+and do not add an `n`-specific production enumerator.  The normalized-remaining
+route is now recorded as off-spine compatibility code.  The current
+`OPEN / ON-SPINE` FreshThird ingress is
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`; common-radius,
+first/second non-hit, and distinct-cap residual routes do not change that live
+spine status.
+
+#### Source-clean producer boundary (2026-08-05)
+
+The earlier three-hit/collision-row theorem was not a producer: its residual
+arms immediately called the FreshThird contradiction (or another `sorry`).
+That circular path has now been split at a genuine source-clean boundary,
+`Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.collisionRows_sourceCleanMultiplicityIngress`.
+For the two retained collision rows and the tri-apex packet, it proves
+
+```
+CollisionCrossHit P Pρ ∨
+  (GeometricMultiplicityResidual P Pρ ∧ TwoCollisionGlobalSplit P Pρ)
+```
+
+from the blocker-fiber multiplicity theorem and the independent cap-eight or
+cross-blocker split.  A focused Lean 4.27 build and `#print axioms` audit pass;
+the producer has only `propext`, `Classical.choice`, and `Quot.sound`, with no
+`sorryAx`.  It is now wired into the existing three-hit path.  This is ingress
+progress, not a closed leaf: the first missing consumer is a theorem that
+eliminates the geometric residual together with `TwoCollisionGlobalSplit`,
+covering the normalized first/second non-hit and distinct-cap arms.  No further
+search for a pre-existing producer is warranted; subsequent computation must
+target that explicit residual predicate and provide a stated general-cardinality
+lift before any certificate can be promoted.
+
+#### Residual producer construction contract (2026-08-05)
+
+The next producer is now specified as a finite contract rather than an open
+theorem-bank search.  It consumes
+`TwoCapSourceThirdCanonicalRowSurface`, `FreshThirdBlockerFiber`, and
+`FreshThirdNormalizedResidualRemainingCase` and must return a source-clean
+disjunction that either produces a `FreshThirdCrossRowHit`, exposes the
+outside-overlap blocker/cap contradiction, or transports the packet to the
+existing common-radius/apex-cap terminal.  The exact contract and promotion
+gate are recorded in
+`scratch/freshthird-residual-producer-contract_20260805.md`.
+
+The implementation order is fixed: first normalize deletion-survival and
+row-omission into explicit support facts; then test only omission-to-other-row,
+both-Q-sources-outside-one-cap, and common-radius transport clauses in the
+bounded exact-rational model; finally prove and wire the weakest surviving
+clause in the universal Lean theorem.  SAT/UNSAT/UNKNOWN at fixed `n` remains
+diagnostic until a general-cardinality lift is present.
+
+#### Concrete producer construction (2026-08-05)
+
+The search phase did not produce a universal cap-wide cut: the exact-rational
+`n = 17` probe has SAT witnesses for both proposed non-hit implications.  The
+producer is therefore being built from the source packets already present on
+the spine.  The first source-clean component is
+`freshThirdCapSourceNonHit_center_ne_of_sourceRowOmission`, which converts a
+surviving omitted endpoint into separation of the source-row center from the
+fresh blocker center.  On the retained-radii arm,
+`exists_freshThird_retained_minimalDeletionCoreProducer` now packages the two
+omitted endpoints, source-row survival, and a first-apex
+`MinimalDeletionCore` in one universal producer.
+
+These are ingress producers, not closure: the remaining bridge is one
+cap-wide incidence/order theorem consuming the separation or minimal-core
+packet and producing either a cross-row hit, the outside-overlap contradiction,
+or the common-radius packet.  No new fixed-`n` search is promoted until that
+consumer and its arbitrary-cardinality lift are explicit.
+
+The two branches were exposed through one source-level contract,
+`freshThird_canonical_consumerPacket`.  It returns either
+`FreshThirdRetainedDeletionCorePacket` (the two omitted endpoints, their
+double-deletion survival, and a first-apex `MinimalDeletionCore`) or a
+`CommonRadiusTwoCapSourceThirdCanonicalRowSurface` (a non-retained radius with
+two cap points and its full canonical-row surface).  The historical coordinator
+used the dichotomy to dispatch to the retained-surface or common-radius route.
+Those are compatibility routes, not the current publish spine.  The
+common-radius packet is consumed by its existing surface theorem; the retained
+packet is currently only a branch witness because that surface theorem has no
+minimal-core argument.  The retained packet remains a route-local mathematical
+gap: no additional search is needed to obtain it; the next theorem would have
+to turn that packet into a cap-wide incidence/order contradiction or an
+existing terminal.
+
+#### No-search construction gate (2026-08-05, updated)
+
+The producer is now a Lean construction, not a theorem-bank lookup.  The
+exceptional canonical-source/different-fresh-cap arm supplies
+`freshThird_canonicalDifferentCap_endpointPlacement`: a source-clean,
+cardinality-free packet containing one common boundary indexing, the direct or
+reflected cap-block order, the strict placement of the two blocker-fiber
+endpoints relative to the two shell centers, and their membership in both
+four-point rows.  The older
+`freshThird_canonicalSource_differentFreshCap_sharedPairCyclicPacket` remains
+the lower-level alternation producer; the new theorem is the finite placement
+adapter that a consumer can inspect.
+
+This is deliberately not closure.  The packet has two shared rows and is
+geometrically realizable.  The next construction step is a third-incidence
+producer with this exact contract:
+
+1. retain the endpoint packet and the position of the actual canonical source
+   point in the `oppIndex1` block, rather than only the position of its shell
+   center; the source-clean companion
+   `freshThird_canonicalDifferentCap_sourceSupportPlacement` now provides this
+   placement on the same boundary;
+2. combine that placement with one additional source-clean shell/support
+   equality, yielding either a strict four-/five-/six-point Kalmanson pattern,
+   an outside-overlap contradiction, or the existing common-radius packet;
+3. consume that result in the compatibility-route FreshThird residual and prove the
+   arbitrary-cardinality lift before any finite certificate is a promotion
+   candidate.
+
+Thus the immediate work is a bounded source-level bridge from endpoint
+placement to a third shell/incidence fact.  A fixed-`n` checker is postponed
+until this bridge is present; it may then test the finite placement predicate,
+but an UNSAT result still needs the universal Lean lift.
+
+#### Retained producer construction sheet (2026-08-05)
+
+The construction is now recorded in
+`scratch/freshthird-retained-producer-construction-20260805.md`.  This closes
+the theorem-search loop: the retained packet is an existing producer, while
+the missing theorem is a consumer-data producer built from that packet and
+`FreshThirdNormalizedResidualRemainingCase`.  Its first two arms must return
+either a contradictory cross-row hit or the existing cap-wide alignment
+packet; its equal-center arm must return a third-incidence packet or the full
+metric/order data for an existing Kalmanson terminal.  An alternation flag,
+two-row boundary placement, bounded `n`, or a wrapper around the target is not
+an acceptable substitute.  The next Lean edit is therefore one global
+omission-transfer/third-incidence lemma plus direct target wiring, after the
+current FrontierLiveClosure sharding freeze is lifted.
+
+#### Direct consumer audit (2026-08-05)
+
+The anchored target was audited against every current source-clean FreshThird
+consumer in `TwoSourceFreshThirdFiber.lean`, `TwoSourceFreshThirdResidual.lean`,
+`TwoSourceCanonicalSurface.lean`, `TwoSourceClosure.lean`, and
+`TwoSourceRetainedMinimalCore.lean`.  The audit is recorded in
+`scratch/freshthird_consumer_audit_2026-08-05.md` and found **no existing
+consumer whose ingress is implied by the full normalized-remaining leaf**.
+
+The first- and second-non-hit branches provide only `sameBlocker` or
+`sourceRowOmission`; they do not provide cap-wide alignment, both endpoints
+outside one cap, or reverse row membership.  The equal-center branch supplies
+an exact four-point row and omission packets.  Its canonical `oppIndex1` arm
+is already consumed, while the remaining arms are exactly:
+
+* two `distinctBlockersDifferentCaps` interactions; or
+* two `sameCapWithInternalFiberSource` interactions at a noncanonical cap.
+
+Cap-interior uniqueness does not eliminate either shape.  In particular, the
+current common-radius theorem needs a stronger radius surface, and the
+existing different-cap boundary packets have no order-sensitive contradiction
+consumer.  The residual coordinator's recursive call to the anchor is
+therefore intentional bookkeeping, not closure.
+
+The next admissible production target is one source-clean theorem proving at
+least one of: (i) cap-wide alignment (or an equivalent contradiction) for a
+non-hit branch; (ii) common-radius plus reverse-membership ingress for an
+existing terminal; or (iii) an order-sensitive consumer for the two
+noncanonical equal-center shapes.  A fixed-cardinality UNSAT result, wrapper,
+or stronger `sorry` is not promotion evidence without that universal ingress
+and its arbitrary-cardinality lift.
+
+#### Import-reachability checkpoint (2026-08-06)
+
+The equal-center exact-row/support-intersection packet and its endpoint
+omission producers have now been checked against the complete current import
+graph and indexed Lean corpus.  No hidden source-clean consumer accepts the
+packet with no-`(m,4,4)`/`IsM44`, Kalmanson, cyclic-order, or reverse-row
+membership data.  The Kalmanson declaration found downstream is attached to
+a different crossed-three-row leaf and is not import-reachable from this
+target without a cycle.
+
+This makes the next bridge concrete: prove one third cross-row incidence
+(the nearest existing five-ccw/two-selected-rows consumer), or prove a direct
+order/metric contradiction for the two noncanonical equal-center shapes.
+The first- and second-non-hit arms still require cap-wide alignment,
+common-radius plus reverse-membership ingress, or an equivalent direct
+contradiction.  No additional packet, fixed-cardinality certificate, or
+recursive wrapper counts as progress until it supplies that universal
+source-level bridge and its arbitrary-cardinality lift.
+
+#### Exact equality-core CEGAR checkpoint (2026-08-06)
+
+The first source-faithful `n = 17`, first-non-hit/aligned probe has now been
+refined against the generic checked equality-core bank.  The trust correction
+is important: a `SelectedFourClass` supplies four equal-radius members, but it
+is not globally exact merely because its support has cardinality four.  An
+off-circle exclusion is sound only when that center is the actual blocker of
+some source, where `critical_support_exact` identifies the selected support
+with the full radius class.  The corrected CEGAR lane therefore uses every
+selected row for equality closure, but guards exact-off-circle cuts by actual
+blocker existence.
+
+The orientation-complete run in
+`scratch/retained-omission-e1/round5-general-cegar/`
+reached a core-free Boolean survivor after 271 checked-kernel cuts:
+
+- 18 blocker-guarded exact-off-circle cuts;
+- 171 explicit radius-partition closure cuts;
+- 38 duplicate-center cuts;
+- 39 perpendicular-bisector cuts; and
+- 5 ordered convex-five-point cuts, with both cyclic orientations covered.
+
+This is theorem mining, not closure.  The resulting survivor has no instance
+of those five kernel families.  Its exact metric screen timed out in all three
+stages (`exact-metric-relaxation`, `full-convex`, and
+`convex-only-relaxation`), so the metric verdict is `UNKNOWN`, not SAT or
+UNSAT.  The optimized ordered-core detector reproduces this checkpoint in
+about 135 seconds instead of roughly eleven minutes by testing cached equality
+components before reconstructing proof paths.
+
+That checkpoint did **not** audit the full imported theorem bank.  A subsequent
+source audit found nine further five-/six-role equality schemas, the four
+selected-row triangle schemas, and the complete four-case two-center bisector
+parity family.  A Lean 4.27 axiom audit of all 17 consumers under
+`scratch/retained-omission-e1/round5-general-cegar/` shows only `propext`,
+`Classical.choice`, and `Quot.sound`; no consumer depends on `sorryAx`.
+Consequently the earlier conclusion that the survivor already required a new
+fifth-center theorem was premature.
+
+The expanded equal-cross-row-center/aligned census is nevertheless still not
+a finite closure.  Eagerly compiling all 14,280 two-center parity instances
+and then learning 1,000 further cuts reached `CUT_LIMIT` after about 894
+seconds: 295 cuts were blocker-guarded exact-row clashes and 705 were instances
+of the single checked schema
+`false_of_five_ccw_three_shell_equalities_012_124_314`.  Batching that dominant
+schema is fidelity-preserving because the ingress already axiomatizes radius
+equality as an equivalence relation.  The batched rerun learned 2,000 cuts in
+357 solver checks (about 482 seconds), consisting of 183 blocker-exact cuts
+and 1,817 instances of that same Kalmanson theorem, but again ended at
+`CUT_LIMIT`.  These are concentration and performance results, not UNSAT.
+
+The corresponding live-source audit now fixes the producer contract more
+sharply.  In the equal-hit arm the two selected rows give distinct centers
+`c,f`, shared endpoints `q₁,q₂`, and the two equalities
+`dist c q₁ = dist c q₂` and `dist f q₁ = dist f q₂`.  The checked
+`selectedFourClass_shared_pair_separated` theorem forces the four roles to
+alternate, so every nonalternating two-center parity terminal is already
+excluded and cannot be used as a productive case split.  The existing
+`FreshThirdExceptionalBoundaryMetricPacket` retains this alternating order,
+both shared-row memberships, and the actual canonical source point on one
+boundary indexing.  What is missing in the equal arm is one source-clean
+**third-incidence bridge** from that packet to a named five-/six-role
+Kalmanson schema (or to an existing outside-overlap/common-radius terminal).
+For the full remaining-case sum, a second producer must transfer each
+`firstNonHit`/`secondNonHit` source-row omission to either a contradictory
+cross-row hit or the existing cap-wide-alignment terminal.  Fixed `n = 17`
+search remains diagnostic until those uniform producers are proved; no
+bounded UNSAT by itself closes the universal FreshThird leaf.
 
 ## 2. Ground rules (binding)
 
@@ -595,8 +3050,9 @@ These results shape where compute is spent; do not re-run them.
   Consequence: no leaf closes on local circle geometry alone; the
   contradiction must use the incidence/counting layer or global structure
   (cap growth, cover bounds, minimality). The banked B1 normal form
-  (`lean/scratch/b-family-bank/`) proves the same thing on the Lean side:
-  B1's local bisector geometry is exactly saturated.
+  (`lean/scratch/b-family-bank/`) and its production declaration in
+  `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean` prove the same
+  thing on the Lean side: B1's local bisector geometry is exactly saturated.
 - **F3's real core is Γ + (F3a) + (F3b)** — (F3c) is redundant
   (`lean/scratch/f3c-redundancy-bank/`), and the sharpened form
   `f3c_joint_sharp` (two simultaneous five-center survivals) is free
@@ -732,13 +3188,17 @@ These results shape where compute is spent; do not re-run them.
   `U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton`, so
   materializing the six deleted-carrier four-rows is mechanical and is not the
   missing mathematics.  The closest checked terminal is
-  `U3FixedTripleAuditFrame.false_of_rowwiseConfinedQDeletedClasses`; it still
-  needs one fixed U3 audit frame and confinement of all six rows to a common
-  eight-point `U5BoundedSupport`.  No theorem-bank declaration derives that
-  confinement from deletion survival alone.  This identifies the first
-  missing adapter for that historical route, but the route is no longer a
-  separate obligation because its cap-source witness already feeds the common
-  surface.
+  `U3FixedTripleAuditFrame.false_of_rowwiseConfinedQDeletedClasses`.
+  `SixSurvivorExactRowsBoundary.exists_fixedTripleAuditFrame` now supplies that
+  frame, including its `U5DangerousTriple`, under `9 < D.A.card`; the live
+  `17 ≤ D.A.card` contract discharges this premise.  The remaining source
+  theorem is rowwise confinement of every audit-center q-deleted class inside
+  `U5BoundedSupport`, or a contradiction from
+  `U3FixedTripleAuditFrame.exists_qDeleted_escape_or_criticalFourShell`.  No
+  such theorem currently follows from deletion survival alone.  This
+  identifies the exact missing producer for that historical route, but the
+  route is no longer a separate obligation because its cap-source witness
+  already feeds the common surface.
 - **Cross-blocker equality needs a global bridge, not a local alias
   contradiction.**  A source audit of all four
   `CrossBlockerCoincidence` aliases shows that each alias supplies at most one
@@ -894,28 +3354,125 @@ promotion still requires a differential corpus, authenticated replay, and a
 fresh terminal proof; no timing result or portfolio proposal is a closure
 result.
 
+### Producer-quality CEGAR acceptance gate (2026-08-05)
+
+The useful-data question is now an explicit per-iteration gate. Every
+accepted CEGAR record must carry:
+
+* the live leaf identifier and a hash of its ingress hypotheses;
+* the finite schema, cardinality scope, and source theorem that justify the
+  encoded variables;
+* the exact certificate/replay hashes and the learned clause;
+* the named Lean producer, lift, and consumer that the record is intended to
+  feed; and
+* a classification of the result as LOCAL_CERTIFICATE,
+  UNIFORM_PRODUCER, or LIFTED_CONSUMER.
+
+LOCAL_CERTIFICATE records may improve the bank and remain regression data,
+but do not count as universal progress. A UNIFORM_PRODUCER must prove a
+source-level predicate from the live binders and be independent of the finite
+enumeration. A LIFTED_CONSUMER must additionally provide the
+general-cardinality/bounded-obstruction lift and land in a named terminal.
+The producer and consumer theorem names, together with a no-sorryAx axiom
+audit, must be present before a finite UNSAT is promoted.
+
+The scheduler should optimize for reusable source predicates rather than raw
+models blocked. A run therefore stops as a diagnostic when a fixed budget
+produces only local certificates, repeated clauses, or SAT models that do not
+exercise a missing ingress field. Its report must instead name the smallest
+missing field (for example B1's particular-source outsideFirstApexFiber or
+physical deletion-survival witness). This turns SAT and bounded survivors
+into actionable producer targets and prevents another large finite census from
+being mistaken for universal closure.
+
+The first enforcement layer is implemented in
+`census/p97_search/phase3_productivity.py`: newly emitted productivity records
+carry an authenticated `ingress_contract`.  A run that supplies no
+source-level contract is recorded honestly as `LOCAL_CERTIFICATE` with
+`promotion_eligible = false` and an explicit missing-field list.  The validator
+rejects `UNIFORM_PRODUCER` and `LIFTED_CONSUMER` records unless their live leaf,
+ingress hash, finite schema, cardinality scope, source theorem, producer,
+consumer, and (for the lifted class) lift theorem are all named.  Existing
+v1 journals remain readable; the stricter contract applies to new records and
+promotion tooling.
+
+The production driver now accepts an optional `ingress_contract` and threads it
+through `_commit_sat_classification` into the authenticated productivity
+record.  This makes the gate operational at the point where a lane produces
+data: a lane cannot claim producer evidence merely by writing a sidecar report.
+If the argument is omitted, the record remains an authenticated but explicitly
+non-promotable local certificate.  The integration test
+`test_ingress_contract_survives_authenticated_driver_record` checks that an
+explicit contract survives the JSONL append and hash chain unchanged.
+When a contract is declared, it is also bound into the run configuration;
+resume and shard-coverage replay therefore fail closed if the declaration is
+omitted or changed.
+
+The read-only miner now includes an `ingress` summary with counts by evidence
+class, live leaf, promotion eligibility, and missing contract field.  The
+driver also accepts `--ingress-contract PATH` (together with
+`--productivity-telemetry`) so a bounded lane can declare its named target in
+an authenticated JSON file.  This is an observability and targeting aid only:
+an explicit `LOCAL_CERTIFICATE` remains non-promotable, and no contract file
+can manufacture a source theorem, lift, or terminal consumer.
+For promoted contracts, the ingress-hypothesis pin is checked as a canonical
+64-character hexadecimal SHA-256 value rather than accepted as an arbitrary
+placeholder.
+
+A check of the three existing P10A sample journals
+(`scratch/p10a-gate-*/observed/productivity.jsonl`) confirms why this gate is
+needed: each contains one authenticated record, but all three classify as
+`LOCAL_CERTIFICATE`, have `live_leaf = UNDECLARED`, and have zero
+promotion-eligible records.  These artifacts are valid regression/telemetry
+data, not producer evidence; the next targeted lane must supply an explicit
+contract before its SAT output can answer a named universal-closure question.
+
+The first contract-bound diagnostic was run against the driver that actually
+emits these records, rather than attaching an E or B1 label to the wrong
+encoder.  The contract is
+`scratch/p10a-targeted-ingress-contract.json`, and the authenticated run is
+`scratch/p10a-targeted-run/`.  With no bootstrap bank, projected-static-v3,
+`max_new_raw = 1`, and a five-second solver budget, it reached a deliberate
+`CHECKPOINT`: one raw SAT assignment, one `learned-structural` record at
+`equality-duplicate-center`, no survivor, and no terminal DRAT proof.  The
+read-only miner reports one targeted `LOCAL_CERTIFICATE`, zero
+promotion-eligible records, and the missing fields
+`ingress_hypotheses_sha256`, `source_theorem`, `producer_theorem`,
+`lift_theorem`, and `consumer_theorem`.
+
+This is useful process evidence, not a closure result.  It confirms that the
+new gate captures the exact finite schema and exposes the missing universal
+bridge, while also confirming that this Phase-3 driver is not itself a B1/E
+frontier ingress.  The next producer run must use a driver whose finite schema
+is source-faithfully derived from the chosen B1 or E leaf, then replace the
+`NO_LEAN_LANDING:` local target with a real leaf and a hashed ingress theorem
+before any finite result can be considered for promotion.
+
 ## 5. Package work orders and smoke gates
 
 The current production handoff is the E1 core specified above.  The matrix
 below is the secondary computational/fallback order for the remaining
 packages; it must not be read as a new exact-cardinality search order.  It is
-ordered by fallback leverage (leaves closed or killed per verdict), with the shared
-base encoder built once and instantiated per family — A and C share blocker
-semantics, D/E share the residual frame.
+ordered by leverage (leaves narrowed per source-faithful result), with the
+shared base encoder built once and instantiated per family — A and C share
+blocker semantics, D/E share the residual frame.  A package verdict is not
+promotion evidence until its ingress, replay, consumer, and general-cardinality
+lift are all named.
 
 | Order | Pkg | CNF seed (from the family docs' combinatorial sub-constraints) | Smoke gate |
 |---|---|---|---|
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
-| 3 | E (1) | Four-workstream E1 pipeline: canonical exact-15 archetypes; general Lean soundness cuts (beginning with seven-source critical-shell mutual omission); finite Boolean exact-15 coverage; source-faithful bounded-obstruction or deletion/minimality lift to general cardinality. Preserve the cover bound, cap-sum identity, `n ≥ 15`, full unique-four shell semantics, directed-omission provenance, and E9 low-hit clauses. | Reproduce the kernel-checked low-hit arithmetic on a hand-built 15-point pattern; reject any exact-15 certificate lacking checked archetype coverage, and reject any claimed uniform closure lacking the general-cardinality lift. |
-| 4 | F-Γ (2) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence and the common cap-source surface together with the blocker-multiplicity residual. The former fresh-third, one-sided-deletion, and aligned/nonbisector branches are compatibility adapters | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the remaining leaves through geometric/global bridges, not a closed named universe |
+| 3 | E (8) | Four-workstream E1 pipeline for the eight named leaves in the recorded inventory: canonical exact-15 archetypes; general Lean soundness cuts (beginning with seven-source critical-shell mutual omission); finite Boolean exact-15 coverage; source-faithful bounded-obstruction or deletion/minimality lift to general cardinality. Preserve the cover bound, cap-sum identity, `n ≥ 15`, full unique-four shell semantics, directed-omission provenance, and E9 low-hit clauses. | Reproduce the kernel-checked low-hit arithmetic on a hand-built 15-point pattern; reject any exact-15 certificate lacking checked archetype coverage, and reject any claimed uniform closure lacking the general-cardinality lift. The four workstreams are routes, not four closed leaves. |
+| 4 | FreshThird/F-Γ (2 on-spine) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence and the common cap-source surface together with the blocker-multiplicity residual. The normalized-remaining, first-non-hit, and first-fiber branches are compatibility adapters | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the two on-spine leaves through geometric/global bridges, not a closed named universe |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
-| 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 leaf does not currently expose the bank's support equality, two cross-memberships, and exact two-point intersection prerequisites | Refute a third-bisector configuration; classify B1 as ingress-missing rather than importing unavailable bank consequences |
+| 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 normal form `b1_live_normalForm` now reconstructs support equality, both cross-memberships, and the exact two-point intersection from the leaf's own binders. The `B1-direct-shadow` is SAT at 162 variables/109 clauses; separate support-equality, cross-membership, and physical-exclusion pin runs are DRAT-verified UNSAT. | Treat B1 as ingress-corrected but still open: its remaining B1-gap needs a global shell/cap/no-`(m,4,4)` producer; do not label it `OMITTED_PREREQUISITE_INGRESS_MISSING` |
 
-Validation status 2026-07-28: A, C, E, D-R, D-E, and B encoders pass their
-smoke gates. F-Γ has no sound fixed-slot encoder; its separate unbounded
-counting audit is the applicable gate result.
+Validation status 2026-07-28 is historical: A, C, E, D-R, D-E, and B
+encoders passed their smoke gates. The current B1 result is the split
+diagnostic above, not a live-leaf closure. F-Γ has no sound fixed-slot
+encoder; its separate unbounded counting audit is the applicable gate result.
 Rationale for the fallback order: A-core is the largest single package lever
 (6 leaves close or die together on the package verdict before any leaf delta
 is touched); C amortizes A's encoder; the remaining packages are smaller or
@@ -967,6 +3524,35 @@ The earlier session bullets below preserve the completed computational
 triage.  The current execution handoff is the E1 core above, with the package
 matrix used only if that route needs a certified secondary consumer.
 
+### Revised execution order after the 2026-08-04 audit
+
+* **P0 — repair contracts before new production runs.** A-core's finite-domain
+  truncation is repaired by its `GE25` abstraction and regression gate. Audit
+  every other universal-package encoder for the same defect. Record the
+  five-part ingress contract in §0 before accepting a future `UNSAT` as a
+  candidate landing.
+* **P1-E — make the next E result a producer/consumer bridge.**  Factor the
+  left/right adjacent-cap mirror pair, consume the verified
+  `endpointFresh_exists_selectedRow_escape_twoShellSeed` producer, and prove a
+  universally quantified consumer-ready `Good` escaping-row theorem.  The
+  exact-15 search remains a coverage/regression tool until the
+  general-cardinality deletion or bounded-obstruction lift is proved.
+* **P1-F-Γ — run the long-lead producer lane in parallel.**  Target a uniform
+  common-first-apex-radius/reciprocal-C-row producer, a profile-independent
+  terminal, or a complete index-transport theorem for the hard-coded
+  `oppIndex1` packet.  Do not add another fixed-`n` FreshThird production
+  enumerator while the `m=2` stratum persists for every `n≥17`.
+* **P2-Rigid221 — aggregate the exact-four family.**  Search for one
+  generalized cap-growth/row-count theorem dominating the 13 leaves rather
+  than adding leaf-specific SAT clauses.  Every added clause must be justified
+  by that source theorem.
+* **P3-B1/D — consume corrected ingress and target the global gap.**
+  `b1_live_normalForm` supplies the support equality, cross-memberships, and
+  exact two-point intersection.  It does not provide the third bisector
+  carrier.  Target a source-faithful global shell/cap/no-`(m,4,4)` producer or
+  a closed MEC/minimality terminal before any new B1 computation.  D-E and
+  D-R should likewise share a producer before another package enumeration.
+
 - **Current handoff (2026-08-02)**: the broad
   `false_of_retainedOmission_triApexAllLarge_core` obligation and its
   reverse-hit/fresh and endpoint-critical-fiber children are checked
@@ -977,7 +3563,7 @@ matrix used only if that route needs a certified secondary consumer.
   generic child requires global cyclic-order coverage across all surviving
   placements.  Mine the complementary endpoint common-deletion branch, the
   three-distinct-blocker ordinal-cycle branch, and the paired-common-deletion
-  branch separately.  Keep all seven
+  branch separately.  Keep all eight
   wired through the existing all-large-cap
   coordinator.  A leaf counts as closed
   only after the focused Lake, proof-blueprint reference/spine, and
@@ -990,8 +3576,11 @@ matrix used only if that route needs a certified secondary consumer.
   Start the next producer from the source-faithful deletion boundary:
   `B2 = Sigma_A/Sigma_B`, the two O-centered `B1` supports, and their
   overlap-at-most-two constraints.  The target is a global full-carrier/K4
-  coupling; local SAT witnesses are not global models and solver outcomes are
-  not Lean closure.
+  coupling with an explicit adapter to an existing `False` consumer; a new
+  local placement assertion is not an admissible target because the
+  source-faithful named local packets have exact rational witnesses.  Local
+  SAT witnesses are not global models and solver outcomes are not Lean
+  closure.
 - **Session 1**: base incidence encoder + A-core instantiation + A smoke
   gate; A-core package verdict run. Deliverable: verdict or a concrete
   encoding blocker. DONE 2026-07-28: all gates pass; verdict = SAT on all
@@ -1012,12 +3601,15 @@ matrix used only if that route needs a certified secondary consumer.
 - **Session 2**: C, E, F-Γ instantiations + smoke gates + verdicts (encoder
   amortized); begin leaf-delta runs for whichever package returned UNSAT.
   C and E DONE 2026-07-28 (specs `d7fedf4e`, `75e9c6a0`; encoders
-  `6e2b82e5`, `ff02082b`): C-core SAT ×3 (base 920/19727, base+C1,
-  base+C2) with all gates + 8 orchestrator probes passing, BM6 ruled
-  not-carried (no (P2) analogue in the C doc — unsound to assert); E SAT
-  ×3 (551/18080) as its spec expected — the 15-point shadow satisfies
-  the counting core, G-SHADOW witness gate passes with a faithful
-  point-by-point mapping, five UNSAT probes DRAT-verified. F-Γ remains
+  `6e2b82e5`, `ff02082b`): C-core remains SAT ×3 after the 2026-08-04
+  GE25 universal-cardinality repair (base 928/21690, base+C1 938/21719,
+  base+C2 964/21797), with the overflow gate, all prior gates, and all 8
+  orchestrator probes passing; BM6 ruled not-carried (no (P2) analogue in
+  the C doc — unsound to assert); E remains SAT as its spec expected — the
+  15-point shadow satisfies the counting core, G-SHADOW witness gate passes
+  with a faithful point-by-point mapping. E's 2026-08-04 replay now uses
+  exact `0,...,24` plus `GE25` buckets (base 565/20160); all five probes
+  remain DRAT-verified and the new overflow gate passes. F-Γ remains
   FrontierLedger's lane. New third lane green-lit at design level: the
   P97-level bounded counterexample search (shell-hypergraph census,
   k-parameterized, banked theorems as pruning rules, census-554 per-cell
@@ -1025,8 +3617,13 @@ matrix used only if that route needs a certified secondary consumer.
   end-to-end positive control). Design doc next.
 - **Session 3**: D-R, D-E, B; full live-frontier triage matrix. DONE
   2026-07-28: D-R SAT ×3, D-E SAT ×4, B2/B3 plus pinned arms SAT; all
-  negative smoke probes DRAT-verified. B1 is
-  `OMITTED_PREREQUISITE_INGRESS_MISSING`, not an official SAT verdict.
+  negative smoke probes DRAT-verified. The historical B1
+  `OMITTED_PREREQUISITE_INGRESS_MISSING` label was retired on 2026-08-04:
+  `b1_live_normalForm` now supplies support equality, both cross-memberships,
+  and the physical-class exclusions to the encoder. The refreshed B1 shadow
+  is SAT (162 variables, 109 clauses), with three adversarial omission pins
+  DRAT-verified UNSAT. This is now an official source-faithful diagnostic SAT
+  verdict, not a closure; the remaining gap is global.
   Independent cross-audits passed; D-E's one composite provenance label was
   corrected without changing its CNF. The live frontier is now 20 after the
   F3 split; see
@@ -1069,9 +3666,10 @@ matrix used only if that route needs a certified secondary consumer.
   every package stalls there, the plan's output is the exact minimal open
   metric statement per package — named, not hand-waved — and that becomes
   the single target for whatever comes next.
-- Verdicts here say nothing about hypothesis-package *consistency* in the
-  vacuous sense: an UNSAT package closes its leaves regardless of whether
-  upstream ever instantiates it.
+- A package-level UNSAT result closes only its finite or conditional package
+  theorem.  It closes a universal live leaf only after a source-entitled
+  ingress/coverage theorem proves that every live instance enters that package
+  (or after another checked universal lift supplies the same implication).
 
 ## 10. 2026-08-04 projected-static-v3 migration checkpoint
 
@@ -1094,7 +3692,1786 @@ finite, shard-local structural evidence.  Promotion still requires the
 five-part ingress/consumer/lift contract recorded in the migration note,
 including a general-cardinality theorem.
 
+## 11. 2026-08-04 FreshThird global-cut audit
+
+The post-round theorem-bank audit covered the retained-omission CEGAR
+artifacts through v38 and the round-6/round-7 multiplicity reports.  The hard
+v35 canary returned `UNKNOWN` on all twelve assignments; v36 and v37 producer
+diagnostics remained `SAT`; v38 was cancelled.  These are theorem-mining
+results only, not universal closure or a Lean landing.
+
+The strongest source-faithful candidate was exact-shell square separation,
+whose Lean primitives are
+`CriticalFourShell.dist_ne_radius_of_mem_A_not_mem_support` and
+`CriticalFourShell.support_eq_radius`.  It targets the retained-omission
+encoding and has no adapter to the live FreshThird packet.  The available
+non-hit primitives produce only one-sided deletion survival or a two-point
+support-intersection bound.  The double-deletion center-equivalence consumer
+requires a `SurvivorPairRelocationPacket` and a double-erasure hypothesis;
+`CrossPairDeletionView` exposes only a disjunction of single deletions.  The
+outside-pair/Kalmanson consumers additionally require both points outside a
+common cap and a boundary-order packet, while the noncanonical FreshThird arm
+provides only one-inside/one-outside data.
+
+A focused Lean 4.27 PARKED-SPEC probe
+`scratch/freshthird_equalcenter_samecap_probe_20260804.lean` confirms the
+remaining equal-center `sameCapWithInternalFiberSource ×
+sameCapWithInternalFiberSource` product only forces the two cap indices to
+coincide (and carries the existing support/cap memberships).  It does not
+force that common index to be `oppIndex1`, nor does it produce a contradiction.
+
+Operational consequence: keep the two on-spine FreshThird obligations open and do not
+launch another fixed-cardinality enumerator.  The next admissible producer is
+one of: (i) an accumulator turning the two single-deletion views into a
+double-deletion packet, (ii) a common first-apex radius with reciprocal
+cross-row incidence, or (iii) a mixed-incidence metric/order terminal.  A
+bounded `UNSAT`, external square-separation clause, or unconditional wrapper
+does not satisfy the ingress/consumer/lift contract and receives no closure
+credit.
+
+## 12. 2026-08-04 P10B held-out portfolio gate
+
+The first real multi-record P10B corpus gate has now been completed under
+`scratch/p97-distinct-distance-lane/p10b-heldout-gate-20260804/`.  The
+read-only adapter authenticated and replayed 40 v3 source records; an
+independent second replay produced byte-identical scenarios and portfolio
+reports.  On the deterministic 31-record training / 9-record held-out split,
+the fixed and fitted detector orders both had zero semantic disagreements and
+9/9 held-out matches, but identical replayed cost (`1,296,835 ns`) because all
+40 traces terminated at `metric-core`.
+
+This is a reproducible negative diagnostic, not a portfolio promotion,
+production speedup, or closure result.  The adapter's authenticated report
+digest is
+`c7af4cc466eb14f7fc9710056e2427080692ca69690ed13560f25ffe0633c8ee`; the
+byte-level scenario and portfolio-report digests are
+`99fe9035e6c13102798f4a4b8d39aa8049d47ac0ade76562a360ec98d3631de3` and
+`210c5935f69322b04a7261d5d963fc22e91c2a5062a4b3eaabbb941ba980bbde`.
+The next P10B target is therefore genuine detector-diversity coverage from a
+real bounded CEGAR corpus, or an explicit semantic-equivalent Class-B
+consumer with source-to-CNF and certificate-replay contracts.  Detector
+diversity must not be synthesized or relabeled merely to satisfy the gate;
+the Class-A cascade and terminal trust boundary remain unchanged.
+
+## 13. 2026-08-04 universal-ingress and producer gate
+
+The current production target is the 30 load-bearing spine `sorry` theorems
+reported by the live blueprint, plus the induced `sorryAx`; older coordinator
+counts such as 18 and the superseded 28-leaf snapshot are historical
+bookkeeping and must not be used as the kernel closure count.
+
+Every future computational campaign must declare its Lean ingress contract
+before the solver run.  The contract must identify (a) the live universal
+hypotheses, (b) the finite object extracted from them, (c) the symmetry or
+coverage theorem, (d) the cardinality scope, (e) the exact-certificate replay
+theorem, and (f) the existing terminal `False` consumer.  A bounded `UNSAT`
+without a proved lift to the universal hypotheses is evidence for theorem
+discovery only.
+
+The former A-core scope defect is repaired: exact cardinalities `0,...,24`
+are augmented by a `GE25` overflow bucket, and every concrete arithmetic tuple
+has an abstract image. The dedicated overflow gate and all package probes
+pass; all package variants remain SAT. This fixes the soundness contract but
+does not close an A leaf. The same scope audit still applies to every other
+universal encoder with a finite cardinality domain.
+
+Execution order is now **consumer-contract-first**.  Before proving or mining
+another producer, name an existing kernel-clean `False` consumer, write its
+exact ingress contract, and show which single missing premise the proposed
+work will discharge.  A source-clean theorem with no such consumer remains
+banked/off-spine and receives no closure credit.  E remains a near-term lane
+only where the existing terminal consumes the proposed `Good` escape and its
+general-cardinality lift.  FreshThird remains the long-lead lane, but no new
+uniform index-transport or metric/order producer is promoted until it names the
+direct `freshOutsideFirstBlockerFiber` ingress and its coverage argument in
+advance.
+Further fixed-`n` enumeration remains paused.  The 13 Rigid221/exact-four
+leaves should be treated as a hypothesis lattice and approached through one
+generalized counting theorem only after a checked dispatcher consuming that
+theorem has been identified.  B1 is no longer an ingress-missing package:
+`b1_live_normalForm` reconstructs the formerly omitted support and
+intersection facts, and `false_of_b1_global_gap_or_closed_terminal` is its
+checked consumer; B1 work must target one of that consumer's three exact arms.
+D-E currently has no banked all-cardinality consumer beyond its live sorries,
+so it is not a producer target until such a direct contradiction is found.
+FreshThird/F-Γ remains a critical-path dependency, but source-clean producer
+boundaries without terminal ingress do not reduce its two authoritative
+on-spine leaves.  The normalized and first-non-hit routes are compatibility
+code, not additional spine leaves.
+
+The 2026-08-04 Rigid221 lattice audit also rules out a tempting but circular
+aggregation. From a banked source-heavy packet one can prove routinely that
+`sourceRowInteriorCount = 2`; however, proving the source blocker is not `v`
+before constructing that packet is equivalent to the live A3 terminal, and
+proving `S.oppCap2.card = 5` from the packet is equivalent to eliminating the
+live A6 large-cap arm. Packaging those two conclusions as a single “good
+normal form” is therefore not an upstream producer and must not be counted as
+progress. No existing theorem-bank result closes any of the 13 leaves. The
+closest binder-matched banked result, the D1 two-apex deletion-pair producer,
+still lacks a terminal consumer. The next Rigid221 theorem must add genuinely
+new global cap/deletion information and dominate a checked dispatcher; it
+cannot merely restate A3 and A6 positively.
+
+The B1 local reduction is now present in the production module rather than
+only in the scratch bank. `FrontierLiveClosure` exposes the source-clean
+`b1_live_normalForm`, the exact two-point `b1_live_bisectorSet_eq_pair`, and
+the conditional `b1_live_false_of_third_bisector_carrier`. These declarations
+are standard-axiom-only and build-checked; they reduce the collision leaf to
+the named global third-bisector producer but do not supply that producer or
+close the terminal `sorry`.
+
+### 13.1 Per-package ingress contracts
+
+The following contracts are the minimum gate for calling a package run
+production.  They are deliberately stated at the consumer boundary; a
+certificate or finite `UNSAT` without the indicated lift remains diagnostic.
+
+| Package | Scope and extracted object | Required producer/lift | Replay and named consumer |
+|---|---|---|---|
+| A-core | Universal A-core binders; finite blocker/cap incidence valuation with exact `0,...,24` values and a sound `GE25` overflow bucket | A general-cardinality coverage theorem using only overflow-safe predicates; no finite exact-cardinality truncation may be reintroduced | Exact certificate replay in the A-core adapter, followed by the six A terminal leaves |
+| E1 | The eight retained-omission leaves; exact-15 archetype plus source-faithful selected-row/omission packet | A `Good` escape producer and a proved exact-15-to-arbitrary-cardinality lift | Authenticated exact-rational/Boolean replay, then the existing E terminal consumer for each arm |
+| FreshThird/F-Γ | The live two-source collision-row packet retaining cap indices, blocker fiber, and source-row omission data | **Partial:** the current on-spine load-bearing ingress is `false_of_twoCapSources_freshOutsideFirstBlockerFiber`; common-radius and normalized residual routes are compatibility-only. **Required next:** a source-entitled terminal and universal lift for the outside-first packet | Source-faithful certificate replay plus the on-spine `false_of_twoCapSources_freshOutsideFirstBlockerFiber` consumer |
+| B1 | Live B1 binders after `b1_live_normalForm`; finite B1-gap incidence/bisector abstraction | A global shell/cap/no-`(m,4,4)` producer yielding the third-bisector contradiction, with a lift back to the live binders | Replay `census/frontier-packages/b_core/out/manifest.json`: verified SAT `B1-direct-shadow` plus the three DRAT-verified pin runs; then feed the existing `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` consumer |
+
+The historical F-Γ table count of two declarations is not a closure count;
+the recorded snapshot lists two FreshThird leaves on the publish spine; the
+normalized, first-non-hit, and first-fiber declarations are
+off-spine compatibility code.
+
+## 13.2 B1 producer route (2026-08-04)
+
+The B1 local seam is now source-clean and should be treated as a reduction,
+not as the missing global theorem.  In particular,
+`b1_live_normalForm`, `b1_live_bisectorSet_eq_pair`, and
+`b1_live_false_of_third_bisector_carrier` prove that a live blocker collision
+would be contradicted by a carrier point `c` satisfying
+
+```text
+c ∈ D.A ∧ c ≠ common_actual_blocker ∧ c ≠ S.oppApex2 ∧
+dist c first.deleted.1 = dist c second.deleted.1.
+```
+
+The stronger, equivalent search target is that the relevant deleted-source
+bisector fiber has at least three carrier points.  The existing `hfive`
+hypothesis is not such a producer: five points in one physical radius class
+need not lie on this bisector.  Consequently, a bounded B1 `UNSAT`, or a
+conditional theorem that assumes the third point, remains diagnostic until a
+universal lift is proved.
+
+The first producer-side geometric constraint is now landed and build-checked:
+`b1_physicalClass_secondCapInterior_card_ge_three` derives at least three
+strict second-cap members from `hfive` using the general ordered-cap
+`card - 2` bound.  This is a genuine source-level narrowing, but it does not
+yet produce a point omitted from both live rows: each row can still cover two
+of the three interior members.  The companion
+`b1_common_blocker_mem_secondCapInterior_of_bisectorSet_eq_pair` adapter, and
+its B1 wrapper
+`b1_live_common_blocker_mem_secondCapInterior_of_deleted_sources_interior`,
+show that two interior deleted sources would force the common blocker into the
+same strict cap.  They intentionally take the saturated fiber equality as an
+explicit hypothesis, so neither adapter hides the remaining producer gap.
+
+The B-core diagnostic now carries that boundary as an authenticated
+`census/frontier-packages/b_core/producer_contract.json`, copied into its
+manifest.  The contract names the live ingress and consumer, the three
+acceptable global-gap output interfaces, the exact bisector-fiber query
+(`card ≥ 3`, equivalently a new point outside the saturated two-point fiber),
+and the required universal lift.  It is intentionally `PARKED-SPEC` with
+promotion disabled until a source-level
+producer and lift are present; this prevents a stronger-looking named-local
+CNF from being mistaken for B1 closure.
+
+The closest source-clean global result is
+`ATailTwoCollisionGlobalProducer.exists_capSource_thirdCanonicalRow_omits_each_collisionPair`.
+It consumes a `RetainedInteriorBlockerCollision`, full deletion robustness,
+disjoint source pairs, and a cap of size at least eight, and produces a
+cap-source/cross-survival packet.  That packet is not itself a B1 bisector
+point.  The current F3c coordinator and its downstream leaves are still
+`sorry`-backed, so they are not admissible terminal consumers for this route.
+
+The first adapter audit is now complete and is negative.  The B1 packet cannot
+be coerced into `RetainedInteriorBlockerCollision`: that structure is a
+first-apex-radius object and requires a positive double-deletion witness and a
+common-deletion packet for `S.oppApex1`, whereas B1 supplies second-apex
+late-row deletions and a blocker equality for `lateFirstApexSystem R`.  The
+first-apex exact-four residual also says that every first-apex class member
+individually blocks, so the required positive double-deletion witness is in
+the wrong direction.  The theorem banks contain no bridge repairing these
+missing fields.  This route is retired rather than silently treating the two
+packet types as equal.
+
+The next implementation slice is now build-checked.  The initial attempted
+trichotomy was marked `PARKED-SPEC` after the focused build exposed an invalid
+row identification: rows belonging to the two deleted sources cannot be used
+as the original `u`/`v` rows required by the prescribed joint-deletion
+constructor.  The active source-faithful theorem
+`b1_live_interior_joint_deletion_or_small_cover` instead proves the exact
+three-way split:
+
+1. both deleted sources are strict second-cap interior points;
+2. an interior point outside the two deleted points and both live rows yields
+   a new `ExactFourMutualOmissionJointDeletion` packet; or
+3. the whole strict-cap interior slice is covered by those two deleted points
+   and the two live rows.
+
+This is a genuine producer-facing reduction, but not closure: the third
+branch is the remaining finite-set/global-terminal obligation, and the first
+branch still needs the existing bisector saturation consumer.
+
+The next source-clean refinement is now also installed as
+`b1_live_interior_deleted_or_third_or_live_source_interior`.  It preserves the
+third-point branch and adds the following exact alternative: if the cover
+branch has neither deleted source in the strict cap, then one of the original
+live sources `u` or `v` is in that cap.  The proof uses the existing
+`criticalFourShell_inter_selectedClass_card_le_two` kernel twice.  Each live
+row contains its own source, so under the contrary assumption that both live
+sources are exterior, each row covers at most one point of the strict-cap
+slice; the two rows therefore cover at most two points, contradicting the
+source-clean lower bound of three.  This is still producer progress, not a
+terminal contradiction: the live-source-interior arm needs a new global
+consumer or a further cap/minimality refinement.
+
+The immediate work order is therefore:
+
+1. Target an explicit `B1GlobalGapOrClosedTerminal` producer directly from
+   the B1 binders and global shell/cap/minimality/no-`(m,4,4)` data: either
+   produce the third bisector point (or the stronger fiber-card bound), or
+   land in a separately kernel-closed global terminal.
+2. Resolve the remaining interior-source subgap: consume the new
+   `u`-or-`v`-strict-cap arm with a global theorem, or strengthen the same
+   row-count argument to force two interior deleted sources / a terminal.
+3. Use the existing cap-source theorem only as a conjecture generator or
+   diagnostic comparison; its cap-source/cross-survival output is not a B1
+   consumer.
+4. Keep exploratory versions marked `PARKED-SPEC` until a proved producer and
+   its universal lift exist.  The first finite search should add only
+   source-proved global constraints, and must report SAT/UNKNOWN as negative
+   evidence rather than closure.
+5. Wire a successful third-point branch directly to
+   `b1_live_false_of_third_bisector_carrier` (or the new fiber-card consumer);
+   promote only with the same-change consumer, build, and axiom audit.
+
+The source-faithful ingress for the remaining interior-source arm is now
+factored as
+`exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource`.
+Given a strict second-cap source, its outside-first-apex-fiber witness, and
+the surviving `q`/`w` deletion, this producer composes the existing
+five-point row bound, omitted interior peer, mutually omitted pair, blocker
+separation, and joint-deletion constructor into a full
+`ExactFourMutualOmissionSourceContext` and an
+`ExactFourMutualOmissionJointDeletion`.  It is reusable ingress for the
+Rigid221 route, not a B1 closure: the B1 cover branch still does not identify
+its particular live `u` or `v` with this source, and the downstream coordinator
+still reaches sorry-backed terminal leaves.  The next producer task is to
+bridge that identification (or produce the missing outside/survival fields)
+from the B1 live-source-interior arm.
+
+The named-source refinement is now also build-checked and axiom-audited as
+`b1_live_both_interior_outside_or_firstApexClass_split`.  For two distinct
+live sources in the strict second-cap interior it proves one of three exact
+outcomes: both sources are outside the first-apex fiber and one has the
+required physical deletion-survival witness; one source is outside and the
+other is in the first-apex class; or the symmetric cross case.  The proof
+uses the public first-apex marginal-cardinality and bad-outside-pair
+cardinality consumers, so it is a genuine source-level producer.  It still
+does not close B1: the two cross cases need a global consumer, and the
+survival disjunct must be connected to the existing exact-four coordinator.
+
+#### Concrete B1 escape producer (2026-08-05)
+
+The next non-circular producer is now source-clean and build-checked:
+`b1_live_exists_third_interior_escape`.  Under the complete B1
+mutual-omission/blocker-collision binders, it uses the general ordered-cap
+`card - 2` bound and the already-proved B1 row normal form to produce a point
+`t` in the strict second-cap interior with all of the following properties:
+
+1. `t` is distinct from both deleted sources;
+2. `t` is outside the first deleted source's saturated common selected row;
+3. deleting `t` preserves four points at the common blocker; and
+4. the actual blocker selected at `t` is different from the common blocker.
+
+This is the first B1 producer that changes the live geometric packet rather
+than merely restating a conditional bisector consumer.  The focused module
+build and targeted `#print axioms` audit report only `propext`,
+`Classical.choice`, and `Quot.sound` for this theorem.  It still does **not**
+produce a third point on the deleted-source bisector, so it cannot feed
+`b1_live_false_of_third_bisector_carrier` or the fiber-card consumer directly.
+The next exact target is a source-level theorem consuming this escaped point
+and its different actual blocker—by a blocker-multiplicity, row-cap, or
+no-`(m,4,4)` argument—and then a universal lift for the resulting terminal.
+The B-core contract records this theorem as a partial producer while keeping
+`producer_theorem` and `lift_theorem` unset; its status remains
+`PARKED-SPEC / promotion_eligible = false`.
+
+#### B1 escape consumer packet (2026-08-05)
+
+The escaped point is now connected to an existing source-clean shell
+consumer.  `b1_live_escape_small_overlap` composes the third-interior escape
+with `selected_support_inter_card_le_two_of_not_mem_other_selected_support`
+and returns the escaped point's selected-shell intersection with the first
+deleted source's selected shell as a cardinality-at-most-two packet.  The
+packet also preserves the different-center and deletion-survival facts, so it
+is the correct input for a future global blocker-multiplicity, row-cap, or
+no-`(m,4,4)` producer.
+
+`b1_live_false_of_escape_overlap_ge_three` is the corresponding conditional
+terminal adapter: a source-level theorem supplying a universal overlap lower
+bound of three for every admissible escaped point would contradict the packet
+immediately.  That lower bound is not currently source-entailed.  The latest
+audit instead leaves the equal-center/same-support and distinct-center/
+at-most-two alternatives as the exhaustive source dichotomy.  Accordingly,
+these declarations are a source-clean consumer packet and a conditional
+terminal, not B1 closure; the B-core contract keeps `producer_theorem` and
+`lift_theorem` unset and remains non-promotable.
+
+#### Exact-four pinned-multiplicity arm (2026-08-05)
+
+The first concrete producer arm for the escaped-blocker route is now
+source-clean.  The new generic theorem
+`pinnedMultiplicity_eq_four_of_isUniqueFourCenter` proves that a unique-four
+centre has pinned multiplicity exactly four.  The existing
+`selectedClass_eq_support_of_pinnedMultiplicity_eq_four` then identifies the
+selected four-point support with the entire physical radius class at its
+selected radius.  The B1-specific adapter in `B1Live.lean` applies these
+facts to `centerAt` and feeds the resulting physical-class statement to the
+existing overlap consumer.  All three declarations are kernel-checked with
+no `sorryAx`.
+
+The generic multiplicity producer belongs in `JointDeletionCore`, while the
+`centerAt` adapter belongs in `B1Live`; this respects the sharded import graph
+without changing the frozen umbrella or shard order.  The result is a
+source-clean `μ = 4` normalization arm, not a new universal B1 closure.  It
+does not yet transport the escaped blocker to a third carrier on the
+deleted-source bisector, produce the existing fiber-card contradiction, or
+prove the universal lift needed for B1 closure.  The next producer target is
+therefore the global centre-transport branch: reanchor the escaped physical
+class and its overlap packet to an existing third-bisector or fiber-card
+consumer, or derive a source-level contradiction from that packet.  The
+B-core producer and lift fields remain unset.
+
+Status: the local reduction, fiber-card consumer, three-point strict-cap
+constraint, row-count refinement, cap-localization adapters (including the
+full live-binder wrapper that discharges bisector saturation internally), and
+the source-faithful five-point ingress producer are **PROVEN**; the cap-source
+adapter is **DISPROVED AS AN INTERFACE**; the direct global producer and the
+bridge from the B1 live source to the reusable ingress are **CONJECTURED**;
+finite B1 searches are **DIAGNOSTIC**.  The next exact target is the global
+centre-transport producer: reanchor the escaped physical class and its
+at-most-two overlap packet to the live-source-interior consumer inside
+`B1GlobalGapOrClosedTerminal` (or to the existing fiber-card/third-bisector
+consumer), with the reusable ingress fields made explicit.  The
+`μ ≥ 5` label is no longer a free numerical branch for `centerAt`: the
+source-clean `isUniqueFourCenter_centerAt` theorem applies to every admissible
+`centerAt t`, and the new producer reduces that centre to `μ = 4`.  The
+remaining issue is transport, not an unbounded choice of centre multiplicity.
+The universal lift remains a separate required step.
+
+#### B1 μ≥5/centre-transport implementation slice (2026-08-05)
+
+The FrontierLiveClosure sharding gate is complete at `9feb86f6`, so the B1
+route is now extended in `FrontierLiveClosure/B1Live.lean` without editing the
+frozen umbrella or changing shard order.  This implementation slice is
+complete and build-checked.  It adds:
+
+* `pinnedMultiplicity_eq_four_of_isUniqueFourCenter` in
+  `JointDeletionCore.lean`;
+* `b1_live_canonical_blocker_pinnedMultiplicity_eq_four`, which applies the
+  producer to every admissible `centerAt t`; and
+* `b1_live_escape_physicalClass_inter_firstShell_card_le_two`, which rewrites
+  the escaped selected shell as its full physical radius class and reuses the
+  existing overlap consumer.
+
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live` passes, and
+targeted axiom audits of all three declarations report only the core axioms
+`propext`, `Classical.choice`, and `Quot.sound`.  No new `sorry` was added and
+no current B1 sorry is closed by this slice.  Since
+`isUniqueFourCenter_centerAt` already applies to every admissible `centerAt t`,
+the apparent `μ ≥ 5` alternative is not a free numerical branch at that
+centre; the unresolved part of the route is the global centre transport.
+
+The next mathematical producer is a theorem that turns the escaped physical
+class and its at-most-two overlap packet into either a third deleted-source
+bisector carrier, the existing fiber-card contradiction, or a separately
+kernel-closed global terminal.  The universal lift remains a separate
+required step, so this slice is **PRODUCER INFRASTRUCTURE / NON-PROMOTABLE**
+rather than B1 closure.
+
+## 13.3 FreshThird double-erasure and endpoint-consumer audit (2026-08-05)
+
+The FreshThird global-route audit is now complete. The equal-center packet
+does have a source-clean endpoint consequence:
+`allCollisionEndpointsOmitted_of_equalCenterHits` proves that every collision
+endpoint is omitted from both exact-four rows. This is only an omission
+packet, however; no source-clean FreshThird consumer currently accepts it.
+The available endpoint-omission terminals and the first-fiber descent route
+remain `sorryAx`-dependent, so they cannot be promoted as closure.
+
+The final theorem-bank audit found no import-reachable exception. The nearest
+source-clean candidates are still insufficient: `false_of_freshThird_sameCapCrossRowAlignment`
+requires both Q sources outside one common cap, `false_of_freshThirdEqualCenter_sameCapOppIndex`
+handles only the canonical `oppIndex1` cap, and
+`false_of_two_freshThirdCrossRowHits_distinctCenters` requires unequal source
+centers. The outside-pair/Kalmanson candidates additionally require common-cap
+boundary-order data that the live packet does not carry. External RVOL and
+legacy candidates are either schema-incompatible or unreachable from the
+publish spine.
+
+The double-erasure machinery does not repair that gap. A
+`CrossPairDeletionView` supplies one disjunctive survival fact for one pair,
+while `selectedFourClass_survives_double_erase_of_not_mem` is useful only after
+both erased points are already known to lie outside the selected support. The
+double-erasure machinery still does not produce a
+`SurvivorPairRelocationPacket`, and no complete `oppIndex1` transport has
+landed. An independent source-level common-radius adapter is now recorded in
+§13.5, but it handles only the negative retained-radii branch and one
+equal-center/noncanonical same-cap arm. In particular, the same-cap
+noncanonical arm still permits one Q source inside and one outside the cap,
+and the distinct-cap arm has no source-clean order/Kalmanson consumer.
+
+Accordingly the active anchor is
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`; the normalized-remaining
+route is off-spine compatibility code.  The next admissible FreshThird
+milestone is to supply a source-entitled terminal and universal lift for the
+outside-first packet, while retaining cross-blocker coincidence as the other
+on-spine leaf, or choose one of these alternatives:
+
+1. a terminal common-radius/reciprocal-incidence theorem covering the
+   remaining normalized residual and retained-radii branches;
+2. a genuine cyclic-order/Kalmanson consumer for the distinct-cap packet; or
+3. a stronger double-deletion relocation theorem whose hypotheses are
+   derivable from the live C/Q binders.
+
+No new bounded-`n` search or wrapper should be called closure until it has an
+explicit Lean ingress theorem, a universal lift, and a same-change on-spine
+consumer. Current FreshThird computations remain **DIAGNOSTIC**. The
+outside-first residual remains **OPEN / ON-SPINE / LOAD-BEARING**. The
+normalized residual, first/second non-hit branches, and common-radius adapters
+remain **OFF-SPINE / COMPATIBILITY-ONLY** for the current publish spine.
+
+## 13.4 FreshThird relocation-packet field audit (2026-08-05)
+
+The packet interfaces were checked field-by-field before attempting another
+adapter. `CommonDeletionTwoCenterPacket` requires one fixed deleted point
+`q`, two distinct carrier centers, deletion survival at both centers, the two
+exact q-deleted rows, and the associated blocker inequalities. The active
+FreshThird surface supplies neither a common deleted point nor deletion
+survival at the two cap-source centers. Its two `CrossPairDeletionView`s
+instead say only that each collision pair has one selected-support omission at
+a given cap-source row; the equivalence is a per-pair disjunction, not a
+double-deletion or common-q witness. Moreover, distinct C source vertices do
+not imply distinct `H.centerAt` values, so the center-separation field is also
+not derivable from `C.sources_ne`.
+
+`SurvivorPairRelocationPacket` is even more specific: its two fresh points
+must lie on one `S.oppApex1` radius outside the surplus cap, both deletions
+must survive at `S.oppApex2`, and their actual blockers must avoid that apex.
+The live `FreshThirdBlockerFiber` gives fresh points with equal blocker values
+and mutual selected-row incidence, but no common `S.oppApex1` radius,
+first-apex marginal membership, or `S.oppApex2` deletion-survival facts.
+Consequently there is no source-clean C/Q-to-relocation adapter to land.
+
+The next producer must explicitly construct one of the following interfaces:
+
+* a fixed-q two-center packet, with survival at both cap-source centers and
+  a proof that the two independent omission disjunctions select the same q,
+  center separation, and a consumer of its exact-row overlap;
+* a common-radius relocation packet supplying the two `S.oppApex2` survivors;
+  or
+* a new mixed theorem that consumes the existing pairwise omission views
+  directly and proves the normalized compatibility residual contradiction.
+
+Adding a coercion, wrapper, or `Nonempty` shell without those fields would be
+bookkeeping only and would preserve the same `sorryAx` dependency. This
+field audit still rules out the relocation route, but the alternate
+common-radius ingress is now recorded in §13.5. This dated audit is retained as
+historical compatibility analysis; the current status is **OPEN / ON-SPINE /
+load-bearing** only for the outside-first blocker-fiber leaf, while this
+relocation/common-radius route is off-spine compatibility work.
+
+## 13.5 FreshThird common-radius ingress (2026-08-05, implementation checkpoint)
+
+The common-radius producer is now explicit and source-clean. The existing
+theorem
+`exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius`
+in `TwoCollisionGlobalProducer.lean` supplies two distinct cap-interior
+sources whenever there is a radius `r` such that
+
+```
+2 ≤ (SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1).card
+```
+
+and `r` differs from both retained collision radii. The new adapter
+`exists_commonRadius_twoCapSourceThirdCanonicalRowSurface_of_not_retained`
+extracts exactly that premise from failure of
+`FirstCapMultiPointRadiiRetained` and retains the two source rows together
+with their `r`-membership. The equal-center/noncanonical same-cap consumer
+`false_of_commonRadius_equalCenters_noncanonicalSameCap` is also source-clean.
+
+This is a genuine producer ingress, but not yet closure. The coordinator has
+now been refactored so that the common-radius provenance is not discarded:
+
+* `false_of_twoCapSources_freshThirdBlockerFiber` splits on
+  `FirstCapMultiPointRadiiRetained` before normalization;
+* the negative branch carries the strengthened packet through
+  `false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface` and
+  `false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius`;
+* `FreshThirdTwoCapSourceObstruction.freshThirdNormalizedResidualRemainingCase_of_residual`
+  performs the exhaustive residual-to-remaining conversion; and
+* `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius`
+  sends the equal-center/noncanonical same-cap arms to the source-clean
+  `false_of_commonRadius_equalCenters_noncanonicalSameCap_packet` consumer.
+
+The remaining arms deliberately stay explicit: first/second non-hit cases,
+distinct/non-distinct-cap cases without the common-radius consumer, and the
+retained-radii branch remain compatibility-route analysis.  Thus the
+implementation is a source-clean producer adapter, but it does not alter the
+current on-spine outside-first target or provide closure.
+
+The next implementation slice is therefore concrete:
+
+1. prove a terminal for the on-spine outside-first residual (or a single
+   stronger producer that covers it);
+2. either obtain an independent producer for the retained-radii branch or
+   prove that the retained branch is already covered by the same global
+   incidence argument; and
+3. retain the common-radius packet and its consumer as compatibility code; it
+   does not enter the current proof-blueprint spine unless a future refresh
+   shows a direct consumer edge.
+
+Until the outside-first arm reaches a proved terminal, this adapter receives
+producer and compatibility credit only. It must not be counted as closure or
+as evidence that the two on-spine FreshThird obligations have been reduced to
+a finite search.
+
+## 13.6 FreshThird producer construction (2026-08-05, no-search handoff; historical compatibility route)
+
+This dated construction sheet is retained for its source contracts and
+negative diagnostics.  The normalized coordinator discussed below is
+off-spine compatibility code in the current proof-blueprint graph; the active
+load-bearing FreshThird ingress is the outside-first blocker-fiber theorem.
+
+The missing producer is not an import or a theorem-bank lookup.  It is a new
+cap-wide transport theorem.  Its exact contract is now fixed before any
+further computation:
+
+```text
+C : TwoCapSourceThirdCanonicalRowSurface P Pρ
+Q : FreshThirdBlockerFiber P Pρ
+firstInteraction : FreshThirdCapSourceInteraction P Pρ C.firstSource Q
+secondInteraction : FreshThirdCapSourceInteraction P Pρ C.secondSource Q
+crossRowResidual : FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q
+```
+
+The historical producer was intended to run before
+`FreshThirdNormalizedResidualRemainingCase` was constructed and to return one
+of the following *actually consumable*
+interfaces:
+
+1. the hypotheses of `FreshThirdSameCapCrossRowAlignment`, consumed by
+   `false_of_freshThird_sameCapCrossRowAlignment` (the two non-hit adapters
+   are now source-clean); or
+2. two `FreshThirdCrossRowHit` packets together with unequal source centers,
+   consumed by `false_of_two_freshThirdCrossRowHits_distinctCenters`; or
+3. a common-radius packet whose equal-center interaction has a noncanonical
+   source cap, consumed by
+   `false_of_commonRadius_equalCenters_noncanonicalSameCap_packet`.
+
+The fixed-`q` two-center deletion packet is still a useful *diagnostic
+producer*, but it has no source-clean FreshThird terminal.  It cannot be
+counted as a closure interface until a new downstream theorem consumes it.
+
+The construction is deliberately staged.  The two source-clean antecedents
+are already landed and axiom-audited: a surviving source-row omission gives
+blocker-center separation via
+`freshThirdCapSourceNonHit_center_ne_of_sourceRowOmission`, and the retained
+radii branch gives a double-deletion/minimal-core packet via
+`exists_freshThird_retained_minimalDeletionCoreProducer`.  The only new
+mathematical bridge is the cap-wide transport step.  The polarity matters:
+`FreshThirdSameCapCrossRowAlignment` is a consumer, not an output that can be
+derived from a normalized non-hit.  Its two endpoint-membership fields
+directly contradict `sourceRowOmission`.
+
+The first concrete slice of that transport step is now landed.  The
+source-clean theorem `false_or_freshCap_ne_opp_of_commonRadius_distinctCaps`
+proves, for a distinct-cap common-radius interaction, the exact disjunction
+
+```text
+False ∨
+  (sourceCap = S.oppIndex1 ∧ freshCap ≠ S.oppIndex1 ∧
+   Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+   Q.source₂.1 ∉ S.capByIndex S.oppIndex1).
+```
+
+It is compiled on Lean 4.27 and is now destructured at the compatibility
+residual
+instead of being erased by a constructor replay.  The second concrete slice,
+`freshThird_commonRadius_distinctCaps_dual_packet`, transports the same split
+through the equal-center second row: both source-cap indices are canonical,
+both fresh-cap indices are noncanonical, the indices agree across rows, and
+both fresh endpoints are outside the canonical cap.  That dual packet is now
+wired into the equal-center residual branch.  These are producer boundaries;
+they do not close the residual by themselves.  The next proof must consume
+the resulting canonical-source/different-fresh-cap packet.  A theorem-bank
+search is no longer an acceptable next step: either prove a canonical-row
+transport lemma for that packet, or add the missing cyclic-order/incidence
+hypothesis and consume it with an existing Kalmanson/shared-pair terminal.  A
+bounded solver run may only distinguish those two contracts; it cannot be
+promoted as the producer.
+
+The cyclic-order slice is now also source-clean:
+`freshThird_canonicalSource_differentFreshCap_sharedPairCyclicPacket` builds a
+whole-carrier `BoundaryIndexing` and returns the shared-pair alternation,
+together with the canonical source-cap, different fresh-cap, cap-interior,
+and two outside-canonical-cap facts.  The audit of existing consumers is
+decisive here: `CapCrossingKalmanson` requires a strict four-index chain, while
+the packet supplies only the alternating order
+`btw(sourceCenter, freshCenter, q1) ↔ ¬btw(sourceCenter, freshCenter, q2)`.
+That alternating four-point pattern is realizable, so it cannot be promoted
+as a contradiction or repaired by another wrapper.
+
+The first construction step is now source-clean and compiled on Lean 4.27:
+`freshThird_canonicalDifferentCap_endpointPlacement`.  Given the distinct
+source/fresh centers and the dual source-row support packet, it returns the
+whole-carrier boundary indices, the exact four-way placement of the two
+endpoints (one between the centers and the other outside), and membership of
+both endpoints in both shell supports.  This is a genuine producer with no
+fixed-`n` or cardinality bound.  It is not closure: the remaining task is to
+consume this placement/support packet with a strict Kalmanson chain, a
+third-shell/reciprocal-incidence packet, or an existing outside-overlap
+terminal, and then wire that consumer into the compatibility residual.
+
+The next producer is therefore one explicit source theorem, not another
+search campaign.  Its contract is:
+
+```text
+canonical source center in S.oppIndex1,
+fresh center in a different cap,
+q1 and q2 outside S.oppIndex1,
+equal source centers, and the shared-pair alternation
+  ==> either
+      (a) a strict cap/Kalmanson index chain accepted by an existing terminal,
+      or
+      (b) a five/six-point placement carrying a third shell equality or
+          reciprocal-incidence packet accepted by a new metric terminal.
+```
+
+The proof should consume the anchored cap order from the `SurplusCapPacket`
+interval lemmas and the full source-row/deletion hypotheses.  If the cap
+partition cannot supply (a), the theorem must construct (b); proving only the
+alternation, or enumerating fixed `n`, is insufficient.  Until this one bridge
+is proved and called by the compatibility residual, that route-local sorry
+remains open; the current load-bearing spine gap is the outside-first
+blocker-fiber ingress, and the packet theorems are source-clean producers only.
+
+The staged proof is:
+
+* split the three `Fin 3` cap placements of the C and Q centers;
+* use the source-clean alignment adapters for the same-cap placement;
+* use `false_of_two_freshThirdCrossRowHits_distinctCenters` for the two-hit,
+  unequal-center placement;
+* transport retained survival to the common-radius consumer where its
+  hypotheses are available; and
+* isolate the only placement not covered by those consumers: the C source
+  center lies in `S.oppIndex1` while the Q blocker center lies in a different
+  cap.  The source-clean dual packet now supplies the complete two-row
+  incidence interface for that placement.  The remaining concrete target is
+  its consumer: a canonical-row transport lemma, a cyclic-order/shared-pair
+  adapter, or a new cap-wide separator proved from the full source-row,
+  cap-cardinality, deletion, and no-`(m,4,4)` data.
+
+This is a finite `Fin 3` cap-index/cardinality argument, not a larger fixed-`n`
+enumeration.  A solver run is admissible only as a conjecture check for the
+alignment lemma; its result is diagnostic until a general Lean proof and an
+on-spine consumer land in the same change.  If the alignment lemma is false,
+the countermodel must be used to formulate the stronger order/incidence
+alternative, rather than restarting an unconstrained search.  Until that
+consumer bridge is proved, the normalized-residual compatibility route remains
+genuinely open; the two source-clean packets above are producers, not closure
+of the current outside-first spine.
+
+## 13.7 FreshThird producer decision gate (2026-08-05)
+
+The unbounded theorem-bank search is now **RETIRED-AS-WORKSTREAM**, and the
+fixed-`n` producer search is **DIAGNOSTIC-ONLY**.  The bounded exact-rational
+probe for the obvious one-sided implication was satisfiable in both non-hit
+orientations: a `FreshThirdCapSourceNonHit` can coexist with the other
+interaction without yielding either `FreshThirdSameCapCrossRowAlignment` or a
+cross-row hit.  This
+is a negative result about that proposed producer, not evidence against the
+live theorem.
+
+At this checkpoint, two source-faithful bridge families were prioritized:
+
+1. **Retained-arm transport.**  The retained deletion packet supplies omitted
+   endpoints `x` and `y` on the two distinct collision radii.  Consequently it
+   cannot be passed directly to the existing
+   `RetainedRadiusBlockerMatching` / `RetainedInteriorDirectedOmission`
+   producer, whose interface is same-radius.  A new source-clean theorem must
+   transport the cross-radius packet to same-radius blocker matching, or return
+   one of the existing FreshThird consumers (a cross-row hit or same-cap
+   alignment) directly.
+2. **Equal-center/different-cap bridge.**  The landed dual packet and endpoint
+   placement give a canonical source cap, a different fresh cap, two endpoints
+   outside the canonical cap, and shared-pair alternation.  Alternation alone
+   is realizable and is not a Kalmanson contradiction.  The missing theorem
+   must add a strict consumer-ready boundary chain or produce a third-shell /
+   reciprocal-incidence packet from full K4, deletion minimality, cap
+   cardinality, and no-`(m,4,4)`.
+
+These bridge families remain admissible, but they are not exhaustive;
+Sections 13.10 and 13.12 record the broader four-arm consumer ingress and the
+retained-producer split.  The immediate implementation target at this
+checkpoint was a single source theorem for one of these bridges, followed by
+its on-spine consumer.  No new wrapper, bounded certificate, or larger
+fixed-`n` census counts as producer progress until it supplies that theorem
+and the target's transitive axiom audit is free of `sorryAx`.
+
+### 13.8 Triple-shell escape extraction checkpoint (2026-08-05)
+
+The first construction step is now source-clean and importable.  The former
+escape proof lived in the downstream retained-core shard, which cannot be
+imported by `TwoSourceFreshThirdResidual` because that path would cycle through
+`TwoSourceClosure` and `TwoSourceFirstFiberCollision`.  The proof pattern was
+therefore extracted upstream into
+`ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean`.
+
+Its producer is
+`exists_freshThird_selectedRow_escape_tripleShellSeed`.  Given both retained
+collision packets and any third carrier source, it forms the union of their
+three exact four-shell supports (cardinality at most 12), uses the live
+`|D.A| ≥ 14` branch to prove that seed proper, and applies global K4 plus
+deletion minimality to obtain a selected row centered in the seed with a point
+outside it.  The module and the importing FreshThird residual both compile on
+Lean 4.27.  This is a genuine source-level producer, but it is not a
+contradiction and does not yet close the anchor.
+
+The next implementation slice is sharply delimited: preserve the escaped
+row's center, selected support, and outside point, then prove a bridge to one
+of the existing FreshThird consumers.  The bridge must either (i) show that
+the escaped row contains both `Q.source₁` and `Q.source₂`, yielding a new
+cross-row hit, (ii) derive the cap-wide alignment packet, or (iii) produce the
+strict Kalmanson/third-incidence data for the canonical-source/different-
+fresh-cap arm.  Merely invoking the escape producer, adding another wrapper,
+or recording the outside point as an unconsumed packet is not closure.
+
+### 13.9 Source-faithful escape-cover producer (2026-08-05)
+
+The first bridge-adjacent producer is now landed in
+`ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean` as
+`exists_freshThird_escape_with_sourceFaithful_cover`.  It consumes the
+triple-shell escape row and returns, in one source-level packet:
+
+* its center and selected four-point support;
+* an outside point `z` with a source witness `z ∈ D.A`;
+* localization of `z` to one of the three cap interiors;
+* the inherited blocker fact `¬ HasNEquidistantPointsAt 4 (D.A.erase z) ...`;
+* either exact center equality with `H.centerAt z` and shell-support equality,
+  or distinct centers with selected-support overlap at most two.
+
+The theorem compiles directly on Lean 4.27 and is intentionally upstream of
+the downstream retained-core shards, so it does not introduce an import cycle.
+It is a source-clean intermediate producer, not a complete consumer-ready
+producer or closure.  Before terminal ingress, a strengthening must identify
+the named seed label and prove the corresponding endpoints in `K.support`.
+Those facts may then feed the existing two-hit consumer; otherwise the route
+must prove the cap-wide alignment or strict boundary-chain alternative from
+the same packet and the full source-row/deletion hypotheses.  Do not widen the
+seed, add another wrapper, or launch a fixed-cardinality census without first
+proving that endpoint-support strengthening and its consumer hypotheses.
+
+The trust audit is complete: both this theorem and
+`exists_freshThird_selectedRow_escape_tripleShellSeed` report exactly
+`[propext, Classical.choice, Quot.sound]` under `#print axioms`; neither
+depends on the normalized residual's `sorryAx`.  The normalized-remaining
+declaration is now an off-spine compatibility route; the current producer
+dependency closure instead terminates at the open
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber` ingress.  This separates
+the checked anonymous escape-cover packet from the still-missing named
+seed-label transport, endpoint-support facts, and consumer ingress.
+
+An audit of the consumer interface makes the next strengthening precise:
+the existential `center ∈ seed` and an anonymous escaped `K` are not enough
+to instantiate a FreshThird hit.  The next producer must retain a named seed
+label (one of the two collision shells or the chosen cap-source shell) and
+prove the corresponding endpoint memberships in `K.support`, together with
+the escaped point.  If those memberships cannot be proved, the packet must
+instead return the strict boundary/order alternative explicitly.  Choosing
+`source := Q.source₁` does not supply this: seed membership is only a Finset
+union membership, not equality with that source center.  This is the concrete
+reason the old search loop could not close the leaf.  These fields are the
+immediate strengthening target for this anonymous packet, not a claim that
+the later route inventory has only one construction arm.
+
+## 13.10 Producer construction route after the exact-incidence audit (2026-08-05; historical compatibility route)
+
+This dated four-arm construction route is retained as historical source-contract
+analysis.  Its normalized-residual consumer is off-spine in the current
+proof-blueprint graph; the active load-bearing FreshThird route is the
+outside-first blocker-fiber ingress.  The producer was no longer a theorem-bank
+search target at that checkpoint, and the source packets established the input
+boundary before
+`FreshThirdNormalizedResidualRemainingCase` is formed, with
+
+```text
+C : TwoCapSourceThirdCanonicalRowSurface P Pρ
+Q : FreshThirdBlockerFiber P Pρ
+firstInteraction, secondInteraction
+  : FreshThirdCapSourceInteraction at C.firstSource/C.secondSource
+cross-row residual data and all deletion/blocker witnesses
+```
+
+The output is a source-clean, immediately consumed disjunction:
+
+1. a `FreshThirdSameCapCrossRowAlignment` packet;
+2. two `FreshThirdCrossRowHit` packets with unequal source centers;
+3. a transported `CommonRadiusTwoCapSourceThirdCanonicalRowSurface` with the
+   hypotheses of the existing common-radius terminal; or
+4. on the exceptional canonical-source/different-fresh-cap arm, a named
+   strict metric chain accepted by an existing Kalmanson consumer, or a
+   named third-shell/reciprocal-incidence packet accepted by a new proved
+   metric terminal.
+
+The fourth arm is the actual remaining producer.  Its input must retain the
+canonical source cap, the different fresh cap, both endpoint memberships in
+both shell rows, the exact two-point overlap, the endpoint placement, the
+full source-row deletion-survival facts, blocker equality/inequality, and the
+cap-cardinality/no-`(m,4,4)` hypotheses.  It must not replace these with an
+anonymous escaped row or a fixed-cardinality abstraction.
+
+Two proposed shortcuts are now ruled out by checked evidence.  The exact
+incidence probe (`scratch/freshthird_exact_incidence_probe-20260805.out`)
+enumerates 36 packet-compatible alternating orders and gives an explicit
+alternating order in which the strict-late Kalmanson chain fails.  The exact
+rational square witness
+
+```text
+c=(0,0), f=(2,0), q₁=(1,1), q₂=(1,-1)
+```
+
+has all four shared distances squared equal to 2 while the relevant
+Kalmanson inequality is strict (`2√2 < 4`).  Thus endpoint alternation and
+cyclic order cannot be the producer.  Separately, the common-radius audit
+shows that the normalized residual carries no radius or selected-class
+intersection data; a common-radius packet can enter only through an upstream
+retained/non-retained split or a new transport theorem.  Calling the existing
+common-radius closer from the residual would therefore be an invalid wrapper,
+not a source-clean producer.
+
+The bounded computation now has one permitted role: encode the complete
+exceptional-arm ingress above and test one positive clause at a time (strict
+metric chain, reciprocal-incidence edge, or third-shell equality).  A SAT
+model discards that clause; an UNSAT result is only a certificate candidate.
+Promotion requires an exact replay, a Lean proof that every arbitrary-size
+ingress packet maps to the encoding (including overflow cases), and a
+source-clean consumer wired to the compatibility residual in the same change.
+No additional order-only search, fixed-`n` census, or theorem-bank lookup is
+authorized as progress.  Until this fourth-arm producer and its consumer are
+proved, the normalized-residual compatibility `sorry` remains open; the
+current sole load-bearing FreshThird gap is the outside-first ingress;
+the existing escape, endpoint, dual, and cyclic packets remain source-clean
+producer boundaries only.
+
+## 13.11 B1 global-transport consumer contract (2026-08-05)
+
+The B1 centre-transport route now has a checked, source-level consumer
+contract in `FrontierLiveClosure/B1Live.lean`.  The new
+`B1GlobalTransportContext` packages the complete live B1 packet once, and
+`B1GlobalGapOrClosedTerminal` is the exact disjunction that a future producer
+must establish.  Its three arms are:
+
+1. a point different from the common blocker and `S.oppApex2` on the bisector
+   of the two deleted sources;
+2. cardinality at least three for that bisector fiber; or
+3. for every admissible escaped physical-class point, selected-shell overlap
+   at least three with the first deleted-source shell.
+
+`false_of_b1_global_gap_or_closed_terminal` feeds these arms to the existing
+third-bisector, fiber-card, and escaped-overlap terminals.  The focused
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live` build passes,
+and a targeted `#print axioms` audit reports only `propext`,
+`Classical.choice`, and `Quot.sound` for the consumer.  This is **PROVEN
+CONSUMER INFRASTRUCTURE**, not B1 closure: the producer and its
+arbitrary-cardinality lift remain unset.
+
+The source audit is negative for the existing adapters.  The generic
+three-hit machinery requires retained `oppApex1` collisions at distinct
+radii; `SevenSourceCriticalShellDichotomy` supplies support/saturation data
+but no bisector or blocker output; and the B1 fiber is already saturated at
+the two-point set `{common blocker, S.oppApex2}`.  Therefore the next exact
+mathematical target is a global minimality/cap-row/no-`(m,4,4)` producer of
+the three-arm disjunction, followed by a universal lift.  No fixed-cardinality
+solver run is a promotion step until that ingress contract is proved.
+
+On 2026-08-06 this producer boundary was promoted from a parked contract to
+the explicit load-bearing theorem
+`b1_globalGapOrClosedTerminal_of_counterexample` in
+`FrontierLiveClosure/TwoDeletionCollision.lean`.  The former negative leaf
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`
+now only packages its live binders as `B1GlobalTransportContext` and applies
+the checked three-arm consumer.  Coordinator-interface frontier before:
+one `False`-valued blocker-collision `sorry`; after: one positive
+`B1GlobalGapOrClosedTerminal` producer `sorry`, with the old theorem a checked
+adapter.  This is a one-for-one obligation-shape refactor: it removes no
+load-bearing `sorry`, proves no global producer, and does not close B1 or the
+exact-12 robust branch.  Its value is that theorem mining and CEGAR now have
+the exact promoted predicate they must establish instead of targeting an
+opaque contradiction.  Focused verification of the importing
+`TwoDeletionCollision` source passes directly under Lean 4.27.  A transitive
+Lake rebuild remains deferred until the ongoing `Census554` import refactor
+lands.
+
+## 13.12 FreshThird retained-producer audit (2026-08-05)
+
+**2026-08-08 update:** the broad consumer described below is now source-closed
+through the downstream acyclic split in §13.24.  The remaining local
+obligation is the strictly narrower `FreshThirdAcyclicHardResidual`; the old
+request for a cap-wide alignment producer is retired rather than pending.
+
+The retained-arm construction has now been extracted upstream, without an
+import cycle, in
+`ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean`.
+Its source-clean top-level theorem,
+`freshThird_acyclic_canonical_consumerPacket`, returns either a cross-radius
+double-deletion witness with a `MinimalDeletionCore` at `S.oppApex1`, or a
+`CommonRadiusTwoCapSourceThirdCanonicalRowSurface` packet.  The isolated
+producer module and the importing residual both build under Lean 4.27; the
+producer's transitive audit has no `sorryAx`.
+
+This is a producer milestone, not closure.  The consumer audit found that
+`MinimalDeletionCore` currently yields only cap-cardinality bounds, while the
+existing Kalmanson/Five/Six consumers require a strict five- or six-point
+chain, a third selected row, or both endpoints outside the two middle
+centres.  The FreshThird packet has two rows and an alternating placement with
+one endpoint between the centres.  The downstream retained-core consumer also
+forms an import cycle and ultimately reaches the live target sorry.
+
+The exact remaining work is therefore a new source-level bridge that either
+transports the cross-radius deletion core to a same-radius retained consumer,
+or derives a third-shell, reciprocal-incidence, or strict-order packet from
+full K4, deletion minimality, cap cardinality, and the no-`(m,4,4)` hypothesis,
+followed by an unconditional consumer wired to the outside-first on-spine
+target.  Until that bridge exists, the outside-first sorry remains the
+load-bearing FreshThird gap; normalized-residual and retained/common-radius
+routes are compatibility-only.  Fixed-`n` searches, order-only adapters, and
+wrappers are not promotion steps.
+
+## 13.13 Direct FreshThird consumer audit (2026-08-06)
+
+**2026-08-08 update:** the positive `FreshThirdSameCapCrossRowAlignment`
+producer route below is historical.  Existing consumers prove that such an
+alignment is itself impossible, so producing it under the non-hit premises is
+logically equivalent to proving the whole residual by contradiction.  The
+source-faithful replacement and current anchor are recorded in §13.24.
+
+The final import-reachability audit confirms that the normalized-residual
+route is compatibility-only rather than the current publish-spine anchor.
+The exact branch obligations recorded here remain useful for that compatibility
+route, but the active spine target is now the outside-first ingress:
+
+* `firstNonHit` and `secondNonHit` can be consumed by
+  `false_of_freshThird_firstNonHit_of_capWideAlignment` and its symmetric
+  counterpart, but only after a new producer supplies
+  `FreshThirdSameCapCrossRowAlignment`.  The existing
+  `freshThirdCapSourceNonHit_center_ne_of_sourceRowOmission` supplies center
+  separation for an omission and does not supply the cap placement or the two
+  endpoint memberships required by that alignment packet.
+* The equal-center same-cap/noncanonical arm is consumed only when an
+  upstream `CommonRadiusTwoCapSourceThirdCanonicalRowSurface` supplies the
+  selected-class/radius fields required by
+  `false_of_commonRadius_equalCenters_noncanonicalSameCap_packet`.
+* The equal-center distinct-cap arm is not closed by
+  `false_or_freshCap_ne_opp_of_commonRadius_distinctCaps` or by
+  `freshThird_commonRadius_distinctCaps_dual_packet`; both are producer
+  disjunctions that retain an exceptional canonical-source/different-fresh-cap
+  packet.  A new terminal must consume that packet, or transport it to an
+  existing terminal with all its endpoint and deletion-survival data intact.
+
+Consequently, the outside-first anchor remains genuinely open and on-spine.
+The next mathematical change must prove a source-level cap-wide/third-incidence
+bridge (with an arbitrary-cardinality lift) and wire it directly to
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`.  No additional
+theorem-bank search, fixed-`n` UNSAT result, or compatibility wrapper counts as
+progress until it provides that consumer contract.
+
+## 13.14 FreshThird local-route falsification (2026-08-06)
+
+An exact-rational strictly convex octagon has now been constructed for the
+apparently strongest local packet: the source and fresh rows are distinct
+exact four-point classes of one common radius, their intersection is exactly
+the two named points, both cross-row endpoint hits hold, and the fourth
+`FreshThirdAlternatingEndpointPlacement` arm is realized.  Nevertheless the
+third hit fails.  One coordinate realization uses
+
+`s=(0,1)`, `f=(0,-1)`, `p=(-2,0)`, `q=(2,0)`,
+`x±=(±82/61,-48/61)`, and `y±=(±82/61,48/61)`;
+
+the source row is `{p,q,x-,x+}`, the fresh row is `{p,q,y-,y+}`, both have
+radius squared `5`, while `dist(f,s)^2 = 4` and `s` is not in the fresh row.
+The convex-order determinants are positive in exact rational arithmetic.
+
+This is a **PROVED NEGATIVE DIAGNOSTIC**, not a counterexample to the full
+Lean theorem: it omits the global deletion/minimality obligations.  It does
+show that adding common-radius, exact-K4, overlap, cyclic-order, or endpoint
+placement clauses alone cannot supply the missing producer.  The next
+source-level target must therefore expose a genuinely global fact, such as a
+no-four-point witness after erasing the relevant fresh source, or an
+iterated-blocker equality `centerAt(s) = f` strong enough for
+`CriticalShellSystem.source_mem_selectedFourClass` to force the missing point
+into the fresh row.  Any computational campaign for this lane must include
+that premise in its ingress contract; another local-order matrix is
+diagnostic only.
+
+## 13.15 FreshThird global-deletion ingress audit (2026-08-06)
+
+Historical/off-spine compatibility audit: the normalized residual named in this
+section is not the current publish-spine anchor.  Its source-interface lessons
+remain useful, while the active load-bearing ingress is the outside-first
+blocker-fiber theorem.
+
+The existing deletion and selected-shell APIs were checked as the last
+source-clean bridge for the normalized residual.  They do not provide the
+missing premise:
+
+* `ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq` transports
+  selected-shell support only after an equality of `centerAt` values for two
+  known sources.
+* `CriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`
+  relates deletion survival to omission from the selected support at a
+  source's own center; it does not turn a FreshThird source-row omission into
+  a fresh-center obstruction.
+* `CriticalShellSystem.source_mem_selectedFourClass` and
+  `selectedFourClass_support_eq_shell` force membership only after a
+  `SelectedFourClass` at the relevant center has already been supplied.
+* The closest blocker-equality consumers in `AnchoredDoubleDeletionProducer`
+  require a `SurvivorPairRelocationPacket`, double frontier-deletion
+  hypotheses, and an explicit `hnotFour`; `FreshThirdBlockerFiber` has none of
+  these fields.
+
+The residual does have a source-clean escape theorem,
+`exists_freshThird_escape_with_sourceFaithful_cover`, but its escaping point
+is an unnamed `z` outside the triple seed.  It supplies a no-four deletion at
+`centerAt z`, not the named `Q.source₁`/`Q.source₂` source-row omission and
+endpoint transport needed by the FreshThird consumers.
+
+Thus no type-correct global-deletion route currently exists from the active
+`FreshThirdBlockerFiber`/source-row-omission packet.  The next producer must
+prove, at arbitrary cardinality, either an iterated equality such as
+`centerAt source = freshCenter` together with a selected-four-class witness,
+or a direct no-four deletion obstruction that can be consumed by the existing
+survival APIs.  Until that producer lands, the normalized-residual
+compatibility route remains open; adding another wrapper, bounded certificate,
+or local incidence matrix would not advance the current outside-first spine.
+
+## 13.16 FreshThird source-faithful global-ingress CEGAR (2026-08-06)
+
+Historical CEGAR/compatibility route: the finite ingress artifacts and source
+lessons below are retained, but the normalized coordinator they analyze is
+off-spine.  The current proof-blueprint spine has the outside-first
+blocker-fiber theorem as the load-bearing FreshThird leaf.
+
+The global-deletion proposal has now been tested at `n = 17`, profile
+`(6,8,6)`, and at the first larger slack profile `n = 19`, `(6,10,6)`:
+
+`scratch/retained-omission-e1/round5-general-cegar/n19_freshthird_global_ingress_probe.py`.
+
+The earlier claim that cap exhaustion identifies the two leftover `n = 17`
+indexed-cap slots with `Q.source₁,Q.source₂` was false.  Those source fields
+are free existential carrier selectors; the literal Python labels `q1,q2`
+name anonymous cap slots only.  The first `n = 19` artifact
+`20260806T044857Z.json` is therefore **invalid and superseded**: besides
+forcing Q into those two slots, it encoded blocker distinctness tautologically
+and attached the residual interactions to the literal labels rather than the
+dynamically selected C-source slots.
+
+The repaired encoder keeps Q free, indexes each interaction by C-source slot,
+uses genuine blocker inequality, and includes the center-in-cap-interior and
+both-Q-source membership fields of the two geometric interaction constructors.
+It also compares canonical-row centers to the apex points themselves rather
+than to the apex vertices' blocker centers.
+
+The query explicitly requires both C sources to avoid Q-source identity,
+membership in the selected Q row, and blocker-center equality with Q.  Its
+source-entitled refinements now include:
+
+1. **global chosen-row closure:** from every carrier singleton, repeatedly
+   adjoining the chosen K4 row at each reached center reaches the full carrier;
+   this is a necessary finite consequence of
+   `exists_center_all_selectedFourClass_escape_of_proper_subset`;
+2. **two-circle intersection:** chosen exact four-classes at distinct carrier
+   centers intersect in at most two points, matching
+   `SelectedFourClass.inter_card_le_two`;
+3. **center-cap row count:** whenever a chosen-row center lies in an indexed
+   cap, its row hits that cap at most twice, matching
+   `CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two`.
+4. **exact retained first-apex classes:** the P and Pρ radius classes each
+   have exactly four carrier points, meet the indexed-cap interior in exactly
+   their named endpoint pair, and have distinct radii.  These are the direct
+   Boolean translations of `hfrontierFour`, `hρfour`,
+   `hfrontierInteriorEq`, `hρInteriorEq`, and `hρne`;
+5. **the source-level radius dichotomy:** the solver is run separately in the
+   `aligned` branch, where every repeated first-apex radius in the indexed-cap
+   interior is one of the retained radii, and the `common` branch, where the
+   two selected C sources share a new first-apex radius distinct from both
+   retained radii;
+6. **retained mutual omissions and tri-apex exclusion:** the two localized
+   common-deletion packets force `r1 ∉ row(p1)` and `p1 ∉ row(r1)`, and
+   `T.no_center_covers_all_apices` forbids one radius class from covering all
+   three apices;
+7. **the aligned retained-deletion core:** one P endpoint and one Pρ endpoint
+   omitted by `C.firstSource` are deleted, its exact four-row survives, and
+   every remaining first-apex radius class has size at most three.  Together
+   with the exact retained P/Pρ classes this is precisely the finite content
+   of `FreshThirdRetainedDeletionCorePacket`.  It is imposed only in the
+   `aligned` branch, where the source producer proves it.
+8. **the two remaining apex-rich packets:** at `surplusApex` and `oppApex2`,
+   every model has either one radius class of size at least six or two distinct
+   radius classes of size at least four, exactly translating
+   `ApexRichClassStructure`;
+9. **branch-preserving opposite-cap patterns:** the same S6/D44 witnesses used
+   for richness contain respectively all four or two-plus-two points of the
+   appropriate strict opposite-cap interior, as proved by
+   `OppositeCapRichClassInteriorPattern`;
+10. **checked rich-slice localization:** every named source blocker is assigned
+    its actual strict cap, every selected shell meets a rich radius class in at
+    most two points, and two hits in a rich strict-cap slice force the blocker
+    row into that cap.  These are the finite translations of
+    `criticalShell_inter_selectedClass_card_le_two_of_apexRich` and
+    `criticalShellCenter_mem_capInteriorByIndex_of_two_hits`.
+
+Every one of `firstNonHit`, `secondNonHit`, and `equalCrossRowCenters` remains
+`SAT` in both radius branches at both cardinalities.  The canonical six-case
+artifacts are:
+
+* `artifacts-n17-global-ingress/20260806T053029Z.json`;
+* `artifacts-n19-global-ingress/20260806T052605Z.json`.
+
+This is **bounded external countermodel evidence**, not a Lean counterexample:
+the model still omits exact Euclidean realization and a universal-cardinality
+ingress/lift.  It does, however, falsify the current proposal that named
+FreshThird ingress follows from the encoded K4 incidence, the retained
+deletion core and radius dichotomy, chosen-row closure, pairwise circle
+intersection, cap-local row counting, mutual omission, and tri-apex exclusion
+alone.
+
+The richer six-case `n = 17` rerun also remains `SAT`.  Its canonical artifact
+is:
+
+* `artifacts-apex-rich-localized-n17/20260806T055802Z.json`.
+
+This additionally falsifies an incidence-only producer based on the complete
+S6/D44 branch data and the currently checked rich-cap localization consumers.
+In particular, `ApexRichClassStructure` is not by itself the missing ingress
+at this abstraction level.  These are still bounded abstract models, not
+Euclidean counterexamples and not a refutation of the live Lean theorem.
+
+The Lean retained packet was also corrected in the same round:
+`FreshThirdRetainedDeletionCorePacket` now preserves the proved first-apex
+blocking fact
+`¬ HasNEquidistantPointsAt 4 ((D.A.erase x).erase y) S.oppApex1`
+instead of discarding it after constructing `MinimalDeletionCore`.  This is a
+source-interface repair, not a closed leaf.  The next production result must
+use a fact absent from the enriched model: exact Euclidean/cyclic-order metric
+content or a stronger named deletion-transfer theorem.  A sufficient producer
+would force, for a named C/Q source whose blocker lies in cap `i`, two points of
+its selected shell in a rich radius slice of a distinct cap `j`; the existing
+`false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap` would then
+close that branch immediately.  The enriched SAT matrix shows that this
+two-hit producer cannot be derived from the encoded incidence, cap, richness,
+and localization facts alone.  Further variants of that abstraction are not
+the production path.
+
+### 13.16.1 FreshThird named endpoint-deletion ingress (2026-08-06)
+
+The exceptional canonical-source/different-fresh-cap arm now has a checked,
+cardinality-free metric landing path.  The source theorem
+`freshThird_canonicalDifferentCap_fivePointKalmansonOrder` extracts the four
+possible five-point boundary orders.  The Kalmanson theorem
+`CapCrossingKalmansonBridge.false_of_freshThird_four_order_arms` eliminates
+each order once the order-selected endpoint is equidistant from the other
+shared endpoint and the canonical source.
+
+The metric premise has now been replaced by an explicit global-deletion
+contract.  The proved theorem
+`endpointCentered_dist_eq_of_two_blocked_deletions` says that, at a carrier
+center `q`, simultaneous failure of K4 after deleting `x` and after deleting
+`y` puts `x` and `y` on one critical four-shell centered at `q`, and hence
+proves `dist q x = dist q y`.  The checked minimal consumer
+`false_of_freshThird_canonicalDifferentCap_of_orderSelectedEndpointDeletionObstructions`
+accepts only the two named deletion obstructions at the endpoint selected by
+the realized boundary-order arm and feeds the resulting equality to the
+Kalmanson terminal.  This is a source-clean producer contract, not a closed
+FreshThird leaf: the active
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber` theorem still has no
+proof of the required source-entitled terminal; the normalized-remaining route
+is compatibility-only.
+
+In any one of the four boundary-order arms, only the two deletion failures at
+the order-selected endpoint are needed.  The exact arbitrary-cardinality
+complement of that pair is now checked in Lean.  The theorem
+`deletion_survives_iff_exists_selectedFourClass_avoiding` trims a surviving K4
+witness after deleting `x` to an ambient `SelectedFourClass` whose support
+avoids `x`, and proves the converse.  Thus it is an exact representation, not
+a weakening.  The theorem
+`endpointDeletionPair_blocked_or_survivingRow` then proves that a named pair
+of deletions either both block or supplies an explicit selected four-row
+avoiding one of the two deleted points.
+
+The order-indexed theorem
+`freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow`
+specializes this dichotomy to the endpoint selected by each of the four
+Kalmanson orders.  Finally,
+`freshThird_canonicalDifferentCap_orderSelectedEndpointDeletionOutcome`
+composes it with the source-proved boundary order.  It gives a
+cardinality-free, source-faithful ingress:
+
+```text
+canonical different-cap FreshThird packet
+  -> order-selected two-deletion obstruction (immediate Kalmanson closure)
+     OR exact selected four-row avoiding one named deleted point.
+```
+
+This is a genuine producer, but not yet closure: the first arm is consumed by
+the checked Kalmanson terminal, while the new exact-row arm has no contradiction
+consumer yet.  The next CEGAR query must therefore retain the direct/mirror
+boundary arm and encode the **surviving-row complement** of the exact dynamic
+clause
+
+```text
+delete(canonicalSource) blocks K4 at qSelected
+and
+delete(otherEndpoint) blocks K4 at qSelected.
+```
+
+Rather than ask only whether that clause is forced, the query should enumerate
+the exact four-point support supplied when either conjunct fails and mine a
+source-entitled contradiction or finite obstruction covering every such row.
+The universal ingress no longer needs to be guessed: the checked outcome
+theorem supplies it.  A bounded UNSAT result nevertheless remains diagnostic
+until a proved arbitrary-cardinality obstruction/lift covers those surviving
+rows and feeds a live residual consumer.
+
+The exact bounded query is now implemented at
+`scratch/retained-omission-e1/round5-general-cegar/freshthird_dynamic_endpoint_deletion_probe.py`.
+It keeps the C/Q sources as dynamic selectors, encodes the exceptional
+canonical-source/different-fresh-cap packet, and defines deletion failure by
+the exact finite negation of `HasNEquidistantPointsAt 4 (A.erase deleted)
+qSelected`.  It deliberately does **not** assume the stale `no_named_ingress`
+condition and does not enable the older literal-`q1`/`q2` cyclic-order metric
+encoding.  Each invocation instead takes one of the two endpoint mappings and
+one of the four source-proved order arms, then derives `qSelected`; the caller
+can no longer choose an endpoint inconsistent with its order arm.  Cyclic
+order itself is not re-encoded: the Lean order theorem supplies the external
+case index, and the incidence model is otherwise a relaxation of that arm.
+Consequently SAT may be spurious, while bounded UNSAT must cover all eight
+indexed cases before it supplies even bounded evidence for the dynamic clause.
+
+Schema 4 strengthens the aligned-radius ingress with the checked source fact
+`firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned`, as exported by
+`freshThird_acyclic_canonical_consumerPacket`: each dynamically selected
+canonical C-source first-apex radius meets its indexed cap in exactly that
+source.  This was already a logical consequence of the older finite clauses,
+but it is now a named constraint group and a versioned part of the query
+contract, so future survivor-row cuts can use it directly and its presence can
+be audited.  The common-radius branch deliberately does not receive this
+aligned-only fact.
+
+Construction-only validation of schema 4 has passed for both finite profiles
+and both radius modes without calling `solver.check`:
+
+- `n = 17`, `firstNonHit`, aligned-radius mode, `q1-outside` mapping, order
+  arm 2 (derived selected endpoint `q1`): 48,954 assertions and 87 labelled
+  constraint groups;
+- `n = 19`, `equalCrossRowCenters`, aligned-radius mode, `q2-outside` mapping,
+  order arm 3: 74,352 assertions and 87 labelled constraint groups;
+- `n = 19`, `equalCrossRowCenters`, common-radius control, `q1-outside`
+  mapping, order arm 1 (derived selected endpoint `q2`): 74,350 assertions and 85
+  labelled constraint groups.
+
+The corresponding `BUILT_NOT_SOLVED` artifacts are under
+`scratch/retained-omission-e1/round5-general-cegar/artifacts-dynamic-endpoint-deletion/`;
+each records `solver_check_called = false`.  The schema-4 self-check also pins
+the two aligned singleton-ingress declarations.  Thus the encoder contract is
+now statically valid for the exact obstruction-versus-surviving-row dichotomy.
+Schema 4 records the five checked Lean ingress declarations, and any SAT run
+extracts a deterministic exact four-point radius support for every true
+survival alternative, together with the deleted point it avoids and the full
+finite radius class.  A round must not be reported as covering the order
+theorem unless its matrix covers both mappings, all four arms, and both
+surviving-row alternatives at the derived selected endpoint.  There is not yet
+a SAT/UNSAT result, post-round theorem-bank pass, arbitrary-cardinality
+survivor-row obstruction, or closed Lean leaf.
+
+The Lean landing interface now matches that dynamic contract exactly.
+`FreshThirdOrderSelectedEndpointDeletionObstructions` records the realized
+order arm together with only its selected endpoint's two deletion failures;
+`false_of_freshThird_orderSelectedEndpointDeletionObstructions` proves the
+generic cardinality-free Kalmanson contradiction; and
+`false_of_freshThird_canonicalDifferentCap_of_orderSelectedEndpointDeletionObstructions`
+supplies the direct/mirror source-row metric adapter.  The focused
+`TwoSourceFreshThirdFiber` build and proof-blueprint re-index both pass on Lean
+4.27.  These declarations introduce no new `sorry` and remove the former need
+for a producer to establish all four endpoint obstructions.  They are checked
+consumers.  The new outcome declarations above additionally close the
+universal-ingress gap by exposing the complementary row data; the historical
+compatibility route still needs its row-valued complement eliminated, while
+the current outside-first ingress remains open on-spine.
+
+The disjunction has now been narrowed once more in checked Lean.  The theorem
+`freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow`
+composes the exact outcome with the Kalmanson consumer: its deletion-
+obstruction arm proves `False`, so every live canonical-different-cap instance
+unconditionally returns a boundary indexing, the direct/mirror endpoint
+names, the realized order arm, and the exact ambient `SelectedFourClass`
+surviving one of the two named deletions.  A focused Lean 4.27 source check of
+`TwoSourceFreshThirdFiber.lean` passes.  This closes no load-bearing `sorry`,
+but it removes the already-solved disjunct from the remaining producer
+contract.  The next mathematical target is therefore exactly the arbitrary-
+cardinality elimination of this returned survivor row; neither another
+deletion-obstruction wrapper nor a query that omits the row support advances
+the spine.
+
+Schema 6 of `freshthird_dynamic_endpoint_deletion_probe.py` retains the exact
+live common-radius scope from schema 5 and adds the missing source-level cap
+contract.  The general Lean producer
+`selectedClass_inter_capByIndex_card_le_two` states that every positive-radius
+selected class centered in an indexed closed cap meets that cap in at most two
+points.  The encoder applies precisely this bound to every radius class at the
+order-selected endpoint; because deletion only removes points, the same bound
+holds for either survivor class queried by the probe.  Its
+`live-equal-common-dual` scope requires `equalCrossRowCenters`, common-radius
+provenance, canonical slot 0, both C-source interactions in the
+canonical-source/different-fresh-cap constructor, and equality of the two
+C-row centers.  It also asserts the checked
+`freshThirdEqualCenterExactFourRow_of_hits` consequence, so both C rows are
+exactly the named four-source support rather than a solver-reconstructed
+coincidence.  SAT artifacts additionally expose the complete radius class,
+role membership, and cap-composition counts behind each trimmed exact
+four-support.  Construction-only validation passes for all sixteen queries at
+`n = 17` (two endpoint mappings, four order arms, and the canonical-source or
+other-endpoint surviving alternative), without calling `solver.check`.  Those
+sixteen source cases quotient exactly to four distinct solver formulas:
+selected endpoint `q1` or `q2`, crossed with canonical-source or other-endpoint
+survival.  Production runs therefore execute those four representatives and
+retain the sixteen-case construction matrix as the coverage gate.  No
+coverage is lost by this quotient: the sixteen construction-only cases and the
+four formula keys are checked by the schema-6 self-test.
+
+The source ingress was checked directly under Lean 4.27 on 2026-08-06.  Direct
+compilation passed for `PartitionFromMEC`, `CapSelectedRowCounting`,
+`TwoSourceFreshThirdFiber`, `TwoSourceFreshThirdRetainedProducer`, and
+`TwoSourceFreshThirdResidual`; the last module required only passing the full
+section-variable packet to the retained producer.  This was a focused source
+gate, not a fresh full-project build: the attempted Lake target build expanded
+to 10,892 stale transitive targets and was stopped after an unrelated
+`SevenPointTwinFourCircleCollision` elaboration consumed more than 75 minutes.
+
+The four schema-6 production representatives at `n = 17` are all **SAT**:
+`q1/canonical-survives`, `q1/other-survives`,
+`q2/canonical-survives`, and `q2/other-survives` (about 15--17 seconds each;
+no timeout or `unknown`).  These bounded models show that the general cap-class
+bound is a valid ingress strengthening but does not eliminate the live branch.
+No `sorry` closed in this round.  The immediate gate is a census of the four
+survivor motifs followed by a source-entitled theorem that rules out their
+shared structure; rerunning the obsolete obstruction-versus-survivor
+dichotomy would not address the current Lean consumer gap.
+
+The post-round bank audit initially identified cyclic boundary order as the
+missing bridge, but a direct production-source trace corrected that diagnosis.
+`freshThird_canonicalDifferentCap_boundary`,
+`freshThird_canonicalDifferentCap_endpointPlacement`,
+`freshThird_canonicalDifferentCap_sourceSupportPlacement`, and
+`freshThird_canonicalDifferentCap_fivePointKalmansonOrder` already supply the
+cardinality-free boundary and five-point order for this constructor.  The
+actual missing bridge is **positive incidence for the order-selected surviving
+row**: the current cap-split survivor records an avoided deletion and a
+`≤ 2`/`≥ 2` cap composition, but not two later boundary witnesses shared with a
+known row.  Consequently
+`CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair` cannot yet
+fire.  Schema 7 should encode only the Kalmanson exclusions justified by the
+existing five-point order, then census the remaining row incidences; it must
+not assume the desired shared memberships.
+
+### 13.16.2 Schema-7 Kalmanson census and source-producer gate (2026-08-06)
+
+Schema 7 implemented exactly the preceding bounded diagnostic.  It adds only
+the four Kalmanson exclusions justified by
+`freshThird_canonicalDifferentCap_fivePointKalmansonOrder` and the checked
+four-arm consumer; it does not assert the missing shared memberships.  The
+complete `n = 17`, `live-equal-common-dual` matrix covers two endpoint maps,
+four order arms, and the canonical-source/other-endpoint survivor alternatives.
+All sixteen source cases are **SAT**, with no timeout or `unknown`.  Every
+witness has an exact four-point selected surviving support; fifteen have a
+four-point full radius class, while one has a larger full class.  Concrete
+support labels and cap-composition vectors vary and are not universal motifs.
+This is bounded incidence evidence only: it proves neither Euclidean
+realizability nor a general-cardinality countermodel, and closes no `sorry`.
+
+The required post-round theorem-bank pass found no existing FreshThird,
+equal-center, normalized-residual, or surviving-row theorem that consumes all
+sixteen survivors.  In particular, the already checked deletion-obstruction
+consumer requires both named deletions to block K4, whereas these cases retain
+a selected row.  This remains compatibility-route evidence; the live
+on-spine FreshThird residual is the outside-first blocker-fiber theorem.
+
+This schema-7 branch is only one constructor family of the load-bearing
+residual.  A fresh constructor audit gives the complete remaining obligation
+matrix:
+
+1. `firstNonHit`: produce `FreshThirdSameCapCrossRowAlignment` for the first
+   source, or an equivalent global contradiction.  The other source's
+   interaction is still arbitrary at this interface.
+2. `secondNonHit`: the symmetric alignment/contradiction obligation.  A
+   side-parametric producer should discharge both non-hit constructors.
+3. `equalCrossRowCenters` with two distinct-cap noncanonical interactions:
+   prove the shared-late-pair producer below.  This is the exact schema-7
+   branch.
+4. `equalCrossRowCenters` with two noncanonical same-cap interactions under
+   the aligned-retained ingress: transport that ingress to the common-radius
+   consumer or prove a separate metric/global-deletion contradiction.  The
+   existing common-radius wrapper already closes this same-cap arm when the
+   stronger common-radius surface is available.
+
+The mixed equal-center interaction products and the canonical-cap variants
+are already source-closed in the coordinator.  Therefore the shared-late-pair
+producer is a genuine compatibility-branch reduction, but it is not by itself
+closure of the current on-spine
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`.
+
+The precise next source-level producer is now fixed.  From the live
+`FreshThirdAcyclicCanonicalConsumerPacket`, the canonical different-cap
+five-point order, and the row returned by
+`freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow`,
+construct:
+
+1. a second selected row `BRow`;
+2. indices `ia < ib < ic < id`; and
+3. membership of `boundary ic` and `boundary id` in both the surviving row and
+   `BRow`.
+
+Those conclusions are exactly the input of
+`CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair`, so
+the consumer and universal lift already exist once this producer is proved.
+The missing mathematics is positive global row incidence, not cyclic order or
+another local deletion dichotomy.
+
+Accordingly this remains a historical/off-spine production milestone for the
+distinct-cap branch.  The current production milestone is a source proof and
+direct wiring for the outside-first blocker-fiber ingress
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`.  A
+schema-8 dynamic shared-late-pair query may be used as a hypothesis probe or
+countermodel generator while developing the producer, but it must not be
+classified as a production closure run until Lean supplies the source
+entitlement.  Clauses hard-coded to the accidental schema-7 labels, or merely
+asserting that the survivor contains a collision source, are not admissible.
+The full post-round evidence and theorem audit are recorded in
+`scratch/retained-omission-e1/round5-general-cegar/schema-v7-round-summary.md`
+and `schema-v7-theorem-bank-audit.md` in the same directory.
+
+### 13.16.3 Schema-8 correction and coherent-row Schema-9 gate (2026-08-06)
+
+Schema 8 did **not** soundly negate the proposed shared-pair producer.  It
+introduced free existential selectors for the surviving row, comparison row,
+and pair, then asserted the negation of the selected instance.  Its effective
+shape was `∃ selectors, ¬ Shared(selectors)`, whereas a countermodel to the
+producer requires `¬ ∃ selectors, Shared(selectors)`.  The public Schema-8 run
+paths are disabled before solver or artifact work.  Its historical sixteen
+SAT results are invalid as countermodels and receive no mathematical or
+closure credit.
+
+The accompanying source audit did establish one useful correction.  At every
+critical-shell blocker center,
+`CriticalShellSystem.selectedFourClass_support_eq_shell` proves that any
+selected four-class supplied by global K4 has exactly the chosen critical
+shell support.  Thus a finite relaxation may use one coherent global row per
+center; it may not choose different row supports for different source
+projections at the same center.
+
+Schema 9 repairs the quantifier polarity without introducing selector
+variables.  For every selected endpoint center `c`, radius anchor `a`, and
+coherent global-row center `b`, it defines the deletion-surviving radius class
+`Aclass(c,a)` and asks whether its intersection with row `b` contains two
+points on the same side of the open boundary interval between `c` and `b`.
+The countermodel query is the literal negation of the finite disjunction over
+all `17^3 = 4913` triples.  Dynamic endpoint roles, the full boundary
+permutation, and all four source-proved five-point order arms are retained.
+This remains an external bounded relaxation: it has neither Euclidean
+realization semantics nor an arbitrary-cardinality Lean ingress/lift.
+
+The Schema-9 self-check passes on all sixteen endpoint-map/order/deletion
+cases, checks the candidate count and absence of selector variables, and
+includes an UNSAT polarity canary.  The complete sixteen-case run at a
+30-second per-case timeout returned **0 SAT, 0 UNSAT, and 16 UNKNOWN**.  This is
+no verdict on the producer and closes no `sorry`.
+
+The mandatory post-round global theorem-bank pass searched all eight indexed
+Lean corpora and the four required sibling/legacy registries.  It found
+single-row producers such as `exists_selectedFourClass_of_globalK4` and the
+conditional consumer `selectedFourClass_shared_pair_separated`, but no theorem
+forcing a second coherent row, exact two-point intersection, or a
+nonalternating shared pair from the live FreshThird/global-K4/deletion/cap
+packet.  The first missing source bridge is therefore unchanged: produce two
+distinct row centers with a shared pair and its boundary placement, then feed
+the checked shared-pair/Kalmanson consumer.
+
+Before changing the mathematical abstraction, Schema 10 should encode the
+same Schema-9 negation in solver-friendly direct form: for each `(c,a,b)` with
+`b != c`, `Avalid(c,a)` implies at most one shared point inside the open
+interval and at most one outside it.  Equivalence and polarity self-checks are
+mandatory.  Any resulting CEGAR verdict remains diagnostic until a general
+Lean producer and lift are proved, and it must again be followed by a global
+theorem-bank pass.  The three-constructor residual interface remains the
+correct coordinator granularity; no further load-bearing split is authorized
+unless the same change closes at least one resulting arm.
+
+The detailed contracts and audits are in
+`scratch/retained-omission-e1/round5-general-cegar/schema-v9-contract.md` and
+`schema-v9-global-theorem-bank-audit.md`.
+
+### 13.16.4 Schema-10/11 status and direct nonalternation consumer (2026-08-06)
+
+Schema 10 implemented the solver-friendly direct form specified above.  Its
+Boolean/count equivalence checks pass, but the authenticated sixteen-case
+matrix returned **0 SAT, 0 UNSAT, and 16 UNKNOWN** at the 30-second per-case
+timeout.  This is no closure result.
+
+The next source strengthening is now checked in
+`TwoSourceFreshThirdResidual`.  The two exposed exact four-supports have exact
+two-point overlap and therefore form a six-point seed.  Global minimality
+produces a single pinned seed center, distinct from both exposed row centers,
+such that every positive physical radius class there meets the seed in at
+most three points.  The public producer
+`exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy` additionally
+states the source-faithful canonical-blocker/support dichotomy for every
+selected row and every point escaping the seed.
+
+Schema 11 adds the exact six-point seed and the correctly quantified pinned
+center to Schema 10.  Its formula chooses the center once before all radius
+anchors and applies the nonalternation negation at that same center.  The
+stronger universal blocker/support dichotomy is **not** yet encoded.  A single
+30-second diagnostic case returned `UNKNOWN`; no full Schema-11 matrix has
+been run, and no bounded result is promoted.
+
+The Lean consumer boundary has been simplified and closed.  The new packet
+`FreshThirdSharedPairNonalternationPacket` records two distinct exact selected
+rows sharing two distinct points for which boundary betweenness relative to
+the row centers has the same truth value.  The theorem
+`false_of_freshThirdSharedPairNonalternationPacket` proves this packet false
+directly from `SurplusCOMPGBank.btw_sep`.  It is cardinality-free, typechecks
+under Lean 4.27, and removes the previously stated need to rotate a boundary
+indexing into `FreshThirdSharedLatePairPacket` form.
+
+The certificate ingress immediately above that consumer is now also checked.
+`exists_selectedFourClass_preserving_pair` trims any four-or-larger physical
+radius class to an exact `SelectedFourClass` while retaining two named shared
+points.  `false_of_selectedClass_and_row_shared_pair_nonalternating` consumes
+the resulting named-witness certificate directly, and
+`false_of_selectedClass_and_row_two_shared_on_one_arc` provides the
+count-facing form used by the finite query: cardinality at least two in either
+the inside-arc or outside-arc shared-point filter is enough for contradiction.
+All three declarations are ambient-cardinality-free and typecheck under Lean
+4.27.  Thus exact-four trimming, witness extraction, and the final geometric
+consumer are no longer part of the promotion gap.
+
+The mandatory post-round indexed Lean and historical-bank audit found no
+producer connecting the pinned six-point/multiplicity packet to either shared
+pair consumer.  The remaining distinct-cap work is therefore source
+production, not consumer construction: prove that the pinned physical radius
+class and some coherent comparison row have at least two shared boundary
+points on one of the two open arcs between their centers.  The Lean ingress
+then performs all witness selection and exact-four trimming.  A computational
+UNSAT would still require an arbitrary-cardinality finite-pattern ingress/lift
+establishing precisely this one-arc count before it could close the universal
+Lean leaf.  Until that producer or lift is proved, the active FreshThird
+residual and its other non-hit/same-cap families remain open.
+
+### 13.16.5 Equal-center six-case ingress and non-hit symmetry (2026-08-07)
+
+The equal-center constructor now has a source-level finite center-domain
+ingress in
+`TwoSourceFreshThirdResidual`.  Under the two positive cross-row hits and the
+exact two-point row overlap,
+`exists_freshThirdEqualCenter_pinnedCenter_sixWayIngress` proves that the
+globally pinned center is either one of the four named source points or belongs
+to `freshThirdCrossRowFreshRemainder`, whose cardinality is exactly two.  The
+producer also proves that the named finset has cardinality four and is disjoint
+from that remainder, so these are six distinct center cases.  The same witness
+retains the positive-radius seed-intersection bound and the
+universal blocker/support escape dichotomy for every selected row and every
+point outside the six-point seed.  This is an exact, cardinality-free ingress;
+it does not truncate the ambient carrier and does not select a favorable row.
+The six-case ingress itself passed focused elaboration under Lean 4.27 before
+the producer decomposition below.
+
+The checked case split in
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` is retained
+as an off-spine compatibility decomposition.  Its three constructor-local
+obligations are:
+
+1. `false_of_freshThird_firstNonHit`, retaining the second interaction and the
+   complete acyclic ingress;
+2. `false_of_freshThird_secondNonHit`, retaining the first interaction and the
+   complete acyclic ingress; this branch is now a proved adapter, not an
+   independent residual; and
+3. `false_of_freshThirdEqualCenter_noncanonicalInteractions`, retaining both
+   noncanonical interactions and the complete acyclic ingress.
+
+This corrects two invalid positive-producer interfaces discovered by the
+source audit.  A `FreshThirdSameCapCrossRowAlignment` is itself contradictory,
+and the two `FreshThirdCapSourceNonHit` constructors respectively negate its
+center-inequality or source-row-membership fields.  Therefore the former
+`freshThird_firstNonHit_capWideAlignment` and reflected theorem could only
+have been proved after deriving the entire branch contradiction and applying
+`False.elim`; they were disguised `False` leaves rather than useful positive
+producers.  The direct residuals expose the actual mathematical work.
+
+The equal-center positive interface had the same problem in a different
+form.  The canonical two-point overlap is proved to be cyclically separated:
+one point satisfies `btw ic id` exactly when the other does not.  It therefore
+does not source-produce the two shared points on one arc requested by the old
+`exists_freshThirdEqualCenter_oneArcSharedPairObstruction`.  The equal-center
+leaf now asks directly for `False`; its mixed
+`distinctBlockersDifferentCaps`/`sameCapWithInternalFiberSource` products
+close by strict-cap uniqueness, while the coherent distinct/distinct and
+same-cap/same-cap products remain explicit proof branches inside the one
+residual symbol.
+
+The broad coordinator contains no proof hole and immediate constructor fan-out
+remains three.  However, the second-non-hit branch is not a separate
+mathematical obligation.  `false_of_freshThird_secondNonHit` swaps only
+`C.firstSource` and `C.secondSource`, reruns the proved
+`freshThird_acyclic_canonical_consumerPacket` producer for the swapped surface,
+and applies `false_of_freshThird_firstNonHit`.  This source-only symmetry proof
+passes focused Lean 4.27 elaboration; it does not identify `P` with `Pρ` or the
+separate common-radius surface with the current `C`.
+
+The remaining proof sites in this decomposition are compatibility obligations,
+not the current kernel frontier.  `false_of_freshThird_firstNonHit` and
+`false_of_freshThirdEqualCenter_noncanonicalInteractions` remain useful for
+the historical normalized route, but the current on-spine load-bearing leaf is
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`.  No data from the
+opposite interaction or the acyclic retained/common-radius packet is erased.
+
+This is a source-closed compatibility decomposition, not unconditional
+mathematical closure.  The equal-center center selector nevertheless has a
+complete source entitlement: the center domain, exact remainder cardinality,
+multiplicity clause, and universal escape clause all arrive from Lean rather
+than being assumed by an encoder.  The selected-row and outside-seed
+quantifiers are still unbounded, so this is not yet a finite-object extraction
+theorem for the whole branch or a closure of the active outside-first leaf.
+
+The next non-hit milestone is the first-source direct contradiction for the
+source-entitled packet
+`(acyclic ingress, FreshThirdCapSourceNonHit, opposite interaction)`.  For
+theorem discovery it is useful to analyze the retained and common-radius
+ingress arms separately, but the common-radius arm contains a separately
+produced surface rather than transport data identifying it with the current
+`C`; no proof or encoder may silently make that identification.  The two
+non-hit constructor arms now share this single obligation through the checked
+source-swap adapter.
+
+The next equal-center milestone is a direct contradiction for either coherent
+interaction product.  The six-way ingress remains valid and useful, but its
+multiplicity and universal escape clauses do not by themselves imply a
+same-arc pair.  A computational attempt must target the direct `False`
+contract and provide a sound bounded-obstruction/lifting theorem over all six
+center possibilities, retaining the universal escape dichotomy and complete
+ingress provenance.  Bounded `UNSAT`, or a model that assumes the rejected
+alignment/same-arc packet, remains diagnostic only.
+
+### 13.16.6 Common-radius surviving-row incidence leaf (2026-08-07)
+
+The common-radius equal-center specialization is no longer routed through a
+broad fallback.  The source now proves the complete dual-cap packet with
+`freshThird_commonRadius_distinctCaps_dual_packet`, selects the exact boundary
+indexing and endpoint row with
+`freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow`,
+and stops at the explicit compatibility residual off the current publish spine
+`false_of_freshThird_commonRadius_distinctCaps_survivingRow`.
+
+This subsection is retained as historical route analysis.  The current
+proof-blueprint spine does not route through this common-radius residual; the
+authoritative on-spine FreshThird ingress is
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber` (with
+`false_of_crossBlockerCoincidence` as the other on-spine leaf).
+
+The former target
+`freshThird_commonRadius_distinctCaps_survivingRow_exists_sameSideSharedPair`
+had the incidence polarity backwards.  Distinct row centers and the exact K4
+intersection bound do not force two points shared by the fresh shell and the
+endpoint row.  The new source-closed theorem
+`freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_freshShell`
+proves the actual universal consequence: for every order-selected endpoint
+survivor row, its center differs from the fresh-shell center, its intersection
+with the fresh shell has cardinality at most two, and hence at least two of its
+four support points lie outside the fresh shell.
+
+The old theorem
+`exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction`
+is retained only as a compatibility interface and now follows by `False.elim`
+from the direct residual.  It is not a second obligation and its positive
+one-arc conclusion is not being claimed as a source producer.
+
+This is a one-for-one interface correction inside the common-radius helper,
+not a closed obligation or a change to the current two-leaf FreshThird publish
+frontier.  The first-source non-hit, generic equal-center, and common-radius
+residuals described here are all off-spine compatibility declarations.  The
+generic and common-radius leaves are not
+interchangeable: the latter retains the common-radius surface, both complete
+cap-interaction packets, the proved dual-cap packet, and the exact surviving
+endpoint row.
+
+The direct residual must now consume the proved outside-shell pair together
+with global minimality, the complete dual-cap interactions, cap membership,
+and cyclic order.  The six-way ingress and v38/v39 did not encode that full
+packet, so no existing fixed-`n` solver result is promotable here.  Any new
+computational route must specify a source-faithful finite ingress for this
+exact residual and a cardinality-independent bounded-obstruction/lifting
+theorem before an `UNSAT` result can close it.  In particular, bounded search
+for the retracted positive shared pair is retired.
+
+The next source reduction is now checked in Lean 4.27.  The selected-row
+lemmas retain the actual endpoint identity, prove that the same exact row has
+at least two points outside each exposed shell, and refine the local outcome
+to either a point outside their six-point union or an exact `2+2` cover of the
+row by the two shells.  The cover itself is retained, rather than merely its
+cardinalities.  A source-faithful linear probe of the resulting named local
+`2+2` abstraction is SAT in all eight order/deletion arms.  This is evidence
+that the local two-shell incidence and named Kalmanson clauses alone do not
+close the leaf; it is not a Euclidean countermodel or a universal result.  The
+required post-round theorem-bank pass found no existing import-reachable
+consumer for all eight arms.
+
+Global minimality now removes the locally rigid `2+2` outcome whenever its
+pinned center is the selected endpoint.  The checked theorem
+`freshThird_pinnedEndpointRow_escape_or_offEndpoint` chooses one pinned center
+in the exact six-point seed and one exact order-selected endpoint row, retains
+which of `qOutside` or `qBetween` centers that row, and proves the following
+cardinality-free dichotomy:
+
+1. the pinned center differs from the selected endpoint; or
+2. the endpoint row contains a point outside the six-point seed, and that
+   point carries the full source-level blocker-equality/support-equality versus
+   distinct-blocker/small-overlap dichotomy.
+
+Indeed, if the pinned center equals the endpoint and the row were covered
+`2+2`, all four row points would lie in one positive-radius class inside the
+seed, contradicting the pinned multiplicity bound of three.  The route-local
+`false_of_freshThird_commonRadius_distinctCaps_survivingRow` body now consumes
+this producer, the equal-center exact-four reconstruction, the six-way
+named-or-two-point-remainder localization, and the endpoint-name transport
+from `hnames`.  No `sorry` has closed at this checkpoint.  The remaining
+direct work is to eliminate the off-endpoint center cases and the genuine
+outside-seed blocker cases using the retained dual-cap/order packet; no new
+bounded computation should be treated as production unless it covers those
+two universal arms and has an arbitrary-cardinality lift.
+
 ### 13.16.7 Exact-support elimination and full deletion-fan frontier (2026-08-07)
+
+Historical/off-spine compatibility route: this section records a genuine
+source-level reduction, but the current proof-blueprint spine does not consume
+this deletion-fan coordinator.  The active FreshThird ingress is the
+outside-first blocker-fiber leaf named in section 13.3.
 
 The exact-support arm of that residual is now kernel-proved in Lean 4.27.
 `false_of_freshThird_exactSupport_cyclicTriangle` cuts the boundary order at
@@ -1105,9 +5482,9 @@ six-point order directly to
 Thus the exact `2+2` common-radius support is impossible without any finite-`n`
 assumption or solver trust.
 
-The former load-bearing
+The former route-local
 `false_of_freshThird_pinnedEndpoint_globalResidual` is consequently proved and
-is now a thin adapter into the stronger on-spine successor
+is now a thin adapter into the stronger off-spine compatibility successor
 `false_of_freshThird_pinnedEndpoint_outsideSeedResidual`.  The coordinator
 frontier changes from one unresolved theorem with three immediate terminal
 alternatives
@@ -1122,8 +5499,8 @@ the raw `sorry` count remains one.  The successor also records explicitly the
 source center in the first-cap interior, the fresh center in a different cap,
 both fresh sources outside the first cap, and the selected endpoint row's
 non-first-cap `≤ 2` inside / `≥ 2` outside split.  Its immediate consumer is the
-proved global residual, which remains publish-reachable through the FreshThird
-coordinator.
+proved global residual, but this route remains off-spine after the current
+proof-blueprint refresh.
 
 That normalization is now source-proved, uniformly over all four points of the
 selected row.  `SourceFaithfulSelectedFourDeletionFan` records for every support
@@ -1472,6 +5849,190 @@ Rigid221 residual, and its lower frontier is now `17 ≤ |A|`.  This does not
 exclude all 16-point P97 counterexamples.  Immediate constructor fan-out
 remains one.
 
+## 13.18 Rigid221 exact-17 three-shell obstruction bank (2026-08-06)
+
+The exact-17 full-cover audit repeatedly produced contradictions supported by
+three same-center distance equalities on only four, five, or six cyclically
+ordered vertices.  The exact linear classifier has now exhausted that fragment
+under positivity, strict triangle inequalities, and the full strict Kalmanson
+system.  It finds 116 irreducible fixed-order patterns, partitioned into 24
+orientation-preserving rotation classes (4 on four vertices, 12 on five, and
+8 on six) and 12 dihedral classes.
+
+`KalmansonThreeEqualitySchemas` now contains a kernel-clean representative of
+every rotation class.  Seven previously missing chiral orientations were
+added at this checkpoint; all have axiom closure exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  The generic theorem
+`false_of_cyclicShift_ccw`, together with its concrete three-shell consumer,
+provides the Lean soundness bridge from a checked fixed-order representative
+to its cyclic rotations.  The exact-17 miner therefore expands the 40 literal
+bank entries to all 116 classified rotations.  Reflections are not inferred:
+both chiral rotation classes are represented explicitly.
+
+This closes a theorem-bank coverage gap, not the exact-17 stratum.  The live
+source hypotheses have not yet been proved to force one of the 116 motifs, and
+the universal residual remains the load-bearing `..._card_ge_seventeen`
+obligation.  The next accepted result must therefore be one of:
+
+1. a source-faithful exact-17 coverage theorem forcing a banked motif;
+2. a new bounded obstruction extracted from a surviving full-cover model and
+   promoted to a cardinality-independent Lean theorem; or
+3. a cardinality-independent producer/lift that bypasses exact-17.
+
+The complete census, limitations, and theorem list are recorded in
+`docs/rigid221-three-shell-classification-2026-08-06.md`.
+
+## 13.19 Rigid221 exact-17 seven-point schema-C ingress (2026-08-07)
+
+The first authenticated full-cover survivor after completing the three-shell
+bank yielded a new bounded obstruction rather than a Euclidean model.  In its
+true encoded boundary order, seven roles
+`a < b < c < d < e < f < g` support five shell equalities centered at four
+selected rows:
+
+```text
+a:{f,b},   f:{a,d,g},   c:{d,g},   e:{f,b}.
+```
+
+`KalmansonFourEqualitySchemas` now proves the resulting strict-Kalmanson
+contradiction in both orientations and exposes direct selected-row consumers.
+The two consumers have axiom closure exactly `propext`, `Classical.choice`,
+and `Quot.sound`.  The production matcher checks the four row supports
+directly, verifies that both Lean consumers are present, and has positive,
+negative, reflected-order, fail-closed, and authenticated-terminal regression
+tests.
+
+The direct exact-17 CNF now blocks every rotation and seven-point subset in
+both orientations, contributing 272,272 unique clauses.  The old terminal
+assignment violates exactly one such clause.  Prior exact-17 checkpoints were
+merged into 420 unique learned patterns before resuming CEGAR against the new
+static bank.
+
+This is the plan's intended computation-to-theorem loop: a finite survivor
+produced a bounded obstruction, the obstruction became a kernel-clean general
+theorem, and its source-faithful selected-row ingress was wired back into the
+enumerator.  It does **not** yet prove that every exact-17 assignment contains
+schema C, so the on-spine `..._card_ge_seventeen` theorem remains open pending
+terminal Boolean UNSAT or the next authenticated survivor and obstruction.
+
+## 13.20 Rigid221 exact-17 schemas D--F and successor wave (2026-08-07)
+
+The first schema-C successor wave did not yield a live Euclidean model.  Its
+authenticated terminal census is:
+
+- 1,512 assignments examined by 16 independent workers;
+- 1,451 assignments rejected by an already banked obstruction;
+- 58 assignments rejected by exact linear arithmetic;
+- three initial metric timeouts, all rejected on fresh exact replay; and
+- 13 workers stopped at the configured iteration cap rather than terminal
+  Boolean UNSAT.
+
+The wave therefore produced new theorems, not exact-17 closure.  Three minimal
+successor cores were promoted as schemas D, E, and F.  Each now has increasing-
+and decreasing-order metric theorems plus increasing- and decreasing-order
+direct selected-row consumers in `KalmansonFourEqualitySchemas`.  The
+production matcher consumes the row supports directly and fails closed unless
+the Lean consumers are present.  No producer without a consumer was added.
+
+The static exact encoding adds 148,512 schema-D clauses, 148,512 schema-E
+clauses, and 272,272 schema-F clauses.  With the 1,610 deduplicated learned
+patterns from the completed wave, the C--F exact CNF has 272 variables and
+1,933,791 clauses, with SHA-256 digest
+`7b5c525ef0fa2422fd00aa752156e4530f266013b7cea658a98ff5816576bd0c`.
+
+The next production action is the already launched 16-path successor search.
+Its admissible outcomes remain the same: terminal Boolean UNSAT can feed the
+exact-17 on-spine leaf, while any surviving assignment must be authenticated
+and reduced to the next bounded obstruction with a direct source consumer.
+Until one of those outcomes is proved, exact-17 and the universal Rigid221
+parent remain open.
+
+## 13.21 Generic two-Kalmanson cancellation bank (2026-08-07)
+
+The exact-17 linear-UNSAT journals exposed a cardinality-independent
+certificate family not covered by the fixed schemas A--G.  Take two strict
+Kalmanson inequalities, each in either the adjacent-sides or inner-outer form.
+If selected-row equalities identify the multiset of their four left-hand
+distance terms with the multiset of their four right-hand terms, then summing
+the strict inequalities gives the contradiction `X < X`.
+
+`GenericRowNogoodCertificate` now contains a checked data representation for
+the two ordered quadruples, the two Kalmanson forms, a permutation of the four
+terms, and four executable row-equality paths.  The direct theorem
+`false_of_twoKalmansonCancellationData_of_check` consumes convex independence,
+the CCW boundary realization, the live selected-row metric equalities, and the
+checked certificate.  Its audited axiom closure is exactly `propext`,
+`Classical.choice`, and `Quot.sound`; it uses neither `sorryAx` nor
+`native_decide`.
+
+The production bank now searches the equality graph for this certificate
+before invoking general linear arithmetic and fails closed unless the Lean
+consumer is present.  Unit tests include an authenticated exact-17 core,
+deletion of each indispensable row, and missing-consumer rejection.  All 33
+producer-bank tests pass.
+
+An authenticated replay over all 609 mined exact-17 `linear_unsat` journal
+records matched 126 and left 483 unmatched.  The matches cover all four form
+pairs: 45 adjacent/adjacent, 29 adjacent/inner-outer, 30
+inner-outer/adjacent, and 22 inner-outer/inner-outer.  Thus roughly one fifth
+of the previously expensive linear terminals now have a small ordinary-Lean
+consumer.  This replay is theorem-family coverage of the recorded terminals,
+not coverage of the exact-17 Boolean universe.
+
+The live source-frozen wave was not restarted: its processes imported the
+older bank before this checkpoint and have already learned the corresponding
+row clauses through exact linear arithmetic.  Fresh successor launches will
+use the generic matcher automatically.  Exact-17 and the on-spine
+`..._card_ge_seventeen` obligation remain open.  A terminal exact-17
+certificate still requires source-faithful Boolean coverage and a Lean
+cardinality adapter; universal closure additionally requires a
+cardinality-independent producer or lift.
+
+## 13.22 Positive weighted Kalmanson cancellation bank (2026-08-07)
+
+The 483 records left unmatched by the two-inequality consumer have now been
+classified exactly.  Every one is supported only by strict Kalmanson
+inequalities and selected-row equalities: no positivity or triangle inequality
+is needed.  Of these, 401 cancel with unit coefficients.  All 483 admit a
+positive rational cancellation; after clearing denominators and dividing by
+the common factor, every coefficient is in `{1,2,3}`.  The largest recorded
+certificate contains 53 inequalities, total integral weight 68, and uses 15
+boundary points.
+
+`GenericRowNogoodCertificate` now contains the cardinality-generic checked
+consumer
+`false_of_weightedKalmansonCancellationData_of_check`.  Its data repeats the
+two left and two right edges of each strict Kalmanson inequality according to
+its positive natural-number weight.  Executable checks verify cyclic order,
+positive weights, equality of the two repeated-edge multisets, and one
+primitive selected-row/edge-flip equality path for every paired occurrence.
+The theorem then sums all strict inequalities and contradicts the checked
+multiset equality.  Lean reports axiom closure exactly `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+The production interface keeps discovery and checking separate.  Z3 may
+propose the primitive weights, but
+`certify_weighted_kalmanson_cancellation` independently reconstructs and
+checks the exact integral cancellation before it emits a record naming the
+Lean consumer.  It fails closed if the consumer source is absent.  The 33-test
+producer-bank suite includes an authenticated non-unit exact-17 core, rejection
+of an altered weight, and missing-consumer rejection.
+
+Authenticated replay checked all 483 remaining records.  Combined with the
+126 two-inequality matches from §13.21, every one of the 609 mined exact-17
+`linear_unsat` records now belongs to a kernel-clean cardinality-independent
+certificate family.  The weighted replay artifact is
+`scratch/rigid221-blockerv-exact17-20260806/weighted-kalmanson-consumer-replay.json`
+with SHA-256
+`c2daa7eafa2e275370b9b83c00e1768c5b1598ee21a396ea6313955c32f986b2`.
+
+This closes the theorem-soundness classification of the recorded linear
+terminals, not exact-17.  The live on-spine leaf still needs a source-faithful
+finite-coverage theorem showing that every exact-17 Boolean survivor is
+eliminated, followed by its cardinality adapter.  Universal closure of the
+`17 ≤ |A|` residual additionally needs a cardinality-independent producer or
+lift.
+
 ## 13.23 Exact-17 cap reductions and cap-nine frontier (2026-08-07)
 
 The source packet itself gives a deterministic reduction for two of the three
@@ -1501,3 +6062,1576 @@ Rigid221 residual and is the source-faithful CEGAR target.  Because the split
 replaces one live leaf by two narrower live leaves, immediate constructor
 fan-out changes from one to two even though the ten- and eleven-cap strata are
 closed.
+
+## 13.24 FreshThird acyclic hard-residual reduction (2026-08-08)
+
+The outside-first FreshThird ingress has now been normalized all the way to a
+single downstream hard residual.  The source-clean producer remains in
+`TwoSourceFreshThirdRetainedProducer.lean`, while its consumers and adapters
+have moved to `TwoSourceClosure.lean`, after the exact-row terminal bank.  This
+placement avoids an import cycle and allows the split to consume existing
+terminals rather than restating their hypotheses upstream.
+
+The broad theorem
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress` now has
+an ordinary Lean proof.  Its `#print axioms` still contains `sorryAx`
+transitively, because it calls the new load-bearing theorem
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`.
+Thus this checkpoint is a one-for-one strict frontier strengthening, not an
+unconditional or net `sorry` closure.
+
+The new residual has exactly three provenance-preserving constructors.  Its
+first constructor has since been strengthened by one further source-clean
+normalization:
+
+1. an aligned retained packet together with reciprocal source-row
+   cross-membership, a source-checked shared-endpoint deletion-core packet,
+   and the exact first-fiber remainder described below;
+2. an aligned retained packet together with one of the two oriented
+   six-center source-provenance exact-row packets and its source-produced
+   fixed-triple audit frame; or
+3. a common-radius canonical surface together with one of the same two
+   oriented six-center source-provenance exact-row packets and its
+   source-produced fixed-triple audit frame.
+
+The eliminated common-radius reciprocal-incidence arm is split by blocker
+equality.  Distinct blockers close with the source-clean mutual-membership
+terminal.  Equal blockers route to the existing exact-row first-fiber
+collision terminal; that route remains transitively dependent on the two
+claimed exact-row obligations in `TwoSourceFirstFiberCollision.lean`, so it
+must not be reported as project-level closure.
+
+A repository-scoped agentic theorem-bank search found no universal consumer
+for the raw `SixCenterDeletionSurvivalPacket`.  The nearby hits are
+exact-cardinality results or downstream wrappers.  The raw packet is no
+longer the hard-residual interface: ordinary Lean theorem
+`sixCenterDeletionExactRowsBoundary_of_survival` now materializes all six
+survivors as exact deleted K4 rows.  Its new
+`SixSurvivorExactRowsBoundary` retains the complete existing
+`FiveSurvivorExactRowsBoundary`, an exact four-point row for the sixth center,
+the sixth center's inequality from the deleted point's blocked actual center,
+and the six-center cardinality-six fact.
+`twoCapSourcesSixCenterExactRowsBoundary_of_survival` performs the conversion
+without choosing a source orientation, and both one-sided constructors now
+carry a strengthening of `TwoCapSourcesSixCenterExactRowsBoundary`.
+`SixSurvivorExactRowsSourceProvenanceBoundary` additionally preserves the two
+collision sources in `B₀`, the complete four-label support equality for
+`B₁`, the surviving source in `B₅`, and common-deletion omission from all
+three rows.  The orientation-preserving wrapper is
+`TwoCapSourcesSixCenterSourceProvenanceBoundary`, derived by ordinary Lean in
+`twoCapSourcesSixCenterSourceProvenanceBoundary_of_exactRows`.  The six-row
+boundary itself now produces a `U3FixedTripleAuditFrame` at the deleted
+point's actual blocker center through
+`SixSurvivorExactRowsBoundary.exists_fixedTripleAuditFrame`, and
+`SixSurvivorExactRowsBoundary.exists_u3AuditObstruction` composes it with
+`U3FixedTripleAuditFrame.exists_qDeleted_escape_or_criticalFourShell` to
+produce the exact escaping-row/critical-shell witness.  The oriented wrapper
+`TwoCapSourcesSixCenterSourceProvenanceFixedTripleAuditBoundary` retains that
+explicit obstruction in both six-center constructors, and is now the actual
+hard-residual interface.  This is a one-for-one source-clean strengthening of
+the same load-bearing residual, not a `sorry` closure.  Fixed-`n` UNSAT may mine a bounded
+obstruction from this exact ingress, but it cannot promote directly until Lean
+has either a source-level bounded-core theorem or a general-cardinality lift.
+Erasing the aligned versus common-radius provenance would still weaken the
+landing contract.
+
+The live FreshThird surface now has an explicit source-clean cardinality
+contract.  `card_ge_seventeen_of_one_cap_card_ge_eight` combines the cap-sum
+identity with one indexed cap of cardinality at least eight and all three caps
+of cardinality at least six.  Its FreshThird adapter
+`twoCapSourceSurface_carrier_card_ge_seventeen` applies the designated
+first-cap bound and the tri-apex all-large-cap context, proving
+`17 ≤ D.A.card`.  Consequently exact 15 and 16 are not live FreshThird strata:
+an exact-15 run is useful only as a deliberately incomplete negative control,
+not as evidence about this residual.  Exact 17 is the minimum source-compatible
+finite diagnostic, but even exact-17 UNSAT cannot close the universal leaf
+without the bounded-core theorem or general-cardinality lift just described.
+At that minimum, `twoCapSourceSurface_exact_seventeen_cap_profile` sharpens the
+contract to the exact indexed cap profile `(8, 6, 6)`, with the designated
+first cap having cardinality eight.
+
+The bounded exact-17 canary includes the C-side paired incidence and pointwise
+cap-composition abstraction.  It does **not** encode the complete live
+`FreshOutsideFirstBlockerFiber` ingress: `C.firstSource` and `C.secondSource`
+are first-cap-interior points, whereas `Q.source` and `Q.otherOutsidePoint`
+lie outside the closed first cap.  The C-side abstraction is **SAT** in Z3 4.16.0,
+with an independently checked concrete assignment.  cvc5 1.3.3 returned
+`unknown` on the unpinned full positive formula after 30 seconds, but accepted
+the complete Z3 assignment when every variable was pinned.  Both solvers reject
+all ten malformed-clause controls; exact-15 live-cap arithmetic is separately
+`UNSAT`, as it must be because the live FreshThird surface forces cardinality at
+least seventeen.  The exact-17 model has cap profile `(8, 6, 6)`, strict
+interior profile `(6, 4, 4)`, exactly four first-cap interior points after the
+two distinct cap sources are removed, and at least five blocker centers.
+The last fact is only the finite pigeonhole consequence of the source-clean
+blocker-fiber bound: seventeen sources and fibers of cardinality at most four
+require at least five centers.  The positive model still omits the live
+four-point role-separation invariant, Euclidean metric constraints,
+selected-class adjacency, boundary/cyclic order, crossing data, and the
+universal lift.  It is therefore a diagnostic consistency witness for the
+C-side retained abstraction, not a Euclidean counterexample or Lean closure.
+The audited artifacts are under
+`scratch/p97-consumer-first/freshthird_six_center_global_k4_v2/`.
+
+A consumer-first audit of that six-row packet found no direct contradiction
+theorem.  The nearest source-clean terminals are
+`CapCrossingKalmansonBridge.false_of_six_ccw_two_k2_three_selected_rows`,
+`SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`, and
+`SixPointEuclideanObstruction.false_of_six_ccw_three_selected_rows`.  The six
+deleted K4 rows convert source-cleanly to `SelectedFourClass` rows, but the
+packet does not yet supply boundary indices and cyclic order or the six to
+eight cross-row support memberships those terminals require.  Therefore the
+next six-center producer must expose order and cross-row incidence; merely
+materializing more row wrappers would not reduce the live frontier.
+
+One cardinality-independent obstruction has nevertheless been isolated and
+proved at the generic selected-four-class level:
+`selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers`.  Once two
+distinct carrier centers are already equidistant from a retained pair, every
+selected four-class at a third distinct center meets that pair in at most one
+point.  The six-center specialization applies this to both remaining physical
+rows `B₃`, `B₄` and both retained source pairs.  This is a pinned-
+multiplicity exclusion cut, not a contradiction: anonymous filler points can
+still complete all four-point rows.  The smallest positive producer that
+would close through the existing bisector consumer must instead force at least
+one of the four opposite incidences
+
+```text
+P-pair ⊆ B₃  ∨  P-pair ⊆ B₄  ∨  Pρ-pair ⊆ B₃  ∨  Pρ-pair ⊆ B₄.
+```
+
+Any arm supplies a third distinct perpendicular-bisector center and closes
+immediately.  The current source interface proves the complementary
+cardinality-at-most-one facts, so the missing theorem has to use additional
+global K4/minimality or cyclic-order information; another local incidence
+matrix cannot manufacture it.
+
+The completed exact-17 model confirms that this positive incidence is not
+forced by the retained incidence and pointwise cap-composition clauses: each of
+`B₃` and `B₄` may avoid, or meet in only one point, either retained pair,
+and the two rows may jointly avoid either pair.  A support-level lower bound on
+their own-cap interior intersections can be reconstructed by replaying the
+adjacent one-hit/outside argument, but anonymous fillers make that strengthening
+compatible with the model, so it is not a closure producer.  Construction of
+the `U3FixedTriplePacket`, `U5DangerousTriple`, and bounded audit frame is no
+longer missing: the six-row boundary supplies all three source-cleanly.  The
+exact remaining terminal premise is `RowwiseConfinedQDeletedClasses`, or,
+equivalently, a source-level contradiction for the explicit alternative
+produced by `U3FixedTripleAuditFrame.exists_qDeleted_escape_or_criticalFourShell`.
+That theorem must either confine every audit-center q-deleted row to the bounded
+support, or rule out the escaping row / ambient critical-shell alternative
+using the six-center provenance, global K4/minimality, or cyclic order.  A separate
+finite-set observation—four exact four-point rows with pairwise intersections
+at most two have union cardinality at least seven—is sharp and may be banked as
+a solver cut, but it does not close the universal residual.
+
+The earlier first-nonhit alignment proposal is now rejected.  Constructor by
+constructor, the non-hit alternatives either contradict one requested
+membership, put the two named points in the wrong row, identify rather than
+separate the centers, or place a named point inside the cap where the proposed
+alignment requires it outside.  Moreover the bank already proves every such
+alignment impossible.  Therefore a theorem producing the alignment would
+already be a proof of `False` and provides no intermediate bridge.
+
+The aligned ingress has now been strengthened before any further finite work.
+`FreshThirdAlignedRetainedConsumerPacket` retains a complete
+`FreshThirdAlignedSourceDeletionCorePacket` for **each** canonical cap source,
+not only for the first source, and it retains the original
+`FirstCapMultiPointRadiiRetained` hypothesis so later consumers may reselect
+deletion endpoints without reconstructing alignment.  Each packet records the chosen endpoint from
+each retained pair, both endpoint omissions from the source row, survival of
+that exact source row after the double deletion, failure of every first-apex
+K4 after the same deletion, and the resulting first-apex
+`MinimalDeletionCore`.  This is an ordinary source theorem and the focused
+build is green.  It fixes a real information-loss defect: the minimal-core
+structure records its restored rows but deliberately does not retain the
+fully-deleted first-apex failure from which it was produced.
+
+The promised finite-role extraction is now also kernel-checked.  The fixed
+payload is named `FreshThirdAlignedFixedDeletionCorePacket`; the exhaustive
+four-way disjunction for one source is
+`FreshThirdAlignedSourceDeletionCoreCases`; and
+`freshThird_alignedRetainedConsumerPacket_sourceDeletionCoreCases` derives
+that disjunction for both canonical sources.  Hence the aligned constructor
+has exactly sixteen joint endpoint-choice arms before blocker equality or
+any further geometric split.  This coverage theorem is universal in the
+carrier and introduces no upper-cardinality truncation.  It is the required
+Lean ingress for a new finite schema, not by itself a contradiction.
+
+The reciprocal-membership arm has since been reduced further by ordinary Lean
+proof.  The exact two-pair omission split gives either a collision endpoint
+omitted from both source rows or complementary endpoint memberships.  The
+complementary arm is impossible: equal blockers would put the two sources and
+all four collision endpoints on one four-point support, while distinct
+blockers contradict the checked off-cap bisector terminal.  Therefore
+`commonCollisionEndpointOmission_of_mutualCrossMembership` produces a common
+omitted endpoint without choosing one as an assumption.
+
+That endpoint is no longer discarded.  The fixed-endpoint theorem
+`freshThird_acyclic_fixedDeletionCorePacket_of_omitted` shows that any omitted
+endpoint chosen from each retained pair produces the complete survival,
+first-apex failure, and minimal-core packet.  Consequently
+`freshThird_alignedCommonDeletionCorePairPacket_of_commonOmission` preserves
+one endpoint shared by the two source deletion cores while allowing the other
+endpoint to differ.  This is the strengthened first constructor of
+`FreshThirdAcyclicHardResidual`.  At the finite role level the original sixteen
+joint choices satisfy `x₀ = x₁ ∨ y₀ = y₁`, leaving twelve unique arms.
+
+The aligned reciprocal-incidence constructor is now reduced one step further
+by the ordinary Lean theorem
+`freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership`.  It
+produces exactly one of:
+
+1. an equal-blocker packet carrying blocker equality, a common indexed
+   cap-interior location for the blocker center, and equality of the two exact
+   selected supports; or
+2. a distinct-blocker packet that records which blocker lies in the first
+   strict cap, the exact intersection of that blocker's row with the first
+   cap, and a fully normalized
+   `FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual` in the matching
+   source orientation.
+
+For distinct blockers, the checked ordered-cap bisector theorem shows that at
+least one blocker's **interior index** is the first cap.  The existing
+first-fiber outside-pair theorem gives the corresponding raw exact-row/crossed
+residual; `selectedShell_inter_firstCap_eq_sourcePair` and
+`firstFiberOutsidePair_exactRows_or_crossedThreeRows` then promote it to exact
+supports for all three named rows in either crossed constructor.  The
+strengthened packet retains blocker distinctness, positive first-cap interior
+membership, and the source orientation instead of forcing later consumers to
+reconstruct them.
+The equal-blocker arm is retained explicitly but no longer as a bare equality.
+`exists_blockerCenter_mem_capInteriorByIndex` supplies its common cap index,
+and `selectedSupports_eq_of_actualBlockers_eq` supplies the common exact
+support.  The packet now also records a conditional first-cap consequence: if
+the common index is `oppIndex1`, the common row meets the first cap in exactly
+the two canonical sources and all four collision endpoints are omitted from
+both source rows.  This follows from the general two-point cap/selected-row
+bound and does not assume equal first-apex radii.  The index is deliberately
+not identified with the first cap: aligned retention gives different
+first-apex radii, so the existing common-radius equal-blocker shell theorem is
+not applicable.  This is a strict strengthening of the existing hard
+residual, not a new `sorry` and not a closure claim.  The focused
+`TwoSourceClosure` build is green.
+
+The crossed-three-row/shared-fourth subcase has now been tested against the
+strongest local Kalmanson projection currently justified by the named packet.
+The v1 census imposed its three exact selected-row equalities on all 60 strict
+six-role cyclic orders and left 40 SAT orders.  The v2 census added the two
+source-proved cross-distance disequalities, split into four strict sign arms;
+190 of 240 arms were UNSAT in both Z3 and cvc5, but 50 survived.  Restricting
+those survivors to the contextual first-cap placement in which the three row
+centers form one cyclic cap block leaves 18 orders and 72 sign arms: 66 are
+UNSAT and six survive.  A final QF_NRA probe placed each of those six survivors
+as an actual strict convex Euclidean hexagon; all six are SAT, and one has an
+exact rational coordinate model checked by direct substitution against all 25
+projected constraints.  Thus even the three exact row equalities, both cross
+signs, strict convexity, and the contiguous center-cap block do not imply a
+Kalmanson contradiction.  This refutes that projected consumer bridge, not the
+full Lean source packet.  The reproducible artifacts and exact witness are
+under
+`scratch/p97-consumer-first/freshthird_crossed_shared_fourth_v{1,2_cross_inequalities,3_convex_cap_block}/`.
+No larger local order matrix is justified here until a new global source
+theorem supplies collision-source provenance, blocker-map saturation, or
+another carrier-wide K4 clause that excludes the rational survivor.
+
+The first requested blocker-map saturation clause is now source-proved, but
+it does **not** exclude the shared-fourth rational survivor and therefore does
+not justify rerunning the v1--v3 shared-fourth matrix.  For an arbitrary
+`FirstFiberCrossedThreeRowExactSupports` packet with distinct mutually
+incident source blockers,
+`FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_sourceDeletionSaturation`
+proves either equality of the two unnamed fourth points or a `3 × 3` product:
+each fourth point independently survives deletion of the first source,
+survives deletion of the second source, or has the only source-blocker
+equality compatible with its crossed support.  The companion theorem
+`sharedFourth_or_selectedRowOmissionSaturation` converts the six survival
+alternatives, through the general
+`cross_deletion_survives_iff_not_mem_selected_support`, to exact omissions
+from the canonical selected rows at the two fourth points' actual blockers.
+Both results are cardinality-independent ordinary Lean producers.  They add
+no assumption and close no `sorry`.
+
+This clause is distinct from the older
+`freshthird_cross_deletion_cegar_20260807.py` and
+`freshthird_cross_deletion_metric_cegar_20260808.py` abstractions.  Those
+scripts model a cap-synchronized survivor pair and a separate independent
+mutual pair; they do not retain the typed crossed packet, its two named fourth
+points, this ten-way split, or a universal Lean lift.  Conversely, the new
+Lean theorem supplies only row omission or blocker equality.  It does not yet
+supply a cyclic position, cap index, or positive support incidence for either
+new actual-blocker row.  A pure local incidence encoder can therefore satisfy
+the nonshared branches with anonymous row fillers, while the shared branch is
+already realized by the exact rational v3 witness.
+
+That localization step is now source-proved.  The ordinary Lean theorem
+`exists_blockerCenter_capIndex_and_boundaryPosition` assigns the actual
+blocker of either fourth point to one indexed cap and the corresponding
+direct/mirrored boundary interval.  Applying it to both fourth points gives a
+cardinality-independent cap/order packet for every one of the ten saturation
+branches; it adds no assumption and closes no `sorry` by itself.
+
+The first finite campaign over the combined packet is recorded under
+`scratch/p97-consumer-first/freshthird_crossed_saturation_v1/`.  It
+materializes both fourth-point selected rows as genuine exact four-element
+supports, preserves physical-point aliasing, enumerates both source
+orientations, all ten saturation branches, and the twelve source-deletion arm
+pairs, and treats its 27 slots only as a compression of the named points and
+anonymous row members—not an ambient-cardinality bound.  An initial weaker
+over-approximation omitted the live endpoint-pair disjointness and first-cap
+membership clauses; its 240/240 SAT result is retained only as a diagnostic.
+After those source clauses were restored, all 240 positive cases remained SAT
+in both Z3 and cvc5, while the overfull-row and equal-source-blocker controls
+were UNSAT in both solvers.  Therefore the complete named
+incidence/cap/order/saturation layer still does not close a branch.
+
+The mandatory post-round global theorem-bank pass found no already-proved
+terminal combination that closes a survivor.  The exact blocker-function,
+row-equality, omission-saturation, and shared-pair cyclic-separation theorems
+are already represented.  The remaining live consumers require additional
+metric/cyclic row interaction or full `MinimalDeletionCore` semantics.
+
+That last reusable-consumer refinement has now also been exhausted.  The
+branch-survival rerun universally forbids every instance, over the six
+materialized actual selected rows and the compressed actual boundary order,
+of both
+`CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair` and
+`CapCrossingKalmansonBridge.false_of_four_selected_rows_chained_late_pair`.
+All twenty orientation/saturation-branch representatives still have a
+deletion-arm witness that is `SAT` in both Z3 and cvc5; the two negative
+controls remain `UNSAT` in both solvers.  This represents the same 240-case
+logical space, with sound early stopping after the first existential arm
+witness in each branch.  The authenticated summaries are
+`results/kalmanson_two_row_branch_survival/summary.json` and
+`results/kalmanson_two_four_row_branch_survival/summary.json` under the v1
+campaign directory.  The four-row replay uses shared definitional atoms for
+row-at-center membership and selected-row center rank; this shrinks each SMT
+artifact without changing its formula.
+
+The mandatory global bank pass after each Kalmanson round found no further
+consumer whose antecedent is supplied by this ingress.  The three-, six-, and
+seven-row Kalmanson consumers require positive support incidences, metric
+equalities, or additional ordered rows that the deletion-omission packet does
+not produce.  Therefore **pause this local structural CEGAR lane**.  Its next
+admissible input is one new cardinality-independent source theorem producing
+one of those positive motifs, a full minimal-deletion-core consequence, or a
+formally stated bounded obstruction with arbitrary-cardinality lift.  Do not
+assign invented identities or incidences to anonymous fillers, and do not add
+another existing-consumer matrix without such a producer.
+
+The source-provenance strengthening justified one fresh, bounded
+named-incidence canary under the new schema namespace
+`freshthird_six_center_provenance_v1`.  It encoded only the six exact
+four-point rows, common-deletion and own-center omission, the new `B₀`/`B₁`/
+`B₅` labels, and the eight-incidence motif consumed by
+`U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility`.  Z3 4.16.0
+reports `SAT` both with some motif required and with all such motifs forbidden;
+the four provenance-negative controls are `UNSAT`.  Therefore the new source
+facts are correctly represented but do not propositionally force that checked
+tetrahedron consumer.  This canary does not encode Euclidean realizability,
+carrier-wide K4, cap order, or a general-cardinality lift, so it is negative
+theorem-discovery evidence rather than closure.  The script, survivor, and
+trust statement are under
+`scratch/p97-consumer-first/freshthird_six_center_provenance_v1/`.
+Do not enlarge this incidence schema.  The next admissible input is a uniform
+source theorem adding a cross-row center incidence, a common support point, or
+cyclic-order information, or a different checked consumer that matches the
+actual `B₀`/`B₁`/`B₅` packet.
+
+The independent v1 structural canary for the pre-normalized sixteen-arm packet
+is source-faithful at the named Boolean/cardinality layer: Z3 reports `SAT` for
+its positive instance, the deliberately overfull-row negative smoke is
+`UNSAT`, and cvc5 independently replays the same `sat`/`unsat` pair.  It does
+not encode Euclidean geometry or `MinimalDeletionCore` internals.  This is an
+important negative result: row cardinality, reciprocal incidence, singleton
+slices, endpoint omissions, and Boolean existence of the two deletion cores
+do not close the branch.  A larger structural matrix with no new geometric or
+global source theorem is therefore not a production task.
+
+The source-faithful v2 structural canary then encoded the strengthened
+shared-endpoint packet itself.  It enumerated all twelve unique joint arms,
+with independent Z3 and cvc5 checks.  Every positive arm is `SAT`; the
+overfull-row and missing-common-endpoint negative smokes are `UNSAT` in both
+solvers, and the fail-closed `UNKNOWN` smoke is rejected.  This exhausts the
+present support/cardinality/deletion-existence abstraction: enlarging that
+Boolean schema cannot close the live branch.  The exact artifacts and landing
+contract are under
+`scratch/p97-consumer-first/freshthird_aligned_common_deletion_v2/`.  These
+results are theorem-discovery diagnostics, not Euclidean models, a universal
+lift, or a Lean closure.
+
+The v3 source-fidelity expansion added the exact four-point `Q` first-fiber row
+and expanded each nonempty minimal core to two exact-four ambient shell
+supports with their checked pairwise disjointness.  All twelve shared-endpoint
+arms remained `SAT` in both Z3 and cvc5.  The overfull-source-row,
+overfull-`Q`-row, and forced-core-overlap negative smokes were `UNSAT` in both
+solvers.  Thus the named `Q` row and the presently exposed minimal-core shell
+facts still do not yield a structural contradiction.  The artifacts and exact
+origin/landing contract are under
+`scratch/p97-consumer-first/freshthird_aligned_q_core_v3/`.
+
+The v4 metric projection then exhaustively checked all `(8-1)!/2 = 2520`
+cyclic orders of the eight named collision, blocker-center, and `Q` labels
+modulo rotation and reversal.  Each arm imposed positive symmetric distances,
+strict triangle inequalities, all strict convex-boundary Kalmanson inequalities,
+and only the source-justified first-fiber shell equality.  Every order was
+`SAT` in Z3, with zero `UNSAT` or `UNKNOWN` arms.  This is again a bounded
+diagnostic, not a Euclidean realization.  It proves that cyclic order plus the
+single named row equality cannot close the branch; a larger local
+Kalmanson model is forbidden until a new source theorem supplies an additional
+row equality or global clause.  The artifacts are under
+`scratch/p97-consumer-first/freshthird_aligned_q_kalmanson_v4/`.
+
+The first finite canary for the strengthened equal-blocker ingress is also
+complete.  It encodes the actual equal blockers, their existential common
+indexed cap, exact selected-support equality, reciprocal source membership,
+both retained deletion packets, and the common deletion-core endpoint.  It
+does **not** identify the common cap with the first cap.  The refreshed canary
+now guards the exact shell/cap intersection and all-endpoint-omission clauses
+by `commonIndex = oppIndex1`, exactly as the Lean producer does.  The guarded
+first-cap arm is `SAT`, and all twelve normalized shared-endpoint arm pairs
+remain `SAT`; the overfull-row and deliberately missing-common-endpoint
+controls are `UNSAT`, and `UNKNOWN` is fail-closed.  No arm is pruned.
+The exact source-origin and landing contract are recorded beside the artifacts
+under `scratch/p97-consumer-first/freshthird_aligned_mutual_ingress_v1_*`.
+Therefore the strengthened equal-blocker packet still needs a new metric or
+global source theorem; Boolean support/deletion constraints alone cannot close
+it.
+
+The six-center lane has also preserved the tri-apex S6/D44 provenance through
+the common deletion in a source-clean scratch theorem.  For the two apices
+outside the first cap, the same theorem couples each surviving full selected
+class to its actual cap-interior slice: S6 retains one class of cardinality at
+least five with at least four points in the corresponding cap interior; D44
+retains two distinct-radius cap slices of cardinality at least two together
+with the original full-class survivor disjunction.  This is a valid ingress
+strengthening, but it has not been promoted because it has no consumer yet.
+
+The corrected tri-apex matrix then tested all eight S6/D44 assignments under
+both blocker modes with one shared deletion.  Its final `separated` tier also
+enforces the source-level disjointness of the second and third cap interiors
+and excludes both canonical first-cap sources from those two interiors.  All
+16 positive queries remain `SAT` in both Z3 and cvc5; all nine negative
+controls are `UNSAT` in both.  Thus the missing six-center contradiction is
+not cap-interior separation or the coupled rich-slice cardinality alone.  The
+survivors still evade any relationship between the anonymous exact deleted
+rows and the actual radius/source/order identities needed by a metric
+consumer.  The artifacts and trust statement are under
+`scratch/p97-consumer-first/freshthird_aligned_q_core_v6/tri_apex_rich_matrix/`.
+This remains theorem-discovery evidence, not a bounded-obstruction theorem,
+universal lift, Euclidean realization, or Lean closure.
+
+The existing retained/mutual CEGAR script is not a production encoder for this
+constructor.  Its variables called `mutual` describe omission/deletion
+survivors rather than the two actual cross-row memberships.  It also omits the
+typed canonical sources, unequal first-apex radii, singleton first-apex cap
+slices, the two endpoint choices, exact source-row omissions, the two
+double-deletion K4 survivors, their first-apex failures and minimal cores, and
+the blocker/source/cyclic-order data needed by a lift.  Its structural scan and
+model-specific metric UNSAT results therefore remain diagnostic only.  The
+replacement finite ingress must be extracted from the strengthened packet,
+must enumerate the two-by-two endpoint choices for both source orientations,
+and must state its universal Lean lift before any UNSAT result is promoted.
+
+The apparent theorem-bank shortcut through
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions` has now been
+audited against the live aligned packet and is **not** a closure route.  Its
+equal-blocker arm immediately consumes the still-open producer
+`b1_globalGapOrClosedTerminal_of_counterexample`; its distinct-blocker arm
+also reaches open global leaves after the checked cross-omission split.  The
+only unconditional geometric kernel extracted from that proof is the usual
+three-distinct-bisector contradiction.  It cannot be instantiated here:
+the two aligned cap sources have provably different distances from
+`S.oppApex1`, so the physical first apex is not the required third bisector.
+Likewise, the two source-produced `MinimalDeletionCore`s reconstruct the same
+two retained first-apex radius classes.  They prove disjointness and the
+already-compatible first-cap lower bound six, but do not produce a new shell,
+third bisector, strict descent, or contradiction.  Repackaging either result
+would therefore only move a `sorry`, not close one.
+
+The exact-17 aligned-boundary v1 canary is a bounded, role-defective diagnostic;
+it does not establish that adding the complete live incidence and cyclic-order
+ingress leaves the gap open.  The model under
+`scratch/p97-consumer-first/freshthird_aligned_boundary_v1/` combines the
+exact-17 global incidence layer with the full
+`FreshThirdAlignedMutualBlockerBoundaryPacket`: distinct indexed blocker caps,
+the zero/surplus/first-/second-apex boundary placements, both direct and mirror
+cap-block orders, cyclic separation, two reciprocal finite rows, unequal
+first-apex radii and singleton slices, the common omission, and the
+source-produced deletion-core facts.  One reciprocal row incorrectly uses
+`q_source = Q.source` as a canonical C source, contradicting the live
+role-separation invariant.  Both the direct and
+mirror positive instances are `SAT` in Z3, with independently validated
+assignments; cvc5 returned `unknown` on the unpinned positives.  Both solvers
+reject the four malformed controls (overfull row, missing common omission, bad
+boundary order, and bad cyclic separation).  This is finite diagnostic
+evidence only, not a Euclidean realization or universal lift, and it exhausts
+only the role-defective finite adapter.  It does not exhaust the complete live
+named incidence/order packet.  Any repaired schema must first keep the two
+canonical C sources separate from the two outside Q points.
+
+The crossed-radius branch has since passed the first of those producer gates.
+The source-clean ordinary-Lean chain
+`selectedClass_exactOne_eachAdjacent_of_card_four_of_interior_card_two`,
+`exactFourTwoRadiusAdjacentCapGrid`,
+`exists_fourHits_radialCyclicOrder_oppIndex1`, and
+`freshThird_exists_fourHits_strict_cross_distance` extracts four adjacent-cap
+hits on the two exact first-apex radius classes, places them in one
+cut-independent convex cyclic order, and proves the strict inequality
+
+```text
+dist rL rR + dist rhoL rhoR < dist rL rhoR + dist rhoL rR.
+```
+
+Targeted builds pass and the new declarations' transitive axiom closures do
+not contain `sorryAx`.  This is a **producer**, not a contradiction: the live
+packet still has no source-entitled reverse weak inequality or equality for
+the same four points.
+
+The pre-role-audit exact-17 metric replay under
+`scratch/p97-consumer-first/freshthird_adjacent_grid_metric_v1/` preserves the
+live cap/block permutation and disjointness of unequal exact radius supports,
+but it inherits the v1/v2 canonical-source role defect.
+Four of the eight discrete order arms survive the structural layer.  Their
+complete 17-point MEC, non-obtuse-apex, strict-convex-order, exact-cap, and
+coordinate-linked distance stages are exact Z3 `SAT` with independent exact
+readback.  A rational-circle parameterization has now resolved the first
+semantically connected metric stage for the frozen direct-0 arm: one exact
+rational 17-point witness satisfies the eight prescribed first-apex circle
+memberships, every first-apex nonmembership, and the strict radius order.
+Independent `Fraction` readback checks all 680 strict boundary triples, the
+MEC/disk and non-obtuse-apex conditions, exact cap composition, distinctness,
+and every radius predicate.  Pinning that witness into the original
+unparameterized `grid_members` and `grid_exact` formulae returns `SAT` from
+both Z3 and cvc5.  All four frozen support projections also have exact rational
+witnesses, although only direct-0 has been carried through the full geometry
+and exact grid at this checkpoint.
+
+This is an exact **local CE motif**, not a P97 counterexample and not a
+FreshThird closure.  The two blocker-centered exact source rows, singleton
+own-cap source slices, the strict Kalmanson conclusion, unsampled incidence
+signatures, carrier-wide K4/minimality, and any general-cardinality lift remain
+omitted.  The earlier apparent contradictions were encoding defects (a stale
+cap permutation and support overlap between unequal radii) and were removed.
+
+A subsequent ingress audit found a further role-separation defect in the
+aligned finite adapter.  The canonical sources `C.firstSource` and
+`C.secondSource` both lie in `S.capInteriorByIndex S.oppIndex1`, while the
+`FreshOutsideFirstBlockerFiber` source `Q.source` and its
+`Q.otherOutsidePoint` both lie outside the closed first cap.  Therefore the
+adapter may not identify either canonical source with either outside point.
+The source-clean Lean ingress invariant
+`canonicalSources_ne_freshOutsideFirstBlockerFiber_outsidePoints` records all
+four inequalities.  The earlier aligned adapter mislabeled
+`q_source = Q.source` as one of the two canonical C sources, so its exact
+rational witness remains valid evidence
+for the local adjacent-grid motif only; it is not a model of the complete live
+aligned ingress.
+
+The corrected CEGAR contract must consequently retain four separate named
+points—`C.firstSource`, `C.secondSource`, `Q.source`, and
+`Q.otherOutsidePoint`—together with three separately proven row packets: the
+two canonical-source selected rows and the exact first-collision row
+`{P.source₁, P.source₂, Q.source, Q.otherOutsidePoint}`.  The immediate CEGAR
+task is to add those exact rows and the singleton canonical-source slices to
+the parameterized model before invoking any global consequence.  A frozen
+diagnostic in which two generic blocker-centered rows shared three
+noncollinear points was `UNSAT` in Z3 and cvc5, as forced by the ordinary
+circle-intersection bound, but that frozen row identification did not preserve
+the three live row roles and is not closure evidence.
+
+The first corrected three-role replay now uses `C.firstSource = 0`,
+`C.secondSource = source5`, and the separate outside pair
+`(Q.source, Q.otherOutsidePoint)`.  Its three exact rows are centered at the
+actual blockers `b_at(0)`, `b_at(source5)`, and `b_at(Q.source)`.  This repairs
+the point-role collision but does not yet instantiate the aligned-mutual hard
+constructor: its frozen first C row contains `source5`, while its frozen second
+C row omits `0`, contradicting the required
+`TwoCapSourcesMutualCrossMembership`.  It is therefore a role-correct but
+branch-incomplete diagnostic.  Unpinned Z3 and cvc5 runs remain `UNKNOWN` or
+time out from the geometry stage onward.  The
+previous direct-0 rational adjacent-grid witness is `SAT` through `grid_exact`
+in both solvers but becomes `UNSAT` when pinned into the corrected row stage.
+This pinned rejection has no uniform mathematical content: exact `Fraction`
+readback shows that each proposed four-point row has four distinct squared
+distances from its center, so the frozen witness satisfies none of the three
+row circles.  It is only one rejected proposal, not a CEGAR cut or a finite
+coverage result.  The next aligned-mutual bounded round must first enumerate
+two exact C rows that both contain the two canonical sources and whose
+intersection is exactly that source pair, then solve those rows and the
+separate exact Q row unpinned (or parameterize them exactly) before adding the
+singleton slices and Kalmanson consumer.  The six-center constructors require
+their own boundary-derived row contract rather than reuse of this mutual one.
+Any positive result remains a local exact-17 motif until a source-level
+producer and general-cardinality lift are proved.
+
+That aligned-mutual support experiment has now been run with two explicit
+pre-deletion C rows.  The finite structural layer found a Z3 model with the
+two canonical sources in both exact-four supports and with their intersection
+equal to exactly the source pair.  The separate Q row was kept distinct.  Z3
+also found and exactly validated a rational 17-point geometry for the
+underlying carrier, but the combined `grid_members`, exact-row,
+singleton-slice, and Kalmanson stages remained `UNKNOWN` or timed out.  Thus
+this round establishes only that the corrected finite incidence prefix and a
+related exact metric carrier are separately realizable; it does not exhibit
+one model satisfying their conjunction.
+
+Two audits prevent promotion of any verdict from that first implementation.
+First, its cvc5 wrapper sent two `check-sat` commands because
+`solver.to_smt2()` had already emitted one, then accepted the first `sat`
+token despite cvc5 returning a nonzero protocol-error exit.  That wrapper has
+now been replaced by a single-query, fail-closed protocol.  The regenerated
+structural query is `SAT` in Z3 and cvc5, and the exact rational geometry
+witness replays as `SAT` when pinned in both solvers.  The combined
+`grid_members`, `grid_exact`, three-row, singleton-slice, and Kalmanson stages
+remain unresolved: Z3 times out and cvc5 exits on timeout, which the repaired
+wrapper records as an error rather than accepting as `SAT`.  Protocol controls
+for duplicate queries and misleading `sat` output on a nonzero/error exit all
+reject as intended.  Thus the repair validates the earlier exact geometry
+witness but supplies no row-level contradiction or closure.  Second, the
+structural master imported the six-center boundary base.  Those six deleted-row and
+provenance constraints belong to the other, mutually exclusive constructors
+of `FreshThirdAcyclicHardResidual`; their presence strengthens the
+aligned-mutual model with hypotheses unavailable in the live branch.  A
+`SAT` result remains a legitimate consistency diagnostic for the weaker
+named prefix, but an `UNSAT` result from this mixed master would not be an
+admissible contradiction of the aligned-mutual leaf.
+
+The replacement finite ingress must therefore be built from the
+aligned-mutual packet alone and must split exactly along the four constructors
+of `FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`: the two
+`FiveSurvivorExactRowsBoundary` deletion choices and the two orientations of
+`FirstFiberCrossedThreeRowExactSupports`.  It must retain which canonical
+blocker lies in the first cap and the exact intersection of that source row
+with the first cap.  No six-center row may be imported into this master.  The
+collision-five-center deletion arm is being developed separately; the next
+consumer-first computational target here is one crossed-three-row orientation,
+followed by its reversed orientation.  As before, exact-17 results are theorem
+discovery and regression evidence only until a cardinality-independent
+producer or bounded-obstruction lift lands in Lean.
+
+One further role distinction is binding in this replacement.  The two points
+named by `Q.outside_eq_pair` are the outside members of the selected shell
+centered at the actual blocker of `P.source₁`.  They are not, from the current
+source, the outside hits of either apex-centered radius in
+`ExactFourTwoRadiusAdjacentCapGrid`.  The grid remains a separate source-clean
+metric packet.  An encoder may include both packets, but it must not identify
+their point labels or transfer circle equations between them without a new
+Lean theorem.  Such an alias is a malformed-ingress control, not a symmetry
+normalization.
+
+The mandatory post-round theorem-bank and source audit found no existing
+reverse metric consumer at this interface.  In particular, the tempting
+endpoint-deletion route is not merely missing four facts: the relevant
+endpoint theorem is typed for `FreshThirdBlockerFiber`, with two fresh sources,
+whereas the live anchor has `FreshOutsideFirstBlockerFiber`, with one source and
+one outside point.  There is no source-clean adapter between those packets.
+Consequently the endpoint theorem is not a consumer for this residual, and
+adding its hypotheses would both change the ingress and move the live `sorry`.
+The exact-`Q` theorem bank starts strictly downstream of the missing bridge:
+it can normalize a supplied five-center residual to exact rows or crossed
+three-row supports, propagate provenance from an existing six-survivor exact
+row boundary, and saturate an already constructed crossed-row packet.  No
+theorem constructs any of those packets from the adjacent grid and the current
+outside-first ingress.  The Kalmanson bank likewise contains strict consumers
+and strict contradictions, but no non-strict or `Q`-specific reverse inequality
+producer.  The active residual therefore remains open at this interface.
+
+The row-round bank does provide two exact reusable consumers for the corrected
+contract.  `SelectedFourClass.inter_card_le_two` bounds the intersection of
+two exact selected four-classes at distinct centers, and
+`false_of_firstFiber_explicit_overlap_card_ge_three` closes if a distinct
+selected row meets the explicit `Q` collision shell in at least three points.
+The existing theorem
+`selectedSupports_inter_eq_sources_of_mutualCrossMembership_distinctBlockers`
+also identifies the intersection of the two mutually incident canonical rows
+as exactly their two sources.  These are consumers/cuts, not the missing
+producer: the live packet still has to force a three-point overlap or another
+incompatible incidence among the three correctly distinguished rows.
+
+The fixed-deletion-core bank does not supply that producer.  A
+`MinimalDeletionCore` gives one exact four-shell per deleted endpoint and
+pairwise-disjoint restored supports inside that individual core.  Combined
+with the endpoint and unequal-radius premises, its strongest current cap
+consequence is `capByIndex_card_ge_six_of_two_sources`.  The aligned common-
+deletion packet additionally identifies one endpoint omitted by both selected
+source rows, but gives no equality or disjointness between the two different
+cores.  Consequently these packets provide negative incidence and cap-size
+lower bounds, but no positive incidence into a normalized C/Q row, no blocker
+equality, no new cap composition beyond the existing first-cap bound, and no
+row confinement.  A global theorem-bank search for such a bridge returned no
+match.
+
+The smallest currently identified positive producer with an immediate banked
+consumer would force some normalized selected source row to meet a rich class
+in a different cap in at least two points.  With the two blocker-cap indices
+distinct, `false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap`
+would then close.  This is a specification for the missing theorem, not a
+consequence of the present deletion-core API.  The source-faithful crossed-row
+CEGAR round should therefore test and mine exactly this kind of positive
+cross-cap incidence (or an equivalent three-point row overlap), rather than
+adding more cap-cardinality clauses already implied by the existing cores.
+
+The existing crossed-row K4 saturation theorem does not fill this gap.
+`sharedFourth_or_selectedRowOmissionSaturation` says that the two unnamed
+fourth points either coincide or omit one source from their own selected row
+(unless their blockers collapse to a named source blocker).  The deletion
+cores say instead that collision endpoints are omitted from the two source
+rows.  Selected-row membership is not symmetric, so these two directions do
+not compose.  A 17-label incidence shadow realizes the blocker-equality arms,
+the aligned common-deletion cores, and all named exact-four supports while
+keeping every normalized distinct-cap rich-slice intersection at most one and
+every overlap with the explicit Q shell at most two.  This is not a Euclidean
+`CounterexampleData` model, but it is a rigorous countermodel to closure from
+the named local incidence clauses.  Accordingly, the next producer attempt
+must use a genuinely stronger source layer—full-carrier K4/minimality or new
+global geometry—not another rearrangement of the same local row packet.
+An independent full-carrier theorem-bank audit found no existing bridge at
+that stronger layer either: the available K4/minimality APIs yield directional
+source membership, deletion-core disjointness, cap-label pigeonholes, cap-size
+lower bounds, and blocker-fiber bounds, but no lower bound on either target
+intersection.  The next finite round must therefore encode those global
+consequences explicitly and use the resulting model or core to discover a new
+uniform theorem; another source search is not a substitute for that round.
+
+That source-faithful incidence round is now complete under
+`scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/`.  It keeps
+the four canonical-source/outside-point roles distinct, materializes the
+direct crossed-three-row constructor and its exact four-point rows, and checks
+the shared-fourth/omission-saturation theorem.  The structural baseline and
+both the shared- and distinct-fourth arms are `SAT` in Z3 and cvc5; negating
+the saturation clause is `UNSAT` with the theorem and `SAT` when that one
+clause is removed.  Thus saturation is a genuine cut but not a closure.
+The separate full-carrier incidence stage assigns a K4 witness row to every
+one of the 17 points, locks unique-four blocker rows, enforces same-blocker row
+equality, distinct-center intersection at most two, blocker fibers at most
+four, and all three source-derived apex-rich cap patterns.  Even with both
+target producers negated it remains `SAT` in both solvers, and the exported
+assignment passes an independent validator.  All malformed controls are
+`UNSAT` in both solvers; no final query is `UNKNOWN` or `ERROR`.
+
+This is a countermodel to the named incidence abstraction, not a simultaneous
+Euclidean `CounterexampleData` model and not a P97 counterexample.  The four
+named row circles are separately rationally realizable, but the metric fixture
+does not realize all 17 selected shells, cap-arc geometry, and the global
+incidence assignment at once.  Therefore neither a distinct-cap rich-slice
+two-hit nor a three-point overlap with the explicit `Q` shell can be obtained
+from carrier-wide K4/minimality incidence alone.  The next discriminating
+round must couple the complete selected-row assignment to one convex Euclidean
+carrier and its shared cyclic/cap order.  Its admissible output is either an
+exactly checked local counterexample motif or a finite obstruction from which
+a cardinality-independent source theorem and general-cardinality lift can be
+proved; bounded `UNSAT` by itself is not a universal Lean closure.
+
+The first shared-coordinate follow-up is now complete under
+`scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/`.
+It first landed the missing retained consequences in
+`TwoSourceFreshThirdRetainedProducer`: the two rich first-apex classes have
+exactly the retained radii up to swap, both canonical sources are absent from
+every multi-point first-cap slice, and the adjacent-cap grid yields a strict
+cross-distance inequality once the common cyclic order is supplied.  The
+original frozen incidence assignment was immediately source-invalid: it put a
+canonical source in a non-singleton rich slice.  After coupling the rich
+slices exactly to the retained pairs, a corrected incidence assignment again
+survived in both solvers and passed its independent validator.
+
+Freezing that corrected incidence assignment into one shared Euclidean
+coordinate problem produced a first joint Z3/cvc5 `UNSAT` only at the
+cumulative `named_rows_and_singletons` stage (1,083 clauses).  Exact deletion
+minimization reduced it to the two direct opposites
+
+```text
+d2(firstApex, point10) = d2(firstApex, C.firstSource)
+d2(firstApex, point10) != d2(firstApex, C.firstSource).
+```
+
+The equality came from a proposed first-apex K4 witness row containing both
+points; the inequality came from the aligned singleton first-apex slice, with
+`point10` another strict-first-cap point.  Each single clause is satisfiable,
+their union is `UNSAT` in both solvers, and the same result holds for the two
+source-local named packets.  No convex-order, Kalmanson, cap-geometry,
+selected-support, rich-class-cardinality, or blocker-exactness clause survives
+minimization.  Thus this is not a finite geometric obstruction and supplies no
+new contradiction theorem.  It is exactly the already source-clean rule
+`firstFiberCapSource_not_mem_firstApex_multiPointRadius_of_aligned` (and its
+two-source retained-packet corollary) specialized to one bad proposed K4 row.
+
+The required next CEGAR correction is therefore an incidence-preflight cut:
+if a first-apex K4 witness row contains either aligned canonical source, it
+must omit every other strict-first-cap point.  Re-enumerate the exact-17
+aligned-mutual direct-crossed incidence packet with that rule before launching
+another coordinate solve.  A surviving assignment must still be coupled to
+the exact named C rows, separate Q row, singleton slices, blocker exactness,
+and common cyclic geometry.  An `UNSAT` assignment remains only a bounded
+proposal rejection unless its minimized core yields a cardinality-independent
+source theorem or a proved bounded-obstruction lift.  No Lean `sorry` was
+closed by this round.
+
+The first post-cut re-enumeration is also complete under
+`post_core_cut_v2/`.  The corrected incidence packet remains `SAT` in Z3,
+cvc5, and internal Z3 and passes an independent validator.  Its first-apex K4
+witness support is `{1,11,15,16}`: it meets the strict first cap only in
+`C.secondSource = 1`, so it satisfies the new singleton/K4 preflight and does
+not repeat the preceding defect.  The corresponding shared-coordinate replay
+is exactly validated through the geometry and cap-classification stages, but
+becomes jointly `UNSAT` in Z3 and cvc5 when the cumulative three-apex
+`rich_radius_pattern` clauses are added (921 clauses).
+
+This v2 result is still one frozen exact-17 assignment, not finite coverage.
+A mandatory global theorem-bank pass found no existing theorem that turns the
+simultaneous three-apex rich pattern into a contradiction or consumes any
+constructor of `FreshThirdAcyclicHardResidual`; the proved singleton and
+exact-retained-radius APIs license inputs to the query but do not prove its
+metric `UNSAT`.  The immediate gate is exact global and source-packet core
+minimization of those 921 clauses.  Promote only if the surviving core states
+a cardinality-independent geometric lemma available from the live packet;
+otherwise treat it as another assignment cut and re-enumerate.  No larger
+coordinate campaign is authorized before that classification.
+
+That minimization is now complete.  Global tracked extraction followed by
+fresh deletion reduces the 921-clause query to the subset-minimal four-clause
+chain
+
+```text
+d2(apex2, point7) = d2(apex2, point3)
+d2(apex2, point7) = richRadius2.0
+d2(apex2, point3) = richRadius2.1
+richRadius2.0 != richRadius2.1.
+```
+
+The core is `UNSAT` in internal Z3, Z3 CLI, and cvc5; every drop-one is `SAT`
+in both external solvers and passes exact substitution and independent
+`Fraction` replay.  Packet minimization leaves only the K4 common-radius
+equalities, the strict-cap rich-slice equalities, and D44 radius distinctness;
+each packet drop-one is likewise exactly checked `SAT`.
+
+This is again an incidence-assignment defect, not the sought simultaneous
+metric obstruction.  The arbitrary K4 witness at `apex2` crossed the two D44
+rich arms.  Existing source-clean Lean already forbids this, generically by
+`selectedClass_radius_unique_of_mem` and
+`selectedClass_disjoint_of_radius_ne`, and in the exact six-point D44 cap by
+`selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six`.
+Accordingly the next exact-17 re-enumeration must impose the radius-consistency
+preflight: an equal-distance K4 witness support cannot meet both distinct D44
+arms; in the six-point cap it must be one entire rich class.  This supplies no
+new live producer and closes no `sorry`.  Run a fresh theorem-bank audit, then
+re-enumerate before any further shared-coordinate solve.
+
+That source-faithful re-enumeration is complete under `post_rich_cut_v3/`.
+The exact-17 direct-crossed incidence query remains `SAT` in Z3, cvc5, and
+internal Z3.  Its independently validated survivor selects D44 at both
+nonfirst six-point caps, and each opposite-apex selected-four support now has
+strict-cap projection equal to one complete D44 arm.  The complementary S6
+rule is also present and branch-guarded: its selected support projects to a
+subset of the unique rich arm of cardinality at least two.  Thus the query no
+longer repeats either the singleton/K4 or crossed-D44 preflight defect.
+
+On one shared coordinate system, the survivor has exact-rationally validated
+`SAT` models through `geometry_core` and `cap_classification`.  Intermediate
+K4, selected-support, rich-radius, and full-rich-class stages remain
+`unknown`/timeouts.  The first stage jointly rejected by external Z3 4.17 and
+cvc5 1.3.3 is `blocker_exactness` at 1,070 cumulative clauses; in-process Z3
+4.16 times out there.  This exact status separation is important: no earlier
+stage is claimed `UNSAT` merely because a solver timed out.
+
+Exact core minimization subsequently reduced the v3 blocker failure to an
+inclusion-minimal nine-clause equality chain: eight source-entitled K4
+common-radius equalities force one off-row point onto the exact circle of the
+blocker row at center `8`, contradicting `blocker_exact_8_13`.  Z3 and cvc5
+both reject the core, every drop-one query is `SAT`, and the satisfying
+drop-one assignments pass exact substitution; two also pass independent
+`Fraction` replay.  This is not a new geometry theorem.  It is precisely an
+instance of the existing source-clean interface
+`Problem97.Census554.EqualityCore.ExactOffCircleCore`, consumed by
+`false_of_exactAt_of_exactOffCircleCore`; the required exactness at an actual
+blocker is supplied by
+`Problem97.Census554.GeneralCarrierBridge.exactAt_blocker`.  The banked
+consumer therefore justifies a guarded incidence separator, but the one frozen
+occurrence still supplies no universal FreshThird producer.
+
+That separator has now been tested source-faithfully in
+`post_exact_off_circle_cut_v4/`.  A lazy union-find/path CEGAR loop rejects the
+v3 assignment and adds a guarded cut for every discovered equality-closure
+path from a member edge of an actual blocker row to an excluded edge.  After
+six `SAT` iterations and nine cuts it reaches a closure-clean exact-17
+direct-crossed incidence survivor.  The final one-`check-sat` query is `SAT`
+in external Z3 4.17.0 and cvc5 1.3.3, and the inherited structural validator,
+the v3-cut validator, and an independent closure/path verifier all pass.
+Exactness is applied exactly at blocker-image centers, not at the four unused
+centers.  Thus `ExactOffCircleCore` is a sound reusable preflight, but it does
+not close this finite branch.
+
+The shared-coordinate replay of the v4 survivor finds no jointly `UNSAT`
+stage.  `geometry_core` and `cap_classification` are `SAT` in Z3 with exact
+substitution and `Fraction` replay; the row-equality preflight and all later
+K4, selected-row, rich-radius, blocker-exactness, and named-row stages are
+timeout or `unknown` at the recorded 60-second limits.  The mandatory
+post-round bank audit finds no finite-to-universal lift and no theorem that
+turns the whole surviving row system into `False`.  Conditional metric
+consumers such as
+`FiveRowCircleIntersectionGeometry.false_of_five_row_metric_data` and
+`SevenPointOrbitCollision.seven_point_orbit_collision` remain usable only
+after a literal source-level hypothesis map supplies all of their required
+order/equality data.  No P97 counterexample, exact-17 coverage theorem,
+universal lift, Lean closure, or `sorry` closure follows from v3 or v4.
+
+The consumer-first v5 mapping audit has now completed that gate without
+launching another solver query.  Against the closure-clean survivor,
+`false_of_five_row_metric_data` and its negative-orientation adapter have zero
+complete maps: even after requiring all six signed-area signs from the live
+Direct/Mirror boundary blocks, the best source-entitled mapping supplies only
+six of the ten distance equalities.  The all-role-injective minimum deficit is
+`{OA_AC, OA_AX6, OA_OC, OA_OD}`.  The audit deliberately ignores the frozen
+v4 numeric rank and intersects both arms of the live blocker-separation
+equivalence; using the coordinate proposal as source order would falsely make
+the consumer look closer.
+
+`seven_point_orbit_collision` also has zero complete maps.  In its least
+restrictive theorem-faithful mode the enumerator initially reports the four
+formal two-equality alternatives
+
+```text
+{OA_OB, BC_BV}
+{AO_AB, BC_BU}
+{AO_AB, VA_VU}
+{AO_AB, WO_WU}.
+```
+
+Expanding the role assignments back to carrier points shows that all four are
+degenerate and unusable.  Every missing field equates a non-diagonal edge
+between distinct carrier points with a diagonal self-edge.  Its metric
+equality would therefore contradict point distinctness by itself; conversely,
+the proposed disequality feasibility query is already forced and would be
+trivially `SAT`.  These two-equality deficits are artifacts of permitting role
+collisions, not plausible source producers, and no solver round should be run
+against them.  The production equality bank now enforces this structurally via
+`EqualityCore.EdgeClosure.eq_of_closure_to_diagonal` and
+`EqualityCore.EdgeClosure.not_closure_to_diagonal_of_ne`, both ordinary Lean
+proofs from `EdgeClosure.sound`, metric separation, and realization
+injectivity.
+
+The corrected nondegenerate audit is now complete.  Requiring both sides of
+every omitted equality to be non-diagonal raises the theorem-faithful minimum
+to four fields, with ten alternatives:
+
+```text
+{OA_OB, OA_OC, BC_BV, WO_WB}
+{OA_OB, AO_AB, BC_BU, BC_BV}
+{OA_OB, AO_AB, BC_BU, WO_WB}
+{OA_OB, AO_AB, BC_BV, WO_WB}
+{OA_OB, AO_AB, VA_VU, WO_WB}
+{OA_OB, AO_AB, WO_WB, WO_WU}
+{OA_OB, BC_BU, BC_BV, WO_WB}
+{OA_OB, BC_BV, WO_WB, WO_WU}
+{AO_AB, AO_AV, AO_AW, CA_CV}
+{AO_AB, BC_BU, BC_BV, WO_WB}
+```
+
+For the first viable map, the roles are
+`O=r₁`, `A=p₂`, `B=oppositeFourth`, `C=W=qOther`, `U=qSource`, and
+`V=r₂`; its four missing equations are
+
+```text
+dist r₁ p₂ = dist r₁ oppositeFourth
+dist r₁ p₂ = dist r₁ qOther
+dist oppositeFourth qOther = dist oppositeFourth r₂
+dist qOther r₁ = dist qOther oppositeFourth.
+```
+
+The all-role-injective minimum is also four equalities, with the unique
+deficit `{AO_AB, AO_AV, AO_AW, CA_CV}` and role map
+`O=oppositeFourth`, `A=oppApex1`, `B=qOther`, `C=qSource`,
+`U=carrierIndex14`, `V=r₁`, `W=secondSource`.  Its missing packet is
+
+```text
+dist oppApex1 oppositeFourth = dist oppApex1 qOther
+dist oppApex1 oppositeFourth = dist oppApex1 r₁
+dist oppApex1 oppositeFourth = dist oppApex1 secondSource
+dist qSource oppApex1 = dist qSource r₁.
+```
+
+The scratch artifact expands every alternative to carrier labels and exact
+equations and validates the non-diagonal guard.  No solver was launched.  A
+mandatory post-v5 bank audit finds no source-clean theorem deriving the
+discarded formal two-equality pairs from
+`TwoCapSourceThirdCanonicalRowSurface`,
+`FreshThirdAlignedRetainedConsumerPacket`, the Direct/Mirror boundary packet,
+and the live `FaithfulCarrierPattern`; the carrier expansion explains why.
+No partial generic consumer accepts the six-of-ten FiveRow or
+eleven-of-thirteen SevenPoint data.
+
+The source-entitlement audit of all forty omitted fields is now complete.
+None is already source-entitled.  Five alternatives contain at least one
+equality forbidden by the live blocker exact-row/off-row API; the remaining
+five alternatives (`M2`, `M5`, `M7`, the unique injective `M9`, and `M10`)
+contain only genuinely open equalities.  Thus the SevenPoint adapter is not
+exhausted, but no complete packet is currently available to a consumer and no
+metric-feasibility query is yet justified.  The five open alternatives share
+one producer shape: prove that a missing named endpoint belongs to a named
+exact `rowPattern` or `CriticalFourShell`; the existing realization and
+support-radius APIs then supply the corresponding equality.
+
+The first equality of the injective `M9` map was then audited as the smallest
+possible endpoint-membership target:
+
+```text
+dist oppApex1 oppositeFourth = dist oppApex1 qOther.
+```
+
+This is not a wiring lemma.  The current canonical-surface,
+aligned-retained, Direct/Mirror boundary, and faithful-carrier packets do not
+contain the required cross-component membership.  In the crossed constructor,
+`oppositeFourth` belongs to the opposite collision row and `qOther` belongs to
+a different first-fiber row; the named blocker centers are distinct.  The
+constructor interface therefore leaves this first-apex equality unconstrained.
+A theorem that assumes the two memberships and merely converts them to a
+distance equality would repackage the missing premise and must not be counted
+as a producer.
+
+The only lower-arity metric bypass found in the bank is also inapplicable.
+`FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side` consumes two
+source-entitled shell equalities, but additionally requires a positive
+same-side signed-area product.  The live FreshThird endpoint placement is
+alternating across the center chord, giving the opposite-side order rather
+than this premise.  Direct/Mirror boundary blocks do not change that sign.
+Thus the direct-crossed consumer search is exhausted at the current interface:
+resume it only after a new uniform positive-incidence or order producer lands.
+
+Do not introduce Q/grid aliases, frozen numeric order, exactness at unused
+centers, arbitrary-K4 support claims, or a finite-to-universal promotion.
+Universal closure still requires a source-clean theorem forcing a complete
+viable packet in every live residual, or a separate general-cardinality lift.
+
+The next closure work is consequently:
+
+1. attack the aligned reciprocal-membership arm through its new exact split.
+   In the direct-crossed subcase, the named canonical-source rows, separate
+   exact `Q` collision row, singleton source slices, exact-off-circle cuts, and
+   literal consumer maps have already been added and audited.  Do not repeat
+   those ingress rounds or search again for cyclic order.  The corrected
+   source-entitlement audit leaves five all-open four-field packets and five
+   packets with a source-forbidden equality.  The injective `M9` membership
+   audit and the two-circle same-side audit above show that neither is current
+   wiring.  Park this direct-crossed metric-consumer route until a new uniform
+   positive-incidence or order theorem supplies the missing premise.  Do not
+   query the four degenerate two-equality alternatives: their missing fields compare
+   nonzero edges with self-edges and cannot be source producers.  If every
+   viable four-field packet contains a source-forbidden equation, classify the
+   SevenPoint adapter as exhausted for this motif and return to a uniform
+   producer or a different consumer.  Run metric feasibility only after a
+   complete source-plausible packet has actually been produced.  The universal
+   Lean target remains a
+   consumer of the actual `FreshOutsideFirstBlockerFiber` packet; do not use the
+   two-fresh-source endpoint blocker theorem as if it were type-compatible.
+   A finite `UNSAT` is useful only with a bounded-obstruction/general-cardinality
+   lift, while a finite `SAT` remains a local motif rather than a P97
+   counterexample.
+   For the equal-blocker case, use the new common-cap/common-support packet to
+   split honestly on whether the existential common index is the first cap.
+   The first-cap subcase already carries the exact shell/cap intersection and
+   all endpoint omissions.  The existing first-fiber and joint-deletion
+   terminals intrinsically retain either a common first-apex radius or an open
+   B1/global producer, so they are not source-clean adapters for this subcase.
+   Both the first-cap and non-first-cap equal-blocker subcases still need a new
+   metric or global producer.  Any promoted finite result must identify a
+   bounded obstruction
+   or prove a lift, and must not silently replace the existential cap index by
+   the first cap.  For the
+   distinct-blocker case, consume the stronger named
+   `FreshThirdAlignedDistinctBlockerFirstCapResidual`: its two deletion
+   constructors already carry five exact deleted rows, and its two crossed
+   constructors already carry `FirstFiberCrossedThreeRowExactSupports` in the
+   correct orientation.  The crossed-three-row consumer search is exhausted
+   at the current interface as described above.  The alias-aware exact-17
+   five-row preflight now covers both source orientations, both deleted-Q
+   choices, and both possible first-apex retained rows.  All eight ingress
+   packets are `SAT` in z3 and cvc5 and pass independent assignment replay.
+   More importantly, all 24 queries obtained by forcing one of the three old
+   first-fiber consumer predicates are `UNSAT` in both solvers.  This is not a
+   finite obstruction: distinct selected-class centers bound overlap with the
+   first collision row by two, while the q-deleted shells omit the deleted Q
+   point.  Hence explicit overlap at least three, both outside-Q hits plus a
+   first-pair hit, and both outside-Q hits at either available first-cap center
+   are incompatible with the deletion ingress itself.  Do not
+   continue to target these three consumers or describe their negations as a
+   survivor cut.  The mandatory post-round theorem-bank audit found no other
+   source-clean consumer at the named-incidence interface.
+
+   The first source-faithful named-coordinate probe after that audit rejected
+   one frozen `first/qsource/radius` proposal, but did not reject the five-row
+   constructor.  Its dual-solver `UNSAT` core was the single geometric atom
+   asserting that carrier slot `1` lay strictly outside the closed first cap:
+   the frozen incidence assignment had aliased that slot both with the outside
+   point `Q.otherOutsidePoint` and with the fixed cap endpoint `S.oppApex2`.
+   The production theorem
+   `freshOutsideFirstBlockerFiber_outsidePoints_ne_firstCapEndpoints` now makes
+   the corresponding source contract explicit.  It proves that both Q points
+   are distinct from both fixed first-cap endpoints using only public endpoint
+   membership and the two `FreshOutsideFirstBlockerFiber` nonmembership fields;
+   its axiom audit contains only `propext`, `Classical.choice`, and
+   `Quot.sound`.  Therefore the four endpoint/Q non-alias clauses are valid for
+   all eight finite tags, while the v3 computation remains only a rejection of
+   one malformed frozen proposal.  The next admitted finite round must
+   re-enumerate all eight tags with these clauses already present and replay
+   any resulting shared-coordinate packets.  It must not promote the one-tag
+   `UNSAT` to tag coverage, a universal producer, or a Lean contradiction.
+
+   That admitted v4 round is now complete.  All eight structural tags remain
+   `SAT` in both z3 and cvc5 after the endpoint/Q clauses, and both assignments
+   per tag pass the independent structural validator.  Of the resulting 24
+   frozen shared-coordinate stages, 22 are bounded-inconclusive.  Two
+   `exact_offsupport` proposals are `UNSAT` in both solvers after deletion
+   minimization: `first_qother_rho` has a six-source-atom equality path through
+   `S0Row`, `S1Row`, and the actual deleted-blocker row, while
+   `second_qother_radius` has an eight-source-atom path through `PRow`,
+   `PRhoRow`, `Rh`, and that blocker row.  Every single-source-atom deletion
+   from either minimized core is `SAT` in cvc5.  These results reject two
+   frozen support assignments only; they do not cover either tag, much less
+   the five-row constructor.
+
+   The mandatory post-v4 global theorem-bank pass identifies both cores as
+   instances of the existing exact-support transport principle exposed by
+   `Problem97.Census554.GeneralCarrierBridge.exactAt_blocker`: equal-distance
+   transport from a supported blocker edge to an excluded blocker edge is
+   impossible.  It finds no existing FreshThird producer or coverage theorem
+   supplying the full ten edge closures and six orientations needed by
+   `FiveRowCircleIntersectionOrderCore.false_of_core` (or its reflected
+   form).  Therefore the next finite round must enumerate source-admissible
+   row supports, compute provenance-preserving equality closure, and learn only
+   the weakest support clause witnessing an exact blocker member/off-support
+   collision.  It must not rerun the same frozen nonlinear proposals with
+   longer timeouts or mistake one equality-path rejection for tag coverage.
+
+   The prescribed closure-clean support census is now complete in
+   `scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/`.
+   It varied source-admissible supports independently in all eight exact-17
+   tags and learned eight replayable, source-minimal equality-path cuts: six
+   paths of length two and two of length three, with seven terminating at the
+   exact deleted-blocker row and one at `PRow`.  Both z3 and cvc5 nevertheless
+   produced an equality-clean survivor for every tag, and all sixteen final
+   assignments pass the independent structural and union-find validators.
+   Thus the exact-support equality-path consumer is real but insufficient even
+   for this finite abstraction.  Another equality-only wave has no remaining
+   closure claim; the next round must begin with a new source-entitled global
+   producer or a different consumer.  This remains exact-17 abstraction
+   evidence, with no Euclidean realization, general-cardinality lift, Lean
+   theorem, or `sorry` closure.
+
+   The mandatory post-v5 theorem-bank audit found no canonical declaration
+   that consumes the equality-clean survivors or supplies the missing
+   FreshThird producer.  The closest source-clean endpoint is
+   `Problem97.Census554.EqualityCore.false_of_exactAt_of_exactOffCircleCore`.
+   Its generic ingress is already implemented: `GeneralCarrierBridge` provides
+   `rowPattern`, `realizes`, `exactAt_blocker`, and the complete
+   `false_of_shellMetricCoreAlternative` consumer, while global K4 can build a
+   `FaithfulCarrierPattern` preserving prescribed selected four-classes on a
+   finite nonempty center seed.  The remaining equality-core gap is therefore
+   not another abstraction layer.  It is a FreshThird-specific producer of an
+   actual `EdgeClosure` path from a member of one of the pinned exact rows to a
+   point excluded by the corresponding blocker row.  V5 proves that the
+   current exact-17 support abstraction does not force such a path in any of
+   its eight tags, so another equality-only wave is unauthorized.
+
+   A complete `FiveRowCircleIntersectionOrderCore` remains the other exact
+   endpoint.  The strongest source-faithful role map currently identified is
+   `O = blocker(source)`, `A = blocker(Pρ.source₁)`,
+   `C = oppApex1`, `D = oppApex2`, and `E = surplusApex`.  Its signed endpoint
+   would follow from the single shared-boundary chain
+   `idx(O) < idx(A) < idx(D) < idx(E) < idx(C)`, but
+   `FreshThirdAlignedMutualBlockerBoundaryPacket` does not locate those five
+   centers in that chain.  The same packet also does not supply the ten
+   support-incidence equalities or the three auxiliary witnesses needed for
+   the core's edge closures.  Once those fields are produced, the Lean adapter
+   is routine; producing them is the genuine geometric/global-K4 gap.  Neither
+   endpoint authorizes another equality-path or Kalmanson finite wave.
+
+   Following that census and its mandatory global theorem-bank pass, the
+   immediate theorem target is a
+   *different* source-clean consumer for either five-exact-row deletion
+   constructor, compatible with the exact B0/B1 omissions and not assuming a
+   common first-apex radius or equal blockers.  The most concrete existing
+   endpoint remains an exact map into
+   `FiveRowCircleIntersectionOrderCore`; it requires ten edge-closure
+   equalities and six signed orientations not supplied by the current packet.
+   Otherwise a new source theorem must contribute a metric/order identity or
+   a global-K4/minimality clause that uses the asymmetric five-row pattern
+   rather than forbidden positive hits.  The twelve structural arms and all 2520 current
+   cyclic-order projections are already exhausted.  Do not launch a larger
+   Boolean or Kalmanson matrix before a new source theorem supplies an
+   additional row equality or global clause;
+2. for both six-center arms, stop extending the Boolean cap-incidence matrix
+   unless a new source theorem supplies an actual row/radius/order identity.
+   Mine a bounded obstruction only from the complete
+   source-provenance exact-row boundary packet (six explicit deleted rows, the
+   `B₀`/`B₁`/`B₅` source labels, the deleted point's blocked actual center,
+   and six distinct survivor centers).  The v1 canary proves that those named
+   facts, even together with pointwise cap composition, do not force the
+   tetrahedron motif or any `B₃`/`B₄` retained-pair hit.  The U3 dangerous
+   triple, fixed-triple audit frame, and concrete escaping-row/critical-shell
+   witness are now produced in ordinary Lean.  The live packet has additionally
+   been strengthened to `SixSurvivorU3ExactRadiusAuditObstruction`: its dangerous
+   radius has exact filtered cardinality three, and every escaping row carries
+   both a `U5SelectedCandidateSkeleton` and the resulting off-circle inequality.
+   The generic frame API now also proves
+   `U3FixedTripleAuditFrame.qDeletedRow_dangerousCircle_distribution`: every
+   exact q-deleted four-row at an audit center has at most two points on
+   `{deleted} ∪ T`, and therefore at least two points off that dangerous
+   circle.  The same two-circle argument is now exposed generically through
+   `U5DangerousTriple.toSelectedFourClass` and
+   `CriticalFourShell.inter_dangerous_p_circle_card_le_two`; consequently
+   `U3FixedTripleAuditFrame.criticalFourShell_dangerousCircle_distribution`
+   gives the identical at-most-two/on-circle and at-least-two/off-circle bounds
+   for the critical-shell alternative.  The exact-radius obstruction packet
+   retains both cardinality bounds in both alternatives.
+
+   The source-faithful U3 obstruction wave then checked the six audit-center
+   choices separately in the escape and shell arms (twelve cases total).  Every
+   base query was `SAT` in both Z3 and cvc5 and passed the independent validator.
+   The wave did not force an escape to return to the canonical support, a
+   three-point survivor-row collision, or a consumer-ready positive incidence
+   in the shell arm.  These
+   are finite abstraction results only; they close no Lean theorem and do not
+   construct a P97 counterexample.  The mandatory post-wave global theorem-bank
+   pass found no existing universal producer for either arm (after the agentic
+   backend reached its usage limit, the pass completed against the ordinary
+   Lean corpus and all four canonical registries).
+
+   The exact escape-side gap is now a source theorem producing
+   `RowwiseConfinedQDeletedClasses`, or an independent theorem forcing every
+   escaping candidate to return to the bounded support or collide with a named
+   row.  The shell arm now carries the source-clean dangerous-circle
+   distribution bounds (intersection at most two and off-circle support at
+   least two).  Its remaining gap is an adapter from that emitted
+   `CriticalFourShell` to the row pattern, realization, label map, edge closures,
+   and `ExactOffCircleCore` premises consumed by
+   `Census554.EqualityCore.false_of_criticalFourShell_exactOffCircleCore`; merely
+   importing that consumer is insufficient.  The immediate theorem target is
+   therefore a source-clean contradiction for one of those explicit arms.  Any
+   adjacency, cyclic-order, or positive cross-row
+   incidence producer should be judged by whether it discharges that exact
+   alternative; then prove the corresponding universal producer or lift before
+   promoting a certificate.
+
+   The ordinary-Lean adapter
+   `SixSurvivorExactRowsBoundary.false_of_u3ExactRadiusAuditObstruction_of_rowwiseConfined`
+   now makes the escape endpoint precise: a theorem uniformly supplying
+   `F.RowwiseConfinedQDeletedClasses` for every fixed-triple frame with the
+   source-produced exact dangerous-radius cardinality three closes the entire
+   six-row boundary immediately.  The adapter is source-clean and conditional;
+   it does not manufacture the confinement producer and therefore closes no
+   live residual by itself.
+
+   The authorized simultaneous-six-center wave is now complete under
+   `scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/`.
+   A pre-run source audit corrected the intended contract: the six U3 audit
+   centers are unrelated to the six survivor-boundary centers; arbitrary
+   q-deleted witnesses are not canonical rows; and no same-center identity,
+   actual-blocker provenance, or blocker-fiber bound may be projected onto
+   them.  The single run instead retained the licensed distinct-center
+   two-circle bounds and the new dangerous-circle distribution theorem.  The
+   latter reduced the exact structural pattern bank from 1440 to 468.
+
+   Z3 4.17.0 and cvc5 1.3.3 agreed on all twelve cases, with no unknowns,
+   timeouts, crashes, or invalid readbacks.  The finite all-confined schema is
+   semantic-UNSAT after exhaustive independent classification of all 468
+   patterns, as expected from the existing bounded consumer.  The live
+   escape-or-critical-shell abstraction remains SAT: one validated readback
+   uses one confined q-deleted center, two escaping centers, and three shell
+   centers.  This is neither a Euclidean realization nor a counterexample.
+   It isolates the same two universal gaps without forcing a new named
+   collision: canonical escape return/collision, or named-support incidence and
+   blocker provenance for `CriticalFourShell`.  The shell-side
+   dangerous-circle distribution itself is now source-clean; it has no current
+   named-row or metric/order consumer.
+
+   No second wave is authorized from this result.  The mandatory fresh global
+   theorem-bank pass is complete (`POSTBANK.md`; nthdegree message `#4264`).
+   Agentic search hit its model-usage limit, so the pass fell back to the
+   ordinary indexed Lean corpus and all four canonical theorem registries.  It
+   found no source-clean return/collision theorem, universal six-row
+   confinement producer, shell-to-blocker/named-row provenance theorem, or
+   direct consumer for the full escape-or-shell packet.  A subsequent direct
+   source derivation added only the generic shell dangerous-circle distribution;
+   it did not add a closer.  The narrowest
+   missing general-cardinality input is therefore either a canonical
+   escape-return/collision theorem (equivalently, universal rowwise
+   confinement) or an independent `CriticalFourShell` theorem supplying named
+   dangerous-circle/blocker provenance.  Any future finite contradiction still
+   requires one of those Lean producers or a bounded-obstruction lift.
+
+   The follow-up shell-distribution wave is complete under
+   `scratch/p97-consumer-first/freshthird_u3_simultaneous_shell_distribution_20260809/`
+   (nthdegree message `#4278`).  It retained the source-clean critical-shell
+   exactness and dangerous-circle bounds, and again separated the already
+   impossible all-confined q-deleted schema from the live escape/shell
+   alternatives.  Z3 and cvc5 agreed throughout, but no named shell incidence,
+   blocker identity, return, or descent was forced.  Its mandatory global
+   theorem-bank pass (`#4282`) found no existing shell-to-False consumer or
+   source bridge to the required CriticalShellSystem blocker data.  This was a
+   second diagnostic refinement, not a closure result.
+
+   The next source step makes the finite ingress exact.  A critical four-shell
+   can be converted to a q-allowed K4 witness; any shell point outside the old
+   bounded support is consequently a new selected off-dangerous-circle
+   candidate.  Shifting the U3 frame to that candidate yields the ordinary-Lean
+   dichotomy `exists_escaping_shift_or_confinedCriticalFourShell`: either the
+   distinguished candidate leaves the old support, or one confined critical
+   shell is exposed.  More strongly, the source audit proves directly that,
+   in the absence of such an escaping shift, every one of the six audit centers
+   has either a confined exact q-deleted four-row or a confined exact critical
+   four-shell.  This statement is now implemented as
+   `MixedConfinedAuditPacket` and
+   `exists_escaping_shift_or_mixedConfinedAuditPacket`.  A combined Lean 4.27
+   check of the new U5 and U3 adapters succeeds; the axiom audit contains no
+   `sorryAx` (the older bounded consumer retains its approved
+   `Lean.trustCompiler`/`Lean.ofReduceBool` profile).  A dependency-aware Lake
+   check remains pending behind the unrelated full-build lock.  This is the
+   precise mixed packet used by the next census.  It does not identify shell
+   rows with q-deleted rows: a critical shell contains the deleted point `q`,
+   so it cannot populate the existing `U5BoundedAuditSupport` consumer.
+
+   The exact mixed-mode census is complete under
+   `scratch/p97-consumer-first/freshthird_u3_mixed_confined_exact_20260809/`
+   (nthdegree message `#4286`).  It exhausts all 64 q-deleted/critical-shell
+   mode assignments on the eight source-entitled labels and counts 1,552,476
+   compatible six-row support tuples.  Every mode is SAT in both Z3 and cvc5,
+   with independent readback validation.  The encoding retains exact row
+   cardinality, q membership/omission by mode, own-center omission, pairwise
+   two-circle intersection bounds, dangerous-circle distribution, and the
+   critical-shell off-support radius disequalities.  It is an incidence census,
+   not a Euclidean realization or counterexample, and closes no Lean theorem.
+
+   The mandatory post-census global theorem-bank pass is complete (nthdegree
+   message `#4294`).  Agentic search again reached its model-usage limit, so the
+   audit completed with ordinary global and scoped Lean search plus all four
+   canonical theorem registries.  It found no mixed q-deleted/shell consumer,
+   no U3 shift no-cycle/return theorem, no q-allowed finite-audit closer, no
+   FreshThird producer for `ExactOffCircleCore`, and no source bridge from the
+   six audit centers to blocker-cycle/fiber bounds.  Therefore no successor
+   incidence-only CEGAR wave is authorized.  A follow-up source audit estimates
+   the smallest named Euclidean layer at only eight points and about 22 real
+   variables, so solver size is not the obstruction.
+
+   A subsequent ordinary-Lean source theorem supplied one genuinely new clause
+   and therefore authorized exactly one successor wave.  A critical four-shell
+   containing the dangerous point `p` puts its carrier center on the
+   perpendicular bisector of `p` and `q`; Dumitrescu's two-center bound then
+   shows that at most two of the six pairwise-distinct audit centers can carry
+   such shells.  This is recorded by
+   `MixedConfinedRow.false_of_three_criticalFourShell_rows_containing_p` and the
+   universal `shell_p_at_most_two` field of
+   `MixedSixRowPatternWithDangerousCircle`.  The theorem is cardinality
+   independent and source-clean; it is a new solver cut, not a contradiction
+   for the mixed packet.
+
+   The single authorized successor wave is complete under
+   `scratch/p97-consumer-first/freshthird_u3_mixed_confined_exact_20260809/`
+   `successor_dangerous_triple_shell_p_cut_20260809/` (nthdegree message
+   `#4376`).  The new cut removes 65,520 of 1,552,476 tuples in 42 of the 64
+   mode arms.  Exact readback, Z3, and cvc5 agree: 63 arms remain
+   SAT-abstraction, while the all-six-critical-shell arm is finite-UNSAT (all
+   216 support tuples are removed).  A minimal finite core uses exact row
+   cardinality, q membership, pairwise intersection at most two, the
+   dangerous-circle intersection bound, and `shell_p_at_most_two`; own-center
+   omission is unnecessary.  The original exact finite theorem landed as
+   `U3MixedFiniteExtraction.exists_qDeleted_mode_of_mixedSixRowPatternWithDangerousCircle`:
+
+   ```lean
+   MixedSixRowPatternWithDangerousCircle ->
+     Exists fun c => (row c).mode = .qDeleted
+   ```
+
+   The executable reflection is
+   `U3MixedFiniteExtraction.shellPatternExists_false`.  The source-level count
+   is now strictly stronger than that first reflected theorem.  If at most one
+   of the six rows were q-deleted, at least five would be critical shells.  Each
+   shell contributes exactly three incidences on the seven non-`q` labels, for
+   at least 15 incidences, while the perpendicular-bisector multiplicity bound
+   permits at most two incidences per label, for total capacity 14.  The
+   ordinary theorem
+   `MixedSixRowPattern.exists_two_qDeleted_of_uniform_shell_multiplicity`
+   therefore produces two distinct q-deleted modes without another solver
+   wave.
+
+   `MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_of_mode`
+   transports those two modes back to two distinct actual confined q-deleted
+   rows among the six audit centers.  The stable strengthened API
+   `MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_intersection`
+   additionally packages the exact overlap range
+   `1 ≤ (B₁ ∩ B₂).card ∧ (B₁ ∩ B₂).card ≤ 2`: the lower bound follows because
+   both four-rows lie in the same seven-point support after erasing `q`, and
+   the upper bound is the existing distinct-center two-circle theorem.  The
+   boundary-level adapter
+   `SixSurvivorExactRowsBoundary.exists_two_confined_qDeletedRows_with_intersection_of_mixedFrame`
+   is imported by `TwoSourceClosure`; its weaker two-row adapter and the earlier
+   one-row adapters remain valid but are subsumed for this route.  Lean 4.27
+   direct checks and the locked producer-module and dependency-aware
+   `TwoSourceClosure` builds succeed under the approved trust profile.  A fresh
+   spine/axiom refresh remains the final promotion check for this checkpoint.
+
+   This is a strict mode descent: every mixed packet has at least two
+   q-deleted rows and hence at most four critical shells.  It does not produce
+   six q-deleted rows and does not close the escape arm or the no-shift arm.  No
+   live `sorry` closed at this checkpoint.  The new boundary adapter is a
+   banked source producer/adapter, not yet kernel-reachable from the publish spine,
+   because the active residual does not yet construct its
+   `MixedConfinedAuditPacket` premise.
+
+   The mandatory post-wave theorem-bank audit is complete (nthdegree message
+   `#4382`).  The agentic backend again reached its usage limit, so the audit
+   completed against the live Lean source and all four canonical registries.
+   It found no existing consumer of one q-deleted row plus critical shells, no
+   escape/return or blocker-descent bridge, and no theorem deriving the finite
+   mode-exclusion statement above.  A post-landing source audit (nthdegree
+   message `#4447`) found no then-existing no-shift, return, or cycle theorem.
+   That historical negative result has now been superseded by the landed
+   provenance-preserving step and finite-cycle APIs described below.
+
+   A fresh theorem-bank and live-source audit after the two-row strengthening
+   likewise found no existing contradiction consumer for two arbitrary
+   confined q-deleted rows.  The banked two-circle theorems give pairwise
+   intersection at most two, and the seven-point support count strengthens this
+   to intersection cardinality one or two.  Those facts do not supply a
+   dangerous center, reciprocal center membership, or the `p`/cross incidences
+   required by the nearest U5 incompatibility kernels.  The next mixed-arm
+   producer must either lift the two rows to the existing all-row confined
+   consumer or produce those missing positive incidences and feed a named U5
+   terminal.
+
+   The escape arm now has the source-clean provenance-preserving relation
+   `U3EscapingAuditStep` and the one-step producer
+   `U3FixedTripleAuditFrame.exists_escapingAuditStep_or_mixedConfinedAuditPacket`.
+   Each escape constructor retains the actual q-deleted row or critical shell,
+   its escaping support point, and the definitional `shiftOfEscape` successor.
+   `U3EscapingAuditCycle.exists_mixed_or_step_cycle` now carries out the finite
+   orbit extraction: every exact-radius initial frame yields either a frame
+   with `MixedConfinedAuditPacket`, or an infinite source-faithful step sequence
+   with a return cycle of period at least four.  The proof uses the finite frame
+   embedding together with `step_not_eq`, `no_two_cycle`, and `no_three_cycle`.
+   The boundary adapter
+   `SixSurvivorExactRowsBoundary.exists_mixedFrame_or_u3EscapingAuditCycle`
+   wires this disjunction into `TwoSourceClosure`.  The relevant Lean 4.27
+   builds are green with no new `sorry`; this is a decomposition, not a
+   contradiction, and no live `sorry` closed.
+
+   The remaining escape obligation is now precisely a strict well-founded
+   measure or a cycle-specific contradiction for a source-faithful cycle of
+   period at least four.  The mixed endpoint still needs either an all-row
+   confinement lift or the reciprocal/dangerous-center/`p`-cross incidence
+   producer consumed by an existing U5 terminal.  Do not start another CEGAR
+   wave until one of those source theorems contributes a new source-entitled
+   clause to the surviving mode arms.
+
+   The eight-point layer is a **projection**, not an exact-cardinality model.
+   An actual countermodel at any carrier cardinality supplies the same eight
+   named points, and every source-derived equality or inequality among those
+   points survives after the anonymous carrier points are forgotten.  Thus an
+   exact finite coverage theorem for the mixed support patterns, followed by a
+   contradiction using only those named-point clauses, would already be a
+   uniform general-cardinality argument; it does not require `D.A.card = 8` or
+   a separate deletion lift.  Conversely, the encoder must not assert that an
+   arbitrary q-deleted four-subset is the whole physical radius class, nor add
+   disequalities against unnamed carrier points.  Those stronger exactness
+   facts are source-entitled only for a `CriticalFourShell` and are unnecessary
+   for a sound weakened projection.  `U5FiniteExtraction.false_of_auditedBadPattern`
+   is the existing production precedent for this named-label projection.
+
+   The production contract for a computational continuation is therefore:
+   (i) extract and cover every mixed q-deleted/critical-shell four-support
+   pattern on the eight labels; (ii) attach only the metric clauses supplied by
+   the corresponding source constructor; and (iii) replay a finite collection
+   of ordinary geometric incompatibility kernels in Lean.  The remaining
+   universal work is one of two genuinely new higher-level producers: (a) a
+   well-founded shift/return/collision theorem that prevents indefinite support
+   escape, together with a terminal at the returned frame; or (b) a named-point
+   geometry or order incompatibility that eliminates every covered mixed
+   support pattern.  Computation should resume only after that ingress contract
+   is implemented and the prospective metric clauses are mapped to named Lean
+   consumers;
+
+   A source audit also rules out deriving (a) from carrier finiteness alone.
+   `shiftOfEscape` replaces `(u,a₀,a₁)` by `(y,u,a₀)` and proves only that `y`
+   lies outside the immediately preceding bounded support.  Consequently the
+   abstract four-cycle
+   `(A,B,C) → (D,A,B) → (C,D,A) → (B,C,D) → (A,B,C)` respects every retained
+   freshness fact.  The support cardinality is constant, the shift is a
+   relation rather than a canonical self-map, and the available off-circle
+   fact supplies no strict potential.  A return argument therefore needs a
+   genuinely new cumulative-freshness, monotone-rank, or no-cycle theorem; it
+   must not be inferred from finiteness;
+   and
+3. keep the common-radius/equal-blocker exact-row obligations in their
+   separately claimed lane rather than duplicating them here.
+
+No further FreshThird fan-out should be introduced unless a child is closed in
+the same change or the replacement theorem is a demonstrably stricter single
+residual, as at this checkpoint.
+
+## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
+
+The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
+identity error in its two-Kalmanson replay path.  The stage predicate checked
+that some member of the same theorem family was present, while the
+equality-label exporter could substitute a different core extracted from the
+minimized row system.  A record could therefore be authenticated as a valid
+family hit without proving that the exact serialized labels, rows, order,
+quadrilaterals, and cancellation path were the theorem instance used to emit
+the clause.  No universal or Lean closure had been promoted from this path,
+but the affected finite successor CNFs were not suitable as production
+coverage artifacts.
+
+The repaired bank now has two fail-closed operations:
+
+1. `certify_two_kalmanson_cancellation` reconstructs and checks the exact
+   recorded core, including its boundary labels, source labels, selected rows,
+   two inequality forms and quadruples, endpoint comparison, cancellation
+   permutation, and complete path;
+2. `enumerate_two_kalmanson_cancellations` deterministically enumerates every
+   exact admissible core in the complete verified row system.  It does not use
+   a minimized family representative as a proxy for the original model.
+
+The historical direct-six bank was then migrated by rechecking its parent
+artifacts against their recorded hashes and current exact certifiers.  The
+migration rescanned 274 legacy two-Kalmanson occurrences into 408 exact cores
+before bank-level deduplication.  Together with the other authenticated
+theorem families, the resulting bank contains 1,111 deduplicated records:
+938 formalized records, 173 positive weighted records, and 63 distinct
+two-Kalmanson records.  Separately, exhaustive inspection of the twenty v10
+source models found 750 exact serialized two-Kalmanson cores and 596 distinct
+endpoint-comparison clauses; the earlier first-hit export had retained only
+twenty such cuts.
+
+The corrected v11 source-faithful export is:
+
+- 74,813 variables;
+- 2,503,787 clauses;
+- 1,108 learned nogoods;
+- 640 equality-label cuts; and
+- CNF SHA-256
+  `aede44af37dd7e157a6f289deedcdf7f75b41a9501d01729dec5969152ca31d7`.
+
+An independent exact validator regenerated the candidate byte-for-byte,
+replayed a CaDiCaL model, checked three source Z3 models, checked 145,975
+structural clauses, and replayed all twelve static theorem families together
+with the transitive convex-five-point digests.  Its terminal status is `PASS`.
+The artifacts are under
+`scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/`.
+
+A fresh 24-seed CaDiCaL portfolio, seeds 1201 through 1224 at `nice +10`, was
+launched only after that validation passed.  All twenty-four searches returned
+`SAT`; there was no finite closure in this round.  All twenty-four assignments
+then passed the DIMACS check, source-Z3 pinning, independent source model
+checker, and exact theorem-bank replay.  Every model contained at least one
+instance of the already formalized two-Kalmanson cancellation theorem; two
+models additionally contained a six-point two-circle arc-overtake obstruction.
+The complete-model census found 900 exact serialized two-Kalmanson cores and
+684 distinct endpoint-comparison clauses across the twenty-four models.  These
+are new instances of existing mathematics, not new theorem schemas, and are
+being compiled into the next source-faithful successor CNF.  An UNSAT solver
+result would still require an exact proof replay and the existing
+source-to-finite Lean ingress before it could close the on-spine cap-nine
+theorem.
+
+This checkpoint is a **finite CEGAR soundness repair and strengthened search
+round**, not exact-17 closure, not closure of the Rigid221 production leaf, and
+not full P97 closure.

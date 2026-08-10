@@ -122,6 +122,12 @@ tagged-v3 journals are rejected rather than silently migrated.  The retained
 earlier waves remain historical nonterminal diagnostics; a fresh v4 wave is
 required for promotion.
 
+Later checkpoint (2026-08-10): the separate five-omission v3 lane now has an
+authenticated 716-cut layered successor, but every deleted-label shard stopped
+at `ITERATION_LIMIT` without a terminal proof.  Those cuts neither replace the
+placement transport proved here nor supply the still-open exhaustive coverage,
+replay-check equivariance, and terminal-certificate gates below.
+
 ## Exact remaining gate
 
 Source transport is complete for the listed v14 predicates and justifies

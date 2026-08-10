@@ -1,4 +1,4 @@
-"""Export one authenticated five-omission journal as a typed Lean cut bank.
+"""Export an authenticated five-omission run or successor as a typed Lean bank.
 
 Only detector stages with a source-uniform Lean constructor are accepted.
 Every emitted cut retains the certificate's complete four-point row choices,
@@ -30,11 +30,17 @@ from .source_faithful_five_omission_lean_export import (
     AuthenticatedFiveOmissionRun,
     load_authenticated_run,
 )
+from .source_faithful_five_omission_successor_bank import (
+    AuthenticatedFiveOmissionSuccessorBank,
+    load_successor_bank,
+)
 
 DUPLICATE_STAGE = duplicate.STAGE
 BISECTOR_STAGE = "equality-equilateral-bisector-collision"
-SUPPORTED_STAGES = frozenset({DUPLICATE_STAGE, BISECTOR_STAGE})
+EQUAL_K4_STAGE = "equality-equal-k4"
+SUPPORTED_STAGES = frozenset({DUPLICATE_STAGE, BISECTOR_STAGE, EQUAL_K4_STAGE})
 BISECTOR_FIELDS = ("pa_pb", "pa_pc", "pa_ab", "pa_ax", "pa_bx", "cx_ca")
+EQUAL_K4_FIELDS = ("hp1p2", "hp1p3", "hp112", "hp113", "hp123")
 
 
 def _full_row_terms(certificate: dict[str, Any]) -> list[str]:
@@ -160,6 +166,67 @@ def cut{index} : SourceOrderPositiveNogood :=
 """
 
 
+def _equal_k4_cut_lean(index: int, record: dict[str, Any]) -> str:
+    certificate = record.get("certificate")
+    if not isinstance(certificate, dict):
+        raise FiveOmissionCegarError("equal-K4 certificate is malformed")
+    try:
+        valid = certs._validate_certificate(certificate, n=12)
+    except (KeyError, TypeError, ValueError) as exc:
+        raise FiveOmissionCegarError(
+            f"equal-K4 record {index} failed certificate replay"
+        ) from exc
+    if not valid or certificate.get("stage") != EQUAL_K4_STAGE:
+        raise FiveOmissionCegarError(
+            f"equal-K4 record {index} failed certificate replay"
+        )
+    if certificate.get("side_conditions") != [
+        {"kind": "injective-realization"}
+    ]:
+        raise FiveOmissionCegarError(
+            f"equal-K4 record {index} has unsupported side conditions"
+        )
+    paths = {path.get("field"): path for path in certificate["closure_paths"]}
+    if len(paths) != len(EQUAL_K4_FIELDS) or set(paths) != set(EQUAL_K4_FIELDS):
+        raise FiveOmissionCegarError(
+            f"equal-K4 record {index} has an unsupported path schema"
+        )
+    points = certificate.get("core", {}).get("points")
+    if not isinstance(points, list) or len(points) != 4:
+        raise FiveOmissionCegarError(
+            f"equal-K4 record {index} has an unsupported point schema"
+        )
+    rows = _full_row_terms(certificate)
+    data_fields = {
+        field: duplicate._lean_nat(point)
+        for field, point in zip(("p", "t1", "t2", "t3"), points, strict=True)
+    }
+    data_fields.update(
+        {field: duplicate._lean_path(paths[field]) for field in EQUAL_K4_FIELDS}
+    )
+    data = "\n".join(
+        f"    {field} := {value}" for field, value in data_fields.items()
+    )
+    choices = ",\n    ".join(rows)
+    return f"""/-- Journal iteration {record.get('index')}; certificate
+    {certificate['proof_sha256']}. -/
+def equalK4Choices{index} : List (RowChoice Label) := [
+    {choices}
+  ]
+
+def equalK4Data{index} : EqualK4Data Label := {{
+{data} }}
+
+theorem equalK4Check{index} :
+    equalK4Data{index}.check equalK4Choices{index} = true := by
+  native_decide
+
+def cut{index} : SourceOrderPositiveNogood :=
+  SourceOrderPositiveNogood.ofEqualK4Certificate
+    equalK4Choices{index} equalK4Data{index} equalK4Check{index}
+"""
+
+
 def _cut_obligations_lean(index: int, record: dict[str, Any]) -> str:
     learned_clause = record.get("learned_clause")
     if not isinstance(learned_clause, list) or not all(
@@ -216,15 +283,14 @@ theorem bank_encodable :
 """
 
 
-def records_for_terminal_bank(
-    run: AuthenticatedFiveOmissionRun, limit: int | None = None
+def _select_supported_records(
+    records: tuple[dict[str, Any], ...], limit: int | None
 ) -> tuple[dict[str, Any], ...]:
     if limit is not None and limit <= 0:
         raise ValueError("limit must be positive")
-    combined = run.bootstrap_records + run.records
-    records = combined if limit is None else combined[:limit]
+    selected = records if limit is None else records[:limit]
     unsupported = sorted(
-        {record.get("detector_stage") for record in records}
+        {record.get("detector_stage") for record in selected}
         - SUPPORTED_STAGES,
         key=str,
     )
@@ -232,17 +298,44 @@ def records_for_terminal_bank(
         raise FiveOmissionCegarError(
             f"terminal bank contains unsupported detector stages: {unsupported}"
         )
+    return selected
+
+
+def records_for_terminal_bank(
+    run: AuthenticatedFiveOmissionRun, limit: int | None = None
+) -> tuple[dict[str, Any], ...]:
+    return _select_supported_records(run.bootstrap_records + run.records, limit)
+
+
+def records_for_successor_terminal_bank(
+    bank: AuthenticatedFiveOmissionSuccessorBank,
+    limit: int | None = None,
+) -> tuple[dict[str, Any], ...]:
+    """Select the separately authenticated bootstrap and local layers."""
+
+    records = _select_supported_records(
+        bank.bootstrap.records + bank.local_records, limit
+    )
+    if limit is None:
+        projected_clauses = tuple(
+            tuple(record["learned_clause"]) for record in records
+        )
+        if projected_clauses != bank.derived_clauses:
+            raise FiveOmissionCegarError(
+                "successor terminal records do not project to derived clauses"
+            )
     return records
 
 
-def render_terminal_bank(
-    run: AuthenticatedFiveOmissionRun,
+def _render_terminal_bank(
+    deleted_label: int,
     records: tuple[dict[str, Any], ...],
     namespace: str,
+    provenance: str,
 ) -> str:
     if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]*", namespace):
         raise ValueError(f"invalid Lean namespace: {namespace}")
-    instance = _new_instance(run.deleted_label)
+    instance = _new_instance(deleted_label)
     declarations: list[str] = []
     for index, record in enumerate(records):
         _validate_exact_clause(instance, record)
@@ -251,6 +344,8 @@ def render_terminal_bank(
             cut_source = _duplicate_cut_lean(index, record)
         elif stage == BISECTOR_STAGE:
             cut_source = _bisector_cut_lean(index, record)
+        elif stage == EQUAL_K4_STAGE:
+            cut_source = _equal_k4_cut_lean(index, record)
         else:  # Guard against callers bypassing records_for_terminal_bank.
             raise FiveOmissionCegarError(f"unsupported detector stage: {stage}")
         declarations.append(cut_source + _cut_obligations_lean(index, record))
@@ -261,20 +356,10 @@ def render_terminal_bank(
     )
     declarations_source = "\n".join(declarations)
     encodability_source = _bank_encodability_lean(len(records))
-    shared_bank = run.summary.get("shared_bank")
-    shared_bank_document_sha256 = (
-        shared_bank.get("document_sha256")
-        if isinstance(shared_bank, dict) and shared_bank.get("enabled") is True
-        else None
-    )
     return f"""import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221FiveOmissionTerminalBankConsumer
 
 /-!
-Generated from authenticated bootstrap plus {run.workdir.as_posix()}/journal.jsonl
-Shared-bank document SHA-256: {shared_bank_document_sha256}
-Journal SHA-256: {run.journal_artifact['sha256']}
-Authenticated bootstrap records: {len(run.bootstrap_records)}
-Authenticated local records: {len(run.records)}
+{provenance}
 Authenticated records emitted: {len(records)} ({count_comment})
 
 Every item is a source-uniform typed cut with its exact four-row CNF choices.
@@ -301,10 +386,67 @@ end {namespace}
 """
 
 
+def render_terminal_bank(
+    run: AuthenticatedFiveOmissionRun,
+    records: tuple[dict[str, Any], ...],
+    namespace: str,
+) -> str:
+    shared_bank = run.summary.get("shared_bank")
+    shared_bank_document_sha256 = (
+        shared_bank.get("document_sha256")
+        if isinstance(shared_bank, dict) and shared_bank.get("enabled") is True
+        else None
+    )
+    generated_from = (
+        "Generated from authenticated bootstrap plus "
+        f"{run.workdir.as_posix()}/journal.jsonl"
+    )
+    provenance = "\n".join(
+        (
+            generated_from,
+            f"Shared-bank document SHA-256: {shared_bank_document_sha256}",
+            f"Journal SHA-256: {run.journal_artifact['sha256']}",
+            f"Authenticated bootstrap records: {len(run.bootstrap_records)}",
+            f"Authenticated local records: {len(run.records)}",
+        )
+    )
+    return _render_terminal_bank(
+        run.deleted_label, records, namespace, provenance
+    )
+
+
+def render_successor_terminal_bank(
+    bank: AuthenticatedFiveOmissionSuccessorBank,
+    deleted_label: int,
+    records: tuple[dict[str, Any], ...],
+    namespace: str,
+) -> str:
+    expected_records = records_for_successor_terminal_bank(bank, len(records))
+    if records != expected_records:
+        raise FiveOmissionCegarError(
+            "successor terminal records are not the canonical bank prefix"
+        )
+    provenance = "\n".join(
+        (
+            f"Generated from authenticated successor {bank.path.name}",
+            f"Successor artifact SHA-256: {bank.artifact_sha256}",
+            f"Successor document SHA-256: {bank.document_sha256}",
+            f"Shared-bank document SHA-256: {bank.bootstrap.document_sha256}",
+            f"Authenticated bootstrap records: {len(bank.bootstrap.records)}",
+            f"Authenticated local records: {len(bank.local_records)}",
+            f"Derived clause-list SHA-256: {bank.derived_clause_list_sha256}",
+        )
+    )
+    return _render_terminal_bank(deleted_label, records, namespace, provenance)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
-    parser.add_argument("--workdir", type=Path, required=True)
+    source_group = parser.add_mutually_exclusive_group(required=True)
+    source_group.add_argument("--workdir", type=Path)
+    source_group.add_argument("--successor-bank", type=Path)
+    parser.add_argument("--bootstrap-bank", type=Path)
     parser.add_argument("--deleted-label", type=int, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--limit", type=int)
@@ -318,41 +460,78 @@ def main() -> int:
     parser.add_argument("--manifest", type=Path)
     args = parser.parse_args()
 
-    run = load_authenticated_run(args.repo_root, args.workdir, args.deleted_label)
-    records = records_for_terminal_bank(run, args.limit)
-    source = render_terminal_bank(run, records, args.namespace)
+    if args.successor_bank is not None:
+        if args.bootstrap_bank is None:
+            parser.error("--successor-bank requires --bootstrap-bank")
+        bank = load_successor_bank(
+            args.successor_bank,
+            args.bootstrap_bank,
+            _new_instance(args.deleted_label),
+        )
+        records = records_for_successor_terminal_bank(bank, args.limit)
+        source = render_successor_terminal_bank(
+            bank, args.deleted_label, records, args.namespace
+        )
+        manifest_schema = "p97_source_faithful_five_omission_typed_bank.v3"
+        manifest_source = {
+            "successor_bank": args.successor_bank.as_posix(),
+            "successor_artifact_sha256": bank.artifact_sha256,
+            "successor_artifact_bytes": bank.artifact_bytes,
+            "successor_document_sha256": bank.document_sha256,
+            "deleted_label": args.deleted_label,
+            "shared_bank_document_sha256": bank.bootstrap.document_sha256,
+            "shared_bank_clause_list_sha256": (
+                bank.bootstrap.bootstrap_clause_list_sha256
+            ),
+            "authenticated_bootstrap_record_count": len(bank.bootstrap.records),
+            "authenticated_local_record_count": len(bank.local_records),
+            "authenticated_record_count": len(bank.bootstrap.records)
+            + len(bank.local_records),
+            "emitted_record_count": len(records),
+            "local_clause_list_sha256": bank.local_clause_list_sha256,
+            "derived_clause_list_sha256": bank.derived_clause_list_sha256,
+        }
+    else:
+        if args.bootstrap_bank is not None:
+            parser.error("--bootstrap-bank is only valid with --successor-bank")
+        assert args.workdir is not None
+        run = load_authenticated_run(
+            args.repo_root, args.workdir, args.deleted_label
+        )
+        records = records_for_terminal_bank(run, args.limit)
+        source = render_terminal_bank(run, records, args.namespace)
+        manifest_schema = "p97_source_faithful_five_omission_typed_bank.v2"
+        manifest_source = {
+            "run_summary": (run.workdir / "summary.json").as_posix(),
+            "run_summary_sha256": run.summary_artifact["sha256"],
+            "journal": (run.workdir / "journal.jsonl").as_posix(),
+            "journal_sha256": run.journal_artifact["sha256"],
+            "journal_bytes": run.journal_artifact["bytes"],
+            "deleted_label": run.deleted_label,
+            "shared_bank_document_sha256": run.summary["shared_bank"][
+                "document_sha256"
+            ],
+            "shared_bank_clause_list_sha256": run.summary["shared_bank"][
+                "bootstrap_clause_list_sha256"
+            ],
+            "authenticated_bootstrap_record_count": len(run.bootstrap_records),
+            "authenticated_local_record_count": len(run.records),
+            "authenticated_record_count": len(run.bootstrap_records)
+            + len(run.records),
+            "emitted_record_count": len(records),
+            "terminal_record_sha256": run.terminal_record_sha256,
+            "formula_contract_sha256": run.summary["formula_contract_sha256"],
+            "detector_contract_sha256": run.summary["detector_contract_sha256"],
+        }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     _write_regular_bytes(args.out, source.encode("utf-8"), create=True)
 
     if args.manifest is not None:
         stage_counts = Counter(record["detector_stage"] for record in records)
         manifest = {
-            "schema": "p97_source_faithful_five_omission_typed_bank.v2",
+            "schema": manifest_schema,
             "scope": "typed cut validity only; no terminal UNSAT or coverage",
-            "source": {
-                "run_summary": (run.workdir / "summary.json").as_posix(),
-                "run_summary_sha256": run.summary_artifact["sha256"],
-                "journal": (run.workdir / "journal.jsonl").as_posix(),
-                "journal_sha256": run.journal_artifact["sha256"],
-                "journal_bytes": run.journal_artifact["bytes"],
-                "deleted_label": run.deleted_label,
-                "shared_bank_document_sha256": run.summary["shared_bank"][
-                    "document_sha256"
-                ],
-                "shared_bank_clause_list_sha256": run.summary["shared_bank"][
-                    "bootstrap_clause_list_sha256"
-                ],
-                "authenticated_bootstrap_record_count": len(
-                    run.bootstrap_records
-                ),
-                "authenticated_local_record_count": len(run.records),
-                "authenticated_record_count": len(run.bootstrap_records)
-                + len(run.records),
-                "emitted_record_count": len(records),
-                "terminal_record_sha256": run.terminal_record_sha256,
-                "formula_contract_sha256": run.summary["formula_contract_sha256"],
-                "detector_contract_sha256": run.summary["detector_contract_sha256"],
-            },
+            "source": manifest_source,
             "stage_counts": dict(sorted(stage_counts.items())),
             "output": {
                 "path": args.out.as_posix(),

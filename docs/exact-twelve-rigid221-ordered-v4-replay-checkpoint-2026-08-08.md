@@ -121,6 +121,12 @@ modules passes, as do the 25 focused ordered-coverage, authenticated-bank, and
 adapter tests.  This bank growth rejects eight concrete terminal survivors in
 total; it does not establish terminal exhaustion of any schedule cell.
 
+Later checkpoint (2026-08-10): the separate five-omission v3 lane produced an
+authenticated layered 716-cut successor (441 frozen bootstrap plus 275 new
+local cuts), but all twelve shards remained at `ITERATION_LIMIT` and no
+terminal proof was produced.  That bank does not replace this lane's open
+source-exhaustive placement/signature coverage or universal lift.
+
 ## What remains open
 
 The v4 run stopped at `ITERATION_LIMIT` after 10,000 new classified records

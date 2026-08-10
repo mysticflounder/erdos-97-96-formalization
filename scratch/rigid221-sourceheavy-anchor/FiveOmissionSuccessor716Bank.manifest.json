@@ -1,0 +1,29 @@
+{
+  "output": {
+    "bytes": 1288562,
+    "path": "scratch/rigid221-sourceheavy-anchor/FiveOmissionSuccessor716Bank.lean",
+    "sha256": "7312bec9304ca8accff6451237338d3b87943e3a908ce964a5d9f7de3fdf8510"
+  },
+  "schema": "p97_source_faithful_five_omission_typed_bank.v3",
+  "scope": "typed cut validity only; no terminal UNSAT or coverage",
+  "source": {
+    "authenticated_bootstrap_record_count": 441,
+    "authenticated_local_record_count": 275,
+    "authenticated_record_count": 716,
+    "deleted_label": 0,
+    "derived_clause_list_sha256": "30f774f47855ac4e26a8e868276366363bf389ceb2fd851d791041aa53697775",
+    "emitted_record_count": 716,
+    "local_clause_list_sha256": "7e51b30f96af267b88a19dc40dfa6eb142506713e27809d49a1239c08b81cbf0",
+    "shared_bank_clause_list_sha256": "904c5cf0bb4f38e97a04a34d49f8241fa6b2509c77951f5f7b2618fc7e5fccc2",
+    "shared_bank_document_sha256": "560765255fd5c52d552d84e5bf3ee108d7f50d27dc5c81913cfdeb93f5a9b4d6",
+    "successor_artifact_bytes": 1039900,
+    "successor_artifact_sha256": "238155f0f5ba5ae7cb98567566b3d5fb7c1a0ab0c9e93f51b997998288c3ad63",
+    "successor_bank": "scratch/rigid221-sourceheavy-anchor/five-omission-v2-plus-v3-i275-successor-v1-20260810.json",
+    "successor_document_sha256": "7385bd97ffc28f0896aa00da09551faf30b44e2b4de862127c571ece4d629cf9"
+  },
+  "stage_counts": {
+    "equality-duplicate-center": 696,
+    "equality-equal-k4": 2,
+    "equality-equilateral-bisector-collision": 18
+  }
+}

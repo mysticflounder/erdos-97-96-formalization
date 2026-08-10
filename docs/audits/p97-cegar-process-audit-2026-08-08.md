@@ -497,6 +497,18 @@ merely under-budgeted. More iterations are justified only after a new semantic
 stage reduces one of the five unresolved survivor classes or materially changes
 that distribution.
 
+A separate source-faithful five-omission v3 wave completed on 2026-08-10.
+All twelve deleted-label shards authenticated 275 local records and stopped at
+`ITERATION_LIMIT`; none produced a terminal proof.  The aggregate stage counts
+are 3,108 duplicate-center, 168 equilateral-bisector, and 24 equal-K4 records.
+Because the twelve shards have the same 275 local clause, stage, and
+certificate sequences, the compact successor stores one local sequence beside
+the frozen 441-cut bootstrap and exposes the 716-cut union only as a derived
+projection.  Theorem-bank mining found no cross-center universal producer for
+those cuts.  Thus the package improves replayable finite cut custody but does
+not change `terminal_unsat = false`, supply exhaustive coverage or a universal
+lift, or close a live theorem.
+
 The post-wave source-order diagnostic sharpens that pivot: it reports that
 convex-five-point cores cover all five unresolved survivors. Commit `50d18ad1`
 has since promoted all five exact finite certificates to source-clean Lean

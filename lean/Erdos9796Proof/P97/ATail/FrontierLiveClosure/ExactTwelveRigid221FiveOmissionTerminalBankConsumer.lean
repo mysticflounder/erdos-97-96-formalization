@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221FiveOmissionFormulaSat
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceOrderTerminalBankConsumer
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericEquilateralBisectorNogoodCertificate
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericEqualK4NogoodCertificate
 
 /-!
 # Mixed-stage terminal consumption for exact-twelve five-omission jobs
@@ -71,6 +72,27 @@ def SourceOrderPositiveNogood.ofEquilateralBisectorCertificate
   SourceOrderPositiveNogood.ofEquilateralBisectorCollisionCore choices fun hrows =>
     (nonempty_equilateralBisectorCollisionCore_of_positiveCheck
       hrows data hcheck).some
+
+/-- Package an equal-K4 core as a typed positive-row cut. -/
+def SourceOrderPositiveNogood.ofEqualK4Core
+    (choices : List (RowChoice Label))
+    (coreOf :
+      ∀ {row : RowPattern Label},
+        PositiveRowsMatch row choices → Census554.EqualityCore.EqualK4Core row) :
+    SourceOrderPositiveNogood where
+  choices := choices
+  refutes := by
+    intro row pointOf hreal _order _hforced _hconv hpositive
+    exact Census554.EqualityCore.not_realizes_of_equalK4Core
+      (coreOf hpositive) ⟨pointOf, hreal⟩
+
+/-- Package one checked positive-row equal-K4 certificate as a typed cut. -/
+def SourceOrderPositiveNogood.ofEqualK4Certificate
+    (choices : List (RowChoice Label))
+    (data : EqualK4Data Label)
+    (hcheck : data.check choices = true) : SourceOrderPositiveNogood :=
+  SourceOrderPositiveNogood.ofEqualK4Core choices fun hrows =>
+    (nonempty_equalK4Core_of_positiveCheck hrows data hcheck).some
 
 /-- A realized five-omission boundary would satisfy the complete terminal
 formula.  Any false learned clause instead recovers the positive row

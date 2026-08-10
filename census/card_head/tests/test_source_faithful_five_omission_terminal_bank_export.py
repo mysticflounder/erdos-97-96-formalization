@@ -91,10 +91,32 @@ class SourceFaithfulFiveOmissionTerminalBankExportTests(unittest.TestCase):
         assert certificate["stage"] == exporter.BISECTOR_STAGE
         return certificate
 
-    def test_mixed_supported_bank_renders_both_typed_constructors(self) -> None:
+    @staticmethod
+    def _equal_k4_certificate() -> dict[str, object]:
+        cube = {
+            0: [1, 2, 3, 4],
+            1: [0, 2, 6, 7],
+            2: [0, 1, 10, 11],
+            3: [0, 1, 4, 5],
+            4: [0, 3, 5, 8],
+            5: [0, 2, 8, 9],
+            6: [0, 3, 9, 10],
+            7: [1, 2, 5, 6],
+            8: [0, 4, 6, 11],
+            9: [1, 3, 6, 10],
+            10: [3, 4, 5, 6],
+            11: [2, 5, 7, 8],
+        }
+        certificate = detect_structural_certificate(cube, n=12)
+        assert certificate is not None
+        assert certificate["stage"] == exporter.EQUAL_K4_STAGE
+        return certificate
+
+    def test_mixed_supported_bank_renders_all_typed_constructors(self) -> None:
         records = [
             self._record(index=0, certificate=self._duplicate_certificate()),
             self._record(index=1, certificate=self._bisector_certificate()),
+            self._record(index=2, certificate=self._equal_k4_certificate()),
         ]
         run = self._run(records)
 
@@ -103,9 +125,14 @@ class SourceFaithfulFiveOmissionTerminalBankExportTests(unittest.TestCase):
 
         self.assertIn("ofDuplicateCenter", source)
         self.assertIn("ofEquilateralBisectorCertificate", source)
-        self.assertIn("def bank : List SourceOrderPositiveNogood := [cut0, cut1]", source)
+        self.assertIn("ofEqualK4Certificate", source)
+        self.assertIn(
+            "def bank : List SourceOrderPositiveNogood := [cut0, cut1, cut2]",
+            source,
+        )
         self.assertIn("theorem cut0_learnedClause_eq", source)
         self.assertIn("theorem cut1_learnedClause_eq", source)
+        self.assertIn("theorem cut2_learnedClause_eq", source)
         self.assertIn("theorem bank_encodable", source)
         self.assertNotIn("Journal iteration None", source)
         self.assertTrue(source.startswith("import "))
