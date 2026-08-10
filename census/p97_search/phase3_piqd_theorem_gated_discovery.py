@@ -29,6 +29,9 @@ class IncrementalDiscoveryRunner[ResultT](Protocol):
     @property
     def solve_count(self) -> int: ...
 
+    @property
+    def solver_sha256(self) -> str: ...
+
     def append_clauses(self, clauses: Sequence[Sequence[int]]) -> int: ...
 
     def close(self) -> None: ...
@@ -89,6 +92,10 @@ def _check_source_solve[ResultT](
     if runner.solve_count != authorization.source_solve_index:
         raise TheoremGatedDiscoveryError(
             "PIQD solve frontier does not match the authorized source solve"
+        )
+    if runner.solver_sha256 != authorization.source_solver_sha256:
+        raise TheoremGatedDiscoveryError(
+            "PIQD solver binary does not match the authorized source solve"
         )
 
 

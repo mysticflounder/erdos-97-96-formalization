@@ -23,6 +23,7 @@ from census.p97_search.phase3_piqd_postwave_gate import (
     write_postwave_receipt,
 )
 from census.p97_search.phase3_piqd_theorem_gated_discovery import (
+    TheoremGatedDiscoveryError,
     run_authorized_successor,
 )
 
@@ -62,6 +63,7 @@ def _fixture(root: Path, *, no_lift: bool = False) -> dict[str, Any]:
                 "clauses": 1,
                 "declared_num_vars": 3,
                 "max_var": 3,
+                "solver_sha256": "a" * 64,
                 "solves": 4,
             },
             "solve_response": {"status": "SAT", "solve_index": 5},
@@ -99,9 +101,7 @@ def _fixture(root: Path, *, no_lift: bool = False) -> dict[str, Any]:
         }
     else:
         fragment = _write(root, "artifacts/refinement.cnf", b"-1 2 0\n")
-        successor = _write(
-            root, "artifacts/successor.cnf", b"p cnf 3 2\n1 0\n-1 2 0\n"
-        )
+        successor = _write(root, "artifacts/successor.cnf", b"p cnf 3 2\n1 0\n-1 2 0\n")
         producer = _write(root, "producer.py", b"# source producer\n")
         consumer = "Problem97.Example.false_of_pattern"
         refinement = _json(
@@ -179,6 +179,7 @@ def test_reusable_theorem_authorizes_only_bound_successor(tmp_path: Path) -> Non
     assert authorization.wave_ordinal == LEGACY_BOOTSTRAP_ORDINAL
     assert authorization.source_session_id == "11111111-1111-4111-8111-111111111111"
     assert authorization.source_solve_index == 5
+    assert authorization.source_solver_sha256 == "a" * 64
     assert authorization.lean_consumer == "Problem97.Example.false_of_pattern"
     assert authorization.admitted_clauses == ((-1, 2),)
 
@@ -190,6 +191,19 @@ def test_authorization_loader_returns_validated_authorization(tmp_path: Path) ->
     authorization = load_postwave_authorization(output, repo_root=tmp_path)
     assert authorization.successor_authorized
     assert authorization.admitted_clauses == ((-1, 2),)
+
+
+def test_declared_variable_universe_may_exceed_observed_max(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    solve_path = tmp_path / receipt["artifacts"]["solve_receipt"]["path"]
+    solve = json.loads(solve_path.read_text())
+    solve["session_before"]["max_var"] = 1
+    solve_path.write_text(json.dumps(solve, sort_keys=True))
+    receipt["artifacts"]["solve_receipt"]["sha256"] = _sha(solve_path.read_bytes())
+
+    authorization = validate_postwave_receipt(receipt, repo_root=tmp_path)
+
+    assert authorization.successor_authorized
 
 
 def test_clause_admission_failure_is_a_gate_error(
@@ -277,7 +291,9 @@ def test_rejects_same_size_successor_with_wrong_clause_body(tmp_path: Path) -> N
     refinement_path.write_text(json.dumps(refinement, sort_keys=True))
     refinement_artifact["sha256"] = _sha(refinement_path.read_bytes())
 
-    with pytest.raises(PostwaveGateError, match="not exactly input root plus refinement"):
+    with pytest.raises(
+        PostwaveGateError, match="not exactly input root plus refinement"
+    ):
         validate_postwave_receipt(receipt, repo_root=tmp_path)
 
 
@@ -318,9 +334,7 @@ def test_rejects_source_drift_after_refinement_receipt(tmp_path: Path) -> None:
 def test_canonical_receipt_round_trip(tmp_path: Path) -> None:
     receipt = _fixture(tmp_path)
     output = tmp_path / "artifacts/postwave.json"
-    authorization = write_postwave_receipt(
-        receipt, output=output, repo_root=tmp_path
-    )
+    authorization = write_postwave_receipt(receipt, output=output, repo_root=tmp_path)
     assert authorization.successor_authorized
     assert output.read_bytes() == canonical_json_bytes(receipt) + b"\n"
     assert load_postwave_receipt(output, repo_root=tmp_path) == receipt
@@ -342,6 +356,7 @@ def test_real_receipt_loader_drives_controller_without_mock(tmp_path: Path) -> N
     class Runner:
         session_id = "11111111-1111-4111-8111-111111111111"
         solve_count = 5
+        solver_sha256 = "a" * 64
         exported_cnf_sha256 = receipt["artifacts"]["input_root"]["sha256"]
         closed = False
 
@@ -363,3 +378,28 @@ def test_real_receipt_loader_drives_controller_without_mock(tmp_path: Path) -> N
     assert authorization.wave_ordinal == LEGACY_BOOTSTRAP_ORDINAL
     assert result == "SAT"
     assert not runner.closed
+
+
+def test_controller_rejects_solver_binary_mismatch(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    output = tmp_path / "artifacts/postwave.json"
+    output.write_bytes(canonical_json_bytes(receipt) + b"\n")
+
+    class Runner:
+        session_id = "11111111-1111-4111-8111-111111111111"
+        solve_count = 5
+        solver_sha256 = "b" * 64
+        exported_cnf_sha256 = receipt["artifacts"]["input_root"]["sha256"]
+        closed = False
+
+        def append_clauses(self, _clauses: Any) -> int:
+            raise AssertionError("solver mismatch must fail before append")
+
+        def solve(self, **_kwargs: Any) -> str:
+            raise AssertionError("solver mismatch must fail before solve")
+
+        def close(self) -> None:
+            self.closed = True
+
+    with pytest.raises(TheoremGatedDiscoveryError, match="solver binary"):
+        run_authorized_successor(Runner(), postwave_receipt=output, repo_root=tmp_path)

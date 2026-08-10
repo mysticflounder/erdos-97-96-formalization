@@ -51,6 +51,7 @@ class FakeSessionTransport:
         solve_receipts_loss: bool = False,
         model_route_missing: bool = False,
         last_status_override: str | None = None,
+        solver_sha256: str = "a" * 64,
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.job_id = job_id
@@ -73,6 +74,7 @@ class FakeSessionTransport:
         self.solve_receipts_loss = solve_receipts_loss
         self.model_route_missing = model_route_missing
         self.last_status_override = last_status_override
+        self.solver_sha256 = solver_sha256
         self._append_lost = False
         self._solve_receipts_lost = False
         self.close_calls = 0
@@ -88,7 +90,7 @@ class FakeSessionTransport:
             "lane": "sat",
             "state": "closed" if self.closed else "live",
             "solver_name": "fake-cadical",
-            "solver_sha256": "a" * 64,
+            "solver_sha256": self.solver_sha256,
             "solver_signature": "fake-cadical",
             "protocol_version": 1,
             "journal_path": "/var/lib/piqd/sessions/fake.journal",
@@ -303,6 +305,17 @@ def test_seed_frontier_append_solve_and_receipt_custody(tmp_path: Path) -> None:
     assert result.proof_verified is False and result.closure_claim is False
     assert result.receipt["base_bytes"] == len(transport._journal())
     assert all(not path.startswith("blobs/") for _, path, _ in transport.calls)
+
+
+def test_session_solver_binary_cannot_drift_during_custody(tmp_path: Path) -> None:
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    assert active.solver_sha256 == "a" * 64
+    transport.solver_sha256 = "b" * 64
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="solver binary changed"
+    ):
+        active.solve()
 
 
 def test_receipt_base_binds_headerless_live_journal_not_exported_cnf(

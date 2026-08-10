@@ -74,6 +74,7 @@ class PostwaveAuthorization:
     successor_authorized: bool
     source_session_id: str
     source_solve_index: int
+    source_solver_sha256: str
     input_root_sha256: str
     successor_root_sha256: str | None
     lean_consumer: str | None
@@ -166,7 +167,11 @@ def _sha256_string(value: Any, *, label: str) -> str:
 def _repo_path(value: Any, *, label: str) -> PurePosixPath:
     raw = _string(value, label=label)
     path = PurePosixPath(raw)
-    if path.is_absolute() or not path.parts or any(part in {"", ".", ".."} for part in path.parts):
+    if (
+        path.is_absolute()
+        or not path.parts
+        or any(part in {"", ".", ".."} for part in path.parts)
+    ):
         _fail(f"{label} must be a normalized repository-relative path")
     return path
 
@@ -226,7 +231,9 @@ def _dimacs_header(path: Path) -> tuple[int, int]:
                 variables = int(fields[2])
                 clauses = int(fields[3])
             except ValueError as exc:
-                raise PostwaveGateError("input root DIMACS dimensions are invalid") from exc
+                raise PostwaveGateError(
+                    "input root DIMACS dimensions are invalid"
+                ) from exc
             if variables < 1 or clauses < 1:
                 _fail("input root DIMACS dimensions must be positive")
             return variables, clauses
@@ -282,9 +289,7 @@ def _iter_dimacs_clauses(path: Path) -> Iterator[tuple[int, ...]]:
         _fail("DIMACS body count does not match its header")
 
 
-def _verify_model_satisfies_root(
-    root_path: Path, *, literals: Sequence[int]
-) -> None:
+def _verify_model_satisfies_root(root_path: Path, *, literals: Sequence[int]) -> None:
     signs = tuple(literal > 0 for literal in literals)
     for index, clause in enumerate(_iter_dimacs_clauses(root_path), start=1):
         if not any(signs[abs(literal) - 1] is (literal > 0) for literal in clause):
@@ -355,11 +360,13 @@ def _fragment_clauses(path: Path, *, max_var: int) -> tuple[tuple[int, ...], ...
 
 def _check_solve_and_model(
     *, solve_path: Path, model_path: Path, root_path: Path
-) -> tuple[str, int]:
+) -> tuple[str, int, str]:
     variables, clauses = _dimacs_header(root_path)
     solve = _load_json_artifact(solve_path, label="solve receipt")
     session = _object(solve.get("session_before"), label="solve receipt session_before")
-    response = _object(solve.get("solve_response"), label="solve receipt solve_response")
+    response = _object(
+        solve.get("solve_response"), label="solve receipt solve_response"
+    )
     if response.get("status") != "SAT":
         _fail("post-wave theorem search requires a captured SAT model")
     if (
@@ -369,9 +376,25 @@ def _check_solve_and_model(
     ):
         _fail("solve receipt is not from a live assumption-free session")
     session_id = _string(session.get("id"), label="solve receipt session id")
+    solver_sha256 = _sha256_string(
+        session.get("solver_sha256"), label="solve receipt solver sha256"
+    )
     if session.get("clauses") != clauses:
         _fail("solve receipt clause count does not match the input root")
-    if session.get("declared_num_vars") != variables or session.get("max_var") != variables:
+    declared_raw = session.get("declared_num_vars")
+    declared_variables = (
+        0
+        if declared_raw is None
+        else _integer(
+            declared_raw,
+            label="solve receipt declared variable count",
+            minimum=0,
+        )
+    )
+    observed_variables = _integer(
+        session.get("max_var"), label="solve receipt maximum variable", minimum=0
+    )
+    if max(declared_variables, observed_variables) != variables:
         _fail("solve receipt variable count does not match the input root")
     if solve.get("model_literals") != variables:
         _fail("solve receipt does not claim a total model")
@@ -394,7 +417,7 @@ def _check_solve_and_model(
         if type(literal) is not int or abs(literal) != index:
             _fail("captured model is not in canonical variable order")
     _verify_model_satisfies_root(root_path, literals=literals)
-    return session_id, solve_index
+    return session_id, solve_index, solver_sha256
 
 
 def _artifact_path(value: Any, *, label: str) -> str:
@@ -433,7 +456,10 @@ def _check_refinement(
         _fail("refinement receipt does not bind the named Lean consumer")
     if refinement.get("output_root_sha256") != successor_sha:
         _fail("refinement receipt does not bind the successor root digest")
-    if refinement.get("output_root") != successor_path.relative_to(repo_root).as_posix():
+    if (
+        refinement.get("output_root")
+        != successor_path.relative_to(repo_root).as_posix()
+    ):
         _fail("refinement receipt does not bind the successor root path")
     if refinement.get("fragment_sha256") != fragment_sha:
         _fail("refinement receipt does not bind the refinement fragment digest")
@@ -492,9 +518,7 @@ def _check_refinement(
             assignment=assignment,
         )
     except ClauseAdmissionError as exc:
-        raise PostwaveGateError(
-            "refinement fragment failed clause admission"
-        ) from exc
+        raise PostwaveGateError("refinement fragment failed clause admission") from exc
     return successor_sha, consumer, fragment_clauses
 
 
@@ -544,18 +568,18 @@ def validate_postwave_receipt(
             value, repo_root=root, label=f"artifacts.{name}"
         )
 
-    source_session_id, source_solve_index = _check_solve_and_model(
-        solve_path=artifact_paths["solve_receipt"],
-        model_path=artifact_paths["model"],
-        root_path=artifact_paths["input_root"],
+    source_session_id, source_solve_index, source_solver_sha256 = (
+        _check_solve_and_model(
+            solve_path=artifact_paths["solve_receipt"],
+            model_path=artifact_paths["model"],
+            root_path=artifact_paths["input_root"],
+        )
     )
 
     analysis = _load_json_artifact(
         artifact_paths["source_analysis"], label="source analysis"
     )
-    analysis_inputs = _object(
-        analysis.get("inputs"), label="source analysis inputs"
-    )
+    analysis_inputs = _object(analysis.get("inputs"), label="source analysis inputs")
     if analysis_inputs.get("cnf_sha256") != artifact_hashes["input_root"]:
         _fail("source analysis does not bind the input root")
     if analysis_inputs.get("model_sha256") != artifact_hashes["model"]:
@@ -595,7 +619,9 @@ def validate_postwave_receipt(
             _fail("history evidence roles must be unique")
         evidence_roles.add(role)
         path, _ = _artifact(
-            entry["artifact"], repo_root=root, label=f"history.evidence[{index}].artifact"
+            entry["artifact"],
+            repo_root=root,
+            label=f"history.evidence[{index}].artifact",
         )
         if role == "predecessor-theorem-search-receipt":
             predecessor_path = path
@@ -659,7 +685,8 @@ def validate_postwave_receipt(
         search["results_examined"], label="search.results_examined", minimum=1
     )
     nonempty_search_lines = sum(
-        bool(line.strip()) for line in search_path.read_text(encoding="utf-8").splitlines()
+        bool(line.strip())
+        for line in search_path.read_text(encoding="utf-8").splitlines()
     )
     if nonempty_search_lines < results_examined:
         _fail("search artifact contains fewer results than claimed")
@@ -747,6 +774,7 @@ def validate_postwave_receipt(
         successor_authorized=successor_authorized,
         source_session_id=source_session_id,
         source_solve_index=source_solve_index,
+        source_solver_sha256=source_solver_sha256,
         input_root_sha256=artifact_hashes["input_root"],
         successor_root_sha256=successor_sha,
         lean_consumer=consumer,
@@ -762,7 +790,9 @@ def _read_canonical_postwave_receipt(path: Path) -> Mapping[str, Any]:
         _fail("post-wave receipt exceeds the JSON size bound")
     trailing_newline = data.endswith(b"\n")
     payload = data[:-1] if trailing_newline else data
-    value = _object(_strict_json(payload, label="post-wave receipt"), label="post-wave receipt")
+    value = _object(
+        _strict_json(payload, label="post-wave receipt"), label="post-wave receipt"
+    )
     if payload != canonical_json_bytes(value):
         _fail("post-wave receipt is not canonical JSON")
     return value
@@ -811,9 +841,7 @@ def _main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("receipt", type=Path)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     args = parser.parse_args(argv)
-    authorization = load_postwave_authorization(
-        args.receipt, repo_root=args.repo_root
-    )
+    authorization = load_postwave_authorization(args.receipt, repo_root=args.repo_root)
     print(canonical_json_bytes(authorization.__dict__).decode("utf-8"))
     return 0
 

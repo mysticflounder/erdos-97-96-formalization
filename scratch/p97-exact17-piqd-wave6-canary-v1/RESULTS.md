@@ -553,3 +553,26 @@ This is shorter than the generic theorem-bank fallback. The current root is
 `e2a7821a0c167fce28c9f3436e87d4e24df529e681035e9f11ccb2113d9dd733`.
 PIQD exported the 267,117,831-byte root byte-for-byte after the one-clause
 append. Exact 17 remains SAT and open; no production `sorry` is closed.
+
+## Prepared complete sparse-six family: not appended
+
+The cardinality-independent Lean consumer used in Waves 45, 47, and 48 has
+one fixed-order instance for every six-subset of the exact-17 carrier.  The
+complete family has 12,376 clauses.  Against the authenticated Wave 48 root,
+7 are already present and 6,452 are strictly subsumed by shorter all-negative
+clauses, leaving 5,917 genuinely novel clauses (about 0.10% root growth).
+
+The headerless fragment and its receipt are:
+
+- `wave48-complete-sparse-six-family.fragment.cnf`;
+- `wave48-complete-sparse-six-family.receipt.json`.
+
+The receipt binds the Wave 48 root and receipt, weighted-orbit manifest,
+canonical exact-17 variable map, generator, and Lean source.  The generator
+checks that the authenticated selected-incidence variables agree exactly with
+the expected row-major exact-17 map before emitting any clause.
+
+Status: **prepared only**.  These 5,917 clauses have not been appended to the
+live PIQD session and have not been solved.  The existing post-wave
+authorization covers only the one-clause Wave 48 successor, not this batch.
+Exact 17 therefore remains SAT and open; no production `sorry` is closed.

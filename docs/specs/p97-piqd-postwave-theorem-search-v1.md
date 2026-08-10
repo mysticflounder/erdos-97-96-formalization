@@ -47,6 +47,13 @@ search logs; any other lane, ordinal, range, or role set fails closed.  This is
 a migration boundary, not a claim that the old text logs were already canonical
 receipts.
 
+Because the wave-48 bootstrap binds a legacy results index rather than an
+immutable predecessor receipt, that index and the canonical bootstrap receipt
+must be frozen and committed together before the first successor solve.  Any
+later edit invalidates the bootstrap digest and therefore the successor chain;
+it must not be repaired in place after wave 49 begins.  Subsequent waves use
+immutable predecessor receipts and do not inherit this migration-only seam.
+
 The validator independently checks that:
 
 - all artifact paths are normalized repository-relative files whose complete

@@ -646,6 +646,7 @@ class PiqdIncrementalDiscoveryRunner:
         self._journal_sequence = -1
         self._journal_tail: str | None = None
         self._journal_solves: list[Mapping[str, Any]] = []
+        self._solver_sha256: str | None = None
         self._close_attempted = False
         self._close_uncertain = False
         self._closed = False
@@ -707,6 +708,14 @@ class PiqdIncrementalDiscoveryRunner:
     @property
     def solve_count(self) -> int:
         return self._solve_count
+
+    @property
+    def solver_sha256(self) -> str:
+        if self._solver_sha256 is None:
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD solver identity is not yet available"
+            )
+        return self._solver_sha256
 
     def _request(
         self,
@@ -797,7 +806,13 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD session solver is not descriptor-rooted"
             )
-        _hex64(payload["solver_sha256"], label="session.solver_sha256")
+        solver_sha256 = _hex64(payload["solver_sha256"], label="session.solver_sha256")
+        if self._solver_sha256 is None:
+            self._solver_sha256 = solver_sha256
+        elif self._solver_sha256 != solver_sha256:
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD session solver binary changed during custody"
+            )
         _string(
             payload["solver_signature"], label="session.solver_signature", nonempty=True
         )
@@ -1630,6 +1645,8 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError(
                 "SAT solve refuses unconstrained or vacuous variables"
             )
+        session_before = self._json("GET", f"/sessions/{self._session_id}")
+        self._check_session_descriptor(session_before, reconcile=True)
         request: dict[str, Any] = {"assumptions": [], "include_model": True}
         if timeout_ms is not None:
             request["timeout_ms"] = timeout_ms
@@ -1775,6 +1792,8 @@ class PiqdIncrementalDiscoveryRunner:
                 "closure_claim": False,
             }
         )
+        session_after = self._json("GET", f"/sessions/{self._session_id}")
+        self._check_session_descriptor(session_after)
         return DiscoveryResult(
             status,
             assignment,
