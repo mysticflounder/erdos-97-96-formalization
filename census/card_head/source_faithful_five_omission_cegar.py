@@ -22,7 +22,7 @@ import shutil
 import stat
 import subprocess
 import tempfile
-from collections.abc import Collection, Iterator, Mapping
+from collections.abc import Callable, Collection, Iterator, Mapping
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, BinaryIO
@@ -867,6 +867,7 @@ def run_five_omission_cegar(
     nice: int = 10,
     seed_journal: Path | None = None,
     shared_bank: Path | None = None,
+    discovery_solver: Callable[[Path, int, Path | None], CadicalResult] | None = None,
 ) -> dict[str, Any]:
     """Run one replay-gated deleted-label shard."""
 
@@ -949,14 +950,26 @@ def run_five_omission_cegar(
                 current_dimacs,
                 create=local_iteration == 0,
             )
-            discovery = _solve_persisted_cadical(
-                instance,
-                discovery_path,
-                current_formula_sha256,
-                timeout_seconds=timeout_seconds,
-                nice=nice,
-                tool_manifest=tool_manifest,
-            )
+            if discovery_solver is None:
+                discovery = _solve_persisted_cadical(
+                    instance,
+                    discovery_path,
+                    current_formula_sha256,
+                    timeout_seconds=timeout_seconds,
+                    nice=nice,
+                    tool_manifest=tool_manifest,
+                    proof_path=None,
+                )
+            else:
+                discovery = discovery_solver(
+                    discovery_path,
+                    timeout_seconds,
+                    None,
+                )
+                if type(discovery) is not CadicalResult:
+                    raise FiveOmissionCegarError(
+                        "discovery solver returned a non-CadicalResult value"
+                    )
             if discovery.verdict == "UNSAT":
                 terminal_path = workdir / "terminal.cnf"
                 proof_path = workdir / "terminal.drat"
