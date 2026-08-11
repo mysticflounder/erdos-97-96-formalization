@@ -21,6 +21,8 @@ python scripts/run-p97-piqd-projected-v3-production.py \
   --parallel-mode sequential \
   --projected-static-v3 \
   --persistent-discovery \
+  --no-bootstrap \
+  --no-algebraic-bootstrap \
   --piqd-base-url URL \
   --piqd-journal-root OUT \
   --piqd-source-manifest SOURCE_MANIFEST \
@@ -32,17 +34,27 @@ python scripts/run-p97-piqd-projected-v3-production.py \
 
 Every displayed input is mandatory. `--piqd-journal-root` must equal `--out`.
 The launcher requires one worker, sequential scheduling,
-`--projected-static-v3`, and persistent discovery. It rejects local-only
-discovery, resume, cube batching, every shard selector or verifier, and
-shard-local simplification.
+`--projected-static-v3`, persistent discovery, `--no-bootstrap`, and
+`--no-algebraic-bootstrap`. It rejects local-only discovery, resume, cube
+batching, every shard selector or verifier, and shard-local simplification.
+It also rejects `--bootstrap-results` and every `--algebraic-bootstrap` value,
+including when either is crossed with its corresponding `--no-*` flag.
 
-Token-shape rejection precedes filesystem reads. Once the token shape is
-complete, bounded reads are permitted to recapture the authority and manifest
-inputs and to run the public current-bundle builder. No output creation,
-transport, producer-job action, or solver action occurs before exact profile
-validation. All control captures are canonical JSON, bounded, no-follow,
-single-link reads with pre/post identity checks. The launcher delegates the
-exact original argument vector only after authority-v3 validation succeeds.
+This production path begins from the exact current global base bound by the
+validated authority-v3. No structural or algebraic bootstrap bytes are
+admitted, authenticated, copied into the clean source image, or claimed by the
+authority. The underlying direct projected-static-v3 CLI retains its
+historical diagnostic bootstrap defaults; those defaults are outside this
+versioned production contract.
+
+Token-shape rejection, including the complete base-only bootstrap policy,
+precedes filesystem reads. Once the token shape is complete, bounded reads are
+permitted to recapture the authority and manifest inputs and to run the public
+current-bundle builder. No output creation, transport, producer-job action, or
+solver action occurs before exact profile validation. All control captures are
+canonical JSON, bounded, no-follow, single-link reads with pre/post identity
+checks. The launcher delegates the exact original argument vector only after
+authority-v3 validation succeeds.
 
 The outer launcher enforces the qualification layer's tighter 64 KiB response
 limit for exact producer-job status capture; the older generic 1 MiB response

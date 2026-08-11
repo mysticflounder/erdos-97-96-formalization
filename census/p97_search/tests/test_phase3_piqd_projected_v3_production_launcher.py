@@ -41,6 +41,8 @@ def _production_argv(tmp_path: Path) -> list[str]:
         "sequential",
         "--projected-static-v3",
         "--persistent-discovery",
+        "--no-bootstrap",
+        "--no-algebraic-bootstrap",
         "--piqd-base-url",
         "http://127.0.0.1:7272",
         "--piqd-journal-root",
@@ -113,6 +115,10 @@ def _unsafe_profiles(tmp_path: Path) -> list[list[str]]:
         [*complete, "--workers", "2"],
         [*complete, "--parallel-mode", "cube-batch"],
         [*complete, "--resume"],
+        _without_flag(complete, "--no-bootstrap"),
+        _without_flag(complete, "--no-algebraic-bootstrap"),
+        [*complete, "--bootstrap-results", str(tmp_path / "bootstrap.jsonl")],
+        [*complete, "--algebraic-bootstrap", str(tmp_path / "algebraic")],
         [*complete, "--shard-depth", "2", "--shard-index", "0"],
         [*complete, "--verify-shards", str(tmp_path / "shard")],
         mismatched_root,
@@ -127,7 +133,7 @@ def _unsafe_profiles(tmp_path: Path) -> list[list[str]]:
     ]
 
 
-@pytest.mark.parametrize("case", range(15))
+@pytest.mark.parametrize("case", range(19))
 def test_incomplete_and_unsafe_profiles_fail_before_external_work(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -265,6 +271,10 @@ def test_direct_cli_local_defaults_remain_legacy_diagnostic_only(
     direct = launcher.projected_v3._parse_args([])
     assert direct.projected_static_v3 is False
     assert direct.persistent_discovery is False
+    assert direct.no_bootstrap is False
+    assert direct.no_algebraic_bootstrap is False
+    assert direct.bootstrap_results == launcher.projected_v3.DEFAULT_BOOTSTRAP
+    assert direct.algebraic_bootstrap is None
     assert launcher.projected_v3._incremental_piqd_caller_config(direct) is None
 
     local_persistent = launcher.projected_v3._parse_args(

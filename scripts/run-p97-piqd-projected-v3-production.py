@@ -4,9 +4,9 @@
 The underlying projected-static-v3 CLI remains a legacy/diagnostic entry point:
 it intentionally retains local discovery defaults.  This command accepts the
 same arguments, validates only the one-worker, sequential, fresh-session,
-fully configured persistent PIQD profile, validates a sealed production
-authority-v3, and only then delegates to the existing qualified
-PIQD route.
+fully configured persistent PIQD profile with every bootstrap lane disabled,
+validates a sealed production authority-v3, and only then delegates to the
+existing qualified PIQD route.
 """
 
 from __future__ import annotations
@@ -47,6 +47,10 @@ def _prevalidate_tokens(argv: Sequence[str]) -> None:
     parser.add_argument("--projected-static-v3", action="store_true")
     parser.add_argument("--persistent-discovery", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--bootstrap-results")
+    parser.add_argument("--no-bootstrap", action="store_true")
+    parser.add_argument("--algebraic-bootstrap", action="append")
+    parser.add_argument("--no-algebraic-bootstrap", action="store_true")
     parser.add_argument("--shard-depth")
     parser.add_argument("--shard-index")
     parser.add_argument("--verify-shards", action="store_true")
@@ -64,6 +68,14 @@ def _prevalidate_tokens(argv: Sequence[str]) -> None:
         parser.add_argument(option)
     args, _unknown = parser.parse_known_args(list(argv))
     try:
+        if args.bootstrap_results is not None:
+            raise ProjectedV3ProductionLaunchError(
+                "production launch rejects --bootstrap-results"
+            )
+        if args.algebraic_bootstrap is not None:
+            raise ProjectedV3ProductionLaunchError(
+                "production launch rejects --algebraic-bootstrap"
+            )
         _validate_production_shape(args)
     except ProjectedV3ProductionLaunchError as exc:
         _parser_error(str(exc))
@@ -109,6 +121,14 @@ def _validate_production_shape(args: argparse.Namespace) -> None:
     if args.resume:
         raise ProjectedV3ProductionLaunchError(
             "production launch does not support --resume"
+        )
+    if not args.no_bootstrap:
+        raise ProjectedV3ProductionLaunchError(
+            "production launch requires --no-bootstrap"
+        )
+    if not args.no_algebraic_bootstrap:
+        raise ProjectedV3ProductionLaunchError(
+            "production launch requires --no-algebraic-bootstrap"
         )
     if Path(args.piqd_journal_root) != Path(args.out):
         raise ProjectedV3ProductionLaunchError(
