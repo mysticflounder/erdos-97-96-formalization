@@ -15,11 +15,13 @@ solver wave.
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
 import stat
 from collections.abc import Iterator, Mapping, Sequence
+from contextlib import contextmanager
 from dataclasses import dataclass
 from itertools import chain, zip_longest
 from pathlib import Path, PurePosixPath
@@ -69,6 +71,42 @@ LEGACY_BOOTSTRAP_ROLES = frozenset(
 
 class PostwaveGateError(ValueError):
     """The post-wave review or its custody chain failed closed."""
+
+
+def _receipt_lock_path(path: Path) -> Path:
+    return path.with_name(f".{path.name}.lock")
+
+
+@contextmanager
+def _receipt_lock(path: Path) -> Iterator[None]:
+    """Fail fast when another process is operating on the same receipt."""
+
+    lock_path = _receipt_lock_path(path)
+    flags = os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(lock_path, flags, 0o600)
+    except OSError as exc:
+        raise PostwaveGateError(
+            f"cannot open post-wave receipt lockfile: {lock_path}"
+        ) from exc
+    with os.fdopen(descriptor, "r+", encoding="utf-8") as stream:
+        try:
+            fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            stream.seek(0)
+            owner = stream.read(256).strip() or "owner unknown"
+            raise PostwaveGateError(
+                f"post-wave receipt operation already active for {path} ({owner})"
+            ) from exc
+        try:
+            stream.seek(0)
+            stream.truncate()
+            stream.write(f"pid={os.getpid()}\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+            yield
+        finally:
+            fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
 
 
 @dataclass(frozen=True)
@@ -895,9 +933,7 @@ def _declared_predecessor(
     )
 
 
-def load_postwave_lineage(path: Path, *, repo_root: Path) -> PostwaveLineage:
-    """Cold-load a receipt lineage and validate each node exactly once."""
-
+def _load_postwave_lineage_unlocked(path: Path, *, repo_root: Path) -> PostwaveLineage:
     root = Path(repo_root).resolve(strict=True)
     if not root.is_dir():
         _fail("repo_root must be a directory")
@@ -938,6 +974,15 @@ def load_postwave_lineage(path: Path, *, repo_root: Path) -> PostwaveLineage:
         validated.append(token)
         predecessor_token = token
     return PostwaveLineage(tuple(validated))
+
+
+def load_postwave_lineage(path: Path, *, repo_root: Path) -> PostwaveLineage:
+    """Cold-load a receipt lineage once, excluding duplicate processes."""
+
+    root = Path(repo_root).resolve(strict=True)
+    receipt_path = _receipt_path(path, repo_root=root)
+    with _receipt_lock(receipt_path):
+        return _load_postwave_lineage_unlocked(receipt_path, repo_root=root)
 
 
 def validate_postwave_successor(
@@ -1006,20 +1051,22 @@ def write_postwave_receipt(
 ) -> PostwaveAuthorization:
     """Validate and atomically write a canonical post-wave receipt."""
 
-    authorization = validate_postwave_receipt(receipt, repo_root=repo_root)
-    payload = canonical_json_bytes(receipt) + b"\n"
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    temporary = output.with_name(f".{output.name}.{os.getpid()}.tmp")
-    try:
-        with temporary.open("xb") as stream:
-            stream.write(payload)
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(temporary, output)
-    finally:
-        temporary.unlink(missing_ok=True)
-    return authorization
+    output = output.parent.resolve(strict=True) / output.name
+    with _receipt_lock(output):
+        authorization = validate_postwave_receipt(receipt, repo_root=repo_root)
+        payload = canonical_json_bytes(receipt) + b"\n"
+        temporary = output.with_name(f".{output.name}.{os.getpid()}.tmp")
+        try:
+            with temporary.open("xb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temporary, output)
+        finally:
+            temporary.unlink(missing_ok=True)
+        return authorization
 
 
 def _main(argv: Sequence[str] | None = None) -> int:

@@ -1,0 +1,108 @@
+{
+  "authorized": {
+    "clause": [
+      -121,
+      -118,
+      -266,
+      -264,
+      -261
+    ],
+    "mode": "one-fresh-model-witness",
+    "novel_clause_count": 1,
+    "points": [
+      9,
+      7,
+      16,
+      4,
+      5
+    ],
+    "successor_root_sha256": "759daee28221a72ff3faf295f881c57665d7c53f6df44d9382dade2467c3130f",
+    "symmetry_orbit_expanded": false
+  },
+  "bank": {
+    "family_hit_count": 1,
+    "hit_count": 2,
+    "linear_status": "unsat"
+  },
+  "claims": {
+    "exact17_closure": false,
+    "finite_theorem_shape_audit": true,
+    "production_sorry_closure": false,
+    "source_backed_refinement": true,
+    "universal_closure": false
+  },
+  "cyclic_order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "inputs": {
+    "gate_report": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave63-legacy-successor.theorem-gate-report.json",
+      "sha256": "7213852ec084a75fa0a906df82bb1649ed0ede61545c800e9e9230e02c440729"
+    },
+    "model": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave63-legacy-successor.model.json",
+      "sha256": "3654146692f5ccad292cd4251ec4805399a935df2231a79faab157f3f407a0b2"
+    }
+  },
+  "kind": "solver-free ordered incidence theorem-shape audit",
+  "schema": "p97-exact17-theorem-shape-match-report/v1",
+  "schemas": [
+    {
+      "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+      "match_count": 5,
+      "matches": [
+        {
+          "clause": [-122, -128, -42, -39, -47],
+          "points": [10, 7, 2, 15, 16]
+        },
+        {
+          "clause": [-122, -118, -42, -39, -47],
+          "points": [10, 7, 2, 15, 5]
+        },
+        {
+          "clause": [-42, -45, -58, -51, -52],
+          "points": [10, 2, 3, 4, 13]
+        },
+        {
+          "clause": [-42, -45, -58, -51, -50],
+          "points": [10, 2, 3, 1, 13]
+        },
+        {
+          "clause": [-121, -118, -266, -264, -261],
+          "points": [9, 7, 16, 4, 5]
+        }
+      ]
+    },
+    {
+      "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+      "match_count": 0,
+      "matches": []
+    },
+    {
+      "lean_consumer": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw",
+      "match_count": 0,
+      "matches": []
+    },
+    {
+      "lean_consumer": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows",
+      "match_count": 0,
+      "matches": []
+    }
+  ]
+}

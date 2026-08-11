@@ -1,0 +1,52 @@
+Wave 63 mandatory indexed general-theorem search
+=================================================
+
+Corpus: erdos-97-96-formalization-lean
+Indexed source: 005203cf (2026-08-10)
+
+Queries
+-------
+
+* five cyclic points direct two selected rows Euclidean contradiction
+* six cyclic points sparse two selected rows Euclidean obstruction
+* two Kalmanson cancellation selected rows
+
+Relevant existing declarations inspected
+----------------------------------------
+
+* Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows
+* Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows
+* Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw
+* Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows
+* Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core_of_neg
+* Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+
+Exact model checks
+------------------
+
+The authenticated Wave 63 assignment satisfies all 5,895,225 clauses in the
+input root.  The source-faithful analyzer reports two static-bank hits, one
+accumulated two-Kalmanson-family hit, and exact linear infeasibility.  The two
+static hits are the reverse six-point two-circle arc-overtake core and a generic
+two-Kalmanson cancellation certificate.
+
+The solver-free selected-row matcher additionally finds five direct five-point
+consumer occurrences.  It finds no second-orientation five-point occurrence,
+no circle-isosceles five-point occurrence, and no sparse six-point/two-row
+occurrence.  Thus Wave 63 discovers no new general theorem family.
+
+Authorized refinement
+---------------------
+
+The direct five-point consumer is the shortest applicable banked theorem.  The
+single fresh-model instance on points (9, 7, 16, 4, 5) yields the five-literal
+clause
+
+  -121 -118 -266 -264 -261 0
+
+Only this witnessed clause was appended; no symmetry orbit was expanded.  The
+successor root has 5,895,226 clauses and SHA-256
+759daee28221a72ff3faf295f881c57665d7c53f6df44d9382dade2467c3130f.
+
+This is a finite exact-17 lazy refinement.  It does not close exact 17, the
+universal Rigid221 residual, full P97, or a production `sorry`.

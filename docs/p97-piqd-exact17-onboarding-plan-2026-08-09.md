@@ -569,3 +569,33 @@ one successor solve, after which the mandatory theorem search repeats.  The
 5.9-million-clause total is inherited infrastructure; Wave62 learned one
 clause, not millions.  Neither exact-17, full P97, nor a production `sorry` is
 closed by this checkpoint.
+
+### Lazy-lane status after Wave63
+
+Wave63 appended the authenticated Wave62 successor to PIQD session
+`66835651-f5f2-4034-8de7-f047524fa305` and advanced solve 57 to solve 58.  Its
+input root had 74,813 variables and 5,895,225 clauses, with SHA-256
+`bb2303a1eb9d9a5c52b01e70b01875b7816c034464017215a760560451c7fcb8`.
+PIQD returned SAT in 15,705 ms.  Independent model replay passed; the static
+theorem bank found two hits, the accumulated-family gate found one hit, and
+exact linear replay rejected the model.  This remains discovery evidence, not
+an exact-17 or universal closure.
+
+The mandatory general-theorem search found five occurrences of the existing
+direct five-point consumer and no occurrence of the second-five-point,
+circle-isosceles, or sparse-six-point consumers.  It found no new theorem
+family.  Only one witnessed direct-five occurrence, on cyclic points
+`[9, 7, 16, 4, 5]`, was admitted.  It contributes the single clause
+`[-121, -118, -266, -264, -261]`; no symmetry orbit was added.
+
+The authenticated successor root is
+`scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave63-five-point-direct-witness.cnf`:
+5,895,226 clauses, SHA-256
+`759daee28221a72ff3faf295f881c57665d7c53f6df44d9382dade2467c3130f`.
+The complete lineage gate is
+`wave63-postwave-theorem-search.receipt.json` in the same directory.  Receipt
+validation and receipt writing now use a non-blocking per-receipt lockfile, so
+duplicate full-lineage replays fail immediately instead of consuming a second
+validator process.  No Wave64 solve has been launched; the lane is paused.
+Neither exact-17, full P97, nor a production `sorry` is closed by this
+checkpoint.

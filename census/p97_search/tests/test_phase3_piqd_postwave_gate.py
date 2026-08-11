@@ -486,6 +486,38 @@ def test_canonical_receipt_round_trip(tmp_path: Path) -> None:
     assert load_postwave_receipt(output, repo_root=tmp_path) == receipt
 
 
+def test_writer_fails_fast_when_receipt_lock_is_held(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    output = tmp_path / "artifacts/postwave.json"
+    lock_path = postwave_gate._receipt_lock_path(output)
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with lock_path.open("w+") as stream:
+        stream.write("pid=12345\n")
+        stream.flush()
+        postwave_gate.fcntl.flock(
+            stream.fileno(), postwave_gate.fcntl.LOCK_EX | postwave_gate.fcntl.LOCK_NB
+        )
+        with pytest.raises(PostwaveGateError, match="already active.*pid=12345"):
+            write_postwave_receipt(receipt, output=output, repo_root=tmp_path)
+
+
+def test_reader_fails_fast_when_receipt_lock_is_held(tmp_path: Path) -> None:
+    receipt = _fixture(tmp_path)
+    output = tmp_path / "artifacts/postwave.json"
+    output.write_bytes(canonical_json_bytes(receipt) + b"\n")
+    lock_path = postwave_gate._receipt_lock_path(output)
+
+    with lock_path.open("w+") as stream:
+        stream.write("pid=67890\n")
+        stream.flush()
+        postwave_gate.fcntl.flock(
+            stream.fileno(), postwave_gate.fcntl.LOCK_EX | postwave_gate.fcntl.LOCK_NB
+        )
+        with pytest.raises(PostwaveGateError, match="already active.*pid=67890"):
+            load_postwave_authorization(output, repo_root=tmp_path)
+
+
 def test_cold_lineage_validates_each_receipt_once(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
