@@ -10808,7 +10808,11 @@ def run_driver(
                 raw_sat_index=None,
             )
             status = "UNKNOWN"
-            return publish()
+            try:
+                return publish()
+            except Exception as cleanup_exc:
+                exc.add_note(f"terminal cleanup also raised: {cleanup_exc}")
+                raise exc from cleanup_exc
         log_unsigned: dict[str, Any] = {
             "schema": LOG_SCHEMA,
             "attempt": attempt,

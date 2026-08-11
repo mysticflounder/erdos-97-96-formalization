@@ -624,6 +624,8 @@ RESPONSE_KEYS = {
     "interrupted_by",
     "effective_deadline_ms",
 }
+SAT_CONTRACT_LEGACY_V1 = "legacy-v1"
+SAT_CONTRACT_CURRENT_V1 = "current-sat-v1"
 
 
 class PiqdIncrementalDiscoveryRunner:
@@ -638,8 +640,17 @@ class PiqdIncrementalDiscoveryRunner:
         transport: Transport | None = None,
         session_id: str | None = None,
         custody_root: Path | None = None,
+        sat_contract_version: str = SAT_CONTRACT_LEGACY_V1,
     ) -> None:
         self.base_url = _string(base_url, label="base_url", nonempty=True).rstrip("/")
+        if type(sat_contract_version) is not str or sat_contract_version not in {
+            SAT_CONTRACT_LEGACY_V1,
+            SAT_CONTRACT_CURRENT_V1,
+        }:
+            raise PiqdIncrementalDiscoveryError(
+                "sat_contract_version is not a supported exact version"
+            )
+        self._sat_contract_version = sat_contract_version
         self.descriptor = descriptor
         if transport is None:
             from census.p97_search.phase3_piqd_oracle import _stdlib_transport
@@ -1562,9 +1573,12 @@ class PiqdIncrementalDiscoveryRunner:
         expected_hash: str,
         check_base: bool = True,
     ) -> None:
+        receipt_optional = RECEIPT_OPTIONAL
+        if self._sat_contract_version == SAT_CONTRACT_CURRENT_V1:
+            receipt_optional = receipt_optional - {"effective_deadline_ms"}
         if (
             not isinstance(receipt, dict)
-            or set(receipt) - (RECEIPT_REQUIRED | RECEIPT_OPTIONAL)
+            or set(receipt) - (RECEIPT_REQUIRED | receipt_optional)
             or not RECEIPT_REQUIRED <= set(receipt)
         ):
             raise PiqdIncrementalDiscoveryError("PIQD receipt has an inexact schema")
@@ -1632,26 +1646,27 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     f"receipt {key} disagrees with solve request"
                 )
-        expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
-        if expected_deadline is None:
-            if "effective_deadline_ms" in receipt:
-                raise PiqdIncrementalDiscoveryError(
-                    "receipt unexpectedly records effective_deadline_ms"
+        if self._sat_contract_version == SAT_CONTRACT_LEGACY_V1:
+            expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
+            if expected_deadline is None:
+                if "effective_deadline_ms" in receipt:
+                    raise PiqdIncrementalDiscoveryError(
+                        "receipt unexpectedly records effective_deadline_ms"
+                    )
+            else:
+                if "effective_deadline_ms" not in receipt:
+                    raise PiqdIncrementalDiscoveryError(
+                        "receipt lacks effective_deadline_ms for a timed solve"
+                    )
+                effective_deadline = _integer(
+                    receipt["effective_deadline_ms"],
+                    label="receipt.effective_deadline_ms",
+                    minimum=30_000,
                 )
-        else:
-            if "effective_deadline_ms" not in receipt:
-                raise PiqdIncrementalDiscoveryError(
-                    "receipt lacks effective_deadline_ms for a timed solve"
-                )
-            effective_deadline = _integer(
-                receipt["effective_deadline_ms"],
-                label="receipt.effective_deadline_ms",
-                minimum=30_000,
-            )
-            if effective_deadline != expected_deadline:
-                raise PiqdIncrementalDiscoveryError(
-                    "receipt effective_deadline_ms disagrees with solve request"
-                )
+                if effective_deadline != expected_deadline:
+                    raise PiqdIncrementalDiscoveryError(
+                        "receipt effective_deadline_ms disagrees with solve request"
+                    )
         interrupted = receipt.get("interrupted_by")
         if interrupted is not None:
             _string(interrupted, label="receipt.interrupted_by", nonempty=True)
@@ -1743,12 +1758,22 @@ class PiqdIncrementalDiscoveryRunner:
             request,
             expected_status=200,
         )
-        if set(response) - RESPONSE_KEYS or not {
+        response_keys = RESPONSE_KEYS
+        response_required = {
             "status",
             "solve_ms",
             "solve_index",
             "result_sha256",
-        } <= set(response):
+        }
+        if self._sat_contract_version == SAT_CONTRACT_CURRENT_V1:
+            response_keys = (response_keys - {"effective_deadline_ms"}) | {
+                "replayed",
+                "timeout_ms",
+            }
+            response_required = response_required | {"replayed"}
+            if timeout_ms is not None:
+                response_required = response_required | {"timeout_ms"}
+        if set(response) - response_keys or not response_required <= set(response):
             raise PiqdIncrementalDiscoveryError(
                 "PIQD solve response has an inexact schema"
             )
@@ -1758,26 +1783,48 @@ class PiqdIncrementalDiscoveryRunner:
         _integer(response["solve_ms"], label="solve_ms", minimum=0)
         index = _integer(response["solve_index"], label="solve_index", minimum=1)
         result_hash = _hex64(response["result_sha256"], label="result_sha256")
-        expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
-        if expected_deadline is None:
-            if "effective_deadline_ms" in response:
+        if self._sat_contract_version == SAT_CONTRACT_CURRENT_V1:
+            if (
+                type(response["replayed"]) is not bool
+                or response["replayed"] is not False
+            ):
                 raise PiqdIncrementalDiscoveryError(
-                    "solve response unexpectedly records effective_deadline_ms"
+                    "current SAT solve response replayed must be builtin false"
                 )
+            if timeout_ms is None:
+                if "timeout_ms" in response:
+                    raise PiqdIncrementalDiscoveryError(
+                        "solve response unexpectedly records timeout_ms"
+                    )
+            else:
+                response_timeout_ms = _integer(
+                    response["timeout_ms"], label="solve.timeout_ms", minimum=0
+                )
+                if response_timeout_ms != timeout_ms:
+                    raise PiqdIncrementalDiscoveryError(
+                        "solve response timeout_ms disagrees with solve request"
+                    )
         else:
-            if "effective_deadline_ms" not in response:
-                raise PiqdIncrementalDiscoveryError(
-                    "solve response lacks effective_deadline_ms for a timed solve"
+            expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
+            if expected_deadline is None:
+                if "effective_deadline_ms" in response:
+                    raise PiqdIncrementalDiscoveryError(
+                        "solve response unexpectedly records effective_deadline_ms"
+                    )
+            else:
+                if "effective_deadline_ms" not in response:
+                    raise PiqdIncrementalDiscoveryError(
+                        "solve response lacks effective_deadline_ms for a timed solve"
+                    )
+                effective_deadline = _integer(
+                    response["effective_deadline_ms"],
+                    label="solve.effective_deadline_ms",
+                    minimum=30_000,
                 )
-            effective_deadline = _integer(
-                response["effective_deadline_ms"],
-                label="solve.effective_deadline_ms",
-                minimum=30_000,
-            )
-            if effective_deadline != expected_deadline:
-                raise PiqdIncrementalDiscoveryError(
-                    "solve response effective_deadline_ms disagrees with solve request"
-                )
+                if effective_deadline != expected_deadline:
+                    raise PiqdIncrementalDiscoveryError(
+                        "solve response effective_deadline_ms disagrees with solve request"
+                    )
         if index != self._solve_count + 1:
             raise PiqdIncrementalDiscoveryError("PIQD solve index is not dense")
         model = response.get("model")
@@ -2001,21 +2048,37 @@ class PiqdIncrementalDiscoveryRunner:
         except BaseException:
             self._close_uncertain = True
             raise
+        parsed_closed = False
         try:
             payload = _strict_value(response.body, label="PIQD close")
             if not isinstance(payload, dict):
                 raise PiqdIncrementalDiscoveryError(
                     "PIQD close response must be a session object"
                 )
+            parsed_closed = payload.get("state") == "closed"
             self._check_session_descriptor(payload, closing=True)
         except BaseException:
-            self._close_uncertain = True
+            # Once a canonical response object says the DELETE reached closed,
+            # a later local custody mismatch is a committed close, not transport
+            # uncertainty.  Never send a second mutating DELETE for that case.
+            self._close_uncertain = not parsed_closed
+            self._closed = parsed_closed
             raise
         self._closed = True
         self._close_uncertain = False
 
     def close(self) -> None:
-        self._close_session_once()
+        if self._sat_contract_version != SAT_CONTRACT_CURRENT_V1:
+            self._close_session_once()
+            return
+        try:
+            self._close_session_once()
+        except BaseException:
+            if not self._close_uncertain:
+                raise
+            # Current production delegates transport-loss reconciliation to
+            # this generic owner within the same public close invocation.
+            self._close_session_once()
 
 
 PiqdSessionDiscovery = PiqdIncrementalDiscoveryRunner

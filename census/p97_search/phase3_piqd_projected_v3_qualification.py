@@ -1116,15 +1116,26 @@ class QualificationTransport:
             type(authority_version) is not int or authority_version not in {2, 3}
         ):
             raise QualificationError("qualification authority version is invalid")
+        if authority_version == 3 and not generalized:
+            raise QualificationError(
+                "qualification authority-v3 requires generalized current-SAT mode"
+            )
         self.generalized = generalized
         self.authority_version = authority_version
         self.session_id: str | None = None
         self.solve_count = 0
         self.statuses: list[str] = []
+        self._requested_timeouts_ms: list[int] = []
         self.event_sequence: list[str] = []
         self.close_observed = False
         self.close_method: str | None = None
         self.close_path: str | None = None
+
+    @property
+    def requested_timeouts_ms(self) -> tuple[int, ...]:
+        """Return the production-v3 timeouts captured at the request boundary."""
+
+        return tuple(self._requested_timeouts_ms)
 
     @staticmethod
     def _segments(path: str) -> list[str]:
@@ -1259,7 +1270,14 @@ class QualificationTransport:
         )
         if self.generalized:
             common = {"status", "solve_ms", "solve_index", "result_sha256"}
-            if self.authority_version == 3 and requested_timeout_ms is not None:
+            if self.authority_version == 3:
+                common.update({"replayed", "timeout_ms"})
+                requested_timeout_ms = _integer(
+                    requested_timeout_ms,
+                    label=f"solve request {expected_index}.timeout_ms",
+                    minimum=0,
+                )
+            elif requested_timeout_ms is not None:
                 common.add("effective_deadline_ms")
             status = value.get("status")
             expected = (
@@ -1277,15 +1295,32 @@ class QualificationTransport:
                 raise QualificationError("production solve index is not dense")
             _integer(value["solve_ms"], label="solve.solve_ms")
             _hex(value["result_sha256"], label="solve.result_sha256")
-            if self.authority_version == 3 and requested_timeout_ms is not None:
+            if self.authority_version == 3 and (
+                type(value["replayed"]) is not bool or value["replayed"] is not False
+            ):
+                raise QualificationError(
+                    "production SAT solve replayed must be builtin false"
+                )
+            if self.authority_version == 3:
+                response_timeout_ms = _integer(
+                    value["timeout_ms"],
+                    label=f"solve response {expected_index}.timeout_ms",
+                    minimum=0,
+                )
+                if response_timeout_ms != requested_timeout_ms:
+                    raise QualificationError(
+                        "production solve response timeout_ms disagrees with request"
+                    )
+            elif requested_timeout_ms is not None:
                 effective_deadline_ms = _integer(
                     value["effective_deadline_ms"],
-                    label="solve.effective_deadline_ms",
+                    label=f"solve response {expected_index}.effective_deadline_ms",
                     minimum=30_000,
                 )
                 if effective_deadline_ms != requested_timeout_ms + 30_000:
                     raise QualificationError(
-                        "solve effective_deadline_ms disagrees with timeout_ms"
+                        "historical solve response effective_deadline_ms "
+                        "disagrees with request"
                     )
             if status == "SAT":
                 model = value["model"]
@@ -1317,6 +1352,8 @@ class QualificationTransport:
                 raise QualificationError("raw solve response result digest disagrees")
             return value
         common = {"status", "solve_ms", "solve_index", "result_sha256"}
+        if requested_timeout_ms is not None:
+            common.add("effective_deadline_ms")
         expected = (
             common | {"model"}
             if expected_index == 1
@@ -1328,6 +1365,17 @@ class QualificationTransport:
             raise QualificationError("qualification solve order/status is not exact")
         _integer(value["solve_ms"], label="solve.solve_ms")
         _hex(value["result_sha256"], label="solve.result_sha256")
+        if requested_timeout_ms is not None:
+            effective_deadline_ms = _integer(
+                value["effective_deadline_ms"],
+                label=f"solve response {expected_index}.effective_deadline_ms",
+                minimum=30_000,
+            )
+            if effective_deadline_ms != requested_timeout_ms + 30_000:
+                raise QualificationError(
+                    "historical solve response effective_deadline_ms "
+                    "disagrees with request"
+                )
         if expected_index == 1:
             model = value["model"]
             if type(model) is not list or any(type(item) is not int for item in model):
@@ -1374,6 +1422,36 @@ class QualificationTransport:
             raise QualificationError("qualification permits exactly two solves")
         if is_delete and self.close_observed:
             raise QualificationError("qualification session was already closed")
+        requested_timeout_ms = None
+        if is_solve:
+            request_label = (
+                "production v3 solve request"
+                if self.authority_version == 3
+                else "historical solve request"
+            )
+            request = _strict_json(body, label=request_label)
+        if is_solve and self.authority_version == 3:
+            required_request = {"assumptions", "include_model", "timeout_ms"}
+            _keys(request, required_request, label="production v3 solve request")
+            if request["assumptions"] != [] or type(request["assumptions"]) is not list:
+                raise QualificationError(
+                    "production v3 solve request must be assumption-free"
+                )
+            if request["include_model"] is not True:
+                raise QualificationError(
+                    "production v3 solve request must include the model"
+                )
+            requested_timeout_ms = _integer(
+                request["timeout_ms"],
+                label="production v3 solve request.timeout_ms",
+                minimum=0,
+            )
+        elif is_solve and "timeout_ms" in request:
+            requested_timeout_ms = _integer(
+                request["timeout_ms"],
+                label="historical solve request.timeout_ms",
+                minimum=0,
+            )
         response = _response(
             self.inner(method, path, body, headers),
             label=f"PIQD {method} {path}",
@@ -1401,15 +1479,6 @@ class QualificationTransport:
                     "solve preceded authenticated session creation"
                 )
             next_index = self.solve_count + 1
-            requested_timeout_ms = None
-            if self.authority_version == 3:
-                request = _strict_json(body, label="production v3 solve request")
-                if "timeout_ms" in request:
-                    requested_timeout_ms = _integer(
-                        request["timeout_ms"],
-                        label="production v3 solve request.timeout_ms",
-                        minimum=0,
-                    )
             solve = self._solve_payload(
                 response.body,
                 expected_index=next_index,
@@ -1417,6 +1486,9 @@ class QualificationTransport:
             )
             self.solve_count = next_index
             self.statuses.append(solve["status"])
+            if self.authority_version == 3:
+                assert requested_timeout_ms is not None
+                self._requested_timeouts_ms.append(requested_timeout_ms)
             self.event_sequence.append("solve")
         elif is_append:
             if self.session_id is None or session_path_id != self.session_id:
@@ -2048,10 +2120,11 @@ def _validate_receipt(
     result_sha256: str,
     frontier: list[tuple[int, ...]],
     authority_version: int | None = None,
+    requested_timeout_ms: int | None = None,
 ) -> None:
-    optional = incremental.RECEIPT_OPTIONAL - {"effective_deadline_ms"}
+    optional = incremental.RECEIPT_OPTIONAL
     if authority_version == 3:
-        optional = optional | {"effective_deadline_ms"}
+        optional = optional - {"effective_deadline_ms"}
     if (
         type(receipt) is not dict
         or not incremental.RECEIPT_REQUIRED <= set(receipt)
@@ -2075,26 +2148,19 @@ def _validate_receipt(
     if type(receipt.get("model_recorded")) is not bool:
         raise QualificationError("receipt.model_recorded must be boolean")
     if authority_version == 3:
-        if "timeout_ms" in receipt:
-            timeout_ms = _integer(
-                receipt["timeout_ms"], label="receipt.timeout_ms", minimum=0
-            )
-            if "effective_deadline_ms" not in receipt:
-                raise QualificationError(
-                    "production v3 timed receipt lacks effective_deadline_ms"
-                )
-            effective_deadline_ms = _integer(
-                receipt["effective_deadline_ms"],
-                label="receipt.effective_deadline_ms",
-                minimum=30_000,
-            )
-            if effective_deadline_ms != timeout_ms + 30_000:
-                raise QualificationError(
-                    "production v3 receipt effective_deadline_ms disagrees"
-                )
-        elif "effective_deadline_ms" in receipt:
+        retained_timeout_ms = _integer(
+            requested_timeout_ms,
+            label=f"retained solve {solve_index} timeout_ms",
+            minimum=0,
+        )
+        if "timeout_ms" not in receipt:
+            raise QualificationError("production receipt lacks requested timeout_ms")
+        receipt_timeout_ms = _integer(
+            receipt["timeout_ms"], label="receipt.timeout_ms", minimum=0
+        )
+        if receipt_timeout_ms != retained_timeout_ms:
             raise QualificationError(
-                "production v3 untimed receipt records effective_deadline_ms"
+                "production receipt timeout_ms disagrees with retained request"
             )
     prefix = incremental._journal_bytes(frontier)
     if (
@@ -3744,6 +3810,14 @@ def _validate_production_journal(
     contract: ProductionQualificationV2 | ProductionQualificationV3,
 ) -> dict[str, Any]:
     authority_version = 3 if type(contract) is ProductionQualificationV3 else 2
+    retained_timeouts_ms = contract.transport.requested_timeouts_ms
+    if authority_version == 3 and (
+        len(retained_timeouts_ms) != contract.transport.solve_count
+        or any(type(value) is not int or value < 0 for value in retained_timeouts_ms)
+    ):
+        raise QualificationError(
+            "production timeout request evidence is incomplete or malformed"
+        )
     raw = _read_custody(contract.directory, JOURNAL_NAME)
     if not raw or not raw.endswith(b"\n"):
         raise QualificationError("production journal is empty or incomplete")
@@ -3833,6 +3907,10 @@ def _validate_production_journal(
                 raise QualificationError("production append prior frontier drifted")
         elif kind == "solve":
             solve_count += 1
+            if authority_version == 3 and solve_count > len(retained_timeouts_ms):
+                raise QualificationError(
+                    "production journal has no retained timeout request evidence"
+                )
             status = event.get("status")
             if (
                 event.get("solve_index") != solve_count
@@ -3854,6 +3932,11 @@ def _validate_production_journal(
                 result_sha256=result_sha256,
                 frontier=clauses,
                 authority_version=authority_version,
+                requested_timeout_ms=(
+                    retained_timeouts_ms[solve_count - 1]
+                    if authority_version == 3
+                    else None
+                ),
             )
             if status == "SAT":
                 _validate_model(event.get("model"), variables, clauses)
@@ -3868,7 +3951,11 @@ def _validate_production_journal(
         ):
             raise QualificationError("production journal frontier is invalid")
         tail = event_hash
-    if solve_count < 1 or statuses != contract.transport.statuses:
+    if (
+        solve_count < 1
+        or statuses != contract.transport.statuses
+        or (authority_version == 3 and solve_count != len(retained_timeouts_ms))
+    ):
         raise QualificationError("production journal solve history is incomplete")
     if event_sequence != contract.transport.event_sequence:
         raise QualificationError("transport and journal append/solve order disagree")

@@ -166,6 +166,8 @@ def _discovery_fixture(
 def _normalize_fixture(
     result: incremental.DiscoveryResult,
     clauses: tuple[tuple[int, ...], ...],
+    *,
+    strict_current_sat: bool = False,
 ) -> incremental_v3.LegacyDiscoveryResult:
     variable_count = max(
         (abs(literal) for clause in clauses for literal in clause), default=0
@@ -174,6 +176,7 @@ def _normalize_fixture(
         result,
         frontier_variable_count=variable_count,
         frontier_clauses=clauses,
+        strict_current_sat=strict_current_sat,
     )
 
 
@@ -414,7 +417,12 @@ def test_production_v3_prepares_qualified_transport_and_recovers_lost_close_once
     source_path.write_bytes(source)
     producer_path.write_bytes(producer)
     authority = _production_authority(tmp_path, source, producer)
-    transport = FakeSessionTransport(close_transport_loss=True)
+    transport = FakeSessionTransport(
+        close_transport_loss=True,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
 
     class Contract:
         def __init__(self) -> None:
@@ -457,6 +465,8 @@ def test_production_v3_prepares_qualified_transport_and_recovers_lost_close_once
 
     result = runner(out / ".solver.cnf", 2, None)
     assert result.verdict == "SAT"
+    assert runner._runner is not None
+    assert runner._runner._sat_contract_version == incremental.SAT_CONTRACT_CURRENT_V1
     assert len(prepared) == 1
     assert prepared[0]["authority"] is authority
     assert prepared[0]["transport"] is transport
@@ -578,38 +588,34 @@ def test_normalization_rejects_non_builtin_receipt_values(
 
 
 @pytest.mark.parametrize(
-    ("mutation", "match"),
+    "timeout_ms",
     [
-        ({"timeout_ms": 25}, "lacks effective_deadline_ms"),
-        (
-            {"timeout_ms": 25, "effective_deadline_ms": 30_024},
-            "disagrees with timeout_ms",
-        ),
-        (
-            {"timeout_ms": 25, "effective_deadline_ms": True},
-            "effective_deadline_ms",
-        ),
-        (
-            {"timeout_ms": 25, "effective_deadline_ms": 30_025.0},
-            "effective_deadline_ms",
-        ),
-        (
-            {"timeout_ms": 25, "effective_deadline_ms": _IntSubclass(30_025)},
-            "effective_deadline_ms",
-        ),
-        ({"effective_deadline_ms": 30_000}, "untimed receipt"),
+        True,
+        25.0,
+        _IntSubclass(25),
     ],
 )
-def test_normalization_cross_binds_effective_deadline(
-    mutation: dict[str, Any], match: str
+def test_normalization_rejects_non_builtin_timeout_ms(
+    timeout_ms: Any,
 ) -> None:
     valid, clauses = _discovery_fixture()
-    receipt = {**valid.receipt, **mutation}
-    with pytest.raises(incremental_v3.PiqdIncrementalV3Error, match=match):
+    receipt = {**valid.receipt, "timeout_ms": timeout_ms}
+    with pytest.raises(incremental_v3.PiqdIncrementalV3Error, match="timeout_ms"):
         _normalize_fixture(replace(valid, receipt=receipt), clauses)
 
 
-def test_normalization_accepts_exact_effective_deadline() -> None:
+def test_normalization_accepts_builtin_timeout_without_sat_effective_deadline() -> None:
+    valid, clauses = _discovery_fixture()
+    receipt = {**valid.receipt, "timeout_ms": 25}
+    assert (
+        _normalize_fixture(
+            replace(valid, receipt=receipt), clauses, strict_current_sat=True
+        ).verdict
+        == "UNSAT"
+    )
+
+
+def test_normalization_default_preserves_legacy_timed_receipt_contract() -> None:
     valid, clauses = _discovery_fixture()
     receipt = {
         **valid.receipt,
@@ -619,6 +625,22 @@ def test_normalization_accepts_exact_effective_deadline() -> None:
     assert _normalize_fixture(replace(valid, receipt=receipt), clauses).verdict == (
         "UNSAT"
     )
+
+
+@pytest.mark.parametrize("effective_deadline_ms", [30_025, True, 30_025.0])
+def test_normalization_forbids_sat_effective_deadline(
+    effective_deadline_ms: Any,
+) -> None:
+    valid, clauses = _discovery_fixture()
+    receipt = {
+        **valid.receipt,
+        "timeout_ms": 25,
+        "effective_deadline_ms": effective_deadline_ms,
+    }
+    with pytest.raises(incremental_v3.PiqdIncrementalV3Error, match="inexact schema"):
+        _normalize_fixture(
+            replace(valid, receipt=receipt), clauses, strict_current_sat=True
+        )
 
 
 def test_normalization_rejects_receipt_dict_subclass() -> None:

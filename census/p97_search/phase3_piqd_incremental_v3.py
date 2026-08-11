@@ -45,7 +45,6 @@ _RECEIPT_OPTIONAL = frozenset(
     {
         "conflict_limit",
         "timeout_ms",
-        "effective_deadline_ms",
         "interrupted_by",
         "core",
         "batch_key",
@@ -54,6 +53,7 @@ _RECEIPT_OPTIONAL = frozenset(
         "batch_request_sha256",
     }
 )
+_LEGACY_RECEIPT_OPTIONAL = _RECEIPT_OPTIONAL | {"effective_deadline_ms"}
 _RECEIPT_BATCH_FIELDS = frozenset(
     {"batch_key", "batch_position", "batch_size", "batch_request_sha256"}
 )
@@ -190,6 +190,8 @@ def _validated_receipt(
     assignment: Mapping[int, bool],
     frontier_variable_count: int | None,
     frontier_clauses: tuple[tuple[int, ...], ...] | None,
+    *,
+    strict_current_sat: bool,
 ) -> None:
     receipt = result.receipt
     if type(receipt) is not dict or any(type(key) is not str for key in receipt):
@@ -197,11 +199,10 @@ def _validated_receipt(
             "PIQD receipt must be an exact builtin dict with builtin string keys"
         )
     keys = set(receipt)
-    if keys - (_RECEIPT_REQUIRED | _RECEIPT_OPTIONAL) or not (
-        _RECEIPT_REQUIRED <= keys
-    ):
+    optional = _RECEIPT_OPTIONAL if strict_current_sat else _LEGACY_RECEIPT_OPTIONAL
+    if keys - (_RECEIPT_REQUIRED | optional) or not (_RECEIPT_REQUIRED <= keys):
         missing = sorted(_RECEIPT_REQUIRED - keys)
-        extra = sorted(keys - (_RECEIPT_REQUIRED | _RECEIPT_OPTIONAL))
+        extra = sorted(keys - (_RECEIPT_REQUIRED | optional))
         raise PiqdIncrementalV3Error(
             f"PIQD receipt has an inexact schema (missing={missing}, extra={extra})"
         )
@@ -242,26 +243,22 @@ def _validated_receipt(
             label="PIQD receipt batch_request_sha256",
         )
     if "timeout_ms" in receipt:
-        timeout_ms = _builtin_int(
-            receipt["timeout_ms"], label="PIQD receipt timeout_ms", minimum=0
-        )
-        if "effective_deadline_ms" not in receipt:
+        _builtin_int(receipt["timeout_ms"], label="PIQD receipt timeout_ms", minimum=0)
+    if not strict_current_sat:
+        if ("timeout_ms" in receipt) != ("effective_deadline_ms" in receipt):
             raise PiqdIncrementalV3Error(
-                "PIQD timed receipt lacks effective_deadline_ms"
+                "legacy PIQD timed receipt lacks its exact effective deadline"
             )
-        effective_deadline_ms = _builtin_int(
-            receipt["effective_deadline_ms"],
-            label="PIQD receipt effective_deadline_ms",
-            minimum=30_000,
-        )
-        if effective_deadline_ms != timeout_ms + 30_000:
-            raise PiqdIncrementalV3Error(
-                "PIQD receipt effective_deadline_ms disagrees with timeout_ms"
+        if "effective_deadline_ms" in receipt:
+            effective_deadline_ms = _builtin_int(
+                receipt["effective_deadline_ms"],
+                label="PIQD receipt effective_deadline_ms",
+                minimum=30_000,
             )
-    elif "effective_deadline_ms" in receipt:
-        raise PiqdIncrementalV3Error(
-            "PIQD untimed receipt unexpectedly records effective_deadline_ms"
-        )
+            if effective_deadline_ms != receipt["timeout_ms"] + 30_000:
+                raise PiqdIncrementalV3Error(
+                    "legacy PIQD receipt effective deadline is not timeout_ms + 30000"
+                )
     if "conflict_limit" in receipt:
         _builtin_int(
             receipt["conflict_limit"],
@@ -392,9 +389,14 @@ def normalize_discovery_result(
     *,
     frontier_variable_count: int | None = None,
     frontier_clauses: tuple[tuple[int, ...], ...] | None = None,
+    strict_current_sat: bool = False,
 ) -> LegacyDiscoveryResult:
     """Normalize authenticated PIQD results without adding solver authority."""
 
+    if type(strict_current_sat) is not bool:
+        raise PiqdIncrementalV3Error(
+            "strict_current_sat must be an exact builtin boolean"
+        )
     if type(result) is not incremental.DiscoveryResult:
         raise PiqdIncrementalV3Error("PIQD returned an invalid discovery result")
     if type(result.status) is not str or result.status not in {
@@ -412,7 +414,13 @@ def normalize_discovery_result(
     _hex64(result.result_sha256, label="PIQD result_sha256")
     _hex64(result.frontier_sha256, label="PIQD frontier_sha256")
     assignment = _normalized_assignment(result)
-    _validated_receipt(result, assignment, frontier_variable_count, frontier_clauses)
+    _validated_receipt(
+        result,
+        assignment,
+        frontier_variable_count,
+        frontier_clauses,
+        strict_current_sat=strict_current_sat,
+    )
     record = {
         "adapter_schema": SCHEMA,
         "closure_claim": False,
@@ -640,6 +648,11 @@ class PiqdIncrementalV3SolverRunner:
                 receipt_path=self.receipt_path,
                 transport=selected_transport,
                 custody_root=self.custody_root,
+                sat_contract_version=(
+                    incremental.SAT_CONTRACT_CURRENT_V1
+                    if self.production_authority is not None
+                    else incremental.SAT_CONTRACT_LEGACY_V1
+                ),
             )
         return self._runner
 
@@ -664,6 +677,7 @@ class PiqdIncrementalV3SolverRunner:
             result,
             frontier_variable_count=discovery_runner._variable_count,
             frontier_clauses=tuple(discovery_runner._clauses),
+            strict_current_sat=self.production_authority is not None,
         )
 
     def manifest_metadata(self) -> dict[str, Any]:
@@ -705,18 +719,9 @@ class PiqdIncrementalV3SolverRunner:
         if self._closed:
             return
         if self._runner is not None:
-            if self.production_authority is None:
-                self._runner.close()
-            else:
-                try:
-                    self._runner.close()
-                except Exception:
-                    # The generic adapter records an uncertain DELETE and its
-                    # next public close reconciles via GET before retrying the
-                    # idempotent DELETE only when the session is still live.
-                    if not self._runner._close_uncertain:
-                        raise
-                    self._runner.close()
+            # The generic adapter exclusively owns DELETE and any reconciliation
+            # after true transport loss.  This wrapper must never retry close.
+            self._runner.close()
         self._closed = True
 
     def finalize_qualification(self, driver_status: str) -> dict[str, Any] | None:

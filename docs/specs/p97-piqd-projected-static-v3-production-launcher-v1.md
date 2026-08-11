@@ -223,14 +223,29 @@ solves with dense indices. The exact append/solve sequence must match the
 hash-chained journal. Finalization reparses that journal from the authenticated
 base, reconstructs the final frontier, and requires exact runtime CNF equality.
 Projected-v3 discovery supplies a timeout, so both the strict solve response
-and durable receipt must contain the builtin integer
-`effective_deadline_ms = timeout_ms + 30000`. The field is required exactly
-when `timeout_ms` is present and forbidden otherwise. It discloses the daemon's
-effective bound; it does not change or reinterpret caller timeout semantics.
+and durable receipt must bind the exact builtin `timeout_ms` to the request.
+Qualification-v3 validates that request before delegation, retains its exact
+nonnegative builtin value under the dense solve index, and finalization binds
+each journal receipt to that captured request evidence. Missing, mismatched,
+boolean, floating-point, subclass, negative, or cross-index timeout
+substitutions fail closed; a receipt value cannot serve as its own request
+evidence.
+Every current SAT solve response, for `SAT`, `UNSAT`, and `UNKNOWN`, must also
+contain the exact builtin boolean `replayed: false`. Missing, true, integer,
+floating-point, string, or subclass values fail closed. The SAT response and
+receipt forbid `effective_deadline_ms`, whether or not a timeout was supplied;
+that field belongs to the separately preserved SMT/session adapter contract,
+not this production SAT path. Historical authority-v2 and canary response
+semantics remain frozen.
 
-The driver closes once. A lost DELETE response uses the existing idempotent
-reconciliation: observe closed, or retry DELETE only if the session is still
-live. Qualification accepts exactly one confirmed closed-state observation.
+The v3 wrapper makes exactly one public close call, and the generic current-SAT
+runner owns remote close and reconciliation inside that call. A genuinely lost
+DELETE response uses the existing idempotent reconciliation: observe closed,
+or retry DELETE only if the session is still live. Once a closed response has
+been received and parsed, a later custody mismatch is a committed close with a
+schema/custody failure, not transport uncertainty, and cannot trigger another
+GET or DELETE. Qualification accepts exactly one confirmed closed-state
+observation.
 
 Only a successful driver status with a terminal, assumption-free PIQD `UNSAT`
 observation can mint a consumable qualification seal. PIQD `UNSAT` remains
@@ -238,6 +253,10 @@ discovery-only: the exact terminal CNF still requires the fresh local Cadical
 DRAT production and verification path. `UNKNOWN`, errors, interrupted or
 incomplete runs, version drift, control-file custody drift, journal/runtime
 crossing, or response crossing emit no qualification seal.
+If terminal publication or close cleanup fails while handling a solve
+exception, the solve exception remains primary; the cleanup exception is
+recorded as a note and chained as secondary, and no qualification seal is
+minted.
 
 Finalization records exact solve count, ordered statuses, final frontier,
 runtime hash, close evidence, driver status, and post-run version. The session
@@ -256,6 +275,10 @@ canonical bytes, and exact builtin scalar/container types. Boolean/integer
 aliases, floats, subclasses, unknown keys, crossed receipts, re-signed
 substitutions, non-total SAT models, nonempty UNSAT cores, and malformed
 UNKNOWN evidence fail closed. There is no local discovery fallback.
+Its public normalization helper preserves the historical receipt contract by
+default, including the legacy timed `effective_deadline_ms = timeout_ms +
+30000` rule. Only the production incremental-v3 caller explicitly selects the
+strict current-SAT contract that forbids that field.
 
 ## Historical artifacts
 

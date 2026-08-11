@@ -684,6 +684,8 @@ def _prepare_v3(
                 "solve_ms": 1,
                 "solve_index": 1,
                 "result_sha256": incremental._result_digest("UNSAT", None, [], None),
+                "replayed": False,
+                "timeout_ms": 3_000,
                 "core": [],
                 "terminal_unsat": True,
             }
@@ -801,6 +803,7 @@ def _complete_v3(
     contract: qualification.ProductionQualificationV3,
     *,
     driver_status: str = "STRUCTURAL_UNSAT_VERIFIED",
+    receipt_timeout_ms: int = 3_000,
 ) -> dict[str, Any] | None:
     transport = contract.transport
     transport("POST", "http://piqd.test/sessions", b"{}", {})
@@ -812,7 +815,12 @@ def _complete_v3(
         {},
     )
     solve_raw = transport(
-        "POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {}
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/solve",
+        canonical_json_bytes(
+            {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+        ),
+        {},
     ).body
     solve = json.loads(solve_raw)
     variables, base = incremental.parse_dimacs(contract.descriptor.seed_cnf)
@@ -853,7 +861,10 @@ def _complete_v3(
             "status": "UNSAT",
             "solve_index": 1,
             "result_sha256": solve["result_sha256"],
-            "receipt": _receipt("UNSAT", 1, frontier, solve["result_sha256"]),
+            "receipt": {
+                **_receipt("UNSAT", 1, frontier, solve["result_sha256"]),
+                "timeout_ms": receipt_timeout_ms,
+            },
             "model": None,
             "frontier_count": len(frontier),
             "frontier_sha256": incremental._frontier_hash(variables, frontier),
@@ -1372,6 +1383,23 @@ def test_unbound_test_transport_cannot_elevate_job_blob_limit(tmp_path: Path) ->
             solver_signature=SIGNATURE,
             descriptor_root="a" * 64,
             producer_job_id=JOB_ID,
+        )
+
+
+def test_authority_v3_transport_requires_generalized_current_sat_mode(
+    tmp_path: Path,
+) -> None:
+    root = tmp_path / "transport"
+    root.mkdir(mode=0o700)
+    with pytest.raises(qualification.QualificationError, match="generalized"):
+        qualification.QualificationTransport(
+            FakeTransport(),
+            root=root,
+            solver_name=SOLVER,
+            solver_sha256=SOLVER_HASH,
+            solver_signature=SIGNATURE,
+            descriptor_root="a" * 64,
+            authority_version=3,
         )
 
 
@@ -2366,13 +2394,14 @@ def test_production_v3_requires_exact_job_status_custody_hashes(
         _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
 
 
-def test_production_v3_accepts_exact_timed_effective_deadline(
+def test_production_v3_accepts_timed_sat_response_without_effective_deadline(
     tmp_path: Path,
     current_bundle: provisioning.CurrentUnshardedBundle,
 ) -> None:
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
-    solve["effective_deadline_ms"] = 33_000
+    solve["replayed"] = False
+    solve["timeout_ms"] = 3_000
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2394,19 +2423,45 @@ def test_production_v3_accepts_exact_timed_effective_deadline(
         ),
         {},
     )
-    assert json.loads(response.body)["effective_deadline_ms"] == 33_000
+    assert json.loads(response.body)["replayed"] is False
+    assert "effective_deadline_ms" not in json.loads(response.body)
 
 
-@pytest.mark.parametrize("deadline", [None, 32_999, True, 33_000.0])
-def test_production_v3_rejects_inexact_timed_effective_deadline(
+@pytest.mark.parametrize("timeout_ms", [None, True, 3_000.0, -1])
+def test_production_v3_rejects_invalid_timeout_request_before_delegation(
     tmp_path: Path,
     current_bundle: provisioning.CurrentUnshardedBundle,
-    deadline: Any,
+    timeout_ms: Any,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
+    request: dict[str, Any] = {"assumptions": [], "include_model": True}
+    if timeout_ms is not None:
+        request["timeout_ms"] = timeout_ms
+    calls_before = list(fake.calls)
+    with pytest.raises(
+        qualification.QualificationError,
+        match="schema|timeout_ms|non-negative|non-builtin",
+    ):
+        contract.transport(
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(request),
+            {},
+        )
+    assert fake.calls == calls_before
+
+
+@pytest.mark.parametrize("response_timeout_ms", [None, 2_999, True, 3_000.0, -1])
+def test_production_v3_exactly_binds_response_timeout_to_request(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    response_timeout_ms: Any,
 ) -> None:
     solve = json.loads(_raw_solve(2))
-    solve["solve_index"] = 1
-    if deadline is not None:
-        solve["effective_deadline_ms"] = deadline
+    solve.update({"solve_index": 1, "replayed": False})
+    if response_timeout_ms is not None:
+        solve["timeout_ms"] = response_timeout_ms
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2419,7 +2474,10 @@ def test_production_v3_rejects_inexact_timed_effective_deadline(
     )
     contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
     contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
-    with pytest.raises(qualification.QualificationError):
+    with pytest.raises(
+        qualification.QualificationError,
+        match="schema|timeout_ms|non-negative|non-builtin",
+    ):
         contract.transport(
             "POST",
             f"http://piqd.test/sessions/{SESSION_ID}/solve",
@@ -2430,13 +2488,210 @@ def test_production_v3_rejects_inexact_timed_effective_deadline(
         )
 
 
-def test_production_v3_untimed_solve_forbids_effective_deadline(
+def test_production_v3_rejects_timeout_subclass_at_typed_boundary(
     tmp_path: Path,
     current_bundle: provisioning.CurrentUnshardedBundle,
 ) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    with pytest.raises(qualification.QualificationError, match="timeout_ms"):
+        contract.transport._solve_payload(
+            fake.solve1,
+            expected_index=1,
+            requested_timeout_ms=_IntSubclass(3_000),
+        )
+
+
+class _IntSubclass(int):
+    pass
+
+
+@pytest.mark.parametrize(
+    "receipt_timeout_ms",
+    [None, 24, True, 25.0, _IntSubclass(25), -1],
+)
+def test_production_v3_exactly_binds_receipt_timeout_to_retained_request(
+    receipt_timeout_ms: Any,
+) -> None:
+    frontier = [(1,)]
+    result_sha256 = incremental._result_digest("UNSAT", None, [], None)
+    receipt = _receipt("UNSAT", 1, frontier, result_sha256)
+    if receipt_timeout_ms is not None:
+        receipt["timeout_ms"] = receipt_timeout_ms
+    with pytest.raises(
+        qualification.QualificationError, match="timeout_ms|retained request"
+    ):
+        qualification._validate_receipt(
+            receipt,
+            status="UNSAT",
+            solve_index=1,
+            result_sha256=result_sha256,
+            frontier=frontier,
+            authority_version=3,
+            requested_timeout_ms=25,
+        )
+
+
+@pytest.mark.parametrize("authority_version", [None, 2])
+def test_historical_receipt_schema_still_accepts_effective_deadline(
+    authority_version: int | None,
+) -> None:
+    frontier = [(1,)]
+    result_sha256 = incremental._result_digest("UNSAT", None, [], None)
+    receipt = {
+        **_receipt("UNSAT", 1, frontier, result_sha256),
+        "timeout_ms": 25,
+        "effective_deadline_ms": 30_025,
+    }
+
+    qualification._validate_receipt(
+        receipt,
+        status="UNSAT",
+        solve_index=1,
+        result_sha256=result_sha256,
+        frontier=frontier,
+        authority_version=authority_version,
+    )
+
+
+@pytest.mark.parametrize("authority_version", [None, 2])
+def test_historical_transport_still_binds_effective_deadline(
+    tmp_path: Path,
+    authority_version: int | None,
+) -> None:
+    solve = json.loads(_raw_solve(1))
+    solve["effective_deadline_ms"] = 30_025
+    fake = FakeTransport(solve1=canonical_json_bytes(solve))
+    contract, _ = (
+        _prepare_v2(tmp_path, transport=fake)
+        if authority_version == 2
+        else _prepare(tmp_path, transport=fake)
+    )
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+
+    response = transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/solve",
+        canonical_json_bytes(
+            {"assumptions": [], "include_model": True, "timeout_ms": 25}
+        ),
+        {},
+    )
+
+    assert json.loads(response.body)["effective_deadline_ms"] == 30_025
+
+
+@pytest.mark.parametrize("authority_version", [None, 2])
+@pytest.mark.parametrize("effective_deadline_ms", [None, 30_024, True, 30_025.0])
+def test_historical_transport_rejects_inexact_effective_deadline(
+    tmp_path: Path,
+    authority_version: int | None,
+    effective_deadline_ms: Any,
+) -> None:
+    solve = json.loads(_raw_solve(1))
+    if effective_deadline_ms is not None:
+        solve["effective_deadline_ms"] = effective_deadline_ms
+    fake = FakeTransport(solve1=canonical_json_bytes(solve))
+    contract, _ = (
+        _prepare_v2(tmp_path, transport=fake)
+        if authority_version == 2
+        else _prepare(tmp_path, transport=fake)
+    )
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+
+    with pytest.raises(
+        qualification.QualificationError,
+        match="schema|effective_deadline_ms|non-builtin",
+    ):
+        transport(
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(
+                {"assumptions": [], "include_model": True, "timeout_ms": 25}
+            ),
+            {},
+        )
+
+
+def test_production_v3_finalization_uses_transport_retained_timeout(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    with pytest.raises(qualification.QualificationError, match="retained request"):
+        _complete_v3(contract, receipt_timeout_ms=2_999)
+    assert not (
+        contract.directory / qualification.PRODUCTION_V3_QUALIFICATION_NAME
+    ).exists()
+
+
+def test_production_v3_rejects_cross_index_receipt_timeout_substitution(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    first = json.loads(fake.solve1)
+    first["timeout_ms"] = 1_000
+    fake.solve1 = canonical_json_bytes(first)
+    fake.solve2 = canonical_json_bytes(
+        {
+            "status": "UNKNOWN",
+            "solve_ms": 1,
+            "solve_index": 2,
+            "result_sha256": incremental._result_digest("UNKNOWN", None, None, None),
+            "replayed": False,
+            "timeout_ms": 2_000,
+        }
+    )
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    for timeout_ms in (1_000, 2_000):
+        transport(
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(
+                {
+                    "assumptions": [],
+                    "include_model": True,
+                    "timeout_ms": timeout_ms,
+                }
+            ),
+            {},
+        )
+    assert transport.requested_timeouts_ms == (1_000, 2_000)
+    frontier = [(1,)]
+    result_sha256 = incremental._result_digest("UNSAT", None, [], None)
+    crossed = {
+        **_receipt("UNSAT", 1, frontier, result_sha256),
+        "timeout_ms": transport.requested_timeouts_ms[1],
+    }
+    with pytest.raises(qualification.QualificationError, match="retained request"):
+        qualification._validate_receipt(
+            crossed,
+            status="UNSAT",
+            solve_index=1,
+            result_sha256=result_sha256,
+            frontier=frontier,
+            authority_version=3,
+            requested_timeout_ms=transport.requested_timeouts_ms[0],
+        )
+
+
+@pytest.mark.parametrize(
+    "replayed",
+    [None, True, 0, 0.0, "false", _IntSubclass(0)],
+)
+def test_production_v3_rejects_inexact_replayed(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    replayed: Any,
+) -> None:
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
-    solve["effective_deadline_ms"] = 30_000
+    solve["timeout_ms"] = 3_000
+    if replayed is not None:
+        solve["replayed"] = replayed
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2449,9 +2704,107 @@ def test_production_v3_untimed_solve_forbids_effective_deadline(
     )
     contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
     contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
-    with pytest.raises(qualification.QualificationError, match="inexact schema"):
+    with pytest.raises(
+        qualification.QualificationError, match="schema|replayed|non-builtin"
+    ):
         contract.transport(
-            "POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {}
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(
+                {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+            ),
+            {},
+        )
+
+
+def test_production_v3_committed_schema_failure_preserves_one_close_artifact(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    solve = json.loads(_raw_solve(2))
+    solve["solve_index"] = 1
+    solve["replayed"] = True
+    solve["timeout_ms"] = 3_000
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        solve1=canonical_json_bytes(solve),
+        close=_production_session(
+            variables=current_bundle.num_variables,
+            clauses=current_bundle.num_clauses,
+            solves=1,
+            state="closed",
+        ),
+    )
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+
+    with pytest.raises(qualification.QualificationError, match="replayed") as raised:
+        try:
+            transport(
+                "POST",
+                f"http://piqd.test/sessions/{SESSION_ID}/solve",
+                canonical_json_bytes(
+                    {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+                ),
+                {},
+            )
+        except qualification.QualificationError:
+            transport(
+                "DELETE",
+                f"http://piqd.test/sessions/{SESSION_ID}",
+                None,
+                {},
+            )
+            raise
+
+    assert "replayed" in str(raised.value)
+    assert sum(method == "DELETE" for method, _path in fake.calls) == 1
+    assert not any(
+        method == "GET" and path.endswith(SESSION_ID) for method, path in fake.calls
+    )
+    assert (contract.directory / qualification.CLOSE_RESPONSE_NAME).exists()
+
+
+@pytest.mark.parametrize("effective_deadline_ms", [33_000, True, 33_000.0])
+def test_production_v3_solve_forbids_sat_effective_deadline(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    effective_deadline_ms: Any,
+) -> None:
+    solve = json.loads(_raw_solve(2))
+    solve["solve_index"] = 1
+    solve["replayed"] = False
+    solve["timeout_ms"] = 3_000
+    solve["effective_deadline_ms"] = effective_deadline_ms
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        solve1=canonical_json_bytes(solve),
+    )
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
+    with pytest.raises(
+        qualification.QualificationError, match="inexact schema|non-builtin"
+    ):
+        contract.transport(
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(
+                {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+            ),
+            {},
         )
 
 

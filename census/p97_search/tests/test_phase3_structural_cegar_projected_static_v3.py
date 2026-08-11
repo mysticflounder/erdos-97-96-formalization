@@ -24,11 +24,13 @@ prefix_cache = importlib.import_module(
     "census.p97_search.phase3_prefix_bank_cache"
 )
 
-PROJECTED_SURVIVORS = (
+PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE = (
     v3.ROOT
-    / "scratch/p97-distinct-distance-lane"
-    / "phase3_projected_static_v2_shell_exact_depth5_v1e_20260729"
-    / "shard-04/survivors.jsonl"
+    / "census/p97_search/tests/fixtures"
+    / "projected_static_v3_first_validated_semantic_assignment.json"
+)
+PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE_SHA256 = (
+    "77675e43a4868866d51551d592c4d5d01f3493a1d03f41a322d855bb3cb18b02"
 )
 
 POSITIVES = frozenset(
@@ -215,15 +217,26 @@ def _build_authenticated_prefix_fixture(
 
 
 def _first_projected_survivor_assignment() -> dict[int, bool]:
+    fixture = PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE
+    raw = fixture.read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == (
+        PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE_SHA256
+    ), "projected-static-v3 semantic assignment fixture hash mismatch"
+    semantic = json.loads(raw)
+    assert isinstance(semantic, dict), (
+        "projected-static-v3 semantic assignment fixture must be an object"
+    )
+    assert raw == prefix_bank.canonical_bytes(semantic) + b"\n", (
+        "projected-static-v3 semantic assignment fixture is not canonical JSON"
+    )
     encoding = v3._phase3_encoding(projected_static_v3=True)
-    for line in PROJECTED_SURVIVORS.read_text().splitlines():
-        record = json.loads(line)
-        assignment = encoding.assignment_from_record(record)
-        obj = encoding.decode(assignment)
-        encoding.validate(obj, assignment)
-        if v3._combined_detection(encoding, v3._metric_rows(obj)) is None:
-            return assignment
-    raise AssertionError("fixture has no projected-static-v3 survivor")
+    assignment = encoding.assignment_from_record({"semantic_assignment": semantic})
+    obj = encoding.decode(assignment)
+    encoding.validate(obj, assignment)
+    assert v3._combined_detection(encoding, v3._metric_rows(obj)) is None, (
+        "projected-static-v3 semantic assignment fixture is not a survivor"
+    )
+    return assignment
 
 
 def _sat_runner(assignment: dict[int, bool]):
@@ -868,6 +881,57 @@ def test_terminal_publication_closes_before_qualification_finalization(
         ("close", None),
         ("finalize", "STRUCTURAL_UNSAT_VERIFIED"),
     ]
+
+
+def test_solver_exception_remains_primary_when_terminal_close_fails(
+    tmp_path: Path,
+) -> None:
+    primary = RuntimeError("primary solve schema failure")
+    cleanup = RuntimeError("secondary close failure")
+    out = tmp_path / "primary-solve-error"
+
+    class FailingBackend:
+        close_calls = 0
+        finalize_calls = 0
+
+        def __call__(self, *_args: Any) -> Any:
+            raise primary
+
+        def close(self) -> None:
+            self.close_calls += 1
+            raise cleanup
+
+        def finalize_qualification(self, _status: str) -> None:
+            self.finalize_calls += 1
+            (out / "qualification-seal.json").write_bytes(b"unsafe\n")
+
+        def manifest_metadata(self) -> dict[str, Any]:
+            return {"proof_verified": False, "closure_claim": False}
+
+    backend = FailingBackend()
+    with pytest.raises(RuntimeError, match="primary solve schema failure") as raised:
+        v3.run_driver(
+            out,
+            timeout_s=5,
+            learned_core_limit=2,
+            survivor_limit=2,
+            bootstrap_results=None,
+            algebraic_bootstrap=None,
+            projected_static_v3=True,
+            solver_runner=backend,
+        )
+
+    assert raised.value is primary
+    assert raised.value.__cause__ is cleanup
+    assert raised.value.__notes__ == [
+        "terminal cleanup also raised: secondary close failure"
+    ]
+    assert backend.close_calls == 1
+    assert backend.finalize_calls == 0
+    assert not (out / "qualification-seal.json").exists()
+    failure = json.loads((out / "failure.json").read_bytes())
+    assert failure["kind"] == "SOLVER_EXCEPTION"
+    assert "primary solve schema failure" in failure["diagnostic"]
 
 
 def test_static_piqd_split_routes_unknown_without_local_fallback(

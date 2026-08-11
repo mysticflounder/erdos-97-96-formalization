@@ -19,6 +19,8 @@ SOURCE = b'{"source":"test"}'
 SESSION = "11111111-1111-4111-8111-111111111111"
 JOB_ID = "22222222-2222-4222-8222-222222222222"
 NO_SOLVER_STATS = object()
+NO_REPLAYED = object()
+NO_TIMEOUT_OVERRIDE = object()
 
 
 def solver_stats() -> dict[str, int]:
@@ -71,6 +73,10 @@ class FakeSessionTransport:
         omit_receipt_effective_deadline: bool = False,
         response_effective_deadline_override: Any = None,
         receipt_effective_deadline_override: Any = None,
+        response_replayed: Any = NO_REPLAYED,
+        omit_response_timeout: bool = False,
+        response_timeout_override: Any = NO_TIMEOUT_OVERRIDE,
+        receipt_timeout_override: Any = None,
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.job_id = job_id
@@ -101,6 +107,10 @@ class FakeSessionTransport:
         self.omit_receipt_effective_deadline = omit_receipt_effective_deadline
         self.response_effective_deadline_override = response_effective_deadline_override
         self.receipt_effective_deadline_override = receipt_effective_deadline_override
+        self.response_replayed = response_replayed
+        self.omit_response_timeout = omit_response_timeout
+        self.response_timeout_override = response_timeout_override
+        self.receipt_timeout_override = receipt_timeout_override
         self.solver_stats_methods = frozenset(solver_stats_methods)
         self._append_lost = False
         self._solve_receipts_lost = False
@@ -258,7 +268,11 @@ class FakeSessionTransport:
                 "at": index,
             }
             if payload.get("timeout_ms") is not None:
-                receipt["timeout_ms"] = payload["timeout_ms"]
+                receipt["timeout_ms"] = (
+                    self.receipt_timeout_override
+                    if self.receipt_timeout_override is not None
+                    else payload["timeout_ms"]
+                )
                 if not self.omit_receipt_effective_deadline:
                     receipt["effective_deadline_ms"] = (
                         self.receipt_effective_deadline_override
@@ -282,7 +296,18 @@ class FakeSessionTransport:
                 "solve_index": index,
                 "result_sha256": result_hash,
             }
+            if self.response_replayed is not NO_REPLAYED:
+                response["replayed"] = self.response_replayed
             if payload.get("timeout_ms") is not None:
+                if (
+                    not self.omit_response_timeout
+                    and self.response_replayed is not NO_REPLAYED
+                ):
+                    response["timeout_ms"] = (
+                        payload["timeout_ms"]
+                        if self.response_timeout_override is NO_TIMEOUT_OVERRIDE
+                        else self.response_timeout_override
+                    )
                 if not self.omit_response_effective_deadline:
                     response["effective_deadline_ms"] = (
                         self.response_effective_deadline_override
@@ -421,6 +446,169 @@ def test_untimed_solve_forbids_effective_deadline(
         match="effective_deadline_ms",
     ):
         active.solve()
+
+
+@pytest.mark.parametrize("status", ["SAT", "UNSAT", "UNKNOWN"])
+def test_current_sat_contract_accepts_builtin_false_without_effective_deadline(
+    tmp_path: Path, status: str
+) -> None:
+    transport = FakeSessionTransport(
+        status=status,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    assert active.solve(timeout_ms=25).status == status
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(
+            response_replayed=False,
+            omit_response_timeout=True,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            response_replayed=False,
+            response_timeout_override=24,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            response_replayed=False,
+            response_timeout_override=True,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            response_replayed=False,
+            response_timeout_override=25.0,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            response_replayed=False,
+            response_timeout_override=-1,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+    ],
+)
+def test_current_sat_contract_exactly_binds_response_timeout(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="schema|timeout_ms"
+    ):
+        active.solve(timeout_ms=25)
+
+
+class _IntSubclass(int):
+    pass
+
+
+@pytest.mark.parametrize(
+    "replayed",
+    [NO_REPLAYED, True, 0, 0.0, "false", _IntSubclass(0)],
+)
+def test_current_sat_contract_rejects_inexact_replayed(
+    tmp_path: Path, replayed: Any
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=replayed,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="schema|replayed",
+    ):
+        active.solve(timeout_ms=25)
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(
+            response_replayed=False,
+            response_effective_deadline_override=30_025,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            response_replayed=False,
+            omit_response_effective_deadline=True,
+            receipt_effective_deadline_override=30_025,
+        ),
+    ],
+)
+def test_current_sat_contract_forbids_any_effective_deadline(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="inexact schema",
+    ):
+        active.solve(timeout_ms=25)
+
+
+@pytest.mark.parametrize("timeout", [24, True, 25.0])
+def test_current_sat_contract_exactly_binds_receipt_timeout(
+    tmp_path: Path, timeout: Any
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+        receipt_timeout_override=timeout,
+    )
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="timeout_ms"):
+        active.solve(timeout_ms=25)
+
+
+def test_current_sat_contract_rejects_timeout_subclass_before_transport(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    calls_before = list(transport.calls)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="timeout_ms"):
+        active.solve(timeout_ms=_IntSubclass(25))
+    assert transport.calls == calls_before
 
 
 def test_session_solver_binary_cannot_drift_during_custody(tmp_path: Path) -> None:
@@ -939,6 +1127,41 @@ def test_malformed_close_response_reconciles_without_double_delete(
     active.close()
     assert transport.closed is True
     assert transport.close_calls == 1
+
+
+def test_committed_close_custody_mismatch_never_retries_delete_or_get(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=True,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="replayed"):
+        active.solve(timeout_ms=25)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="remote session state is not the local logical state",
+    ):
+        active.close()
+    session_gets_before = sum(
+        method == "GET" and path == f"sessions/{SESSION}"
+        for method, path, _ in transport.calls
+    )
+    active.close()
+    assert transport.close_calls == 1
+    assert (
+        sum(
+            method == "GET" and path == f"sessions/{SESSION}"
+            for method, path, _ in transport.calls
+        )
+        == session_gets_before
+    )
 
 
 def test_custody_root_must_be_private_to_current_user(tmp_path: Path) -> None:
