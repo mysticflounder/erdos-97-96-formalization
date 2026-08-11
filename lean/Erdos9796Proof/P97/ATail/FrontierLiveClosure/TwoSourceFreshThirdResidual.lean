@@ -1151,6 +1151,107 @@ theorem false_of_freshThird_secondNonHit_of_capWideAlignment
       · exact deleted_not_mem hq1Mem
       · exact deleted_not_mem hq2Mem
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A non-hit constructor completely classifies its named source row relative
+to the canonical Q row: their blocker centers agree, or the centers are
+distinct and the exact-four supports overlap in at most two points.  Thus a
+three-overlap witness for the first-non-hit residual must come from a newly
+produced row rather than from the non-hit row itself. -/
+theorem freshThirdCapSourceNonHit_centerEq_or_inter_card_le_two
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (data : FreshThirdCapSourceNonHit P Pρ source Q) :
+    H.centerAt source.1 source.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2 ∨
+      (H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support).card ≤ 2) := by
+  cases data with
+  | sameBlocker center_eq _ => exact Or.inl center_eq
+  | sourceRowOmission deleted deleted_eq _ deletion_survives =>
+      have hne :
+          H.centerAt source.1 source.2 ≠
+            H.centerAt Q.source₁.1 Q.source₁.2 := by
+        rcases deleted_eq with rfl | rfl
+        · have hblockerNe :=
+            _root_.Problem97.ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+              H Q.source₁.2 deletion_survives
+          intro h
+          exact hblockerNe h.symm
+        · have hQCenters :
+              H.centerAt Q.source₁.1 Q.source₁.2 =
+                H.centerAt Q.source₂.1 Q.source₂.2 :=
+            congrArg Subtype.val Q.blockers_eq
+          have hblockerNe :=
+            _root_.Problem97.ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+              H Q.source₂.2 deletion_survives
+          intro h
+          exact hblockerNe (hQCenters.symm.trans h.symm)
+      exact Or.inr ⟨hne, SelectedFourClass.inter_card_le_two
+        (H.selectedAt source.1 source.2).toCriticalFourShell.toSelectedFourClass
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.toSelectedFourClass hne⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every positive cap-source interaction has the same local boundary as a
+non-hit row: it is the canonical Q blocker row, or its distinct-center
+exact-four support meets the Q support in at most two points.  The geometric
+interaction constructors in fact record the exact two-point intersection. -/
+theorem freshThirdCapSourceInteraction_centerEq_or_inter_card_le_two
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (interaction : FreshThirdCapSourceInteraction P Pρ source Q) :
+    H.centerAt source.1 source.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2 ∨
+      (H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support).card ≤ 2) := by
+  cases interaction with
+  | sameBlocker center_eq _ => exact Or.inl center_eq
+  | sourceRowOmission deleted deleted_eq _ deletion_survives =>
+      have hne :
+          H.centerAt source.1 source.2 ≠
+            H.centerAt Q.source₁.1 Q.source₁.2 := by
+        rcases deleted_eq with rfl | rfl
+        · have hblockerNe :=
+            _root_.Problem97.ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+              H Q.source₁.2 deletion_survives
+          intro h
+          exact hblockerNe h.symm
+        · have hQCenters :
+              H.centerAt Q.source₁.1 Q.source₁.2 =
+                H.centerAt Q.source₂.1 Q.source₂.2 :=
+            congrArg Subtype.val Q.blockers_eq
+          have hblockerNe :=
+            _root_.Problem97.ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+              H Q.source₂.2 deletion_survives
+          intro h
+          exact hblockerNe (hQCenters.symm.trans h.symm)
+      exact Or.inr ⟨hne, SelectedFourClass.inter_card_le_two
+        (H.selectedAt source.1 source.2).toCriticalFourShell.toSelectedFourClass
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.toSelectedFourClass hne⟩
+  | distinctBlockersDifferentCaps centers_ne _ _ overlap_eq _ _ _ _ _ =>
+      refine Or.inr ⟨centers_ne, ?_⟩
+      rw [overlap_eq]
+      have hvals : Q.source₁.1 ≠ Q.source₂.1 := by
+        intro h
+        exact Q.sources_ne (Subtype.ext h)
+      simp [hvals]
+  | sameCapWithInternalFiberSource centers_ne _ _ overlap_eq _ _ _ _ =>
+      refine Or.inr ⟨centers_ne, ?_⟩
+      rw [overlap_eq]
+      have hvals : Q.source₁.1 ≠ Q.source₂.1 := by
+        intro h
+        exact Q.sources_ne (Subtype.ext h)
+      simp [hvals]
+
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Exact global-incidence producer needed by the first-source non-hit branch.

@@ -272,21 +272,24 @@ package regains its banked B2/B3 normal forms as direct leaf targets
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` is
 source-clean and is not a separate leaf; it now delegates directly to
 `false_of_capSourceThirdCanonicalRowSurface`.  The public
-`false_of_freshCanonicalRowOverride`, fresh-third classifier, and one-sided
-six-center route remain checked compatibility material, but no longer narrow
-the live frontier.  This document records the consolidated source frontier
-only; no focused Lean 4.27 elaboration or fresh kernel/blueprint verification
-is claimed here.
+`false_of_freshCanonicalRowOverride` is now a live adapter on the
+crossed-seventh route: the escaping B7 point supplies the three canonical-row
+omissions, the override theorem enters the normalized-only FreshThird adapter,
+and the result reaches the pre-existing normalized FreshThird residual.  This
+source-closes the crossed-seventh U3 child without proving the inherited
+FreshThird leaves.  The fresh-third classifier and one-sided six-center route
+remain checked theorem-bank material rather than independent closure.
 
-### Recorded sorry inventory (snapshot; current count not asserted)
+### Recorded sorry inventory (historical snapshot)
 
 The package table above is historical.  The current closure gate is
-declaration- and spine-based, not a raw token count.  The 2026-08-10
-`proof-blueprint status` reports a stale index during the ongoing Lean
-refactor, so this plan deliberately does not assert an exact current kernel
-count.  The list below records 25 named residual leaves from the last
-reconciled family inventory; it may omit newly split or renamed leaves until a
-fresh build and `proof-blueprint refs --refresh` make the graph reproducible.
+declaration- and spine-based, not a raw token count.  After the crossed-seventh
+rewire, `proof-blueprint sync` completed at build hash `7dea73d9a2c3`, with the
+source and kernel call graphs matching.  The synchronized 2026-08-10 snapshot
+reports 35 on-spine open symbols and 41 effective declarations with `sorry`,
+down from 42 before the rewire.  The list below remains the older 25-leaf
+family inventory and is retained only as historical package bookkeeping; it
+is not the current kernel count.
 
 The 25 recorded leaves are:
 
@@ -7840,13 +7843,155 @@ No further FreshThird fan-out should be introduced unless a child is closed in
 the same change or the replacement theorem is a demonstrably stricter single
 residual, as at this checkpoint.
 
+### 13.24.1 FreshThird crossed-three-row seventh-center producer (2026-08-10)
+
+The crossed-three-row leaf has now been reduced source-cleanly to one strictly
+narrower residual.  The broad declaration
+`false_of_capSource_firstFiber_crossedThreeRowExactSupports` is proved by the
+following producer chain:
+
+1. `collisionFiveCenterFaithful_to_sixCenterFaithfulResidual` restores the
+   omitted collision-blocker row, placing all six exact selected rows in one
+   `FaithfulCarrierPattern`;
+2. `exists_freshThird_crossed_faithfulPatternEscape` chooses an escaping point
+   from a class of that same pattern; and
+3. `FirstFiberCrossedFaithfulPatternEscape.actualBlocker_ne_sixCenters` proves
+   that the escape point's actual blocker is distinct from the common crossed
+   row center, both first-source blocker centers, and all three indexed apices.
+
+The replacement terminal was
+`false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual`, whose
+input `FirstFiberCollisionCrossedSeventhBlockerResidual` retains, in each of
+the four deletion arms, the six-row faithful boundary, the escape witness, and
+the seventh actual blocker outside those six centers.  It was initially a
+one-for-one strict refinement.  The 2026-08-10 source-closure checkpoint below
+supersedes that intermediate status.
+
+The next source audit exposed a stronger common U3 ingress that bypassed the
+seventh-row case split.  It remains useful theorem-bank material, but the live
+closure no longer consumes it: the canonical-override route below is shorter
+and does not require a mixed-row or escape-cycle terminal.
+
+A fresh consumer audit found no existing theorem that accepts the seventh-
+blocker packet.  The source interface has nevertheless been sharpened without
+adding another terminal.  The boundary now provides:
+
+1. `escapeRow_actualBlockerRow_dichotomy`: the escaping faithful row has the
+   same center as the escape point's canonical actual-blocker row, or the two
+   rows have intersection cardinality one or two;
+2. `escapeRow_support_eq_actualBlockerRow_of_center_eq`: the equal-center arm
+   identifies the complete faithful supports;
+3. `actualBlockerClass_deletionFan` and `escapeClass_deletionFan`: both rows
+   carry source-faithful deletion fans;
+4. `exists_mutualCrossDeletionRows_of_escapeCenter_eq_oppApex1`: the
+   first-apex arm produces mutually surviving crossed deletions; and
+5. `exists_repeatedBlockerCap_pair_outcome`: the canonical seventh row has two
+   sources whose actual blockers lie in one strict cap, with the remaining
+   five-way blocker/cap/cross-deletion outcome made explicit.
+
+These are cardinality-independent producers, not contradictions.  On the
+supplementary seventh-row route, the shortest currently visible bridges remain
+any one of:
+
+1. both frontier points belong to the seventh blocker's canonical row, feeding
+   a third-center common-pair contradiction;
+2. that row has a three-point overlap with one installed faithful class,
+   feeding the existing faithful-pattern overlap bound; or
+3. the seventh row extends an installed arm to the exact five-row boundary
+   required by the existing blocker-outside-or-row consumer.
+
+The direct U3 ingress leaves one smaller universal terminal.  Its exact-radius
+obstruction has two constructors: a q-deleted exact four-row escaping the
+eight-point bounded support, or a `CriticalFourShell` with the dangerous-circle
+distribution bounds.  Existing source-clean reductions turn repeated escapes
+into either a mixed confined audit frame or a provenance-preserving step cycle
+of period at least four.  The mixed arm now supplies two confined q-deleted
+rows with intersection cardinality one or two, but no theorem forces the
+reciprocal or dangerous-center incidences needed by a contradiction consumer.
+The cycle arm retains its row/shell provenance, but no available metric,
+boundary-order, or rank theorem makes it a strict descent.  The existing
+rowwise-confinement terminal is only conditional: the present packet does not
+produce uniform confinement for every audit center.
+
+The first source-faithful two-arm diagnostic was run only after those ingress
+facts were available.  Its `equal_center` and `first_apex` arms are SAT in both
+Z3 and cvc5, with independent exact selected-field readback; malformed support
+mismatch and center-collapse controls are UNSAT in both solvers.  This is a
+finite Boolean incidence diagnostic only: it supplies neither a Euclidean
+realization nor exact-cardinality coverage, a universal lift, a counterexample,
+or Lean closure.  The target was already small enough for the solvers, so
+larger timeouts or further local decomposition would not change the result.
+
+The mandatory post-wave global theorem-bank search found no promoted consumer,
+exact-17 coverage theorem, or finite-to-universal lift for this packet.  The
+remaining U3-route obligations at that checkpoint were therefore explicit:
+
+1. close the direct U3 terminal by proving either the missing positive
+   incidences for the mixed two-row packet or a strict well-founded measure
+   ruling out every provenance-preserving escape cycle;
+2. alternatively, prove a source-faithful terminal consuming either the
+   equal-row/deletion-fan packet or the first-apex mutual-cross-deletion packet
+   on the supplementary seventh-row route;
+3. if finite exact-17 computation is used again, prove exhaustive coverage of
+   every admissible assignment rather than one frozen motif; and
+4. prove the general-cardinality obstruction or lift needed to reach the live
+   universal leaf.
+
+The current packet proves none of the positive incidences listed above.  In
+particular, distinct row centers supply only an intersection upper bound, while
+the two cross-deletion-survival arms in the repeated-cap outcome have no current
+consumer.  Do not run another local crossed-row/Kalmanson matrix: four of its
+six boundary matchings are impossible, while both monotone survivors have
+exact-rational strictly convex Euclidean realizations.  The next useful theorem
+must be a carrier-wide positive-incidence or blocker-transport producer for the
+mixed U3 rows or seventh row, or a strict descent/no-cycle theorem retaining
+enough row provenance to reach an existing terminal.
+
+#### 13.24.1.1 Source-closure checkpoint (2026-08-10)
+
+The crossed-seventh terminal is now proved without a replacement `sorry`.
+Every B7 arm already provides an escaping carrier point outside `namedSeed`.
+The three source-row support-to-`namedSeed` lemmas therefore give omission
+from the first collision row, the opposite collision row, and the cap-source
+row.  These omissions feed the extracted upstream
+`false_of_freshCanonicalRowOverride`, which now calls
+`false_of_capSource_freshThirdBlockerFiber_normalizedOnly`.  That adapter uses
+only the normalized FreshThird constructors and ends at the existing
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`; it does
+not call the generic core that previously created a dependency cycle.
+
+The resulting classification is source closure, not unconditional closure.
+The crossed-seventh U3 child and its anchored `sorry` are gone, while the
+already-existing normalized FreshThird leaves remain load-bearing.  A locked
+Lean 4.27 target build of `TwoSourceFirstFiberCollision` succeeds.  A fresh
+`proof-blueprint sync` at build hash `7dea73d9a2c3` reports matching source and
+kernel call graphs, 35 on-spine open symbols, and 41 effective declarations
+with `sorry`, down from 42 before this change.  The U3 mixed-row and cycle
+packets remain valid theorem-bank results, but are no longer a prerequisite for
+this live branch.
+
+The literal open anchor is now
+`TwoSourceExactCollisionRowsTerminal.
+exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three`.  It retains
+the acyclic canonical consumer packet, the first-source non-hit, and the
+second-source interaction, but states the exact missing positive incidence:
+a selected row at a center distinct from the canonical Q-row center overlaps
+the Q row in at least three points.  The former
+`false_of_freshThird_firstNonHit` declaration is now a proved compatibility
+adapter from that producer to the existing clean two-circle terminal, so all
+downstream callers are unchanged.  This rewrite does not reduce the open-sorry
+count; it makes the one remaining obligation explicit.  Do not introduce
+another local alignment producer or further case fan-out; computation is
+justified only after a source-faithful producer/consumer contract is stated
+and the global theorem bank has been searched.
+
 #### 13.24.1.2 First-non-hit retained-core audit (2026-08-10)
 
 The 128 source-labelled QF_LIA slices remain only a structural diagnostic:
 all 128 are `SAT` in Z3 and cvc5, while the malformed controls are `UNSAT`.
 They establish no Euclidean model, counterexample, finite coverage theorem,
-general-cardinality lift, Lean theorem, or closure of
-`false_of_freshThird_firstNonHit`.
+general-cardinality lift, Lean theorem, proof of the new overlap producer, or
+unconditional closure of `false_of_freshThird_firstNonHit`.
 
 The retained/common packet does not entail the previously proposed
 boundary/order bridge.  For the first source, the two non-hit constructors
@@ -7883,8 +8028,8 @@ The existing source-clean global multiplicity ingress
 TwoCollisionGlobalSplit)`; neither arm currently implies a terminal accepted
 by this residual.
 
-The precise clean landing contract is now a common-row overlap producer.  In
-the context of `false_of_freshThird_firstNonHit`, prove
+The precise clean landing contract is now the literal theorem
+`exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three`:
 
 ```lean
 ∃ source : CriticalShellSystem.CarrierVertex D.A,
@@ -7897,9 +8042,9 @@ the context of `false_of_freshThird_firstNonHit`, prove
 
 The source-clean terminal
 `false_of_centerAt_selectedFourClass_inter_card_ge_three` then closes the
-anchor immediately by taking the Q row as the selected four-class.  No current
-source-clean theorem supplies this producer from the retained/common ingress
-and the non-hit/interaction product.
+former `False` interface immediately by taking the Q row as the selected
+four-class.  No current source-clean theorem supplies this producer from the
+retained/common ingress and the non-hit/interaction product.
 
 Hard gate: do not repeat or enlarge the local 128-case incidence wave and do
 not add another alignment or case-split residual.  A new solver experiment is
@@ -7944,6 +8089,60 @@ three points, or a direct cyclic/metric contradiction of the exact-four normal
 form.  Repackaging the local deletion cores, splitting aliases, or rerunning
 the unchanged finite incidence abstraction cannot close the anchor.  This
 checkpoint is a negative theorem-bank audit and closes no `sorry`.
+
+#### 13.24.1.4 First-non-hit named-row exclusion (2026-08-11)
+
+Two source-clean production lemmas now formalize the complete local boundary
+for the two named canonical-source rows:
+
+* `freshThirdCapSourceNonHit_centerEq_or_inter_card_le_two`; and
+* `freshThirdCapSourceInteraction_centerEq_or_inter_card_le_two`.
+
+For every constructor of `FreshThirdCapSourceNonHit` and
+`FreshThirdCapSourceInteraction`, the named source row either has the same
+blocker center as the canonical Q row, or has a distinct center and support
+intersection of cardinality at most two with the Q row.  The omission arms use
+deletion survival to separate the blocker centers and then the generic
+two-circle intersection bound; the two geometric interaction arms already
+record the exact two-point intersection.  A Lean 4.27 check of
+`TwoSourceFreshThirdResidual.lean` succeeds, and scratch axiom checks of both
+lemmas report only `propext`, `Classical.choice`, and `Quot.sound`.
+
+Consequently neither `C.firstSource` nor `C.secondSource` can witness
+`exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three`.  Further
+splitting of the eight local constructor products cannot close the anchor.  A
+proof through the existing clean three-overlap terminal must produce a genuinely
+new selected row.
+
+The narrowest source-faithful global producer currently identified is a
+three-blocked-deletions theorem.  It must supply a carrier source whose blocker
+center differs from the Q-row center and a finite set `W` of at least three
+points in the Q-row support such that deletion of every `w ∈ W` is blocked at
+the new center:
+
+```lean
+∃ source : CriticalShellSystem.CarrierVertex D.A,
+  H.centerAt source.1 source.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2 ∧
+  ∃ W : Finset ℝ²,
+    W ⊆
+      (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support ∧
+    3 ≤ W.card ∧
+    ∀ w ∈ W,
+      ¬ HasNEquidistantPointsAt 4
+        (D.A.erase w) (H.centerAt source.1 source.2)
+```
+
+This packet reaches the live overlap producer without another geometric
+assumption: `source_mem_critical_support_of_no_qfree` puts every point of `W`
+in the new selected row, and `Finset.card_le_card` gives the required
+three-point intersection.  Existing carrier-wide K4 and source-faithful escape
+theorems do not yet produce the three blocked deletions at one distinct center;
+they provide a row or an escaping point without the required endpoint
+transport.  The next proof or computational theorem-mining step must therefore
+target this producer (or a direct clean metric contradiction), not another
+local case split.  This checkpoint strengthens the production theorem bank but
+does not close a `sorry`.
 
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
