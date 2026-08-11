@@ -15,8 +15,11 @@ Normal mode performs this fixed sequence:
 2. Make exactly one `POST /jobs/prepare-cnf`, with
    `requested_core_limit=1`. The exact response bytes are first preserved as
    `prepare-response.raw`; its UUID, preview, dimensions, blob digest, and raw
-   identity must match the current bundle. A response reporting `existing=true`
-   is rejected before any confirmation mutation. `prepared-job.json`
+   identity must match the current bundle. The daemon response must be a strict
+   JSON object with no duplicate keys, but its valid wire key order and
+   whitespace are preserved rather than required to be P97 canonical bytes.
+   A response reporting `existing=true` is rejected before any confirmation
+   mutation. `prepared-job.json`
    is written only after these checks.
 3. Rebind the exact base with one `GET /jobs/<uuid>/cnf`, then make exactly one
    `POST /jobs/confirm?job_id=<uuid>`. A create-once `confirm-intent.json`
@@ -36,6 +39,11 @@ Normal mode performs this fixed sequence:
    validate the current daemon/solver identities; record the confirm HTTP
    status and ordered status-file hashes; and write the canonical self-hashed
    `producer-result.json` last.
+
+The prepare response bytes are never rewritten or canonicalized. Canonical
+JSON is required for P97-owned custody artifacts such as `prepared-job.json`,
+confirmation intent/state, and the final result; every raw daemon response
+hash still covers the exact bytes received.
 
 The output also contains `base.cnf`, `variable-map.json`, `source-bundle.json`,
 `encoding-configuration.json`, `source-manifest.json`, `producer-manifest.json`,

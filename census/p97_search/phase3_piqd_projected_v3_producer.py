@@ -147,6 +147,12 @@ def _canonical_json(raw: bytes, label: str) -> dict[str, Any]:
     return value
 
 
+def _daemon_json(raw: bytes, label: str) -> dict[str, Any]:
+    """Parse daemon-owned JSON without imposing a byte-order convention."""
+
+    return _json(raw, label)
+
+
 def _uuid(value: object, label: str) -> str:
     if type(value) is not str:
         raise ProducerError(f"{label} is not a strict UUID")
@@ -962,7 +968,7 @@ def produce_projected_v3(
             except PiqdOracleError as exc:
                 raise ProducerError(f"prepare failed after raw custody: {exc}") from exc
             prepare_raw = custody.read(RAW_NAMES["prepare"], 1 << 20)
-            prepare_value = _canonical_json(prepare_raw, "prepare response")
+            prepare_value = _daemon_json(prepare_raw, "prepare response")
             _check_prepare(prepare_value, bundle=bundle)
             job_id = prepared.job_id
             custody.write(
@@ -977,7 +983,7 @@ def produce_projected_v3(
         else:
             prepare_raw, prepared_raw = _required_resume_prepare_custody(custody)
             _validate_static_custody(custody, bundle=bundle)
-            prepare_value = _canonical_json(prepare_raw, "prepare response")
+            prepare_value = _daemon_json(prepare_raw, "prepare response")
             _check_prepare(prepare_value, bundle=bundle)
             job_id = prepare_value["job_id"]
             prepared_raw = _canonical_json(prepared_raw, "prepared artifact")
@@ -1283,7 +1289,7 @@ def check_projected_v3_output(
         if result.get("static_artifact_sha256") != static_digests:
             raise ProducerError("offline static artifact hashes are crossed")
         prepare_raw = custody.read(RAW_NAMES["prepare"], 1 << 20)
-        prepare = _canonical_json(prepare_raw, "prepare response")
+        prepare = _daemon_json(prepare_raw, "prepare response")
         _check_prepare(prepare, bundle=bundle)
         if prepare.get("job_id") != result.get("job_id"):
             raise ProducerError("offline prepare UUID is crossed")

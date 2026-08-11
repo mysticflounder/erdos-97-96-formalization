@@ -393,6 +393,68 @@ def test_digest_numeric_and_existing_job_guards_are_strict() -> None:
         producer.ProducerPolicy(1, float("-inf"))
 
 
+def test_daemon_prepare_json_preserves_wire_order_without_canonicalizing() -> None:
+    raw = (
+        b'{"job_id":"00000000-0000-4000-8000-000000000001",'
+        b'"cnf_blob_hash":"' + b"0" * 64 + b'",'
+        b'"identity_hash":"' + b"1" * 64 + b'",'
+        b'"num_vars":3,"num_clauses":2,"preview":"p cnf 3 2\\n",'
+        b'"existing":false,"requested_core_limit":1}'
+    )
+    assert raw != canonical_json_bytes(json.loads(raw))
+    value = producer._daemon_json(raw, "prepare response")
+    assert list(value) == [
+        "job_id",
+        "cnf_blob_hash",
+        "identity_hash",
+        "num_vars",
+        "num_clauses",
+        "preview",
+        "existing",
+        "requested_core_limit",
+    ]
+
+    with pytest.raises(producer.ProducerError, match="valid JSON"):
+        producer._daemon_json(raw[:-1], "prepare response")
+    with pytest.raises(producer.ProducerError, match="valid JSON"):
+        producer._daemon_json(
+            raw.replace(b'"existing":false', b'"existing":false,"existing":false'),
+            "prepare response",
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [("existing", "1"), ("requested_core_limit", "1.0"), ("num_vars", "true")],
+)
+def test_prepare_schema_rejects_noncanonical_value_types(
+    field: str, replacement: str
+) -> None:
+    bundle = provisioning.build_current_unsharded_projected_v3_bundle()
+    preview = bundle.base_cnf[
+        : producer.qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+    ].decode("utf-8", errors="replace")
+    values = {
+        "job_id": "00000000-0000-4000-8000-000000000001",
+        "cnf_blob_hash": bundle.base_cnf_sha256,
+        "identity_hash": bundle.raw_dimacs_identity,
+        "num_vars": bundle.num_variables,
+        "num_clauses": bundle.num_clauses,
+        "preview": preview,
+        "existing": False,
+        "requested_core_limit": 1,
+    }
+    raw = json.dumps(values, separators=(",", ":"))
+    raw = raw.replace(
+        f'"{field}":{json.dumps(values[field])}',
+        f'"{field}":{replacement}',
+    ).encode()
+    with pytest.raises(producer.ProducerError):
+        producer._check_prepare(
+            producer._daemon_json(raw, "prepare response"), bundle=bundle
+        )
+
+
 def test_inventory_rejects_unexpected_control_entries(tmp_path: Path) -> None:
     output = tmp_path / "out"
     output.mkdir(mode=0o700)
@@ -612,19 +674,21 @@ def test_producer_path_records_confirmed_before_terminal_completion(
     registry = {"daemon": daemon, "solver_dir": "/opt/piqd", "solvers": [solver]}
     prepare_response = {
         "job_id": job_id,
-        "existing": False,
         "cnf_blob_hash": bundle.base_cnf_sha256,
         "identity_hash": bundle.raw_dimacs_identity,
         "num_vars": bundle.num_variables,
         "num_clauses": bundle.num_clauses,
         "preview": preview,
+        "existing": False,
         "requested_core_limit": 1,
     }
+    prepare_raw = json.dumps(prepare_response, separators=(",", ":")).encode()
+    assert prepare_raw != canonical_json_bytes(prepare_response)
 
     def inner(method: str, url: str, body: object, headers: object) -> HttpResponse:
         path = url.split("http://daemon", 1)[-1].split("?", 1)[0]
         if method == "POST" and path == "/jobs/prepare-cnf":
-            return _response(canonical_json_bytes(prepare_response))
+            return _response(prepare_raw)
         if method == "GET" and path == f"/jobs/{job_id}/cnf":
             return _response(bundle.base_cnf)
         if method == "POST" and path == "/jobs/confirm":
