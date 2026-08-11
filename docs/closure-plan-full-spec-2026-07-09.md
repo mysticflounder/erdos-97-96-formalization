@@ -66,6 +66,54 @@ Every checkpoint that changes this frontier must report:
 - production import and refreshed publish-spine reachability;
 - root axiom closure, including any approved native-decision trust boundary.
 
+#### Solver-aware decomposition and scheduling
+
+Solver parallelism is a secondary tractability criterion, never a substitute
+for the checked decomposition gate above. Do not describe the independent
+units as "clauses": CNF clauses are conjuncts of one formula and solving them
+separately generally changes the problem. The admissible units are named
+branches, cubes, constructor arms, or omission queries whose relationship to
+the parent is explicit.
+
+A solver-oriented split is eligible for promotion only when it records:
+
+1. a canonical finite branch universe with stable identifiers, duplicate
+   detection, and a kernel-checked or independently checked exhaustive cover;
+2. disjointness, or an explicit statement that overlap is allowed and cannot
+   hide a missing branch;
+3. the source-entitled parent formula, assumptions, variable map, and exact
+   branch-to-parent binding;
+4. a strictly decreasing mathematical frontier measure for every leaf, plus
+   measured solver data such as variable/clause counts, pilot wall time,
+   memory, proof size, and variance;
+5. evidence that every promoted leaf is inside the demonstrated capability
+   envelope of an available solver or checked proof route;
+6. a deterministic resource policy with one global core lease. Timeout,
+   resource exhaustion, missing hardware attestation, and backend ambiguity
+   are `UNKNOWN`, not mathematical failure; and
+7. an aggregate checked consumer. Any missing, malformed, duplicated, or
+   `UNKNOWN` leaf leaves the parent open.
+
+Choose the execution shape from measurements. Prefer one incremental session
+with assumptions, or one guarded batch, when leaves share a large base formula
+and learned-clause reuse is valuable. Prefer independent static jobs when
+leaves are genuinely self-contained or isolation is required for replay.
+Pilot deterministically before increasing fan-out, then refine only measured
+stragglers; equal branch counts and equal clause counts are not evidence of
+balanced cost. A split whose leaves retain the parent's timeout or resource
+profile is not proof progress. Stop splitting when repeated cores or models
+point to a single general theorem that subsumes the family.
+
+Every leaf retains the normal evidence boundary. A `SAT` result requires a
+total model and independent replay against source semantics. A solver `UNSAT`
+result remains discovery evidence until a fresh exact proof run and an
+independent certificate checker reach a source-entitled theorem consumer.
+Expected-SAT and expected-UNSAT controls, unconstrained-variable checks,
+baseline guards, and assumption/group perturbation tests are mandatory vacuity
+checks. Statement-bank leave-one-out may establish only inclusion-minimality
+relative to the supplied groups; it does not establish a cardinality or global
+minimum.
+
 ## Active E1 retained-omission decomposition (2026-08-02)
 
 This section supersedes the older monolithic E1 execution guidance.  The

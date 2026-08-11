@@ -18,6 +18,18 @@ PRODUCER = b'{"producer":"fake"}'
 SOURCE = b'{"source":"test"}'
 SESSION = "11111111-1111-4111-8111-111111111111"
 JOB_ID = "22222222-2222-4222-8222-222222222222"
+NO_SOLVER_STATS = object()
+
+
+def solver_stats() -> dict[str, int]:
+    return {
+        "vars": 2,
+        "active": 2,
+        "irredundant": 1,
+        "clauses_added": 0,
+        "solves": 0,
+        "solve_ms_total": 0,
+    }
 
 
 def _response(status: int, value: Any = None) -> incremental.HttpResponse:
@@ -52,6 +64,9 @@ class FakeSessionTransport:
         model_route_missing: bool = False,
         last_status_override: str | None = None,
         solver_sha256: str = "a" * 64,
+        session_label_override: str | None = None,
+        solver_stats_value: Any = NO_SOLVER_STATS,
+        solver_stats_methods: tuple[str, ...] = (),
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.job_id = job_id
@@ -75,6 +90,10 @@ class FakeSessionTransport:
         self.model_route_missing = model_route_missing
         self.last_status_override = last_status_override
         self.solver_sha256 = solver_sha256
+        self.session_label = session_label_override
+        self.capture_session_label = session_label_override is None
+        self.solver_stats_value = solver_stats_value
+        self.solver_stats_methods = frozenset(solver_stats_methods)
         self._append_lost = False
         self._solve_receipts_lost = False
         self.close_calls = 0
@@ -83,9 +102,16 @@ class FakeSessionTransport:
         self._close_lost = False
         self._close_malformed = False
 
-    def _session(self) -> dict[str, Any]:
+    def _session(self, *, method: str) -> dict[str, Any]:
         latest = self.receipts[-1] if self.receipts else None
-        return {
+        last_status = (
+            self.last_status_override
+            if self.last_status_override is not None
+            else latest["status"]
+            if latest
+            else None
+        )
+        session = {
             "id": SESSION,
             "lane": "sat",
             "state": "closed" if self.closed else "live",
@@ -99,23 +125,21 @@ class FakeSessionTransport:
             "clauses": len(self.clauses),
             "max_var": self.variable_count,
             "solves": len(self.receipts),
-            "last_status": (
-                self.last_status_override
-                if self.last_status_override is not None
-                else latest["status"]
-                if latest
-                else None
-            ),
+            "last_status": last_status,
             "declared_num_vars": 2,
             "last_solve_index": latest["solve_index"] if latest else None,
             "last_assumption_free": True if latest else None,
             "last_terminal_unsat": (
-                latest["status"] == "UNSAT" and latest.get("core") == []
+                latest.get("core") == [] if last_status == "UNSAT" else None
             )
             if latest
             else None,
-            "label": "fake",
+            "label": self.session_label,
         }
+        if method in self.solver_stats_methods:
+            assert self.solver_stats_value is not NO_SOLVER_STATS
+            session["solver_stats"] = self.solver_stats_value
+        return session
 
     def _cnf(self) -> bytes:
         lines = [f"p cnf {self.variable_count} {len(self.clauses)}\n"]
@@ -145,13 +169,15 @@ class FakeSessionTransport:
                 "seed_blob_hash": self.job_blob_hash,
                 "solver": "fake-cadical",
             }
-            session = self._session()
+            if self.capture_session_label:
+                self.session_label = payload["label"]
+            session = self._session(method=method)
             if self.create_malformed:
                 session.pop("solver_name")
             return _response(201, session)
         if path == f"sessions/{SESSION}":
             if method == "GET":
-                return _response(200, self._session())
+                return _response(200, self._session(method=method))
             if method == "DELETE":
                 self.close_calls += 1
                 if self.close_404:
@@ -165,7 +191,7 @@ class FakeSessionTransport:
                     self.closed = True
                     return incremental.HttpResponse(200, b"not-json", {})
                 self.closed = True
-                return _response(200, self._session())
+                return _response(200, self._session(method=method))
         if method == "GET" and path == f"sessions/{SESSION}/cnf":
             return incremental.HttpResponse(200, self._cnf(), {})
         if method == "GET" and path == f"sessions/{SESSION}/model":
@@ -316,6 +342,163 @@ def test_session_solver_binary_cannot_drift_during_custody(tmp_path: Path) -> No
         incremental.PiqdIncrementalDiscoveryError, match="solver binary changed"
     ):
         active.solve()
+
+
+@pytest.mark.parametrize(
+    ("status", "core", "expected", "tampered"),
+    [
+        ("SAT", None, None, False),
+        ("UNKNOWN", None, None, True),
+        ("UNSAT", [], True, False),
+        ("UNSAT", [1], False, True),
+    ],
+)
+def test_last_terminal_unsat_preserves_rust_tristate_and_rejects_tampering(
+    tmp_path: Path,
+    status: str,
+    core: list[int] | None,
+    expected: bool | None,
+    tampered: bool,
+) -> None:
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    receipt: dict[str, Any] = {"status": status, "solve_index": 1}
+    if core is not None:
+        receipt["core"] = core
+    transport.receipts.append(receipt)
+    active._solve_count = 1
+    active._journal_solves.append(
+        {"status": status, "solve_index": 1, "receipt": receipt}
+    )
+    payload = transport._session(method="GET")
+    assert payload["last_terminal_unsat"] is expected
+    active._check_session_descriptor(payload, status_get=True)
+    payload["last_terminal_unsat"] = tampered
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="remote session last-solve state is not bound",
+    ):
+        active._check_session_descriptor(payload, status_get=True)
+
+
+def test_live_status_accepts_exact_solver_stats_without_clause_cross_binding(
+    tmp_path: Path,
+) -> None:
+    stats = solver_stats()
+    stats["clauses_added"] = 91
+    transport = FakeSessionTransport(
+        solver_stats_value=stats,
+        solver_stats_methods=("GET",),
+    )
+    result = runner(tmp_path, transport).solve()
+    assert result.status == "SAT"
+
+
+@pytest.mark.parametrize(
+    "bad_stats",
+    [
+        None,
+        [],
+        {key: value for key, value in solver_stats().items() if key != "vars"},
+        {**solver_stats(), "future_counter": 0},
+    ],
+)
+def test_status_rejects_malformed_or_inexact_solver_stats(
+    tmp_path: Path, bad_stats: Any
+) -> None:
+    transport = FakeSessionTransport(
+        solver_stats_value=bad_stats,
+        solver_stats_methods=("GET",),
+    )
+    active = runner(tmp_path, transport)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="solver_stats"):
+        active.solve()
+
+
+@pytest.mark.parametrize("bad_value", [True, 1.0, -1])
+def test_status_rejects_non_builtin_or_negative_solver_stat_values(
+    tmp_path: Path, bad_value: Any
+) -> None:
+    stats = solver_stats()
+    stats["vars"] = bad_value
+    transport = FakeSessionTransport(
+        solver_stats_value=stats,
+        solver_stats_methods=("GET",),
+    )
+    active = runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="builtin integer"
+    ):
+        active.solve()
+
+
+def test_status_rejects_integer_subclass_solver_stat(tmp_path: Path) -> None:
+    class IntegerSubclass(int):
+        pass
+
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    payload = transport._session(method="GET")
+    stats: dict[str, Any] = solver_stats()
+    stats["vars"] = IntegerSubclass(2)
+    payload["solver_stats"] = stats
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="builtin integer"
+    ):
+        active._check_session_descriptor(payload, reconcile=True, status_get=True)
+
+
+def test_solver_stats_are_not_interpreted_before_worker_identity_rebind(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    payload = transport._session(method="GET")
+    payload["solver_signature"] = "different-worker-profile"
+    # PIQD treats this telemetry as opaque.  Its caller-selected schema must not
+    # be interpreted until the session's worker identity has been rebound.
+    payload["solver_stats"] = {"opaque": 0}
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="signature changed"
+    ):
+        active._check_session_descriptor(payload, reconcile=True, status_get=True)
+
+
+def test_create_rejects_status_only_solver_stats(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(
+        solver_stats_value=solver_stats(),
+        solver_stats_methods=("POST",),
+    )
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="wrong keys"):
+        runner(tmp_path, transport)
+    assert transport.close_calls == 1
+
+
+def test_close_rejects_status_only_solver_stats(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(
+        solver_stats_value=solver_stats(),
+        solver_stats_methods=("DELETE",),
+    )
+    active = runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="inexact schema"
+    ):
+        active.close()
+
+
+def test_closed_status_rejects_solver_stats(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(
+        close_transport_loss=True,
+        solver_stats_value=solver_stats(),
+        solver_stats_methods=("GET",),
+    )
+    active = runner(tmp_path, transport)
+    with pytest.raises(RuntimeError, match="transport loss"):
+        active.close()
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="live SAT status"
+    ):
+        active.close()
 
 
 def test_receipt_base_binds_headerless_live_journal_not_exported_cnf(
@@ -470,6 +653,25 @@ def test_job_scoped_route_binds_exact_job_hash_and_bytes(tmp_path: Path) -> None
     assert all(path != f"blobs/{hashlib.sha256(SEED).hexdigest()}" for path in paths)
 
 
+def test_session_label_rejects_crossed_same_blob_producer(tmp_path: Path) -> None:
+    crossed = incremental.DiscoveryDescriptor(
+        seed_cnf=SEED,
+        producer_manifest=PRODUCER,
+        source_manifest=SOURCE,
+        solver_name="fake-cadical",
+        producer_job_id="33333333-3333-4333-8333-333333333333",
+    )
+    transport = FakeSessionTransport(
+        session_label_override=f"{incremental.SCHEMA}:{crossed.descriptor_root}"
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="descriptor-rooted"
+    ):
+        runner(tmp_path, transport)
+    assert transport.job_cnf == SEED
+    assert transport.close_calls == 1
+
+
 def test_empty_clause_unsat_and_malformed_terminals_fail_closed(tmp_path: Path) -> None:
     empty_seed = b"p cnf 2 1\n0\n"
     empty_descriptor = incremental.DiscoveryDescriptor(
@@ -602,11 +804,13 @@ def test_create_failure_with_recovered_uuid_closes_once(tmp_path: Path) -> None:
     assert transport.close_calls == 1
 
 
-def test_close_is_idempotent_and_accepts_current_session_404(tmp_path: Path) -> None:
+def test_close_rejects_404_instead_of_treating_it_as_custody(tmp_path: Path) -> None:
     transport = FakeSessionTransport(close_404=True)
     active = runner(tmp_path, transport)
-    active.close()
-    active.close()
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="returned HTTP 404"
+    ):
+        active.close()
     assert transport.close_calls == 1
 
 

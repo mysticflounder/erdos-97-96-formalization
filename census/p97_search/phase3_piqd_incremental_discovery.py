@@ -580,6 +580,17 @@ SESSION_KEYS = {
     "last_terminal_unsat",
     "label",
 }
+# PIQD forwards solver_stats opaquely.  This is the exact telemetry profile
+# selected by this caller's SAT-worker adapter, not a daemon response schema.
+# Absence means only that worker telemetry was unavailable for that status read.
+CALLER_SATWORKER_STATS_KEYS = {
+    "vars",
+    "active",
+    "irredundant",
+    "clauses_added",
+    "solves",
+    "solve_ms_total",
+}
 RECEIPT_REQUIRED = {
     "solve_index",
     "base_clauses",
@@ -647,6 +658,7 @@ class PiqdIncrementalDiscoveryRunner:
         self._journal_tail: str | None = None
         self._journal_solves: list[Mapping[str, Any]] = []
         self._solver_sha256: str | None = None
+        self._solver_signature: str | None = None
         self._close_attempted = False
         self._close_uncertain = False
         self._closed = False
@@ -723,7 +735,7 @@ class PiqdIncrementalDiscoveryRunner:
         path: str,
         body: bytes | None = None,
         *,
-        allow_statuses: set[int] | None = None,
+        expected_status: int,
     ) -> HttpResponse:
         response = self._transport(
             method,
@@ -733,9 +745,7 @@ class PiqdIncrementalDiscoveryRunner:
         )
         if (
             type(response.status) is not int
-            or response.status < 200
-            or response.status >= 300
-            and (allow_statuses is None or response.status not in allow_statuses)
+            or response.status != expected_status
             or type(response.body) is not bytes
         ):
             detail = (
@@ -749,11 +759,19 @@ class PiqdIncrementalDiscoveryRunner:
         return response
 
     def _json(
-        self, method: str, path: str, body: Mapping[str, Any] | None = None
+        self,
+        method: str,
+        path: str,
+        body: Mapping[str, Any] | None = None,
+        *,
+        expected_status: int,
     ) -> dict[str, Any]:
         value = _strict_value(
             self._request(
-                method, path, None if body is None else _json_bytes(body)
+                method,
+                path,
+                None if body is None else _json_bytes(body),
+                expected_status=expected_status,
             ).body,
             label=f"PIQD {method} {path}",
         )
@@ -771,6 +789,7 @@ class PiqdIncrementalDiscoveryRunner:
                 "label": f"{SCHEMA}:{self.descriptor.descriptor_root}",
                 "seed_blob_hash": self.descriptor.seed_blob_hash,
             },
+            expected_status=201,
         )
         session_id = _uuid(payload.get("id"), label="session_id")
         self._session_id = session_id
@@ -789,8 +808,9 @@ class PiqdIncrementalDiscoveryRunner:
         creation: bool = False,
         reconcile: bool = False,
         closing: bool = False,
+        status_get: bool = False,
     ) -> None:
-        allowed = SESSION_KEYS | ({"solver_stats"} if not creation else set())
+        allowed = SESSION_KEYS | ({"solver_stats"} if status_get else set())
         if set(payload) - allowed or set(payload) & SESSION_KEYS != SESSION_KEYS:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD session response has an inexact schema"
@@ -802,6 +822,11 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError("PIQD session has an unknown state")
         if creation and payload["state"] != "live":
             raise PiqdIncrementalDiscoveryError("new PIQD session is not live")
+        expected_label = f"{SCHEMA}:{self.descriptor.descriptor_root}"
+        if _string(payload["label"], label="session.label") != expected_label:
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD session label is not descriptor-rooted"
+            )
         if payload["solver_name"] != self.descriptor.solver_name:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD session solver is not descriptor-rooted"
@@ -813,9 +838,36 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD session solver binary changed during custody"
             )
-        _string(
+        solver_signature = _string(
             payload["solver_signature"], label="session.solver_signature", nonempty=True
         )
+        if self._solver_signature is None:
+            self._solver_signature = solver_signature
+        elif self._solver_signature != solver_signature:
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD session solver signature changed during custody"
+            )
+        if "solver_stats" in payload:
+            if payload["state"] != "live" or payload["lane"] != "sat":
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD solver_stats requires a live SAT status response"
+                )
+            solver_stats = payload["solver_stats"]
+            if type(solver_stats) is not dict:
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD solver_stats must be an exact object"
+                )
+            _require_keys(
+                solver_stats,
+                CALLER_SATWORKER_STATS_KEYS,
+                label="PIQD solver_stats",
+            )
+            for key in CALLER_SATWORKER_STATS_KEYS:
+                _integer(
+                    solver_stats[key],
+                    label=f"PIQD solver_stats.{key}",
+                    minimum=0,
+                )
         _integer(
             payload["protocol_version"], label="session.protocol_version", minimum=1
         )
@@ -851,8 +903,6 @@ class PiqdIncrementalDiscoveryRunner:
             _boolean(
                 payload["last_terminal_unsat"], label="session.last_terminal_unsat"
             )
-        if payload["label"] is not None:
-            _string(payload["label"], label="session.label")
         if not creation and (not reconcile or closing):
             if payload["state"] == "closed" and not closing:
                 raise PiqdIncrementalDiscoveryError(
@@ -872,15 +922,16 @@ class PiqdIncrementalDiscoveryRunner:
                 )
             if self._solve_count:
                 latest = self._journal_solves[-1]
+                expected_terminal_unsat = (
+                    latest["receipt"].get("core") == []
+                    if latest["status"] == "UNSAT"
+                    else None
+                )
                 if (
                     payload["last_status"] != latest["status"]
                     or payload["last_solve_index"] != latest["solve_index"]
                     or payload["last_assumption_free"] is not True
-                    or payload["last_terminal_unsat"]
-                    != (
-                        latest["status"] == "UNSAT"
-                        and latest["receipt"].get("core") == []
-                    )
+                    or payload["last_terminal_unsat"] != expected_terminal_unsat
                 ):
                     raise PiqdIncrementalDiscoveryError(
                         "remote session last-solve state is not bound"
@@ -902,6 +953,7 @@ class PiqdIncrementalDiscoveryRunner:
         response = self._request(
             "GET",
             f"/jobs/{self.descriptor.producer_job_id}/blobs/{self.descriptor.seed_blob_hash}",
+            expected_status=200,
         )
         if (
             response.body != self.descriptor.seed_cnf
@@ -912,7 +964,9 @@ class PiqdIncrementalDiscoveryRunner:
             )
 
     def _export(self) -> tuple[int, tuple[tuple[int, ...], ...]]:
-        response = self._request("GET", f"/sessions/{self._session_id}/cnf")
+        response = self._request(
+            "GET", f"/sessions/{self._session_id}/cnf", expected_status=200
+        )
         variables, clauses = parse_dimacs(response.body)
         self._remote_cnf = response.body
         self._remote_cnf_sha256 = _sha256(response.body)
@@ -1275,10 +1329,14 @@ class PiqdIncrementalDiscoveryRunner:
         self._solve_count = len(self._journal_solves)
 
     def _revive(self) -> None:
-        session = self._json("GET", f"/sessions/{self._session_id}")
-        self._check_session_descriptor(session, reconcile=True)
+        session = self._json(
+            "GET", f"/sessions/{self._session_id}", expected_status=200
+        )
+        self._check_session_descriptor(session, reconcile=True, status_get=True)
         self._reconcile_remote_frontier()
-        payload = self._json("GET", f"/sessions/{self._session_id}/receipts")
+        payload = self._json(
+            "GET", f"/sessions/{self._session_id}/receipts", expected_status=200
+        )
         _require_keys(
             payload,
             {
@@ -1356,7 +1414,9 @@ class PiqdIncrementalDiscoveryRunner:
                     )
                 try:
                     model_payload = self._json(
-                        "GET", f"/sessions/{self._session_id}/model"
+                        "GET",
+                        f"/sessions/{self._session_id}/model",
+                        expected_status=200,
                     )
                 except BaseException as exc:
                     raise PiqdIncrementalDiscoveryError(
@@ -1435,7 +1495,7 @@ class PiqdIncrementalDiscoveryRunner:
                     "closure_claim": False,
                 }
             )
-        self._check_session_descriptor(session)
+        self._check_session_descriptor(session, status_get=True)
         self._append_local(
             {
                 "event": "revive",
@@ -1456,6 +1516,7 @@ class PiqdIncrementalDiscoveryRunner:
             "POST",
             f"/sessions/{self._session_id}/clauses",
             {"clauses": [list(clause) for clause in additions]},
+            expected_status=200,
         )
         _require_keys(
             response, {"added", "clauses", "max_var"}, label="PIQD clause response"
@@ -1645,14 +1706,21 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError(
                 "SAT solve refuses unconstrained or vacuous variables"
             )
-        session_before = self._json("GET", f"/sessions/{self._session_id}")
-        self._check_session_descriptor(session_before, reconcile=True)
+        session_before = self._json(
+            "GET", f"/sessions/{self._session_id}", expected_status=200
+        )
+        self._check_session_descriptor(session_before, reconcile=True, status_get=True)
         request: dict[str, Any] = {"assumptions": [], "include_model": True}
         if timeout_ms is not None:
             request["timeout_ms"] = timeout_ms
         if conflict_limit is not None:
             request["conflict_limit"] = conflict_limit
-        response = self._json("POST", f"/sessions/{self._session_id}/solve", request)
+        response = self._json(
+            "POST",
+            f"/sessions/{self._session_id}/solve",
+            request,
+            expected_status=200,
+        )
         if set(response) - RESPONSE_KEYS or not {
             "status",
             "solve_ms",
@@ -1731,7 +1799,9 @@ class PiqdIncrementalDiscoveryRunner:
                     "UNKNOWN terminal fields are malformed"
                 )
             assignment = ()
-        receipts = self._json("GET", f"/sessions/{self._session_id}/receipts")
+        receipts = self._json(
+            "GET", f"/sessions/{self._session_id}/receipts", expected_status=200
+        )
         _require_keys(
             receipts,
             {
@@ -1792,8 +1862,10 @@ class PiqdIncrementalDiscoveryRunner:
                 "closure_claim": False,
             }
         )
-        session_after = self._json("GET", f"/sessions/{self._session_id}")
-        self._check_session_descriptor(session_after)
+        session_after = self._json(
+            "GET", f"/sessions/{self._session_id}", expected_status=200
+        )
+        self._check_session_descriptor(session_after, status_get=True)
         return DiscoveryResult(
             status,
             assignment,
@@ -1852,7 +1924,9 @@ class PiqdIncrementalDiscoveryRunner:
 
         if self._close_uncertain:
             try:
-                payload = self._json("GET", f"/sessions/{self._session_id}")
+                payload = self._json(
+                    "GET", f"/sessions/{self._session_id}", expected_status=200
+                )
             except PiqdIncrementalDiscoveryError as exc:
                 # A transport/HTTP failure leaves the outcome unknown; retry
                 # the idempotent DELETE.  A malformed successful GET is not a
@@ -1867,42 +1941,36 @@ class PiqdIncrementalDiscoveryRunner:
                 self._close_uncertain = True
             else:
                 if payload.get("state") == "closed":
-                    self._check_session_descriptor(payload, closing=True)
+                    self._check_session_descriptor(
+                        payload, closing=True, status_get=True
+                    )
                     self._closed = True
                     self._close_uncertain = False
                     return
-                self._check_session_descriptor(payload, reconcile=True)
+                self._check_session_descriptor(payload, reconcile=True, status_get=True)
 
         self._close_attempted = True
         try:
             response = self._request(
                 "DELETE",
                 f"/sessions/{self._session_id}",
-                allow_statuses={404},
+                expected_status=200,
             )
         except BaseException:
             self._close_uncertain = True
             raise
-        if response.status == 404:
-            self._closed = True
-            self._close_uncertain = False
-            return
-        if response.status in {200, 202}:
-            try:
-                payload = _strict_value(response.body, label="PIQD close")
-                if not isinstance(payload, dict):
-                    raise PiqdIncrementalDiscoveryError(
-                        "PIQD close response must be a session object"
-                    )
-                self._check_session_descriptor(payload, closing=True)
-            except BaseException:
-                self._close_uncertain = True
-                raise
-            self._closed = True
-            self._close_uncertain = False
-            return
-        self._close_uncertain = True
-        raise PiqdIncrementalDiscoveryError("PIQD close returned an unsupported status")
+        try:
+            payload = _strict_value(response.body, label="PIQD close")
+            if not isinstance(payload, dict):
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD close response must be a session object"
+                )
+            self._check_session_descriptor(payload, closing=True)
+        except BaseException:
+            self._close_uncertain = True
+            raise
+        self._closed = True
+        self._close_uncertain = False
 
     def close(self) -> None:
         self._close_session_once()
