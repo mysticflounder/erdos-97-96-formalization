@@ -67,6 +67,94 @@ terminal bank or terminal RUP/UNSAT certificate consumed through these typed
 jobs.  There is still no terminal UNSAT cell, all-cell learned-bank coverage,
 arbitrary-cardinality lift, or live closure.
 
+Exact-12 next-row route change (2026-08-10): the next implementation target is
+the fresh-schema static equality-closure extension specified in
+[the exact-12 nextRow static-equality goal](specs/p97-exact12-next-row-static-equality-v1.md).
+The earlier shorthand “shared-triple clauses” was misleading: direct overlap
+of two selected supports in three labels is already excluded by base C2.  The
+dominant learned cuts instead use transitive equality among the 66 metric
+edges.  The v1 extension therefore adds 2,145 edge-relation variables, 18,240
+selected-row implications, 137,280 transitivity clauses, and 7,920
+duplicate-center obstructions (163,440 clauses total).  It deliberately omits
+the scratch benchmark's optional K4, bisector, triad, and ordered families.
+Historical nextRow schemas and artifacts remain frozen.  The fresh v1 runner
+now installs the extension before hashing its initial formula, binds the
+compiler and variable-map digests, admits only generated Lean-backed
+source-order cuts, and fails closed while preserving every other survivor.
+Its job/cut/run schemas are respectively
+`p97_rigid221_exact12_next_row_static_cegar_job.v1`,
+`p97_rigid221_exact12_next_row_static_source_order_cut.v1`, and
+`p97_rigid221_exact12_next_row_static_cegar_run.v1`.  It does not borrow the
+historical terminal consumer: records leave `terminal_formula_consumer` null,
+and even identical-CNF checked DRAT is classified
+`UNSAT_DRAT_VERIFIED_AWAITING_LEAN_STATIC_VALUATION`.  Focused validation is 13
+tests plus 12 subtests, with Ruff clean.  Before a terminal result can close the
+leaf, Lean must prove the auxiliary squared-distance-equality valuation and
+exact terminal-formula equality.  This is finite infrastructure, not that
+bridge, terminal UNSAT, or a closure result.
+
+Exact-12 next-row static-geometry v2 checkpoint (2026-08-10): the first
+source/CNF/static-replay-clean v1 cell-0 canary stopped on a five-label
+`equality-equilateral-bisector-collision`.  This did not expose missing
+geometry.  The source audit found the generic theorem, Boolean path checker,
+positive-row certificate constructor, and heterogeneous nextRow terminal
+consumer already present.  The canary has five distinct labels and the exact
+six required closure paths, so all source side conditions are available.  The
+new [v2 contract](specs/p97-exact12-next-row-static-geometry-v2.md) preserves
+the v1 bytes and appends one six-negative-literal relation clause for every
+ordered distinct `(p,a,b,c,x)`, namely all `12P5 = 95,040` instances.  It adds
+no variables.  Cell 0 is frozen at 44,875 variables, 626,939 clauses, final
+DIMACS SHA-256
+`c720f44cfd99ad25c01d1dcd1bee62d213c608983e66d04e751958fd94d421dd`,
+and v2-delta SHA-256
+`dc07e3eff4dc21b32d38e4ca8e1225e90210db62ce306e615b01f969fa4bbb9b`.
+Focused differential validation is 19 tests plus 12 subtests.  The v2 runner
+uses fresh run/job/cut/survivor schemas, binds the geometric Lean sources in
+its source inventory, admits only the live-attested source-order bank, and
+treats either static stage after SAT replay as an invariant failure.  The next
+gate is one fresh authenticated cell-0 canary followed immediately by a
+theorem-family search on its first survivor.  A twelve-cell expansion remains
+gated on that result.  This still lacks the whole-formula Lean equality
+valuation, proof-producing terminal UNSAT, exact terminal ingress, all-cell
+coverage, arbitrary-cardinality lift, and live `sorry` closure.
+
+Exact-12 next-row static-convex v3 checkpoint (2026-08-10): the authenticated
+v2 cell-0 canary completed every source/CNF/static replay gate and stopped on a
+three-witness `equality-perpendicular-bisector-convex` core. Given a
+squared-distance realization, carrier membership for every label, convex
+independence, and a checked `PerpBisectorCore`, the source theorem
+`false_of_convexIndep_of_perpBisectorCore` rules out three labels equidistant
+from a distinct focus pair. The
+new [v3 contract](specs/p97-exact12-next-row-static-convex-v3.md) preserves all
+v2 bytes and appends the complete detector-scope family
+`C(12,2) * C(10,3) = 7,920` of three-negative-literal equality clauses. Cell 0
+is frozen at 44,875 variables, 634,859 clauses, final DIMACS SHA-256
+`0d4ab5fa17a63ef862533615eb534b0fb4be5892052788e2a47477e7bd250ff9`,
+and v3-delta SHA-256
+`49e6e5d5b8b4c68f7bccb0356d5bf38ce9ee25b0397fe555a00f9cddb2fbafa2`.
+A generic Boolean equality-path certificate and a separate typed
+`SourceOrderPositiveNogood` adapter are source-authored without altering the
+hash-pinned historical terminal-bank consumer. The first authenticated cell-0
+v3 canary completed `SAT` and `STRUCTURALLY_UNRESOLVED`, with zero learned
+records and no terminal proof. Three subsequent exact-row refinements also
+remain `SAT`. The latest survivor has a sound positive-membership union at five
+centers covering all 48 source orders; the tempting smaller A/B-only cut covers
+only 36 orders and was rejected. The generic pattern-CNF theorem and concrete
+five-variable adapter elaborate in an isolated scratch overlay. An
+authenticated v2 bank binds their three Lean sources and a 117-clause delta
+(44,875/634,859 to 44,880/634,976), with bank SHA-256
+`553c0f6861c6e6186cd5e59f276a68f0031f9f0575fd7baed9d711f7ac9e7d94`.
+Focused Python validation is Ruff-clean with 12 tests passing. The bank records
+`LEAN_PATTERN_CNF_BRIDGE_COMPLETE_AWAITING_STATIC_PARENT_VALUATION`; every
+terminal, UNSAT, lift, live-closure, and runner-integration claim remains false.
+The next exact gate is the generated-layout edge-closure valuation and its
+duplicate-center, equilateral-bisector, and perpendicular-bisector clause-family
+theorems. The shared full build remains blocked upstream by the ongoing
+Rigid221 refactor, so isolated elaboration is not a transitive-axiom or
+live-spine audit. All-cell expansion remains gated on source-clean whole-formula
+ingress; no terminal UNSAT, aggregate exact-12 coverage, cardinality lift, or
+live `sorry` closure is claimed.
+
 Five-omission v3 checkpoint (2026-08-10): the authenticated twelve-shard wave
 completed 275 local refinements in every deleted-label shard.  Every run ended
 `ITERATION_LIMIT`, with no terminal proof.  Each run produced 259

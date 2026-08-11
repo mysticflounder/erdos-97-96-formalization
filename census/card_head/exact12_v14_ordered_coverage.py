@@ -3271,6 +3271,330 @@ MIXED_V7_CELL8_TWENTY_FIFTH_LEAN_BINDING = {
     "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
 }
 
+NEXT_ROW_CELL3_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "nextRowCell3PositiveNogood"
+)
+NEXT_ROW_CELL3_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.sourceOrderCoverage_nextRowCell3"
+)
+NEXT_ROW_CELL3_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221NextRowCell3PositiveCut.lean"
+)
+NEXT_ROW_CELL3_LEAN_SOURCE_BYTES = 15025
+NEXT_ROW_CELL3_LEAN_SOURCE_SHA256 = (
+    "eb1b721565107849223a7ef92b5f94aa3d16a5ace0d16d3bfe46c3f139a231bb"
+)
+NEXT_ROW_CELL3_CUBE = {
+    "0": [1, 3, 4, 5],
+    "1": [2, 6, 8, 10],
+    "2": [0, 4, 10, 11],
+    "3": [2, 7, 8, 11],
+    "4": [7, 9, 10, 11],
+    "5": [0, 3, 8, 10],
+    "6": [2, 3, 5, 9],
+    "7": [0, 1, 6, 8],
+    "8": [1, 6, 9, 11],
+    "9": [0, 4, 5, 6],
+    "10": [5, 7, 8, 9],
+    "11": [1, 2, 5, 10],
+}
+NEXT_ROW_CELL3_CUBE_SHA256 = _sha256_json(NEXT_ROW_CELL3_CUBE)
+NEXT_ROW_CELL3_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(NEXT_ROW_CELL3_CUBE[str(center)]),
+    }
+    for center in (0, 1, 2, 4, 5, 6, 7, 9, 10, 11)
+]
+NEXT_ROW_CELL3_LEAN_BINDING = {
+    "cube_sha256": NEXT_ROW_CELL3_CUBE_SHA256,
+    "nogood_declaration": NEXT_ROW_CELL3_LEAN_NOGOOD,
+    "coverage_declaration": NEXT_ROW_CELL3_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": NEXT_ROW_CELL3_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 0, "x": 3, "b": 5, "c": 6, "y": 9},
+        {"a": 0, "x": 2, "b": 10, "c": 11, "y": 5},
+        {"a": 0, "x": 9, "b": 5, "c": 6, "y": 3},
+    ],
+    "source_path": NEXT_ROW_CELL3_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_CELL3_LEAN_SOURCE_BYTES,
+    "source_sha256": NEXT_ROW_CELL3_LEAN_SOURCE_SHA256,
+    "coverage_source_path": NEXT_ROW_CELL3_LEAN_SOURCE,
+    "coverage_source_bytes": NEXT_ROW_CELL3_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": NEXT_ROW_CELL3_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "nextRowStaticConvexCell0PositiveNogood"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.sourceOrderCoverage_nextRowStaticConvexCell0"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221NextRowStaticConvexCell0PositiveCut.lean"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_BYTES = 10489
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_SHA256 = (
+    "41bd3cc784bbb16e37f5e37401ae5172835ced4edb6737ba4f7bf57a11de0672"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_CUBE = {
+    "0": [2, 3, 4, 11],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [0, 4, 5, 6],
+    "4": [0, 2, 3, 10],
+    "5": [0, 1, 7, 10],
+    "6": [0, 5, 7, 9],
+    "7": [1, 4, 6, 8],
+    "8": [1, 5, 6, 9],
+    "9": [2, 4, 7, 8],
+    "10": [0, 3, 8, 9],
+    "11": [3, 6, 7, 9],
+}
+NEXT_ROW_STATIC_CONVEX_CELL0_CUBE_SHA256 = _sha256_json(
+    NEXT_ROW_STATIC_CONVEX_CELL0_CUBE
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(NEXT_ROW_STATIC_CONVEX_CELL0_CUBE[str(center)]),
+    }
+    for center in (1, 3, 5, 6, 7, 10, 11)
+]
+NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING = {
+    "cube_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_CUBE_SHA256,
+    "nogood_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_NOGOOD,
+    "coverage_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 4, "x": 3, "b": 6, "c": 11, "y": 7},
+        {"a": 4, "x": 7, "b": 6, "c": 11, "y": 3},
+        {"a": 7, "x": 6, "b": 0, "c": 3, "y": 5},
+        {"a": 8, "x": 1, "b": 0, "c": 5, "y": 10},
+    ],
+    "source_path": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_BYTES,
+    "source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_SHA256,
+    "coverage_source_path": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE,
+    "coverage_source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "nextRowStaticConvexCell0SecondPositiveNogood"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.sourceOrderCoverage_nextRowStaticConvexCell0Second"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221NextRowStaticConvexCell0SecondPositiveCut.lean"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_BYTES = 9728
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_SHA256 = (
+    "a6adc9203003e8f6f46d006b1fbff07467e794b9b64a157513e480cf89f78849"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE = {
+    "0": [2, 3, 4, 11],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [0, 4, 5, 6],
+    "4": [0, 2, 3, 10],
+    "5": [1, 4, 7, 10],
+    "6": [0, 5, 7, 9],
+    "7": [1, 4, 6, 8],
+    "8": [1, 5, 6, 9],
+    "9": [2, 4, 7, 8],
+    "10": [0, 3, 8, 9],
+    "11": [3, 6, 7, 9],
+}
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE_SHA256 = _sha256_json(
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE[str(center)]),
+    }
+    for center in (3, 5, 6, 7, 9, 11)
+]
+NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING = {
+    "cube_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE_SHA256,
+    "nogood_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_NOGOOD,
+    "coverage_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 4, "x": 3, "b": 6, "c": 11, "y": 7},
+        {"a": 4, "x": 7, "b": 6, "c": 11, "y": 3},
+        {"a": 4, "x": 9, "b": 7, "c": 6, "y": 5},
+    ],
+    "source_path": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_BYTES,
+    "source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_SHA256,
+    "coverage_source_path": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE,
+    "coverage_source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "nextRowStaticConvexCell0ThirdPositiveNogood"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_COVERAGE = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FrozenBoundaryOrder.sourceOrderCoverage_nextRowStaticConvexCell0Third"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221NextRowStaticConvexCell0ThirdPositiveCut.lean"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES = 13263
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256 = (
+    "f50dbefb027d0f6b4172aeb3683333e64f09fe3a05241e9441a86eec907166a7"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE = {
+    "0": [2, 3, 4, 11],
+    "1": [0, 2, 6, 8],
+    "2": [3, 7, 10, 11],
+    "3": [0, 4, 5, 6],
+    "4": [0, 2, 3, 10],
+    "5": [0, 7, 9, 10],
+    "6": [4, 9, 10, 11],
+    "7": [1, 4, 6, 8],
+    "8": [1, 5, 6, 9],
+    "9": [2, 4, 7, 8],
+    "10": [0, 3, 8, 9],
+    "11": [3, 6, 7, 9],
+}
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE_SHA256 = _sha256_json(
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_CHOICES = [
+    {
+        "center": center,
+        "support": list(NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE[str(center)]),
+    }
+    for center in (3, 6, 7, 10, 11)
+]
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING = {
+    "cube_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE_SHA256,
+    "nogood_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_NOGOOD,
+    "coverage_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_COVERAGE,
+    "terminal_consumer_declaration": LEAN_TERMINAL_CONSUMER,
+    "choices": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 4, "x": 3, "b": 6, "c": 11, "y": 7},
+        {"a": 4, "x": 7, "b": 6, "c": 11, "y": 3},
+        {"a": 3, "x": 10, "b": 9, "c": 6, "y": 11},
+    ],
+    "source_path": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+    "source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
+    "coverage_source_path": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+    "coverage_source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
+    "consumer_source_path": FROZEN_V8_LEAN_CONSUMER_SOURCE,
+    "consumer_source_bytes": FROZEN_V8_LEAN_CONSUMER_SOURCE_BYTES,
+    "consumer_source_sha256": FROZEN_V8_LEAN_CONSUMER_SOURCE_SHA256,
+}
+
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_NOGOOD = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "nextRowStaticConvexCell0ThirdMembershipNogood"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_CHOICES = [
+    {"center": 3, "support": [4, 6]},
+    {"center": 6, "support": [9, 10, 11]},
+    {"center": 7, "support": [4, 6]},
+    {"center": 10, "support": [3, 9]},
+    {"center": 11, "support": [3, 6, 7, 9]},
+]
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221NextRowStaticConvexCell0ThirdMembershipCnf.lean"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE_BYTES = 9535
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE_SHA256 = (
+    "b9aeb1892d424bdd9fa493feb7929476f4526257b2f8414cfd3fc2f92e3fd55b"
+)
+POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221PositiveMembershipCnfBridge.lean"
+)
+POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE_BYTES = 13661
+POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE_SHA256 = (
+    "b09558c27f71bd3eef6d79ed771438066bedb7cdea759b00e49050e08f912987"
+)
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_BRIDGE = {
+    "schema": "p97_exact12_positive_membership_lean_bridge.v1",
+    "implication_satisfaction_declaration": (
+        "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+        "NextRowStaticConvexCell0ThirdMembershipCnf.implicationDimacs_sat"
+    ),
+    "blocking_false_declaration": (
+        "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+        "NextRowStaticConvexCell0ThirdMembershipCnf."
+        "positiveRowsMatch_of_blockingClause_false"
+    ),
+    "source_path": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE_BYTES,
+    "source_sha256": (
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_SOURCE_SHA256
+    ),
+    "generic_source_path": POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE,
+    "generic_source_bytes": POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE_BYTES,
+    "generic_source_sha256": POSITIVE_MEMBERSHIP_CNF_BRIDGE_LEAN_SOURCE_SHA256,
+}
+NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_BINDING = {
+    "cube_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE_SHA256,
+    "nogood_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_NOGOOD,
+    "coverage_declaration": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_COVERAGE,
+    "choices": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_CHOICES,
+    "preferred_common_five_cores": [
+        {"a": 4, "x": 3, "b": 6, "c": 11, "y": 7},
+        {"a": 4, "x": 7, "b": 6, "c": 11, "y": 3},
+        {"a": 3, "x": 10, "b": 9, "c": 6, "y": 11},
+    ],
+    "source_path": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+    "source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+    "source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
+    "coverage_source_path": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+    "coverage_source_bytes": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+    "coverage_source_sha256": NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
+    "terminal_pattern_bridge": (
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_CNF_LEAN_BRIDGE
+    ),
+    "promotion_status": "LEAN_PATTERN_CNF_BRIDGE_COMPLETE_AWAITING_STATIC_PARENT_VALUATION",
+}
+
+PROOF_BACKED_MEMBERSHIP_BINDINGS = (
+    (
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_CHOICES,
+    ),
+)
+
 # Bank indices are authenticated journal data.  Never reorder existing entries;
 # append new proof-backed bindings so retained journals remain replayable.
 PROOF_BACKED_CUBE_BINDINGS = (
@@ -3549,6 +3873,26 @@ PROOF_BACKED_CUBE_BINDINGS = (
         MIXED_V7_CELL8_TWENTY_FIFTH_CUBE,
         MIXED_V7_CELL8_TWENTY_FIFTH_LEAN_BINDING,
         MIXED_V7_CELL8_TWENTY_FIFTH_LEAN_CHOICES,
+    ),
+    (
+        NEXT_ROW_CELL3_CUBE,
+        NEXT_ROW_CELL3_LEAN_BINDING,
+        NEXT_ROW_CELL3_LEAN_CHOICES,
+    ),
+    (
+        NEXT_ROW_STATIC_CONVEX_CELL0_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_CHOICES,
+    ),
+    (
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_CHOICES,
+    ),
+    (
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_CHOICES,
     ),
 )
 
