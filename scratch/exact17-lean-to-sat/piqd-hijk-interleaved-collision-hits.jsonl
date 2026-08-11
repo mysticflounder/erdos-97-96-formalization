@@ -1,0 +1,13 @@
+{"stage":"equality-six-point-circle-chain-collision","core":{"a":0,"b":1,"c":2,"d":0,"e":1,"f":6}}
+{"stage":"equality-seven-point-six-circle-collision-b","core":{"a":0,"b":1,"c":2,"d":6,"e":1,"f":0,"g":2}}
+{"stage":"equality-six-point-five-circle-collision-a","core":{"a":0,"b":1,"c":2,"e":1,"f":6,"o":2}}
+{"stage":"equality-eight-point-five-circle-collision","core":{"a":0,"b":2,"c":1,"d":2,"e":1,"f":0,"g":6,"o":1}}
+{"stage":"equality-seven-point-five-circle-collision","core":{"a":0,"b":2,"c":1,"d":2,"e":1,"f":0,"g":6}}
+{"stage":"equality-six-point-five-circle-collision-c","core":{"a":0,"b":2,"c":2,"e":1,"f":6,"o":1}}
+{"stage":"equality-seven-point-twin-four-circle-collision","core":{"a":0,"b":2,"c":6,"d":0,"e":1,"f":2,"o":1}}
+{"stage":"equality-six-point-five-circle-collision-b","core":{"a":0,"b":6,"c":0,"e":1,"f":2,"o":2}}
+{"stage":"equality-seven-point-circle-network-collision","core":{"a":1,"b":1,"c":0,"o":0,"u":2,"v":0,"w":6}}
+{"stage":"equality-seven-point-six-circle-collision","core":{"a":1,"b":2,"c":1,"d":0,"e":6,"f":0,"o":0}}
+{"stage":"equality-six-row-anchor-collision","core":{"a":1,"b":2,"c":6,"o":0,"u":0,"v":0}}
+{"stage":"equality-surplus-source-collision","core":{"a":1,"b":2,"c":6,"o":0,"u":0,"v":1,"w":2}}
+{"stage":"equality-seven-point-orbit-collision","core":{"a":1,"b":2,"c":6,"o":0,"u":1,"v":0,"w":6}}

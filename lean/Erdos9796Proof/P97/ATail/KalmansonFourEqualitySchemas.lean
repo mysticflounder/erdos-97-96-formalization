@@ -379,6 +379,82 @@ theorem false_of_four_selected_rows_in_seven_ccw_order_C_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe hgf hafb hfad hfag hcdg hefb
 
+/-- Cyclic-shift form of the increasing schema-C selected-row consumer. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_C_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f g : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support)
+    (hg_mem_FRow : boundary (g + cut) ∈ FRow.support)
+    (hd_mem_CRow : boundary (d + cut) ∈ CRow.support)
+    (hg_mem_CRow : boundary (g + cut) ∈ CRow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_seven_ccw_order_C
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef hfg ARow FRow CRow ERow
+    hf_mem_ARow hb_mem_ARow ha_mem_FRow hd_mem_FRow hg_mem_FRow
+    hd_mem_CRow hg_mem_CRow hf_mem_ERow hb_mem_ERow
+
+/-- Cyclic-shift form of the decreasing schema-C selected-row consumer. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_C_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f g : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support)
+    (hg_mem_FRow : boundary (g + cut) ∈ FRow.support)
+    (hd_mem_CRow : boundary (d + cut) ∈ CRow.support)
+    (hg_mem_CRow : boundary (g + cut) ∈ CRow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_seven_ccw_order_C_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe hgf ARow FRow CRow ERow
+    hf_mem_ARow hb_mem_ARow ha_mem_FRow hd_mem_FRow hg_mem_FRow
+    hd_mem_CRow hg_mem_CRow hf_mem_ERow hb_mem_ERow
+
 /-- Six increasingly ordered boundary vertices cannot support schema D from
 the exact-seventeen full-cover census. -/
 theorem false_of_six_ccw_six_shell_equalities_D_of_increasing
@@ -512,6 +588,84 @@ theorem false_of_four_selected_rows_in_six_ccw_order_D_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe haeb heac heaf hbef hdeb hdec
 
+/-- Cyclic-shift form of the increasing schema-D selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_D_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (he_mem_BRow : boundary (e + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (hc_mem_DRow : boundary (c + cut) ∈ DRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_D
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow ERow BRow DRow
+    he_mem_ARow hb_mem_ARow ha_mem_ERow hc_mem_ERow hf_mem_ERow
+    he_mem_BRow hf_mem_BRow he_mem_DRow hb_mem_DRow hc_mem_DRow
+
+/-- Cyclic-shift form of the decreasing schema-D selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_D_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (he_mem_ARow : boundary (e + cut) ∈ ARow.support)
+    (hb_mem_ARow : boundary (b + cut) ∈ ARow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (hf_mem_ERow : boundary (f + cut) ∈ ERow.support)
+    (he_mem_BRow : boundary (e + cut) ∈ BRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (hc_mem_DRow : boundary (c + cut) ∈ DRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_D_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow ERow BRow DRow
+    he_mem_ARow hb_mem_ARow ha_mem_ERow hc_mem_ERow hf_mem_ERow
+    he_mem_BRow hf_mem_BRow he_mem_DRow hb_mem_DRow hc_mem_DRow
+
 /-- Six increasingly ordered boundary vertices cannot support schema E from
 the exact-seventeen full-cover census. -/
 theorem false_of_six_ccw_five_shell_equalities_E_of_increasing
@@ -639,6 +793,82 @@ theorem false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing
   exact false_of_six_ccw_five_shell_equalities_E_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe hafd hebc hbac hbad hcfb
+
+/-- Cyclic-shift form of the increasing schema-E selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_E_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (hf_mem_CRow : boundary (f + cut) ∈ CRow.support)
+    (hb_mem_CRow : boundary (b + cut) ∈ CRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_E
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef ARow ERow BRow CRow
+    hf_mem_ARow hd_mem_ARow hb_mem_ERow hc_mem_ERow
+    ha_mem_BRow hc_mem_BRow hd_mem_BRow hf_mem_CRow hb_mem_CRow
+
+/-- Cyclic-shift form of the decreasing schema-E selected-row consumer. -/
+theorem false_of_four_selected_rows_in_six_ccw_order_E_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (CRow : SelectedFourClass carrier (boundary (c + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hd_mem_ARow : boundary (d + cut) ∈ ARow.support)
+    (hb_mem_ERow : boundary (b + cut) ∈ ERow.support)
+    (hc_mem_ERow : boundary (c + cut) ∈ ERow.support)
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (hf_mem_CRow : boundary (f + cut) ∈ CRow.support)
+    (hb_mem_CRow : boundary (b + cut) ∈ CRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_six_ccw_order_E_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe ARow ERow BRow CRow
+    hf_mem_ARow hd_mem_ARow hb_mem_ERow hc_mem_ERow
+    ha_mem_BRow hc_mem_BRow hd_mem_BRow hf_mem_CRow hb_mem_CRow
 
 /-- Seven increasingly ordered boundary vertices cannot support schema F from
 the exact-seventeen full-cover census. -/
@@ -791,6 +1021,84 @@ theorem false_of_four_selected_rows_in_seven_ccw_order_F_of_decreasing
   exact false_of_seven_ccw_six_shell_equalities_F_of_decreasing
     hcarrier hboundary_injective hboundary_image hboundary_ccw
     hba hcb hdc hed hfe hgf hafc hfag hfac hbfe hdbe hdbg
+
+/-- Cyclic-shift form of the increasing schema-F selected-row consumer. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_F_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f g : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f) (hfg : f < g)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hc_mem_ARow : boundary (c + cut) ∈ ARow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hg_mem_FRow : boundary (g + cut) ∈ FRow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (he_mem_BRow : boundary (e + cut) ∈ BRow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hg_mem_DRow : boundary (g + cut) ∈ DRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_seven_ccw_order_F
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef hfg ARow FRow BRow DRow
+    hf_mem_ARow hc_mem_ARow ha_mem_FRow hg_mem_FRow hc_mem_FRow
+    hf_mem_BRow he_mem_BRow hb_mem_DRow he_mem_DRow hg_mem_DRow
+
+/-- Cyclic-shift form of the decreasing schema-F selected-row consumer. -/
+theorem false_of_four_selected_rows_in_seven_ccw_order_F_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f g : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e) (hgf : g < f)
+    (ARow : SelectedFourClass carrier (boundary (a + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (DRow : SelectedFourClass carrier (boundary (d + cut)))
+    (hf_mem_ARow : boundary (f + cut) ∈ ARow.support)
+    (hc_mem_ARow : boundary (c + cut) ∈ ARow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hg_mem_FRow : boundary (g + cut) ∈ FRow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support)
+    (hf_mem_BRow : boundary (f + cut) ∈ BRow.support)
+    (he_mem_BRow : boundary (e + cut) ∈ BRow.support)
+    (hb_mem_DRow : boundary (b + cut) ∈ DRow.support)
+    (he_mem_DRow : boundary (e + cut) ∈ DRow.support)
+    (hg_mem_DRow : boundary (g + cut) ∈ DRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_four_selected_rows_in_seven_ccw_order_F_of_decreasing
+    hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by
+      simpa only [shifted] using
+        (image_univ_cyclicShift boundary cut).trans hboundary_image)
+    (by
+      simpa only [shifted] using
+        isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe hgf ARow FRow BRow DRow
+    hf_mem_ARow hc_mem_ARow ha_mem_FRow hg_mem_FRow hc_mem_FRow
+    hf_mem_BRow he_mem_BRow hb_mem_DRow he_mem_DRow hg_mem_DRow
 
 /-- Six increasingly ordered boundary vertices cannot support schema G from
 the exact-seventeen full-cover census. -/

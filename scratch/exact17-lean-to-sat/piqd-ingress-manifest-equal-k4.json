@@ -1,0 +1,109 @@
+{
+  "schema": "p97-exact17-lean-cdefg-equal-k4-piqd-ingress/v1",
+  "claim_boundary": {
+    "closed_by_terminal_certificate": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine",
+    "exact_cardinality": 17,
+    "scope": "exact-seventeen second-cap-nine exact-cover branch only",
+    "full_p97_closure": false,
+    "universal_rigid221_closure": false
+  },
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4.cnf",
+    "sha256": "00e0e3e50e518833b782a1afbb686896365335d4cb15c993b3a6a25e31cc0aa6",
+    "bytes": 107954682,
+    "variables": 308,
+    "clauses": 2268460,
+    "base_prefix_clauses": 209692,
+    "checked_cdefg_clauses": 1980160,
+    "checked_equal_k4_clauses": 78608
+  },
+  "parent_dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg.cnf",
+    "sha256": "763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527",
+    "bytes": 104887967,
+    "variables": 308,
+    "clauses": 2189852
+  },
+  "base_dimacs": {
+    "path": "scratch/exact17-lean-to-sat/base.cnf",
+    "sha256": "d5ea7921014b2c1868c100f89a2dfbd906f9cdba28f282fcbad015d93b1dd425",
+    "bytes": 6012598,
+    "variables": 308,
+    "clauses": 209692
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean",
+        "sha256": "614c924d9ba86d0931ccd9094509d8f9d7ca9f660a9a7240e759407e4bdfe755"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnf.lean",
+        "sha256": "171b3c6af3ac6d3dc63bfcc7dcce97cdf6b8b4c68d19c8e0a5b4cb6f0be637ee"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean",
+        "sha256": "72d39c2c9a1ab32ad4cd9d9bd25b5367da0fa20e123c1aa29cb0bc8c54d319e4"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefg.lean",
+        "sha256": "fc16432f11e46ef25d05a7e7b3aea2c248afab112eddc502e9d42bfbe231a4ce"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4.lean",
+        "sha256": "39d623b728260134ad607ae04e08934712fece7b61d53f03355aa2972622ce93"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4Export.lean",
+        "sha256": "9122125333ca6adb44bfb30a7268a07e03ece541caa8cdb098776281eeae48a7"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
+        "sha256": "0e779abc0de9294e996196b27be47d3aedf6a6f12ec1aac1db92f0d00facf75f"
+      }
+    ],
+    "definitions": {
+      "source_packet": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceRealization",
+      "formula": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4.extendedEqualK4Cnf",
+      "realization_implies_sat": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4.sourceAssign_extendedEqualK4Cnf",
+      "unsat_implies_no_realization": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4.false_of_sourceRealization_of_extendedEqualK4Cnf_unsat",
+      "exact_cover_extractor": "Problem97.ATailFrontierLiveClosure.exists_exactSeventeenSourceRealization_of_exactCover"
+    }
+  },
+  "variable_map": {
+    "schema": "p97-exact17-lean-source-atoms/v1",
+    "auxiliary_variables": 0,
+    "polarity": "true atoms are positive DIMACS literals; false atoms are negative",
+    "hit": "var(hit(center,point)) = 1 + 17*center + point for center,point in 0..16",
+    "next_center": "var(nextCenter(center)) = 290 + center for center in 0..16",
+    "named_order": "var(namedOrder(order)) = 307 + order for order in 0..1"
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "script_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "parent_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-validation.json",
+    "report_sha256": "bc5ee4757761cfbd4f312ab913565a85131177dca470f16e9767ddef94be45c7",
+    "parent_prefix_byte_identical": true,
+    "all_equal_k4_clauses_independently_regenerated": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "sat_action": "replay the total model, admit a source-clean Lean clause, and regenerate a child from Lean",
+    "unsat_action": "preserve the submitted-to-certificate clause map and independently replay the terminal proof",
+    "python_authored_successor_clause_allowed": false
+  },
+  "route_spec": {
+    "path": "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+    "sha256": "595dc214f2771bf29b4bca9973812d24f705df0139e4974b67d7af2c3200a683"
+  }
+}

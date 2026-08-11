@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/analyze_exact17_lean_cdefg_model.py", line 143, in <module>
+    main()
+    ~~~~^^
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/analyze_exact17_lean_cdefg_model.py", line 131, in main
+    sha256, variables, clauses = replay_cnf(args.cnf, assignment)
+                                 ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/analyze_exact17_lean_cdefg_model.py", line 74, in replay_cnf
+    raise ValueError(
+        f"assignment falsifies clause {observed_clauses + 1}: {pending}"
+    )
+ValueError: assignment falsifies clause 2190159: [-18, -21, -35, -36, -38, -52, -53, -54]

@@ -1,0 +1,73 @@
+{
+  "schema": "p97-exact17-lean-equality-chain-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain.cnf",
+    "sha256": "d5c09fd5e139f88df5966907485a2f80b208a3917431dbd07d189ae505f16b9e",
+    "bytes": 194448664,
+    "variables": 308,
+    "clauses": 4212444,
+    "parent_prefix_clauses": 3915420,
+    "checked_equality_chain_clauses": 297024
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved.json",
+    "manifest_sha256": "3d2384567e053f92e2269038fa800b79fa1322cc5a602ec1f46e3ec81fbc4540",
+    "validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_ingress.py",
+    "validator_sha256": "368580301d8a4bd5708d0757ad221a7a67a60cceb586d6853d9f50424e860cd0",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-equal-k4-two-circle-three-row-hijk-interleaved-validation.json",
+    "report_sha256": "b177ba7e37f3d4a277121b0f84245f1030c92d6fbc8364c5bf829f632d0f9332"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/TwoCircleEqualityChainSchemas.lean",
+        "sha256": "27993a5420e20478744368379d901af540737926f039772bd5717ea996740b62"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChain.lean",
+        "sha256": "f05d6b990b7c6a3bf88689e3201e18f26b0690534eb52159fcc4615a31731a09"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainExport.lean",
+        "sha256": "9ebd7d2698fb105052cc2feaf0eb8bf607d8304b0e4dd8c2fe1b0728fa0b42ad"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_export.py",
+    "script_sha256": "c00de8f17b2c139e9733afa012b34c4927c576d8c578ad4aedd351ccb674538b",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_export.py",
+    "parent_validator_sha256": "a8fe6472f5ebcd618636886f4c8f2a40497c196ef01faba2a92eb5c05ed16435",
+    "hijk_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_export.py",
+    "hijk_validator_sha256": "76b37abb08f057121c98fc52c8cba9cf658ef64b9d0493e25257be79896d0f01",
+    "three_row_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_export.py",
+    "three_row_validator_sha256": "f16e74ce26a723daf7508d260daa2d2a55dc7b30d170e259d87114fbffe9f0cc",
+    "two_circle_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_export.py",
+    "two_circle_validator_sha256": "259aaeac6726da5f0314d3d210eb26dbcc5ac5c687ec27485dbd326e24c3994d",
+    "equal_k4_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "equal_k4_validator_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "cdefg_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "cdefg_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "parent_model": "scratch/exact17-lean-to-sat/piqd-hijk-model.json",
+    "parent_model_sha256": "2380069bd5a33cd5830f83097550570fe5399bf86e8b57f5aff77b5079a14184",
+    "model": "scratch/exact17-lean-to-sat/piqd-hijk-interleaved-model.json",
+    "model_sha256": "25cddee53e8a29dc6badce72dee236f4388e0898fc4b57dc86ad619ada4fc49b",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-validation.json",
+    "report_sha256": "f48832a66e4353ca5d818b29ec3fede6e31b9754b4dab50302cbcd86f5c4625f",
+    "parent_prefix_byte_identical": true,
+    "all_equality_chain_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "clauses": 3915420,
+  "dimacs_bytes": 178619218,
+  "dimacs_sha256": "db8f493b4a8312efcf99d0e3e198537233b83dbb6cc5f4dad6f1423e22d90bd9",
+  "interleaved_clauses": 297024,
+  "manifest_sha256": "3d2384567e053f92e2269038fa800b79fa1322cc5a602ec1f46e3ec81fbc4540",
+  "motivating_model_cut_clause": 3622518,
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+  "schema": "p97-exact17-lean-hijk-interleaved-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

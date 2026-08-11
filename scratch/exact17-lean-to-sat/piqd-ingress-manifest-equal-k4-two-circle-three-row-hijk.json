@@ -1,0 +1,111 @@
+{
+  "schema": "p97-exact17-lean-cdefg-equal-k4-two-circle-three-row-hijk-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk.cnf",
+    "sha256": "a489fdf5ddbd1f0abd765592e4b016841b170aed7a20833318704e30171bb570",
+    "bytes": 168290508,
+    "variables": 308,
+    "clauses": 3618396,
+    "base_prefix_clauses": 209692,
+    "checked_cdefg_clauses": 1980160,
+    "checked_equal_k4_clauses": 78608,
+    "checked_two_circle_clauses": 38080,
+    "checked_three_row_clauses": 123760,
+    "checked_hijk_clauses": 1188096
+  },
+  "lineage": [
+    {
+      "kind": "three_row",
+      "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row.cnf",
+      "sha256": "009b34264ddcb114a59410f3af61a46b04b831841ce6687104c1833d7441a9d4",
+      "bytes": 113229604,
+      "variables": 308,
+      "clauses": 2430300
+    },
+    {
+      "kind": "two_circle",
+      "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle.cnf",
+      "sha256": "2feebcbf67b377b2e198c34e4385adccf0e8a631051c6058855d72321ddf4746",
+      "bytes": 108926214,
+      "variables": 308,
+      "clauses": 2306540
+    },
+    {
+      "kind": "equal_k4",
+      "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4.cnf",
+      "sha256": "00e0e3e50e518833b782a1afbb686896365335d4cb15c993b3a6a25e31cc0aa6",
+      "bytes": 107954682,
+      "variables": 308,
+      "clauses": 2268460
+    },
+    {
+      "kind": "cdefg",
+      "path": "scratch/exact17-lean-to-sat/extended-cdefg.cnf",
+      "sha256": "763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527",
+      "bytes": 104887967,
+      "variables": 308,
+      "clauses": 2189852
+    },
+    {
+      "kind": "base",
+      "path": "scratch/exact17-lean-to-sat/base.cnf",
+      "sha256": "d5ea7921014b2c1868c100f89a2dfbd906f9cdba28f282fcbad015d93b1dd425",
+      "bytes": 6012598,
+      "variables": 308,
+      "clauses": 209692
+    }
+  ],
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean", "sha256": "614c924d9ba86d0931ccd9094509d8f9d7ca9f660a9a7240e759407e4bdfe755"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnf.lean", "sha256": "171b3c6af3ac6d3dc63bfcc7dcce97cdf6b8b4c68d19c8e0a5b4cb6f0be637ee"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean", "sha256": "72d39c2c9a1ab32ad4cd9d9bd25b5367da0fa20e123c1aa29cb0bc8c54d319e4"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean", "sha256": "6ba98c66d785a891e400d45fe7b66503ccdf431dbec995ab2dc9f184ef8ed2c9"},
+      {"path": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean", "sha256": "be6fd1fb7fa204966ed21bcb9ad4af783d2176d94e5f53b6a8ca23b7a668d187"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefg.lean", "sha256": "fc16432f11e46ef25d05a7e7b3aea2c248afab112eddc502e9d42bfbe231a4ce"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4.lean", "sha256": "39d623b728260134ad607ae04e08934712fece7b61d53f03355aa2972622ce93"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircle.lean", "sha256": "0f63d4846d1be76d2a78fd4d1e0a994215234660c7505d3e9126b3ebb3daf429"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRow.lean", "sha256": "722a0a908d85eaada1428b63074ab6d0e50d6a85b58948e870fc94acb7e8a2f2"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk.lean", "sha256": "2e41cdf9770c7425c820f964297a843e8a48b697ff51ea0d0e3f00e5614b2bc9"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkExport.lean", "sha256": "c49552a3813f1ead98a8adf2cbf82defaab9999ff18cecafdba446cb73389879"},
+      {"path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean", "sha256": "0e779abc0de9294e996196b27be47d3aedf6a6f12ec1aac1db92f0d00facf75f"}
+    ],
+    "definitions": {
+      "source_packet": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceRealization",
+      "formula": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk.extendedHijkCnf",
+      "realization_implies_sat": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk.sourceAssign_extendedHijkCnf",
+      "unsat_implies_no_realization": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk.false_of_sourceRealization_of_extendedHijkCnf_unsat",
+      "exact_cover_extractor": "Problem97.ATailFrontierLiveClosure.exists_exactSeventeenSourceRealization_of_exactCover"
+    }
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_export.py",
+    "script_sha256": "76b37abb08f057121c98fc52c8cba9cf658ef64b9d0493e25257be79896d0f01",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_export.py",
+    "parent_validator_sha256": "f16e74ce26a723daf7508d260daa2d2a55dc7b30d170e259d87114fbffe9f0cc",
+    "grandparent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_export.py",
+    "grandparent_validator_sha256": "259aaeac6726da5f0314d3d210eb26dbcc5ac5c687ec27485dbd326e24c3994d",
+    "ancestor_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "ancestor_validator_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "root_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "root_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-validation.json",
+    "report_sha256": "2d1344f879f6f8190b3deb0d380e7da83d53a8d9422ee87cfb6f0e19cc9382c3",
+    "parent_prefix_byte_identical": true,
+    "all_hijk_clauses_independently_regenerated": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "sat_action": "replay the total model, run mandatory theorem-bank mining, admit a source-clean Lean clause, and regenerate a child from Lean",
+    "unsat_action": "preserve the submitted-to-certificate clause map and independently replay the terminal proof",
+    "python_authored_successor_clause_allowed": false
+  }
+}

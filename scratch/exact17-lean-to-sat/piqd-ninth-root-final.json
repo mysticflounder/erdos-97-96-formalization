@@ -1,0 +1,93 @@
+{
+  "artifact_kind": "p97-exact17-ninth-root-piqd-final/v1",
+  "daemon": {
+    "daemon": {
+      "name": "piqd",
+      "protocol_version": 1,
+      "sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+      "version": "0.1.0"
+    },
+    "limits": {
+      "max_var": 1000000
+    }
+  },
+  "finalized_at_utc": "2026-08-11T16:23:53.829656+00:00",
+  "job_id": "090c5be4-e747-40a3-ad96-baba17d9aace",
+  "model_path": "scratch/exact17-lean-to-sat/piqd-ninth-root-model.json",
+  "model_replay": {
+    "clauses_checked": 5846076,
+    "satisfies_all": true
+  },
+  "model_sha256": "b9030d8d4926f219d86ad8b3de9cbe928929c576db112dd011bf1f03889b1ce1",
+  "next_gate": "mandatory_general_theorem_search",
+  "result": "SAT",
+  "root": {
+    "bytes": 291567840,
+    "clauses": 5846076,
+    "ingress_report": "scratch/exact17-lean-to-sat/piqd-ingress-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-validation-rerun.json",
+    "ingress_report_sha256": "6e9576cbf31d730a4078253d551d3c39a0216433f79de2a1c02e656d5b8f5299",
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de.json",
+    "manifest_sha256": "8166b6da38fef5a04729b7df09c10bb5fecedc2e694e578e1c01f8b9681c2f57",
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de.cnf",
+    "sha256": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28",
+    "variables": 308
+  },
+  "solver": {
+    "lane": "sat",
+    "name": "piqd-satworker-cadical-3.0.0",
+    "path": "/Users/adam/.piqd/solvers/piqd-satworker-cadical-3.0.0",
+    "protocol_version": 1,
+    "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver": "cadical",
+    "solver_signature": "cadical-3.0.0",
+    "solver_source": "/Users/adam/projects/rustprojects/piqd-satworker/vendor/cadical",
+    "solver_version": "3.0.0",
+    "usable": true,
+    "worker": "piqd-satworker",
+    "worker_version": "0.1.0"
+  },
+  "status": {
+    "attestation_basis": "SINGLE_PROCESS_NO_PARALLEL_FLAG",
+    "attested_solver_processes": 1,
+    "backend": "cadical",
+    "cnf_blob_hash": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28",
+    "completed_at": 1786465214,
+    "confirmed_at": 1786464544,
+    "created_at": 1786464536,
+    "id": "090c5be4-e747-40a3-ad96-baba17d9aace",
+    "identity_hash": "fc9bb4a4be943a7dd80eda928a9f6c62b2fc1ae36a72b1a5e7bc26fa47792bd5",
+    "log_size_bytes": 7407,
+    "march_timeout_s": 900,
+    "model_blob_hash": null,
+    "producer_manifest_hash": "8166b6da38fef5a04729b7df09c10bb5fecedc2e694e578e1c01f8b9681c2f57",
+    "progress": {
+      "backend": "cadical",
+      "conflicts": 187,
+      "cubes_done": null,
+      "cubes_sat": null,
+      "cubes_total": null,
+      "cubes_unknown": null,
+      "cubes_unsat": null,
+      "decisions": 454,
+      "elapsed_s": 669,
+      "last_line": "c exit 10",
+      "restarts": null,
+      "solver_started": true,
+      "solver_version": null,
+      "spawn_failure": null
+    },
+    "project": "erdos-97-96-formalization",
+    "requested_core_limit": null,
+    "result": "SAT",
+    "running_for_s": null,
+    "started_at": 1786464545,
+    "status": "completed",
+    "timeout_s": 3600,
+    "wall_human": "11m 9s",
+    "wall_ms": 669354
+  },
+  "stored_final": {
+    "bytes": 291567840,
+    "sha256": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28"
+  }
+}

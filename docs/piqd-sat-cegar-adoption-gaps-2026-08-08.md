@@ -5,6 +5,46 @@ Date: 2026-08-08
 Status: implementation and migration plan. This document makes no mathematical
 closure claim.
 
+## Large raw-CNF qualification update — 2026-08-11
+
+The exact-17 cap-nine ninth Lean-owned root exposed one concrete remaining
+capacity gap: its 291,567,840-byte DIMACS exceeded the old shared 256 MiB raw
+prepare/blob/session-seed limit.  PIQD maintainer build
+`0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`
+raises that one shared limit to 384 MiB and rejects explicit zero ingest
+timeouts; it also removes the unsupported cvc5 `--rlimit-per` argument.  The
+build is now live and exact-scale qualified.  The change does
+not alter the one-million variable cap, and no such change is needed for the
+308-variable root.
+
+P97 now has an exact-scale disposable canary and a fail-closed two-phase runner
+at `scripts/run_piqd_large_cnf_capacity_preflight.py`.  Qualification requires
+the live daemon hash to match the rebuilt binary, then exercises raw prepare,
+stored-byte reread and hashing, session seed/export, pinned-worker solver
+handoff, receipts, close, confirmation, terminal status, custody rehash, and
+complete SAT-model validation.  The runner does not poll between `start` and
+`finalize`; it records per-phase costs so capacity is measured across the whole
+custody path rather than inferred from HTTP admission alone.  The preflight
+passed under immutable job `0e28e34e-385d-4b66-b2f9-9ae90c12b1fb`: terminal
+`SAT` in 2.216 seconds, exact custody hash preserved, complete model validated,
+and a live RSS snapshot of about 1.39 GiB combined daemon plus CaDiCaL.  This is
+not a peak-RSS measurement.  The runner now binds PIQD profile `sat` and checks
+session receipts against the canonical headerless journal identity while
+checking session exports against the original DIMACS identity.  The production
+ingress was then rebound and recursively revalidated; stored-job and seeded-
+session exports rehashed correctly before immutable job
+`090c5be4-e747-40a3-ad96-baba17d9aace` was confirmed.
+
+This qualification is exact-scale for SAT input custody and solver handoff,
+not for UNSAT proof custody.  CaDiCaL emits its binary DRAT only on UNSAT, so
+the SAT canary measured no proof write, storage, readback, conversion, or
+independent replay cost.  It also used profile `sat`, which is part of the job
+identity.  The remaining infrastructure qualification gap is therefore an
+exact-scale disposable UNSAT canary under the intended UNSAT profile before
+any retry or profile change is permitted.  The already-running production job
+is not a proof result unless its clause map, proof artifact, and independent
+replay all succeed.
+
 ## Executive decision
 
 piqd is ready to be the persistent oracle for a static, fully materialized CNF:
@@ -85,7 +125,7 @@ is stale.
 
 | Capability | Current status | Evidence or limitation |
 | --- | --- | --- |
-| Raw DIMACS ingestion | Ready within its current envelope | `POST /jobs/prepare-cnf` preserves and hashes exact bytes up to 256 MiB. It accepts CaDiCaL, Kissat, and `march_cu`, but currently validates every backend's profile string against the CaDiCaL profile vocabulary. |
+| Raw DIMACS ingestion | 384 MiB live and exact-scale SAT-qualified | `POST /jobs/prepare-cnf` preserves and hashes exact bytes. Live build `0cfc9577...` raises the shared prepare/blob/session-seed envelope to 384 MiB. The 291,567,840-byte P97 SAT canary passed complete prepare, custody, session, solve, and model replay. This does not qualify UNSAT proof storage. PIQD profiles remain a closed vocabulary; the submitted ninth-root job binds `sat`. |
 | CaDiCaL static SAT/UNSAT | Ready | Live daemon smoke completed on the installed `piqd` binary. |
 | Kissat static discovery | Implemented but unavailable on the current host | The runner can dispatch Kissat and parse a SAT model, but the executable is absent from the live solver inventory and there is no proof-artifact path accepted for promoted UNSAT. |
 | Exact CNF retrieval and binding | Ready | The P97 client rejects job/CNF/hash disagreement. |
@@ -113,10 +153,11 @@ P97 session-adapter or campaign-throughput qualification.
 
 The live `/solvers` inventory currently exposes only CaDiCaL session workers.
 Source support for another backend does not establish executable availability
-on this host. The raw endpoint also rejects a CNF above 256 MiB (with a 272 MiB
-multipart-body ceiling), so each migration must preflight the materialized
-artifact size rather than assume that every large exact-17 or Phase-3 formula
-can be submitted unchanged.
+on this host. Live build `0cfc9577...` raises the shared raw envelope to
+384 MiB and has passed the exact-scale P97 qualification, but
+each migration must still preflight the materialized artifact size and complete
+the whole custody/solver path rather than infer readiness from the configured
+limit.
 
 The current exact-17 source-faithful terminal CNF is inside that envelope:
 `pinned-direct5-complete-static-o0-p0-1.cnf` is 95,683,986 bytes, with 74,813
@@ -226,8 +267,9 @@ Required work:
   consume their contents;
 - retain the existing fail-closed result vocabulary and receipt validation;
 - provide a library entry point in addition to the one-shot CLI; and
-- preflight the raw-CNF size limit and either shard an artifact above 256 MiB
-  with authenticated coverage or record it as a direct-solver exception; and
+- preflight the raw-CNF size limit and either shard an artifact above the
+  qualified live envelope with authenticated coverage or record it as a
+  direct-solver exception; and
 - migrate the existing Phase-3 driver onto that shared implementation without
   weakening its current tests.
 
@@ -420,6 +462,66 @@ The shared client proves only that the returned assignment satisfies the exact
 CNF. That does not prove that the encoder included every source hypothesis or
 that the variable map decodes to the intended finite object.
 
+For the exact-17 cap-nine lane, Python source replay is now explicitly
+insufficient for proof-producing ingress. Its accepted route is
+`docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`: a source-clean Lean
+finite-normal-form theorem must determine the label/center map, and a checked
+Lean encoder or serialization theorem must bind that finite predicate to the
+submitted clauses. PIQD then begins at the checked DIMACS boundary. The frozen
+Wave63 chain remains finite transport evidence and must not be resumed as a
+production closure wave.
+
+Exact-17 implementation status (2026-08-11): Lean now supplies the finite
+`SourceRealization`, deterministic 308-variable formula, complete
+source-authenticated C--G extension, all-placement finite coverage, direct
+DIMACS exporter, realization-to-satisfaction theorem, and explicit
+UNSAT-to-source landing contract. The checked candidate production root has
+2,189,852 clauses and SHA-256
+`763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527`.
+An independent fixture verifies the byte-identical base prefix and regenerates
+all ten C--G family/order blocks. The Lean semantic route has no `sorryAx`; its
+finite coverage regressions currently use the accepted scoped `native_decide`
+compiler-trust boundary.
+
+The immutable-ingress cycle is now exercised through nine Lean-owned children
+after the C--G root.  All nine returned `SAT` with exact model replay and
+mandatory theorem-bank scans.  The ninth child banks the unordered-`D`
+generalization of
+the two-Kalmanson equality chain and contains 5,846,076 clauses, 291,567,840
+bytes, with SHA-256
+`759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28`.
+Its recursive validator and rebound fail-closed ingress pass.  The live
+384 MiB daemon accepted only the exact root as immutable job
+`090c5be4-e747-40a3-ad96-baba17d9aace`, after stored-CNF and seeded-session
+exports rehashed correctly.  Its complete 308-variable model satisfies all
+5,846,076 clauses.  The mandatory search returned six exactly replayed motifs
+and no unreplayed proposal; the only new route is the existing generic
+two-Kalmanson cancellation consumer.  Before another child can be submitted,
+Lean must generate that exact instance's complete orbit and prove its
+`SourceRealization` bridge.  Terminal-certificate transport remains the
+separate adoption gap for any future `UNSAT`: preserve the
+submitted-to-certificate clause map, independently replay the proof, expose the
+exact result in Lean, and compose it with the banked landing contract and
+exact-cover extractor.  Every `SAT` result still returns to theorem discovery,
+and every successor clause is admitted in Lean before child regeneration.  The
+theorem-search receipt must
+also bind the decoded-model hash and exact canonical motif record; matching
+only a bank family and orientation is not sufficient.  The frozen Wave63
+chain remains diagnostic evidence and must not be resumed as the production
+source of truth.
+
+The throwaway artifact is now available at
+`scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf`: 308
+variables, 5,846,076 clauses, 291,567,840 bytes, SHA-256
+`b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5`.
+It is deliberately trivial SAT (`x1 = true`) so the post-bump PIQD run measures
+large-artifact validation, custody, reread, session seeding, and solver handoff
+rather than search difficulty.  Independent streaming validation and local
+CaDiCaL both passed, and shared-daemon job
+`0e28e34e-385d-4b66-b2f9-9ae90c12b1fb` completed SAT with exact custody and
+model replay.  Because this canary emitted no UNSAT proof, proof-path capacity
+and replay remain separately unqualified.
+
 Required work:
 
 - define a validator receipt schema binding source theorem, finite schema,
@@ -435,6 +537,12 @@ Required work:
 Acceptance condition: tampering with the source hash, variable map, decoded
 object, or validator revision invalidates the receipt, and a known encoder
 omission is caught by the negative fixture.
+
+For a proof-producing lane, this acceptance condition is necessary but not
+sufficient. The receipt must additionally name a source-clean extraction
+declaration, bind the exact checked clause sequence or exporter result, cover
+every finite placement (or every orbit of a proved symmetry reduction), and
+identify the aggregate Lean consumer of the existing production leaf.
 
 Status: one exact-12 classifier has a committed source-bound v2 implementation
 and a checked finite-local Lean record. The record's digests are provenance

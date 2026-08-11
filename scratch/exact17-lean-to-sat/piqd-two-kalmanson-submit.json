@@ -1,0 +1,8 @@
+{
+  "cnf_blob_hash": "ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd",
+  "existing": false,
+  "identity_hash": "87b854f367a72ace746b4cd159217774ca2b792ef5606e1dfe139a1eae258da7",
+  "job_id": "66c24b72-2b13-45d0-b00c-ef44115a1c88",
+  "num_clauses": 5301532,
+  "num_vars": 308
+}

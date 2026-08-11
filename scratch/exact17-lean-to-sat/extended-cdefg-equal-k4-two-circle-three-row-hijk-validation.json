@@ -1,0 +1,110 @@
+{
+  "clauses": 3618396,
+  "hijk_clauses": 1188096,
+  "hijk_suffix_sha256": "eab24901a7ffaa4d43d3ff86e8bc7a6b557f959cc8d05b54fbd3b912416d6f87",
+  "parent": {
+    "clauses": 2430300,
+    "parent": {
+      "clauses": 2306540,
+      "parent": {
+        "clauses": 2268460,
+        "equal_k4_clauses": 78608,
+        "equal_k4_suffix_sha256": "b56c56fa3a92c2529ff4e95c26d92f3804883d370dc6cf901e13f8534a4d3ec2",
+        "parent": {
+          "base_prefix_byte_identical": true,
+          "clauses": 2189852,
+          "families": [
+            {
+              "canonical_sha256": "cfda81b6c8206e2ff9cc1e382cbaddee6518802c2cec9936c34f786b5f04a812",
+              "clauses": 272272,
+              "legacy_order0_fixture": true,
+              "named_order": 0,
+              "schema": "C"
+            },
+            {
+              "canonical_sha256": "dc51cf369195b51c326c30fc478c265069e296abe582da02754432f5aeb68c81",
+              "clauses": 272272,
+              "legacy_order0_fixture": false,
+              "named_order": 1,
+              "schema": "C"
+            },
+            {
+              "canonical_sha256": "f661f2fc959f213fced2fce6ba9c8531b6d5ff4a08b15cc8604db1ec4f606902",
+              "clauses": 148512,
+              "legacy_order0_fixture": true,
+              "named_order": 0,
+              "schema": "D"
+            },
+            {
+              "canonical_sha256": "9755f534f241173c2167a0c53e077209a3c8235e60bea67ab731cc6438224ef7",
+              "clauses": 148512,
+              "legacy_order0_fixture": false,
+              "named_order": 1,
+              "schema": "D"
+            },
+            {
+              "canonical_sha256": "0e71546b50dade0475b27064f98f2d5af1e371979da4d252ac1f10c3535310d8",
+              "clauses": 148512,
+              "legacy_order0_fixture": true,
+              "named_order": 0,
+              "schema": "E"
+            },
+            {
+              "canonical_sha256": "f469161273d332a4477ad1843acf11a8ef5fe75ec87d2124ece023a1d4df1032",
+              "clauses": 148512,
+              "legacy_order0_fixture": false,
+              "named_order": 1,
+              "schema": "E"
+            },
+            {
+              "canonical_sha256": "066715383d6302bafe9c737e5a21157ff0e2372ecdc9b25efbc95a8ede1740ac",
+              "clauses": 272272,
+              "legacy_order0_fixture": true,
+              "named_order": 0,
+              "schema": "F"
+            },
+            {
+              "canonical_sha256": "7a8c77c691ab2d34b150321d750bdc98822004d555409780157abb5c2032a435",
+              "clauses": 272272,
+              "legacy_order0_fixture": false,
+              "named_order": 1,
+              "schema": "F"
+            },
+            {
+              "canonical_sha256": "2797fedd5442eb04c93fbdb61a3ed032c1fa9dd65377a2bad157c9e376e51726",
+              "clauses": 148512,
+              "legacy_order0_fixture": true,
+              "named_order": 0,
+              "schema": "G"
+            },
+            {
+              "canonical_sha256": "f158ed150a6b2331234aac642489d3aec207aa5b54e37b0f507b28802efd3710",
+              "clauses": 148512,
+              "legacy_order0_fixture": false,
+              "named_order": 1,
+              "schema": "G"
+            }
+          ],
+          "schema": "p97-exact17-lean-cdefg-export-validation/v1",
+          "variables": 308
+        },
+        "parent_prefix_byte_identical": true,
+        "schema": "p97-exact17-lean-cdefg-equal-k4-export-validation/v1",
+        "variables": 308
+      },
+      "parent_prefix_byte_identical": true,
+      "schema": "p97-exact17-lean-two-circle-export-validation/v1",
+      "two_circle_clauses": 38080,
+      "two_circle_suffix_sha256": "d25c854b7d598f85edca3adf643513f9838de4b5a7a16fb36cfd63c1f2a3895d",
+      "variables": 308
+    },
+    "parent_prefix_byte_identical": true,
+    "schema": "p97-exact17-lean-three-row-export-validation/v1",
+    "three_row_clauses": 123760,
+    "three_row_suffix_sha256": "e045c06dc329935b859291be955cdf6e54bfe044eca8d97068aac0ec96ad2632",
+    "variables": 308
+  },
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-lean-hijk-export-validation/v1",
+  "variables": 308
+}

@@ -104,6 +104,28 @@ def position (order : NamedOrder) (point : Label) : Label :=
     | 15 => 9
     | _ => 10
 
+/-- Canonical label occupying a given boundary position.  This executable
+inverse table is used by the checked theorem-bank clause generator. -/
+def labelAtPosition (order : NamedOrder) (index : Label) : Label :=
+  if order = 0 then
+    match index.1 with
+    | 0 => 0 | 1 => 6 | 2 => 8 | 3 => 11 | 4 => 10 | 5 => 9
+    | 6 => 12 | 7 => 7 | 8 => 2 | 9 => 15 | 10 => 16 | 11 => 3
+    | 12 => 4 | 13 => 5 | 14 => 1 | 15 => 13 | _ => 14
+  else
+    match index.1 with
+    | 0 => 0 | 1 => 6 | 2 => 8 | 3 => 11 | 4 => 10 | 5 => 12
+    | 6 => 9 | 7 => 7 | 8 => 2 | 9 => 15 | 10 => 16 | 11 => 3
+    | 12 => 4 | 13 => 5 | 14 => 1 | 15 => 13 | _ => 14
+
+@[simp] theorem position_labelAtPosition (order : NamedOrder) (index : Label) :
+    position order (labelAtPosition order index) = index := by
+  fin_cases order <;> fin_cases index <;> decide
+
+@[simp] theorem labelAtPosition_position (order : NamedOrder) (point : Label) :
+    labelAtPosition order (position order point) = point := by
+  fin_cases order <;> fin_cases point <;> decide
+
 /-- The two orientations in which the canonical order can sit in a fixed CCW
 boundary enumeration. -/
 inductive Orientation where
@@ -125,6 +147,16 @@ def PositionEmbedding {n : ℕ} (orientation : Orientation)
   ∀ point₁ point₂,
     position order point₁ < position order point₂ →
       OrientedLt orientation labelIndex point₁ point₂
+
+/-- Exact boundary index assigned to a canonical label.  Retaining this
+formula, rather than only its order-theoretic consequence, is what lets the
+checked CNF instantiate theorem-bank clauses in cyclic windows crossing index
+zero. -/
+def expectedLabelIndex (orientation : Orientation) (order : NamedOrder) :
+    Label → Fin 17 :=
+  match orientation with
+  | .forward => position order
+  | .reverse => fun point => Fin.rev (position order point)
 
 /-- Each canonical position table is a permutation. -/
 theorem position_injective (order : NamedOrder) :
@@ -210,6 +242,7 @@ one of the two source-forced cyclic orders and that every finite row is the
 pullback of a genuine selected carrier circle. -/
 structure SourceRealization (A : Finset ℝ²) where
   pattern : FaithfulCarrierPattern A
+  carrier_convexIndep : ConvexIndep A
   model : SourceModel
   orientation : Orientation
   boundary : Fin 17 → ℝ²
@@ -217,11 +250,95 @@ structure SourceRealization (A : Finset ℝ²) where
   boundary_image : Finset.univ.image boundary = A
   boundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary
   labelIndex : Label → Fin 17
+  labelIndex_eq : labelIndex = expectedLabelIndex orientation model.order
   position_embedding :
     PositionEmbedding orientation model.order labelIndex
   row_eq : ∀ center,
     model.selected center =
       selectedOfPattern pattern boundary boundary_image labelIndex center
+
+namespace SourceRealization
+
+/-- The boundary carried by a source realization certifies the exact carrier
+cardinality without appealing to a separate cardinality hypothesis. -/
+theorem card_eq {A : Finset ℝ²} (r : SourceRealization A) : A.card = 17 := by
+  have h := congrArg Finset.card r.boundary_image
+  rw [Finset.card_image_of_injective _ r.boundary_injective,
+    Finset.card_univ, Fintype.card_fin] at h
+  exact h.symm
+
+/-- Reindex the canonical `Fin 17` boundary by the cardinality type required
+by the general cyclic-order consumers. -/
+def cardBoundary {A : Finset ℝ²} (r : SourceRealization A) :
+    Fin A.card → ℝ² :=
+  fun i => r.boundary (Fin.cast r.card_eq i)
+
+/-- Embed a canonical exact-seventeen index into the carrier-cardinality
+boundary type. -/
+def toCardIndex {A : Finset ℝ²} (r : SourceRealization A)
+    (i : Fin 17) : Fin A.card :=
+  Fin.cast r.card_eq.symm i
+
+@[simp] theorem cardBoundary_toCardIndex {A : Finset ℝ²}
+    (r : SourceRealization A) (i : Fin 17) :
+    r.cardBoundary (r.toCardIndex i) = r.boundary i := rfl
+
+theorem toCardIndex_lt {A : Finset ℝ²} (r : SourceRealization A)
+    {i j : Fin 17} (h : i < j) : r.toCardIndex i < r.toCardIndex j := by
+  simpa only [toCardIndex, Fin.lt_def, Fin.val_cast] using h
+
+@[simp] theorem toCardIndex_add {A : Finset ℝ²} (r : SourceRealization A)
+    (i j : Fin 17) :
+    r.toCardIndex (i + j) = r.toCardIndex i + r.toCardIndex j := by
+  apply Fin.ext
+  simp [toCardIndex, Fin.add_def, r.card_eq]
+
+theorem cardBoundary_injective {A : Finset ℝ²} (r : SourceRealization A) :
+    Function.Injective r.cardBoundary := by
+  intro i j hij
+  apply Fin.cast_injective r.card_eq
+  exact r.boundary_injective hij
+
+theorem cardBoundary_image {A : Finset ℝ²} (r : SourceRealization A) :
+    Finset.univ.image r.cardBoundary = A := by
+  calc
+    Finset.univ.image r.cardBoundary = Finset.univ.image r.boundary := by
+      apply Finset.Subset.antisymm
+      · intro x hx
+        rcases Finset.mem_image.mp hx with ⟨i, _hi, rfl⟩
+        exact Finset.mem_image.mpr
+          ⟨Fin.cast r.card_eq i, Finset.mem_univ _, rfl⟩
+      · intro x hx
+        rcases Finset.mem_image.mp hx with ⟨i, _hi, rfl⟩
+        exact Finset.mem_image.mpr
+          ⟨Fin.cast r.card_eq.symm i, Finset.mem_univ _, by
+            simp [cardBoundary]⟩
+    _ = A := r.boundary_image
+
+theorem cardBoundary_ccw {A : Finset ℝ²} (r : SourceRealization A) :
+    EuclideanGeometry.IsCcwConvexPolygon r.cardBoundary := by
+  intro i j k hij hjk
+  apply r.boundary_ccw
+  · simpa using hij
+  · simpa using hjk
+
+/-- Genuine selected carrier row represented by a finite source center. -/
+noncomputable def selectedRow {A : Finset ℝ²} (r : SourceRealization A)
+    (center : Label) :
+    SelectedFourClass A (r.boundary (r.labelIndex center)) :=
+  r.pattern.classAt (r.boundary (r.labelIndex center))
+    (boundaryLabel_mem r.boundary r.boundary_image r.labelIndex center)
+
+/-- Every positive hit atom in the finite source model transports to genuine
+membership in the corresponding selected carrier row. -/
+theorem mem_selectedRow_of_mem_model {A : Finset ℝ²}
+    (r : SourceRealization A) {center point : Label}
+    (h : point ∈ r.model.selected center) :
+    r.boundary (r.labelIndex point) ∈ (r.selectedRow center).support := by
+  rw [r.row_eq center] at h
+  simpa [selectedOfPattern, selectedRow, pullback] using h
+
+end SourceRealization
 
 @[simp] theorem mem_pullback {α : Type*} [DecidableEq α]
     (point : Label → α) (support : Finset α) (label : Label) :
@@ -313,13 +430,14 @@ identified the four old cap slices and the actual next blocker center, the
 global K4 pattern and critical-shell minimality supply every remaining
 Boolean clause of `SourceModel`. -/
 theorem exists_sourceRealization_of_faithfulPattern
-    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {A : Finset ℝ²} (H : CriticalShellSystem A) (hconv : ConvexIndep A)
     (pattern : FaithfulCarrierPattern A) (order : NamedOrder)
     (orientation : Orientation) (boundary : Fin 17 → ℝ²)
     (hboundaryInjective : Function.Injective boundary)
     (hboundaryImage : Finset.univ.image boundary = A)
     (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
     (labelIndex : Label → Fin 17)
+    (hlabelIndex : labelIndex = expectedLabelIndex orientation order)
     (hposition : PositionEmbedding orientation order labelIndex)
     (nextCenter : Label)
     (hnextCenter :
@@ -478,6 +596,7 @@ theorem exists_sourceRealization_of_faithfulPattern
       next_physical_hits := by simpa only [selected] using hnextPhysical }
   exact ⟨
     { pattern := pattern
+      carrier_convexIndep := hconv
       model := model
       orientation := orientation
       boundary := boundary
@@ -485,6 +604,7 @@ theorem exists_sourceRealization_of_faithfulPattern
       boundary_image := hboundaryImage
       boundary_ccw := hboundaryCcw
       labelIndex := labelIndex
+      labelIndex_eq := by simpa only [model] using hlabelIndex
       position_embedding := by simpa only [model] using hposition
       row_eq := by intro center; rfl }⟩
 
@@ -588,13 +708,14 @@ This is the branch-independent landing adapter: the caller identifies the four
 old selected rows, the distinguished cap, and the selected physical class;
 the generic faithful-pattern bridge supplies all remaining carrier-wide rows. -/
 theorem exists_sourceRealization_of_geometricExactCover
-    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {A : Finset ℝ²} (H : CriticalShellSystem A) (hconv : ConvexIndep A)
     (pattern : FaithfulCarrierPattern A) (order : NamedOrder)
     (orientation : Orientation) (boundary : Fin 17 → ℝ²)
     (hboundaryInjective : Function.Injective boundary)
     (hboundaryImage : Finset.univ.image boundary = A)
     (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
     (labelIndex : Label → Fin 17)
+    (hlabelIndex : labelIndex = expectedLabelIndex orientation order)
     (hposition : PositionEmbedding orientation order labelIndex)
     (rowSupport : Fin 4 → Finset ℝ²)
     (holdRows : ∀ row,
@@ -702,8 +823,8 @@ theorem exists_sourceRealization_of_geometricExactCover
               (boundaryLabel_mem boundary hboundaryImage labelIndex nextCenter)).support_subset_A
                 (Finset.mem_inter.mp hx).1)
       _ ≤ 1 := hnextPhysicalGeom
-  exact exists_sourceRealization_of_faithfulPattern H pattern order orientation
-    boundary hboundaryInjective hboundaryImage hboundaryCcw labelIndex hposition
+  exact exists_sourceRealization_of_faithfulPattern H hconv pattern order orientation
+    boundary hboundaryInjective hboundaryImage hboundaryCcw labelIndex hlabelIndex hposition
     nextCenter hnextCenter holdCap holdMultiplicity hnextPhysical
 
 end ATailBlockerVExactSeventeenSourceNormalForm

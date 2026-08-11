@@ -1,0 +1,92 @@
+{
+  "schema": "p97-exact17-lean-cdefg-piqd-ingress/v1",
+  "claim_boundary": {
+    "closed_by_terminal_certificate": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine",
+    "exact_cardinality": 17,
+    "scope": "exact-seventeen second-cap-nine exact-cover branch only",
+    "full_p97_closure": false,
+    "universal_rigid221_closure": false
+  },
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg.cnf",
+    "sha256": "763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527",
+    "bytes": 104887967,
+    "variables": 308,
+    "clauses": 2189852,
+    "base_prefix_clauses": 209692,
+    "checked_cdefg_clauses": 1980160
+  },
+  "base_dimacs": {
+    "path": "scratch/exact17-lean-to-sat/base.cnf",
+    "sha256": "d5ea7921014b2c1868c100f89a2dfbd906f9cdba28f282fcbad015d93b1dd425",
+    "variables": 308,
+    "clauses": 209692
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean",
+        "sha256": "614c924d9ba86d0931ccd9094509d8f9d7ca9f660a9a7240e759407e4bdfe755"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnf.lean",
+        "sha256": "171b3c6af3ac6d3dc63bfcc7dcce97cdf6b8b4c68d19c8e0a5b4cb6f0be637ee"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean",
+        "sha256": "72d39c2c9a1ab32ad4cd9d9bd25b5367da0fa20e123c1aa29cb0bc8c54d319e4"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefg.lean",
+        "sha256": "fc16432f11e46ef25d05a7e7b3aea2c248afab112eddc502e9d42bfbe231a4ce"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgExport.lean",
+        "sha256": "b69336b172219811ad597f8abce168f15cfa1a08a1d77b21c4484f8fc2bbf55d"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
+        "sha256": "0e779abc0de9294e996196b27be47d3aedf6a6f12ec1aac1db92f0d00facf75f"
+      }
+    ],
+    "definitions": {
+      "source_packet": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceRealization",
+      "formula": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.extendedCnf",
+      "realization_implies_sat": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.SourceRealization.extendedCnf_sat",
+      "unsat_implies_no_realization": "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.false_of_sourceRealization_of_extendedCnf_unsat",
+      "exact_cover_extractor": "Problem97.ATailFrontierLiveClosure.exists_exactSeventeenSourceRealization_of_exactCover"
+    }
+  },
+  "variable_map": {
+    "schema": "p97-exact17-lean-source-atoms/v1",
+    "auxiliary_variables": 0,
+    "polarity": "true atoms are positive DIMACS literals; false atoms are negative",
+    "hit": "var(hit(center,point)) = 1 + 17*center + point for center,point in 0..16",
+    "next_center": "var(nextCenter(center)) = 290 + center for center in 0..16",
+    "named_order": "var(namedOrder(order)) = 307 + order for order in 0..1"
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_export.py",
+    "script_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-validation.json",
+    "report_sha256": "c141bcdc7b8b42648f564b64a911b847ed12d574d7663e7e104bd27bb3132b12",
+    "base_prefix_byte_identical": true,
+    "all_ten_cdefg_family_order_blocks_regenerated": true
+  },
+  "piqd_policy": {
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "sat_action": "replay the total model, admit a source-clean Lean clause, and regenerate a child from Lean",
+    "unsat_action": "preserve the submitted-to-certificate clause map and independently replay the terminal proof",
+    "python_authored_successor_clause_allowed": false
+  },
+  "route_spec": {
+    "path": "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+    "sha256": "595dc214f2771bf29b4bca9973812d24f705df0139e4974b67d7af2c3200a683"
+  }
+}

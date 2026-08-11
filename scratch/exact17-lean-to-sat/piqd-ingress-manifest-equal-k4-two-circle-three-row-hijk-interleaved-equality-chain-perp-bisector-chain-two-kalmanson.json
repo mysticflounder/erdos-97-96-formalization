@@ -1,0 +1,81 @@
+{
+  "schema": "p97-exact17-lean-two-kalmanson-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson.cnf",
+    "sha256": "ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd",
+    "bytes": 260039332,
+    "variables": 308,
+    "clauses": 5301532,
+    "parent_prefix_clauses": 4756988,
+    "checked_two_kalmanson_clauses": 544544
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain.json",
+    "manifest_sha256": "b9b0d15c33808fc462687f8b125222acec8e425bf742b3737c32c7089aa9ecd9",
+    "validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_ingress.py",
+    "validator_sha256": "45129cd63ee8b796c54cb71505653aba64b468b4aa9b7897e82c0424930ceea6",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-validation.json",
+    "report_sha256": "76e44e2304a3aa2ec5b813c9a6ff739e64ff5ca869e5a951c15c02d0b60c860b"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/TwoKalmansonEqualityChainSchemas.lean",
+        "sha256": "37445577e2d5ee47da1aa66ac4ab3a32d8a96cd2c51f67e94a018805d08df983"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmanson.lean",
+        "sha256": "76810fafc1f106759d6e9bb4f1896b8833c8e7cb21203aa9f116799cca89969a"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonExport.lean",
+        "sha256": "80a6072d71b54c70da9778bb45586774373106aa4d8164973244e95540b887a5"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_export.py",
+    "script_sha256": "8adca8b20f0b6000ff468c79c190b303d3017d807e09a5ba35e0c4e2b207414e",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_export.py",
+    "parent_validator_sha256": "ced8c1fa2854d25ac141e9bba8f794137050c8f2a6d94e5df30794d7cd9927e4",
+    "equality_chain_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_export.py",
+    "equality_chain_validator_sha256": "c00de8f17b2c139e9733afa012b34c4927c576d8c578ad4aedd351ccb674538b",
+    "interleaved_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_export.py",
+    "interleaved_validator_sha256": "a8fe6472f5ebcd618636886f4c8f2a40497c196ef01faba2a92eb5c05ed16435",
+    "hijk_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_export.py",
+    "hijk_validator_sha256": "76b37abb08f057121c98fc52c8cba9cf658ef64b9d0493e25257be79896d0f01",
+    "three_row_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_export.py",
+    "three_row_validator_sha256": "f16e74ce26a723daf7508d260daa2d2a55dc7b30d170e259d87114fbffe9f0cc",
+    "two_circle_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_export.py",
+    "two_circle_validator_sha256": "259aaeac6726da5f0314d3d210eb26dbcc5ac5c687ec27485dbd326e24c3994d",
+    "equal_k4_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "equal_k4_validator_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "cdefg_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "cdefg_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "hijk_model": "scratch/exact17-lean-to-sat/piqd-hijk-model.json",
+    "hijk_model_sha256": "2380069bd5a33cd5830f83097550570fe5399bf86e8b57f5aff77b5079a14184",
+    "interleaved_model": "scratch/exact17-lean-to-sat/piqd-hijk-interleaved-model.json",
+    "interleaved_model_sha256": "25cddee53e8a29dc6badce72dee236f4388e0898fc4b57dc86ad619ada4fc49b",
+    "equality_chain_model": "scratch/exact17-lean-to-sat/piqd-equality-chain-model.json",
+    "equality_chain_model_sha256": "948ef5f63af6d0a0606d1d8a65bd131e7ea0cf437a8b4e74747052869be0b4ce",
+    "model": "scratch/exact17-lean-to-sat/piqd-perp-bisector-chain-model.json",
+    "model_sha256": "d6998543fcce7d5f47d21e8caf5314d41beb363915d10ce3fe58c2ae2abbf347",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-validation.json",
+    "report_sha256": "222e53bede625ae0213807e9472e8612f8bd883a9752ea4117d18b8f042d19a6",
+    "parent_prefix_byte_identical": true,
+    "all_two_kalmanson_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

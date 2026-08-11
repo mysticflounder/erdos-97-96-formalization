@@ -1,0 +1,1187 @@
+{
+  "hit_count": 7,
+  "hits": [
+    {
+      "core": {
+        "A": 12,
+        "C": 13,
+        "D": 15,
+        "E": 16,
+        "O": 14,
+        "X5": 12,
+        "X6": 16,
+        "X9": 1
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "metric-bank",
+      "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+    },
+    {
+      "core": {
+        "A": 14,
+        "B": 12,
+        "C": 13,
+        "D": 16,
+        "P": 0,
+        "Q": 11
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "common-system-bank",
+      "stage": "equality-convex-six-point-two-circle-order"
+    },
+    {
+      "core": {
+        "A": 2,
+        "C": 1,
+        "E": 4,
+        "O": 0,
+        "Y": 3
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
+      "metadata": {
+        "boundary_rotation_start": 0,
+        "lean_module": "Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+        "requires_rotated_ccw_enumeration": false
+      },
+      "orientation": "forward",
+      "source": "metric-bank-direct-rows",
+      "stage": "equality-convex-five-point-three-selected-row-kalmanson"
+    },
+    {
+      "core": {
+        "Q": 12,
+        "U": 16,
+        "V": 14,
+        "Y": 13
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order"
+    },
+    {
+      "core": {
+        "Q": 14,
+        "U": 13,
+        "V": 12,
+        "Y": 16
+      },
+      "cyclic_orientation": "reverse",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+      "orientation": "reverse",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+    },
+    {
+      "core": {
+        "a": 7,
+        "b": 0,
+        "c": 1,
+        "x": 6,
+        "y": 2
+      },
+      "cyclic_orientation": "reverse",
+      "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+      "orientation": "reverse",
+      "source": "metric-bank",
+      "stage": "equality-convex-five-point-reverse"
+    },
+    {
+      "core": {
+        "boundary_labels": [
+          0,
+          6,
+          8,
+          11,
+          10,
+          9,
+          12,
+          7,
+          2,
+          15,
+          16,
+          3,
+          4,
+          5,
+          1,
+          13,
+          14
+        ],
+        "first_form": "innerOuter",
+        "first_quad": [
+          0,
+          1,
+          2,
+          8
+        ],
+        "paths": [
+          {
+            "first": [
+              1,
+              2
+            ],
+            "last": [
+              1,
+              8
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 2,
+                "kind": "row",
+                "second": 8
+              }
+            ]
+          },
+          {
+            "first": [
+              0,
+              8
+            ],
+            "last": [
+              2,
+              11
+            ],
+            "steps": [
+              {
+                "center": 0,
+                "first": 8,
+                "kind": "row",
+                "second": 11
+              },
+              {
+                "first": 0,
+                "kind": "flip",
+                "second": 11
+              },
+              {
+                "center": 11,
+                "first": 0,
+                "kind": "row",
+                "second": 2
+              },
+              {
+                "first": 11,
+                "kind": "flip",
+                "second": 2
+              }
+            ]
+          },
+          {
+            "first": [
+              0,
+              2
+            ],
+            "last": [
+              0,
+              2
+            ],
+            "steps": []
+          },
+          {
+            "first": [
+              7,
+              11
+            ],
+            "last": [
+              0,
+              7
+            ],
+            "steps": [
+              {
+                "center": 7,
+                "first": 11,
+                "kind": "row",
+                "second": 0
+              },
+              {
+                "first": 7,
+                "kind": "flip",
+                "second": 0
+              }
+            ]
+          }
+        ],
+        "permutation": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "row_choices": [
+          {
+            "center": 0,
+            "support": [
+              8,
+              11,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "support": [
+              1,
+              5,
+              14,
+              15
+            ]
+          },
+          {
+            "center": 3,
+            "support": [
+              2,
+              4,
+              13,
+              16
+            ]
+          },
+          {
+            "center": 4,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "support": [
+              1,
+              7,
+              9,
+              12
+            ]
+          },
+          {
+            "center": 6,
+            "support": [
+              10,
+              12,
+              15,
+              16
+            ]
+          },
+          {
+            "center": 7,
+            "support": [
+              0,
+              9,
+              11,
+              16
+            ]
+          },
+          {
+            "center": 8,
+            "support": [
+              0,
+              7,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 9,
+            "support": [
+              4,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "support": [
+              3,
+              6,
+              14,
+              16
+            ]
+          },
+          {
+            "center": 11,
+            "support": [
+              0,
+              2,
+              5,
+              12
+            ]
+          },
+          {
+            "center": 12,
+            "support": [
+              0,
+              3,
+              4,
+              11
+            ]
+          },
+          {
+            "center": 13,
+            "support": [
+              0,
+              6,
+              12,
+              15
+            ]
+          },
+          {
+            "center": 14,
+            "support": [
+              0,
+              1,
+              8,
+              13
+            ]
+          },
+          {
+            "center": 15,
+            "support": [
+              0,
+              9,
+              10,
+              14
+            ]
+          },
+          {
+            "center": 16,
+            "support": [
+              6,
+              8,
+              9,
+              15
+            ]
+          }
+        ],
+        "second_form": "adjacentSides",
+        "second_quad": [
+          0,
+          2,
+          7,
+          11
+        ]
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+      "metadata": {
+        "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+      },
+      "orientation": "forward",
+      "source": "metric-bank-equality-closure",
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "minimized_witnesses": [
+    {
+      "record": {
+        "core": {
+          "A": 12,
+          "C": 13,
+          "D": 15,
+          "E": 16,
+          "O": 14,
+          "X5": 12,
+          "X6": 16,
+          "X9": 1
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "metric-bank",
+        "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+      },
+      "rows": [
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            13,
+            14,
+            16
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            1,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            12,
+            13,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            12,
+            16
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            1,
+            12,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "A": 14,
+          "B": 12,
+          "C": 13,
+          "D": 16,
+          "P": 0,
+          "Q": 11
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "common-system-bank",
+        "stage": "equality-convex-six-point-two-circle-order"
+      },
+      "rows": [
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            13,
+            14,
+            16
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            0,
+            16
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            12,
+            13
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            11,
+            12,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "A": 2,
+          "C": 1,
+          "E": 4,
+          "O": 0,
+          "Y": 3
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
+        "metadata": {
+          "boundary_rotation_start": 0,
+          "lean_module": "Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+          "requires_rotated_ccw_enumeration": false
+        },
+        "orientation": "forward",
+        "source": "metric-bank-direct-rows",
+        "stage": "equality-convex-five-point-three-selected-row-kalmanson"
+      },
+      "rows": [
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            1,
+            13
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            13,
+            16
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            1,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "Q": 12,
+          "U": 16,
+          "V": 14,
+          "Y": 13
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order"
+      },
+      "rows": [
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            13,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            12,
+            13
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            12,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "Q": 14,
+          "U": 13,
+          "V": 12,
+          "Y": 16
+        },
+        "cyclic_orientation": "reverse",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+        "orientation": "reverse",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+      },
+      "rows": [
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            13,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            12,
+            13
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            12,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 7,
+          "b": 0,
+          "c": 1,
+          "x": 6,
+          "y": 2
+        },
+        "cyclic_orientation": "reverse",
+        "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+        "orientation": "reverse",
+        "source": "metric-bank",
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "rows": [
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "exact": false,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "boundary_labels": [
+            0,
+            6,
+            8,
+            11,
+            10,
+            9,
+            12,
+            7,
+            2,
+            15,
+            16,
+            3,
+            4,
+            5,
+            1,
+            13,
+            14
+          ],
+          "first_form": "innerOuter",
+          "first_quad": [
+            0,
+            1,
+            2,
+            8
+          ],
+          "paths": [
+            {
+              "first": [
+                1,
+                2
+              ],
+              "last": [
+                1,
+                8
+              ],
+              "steps": [
+                {
+                  "center": 1,
+                  "first": 2,
+                  "kind": "row",
+                  "second": 8
+                }
+              ]
+            },
+            {
+              "first": [
+                0,
+                8
+              ],
+              "last": [
+                2,
+                11
+              ],
+              "steps": [
+                {
+                  "center": 0,
+                  "first": 8,
+                  "kind": "row",
+                  "second": 11
+                },
+                {
+                  "first": 0,
+                  "kind": "flip",
+                  "second": 11
+                },
+                {
+                  "center": 11,
+                  "first": 0,
+                  "kind": "row",
+                  "second": 2
+                },
+                {
+                  "first": 11,
+                  "kind": "flip",
+                  "second": 2
+                }
+              ]
+            },
+            {
+              "first": [
+                0,
+                2
+              ],
+              "last": [
+                0,
+                2
+              ],
+              "steps": []
+            },
+            {
+              "first": [
+                7,
+                11
+              ],
+              "last": [
+                0,
+                7
+              ],
+              "steps": [
+                {
+                  "center": 7,
+                  "first": 11,
+                  "kind": "row",
+                  "second": 0
+                },
+                {
+                  "first": 7,
+                  "kind": "flip",
+                  "second": 0
+                }
+              ]
+            }
+          ],
+          "permutation": [
+            1,
+            3,
+            0,
+            2
+          ],
+          "row_choices": [
+            {
+              "center": 0,
+              "support": [
+                8,
+                11,
+                12,
+                14
+              ]
+            },
+            {
+              "center": 1,
+              "support": [
+                0,
+                2,
+                7,
+                8
+              ]
+            },
+            {
+              "center": 2,
+              "support": [
+                1,
+                5,
+                14,
+                15
+              ]
+            },
+            {
+              "center": 3,
+              "support": [
+                2,
+                4,
+                13,
+                16
+              ]
+            },
+            {
+              "center": 4,
+              "support": [
+                2,
+                5,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 5,
+              "support": [
+                1,
+                7,
+                9,
+                12
+              ]
+            },
+            {
+              "center": 6,
+              "support": [
+                10,
+                12,
+                15,
+                16
+              ]
+            },
+            {
+              "center": 7,
+              "support": [
+                0,
+                9,
+                11,
+                16
+              ]
+            },
+            {
+              "center": 8,
+              "support": [
+                0,
+                7,
+                13,
+                14
+              ]
+            },
+            {
+              "center": 9,
+              "support": [
+                4,
+                5,
+                6,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "support": [
+                3,
+                6,
+                14,
+                16
+              ]
+            },
+            {
+              "center": 11,
+              "support": [
+                0,
+                2,
+                5,
+                12
+              ]
+            },
+            {
+              "center": 12,
+              "support": [
+                0,
+                3,
+                4,
+                11
+              ]
+            },
+            {
+              "center": 13,
+              "support": [
+                0,
+                6,
+                12,
+                15
+              ]
+            },
+            {
+              "center": 14,
+              "support": [
+                0,
+                1,
+                8,
+                13
+              ]
+            },
+            {
+              "center": 15,
+              "support": [
+                0,
+                9,
+                10,
+                14
+              ]
+            },
+            {
+              "center": 16,
+              "support": [
+                6,
+                8,
+                9,
+                15
+              ]
+            }
+          ],
+          "second_form": "adjacentSides",
+          "second_quad": [
+            0,
+            2,
+            7,
+            11
+          ]
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+        "metadata": {
+          "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+        },
+        "orientation": "forward",
+        "source": "metric-bank-equality-closure",
+        "stage": "equality-convex-two-kalmanson-cancellation"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            12,
+            13
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            14,
+            15
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            7,
+            15
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            3,
+            8,
+            9,
+            16
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            5,
+            8,
+            10,
+            14
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            4,
+            13,
+            14,
+            16
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            15,
+            16
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            2,
+            12,
+            13,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            9,
+            10,
+            12,
+            16
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            1,
+            11,
+            12,
+            14
+          ]
+        }
+      ]
+    }
+  ],
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "proposal_count": 8,
+  "schema": "p97-exact17-cdefg-model-theorem-bank/v1",
+  "source_analysis": "scratch/exact17-lean-to-sat/piqd-two-circle-model-analysis.json",
+  "unreplayed_proposals": [
+    {
+      "core": {
+        "a": 2,
+        "b": 3,
+        "c": 4,
+        "d": 1,
+        "o": 0
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+      "orientation": "invariant",
+      "source": "common-system-bank",
+      "stage": "equality-convex-nested-equal-chords"
+    }
+  ]
+}

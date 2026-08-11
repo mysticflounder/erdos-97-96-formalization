@@ -8094,3 +8094,195 @@ post-wave gate.  Do not expand a generic orbit merely because a known theorem
 matches.  These waves remain finite Rigid221 exact-17 branch contraction; they
 do not close exact-17 globally, a universal P97 leaf, or any production
 `sorry`.
+
+## 13.28 Exact-17 cap-nine Lean-to-SAT route correction (2026-08-10)
+
+The Wave63 root is now the frozen endpoint of the old Python-first refinement
+route. The historical waves remain authenticated finite evidence, but no
+Wave64 refinement is a production closure step. The earlier instruction to
+continue one model-at-a-time refinement is superseded.
+
+The reason is a proof-ingress gap, not a PIQD transport failure. The current
+lane starts from a Python finite model, emits raw DIMACS, and independently
+replays selected Python source predicates. The `lean_fol` smoke is a
+hand-authored IR fixture rather than a Lean-source exporter. There is no Lean
+theorem deriving the current label map, actual next-row center, candidate
+domain, and all normalized placements from the hypotheses of
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine`.
+Consequently even terminal `UNSAT` for the current root would certify only that
+submitted finite abstraction.
+
+The authoritative replacement is
+
+```text
+live Lean cap-nine hypotheses
+  -> proved finite normal form with explicit labels and center mapping
+  -> checked Lean-to-SAT export
+  -> PIQD solve and exact terminal certificate
+  -> Lean coverage of all placements or proved symmetry orbits
+  -> aggregate consumer of the unchanged cap-nine leaf.
+```
+
+The detailed contract is
+`docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`. The source-clean finite
+normal form and checked encoder are now complete. The exact-cover arm produces
+`BlockerVExactSeventeenSourceNormalForm.SourceRealization`, including the
+images of `SelectedClass`, the deleted source, the four old rows, the actual
+`centerAt` next-row center, and the carrier convexity needed by the admitted
+metric consumers.
+
+Checked-root checkpoint (2026-08-11):
+`BlockerVExactSeventeenSourceCnfCdefg.lean` defines the complete candidate
+production root. It contains the 209,692-clause Boolean base plus 1,980,160
+source-authenticated C--G clauses. The clause families cover both source-forced
+named orders, both cyclic directions, every cut, and every increasing six- or
+seven-point offset choice. Thus the old Python claim of 56 cells is no longer
+the coverage contract; coverage is generated and proved directly over the
+Lean finite types.
+
+The Lean exporter wrote
+`scratch/exact17-lean-to-sat/extended-cdefg.cnf` with header
+`p cnf 308 2189852`, 104,887,967 bytes, and SHA-256
+`763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527`.
+The independent fixture
+`scripts/validate_exact17_lean_cdefg_export.py` verified the byte-identical
+base prefix and independently regenerated all ten family/order blocks; its
+report is
+`scratch/exact17-lean-to-sat/extended-cdefg-validation.json`.
+
+`SourceRealization.extendedCnf_sat` is the realization-to-formula bridge, and
+`false_of_sourceRealization_of_extendedCnf_unsat` is the explicit terminal
+landing contract. Their transitive axiom closure has no `sorryAx`; it currently
+includes `Lean.trustCompiler` because the finite coverage regressions use the
+project-accepted scoped `native_decide` boundary.
+
+The remaining route is now narrow. Provision exactly the checked root above
+under immutable PIQD custody; if it is `SAT`, return the decoded survivor to
+the theorem-discovery loop and admit any successor clause in Lean before
+regenerating a child root. If it is `UNSAT`, preserve and independently replay
+the terminal certificate, bank a Lean theorem `extendedCnf_unsat`, and compose
+it with `false_of_sourceRealization_of_extendedCnf_unsat` and the exact-cover
+extractor in the unchanged cap-nine leaf. Follow that landing with a targeted
+build, fresh proof-blueprint spine audit, and transitive axiom audit. It closes
+only the exact-17 cap-nine leaf, not the `card_ge_eighteen` sibling or full
+P97. The frozen Wave63 Python root remains diagnostic evidence and must not be
+resumed as the production source of truth.
+
+Production refinement checkpoint (2026-08-11): the checked C--G root and six
+successive Lean-owned children have returned `SAT`.  The admitted children add,
+in order, complete guarded `EqualK4`, two-circle shared-pair, five-point
+three-row Kalmanson, H--K, interleaved three-row Kalmanson, and equality-chain
+families.  The sixth child has 4,212,444 clauses and SHA-256
+`d5c09fd5e139f88df5966907485a2f80b208a3917431dbd07d189ae505f16b9e`.
+Its recursive independent export and fail-closed PIQD ingress validations pass,
+and immutable PIQD job `7fcbf4c4-8cea-4179-8d56-16ddc3337494` returned `SAT`.
+The total assignment independently replays every clause.  The mandatory
+theorem-bank gate found six exact canonical records bound to that replayed
+analysis.
+
+The production route is therefore the Lean-owned successor chain rooted at
+the checked C--G formula, not a claim that the original C--G formula itself is
+UNSAT.  Every `SAT` successor must undergo total-model replay and a mandatory
+general-theorem scan; every new clause family must be source-proved in Lean
+before child regeneration.  The historical theorem-bank minimizer was found
+to replay only a family name and orientation, so its H--K report is rejected;
+the replacement binds the decoded-model hash and preserves the exact canonical
+core record.  No terminal certificate or production-leaf closure exists yet.
+
+The first genuinely new record in the sixth model has now been generalized as
+`PerpBisectorEqualityChainSchemas`.  Two direct equal-radius witnesses and one
+equality chain force three distinct carrier points onto one perpendicular
+bisector, contradicting convex independence.  Its source-clean theorem and
+realization bridge pass a targeted Lean build with axiom closure
+`[propext, Classical.choice, Quot.sound]`.  Lean generated the complete
+544,544-clause cyclic orbit as a seventh child with 4,756,988 clauses and
+SHA-256
+`38db47b94b1f259feeb427a48850a94c58adf300deea0b37302a39435676e76a`.
+Recursive export and fail-closed ingress validation pass, and only these exact
+bytes were provisioned under immutable PIQD job
+`925a0469-313e-4cbe-bdf5-3046b9786df1`.  That job returned `SAT` after 345
+seconds; exact replay checked all 4,756,988 clauses and the mandatory scan
+retained five exact records.  At that checkpoint the next child was authorized
+only after one of those records was admitted as a source-clean Lean theorem and
+complete orbit.  That admission is now complete for the first genuinely new
+record:
+`TwoKalmansonEqualityChainSchemas` derives a contradiction by cancelling two
+strict Kalmanson inequalities after eleven selected-row incidences propagate
+the required equalities on seven cyclically ordered points.  Lean generated
+the complete 544,544-clause orbit as the eighth child.  The recursively checked
+formula has 5,301,532 clauses and SHA-256
+`ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd`.
+Independent validation regenerated every appended clause, checked the
+byte-identical parent prefix, and confirmed the motivating model cut.  Only
+those bytes were provisioned under immutable PIQD job
+`66c24b72-2b13-45d0-b00c-ef44115a1c88`.  It returned `SAT`; exact replay of
+all 5,301,532 clauses and the mandatory five-record theorem scan both passed.
+The newly exposed record required only the cyclic order of six of its seven
+roles, leaving the auxiliary center `D` unordered.  That generalization is now
+banked source-clean in `TwoKalmansonEqualityChainUnorderedDSchemas`, and Lean
+generated its complete 544,544-clause orbit as a ninth child.  The child has
+5,846,076 clauses, 291,567,840 bytes, and SHA-256
+`759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28`;
+recursive export and fail-closed ingress validation pass.
+
+The infrastructural gate is now passed.  PIQD maintainer
+build `0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`
+raises the shared raw-CNF envelope from 256 MiB to 384 MiB, covering prepare,
+blob ingress, and session seeding together.  It is live and `piqc version`
+reports that exact identity.  Its ingress manifest was rebound and recursively
+revalidated.  Immutable PIQD job
+`090c5be4-e747-40a3-ad96-baba17d9aace` returned `SAT`, and its complete model
+was replayed against all 5,846,076 clauses.  Its 291,567,840 bytes fit the
+new envelope with 111,085,344 bytes, about 106 MiB, of headroom.  Its 308
+variables are also exactly matched by the canary and remain far below the
+unchanged `max_var = 1,000,000`; no variable-limit change is required.
+The resumable production controller preserved the immutable Lean-owned bytes,
+rechecked the live daemon identity, reread PIQD custody, and rehashed a seeded
+session export before confirmation.  The rebuilt daemon has been qualified with
+the exact-scale throwaway artifact across validation, storage, reread hashing,
+session custody, and solver handoff.  Do not return to the
+frozen Python Wave63 route or use a locally
+authored successor as a workaround.  If a later authenticated successor
+is `UNSAT`, replay the terminal proof, bank
+`extendedCnf_unsat`, compose the exact-cover branch, and run the targeted
+build, fresh spine, and transitive axiom audits.  This active goal closes only
+the exact-17 cap-nine leaf.
+
+The throwaway preflight is now materialized at
+`scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf`.  It matches
+the ninth root exactly at 308 variables, 5,846,076 clauses, and 291,567,840
+bytes, has SHA-256
+`b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5`,
+and is trivially satisfied by setting variable 1 to true.  A separate streaming
+validator checked the header, every clause template, all counts, the byte size,
+and the hash; local CaDiCaL parsed it and returned `SAT` in 2.07 seconds.
+Immutable PIQD job `0e28e34e-385d-4b66-b2f9-9ae90c12b1fb` returned `SAT` in
+2.216 seconds and the final report is valid: exact custody bytes and the full
+308-variable model were rechecked.  A live RSS snapshot observed about 573 MiB
+for the daemon and 855 MiB for CaDiCaL; it was not a peak measurement.  The
+fail-closed runner is
+`scripts/run_piqd_large_cnf_capacity_preflight.py`.  Its `start` phase pins the
+expected daemon and worker hashes, submits the canary unconfirmed, rereads and
+rehashes PIQD custody, exports and rehashes a session seed, solves it with the
+pinned CaDiCaL worker, checks receipts, and only then confirms the raw job.  Its
+separate `finalize` phase requires terminal `SAT`, rereads the stored bytes, and
+validates the complete 308-variable model.  The two phases intentionally do not
+poll.  Their report also records validation, storage/reread, session export,
+solver handoff, and confirmation timings for the PIQD capacity audit.  It now
+binds the accepted PIQD profile `sat`; session receipt fingerprints are checked
+against the canonical headerless journal, while exported-session bytes are
+checked separately against the full original DIMACS.
+
+The ninth Lean-owned child is now terminal `SAT` under immutable PIQD job
+`090c5be4-e747-40a3-ad96-baba17d9aace`.  The returned complete 308-variable
+assignment was replayed against all 5,846,076 clauses of root
+`759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28`.
+The mandatory post-wave general-theorem search found six exact replayed hits and
+no unreplayed proposal.  Five are instances of already banked smaller
+obstructions; the remaining record is an instance of the cardinality-generic,
+source-clean two-Kalmanson cancellation theorem.  This is a theorem-discovery
+checkpoint, not exact-17 or universal closure.  No tenth child is authorized
+until Lean supplies the complete finite orbit for that exact cancellation
+instance and a `SourceRealization` bridge from the cap-nine source packet.  The
+active route is therefore that orbit and bridge, followed by one authenticated
+PIQD successor only if the resulting Lean-owned child is still satisfiable.

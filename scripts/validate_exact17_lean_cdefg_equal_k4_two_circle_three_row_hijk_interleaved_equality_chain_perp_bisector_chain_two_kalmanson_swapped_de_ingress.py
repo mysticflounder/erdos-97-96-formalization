@@ -1,0 +1,258 @@
+"""Fail-closed PIQD ingress for the exact-17 swapped-D/E child root."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import stat
+from pathlib import Path
+from types import ModuleType
+from typing import Any
+
+SCHEMA = "p97-exact17-lean-two-kalmanson-swapped-de-piqd-ingress/v1"
+DAEMON_SHA256 = "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360"
+ROOT_SHA256 = "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28"
+ROOT_BYTES = 291_567_840
+VARIABLES = 308
+ROOT_CLAUSES = 5_846_076
+PARENT_CLAUSES = 5_301_532
+NEW_CLAUSES = 544_544
+PARENT_ROOT_SHA256 = "ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd"
+EXPECTED_SOURCE_PATHS = (
+    "lean/Erdos9796Proof/P97/ATail/TwoKalmansonEqualityChainUnorderedDSchemas.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDE.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEExport.lean",
+)
+
+
+def strict_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    value = json.loads(
+        path.read_text(encoding="utf-8"), object_pairs_hook=strict_object
+    )
+    if not isinstance(value, dict):
+        raise TypeError(f"expected a JSON object: {path}")
+    return value
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError(message)
+
+
+def checked_path(repo: Path, relative: str) -> Path:
+    path = repo / relative
+    resolved = path.resolve(strict=True)
+    resolved.relative_to(repo.resolve(strict=True))
+    require(stat.S_ISREG(resolved.stat().st_mode), f"not a regular file: {relative}")
+    require(not path.is_symlink(), f"symlink refused: {relative}")
+    return resolved
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def check_hash(repo: Path, record: dict[str, Any]) -> Path:
+    path = checked_path(repo, record["path"])
+    require(sha256(path) == record["sha256"], f"SHA-256 drift: {record['path']}")
+    return path
+
+
+def check_named_hash(repo: Path, record: dict[str, Any], key: str) -> Path:
+    return check_hash(repo, {"path": record[key], "sha256": record[f"{key}_sha256"]})
+
+
+def load_module(path: Path, name: str) -> ModuleType:
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise ValueError(f"cannot import validator: {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def lineage_path(repo: Path, manifest: dict[str, Any], kind: str) -> Path:
+    for record in manifest["lineage"]:
+        if record["kind"] == kind:
+            return check_hash(repo, record)
+    raise ValueError(f"missing lineage kind: {kind}")
+
+
+def parent_manifest(repo: Path, manifest: dict[str, Any]) -> dict[str, Any]:
+    return load_json(check_named_hash(repo, manifest["parent_ingress"], "manifest"))
+
+
+def validate(repo: Path, manifest_path: Path) -> dict[str, Any]:
+    manifest = load_json(manifest_path)
+    require(
+        set(manifest)
+        == {"schema", "dimacs", "parent_ingress", "lean", "validation", "piqd"},
+        "wrong manifest fields",
+    )
+    require(manifest["schema"] == SCHEMA, "wrong ingress schema")
+
+    root_record = manifest["dimacs"]
+    require(root_record["sha256"] == ROOT_SHA256, "unauthorized DIMACS root")
+    require(root_record["bytes"] == ROOT_BYTES, "wrong DIMACS byte count")
+    require(root_record["variables"] == VARIABLES, "wrong variable count")
+    require(root_record["clauses"] == ROOT_CLAUSES, "wrong clause count")
+    require(root_record["parent_prefix_clauses"] == PARENT_CLAUSES, "wrong parent count")
+    require(
+        root_record["checked_swapped_de_clauses"] == NEW_CLAUSES,
+        "wrong swapped-D/E count",
+    )
+    root = check_hash(repo, root_record)
+    require(root.stat().st_size == ROOT_BYTES, "DIMACS size drift")
+
+    parent_ingress = manifest["parent_ingress"]
+    parent_manifest_path = check_named_hash(repo, parent_ingress, "manifest")
+    parent_validator_path = check_named_hash(repo, parent_ingress, "validator")
+    parent_report_path = check_named_hash(repo, parent_ingress, "report")
+    parent_result = load_module(
+        parent_validator_path, "exact17_two_kalmanson_parent_ingress"
+    ).validate(repo, parent_manifest_path)
+    require(parent_result == load_json(parent_report_path), "parent ingress report drift")
+    require(parent_result["status"] == "PASS", "parent ingress did not pass")
+    require(parent_result["dimacs_sha256"] == PARENT_ROOT_SHA256, "wrong parent root")
+
+    two_kalmanson_manifest = load_json(parent_manifest_path)
+    perp_manifest = parent_manifest(repo, two_kalmanson_manifest)
+    equality_manifest = parent_manifest(repo, perp_manifest)
+    interleaved_manifest = parent_manifest(repo, equality_manifest)
+    hijk_manifest = parent_manifest(repo, interleaved_manifest)
+
+    lean = manifest["lean"]
+    require(lean["toolchain"] == "leanprover/lean4:v4.27.0", "wrong Lean toolchain")
+    require(
+        sha256(checked_path(repo, "lean-toolchain")) == lean["toolchain_file_sha256"],
+        "lean-toolchain drift",
+    )
+    require(
+        sha256(checked_path(repo, "lean/lake-manifest.json"))
+        == lean["lake_manifest_sha256"],
+        "lake manifest drift",
+    )
+    sources = lean["source_files"]
+    require(
+        tuple(item["path"] for item in sources) == EXPECTED_SOURCE_PATHS,
+        "wrong or reordered Lean source set",
+    )
+    for source in sources:
+        check_hash(repo, source)
+
+    validation = manifest["validation"]
+    validator = check_named_hash(repo, validation, "script")
+    two_kalmanson_validator = check_named_hash(repo, validation, "parent_validator")
+    perp_validator = check_named_hash(repo, validation, "perp_bisector_validator")
+    equality_validator = check_named_hash(repo, validation, "equality_chain_validator")
+    interleaved_validator = check_named_hash(repo, validation, "interleaved_validator")
+    hijk_validator = check_named_hash(repo, validation, "hijk_validator")
+    three_row_validator = check_named_hash(repo, validation, "three_row_validator")
+    two_circle_validator = check_named_hash(repo, validation, "two_circle_validator")
+    equal_k4_validator = check_named_hash(repo, validation, "equal_k4_validator")
+    cdefg_validator = check_named_hash(repo, validation, "cdefg_validator")
+    hijk_model = check_named_hash(repo, validation, "hijk_model")
+    interleaved_model = check_named_hash(repo, validation, "interleaved_model")
+    equality_model = check_named_hash(repo, validation, "equality_chain_model")
+    parent_model = check_named_hash(repo, validation, "parent_model")
+    model = check_named_hash(repo, validation, "model")
+    report = check_named_hash(repo, validation, "report")
+
+    regenerated = load_module(validator, "exact17_swapped_de_export").validate(
+        lineage_path(repo, hijk_manifest, "base"),
+        lineage_path(repo, hijk_manifest, "cdefg"),
+        lineage_path(repo, hijk_manifest, "equal_k4"),
+        lineage_path(repo, hijk_manifest, "two_circle"),
+        lineage_path(repo, hijk_manifest, "three_row"),
+        check_hash(repo, hijk_manifest["dimacs"]),
+        check_hash(repo, interleaved_manifest["dimacs"]),
+        check_hash(repo, equality_manifest["dimacs"]),
+        check_hash(repo, perp_manifest["dimacs"]),
+        check_hash(repo, two_kalmanson_manifest["dimacs"]),
+        root,
+        hijk_model,
+        interleaved_model,
+        equality_model,
+        parent_model,
+        model,
+        two_kalmanson_validator,
+        perp_validator,
+        equality_validator,
+        interleaved_validator,
+        hijk_validator,
+        three_row_validator,
+        two_circle_validator,
+        equal_k4_validator,
+        cdefg_validator,
+    )
+    require(regenerated == load_json(report), "semantic validation report drift")
+    require(regenerated["variables"] == VARIABLES, "validator variable mismatch")
+    require(regenerated["clauses"] == ROOT_CLAUSES, "validator clause mismatch")
+    require(regenerated["swapped_de_clauses"] == NEW_CLAUSES, "validator suffix mismatch")
+    require(regenerated["parent_prefix_byte_identical"] is True, "prefix mismatch")
+    require(isinstance(regenerated["motivating_model_cut_clause"], int), "model not cut")
+    require(validation["parent_prefix_byte_identical"] is True, "prefix claim missing")
+    require(
+        validation["all_swapped_de_clauses_independently_regenerated"] is True,
+        "regeneration claim missing",
+    )
+    require(validation["motivating_model_cut"] is True, "model-cut claim missing")
+
+    piqd = manifest["piqd"]
+    require(piqd["daemon_protocol_version"] == 1, "wrong PIQD protocol")
+    require(piqd["daemon_sha256"] == DAEMON_SHA256, "unauthorized PIQD daemon")
+    require(piqd["ingress"] == "raw-dimacs/v1", "wrong PIQD ingress")
+    require(piqd["backend"] == "cadical", "wrong PIQD backend")
+    require(piqd["solver_profile"] == "sat", "wrong solver profile")
+    require(piqd["immutable_root_only"] is True, "mutable root forbidden")
+    require(
+        piqd["python_authored_successor_clause_allowed"] is False,
+        "Python-authored successor clauses forbidden",
+    )
+
+    return {
+        "schema": "p97-exact17-lean-two-kalmanson-swapped-de-piqd-ingress-validation/v1",
+        "manifest_sha256": sha256(manifest_path),
+        "dimacs_sha256": sha256(root),
+        "dimacs_bytes": root.stat().st_size,
+        "variables": VARIABLES,
+        "clauses": ROOT_CLAUSES,
+        "swapped_de_clauses": NEW_CLAUSES,
+        "parent_ingress_status": parent_result["status"],
+        "motivating_model_cut_clause": regenerated["motivating_model_cut_clause"],
+        "piqd_daemon_sha256": DAEMON_SHA256,
+        "status": "PASS",
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--repo", type=Path, default=Path.cwd())
+    parser.add_argument("--report", type=Path)
+    args = parser.parse_args()
+    payload = validate(args.repo.resolve(), args.manifest.resolve())
+    rendered = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+    if args.report is not None:
+        args.report.write_text(rendered, encoding="utf-8")
+    print(rendered, end="")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

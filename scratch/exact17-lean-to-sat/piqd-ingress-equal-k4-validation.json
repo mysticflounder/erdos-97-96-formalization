@@ -1,0 +1,11 @@
+{
+  "clauses": 2268460,
+  "dimacs_bytes": 107954682,
+  "dimacs_sha256": "00e0e3e50e518833b782a1afbb686896365335d4cb15c993b3a6a25e31cc0aa6",
+  "equal_k4_clauses": 78608,
+  "manifest_sha256": "796544feafd5bcab674b42d1a298b540f3af51c33675d413fb8d07ef3b844dad",
+  "piqd_daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+  "schema": "p97-exact17-lean-cdefg-equal-k4-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

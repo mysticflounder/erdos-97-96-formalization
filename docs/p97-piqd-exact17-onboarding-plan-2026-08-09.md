@@ -2,6 +2,139 @@
 
 Date: 2026-08-09
 
+## Route supersession — 2026-08-11
+
+This document records successful PIQD custody, solver, model-replay, and lazy
+refinement onboarding. Those results remain valid finite transport evidence.
+They are no longer the production closure route for the exact-17 cap-nine
+leaf.
+
+The active route is specified in
+`docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`:
+
+```text
+Lean hypotheses -> proved finite normal form -> checked SAT export
+  -> PIQD/certificate -> aggregate all-placement Lean consumer.
+```
+
+PIQD onboarding begins at a Lean-owned immutable DIMACS boundary, not from a
+separately authored Python CNF. The current v12t/v19/Wave63 artifacts remain
+regression and theorem-discovery inputs. They do not provide source entitlement
+or a proof of the live theorem, and no further lazy wave from that root is a
+production step.
+
+The checked candidate production root now exists. Lean proves that every
+extracted `SourceRealization` satisfies the 209,692-clause Boolean base and all
+1,980,160 source-authenticated C--G clauses. The extension covers both
+source-forced named orders, both cyclic directions, every cut, and every
+increasing six- or seven-point offset choice. The Lean exporter materialized
+`scratch/exact17-lean-to-sat/extended-cdefg.cnf` with header
+`p cnf 308 2189852`, 104,887,967 bytes, and SHA-256
+`763bb4774a4d148ca35a4d33ecce06c158a8f941c3e5fb272f534cb2b9637527`.
+The independent report
+`scratch/exact17-lean-to-sat/extended-cdefg-validation.json` verifies the
+byte-identical base prefix and independently regenerates all ten family/order
+blocks.
+
+The semantic bridge and terminal landing contract contain no `sorryAx`; they
+currently include `Lean.trustCompiler` because scoped `native_decide` proves
+the finite coverage regressions. A new PIQD session may be provisioned only
+from the exact hash above with an immutable ingress manifest. `SAT` returns to
+Lean theorem discovery before any child root is generated. `UNSAT` still needs
+terminal proof custody and replay, a Lean theorem `extendedCnf_unsat`, and its
+aggregate composition with the exact-cover extractor. The frozen Wave63 chain
+must not be resumed as the source of truth.
+
+That production cycle has now been exercised through nine Lean-owned child
+roots: complete `EqualK4`, two-circle shared-pair, five-point three-row
+Kalmanson, H--K, interleaved three-row Kalmanson, equality-chain, and
+perpendicular-bisector equality-chain, and two-Kalmanson equality-chain
+families, followed by the swapped-`D`/`E` unordered-center generalization.  The
+first eight children were
+recursively validated, provisioned with immutable manifests, and returned
+`SAT`.  The seventh has 4,756,988 clauses, SHA-256
+`38db47b94b1f259feeb427a48850a94c58adf300deea0b37302a39435676e76a`,
+under immutable PIQD job `925a0469-313e-4cbe-bdf5-3046b9786df1`; exact replay
+and the mandatory five-record theorem-bank scan succeeded.  This is
+authenticated theorem-guided refinement, not a terminal certificate or
+Lean-leaf closure.  Future SAT
+theorem-search reports must bind the decoded-model hash and replay the exact
+canonical core; the older family-level H--K minimization report is rejected.
+
+The first new exact record from that scan is now a source-clean theorem rather
+than a model-specific cut.  `TwoCircleEqualityChainSchemas.lean` banks its
+increasing, decreasing, and cyclic forms; the targeted build is green and the
+four declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
+Its full 297,024-clause orbit is therefore already part of the authenticated
+sixth child.  The successor theorem is
+`PerpBisectorEqualityChainSchemas.lean`: two direct equal-radius witnesses and
+one equality chain force three distinct carrier points onto a single
+perpendicular bisector.  Its 544,544-clause orbit has been generated in Lean
+and independently validated.  The resulting 4,756,988-clause child has
+SHA-256
+`38db47b94b1f259feeb427a48850a94c58adf300deea0b37302a39435676e76a`
+under immutable PIQD job `925a0469-313e-4cbe-bdf5-3046b9786df1`.  That job
+returned `SAT` after 345
+seconds; exact replay checked all 4,756,988 clauses and the mandatory scan
+retained five exact records.  The first genuinely new record is banked as
+`TwoKalmansonEqualityChainSchemas`; Lean generated its complete 544,544-clause
+orbit and independent recursive validation passed.  The resulting eighth child
+has 5,301,532 clauses and SHA-256
+`ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd`
+under immutable PIQD job `66c24b72-2b13-45d0-b00c-ef44115a1c88`; it returned
+`SAT`, and exact replay plus the mandatory scan passed.  The ninth Lean-owned
+root has 5,846,076 clauses, 291,567,840 bytes, and SHA-256
+`759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28`.
+Its recursive export and rebound fail-closed ingress validation pass.  Immutable
+PIQD job `090c5be4-e747-40a3-ad96-baba17d9aace` returned `SAT`; exact replay
+checked all 5,846,076 clauses against the complete 308-variable model.  The
+mandatory general-theorem scan produced six replayed hits and no unreplayed
+proposal.  Five hits are already represented by smaller banked obstructions.
+The remaining hit is an exact instance of the cardinality-generic,
+source-clean two-Kalmanson cancellation consumer.  No tenth successor is
+authorized until Lean generates the complete finite orbit for that instance and
+a `SourceRealization` bridge connects the exact-17 source packet to it.  PIQD
+maintainer build
+`0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`
+raises the shared raw prepare/blob/session-seed limit from 256 MiB to 384 MiB
+and is now the live daemon identity.  The exact-scale SAT capacity preflight,
+rebound byte-identical ingress replay, and preconfirmation custody gates passed.
+At 291,567,840 bytes the root has about
+106 MiB of headroom
+under the new cap.  Its 308 variables are far below the unchanged one-million
+variable limit, so no `max_var` adjustment is needed.  This terminal `SAT`
+result closes neither the exact-17 cap-nine leaf nor a production `sorry`; it
+selects the next Lean-owned refinement theorem.
+
+The capacity canary was deliberately SAT and therefore did **not** exercise
+CaDiCaL's UNSAT-only binary-DRAT emission, proof-blob storage, proof readback,
+or independent replay.  It also used solver profile `sat`, which is folded into
+the immutable job identity.  That profile controls only the discovery solve;
+on a future terminal `UNSAT`, PIQD performs a second full solve with `--unsat`
+to mint the DRAT.  Such a verdict remains preliminary for proof promotion until
+the submitted-to-certificate clause map, non-null proof custody, and independent
+proof replay all pass.  A proof-pipeline failure does not change PIQD's `UNSAT`
+verdict and must not trigger an unaudited retry or a new successor identity.
+
+The disposable capacity artifact is ready at
+`scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf`.  It has the
+same 308 variables, 5,846,076 clauses, and 291,567,840 bytes as the ninth root,
+but is immediately satisfiable by `x1 = true`; its SHA-256 is
+`b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5`.
+Independent full-stream validation and a local CaDiCaL parse/solve passed.  It
+traversed PIQD under immutable job
+`0e28e34e-385d-4b66-b2f9-9ae90c12b1fb`, which returned `SAT` in 2.216 seconds;
+the final report is valid, exact custody identity and the complete model passed,
+and the capacity gate is closed.  The
+fail-closed two-phase runner is
+`scripts/run_piqd_large_cnf_capacity_preflight.py`: `start` pins daemon and
+worker identities and exercises prepare/custody/session/solve/receipt/confirm;
+`finalize` separately requires terminal `SAT`, rehashes custody, and checks the
+complete model.  It deliberately does not poll, and records phase timings for
+the PIQD maintainer's capacity audit.  It also binds PIQD solver profile `sat`,
+checks receipt hashes against the canonical headerless session journal, and
+checks session exports against the original full DIMACS.
+
 ## Current status
 
 Gate 1 passed on the live v12t archive.  The package canary is preserved at
@@ -88,7 +221,7 @@ not infer certificate IDs from session positions.  The exact-17 append gate
 already rejects tautological and repeated-literal learned cuts, so this does not
 invalidate the completed SAT refinements.
 
-## Objective
+## Historical onboarding objective
 
 Onboard one existing exact-17 cap-nine static DIMACS artifact into PIQD as a
 single-solver-process diagnostic job with `requested_core_limit=1`.  The first

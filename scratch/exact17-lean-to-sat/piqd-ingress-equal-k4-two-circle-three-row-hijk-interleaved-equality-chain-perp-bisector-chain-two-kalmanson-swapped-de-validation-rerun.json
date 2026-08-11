@@ -1,0 +1,13 @@
+{
+  "clauses": 5846076,
+  "dimacs_bytes": 291567840,
+  "dimacs_sha256": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28",
+  "manifest_sha256": "8166b6da38fef5a04729b7df09c10bb5fecedc2e694e578e1c01f8b9681c2f57",
+  "motivating_model_cut_clause": 5308621,
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+  "schema": "p97-exact17-lean-two-kalmanson-swapped-de-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "swapped_de_clauses": 544544,
+  "variables": 308
+}

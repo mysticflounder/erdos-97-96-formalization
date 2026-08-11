@@ -1,0 +1,11 @@
+{
+  "clauses": 2306540,
+  "dimacs_bytes": 108926214,
+  "dimacs_sha256": "2feebcbf67b377b2e198c34e4385adccf0e8a631051c6058855d72321ddf4746",
+  "manifest_sha256": "97a5a5d9fe61c5e3c3d730e968bb8425812877b6e61554c875a03369d0973425",
+  "piqd_daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+  "schema": "p97-exact17-lean-cdefg-equal-k4-two-circle-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "two_circle_clauses": 38080,
+  "variables": 308
+}

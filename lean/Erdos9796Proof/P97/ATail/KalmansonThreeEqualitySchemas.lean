@@ -1383,5 +1383,136 @@ theorem false_of_support_first_two_k2_three_selected_rows_triangle_reflected
       hboundaryImage hboundaryCcw h12 h23 h34
   linarith
 
+/-- Three interleaved selected rows are impossible when their six named
+vertices occur in increasing boundary order.  This is the selected-row form
+of the cyclic `541_031_234` three-equality obstruction. -/
+theorem false_of_three_selected_rows_interleaved
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hd_mem_BRow : boundary d ∈ BRow.support)
+    (ha_mem_ERow : boundary a ∈ ERow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (ha_mem_FRow : boundary a ∈ FRow.support)
+    (hc_mem_FRow : boundary c ∈ FRow.support) : False := by
+  have hB := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hd_mem_BRow).symm
+  have hE := (ERow.support_eq_radius _ ha_mem_ERow).trans
+    (ERow.support_eq_radius _ hd_mem_ERow).symm
+  have hF := (FRow.support_eq_radius _ ha_mem_FRow).trans
+    (FRow.support_eq_radius _ hc_mem_FRow).symm
+  have hKadef := dist_add_dist_lt_diagonal_sum_of_ccw
+    hcarrier hboundaryInjective hboundaryImage hboundaryCcw
+      (hab.trans (hbc.trans hcd)) hde hef
+  have hKbcdf := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hcarrier hboundaryInjective hboundaryImage hboundaryCcw
+      hbc hcd (hde.trans hef)
+  simp only [dist_comm] at hB hE hF hKadef hKbcdf
+  linarith
+
+/-- Decreasing-index companion of
+`false_of_three_selected_rows_interleaved`. -/
+theorem false_of_three_selected_rows_interleaved_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (BRow : SelectedFourClass carrier (boundary b))
+    (ERow : SelectedFourClass carrier (boundary e))
+    (FRow : SelectedFourClass carrier (boundary f))
+    (hc_mem_BRow : boundary c ∈ BRow.support)
+    (hd_mem_BRow : boundary d ∈ BRow.support)
+    (ha_mem_ERow : boundary a ∈ ERow.support)
+    (hd_mem_ERow : boundary d ∈ ERow.support)
+    (ha_mem_FRow : boundary a ∈ FRow.support)
+    (hc_mem_FRow : boundary c ∈ FRow.support) : False := by
+  have hB := (BRow.support_eq_radius _ hc_mem_BRow).trans
+    (BRow.support_eq_radius _ hd_mem_BRow).symm
+  have hE := (ERow.support_eq_radius _ ha_mem_ERow).trans
+    (ERow.support_eq_radius _ hd_mem_ERow).symm
+  have hF := (FRow.support_eq_radius _ ha_mem_FRow).trans
+    (FRow.support_eq_radius _ hc_mem_FRow).symm
+  have hKfeda := dist_add_dist_lt_diagonal_sum_of_ccw
+    hcarrier hboundaryInjective hboundaryImage hboundaryCcw
+      hfe hed (hdc.trans (hcb.trans hba))
+  have hKfdcb := complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+    hcarrier hboundaryInjective hboundaryImage hboundaryCcw
+      (hfe.trans hed) hdc hcb
+  simp only [dist_comm] at hB hE hF hKfeda hKfdcb
+  linarith
+
+/-- Cyclic-shift form of the increasing interleaved selected-row consumer. -/
+theorem false_of_three_selected_rows_interleaved_cyclicShift
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_three_selected_rows_interleaved hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundaryInjective cut)
+    (by simpa only [shifted] using
+      (image_univ_cyclicShift boundary cut).trans hboundaryImage)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundaryInjective hboundaryCcw cut)
+    hab hbc hcd hde hef BRow ERow FRow
+    hc_mem_BRow hd_mem_BRow ha_mem_ERow hd_mem_ERow ha_mem_FRow hc_mem_FRow
+
+/-- Cyclic-shift form of the decreasing interleaved selected-row consumer. -/
+theorem false_of_three_selected_rows_interleaved_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (ERow : SelectedFourClass carrier (boundary (e + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (ha_mem_ERow : boundary (a + cut) ∈ ERow.support)
+    (hd_mem_ERow : boundary (d + cut) ∈ ERow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hc_mem_FRow : boundary (c + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_three_selected_rows_interleaved_of_decreasing hcarrier
+    (by simpa only [shifted] using injective_cyclicShift hboundaryInjective cut)
+    (by simpa only [shifted] using
+      (image_univ_cyclicShift boundary cut).trans hboundaryImage)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundaryInjective hboundaryCcw cut)
+    hba hcb hdc hed hfe BRow ERow FRow
+    hc_mem_BRow hd_mem_BRow ha_mem_ERow hd_mem_ERow ha_mem_FRow hc_mem_FRow
+
 end CapCrossingKalmansonBridge
 end Problem97

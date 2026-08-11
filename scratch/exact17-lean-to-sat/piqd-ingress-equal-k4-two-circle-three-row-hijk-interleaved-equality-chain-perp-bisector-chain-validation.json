@@ -1,0 +1,13 @@
+{
+  "clauses": 4756988,
+  "dimacs_bytes": 228508646,
+  "dimacs_sha256": "38db47b94b1f259feeb427a48850a94c58adf300deea0b37302a39435676e76a",
+  "manifest_sha256": "b9b0d15c33808fc462687f8b125222acec8e425bf742b3737c32c7089aa9ecd9",
+  "motivating_model_cut_clause": 4219959,
+  "parent_ingress_status": "PASS",
+  "perp_bisector_chain_clauses": 544544,
+  "piqd_daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+  "schema": "p97-exact17-lean-perp-bisector-chain-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

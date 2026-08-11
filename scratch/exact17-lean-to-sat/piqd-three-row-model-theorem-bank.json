@@ -1,0 +1,1437 @@
+{
+  "hit_count": 22,
+  "hits": [
+    {
+      "core": {
+        "A": 6,
+        "C": 1,
+        "D": 2,
+        "E": 3,
+        "O": 0,
+        "X5": 0,
+        "X6": 0,
+        "X9": 0
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "metric-bank",
+      "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+    },
+    {
+      "core": {
+        "Q": 0,
+        "U": 6,
+        "V": 1,
+        "Y": 2
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order"
+    },
+    {
+      "core": {
+        "Q": 14,
+        "U": 1,
+        "V": 6,
+        "Y": 8
+      },
+      "cyclic_orientation": "reverse",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+      "orientation": "reverse",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 1,
+        "c": 2,
+        "d": 0,
+        "e": 1,
+        "f": 6
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-six-point-circle-chain-collision"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 1,
+        "c": 2,
+        "d": 6,
+        "e": 1,
+        "f": 0,
+        "g": 2
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-six-circle-collision-b"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 1,
+        "c": 2,
+        "e": 1,
+        "f": 6,
+        "o": 2
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-six-point-five-circle-collision-a"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 2,
+        "c": 1,
+        "d": 2,
+        "e": 1,
+        "f": 0,
+        "g": 6,
+        "o": 1
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-eight-point-five-circle-collision"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 2,
+        "c": 1,
+        "d": 2,
+        "e": 1,
+        "f": 0,
+        "g": 6
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-five-circle-collision"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 2,
+        "c": 2,
+        "e": 1,
+        "f": 6,
+        "o": 1
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-six-point-five-circle-collision-c"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 2,
+        "c": 6,
+        "d": 0,
+        "e": 1,
+        "f": 2,
+        "o": 1
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-twin-four-circle-collision"
+    },
+    {
+      "core": {
+        "a": 0,
+        "b": 6,
+        "c": 0,
+        "e": 1,
+        "f": 2,
+        "o": 2
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-six-point-five-circle-collision-b"
+    },
+    {
+      "core": {
+        "a": 1,
+        "b": 1,
+        "c": 0,
+        "o": 0,
+        "u": 2,
+        "v": 0,
+        "w": 6
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-circle-network-collision"
+    },
+    {
+      "core": {
+        "a": 1,
+        "b": 2,
+        "c": 1,
+        "d": 0,
+        "e": 6,
+        "f": 0,
+        "o": 0
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-six-circle-collision"
+    },
+    {
+      "core": {
+        "a": 1,
+        "b": 2,
+        "c": 6,
+        "o": 0,
+        "u": 0,
+        "v": 0
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-six-row-anchor-collision"
+    },
+    {
+      "core": {
+        "a": 1,
+        "b": 2,
+        "c": 6,
+        "o": 0,
+        "u": 0,
+        "v": 1,
+        "w": 2
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-surplus-source-collision"
+    },
+    {
+      "core": {
+        "a": 1,
+        "b": 2,
+        "c": 6,
+        "o": 0,
+        "u": 1,
+        "v": 0,
+        "w": 6
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-seven-point-orbit-collision"
+    },
+    {
+      "core": {
+        "a": 5,
+        "b": 6,
+        "c": 0,
+        "x": 2,
+        "y": 1
+      },
+      "cyclic_orientation": "reverse",
+      "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+      "orientation": "reverse",
+      "source": "metric-bank",
+      "stage": "equality-convex-five-point-reverse"
+    },
+    {
+      "core": {
+        "a": 8,
+        "b": 10,
+        "c": 12,
+        "x": 11,
+        "y": 3
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+      "orientation": "forward",
+      "source": "metric-bank",
+      "stage": "equality-convex-five-point"
+    },
+    {
+      "core": {
+        "boundary_labels": [
+          0,
+          6,
+          8,
+          11,
+          10,
+          9,
+          12,
+          7,
+          2,
+          15,
+          16,
+          3,
+          4,
+          5,
+          1,
+          13,
+          14
+        ],
+        "first_form": "adjacentSides",
+        "first_quad": [
+          0,
+          1,
+          8,
+          14
+        ],
+        "paths": [
+          {
+            "first": [
+              0,
+              1
+            ],
+            "last": [
+              0,
+              8
+            ],
+            "steps": [
+              {
+                "first": 0,
+                "kind": "flip",
+                "second": 1
+              },
+              {
+                "center": 1,
+                "first": 0,
+                "kind": "row",
+                "second": 2
+              },
+              {
+                "first": 1,
+                "kind": "flip",
+                "second": 2
+              },
+              {
+                "center": 2,
+                "first": 1,
+                "kind": "row",
+                "second": 11
+              },
+              {
+                "first": 2,
+                "kind": "flip",
+                "second": 11
+              },
+              {
+                "center": 11,
+                "first": 2,
+                "kind": "row",
+                "second": 0
+              },
+              {
+                "first": 11,
+                "kind": "flip",
+                "second": 0
+              },
+              {
+                "center": 0,
+                "first": 11,
+                "kind": "row",
+                "second": 8
+              }
+            ]
+          },
+          {
+            "first": [
+              8,
+              14
+            ],
+            "last": [
+              1,
+              14
+            ],
+            "steps": [
+              {
+                "first": 8,
+                "kind": "flip",
+                "second": 14
+              },
+              {
+                "center": 14,
+                "first": 8,
+                "kind": "row",
+                "second": 1
+              },
+              {
+                "first": 14,
+                "kind": "flip",
+                "second": 1
+              }
+            ]
+          },
+          {
+            "first": [
+              1,
+              8
+            ],
+            "last": [
+              0,
+              8
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 8,
+                "kind": "row",
+                "second": 2
+              },
+              {
+                "first": 1,
+                "kind": "flip",
+                "second": 2
+              },
+              {
+                "center": 2,
+                "first": 1,
+                "kind": "row",
+                "second": 11
+              },
+              {
+                "first": 2,
+                "kind": "flip",
+                "second": 11
+              },
+              {
+                "center": 11,
+                "first": 2,
+                "kind": "row",
+                "second": 0
+              },
+              {
+                "first": 11,
+                "kind": "flip",
+                "second": 0
+              },
+              {
+                "center": 0,
+                "first": 11,
+                "kind": "row",
+                "second": 8
+              }
+            ]
+          },
+          {
+            "first": [
+              0,
+              14
+            ],
+            "last": [
+              1,
+              14
+            ],
+            "steps": [
+              {
+                "first": 0,
+                "kind": "flip",
+                "second": 14
+              },
+              {
+                "center": 14,
+                "first": 0,
+                "kind": "row",
+                "second": 1
+              },
+              {
+                "first": 14,
+                "kind": "flip",
+                "second": 1
+              }
+            ]
+          }
+        ],
+        "permutation": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "row_choices": [
+          {
+            "center": 0,
+            "support": [
+              8,
+              11,
+              12,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "support": [
+              1,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "support": [
+              2,
+              4,
+              13,
+              16
+            ]
+          },
+          {
+            "center": 4,
+            "support": [
+              2,
+              5,
+              14,
+              15
+            ]
+          },
+          {
+            "center": 5,
+            "support": [
+              1,
+              7,
+              9,
+              12
+            ]
+          },
+          {
+            "center": 6,
+            "support": [
+              3,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "support": [
+              9,
+              11,
+              15,
+              16
+            ]
+          },
+          {
+            "center": 8,
+            "support": [
+              0,
+              7,
+              13,
+              14
+            ]
+          },
+          {
+            "center": 9,
+            "support": [
+              3,
+              8,
+              10,
+              16
+            ]
+          },
+          {
+            "center": 10,
+            "support": [
+              5,
+              6,
+              8,
+              14
+            ]
+          },
+          {
+            "center": 11,
+            "support": [
+              0,
+              2,
+              4,
+              5
+            ]
+          },
+          {
+            "center": 12,
+            "support": [
+              0,
+              3,
+              6,
+              15
+            ]
+          },
+          {
+            "center": 13,
+            "support": [
+              0,
+              9,
+              10,
+              16
+            ]
+          },
+          {
+            "center": 14,
+            "support": [
+              0,
+              1,
+              8,
+              13
+            ]
+          },
+          {
+            "center": 15,
+            "support": [
+              4,
+              6,
+              11,
+              16
+            ]
+          },
+          {
+            "center": 16,
+            "support": [
+              2,
+              3,
+              9,
+              14
+            ]
+          }
+        ],
+        "second_form": "innerOuter",
+        "second_quad": [
+          0,
+          1,
+          8,
+          14
+        ]
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+      "metadata": {
+        "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+      },
+      "orientation": "forward",
+      "source": "metric-bank-equality-closure",
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "core": {
+        "centers": [
+          2,
+          6
+        ],
+        "triple": [
+          0,
+          1,
+          7
+        ]
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-duplicate-center"
+    },
+    {
+      "core": {
+        "foci": [
+          1,
+          2
+        ],
+        "points": [
+          0,
+          5,
+          6
+        ]
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-perpendicular-bisector-convex"
+    },
+    {
+      "core": {
+        "points": [
+          0,
+          1,
+          2,
+          6
+        ]
+      },
+      "cyclic_orientation": "invariant",
+      "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+      "orientation": "invariant",
+      "source": "metric-bank",
+      "stage": "equality-equal-k4"
+    }
+  ],
+  "minimized_witnesses": [
+    {
+      "record": {
+        "core": {
+          "A": 6,
+          "C": 1,
+          "D": 2,
+          "E": 3,
+          "O": 0,
+          "X5": 0,
+          "X6": 0,
+          "X9": 0
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "metric-bank",
+        "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "Q": 0,
+          "U": 6,
+          "V": 1,
+          "Y": 2
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order"
+      },
+      "rows": [
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            14,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            11,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            11,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "Q": 14,
+          "U": 1,
+          "V": 6,
+          "Y": 8
+        },
+        "cyclic_orientation": "reverse",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+        "orientation": "reverse",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+      },
+      "rows": [
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            14,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            11,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            11,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 1,
+          "c": 2,
+          "d": 0,
+          "e": 1,
+          "f": 6
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-six-point-circle-chain-collision"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 1,
+          "c": 2,
+          "d": 6,
+          "e": 1,
+          "f": 0,
+          "g": 2
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-seven-point-six-circle-collision-b"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 1,
+          "c": 2,
+          "e": 1,
+          "f": 6,
+          "o": 2
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-six-point-five-circle-collision-a"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 2,
+          "c": 1,
+          "d": 2,
+          "e": 1,
+          "f": 0,
+          "g": 6,
+          "o": 1
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-eight-point-five-circle-collision"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 2,
+          "c": 1,
+          "d": 2,
+          "e": 1,
+          "f": 0,
+          "g": 6
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-seven-point-five-circle-collision"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 2,
+          "c": 2,
+          "e": 1,
+          "f": 6,
+          "o": 1
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-six-point-five-circle-collision-c"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 2,
+          "c": 6,
+          "d": 0,
+          "e": 1,
+          "f": 2,
+          "o": 1
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-seven-point-twin-four-circle-collision"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 0,
+          "b": 6,
+          "c": 0,
+          "e": 1,
+          "f": 2,
+          "o": 2
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-six-point-five-circle-collision-b"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "record": {
+        "core": {
+          "a": 1,
+          "b": 1,
+          "c": 0,
+          "o": 0,
+          "u": 2,
+          "v": 0,
+          "w": 6
+        },
+        "cyclic_orientation": "invariant",
+        "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+        "orientation": "invariant",
+        "source": "metric-bank",
+        "stage": "equality-seven-point-circle-network-collision"
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ]
+    }
+  ],
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "proposal_count": 22,
+  "schema": "p97-exact17-cdefg-model-theorem-bank/v1",
+  "source_analysis": "scratch/exact17-lean-to-sat/piqd-three-row-model-analysis.json",
+  "unreplayed_proposals": []
+}

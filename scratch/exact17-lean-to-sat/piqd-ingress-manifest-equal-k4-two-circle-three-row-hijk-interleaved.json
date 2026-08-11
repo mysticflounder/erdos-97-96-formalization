@@ -1,0 +1,69 @@
+{
+  "schema": "p97-exact17-lean-hijk-interleaved-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved.cnf",
+    "sha256": "db8f493b4a8312efcf99d0e3e198537233b83dbb6cc5f4dad6f1423e22d90bd9",
+    "bytes": 178619218,
+    "variables": 308,
+    "clauses": 3915420,
+    "parent_prefix_clauses": 3618396,
+    "checked_interleaved_clauses": 297024
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk.json",
+    "manifest_sha256": "39b1c8a7198e949d3783b159c8cbaa436833ef8e694318796ec80fa1c7dda1bd",
+    "validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_ingress.py",
+    "validator_sha256": "6e3bef82a37eb946c384118334d5565d2888d99004d0441dbb6d042bd3b9bf2e",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-equal-k4-two-circle-three-row-hijk-validation.json",
+    "report_sha256": "3e1ba5e0014bccda35c4b0c3c528759b57bd49649b424d59458287fc162a2ead"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean",
+        "sha256": "2c8bee4d54ee73f4abfbb23b0217e25a39edadd6fa01f97639e4eb87edf9fac7"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleaved.lean",
+        "sha256": "786e4132ae84948357236e084aac0702277051f876640d31333b3c537b984c9a"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedExport.lean",
+        "sha256": "75ed8dcd7e71ea4644345cffbcb033dd978e68c649b09237bdc7988090f5c7b2"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_export.py",
+    "script_sha256": "a8fe6472f5ebcd618636886f4c8f2a40497c196ef01faba2a92eb5c05ed16435",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_export.py",
+    "parent_validator_sha256": "76b37abb08f057121c98fc52c8cba9cf658ef64b9d0493e25257be79896d0f01",
+    "grandparent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_export.py",
+    "grandparent_validator_sha256": "f16e74ce26a723daf7508d260daa2d2a55dc7b30d170e259d87114fbffe9f0cc",
+    "ancestor_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_export.py",
+    "ancestor_validator_sha256": "259aaeac6726da5f0314d3d210eb26dbcc5ac5c687ec27485dbd326e24c3994d",
+    "root_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "root_validator_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "base_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "base_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "model": "scratch/exact17-lean-to-sat/piqd-hijk-model.json",
+    "model_sha256": "2380069bd5a33cd5830f83097550570fe5399bf86e8b57f5aff77b5079a14184",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-validation.json",
+    "report_sha256": "40c124632ee93db4cee04f41d97d31220158f037bbd707a2cda9f443f6608e37",
+    "parent_prefix_byte_identical": true,
+    "all_interleaved_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "clauses": 3618396,
+  "dimacs_bytes": 168290508,
+  "dimacs_sha256": "a489fdf5ddbd1f0abd765592e4b016841b170aed7a20833318704e30171bb570",
+  "hijk_clauses": 1188096,
+  "manifest_sha256": "39b1c8a7198e949d3783b159c8cbaa436833ef8e694318796ec80fa1c7dda1bd",
+  "piqd_daemon_sha256": "fd1cacee52677a555f8b3d24c6052c71022e4dfd6ccc9037f165d1d22ec384eb",
+  "schema": "p97-exact17-lean-hijk-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}
