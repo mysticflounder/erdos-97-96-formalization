@@ -114,6 +114,19 @@ entitlement.
 
 ## Live qualification checkpoint
 
+### Projected-v3 clean-image preflight
+
+The first qualification-v3 launch from commit `8d20397464922e0efe88b5f562694060c2aa943c`
+stopped before any PIQD job, session, or solver action. The exact committed
+structural driver was not importable: a contextless selective patch had placed
+the qualification finalizer inside a prospective-state `if` condition even
+though the concurrent working-tree source was valid. This is a P97
+checkpoint-construction defect, not a PIQD defect. Projected-v3 live work must
+resume only from a corrected committed SHA whose exact clean archive passes
+Python import plus the capped qualification tests. Future shared-file
+checkpoints must validate the staged clean image rather than relying on tests
+against the dirty working tree.
+
 The first Frontier A-core qualification used the exact source-derived
 889-variable, 21,101-clause SAT canary and one requested solver process. The
 deployed daemon `0af7a4cd9f813c91ea3ce5a8f4eab6ad979b50e49a2c7276a2fdafa932e5da77`

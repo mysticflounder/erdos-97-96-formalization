@@ -10194,6 +10194,12 @@ def run_driver(
             close = getattr(solver_backend, "close", None)
             if callable(close):
                 close()
+            # A production qualification is sealed only after session close.
+            finalize_qualification = getattr(
+                solver_backend, "finalize_qualification", None
+            )
+            if callable(finalize_qualification):
+                finalize_qualification(status)
         solver_metadata = _solver_manifest_metadata(solver_backend)
         if status != "RUNNING":
             audit_prefix_cache()
@@ -10226,11 +10232,6 @@ def run_driver(
             and status == "RUNNING"
         )
         if (
-            finalize_qualification = getattr(
-                solver_backend, "finalize_qualification", None
-            )
-            if callable(finalize_qualification):
-                finalize_qualification(status)
             prospective_state is not None
             and published_manifest is not None
             and status == "RUNNING"

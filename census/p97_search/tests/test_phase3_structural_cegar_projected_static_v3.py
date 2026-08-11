@@ -864,8 +864,10 @@ def test_terminal_publication_closes_before_qualification_finalization(
     )
 
     assert result["status"] == "STRUCTURAL_UNSAT_VERIFIED"
-    assert events[0] == ("close", None)
-    assert events[1] == ("finalize", "STRUCTURAL_UNSAT_VERIFIED")
+    assert events == [
+        ("close", None),
+        ("finalize", "STRUCTURAL_UNSAT_VERIFIED"),
+    ]
 
 
 def test_static_piqd_split_routes_unknown_without_local_fallback(
