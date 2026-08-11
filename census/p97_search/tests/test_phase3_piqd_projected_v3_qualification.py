@@ -5,6 +5,7 @@ import json
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -306,43 +307,61 @@ class FakeTransport:
         self, method: str, path: str, _body: Any, _headers: Any
     ) -> HttpResponse:
         self.calls.append((method, path))
+        parsed = urlsplit(path)
+        route = parsed.path if parsed.scheme or parsed.netloc else path
         if (method, path) in self.response_overrides:
             return self.response_overrides[(method, path)]
-        if path == "/version":
+        if (method, route) in self.response_overrides:
+            return self.response_overrides[(method, route)]
+        if route == "/version":
             self.version_calls += 1
             body = self.version_pre if self.version_calls == 1 else self.version_post
             return HttpResponse(self._status("version", 200), body, {})
-        if path == f"/jobs/{JOB_ID}":
+        if route == f"/jobs/{JOB_ID}":
             return HttpResponse(self._status("job", 200), self.job, {})
-        if path == f"/jobs/{JOB_ID}/cnf":
+        if route == f"/jobs/{JOB_ID}/cnf":
             return HttpResponse(self._status("blob", self.blob_status), self.blob, {})
-        if path == "/solvers":
+        if route == "/solvers":
             return HttpResponse(self._status("solvers", 200), self.registry, {})
-        if method == "POST" and path.endswith("/sessions"):
+        if method == "POST" and route.endswith("/sessions"):
             return HttpResponse(
                 self._status("create", 201), self._bound_session(self.create), {}
             )
-        if method == "POST" and path.endswith("/clauses"):
+        if method == "POST" and route.endswith("/clauses"):
             return HttpResponse(self._status("append", 200), b"{}", {})
-        if method == "POST" and path.endswith("/solve"):
+        if method == "POST" and route.endswith("/solve"):
             self.solve_calls += 1
             return HttpResponse(
                 self._status("solve", 200),
                 self.solve1 if self.solve_calls == 1 else self.solve2,
                 {},
             )
-        if method == "DELETE" and path.endswith(SESSION_ID):
+        if method == "DELETE" and route.endswith(SESSION_ID):
             if self.lose_delete_once:
                 self.lose_delete_once = False
                 raise OSError("lost close response")
             return HttpResponse(
                 self._status("close", 200), self._bound_session(self.close), {}
             )
-        if method == "GET" and path.endswith(SESSION_ID):
+        if method == "GET" and route.endswith(SESSION_ID):
             return HttpResponse(
                 self._status("session", 200), self._bound_session(self.close), {}
             )
         raise AssertionError((method, path))
+
+
+class StrictAbsoluteTransport(FakeTransport):
+    """Production-v3 fake that models stdlib's absolute-URL requirement."""
+
+    def __call__(self, method: str, path: str, body: Any, headers: Any) -> HttpResponse:
+        parsed = urlsplit(path)
+        if (
+            parsed.scheme not in {"http", "https"}
+            or parsed.netloc != "piqd.test"
+            or not parsed.path.startswith("/")
+        ):
+            raise AssertionError(f"strict fake rejected non-absolute URL: {path!r}")
+        return super().__call__(method, path, body, headers)
 
 
 def _event(payload: dict[str, Any], sequence: int, prior: str | None) -> dict[str, Any]:
@@ -613,6 +632,7 @@ def _prepare_v3(
     *,
     bundle: provisioning.CurrentUnshardedBundle,
     transport: FakeTransport | None = None,
+    daemon_url: str = "http://piqd.test",
 ) -> tuple[qualification.ProductionQualificationV3, FakeTransport]:
     tmp_path.mkdir(parents=True, exist_ok=True)
     version_raw = _version()
@@ -641,7 +661,7 @@ def _prepare_v3(
             "producer_manifest_hash": bundle.producer_manifest_sha256,
         }
     )
-    fake = transport or FakeTransport(
+    fake = transport or StrictAbsoluteTransport(
         job=job,
         blob=bundle.base_cnf,
         registry=_registry(daemon_sha256="3" * 64),
@@ -680,7 +700,7 @@ def _prepare_v3(
         producer_manifest_path=producer_path,
         source_manifest=bundle.source_manifest,
         producer_manifest=bundle.producer_manifest,
-        daemon_url="http://piqd.test",
+        daemon_url=daemon_url,
         producer_job_id=JOB_ID,
         solver_name=SOLVER,
         descriptor=descriptor,
@@ -2088,6 +2108,140 @@ def test_production_v3_full_arbitrary_append_unsat_lifecycle_seals(
     assert (
         contract.directory / qualification.PRODUCTION_V3_SESSION_RESULT_NAME
     ).exists()
+
+
+def test_production_v3_binds_every_control_request_to_daemon_origin(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(
+        tmp_path, bundle=current_bundle, daemon_url="http://piqd.test/"
+    )
+    assert _complete_v3(contract) is not None
+    control_gets = [path for method, path in fake.calls if method == "GET"]
+    assert control_gets == [
+        "http://piqd.test/version",
+        f"http://piqd.test/jobs/{JOB_ID}",
+        (f"http://piqd.test/jobs/{JOB_ID}/blobs/{current_bundle.base_cnf_sha256}"),
+        "http://piqd.test/solvers",
+        "http://piqd.test/version",
+    ]
+    assert all(path.count("http://") == 1 for _, path in fake.calls)
+
+
+class _StringSubclass(str):
+    pass
+
+
+@pytest.mark.parametrize(
+    "daemon_url",
+    [
+        "piqd.test",
+        "ftp://piqd.test",
+        "http://",
+        "http://:7272",
+        "http://user@piqd.test",
+        "http://piqd.test/api",
+        "http://piqd.test?query=1",
+        "http://piqd.test#fragment",
+        "http://piqd.test:invalid",
+        "http://piqd.test:",
+        "http://piqd.test:07272",
+        "http://piqd.test:0",
+        "http://piqd.test:65536",
+        "http://piqd.test:80",
+        "https://piqd.test:443",
+        "http://piqd.test:+80",
+        "HTTP://piqd.test",
+        "http://PIQD.test",
+        "http://piqd.test.",
+        "http://piqd.test?",
+        "http://piqd.test#",
+        "http://piqd.test#/",
+        "http://[::01]",
+        "http://[::1%25lo0]",
+        " http://piqd.test",
+        "http://piqd.test ",
+        "http://pi qd.test",
+        "http://piqd.test\n",
+        "http://piqd.\u00a0test",
+        "http://piqd.test/\x00",
+        _StringSubclass("http://piqd.test"),
+    ],
+)
+def test_production_v3_rejects_malformed_daemon_origins_without_transport(
+    daemon_url: Any,
+) -> None:
+    fake = StrictAbsoluteTransport()
+    with pytest.raises(qualification.QualificationError, match="daemon_url"):
+        qualification._production_v3_bound_transport(fake, daemon_url)
+    assert fake.calls == []
+
+
+@pytest.mark.parametrize(
+    "request_url",
+    [
+        "http://hostile.test/version",
+        "https://piqd.test/version",
+        "//hostile.test/version",
+        "http://user@piqd.test/version",
+        "http://piqd.test/version?query=1",
+        "http://piqd.test/version#fragment",
+        "http://piqd.test/../version",
+        "http://piqd.test//version",
+        "HTTP://piqd.test/version",
+        "http://PIQD.test/version",
+        "http://piqd.test:/version",
+        "/%2e%2e/version",
+        "/%2E/version",
+        "/jobs%2fstatus",
+        "/jobs%2Fstatus",
+        "/jobs%5cstatus",
+        "/jobs%5Cstatus",
+        "/version%00",
+        "/version%09",
+        "/version%0d%0a",
+        "/version%3Fignored",
+        "/%252e%252e/version",
+        "/jobs%252fstatus",
+        "http://piqd.test/%2e%2e/version",
+        "http://piqd.test/jobs%252fstatus",
+        "/version?",
+        "/version#",
+        "/version\\suffix",
+        "/version suffix",
+        "/version\x00",
+        "/version\u00a0",
+    ],
+)
+def test_production_v3_rejects_hostile_absolute_control_urls(
+    request_url: str,
+) -> None:
+    fake = StrictAbsoluteTransport()
+    bound = qualification._production_v3_bound_transport(fake, "http://piqd.test/")
+    with pytest.raises(qualification.QualificationError, match="request URL"):
+        bound("GET", request_url, None, {"Accept": "application/json"})
+    assert fake.calls == []
+
+
+def test_production_v3_same_origin_absolute_url_is_not_double_prefixed() -> None:
+    fake = StrictAbsoluteTransport()
+    bound = qualification._production_v3_bound_transport(fake, "http://piqd.test/")
+    response = bound(
+        "GET",
+        "http://piqd.test/version",
+        None,
+        {"Accept": "application/json"},
+    )
+    assert response.status == 200
+    assert fake.calls == [("GET", "http://piqd.test/version")]
+
+
+def test_production_v3_accepts_one_trailing_slash_and_canonical_port() -> None:
+    assert (
+        qualification._production_v3_daemon_origin("http://piqd.test:7272/")
+        == "http://piqd.test:7272"
+    )
 
 
 def test_production_v3_registry_daemon_sha256_is_optional_and_cross_bound(

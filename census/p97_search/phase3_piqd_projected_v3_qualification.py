@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import importlib
+import ipaddress
 import json
 import os
 import stat
@@ -322,6 +323,144 @@ def _string(value: Any, *, label: str) -> str:
     if type(value) is not str or not value:
         raise QualificationError(f"{label} must be a non-empty builtin string")
     return value
+
+
+def _production_v3_ascii_url(value: Any, *, label: str) -> str:
+    value = _string(value, label=label)
+    if (
+        not value.isascii()
+        or "%" in value
+        or any(ord(character) <= 0x20 or ord(character) == 0x7F for character in value)
+    ):
+        raise QualificationError(
+            f"{label} must contain printable canonical ASCII without percent escapes"
+        )
+    return value
+
+
+def _production_v3_canonical_host(value: str) -> str:
+    if ":" in value:
+        try:
+            parsed = ipaddress.IPv6Address(value)
+        except ipaddress.AddressValueError as exc:
+            raise QualificationError(
+                "daemon_url must have a canonical HTTP(S) host"
+            ) from exc
+        if value != parsed.compressed:
+            raise QualificationError("daemon_url must have a canonical HTTP(S) host")
+        return f"[{value}]"
+    if all(character.isdigit() or character == "." for character in value):
+        try:
+            parsed_ipv4 = ipaddress.IPv4Address(value)
+        except ipaddress.AddressValueError as exc:
+            raise QualificationError(
+                "daemon_url must have a canonical HTTP(S) host"
+            ) from exc
+        if value != str(parsed_ipv4):
+            raise QualificationError("daemon_url must have a canonical HTTP(S) host")
+        return value
+    labels = value.split(".")
+    if (
+        len(value) > 253
+        or value != value.lower()
+        or any(
+            not label
+            or len(label) > 63
+            or not label[0].isalnum()
+            or not label[-1].isalnum()
+            or any(not character.isalnum() and character != "-" for character in label)
+            for label in labels
+        )
+    ):
+        raise QualificationError("daemon_url must have a canonical HTTP(S) host")
+    return value
+
+
+def _production_v3_daemon_origin(value: Any) -> str:
+    """Return one canonical origin for authority-v3 control requests."""
+
+    value = _production_v3_ascii_url(value, label="daemon_url")
+    value = value.removesuffix("/")
+    try:
+        parsed = urlsplit(value)
+        port = parsed.port
+    except ValueError as exc:
+        raise QualificationError(
+            "daemon_url must be an origin-only HTTP(S) URL"
+        ) from exc
+    if (
+        parsed.scheme not in {"http", "https"}
+        or not parsed.netloc
+        or parsed.hostname is None
+        or parsed.username is not None
+        or parsed.password is not None
+        or parsed.path
+        or parsed.query
+        or parsed.fragment
+        or (port is not None and not 0 < port < 65_536)
+        or (parsed.scheme == "http" and port == 80)
+        or (parsed.scheme == "https" and port == 443)
+    ):
+        raise QualificationError("daemon_url must be an origin-only HTTP(S) URL")
+    canonical_host = _production_v3_canonical_host(parsed.hostname)
+    canonical_netloc = canonical_host if port is None else f"{canonical_host}:{port}"
+    canonical_origin = f"{parsed.scheme}://{canonical_netloc}"
+    if value != canonical_origin:
+        raise QualificationError(
+            "daemon_url must use a canonical HTTP(S) scheme, host, and port"
+        )
+    return canonical_origin
+
+
+def _production_v3_bound_transport(transport: Transport, daemon_url: Any) -> Transport:
+    """Bind v3 control paths to one origin without weakening the raw transport."""
+
+    origin = _production_v3_daemon_origin(daemon_url)
+    origin_parts = urlsplit(origin)
+
+    def bound(
+        method: str,
+        path: str,
+        body: bytes | Any | None,
+        headers: Mapping[str, str] | Any,
+    ) -> HttpResponse:
+        request = _production_v3_ascii_url(path, label="production-v3 PIQD request URL")
+        try:
+            parsed = urlsplit(request)
+        except ValueError as exc:
+            raise QualificationError(
+                "production-v3 PIQD request URL is malformed"
+            ) from exc
+        if (
+            parsed.query
+            or parsed.fragment
+            or "?" in request
+            or "#" in request
+            or not parsed.path.startswith("/")
+            or parsed.path.startswith("//")
+            or "\\" in parsed.path
+            or any(segment in {"", ".", ".."} for segment in parsed.path.split("/")[1:])
+        ):
+            raise QualificationError(
+                "production-v3 PIQD request URL has a forbidden path"
+            )
+        if parsed.scheme or parsed.netloc:
+            if (
+                parsed.scheme != origin_parts.scheme
+                or parsed.netloc != origin_parts.netloc
+                or parsed.username is not None
+                or parsed.password is not None
+                or request != f"{origin}{parsed.path}"
+            ):
+                raise QualificationError(
+                    "production-v3 PIQD request URL crosses daemon origin"
+                )
+            absolute = request
+        else:
+            absolute = f"{origin}{request}"
+        return transport(method, absolute, body, headers)
+
+    return bound
 
 
 def _hex(value: Any, *, label: str) -> str:
@@ -2975,8 +3114,7 @@ def _production_v3_authority_value(raw: bytes, *, path: Path) -> ProductionAutho
             raise QualificationError(f"authority.{key} disagrees with production-v3")
     if type(value["prepared_existing"]) is not bool:
         raise QualificationError("authority.prepared_existing is not builtin bool")
-    _string(value["daemon_url"], label="authority.daemon_url")
-    if value["daemon_url"] != value["daemon_url"].rstrip("/"):
+    if value["daemon_url"] != _production_v3_daemon_origin(value["daemon_url"]):
         raise QualificationError("authority daemon URL must not end in a slash")
     _hex(value["daemon_version_pre_sha256"], label="authority daemon version")
     _uuid(value["producer_job_id"], label="authority.producer_job_id")
@@ -3068,9 +3206,10 @@ def validate_production_launch_authority_v3(
         )
     except static.StaticPiqdRunnerError as exc:
         raise QualificationError(str(exc)) from exc
+    daemon_origin = _production_v3_daemon_origin(daemon_url)
     value = authority.value
     if (
-        value["daemon_url"] != daemon_url.rstrip("/")
+        value["daemon_url"] != daemon_origin
         or value["source_manifest_sha256"] != authenticated.source_sha256
         or value["source_manifest_bytes"] != len(authenticated.source_bytes)
         or value["producer_manifest_sha256"] != authenticated.producer_sha256
@@ -3469,8 +3608,9 @@ def prepare_production_qualification_v3(
     ):
         raise QualificationError("production descriptor is not preflight-rooted")
 
+    bound_transport = _production_v3_bound_transport(transport, daemon_url)
     version_pre_raw = _get_json_exact_bytes(
-        transport, "/version", label="daemon version pre"
+        bound_transport, "/version", label="daemon version pre"
     )
     version_pre = _strict_json(
         version_pre_raw, label="daemon version pre", canonical=False
@@ -3479,7 +3619,7 @@ def prepare_production_qualification_v3(
     if _sha(version_pre_raw) != authority.value["daemon_version_pre_sha256"]:
         raise QualificationError("daemon pre-version snapshot disagrees with authority")
     job_raw = _get_json_bounded(
-        transport,
+        bound_transport,
         f"/jobs/{producer_job_id}",
         label="producer job",
         limit=MAX_JOB_STATUS_BYTES,
@@ -3497,7 +3637,7 @@ def prepare_production_qualification_v3(
         authority_version=3,
     )
     blob_response = _response(
-        transport(
+        bound_transport(
             "GET",
             f"/jobs/{producer_job_id}/blobs/{authority.value['base_cnf_sha256']}",
             None,
@@ -3508,7 +3648,7 @@ def prepare_production_qualification_v3(
     )
     if blob_response.status != 200 or blob_response.body != base:
         raise QualificationError("producer job base blob disagrees with local base")
-    registry_raw = _get_json(transport, "/solvers", label="solver registry")
+    registry_raw = _get_json(bound_transport, "/solvers", label="solver registry")
     registry = _strict_json(registry_raw, label="solver registry")
     _production_v3_registry_daemon_contract(
         registry,
@@ -3573,7 +3713,7 @@ def prepare_production_qualification_v3(
     preflight_raw = _json_bytes(preflight)
     _write_once(root / PRODUCTION_V3_PREFLIGHT_NAME, preflight_raw)
     wrapper = QualificationTransport(
-        transport,
+        bound_transport,
         root=root,
         solver_name=solver_name,
         solver_sha256=solver["sha256"],

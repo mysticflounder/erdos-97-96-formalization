@@ -190,6 +190,25 @@ base blob, solver registry identity, and pre-run daemon version, then writes
 canonical preflight custody. The runtime `.solver.cnf` must initially equal
 the base and thereafter be an append-only extension.
 
+Qualification-v3 normalizes its already authenticated daemon URL to one
+origin-only HTTP(S) value before any live request. The origin must use printable
+ASCII, a lowercase canonical scheme and DNS/IP host, and an empty or canonical
+non-default decimal port; whitespace or control characters, Unicode host
+ambiguity, userinfo, empty, default, out-of-range, or leading-zero ports, and
+noncanonical equivalent spellings fail closed. One trailing slash is
+normalized away. Its
+private adapter prefixes that origin to the relative control-contract paths for
+pre-run `/version`, `/jobs/:id`, `/jobs/:id/blobs/:sha256`, `/solvers`, and
+post-close `/version`. An already absolute request is forwarded without a
+second prefix only when it has the identical canonical scheme and authority and
+an unambiguous root-relative path. Cross-origin, userinfo, query, fragment,
+literal traversal or separators, whitespace or controls, and every percent
+escape fail closed; rejecting all percent escapes also rejects encoded and
+double-encoded traversal, separators, NULs, and controls, none of which current
+qualification endpoints require. This v3-only binding does not loosen the
+generic stdlib transport or alter the frozen authority-v2 and historical canary
+paths.
+
 Under the authority-v3 daemon contract, completed producer-job status must
 contain all three exact SHA-256 identities: `cnf_blob_hash` equals the
 authenticated prepared base blob, `identity_hash` equals the authenticated raw
