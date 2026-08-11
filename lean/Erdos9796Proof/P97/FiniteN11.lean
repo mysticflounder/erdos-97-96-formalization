@@ -5,7 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.FiniteN10
-import Erdos9796Proof.P97.RemovableVertexAxiom.Continuation
+import Erdos9796Proof.P97.RemovableVertexAxiom.RemovableVertexOfLarge
 
 /-!
 # Finite n = 11 endpoint

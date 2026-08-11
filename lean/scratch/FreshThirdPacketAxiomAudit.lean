@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
+
+open scoped BigOperators
+open Problem97
+open Problem97.ATailFrontierLiveClosure
+
+#print axioms Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThirdEqualCenter_sourceFreshSupport_inter_eq_pair_of_hits

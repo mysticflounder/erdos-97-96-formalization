@@ -1,0 +1,4 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+open Problem97
+open Problem97.ATailFrontierLiveClosure
+#print axioms Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_freshThirdCrossRowHits_distinctCenters

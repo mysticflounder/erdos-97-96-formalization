@@ -25,6 +25,65 @@ namespace Problem97
 
 namespace SurplusCapPacket
 
+/-- Two distinct indexed closed caps share at most their common Moser vertex.
+In particular, any two points lying in both caps are equal. -/
+theorem eq_of_mem_capByIndex_of_mem_capByIndex_of_ne
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3} {x y : ℝ²}
+    (hij : i ≠ j)
+    (hxi : x ∈ S.capByIndex i) (hxj : x ∈ S.capByIndex j)
+    (hyi : y ∈ S.capByIndex i) (hyj : y ∈ S.capByIndex j) :
+    x = y := by
+  classical
+  have h12 : ∀ z : ℝ², z ∈ S.partition.C1 → z ∈ S.partition.C2 →
+      z = S.triangle.v3 := by
+    intro z hz1 hz2
+    by_cases hzVerts : z ∈ S.triangle.verts
+    · rcases mem_triangle_verts_cases hzVerts with rfl | rfl | rfl
+      · exact False.elim (S.partition.v1_notin_C1 hz1)
+      · exact False.elim (S.partition.v2_notin_C2 hz2)
+      · rfl
+    · exfalso
+      have hzA : z ∈ A := S.partition.C1_subset hz1
+      have hone := S.partition.nonmoser_in_one z hzA hzVerts
+      rw [if_pos hz1, if_pos hz2] at hone
+      split at hone <;> omega
+  have h13 : ∀ z : ℝ², z ∈ S.partition.C1 → z ∈ S.partition.C3 →
+      z = S.triangle.v2 := by
+    intro z hz1 hz3
+    by_cases hzVerts : z ∈ S.triangle.verts
+    · rcases mem_triangle_verts_cases hzVerts with rfl | rfl | rfl
+      · exact False.elim (S.partition.v1_notin_C1 hz1)
+      · rfl
+      · exact False.elim (S.partition.v3_notin_C3 hz3)
+    · exfalso
+      have hzA : z ∈ A := S.partition.C1_subset hz1
+      have hone := S.partition.nonmoser_in_one z hzA hzVerts
+      rw [if_pos hz1, if_pos hz3] at hone
+      split at hone <;> omega
+  have h23 : ∀ z : ℝ², z ∈ S.partition.C2 → z ∈ S.partition.C3 →
+      z = S.triangle.v1 := by
+    intro z hz2 hz3
+    by_cases hzVerts : z ∈ S.triangle.verts
+    · rcases mem_triangle_verts_cases hzVerts with rfl | rfl | rfl
+      · rfl
+      · exact False.elim (S.partition.v2_notin_C2 hz2)
+      · exact False.elim (S.partition.v3_notin_C3 hz3)
+    · exfalso
+      have hzA : z ∈ A := S.partition.C2_subset hz2
+      have hone := S.partition.nonmoser_in_one z hzA hzVerts
+      rw [if_pos hz2, if_pos hz3] at hone
+      split at hone <;> omega
+  fin_cases i <;> fin_cases j
+  · exact False.elim (hij rfl)
+  · exact (h12 x hxi hxj).trans (h12 y hyi hyj).symm
+  · exact (h13 x hxi hxj).trans (h13 y hyi hyj).symm
+  · exact (h12 x hxj hxi).trans (h12 y hyj hyi).symm
+  · exact False.elim (hij rfl)
+  · exact (h23 x hxi hxj).trans (h23 y hyi hyj).symm
+  · exact (h13 x hxj hxi).trans (h13 y hyj hyi).symm
+  · exact (h23 x hxj hxi).trans (h23 y hyj hyi).symm
+  · exact False.elim (hij rfl)
+
 /-- A point in the strict interior of an indexed cap is private to that cap:
 it is not in either adjacent closed cap. -/
 theorem capInteriorByIndex_mem_private

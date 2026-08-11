@@ -1,0 +1,5 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+open Problem97
+open Problem97.ATailFrontierLiveClosure
+#print Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdEqualCenterExactFourRow
+#print Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdNormalizedResidualCase

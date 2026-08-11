@@ -135,6 +135,58 @@ theorem false_of_thirdActualCenter_selectedRow_contains_frontierPair
       hthird_ne_qBlocker.symm⟩
   omega
 
+/-- Two distinct carrier centers already saturate the convex-carrier
+perpendicular-bisector bound for a pair.  Consequently a selected four-class
+at any third carrier center can contain at most one point of that pair.
+
+This generic form is useful for deletion rows whose center is a named Moser
+apex rather than an actual blocker selected by `CriticalShellSystem`. -/
+theorem selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers
+    {D : CounterexampleData} {x y c₀ c₁ c₂ : ℝ²}
+    (hxA : x ∈ D.A) (hyA : y ∈ D.A) (hxy : x ≠ y)
+    (hc₀A : c₀ ∈ D.A) (hc₁A : c₁ ∈ D.A) (hc₂A : c₂ ∈ D.A)
+    (hc₀c₁ : c₀ ≠ c₁) (hc₂c₀ : c₂ ≠ c₀) (hc₂c₁ : c₂ ≠ c₁)
+    (hc₀eq : dist c₀ x = dist c₀ y)
+    (hc₁eq : dist c₁ x = dist c₁ y)
+    (K : SelectedFourClass D.A c₂) :
+    (K.support ∩ {x, y}).card ≤ 1 := by
+  by_contra hcard
+  have hpairCard : ({x, y} : Finset ℝ²).card = 2 := by
+    simp [hxy]
+  have hsub : K.support ∩ {x, y} ⊆ ({x, y} : Finset ℝ²) :=
+    Finset.inter_subset_right
+  have heq : K.support ∩ {x, y} = ({x, y} : Finset ℝ²) :=
+    Finset.eq_of_subset_of_card_le hsub (by omega)
+  have hxK : x ∈ K.support := by
+    have : x ∈ K.support ∩ {x, y} := by
+      rw [heq]
+      simp
+    exact (Finset.mem_inter.mp this).1
+  have hyK : y ∈ K.support := by
+    have : y ∈ K.support ∩ {x, y} := by
+      rw [heq]
+      simp
+    exact (Finset.mem_inter.mp this).1
+  have hc₂eq : dist c₂ x = dist c₂ y :=
+    (K.support_eq_radius x hxK).trans (K.support_eq_radius y hyK).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex hxA hyA hxy
+  have hc₀Filter :
+      c₀ ∈ D.A.filter (fun center ↦ dist center x = dist center y) :=
+    Finset.mem_filter.mpr ⟨hc₀A, hc₀eq⟩
+  have hc₁Filter :
+      c₁ ∈ D.A.filter (fun center ↦ dist center x = dist center y) :=
+    Finset.mem_filter.mpr ⟨hc₁A, hc₁eq⟩
+  have hc₂Filter :
+      c₂ ∈ D.A.filter (fun center ↦ dist center x = dist center y) :=
+    Finset.mem_filter.mpr ⟨hc₂A, hc₂eq⟩
+  have hthree :
+      2 < (D.A.filter
+        (fun center ↦ dist center x = dist center y)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨c₀, hc₀Filter, c₁, hc₁Filter, c₂, hc₂Filter,
+      hc₀c₁, hc₂c₀.symm, hc₂c₁.symm⟩
+  omega
+
 /-- At any source of the retained total critical map, simultaneous failure
 of the two frontier-source deletions forces that source's actual blocker to
 be one of the two already known common-pair centers. -/

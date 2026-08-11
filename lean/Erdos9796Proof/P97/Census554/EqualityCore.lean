@@ -127,6 +127,25 @@ theorem EdgeClosure.sound {α : Type*} {P : RowPattern α} {pointOf : α → ℝ
   | symm _ ih => exact ih.symm
   | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
+/-- In an injective realization, equality closure from an edge to a diagonal
+edge forces the original edge's endpoints to coincide. -/
+theorem EdgeClosure.eq_of_closure_to_diagonal
+    {α : Type*} {P : RowPattern α} {pointOf : α → ℝ²}
+    (hreal : Realizes P pointOf) {a b c : α}
+    (hclosure : EdgeClosure P (a, b) (c, c)) : a = b := by
+  have hzero : dist (pointOf a) (pointOf b) = 0 := by
+    simpa [edgeDist] using EdgeClosure.sound hreal hclosure
+  exact hreal.injective (dist_eq_zero.mp hzero)
+
+/-- A non-diagonal edge cannot be equality-connected to a diagonal edge in an
+injective realization. -/
+theorem EdgeClosure.not_closure_to_diagonal_of_ne
+    {α : Type*} {P : RowPattern α} {pointOf : α → ℝ²}
+    (hreal : Realizes P pointOf) {a b c : α} (hab : a ≠ b) :
+    ¬ EdgeClosure P (a, b) (c, c) := by
+  intro hclosure
+  exact hab (EdgeClosure.eq_of_closure_to_diagonal hreal hclosure)
+
 /-- Exactness of one row: every label outside its support has a different
 distance from the row center than every support label. -/
 def ExactAt {α : Type*} (P : RowPattern α) (pointOf : α → ℝ²) (c : α) : Prop :=

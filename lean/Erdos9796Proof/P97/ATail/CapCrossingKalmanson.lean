@@ -426,11 +426,11 @@ dist ia id + dist ib ic < dist ia ic + dist ib id
 contradicts the two row equalities after direct cancellation. -/
 theorem false_of_two_selected_rows_shared_late_pair
     {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
-    {boundary : Fin carrier.card → ℝ²}
+    {n : ℕ} {boundary : Fin n → ℝ²}
     (hboundary_injective : Function.Injective boundary)
     (hboundary_image : Finset.univ.image boundary = carrier)
     (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
-    {ia ib ic id : Fin carrier.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
     (ARow : SelectedFourClass carrier (boundary ia))
     (BRow : SelectedFourClass carrier (boundary ib))
@@ -453,6 +453,48 @@ theorem false_of_two_selected_rows_shared_late_pair
       hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
   linarith
 
+/-- Two selected rows with the same first center can transfer an equal-radius
+relation across one shared bridge point.  If the transferred pair is also a
+support pair of the selected row at the second vertex of an increasing
+boundary quadruple, the strict Kalmanson inequality is impossible.
+
+This is the exact equality-only consumer for the six-premise FreshThird CEGAR
+core: the two first-center rows need not have equal supports, only a common
+support point. -/
+theorem false_of_three_selected_rows_bridged_late_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin n} {bridge : ℝ²}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (ARowLeft ARowRight : SelectedFourClass carrier (boundary ia))
+    (BRow : SelectedFourClass carrier (boundary ib))
+    (hic_mem_ARowLeft : boundary ic ∈ ARowLeft.support)
+    (hbridge_mem_ARowLeft : bridge ∈ ARowLeft.support)
+    (hbridge_mem_ARowRight : bridge ∈ ARowRight.support)
+    (hid_mem_ARowRight : boundary id ∈ ARowRight.support)
+    (hic_mem_BRow : boundary ic ∈ BRow.support)
+    (hid_mem_BRow : boundary id ∈ BRow.support) :
+    False := by
+  have hAeq :
+      dist (boundary ia) (boundary ic) =
+        dist (boundary ia) (boundary id) :=
+    (ARowLeft.support_eq_radius _ hic_mem_ARowLeft).trans
+      ((ARowLeft.support_eq_radius _ hbridge_mem_ARowLeft).symm.trans
+        ((ARowRight.support_eq_radius _ hbridge_mem_ARowRight).trans
+          (ARowRight.support_eq_radius _ hid_mem_ARowRight).symm))
+  have hBeq :
+      dist (boundary ib) (boundary ic) =
+        dist (boundary ib) (boundary id) :=
+    (BRow.support_eq_radius _ hic_mem_BRow).trans
+      (BRow.support_eq_radius _ hid_mem_BRow).symm
+  have hstrict :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+  linarith
+
 /-- The two endpoint vertices of an increasing boundary quadruple cannot both
 bisect its middle pair.
 
@@ -461,11 +503,11 @@ induced-metric CEGAR search: the companion strict Kalmanson inequality has
 equal left and right sides after the two displayed substitutions. -/
 theorem false_of_four_ccw_endpoint_centers_bisect_middle_pair
     {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
-    {boundary : Fin carrier.card → ℝ²}
+    {n : ℕ} {boundary : Fin n → ℝ²}
     (hboundary_injective : Function.Injective boundary)
     (hboundary_image : Finset.univ.image boundary = carrier)
     (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
-    {ia ib ic id : Fin carrier.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
     (haeq :
       dist (boundary ia) (boundary ib) =
@@ -492,11 +534,11 @@ the Euclidean subset-core miner.  After commuting the two row equalities, the
 companion strict Kalmanson inequality has identical left and right sides. -/
 theorem false_of_four_ccw_middle_centers_bisect_endpoint_pair
     {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
-    {boundary : Fin carrier.card → ℝ²}
+    {n : ℕ} {boundary : Fin n → ℝ²}
     (hboundary_injective : Function.Injective boundary)
     (hboundary_image : Finset.univ.image boundary = carrier)
     (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
-    {ia ib ic id : Fin carrier.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
     (hbeq :
       dist (boundary ib) (boundary ia) =
@@ -517,6 +559,275 @@ theorem false_of_four_ccw_middle_centers_bisect_endpoint_pair
         dist (boundary ic) (boundary id) := by
     simpa only [dist_comm (boundary ic) (boundary ia)] using hceq
   linarith
+
+/-- The two late vertices of an increasing boundary quadruple cannot both be
+equidistant from its early pair.
+
+This is the equality-only consumer extracted from the FreshThird endpoint
+CEGAR core.  The main strict Kalmanson inequality has identical left and
+right sides after commuting the two displayed equalities. -/
+theorem false_of_four_ccw_late_centers_bisect_early_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin n}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (hceq :
+      dist (boundary ic) (boundary ia) =
+        dist (boundary ic) (boundary ib))
+    (hdeq :
+      dist (boundary id) (boundary ia) =
+        dist (boundary id) (boundary ib)) :
+    False := by
+  have hstrict :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+  have hceq' :
+      dist (boundary ib) (boundary ic) =
+        dist (boundary ia) (boundary ic) := by
+    simpa only [dist_comm (boundary ic) (boundary ia),
+      dist_comm (boundary ic) (boundary ib)] using hceq.symm
+  have hdeq' :
+      dist (boundary ia) (boundary id) =
+        dist (boundary ib) (boundary id) := by
+    simpa only [dist_comm (boundary id) (boundary ia),
+      dist_comm (boundary id) (boundary ib)] using hdeq
+  linarith
+
+/-- Four selected rows cannot realize the chained endpoint motif extracted
+from the FreshThird endpoint CEGAR core.
+
+The row at `bridge` and the two rows at the early vertices transport equal
+radius from `boundary ic` across the bridge.  The row at the late endpoint
+supplies the second bisector, so
+`false_of_four_ccw_late_centers_bisect_early_pair` applies. -/
+theorem false_of_four_selected_rows_chained_late_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin n} {bridge : ℝ²}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (BridgeRow : SelectedFourClass carrier bridge)
+    (EarlyRow : SelectedFourClass carrier (boundary ia))
+    (MiddleRow : SelectedFourClass carrier (boundary ib))
+    (LateRow : SelectedFourClass carrier (boundary id))
+    (hia_mem_BridgeRow : boundary ia ∈ BridgeRow.support)
+    (hib_mem_BridgeRow : boundary ib ∈ BridgeRow.support)
+    (hbridge_mem_EarlyRow : bridge ∈ EarlyRow.support)
+    (hic_mem_EarlyRow : boundary ic ∈ EarlyRow.support)
+    (hbridge_mem_MiddleRow : bridge ∈ MiddleRow.support)
+    (hic_mem_MiddleRow : boundary ic ∈ MiddleRow.support)
+    (hia_mem_LateRow : boundary ia ∈ LateRow.support)
+    (hib_mem_LateRow : boundary ib ∈ LateRow.support) :
+    False := by
+  have hBridgeEq :
+      dist bridge (boundary ia) = dist bridge (boundary ib) :=
+    (BridgeRow.support_eq_radius _ hia_mem_BridgeRow).trans
+      (BridgeRow.support_eq_radius _ hib_mem_BridgeRow).symm
+  have hEarlyEq :
+      dist (boundary ia) bridge =
+        dist (boundary ia) (boundary ic) :=
+    (EarlyRow.support_eq_radius _ hbridge_mem_EarlyRow).trans
+      (EarlyRow.support_eq_radius _ hic_mem_EarlyRow).symm
+  have hMiddleEq :
+      dist (boundary ib) bridge =
+        dist (boundary ib) (boundary ic) :=
+    (MiddleRow.support_eq_radius _ hbridge_mem_MiddleRow).trans
+      (MiddleRow.support_eq_radius _ hic_mem_MiddleRow).symm
+  have hceq :
+      dist (boundary ic) (boundary ia) =
+        dist (boundary ic) (boundary ib) := by
+    calc
+      dist (boundary ic) (boundary ia) = dist (boundary ia) bridge := by
+        rw [dist_comm (boundary ic) (boundary ia), hEarlyEq]
+      _ = dist bridge (boundary ia) := dist_comm _ _
+      _ = dist bridge (boundary ib) := hBridgeEq
+      _ = dist (boundary ib) bridge := dist_comm _ _
+      _ = dist (boundary ib) (boundary ic) := hMiddleEq
+      _ = dist (boundary ic) (boundary ib) := dist_comm _ _
+  have hdeq :
+      dist (boundary id) (boundary ia) =
+        dist (boundary id) (boundary ib) :=
+    (LateRow.support_eq_radius _ hia_mem_LateRow).trans
+      (LateRow.support_eq_radius _ hib_mem_LateRow).symm
+  exact
+    false_of_four_ccw_late_centers_bisect_early_pair hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+      hceq hdeq
+
+/-- The four source-faithful order arms of the exceptional FreshThird packet
+are all impossible once the order-selected endpoint and the source center
+bisect the indicated endpoint pair.
+
+The unused fresh center is deliberately absent: in each five-point arm it
+only establishes the displayed four-point order.  This theorem is therefore
+the exact metric consumer for a producer that supplies the two relevant
+deletion-row equalities; it makes no cardinality assumption. -/
+theorem false_of_freshThird_four_order_arms
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {qOutside qBetween sourceCenter canonicalSource : Fin n}
+    (horderAndEqualities :
+      (qOutside < qBetween ∧ qBetween < sourceCenter ∧
+        sourceCenter < canonicalSource ∧
+        dist (boundary qBetween) (boundary qOutside) =
+          dist (boundary qBetween) (boundary canonicalSource) ∧
+        dist (boundary sourceCenter) (boundary qOutside) =
+          dist (boundary sourceCenter) (boundary canonicalSource)) ∨
+      (qOutside < qBetween ∧ qBetween < canonicalSource ∧
+        canonicalSource < sourceCenter ∧
+        dist (boundary qOutside) (boundary qBetween) =
+          dist (boundary qOutside) (boundary canonicalSource) ∧
+        dist (boundary sourceCenter) (boundary qBetween) =
+          dist (boundary sourceCenter) (boundary canonicalSource)) ∨
+      (canonicalSource < sourceCenter ∧ sourceCenter < qBetween ∧
+        qBetween < qOutside ∧
+        dist (boundary sourceCenter) (boundary canonicalSource) =
+          dist (boundary sourceCenter) (boundary qOutside) ∧
+        dist (boundary qBetween) (boundary canonicalSource) =
+          dist (boundary qBetween) (boundary qOutside)) ∨
+      (sourceCenter < canonicalSource ∧ canonicalSource < qBetween ∧
+        qBetween < qOutside ∧
+        dist (boundary sourceCenter) (boundary canonicalSource) =
+          dist (boundary sourceCenter) (boundary qBetween) ∧
+        dist (boundary qOutside) (boundary canonicalSource) =
+          dist (boundary qOutside) (boundary qBetween))) :
+    False := by
+  rcases horderAndEqualities with h | h | h | h
+  · rcases h with ⟨hoq, hqs, hsc, hqeq, hseq⟩
+    exact false_of_four_ccw_middle_centers_bisect_endpoint_pair
+      hcarrier hboundary_injective hboundary_image hboundary_ccw
+      hoq hqs hsc hqeq hseq
+  · rcases h with ⟨hoq, hqc, hcs, hqeq, hseq⟩
+    exact false_of_four_ccw_endpoint_centers_bisect_middle_pair
+      hcarrier hboundary_injective hboundary_image hboundary_ccw
+      hoq hqc hcs hqeq hseq
+  · rcases h with ⟨hcs, hsq, hqo, hseq, hqeq⟩
+    exact false_of_four_ccw_middle_centers_bisect_endpoint_pair
+      hcarrier hboundary_injective hboundary_image hboundary_ccw
+      hcs hsq hqo hseq hqeq
+  · rcases h with ⟨hsc, hcq, hqo, hseq, hqeq⟩
+    exact false_of_four_ccw_endpoint_centers_bisect_middle_pair
+      hcarrier hboundary_injective hboundary_image hboundary_ccw
+      hsc hcq hqo hseq hqeq
+
+/-- Seven increasing boundary points cannot support the three chained
+bisectors displayed below.
+
+This is the equality-only form of the second exact-rational FreshThird CEGAR
+core.  Adding the strict Kalmanson inequalities on
+`(iBase,iWing,iOutside,iFresh)`, `(iBase,iWing,iFresh,iBlocker)`,
+`(iBase,iOutside,iBlocker,iBetween)`, and
+`(iBase,iOutside,iBetween,iSource)` cancels every term after the three
+equalities are substituted.  The statement is cardinality-independent. -/
+theorem false_of_seven_ccw_three_chained_bisectors
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {iBase iWing iOutside iFresh iBlocker iBetween iSource : Fin n}
+    (hBaseWing : iBase < iWing)
+    (hWingOutside : iWing < iOutside)
+    (hOutsideFresh : iOutside < iFresh)
+    (hFreshBlocker : iFresh < iBlocker)
+    (hBlockerBetween : iBlocker < iBetween)
+    (hBetweenSource : iBetween < iSource)
+    (hSourceEq :
+      dist (boundary iSource) (boundary iBetween) =
+        dist (boundary iSource) (boundary iOutside))
+    (hOutsideEq :
+      dist (boundary iOutside) (boundary iWing) =
+        dist (boundary iOutside) (boundary iBetween))
+    (hBlockerEq :
+      dist (boundary iBlocker) (boundary iWing) =
+        dist (boundary iBlocker) (boundary iOutside)) :
+    False := by
+  have hBaseOutside : iBase < iOutside := hBaseWing.trans hWingOutside
+  have hWingFresh : iWing < iFresh := hWingOutside.trans hOutsideFresh
+  have hOutsideBlocker : iOutside < iBlocker :=
+    hOutsideFresh.trans hFreshBlocker
+  have hOutsideBetween : iOutside < iBetween :=
+    hOutsideBlocker.trans hBlockerBetween
+  have hKalmanson₁ :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw
+      hBaseWing hWingOutside hOutsideFresh
+  have hKalmanson₂ :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw
+      hBaseWing hWingFresh hFreshBlocker
+  have hKalmanson₃ :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw
+      hBaseOutside hOutsideBlocker hBlockerBetween
+  have hKalmanson₄ :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw
+      hBaseOutside hOutsideBetween hBetweenSource
+  have hSourceEq' :
+      dist (boundary iBetween) (boundary iSource) =
+        dist (boundary iOutside) (boundary iSource) := by
+    simpa only [dist_comm (boundary iSource)] using hSourceEq
+  have hOutsideEq' :
+      dist (boundary iWing) (boundary iOutside) =
+        dist (boundary iOutside) (boundary iBetween) := by
+    simpa only [dist_comm (boundary iOutside) (boundary iWing)] using hOutsideEq
+  have hBlockerEq' :
+      dist (boundary iWing) (boundary iBlocker) =
+        dist (boundary iOutside) (boundary iBlocker) := by
+    simpa only [dist_comm (boundary iBlocker)] using hBlockerEq
+  linarith
+
+/-- Selected-row form of `false_of_seven_ccw_three_chained_bisectors`.
+
+The source row shares the outside/between pair, the outside-centered row
+shares the wing/between pair, and the blocker row shares the wing/outside
+pair.  This is the source-level consumer shape represented by the second
+FreshThird deletion-fan CEGAR core. -/
+theorem false_of_seven_ccw_three_chained_selected_rows
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {iBase iWing iOutside iFresh iBlocker iBetween iSource : Fin n}
+    (hBaseWing : iBase < iWing)
+    (hWingOutside : iWing < iOutside)
+    (hOutsideFresh : iOutside < iFresh)
+    (hFreshBlocker : iFresh < iBlocker)
+    (hBlockerBetween : iBlocker < iBetween)
+    (hBetweenSource : iBetween < iSource)
+    (SourceRow : SelectedFourClass carrier (boundary iSource))
+    (OutsideRow : SelectedFourClass carrier (boundary iOutside))
+    (BlockerRow : SelectedFourClass carrier (boundary iBlocker))
+    (hOutsideSource : boundary iOutside ∈ SourceRow.support)
+    (hBetweenSourceRow : boundary iBetween ∈ SourceRow.support)
+    (hWingOutsideRow : boundary iWing ∈ OutsideRow.support)
+    (hBetweenOutsideRow : boundary iBetween ∈ OutsideRow.support)
+    (hWingBlockerRow : boundary iWing ∈ BlockerRow.support)
+    (hOutsideBlockerRow : boundary iOutside ∈ BlockerRow.support) :
+    False := by
+  apply false_of_seven_ccw_three_chained_bisectors
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hBaseWing hWingOutside hOutsideFresh hFreshBlocker
+    hBlockerBetween hBetweenSource
+  · exact
+      (SourceRow.support_eq_radius _ hBetweenSourceRow).trans
+        (SourceRow.support_eq_radius _ hOutsideSource).symm
+  · exact
+      (OutsideRow.support_eq_radius _ hWingOutsideRow).trans
+        (OutsideRow.support_eq_radius _ hBetweenOutsideRow).symm
+  · exact
+      (BlockerRow.support_eq_radius _ hWingBlockerRow).trans
+        (BlockerRow.support_eq_radius _ hOutsideBlockerRow).symm
 
 /-- Selected-row adapter for
 `false_of_four_ccw_middle_centers_bisect_endpoint_pair`. -/
@@ -601,8 +912,14 @@ theorem false_of_six_ccw_two_k2_three_selected_rows
 #print axioms false_of_five_ccw_three_shell_equalities
 #print axioms false_of_selected_rows_in_five_ccw_order
 #print axioms false_of_two_selected_rows_shared_late_pair
+#print axioms false_of_three_selected_rows_bridged_late_pair
 #print axioms false_of_four_ccw_endpoint_centers_bisect_middle_pair
 #print axioms false_of_four_ccw_middle_centers_bisect_endpoint_pair
+#print axioms false_of_four_ccw_late_centers_bisect_early_pair
+#print axioms false_of_four_selected_rows_chained_late_pair
+#print axioms false_of_freshThird_four_order_arms
+#print axioms false_of_seven_ccw_three_chained_bisectors
+#print axioms false_of_seven_ccw_three_chained_selected_rows
 #print axioms false_of_two_selected_middle_rows_shared_endpoint_pair
 #print axioms false_of_six_ccw_two_k2_three_selected_rows
 

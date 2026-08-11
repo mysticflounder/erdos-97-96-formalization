@@ -112,6 +112,42 @@ theorem actualBlockerFiber_card_le_four
     _ = 4 :=
       (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support_card
 
+/-- A maximal actual-blocker fiber exhausts the selected support at its
+anchor.  This retains the source-to-blocker information that is lost when a
+CEGAR detector inspects only the selected-row equality cube. -/
+theorem actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (anchor : CriticalShellSystem.CarrierVertex A)
+    (hcard : (actualBlockerFiber H anchor).card = 4) :
+    (actualBlockerFiber H anchor).image (fun source => source.1) =
+      (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support := by
+  let points : Finset ℝ² :=
+    (actualBlockerFiber H anchor).image fun source => source.1
+  have hpoints :
+      points ⊆
+        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support := by
+    intro z hz
+    rcases Finset.mem_image.mp hz with ⟨source, hsourceFiber, rfl⟩
+    have hblockerVertex := (Finset.mem_filter.mp hsourceFiber).2
+    have hcenter :
+        H.centerAt source.1 source.2 = H.centerAt anchor.1 anchor.2 :=
+      congrArg Subtype.val hblockerVertex
+    have hsupport :=
+      selectedSupports_eq_of_actualBlockers_eq H source.2 anchor.2 hcenter
+    have hsourceSupport :=
+      (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
+    rw [hsupport] at hsourceSupport
+    exact hsourceSupport
+  have hpointsCard : points.card = 4 := by
+    calc
+      points.card = (actualBlockerFiber H anchor).card :=
+        Finset.card_image_of_injective _ Subtype.val_injective
+      _ = 4 := hcard
+  apply Finset.eq_of_subset_of_card_le hpoints
+  rw [
+    (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support_card,
+    hpointsCard]
+
 /-- Five sources contain two with distinct actual blockers. -/
 theorem exists_pair_distinct_actualBlockers_of_five_le_card
     {A : Finset ℝ²} (H : CriticalShellSystem A)

@@ -1,0 +1,4 @@
+import Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas
+
+#print axioms Problem97.CapCrossingKalmansonBridge.false_of_four_ccw_three_shell_equalities_012_102_301
+#print axioms Problem97.CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities_012_123_413

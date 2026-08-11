@@ -39,6 +39,92 @@ theorem U5DangerousTriple.audit_center_mem_skeleton
   · exact (Finset.mem_erase.mp ha1).2
   · exact (Finset.mem_erase.mp (htriple.T_subset hxT)).2
 
+/-- The dangerous `p`-circle `{q} ∪ T` as a selected four-class.
+
+This generic form avoids rebuilding the same circle separately for q-deleted,
+q-allowed, and critical-shell intersection arguments. -/
+noncomputable def U5DangerousTriple.toSelectedFourClass
+    {D : CounterexampleData} {q p : ℝ²} {T : Finset ℝ²}
+    (H : U5DangerousTriple D q p T) :
+    SelectedFourClass D.A p where
+  support := insert q T
+  support_subset_A := by
+    intro y hy
+    rw [Finset.mem_insert] at hy
+    rcases hy with rfl | hyT
+    · exact H.q_mem
+    · have hyS : y ∈ (D.skeleton q).erase p := H.T_subset hyT
+      have hySkel : y ∈ D.skeleton q := (Finset.mem_erase.mp hyS).2
+      have hyEraseQ : y ∈ D.A.erase q := by
+        simpa [CounterexampleData.skeleton] using hySkel
+      exact (Finset.mem_erase.mp hyEraseQ).2
+  support_card := by
+    have hq_not_T : q ∉ T := by
+      intro hqT
+      have hqS : q ∈ (D.skeleton q).erase p := H.T_subset hqT
+      have hqSkel : q ∈ D.skeleton q := (Finset.mem_erase.mp hqS).2
+      have hqErase : q ∈ D.A.erase q := by
+        simpa [CounterexampleData.skeleton] using hqSkel
+      exact (Finset.mem_erase.mp hqErase).1 rfl
+    rw [Finset.card_insert_of_notMem hq_not_T, H.T_card]
+  radius := dist p q
+  radius_pos := H.q_radius_pos
+  support_eq_radius := by
+    intro y hy
+    rw [Finset.mem_insert] at hy
+    rcases hy with rfl | hyT
+    · rfl
+    · exact H.T_same_radius y hyT
+  center_not_mem := by
+    intro hp
+    rw [Finset.mem_insert] at hp
+    rcases hp with hpq | hpT
+    · exact H.p_ne_q hpq
+    · exact (Finset.mem_erase.mp (H.T_subset hpT)).1 rfl
+
+/-- A critical four-shell away from `p` meets the dangerous `p`-circle in at
+most two points. -/
+theorem CriticalFourShell.inter_dangerous_p_circle_card_le_two
+    {D : CounterexampleData} {q p center : ℝ²} {T : Finset ℝ²}
+    (H : U5DangerousTriple D q p T)
+    (K : CriticalFourShell D.A q center)
+    (hcenter_ne_p : center ≠ p) :
+    (K.support ∩ insert q T).card ≤ 2 := by
+  let Kcircle : SelectedFourClass D.A p := H.toSelectedFourClass
+  simpa [Kcircle, U5DangerousTriple.toSelectedFourClass] using
+    SelectedFourClass.inter_card_le_two K.toSelectedFourClass Kcircle
+      hcenter_ne_p
+
+/-- A critical four-shell away from `p` has at least two points off the
+dangerous `p`-circle. -/
+theorem CriticalFourShell.two_le_sdiff_dangerous_p_circle_card
+    {D : CounterexampleData} {q p center : ℝ²} {T : Finset ℝ²}
+    (H : U5DangerousTriple D q p T)
+    (K : CriticalFourShell D.A q center)
+    (hcenter_ne_p : center ≠ p) :
+    2 ≤ (K.support \ insert q T).card := by
+  classical
+  have hinter : (K.support ∩ insert q T).card ≤ 2 :=
+    K.inter_dangerous_p_circle_card_le_two H hcenter_ne_p
+  have hsplit := Finset.card_inter_add_card_sdiff K.support (insert q T)
+  have hcard := K.support_card
+  omega
+
+/-- A critical four-shell is a q-allowed K4 witness at its center. -/
+noncomputable def CriticalFourShell.toU5QAllowedK4Class
+    {D : CounterexampleData} {q center : ℝ²}
+    (K : CriticalFourShell D.A q center) :
+    U5QAllowedK4Class D center K.support where
+  subset := by
+    intro y hy
+    exact Finset.mem_erase.mpr
+      ⟨fun h => K.center_not_mem_support (h ▸ hy), K.support_subset_A hy⟩
+  card_four := by
+    rw [K.support_card]
+  radius := K.radius
+  radius_pos := K.radius_pos
+  same_radius := K.support_eq_radius
+
 /-- Package the 4A q-critical alternative as an exact q-critical triple class.
 
 The selected set is the whole q-deleted radius class at radius `dist center q`;
@@ -1365,6 +1451,23 @@ theorem U5DangerousTriple.candidate_of_not_mem_qAllowedBoundedSupport
     { candidate_mem := hyEraseP
       candidate_notin_T := hy_not_T }
   exact ⟨hsel, htriple.selected_off_circle_of_exact hsel hexact⟩
+
+/-- A point of an exact critical shell escaping the bounded U3 frame is a new
+off-dangerous-circle skeleton candidate. -/
+theorem U5DangerousTriple.candidate_of_criticalFourShell_not_mem_boundedSupport
+    {D : CounterexampleData} {q p center y u a0 a1 : ℝ²}
+    {T : Finset ℝ²}
+    (H : U5DangerousTriple D q p T)
+    (K : CriticalFourShell D.A q center)
+    (hyK : y ∈ K.support)
+    (hyOutside : y ∉ U5BoundedSupport D q p T u a0 a1)
+    (hexact :
+      (((D.skeleton q).erase p).filter fun z => dist p z = dist p q).card = 3) :
+    U5SelectedCandidateSkeleton D q p T y ∧ dist p y ≠ dist p q := by
+  apply H.candidate_of_not_mem_qAllowedBoundedSupport
+    K.toU5QAllowedK4Class hyK
+  · simpa [U5QAllowedBoundedSupport, U5BoundedSupport] using hyOutside
+  · exact hexact
 
 /-- A q-allowed bounded-support escape cannot be the same-circle selected
 candidate for the exact dangerous triple. -/

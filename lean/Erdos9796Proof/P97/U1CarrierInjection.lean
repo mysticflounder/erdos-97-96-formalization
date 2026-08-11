@@ -1504,6 +1504,16 @@ structure FaithfulCarrierPattern (A : Finset ℝ²) where
 
 namespace FaithfulCarrierPattern
 
+/-- Selected-class support transport along an equality of carrier centers.
+The membership proofs may differ, but proof irrelevance identifies the two
+dependent `classAt` applications after the centers are identified. -/
+theorem classAt_support_congr {A : Finset ℝ²}
+    (P : FaithfulCarrierPattern A) {c d : ℝ²}
+    (hc : c ∈ A) (hd : d ∈ A) (h : c = d) :
+    (P.classAt c hc).support = (P.classAt d hd).support := by
+  subst h
+  rfl
+
 theorem gaugeWitness_mem_A {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
     P.gaugeWitness ∈ A :=
   (P.classAt P.gaugeCenter P.gaugeCenter_mem).support_subset_A P.gaugeWitness_mem

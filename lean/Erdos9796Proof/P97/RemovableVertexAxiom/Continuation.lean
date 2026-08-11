@@ -1,4 +1,3 @@
-import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
 import Erdos9796Proof.P97.ErasedCertificate.P4UClosure
 import Erdos9796Proof.P97.ErasedCertificate.P4SClosure
@@ -13,6 +12,12 @@ used by the removable-vertex continuation argument.  Every card-ten and
 card-eleven P2/P4 arm dispatches to a proved source consumer.  The complete
 P2 fleet, both P4 families, and this downstream target are target-built on the
 current working tree; global publication remains a separate repository gate.
+
+This module deliberately does not import `PinnedSurplusBank` (and, through
+it, the generated `SurplusCertificate.*` forest).  The bank-dependent
+composition — `removableVertexOfLarge_of_isM44PinnedSurplus` and the final
+`RemovableVertexOfLarge` — lives in the sibling shard
+`RemovableVertexAxiom.RemovableVertexOfLarge`.
 -/
 
 open scoped EuclideanGeometry
@@ -721,17 +726,6 @@ theorem removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit :
         hK4 hconv hend1 hend2 hpin1 hpin2
     exact hrem A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
 
-/-- `IsM44` surplus-cap packets close the removable-vertex branch after the
-  endpoint residuals, pinned surplus-family residuals, and
-  containment-to-removable extraction are discharged.  This is consumed by
-  `RemovableVertexOfLarge_from_threeWaySplit`. -/
-theorem removableVertexOfLarge_of_isM44PinnedSurplus :
-      IsM44PinnedSurplusBranchStatement :=
-    removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit
-      isM44EndpointResidualsExcluded
-      isM44PinnedSurplusResidualsExcluded
-      isM44NonSurplusContainmentRemovable
-
 /-- Configurations with no `IsM44` surplus-cap packet close by descent.  This
 is a spine obligation consumed by `RemovableVertexOfLarge_from_threeWaySplit`.
 
@@ -775,26 +769,6 @@ theorem RemovableVertexOfLarge_from_threeWaySplit :
   · rcases h with ⟨S, hS⟩
     exact hM44 hbridge A hne hconv hK4 hgt hMin S hS
   · exact hnonM44 A hne hconv hK4 hgt hMin h
-
-/-- Remaining removable-vertex obligation with the finite pinned-surplus bank
-handoff available as a closed input.  It is now routed through the three-way
-split into packet extraction, the `IsM44` pinned-surplus branch, and the
-non-`IsM44` descent branch. -/
-theorem RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank :
-    RemovableVertexOfLargeFromPinnedSurplusCOMPGBankStatement :=
-  RemovableVertexOfLarge_from_threeWaySplit
-    largeK4SurplusCapPacket
-    removableVertexOfLarge_of_isM44PinnedSurplus
-    removableVertexOfLarge_of_nonIsM44
-
-/-- **Removable-vertex existence for `|A| > 9` counterexamples.**
-This is now wired through the finite pinned-surplus COMP-G bank bridge; the
-open work is
-the three obligations consumed by
-`RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank`. -/
-theorem RemovableVertexOfLarge : RemovableVertexOfLargeStatement :=
-  RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
-    pinnedSurplusCOMPGBankBridge
 
 
 end Problem97

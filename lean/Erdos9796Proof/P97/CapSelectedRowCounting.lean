@@ -273,6 +273,33 @@ theorem selectedFourClass_inter_orderedCap_last_card_le_one
   · intro x hx
     exact K.support_eq_radius x (Finset.mem_inter.mp hx).1
 
+/-- Every positive-radius selected class centered at a point of an indexed cap
+contains at most two points of that cap. -/
+theorem selectedClass_inter_capByIndex_card_le_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {center : ℝ²} {radius : ℝ}
+    (hcenter : center ∈ S.capByIndex i) (hradius : 0 < radius) :
+    (SelectedClass A center radius ∩ S.capByIndex i).card ≤ 2 := by
+  classical
+  rcases S.capByIndex_cgn4g_capData hconv i with
+    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  have hcenterImage : center ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact hcenter
+  rcases Finset.mem_image.mp hcenterImage with ⟨j, _hj, hjcenter⟩
+  have hinj := CGN.oneSidedDistanceInjective_of_mecCapPacket Packet Hside Hord
+  apply sameRadiusIndices_card_le_two L hinj j
+  · intro x hx
+    rw [hcap]
+    exact (Finset.mem_inter.mp hx).2
+  · intro hj
+    have hd := (mem_selectedClass.mp (Finset.mem_inter.mp hj).1).2
+    rw [hjcenter, dist_self] at hd
+    exact (ne_of_gt hradius) hd.symm
+  · intro x hx
+    simpa [hjcenter] using
+      (mem_selectedClass.mp (Finset.mem_inter.mp hx).1).2
+
 /-- A selected four-class centered at a point of an indexed cap contains at
 most two points of that cap. -/
 theorem selectedFourClass_inter_capByIndex_card_le_two
@@ -298,6 +325,25 @@ theorem selectedFourClass_inter_capByIndex_card_le_two
     simpa [hjcenter] using (Finset.mem_inter.mp hj).1
   · intro x hx
     simpa [hjcenter] using K.support_eq_radius x (Finset.mem_inter.mp hx).1
+
+/-- Every selected four-class admits a cap containing its center, and at
+least two of its four witnesses lie outside that cap.  This is the uniform
+cap-composition clause used by the FreshThird survivor-row census. -/
+theorem selectedFourClass_exists_capByIndex_with_two_outside
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) {center : ℝ²}
+    (hcenterA : center ∈ A) (K : SelectedFourClass A center) :
+    ∃ i : Fin 3,
+      center ∈ S.capByIndex i ∧
+      (K.support ∩ S.capByIndex i).card ≤ 2 ∧
+      2 ≤ (K.support \ S.capByIndex i).card := by
+  classical
+  rcases S.exists_mem_capByIndex_of_mem hcenterA with ⟨i, hi⟩
+  have hinter : (K.support ∩ S.capByIndex i).card ≤ 2 :=
+    selectedFourClass_inter_capByIndex_card_le_two S hconv i K hi
+  have hsplit := Finset.card_sdiff_add_card_inter K.support (S.capByIndex i)
+  rw [K.support_card] at hsplit
+  exact ⟨i, hi, hinter, by omega⟩
 
 /-- Two distinct centers of one ordered cap cannot both be equidistant from
 the same two distinct points outside that cap. -/

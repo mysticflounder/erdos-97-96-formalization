@@ -470,6 +470,28 @@ namespace SurplusCapPacket
   | 1 => S.partition.C2
   | _ => S.partition.C3
 
+/-- Every carrier point belongs to at least one of the three indexed caps.
+
+Moser vertices belong to two caps and every other carrier point belongs to
+exactly one, so the closed-cap convention covers the whole carrier. -/
+theorem exists_mem_capByIndex_of_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
+    (hx : x ∈ A) :
+    ∃ i : Fin 3, x ∈ S.capByIndex i := by
+  classical
+  by_cases h1 : x ∈ S.partition.C1
+  · exact ⟨⟨0, by decide⟩, by simpa [capByIndex] using h1⟩
+  by_cases h2 : x ∈ S.partition.C2
+  · exact ⟨⟨1, by decide⟩, by simpa [capByIndex] using h2⟩
+  by_cases h3 : x ∈ S.partition.C3
+  · exact ⟨⟨2, by decide⟩, by simpa [capByIndex] using h3⟩
+  have hnotM : x ∉ S.triangle.verts := by
+    intro hxM
+    have htwo := S.partition.moser_in_two x hxM
+    simp [h1, h2, h3] at htwo
+  have hone := S.partition.nonmoser_in_one x hx hnotM
+  simp [h1, h2, h3] at hone
+
 /-- The open interior of the cap selected by a cyclic cap index. -/
 @[reducible] noncomputable def capInteriorByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Finset ℝ² :=

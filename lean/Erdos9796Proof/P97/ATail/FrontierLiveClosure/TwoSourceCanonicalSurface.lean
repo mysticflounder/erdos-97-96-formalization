@@ -406,6 +406,81 @@ private theorem exists_zeroCutBoundaryIndexing_with_capBlocks :
   exact ⟨B, hn, iv, iw, hu', hv, hw, horientation⟩
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- In the direct zero-cut orientation, every carrier point outside the first
+opposite cap occurs before the second-opposite apex.  This is the converse
+boundary-block fact needed to distinguish the outside shared endpoint from
+the endpoint between the two FreshThird centers. -/
+private theorem index_lt_oppIndex2_of_not_mem_opp1Cap_of_direct
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hzero : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hiv : B.boundary iv = S.oppositeVertexByIndex S.oppIndex1)
+    (hiw : B.boundary iw = S.oppositeVertexByIndex S.oppIndex2)
+    (hdirect : DirectBoundaryBlocks S B.boundary hn iv iw)
+    (x : CarrierLabel D.A) (hxOff : x.1 ∉ S.capByIndex S.oppIndex1) :
+    B.indexOf x < iw := by
+  have hivV1 :
+      B.boundary iv = (S.triangleByIndex S.oppIndex1).v1 :=
+    hiv.trans
+      (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm
+  have hiwV2 :
+      B.boundary iw = (S.triangleByIndex S.oppIndex1).v2 :=
+    hiw.trans
+      S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hzeroV3 :
+      B.boundary (zeroIndex hn) =
+        (S.triangleByIndex S.oppIndex1).v3 :=
+    hzero.trans
+      S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hcap :=
+    S.capByIndex_reverse_complement_interval_of_global_indices
+      S.oppIndex1 B.boundary_ccw B.boundary_injective B.boundary_image
+      hdirect.apex_order.1 hdirect.apex_order.2 hivV1 hiwV2 hzeroV3 x.1
+  by_contra hnot
+  apply hxOff
+  exact hcap.mpr
+    ⟨B.indexOf x, Or.inr (le_of_not_gt hnot), B.point_eq x⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- In the mirror zero-cut orientation, every carrier point outside the first
+opposite cap occurs after the second-opposite apex. -/
+private theorem oppIndex2_lt_index_of_not_mem_opp1Cap_of_mirror
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hzero : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hiv : B.boundary iv = S.oppositeVertexByIndex S.oppIndex1)
+    (hiw : B.boundary iw = S.oppositeVertexByIndex S.oppIndex2)
+    (hmirror : MirrorBoundaryBlocks S B.boundary hn iv iw)
+    (x : CarrierLabel D.A) (hxOff : x.1 ∉ S.capByIndex S.oppIndex1) :
+    iw < B.indexOf x := by
+  have hivV1 :
+      B.boundary iv = (S.triangleByIndex S.oppIndex1).v1 :=
+    hiv.trans
+      (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm
+  have hiwV2 :
+      B.boundary iw = (S.triangleByIndex S.oppIndex1).v2 :=
+    hiw.trans
+      S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hzeroV3 :
+      B.boundary (zeroIndex hn) =
+        (S.triangleByIndex S.oppIndex1).v3 :=
+    hzero.trans
+      S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hcap :=
+    S.capByIndex_reverse_interval_of_global_indices
+      S.oppIndex1 B.boundary_ccw B.boundary_injective B.boundary_image
+      hmirror.apex_order.1 (Or.inr hmirror.apex_order.2)
+      hivV1 hiwV2 hzeroV3 x.1
+  by_contra hnot
+  apply hxOff
+  apply hcap.mpr
+  refine ⟨B.indexOf x, ?_, le_of_not_gt hnot, B.point_eq x⟩
+  change 0 ≤ (B.indexOf x).val
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
 /-- Consume the common-radius producer in the remaining noncanonical same-cap
@@ -1725,6 +1800,231 @@ theorem freshThird_canonicalDifferentCap_sourceSupportPlacement
         by simpa [hsource_idx hsource_value] using hsource_iw⟩
     exact Or.inr ⟨hsource_order'.1, hsource_order'.2,
       hmirror.apex_order.2⟩
+
+/-- The four linear five-point orders forced by the exceptional FreshThird
+boundary packet.  `qOutside` is the shared endpoint outside the interval
+between the two shell centers, while `qBetween` is the shared endpoint inside
+that interval.  The canonical source point lies in the first opposite-cap
+block with the source center.
+
+This is an order producer, not a contradiction: a downstream Kalmanson
+consumer must additionally obtain the two order-selected deletion-row
+equalities. -/
+def FreshThirdFivePointKalmansonOrder {n : ℕ}
+    (qOutside freshCenter qBetween sourceCenter canonicalSource : Fin n) : Prop :=
+  (qOutside < freshCenter ∧ freshCenter < qBetween ∧
+      qBetween < sourceCenter ∧ sourceCenter < canonicalSource) ∨
+    (qOutside < freshCenter ∧ freshCenter < qBetween ∧
+      qBetween < canonicalSource ∧ canonicalSource < sourceCenter) ∨
+    (canonicalSource < sourceCenter ∧ sourceCenter < qBetween ∧
+      qBetween < freshCenter ∧ freshCenter < qOutside) ∨
+    (sourceCenter < canonicalSource ∧ canonicalSource < qBetween ∧
+      qBetween < freshCenter ∧ freshCenter < qOutside)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Extract the source-faithful five-point Kalmanson order from the canonical
+different-cap FreshThird packet.  The result is cardinality-free and records
+which named shared endpoint is outside and which lies between the centers. -/
+theorem freshThird_canonicalDifferentCap_fivePointKalmansonOrder
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (centers_ne :
+      H.centerAt C.firstSource.1 C.firstSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (source₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.support)
+    (source₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.support)
+    (sourceCap freshCap : Fin 3)
+    (sourceCenter_mem :
+      H.centerAt C.firstSource.1 C.firstSource.2 ∈
+        S.capInteriorByIndex sourceCap)
+    (freshCenter_mem :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈
+        S.capInteriorByIndex freshCap)
+    (hpacket :
+      sourceCap = S.oppIndex1 ∧ freshCap ≠ S.oppIndex1 ∧
+        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+    ∃ (B : BoundaryIndexing D.A) (qOutside qBetween : Fin B.n),
+      (((qOutside = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩ ∧
+          qBetween = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩) ∨
+        (qOutside = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩ ∧
+          qBetween = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩)) ∧
+      FreshThirdFivePointKalmansonOrder qOutside
+        (B.indexOf
+          ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+            (Finset.mem_erase.mp
+              (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+        qBetween
+        (B.indexOf
+          ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+            (Finset.mem_erase.mp
+              (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+        (B.indexOf ⟨C.firstSource.1, C.firstSource.2⟩)) := by
+  classical
+  rcases freshThird_canonicalDifferentCap_endpointPlacement
+      (P := P) (Pρ := Pρ) C Q centers_ne source₁_mem source₂_mem
+      sourceCap freshCap sourceCenter_mem freshCenter_mem hpacket with
+    ⟨B, hn, iv, iw, hzero, hiv, hiw, hblocks, hendpoint⟩
+  let sourceCenter : CarrierLabel D.A :=
+    ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_mem).2⟩
+  let freshCenter : CarrierLabel D.A :=
+    ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+  let canonicalSource : CarrierLabel D.A :=
+    ⟨C.firstSource.1, C.firstSource.2⟩
+  let firstPoint : CarrierLabel D.A := ⟨Q.source₁.1, Q.source₁.2⟩
+  let secondPoint : CarrierLabel D.A := ⟨Q.source₂.1, Q.source₂.2⟩
+  let iSource : Fin B.n := B.indexOf sourceCenter
+  let iFresh : Fin B.n := B.indexOf freshCenter
+  let iCanonical : Fin B.n := B.indexOf canonicalSource
+  let iFirst : Fin B.n := B.indexOf firstPoint
+  let iSecond : Fin B.n := B.indexOf secondPoint
+  have hplacement :
+      FreshThirdAlternatingEndpointPlacement iSource iFresh iFirst iSecond := by
+    simpa [sourceCenter, freshCenter, firstPoint, secondPoint,
+      iSource, iFresh, iFirst, iSecond] using hendpoint.1
+  have hcanonicalPlacement :=
+    freshThird_canonicalDifferentCap_sourceSupportPlacement
+      (P := P) (Pρ := Pρ) C B hn iv iw hblocks
+  have hcenterOrder :=
+    freshThird_canonicalDifferentCap_centerOrder_of_boundary
+      (P := P) (Pρ := Pρ) C Q sourceCap freshCap B hn iv iw hblocks
+      sourceCenter_mem freshCenter_mem hpacket
+  have hsource_ne_canonical : sourceCenter ≠ canonicalSource := by
+    intro h
+    apply
+      (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_not_mem_support
+    have hvalue :
+        H.centerAt C.firstSource.1 C.firstSource.2 = C.firstSource.1 :=
+      congrArg Subtype.val h
+    simpa [hvalue] using
+      (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.q_mem_support
+  have hiSource_ne_iCanonical : iSource ≠ iCanonical := by
+    intro h
+    exact hsource_ne_canonical (B.index_injective h)
+  have hlocal :
+      ∃ qOutside qBetween : Fin B.n,
+        (((qOutside = iFirst ∧ qBetween = iSecond) ∨
+          (qOutside = iSecond ∧ qBetween = iFirst)) ∧
+        FreshThirdFivePointKalmansonOrder qOutside iFresh qBetween
+          iSource iCanonical) := by
+    rcases hblocks with hdirect | hmirror
+    · have hiFirst_iw : iFirst < iw := by
+        exact index_lt_oppIndex2_of_not_mem_opp1Cap_of_direct
+          B hn iv iw hzero hiv hiw hdirect firstPoint
+            (by simpa [firstPoint] using hpacket.2.2.1)
+      have hiSecond_iw : iSecond < iw := by
+        exact index_lt_oppIndex2_of_not_mem_opp1Cap_of_direct
+          B hn iv iw hzero hiv hiw hdirect secondPoint
+            (by simpa [secondPoint] using hpacket.2.2.2)
+      have hiw_iSource : iw < iSource := by
+        rcases hcenterOrder with h | h | h | h
+        · simpa [iSource, sourceCenter] using h.2.2.2.2.2
+        · simpa [iSource, sourceCenter] using h.2.2.2.2.2
+        · have hdirectOrder := hdirect.apex_order.2
+          have hcontra := h.1.apex_order.2
+          omega
+        · have hdirectOrder := hdirect.apex_order.2
+          have hcontra := h.1.apex_order.2
+          omega
+      have hiw_iCanonical : iw < iCanonical := by
+        rcases hcanonicalPlacement with h | h
+        · simpa [iCanonical, canonicalSource] using h.2.2
+        · have hdirectOrder := hdirect.apex_order.2
+          omega
+      rcases hplacement with h | h | h | h
+      · omega
+      · omega
+      · rcases h with ⟨_hfs, hff, hfi, houtside⟩
+        have hsecond_fresh : iSecond < iFresh := by
+          rcases houtside with h | h
+          · exact h
+          · omega
+        rcases lt_trichotomy iSource iCanonical with hsc | hsc | hcs
+        · refine ⟨iSecond, iFirst, Or.inr ⟨rfl, rfl⟩, Or.inl ?_⟩
+          exact ⟨hsecond_fresh, hff, hfi, hsc⟩
+        · exact False.elim (hiSource_ne_iCanonical hsc)
+        · refine ⟨iSecond, iFirst, Or.inr ⟨rfl, rfl⟩,
+            Or.inr (Or.inl ?_)⟩
+          exact ⟨hsecond_fresh, hff, by omega, hcs⟩
+      · rcases h with ⟨_hfs, hsf, hsi, houtside⟩
+        have hfirst_fresh : iFirst < iFresh := by
+          rcases houtside with h | h
+          · exact h
+          · omega
+        rcases lt_trichotomy iSource iCanonical with hsc | hsc | hcs
+        · refine ⟨iFirst, iSecond, Or.inl ⟨rfl, rfl⟩, Or.inl ?_⟩
+          exact ⟨hfirst_fresh, hsf, hsi, hsc⟩
+        · exact False.elim (hiSource_ne_iCanonical hsc)
+        · refine ⟨iFirst, iSecond, Or.inl ⟨rfl, rfl⟩,
+            Or.inr (Or.inl ?_)⟩
+          exact ⟨hfirst_fresh, hsf, by omega, hcs⟩
+    · have hiw_iFirst : iw < iFirst := by
+        exact oppIndex2_lt_index_of_not_mem_opp1Cap_of_mirror
+          B hn iv iw hzero hiv hiw hmirror firstPoint
+            (by simpa [firstPoint] using hpacket.2.2.1)
+      have hiw_iSecond : iw < iSecond := by
+        exact oppIndex2_lt_index_of_not_mem_opp1Cap_of_mirror
+          B hn iv iw hzero hiv hiw hmirror secondPoint
+            (by simpa [secondPoint] using hpacket.2.2.2)
+      have hiSource_iw : iSource < iw := by
+        rcases hcenterOrder with h | h | h | h
+        · have hmirrorOrder := hmirror.apex_order.2
+          have hcontra := h.1.apex_order.2
+          omega
+        · have hmirrorOrder := hmirror.apex_order.2
+          have hcontra := h.1.apex_order.2
+          omega
+        · simpa [iSource, sourceCenter] using h.2.2.2.1
+        · simpa [iSource, sourceCenter] using h.2.2.2.1
+      have hiCanonical_iw : iCanonical < iw := by
+        rcases hcanonicalPlacement with h | h
+        · have hmirrorOrder := hmirror.apex_order.2
+          omega
+        · simpa [iCanonical, canonicalSource] using h.2.1
+      rcases hplacement with h | h | h | h
+      · rcases h with ⟨_hsf, hsi, hif, houtside⟩
+        have hfresh_second : iFresh < iSecond := by
+          rcases houtside with h | h
+          · omega
+          · exact h
+        rcases lt_trichotomy iSource iCanonical with hsc | hsc | hcs
+        · refine ⟨iSecond, iFirst, Or.inr ⟨rfl, rfl⟩,
+            Or.inr (Or.inr (Or.inr ?_))⟩
+          exact ⟨hsc, by omega, hif, hfresh_second⟩
+        · exact False.elim (hiSource_ne_iCanonical hsc)
+        · refine ⟨iSecond, iFirst, Or.inr ⟨rfl, rfl⟩,
+            Or.inr (Or.inr (Or.inl ?_))⟩
+          exact ⟨hcs, hsi, hif, hfresh_second⟩
+      · rcases h with ⟨_hsf, hss, hsfresh, houtside⟩
+        have hfresh_first : iFresh < iFirst := by
+          rcases houtside with h | h
+          · omega
+          · exact h
+        rcases lt_trichotomy iSource iCanonical with hsc | hsc | hcs
+        · refine ⟨iFirst, iSecond, Or.inl ⟨rfl, rfl⟩,
+            Or.inr (Or.inr (Or.inr ?_))⟩
+          exact ⟨hsc, by omega, hsfresh, hfresh_first⟩
+        · exact False.elim (hiSource_ne_iCanonical hsc)
+        · refine ⟨iFirst, iSecond, Or.inl ⟨rfl, rfl⟩,
+            Or.inr (Or.inr (Or.inl ?_))⟩
+          exact ⟨hcs, hss, hsfresh, hfresh_first⟩
+      · omega
+      · omega
+  rcases hlocal with ⟨qOutside, qBetween, hnames, horder⟩
+  refine ⟨B, qOutside, qBetween, ?_, ?_⟩
+  · simpa [iFirst, iSecond, firstPoint, secondPoint] using hnames
+  · simpa [iFresh, iSource, iCanonical, freshCenter, sourceCenter,
+      canonicalSource] using horder
 
 /-- Project the first source of the additive packet back to the retained
 single-source interface. -/

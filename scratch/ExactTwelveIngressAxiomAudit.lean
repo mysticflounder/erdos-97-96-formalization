@@ -1,0 +1,5 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveCarrierIngress
+
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveCarrierIngress.mem_labeledRowPattern_iff
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveCarrierIngress.labeledRowPattern_card
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveCarrierIngress.exists_pinned_labeling

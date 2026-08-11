@@ -71,6 +71,65 @@ theorem card_ge_fifteen_of_all_cap_card_ge_six
   have h2 := hlarge (2 : Fin 3)
   omega
 
+/-- If one indexed cap has at least eight points while all three indexed caps
+have at least six, the cap-sum identity forces at least seventeen carrier
+points.  This is the cardinality floor of the enlarged-cap FreshThird
+surface; in particular, exact-fifteen searches cannot model that live
+residual. -/
+theorem card_ge_seventeen_of_one_cap_card_ge_eight
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (height : 8 ≤ (S.capByIndex i).card)
+    (hlarge : ∀ j : Fin 3, 6 ≤ (S.capByIndex j).card) :
+    17 ≤ A.card := by
+  have hsum :
+      (S.capByIndex (0 : Fin 3)).card +
+          (S.capByIndex (1 : Fin 3)).card +
+          (S.capByIndex (2 : Fin 3)).card = A.card + 3 := by
+    have h := S.capSum
+    rcases hi : S.surplusIdx with ⟨j, hj⟩
+    interval_cases j <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
+  have h0 := hlarge (0 : Fin 3)
+  have h1 := hlarge (1 : Fin 3)
+  have h2 := hlarge (2 : Fin 3)
+  fin_cases i <;>
+    simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+    omega
+
+/-- At the minimum carrier size seventeen, one indexed cap of cardinality at
+least eight and three cap lower bounds of six are all sharp: the distinguished
+cap has eight points and each other cap has six. -/
+theorem capByIndex_card_profile_of_card_eq_seventeen
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (hcard : A.card = 17)
+    (height : 8 ≤ (S.capByIndex i).card)
+    (hlarge : ∀ j : Fin 3, 6 ≤ (S.capByIndex j).card) :
+    (S.capByIndex i).card = 8 ∧
+      ∀ j : Fin 3, j ≠ i → (S.capByIndex j).card = 6 := by
+  have hsum :
+      (S.capByIndex (0 : Fin 3)).card +
+          (S.capByIndex (1 : Fin 3)).card +
+          (S.capByIndex (2 : Fin 3)).card = A.card + 3 := by
+    have h := S.capSum
+    rcases hi : S.surplusIdx with ⟨j, hj⟩
+    interval_cases j <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
+  have h0 := hlarge (0 : Fin 3)
+  have h1 := hlarge (1 : Fin 3)
+  have h2 := hlarge (2 : Fin 3)
+  constructor
+  · fin_cases i <;>
+      simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+      omega
+  · intro j hji
+    fin_cases i <;> fin_cases j <;>
+      simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+      omega
+
 /-- At exact carrier size fifteen, three cap lower bounds of six are all sharp. -/
 theorem capByIndex_card_eq_six_of_card_eq_fifteen
     {A : Finset ℝ²} (S : SurplusCapPacket A)

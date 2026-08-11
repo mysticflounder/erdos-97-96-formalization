@@ -447,6 +447,19 @@ private theorem centerAt_ne_firstApex_of_mem_outsideFirstApexFiber
         (frontier_pair_q_mem_firstApexClass F)).symm
   exact (Finset.mem_sdiff.mp hsource).2 hsourceFiber
 
+/-- A source outside the first-apex blocker fibre cannot itself select the
+first apex as its late blocker.  This public form is the source-level ingress
+used by finite blocker-label encodings. -/
+theorem outsideFirstApexFiber_centerAt_ne_firstApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    {source : CarrierVertex D.A}
+    (hsource : source ∈ outsideFirstApexFiber R) :
+    (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+      S.oppApex1 :=
+  centerAt_ne_firstApex_of_mem_outsideFirstApexFiber R hsource
+
 /-- All outside sources which block both source-valid interior-pair deletions
 share one actual late blocker. -/
 theorem interiorPairBad_source_blockers_eq

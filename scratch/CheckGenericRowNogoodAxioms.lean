@@ -1,0 +1,4 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate
+
+#print axioms Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check
+#print axioms Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check

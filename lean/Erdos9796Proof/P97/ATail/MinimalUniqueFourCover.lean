@@ -294,6 +294,67 @@ theorem isUniqueFourCenter_of_not_fullyDeletionRobust
     exact hnr (fullyDeletionRobustAt_of_large_class hrpos (by omega))
   exact ⟨hc, r, hrpos, le_antisymm hle hr4, huniq⟩
 
+/-- Every member of a selected four-row at a nonrobust carrier center is a
+critical deletion source, and the resulting exact critical shell is precisely
+the selected row.
+
+This packages the positive content of nonrobustness in the form consumed by
+`CriticalShellSystem.overrideAt`: uniqueness pins the selected row to the full
+radius class, while deleting any of its members destroys every K4 witness at
+the center. -/
+theorem exists_criticalSelectedFourClass_of_mem_of_not_fullyDeletionRobust
+    {D : CounterexampleData} {center z : ℝ²}
+    (hcenterA : center ∈ D.A)
+    (K : SelectedFourClass D.A center)
+    (hzK : z ∈ K.support)
+    (hnr : ¬ FullyDeletionRobustAt D center) :
+    ∃ C : CriticalSelectedFourClass D.A z center,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center ∧
+        K.support = C.toCriticalFourShell.support := by
+  classical
+  have hunique : IsUniqueFourCenter D.A center :=
+    isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA hnr
+  have hsupportUnique : K.support = uniqueFourClass D.A center :=
+    selectedFourClass_support_eq_uniqueFourClass hunique K
+  have hzUnique : z ∈ uniqueFourClass D.A center := by
+    rw [← hsupportUnique]
+    exact hzK
+  have hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center :=
+    not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass hunique hzUnique
+  have hsub : K.support ⊆ SelectedClass D.A center K.radius := by
+    intro x hx
+    exact mem_selectedClass.mpr
+      ⟨K.support_subset_A hx, K.support_eq_radius x hx⟩
+  have hfour : 4 ≤ (SelectedClass D.A center K.radius).card := by
+    calc
+      4 = K.support.card := K.support_card.symm
+      _ ≤ (SelectedClass D.A center K.radius).card := Finset.card_le_card hsub
+  obtain ⟨_, radius, _, hcard, huniq⟩ := hunique
+  have hradius : K.radius = radius :=
+    huniq K.radius K.radius_pos hfour
+  have hclassCard : (SelectedClass D.A center K.radius).card = 4 := by
+    simpa only [hradius] using hcard
+  have hsupport : K.support = SelectedClass D.A center K.radius := by
+    apply Finset.eq_of_subset_of_card_le hsub
+    rw [K.support_card, hclassCard]
+  have hcenterNeZ : center ≠ z := by
+    intro hcenterZ
+    subst z
+    exact K.center_not_mem hzK
+  let shell : CriticalFourShell D.A z center :=
+    { center_mem := Finset.mem_erase.mpr ⟨hcenterNeZ, hcenterA⟩
+      radius := K.radius
+      radius_pos := K.radius_pos
+      support := K.support
+      support_eq := by
+        simpa [SelectedClass] using hsupport
+      support_card := K.support_card
+      q_mem_support := hzK }
+  rcases CriticalSelectedFourClass.exists_of_shell shell with ⟨C, hC⟩
+  refine ⟨C, hblocked, ?_⟩
+  rw [hC]
+
 /-- The blocker chosen by a critical-shell system for a source is a
 unique-four center.  This is the source-faithful form of the cover: the
 blocker is the named center already carried by `H`, not a fresh existential

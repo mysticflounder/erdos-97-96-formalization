@@ -1,0 +1,6 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+
+open Problem97 ATailFrontierLiveClosure
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_uDeletion_fiveCenterSurvival_of_u_not_mem_nextRow

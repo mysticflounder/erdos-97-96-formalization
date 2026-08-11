@@ -955,6 +955,91 @@ private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
     false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
       R4 hcard
 
+/-- The only genuinely open endpoint of the exact-five distinct-center
+residual after consuming its directed surviving row.  The critical
+physical-second-apex arm reorients to the existing exact-four closure; this
+leaf records precisely the remaining bi-apex-robust, post-card-eleven arm.
+The common-deletion packet retains its source orientation instead of erasing
+which interior source was deleted and which source supplied the blocker row.
+
+Coordinator-interface frontier: one broad exact-five distinct-center leaf
+before this reduction, and one strictly stronger robust endpoint afterward;
+the immediate constructor fan-out remains one. -/
+theorem false_of_exactFiveDistinct_biApexRobust_postCardEleven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (_commonDeletion :
+      CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (_oriented :
+      (deleted = R.interior.frontier.pair.w ∧
+          center = H.centerAt R.interior.frontier.pair.q
+            R.interior.frontier.pair.q_mem_A) ∨
+        (deleted = R.interior.frontier.pair.q ∧
+          center = H.centerAt R.interior.frontier.pair.w
+            R.interior.frontier.pair.w_mem_A))
+    (_secondApex_robust : FullyDeletionRobustAt D S.oppApex2) :
+    False := by
+  sorry
+
+/-- A physical-second-apex common-deletion packet for the exact-five
+distinct-center residual is terminal except at the explicit bi-apex-robust
+post-card-eleven endpoint. -/
+private theorem false_of_exactFiveDistinct_commonDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (horiented :
+      (deleted = R.interior.frontier.pair.w ∧
+          center = H.centerAt R.interior.frontier.pair.q
+            R.interior.frontier.pair.q_mem_A) ∨
+        (deleted = R.interior.frontier.pair.q ∧
+          center = H.centerAt R.interior.frontier.pair.w
+            R.interior.frontier.pair.w_mem_A)) :
+    False := by
+  rcases physicalSecondApex_commonDeletion_robust_or_critical C with
+    hrobust | hcritical
+  · exact
+      false_of_exactFiveDistinct_biApexRobust_postCardEleven
+        R C horiented hrobust.some
+  · have hswapped :
+        Nonempty (SwappedFirstApexUniqueFourFrontier D S H) :=
+      physicalSecondCritical_reorients_to_swappedUniqueFour
+        hcritical.some.shell hcritical.some.deletion_blocked
+    rcases hswapped with ⟨W⟩
+    rcases
+        FirstApexInteriorPairGeometry.exists_exactFour_firstApex_interiorPair
+          D W.packet W.radius_pos W.firstClass_card_eq_four with
+      ⟨q, w, hq, hw, hqw⟩
+    have hblocks :
+        ∀ x : ℝ², x ∈ SelectedClass D.A W.packet.oppApex1 W.radius →
+          ¬ HasNEquidistantPointsAt 4 (D.A.erase x) W.packet.oppApex1 :=
+      ATailUniqueArmRouteAuditScratch.uniqueFour_every_classMember_blocks_firstApex
+        W.firstClass_card_eq_four W.firstClass_unique_radius
+    let R4 : FirstApexUniqueRadiusExactFourResidual W.frontier := {
+      minimal := R.minimal
+      noM44 := R.noM44
+      carrier_card_gt_nine := R.carrier_card_gt_nine
+      class_card_eq_four := W.firstClass_card_eq_four
+      unique_fourClass_radius := W.firstClass_unique_radius
+      every_class_member_obstructs := hblocks
+      interior_q := q
+      interior_w := w
+      interior_q_mem := hq
+      interior_w_mem := hw
+      interior_q_ne_w := hqw
+      bisector_center_mem_interior := by
+        intro c hcA hcApex hcEq
+        exact
+          FirstApexInteriorPairGeometry.bisectorCenter_mem_firstApexInterior
+            hq hw hqw hcA hcApex hcEq }
+    exact false_of_firstApexUniqueRadiusExactFourResidual R4
+
 /-- A physical-second-apex common-deletion packet closes at cardinality
 eleven: robustness forces cardinality at least twelve, while criticality
 reorients to the checked exact-four certificate. -/
@@ -1025,9 +1110,32 @@ theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidua
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
-    (_R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
     False := by
-  sorry
+  let P := R.interior.frontier.pair
+  rcases R.directed_crossDeletion_survival with hdeleteW | hdeleteQ
+  · have hcenterA : H.centerAt P.q P.q_mem_A ∈ D.A := by
+      exact
+        (Finset.mem_erase.mp
+          (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.center_mem).2
+    rcases
+        nonempty_commonDeletionTwoCenterPacket H
+          P.w_mem_A hcenterA (exactFiveDistinct_oppApex2_mem_A S)
+          P.q_blocker_ne_oppApex2 hdeleteW P.w_survives with
+      ⟨C⟩
+    exact false_of_exactFiveDistinct_commonDeletion R C
+      (Or.inl ⟨rfl, rfl⟩)
+  · have hcenterA : H.centerAt P.w P.w_mem_A ∈ D.A := by
+      exact
+        (Finset.mem_erase.mp
+          (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.center_mem).2
+    rcases
+        nonempty_commonDeletionTwoCenterPacket H
+          P.q_mem_A hcenterA (exactFiveDistinct_oppApex2_mem_A S)
+          P.w_blocker_ne_oppApex2 hdeleteQ P.q_survives with
+      ⟨C⟩
+    exact false_of_exactFiveDistinct_commonDeletion R C
+      (Or.inr ⟨rfl, rfl⟩)
 
 /-- Open exact-five residual with a common selected obstruction center.
 This is a load-bearing production obligation for

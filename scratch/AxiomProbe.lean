@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+namespace Problem97
+open ATailSurvivalCover
+#print axioms ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+#print axioms ATAILStageOnePrescribedApexDichotomy.source_mem_critical_support_of_no_qfree
+#print axioms ATailDeletionRobustness.FullyDeletionRobustAt.centerAt_ne
+end Problem97
