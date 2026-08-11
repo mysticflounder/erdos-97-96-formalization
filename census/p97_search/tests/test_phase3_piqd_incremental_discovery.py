@@ -20,6 +20,8 @@ SESSION = "11111111-1111-4111-8111-111111111111"
 JOB_ID = "22222222-2222-4222-8222-222222222222"
 NO_SOLVER_STATS = object()
 NO_REPLAYED = object()
+NO_APPEND_REPLAYED = object()
+NO_APPEND_ROOT = object()
 NO_TIMEOUT_OVERRIDE = object()
 
 
@@ -74,6 +76,12 @@ class FakeSessionTransport:
         response_effective_deadline_override: Any = None,
         receipt_effective_deadline_override: Any = None,
         response_replayed: Any = NO_REPLAYED,
+        append_response_replayed: Any = NO_APPEND_REPLAYED,
+        append_response_root_override: Any = NO_APPEND_ROOT,
+        append_response_override: dict[str, Any] | None = None,
+        append_response_omit_replayed: bool = False,
+        append_response_omit_root: bool = False,
+        append_response_extra: bool = False,
         response_timeout_override: Any = NO_TIMEOUT_OVERRIDE,
         receipt_timeout_override: Any = None,
     ) -> None:
@@ -107,6 +115,12 @@ class FakeSessionTransport:
         self.response_effective_deadline_override = response_effective_deadline_override
         self.receipt_effective_deadline_override = receipt_effective_deadline_override
         self.response_replayed = response_replayed
+        self.append_response_replayed = append_response_replayed
+        self.append_response_root_override = append_response_root_override
+        self.append_response_override = append_response_override
+        self.append_response_omit_replayed = append_response_omit_replayed
+        self.append_response_omit_root = append_response_omit_root
+        self.append_response_extra = append_response_extra
         self.response_timeout_override = response_timeout_override
         self.receipt_timeout_override = receipt_timeout_override
         self.solver_stats_methods = frozenset(solver_stats_methods)
@@ -216,6 +230,14 @@ class FakeSessionTransport:
                 return _response(409, {"error": "no running solver"})
             return _response(200, {"vars": self.variable_count, "model": self.model})
         if method == "POST" and path == f"sessions/{SESSION}/clauses":
+            current_contract = "expect_clauses" in payload
+            if current_contract:
+                assert payload["expect_clauses"] == len(self.clauses)
+                assert payload["expect_solve_index"] == len(self.receipts)
+                assert (
+                    payload["if_match_root"]
+                    == hashlib.sha256(self._journal()).hexdigest()
+                )
             additions = [tuple(clause) for clause in payload["clauses"]]
             self.clauses.extend(additions)
             self.variable_count = max(
@@ -225,14 +247,31 @@ class FakeSessionTransport:
                     default=self.variable_count,
                 ),
             )
-            response = _response(
-                200,
-                {
-                    "added": len(additions),
-                    "clauses": len(self.clauses),
-                    "max_var": self.variable_count,
-                },
-            )
+            append_response: dict[str, Any] = {
+                "added": len(additions),
+                "clauses": len(self.clauses),
+                "max_var": self.variable_count,
+            }
+            if current_contract:
+                replayed = (
+                    False
+                    if self.append_response_replayed is NO_APPEND_REPLAYED
+                    else self.append_response_replayed
+                )
+                append_response["added"] = 0 if replayed is True else len(additions)
+                append_response["replayed"] = replayed
+                append_response["root"] = hashlib.sha256(self._journal()).hexdigest()
+                if self.append_response_root_override is not NO_APPEND_ROOT:
+                    append_response["root"] = self.append_response_root_override
+                if self.append_response_override is not None:
+                    append_response.update(self.append_response_override)
+                if self.append_response_omit_replayed:
+                    append_response.pop("replayed")
+                if self.append_response_omit_root:
+                    append_response.pop("root")
+                if self.append_response_extra:
+                    append_response["unexpected"] = False
+            response = _response(200, append_response)
             if self.append_response_loss and not self._append_lost:
                 self._append_lost = True
                 return _response(503, {"error": "response lost after commit"})
@@ -376,6 +415,101 @@ def test_seed_frontier_append_solve_and_receipt_custody(tmp_path: Path) -> None:
     assert result.proof_verified is False and result.closure_claim is False
     assert result.receipt["base_bytes"] == len(transport._journal())
     assert all(not path.startswith("blobs/") for _, path, _ in transport.calls)
+
+
+def test_current_append_uses_guarded_five_field_response(tmp_path: Path) -> None:
+    transport = FakeSessionTransport()
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    assert active.append_clauses([(-2,)]) == 1
+    append_calls = [
+        (method, path, body)
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/clauses"
+    ]
+    assert len(append_calls) == 1
+    assert set(json.loads(append_calls[0][2])) == {
+        "clauses",
+        "expect_clauses",
+        "expect_solve_index",
+        "if_match_root",
+    }
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"append_response_override": {"added": True}},
+        {"append_response_override": {"clauses": 2.0}},
+        {"append_response_override": {"max_var": "2"}},
+        {"append_response_replayed": 1},
+        {"append_response_replayed": "false"},
+        {"append_response_replayed": None},
+        {"append_response_root_override": "0" * 64},
+        {"append_response_omit_replayed": True},
+        {"append_response_omit_root": True},
+        {"append_response_extra": True},
+    ],
+)
+def test_current_append_rejects_inexact_response(
+    tmp_path: Path, kwargs: dict[str, Any]
+) -> None:
+    active = runner(
+        tmp_path,
+        FakeSessionTransport(**kwargs),
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError, match="response|root"
+    ):
+        active.append_clauses([(-2,)])
+
+
+def test_current_append_accepts_guarded_replay_without_double_append(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(append_response_replayed=True)
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    assert active.append_clauses([(-2,)]) == 1
+    assert active.frontier_count == 2
+
+
+def test_current_append_response_loss_reconciles_without_resending(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(append_response_loss=True)
+    active = runner(
+        tmp_path,
+        transport,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="503"):
+        active.append_clauses([(-2,)])
+    post_count = sum(
+        method == "POST" and path == f"sessions/{SESSION}/clauses"
+        for method, path, _ in transport.calls
+    )
+    revived = runner(
+        tmp_path,
+        transport,
+        session_id=SESSION,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+    )
+    assert revived.frontier_count == 2
+    assert (
+        sum(
+            method == "POST" and path == f"sessions/{SESSION}/clauses"
+            for method, path, _ in transport.calls
+        )
+        == post_count
+    )
 
 
 @pytest.mark.parametrize(

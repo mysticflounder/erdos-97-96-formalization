@@ -222,6 +222,32 @@ nonempty clause appends and assumption-free `SAT`, `UNSAT`, or `UNKNOWN`
 solves with dense indices. The exact append/solve sequence must match the
 hash-chained journal. Finalization reparses that journal from the authenticated
 base, reconstructs the final frontier, and requires exact runtime CNF equality.
+For the authority-v3/current SAT contract, every append request is a guarded
+compare-and-set carrying `expect_clauses`, the pre-append journal
+`if_match_root`, and `expect_solve_index`. Its response must have exactly
+`added`, `clauses`,
+`max_var`, `replayed`, and `root`, with builtin integer counters, builtin
+boolean `replayed`, and a lowercase 64-hex journal root. A fresh append returns
+`replayed: false` and its clause count/added count; an idempotent resend may
+return `replayed: true`, `added: 0`, and the already-established frontier.
+Both forms must bind to the exported remote frontier before local custody is
+advanced. A transport loss after a committed append is reconciled by exporting
+the append-only remote suffix on revival; the client never blindly resends an
+unguarded batch. The historical/canary and legacy generic adapters retain their
+three-field append semantics and are not widened by this current-only contract.
+The qualification transport applies this same current-only guarded contract
+against its authenticated base frontier before delegation. It rejects any
+literal whose absolute variable exceeds the authenticated DIMACS variable
+bound before calling the daemon. A `409` or other non-success response leaves
+local frontier custody unchanged; a validated `replayed: true` response is
+recorded and advances custody once, never twice.
+
+Each successful current append is retained in the sealed
+`append-response-evidence-v3.json` artifact. Its canonical envelope contains
+the guarded request, parsed response, exact daemon response bytes as strict
+base64, byte count, raw-byte SHA-256, and canonical-response SHA-256. Final
+journal and session-result hashes bind this artifact, and the offline
+validator reparses the retained bytes and reconstructs the final CNF frontier.
 Projected-v3 discovery supplies a timeout. Qualification-v3 validates that
 request before delegation and retains its exact nonnegative builtin value under
 the dense solve index. The solve response contains no timeout field; exact
@@ -273,13 +299,14 @@ recaptures the current public source bundle and requires the sealed source and
 producer manifests and base CNF to remain byte-identical to that current
 entitled bundle. It is therefore not a self-contained historical-archive
 validator. The directory must contain exactly
-the sixteen private artifacts `production-authority-v3.json`,
+the seventeen private artifacts `production-authority-v3.json`,
 `daemon-version-pre-v3.json`, `source-manifest-v3.json`,
 `producer-manifest-v3.json`, `producer-job-v3.json`, `solver-registry-v3.json`,
 `base.cnf`, `initial-runtime-v3.cnf`, `production-preflight-v3.json`,
 `.piqd-incremental-v3-session-identity.json`, `.piqd-incremental-v3.jsonl`,
-`session-close-response.json`, `.solver.cnf`, `daemon-version-post-v3.json`,
-`production-session-result-v3.json`, and `production-qualification-v3.json`.
+`session-close-response.json`, `append-response-evidence-v3.json`, `.solver.cnf`,
+`daemon-version-post-v3.json`, `production-session-result-v3.json`, and
+`production-qualification-v3.json`.
 
 It requires the output root to remain owned by the current uid with exact mode
 `0700` at capture and terminal rebind. It captures every artifact with the

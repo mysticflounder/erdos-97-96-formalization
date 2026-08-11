@@ -1525,27 +1525,89 @@ class PiqdIncrementalDiscoveryRunner:
         additions = [_check_clause(clause, self._variable_count) for clause in clauses]
         if not additions:
             return 0
+        current_contract = self._sat_contract_version == SAT_CONTRACT_CURRENT_V1
+        request: dict[str, Any] = {"clauses": [list(clause) for clause in additions]}
+        if current_contract:
+            # PIQD's current append contract is compare-and-set.  These guards
+            # make a resend after a lost reply idempotent instead of silently
+            # appending the batch twice.
+            request.update(
+                {
+                    "expect_clauses": self.frontier_count,
+                    "if_match_root": _sha256(_journal_bytes(self._clauses)),
+                    "expect_solve_index": self._solve_count,
+                }
+            )
         response = self._json(
             "POST",
             f"/sessions/{self._session_id}/clauses",
-            {"clauses": [list(clause) for clause in additions]},
+            request,
             expected_status=200,
         )
-        _require_keys(
-            response, {"added", "clauses", "max_var"}, label="PIQD clause response"
-        )
+        if current_contract:
+            _require_keys(
+                response,
+                {"added", "clauses", "max_var", "replayed", "root"},
+                label="PIQD current clause response",
+            )
+            added = _integer(
+                response["added"], label="clause response.added", minimum=0
+            )
+            response_clauses = _integer(
+                response["clauses"], label="clause response.clauses", minimum=0
+            )
+            max_var = _integer(
+                response["max_var"], label="clause response.max_var", minimum=0
+            )
+            replayed = _boolean(response["replayed"], label="clause response.replayed")
+            response_root = _hex64(response["root"], label="clause response.root")
+        else:
+            _require_keys(
+                response,
+                {"added", "clauses", "max_var"},
+                label="PIQD clause response",
+            )
+            added = response["added"]
+            response_clauses = response["clauses"]
+            max_var = response["max_var"]
+            replayed = False
+            response_root = ""
         expected_count = self.frontier_count + len(additions)
-        if response["added"] != len(additions) or response["clauses"] != expected_count:
+        if response_clauses != expected_count:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD did not acknowledge the exact appended frontier"
             )
-        prior = self.frontier_sha256
-        self._clauses.extend(additions)
-        self._verify_remote_frontier()
-        if response["max_var"] != self._variable_count:
+        if current_contract:
+            expected_added = 0 if replayed else len(additions)
+            if added != expected_added:
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD current clause response has an invalid replay acknowledgement"
+                )
+            expected_root = _sha256(_journal_bytes((*self._clauses, *tuple(additions))))
+            if response_root != expected_root:
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD current clause response root disagrees with the append"
+                )
+        elif added != len(additions):
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD did not acknowledge the exact appended frontier"
+            )
+        if max_var != self._variable_count:
             raise PiqdIncrementalDiscoveryError(
                 "PIQD max_var disagrees with the logical frontier"
             )
+        prior = self.frontier_sha256
+        previous = self._clauses.copy()
+        self._clauses.extend(additions)
+        try:
+            self._verify_remote_frontier()
+            if current_contract and _sha256(self._remote_journal) != response_root:
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD current clause response root disagrees with the remote frontier"
+                )
+        except BaseException:
+            self._clauses[:] = previous
+            raise
         self._append_local(
             {
                 "event": "append",

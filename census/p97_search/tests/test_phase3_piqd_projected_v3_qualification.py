@@ -275,6 +275,7 @@ class FakeTransport:
         blob_status: int = 200,
         status_overrides: dict[str, int] | None = None,
         response_overrides: dict[tuple[str, str], Any] | None = None,
+        replayed_append: bool = False,
     ) -> None:
         self.job = job or _job()
         self.blob = blob
@@ -288,6 +289,7 @@ class FakeTransport:
         self.blob_status = blob_status
         self.status_overrides = status_overrides or {}
         self.response_overrides = response_overrides or {}
+        self.replayed_append = replayed_append
         self.session_label: str | None = None
         self.version_calls = 0
         self.solve_calls = 0
@@ -305,7 +307,7 @@ class FakeTransport:
         return canonical_json_bytes(value)
 
     def __call__(
-        self, method: str, path: str, _body: Any, _headers: Any
+        self, method: str, path: str, body: Any, _headers: Any
     ) -> HttpResponse:
         self.calls.append((method, path))
         parsed = urlsplit(path)
@@ -329,6 +331,43 @@ class FakeTransport:
                 self._status("create", 201), self._bound_session(self.create), {}
             )
         if method == "POST" and route.endswith("/clauses"):
+            request = json.loads(body) if type(body) is bytes else None
+            if type(request) is dict and {
+                "clauses",
+                "expect_clauses",
+                "if_match_root",
+                "expect_solve_index",
+            } == set(request):
+                if not hasattr(self, "append_frontier"):
+                    _variables, seed = incremental.parse_dimacs(self.blob)
+                    self.append_frontier = list(seed)
+                assert request["expect_clauses"] == len(self.append_frontier)
+                assert request["expect_solve_index"] == self.solve_calls
+                expected_root = _sha(
+                    incremental._journal_bytes(tuple(self.append_frontier))
+                )
+                assert request["if_match_root"] == expected_root
+                additions = [tuple(clause) for clause in request["clauses"]]
+                self.append_frontier.extend(additions)
+                response = {
+                    "added": 0 if self.replayed_append else len(additions),
+                    "clauses": len(self.append_frontier),
+                    "max_var": max(
+                        (
+                            abs(literal)
+                            for clause in self.append_frontier
+                            for literal in clause
+                        ),
+                        default=0,
+                    ),
+                    "replayed": self.replayed_append,
+                    "root": _sha(
+                        incremental._journal_bytes(tuple(self.append_frontier))
+                    ),
+                }
+                return HttpResponse(
+                    self._status("append", 200), canonical_json_bytes(response), {}
+                )
             return HttpResponse(self._status("append", 200), b"{}", {})
         if method == "POST" and route.endswith("/solve"):
             self.solve_calls += 1
@@ -691,6 +730,13 @@ def _prepare_v3(
             }
         ),
     )
+    if transport is not None:
+        fake.create = _production_session(
+            variables=bundle.num_variables,
+            clauses=bundle.num_clauses,
+            solves=0,
+            state="live",
+        )
     blob_path = f"/jobs/{JOB_ID}/blobs/{bundle.base_cnf_sha256}"
     fake.response_overrides[("GET", blob_path)] = HttpResponse(200, bundle.base_cnf, {})
     contract = qualification.prepare_production_qualification_v3(
@@ -811,9 +857,18 @@ def _complete_v3(
     transport(
         "POST",
         f"http://piqd.test/sessions/{SESSION_ID}/clauses",
-        canonical_json_bytes({"clauses": [list(item) for item in additions]}),
+        canonical_json_bytes(
+            {
+                "clauses": [list(item) for item in additions],
+                "expect_clauses": transport.frontier_count,
+                "if_match_root": transport.frontier_root,
+                "expect_solve_index": transport.solve_count,
+            }
+        ),
         {},
     )
+    assert len(transport.append_responses) == 1
+    assert transport.append_responses[0]["replayed"] is False
     solve_raw = transport(
         "POST",
         f"http://piqd.test/sessions/{SESSION_ID}/solve",
@@ -1303,7 +1358,14 @@ def test_qualification_transport_rejects_status_before_state_change(
         "close": ("DELETE", f"http://piqd.test/sessions/{SESSION_ID}"),
     }[endpoint]
     with pytest.raises(qualification.QualificationError, match=f"HTTP {status}"):
-        transport(method, path, b"{}" if method == "POST" else None, {})
+        body = (
+            canonical_json_bytes({"clauses": [[-2]]})
+            if endpoint == "append"
+            else b"{}"
+            if method == "POST"
+            else None
+        )
+        transport(method, path, body, {})
     if endpoint == "create":
         assert transport.session_id is None
         assert not contract.identity_evidence_path.exists()
@@ -1348,7 +1410,6 @@ def test_control_and_near_miss_binary_routes_retain_control_limit(
         f"http://piqd.test/sessions/{SESSION_ID}/model",
         f"http://piqd.test/jobs/{JOB_ID}/blobs/{'f' * 64}",
         f"http://piqd.test/near/jobs/{JOB_ID}/blobs/{_sha(BASE)}",
-        "http://piqd.test/sessions/11111111-1111-4111-8111-111111111111/cnf",
     ]
     for path in paths:
         fake.response_overrides[("GET", path)] = HttpResponse(200, oversized, {})
@@ -1356,6 +1417,14 @@ def test_control_and_near_miss_binary_routes_retain_control_limit(
             qualification.QualificationError, match="bounded exact bytes"
         ):
             transport("GET", path, None, {})
+
+    wrong_session_cnf = (
+        "http://piqd.test/sessions/11111111-1111-4111-8111-111111111111/cnf"
+    )
+    with pytest.raises(
+        qualification.QualificationError, match="request path names another session"
+    ):
+        transport("GET", wrong_session_cnf, None, {})
 
     assert qualification.MAX_JOB_STATUS_BYTES == 64 << 10
     exact_job_path = f"http://piqd.test/jobs/{JOB_ID}"
@@ -2334,6 +2403,29 @@ def _tamper_seal_number(root: Path) -> None:
     )
 
 
+def _tamper_append_evidence_solve_index(root: Path) -> None:
+    _replace_json(
+        root / qualification.APPEND_RESPONSE_EVIDENCE_NAME,
+        lambda value: value["responses"][0]["request"].__setitem__(
+            "expect_solve_index", 99
+        ),
+    )
+
+
+def _tamper_append_evidence_sequence(root: Path) -> None:
+    _replace_json(
+        root / qualification.APPEND_RESPONSE_EVIDENCE_NAME,
+        lambda value: value["responses"][0].__setitem__("sequence", 1),
+    )
+
+
+def _tamper_append_evidence_raw_bytes(root: Path) -> None:
+    _replace_json(
+        root / qualification.APPEND_RESPONSE_EVIDENCE_NAME,
+        lambda value: value["responses"][0].__setitem__("raw_bytes", 0),
+    )
+
+
 @pytest.mark.parametrize(
     "mutate",
     [
@@ -2359,6 +2451,11 @@ def _tamper_seal_number(root: Path) -> None:
         pytest.param(_tamper_close, id="close"),
         pytest.param(_tamper_session_result, id="session-result-number-bool"),
         pytest.param(_tamper_seal_number, id="seal-number-float"),
+        pytest.param(
+            _tamper_append_evidence_solve_index, id="append-evidence-solve-index"
+        ),
+        pytest.param(_tamper_append_evidence_sequence, id="append-evidence-sequence"),
+        pytest.param(_tamper_append_evidence_raw_bytes, id="append-evidence-raw-bytes"),
     ],
 )
 def test_production_v3_completed_artifact_validator_rejects_each_trust_layer(
@@ -2961,22 +3058,211 @@ def test_production_v3_rejects_cross_index_receipt_timeout_substitution(
             {},
         )
     assert transport.requested_timeouts_ms == (1_000, 2_000)
-    frontier = [(1,)]
-    result_sha256 = incremental._result_digest("UNSAT", None, [], None)
-    crossed = {
-        **_receipt("UNSAT", 1, frontier, result_sha256),
-        "timeout_ms": transport.requested_timeouts_ms[1],
+
+
+def test_production_v3_append_guard_and_response_are_authenticated(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    request = {
+        "clauses": [[1]],
+        "expect_clauses": transport.frontier_count,
+        "if_match_root": transport.frontier_root,
+        "expect_solve_index": transport.solve_count,
     }
-    with pytest.raises(qualification.QualificationError, match="retained request"):
-        qualification._validate_receipt(
-            crossed,
-            status="UNSAT",
-            solve_index=1,
-            result_sha256=result_sha256,
-            frontier=frontier,
-            authority_version=3,
-            requested_timeout_ms=transport.requested_timeouts_ms[0],
+    response = transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/clauses",
+        canonical_json_bytes(request),
+        {},
+    )
+    assert json.loads(response.body)["root"] == transport.frontier_root
+    assert transport.append_responses[-1]["clauses"] == transport.frontier_count
+    assert any(
+        method == "POST" and path.endswith("/clauses") for method, path in fake.calls
+    )
+
+
+def test_production_v3_append_rejects_literal_outside_authenticated_bound(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    append_path = f"http://piqd.test/sessions/{SESSION_ID}/clauses"
+    before_calls = len(fake.calls)
+    before_frontier = transport.frontier_count
+    with pytest.raises(qualification.QualificationError, match="variable bound"):
+        transport(
+            "POST",
+            append_path,
+            canonical_json_bytes(
+                {
+                    "clauses": [[current_bundle.num_variables + 1]],
+                    "expect_clauses": transport.frontier_count,
+                    "if_match_root": transport.frontier_root,
+                    "expect_solve_index": transport.solve_count,
+                }
+            ),
+            {},
         )
+    assert len(fake.calls) == before_calls
+    assert transport.frontier_count == before_frontier
+    assert transport.append_response_evidence == []
+
+
+def test_production_v3_append_replayed_response_advances_once(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, _fake = _prepare_v3(
+        tmp_path,
+        bundle=current_bundle,
+        transport=FakeTransport(
+            job=_job(
+                overrides={
+                    "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                    "identity_hash": current_bundle.raw_dimacs_identity,
+                    "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+                }
+            ),
+            blob=current_bundle.base_cnf,
+            replayed_append=True,
+        ),
+    )
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    append_path = f"http://piqd.test/sessions/{SESSION_ID}/clauses"
+    before_frontier = transport.frontier_count
+    transport(
+        "POST",
+        append_path,
+        canonical_json_bytes(
+            {
+                "clauses": [[1]],
+                "expect_clauses": before_frontier,
+                "if_match_root": transport.frontier_root,
+                "expect_solve_index": transport.solve_count,
+            }
+        ),
+        {},
+    )
+    assert transport.append_responses[-1]["replayed"] is True
+    assert transport.append_responses[-1]["added"] == 0
+    assert transport.frontier_count == before_frontier + 1
+    assert len(transport.append_response_raw) == 1
+    assert len(transport.append_response_evidence) == 1
+
+
+def test_production_v3_append_http_409_does_not_advance_local_custody(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    fake.status_overrides["append"] = 409
+    append_path = f"http://piqd.test/sessions/{SESSION_ID}/clauses"
+    before = (
+        transport.frontier_count,
+        transport.frontier_root,
+        tuple(transport.append_response_raw),
+        tuple(transport.append_response_evidence),
+    )
+    with pytest.raises(qualification.QualificationError, match="HTTP 409"):
+        transport(
+            "POST",
+            append_path,
+            canonical_json_bytes(
+                {
+                    "clauses": [[1]],
+                    "expect_clauses": transport.frontier_count,
+                    "if_match_root": transport.frontier_root,
+                    "expect_solve_index": transport.solve_count,
+                }
+            ),
+            {},
+        )
+    assert (
+        transport.frontier_count,
+        transport.frontier_root,
+        tuple(transport.append_response_raw),
+        tuple(transport.append_response_evidence),
+    ) == before
+
+
+def test_production_v3_append_rejects_guard_schema_before_transport(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    append_path = f"http://piqd.test/sessions/{SESSION_ID}/clauses"
+    before = len(fake.calls)
+    with pytest.raises(qualification.QualificationError, match="inexact schema"):
+        transport(
+            "POST",
+            append_path,
+            canonical_json_bytes(
+                {
+                    "clauses": [[1]],
+                    "expect_clauses": transport.frontier_count,
+                    "if_match_root": transport.frontier_root,
+                    "expect_solve_index": transport.solve_count,
+                    "extra": False,
+                }
+            ),
+            {},
+        )
+    assert len(fake.calls) == before
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"added": 1, "clauses": 2, "max_var": 2, "replayed": 0, "root": "0" * 64},
+        {"added": 1, "clauses": 2, "max_var": 2, "replayed": False},
+        {
+            "added": 1,
+            "clauses": 2,
+            "max_var": True,
+            "replayed": False,
+            "root": "0" * 64,
+        },
+    ],
+)
+def test_production_v3_append_rejects_inexact_response(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    response: dict[str, Any],
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    append_path = f"http://piqd.test/sessions/{SESSION_ID}/clauses"
+    fake.response_overrides[("POST", append_path)] = HttpResponse(
+        200, canonical_json_bytes(response), {}
+    )
+    with pytest.raises(qualification.QualificationError, match="response"):
+        transport(
+            "POST",
+            append_path,
+            canonical_json_bytes(
+                {
+                    "clauses": [[1]],
+                    "expect_clauses": transport.frontier_count,
+                    "if_match_root": transport.frontier_root,
+                    "expect_solve_index": transport.solve_count,
+                }
+            ),
+            {},
+        )
+    assert transport.frontier_count == current_bundle.num_clauses
 
 
 @pytest.mark.parametrize(

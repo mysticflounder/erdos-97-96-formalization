@@ -17,6 +17,7 @@ from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_byt
 from census.p97_search.tests.test_phase3_piqd_incremental_discovery import (
     JOB_ID,
     SEED,
+    SESSION,
     FakeSessionTransport,
 )
 
@@ -410,7 +411,7 @@ def test_production_v3_prepares_qualified_transport_and_recovers_lost_close_once
     out = tmp_path / "out"
     out.mkdir(mode=0o700)
     _private_file(out / "base.cnf", SEED)
-    _private_file(out / ".solver.cnf", SEED)
+    _private_file(out / ".solver.cnf", _current_cnf((1, 2), (-2,)))
     source, producer = _manifests()
     source_path = tmp_path / "source.json"
     producer_path = tmp_path / "producer.json"
@@ -467,6 +468,18 @@ def test_production_v3_prepares_qualified_transport_and_recovers_lost_close_once
     assert result.verdict == "SAT"
     assert runner._runner is not None
     assert runner._runner._sat_contract_version == incremental.SAT_CONTRACT_CURRENT_V1
+    append_payloads = [
+        json.loads(body)
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/clauses"
+    ]
+    assert len(append_payloads) == 1
+    assert set(append_payloads[0]) == {
+        "clauses",
+        "expect_clauses",
+        "expect_solve_index",
+        "if_match_root",
+    }
     assert len(prepared) == 1
     assert prepared[0]["authority"] is authority
     assert prepared[0]["transport"] is transport

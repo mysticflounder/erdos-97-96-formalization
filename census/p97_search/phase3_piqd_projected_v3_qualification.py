@@ -7,6 +7,8 @@ required before any mathematical or Lean claim can be made.
 
 from __future__ import annotations
 
+import base64
+import binascii
 import hashlib
 import importlib
 import ipaddress
@@ -14,7 +16,7 @@ import json
 import os
 import stat
 import uuid
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import MappingProxyType
@@ -111,6 +113,10 @@ QUALIFICATION_NAME = "qualification.json"
 SESSION_RESULT_NAME = "session-result.json"
 SOLVE_RESPONSE_NAMES = ("solve-response-1.json", "solve-response-2.json")
 CLOSE_RESPONSE_NAME = "session-close-response.json"
+APPEND_RESPONSE_EVIDENCE_NAME = "append-response-evidence-v3.json"
+APPEND_RESPONSE_EVIDENCE_SCHEMA = (
+    "p97-piqd-projected-static-v3-append-response-evidence/v1"
+)
 
 # The historical v3 canary above remains deliberately exact: SAT, append (91),
 # then terminal assumption-free UNSAT.  These v2 names describe the separate
@@ -1088,6 +1094,8 @@ class QualificationTransport:
         base_sha256: str | None = None,
         generalized: bool = False,
         authority_version: int | None = None,
+        initial_clauses: Sequence[Sequence[int]] | None = None,
+        initial_variables: int | None = None,
     ) -> None:
         self.inner = inner
         self.root = Path(root)
@@ -1128,9 +1136,34 @@ class QualificationTransport:
             )
         self.generalized = generalized
         self.authority_version = authority_version
+        if authority_version == 3:
+            if initial_clauses is None or type(initial_variables) is not int:
+                raise QualificationError(
+                    "qualification authority-v3 requires an authenticated initial frontier"
+                )
+            if initial_variables < 0:
+                raise QualificationError("initial variable count is invalid")
+            self._frontier = []
+            for clause in initial_clauses:
+                if type(clause) not in {list, tuple} or any(
+                    type(literal) is not int or literal == 0 for literal in clause
+                ):
+                    raise QualificationError("initial frontier clause is malformed")
+                self._frontier.append(tuple(clause))
+            self._frontier_root = _sha(
+                incremental._journal_bytes(tuple(self._frontier))
+            )
+            self._frontier_variables = initial_variables
+        else:
+            self._frontier = []
+            self._frontier_root = None
+            self._frontier_variables = None
         self.session_id: str | None = None
         self.solve_count = 0
         self.statuses: list[str] = []
+        self.append_responses: list[dict[str, Any]] = []
+        self.append_response_raw: list[bytes] = []
+        self.append_response_evidence: list[dict[str, Any]] = []
         self._requested_timeouts_ms: list[int] = []
         self.event_sequence: list[str] = []
         self.close_observed = False
@@ -1142,6 +1175,18 @@ class QualificationTransport:
         """Return the production-v3 timeouts captured at the request boundary."""
 
         return tuple(self._requested_timeouts_ms)
+
+    @property
+    def frontier_count(self) -> int:
+        """Return the authenticated current-v3 clause frontier count."""
+
+        return len(self._frontier)
+
+    @property
+    def frontier_root(self) -> str | None:
+        """Return the authenticated current-v3 journal root."""
+
+        return self._frontier_root
 
     @staticmethod
     def _segments(path: str) -> list[str]:
@@ -1251,6 +1296,16 @@ class QualificationTransport:
                 raise QualificationError(f"{label}.{key} is not builtin bool or null")
         session_id = _uuid(value.get("id"), label=f"{label}.id")
         if self.session_id is None:
+            if self.authority_version == 3:
+                assert self._frontier_variables is not None
+                if value["clauses"] != len(self._frontier):
+                    raise QualificationError(
+                        "production-v3 session creation frontier count drifted"
+                    )
+                if value["max_var"] != self._frontier_variables:
+                    raise QualificationError(
+                        "production-v3 session creation variable frontier drifted"
+                    )
             record = {
                 "schema": SESSION_IDENTITY_SCHEMA,
                 "session_id": session_id,
@@ -1262,6 +1317,15 @@ class QualificationTransport:
             self.session_id = session_id
         elif self.session_id != session_id:
             raise QualificationError("incremental session UUID drifted")
+        if self.authority_version == 3:
+            assert self._frontier_variables is not None
+            if (
+                value["clauses"] != len(self._frontier)
+                or value["max_var"] != self._frontier_variables
+            ):
+                raise QualificationError(
+                    f"{label} disagrees with the authenticated current-v3 frontier"
+                )
         return value
 
     def _solve_payload(
@@ -1448,6 +1512,89 @@ class QualificationTransport:
                 label="historical solve request.timeout_ms",
                 minimum=0,
             )
+        if is_append:
+            if self.session_id is None:
+                raise QualificationError(
+                    "append preceded authenticated session creation"
+                )
+            request = _strict_json(body, label="clause append request")
+            if self.authority_version == 3:
+                _keys(
+                    request,
+                    {
+                        "clauses",
+                        "expect_clauses",
+                        "if_match_root",
+                        "expect_solve_index",
+                    },
+                    label="production v3 clause append request",
+                )
+                if self._frontier_root is None or self._frontier_variables is None:
+                    raise QualificationError(
+                        "production-v3 append frontier was not authenticated"
+                    )
+                expect_clauses = _integer(
+                    request["expect_clauses"],
+                    label="production v3 clause append request.expect_clauses",
+                )
+                if expect_clauses != len(self._frontier):
+                    raise QualificationError(
+                        "production-v3 append count guard disagrees with custody"
+                    )
+                if (
+                    _hex(
+                        request["if_match_root"],
+                        label="production v3 clause append request.if_match_root",
+                    )
+                    != self._frontier_root
+                ):
+                    raise QualificationError(
+                        "production-v3 append root guard disagrees with custody"
+                    )
+                expect_solve_index = _integer(
+                    request["expect_solve_index"],
+                    label="production v3 clause append request.expect_solve_index",
+                )
+                if expect_solve_index != self.solve_count:
+                    raise QualificationError(
+                        "production-v3 append solve guard disagrees with custody"
+                    )
+            else:
+                _keys(request, {"clauses"}, label="clause append request")
+            clauses = request["clauses"]
+            if type(clauses) is not list or not clauses:
+                raise QualificationError("production append must add clauses")
+            for clause in clauses:
+                if type(clause) is not list or any(
+                    type(literal) is not int or literal == 0 for literal in clause
+                ):
+                    raise QualificationError("production append clause is malformed")
+                if self.authority_version == 3 and any(
+                    abs(literal) > self._frontier_variables for literal in clause
+                ):
+                    raise QualificationError(
+                        "production append literal exceeds authenticated variable bound"
+                    )
+            if self.authority_version == 3:
+                additions = [tuple(clause) for clause in clauses]
+                append_request_count = len(self._frontier)
+                append_request_root = self._frontier_root
+                append_request_solve_index = self.solve_count
+                expected_count = len(self._frontier) + len(additions)
+                expected_root = _sha(
+                    incremental._journal_bytes((*self._frontier, *additions))
+                )
+            else:
+                additions = []
+                expected_count = 0
+                expected_root = ""
+        session_path_id: str | None = None
+        if "sessions" in segments:
+            index = len(segments) - 1 - segments[::-1].index("sessions")
+            if index + 1 < len(segments):
+                session_path_id = _uuid(segments[index + 1], label="session path UUID")
+                if self.session_id is not None and session_path_id != self.session_id:
+                    raise QualificationError("request path names another session")
         response = _response(
             self.inner(method, path, body, headers),
             label=f"PIQD {method} {path}",
@@ -1462,13 +1609,6 @@ class QualificationTransport:
             self._session_payload(
                 response.body, label="session creation", creation=True
             )
-        session_path_id: str | None = None
-        if "sessions" in segments:
-            index = len(segments) - 1 - segments[::-1].index("sessions")
-            if index + 1 < len(segments):
-                session_path_id = _uuid(segments[index + 1], label="session path UUID")
-                if self.session_id is not None and session_path_id != self.session_id:
-                    raise QualificationError("request path names another session")
         if is_solve:
             if self.session_id is None or session_path_id != self.session_id:
                 raise QualificationError(
@@ -1486,21 +1626,69 @@ class QualificationTransport:
                 assert requested_timeout_ms is not None
                 self._requested_timeouts_ms.append(requested_timeout_ms)
             self.event_sequence.append("solve")
-        elif is_append:
-            if self.session_id is None or session_path_id != self.session_id:
+        if is_append and self.authority_version == 3:
+            raw_response = bytes(response.body)
+            response_value = _strict_json(
+                raw_response,
+                label="production v3 clause append response",
+                canonical=False,
+            )
+            _keys(
+                response_value,
+                {"added", "clauses", "max_var", "replayed", "root"},
+                label="production v3 clause append response",
+            )
+            added = _integer(
+                response_value["added"],
+                label="production v3 clause append response.added",
+            )
+            response_clauses = _integer(
+                response_value["clauses"],
+                label="production v3 clause append response.clauses",
+            )
+            max_var = _integer(
+                response_value["max_var"],
+                label="production v3 clause append response.max_var",
+            )
+            if type(response_value["replayed"]) is not bool:
                 raise QualificationError(
-                    "append preceded authenticated session creation"
+                    "production v3 clause append response.replayed must be builtin bool"
                 )
-            request = _strict_json(body, label="clause append request")
-            _keys(request, {"clauses"}, label="clause append request")
-            clauses = request["clauses"]
-            if type(clauses) is not list or not clauses:
-                raise QualificationError("production append must add clauses")
-            for clause in clauses:
-                if type(clause) is not list or any(
-                    type(literal) is not int or literal == 0 for literal in clause
-                ):
-                    raise QualificationError("production append clause is malformed")
+            response_root = _hex(
+                response_value["root"],
+                label="production v3 clause append response.root",
+            )
+            if (
+                response_clauses != expected_count
+                or max_var != self._frontier_variables
+                or added != (0 if response_value["replayed"] else len(additions))
+                or response_root != expected_root
+            ):
+                raise QualificationError(
+                    "production v3 clause append response disagrees with guarded frontier"
+                )
+            self._frontier.extend(additions)
+            self._frontier_root = response_root
+            self.append_responses.append(dict(response_value))
+            self.append_response_raw.append(raw_response)
+            self.append_response_evidence.append(
+                {
+                    "sequence": len(self.append_response_evidence),
+                    "request": {
+                        "clauses": [list(clause) for clause in additions],
+                        "expect_clauses": append_request_count,
+                        "if_match_root": append_request_root,
+                        "expect_solve_index": append_request_solve_index,
+                    },
+                    "response": dict(response_value),
+                    "raw_sha256": _sha(raw_response),
+                    "raw_bytes": len(raw_response),
+                    "raw_base64": base64.b64encode(raw_response).decode("ascii"),
+                    "response_sha256": _sha(_json_bytes(response_value)),
+                }
+            )
+            self.event_sequence.append("append")
+        elif is_append:
             self.event_sequence.append("append")
         elif is_delete or (
             method == "GET" and len(segments) >= 2 and segments[-2] == "sessions"
@@ -3785,6 +3973,8 @@ def prepare_production_qualification_v3(
         base_sha256=_sha(base),
         generalized=True,
         authority_version=3,
+        initial_clauses=base_clauses,
+        initial_variables=base_variables,
     )
     return ProductionQualificationV3(
         root,
@@ -3824,6 +4014,7 @@ def _validate_production_journal(
     solve_count = 0
     statuses: list[str] = []
     event_sequence: list[str] = []
+    append_events: list[dict[str, Any]] = []
     common = {
         "schema",
         "sequence",
@@ -3896,6 +4087,15 @@ def _validate_production_journal(
             if type(additions) is not list or not additions:
                 raise QualificationError("production append event is empty")
             prior = incremental._frontier_hash(variables, clauses)
+            append_events.append(
+                {
+                    "sequence": len(append_events),
+                    "clauses": additions,
+                    "expect_clauses": len(clauses),
+                    "if_match_root": _sha(incremental._journal_bytes(tuple(clauses))),
+                    "expect_solve_index": solve_count,
+                }
+            )
             checked = [incremental._check_clause(item, variables) for item in additions]
             clauses.extend(checked)
             event_sequence.append("append")
@@ -3962,7 +4162,7 @@ def _validate_production_journal(
         raise QualificationError("production runtime DIMACS is malformed") from exc
     if runtime_variables != variables or runtime_clauses != tuple(clauses):
         raise QualificationError("runtime .solver.cnf is not the journal frontier")
-    return {
+    result = {
         "session_id": session_id,
         "journal_sha256": _sha(raw),
         "solve_count": solve_count,
@@ -3971,6 +4171,193 @@ def _validate_production_journal(
         "final_frontier_sha256": incremental._frontier_hash(variables, clauses),
         "final_runtime_sha256": _sha(runtime),
     }
+    if authority_version == 3:
+        evidence_raw = _append_response_evidence_bytes(contract.transport)
+        evidence = _validate_append_response_evidence(
+            evidence_raw,
+            variables=variables,
+            base_clauses=base_clauses,
+            expected_final_clauses=runtime_clauses,
+            journal_appends=append_events,
+        )
+        result.update(
+            {
+                "append_response_evidence_sha256": evidence["sha256"],
+                "append_response_count": evidence["count"],
+            }
+        )
+    return result
+
+
+def _append_response_evidence_bytes(transport: QualificationTransport) -> bytes:
+    """Encode exact current-v3 append replies for sealed custody."""
+
+    if transport.authority_version != 3:
+        raise QualificationError("append response evidence requires authority-v3")
+    if len(transport.append_response_raw) != len(transport.append_response_evidence):
+        raise QualificationError("append response evidence is incomplete")
+    for raw, evidence in zip(
+        transport.append_response_raw, transport.append_response_evidence, strict=True
+    ):
+        if (
+            type(raw) is not bytes
+            or evidence.get("raw_bytes") != len(raw)
+            or evidence.get("raw_sha256") != _sha(raw)
+            or evidence.get("raw_base64") != base64.b64encode(raw).decode("ascii")
+        ):
+            raise QualificationError("append response evidence is not byte-bound")
+    return _json_bytes(
+        {
+            "schema": APPEND_RESPONSE_EVIDENCE_SCHEMA,
+            "responses": list(transport.append_response_evidence),
+        }
+    )
+
+
+def _validate_append_response_evidence(
+    raw: bytes,
+    *,
+    variables: int,
+    base_clauses: Sequence[Sequence[int]],
+    expected_final_clauses: Sequence[Sequence[int]],
+    journal_appends: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Validate raw/hash-bound append replies against the final CNF frontier."""
+
+    payload = _strict_json(raw, label="append response evidence")
+    _keys(payload, {"schema", "responses"}, label="append response evidence")
+    if payload["schema"] != APPEND_RESPONSE_EVIDENCE_SCHEMA:
+        raise QualificationError("append response evidence schema is invalid")
+    responses = payload["responses"]
+    if type(responses) is not list:
+        raise QualificationError("append response evidence responses are malformed")
+    if len(responses) != len(journal_appends):
+        raise QualificationError(
+            "append response evidence count disagrees with journal appends"
+        )
+    frontier = [tuple(clause) for clause in base_clauses]
+    for sequence, evidence in enumerate(responses):
+        if type(evidence) is not dict:
+            raise QualificationError("append response evidence entry is malformed")
+        _keys(
+            evidence,
+            {
+                "sequence",
+                "request",
+                "response",
+                "raw_sha256",
+                "raw_bytes",
+                "raw_base64",
+                "response_sha256",
+            },
+            label="append response evidence entry",
+        )
+        if _integer(evidence["sequence"], label="append evidence sequence") != sequence:
+            raise QualificationError("append response evidence sequence is not dense")
+        journal_append = journal_appends[sequence]
+        if type(journal_append) is not dict:
+            raise QualificationError("journal append expectation is malformed")
+        request = evidence["request"]
+        if type(request) is not dict:
+            raise QualificationError("append response evidence request is malformed")
+        _keys(
+            request,
+            {"clauses", "expect_clauses", "if_match_root", "expect_solve_index"},
+            label="append response evidence request",
+        )
+        additions = request["clauses"]
+        if type(additions) is not list or not additions:
+            raise QualificationError("append response evidence additions are empty")
+        checked_additions: list[tuple[int, ...]] = []
+        for clause in additions:
+            if type(clause) is not list or any(
+                type(literal) is not int or literal == 0 or abs(literal) > variables
+                for literal in clause
+            ):
+                raise QualificationError("append response evidence clause is invalid")
+            checked_additions.append(tuple(clause))
+        if _integer(
+            request["expect_clauses"], label="append evidence expect_clauses"
+        ) != len(frontier) or _hex(
+            request["if_match_root"], label="append evidence if_match_root"
+        ) != _sha(incremental._journal_bytes(tuple(frontier))):
+            raise QualificationError(
+                "append response evidence request frontier drifted"
+            )
+        expect_solve_index = _integer(
+            request["expect_solve_index"], label="append evidence expect_solve_index"
+        )
+        if (
+            request["clauses"] != journal_append["clauses"]
+            or request["expect_clauses"] != journal_append["expect_clauses"]
+            or request["if_match_root"] != journal_append["if_match_root"]
+            or expect_solve_index != journal_append["expect_solve_index"]
+            or journal_append["sequence"] != sequence
+        ):
+            raise QualificationError(
+                "append response evidence request is not journal-bound"
+            )
+        response = evidence["response"]
+        if type(response) is not dict:
+            raise QualificationError("append response evidence response is malformed")
+        _keys(
+            response,
+            {"added", "clauses", "max_var", "replayed", "root"},
+            label="append response evidence response",
+        )
+        try:
+            raw_response = base64.b64decode(
+                _string(evidence["raw_base64"], label="append evidence raw_base64"),
+                validate=True,
+            )
+        except (ValueError, binascii.Error) as exc:
+            raise QualificationError(
+                "append response evidence raw_base64 is invalid"
+            ) from exc
+        raw_bytes = _integer(evidence["raw_bytes"], label="append evidence raw_bytes")
+        raw_base64 = _string(evidence["raw_base64"], label="append evidence raw_base64")
+        raw_sha256 = _hex(evidence["raw_sha256"], label="append evidence raw_sha256")
+        response_sha256 = _hex(
+            evidence["response_sha256"], label="append evidence response_sha256"
+        )
+        if (
+            raw_bytes != len(raw_response)
+            or raw_base64 != base64.b64encode(raw_response).decode("ascii")
+            or raw_sha256 != _sha(raw_response)
+            or response_sha256 != _sha(_json_bytes(response))
+        ):
+            raise QualificationError("append response evidence hash binding is invalid")
+        parsed = _strict_json(
+            raw_response, label="append response evidence raw response", canonical=False
+        )
+        if parsed != response:
+            raise QualificationError("append response evidence parsed bytes disagree")
+        expected_frontier = (*frontier, *checked_additions)
+        added = _integer(response["added"], label="append evidence response.added")
+        response_count = _integer(
+            response["clauses"], label="append evidence response.clauses"
+        )
+        max_var = _integer(
+            response["max_var"], label="append evidence response.max_var"
+        )
+        if type(response["replayed"]) is not bool:
+            raise QualificationError(
+                "append evidence response.replayed is not builtin bool"
+            )
+        if (
+            response_count != len(expected_frontier)
+            or max_var != variables
+            or added != (0 if response["replayed"] else len(checked_additions))
+            or _hex(response["root"], label="append evidence response.root")
+            != _sha(incremental._journal_bytes(expected_frontier))
+        ):
+            raise QualificationError(
+                "append response evidence response frontier drifted"
+            )
+        frontier = list(expected_frontier)
+    if tuple(frontier) != tuple(tuple(clause) for clause in expected_final_clauses):
+        raise QualificationError("append response evidence does not bind final CNF")
+    return {"sha256": _sha(raw), "count": len(responses)}
 
 
 def _write_seal_last(path: Path, data: bytes) -> None:
@@ -4206,6 +4593,13 @@ def _finalize_production_qualification(
             label="solver registry",
         )
     _write_once(root / f"daemon-version-post-{suffix}.json", version_post_raw)
+    if version == 3:
+        append_evidence_raw = _append_response_evidence_bytes(contract.transport)
+        if _sha(append_evidence_raw) != journal["append_response_evidence_sha256"]:
+            raise QualificationError(
+                "append response evidence changed during finalization"
+            )
+        _write_once(root / APPEND_RESPONSE_EVIDENCE_NAME, append_evidence_raw)
     session_result = {
         "schema": session_result_schema,
         **journal,
@@ -4274,6 +4668,7 @@ _PRODUCTION_V3_SEALED_ARTIFACTS = frozenset(
         IDENTITY_NAME,
         JOURNAL_NAME,
         CLOSE_RESPONSE_NAME,
+        APPEND_RESPONSE_EVIDENCE_NAME,
         ".solver.cnf",
         "daemon-version-post-v3.json",
         PRODUCTION_V3_SESSION_RESULT_NAME,
@@ -4324,6 +4719,7 @@ def _validate_production_v3_artifact_journal(
     solve_count = 0
     statuses: list[str] = []
     event_sequence: list[str] = []
+    append_events: list[dict[str, Any]] = []
     common = {
         "schema",
         "sequence",
@@ -4405,6 +4801,15 @@ def _validate_production_v3_artifact_journal(
             prior = incremental._frontier_hash(variables, clauses)
             if event.get("prior_frontier_sha256") != prior:
                 raise QualificationError("production append prior frontier drifted")
+            append_events.append(
+                {
+                    "sequence": len(append_events),
+                    "clauses": additions,
+                    "expect_clauses": len(clauses),
+                    "if_match_root": _sha(incremental._journal_bytes(tuple(clauses))),
+                    "expect_solve_index": solve_count,
+                }
+            )
             clauses.extend(
                 incremental._check_clause(item, variables) for item in additions
             )
@@ -4466,6 +4871,7 @@ def _validate_production_v3_artifact_journal(
         "final_frontier_count": len(clauses),
         "final_frontier_sha256": incremental._frontier_hash(variables, clauses),
         "final_runtime_sha256": _sha(runtime),
+        "append_events": append_events,
     }
 
 
@@ -4665,6 +5071,16 @@ def validate_completed_production_qualification_v3(directory: Path) -> dict[str,
         base_clauses=base_clauses,
         runtime=snapshots[".solver.cnf"],
     )
+    journal_appends = journal.pop("append_events")
+    append_evidence = _validate_append_response_evidence(
+        snapshots[APPEND_RESPONSE_EVIDENCE_NAME],
+        variables=variables,
+        base_clauses=base_clauses,
+        expected_final_clauses=incremental.parse_dimacs(snapshots[".solver.cnf"])[1],
+        journal_appends=journal_appends,
+    )
+    journal["append_response_evidence_sha256"] = append_evidence["sha256"]
+    journal["append_response_count"] = append_evidence["count"]
     if journal["session_id"] != session_id:
         raise QualificationError("session identity names another journal")
     close_raw = snapshots[CLOSE_RESPONSE_NAME]
