@@ -7908,6 +7908,43 @@ packet, or another equally explicit packet accepted by a clean terminal.  A
 finite experiment may test a fixed candidate shape, but it cannot replace the
 cardinality-independent producer or a proved finite-to-universal lift.
 
+#### 13.24.1.3 First-non-hit local-closure boundary (2026-08-11)
+
+A constructor-by-constructor source audit sharpens the hard gate.  In the
+retained same-blocker/same-blocker arm, the two canonical source rows have the
+same center and support as the Q row, and the common-omission subarm produces a
+`FreshThirdAlignedCommonDeletionCorePairPacket`.  This does not saturate the
+actual-blocker fiber: the live packets do not prove the four named carriers
+distinct from one another, an alias only decreases the fiber cardinality, and
+no source-clean theorem produces a fifth carrier.  Consequently
+`actualBlockerFiber_card_le_four` is compatible with this arm rather than a
+contradiction.
+
+In the omission/omission arm, a shared deleted endpoint together with distinct
+source centers yields a clean `CommonDeletionTwoCenterPacket`.  Every current
+source-clean consumer of that packet stops at a paired-row, adjacent-grid,
+robust-row, or large-cap outcome; none produces the required three-point
+overlap or `False`.  Different deleted endpoints have no deletion-transport
+theorem, and equality of the two source centers is not contradicted by the
+packet.  The geometric interaction constructors already expose exactly two
+common row points, so they do not reach the three-overlap terminal either.
+
+The common-radius same-blocker/same-blocker arm gives the strongest local
+normal form: the common exact-four row is precisely the two canonical sources
+and the two Q endpoints, while the canonical-source pair lies on one
+`oppApex1` radius.  Existing cap localization forces the common row center
+into the canonical cap; it does not contradict the configuration.  The named
+data still provide only two perpendicular-bisector centers, `oppApex1` and the
+common blocker, while the clean metric terminal needs a third.
+
+Therefore the remaining work is genuinely global.  The next admissible
+producer must use carrier-wide K4/minimality, cap order, or metric geometry to
+produce either a new distinct-center row overlapping the Q row in at least
+three points, or a direct cyclic/metric contradiction of the exact-four normal
+form.  Repackaging the local deletion cores, splitting aliases, or rerunning
+the unchanged finite incidence abstraction cannot close the anchor.  This
+checkpoint is a negative theorem-bank audit and closes no `sorry`.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
