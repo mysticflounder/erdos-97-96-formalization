@@ -183,6 +183,7 @@ PRODUCTION_V3_ENCODING_CONFIGURATION_SHA256 = (
     "5f1257a6022cd24eda134ba476472e2175ea3bde66b7194ff36a4e5e55de3f77"
 )
 PRODUCTION_V3_ENCODING_CONFIGURATION_BYTES = 203
+PRODUCTION_V3_PREPARE_PREVIEW_BYTES = 512
 PRODUCTION_V3_POLICY = MappingProxyType(dict(PRODUCTION_V2_POLICY))
 PRODUCTION_V3_SUCCESS_STATUSES = PRODUCTION_V2_SUCCESS_STATUSES
 PRODUCTION_V3_CLAIMS = MappingProxyType(
@@ -2791,12 +2792,21 @@ _PRODUCTION_V3_AUTHORITY_KEYS = {
     "raw_dimacs_identity",
     "producer_job_id",
     "producer_job_requested_core_limit",
+    "producer_prepare_preview",
     "prepared_existing",
     "solver",
     "policy",
     "claims",
     "authority_sha256",
 }
+
+
+def _production_v3_prepare_preview(cnf: bytes) -> str:
+    if type(cnf) is not bytes:
+        raise QualificationError("production-v3 preview input is not exact bytes")
+    return cnf[:PRODUCTION_V3_PREPARE_PREVIEW_BYTES].decode(
+        "utf-8", errors="replace"
+    )
 
 
 def _current_production_v3_bundle() -> Any:
@@ -2917,6 +2927,7 @@ def _production_v3_authority_value(raw: bytes, *, path: Path) -> ProductionAutho
         "producer_manifest_sha256": bundle.producer_manifest_sha256,
         "producer_manifest_bytes": len(bundle.producer_manifest),
         "raw_dimacs_identity": bundle.raw_dimacs_identity,
+        "producer_prepare_preview": _production_v3_prepare_preview(bundle.base_cnf),
         "shard_index": None,
         "shard_count": None,
         "shard_literals": None,
@@ -3406,6 +3417,10 @@ def prepare_production_qualification_v3(
         or len(base_clauses) != PRODUCTION_V3_BASE_CLAUSES
     ):
         raise QualificationError("runtime base CNF is not the exact production-v3 base")
+    if authority.value["producer_prepare_preview"] != _production_v3_prepare_preview(
+        base
+    ):
+        raise QualificationError("producer prepare preview disagrees with runtime base")
     if (
         current_variables != base_variables
         or current_clauses[: len(base_clauses)] != base_clauses
@@ -3500,6 +3515,7 @@ def prepare_production_qualification_v3(
         "raw_dimacs_identity": authority.value["raw_dimacs_identity"],
         "producer_job_id": producer_job_id,
         "producer_job_requested_core_limit": 1,
+        "producer_prepare_preview": authority.value["producer_prepare_preview"],
         "prepared_existing": authority.value["prepared_existing"],
         "producer_job_sha256": _sha(job_raw),
         "solver_registry_sha256": _sha(registry_raw),
@@ -3880,6 +3896,9 @@ def _finalize_production_qualification(
                     "encoding_configuration_bytes"
                 ],
                 "producer_job_requested_core_limit": 1,
+                "producer_prepare_preview": authority.value[
+                    "producer_prepare_preview"
+                ],
                 "prepared_existing": authority.value["prepared_existing"],
                 "shard_index": None,
                 "shard_count": None,
@@ -4006,6 +4025,7 @@ __all__ = [
     "PRODUCTION_V3_ENCODING_CONFIGURATION_SHA256",
     "PRODUCTION_V3_POLICY",
     "PRODUCTION_V3_PREFLIGHT_NAME",
+    "PRODUCTION_V3_PREPARE_PREVIEW_BYTES",
     "PRODUCTION_V3_PROFILE",
     "PRODUCTION_V3_QUALIFICATION_NAME",
     "PRODUCTION_V3_SESSION_RESULT_NAME",

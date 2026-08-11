@@ -171,6 +171,9 @@ def _write_valid_inputs(tmp_path: Path) -> None:
         "raw_dimacs_identity": bundle.raw_dimacs_identity,
         "producer_job_id": "22222222-2222-4222-8222-222222222222",
         "producer_job_requested_core_limit": 1,
+        "producer_prepare_preview": bundle.base_cnf[
+            : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+        ].decode("utf-8", errors="replace"),
         "prepared_existing": True,
         "solver": {
             "name": qualification.PRODUCTION_SOLVER_NAME,

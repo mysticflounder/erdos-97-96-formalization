@@ -556,6 +556,9 @@ def _production_authority_v3(
         "raw_dimacs_identity": bundle.raw_dimacs_identity,
         "producer_job_id": JOB_ID,
         "producer_job_requested_core_limit": 1,
+        "producer_prepare_preview": bundle.base_cnf[
+            : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+        ].decode("utf-8", errors="replace"),
         "prepared_existing": prepared_existing,
         "solver": {
             "name": SOLVER,
@@ -1891,6 +1894,9 @@ def test_production_v3_authority_loads_only_current_global_bundle(
     assert authority.value["base_scope"] == "global"
     assert authority.value["builder_base_scope"] == "global-unsharded"
     assert authority.value["prepared_existing"] is prepared_existing
+    assert authority.value["producer_prepare_preview"] == current_bundle.base_cnf[
+        : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+    ].decode("utf-8", errors="replace")
     assert authority.value["shard_index"] is None
     assert authority.value["shard_count"] is None
     assert authority.value["shard_literals"] is None
@@ -1913,6 +1919,10 @@ def test_production_v3_authority_loads_only_current_global_bundle(
         "shard-count",
         "shard-literals",
         "existing-int",
+        "preview-missing",
+        "preview-bool",
+        "preview-float",
+        "preview-tamper",
         "solver",
         "claim",
     ],
@@ -1951,6 +1961,14 @@ def test_production_v3_authority_schema_profile_and_builtin_attacks_fail(
             value["shard_literals"] = [-91, -92, 93, -94, -95]
         elif attack == "existing-int":
             value["prepared_existing"] = 1
+        elif attack == "preview-missing":
+            value.pop("producer_prepare_preview")
+        elif attack == "preview-bool":
+            value["producer_prepare_preview"] = True
+        elif attack == "preview-float":
+            value["producer_prepare_preview"] = 1.0
+        elif attack == "preview-tamper":
+            value["producer_prepare_preview"] += "crossed"
         elif attack == "solver":
             value["solver"]["sha256"] = "f" * 64
         elif attack == "claim":
@@ -2051,6 +2069,9 @@ def test_production_v3_full_arbitrary_append_unsat_lifecycle_seals(
         (contract.directory / qualification.PRODUCTION_V3_PREFLIGHT_NAME).read_bytes()
     )
     assert preflight["producer_job_requested_core_limit"] == 1
+    assert preflight["producer_prepare_preview"] == current_bundle.base_cnf[
+        : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+    ].decode("utf-8", errors="replace")
     assert seal["policy"] == dict(qualification.PRODUCTION_V3_POLICY)
     assert all(claim is False for claim in seal["claims"].values())
     assert fake.version_calls == 2

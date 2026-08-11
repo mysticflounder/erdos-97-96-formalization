@@ -79,8 +79,12 @@ _PREPARE_KEYS = {
     "identity_hash",
     "num_vars",
     "num_clauses",
+    "preview",
     "requested_core_limit",
 }
+_PRODUCTION_V3_PREPARED_JOB_SCHEMA = (
+    "p97-piqd-projected-static-v3-authenticated-prepared-job/v1"
+)
 _VERSION_KEYS = {"daemon", "limits"}
 _VERSION_DAEMON_KEYS = {"name", "version", "protocol_version", "sha256"}
 _VERSION_LIMIT_KEYS = {"max_var"}
@@ -718,9 +722,35 @@ def _response(
     return value
 
 
+def _prepare_response_contract(
+    value: dict[str, Any], *, expected_preview: str
+) -> None:
+    _keys(value, _PREPARE_KEYS, label="producer prepare")
+    _uuid(value["job_id"], label="producer prepare job_id")
+    if type(value["existing"]) is not bool:
+        raise ProvisioningError("producer prepare existing is not builtin bool")
+    for key in ("cnf_blob_hash", "identity_hash"):
+        _digest(value[key], label=f"producer prepare {key}")
+    for key in ("num_vars", "num_clauses"):
+        _integer(value[key], label=f"producer prepare {key}", minimum=0)
+    if type(value["preview"]) is not str:
+        raise ProvisioningError("producer prepare preview is not builtin str")
+    if type(expected_preview) is not str or value["preview"] != expected_preview:
+        raise ProvisioningError("producer prepare preview is crossed")
+    if (
+        type(value["requested_core_limit"]) is not int
+        or value["requested_core_limit"] != 1
+    ):
+        raise ProvisioningError("producer prepare core limit is not builtin 1")
+
+
 class _StrictPrepareTransport:
-    def __init__(self, inner: Transport) -> None:
+    def __init__(self, inner: Transport, *, expected_preview: str) -> None:
         self.inner = inner
+        if type(expected_preview) is not str:
+            raise ProvisioningError("expected producer prepare preview is not builtin str")
+        self.expected_preview = expected_preview
+        self.preview: str | None = None
 
     def __call__(
         self,
@@ -736,19 +766,8 @@ class _StrictPrepareTransport:
             content_type="application/json",
         )
         value = _strict_json(response.body, label="producer prepare")
-        _keys(value, _PREPARE_KEYS, label="producer prepare")
-        _uuid(value["job_id"], label="producer prepare job_id")
-        if type(value["existing"]) is not bool:
-            raise ProvisioningError("producer prepare existing is not builtin bool")
-        for key in ("cnf_blob_hash", "identity_hash"):
-            _digest(value[key], label=f"producer prepare {key}")
-        for key in ("num_vars", "num_clauses"):
-            _integer(value[key], label=f"producer prepare {key}", minimum=0)
-        if (
-            type(value["requested_core_limit"]) is not int
-            or value["requested_core_limit"] != 1
-        ):
-            raise ProvisioningError("producer prepare core limit is not builtin 1")
+        _prepare_response_contract(value, expected_preview=self.expected_preview)
+        self.preview = value["preview"]
         return response
 
 
@@ -769,7 +788,9 @@ def _request(
     )
 
 
-def _prepare_value(prepared: PreparedJob) -> dict[str, Any]:
+def _prepare_value(
+    prepared: PreparedJob, *, preview: str | None = None
+) -> dict[str, Any]:
     if type(prepared) is not PreparedJob:
         raise ProvisioningError("PIQD did not return an exact PreparedJob")
     value = {
@@ -787,6 +808,11 @@ def _prepare_value(prepared: PreparedJob) -> dict[str, Any]:
     _uuid(value["job_id"], label="prepared job_id")
     if type(value["existing"]) is not bool:
         raise ProvisioningError("prepared existing is not builtin bool")
+    if preview is not None:
+        if type(preview) is not str:
+            raise ProvisioningError("prepared preview is not builtin str")
+        value["schema"] = _PRODUCTION_V3_PREPARED_JOB_SCHEMA
+        value["preview"] = preview
     return value
 
 
@@ -1017,6 +1043,7 @@ def _authority_bytes(
     bundle: CurrentUnshardedBundle,
     job_id: str,
     prepared_existing: bool,
+    prepare_preview: str,
 ) -> bytes:
     unsigned = {
         "schema": profile.authority_schema,
@@ -1058,6 +1085,7 @@ def _authority_bytes(
                 "shard_count": None,
                 "shard_literals": None,
                 "producer_job_requested_core_limit": 1,
+                "producer_prepare_preview": prepare_preview,
                 "prepared_existing": prepared_existing,
                 "claims": dict(qualification.PRODUCTION_V3_CLAIMS),
             }
@@ -1237,8 +1265,12 @@ def provision_projected_v3_production(
     ):
         _integer(value, label=label, minimum=1)
 
+    expected_preview = bundle.base_cnf[
+        : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+    ].decode("utf-8", errors="replace")
     strict_transport = _StrictPrepareTransport(
-        transport if transport is not None else stdlib_http_transport
+        transport if transport is not None else stdlib_http_transport,
+        expected_preview=expected_preview,
     )
     client = PiqdRawDimacsClient(
         url,
@@ -1257,7 +1289,17 @@ def provision_projected_v3_production(
         )
     except PiqdOracleError as exc:
         raise ProvisioningError(str(exc)) from exc
-    prepared_value = _prepare_value(prepared)
+    prepare_preview = strict_transport.preview
+    if type(prepare_preview) is not str:
+        raise ProvisioningError("producer prepare preview was not captured")
+    prepared_value = _prepare_value(
+        prepared,
+        preview=(
+            prepare_preview
+            if profile.authority_schema == qualification.PRODUCTION_V3_AUTHORITY_SCHEMA
+            else None
+        ),
+    )
     if (
         prepared.cnf_blob_hash != bundle.base_cnf_sha256
         or prepared.identity_hash != bundle.raw_dimacs_identity
@@ -1335,6 +1377,7 @@ def provision_projected_v3_production(
         bundle=bundle,
         job_id=job_id,
         prepared_existing=prepared.existing,
+        prepare_preview=prepare_preview,
     )
 
     artifacts = {

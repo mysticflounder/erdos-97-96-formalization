@@ -42,6 +42,9 @@ class FakeTransport:
             "identity_hash": bundle.raw_dimacs_identity,
             "num_vars": bundle.num_variables,
             "num_clauses": bundle.num_clauses,
+            "preview": bundle.base_cnf[
+                : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+            ].decode("utf-8", errors="replace"),
             "requested_core_limit": 1,
         }
         self.job: dict[str, Any] = {
@@ -475,6 +478,14 @@ def test_production_v3_round_trips_exact_global_authority(
     assert value["shard_literals"] is None
     assert value["prepared_existing"] is existing
     assert value["producer_job_requested_core_limit"] == 1
+    expected_preview = bundle.base_cnf[
+        : qualification.PRODUCTION_V3_PREPARE_PREVIEW_BYTES
+    ].decode("utf-8", errors="replace")
+    assert value["producer_prepare_preview"] == expected_preview
+    prepared = json.loads(
+        (result.directory / provisioning.PREPARED_JOB_NAME).read_bytes()
+    )
+    assert prepared["preview"] == expected_preview
     assert all(claim is False for claim in value["claims"].values())
     with pytest.raises(qualification.QualificationError):
         qualification.load_production_authority_v2(result.authority_path)
@@ -532,6 +543,10 @@ def test_packet_bytes_are_deterministic(
         "prepare-missing",
         "prepare-bool",
         "prepare-float",
+        "prepare-preview-missing",
+        "prepare-preview-bool",
+        "prepare-preview-float",
+        "prepare-preview-tamper",
         "prepare-crossed-manifest",
         "job-extra",
         "job-missing",
@@ -565,6 +580,14 @@ def test_crossed_schema_and_builtin_attacks_fail_closed(
         fake.raw_overrides["/jobs/prepare-cnf"] = json.dumps(
             {**fake.prepare, "num_vars": 1194.0}, separators=(",", ":")
         ).encode()
+    elif attack == "prepare-preview-missing":
+        del fake.prepare["preview"]
+    elif attack == "prepare-preview-bool":
+        fake.prepare["preview"] = True
+    elif attack == "prepare-preview-float":
+        fake.prepare["preview"] = 1.0
+    elif attack == "prepare-preview-tamper":
+        fake.prepare["preview"] += "crossed"
     elif attack == "prepare-crossed-manifest":
         fake.prepare["identity_hash"] = "5" * 64
     elif attack == "job-extra":
@@ -600,6 +623,22 @@ def test_crossed_schema_and_builtin_attacks_fail_closed(
     with pytest.raises(provisioning.ProvisioningError):
         _run(tmp_path / "packet", bundle, fake)
     assert not (tmp_path / "packet" / provisioning.SEAL_NAME).exists()
+
+
+def test_prepare_preview_rejects_string_subclasses(
+    bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    class StringSubclass(str):
+        pass
+
+    fake = FakeTransport(bundle)
+    expected = fake.prepare["preview"]
+    fake.prepare["preview"] = StringSubclass(expected)
+    with pytest.raises(provisioning.ProvisioningError, match="builtin str"):
+        provisioning._prepare_response_contract(
+            fake.prepare,
+            expected_preview=expected,
+        )
 
 
 def test_http_response_subclass_and_existing_rebind_fail_closed(

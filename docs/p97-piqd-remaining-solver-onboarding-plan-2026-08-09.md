@@ -127,6 +127,16 @@ Python import plus the capped qualification tests. Future shared-file
 checkpoints must validate the staged clean image rather than relying on tests
 against the dirty working tree.
 
+The corrected clean checkpoint `e4491362cc14569c2f2040ea8422d9ab223c3137`
+then reached PIQD prepare without confirming or running a solver. PIQD returned
+the documented mandatory `preview` field in the prepare response, but the P97
+authority-v3 wrapper still enforced the older key set and stopped fail-closed.
+The prepared job `6883febf-aafb-4b5d-95e2-37faa5fb59ce` remains unconfirmed and
+unrun. Rust source and the exact archived response showed that `preview` is the
+lossy UTF-8 rendering of the first 512 submitted CNF bytes; this is P97 adapter
+schema drift, not a PIQD defect. A subsequent clean checkpoint must require and
+cross-bind that field before the live qualification resumes.
+
 The first Frontier A-core qualification used the exact source-derived
 889-variable, 21,101-clause SAT canary and one requested solver process. The
 deployed daemon `0af7a4cd9f813c91ea3ce5a8f4eab6ad979b50e49a2c7276a2fdafa932e5da77`
