@@ -1,247 +1,400 @@
-# RemovableVertexOfLarge decomposition review — 2026-08-10
+# `RemovableVertexOfLarge` proof-architecture review
 
-Review of why the `Problem97.RemovableVertexOfLarge` branch of the Lean spine
-is disproportionately hard to close. Analysis only; no code was changed.
-Evidence comes from three audits run 2026-08-10: a spine-shape analysis, a
-git growth census, and a source-level mathematical critique. Claim labels
-follow project rigor policy: VERIFIED = read directly in source or computed
-from the repo; HEURISTIC = judgment from partial evidence; CONJECTURED =
-unproven mathematics.
+**Original review:** 2026-08-10<br>
+**Independent re-analysis:** 2026-08-11
+
+This review asks a narrower and more useful question than “how many `sorry`s are
+left?”:
+
+> Which open declarations represent distinct mathematical mechanisms, and which
+> are artifacts of case decomposition, interface mismatch, or cardinality
+> specialization?
+
+The answer is not the original slogan “35 leaves collapse to 22 records, then
+9 families, with one intrinsically hard core.”  The leaf inflation is real, but
+that slogan confuses source signatures with mathematical content.  The present
+source supports roughly **three research programs**, each with internal
+substructure; it does not support reducing the whole frontier to one known
+missing lemma.
+
+## Status and scope
+
+No Lean build, `proof-blueprint` refresh, or transitive axiom audit was run for
+this review.  The worktree changed after the cached spine was mined.  Therefore:
+
+- **VERIFIED (source)** means that the declaration, its hypotheses, and its
+  source-level call structure were inspected;
+- **SNAPSHOT** means a fact about the cached 35-leaf frontier used by the
+  original review, not necessarily the current live spine;
+- **HEURISTIC** means a decomposition suggested by the present interfaces;
+- **CONJECTURED** means a new mathematical theorem or adapter that does not yet
+  exist source-cleanly.
+
+In particular, “source-clean” below is local to the named declaration.  It is
+not a claim of transitive `sorryAx`-freedom unless explicitly stated.
 
 ## 1. Verdict
 
-The trouble is disproportionate, and most of it is the decomposition, not
-the mathematics. An exhaustive classification of all 35 sorried leaf
-signatures (VERIFIED; every declaration read, every row source-cited)
-collapses them to 22 strict configuration-record classes — 20 if two
-borderline merges are accepted — organized in 9 coarse record families
-(§3a). One obligation class is intrinsically hard open combinatorics; no
-restructuring removes it. The remaining frontier size and cost come from
-three identifiable inflation mechanisms (§5), of which the cardinality
-stratum tower is the dominant one.
+The report was trying to do the right thing: quotient a large Lean frontier by
+the mathematical ideas that would close many leaves at once.  Its strongest
+conclusion, however, was too aggressive.
 
-## 2. Branch structure (VERIFIED)
+1. **The 35 → 22 arithmetic is a defensible source-signature census of one
+   cached snapshot, not a mathematical quotient.**  The 22 classes group
+   declarations with similar parameters and packet interfaces.  A common
+   record may remove boilerplate without supplying a common proof.
+2. **The claimed 9-family quotient is not reproducible from the document.**
+   Its table has six aggregate rows and no per-leaf artifact from which nine
+   families can be recovered.  It should not be labeled `VERIFIED`.
+3. **There is more than one genuine mathematical core.**  At minimum the source
+   separates:
+   - the unique-radius / `Rigid221` / pentagon program;
+   - source-faithful common-deletion and escaping-row dynamics;
+   - the saturated two-radius exact-four collision/grid program.
+4. **The all-low-hits hub is already a substantial consolidation.**  Its 14
+   cached leaves should not be treated as 14 unrelated terminal mechanisms.
+   The checked selector reduces them to a small number of stronger producer
+   problems, but the source does not yet contain one invariant that closes all
+   of them.
+5. **Card 11 is an adapter precedent, not evidence of a uniform theorem.**  It
+   shows that the top-level packet interface is usable.  Its proof relies on
+   fixed labels, a `(5,5,4)` profile, and frozen finite clause banks that do not
+   generalize merely by abstracting a record.
 
-- The branch's own three-way split is healthy: two arms are closed
-  (`largeK4SurplusCapPacket`, `removableVertexOfLarge_of_isM44PinnedSurplus`).
-  All open weight passes through `removableVertexOfLarge_of_nonIsM44`
-  (`Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean:737`).
-- That theorem builds a `CounterexampleData`, splits on `card = 11` — closed
-  through the FiniteN11 clause-bank route
-  (`FiniteN11Frontier.lean:166-210`) — and sends every other size into
-  `ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap` →
-  `false_of_criticalPairFrontier`
-  (`ATail/FrontierLiveClosure/Coordinator.lean:778,796`).
-- `CriticalPairFrontier` (`ATail/CriticalPairFrontier.lean:568`) is a
-  4-field bookkeeping packet: a survivor pair (q, w), a first-apex split, a
-  second-apex 4-equidistant fact, and a second-apex split. The whole open
-  frontier is the attempt to refute this packet by nested case analysis.
-- Cards 10 and 11 discharge in closed interior nodes; every live leaf packet
-  carries `12 ≤ |A|`.
+The correct strategic conclusion is therefore:
 
-## 3. Shape statistics (VERIFIED, from `proof-blueprint spine`)
+> Stop extending cardinality and coincidence case trees.  Work on a few
+> mechanism-level positive producers, and refactor records only where doing so
+> is necessary to state or reuse those producers.
 
-| Metric | Value |
-| --- | --- |
-| Sorried leaf theorems | 35 |
-| Open interior nodes | 86 |
-| Interior nodes with exactly one open child | 45 |
-| Leaf depth below branch root | min 6, median 21, max 34 |
-| Leaf clusters | Rigid221 mutual-omission 9 · pentagon sourceHeavy 8 · triApex retained-omission 9 · TwoSource terminal 5 · one-offs 4 |
+This is a research plan, not a proof of `RemovableVertexOfLarge`.
 
-More than half of the open tree is linear towers: each case split closed
-some cases and renamed the residual case with one more name suffix (the
-deepest name carries 9 suffixes).
+## 2. Verified proof architecture
 
-## 3a. Leaf-to-record classification (VERIFIED)
+The top funnel is already reasonably factored:
 
-All 35 leaf signatures were read in full and grouped by strict rule: two
-leaves share a class when they quantify over the identical chain of
-configuration records and differ only in trailing Prop-level case tags
-(placement bits, role coincidences, cardinality strata, row-weight tags).
-Result: **22 strict classes** (20 with two flagged borderline merges), in
-**9 coarse record families**:
+```text
+removableVertexOfLarge_of_nonIsM44
+├─ |A| = 11
+│  └─ false_of_criticalPairFrontier_of_card_eq_eleven
+└─ post-card-11 branch
+   └─ false_of_twoLargeCaps_commonCriticalMap
+      ├─ exists_criticalPairFrontier_of_K4
+      └─ false_of_criticalPairFrontier
+         └─ CriticalPairFrontier.false_of_parentResidualConsumers
+            ├─ OriginalFrontierUniqueRadiusArm
+            └─ FrontierCommonDeletionParentResidual
+```
 
-| Record family (shared packet prefix) | Strict classes | Leaves |
-| --- | ---: | ---: |
-| Mutual-omission flat (Rigid221Closure, TwoDeletionCollision) | 3 | 5 |
-| SourceEqU context chain (Rigid221Placement, Rigid221SourceHeavy) | 5 | 12 |
-| TriApex reverseHitFresh chain (TriApexEndpointRetainedOmission) | 3 | 7 |
-| TriApex pairedCommonDeletion (TriApexEndpointRetainedOmission) | 2 | 2 |
-| TwoSource double-radius collision (TwoSource* files) | 5 | 5 |
-| Singletons: B1 transport, two-radius branch, swapped unique-four, exact-five center residual | 4 | 4 |
-| **Total** | **22** | **35** |
+The relevant source interfaces are:
 
-No grouping defensible from source yields fewer than 9 families. Every
-leaf's packet chain was determinable; the full per-class table with
-file:line for each declaration is in the 2026-08-10 classification audit.
-19 of the 35 leaves carry `OriginalUniqueFourResidual` in their chain
-(classes under the unique-radius arm); the tri-apex families instead carry
-`FrontierCommonDeletionParentResidual`. Scale: `Rigid221SourceHeavy.lean` is
-17,999 lines for one family; single case-leaf proofs run 400-500 lines;
-the context token `OriginalUniqueFourResidual F` repeats 116 times in that
-one file; the four cluster files total ≈ 32,800 lines.
+- [`CriticalPairFrontier`](../lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean)
+  stores the survivor-pair packet, first-apex split, second-apex four-point
+  class, and second-apex split.
+- `exists_criticalPairFrontier_of_K4` is the cardinality-independent producer.
+  K4 plus the surplus-cap one-hit bound yields a positive-radius selected class
+  of cardinality at least four and hence a critical-pair frontier.
+- `CriticalPairFrontier.originalUnique_or_commonDeletionParent` supplies the
+  reusable parent dichotomy.
+- `CriticalPairFrontier.false_of_parentResidualConsumers` is already the
+  generic two-consumer assembler.  Adding another wrapper with the same two
+  consumer hypotheses would rename the gap rather than close it.
+- [`false_of_criticalPairFrontier`](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Coordinator.lean)
+  routes the packet into those two arms.
 
-## 4. Growth history (VERIFIED, git census)
+This architecture is not the principal problem.  The missing mathematics lies
+inside the consumers.
 
-The frontier is young. It was born as one file on 2026-07-20 (`74fb6ccc`)
-and sharded into a directory on 2026-08-05 (`9feb86f6`).
+## 3. What the cached 35-leaf census actually says
 
-| Date | Frontier sorry tokens |
-| --- | --- |
-| 2026-07-27 | 23 |
-| 2026-08-03 | 29 |
-| 2026-08-10 | 42 |
+The original snapshot admits the following independently reconstructed
+arithmetic:
 
-- Last 12 frontier commits (08-05 → 08-08): 24 sorry lines added, 13
-  removed; 7 commits net-added, 2 net-removed, 3 neutral. Commits labeled
-  as closures still net-added when the closed leaf split into several new
-  leaves (one commit was +7/−2).
-- The named-theorem inventory grew 28 (2026-08-04 snapshot) → 35
-  (2026-08-10), net +7 in six days.
-- The two hinge theorems at the top of the tower
-  (`false_of_criticalPairFrontier`, `false_of_originalFrontierUniqueRadiusArm`)
-  are three weeks old and still open; all work has gone into fan-out below
-  them.
+| Source-signature partition | Leaves | Interface-record classes |
+|---|---:|---:|
+| flat mutual-omission terminals | 5 | 3 |
+| `SourceEqU` / `Rigid221` pentagon chain | 12 | 5 |
+| TriApex reverse-hit / fresh-endpoint walk | 7 | 3 |
+| TriApex paired common deletion | 2 | 2 |
+| TwoSource radius/fiber terminals | 5 | 5 |
+| singleton routes | 4 | 4 |
+| **Total** | **35** | **22** |
 
-## 5. Inflation mechanisms (VERIFIED in source)
+This table is useful for engineering, but it has two limitations.
 
-1. **Cardinality stratum towers that cannot terminate.** The pentagon tower
-   (`Rigid221SourceHeavy.lean:11825-12092`) closes |A| = 15 (~660 lines of
-   finite convex-order exhaustion), |A| = 16 (two cap-card certificates),
-   |A| = 17 cap-11 and cap-10 (cap-9 half-open: the `exactCover` arm is a
-   mid-proof sorry at :11872) — and then states `card_ge_eighteen` as a
-   residual that is verbatim the parent with 17 → 18. The card hypothesis
-   does not interact with the contradiction mechanism; it only sets the
-   census size. Measured cost: 500-2,500 proof lines per stratum, with no
-   terminating index. The file's own docstring records: "This is a
-   narrowing decomposition, not closure" (:15749).
-2. **Coincidence fan-out with zero immediate closures.** The triApex
-   `endpointCrossHit` node split 1 → 5 open leaves (role coincidences, then
-   left/right blocker placement) with nothing closed at split time
-   (`TriApexEndpointRetainedOmission.lean:3466-3596`). This violates the
-   recorded standing rule: a split that grows the publish-reachable
-   frontier without closing a child is bookkeeping, not progress.
-3. **Packet duplication.** Sibling leaves repeat ~18-item verbatim
-   hypothesis prefixes and differ by 1-3 trailing hypotheses
-   (`Rigid221Closure.lean:52-267`); dispatchers re-pass ~20 arguments
-   unchanged. No sorried leaf uses its packet yet (all hypotheses are
-   underscore-bound). Consumption check on two closed pentagon strata
-   (VERIFIED): in `card_eq_fifteen` (`Rigid221SourceHeavy.lean:6294`,
-   body 6317-6957) and `card_eq_sixteen_secondCapNine` (`:6958`, body
-   6982-7563), the proof bodies consume the named-point rows (exclusively
-   via `lateFirstApexSystem R`), the selected class, `D.convex`, and the
-   cardinality tags; `radius`, `F`, and `H` occur **zero** times directly
-   and enter only through the types of the packet chain. The two sorried
-   strata (`:11827`, `:11878`) have signatures identical to the closed
-   strata except the cardinality tag (VERIFIED). The tower above each
-   terminal is scaffolding for these checked strata; the same conclusion
-   for the other families is untested. The duplication also blocks the SAT
-   lane from abstracting per-record instead of per-leaf.
+First, “same interface-record class” does not imply “same proof.”  For example,
+the TriApex leaves preserve different source-return, blocker, cap-order, or
+two-radius information even when their outer packets look alike.
 
-Cleared worry: the spine render's repeated
-`false_of_twoDistinctExactFourMutualOmissionJointDeletions` links are not a
-cycle. It is one constant, upstream of the whole Rigid221 family
-(`TwoDeletionCollision.lean:1103`), consumed from five sites (one shallow
-hub, four deep pentagon-tower leaves that construct joint-deletion
-witnesses and invoke it). It is a genuine bottleneck theorem and is itself
-open — its arms carry the `b1_globalGapOrClosedTerminal` and
-`fourCenterCommonDeletion` sorries. Import order proves acyclicity
-(VERIFIED).
+Second, several important properties cut across this partition:
 
-Positive pattern worth keeping: the producer/consumer splits
-(`b1_globalGapOrClosedTerminal_of_counterexample`,
-`exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three`) isolate
-the remaining content as one positive existence statement feeding an
-already-closed consumer. That converts case analysis into one named
-mathematical gap — the right shape.
+- membership in the `OriginalUniqueFourResidual` lane;
+- membership in the 14-leaf all-low-hits hub;
+- the cardinality tower used by a leaf;
+- whether the missing declaration is a positive producer, a contradiction
+  consumer, or an adapter into an already-open consumer.
 
-## 6. The intrinsic core (CONJECTURED)
+These should be stored as orthogonal tags, not forced into a single “number of
+families.”  A future census should be a checked table with one row per frontier
+leaf and columns for all four levels:
 
-One obligation survives every restructuring: a size-uniform contradiction
-for the pentagon five-cycle record — the `deletedRowBlockerOffClass`
-configuration (5-point selected class {u, v, deleted, xu, xv} on the circle
-of radius ρ centered at apex₂, the five-cycle blocker map, deleted's
-blocker in the cap interior off the class, next-row overlap ≤ 1) refuted
-with no cardinality hypothesis. The closed strata prove exactly this for
-|A| = 15, 16, 17 by finite census; the uniform statement is open
-combinatorics. No solver pipeline has produced a kernel-checkable producer
-for it (as of the 2026-08-04 inventory and the live anchors). This is the
-hardest-part-first target.
+```text
+frontier leaf → mechanism family → configuration record → terminal theorem
+```
 
-## 7. Restructuring options
+Until that artifact exists, 35 and 22 are snapshot bookkeeping; 9 is an
+under-specified interpretation.
 
-Member counts below are exact, from the §3a classification. Statements
-about unwritten bridge theorems are contingencies; R3 is open mathematics
-(CONJECTURED).
+## 4. Where decomposition inflation is real
 
-| # | Option | Effect (exact) | Risk / contingency |
-| --- | --- | --- | --- |
-| R1 | Configuration-record normal form: one record per class, case tags as data, leaves become instances | 35 statements → 22 class statements (9 record families); makes every later option cheaper | Pure refactor plus one extraction lemma per class |
-| R5 | Reflection/role transport (pilot of R1's equivariance layer) | Merges exactly 2 leaves: the `JInLeftAdjacentCap` / `JInRightAdjacentCap` pair | Equivariance of stacked oriented structures must be proven; partial machinery exists with 5 sorries in `Rigid221Placement.lean` |
-| R2 | Finish exact-12 placement-orbit transport → universal SAT lift per record at fixed card | Immediate scope: the 3 fully fixed-card leaves (`exactTwelve` pair `Rigid221SourceHeavy.lean:15629,:15694`, card = 12; `card_eq_seventeen_secondCapNine` `:11827`) | Extension to the 12-leaf SourceEqU family needs an unwritten general-card bridge; card-11 precedent works end-to-end |
-| R3 | Uniform tail theorem per record (no card hypothesis) | Terminates the pentagon cardinality tower and the stratum scheme generally | The intrinsic open core (§6) |
-| R4 | Confinement bound: Minimal ∧ no-IsM44 ∧ CriticalPairFrontier → |A| ≤ N₀, then bounded census | The 19 leaves carrying `OriginalUniqueFourResidual` (classes 1-8, 20, 21) | Unproven global bound; likely as hard as R3 |
+Three source patterns genuinely inflate the frontier.
 
-Recommended order: enforce the existing fan-out freeze first (no new
-exact-card or coincidence splits unless at least one child closes at split
-time — this costs nothing and stops the +7/week growth); then R1; R5 as
-R1's equivariance pilot; R2 to convert SAT-lane diagnostics into reusable
-kernel closures; then concentrate mathematical effort on R3 for the
-pentagon record. {{NEEDS_ADAM_INPUT}} — choice and sequencing of R1-R5.
+### 4.1 Cardinality towers
 
-## 7a. Pending consolidation-level audits {{NEEDS_RESEARCH}}
+The unique-four route repeatedly proves a bound for one cardinality and then
+opens the next case.  Such lemmas can be useful finite evidence, but the chain
+does not terminate unless one of the following appears:
 
-The 22-class count (§3a) is a floor on syntactic consolidation only. The
-tree has three semantic consolidation levels — hub nodes where a stronger
-theorem would make whole families unnecessary. This review assessed one.
-The other two are checkable and have not been checked:
+- a cardinality-independent obstruction;
+- a monotone argument closing every larger cardinality;
+- a finite upper bound together with checked closure of every remaining size.
 
-1. **All-low-hits arm hub (NOT ASSESSED).** 16 of the 35 leaves (triApex
-   reverseHitFresh 7, triApex pairedCommonDeletion 2, TwoSource
-   double-radius 5, plus the b1 transport and cross-blocker singletons)
-   share the ancestor `false_of_frontierAllLargeCapsTriApex_all_low_hits`.
-   No analog of R3/R4 was proposed for this arm. Audit to run: read the
-   triApex and TwoSource terminal mechanisms against each other and
-   against the hub statement; determine whether they reduce to a common
-   mechanism and whether a uniform statement at the hub exists.
-2. **Top of the funnel (NOT ASSESSED).** The review took the
-   `CriticalPairFrontier` packet as given. Audit to run: examine what the
-   closed card-11 route (`false_of_criticalPairFrontier_of_card_eq_eleven`,
-   `FiniteN11Frontier.lean:190`) actually consumed and whether any part of
-   its census scheme is card-independent; and whether
-   `false_of_twoLargeCaps_commonCriticalMap` admits a global argument that
-   does not route through the `CriticalPairFrontier` packet at all. Two
-   motivating facts (VERIFIED): the card-11 instance closed entirely at
-   this level, proving a full-collapse argument exists at fixed card; and
-   the shared-sink consumption of
-   `twoDistinctExactFourMutualOmissionJointDeletions` from five sites
-   suggests global counting content that the per-case towers re-derive
-   locally.
+The present chain provides none of these globally.  Extending it by another
+size is not consolidation.
 
-Until these two audits run, "no higher-level consolidation is missing"
-cannot be claimed. The unique-radius arm hub (level assessed in §7 as
-R3/R4) is the only level with a stated status.
+### 4.2 Role-coincidence fanout
 
-## 8. Hygiene notes (minor, VERIFIED)
+The reverse-hit endpoint walk splits on identities among sources, centers,
+actual blockers, and fresh endpoints.  Some of those splits are mathematically
+necessary because they preserve different incidence data.  Others are adapters
+to a common deletion-fan construction.  The right response is to identify the
+strongest data common to the useful branches, not to create one record whose
+fields are a disjunction of every terminal case.
 
-- 3 off-spine sorries (`Rigid221Closure.lean`,
-  `TwoSourceFreshThirdFiber.lean`, `TwoSourceFreshThirdResidual.lean`)
-  violate the no-placeholder policy.
-- 41 fully-qualified name collisions, mostly `scratch/` copies of
-  production declarations, add audit noise.
-- 862 files (4,614 symbols) are unreached by any lake import chain.
+### 4.3 Repeated packet construction
 
-## 9. Provenance
+TriApex and TwoSource files repeatedly construct selected four-rows,
+six-point two-row seeds, escaping rows, and source-faithful deletion fans.
+These repetitions indicate a reusable producer boundary.  They do not by
+themselves show that the final contradictions are identical.
 
-- Spine snapshot: `proof-blueprint spine Problem97.RemovableVertexOfLarge`
-  at build 520e0a6f9c66 (2026-08-10).
-- Growth census: read-only git audit over
-  `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/`, commits
-  `74fb6ccc`..`1666eabc`.
-- Dependency trace and statement reading: session audits, 2026-08-10;
-  key sites cited inline above.
-- Exhaustive leaf classification and terminal-consumption check: session
-  audit, 2026-08-10 — all 35 leaf declarations located and read; per-class
-  table with file:line per row; consumption counts per hypothesis for the
-  two checked closed strata.
+The original review's line-count, depth, symbol-count, and import-order claims
+are omitted here.  They are either snapshot-dependent, under-specified, or not
+evidence of mathematical acyclicity.  Declaration-call acyclicity must be
+checked in the dependency graph; import order does not prove it.
+
+## 5. The all-low-hits hub
+
+The source contains a real, mathematically meaningful first quotient.  In
+[`false_of_frontierAllLargeCapsTriApex_all_low_hits`](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Coordinator.lean),
+`nonempty_retainedInteriorPairOutcome` chooses two retained strict-cap points
+and splits on their actual blockers:
+
+```text
+retained pair
+├─ blockers distinct
+│  └─ retained directed omission
+└─ blockers equal
+   ├─ most subcases reduce back to a directed omission
+   └─ saturated residual:
+      two distinct radii, both selected classes exactly four,
+      both strict-cap intersections exactly two,
+      and an equal-blocker pair at each radius
+```
+
+Thus the cached 14-leaf hub is better understood as follows:
+
+- **directed-omission dynamics:** seven reverse-hit/fresh-endpoint leaves and
+  two paired-common-deletion leaves;
+- **saturated two-radius collision:** five TwoSource leaves whose positive goal
+  is a rich-apex three-hit, contradicting the all-low upper bound of two.
+
+This is already much stronger than the old “three unrelated mechanism groups”
+description.  It still does not yield a one-line common contradiction.
+
+### 5.1 A common seed that is real but insufficient
+
+Through their downstream constructions, both root outcomes can produce a
+strict-cap common-deletion seed with faithful source information.  The
+collision outcome itself records blocker coincidence, not the complete
+deletion packet.  The relevant constructions live in
+[`RetainedStrictInteriorPairSelector.lean`](../lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean),
+[`RetainedMatchingGeometricReduction.lean`](../lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean),
+and [`CommonDeletionTwoCenter.lean`](../lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean).
+
+A useful normalized record would retain:
+
+- the deleted strict-cap point and its source;
+- source membership at the first apex;
+- source/deleted-point inequality and source-shell omission;
+- the source-faithful `CommonDeletionTwoCenterPacket`.
+
+This record would erase an implementation case split.  It would not close the
+branch: one packet forgets the collision branch's two-source common blocker and
+the omission branch's same-radius source-return structure.  There is no generic
+contradiction from one such packet in the current source.
+
+### 5.2 Research target A: source-faithful six-seed boundary
+
+**Status: CONJECTURED.**
+
+The strongest realistic shared producer currently visible is a theorem of the
+following shape:
+
+> Given two selected four-rows whose supports overlap in the designated two
+> source points, together with the required cap/source order, their union is a
+> six-point seed containing a low-multiplicity center with an escaping selected
+> row and a source-faithful selected-four deletion fan.
+
+The ingredients already appear as `SourceFaithfulSelectedFourDeletionFan`,
+`sourceFaithfulDeletionFan_of_triApexAllLargeContext`, the endpoint fresh
+two-shell seed, and the FreshThird cross-row two-shell seed in
+[`TriApexEndpointRetainedOmission.lean`](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean),
+[`TwoSourceFirstFiberCollision.lean`](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean),
+and [`TwoSourceFreshThirdResidual.lean`](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean).
+
+**Success gate:** source-clean adapters from both the reverse-endpoint
+shared-blocker route and the FreshThird/FirstFiber route, followed by a
+non-circular consumer.  Merely constructing the six-set is not closure; the
+consumer must preserve cap placement, source identities, and order/cycle data.
+
+### 5.3 Research target B: source-exact multi-center deletion fan
+
+**Status: CONJECTURED.**
+
+`PairedApexClassJointDeletion` and the richer FirstFiber boundaries carry more
+than the common seed: several provenance-tracked centers and exact deleted
+rows.  A shared theorem should retain at least four or five such centers and
+conclude a cross-row blocker collision, a forbidden injectivity pattern, or a
+closed geometric configuration.
+
+**Success gate:** the theorem consumes both a paired-common-deletion terminal
+and a TwoSource multi-center terminal without calling either terminal as an
+assumption.  A record that merely bundles their hypotheses does not pass.
+
+### 5.4 Research target C: two-radius signed/omission grid
+
+**Status: CONJECTURED.**
+
+`PairedTwoRadiusGrid` and
+`exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions`
+share two exact-four cap rows, but that denominator is too weak.  The former
+also has disjoint retained shells and reflection/order data; the latter has two
+equal-blocker collision rows, cross omissions, and localized cycles.
+
+The next abstraction should therefore be a signed or directed two-radius grid,
+with adapters that preserve those facts and a positive conclusion of a
+rich-apex hit of cardinality at least three.
+
+**Success gate:** produce the three-hit directly from the grid data.  The
+existing high-hit theorem in the coordinator is not an admissible producer
+because it is currently obtained by `False.elim` from the all-low contradiction
+it is meant to close.
+
+## 6. The unique-radius / `Rigid221` program
+
+The other major arm is not subsumed by the all-low analysis.  Its SourceEqU,
+pentagon, mutual-omission, and joint-deletion leaves are variations on a common
+geometry, but no uniform producer is present.
+
+The local theorem
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions` is useful evidence:
+for fixed rows, sources, radii, and two distinct deleted vertices it closes via
+a blocker-collision/five-center split.  It is a **local conditional sink**, not
+a global producer of those witnesses.
+
+Two credible research formulations remain.
+
+### 6.1 Direct uniform pentagon obstruction
+
+**Status: CONJECTURED.**
+
+Prove a cardinality-independent contradiction from the normalized
+`OriginalUniqueFourResidual`/`Rigid221` data—equivalently, a theorem forcing the
+required deleted-row blocker off its selected class or producing the forbidden
+incidence cycle without splitting on `|A| = 12, 13, 14, …`.
+
+**Success gate:** one theorem replaces the cardinality ladder and does not
+depend transitively on one of its sorried terminal consumers.
+
+### 6.2 Varying-source witness family
+
+**Status: CONJECTURED.**
+
+Define a `MutualOmissionFamily` over several source rows, with their
+joint-deletion witnesses, and prove either:
+
+- two rows collide in a way accepted by the existing local sink; or
+- the deleted-vertex/blocker map is injective, giving a finite cardinality
+  contradiction.
+
+This is the real missing adapter behind attempts to reuse
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions` globally.
+
+**Success gate:** a source-clean producer of the sink's hypotheses for arbitrary
+prescribed rows, or a stronger family theorem that closes directly.  Five
+wrappers that each postulate the required witness do not count.
+
+## 7. What card 11 does—and does not—show
+
+[`false_of_criticalPairFrontier_of_card_eq_eleven`](../lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean)
+uses the generic parent assembler with fixed-card consumers.  This verifies an
+important architectural point: `CriticalPairFrontier` and its parent dichotomy
+are expressive enough to host the source-level fixed-card closure.
+
+It does not expose a hidden general theorem.  The unique-radius exact-five
+common-center branch uses `Card11CapLabeling`, a canonical packet, labels 6–8,
+the `(5,5,4)` profile, and frozen G3 clause banks.  Those are card-11 data.  The
+common-deletion branch likewise supplies a fixed-card consumer, not a uniform
+one.
+
+Consequently:
+
+- a cardinality-indexed version of `false_of_parentResidualConsumers` is only
+  an interface until both indexed consumers are proved;
+- no source-based bypass around `CriticalPairFrontier` is presently justified;
+- any real top-funnel consolidation must add new geometry, not another
+  dispatcher.
+
+## 8. Recommended work order
+
+The hardest mathematical producers should be tested before a broad record
+refactor.  Otherwise the project risks making the open frontier prettier
+without shrinking it.
+
+| Priority | Work item | Evidence home | Completion gate |
+|---|---|---|---|
+| P0 | State and attack the two-radius signed/omission-grid producer | `PairedTwoRadiusGrid`; `TwoSourceAlignedLowHits` | direct rich three-hit, with no appeal to the all-low contradiction |
+| P0 | State and attack the source-faithful six-seed boundary | TriApex endpoint; FirstFiber; FreshThird | two independent adapters plus a non-circular consumer |
+| P0 | Choose between the direct uniform pentagon theorem and a varying-source witness family | `Rigid221Placement`; `Rigid221SourceHeavy`; `TwoDeletionCollision` | closes more than one cardinality/role leaf through a new producer |
+| P1 | Isolate a source-exact multi-center deletion-fan theorem | paired common deletion; TwoSource first fiber | one theorem consumes both mechanisms without assuming their terminals |
+| P2 | Introduce normalized records only for abstractions used by P0/P1 | common-deletion seed; six-seed; two-radius grid | adapters reduce duplicated construction and preserve all data used downstream |
+| P2 | Add a checked frontier-classification artifact | `docs/` or `certificates/` | one row per leaf, exact build/commit, four-level classification, stale-state warning |
+
+Finite SAT or certificate work is appropriate after one of these abstractions
+has a fixed finite boundary and a proof-checking ingress.  A green finite case
+is evidence or a fixed-card consumer; it is not a universal closure.
+
+## 9. Final assessment
+
+The original review correctly diagnosed severe decomposition inflation and
+correctly looked for shared theorem boundaries.  It was inaccurate in treating
+its source-signature census as a verified mathematical quotient and in saying
+that only one hard combinatorial obligation remained.
+
+The defensible replacement is:
+
+- **SNAPSHOT:** 35 cached frontier leaves can be classified into 22 outer
+  interface-record shapes;
+- **VERIFIED (source):** the top funnel and all-low retained-pair selector
+  already provide meaningful consolidation;
+- **HEURISTIC:** the open frontier is best organized around about three research
+  programs, with two or three producer boundaries inside the all-low arm;
+- **CONJECTURED:** a uniform pentagon theorem, source-faithful six-seed theorem,
+  source-exact multi-center fan, or signed two-radius grid could collapse large
+  parts of the frontier;
+- **NOT ESTABLISHED:** that any one of these statements is true, that the cached
+  35-leaf set is the current live spine, or that `RemovableVertexOfLarge` is
+  close to unconditional closure.
+
+That is the level at which further research should proceed.
