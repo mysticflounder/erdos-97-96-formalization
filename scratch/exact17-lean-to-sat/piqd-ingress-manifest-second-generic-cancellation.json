@@ -1,0 +1,57 @@
+{
+  "schema": "p97-exact17-lean-second-generic-cancellation-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-second.cnf",
+    "sha256": "6ab37b78e0db7cc98e2a1d62999d54d15a278135621aad95d520598afc7b47c2",
+    "bytes": 291568228,
+    "variables": 308,
+    "clauses": 5846084,
+    "parent_prefix_clauses": 5846080,
+    "checked_second_cancellation_clauses": 4
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation.json",
+    "manifest_sha256": "b5f6f8749e4ce19d8791e0d6689f10be402a99e64145d614957aa96ce0182cca",
+    "validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_swapped_de_generic_cancellation_ingress.py",
+    "validator_sha256": "745fd8fe3efca08c9186619d2b184688bef509622f1fcd3760300da5926e3934",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-generic-cancellation-validation.json",
+    "report_sha256": "365c43fea380c54eb9066c405bd20627d6985abaa838094218fccf7996249bb1"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenGenericCancellationSecond.lean",
+        "sha256": "253767a22f74ea75ab24ec14f41e30994391ae81b75fca1d11cf9ab00ba7db75"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenGenericCancellationSecondExport.lean",
+        "sha256": "114ad7905cd815d8ad094e312426ce245164090144d2271eb6a61f3e3707939f"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_second_generic_cancellation_export.py",
+    "script_sha256": "3db8e5dae7f686e623d30eb57ec8076c393435e81f893144282fc8788c1cbd11",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_swapped_de_generic_cancellation_export.py",
+    "parent_validator_sha256": "b3dd7189f31af2252a645ec356ca2b3e4f12a017c741951980b5237cecd97f4f",
+    "model": "scratch/exact17-lean-to-sat/piqd-tenth-root-model.json",
+    "model_sha256": "20da77317b62787e126dcb9c7f2d956d759752bb41b0064018410dcaf92a56c6",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-second-validation.json",
+    "report_sha256": "0d700f23a09821585a36d44f5559592de740809af6f14b73b4e9553db51e0122",
+    "parent_prefix_byte_identical": true,
+    "all_second_cancellation_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

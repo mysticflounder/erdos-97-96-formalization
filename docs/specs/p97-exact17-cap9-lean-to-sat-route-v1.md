@@ -2,17 +2,23 @@
 
 Date: 2026-08-11
 
-Status: active production route. Gates A, B, and D are implemented.  Nine
+Status: active production route. Gates A, B, and D are implemented.  Ten
 Lean-owned successor roots after the checked C--G root have been authenticated,
-solved, and independently replayed `SAT`.  The 384 MiB PIQD build is live and
-the exact-scale disposable capacity preflight passed.  The ninth root returned
+solved, and independently replayed `SAT`.  The 384 MiB PIQD build is installed,
+but the live daemon still needs Adam's restart before the next disposable
+canary and immutable-root submission.  The earlier exact-scale capacity
+preflight passed.  The ninth root returned
 `SAT` as immutable PIQD job `090c5be4-e747-40a3-ad96-baba17d9aace`; its total
 308-variable model independently satisfies all 5,846,076 clauses.  The
 mandatory exact-record theorem search completed with six bank hits and no
 unreplayed proposal.  Its new generic two-Kalmanson cancellation record is now
 banked with a source-realization bridge and a four-clause Lean-generated orbit.
-The resulting tenth root, SHA-256 `7def1009...`, is confirmed as PIQD job
-`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`; its terminal result is pending.
+The resulting tenth root, SHA-256 `7def1009...`, returned `SAT` as PIQD job
+`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`; exact replay passed and the mandatory
+scan found only another instance of the same checked generic-cancellation
+theorem.  Its second four-clause orbit is now banked in Lean.  The resulting
+5,846,084-clause eleventh root has SHA-256 `6ab37b78...`; recursive validation
+and fail-closed ingress pass, but it has not been submitted.
 PIQD terminal-certificate
 custody and the final aggregate Lean landing remain open.  The existing Python/PIQD
 exact-17 artifacts remain authenticated finite experiments, but they are not
@@ -378,18 +384,31 @@ analyses.  It does not weaken or silently rewrite the historical manifests.
 
 The tenth root was submitted only after those gates and exact daemon/solver
 identity checks passed.  It is immutable PIQD job
-`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`.  No eleventh child is authorized unless
-this job returns `SAT`, its complete model is independently replayed, and the
-mandatory general-theorem search yields another source-clean Lean refinement.
+`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`.  It returned `SAT`; its complete model
+replayed against all 5,846,080 clauses, and the mandatory theorem search found
+six existing bank hits with no unreplayed proposal.  The only novel exact hit
+was another instance of the same cardinality-independent generic cancellation.
+
+That second orbit is banked in
+`BlockerVExactSeventeenGenericCancellationSecond.lean`.  Its four guarded
+clauses, source-satisfaction theorem, and terminal landing contract are
+source-clean; the expected compiler-trust axioms come only from the accepted
+`native_decide` finite checks.  Lean exported the eleventh root with 308
+variables, 5,846,084 clauses, 291,568,228 bytes, and SHA-256
+`6ab37b78e0db7cc98e2a1d62999d54d15a278135621aad95d520598afc7b47c2`.
+The independent suffix validator and recursive ingress both pass, and clause
+5,846,081 rejects the motivating tenth model.  Submission remains gated on
+restarting daemon build `0cfc9577...` and rerunning the disposable canary.
 
 ## Active goal
 
 Close the existing exact-17 cap-nine production leaf through this Lean-owned
-successor chain.  PIQD's authenticated raw-CNF envelope and exact-scale canary
-are qualified, and the ninth root is a fully replayed `SAT` checkpoint.  Its
-mandatory scan recovered six source-backed consumers.  The generic
-two-Kalmanson cancellation record is now a checked Lean-generated finite orbit
-with a `SourceRealization` bridge, and the exact tenth root is solving.  A
+successor chain.  The tenth root is a fully replayed `SAT` checkpoint.  Its
+mandatory scan recovered six source-backed consumers, and the only new exact
+occurrence reused the already-proved generic cancellation theorem.  The second
+orbit is now a checked Lean-generated finite refinement with a
+`SourceRealization` bridge, and the eleventh root is ready behind the daemon
+restart and canary gate.  A
 terminal `UNSAT` result must preserve the
 submitted-to-certificate clause map, pass independent proof replay, be banked
 as `extendedCnf_unsat`, and compose with the exact-cover extractor and the
@@ -398,10 +417,12 @@ alternative production path.
 
 ## Immediate work order
 
-1. The PIQD maintainer has built, installed, and started daemon
+1. The PIQD maintainer has built and installed daemon
    `0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`,
    which raises the common prepare/blob/session-seed envelope from 256 MiB to
-   384 MiB.  Do not bypass PIQD, truncate the formula, submit a differently
+   384 MiB.  The running daemon still reports the older build and must be
+   restarted by Adam.  After restart, rerun the disposable canary before any
+   immutable proof root.  Do not bypass PIQD, truncate the formula, submit a differently
    authored root, or special-case one endpoint.  `piqc version` now reports
    this exact live identity.
 2. The exact-scale throwaway artifact has qualified validation, storage,
@@ -438,11 +459,13 @@ alternative production path.
    controller replayed every clause, and the theorem miner bound six exact
    canonical records to analysis SHA-256 `1d502e1d...` with no unreplayed
    proposal.
-5. **Complete; tenth solve active.** The recovered generic two-Kalmanson
+5. **Complete SAT checkpoint; eleventh root ready.** The recovered generic two-Kalmanson
    cancellation record has a source-clean Lean consumer, its complete
    four-clause orbit, and the `SourceRealization` bridge.  The exact successor
-   is confirmed as PIQD job `d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`.  Admit any
-   later clause family only after a complete SAT replay and mandatory theorem
+   PIQD job `d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6` returned replayed `SAT`.
+   Its second occurrence has also been admitted in Lean, and the independently
+   validated eleventh root `6ab37b78...` is ready but unsubmitted.  Admit any
+   later clause family only after complete SAT replay and mandatory theorem
    search.  If this or a later authenticated child is `UNSAT`,
    preserve the exact certificate clause map and replay the proof with the
    accepted checker.
