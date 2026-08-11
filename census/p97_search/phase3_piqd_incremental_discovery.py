@@ -1768,11 +1768,8 @@ class PiqdIncrementalDiscoveryRunner:
         if self._sat_contract_version == SAT_CONTRACT_CURRENT_V1:
             response_keys = (response_keys - {"effective_deadline_ms"}) | {
                 "replayed",
-                "timeout_ms",
             }
             response_required = response_required | {"replayed"}
-            if timeout_ms is not None:
-                response_required = response_required | {"timeout_ms"}
         if set(response) - response_keys or not response_required <= set(response):
             raise PiqdIncrementalDiscoveryError(
                 "PIQD solve response has an inexact schema"
@@ -1791,19 +1788,6 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     "current SAT solve response replayed must be builtin false"
                 )
-            if timeout_ms is None:
-                if "timeout_ms" in response:
-                    raise PiqdIncrementalDiscoveryError(
-                        "solve response unexpectedly records timeout_ms"
-                    )
-            else:
-                response_timeout_ms = _integer(
-                    response["timeout_ms"], label="solve.timeout_ms", minimum=0
-                )
-                if response_timeout_ms != timeout_ms:
-                    raise PiqdIncrementalDiscoveryError(
-                        "solve response timeout_ms disagrees with solve request"
-                    )
         else:
             expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
             if expected_deadline is None:

@@ -74,7 +74,6 @@ class FakeSessionTransport:
         response_effective_deadline_override: Any = None,
         receipt_effective_deadline_override: Any = None,
         response_replayed: Any = NO_REPLAYED,
-        omit_response_timeout: bool = False,
         response_timeout_override: Any = NO_TIMEOUT_OVERRIDE,
         receipt_timeout_override: Any = None,
     ) -> None:
@@ -108,7 +107,6 @@ class FakeSessionTransport:
         self.response_effective_deadline_override = response_effective_deadline_override
         self.receipt_effective_deadline_override = receipt_effective_deadline_override
         self.response_replayed = response_replayed
-        self.omit_response_timeout = omit_response_timeout
         self.response_timeout_override = response_timeout_override
         self.receipt_timeout_override = receipt_timeout_override
         self.solver_stats_methods = frozenset(solver_stats_methods)
@@ -299,15 +297,8 @@ class FakeSessionTransport:
             if self.response_replayed is not NO_REPLAYED:
                 response["replayed"] = self.response_replayed
             if payload.get("timeout_ms") is not None:
-                if (
-                    not self.omit_response_timeout
-                    and self.response_replayed is not NO_REPLAYED
-                ):
-                    response["timeout_ms"] = (
-                        payload["timeout_ms"]
-                        if self.response_timeout_override is NO_TIMEOUT_OVERRIDE
-                        else self.response_timeout_override
-                    )
+                if self.response_timeout_override is not NO_TIMEOUT_OVERRIDE:
+                    response["timeout_ms"] = self.response_timeout_override
                 if not self.omit_response_effective_deadline:
                     response["effective_deadline_ms"] = (
                         self.response_effective_deadline_override
@@ -466,51 +457,23 @@ def test_current_sat_contract_accepts_builtin_false_without_effective_deadline(
     assert active.solve(timeout_ms=25).status == status
 
 
-@pytest.mark.parametrize(
-    "transport",
-    [
-        FakeSessionTransport(
-            response_replayed=False,
-            omit_response_timeout=True,
-            omit_response_effective_deadline=True,
-            omit_receipt_effective_deadline=True,
-        ),
-        FakeSessionTransport(
-            response_replayed=False,
-            response_timeout_override=24,
-            omit_response_effective_deadline=True,
-            omit_receipt_effective_deadline=True,
-        ),
-        FakeSessionTransport(
-            response_replayed=False,
-            response_timeout_override=True,
-            omit_response_effective_deadline=True,
-            omit_receipt_effective_deadline=True,
-        ),
-        FakeSessionTransport(
-            response_replayed=False,
-            response_timeout_override=25.0,
-            omit_response_effective_deadline=True,
-            omit_receipt_effective_deadline=True,
-        ),
-        FakeSessionTransport(
-            response_replayed=False,
-            response_timeout_override=-1,
-            omit_response_effective_deadline=True,
-            omit_receipt_effective_deadline=True,
-        ),
-    ],
-)
-def test_current_sat_contract_exactly_binds_response_timeout(
-    tmp_path: Path, transport: FakeSessionTransport
+@pytest.mark.parametrize("response_timeout", [None, 24, 25, True, 25.0, -1])
+def test_current_sat_contract_forbids_response_timeout(
+    tmp_path: Path, response_timeout: Any
 ) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        response_timeout_override=response_timeout,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
     active = runner(
         tmp_path,
         transport,
         sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
     )
     with pytest.raises(
-        incremental.PiqdIncrementalDiscoveryError, match="schema|timeout_ms"
+        incremental.PiqdIncrementalDiscoveryError, match="inexact schema"
     ):
         active.solve(timeout_ms=25)
 

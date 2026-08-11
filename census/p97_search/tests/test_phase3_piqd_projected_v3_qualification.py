@@ -685,7 +685,6 @@ def _prepare_v3(
                 "solve_index": 1,
                 "result_sha256": incremental._result_digest("UNSAT", None, [], None),
                 "replayed": False,
-                "timeout_ms": 3_000,
                 "core": [],
                 "terminal_unsat": True,
             }
@@ -2401,7 +2400,6 @@ def test_production_v3_accepts_timed_sat_response_without_effective_deadline(
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
     solve["replayed"] = False
-    solve["timeout_ms"] = 3_000
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2424,6 +2422,7 @@ def test_production_v3_accepts_timed_sat_response_without_effective_deadline(
         {},
     )
     assert json.loads(response.body)["replayed"] is False
+    assert "timeout_ms" not in json.loads(response.body)
     assert "effective_deadline_ms" not in json.loads(response.body)
 
 
@@ -2452,16 +2451,15 @@ def test_production_v3_rejects_invalid_timeout_request_before_delegation(
     assert fake.calls == calls_before
 
 
-@pytest.mark.parametrize("response_timeout_ms", [None, 2_999, True, 3_000.0, -1])
-def test_production_v3_exactly_binds_response_timeout_to_request(
+@pytest.mark.parametrize("response_timeout_ms", [None, 2_999, 3_000, True, 3_000.0, -1])
+def test_production_v3_forbids_response_timeout(
     tmp_path: Path,
     current_bundle: provisioning.CurrentUnshardedBundle,
     response_timeout_ms: Any,
 ) -> None:
     solve = json.loads(_raw_solve(2))
     solve.update({"solve_index": 1, "replayed": False})
-    if response_timeout_ms is not None:
-        solve["timeout_ms"] = response_timeout_ms
+    solve["timeout_ms"] = response_timeout_ms
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2476,7 +2474,7 @@ def test_production_v3_exactly_binds_response_timeout_to_request(
     contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
     with pytest.raises(
         qualification.QualificationError,
-        match="schema|timeout_ms|non-negative|non-builtin",
+        match="inexact schema|non-builtin",
     ):
         contract.transport(
             "POST",
@@ -2632,7 +2630,6 @@ def test_production_v3_rejects_cross_index_receipt_timeout_substitution(
 ) -> None:
     contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
     first = json.loads(fake.solve1)
-    first["timeout_ms"] = 1_000
     fake.solve1 = canonical_json_bytes(first)
     fake.solve2 = canonical_json_bytes(
         {
@@ -2641,7 +2638,6 @@ def test_production_v3_rejects_cross_index_receipt_timeout_substitution(
             "solve_index": 2,
             "result_sha256": incremental._result_digest("UNKNOWN", None, None, None),
             "replayed": False,
-            "timeout_ms": 2_000,
         }
     )
     transport = contract.transport
@@ -2689,7 +2685,6 @@ def test_production_v3_rejects_inexact_replayed(
 ) -> None:
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
-    solve["timeout_ms"] = 3_000
     if replayed is not None:
         solve["replayed"] = replayed
     fake = FakeTransport(
@@ -2724,7 +2719,6 @@ def test_production_v3_committed_schema_failure_preserves_one_close_artifact(
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
     solve["replayed"] = True
-    solve["timeout_ms"] = 3_000
     fake = FakeTransport(
         job=_job(
             overrides={
@@ -2781,7 +2775,6 @@ def test_production_v3_solve_forbids_sat_effective_deadline(
     solve = json.loads(_raw_solve(2))
     solve["solve_index"] = 1
     solve["replayed"] = False
-    solve["timeout_ms"] = 3_000
     solve["effective_deadline_ms"] = effective_deadline_ms
     fake = FakeTransport(
         job=_job(

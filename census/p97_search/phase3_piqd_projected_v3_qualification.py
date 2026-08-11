@@ -1271,7 +1271,7 @@ class QualificationTransport:
         if self.generalized:
             common = {"status", "solve_ms", "solve_index", "result_sha256"}
             if self.authority_version == 3:
-                common.update({"replayed", "timeout_ms"})
+                common.add("replayed")
                 requested_timeout_ms = _integer(
                     requested_timeout_ms,
                     label=f"solve request {expected_index}.timeout_ms",
@@ -1301,17 +1301,7 @@ class QualificationTransport:
                 raise QualificationError(
                     "production SAT solve replayed must be builtin false"
                 )
-            if self.authority_version == 3:
-                response_timeout_ms = _integer(
-                    value["timeout_ms"],
-                    label=f"solve response {expected_index}.timeout_ms",
-                    minimum=0,
-                )
-                if response_timeout_ms != requested_timeout_ms:
-                    raise QualificationError(
-                        "production solve response timeout_ms disagrees with request"
-                    )
-            elif requested_timeout_ms is not None:
+            if self.authority_version != 3 and requested_timeout_ms is not None:
                 effective_deadline_ms = _integer(
                     value["effective_deadline_ms"],
                     label=f"solve response {expected_index}.effective_deadline_ms",

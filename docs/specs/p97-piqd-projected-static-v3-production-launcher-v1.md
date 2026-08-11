@@ -222,12 +222,13 @@ nonempty clause appends and assumption-free `SAT`, `UNSAT`, or `UNKNOWN`
 solves with dense indices. The exact append/solve sequence must match the
 hash-chained journal. Finalization reparses that journal from the authenticated
 base, reconstructs the final frontier, and requires exact runtime CNF equality.
-Projected-v3 discovery supplies a timeout, so both the strict solve response
-and durable receipt must bind the exact builtin `timeout_ms` to the request.
-Qualification-v3 validates that request before delegation, retains its exact
-nonnegative builtin value under the dense solve index, and finalization binds
-each journal receipt to that captured request evidence. Missing, mismatched,
-boolean, floating-point, subclass, negative, or cross-index timeout
+Projected-v3 discovery supplies a timeout. Qualification-v3 validates that
+request before delegation and retains its exact nonnegative builtin value under
+the dense solve index. The solve response contains no timeout field; exact
+schema validation rejects both `timeout_ms` and `effective_deadline_ms` there.
+The durable receipt must bind its exact builtin `timeout_ms` to the retained
+request, and finalization checks that binding again. Missing, mismatched,
+boolean, floating-point, subclass, negative, or cross-index receipt timeout
 substitutions fail closed; a receipt value cannot serve as its own request
 evidence.
 Every current SAT solve response, for `SAT`, `UNSAT`, and `UNKNOWN`, must also
