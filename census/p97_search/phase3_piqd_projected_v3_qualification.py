@@ -502,8 +502,14 @@ def _capture(path: Path, *, limit: int = MAX_CAPTURE_BYTES) -> bytes:
 
 def _private_dir(path: Path) -> None:
     st = os.lstat(path)
-    if not stat.S_ISDIR(st.st_mode) or st.st_uid != os.getuid() or st.st_mode & 0o077:
-        raise QualificationError("qualification directory must be private and owned")
+    if (
+        not stat.S_ISDIR(st.st_mode)
+        or st.st_uid != os.getuid()
+        or stat.S_IMODE(st.st_mode) != 0o700
+    ):
+        raise QualificationError(
+            "qualification directory must have exact mode 0700 and be owned"
+        )
 
 
 def _root_identity(path: Path) -> tuple[int, int, int, int]:
@@ -3950,7 +3956,10 @@ def _validate_production_journal(
     if event_sequence != contract.transport.event_sequence:
         raise QualificationError("transport and journal append/solve order disagree")
     runtime = _capture(contract.runtime_cnf_path)
-    runtime_variables, runtime_clauses = incremental.parse_dimacs(runtime)
+    try:
+        runtime_variables, runtime_clauses = incremental.parse_dimacs(runtime)
+    except incremental.PiqdIncrementalDiscoveryError as exc:
+        raise QualificationError("production runtime DIMACS is malformed") from exc
     if runtime_variables != variables or runtime_clauses != tuple(clauses):
         raise QualificationError("runtime .solver.cnf is not the journal frontier")
     return {
@@ -4251,6 +4260,593 @@ def finalize_production_qualification_v3(
     )
 
 
+_PRODUCTION_V3_SEALED_ARTIFACTS = frozenset(
+    {
+        PRODUCTION_V3_AUTHORITY_NAME,
+        "daemon-version-pre-v3.json",
+        "source-manifest-v3.json",
+        "producer-manifest-v3.json",
+        "producer-job-v3.json",
+        "solver-registry-v3.json",
+        "base.cnf",
+        "initial-runtime-v3.cnf",
+        PRODUCTION_V3_PREFLIGHT_NAME,
+        IDENTITY_NAME,
+        JOURNAL_NAME,
+        CLOSE_RESPONSE_NAME,
+        ".solver.cnf",
+        "daemon-version-post-v3.json",
+        PRODUCTION_V3_SESSION_RESULT_NAME,
+        PRODUCTION_V3_QUALIFICATION_NAME,
+    }
+)
+
+
+def _production_v3_artifact_identity(root: Path, name: str) -> tuple[int, ...]:
+    """Capture the no-follow identity needed across an offline validation."""
+
+    try:
+        item = os.lstat(root / name)
+    except OSError as exc:
+        raise QualificationError(f"{name} custody identity is unavailable") from exc
+    if (
+        not stat.S_ISREG(item.st_mode)
+        or item.st_uid != os.getuid()
+        or stat.S_IMODE(item.st_mode) != 0o600
+        or item.st_nlink != 1
+    ):
+        raise QualificationError(f"{name} custody identity is unsafe")
+    return (
+        item.st_dev,
+        item.st_ino,
+        item.st_size,
+        item.st_mtime_ns,
+        item.st_ctime_ns,
+        item.st_nlink,
+    )
+
+
+def _validate_production_v3_artifact_journal(
+    raw: bytes,
+    *,
+    descriptor: incremental.DiscoveryDescriptor,
+    variables: int,
+    base_clauses: tuple[tuple[int, ...], ...],
+    runtime: bytes,
+) -> dict[str, Any]:
+    """Validate a v3 journal without a live transport or qualification object."""
+
+    if not raw or not raw.endswith(b"\n"):
+        raise QualificationError("production journal is empty or incomplete")
+    clauses = list(base_clauses)
+    tail: str | None = None
+    session_id: str | None = None
+    solve_count = 0
+    statuses: list[str] = []
+    event_sequence: list[str] = []
+    common = {
+        "schema",
+        "sequence",
+        "prior_event_sha256",
+        "event_sha256",
+        "event",
+        "session_id",
+        "producer_job_id",
+        "descriptor_root",
+        "frontier_count",
+        "frontier_sha256",
+        "learned_state",
+    }
+    event_keys = {
+        "open": common | {"seed_blob_hash", "seed_sha256"},
+        "append": common | {"clauses", "prior_frontier_sha256"},
+        "solve": common
+        | {
+            "status",
+            "solve_index",
+            "result_sha256",
+            "receipt",
+            "model",
+            "proof_verified",
+            "closure_claim",
+        },
+    }
+    for sequence, line in enumerate(raw.splitlines(keepends=True)):
+        if not line.endswith(b"\n"):
+            raise QualificationError("production journal has a partial record")
+        event = _strict_json(line[:-1], label="production journal event")
+        kind = event.get("event")
+        if kind not in event_keys:
+            raise QualificationError("production journal has an unknown event")
+        _keys(event, event_keys[kind], label=f"production journal {kind} event")
+        # JSON booleans compare equal to the integers 0 and 1 in Python.  Do
+        # the type checks before the cross-bindings so a re-signed v3 journal
+        # cannot smuggle boolean/float sequence or frontier metadata through
+        # the equality checks below.
+        _integer(event.get("sequence"), label="production journal sequence")
+        _integer(event.get("frontier_count"), label="production journal frontier_count")
+        unsigned = dict(event)
+        event_hash = unsigned.pop("event_sha256", None)
+        if (
+            event.get("schema") != incremental.SCHEMA
+            or event.get("sequence") != sequence
+            or event.get("prior_event_sha256") != tail
+            or _sha(_json_bytes(unsigned)) != event_hash
+        ):
+            raise QualificationError("production journal hash chain is invalid")
+        _hex(event_hash, label="production journal event_sha256")
+        if (
+            event.get("producer_job_id") != descriptor.producer_job_id
+            or event.get("descriptor_root") != descriptor.descriptor_root
+        ):
+            raise QualificationError("production journal is not descriptor-rooted")
+        current_session = _uuid(event.get("session_id"), label="journal session UUID")
+        if session_id is None:
+            session_id = current_session
+        elif session_id != current_session:
+            raise QualificationError("production journal session identity drifted")
+        if sequence == 0:
+            if (
+                kind != "open"
+                or event.get("seed_blob_hash") != descriptor.seed_blob_hash
+                or event.get("seed_sha256") != descriptor.seed_sha256
+            ):
+                raise QualificationError("production journal has no exact fresh open")
+        elif kind == "open":
+            raise QualificationError(
+                "production journal is not a fresh one-session run"
+            )
+        if event.get("learned_state") != "not_claimed":
+            raise QualificationError("production journal makes a learned-state claim")
+        if kind == "append":
+            additions = event.get("clauses")
+            if type(additions) is not list or not additions:
+                raise QualificationError("production append event is empty")
+            prior = incremental._frontier_hash(variables, clauses)
+            if event.get("prior_frontier_sha256") != prior:
+                raise QualificationError("production append prior frontier drifted")
+            clauses.extend(
+                incremental._check_clause(item, variables) for item in additions
+            )
+            event_sequence.append("append")
+        elif kind == "solve":
+            solve_count += 1
+            _integer(
+                event.get("solve_index"),
+                label="production journal solve_index",
+                minimum=1,
+            )
+            status = event.get("status")
+            if (
+                event.get("solve_index") != solve_count
+                or status not in {"SAT", "UNSAT", "UNKNOWN"}
+                or event.get("proof_verified") is not False
+                or event.get("closure_claim") is not False
+            ):
+                raise QualificationError(
+                    "production solve event is unsafe or not dense"
+                )
+            result_sha256 = _hex(
+                event.get("result_sha256"), label="production solve result_sha256"
+            )
+            receipt = event.get("receipt")
+            timeout_ms = receipt.get("timeout_ms") if type(receipt) is dict else None
+            _validate_receipt(
+                receipt,
+                status=status,
+                solve_index=solve_count,
+                result_sha256=result_sha256,
+                frontier=clauses,
+                authority_version=3,
+                requested_timeout_ms=timeout_ms,
+            )
+            if status == "SAT":
+                _validate_model(event.get("model"), variables, clauses)
+            elif event.get("model") is not None:
+                raise QualificationError("non-SAT production solve records a model")
+            statuses.append(status)
+            event_sequence.append("solve")
+        frontier = incremental._frontier_hash(variables, clauses)
+        if (
+            event.get("frontier_count") != len(clauses)
+            or event.get("frontier_sha256") != frontier
+        ):
+            raise QualificationError("production journal frontier is invalid")
+        tail = event_hash
+    if solve_count < 1 or statuses[-1:] != ["UNSAT"]:
+        raise QualificationError("production journal lacks terminal UNSAT")
+    runtime_variables, runtime_clauses = incremental.parse_dimacs(runtime)
+    if runtime_variables != variables or runtime_clauses != tuple(clauses):
+        raise QualificationError("runtime .solver.cnf is not the journal frontier")
+    return {
+        "session_id": session_id,
+        "journal_sha256": _sha(raw),
+        "solve_count": solve_count,
+        "statuses": statuses,
+        "final_frontier_count": len(clauses),
+        "final_frontier_sha256": incremental._frontier_hash(variables, clauses),
+        "final_runtime_sha256": _sha(runtime),
+    }
+
+
+def validate_completed_production_qualification_v3(directory: Path) -> dict[str, Any]:
+    """Revalidate sealed artifacts offline and current public source lineage.
+
+    The transport/daemon/solver are not contacted, but source and producer
+    manifests and the base CNF are intentionally compared with a fresh
+    current repository bundle.  This is therefore an offline validator with a
+    current-source entitlement check, not a self-contained historical archive
+    validator.
+    """
+
+    root = Path(os.path.abspath(os.fspath(directory)))
+    root_before = _root_identity(root)
+    names_before = {entry.name for entry in os.scandir(root)}
+    if names_before != set(_PRODUCTION_V3_SEALED_ARTIFACTS):
+        raise QualificationError("sealed production-v3 artifact set is inexact")
+    identities_before = {
+        name: _production_v3_artifact_identity(root, name) for name in names_before
+    }
+    snapshots = {
+        name: _read_custody(
+            root,
+            name,
+            limit=MAX_CNF_ARTIFACT_RESPONSE_BYTES
+            if name.endswith(".cnf")
+            else MAX_CONTROL_BYTES,
+        )
+        for name in names_before
+    }
+    identities_after_capture = {
+        name: _production_v3_artifact_identity(root, name) for name in names_before
+    }
+    if identities_after_capture != identities_before:
+        raise QualificationError(
+            "production-v3 artifact identity changed during capture"
+        )
+    authority = _production_v3_authority_value(
+        snapshots[PRODUCTION_V3_AUTHORITY_NAME],
+        path=root / PRODUCTION_V3_AUTHORITY_NAME,
+    )
+    authority_value = authority.value
+    source_raw = snapshots["source-manifest-v3.json"]
+    producer_raw = snapshots["producer-manifest-v3.json"]
+    bundle = _current_production_v3_bundle()
+    if source_raw != bundle.source_manifest or producer_raw != bundle.producer_manifest:
+        raise QualificationError(
+            "sealed v3 manifests are not the current public bundle"
+        )
+    try:
+        authenticated = static.authenticate_static_manifests(
+            source_manifest=source_raw, producer_manifest=producer_raw
+        )
+    except static.StaticPiqdRunnerError as exc:
+        raise QualificationError(str(exc)) from exc
+    if (
+        authenticated.source_sha256 != authority_value["source_manifest_sha256"]
+        or authenticated.producer_sha256 != authority_value["producer_manifest_sha256"]
+        or len(source_raw) != authority_value["source_manifest_bytes"]
+        or len(producer_raw) != authority_value["producer_manifest_bytes"]
+    ):
+        raise QualificationError("sealed v3 manifest identities disagree")
+
+    version_pre_raw = snapshots["daemon-version-pre-v3.json"]
+    version_post_raw = snapshots["daemon-version-post-v3.json"]
+    version_pre = _strict_json(
+        version_pre_raw, label="daemon version pre", canonical=False
+    )
+    version_post = _strict_json(
+        version_post_raw, label="daemon version post", canonical=False
+    )
+    _version_object(version_pre, label="daemon version pre")
+    _version_object(version_post, label="daemon version post")
+    if version_pre != version_post or version_pre_raw != version_post_raw:
+        raise QualificationError("daemon version window changed")
+    if _sha(version_pre_raw) != authority_value["daemon_version_pre_sha256"]:
+        raise QualificationError("daemon pre-version disagrees with authority")
+
+    job = _strict_json(snapshots["producer-job-v3.json"], label="producer job")
+    _job_contract(
+        job,
+        authority_value["producer_job_id"],
+        prepared={
+            "backend": authenticated.producer["backend"],
+            "cnf_blob_hash": authority_value["base_cnf_sha256"],
+            "identity_hash": authority_value["raw_dimacs_identity"],
+            "producer_manifest_hash": authenticated.producer_sha256,
+        },
+        authority_version=3,
+    )
+    registry_raw = snapshots["solver-registry-v3.json"]
+    registry = _strict_json(registry_raw, label="solver registry")
+    _production_v3_registry_daemon_contract(
+        registry, version_daemon=version_pre["daemon"], label="solver registry"
+    )
+    selected = _solver_entry(registry, authority_value["solver"]["name"])
+    _production_solver_contract(
+        producer=authenticated.producer,
+        job=job,
+        selected=selected,
+        solver_name=authority_value["solver"]["name"],
+    )
+    base = snapshots["base.cnf"]
+    try:
+        variables, base_clauses = incremental.parse_dimacs(base)
+    except incremental.PiqdIncrementalDiscoveryError as exc:
+        raise QualificationError("production base DIMACS is malformed") from exc
+    initial_runtime = snapshots["initial-runtime-v3.cnf"]
+    try:
+        initial_variables, initial_clauses = incremental.parse_dimacs(initial_runtime)
+    except incremental.PiqdIncrementalDiscoveryError as exc:
+        raise QualificationError(
+            "production initial runtime DIMACS is malformed"
+        ) from exc
+    if (
+        initial_variables != variables
+        or tuple(initial_clauses[: len(base_clauses)]) != base_clauses
+        or base != bundle.base_cnf
+        or _sha(base) != authority_value["base_cnf_sha256"]
+    ):
+        raise QualificationError("initial runtime is not rooted in the authority base")
+    descriptor = incremental.DiscoveryDescriptor(
+        seed_cnf=base,
+        producer_manifest=producer_raw,
+        source_manifest=source_raw,
+        solver_name=authority_value["solver"]["name"],
+        producer_job_id=authority_value["producer_job_id"],
+    )
+    if descriptor.descriptor_root != _strict_json(
+        snapshots[PRODUCTION_V3_PREFLIGHT_NAME], label="production preflight"
+    ).get("descriptor_root"):
+        raise QualificationError("descriptor root disagrees")
+    preflight = _strict_json(
+        snapshots[PRODUCTION_V3_PREFLIGHT_NAME], label="production preflight"
+    )
+    expected_preflight = {
+        "schema": PRODUCTION_V3_PREFLIGHT_SCHEMA,
+        "authority_sha256": authority_value["authority_sha256"],
+        "base_scope": PRODUCTION_V3_BASE_SCOPE,
+        "builder_base_scope": PRODUCTION_V3_BUILDER_BASE_SCOPE,
+        "profile": PRODUCTION_V3_PROFILE,
+        "daemon_version_pre_sha256": _sha(version_pre_raw),
+        "source_manifest_sha256": authenticated.source_sha256,
+        "source_manifest_bytes": len(source_raw),
+        "producer_manifest_sha256": authenticated.producer_sha256,
+        "producer_manifest_bytes": len(producer_raw),
+        "base_cnf_sha256": _sha(base),
+        "base_variables": variables,
+        "base_clauses": len(base_clauses),
+        "variable_map_sha256": authority_value["variable_map_sha256"],
+        "variable_map_bytes": authority_value["variable_map_bytes"],
+        "source_bundle_sha256": authority_value["source_bundle_sha256"],
+        "source_bundle_bytes": authority_value["source_bundle_bytes"],
+        "encoding_configuration_sha256": authority_value[
+            "encoding_configuration_sha256"
+        ],
+        "encoding_configuration_bytes": authority_value["encoding_configuration_bytes"],
+        "initial_runtime_sha256": _sha(initial_runtime),
+        "initial_runtime_clauses": len(initial_clauses),
+        "raw_dimacs_identity": authority_value["raw_dimacs_identity"],
+        "producer_job_id": authority_value["producer_job_id"],
+        "producer_job_requested_core_limit": 1,
+        "producer_prepare_preview": authority_value["producer_prepare_preview"],
+        "prepared_existing": authority_value["prepared_existing"],
+        "producer_job_sha256": _sha(snapshots["producer-job-v3.json"]),
+        "solver_registry_sha256": _sha(registry_raw),
+        "descriptor_root": descriptor.descriptor_root,
+        "shard_index": None,
+        "shard_count": None,
+        "shard_literals": None,
+        "policy": dict(PRODUCTION_V3_POLICY),
+        "claims": dict(PRODUCTION_V3_CLAIMS),
+    }
+    if preflight != expected_preflight:
+        raise QualificationError("production preflight no longer matches its roots")
+
+    identity_raw = snapshots[IDENTITY_NAME]
+    identity = _strict_json(identity_raw, label="session identity")
+    _keys(
+        identity,
+        {"schema", "session_id", "solver_name", "solver_sha256", "solver_signature"},
+        label="session identity",
+    )
+    if (
+        identity["schema"] != SESSION_IDENTITY_SCHEMA
+        or identity["solver_name"] != selected["name"]
+        or identity["solver_sha256"] != selected["sha256"]
+        or identity["solver_signature"] != selected["solver_signature"]
+    ):
+        raise QualificationError("sealed session solver identity drifted")
+    session_id = _uuid(identity["session_id"], label="session identity UUID")
+    journal = _validate_production_v3_artifact_journal(
+        snapshots[JOURNAL_NAME],
+        descriptor=descriptor,
+        variables=variables,
+        base_clauses=base_clauses,
+        runtime=snapshots[".solver.cnf"],
+    )
+    if journal["session_id"] != session_id:
+        raise QualificationError("session identity names another journal")
+    close_raw = snapshots[CLOSE_RESPONSE_NAME]
+    close = _strict_json(close_raw, label="production close response")
+    _keys(close, incremental.SESSION_KEYS, label="production close response")
+    for key in (
+        "protocol_version",
+        "clauses",
+        "max_var",
+        "solves",
+        "last_solve_index",
+        "declared_num_vars",
+        "created_at",
+        "updated_at",
+    ):
+        _integer(close.get(key), label=f"production close response.{key}")
+    if (
+        close["id"] != session_id
+        or close["state"] != "closed"
+        or close["lane"] != "sat"
+        or close["solver_name"] != selected["name"]
+        or close["solver_sha256"] != selected["sha256"]
+        or close["solver_signature"] != selected["solver_signature"]
+        or close["solves"] != journal["solve_count"]
+        or close["last_solve_index"] != journal["solve_count"]
+        or close["last_status"] != "UNSAT"
+        or close["clauses"] != journal["final_frontier_count"]
+        or close["max_var"] != variables
+        or close["declared_num_vars"] != variables
+        or close["last_assumption_free"] is not True
+        or close["last_terminal_unsat"] is not True
+        or close["label"] != f"{incremental.SCHEMA}:{descriptor.descriptor_root}"
+    ):
+        raise QualificationError("close response does not bind final production state")
+
+    session_result = _strict_json(
+        snapshots[PRODUCTION_V3_SESSION_RESULT_NAME], label="production session result"
+    )
+    _keys(
+        session_result,
+        set(journal)
+        | {
+            "schema",
+            "close_response_sha256",
+            "close_method",
+            "close_path",
+            "driver_status",
+            "proof_verified",
+            "closure_claim",
+        },
+        label="production session result",
+    )
+    _integer(
+        session_result.get("solve_count"),
+        label="production session result.solve_count",
+        minimum=1,
+    )
+    _integer(
+        session_result.get("final_frontier_count"),
+        label="production session result.final_frontier_count",
+    )
+    if session_result != {
+        "schema": PRODUCTION_V3_SESSION_RESULT_SCHEMA,
+        **journal,
+        "close_response_sha256": _sha(close_raw),
+        "close_method": "DELETE",
+        "close_path": f"{authority_value['daemon_url']}/sessions/{session_id}",
+        "driver_status": session_result.get("driver_status"),
+        "proof_verified": False,
+        "closure_claim": False,
+    }:
+        raise QualificationError("production session result is not exact")
+    if session_result["driver_status"] not in PRODUCTION_V3_SUCCESS_STATUSES:
+        raise QualificationError("production driver status is not successful")
+    _close_observation(
+        session_result["close_method"], session_result["close_path"], session_id
+    )
+
+    seal = _strict_json(
+        snapshots[PRODUCTION_V3_QUALIFICATION_NAME],
+        label="production qualification seal",
+    )
+    _keys(
+        seal,
+        {
+            "schema",
+            "authority_sha256",
+            "preflight_sha256",
+            "daemon_version_pre_sha256",
+            "daemon_version_post_sha256",
+            "daemon_version_equal",
+            "session_result_sha256",
+            "solve_count",
+            "statuses",
+            "final_frontier_count",
+            "final_frontier_sha256",
+            "final_runtime_sha256",
+            "driver_status",
+            "policy",
+            "claims",
+            "terminal_policy",
+        },
+        label="production qualification seal",
+    )
+    _integer(
+        seal.get("solve_count"),
+        label="production qualification seal.solve_count",
+        minimum=1,
+    )
+    _integer(
+        seal.get("final_frontier_count"),
+        label="production qualification seal.final_frontier_count",
+    )
+    expected_seal = {
+        "schema": PRODUCTION_V3_QUALIFICATION_SCHEMA,
+        "authority_sha256": authority_value["authority_sha256"],
+        "preflight_sha256": _sha(snapshots[PRODUCTION_V3_PREFLIGHT_NAME]),
+        "daemon_version_pre_sha256": _sha(version_pre_raw),
+        "daemon_version_post_sha256": _sha(version_post_raw),
+        "daemon_version_equal": True,
+        "session_result_sha256": _sha(snapshots[PRODUCTION_V3_SESSION_RESULT_NAME]),
+        "solve_count": journal["solve_count"],
+        "statuses": journal["statuses"],
+        "final_frontier_count": journal["final_frontier_count"],
+        "final_frontier_sha256": journal["final_frontier_sha256"],
+        "final_runtime_sha256": journal["final_runtime_sha256"],
+        "driver_status": session_result["driver_status"],
+        "policy": dict(PRODUCTION_V3_POLICY),
+        "claims": dict(PRODUCTION_V3_CLAIMS),
+        "terminal_policy": "PIQD discovery only; fresh local DRAT is the terminal proof boundary",
+    }
+    if seal != expected_seal:
+        raise QualificationError("production qualification seal is not exact")
+    if {entry.name for entry in os.scandir(root)} != names_before:
+        raise QualificationError("production-v3 artifacts changed during validation")
+    for name, before in snapshots.items():
+        if (
+            _read_custody(
+                root,
+                name,
+                limit=MAX_CNF_ARTIFACT_RESPONSE_BYTES
+                if name.endswith(".cnf")
+                else MAX_CONTROL_BYTES,
+            )
+            != before
+        ):
+            raise QualificationError("production-v3 artifact changed during validation")
+    if {
+        name: _production_v3_artifact_identity(root, name) for name in names_before
+    } != identities_before:
+        raise QualificationError(
+            "production-v3 artifact identity changed during validation"
+        )
+    if _root_identity(root) != root_before:
+        raise QualificationError(
+            "production-v3 directory identity changed during validation"
+        )
+    return {
+        "schema": VALIDATION_SCHEMA,
+        "authenticated": True,
+        "production": True,
+        "authority_version": 3,
+        "solve_count": journal["solve_count"],
+        "statuses": journal["statuses"],
+        "terminal_unsat": True,
+        "piqd_discovery_only": True,
+        "local_drat_required": True,
+        "proof_verified": False,
+        "closure_claim": False,
+        "global_obstruction": False,
+        "theorem_coverage": False,
+        "universal_lift": False,
+        "lean_closure": False,
+    }
+
+
+def validate_production_qualification_v3(directory: Path) -> dict[str, Any]:
+    """Compatibility spelling for artifact-only completed v3 validation."""
+
+    return validate_completed_production_qualification_v3(directory)
+
+
 __all__ = [
     "CLOSE_RESPONSE_NAME",
     "IDENTITY_NAME",
@@ -4326,8 +4922,10 @@ __all__ = [
     "prepare_qualification",
     "prepare_test_qualification",
     "qualified_transport",
+    "validate_completed_production_qualification_v3",
     "validate_production_launch_authority_v2",
     "validate_production_launch_authority_v3",
+    "validate_production_qualification_v3",
     "validate_qualification",
     "validate_test_qualification",
 ]

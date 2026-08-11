@@ -264,6 +264,36 @@ runtime hash, close evidence, driver status, and post-run version. The session
 result is create-once before the qualification seal; the seal is atomically
 installed last. Existing forensic files are never overwritten.
 
+## Offline artifact qualification
+
+`validate_completed_production_qualification_v3(directory)` is the independent,
+offline sealed-artifact validator for a completed producer directory. It
+performs no transport, daemon, solver, or contract call, but it intentionally
+recaptures the current public source bundle and requires the sealed source and
+producer manifests and base CNF to remain byte-identical to that current
+entitled bundle. It is therefore not a self-contained historical-archive
+validator. The directory must contain exactly
+the sixteen private artifacts `production-authority-v3.json`,
+`daemon-version-pre-v3.json`, `source-manifest-v3.json`,
+`producer-manifest-v3.json`, `producer-job-v3.json`, `solver-registry-v3.json`,
+`base.cnf`, `initial-runtime-v3.cnf`, `production-preflight-v3.json`,
+`.piqd-incremental-v3-session-identity.json`, `.piqd-incremental-v3.jsonl`,
+`session-close-response.json`, `.solver.cnf`, `daemon-version-post-v3.json`,
+`production-session-result-v3.json`, and `production-qualification-v3.json`.
+
+It requires the output root to remain owned by the current uid with exact mode
+`0700` at capture and terminal rebind. It captures every artifact with the
+existing no-follow custody checks and rechecks root identity and bytes before
+returning. It then validates canonical
+schemas, the authority seal and source/producer/job/solver/version identities,
+the raw-DIMACS and runtime hashes, the dense journal/hash chain and reconstructed
+frontier, and all session/close/result/seal cross-bindings. Only a successful
+driver status and terminal assumption-free `UNSAT` qualify; proof, global,
+universal, theorem-coverage, and Lean claims remain false. Missing, extra,
+tampered, re-signed, crossed, non-canonical, or type-confused artifacts fail
+closed. This validator is v3-only and does not alter the historical v2/canary
+validation paths.
+
 ## Claim semantics
 
 Source entitlement, theorem coverage, universal lift, Lean closure,

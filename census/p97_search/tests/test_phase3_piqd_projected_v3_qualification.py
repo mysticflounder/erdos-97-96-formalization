@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -950,6 +951,20 @@ def _replace_json(path: Path, mutate: Any) -> None:
     value = json.loads(path.read_bytes())
     mutate(value)
     _private(path, canonical_json_bytes(value))
+
+
+def _resign_journal(path: Path, mutate: Callable[[list[dict[str, Any]]], None]) -> None:
+    events = [json.loads(line) for line in path.read_bytes().splitlines()]
+    mutate(events)
+    prior: str | None = None
+    rendered: list[bytes] = []
+    for event in events:
+        event["prior_event_sha256"] = prior
+        event.pop("event_sha256", None)
+        event["event_sha256"] = _sha(canonical_json_bytes(event))
+        prior = event["event_sha256"]
+        rendered.append(canonical_json_bytes(event) + b"\n")
+    _private(path, b"".join(rendered))
 
 
 def test_canonical_two_phase_packet_and_false_claim_boundary(tmp_path: Path) -> None:
@@ -2135,6 +2150,296 @@ def test_production_v3_full_arbitrary_append_unsat_lifecycle_seals(
     assert (
         contract.directory / qualification.PRODUCTION_V3_SESSION_RESULT_NAME
     ).exists()
+
+
+def test_production_v3_completed_artifact_validator_is_transport_free(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+
+    result = qualification.validate_completed_production_qualification_v3(
+        contract.directory
+    )
+
+    assert result["authority_version"] == 3
+    assert result["statuses"] == ["UNSAT"]
+    assert result["terminal_unsat"] is True
+    assert result["proof_verified"] is False
+    assert result["lean_closure"] is False
+
+
+@pytest.mark.parametrize(
+    "mutate",
+    [
+        lambda value: value.__setitem__("driver_status", "not-success"),
+        lambda value: value.__setitem__(
+            "claims", {**value["claims"], "lean_closure": True}
+        ),
+    ],
+)
+def test_production_v3_completed_artifact_validator_rejects_seal_claim_crossing(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    mutate: Callable[[dict[str, Any]], None],
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+    _replace_json(
+        contract.directory / qualification.PRODUCTION_V3_QUALIFICATION_NAME, mutate
+    )
+
+    with pytest.raises(qualification.QualificationError, match="seal"):
+        qualification.validate_completed_production_qualification_v3(contract.directory)
+
+
+def _tamper_extra(root: Path) -> None:
+    _private(root / "unexpected", b"unexpected")
+
+
+def _tamper_missing(root: Path) -> None:
+    (root / qualification.PRODUCTION_V3_AUTHORITY_NAME).unlink()
+
+
+def _tamper_symlink(root: Path) -> None:
+    target = root.parent / "same-byte-target"
+    _private(target, (root / "base.cnf").read_bytes())
+    (root / "base.cnf").unlink()
+    (root / "base.cnf").symlink_to(target)
+
+
+def _tamper_hardlink(root: Path) -> None:
+    target = root.parent / "hardlink-target"
+    _private(target, (root / "base.cnf").read_bytes())
+    (root / "base.cnf").unlink()
+    os.link(target, root / "base.cnf")
+
+
+def _tamper_authority(root: Path) -> None:
+    _replace_json(
+        root / qualification.PRODUCTION_V3_AUTHORITY_NAME,
+        lambda value: value.__setitem__("producer_job_id", "crossed-job"),
+    )
+
+
+def _tamper_source_manifest(root: Path) -> None:
+    path = root / "source-manifest-v3.json"
+    _private(path, path.read_bytes() + b"\n")
+
+
+def _tamper_producer_manifest(root: Path) -> None:
+    path = root / "producer-manifest-v3.json"
+    _private(path, path.read_bytes() + b"\n")
+
+
+def _tamper_version(root: Path) -> None:
+    _replace_json(
+        root / "daemon-version-post-v3.json",
+        lambda value: value["daemon"].__setitem__("version", "crossed"),
+    )
+
+
+def _tamper_job(root: Path) -> None:
+    _replace_json(
+        root / "producer-job-v3.json",
+        lambda value: value.__setitem__("id", "crossed-job"),
+    )
+
+
+def _tamper_registry(root: Path) -> None:
+    def mutate(value: dict[str, Any]) -> None:
+        value["solvers"][0]["sha256"] = "0" * 64
+
+    _replace_json(root / "solver-registry-v3.json", mutate)
+
+
+def _tamper_base(root: Path) -> None:
+    path = root / "base.cnf"
+    _private(path, path.read_bytes() + b"1 0\n")
+
+
+def _tamper_runtime(root: Path) -> None:
+    path = root / "initial-runtime-v3.cnf"
+    _private(path, path.read_bytes() + b"1 0\n")
+
+
+def _tamper_preflight(root: Path) -> None:
+    _replace_json(
+        root / qualification.PRODUCTION_V3_PREFLIGHT_NAME,
+        lambda value: value.__setitem__("descriptor_root", "0" * 64),
+    )
+
+
+def _tamper_identity(root: Path) -> None:
+    _replace_json(
+        root / qualification.IDENTITY_NAME,
+        lambda value: value.__setitem__("solver_name", "crossed-solver"),
+    )
+
+
+def _tamper_journal_sequence(root: Path) -> None:
+    _resign_journal(
+        root / qualification.JOURNAL_NAME,
+        lambda events: events[0].__setitem__("sequence", False),
+    )
+
+
+def _tamper_journal_frontier(root: Path) -> None:
+    _resign_journal(
+        root / qualification.JOURNAL_NAME,
+        lambda events: events[0].__setitem__("frontier_count", 1.0),
+    )
+
+
+def _tamper_journal_solve_index(root: Path) -> None:
+    _resign_journal(
+        root / qualification.JOURNAL_NAME,
+        lambda events: events[-1].__setitem__("solve_index", True),
+    )
+
+
+def _tamper_journal_receipt(root: Path) -> None:
+    def mutate(events: list[dict[str, Any]]) -> None:
+        events[-1]["receipt"]["timeout_ms"] = True
+
+    _resign_journal(root / qualification.JOURNAL_NAME, mutate)
+
+
+def _tamper_journal_model(root: Path) -> None:
+    def mutate(events: list[dict[str, Any]]) -> None:
+        events[-1]["model"] = [1, 2]
+
+    _resign_journal(root / qualification.JOURNAL_NAME, mutate)
+
+
+def _tamper_close(root: Path) -> None:
+    _replace_json(
+        root / qualification.CLOSE_RESPONSE_NAME,
+        lambda value: value.__setitem__("state", "live"),
+    )
+
+
+def _tamper_session_result(root: Path) -> None:
+    _replace_json(
+        root / qualification.PRODUCTION_V3_SESSION_RESULT_NAME,
+        lambda value: value.__setitem__("solve_count", True),
+    )
+
+
+def _tamper_seal_number(root: Path) -> None:
+    _replace_json(
+        root / qualification.PRODUCTION_V3_QUALIFICATION_NAME,
+        lambda value: value.__setitem__("final_frontier_count", 1.0),
+    )
+
+
+@pytest.mark.parametrize(
+    "mutate",
+    [
+        pytest.param(_tamper_extra, id="inventory-extra"),
+        pytest.param(_tamper_missing, id="inventory-missing"),
+        pytest.param(_tamper_symlink, id="custody-symlink"),
+        pytest.param(_tamper_hardlink, id="custody-hardlink"),
+        pytest.param(_tamper_authority, id="authority"),
+        pytest.param(_tamper_source_manifest, id="source-manifest"),
+        pytest.param(_tamper_producer_manifest, id="producer-manifest"),
+        pytest.param(_tamper_version, id="version"),
+        pytest.param(_tamper_job, id="job"),
+        pytest.param(_tamper_registry, id="registry"),
+        pytest.param(_tamper_base, id="base"),
+        pytest.param(_tamper_runtime, id="runtime"),
+        pytest.param(_tamper_preflight, id="preflight-descriptor"),
+        pytest.param(_tamper_identity, id="session-identity"),
+        pytest.param(_tamper_journal_sequence, id="journal-sequence-bool"),
+        pytest.param(_tamper_journal_frontier, id="journal-frontier-float"),
+        pytest.param(_tamper_journal_solve_index, id="journal-solve-index-bool"),
+        pytest.param(_tamper_journal_receipt, id="journal-receipt-timeout-bool"),
+        pytest.param(_tamper_journal_model, id="journal-model"),
+        pytest.param(_tamper_close, id="close"),
+        pytest.param(_tamper_session_result, id="session-result-number-bool"),
+        pytest.param(_tamper_seal_number, id="seal-number-float"),
+    ],
+)
+def test_production_v3_completed_artifact_validator_rejects_each_trust_layer(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    mutate: Callable[[Path], None],
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+    mutate(contract.directory)
+
+    with pytest.raises(qualification.QualificationError):
+        qualification.validate_completed_production_qualification_v3(contract.directory)
+
+
+def test_production_v3_completed_artifact_validator_rejects_same_byte_replacement(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+    original = qualification._read_custody
+    reads = 0
+
+    def replace_after_capture(
+        root: Path, name: str, *, limit: int = qualification.MAX_CAPTURE_BYTES
+    ) -> bytes:
+        nonlocal reads
+        data = original(root, name, limit=limit)
+        if name == "base.cnf":
+            reads += 1
+            if reads == 2:
+                replacement = root / ".same-byte-replacement"
+                _private(replacement, data)
+                os.replace(replacement, root / name)
+        return data
+
+    monkeypatch.setattr(qualification, "_read_custody", replace_after_capture)
+    with pytest.raises(qualification.QualificationError, match="identity"):
+        qualification.validate_completed_production_qualification_v3(contract.directory)
+
+
+@pytest.mark.parametrize("mode", [0o500, 0o750])
+def test_production_v3_completed_artifact_validator_requires_exact_root_mode_at_capture(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    mode: int,
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+    contract.directory.chmod(mode)
+
+    with pytest.raises(qualification.QualificationError, match="0700"):
+        qualification.validate_completed_production_qualification_v3(contract.directory)
+
+
+def test_production_v3_completed_artifact_validator_rechecks_exact_root_mode_at_terminal_rebind(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    _complete_v3(contract)
+    original = qualification._read_custody
+    reads = 0
+
+    def drift_after_capture(
+        root: Path, name: str, *, limit: int = qualification.MAX_CAPTURE_BYTES
+    ) -> bytes:
+        nonlocal reads
+        data = original(root, name, limit=limit)
+        if name == "base.cnf":
+            reads += 1
+            if reads == 2:
+                root.chmod(0o500)
+        return data
+
+    monkeypatch.setattr(qualification, "_read_custody", drift_after_capture)
+    with pytest.raises(qualification.QualificationError, match="0700"):
+        qualification.validate_completed_production_qualification_v3(contract.directory)
 
 
 def test_production_v3_binds_every_control_request_to_daemon_origin(

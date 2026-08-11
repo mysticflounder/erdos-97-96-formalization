@@ -857,6 +857,23 @@ def _wave_manifest(bundle: CurrentUnshardedBundle) -> dict[str, Any]:
     return value
 
 
+def build_current_unsharded_projected_v3_wave_manifest(
+    bundle: CurrentUnshardedBundle | None = None,
+) -> dict[str, Any]:
+    """Return the canonical wave manifest for the current public base.
+
+    This is deliberately a pure seam: it performs no filesystem or daemon
+    action and accepts only the bundle produced by this module.
+    """
+
+    selected = (
+        build_current_unsharded_projected_v3_bundle() if bundle is None else bundle
+    )
+    if type(selected) is not CurrentUnshardedBundle:
+        raise ProvisioningError("wave manifest requires the exact current bundle")
+    return _wave_manifest(selected)
+
+
 def _validate_job(
     value: dict[str, Any],
     *,
@@ -1471,6 +1488,7 @@ __all__ = [
     "ProvisioningProfile",
     "ProvisioningResult",
     "build_current_unsharded_projected_v3_bundle",
+    "build_current_unsharded_projected_v3_wave_manifest",
     "make_test_only_profile",
     "provision_projected_v3_production",
 ]
