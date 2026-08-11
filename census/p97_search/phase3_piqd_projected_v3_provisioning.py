@@ -89,7 +89,8 @@ _VERSION_KEYS = {"daemon", "limits"}
 _VERSION_DAEMON_KEYS = {"name", "version", "protocol_version", "sha256"}
 _VERSION_LIMIT_KEYS = {"max_var"}
 _REGISTRY_KEYS = {"daemon", "solver_dir", "solvers"}
-_REGISTRY_DAEMON_KEYS = {"name", "version", "protocol_version"}
+_REGISTRY_DAEMON_REQUIRED_KEYS = {"name", "version", "protocol_version"}
+_REGISTRY_DAEMON_OPTIONAL_KEYS = {"sha256"}
 _SOLVER_KEYS = {
     "lane",
     "name",
@@ -722,9 +723,7 @@ def _response(
     return value
 
 
-def _prepare_response_contract(
-    value: dict[str, Any], *, expected_preview: str
-) -> None:
+def _prepare_response_contract(value: dict[str, Any], *, expected_preview: str) -> None:
     _keys(value, _PREPARE_KEYS, label="producer prepare")
     _uuid(value["job_id"], label="producer prepare job_id")
     if type(value["existing"]) is not bool:
@@ -748,7 +747,9 @@ class _StrictPrepareTransport:
     def __init__(self, inner: Transport, *, expected_preview: str) -> None:
         self.inner = inner
         if type(expected_preview) is not str:
-            raise ProvisioningError("expected producer prepare preview is not builtin str")
+            raise ProvisioningError(
+                "expected producer prepare preview is not builtin str"
+            )
         self.expected_preview = expected_preview
         self.preview: str | None = None
 
@@ -977,13 +978,24 @@ def _validate_registry(
     daemon = value["daemon"]
     if type(daemon) is not dict:
         raise ProvisioningError("solver registry daemon is not an exact object")
-    _keys(daemon, _REGISTRY_DAEMON_KEYS, label="solver registry daemon")
+    daemon_keys = frozenset(daemon)
+    if daemon_keys not in {
+        frozenset(_REGISTRY_DAEMON_REQUIRED_KEYS),
+        frozenset(_REGISTRY_DAEMON_REQUIRED_KEYS | _REGISTRY_DAEMON_OPTIONAL_KEYS),
+    }:
+        raise ProvisioningError("solver registry daemon has an inexact schema")
     _string(daemon["name"], label="solver registry daemon name")
     _string(daemon["version"], label="solver registry daemon version")
     if type(daemon["protocol_version"]) is not int:
         raise ProvisioningError("solver registry protocol version is not builtin int")
-    if daemon != {key: version_daemon[key] for key in _REGISTRY_DAEMON_KEYS}:
+    if any(
+        daemon[key] != version_daemon[key] for key in _REGISTRY_DAEMON_REQUIRED_KEYS
+    ):
         raise ProvisioningError("solver registry daemon identity is crossed")
+    if "sha256" in daemon:
+        daemon_sha256 = _digest(daemon["sha256"], label="solver registry daemon sha256")
+        if daemon_sha256 != version_daemon["sha256"]:
+            raise ProvisioningError("solver registry daemon sha256 is crossed")
     _string(value["solver_dir"], label="solver registry directory")
     solvers = value["solvers"]
     if type(solvers) is not list:

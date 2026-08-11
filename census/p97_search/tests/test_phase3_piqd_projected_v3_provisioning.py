@@ -83,6 +83,7 @@ class FakeTransport:
                 "name": "piqd",
                 "version": "test-daemon",
                 "protocol_version": 1,
+                "sha256": "3" * 64,
             },
             "solver_dir": "/sealed/solvers",
             "solvers": [
@@ -558,6 +559,12 @@ def test_packet_bytes_are_deterministic(
         "version-extra",
         "version-bool",
         "registry-extra",
+        "registry-daemon-extra",
+        "registry-daemon-missing-required",
+        "registry-daemon-sha-uppercase",
+        "registry-daemon-sha-bool",
+        "registry-daemon-sha-float",
+        "registry-daemon-sha-crossed",
         "registry-crossed-version",
         "registry-crossed-solver",
         "registry-crossed-signature",
@@ -612,6 +619,18 @@ def test_crossed_schema_and_builtin_attacks_fail_closed(
         fake.version["daemon"]["protocol_version"] = True
     elif attack == "registry-extra":
         fake.registry["solvers"][0]["EXTRA"] = "forbidden"
+    elif attack == "registry-daemon-extra":
+        fake.registry["daemon"]["EXTRA"] = "forbidden"
+    elif attack == "registry-daemon-missing-required":
+        del fake.registry["daemon"]["version"]
+    elif attack == "registry-daemon-sha-uppercase":
+        fake.registry["daemon"]["sha256"] = "A" * 64
+    elif attack == "registry-daemon-sha-bool":
+        fake.registry["daemon"]["sha256"] = True
+    elif attack == "registry-daemon-sha-float":
+        fake.registry["daemon"]["sha256"] = 3.0
+    elif attack == "registry-daemon-sha-crossed":
+        fake.registry["daemon"]["sha256"] = "4" * 64
     elif attack == "registry-crossed-version":
         fake.registry["daemon"]["version"] = "other-daemon"
     elif attack == "registry-crossed-solver":
@@ -623,6 +642,39 @@ def test_crossed_schema_and_builtin_attacks_fail_closed(
     with pytest.raises(provisioning.ProvisioningError):
         _run(tmp_path / "packet", bundle, fake)
     assert not (tmp_path / "packet" / provisioning.SEAL_NAME).exists()
+
+
+def test_solver_registry_daemon_sha256_is_optional_and_exactly_bound(
+    tmp_path: Path, bundle: provisioning.CurrentUnshardedBundle
+) -> None:
+    current = FakeTransport(bundle)
+    present = _run(tmp_path / "present", bundle, current)
+    assert json.loads(present.authority_path.read_bytes())["schema"] == (
+        provisioning.TEST_ONLY_AUTHORITY_SCHEMA
+    )
+
+    historical_shape = FakeTransport(bundle)
+    del historical_shape.registry["daemon"]["sha256"]
+    absent = _run(tmp_path / "absent", bundle, historical_shape)
+    assert json.loads(absent.authority_path.read_bytes())["schema"] == (
+        provisioning.TEST_ONLY_AUTHORITY_SCHEMA
+    )
+
+
+def test_solver_registry_daemon_sha256_rejects_string_subclasses(
+    bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    class StringSubclass(str):
+        pass
+
+    fake = FakeTransport(bundle)
+    fake.registry["daemon"]["sha256"] = StringSubclass("3" * 64)
+    with pytest.raises(provisioning.ProvisioningError, match="lowercase 64-hex"):
+        provisioning._validate_registry(
+            fake.registry,
+            version_daemon=fake.version["daemon"],
+            profile=provisioning.make_test_only_profile(bundle),
+        )
 
 
 def test_prepare_preview_rejects_string_subclasses(

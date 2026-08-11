@@ -148,10 +148,19 @@ def _prepared_job(
     )
 
 
-def _registry(*, solver_hash: str = SOLVER_HASH) -> bytes:
+def _registry(
+    *, solver_hash: str = SOLVER_HASH, daemon_sha256: str | None = None
+) -> bytes:
+    daemon: dict[str, Any] = {
+        "name": "piqd",
+        "version": "test",
+        "protocol_version": 1,
+    }
+    if daemon_sha256 is not None:
+        daemon["sha256"] = daemon_sha256
     return canonical_json_bytes(
         {
-            "daemon": {"name": "piqd", "version": "test", "protocol_version": 1},
+            "daemon": daemon,
             "solver_dir": "/sealed/solvers",
             "solvers": [
                 {
@@ -635,6 +644,7 @@ def _prepare_v3(
     fake = transport or FakeTransport(
         job=job,
         blob=bundle.base_cnf,
+        registry=_registry(daemon_sha256="3" * 64),
         version_pre=version_raw,
         create=_production_session(
             variables=bundle.num_variables,
@@ -2078,6 +2088,91 @@ def test_production_v3_full_arbitrary_append_unsat_lifecycle_seals(
     assert (
         contract.directory / qualification.PRODUCTION_V3_SESSION_RESULT_NAME
     ).exists()
+
+
+def test_production_v3_registry_daemon_sha256_is_optional_and_cross_bound(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    version_daemon = json.loads(_version())["daemon"]
+    without_sha256 = json.loads(_registry())
+    qualification._production_v3_registry_daemon_contract(
+        without_sha256,
+        version_daemon=version_daemon,
+        label="solver registry",
+    )
+
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle)
+    captured = json.loads((contract.directory / "solver-registry-v3.json").read_bytes())
+    assert captured["daemon"]["sha256"] == version_daemon["sha256"]
+
+
+@pytest.mark.parametrize(
+    ("attack", "replacement"),
+    [
+        ("missing-required", None),
+        ("extra", "forbidden"),
+        ("uppercase", "A" * 64),
+        ("bool", True),
+        ("float", 3.0),
+        ("crossed", "4" * 64),
+    ],
+)
+def test_production_v3_registry_daemon_sha256_attacks_fail_closed(
+    attack: str,
+    replacement: Any,
+) -> None:
+    registry = json.loads(_registry(daemon_sha256="3" * 64))
+    version_daemon = json.loads(_version())["daemon"]
+    if attack == "missing-required":
+        del registry["daemon"]["version"]
+    elif attack == "extra":
+        registry["daemon"]["EXTRA"] = replacement
+    else:
+        registry["daemon"]["sha256"] = replacement
+    with pytest.raises(qualification.QualificationError):
+        qualification._production_v3_registry_daemon_contract(
+            registry,
+            version_daemon=version_daemon,
+            label="solver registry",
+        )
+
+
+def test_production_v3_registry_daemon_sha256_rejects_string_subclasses() -> None:
+    class StringSubclass(str):
+        pass
+
+    registry = json.loads(_registry(daemon_sha256="3" * 64))
+    registry["daemon"]["sha256"] = StringSubclass("3" * 64)
+    with pytest.raises(qualification.QualificationError, match="lowercase 64-hex"):
+        qualification._production_v3_registry_daemon_contract(
+            registry,
+            version_daemon=json.loads(_version())["daemon"],
+            label="solver registry",
+        )
+
+
+def test_production_v3_crossed_registry_daemon_sha_fails_before_session(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        blob=current_bundle.base_cnf,
+        registry=_registry(daemon_sha256="4" * 64),
+    )
+    fake.response_overrides[
+        ("GET", f"/jobs/{JOB_ID}/blobs/{current_bundle.base_cnf_sha256}")
+    ] = HttpResponse(200, current_bundle.base_cnf, {})
+    with pytest.raises(qualification.QualificationError, match="sha256 is crossed"):
+        _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    assert not any(path.endswith("/sessions") for _, path in fake.calls)
 
 
 @pytest.mark.parametrize(

@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 import uuid
 from dataclasses import replace
 from fractions import Fraction
@@ -17,6 +18,11 @@ from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
 def _sha(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
+
+
+def _replace_bytes(path: Path, payload: bytes) -> None:
+    path.unlink()
+    path.write_bytes(payload)
 
 
 def _session(
@@ -609,6 +615,127 @@ def test_source_change_during_reconstruction_fails_closed(
         subject.load_selected_system(_square_system()["system_id"], (path,))
 
 
+def test_byte_identical_source_replacement_after_smt_validation_fails_closed(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    selection = _selection(tmp_path)
+    source = selection.custody.paths[0]
+    raw = source.read_bytes()
+    displaced = tmp_path / "source.displaced.json"
+    captured_inode = source.stat().st_ino
+
+    monkeypatch.setattr(
+        subject.producer,
+        "extract_systems",
+        lambda paths: ([selection.system], selection.extraction),
+    )
+    monkeypatch.setattr(subject.producer, "_frontier", lambda systems: systems)
+    validate_prepared = subject._validate_prepared
+
+    def replace_after_validation(prepared: subject.PreparedSystem) -> None:
+        validate_prepared(prepared)
+        source.rename(displaced)
+        source.write_bytes(raw)
+
+    monkeypatch.setattr(subject, "_validate_prepared", replace_after_validation)
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="changed after capture"):
+        subject.prepare_system(selection, timeout_ms=5000)
+    assert source.read_bytes() == displaced.read_bytes() == raw
+    assert source.stat().st_ino != captured_inode
+    assert subject._capture_inputs((source,)).digest != selection.custody.digest
+
+
+def test_parent_chain_rebinding_after_smt_validation_fails_closed(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    source_root = tmp_path / "source-root"
+    source_parent = source_root / "leaf"
+    source_parent.mkdir(parents=True)
+    source = source_parent / "source.json"
+    source.write_bytes(b"{}\n")
+    custody = subject._capture_inputs((source,))
+    system = _square_system()
+    extraction = {
+        "input_files": [
+            {
+                "path": os.path.relpath(source, subject.ROOT),
+                "sha256": _sha(source.read_bytes()),
+            }
+        ]
+    }
+    selection = subject.AuthenticatedSelection(
+        system, extraction, (system["system_id"],), custody
+    )
+    captured_source = source.stat()
+    captured_parent = source_parent.stat()
+    captured_root_inode = source_root.stat().st_ino
+    displaced_root = tmp_path / "source-root.displaced"
+    replacement_root = tmp_path / "source-root.replacement"
+    replacement_root.mkdir()
+
+    monkeypatch.setattr(
+        subject.producer,
+        "extract_systems",
+        lambda paths: ([selection.system], selection.extraction),
+    )
+    monkeypatch.setattr(subject.producer, "_frontier", lambda systems: systems)
+    validate_prepared = subject._validate_prepared
+
+    def rebind_ancestor_after_validation(prepared: subject.PreparedSystem) -> None:
+        validate_prepared(prepared)
+        source_root.rename(displaced_root)
+        (displaced_root / "leaf").rename(replacement_root / "leaf")
+        replacement_root.rename(source_root)
+
+    monkeypatch.setattr(subject, "_validate_prepared", rebind_ancestor_after_validation)
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="changed after capture"):
+        subject.prepare_system(selection, timeout_ms=5000)
+    rebound_source = source.stat()
+    rebound_parent = source_parent.stat()
+    assert source.read_bytes() == b"{}\n"
+    assert (rebound_source.st_dev, rebound_source.st_ino) == (
+        captured_source.st_dev,
+        captured_source.st_ino,
+    )
+    assert (rebound_parent.st_dev, rebound_parent.st_ino) == (
+        captured_parent.st_dev,
+        captured_parent.st_ino,
+    )
+    assert source_root.stat().st_ino != captured_root_inode
+    assert subject._capture_inputs((source,)).digest != custody.digest
+
+
+def test_source_descriptor_cleanup_preserves_primary_and_attempts_every_close(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    closed: list[int] = []
+
+    def failing_close(descriptor: int) -> None:
+        closed.append(descriptor)
+        raise OSError(f"close failed: {descriptor}")
+
+    monkeypatch.setattr(subject.os, "close", failing_close)
+
+    def fail_with_primary() -> None:
+        try:
+            raise subject.MetricPiqdCvc5Error("primary validation failure")
+        finally:
+            subject._close_source_descriptors((11, 22), sys.exc_info()[1])
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="primary validation failure"):
+        fail_with_primary()
+    assert closed == [11, 22]
+
+    closed.clear()
+    with pytest.raises(
+        subject.MetricPiqdCvc5Error, match="cannot close source custody descriptors"
+    ):
+        subject._close_source_descriptors((33, 44), None)
+    assert closed == [33, 44]
+
+
 def test_nofollow_source_and_nonbuiltin_fields_are_rejected(tmp_path: Path) -> None:
     target = tmp_path / "target.json"
     target.write_text("{}\n", encoding="utf-8")
@@ -633,6 +760,170 @@ def test_create_once_canonical_artifacts(
         subject.run_prepared_system(prepared, output, FakePiqd("UNSAT"))
 
 
+@pytest.mark.parametrize(
+    ("status", "classification"),
+    [
+        ("SAT", "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC"),
+        ("UNSAT", "CVC5_UNSAT_DIAGNOSTIC_NOT_KERNEL_CHECKED"),
+        ("UNKNOWN", "UNKNOWN_INCONCLUSIVE"),
+    ],
+)
+def test_complete_published_output_validates_offline_with_exact_claim_boundary(
+    tmp_path: Path,
+    prepared: subject.PreparedSystem,
+    status: str,
+    classification: str,
+) -> None:
+    output = tmp_path / status.lower()
+    result = subject.run_prepared_system(prepared, output, FakePiqd(status))
+
+    checked = subject.validate_published_output(output)
+
+    assert checked == result
+    assert checked["classification"] == classification
+    assert checked["claims"] == subject.FALSE_CLAIMS
+    assert checked["proof_blueprint"] == subject.PROOF_BLUEPRINT
+
+
+def test_descriptor_names_the_exact_published_original_smt2_path(
+    tmp_path: Path, prepared: subject.PreparedSystem
+) -> None:
+    assert prepared.query.descriptor["original_smt2"]["path"] == "original.smt2"
+    output = tmp_path / "canonical-path"
+    subject.run_prepared_system(prepared, output, FakePiqd("UNSAT"))
+    descriptor = json.loads((output / "descriptor.json").read_bytes())
+    assert descriptor["original_smt2"]["path"] == "original.smt2"
+    assert (output / descriptor["original_smt2"]["path"]).is_file()
+
+
+@pytest.mark.parametrize("visibility_delay", [0, 99])
+def test_offline_validator_accepts_both_response_loss_publication_shapes(
+    tmp_path: Path,
+    prepared: subject.PreparedSystem,
+    monkeypatch: pytest.MonkeyPatch,
+    visibility_delay: int,
+) -> None:
+    monkeypatch.setattr(neutral, "_bounded_reconciliation_wait", lambda _delay: None)
+    output = tmp_path / f"response-loss-{visibility_delay}"
+    result = subject.run_prepared_system(
+        prepared,
+        output,
+        FakePiqd(
+            "SAT",
+            response_loss=True,
+            response_loss_visibility_delay=visibility_delay,
+        ),
+    )
+
+    assert subject.validate_published_output(output) == result
+    if visibility_delay:
+        assert result["classification"] == "TRANSPORT_LOSS_INCONCLUSIVE"
+        assert result["raw_status"] is None
+    else:
+        assert result["classification"] == "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC"
+        assert result["engine"]["reconciled_from_receipt"] is True
+
+
+def test_self_consistent_legacy_descriptor_path_regression_fails_closed(
+    tmp_path: Path, prepared: subject.PreparedSystem
+) -> None:
+    output = tmp_path / "legacy-descriptor-path"
+    subject.run_prepared_system(prepared, output, FakePiqd("UNSAT"))
+    descriptor_path = output / "descriptor.json"
+    descriptor = json.loads(descriptor_path.read_bytes())
+    descriptor["original_smt2"]["path"] = "query.full-convex.smt2"
+    descriptor_raw = subject._canonical(descriptor) + b"\n"
+    _replace_bytes(descriptor_path, descriptor_raw)
+    result_path = output / "result.json"
+    result = json.loads(result_path.read_bytes())
+    result["descriptor_sha256"] = _sha(descriptor_raw)
+    result["custody"]["descriptor"] = {
+        "path": "descriptor.json",
+        "bytes": len(descriptor_raw),
+        "sha256": _sha(descriptor_raw),
+    }
+    _replace_bytes(result_path, subject._canonical(result) + b"\n")
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="descriptor reconstruction"):
+        subject.validate_published_output(output)
+
+
+@pytest.mark.parametrize(
+    "attack", ["missing", "extra", "symlink", "hardlink", "tamper"]
+)
+def test_published_output_inventory_and_file_attacks_fail_closed(
+    tmp_path: Path, prepared: subject.PreparedSystem, attack: str
+) -> None:
+    output = tmp_path / attack
+    subject.run_prepared_system(prepared, output, FakePiqd("UNSAT"))
+    if attack == "missing":
+        (output / "journal.smt2").unlink()
+    elif attack == "extra":
+        (output / "unexpected.bin").write_bytes(b"unexpected")
+    elif attack == "symlink":
+        (output / "journal.smt2").unlink()
+        (output / "journal.smt2").symlink_to("original.smt2")
+    elif attack == "hardlink":
+        (output / "journal.smt2").unlink()
+        os.link(output / "original.smt2", output / "journal.smt2")
+    else:
+        _replace_bytes(output / "original.smt2", b"(set-logic QF_NRA)\n")
+
+    with pytest.raises((subject.MetricPiqdCvc5Error, neutral.SmtSourceAdapterError)):
+        subject.validate_published_output(output)
+
+
+def test_byte_identical_directory_replacement_during_validation_fails_closed(
+    tmp_path: Path,
+    prepared: subject.PreparedSystem,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    output = tmp_path / "published"
+    replacement = tmp_path / "replacement"
+    displaced = tmp_path / "displaced"
+    subject.run_prepared_system(prepared, output, FakePiqd("UNSAT"))
+    replacement.mkdir()
+    for artifact in output.iterdir():
+        (replacement / artifact.name).write_bytes(artifact.read_bytes())
+    assert {artifact.name: artifact.read_bytes() for artifact in output.iterdir()} == {
+        artifact.name: artifact.read_bytes() for artifact in replacement.iterdir()
+    }
+
+    finalize = subject._finalize_published_directory_capture
+
+    def replace_before_final_custody_check(
+        capture: subject._PublishedDirectoryCapture,
+    ) -> None:
+        output.rename(displaced)
+        replacement.rename(output)
+        finalize(capture)
+
+    monkeypatch.setattr(
+        subject,
+        "_finalize_published_directory_capture",
+        replace_before_final_custody_check,
+    )
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="pathname was displaced"):
+        subject.validate_published_output(output)
+
+
+def test_crossed_session_artifact_fails_closed(
+    tmp_path: Path, prepared: subject.PreparedSystem
+) -> None:
+    fake = FakePiqd("UNSAT")
+    first = tmp_path / "first-publication"
+    second = tmp_path / "second-publication"
+    subject.run_prepared_system(prepared, first, fake)
+    subject.run_prepared_system(prepared, second, fake)
+    _replace_bytes(
+        first / "cvc5.session.json", (second / "cvc5.session.json").read_bytes()
+    )
+
+    with pytest.raises(subject.MetricPiqdCvc5Error, match="exact artifact"):
+        subject.validate_published_output(first)
+
+
 def test_cli_has_no_worker_or_local_solver_surface() -> None:
     args = subject._parse_args(
         ["--system-id", "0b12b25bf5daa7566f98", "--out", "scratch/fake"]
@@ -640,6 +931,33 @@ def test_cli_has_no_worker_or_local_solver_surface() -> None:
     assert args.system_id == "0b12b25bf5daa7566f98"
     assert not hasattr(args, "workers")
     assert not hasattr(args, "cvc5")
+
+
+def test_cli_check_mode_is_offline(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    checked = tmp_path / "checked"
+    monkeypatch.setattr(
+        subject,
+        "validate_published_output",
+        lambda path: (
+            {
+                "classification": "UNKNOWN_INCONCLUSIVE",
+                "effective_status": "INCONCLUSIVE_UNKNOWN",
+                "system_id": "system",
+            }
+            if path == checked
+            else pytest.fail("wrong check path")
+        ),
+    )
+    monkeypatch.setattr(
+        subject,
+        "load_selected_system",
+        lambda *_args: pytest.fail("offline check entered the live run path"),
+    )
+
+    assert subject.main(["--check", os.fspath(checked)]) == 0
+    assert json.loads(capsys.readouterr().out)["checked"] is True
 
 
 def test_cli_http_timeout_exceeds_disclosed_effective_deadline(

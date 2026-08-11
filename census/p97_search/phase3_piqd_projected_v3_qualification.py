@@ -546,6 +546,41 @@ def _version_object(value: dict[str, Any], *, label: str) -> str:
     return daemon_sha
 
 
+def _production_v3_registry_daemon_contract(
+    registry: dict[str, Any],
+    *,
+    version_daemon: dict[str, Any],
+    label: str,
+) -> None:
+    """Validate the exact current Rust registry daemon identity for v3 only."""
+
+    _keys(registry, {"daemon", "solver_dir", "solvers"}, label=label)
+    daemon = registry["daemon"]
+    if type(daemon) is not dict:
+        raise QualificationError(f"{label}.daemon is not an exact object")
+    required = {"name", "version", "protocol_version"}
+    keys = frozenset(daemon)
+    if keys not in {frozenset(required), frozenset(required | {"sha256"})}:
+        raise QualificationError(f"{label}.daemon has an inexact schema")
+    _string(daemon["name"], label=f"{label}.daemon.name")
+    _string(daemon["version"], label=f"{label}.daemon.version")
+    if (
+        daemon["name"] != "piqd"
+        or type(daemon["protocol_version"]) is not int
+        or daemon["protocol_version"] != 1
+    ):
+        raise QualificationError(f"{label}.daemon has the wrong identity/protocol")
+    if any(daemon[key] != version_daemon[key] for key in required):
+        raise QualificationError(f"{label}.daemon identity is crossed")
+    if "sha256" in daemon:
+        daemon_sha256 = _hex(daemon["sha256"], label=f"{label}.daemon.sha256")
+        if daemon_sha256 != version_daemon["sha256"]:
+            raise QualificationError(f"{label}.daemon sha256 is crossed")
+    _string(registry["solver_dir"], label=f"{label}.solver_dir")
+    if type(registry["solvers"]) is not list:
+        raise QualificationError(f"{label}.solvers is not an exact list")
+
+
 def _solver_entry(registry: dict[str, Any], solver_name: str) -> dict[str, Any]:
     _string(solver_name, label="solver_name")
     solvers = registry.get("solvers")
@@ -2804,9 +2839,7 @@ _PRODUCTION_V3_AUTHORITY_KEYS = {
 def _production_v3_prepare_preview(cnf: bytes) -> str:
     if type(cnf) is not bytes:
         raise QualificationError("production-v3 preview input is not exact bytes")
-    return cnf[:PRODUCTION_V3_PREPARE_PREVIEW_BYTES].decode(
-        "utf-8", errors="replace"
-    )
+    return cnf[:PRODUCTION_V3_PREPARE_PREVIEW_BYTES].decode("utf-8", errors="replace")
 
 
 def _current_production_v3_bundle() -> Any:
@@ -3255,10 +3288,10 @@ def prepare_production_qualification_v2(
     version_pre_raw = _get_json_exact_bytes(
         transport, "/version", label="daemon version pre"
     )
-    version_pre = _strict_json(
-        version_pre_raw, label="daemon version pre", canonical=False
+    _version_object(
+        _strict_json(version_pre_raw, label="daemon version pre", canonical=False),
+        label="daemon version pre",
     )
-    _version_object(version_pre, label="daemon version pre")
     if _sha(version_pre_raw) != authority.value["daemon_version_pre_sha256"]:
         raise QualificationError("daemon pre-version snapshot disagrees with authority")
     job_raw = _get_json_bounded(
@@ -3439,10 +3472,10 @@ def prepare_production_qualification_v3(
     version_pre_raw = _get_json_exact_bytes(
         transport, "/version", label="daemon version pre"
     )
-    _version_object(
-        _strict_json(version_pre_raw, label="daemon version pre", canonical=False),
-        label="daemon version pre",
+    version_pre = _strict_json(
+        version_pre_raw, label="daemon version pre", canonical=False
     )
+    _version_object(version_pre, label="daemon version pre")
     if _sha(version_pre_raw) != authority.value["daemon_version_pre_sha256"]:
         raise QualificationError("daemon pre-version snapshot disagrees with authority")
     job_raw = _get_json_bounded(
@@ -3476,9 +3509,13 @@ def prepare_production_qualification_v3(
     if blob_response.status != 200 or blob_response.body != base:
         raise QualificationError("producer job base blob disagrees with local base")
     registry_raw = _get_json(transport, "/solvers", label="solver registry")
-    selected = _solver_entry(
-        _strict_json(registry_raw, label="solver registry"), solver_name
+    registry = _strict_json(registry_raw, label="solver registry")
+    _production_v3_registry_daemon_contract(
+        registry,
+        version_daemon=version_pre["daemon"],
+        label="solver registry",
     )
+    selected = _solver_entry(registry, solver_name)
     solver = authority.solver
     if (
         selected["sha256"] != solver["sha256"]
@@ -3857,6 +3894,14 @@ def _finalize_production_qualification(
     registry_raw = _read_custody(
         root, f"solver-registry-{suffix}.json", limit=MAX_CONTROL_BYTES
     )
+    registry: dict[str, Any] | None = None
+    if version == 3:
+        registry = _strict_json(registry_raw, label="solver registry")
+        _production_v3_registry_daemon_contract(
+            registry,
+            version_daemon=version_pre["daemon"],
+            label="solver registry",
+        )
     preflight = _strict_json(contract.preflight_raw, label="production preflight")
     expected_preflight = {
         "schema": preflight_schema,
@@ -3896,9 +3941,7 @@ def _finalize_production_qualification(
                     "encoding_configuration_bytes"
                 ],
                 "producer_job_requested_core_limit": 1,
-                "producer_prepare_preview": authority.value[
-                    "producer_prepare_preview"
-                ],
+                "producer_prepare_preview": authority.value["producer_prepare_preview"],
                 "prepared_existing": authority.value["prepared_existing"],
                 "shard_index": None,
                 "shard_count": None,
@@ -3929,6 +3972,13 @@ def _finalize_production_qualification(
     _version_object(version_post, label="daemon version post")
     if version_post_raw != contract.version_pre_raw:
         raise QualificationError("daemon version object changed during production run")
+    if version == 3:
+        assert registry is not None
+        _production_v3_registry_daemon_contract(
+            registry,
+            version_daemon=version_post["daemon"],
+            label="solver registry",
+        )
     _write_once(root / f"daemon-version-post-{suffix}.json", version_post_raw)
     session_result = {
         "schema": session_result_schema,

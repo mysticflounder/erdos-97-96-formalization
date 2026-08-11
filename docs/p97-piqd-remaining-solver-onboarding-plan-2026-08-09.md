@@ -131,11 +131,26 @@ The corrected clean checkpoint `e4491362cc14569c2f2040ea8422d9ab223c3137`
 then reached PIQD prepare without confirming or running a solver. PIQD returned
 the documented mandatory `preview` field in the prepare response, but the P97
 authority-v3 wrapper still enforced the older key set and stopped fail-closed.
-The prepared job `6883febf-aafb-4b5d-95e2-37faa5fb59ce` remains unconfirmed and
-unrun. Rust source and the exact archived response showed that `preview` is the
+The prepared job was initially left unconfirmed and unrun. Rust source and the
+exact archived response showed that `preview` is the
 lossy UTF-8 rendering of the first 512 submitted CNF bytes; this is P97 adapter
 schema drift, not a PIQD defect. A subsequent clean checkpoint must require and
 cross-bind that field before the live qualification resumes.
+
+Clean checkpoint `d4700a6078c75860e876e4e9ae94317b1b77c5f8` added that strict
+binding. The same job, `6883febf-aafb-4b5d-95e2-37faa5fb59ce`, was then
+confirmed and completed `SAT` in 13 ms with requested core limit one,
+`attested_solver_processes = 1`, and basis
+`SINGLE_PROCESS_NO_PARALLEL_FLAG`. This is producer evidence only, not a proof.
+Authority provisioning next stopped before creating a session because the P97
+wrapper omitted Rust's documented optional `sha256` field from the exact
+`/solvers.daemon` schema. The correction accepts only the three required
+identity fields, optionally plus an exact lowercase 64-hex `sha256`; when
+present it must equal the pre-run and post-run `/version.daemon.sha256`.
+Arbitrary extra, missing, mistyped, subclass, and crossed values remain
+fail-closed. This is again P97 adapter schema drift, not a PIQD defect. A clean
+checkpoint containing this correction is required before the qualification
+session opens.
 
 The first Frontier A-core qualification used the exact source-derived
 889-variable, 21,101-clause SAT canary and one requested solver process. The
@@ -287,6 +302,17 @@ never retries the solve, and closes exactly once. A fresh live retry is
 permitted only after the strict adapter requires the new effective-deadline
 field and sizes its HTTP bound above it. See convo `#4960`, `#4961`, `#4964`,
 `#4967`, `#5017`, and `#5020`.
+
+The offline validator has since been hardened before that retry. It keeps the
+published output directory descriptor open through semantic validation,
+recaptures the exact final inventory and bytes through that descriptor, and
+requires the requested pathname to reopen to the same device and inode. Source
+custody now records and rechecks every component-wise no-follow directory
+identity plus exact source-file metadata, including after SMT reconstruction;
+byte-identical file replacement and ancestor-directory rebinding fail closed.
+Descriptor cleanup attempts every close without masking a primary validation
+error. The capped fake-only metric gate passes 116 tests. No second live metric
+solve has run yet.
 
 ## Rollout protocol
 

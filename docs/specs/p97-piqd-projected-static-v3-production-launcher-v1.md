@@ -99,6 +99,26 @@ completed SAT status, and selects the pinned registry solver:
 - signature `cadical-3.0.0`;
 - backend `cadical`, lane `sat`.
 
+The current Rust `/solvers.daemon` object has one of exactly two accepted
+schemas: the required builtin fields `name`, `version`, and
+`protocol_version`, or those same fields plus `sha256`. No other field is
+accepted. The optional `sha256`, when present, must be an exact builtin
+lowercase 64-hex string equal to the daemon SHA-256 in the captured `/version`
+object. Its absence preserves the documented Rust optional-field contract; it
+does not permit any supplied value to escape identity validation.
+
+The `POST /jobs/prepare-cnf` response is exact-schema evidence. It must contain
+only `job_id`, `cnf_blob_hash`, `identity_hash`, `num_vars`, `num_clauses`,
+`preview`, `existing`, and `requested_core_limit`. `preview` is a mandatory
+exact builtin string equal to the daemon contract's lossy UTF-8 rendering of
+the first 512 submitted CNF bytes. The current DIMACS is ASCII, so this is
+exactly its first 512 bytes decoded as text. Missing, non-string, subclass,
+or substituted preview values fail before any authority or output is minted.
+Authority-v3 seals the exact preview and qualification-v3 copies and rechecks
+it against the independently recaptured runtime base in preflight custody.
+`producer_manifest_hash` is deliberately not invented as a POST echo: it is
+required and cross-bound only in the completed `GET /jobs/:id` status below.
+
 Before minting authority-v3, that completed status must already expose and
 cross-bind `cnf_blob_hash`, `identity_hash`, and `producer_manifest_hash` to
 the authenticated prepared base, raw-DIMACS identity, and captured producer
@@ -129,7 +149,8 @@ cross-binds:
   identity above;
 - its own canonical SHA-256;
 - daemon URL and SHA-256 of the exact authenticated pre-run `/version` bytes;
-- producer job UUID, requested core limit one, and honest existing flag;
+- producer job UUID, exact prepare preview, requested core limit one, and
+  honest existing flag;
 - exact solver name, SHA-256, signature, backend, and lane;
 - exact null shard fields; and
 - the immutable v3 policy and false claim map.
@@ -141,9 +162,12 @@ frozen loaders or finalizers. No monkeypatching, field stripping, schema
 translation, or shard relabelling is performed.
 
 The daemon binary identity is the identity in the sealed authority and must
-match the captured pre-run version object. Finalization requires byte-for-byte
-equality of the complete post-run version object with the pre-run object, not
-merely equality of a selected version field or digest supplied by a caller.
+match the captured pre-run version object. Qualification-v3 independently
+validates the exact `/solvers.daemon` schema and, when its optional `sha256` is
+present, cross-binds it first to the pre-run and then to the post-run
+`/version.daemon.sha256`. Finalization also requires byte-for-byte equality of
+the complete post-run version object with the pre-run object, not merely
+equality of a selected version field or digest supplied by a caller.
 
 ## Qualified lifecycle
 

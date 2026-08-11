@@ -27,11 +27,21 @@ It uses cvc5 through PIQD and has no local-solver or fallback path.
 
 ## Source custody and reconstruction
 
-Every input component is opened relative to a held parent-directory file
-descriptor with `O_NOFOLLOW`. It must be one regular, singly linked file. The
-adapter captures bytes and file identity before parsing, then verifies identity
-and bytes after frontier reconstruction, after SMT preparation, and after the
-PIQD solve. Each component is capped at 16 MiB and the input tuple at 64 MiB.
+Every input directory component and final file is opened descriptor-relatively
+with `O_NOFOLLOW`. Each source must be one regular, singly linked file. The
+in-memory custody token records the exact absolute path, captured bytes, every
+directory component's device/inode identity, and the final file's
+device/inode/mode/link-count/size/timestamp identity. Its custody digest binds
+that complete identity manifest, not merely the path and equal bytes. Every
+recheck repeats the bounded componentwise no-follow capture and requires the
+entire token to agree. Thus unlink/rename followed by a byte-identical file
+replacement, and rebinding any parent-directory component even when the final
+directory and file inodes are preserved, both fail closed. Rechecks occur after
+frontier reconstruction, after SMT-LIB reconstruction and prepared-query
+validation, and after the PIQD solve. Descriptor cleanup attempts every open
+source descriptor; a cleanup failure cannot replace an already-active
+validation error, while a close failure on an otherwise successful capture
+fails closed. Each component is capped at 16 MiB and the input tuple at 64 MiB.
 
 JSON parsing rejects duplicate keys and non-finite numbers. The parsed tree is
 bounded to depth 64 and 2,000,000 nodes. Semantically relevant scalars use exact
@@ -45,7 +55,10 @@ current frontier, and records the extraction and source hashes. It then calls
 the existing `metric_realizability_cvc5.build_smt2` for `full-convex`. The
 producer's exact original SMT-LIB bytes and hash are retained separately from
 the PIQD journal. Assertion counts are recomputed independently from the source
-system and bound into the descriptor.
+system and bound into the descriptor. The descriptor and publication use the
+same canonical path, `original.smt2`; the former
+`query.full-convex.smt2` descriptor spelling was inconsistent with the actual
+published filename and is not accepted by the offline validator.
 
 ## Qualified cvc5 session
 
@@ -133,6 +146,37 @@ PIQD journal, session artifacts, solve receipt, and replay evidence beneath one
 new output directory. Pre-existing or incomplete target paths are rejected;
 staged evidence remains available after an inconclusive solver outcome.
 
+The public `validate_published_output` entry point validates a complete output
+directory without contacting PIQD or a solver. It opens every path component
+and artifact without following links, bounds individual files, aggregate bytes,
+and inventory size, and accepts only singly linked regular files. The original
+directory descriptor remains open throughout semantic validation. Before
+success, the validator recaptures the exact inventory and bytes relative to
+that descriptor, then reopens the requested pathname without following its
+final component and requires the same device and inode. Thus even a
+byte-identical replacement directory fails closed. The validator requires the
+exact status-dependent inventory and canonical JSON schemas, verifies every
+recorded byte count and SHA-256 cross-binding, reconstructs the producer's
+`full-convex` SMT-LIB and normalized PIQD query from `system-record.json`, and
+passes the reconstructed query through the shared authenticated-single-solver
+contract. The captured live/closed session, solve or reconciled solve, and both
+receipt snapshots are then rechecked through the shared validators. For SAT,
+the exact-rational semantic replay is run again independently and must reproduce
+the published evidence. Missing, extra, symlinked, hard-linked, tampered, or
+cross-session artifacts fail closed. This validates publication custody only:
+UNSAT remains a non-kernel-checked cvc5 diagnostic and UNKNOWN remains
+inconclusive.
+
+The same validation is exposed as an offline CLI mode:
+
+```bash
+python -m census.global_confinement.metric_realizability_piqd_cvc5 \
+  --check scratch/p97-global-metric-piqd-0b12b25bf5daa7566f98
+```
+
+`--check` does not load the live frontier, create a transport, contact PIQD,
+execute cvc5, or alter proof-blueprint state.
+
 The bounded qualification command is:
 
 ```bash
@@ -143,5 +187,10 @@ It fixes common numerical, runtime, and package-manager thread counts to one,
 runs the focused shared-session and metric tests with one pytest worker, and
 checks Ruff style for both adapters and test modules. The tests include strict
 deadline-schema type/arithmetic/cross-binding attacks, HTTP timeout sizing, and
-lost-response recovery from the durable deadline-bearing receipt. Its transport is fake: it
-does not contact PIQD, execute cvc5, run Lean, or mutate proof-blueprint state.
+lost-response recovery from the durable deadline-bearing receipt. They also
+exercise byte-identical source-file replacement, ancestor-directory rebinding
+with the terminal source inode preserved, source-descriptor cleanup failures,
+clean SAT/UNSAT/UNKNOWN offline validation, and adversarial publication
+inventory, link, hash, descriptor-path, cross-session, and byte-identical
+directory-replacement failures. Their transport is fake: the gate does not
+contact PIQD, execute cvc5, run Lean, or mutate proof-blueprint state.
