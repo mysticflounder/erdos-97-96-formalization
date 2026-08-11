@@ -97,6 +97,7 @@ The current sequence is:
 | PerpBisectorChain | 4,756,988 | `38db47b94b1f259feeb427a48850a94c58adf300deea0b37302a39435676e76a` | SAT |
 | TwoKalmanson | 5,301,532 | `ae29c7b97602f2e6ff6c746badb13ee8abad13afec3b005da0e6c632d5e1f7fd` | SAT |
 | TwoKalmansonSwappedDE | 5,846,076 | `759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28` | SAT; PIQD `090c5be4-e747-40a3-ad96-baba17d9aace`; exact replay PASS |
+| GenericCancellation | 5,846,080 | `7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc` | RUNNING; PIQD `d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6` |
 
 The H--K theorem-bank report produced by the historical family-level minimizer
 is not promotion evidence.  The production scanner now requires exact
@@ -151,9 +152,16 @@ rehashing and was confirmed as immutable job
 `090c5be4-e747-40a3-ad96-baba17d9aace`; it returned `SAT`, and its total model
 independently replayed all 5,846,076 clauses.  The mandatory exact-record scan
 found six existing source-backed consumers with no unreplayed proposal.  The
-next candidate is the checked generic two-Kalmanson cancellation record; it
-must receive a Lean-generated complete orbit and `SourceRealization` bridge
-before any successor is admitted.
+checked generic two-Kalmanson cancellation record is now banked with a
+`SourceRealization` bridge and a complete four-clause Lean-generated orbit.
+The 5,846,080-clause tenth root has SHA-256
+`7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc`.
+After recursive ingress, custody, and seeded-session rehash checks passed, it
+was confirmed as the sole immutable PIQD job
+`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`; it is currently running.  A `SAT`
+result must undergo total model replay and the mandatory exact-record theorem
+search before any eleventh child is authorized.  An `UNSAT` result is only
+preliminary until its certificate is retrieved and independently replayed.
 Maintainer build
 `0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`
 is now live with a shared 402,653,184-byte prepare/blob/session-seed cap.  The

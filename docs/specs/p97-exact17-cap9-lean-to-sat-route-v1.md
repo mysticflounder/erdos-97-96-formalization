@@ -9,7 +9,10 @@ the exact-scale disposable capacity preflight passed.  The ninth root returned
 `SAT` as immutable PIQD job `090c5be4-e747-40a3-ad96-baba17d9aace`; its total
 308-variable model independently satisfies all 5,846,076 clauses.  The
 mandatory exact-record theorem search completed with six bank hits and no
-unreplayed proposal.
+unreplayed proposal.  Its new generic two-Kalmanson cancellation record is now
+banked with a source-realization bridge and a four-clause Lean-generated orbit.
+The resulting tenth root, SHA-256 `7def1009...`, is confirmed as PIQD job
+`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`; its terminal result is pending.
 PIQD terminal-certificate
 custody and the final aggregate Lean landing remain open.  The existing Python/PIQD
 exact-17 artifacts remain authenticated finite experiments, but they are not
@@ -70,7 +73,9 @@ authenticated and replayed the root and nine Lean-owned successors, all
 `SAT`; the ninth successor is immutable PIQD job
 `090c5be4-e747-40a3-ad96-baba17d9aace`.  Its mandatory theorem search found a
 checked generic two-Kalmanson cancellation instance plus five already banked
-small metric obstructions.  Gate E remains open: expose a
+small metric obstructions.  The generic cancellation theorem, its complete
+four-clause orbit, and its realization-to-satisfaction bridge are checked; the
+corresponding tenth child is now solving under PIQD.  Gate E remains open: expose a
 terminal checked result in Lean as `extendedCnf_unsat`, then use the banked
 landing contract with the exact-cover extractor in the unchanged production
 leaf.
@@ -350,15 +355,42 @@ Lean generated the complete 544,544-clause orbit, and the independent validator
 checked the parent chain, byte-identical prefix, every new clause, and the model
 cut before the eighth child was admitted to PIQD.
 
+## Generic cancellation refinement checkpoint — 2026-08-11
+
+The ninth model's only new record has been generalized and banked in
+`BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation.lean`.
+The checked source consumer generates both named orders and both orientations,
+for exactly four clauses.  `sourceAssign_extendedGenericCancellationCnf`
+proves that every `SourceRealization` satisfies the extended CNF, and
+`false_of_sourceRealization_of_extendedGenericCancellationCnf_unsat` is the
+corresponding terminal landing contract.
+
+The Lean exporter produced 308 variables, 5,846,080 clauses, 291,568,096 bytes,
+and SHA-256
+`7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc`.
+The independent validator checked the byte-identical 5,846,076-clause parent,
+all four suffix clauses, and rejection of the motivating ninth model.  The
+recursive PIQD ingress gate also includes an explicit serialization-migration
+check for two historical model files whose manifests recorded stale raw JSON
+hashes: it replays each complete 308-variable assignment against its full CNF
+and requires regenerated semantic analyses to be byte-identical to the banked
+analyses.  It does not weaken or silently rewrite the historical manifests.
+
+The tenth root was submitted only after those gates and exact daemon/solver
+identity checks passed.  It is immutable PIQD job
+`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`.  No eleventh child is authorized unless
+this job returns `SAT`, its complete model is independently replayed, and the
+mandatory general-theorem search yields another source-clean Lean refinement.
+
 ## Active goal
 
 Close the existing exact-17 cap-nine production leaf through this Lean-owned
 successor chain.  PIQD's authenticated raw-CNF envelope and exact-scale canary
 are qualified, and the ninth root is a fully replayed `SAT` checkpoint.  Its
-mandatory scan recovered six source-backed consumers.  The next gate is to
-turn the generic two-Kalmanson cancellation record into a Lean-generated
-finite orbit with a `SourceRealization` bridge; no tenth child is authorized
-before those checks pass.  A later `UNSAT` result must preserve the
+mandatory scan recovered six source-backed consumers.  The generic
+two-Kalmanson cancellation record is now a checked Lean-generated finite orbit
+with a `SourceRealization` bridge, and the exact tenth root is solving.  A
+terminal `UNSAT` result must preserve the
 submitted-to-certificate clause map, pass independent proof replay, be banked
 as `extendedCnf_unsat`, and compose with the exact-cover extractor and the
 existing source landing contract.  The frozen Wave63 Python route is not an
@@ -406,12 +438,12 @@ alternative production path.
    controller replayed every clause, and the theorem miner bound six exact
    canonical records to analysis SHA-256 `1d502e1d...` with no unreplayed
    proposal.
-5. **Active.** Generalize the recovered generic two-Kalmanson cancellation
-   record only as far as its source-clean Lean consumer supports, generate its
-   complete finite orbit in Lean, and prove the `SourceRealization` bridge.
-   Admit any next clause family only after that theorem,
-   complete finite orbit, and realization bridge are checked.  If a later
-   authenticated child is `UNSAT`,
+5. **Complete; tenth solve active.** The recovered generic two-Kalmanson
+   cancellation record has a source-clean Lean consumer, its complete
+   four-clause orbit, and the `SourceRealization` bridge.  The exact successor
+   is confirmed as PIQD job `d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`.  Admit any
+   later clause family only after a complete SAT replay and mandatory theorem
+   search.  If this or a later authenticated child is `UNSAT`,
    preserve the exact certificate clause map and replay the proof with the
    accepted checker.
 6. Bank the checked terminal result as `extendedCnf_unsat`.

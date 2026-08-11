@@ -1,0 +1,30 @@
+{
+  "complete_assignments_replayed": true,
+  "historical_manifest_hashes_pinned": true,
+  "models": [
+    {
+      "banked_analysis_sha256": "f46e73d960e5018ca744f05d963295e8ff2e15093dbe8bdb8ce4d803420d5029",
+      "clauses_replayed": 3618396,
+      "cnf_sha256": "a489fdf5ddbd1f0abd765592e4b016841b170aed7a20833318704e30171bb570",
+      "current_model_sha256": "d8e05b36499f884f4e7fccfb59bf8c44eb83077159633aecec706ae2c3501956",
+      "decoded_analysis_byte_identical": true,
+      "historical_manifest_model_sha256": "2380069bd5a33cd5830f83097550570fe5399bf86e8b57f5aff77b5079a14184",
+      "job_id": "ea164868-e0aa-42b9-9313-4dab74061c54",
+      "name": "hijk",
+      "variables_assigned": 308
+    },
+    {
+      "banked_analysis_sha256": "d57f9777b1f923c1e337ccd2256a707dc3f7b5b1a62326a19721026e2fb3b350",
+      "clauses_replayed": 3915420,
+      "cnf_sha256": "db8f493b4a8312efcf99d0e3e198537233b83dbb6cc5f4dad6f1423e22d90bd9",
+      "current_model_sha256": "771228aa103326671762161bf6160d4aa36c5206598032148dc20924909e7626",
+      "decoded_analysis_byte_identical": true,
+      "historical_manifest_model_sha256": "25cddee53e8a29dc6badce72dee236f4388e0898fc4b57dc86ad619ada4fc49b",
+      "job_id": "3e1cc468-a960-4393-b2ff-3b76eb54292e",
+      "name": "hijk_interleaved",
+      "variables_assigned": 308
+    }
+  ],
+  "schema": "p97-exact17-piqd-model-serialization-custody-repair/v1",
+  "status": "PASS"
+}

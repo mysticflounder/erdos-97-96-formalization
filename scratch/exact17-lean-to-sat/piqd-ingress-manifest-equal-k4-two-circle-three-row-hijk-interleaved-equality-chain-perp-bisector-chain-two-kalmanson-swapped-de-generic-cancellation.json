@@ -1,0 +1,89 @@
+{
+  "schema": "p97-exact17-lean-generic-cancellation-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation.cnf",
+    "sha256": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc",
+    "bytes": 291568096,
+    "variables": 308,
+    "clauses": 5846080,
+    "parent_prefix_clauses": 5846076,
+    "checked_generic_cancellation_clauses": 4
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de.json",
+    "manifest_sha256": "8166b6da38fef5a04729b7df09c10bb5fecedc2e694e578e1c01f8b9681c2f57",
+    "validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_swapped_de_ingress.py",
+    "validator_sha256": "ccfa3b8898dab0dcadcafe2a8891df9eb3a55e22fdd03d40fa918c0a7ae5d6ff",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-validation.json",
+    "report_sha256": "e36820ea2ece3c0b1bc82bfef4c3f60b9d2c6d3f3d4b273179e457cc24d49340"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation.lean",
+        "sha256": "08966c6eaebb85536aca75e1ded2c1871ba45b66bc1286e5fbf882f1879b086d"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellationExport.lean",
+        "sha256": "6cda692f784d4ffb39806796759e5b626ccecc48453b165c98c57e63cf2b98ce"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_swapped_de_generic_cancellation_export.py",
+    "script_sha256": "b3dd7189f31af2252a645ec356ca2b3e4f12a017c741951980b5237cecd97f4f",
+    "migration_validator": "scripts/validate_exact17_piqd_legacy_model_serialization_migration.py",
+    "migration_validator_sha256": "951cd4f0d99b0cca16538f19223b7200f6a5afcb0acde58aaa267e5c3c19b960",
+    "migration_report": "scratch/exact17-lean-to-sat/piqd-legacy-model-serialization-migration-validation.json",
+    "migration_report_sha256": "4545dd536cb1d9051aa4fb6e12abb33f49272e40cbf81a745c9c0c5094aec8fb",
+    "parent_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_swapped_de_export.py",
+    "parent_validator_sha256": "1aceb199a56b3c1a38d55fbc6f6ced8f9fc5031bad32a5871f1662f59d205aae",
+    "two_kalmanson_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_two_kalmanson_export.py",
+    "two_kalmanson_validator_sha256": "8adca8b20f0b6000ff468c79c190b303d3017d807e09a5ba35e0c4e2b207414e",
+    "perp_bisector_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_perp_bisector_chain_export.py",
+    "perp_bisector_validator_sha256": "ced8c1fa2854d25ac141e9bba8f794137050c8f2a6d94e5df30794d7cd9927e4",
+    "equality_chain_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_equality_chain_export.py",
+    "equality_chain_validator_sha256": "c00de8f17b2c139e9733afa012b34c4927c576d8c578ad4aedd351ccb674538b",
+    "interleaved_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_interleaved_export.py",
+    "interleaved_validator_sha256": "a8fe6472f5ebcd618636886f4c8f2a40497c196ef01faba2a92eb5c05ed16435",
+    "hijk_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_hijk_export.py",
+    "hijk_validator_sha256": "76b37abb08f057121c98fc52c8cba9cf658ef64b9d0493e25257be79896d0f01",
+    "three_row_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_three_row_export.py",
+    "three_row_validator_sha256": "f16e74ce26a723daf7508d260daa2d2a55dc7b30d170e259d87114fbffe9f0cc",
+    "two_circle_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_two_circle_export.py",
+    "two_circle_validator_sha256": "259aaeac6726da5f0314d3d210eb26dbcc5ac5c687ec27485dbd326e24c3994d",
+    "equal_k4_validator": "scripts/validate_exact17_lean_cdefg_equal_k4_export.py",
+    "equal_k4_validator_sha256": "b8651af09342df4f359cc0673a2fc04ed37dad7fdc106f80b53e11e0d49cf285",
+    "cdefg_validator": "scripts/validate_exact17_lean_cdefg_export.py",
+    "cdefg_validator_sha256": "d24353d7ce793129a98e7f3b38d33884ed076809de540ff764710e0f442d3221",
+    "hijk_model": "scratch/exact17-lean-to-sat/piqd-hijk-model.json",
+    "hijk_model_sha256": "d8e05b36499f884f4e7fccfb59bf8c44eb83077159633aecec706ae2c3501956",
+    "interleaved_model": "scratch/exact17-lean-to-sat/piqd-hijk-interleaved-model.json",
+    "interleaved_model_sha256": "771228aa103326671762161bf6160d4aa36c5206598032148dc20924909e7626",
+    "equality_chain_model": "scratch/exact17-lean-to-sat/piqd-equality-chain-model.json",
+    "equality_chain_model_sha256": "948ef5f63af6d0a0606d1d8a65bd131e7ea0cf437a8b4e74747052869be0b4ce",
+    "parent_model": "scratch/exact17-lean-to-sat/piqd-perp-bisector-chain-model.json",
+    "parent_model_sha256": "d6998543fcce7d5f47d21e8caf5314d41beb363915d10ce3fe58c2ae2abbf347",
+    "swapped_de_model": "scratch/exact17-lean-to-sat/piqd-two-kalmanson-model.json",
+    "swapped_de_model_sha256": "d76a18e92f4db435c6d9caf3368c1935d69da404488387caa33b253c29d46668",
+    "model": "scratch/exact17-lean-to-sat/piqd-ninth-root-model.json",
+    "model_sha256": "b9030d8d4926f219d86ad8b3de9cbe928929c576db112dd011bf1f03889b1ce1",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-validation.json",
+    "report_sha256": "32e545c84d7258503eecf3e48cf921f9e84a086521ff683e9904441226a17eb9",
+    "parent_prefix_byte_identical": true,
+    "all_generic_cancellation_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

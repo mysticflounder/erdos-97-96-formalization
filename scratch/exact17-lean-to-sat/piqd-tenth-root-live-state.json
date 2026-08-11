@@ -1,0 +1,88 @@
+{
+  "artifact_kind": "p97-exact17-tenth-root-piqd-live-state/v1",
+  "confirmed": {
+    "blob_hash": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc",
+    "job_id": "d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6",
+    "status": "confirmed"
+  },
+  "confirmed_at_utc": "2026-08-11T17:46:52.343889+00:00",
+  "custody_gate": {
+    "created": {
+      "clauses": 5846080,
+      "created_at": 1786470405,
+      "declared_num_vars": 308,
+      "id": "471faae2-7a51-445f-8f8d-9e6ab474361b",
+      "journal_path": "/Users/adam/.piqd/sessions/471faae2-7a51-445f-8f8d-9e6ab474361b/journal.cnf",
+      "label": "p97-exact17-cap9-tenth-root-custody",
+      "lane": "sat",
+      "last_assumption_free": null,
+      "last_solve_index": null,
+      "last_status": null,
+      "last_terminal_unsat": null,
+      "max_var": 308,
+      "protocol_version": 1,
+      "solver_name": "piqd-satworker-cadical-3.0.0",
+      "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+      "solver_signature": "cadical-3.0.0",
+      "solves": 0,
+      "state": "live",
+      "updated_at": 1786470405
+    },
+    "exported": {
+      "bytes": 291568096,
+      "sha256": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc"
+    }
+  },
+  "daemon": {
+    "daemon": {
+      "name": "piqd",
+      "protocol_version": 1,
+      "sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+      "version": "0.1.0"
+    },
+    "limits": {
+      "max_var": 1000000
+    }
+  },
+  "phase": "confirmed",
+  "prepare_seconds": 2.244963665958494,
+  "prepared": {
+    "cnf_blob_hash": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc",
+    "existing": false,
+    "identity_hash": "7c00d25279eb20062ec74def6128b62f37dc41bdfd83d45e482a6d3d1225e065",
+    "job_id": "d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6",
+    "num_clauses": 5846080,
+    "num_vars": 308,
+    "preview": "p cnf 308 5846080\n-13 -14 -15 -16 -17 0\n-12 -14 -15 -16 -17 0\n-12 -13 -15 -16 -17 0\n-12 -13 -14 -16 -17 0\n-12 -13 -14 -15 -17 0\n-12 -13 -14 -15 -16 0\n-11 -14 -15 -16 -17 0\n-11 -13 -15 -16 -17 0\n-11 -13 -14 -16 -17 0\n-11 -13 -14 -15 -17 0\n-11 -13 -14 -15 -16 0\n-11 -12 -15 -16 -17 0\n-11 -12 -14 -16 -17 0\n-11 -12 -14 -15 -17 0\n-11 -12 -14 -15 -16 0\n-11 -12 -13 -16 -17 0\n-11 -12 -13 -15 -17 0\n-11 -12 -13 -15 -16 0\n-11 -12 -13 -14 -17 0\n-11 -12 -13 -14 -16 0\n-11 -12 -13 -14 -15 0\n-10 -14 -15 -16 -17 0\n-10 -13 -1"
+  },
+  "prepared_at_utc": "2026-08-11T17:46:44.043718+00:00",
+  "root": {
+    "bytes": 291568096,
+    "clauses": 5846080,
+    "ingress_report": "scratch/exact17-lean-to-sat/piqd-ingress-generic-cancellation-validation.json",
+    "ingress_report_sha256": "365c43fea380c54eb9066c405bd20627d6985abaa838094218fccf7996249bb1",
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation.json",
+    "manifest_sha256": "b5f6f8749e4ce19d8791e0d6689f10be402a99e64145d614957aa96ce0182cca",
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation.cnf",
+    "sha256": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc",
+    "variables": 308
+  },
+  "solver": {
+    "lane": "sat",
+    "name": "piqd-satworker-cadical-3.0.0",
+    "path": "/Users/adam/.piqd/solvers/piqd-satworker-cadical-3.0.0",
+    "protocol_version": 1,
+    "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver": "cadical",
+    "solver_signature": "cadical-3.0.0",
+    "solver_source": "/Users/adam/projects/rustprojects/piqd-satworker/vendor/cadical",
+    "solver_version": "3.0.0",
+    "usable": true,
+    "worker": "piqd-satworker",
+    "worker_version": "0.1.0"
+  },
+  "stored_preconfirm": {
+    "bytes": 291568096,
+    "sha256": "7def1009b154d3b846274821300bc68f6ddd43b651e11258506f19924773ccbc"
+  }
+}
