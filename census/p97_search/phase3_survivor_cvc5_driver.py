@@ -824,15 +824,34 @@ def run_driver(
 
 def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
-    parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--backend",
+        choices=("piqd", "legacy-local"),
+        default="piqd",
+        help=(
+            "production PIQD cvc5 sessions (default), or the explicitly "
+            "selected pre-qualification local subprocess route"
+        ),
+    )
+    # Backend-specific defaults are selected in main so PIQD can use its
+    # authenticated current fixture while legacy-local retains its archive.
+    parser.add_argument("--source", type=Path, default=None)
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=None,
+        help="output directory (backend-specific authenticated default when omitted)",
+    )
+    parser.add_argument("--piqd-url", default="http://127.0.0.1:7272")
     parser.add_argument(
         "--cvc5", default=shutil.which("cvc5") or "/Users/adam/bin/cvc5"
     )
     parser.add_argument(
         "--workers",
         type=int,
-        default=min(MAX_WORKERS, os.cpu_count() or 1),
+        # Resolve this after backend selection: PIQD is deliberately
+        # single-session, while legacy-local retains its historical cap.
+        default=None,
     )
     parser.add_argument("--timeout", type=float, default=120.0)
     return parser.parse_args(argv)
@@ -840,19 +859,52 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parse_args(argv)
-    try:
-        manifest = run_driver(
-            source_dir=args.source,
-            out_dir=args.out,
-            cvc5=args.cvc5,
-            workers=args.workers,
-            timeout_s=args.timeout,
-        )
-    except (OSError, ValueError, Phase3Cvc5Error) as exc:
-        print(f"phase3 survivor cvc5 driver failed: {exc}")
-        return 2
-    print(json.dumps(manifest["counts"], sort_keys=True))
-    return 0 if manifest["counts"]["status"]["ERROR"] == 0 else 1
+    if args.backend == "piqd":
+        from census.p97_search import phase3_piqd_survivor_cvc5 as piqd
+
+        if not math.isfinite(args.timeout) or args.timeout <= 0:
+            raise ValueError("timeout must be finite and positive")
+        workers = args.workers if args.workers is not None else 1
+        try:
+            manifest = piqd.run_wave(
+                source_dir=args.source or piqd.DEFAULT_SOURCE,
+                out_dir=args.out or piqd.DEFAULT_OUT,
+                server=args.piqd_url,
+                workers=workers,
+                timeout_ms=max(1, int(args.timeout * 1000)),
+            )
+        except (
+            OSError,
+            ValueError,
+            piqd.Phase3PiqdCvc5Error,
+            piqd.neutral.SmtSourceAdapterError,
+        ) as exc:
+            print(f"phase3 survivor cvc5 driver failed: {exc}")
+            return 2
+        counts = manifest["status_counts"]
+    else:
+        try:
+            workers = (
+                args.workers
+                if args.workers is not None
+                else min(MAX_WORKERS, os.cpu_count() or 1)
+            )
+            manifest = run_driver(
+                source_dir=args.source or DEFAULT_SOURCE,
+                out_dir=args.out or DEFAULT_OUT,
+                cvc5=args.cvc5,
+                workers=workers,
+                timeout_s=args.timeout,
+            )
+        except (OSError, ValueError, Phase3Cvc5Error) as exc:
+            print(f"phase3 survivor cvc5 driver failed: {exc}")
+            return 2
+        counts = manifest["counts"]
+    print(json.dumps(counts, sort_keys=True))
+    error_count = (
+        counts["ERROR"] if args.backend == "piqd" else counts["status"]["ERROR"]
+    )
+    return 0 if error_count == 0 else 1
 
 
 if __name__ == "__main__":

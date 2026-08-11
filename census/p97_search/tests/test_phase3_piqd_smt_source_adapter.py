@@ -13,6 +13,8 @@ import pytest
 
 from census.p97_search import phase3_piqd_smt_source_adapter as subject
 
+_ABSENT = object()
+
 
 def _canonical(value: object) -> bytes:
     return json.dumps(
@@ -145,6 +147,7 @@ class FakeCurrentPiqd:
         nonfresh_create: bool = False,
         reuse_session_id: bool = False,
         close_status_mismatch: bool = False,
+        solve_replayed: object = False,
     ) -> None:
         self.statuses = dict(statuses or {"z3": "SAT", "cvc5": "SAT"})
         self.unknown_interruption = unknown_interruption
@@ -163,6 +166,7 @@ class FakeCurrentPiqd:
         self.nonfresh_create = nonfresh_create
         self.reuse_session_id = reuse_session_id
         self.close_status_mismatch = close_status_mismatch
+        self.solve_replayed = solve_replayed
         self.sessions: dict[str, dict[str, Any]] = {}
         self.calls: list[tuple[str, str, object]] = []
         self.active = 0
@@ -247,6 +251,8 @@ class FakeCurrentPiqd:
                 "solve_index": 1,
                 "result_sha256": digest,
             }
+            if self.solve_replayed is not _ABSENT:
+                response["replayed"] = self.solve_replayed
             terminal = answer.get("terminal_unsat")
             receipt = {
                 "solve_index": 1,
@@ -456,6 +462,62 @@ def test_sat_custody_real_routes_sequential_sessions_and_semantic_replay(
     }
 
 
+@pytest.mark.parametrize(
+    ("solve_replayed", "present"),
+    [(_ABSENT, False), (False, True)],
+    ids=("old-daemon-absent", "restarted-daemon-false"),
+)
+def test_solve_replayed_compatibility_preserves_digest_and_receipts(
+    tmp_path: Path, solve_replayed: object, present: bool
+) -> None:
+    query, _ = _load(tmp_path)
+    output = tmp_path / "receipts"
+    result = subject.run_source_semantic_query(
+        query,
+        output,
+        FakeCurrentPiqd(solve_replayed=solve_replayed),
+        _accepting_verifier,
+    )
+
+    for engine in result["engines"]:
+        solver = engine["solver"]
+        solve = json.loads((output / f"{solver}.solve.json").read_bytes())
+        assert ("replayed" in solve) is present
+        if present:
+            assert solve["replayed"] is False
+        assert engine["result_sha256"] == subject.piqd_result_digest(solve)
+        receipt_envelope = json.loads((output / f"{solver}.receipts.json").read_bytes())
+        assert "replayed" not in receipt_envelope["receipts"][0]
+
+
+class _BooleanImpostor(int):
+    pass
+
+
+@pytest.mark.parametrize(
+    ("solve_replayed", "message"),
+    [
+        (True, "exact false Boolean"),
+        (0, "exact false Boolean"),
+        (1, "exact false Boolean"),
+        ("false", "exact false Boolean"),
+        (None, "exact false Boolean"),
+        (_BooleanImpostor(0), "non-builtin JSON value"),
+    ],
+    ids=("true", "zero", "one", "text", "null", "subclass"),
+)
+def test_solve_replayed_rejects_true_and_type_attacks(
+    tmp_path: Path, solve_replayed: object, message: str
+) -> None:
+    query, _ = _load(tmp_path)
+    output = tmp_path / "receipts"
+    fake = FakeCurrentPiqd(solve_replayed=solve_replayed)
+    with pytest.raises(subject.SmtSourceAdapterError, match=message):
+        subject.run_source_semantic_query(query, output, fake, _accepting_verifier)
+    assert fake.active == 0
+    assert not output.exists()
+
+
 def test_unsat_core_is_renamed_to_unsat_assumptions_with_source_provenance(
     tmp_path: Path,
 ) -> None:
@@ -662,6 +724,21 @@ def test_descriptor_exact_types_hashes_nofollow_and_create_once(tmp_path: Path) 
 
 
 @pytest.mark.parametrize(
+    "artifact",
+    ["descriptor.json", "query.smt2", "producer.bin"],
+    ids=("descriptor", "original-smt2", "source"),
+)
+def test_offline_capture_rejects_hardlinked_regular_files(
+    tmp_path: Path, artifact: str
+) -> None:
+    descriptor, _ = _packet(tmp_path / "packet")
+    os.link(descriptor.parent / artifact, tmp_path / f"attacker-{artifact}")
+
+    with pytest.raises(subject.SmtSourceAdapterError, match="hard-linked"):
+        subject.load_source_semantic_query(descriptor.parent, descriptor.name)
+
+
+@pytest.mark.parametrize(
     ("mutation", "message"),
     [
         (
@@ -797,9 +874,8 @@ def test_solve_response_loss_reconciles_receipt_or_downgrades_and_closes(
     fake = FakeCurrentPiqd(
         solve_transport_loss={"z3"}, transport_loss_commits=committed
     )
-    result = subject.run_source_semantic_query(
-        query, tmp_path / "receipts", fake, _accepting_verifier
-    )
+    output = tmp_path / "receipts"
+    result = subject.run_source_semantic_query(query, output, fake, _accepting_verifier)
     z3 = result["engines"][0]
     assert z3["response_lost"] is True
     assert z3["reconciled_from_receipt"] is committed
@@ -807,6 +883,12 @@ def test_solve_response_loss_reconciles_receipt_or_downgrades_and_closes(
         "SAT_SEMANTICALLY_REPLAYED" if committed else "INCONCLUSIVE_TRANSPORT_LOSS"
     )
     assert z3["result_sha256"] is not None if committed else z3["result_sha256"] is None
+    if committed:
+        reconciled = json.loads((output / "z3.reconciled-solve.json").read_bytes())
+        receipts = json.loads((output / "z3.receipts.json").read_bytes())
+        assert "replayed" not in reconciled
+        assert "replayed" not in receipts["receipts"][0]
+        assert z3["result_sha256"] == subject.piqd_result_digest(reconciled)
     assert fake.active == 0
     assert len(fake.deleted_session_ids) == 2
 
@@ -845,6 +927,71 @@ def test_private_staging_rolls_back_and_atomic_publication_resists_races(
         )
     assert raced_output.is_dir() and not list(raced_output.iterdir())
     assert not list(tmp_path.glob(".piqd-smt-staging-*"))
+
+
+def test_immutable_writer_rejects_hardlink_before_creation_verification(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    staging = tmp_path / "private-staging"
+    staging.mkdir()
+    staging_fd = os.open(staging, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    alias = tmp_path / "attacker-alias"
+    original_write_all = subject._write_all
+
+    def linking_write_all(descriptor: int, payload: bytes) -> None:
+        original_write_all(descriptor, payload)
+        os.link(staging / "artifact.bin", alias)
+
+    monkeypatch.setattr(subject, "_write_all", linking_write_all)
+    try:
+        with pytest.raises(
+            subject.SmtSourceAdapterError,
+            match="immutable output verification failed",
+        ):
+            subject._write_immutable(staging_fd, "artifact.bin", b"custody bytes")
+    finally:
+        os.close(staging_fd)
+    assert alias.read_bytes() == b"custody bytes"
+
+
+def test_final_publication_rejects_hardlink_added_after_initial_verification(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    query, _ = _load(tmp_path)
+    output = tmp_path / "receipts"
+    alias = tmp_path / "attacker-alias"
+    original_rename = subject._rename_directory_noreplace
+    linked = False
+
+    def linking_rename(root_fd: int, source: str, target: str) -> None:
+        nonlocal linked
+        original_rename(root_fd, source, target)
+        if not linked and target == output.name:
+            published_fd = os.open(
+                target,
+                os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+                dir_fd=root_fd,
+            )
+            try:
+                os.link(
+                    "descriptor.json",
+                    alias.name,
+                    src_dir_fd=published_fd,
+                    dst_dir_fd=root_fd,
+                )
+            finally:
+                os.close(published_fd)
+            linked = True
+
+    monkeypatch.setattr(subject, "_rename_directory_noreplace", linking_rename)
+    with pytest.raises(subject.SmtSourceAdapterError, match="hard-linked file"):
+        subject.run_source_semantic_query(
+            query, output, FakeCurrentPiqd(), _accepting_verifier
+        )
+    assert linked
+    assert alias.read_bytes().startswith(b'{"named_atoms"')
+    assert not output.exists()
+    _assert_empty_tombstones(tmp_path)
 
 
 def test_cleanup_removes_nondirectory_injections_without_following_links(

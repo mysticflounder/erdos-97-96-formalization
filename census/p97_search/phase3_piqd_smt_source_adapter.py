@@ -344,6 +344,7 @@ def _read_relative(root_fd: int, relative: str, cap: int, where: str) -> bytes:
         )
         before = os.fstat(descriptor)
         _fail(stat.S_ISREG(before.st_mode), f"{where} is not a regular file")
+        _fail(before.st_nlink == 1, f"{where} is hard-linked")
         _fail(before.st_size <= cap, f"{where} exceeds its byte cap")
         chunks: list[bytes] = []
         remaining = cap + 1
@@ -355,6 +356,7 @@ def _read_relative(root_fd: int, relative: str, cap: int, where: str) -> bytes:
             remaining -= len(chunk)
         payload = b"".join(chunks)
         after = os.fstat(descriptor)
+        _fail(after.st_nlink == 1, f"{where} became hard-linked during capture")
         before_identity = (
             before.st_dev,
             before.st_ino,
@@ -494,8 +496,8 @@ def _publish_output(staging: _OutputStaging) -> None:
     for child in os.listdir(staging.staging_fd):
         info = os.stat(child, dir_fd=staging.staging_fd, follow_symlinks=False)
         _fail(
-            stat.S_ISREG(info.st_mode),
-            "unexpected non-file in private output staging",
+            stat.S_ISREG(info.st_mode) and info.st_nlink == 1,
+            "unexpected non-file or hard-linked file in private output staging",
         )
     os.fsync(staging.staging_fd)
     _rename_directory_noreplace(
@@ -517,6 +519,12 @@ def _publish_output(staging: _OutputStaging) -> None:
             (staged.st_dev, staged.st_ino) == (rebound.st_dev, rebound.st_ino),
             "published output directory identity changed",
         )
+        for child in os.listdir(rebound_fd):
+            info = os.stat(child, dir_fd=rebound_fd, follow_symlinks=False)
+            _fail(
+                stat.S_ISREG(info.st_mode) and info.st_nlink == 1,
+                "unexpected non-file or hard-linked file in published output",
+            )
     except OSError as exc:
         raise SmtSourceAdapterError("cannot rebind published output directory") from exc
     finally:
@@ -672,7 +680,10 @@ def _write_immutable(root_fd: int, name: str, payload: bytes) -> dict[str, objec
     installed_bytes = 0
     for installed_name in os.listdir(root_fd):
         installed = os.stat(installed_name, dir_fd=root_fd, follow_symlinks=False)
-        _fail(stat.S_ISREG(installed.st_mode), "non-file in private output staging")
+        _fail(
+            stat.S_ISREG(installed.st_mode) and installed.st_nlink == 1,
+            "non-file or hard-linked file in private output staging",
+        )
         installed_bytes += installed.st_size
     _fail(
         installed_bytes + len(payload) <= MAX_OUTPUT_TOTAL_BYTES,
@@ -690,7 +701,9 @@ def _write_immutable(root_fd: int, name: str, payload: bytes) -> dict[str, objec
         os.fsync(descriptor)
         info = os.fstat(descriptor)
         _fail(
-            stat.S_ISREG(info.st_mode) and info.st_size == len(payload),
+            stat.S_ISREG(info.st_mode)
+            and info.st_nlink == 1
+            and info.st_size == len(payload),
             "immutable output verification failed",
         )
     except OSError as exc:
@@ -1371,6 +1384,7 @@ def piqd_result_digest(result: Mapping[str, object]) -> str:
 
 _SOLVE_REQUIRED = {"status", "solve_ms", "solve_index", "result_sha256"}
 _SOLVE_OPTIONAL = {"interrupted_by", "core", "terminal_unsat", "model", "values"}
+_SOLVE_RESPONSE_OPTIONAL = _SOLVE_OPTIONAL | {"replayed"}
 
 
 def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
@@ -1412,11 +1426,21 @@ def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
 
 
 def _validate_solve(value: object) -> dict[str, Any]:
-    obj = _object(value, _SOLVE_REQUIRED, "solve response", optional=_SOLVE_OPTIONAL)
+    obj = _object(
+        value,
+        _SOLVE_REQUIRED,
+        "solve response",
+        optional=_SOLVE_RESPONSE_OPTIONAL,
+    )
     _string(obj["status"], "solve.status")
     _integer(obj["solve_ms"], "solve.solve_ms")
     _integer(obj["solve_index"], "solve.solve_index", minimum=1)
     _digest(obj["result_sha256"], "solve.result_sha256")
+    if "replayed" in obj:
+        _fail(
+            type(obj["replayed"]) is bool and obj["replayed"] is False,
+            "solve.replayed must be exact false Boolean without request_id",
+        )
     _validate_answer_fields(obj, "solve")
     return obj
 

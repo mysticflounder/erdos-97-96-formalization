@@ -15,8 +15,7 @@ if str(ROOT) not in sys.path:
 
 driver = importlib.import_module("census.p97_search.phase3_survivor_cvc5_driver")
 METRIC_FIXTURE = (
-    ROOT
-    / "census/p97_search/tests/fixtures/phase3_survivor_metric_100_current"
+    ROOT / "census/p97_search/tests/fixtures/phase3_survivor_metric_100_current"
 )
 
 EXPECTED_COUNTS = {
