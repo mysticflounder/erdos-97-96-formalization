@@ -51,12 +51,16 @@ regular, singly-linked file owned by the current UID with exact mode 0600;
 the output directory is owned by the current UID with exact mode 0700. These
 identity and mode checks apply on resume reads and after each write.
 
-`--resume` is permitted only for a locally preserved prepared artifact. It
-never re-prepares. If confirmation has not been durably recorded, it performs
-the one pending confirmation; an existing intent without an authenticated
-confirm result is treated as ambiguous and aborts. Once confirmation is
-recorded, resume is read-only with respect to PIQD mutations. `--check` is
-offline-only and verifies the result self-hash and required raw custody.
+`--resume` is permitted only for a locally preserved prepared artifact with
+both `prepare-response.raw` and `prepared-job.json` present and authenticated.
+It never re-prepares. A static-only or otherwise incomplete pre-prepare
+directory is not resumable: the adapter refuses before transport and requires
+a fresh absent output directory; it does not mutate or delete the partial
+evidence. If confirmation has not been durably recorded, it performs the one
+pending confirmation; an existing intent without an authenticated confirm
+result is treated as ambiguous and aborts. Once confirmation is recorded,
+resume is read-only with respect to PIQD mutations. `--check` is offline-only
+and verifies the result self-hash and required raw custody.
 The CLI accepts `--authority` only together with `--check`; normal production
 mode rejects it because authority-v3 is downstream evidence.
 

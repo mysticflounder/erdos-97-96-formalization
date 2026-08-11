@@ -246,6 +246,89 @@ def test_status_custody_rejects_gaps_and_malformed_names(tmp_path: Path) -> None
         custody.close()
 
 
+@pytest.mark.parametrize("failure_mode", ("pre-transport", "pre-response"))
+@pytest.mark.parametrize(
+    "present, expected_missing",
+    (
+        (
+            None,
+            (producer.RAW_NAMES["prepare"], producer.provisioning.PREPARED_JOB_NAME),
+        ),
+        (producer.provisioning.PREPARED_JOB_NAME, (producer.RAW_NAMES["prepare"],)),
+        (producer.RAW_NAMES["prepare"], (producer.provisioning.PREPARED_JOB_NAME,)),
+    ),
+)
+def test_resume_refuses_incomplete_pre_prepare_custody(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    failure_mode: str,
+    present: str | None,
+    expected_missing: tuple[str, ...],
+) -> None:
+    output = tmp_path / "out"
+    calls: list[str] = []
+
+    class FailingClient:
+        def __init__(
+            self, base_url: str, *, transport: object, segmented_multipart: bool
+        ) -> None:
+            self.base_url = base_url
+            self.transport = transport
+
+        def prepare_cnf(self, **kwargs: object) -> producer.PreparedJob:
+            if failure_mode == "pre-transport":
+                raise producer.PiqdOracleError("local preflight failed")
+            try:
+                self.transport("POST", f"{self.base_url}/jobs/prepare-cnf", None, {})
+            except OSError as exc:
+                raise producer.PiqdOracleError(
+                    "transport failed before response"
+                ) from exc
+            raise AssertionError("the failing transport unexpectedly returned")
+
+    def failing_transport(
+        method: str, url: str, body: object, headers: object
+    ) -> HttpResponse:
+        calls.append(method)
+        raise OSError("transport unavailable")
+
+    monkeypatch.setattr(producer, "PiqdRawDimacsClient", FailingClient)
+    with pytest.raises(
+        producer.ProducerError, match="prepare failed after raw custody"
+    ):
+        producer.produce_projected_v3(
+            output_dir=output,
+            base_url="http://daemon",
+            transport=failing_transport,
+            policy=producer.ProducerPolicy(max_polls=1, poll_interval_s=0),
+        )
+
+    static_before = {
+        name: (output / name).read_bytes() for name in producer.STATIC_NAMES
+    }
+    assert {path.name for path in output.iterdir()} == set(producer.STATIC_NAMES)
+    if present is not None:
+        producer._write_new(output / present, b"{}")
+    calls_before_resume = len(calls)
+    with pytest.raises(
+        producer.ProducerError,
+        match="incomplete pre-prepare custody is not resumable.*fresh absent output",
+    ) as error:
+        producer.produce_projected_v3(
+            output_dir=output,
+            base_url="http://daemon",
+            transport=failing_transport,
+            policy=producer.ProducerPolicy(max_polls=1, poll_interval_s=0),
+            resume=True,
+        )
+    for name in expected_missing:
+        assert name in str(error.value)
+    assert len(calls) == calls_before_resume
+    assert {
+        name: (output / name).read_bytes() for name in producer.STATIC_NAMES
+    } == static_before
+
+
 def test_static_custody_detects_tampered_wave_artifact(tmp_path: Path) -> None:
     bundle = provisioning.build_current_unsharded_projected_v3_bundle()
     output = tmp_path / "out"

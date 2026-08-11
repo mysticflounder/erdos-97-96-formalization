@@ -397,6 +397,27 @@ def _optional_read(
     return custody.read(name, maximum)
 
 
+def _required_resume_prepare_custody(custody: _Custody) -> tuple[bytes, bytes]:
+    """Require the authenticated post-prepare evidence before resume."""
+
+    missing: list[str] = []
+    prepare_raw = _optional_read(custody, RAW_NAMES["prepare"], 1 << 20)
+    if prepare_raw is None:
+        missing.append(RAW_NAMES["prepare"])
+    prepared_raw = _optional_read(custody, provisioning.PREPARED_JOB_NAME, 1 << 20)
+    if prepared_raw is None:
+        missing.append(provisioning.PREPARED_JOB_NAME)
+    if missing:
+        raise ProducerError(
+            "incomplete pre-prepare custody is not resumable; "
+            f"missing {', '.join(missing)}; "
+            "a fresh absent output directory is required"
+        )
+    assert prepare_raw is not None
+    assert prepared_raw is not None
+    return prepare_raw, prepared_raw
+
+
 class _RecordingTransport:
     def __init__(self, inner: Transport, custody: _Custody) -> None:
         self.inner = inner
@@ -954,15 +975,12 @@ def produce_projected_v3(
                 ),
             )
         else:
+            prepare_raw, prepared_raw = _required_resume_prepare_custody(custody)
             _validate_static_custody(custody, bundle=bundle)
-            prepare_value = _canonical_json(
-                custody.read(RAW_NAMES["prepare"], 1 << 20), "prepare response"
-            )
+            prepare_value = _canonical_json(prepare_raw, "prepare response")
             _check_prepare(prepare_value, bundle=bundle)
             job_id = prepare_value["job_id"]
-            prepared_raw = _canonical_json(
-                custody.read(provisioning.PREPARED_JOB_NAME), "prepared artifact"
-            )
+            prepared_raw = _canonical_json(prepared_raw, "prepared artifact")
             prepared = _check_prepared_artifact(prepared_raw, bundle=bundle)
             if prepared.job_id != job_id:
                 raise ProducerError("prepared artifact UUID is crossed")
