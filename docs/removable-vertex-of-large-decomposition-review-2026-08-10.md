@@ -11,12 +11,14 @@ unproven mathematics.
 ## 1. Verdict
 
 The trouble is disproportionate, and most of it is the decomposition, not
-the mathematics. The branch contains roughly 8 genuine mathematical
-obligations (HEURISTIC). The current decomposition presents them as 35
-sorried leaves under 86 open interior nodes. One obligation is intrinsically
-hard open combinatorics; no restructuring removes it. The rest of the
-frontier size is structural inflation from three identifiable mechanisms
-(§5).
+the mathematics. An exhaustive classification of all 35 sorried leaf
+signatures (VERIFIED; every declaration read, every row source-cited)
+collapses them to 22 strict configuration-record classes — 20 if two
+borderline merges are accepted — organized in 9 coarse record families
+(§3a). One obligation class is intrinsically hard open combinatorics; no
+restructuring removes it. The remaining frontier size and cost come from
+three identifiable inflation mechanisms (§5), of which the cardinality
+stratum tower is the dominant one.
 
 ## 2. Branch structure (VERIFIED)
 
@@ -49,7 +51,33 @@ frontier size is structural inflation from three identifiable mechanisms
 
 More than half of the open tree is linear towers: each case split closed
 some cases and renamed the residual case with one more name suffix (the
-deepest name carries 9 suffixes). Scale: `Rigid221SourceHeavy.lean` is
+deepest name carries 9 suffixes).
+
+## 3a. Leaf-to-record classification (VERIFIED)
+
+All 35 leaf signatures were read in full and grouped by strict rule: two
+leaves share a class when they quantify over the identical chain of
+configuration records and differ only in trailing Prop-level case tags
+(placement bits, role coincidences, cardinality strata, row-weight tags).
+Result: **22 strict classes** (20 with two flagged borderline merges), in
+**9 coarse record families**:
+
+| Record family (shared packet prefix) | Strict classes | Leaves |
+| --- | ---: | ---: |
+| Mutual-omission flat (Rigid221Closure, TwoDeletionCollision) | 3 | 5 |
+| SourceEqU context chain (Rigid221Placement, Rigid221SourceHeavy) | 5 | 12 |
+| TriApex reverseHitFresh chain (TriApexEndpointRetainedOmission) | 3 | 7 |
+| TriApex pairedCommonDeletion (TriApexEndpointRetainedOmission) | 2 | 2 |
+| TwoSource double-radius collision (TwoSource* files) | 5 | 5 |
+| Singletons: B1 transport, two-radius branch, swapped unique-four, exact-five center residual | 4 | 4 |
+| **Total** | **22** | **35** |
+
+No grouping defensible from source yields fewer than 9 families. Every
+leaf's packet chain was determinable; the full per-class table with
+file:line for each declaration is in the 2026-08-10 classification audit.
+19 of the 35 leaves carry `OriginalUniqueFourResidual` in their chain
+(classes under the unique-radius arm); the tri-apex families instead carry
+`FrontierCommonDeletionParentResidual`. Scale: `Rigid221SourceHeavy.lean` is
 17,999 lines for one family; single case-leaf proofs run 400-500 lines;
 the context token `OriginalUniqueFourResidual F` repeats 116 times in that
 one file; the four cluster files total ≈ 32,800 lines.
@@ -98,11 +126,18 @@ and sharded into a directory on 2026-08-05 (`9feb86f6`).
    hypothesis prefixes and differ by 1-3 trailing hypotheses
    (`Rigid221Closure.lean:52-267`); dispatchers re-pass ~20 arguments
    unchanged. No sorried leaf uses its packet yet (all hypotheses are
-   underscore-bound). Closed siblings show what a terminal actually
-   consumes: a named-point core of ~7-13 points, row memberships,
-   convexity, and exact cardinalities — the tower above each terminal is
-   scaffolding (HEURISTIC). The duplication also blocks the SAT lane from
-   abstracting per-record instead of per-leaf.
+   underscore-bound). Consumption check on two closed pentagon strata
+   (VERIFIED): in `card_eq_fifteen` (`Rigid221SourceHeavy.lean:6294`,
+   body 6317-6957) and `card_eq_sixteen_secondCapNine` (`:6958`, body
+   6982-7563), the proof bodies consume the named-point rows (exclusively
+   via `lateFirstApexSystem R`), the selected class, `D.convex`, and the
+   cardinality tags; `radius`, `F`, and `H` occur **zero** times directly
+   and enter only through the types of the packet chain. The two sorried
+   strata (`:11827`, `:11878`) have signatures identical to the closed
+   strata except the cardinality tag (VERIFIED). The tower above each
+   terminal is scaffolding for these checked strata; the same conclusion
+   for the other families is untested. The duplication also blocks the SAT
+   lane from abstracting per-record instead of per-leaf.
 
 Cleared worry: the spine render's repeated
 `false_of_twoDistinctExactFourMutualOmissionJointDeletions` links are not a
@@ -136,15 +171,17 @@ hardest-part-first target.
 
 ## 7. Restructuring options
 
-Subsumption estimates are HEURISTIC (fractions of the current 35 leaves).
+Member counts below are exact, from the §3a classification. Statements
+about unwritten bridge theorems are contingencies; R3 is open mathematics
+(CONJECTURED).
 
-| # | Option | Effect | Risk / contingency |
+| # | Option | Effect (exact) | Risk / contingency |
 | --- | --- | --- | --- |
-| R1 | Configuration-record normal form: one record structure per cluster, case tags as data, leaves become instances | 35 statements → ~8; makes every later option cheaper | Pure refactor plus one extraction lemma per cluster |
-| R5 | Reflection/role transport (pilot of R1's equivariance layer) | Merges 2-4 mirror leaves (e.g. `JInLeftAdjacentCap` / `JInRightAdjacentCap`) | Equivariance of stacked oriented structures must be proven; partial machinery exists with 5 sorries in `Rigid221Placement.lean` |
-| R2 | Finish exact-12 placement-orbit transport → universal SAT lift per record at fixed card | 9-12 leaves; converts existing kernel-checked cuts into closures | Bridge theorems unwritten; card-11 precedent works end-to-end |
-| R3 | Uniform tail theorem per record (no card hypothesis) | Terminates all towers permanently | The intrinsic open core (§6) |
-| R4 | Confinement bound: Minimal ∧ no-IsM44 ∧ CriticalPairFrontier → |A| ≤ N₀, then bounded census | ~20 leaves | Unproven global bound; likely as hard as R3 |
+| R1 | Configuration-record normal form: one record per class, case tags as data, leaves become instances | 35 statements → 22 class statements (9 record families); makes every later option cheaper | Pure refactor plus one extraction lemma per class |
+| R5 | Reflection/role transport (pilot of R1's equivariance layer) | Merges exactly 2 leaves: the `JInLeftAdjacentCap` / `JInRightAdjacentCap` pair | Equivariance of stacked oriented structures must be proven; partial machinery exists with 5 sorries in `Rigid221Placement.lean` |
+| R2 | Finish exact-12 placement-orbit transport → universal SAT lift per record at fixed card | Immediate scope: the 3 fully fixed-card leaves (`exactTwelve` pair `Rigid221SourceHeavy.lean:15629,:15694`, card = 12; `card_eq_seventeen_secondCapNine` `:11827`) | Extension to the 12-leaf SourceEqU family needs an unwritten general-card bridge; card-11 precedent works end-to-end |
+| R3 | Uniform tail theorem per record (no card hypothesis) | Terminates the pentagon cardinality tower and the stratum scheme generally | The intrinsic open core (§6) |
+| R4 | Confinement bound: Minimal ∧ no-IsM44 ∧ CriticalPairFrontier → |A| ≤ N₀, then bounded census | The 19 leaves carrying `OriginalUniqueFourResidual` (classes 1-8, 20, 21) | Unproven global bound; likely as hard as R3 |
 
 Recommended order: enforce the existing fan-out freeze first (no new
 exact-card or coincidence splits unless at least one child closes at split
@@ -171,3 +208,7 @@ pentagon record. {{NEEDS_ADAM_INPUT}} — choice and sequencing of R1-R5.
   `74fb6ccc`..`1666eabc`.
 - Dependency trace and statement reading: session audits, 2026-08-10;
   key sites cited inline above.
+- Exhaustive leaf classification and terminal-consumption check: session
+  audit, 2026-08-10 — all 35 leaf declarations located and read; per-class
+  table with file:line per row; consumption counts per hypothesis for the
+  two checked closed strata.
