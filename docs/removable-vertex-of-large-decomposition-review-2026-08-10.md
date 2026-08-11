@@ -190,6 +190,39 @@ R1's equivariance pilot; R2 to convert SAT-lane diagnostics into reusable
 kernel closures; then concentrate mathematical effort on R3 for the
 pentagon record. {{NEEDS_ADAM_INPUT}} — choice and sequencing of R1-R5.
 
+## 7a. Pending consolidation-level audits {{NEEDS_RESEARCH}}
+
+The 22-class count (§3a) is a floor on syntactic consolidation only. The
+tree has three semantic consolidation levels — hub nodes where a stronger
+theorem would make whole families unnecessary. This review assessed one.
+The other two are checkable and have not been checked:
+
+1. **All-low-hits arm hub (NOT ASSESSED).** 16 of the 35 leaves (triApex
+   reverseHitFresh 7, triApex pairedCommonDeletion 2, TwoSource
+   double-radius 5, plus the b1 transport and cross-blocker singletons)
+   share the ancestor `false_of_frontierAllLargeCapsTriApex_all_low_hits`.
+   No analog of R3/R4 was proposed for this arm. Audit to run: read the
+   triApex and TwoSource terminal mechanisms against each other and
+   against the hub statement; determine whether they reduce to a common
+   mechanism and whether a uniform statement at the hub exists.
+2. **Top of the funnel (NOT ASSESSED).** The review took the
+   `CriticalPairFrontier` packet as given. Audit to run: examine what the
+   closed card-11 route (`false_of_criticalPairFrontier_of_card_eq_eleven`,
+   `FiniteN11Frontier.lean:190`) actually consumed and whether any part of
+   its census scheme is card-independent; and whether
+   `false_of_twoLargeCaps_commonCriticalMap` admits a global argument that
+   does not route through the `CriticalPairFrontier` packet at all. Two
+   motivating facts (VERIFIED): the card-11 instance closed entirely at
+   this level, proving a full-collapse argument exists at fixed card; and
+   the shared-sink consumption of
+   `twoDistinctExactFourMutualOmissionJointDeletions` from five sites
+   suggests global counting content that the per-case towers re-derive
+   locally.
+
+Until these two audits run, "no higher-level consolidation is missing"
+cannot be claimed. The unique-radius arm hub (level assessed in §7 as
+R3/R4) is the only level with a stated status.
+
 ## 8. Hygiene notes (minor, VERIFIED)
 
 - 3 off-spine sorries (`Rigid221Closure.lean`,
