@@ -1,8 +1,15 @@
 # P97 remaining PIQD solver onboarding plan
 
+> **Exact-17 route correction (2026-08-10).** PIQD remains the accepted
+> custody, solve, session, and certificate-transport layer, but it does not
+> establish theorem meaning or source entitlement. Exact-17 proof production
+> now starts with the Lean finite-normal-form and checked-export contract in
+> `docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`. Existing exact-17
+> canaries and refinement sessions remain finite infrastructure evidence.
+
 Date: 2026-08-09
 
-Updated: 2026-08-10
+Updated: 2026-08-11
 
 ## Outcome
 
@@ -45,11 +52,11 @@ false until separate source-clean consumers establish them.
 | 5 | Exact12 v14 CardHead static CaDiCaL | Onboarded and pushed; live SAT canary and independent total-model/custody replay pass, receipt `d74c396e…` | Reuse the qualified producer-specific boundary; preserve finite-only and false source-entitlement claims |
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
 | 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | CardHead and the F-Gamma base-discovery call are onboarded. F-Gamma job `5b9afcf1…` returned a total 23-variable SAT model; independent source/map/CNF/model/custody replay and daemon-side corroboration pass | Bind the remaining frontier producer dialects; keep F-Gamma's two proof-producing DRAT gates local until PIQD has an authenticated certificate path |
-| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 now has a sealed qualification-v2 authority for arbitrary dense append/solve journals and a fail-closed production launcher; its 173-test fake gate and independent audit are green, but no production qualification has run | Run and independently audit one bounded qualification-v2 production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
-| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green. FreshThird and Survivor-CVC5 have authenticated live canaries and offline replay. The global-confinement cvc5 adapter has exact source/query custody, one-session/one-solve `:nl-cov`, independent exact-rational SAT replay, and a green 74-test fake/adversarial gate. Its first live canary durably ended `UNKNOWN / daemon_deadline`; it also exposed a fixed P97 late-receipt reconciliation race and an open PIQD cvc5 timeout-semantics defect | Await the PIQD timeout ruling, then rerun and independently audit one fresh bounded full-convex canary. Assess endpoint and core-mining dialects separately; do not promote diagnostic UNSAT or UNKNOWN outcomes |
-| 10 | Active msolve and Singular algebra probes | No PIQD backend or receipt | PIQD-BACKEND-002 typed algebra execution, or an explicit unsupported disposition |
+| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 now has a qualification-v3 authority for the exact current global unsharded base, complete variable map, current source custody, and arbitrary dense append/solve journals. Its 313-test fake gate is green; historical shard qualification-v2 remains frozen, and no v3 production qualification has run | Recapture the authority from a clean immutable structural source, then run and independently audit one bounded qualification-v3 production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
+| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green. FreshThird and Survivor-CVC5 have authenticated live canaries and offline replay. The global-confinement cvc5 adapter has exact source/query custody, one-session/one-solve `:nl-cov`, independent exact-rational SAT replay, and a green 98-test fake/adversarial gate. Its first live canary durably ended `UNKNOWN / daemon_deadline`; the P97 late-receipt reconciliation race is fixed, and PIQD now discloses the effective deadline in both solve responses and receipts | With `effective_deadline_ms = timeout_ms + 30000` cross-bound and the HTTP bound sized above it, rerun and independently audit one fresh bounded full-convex canary. Assess endpoint and core-mining dialects separately; do not promote diagnostic UNSAT or UNKNOWN outcomes |
+| 10 | Singular algebra probes | PIQD-BACKEND-002 is explicitly unsupported today. The active equality-ideal screen still executes Singular directly; certificate-producing Singular calls remain intentional local proof boundaries. The old msolve pilots are historical or superseded. PIQD's live content-addressed blob upload can custody bytes but does not attest execution or semantics | Do not count algebra execution as onboarded. Await an explicitly ruled-in typed backend; blob-ingest plus `/evidence` may custody external evidence only with execution attestation false |
 | 11 | Certificate and Lean ingress | Clause-map consumer green; handoff incomplete | CERT-001 immutable source-to-certificate manifest and authenticated checker/replay receipt |
-| 12 | Theorem/candidate bank in PIQD | BANK-001 live but arbitrary payload ingestion incomplete | Hash-verifying atomic payload upload, stable error codes, remaining concurrency/cursor/rollback tests, strict P97 client, dry-run migration, byte-for-byte export audit |
+| 12 | Theorem/candidate bank in PIQD | The strict seven-component P97 planner and read-only export auditor are green. PIQD evidence v2 and hash-verifying blob upload are live, but APPLY remains disabled | Add atomic blob-plus-evidence publication and snapshot-consistent export, then run the strict P97 migration and byte-for-byte audit. Blob upload alone is not migration authority |
 | 13 | Prover9, Mace4, and march_cu references | No active non-test subprocess entry point found | Keep classified inactive; require typed PIQD backend and replay contract before revival |
 
 ## PIQD maintainer dependencies
@@ -74,22 +81,31 @@ content identities but cannot manufacture producer or proof provenance.
 
 ### BANK-001 follow-up
 
-Evidence root v2, reference checks, and payload re-hashing are live. Before real
-P97 bank migration, PIQD still needs a hash-verifying payload insertion boundary
-or atomic payload-plus-record endpoint, stable machine-readable error codes, and
-the stated cursor/concurrency/interruption tests. No real bank entry is created
-before those gates pass.
+Evidence root v2, reference checks, payload re-hashing, and
+`PUT /blobs/:hash` are live. The P97 side has a strict deterministic plan for
+all seven canonical registry components and a bounded read-only export auditor.
+APPLY remains unconditionally disabled: byte upload is not an atomic
+blob-plus-evidence-record transaction, and the export API still lacks a
+snapshot token that covers every page. No real bank entry is created before
+both guarantees and their interruption/concurrency tests pass.
 
 ### PIQD-BACKEND-002
 
-The active msolve and Singular lanes need a typed algebra backend, not a generic
-shell escape. The request posted in nthdegree convo message `#4362` asks for a
-closed backend-kind allowlist; immutable input, argument, executable, and
-environment identities; bounded byte-exact stdout/stderr; single-process
-resource evidence; CAS/idempotency; and backend-specific normalized result and
-model/certificate references. If PIQD intentionally does not support these
-backends, the maintainer should return an explicit unsupported disposition so
-the lanes are not silently counted as onboarded.
+The maintainer returned the explicit `UNSUPPORTED TODAY` disposition in
+nthdegree convo message `#4924`: PIQD has no msolve or Singular execution
+backend and no generic shell runner. Therefore algebra execution is not
+onboarded and must not be counted as such. If this feature is later ruled in,
+it needs a closed backend-kind allowlist; immutable input, argument,
+executable, and environment identities; bounded byte-exact stdout/stderr;
+single-process resource evidence; CAS/idempotency; and backend-specific
+normalized result and model/certificate references.
+
+The smaller custody-only request in convo messages `#4925` and `#4929` is now
+live as hash-addressed `PUT /blobs/:hash`. It reuses PIQD's content-addressed
+blob store but does not attest that PIQD executed Singular or validated the
+result. Any later evidence record must still say `execution_attested=false`,
+`piqd_executed=false`, and `semantic_claims=false`; publication also needs an
+atomic record-binding contract rather than a split best-effort sequence.
 
 The existing PIQD SMT-session API is the intended path for Z3 and cvc5. Each
 project adapter must still bind the original source semantics and independently
@@ -223,6 +239,32 @@ attested solver process and a no-parallel flag are not hardware CPU affinity or
 thread-count attestations, and every source-entitlement, theorem-coverage,
 aggregate, universal, Euclidean, Lean, and proof-spine claim remains false.
 
+### Global-confinement metric-cvc5 timeout checkpoint
+
+The first bounded metric canary selected frontier system
+`8b6ceb4eed2ec9f83827` and opened PIQD session
+`3a2ffaea-21f8-49fa-904c-14b51364a869` with `timeout_ms = 20000`. The client
+lost the HTTP response at 50 seconds, but the durable session subsequently
+settled to one solve and one receipt: `UNKNOWN`,
+`interrupted_by = daemon_deadline`, `solve_ms = 50004`, and result SHA
+`beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a`.
+The run therefore supplies a finite diagnostic `UNKNOWN`, not an inconclusive
+or missing solver record.
+
+This checkpoint exposed two distinct contract gaps. PIQD deliberately adds a
+30-second grace to bounded cvc5 solves because cvc5 1.3.3 does not honor
+`tlimit-per`; the live daemon now discloses that bound as
+`effective_deadline_ms = timeout_ms + 30000` in both the response and durable
+receipt. The requested 20-second solve therefore has an honest 50-second
+effective deadline rather than a 20-second execution claim. Separately, the
+P97 adapter sampled reconciliation before the receipt committed and initially
+mislabeled the run. The adapter uses a fixed bounded reconciliation schedule,
+authenticates terminal session state and exactly one durable receipt together,
+never retries the solve, and closes exactly once. A fresh live retry is
+permitted only after the strict adapter requires the new effective-deadline
+field and sizes its HTTP bound above it. See convo `#4960`, `#4961`, `#4964`,
+`#4967`, `#5017`, and `#5020`.
+
 ## Rollout protocol
 
 For each lane:
@@ -237,29 +279,6 @@ For each lane:
 8. search the indexed theorem banks and name the exact Lean consumer, if any;
 9. update the lane status without moving the proof spine for finite evidence;
 10. commit and push only a reviewed, scoped change set when requested.
-
-### Global-confinement metric-cvc5 timeout checkpoint
-
-The first bounded metric canary selected frontier system
-`8b6ceb4eed2ec9f83827` and opened PIQD session
-`3a2ffaea-21f8-49fa-904c-14b51364a869` with `timeout_ms = 20000`. The client
-lost the HTTP response at 50 seconds, but the durable session subsequently
-settled to one solve and one receipt: `UNKNOWN`,
-`interrupted_by = daemon_deadline`, `solve_ms = 50004`, and result SHA
-`beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a`.
-The run therefore supplies a finite diagnostic `UNKNOWN`, not an inconclusive
-or missing solver record.
-
-This checkpoint exposed two distinct failures. PIQD currently adds a fixed
-30-second grace to every bounded cvc5 solve, so the requested 20-second bound
-became the actual 50-second daemon deadline; the maintainer owns that
-timeout-semantics defect. Separately, the P97 adapter sampled reconciliation
-before the receipt committed and initially mislabeled the run. The adapter now
-uses a fixed bounded reconciliation schedule, authenticates terminal session
-state and exactly one durable receipt together, never retries the solve, and
-closes exactly once. The deterministic delayed-receipt regression is included
-in the 74-test gate. See convo `#4960`, `#4961`, `#4964`, and `#4967`. No fresh
-live retry is permitted until the PIQD timeout behavior is ruled and deployed.
 
 ## Completion criteria
 

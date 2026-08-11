@@ -149,6 +149,7 @@ class FakeCurrentPiqd:
         reuse_session_id: bool = False,
         close_status_mismatch: bool = False,
         solve_replayed: object = False,
+        effective_deadline_tamper: str | None = None,
     ) -> None:
         self.statuses = dict(statuses or {"z3": "SAT", "cvc5": "SAT"})
         self.unknown_interruption = unknown_interruption
@@ -169,6 +170,7 @@ class FakeCurrentPiqd:
         self.reuse_session_id = reuse_session_id
         self.close_status_mismatch = close_status_mismatch
         self.solve_replayed = solve_replayed
+        self.effective_deadline_tamper = effective_deadline_tamper
         self.sessions: dict[str, dict[str, Any]] = {}
         self.calls: list[tuple[str, str, object]] = []
         self.active = 0
@@ -255,6 +257,9 @@ class FakeCurrentPiqd:
                 "solve_ms": 3,
                 "solve_index": 1,
                 "result_sha256": digest,
+                "effective_deadline_ms": (
+                    body["timeout_ms"] + subject.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+                ),
             }
             if self.solve_replayed is not _ABSENT:
                 response["replayed"] = self.solve_replayed
@@ -272,6 +277,9 @@ class FakeCurrentPiqd:
                 "solver_sha256": _sha(f"binary:{data['solver']}".encode()),
                 "assumptions": list(body["assumptions"]),
                 "timeout_ms": body["timeout_ms"],
+                "effective_deadline_ms": (
+                    body["timeout_ms"] + subject.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+                ),
                 "include_model": body["include_model"],
                 "get_values": list(body["get_values"]),
                 **answer,
@@ -279,6 +287,33 @@ class FakeCurrentPiqd:
                 "result_sha256": ("f" * 64 if self.receipt_digest_mismatch else digest),
                 "at": 14,
             }
+            if self.effective_deadline_tamper == "response_missing":
+                response.pop("effective_deadline_ms")
+            elif self.effective_deadline_tamper == "response_extra":
+                response["unexpected_deadline_field"] = 1
+            elif self.effective_deadline_tamper == "response_bool":
+                response["effective_deadline_ms"] = True
+            elif self.effective_deadline_tamper == "response_float":
+                response["effective_deadline_ms"] = float(
+                    response["effective_deadline_ms"]
+                )
+            elif self.effective_deadline_tamper == "response_arithmetic":
+                response["effective_deadline_ms"] += 1
+            elif self.effective_deadline_tamper == "receipt_missing":
+                receipt.pop("effective_deadline_ms")
+            elif self.effective_deadline_tamper == "receipt_extra":
+                receipt["unexpected_deadline_field"] = 1
+            elif self.effective_deadline_tamper == "receipt_bool":
+                receipt["effective_deadline_ms"] = True
+            elif self.effective_deadline_tamper == "receipt_float":
+                receipt["effective_deadline_ms"] = float(
+                    receipt["effective_deadline_ms"]
+                )
+            elif self.effective_deadline_tamper == "receipt_arithmetic":
+                receipt["effective_deadline_ms"] += 1
+            elif self.effective_deadline_tamper == "crossed_response_receipt":
+                receipt["timeout_ms"] += 1_000
+                receipt["effective_deadline_ms"] += 1_000
             if self.receipt_terminal_mismatch and answer["status"] == "UNSAT":
                 receipt["terminal_unsat"] = not receipt["terminal_unsat"]
             if (
@@ -515,6 +550,31 @@ def test_sat_custody_real_routes_sequential_sessions_and_semantic_replay(
         "receipts",
         *fake.sessions,
     }
+    expected_deadline = 17_000 + subject.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+    for solver in ("z3", "cvc5"):
+        solve = json.loads((output / f"{solver}.solve.json").read_bytes())
+        receipt = json.loads((output / f"{solver}.receipts.json").read_bytes())[
+            "receipts"
+        ][0]
+        assert solve["effective_deadline_ms"] == expected_deadline
+        assert receipt["effective_deadline_ms"] == expected_deadline
+
+
+def test_bounded_http_timeout_is_strictly_above_effective_deadline() -> None:
+    timeout_ms = 20_000
+    effective = subject.effective_deadline_ms(timeout_ms)
+    http_timeout_ms = subject.bounded_solve_http_timeout_s(timeout_ms) * 1000
+    assert effective == 50_000
+    assert http_timeout_ms == 55_000
+    assert http_timeout_ms > effective
+
+
+@pytest.mark.parametrize("invalid", [True, 20_000.0, 0, -1])
+def test_bounded_http_timeout_rejects_nonexact_or_unbounded_limits(
+    invalid: object,
+) -> None:
+    with pytest.raises(subject.SmtSourceAdapterError, match="exact integer"):
+        subject.bounded_solve_http_timeout_s(invalid)
 
 
 def test_public_authenticated_single_solver_boundary_binds_exact_selection(
@@ -611,6 +671,34 @@ def test_solve_replayed_rejects_true_and_type_attacks(
     query, _ = _load(tmp_path)
     output = tmp_path / "receipts"
     fake = FakeCurrentPiqd(solve_replayed=solve_replayed)
+    with pytest.raises(subject.SmtSourceAdapterError, match=message):
+        subject.run_source_semantic_query(query, output, fake, _accepting_verifier)
+    assert fake.active == 0
+    assert not output.exists()
+
+
+@pytest.mark.parametrize(
+    ("tamper", "message"),
+    [
+        ("response_missing", "unexpected keys"),
+        ("response_extra", "unexpected keys"),
+        ("response_bool", "exact integer"),
+        ("response_float", "non-builtin JSON value"),
+        ("response_arithmetic", r"request timeout_ms \+ 30000"),
+        ("receipt_missing", "unexpected keys"),
+        ("receipt_extra", "unexpected keys"),
+        ("receipt_bool", "exact integer"),
+        ("receipt_float", "non-builtin JSON value"),
+        ("receipt_arithmetic", r"receipt timeout_ms \+ 30000"),
+        ("crossed_response_receipt", "solve response disagree"),
+    ],
+)
+def test_effective_deadline_schema_and_cross_binding_fail_closed(
+    tmp_path: Path, tamper: str, message: str
+) -> None:
+    query, _ = _load(tmp_path)
+    fake = FakeCurrentPiqd(effective_deadline_tamper=tamper)
+    output = tmp_path / tamper
     with pytest.raises(subject.SmtSourceAdapterError, match=message):
         subject.run_source_semantic_query(query, output, fake, _accepting_verifier)
     assert fake.active == 0

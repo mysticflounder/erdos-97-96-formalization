@@ -36,7 +36,7 @@ from collections import Counter, defaultdict
 from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import sympy as sp
 
@@ -125,6 +125,9 @@ PROJECTED_STATIC_CONFIG_SCHEMA = (
     "p97-phase3-structural-cegar-configuration-projected-static-v3"
 )
 _PHASE3_ORDER_BITSETS_ENABLED = True
+PROJECTED_STATIC_V3_UNSHARDED_PROFILE: Literal[
+    "phase3-v0.2-projected-static"
+] = "phase3-v0.2-projected-static"
 LOG_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-solver-log-v1"
 CUBE_PLAN_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-cube-plan-v1"
 CUBE_RESULT_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-cube-result-v1"
@@ -700,12 +703,16 @@ def _incremental_piqd_caller_config(
             "census.p97_search.phase3_piqd_projected_v3_qualification"
         )
         try:
-            authority = qualification.load_production_authority_v2(authority_path)
-            qualification.validate_production_launch_authority_v2(
+            authority = qualification.load_production_authority_v3(authority_path)
+            qualification.validate_production_launch_authority_v3(
                 authority,
                 daemon_url=args.piqd_base_url,
-                source_manifest=args.piqd_source_manifest.read_bytes(),
-                producer_manifest=args.piqd_producer_manifest.read_bytes(),
+                source_manifest=qualification.capture_production_control_input_v3(
+                    args.piqd_source_manifest
+                ),
+                producer_manifest=qualification.capture_production_control_input_v3(
+                    args.piqd_producer_manifest
+                ),
                 producer_job_id=args.piqd_producer_job_id,
                 solver_name=args.piqd_solver_name,
             )
@@ -5411,6 +5418,62 @@ def _dependency_hashes() -> dict[str, str]:
         / "lean/Erdos9796Proof/P97/EndpointCertificate/OrderedCoreSigns.lean",
     )
     return {str(path.relative_to(ROOT)): _sha256_file(path) for path in paths}
+
+
+@dataclass(frozen=True)
+class ProjectedStaticV3UnshardedInputs:
+    """Immutable, pure inputs for an unsharded projected-static-v3 launch.
+
+    Every structured value is returned as canonical bytes so callers cannot
+    mutate an authenticated mapping after construction.
+    """
+
+    base_scope: Literal["global-unsharded"]
+    profile: Literal["phase3-v0.2-projected-static"]
+    base_cnf: bytes
+    variable_map: bytes
+    dependency_manifest: bytes
+    encoding_configuration: bytes
+
+
+def build_projected_static_v3_unsharded_inputs(
+) -> ProjectedStaticV3UnshardedInputs:
+    """Build the current unsharded base without running CEGAR or a solver."""
+
+    encoding = _phase3_encoding(projected_static_v3=True)
+    if encoding.spec_version != PROJECTED_STATIC_V3_UNSHARDED_PROFILE:
+        raise StructuralCegarError(
+            "projected-static-v3 unsharded profile identity changed"
+        )
+    namespace = _validate_three_rhombus_literal_namespace(encoding)
+    variable_map = [
+        [center, point, encoding.var("s", center, point)]
+        for center in range(CELL.n)
+        for point in range(CELL.n)
+        if center != point
+    ]
+    variable_map_bytes = _canonical_bytes(variable_map)
+    if _sha256_bytes(variable_map_bytes) != namespace["descriptor"][
+        "mapping_sha256"
+    ]:
+        raise StructuralCegarError(
+            "projected-static-v3 canonical variable-map bytes disagree"
+        )
+    dependencies = {
+        "schema": "p97-projected-static-v3-source-bundle/v1",
+        "files": [
+            {"path": path, "sha256": digest}
+            for path, digest in sorted(_dependency_hashes().items())
+        ],
+    }
+    return ProjectedStaticV3UnshardedInputs(
+        base_scope="global-unsharded",
+        profile=PROJECTED_STATIC_V3_UNSHARDED_PROFILE,
+        base_cnf=encoding.cnf_bytes(),
+        variable_map=variable_map_bytes,
+        dependency_manifest=_canonical_bytes(dependencies),
+        encoding_configuration=_canonical_bytes(encoding.configuration()),
+    )
 
 
 def _algebraic_bank_certificate_kind(directory: Path) -> str:
@@ -11311,6 +11374,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         "--piqd-solver-name",
         help="PIQD incremental SAT solver name; requires --persistent-discovery",
     )
+    piqd_group.add_argument(
+        "--piqd-qualification-authority",
+        type=Path,
+        help=(
+            "sealed projected-static-v3 production qualification-v3 authority; "
+            "requires the complete persistent PIQD input group"
+        ),
+    )
     parser.add_argument(
         "--productivity-telemetry",
         action="store_true",
@@ -11353,14 +11424,6 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-new-raw", type=int)
     args = parser.parse_args(argv)
-    piqd_group.add_argument(
-        "--piqd-qualification-authority",
-        type=Path,
-        help=(
-            "sealed projected-static-v3 production qualification-v2 authority; "
-            "requires the complete persistent PIQD input group"
-        ),
-    )
     try:
         _static_piqd_caller_config(args)
         _incremental_piqd_caller_config(args)

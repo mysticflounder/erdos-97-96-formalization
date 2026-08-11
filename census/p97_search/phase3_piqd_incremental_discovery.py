@@ -605,6 +605,7 @@ RECEIPT_REQUIRED = {
 RECEIPT_OPTIONAL = {
     "conflict_limit",
     "timeout_ms",
+    "effective_deadline_ms",
     "interrupted_by",
     "core",
     "batch_key",
@@ -621,6 +622,7 @@ RESPONSE_KEYS = {
     "core",
     "terminal_unsat",
     "interrupted_by",
+    "effective_deadline_ms",
 }
 
 
@@ -1630,6 +1632,26 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     f"receipt {key} disagrees with solve request"
                 )
+        expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
+        if expected_deadline is None:
+            if "effective_deadline_ms" in receipt:
+                raise PiqdIncrementalDiscoveryError(
+                    "receipt unexpectedly records effective_deadline_ms"
+                )
+        else:
+            if "effective_deadline_ms" not in receipt:
+                raise PiqdIncrementalDiscoveryError(
+                    "receipt lacks effective_deadline_ms for a timed solve"
+                )
+            effective_deadline = _integer(
+                receipt["effective_deadline_ms"],
+                label="receipt.effective_deadline_ms",
+                minimum=30_000,
+            )
+            if effective_deadline != expected_deadline:
+                raise PiqdIncrementalDiscoveryError(
+                    "receipt effective_deadline_ms disagrees with solve request"
+                )
         interrupted = receipt.get("interrupted_by")
         if interrupted is not None:
             _string(interrupted, label="receipt.interrupted_by", nonempty=True)
@@ -1736,6 +1758,26 @@ class PiqdIncrementalDiscoveryRunner:
         _integer(response["solve_ms"], label="solve_ms", minimum=0)
         index = _integer(response["solve_index"], label="solve_index", minimum=1)
         result_hash = _hex64(response["result_sha256"], label="result_sha256")
+        expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
+        if expected_deadline is None:
+            if "effective_deadline_ms" in response:
+                raise PiqdIncrementalDiscoveryError(
+                    "solve response unexpectedly records effective_deadline_ms"
+                )
+        else:
+            if "effective_deadline_ms" not in response:
+                raise PiqdIncrementalDiscoveryError(
+                    "solve response lacks effective_deadline_ms for a timed solve"
+                )
+            effective_deadline = _integer(
+                response["effective_deadline_ms"],
+                label="solve.effective_deadline_ms",
+                minimum=30_000,
+            )
+            if effective_deadline != expected_deadline:
+                raise PiqdIncrementalDiscoveryError(
+                    "solve response effective_deadline_ms disagrees with solve request"
+                )
         if index != self._solve_count + 1:
             raise PiqdIncrementalDiscoveryError("PIQD solve index is not dense")
         model = response.get("model")

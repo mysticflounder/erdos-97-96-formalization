@@ -5,7 +5,7 @@ The underlying projected-static-v3 CLI remains a legacy/diagnostic entry point:
 it intentionally retains local discovery defaults.  This command accepts the
 same arguments, validates only the one-worker, sequential, fresh-session,
 fully configured persistent PIQD profile, validates a sealed production
-qualification-v2 authority, and only then delegates to the existing qualified
+authority-v3, and only then delegates to the existing qualified
 PIQD route.
 """
 
@@ -142,16 +142,16 @@ def _validate_production_profile(args: argparse.Namespace) -> None:
             "production launch requires --piqd-journal-root to equal --out"
         )
     try:
-        authority = qualification.load_production_authority_v2(
+        authority = qualification.load_production_authority_v3(
             args.piqd_qualification_authority
         )
-        qualification.validate_production_launch_authority_v2(
+        qualification.validate_production_launch_authority_v3(
             authority,
             daemon_url=args.piqd_base_url,
-            source_manifest=qualification.capture_production_control_input_v2(
+            source_manifest=qualification.capture_production_control_input_v3(
                 args.piqd_source_manifest
             ),
-            producer_manifest=qualification.capture_production_control_input_v2(
+            producer_manifest=qualification.capture_production_control_input_v3(
                 args.piqd_producer_manifest
             ),
             producer_job_id=args.piqd_producer_job_id,
@@ -175,7 +175,7 @@ def _validated_argv(argv: Sequence[str] | None = None) -> list[str]:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """Fail closed through v2 validation, then delegate the exact argv."""
+    """Fail closed through v3 validation, then delegate the exact argv."""
 
     return projected_v3.main(_validated_argv(argv))
 

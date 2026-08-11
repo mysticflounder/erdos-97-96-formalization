@@ -10,8 +10,7 @@ from typing import NoReturn
 
 import pytest
 
-from census.p97_search import phase3_piqd_oracle as oracle
-from census.p97_search import phase3_piqd_static_solver_runner as static
+from census.p97_search import phase3_piqd_projected_v3_provisioning as provisioning
 from census.p97_search.phase3_cegar_wave import canonical_json_bytes
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
@@ -78,7 +77,7 @@ def _forbid_predelegation_work(
 
     monkeypatch.setattr(Path, "read_bytes", forbidden)
     monkeypatch.setattr(
-        launcher.qualification, "load_production_authority_v2", forbidden
+        launcher.qualification, "load_production_authority_v3", forbidden
     )
     monkeypatch.setattr(launcher.projected_v3, "main", forbidden)
     monkeypatch.setattr(
@@ -144,69 +143,50 @@ def test_incomplete_and_unsafe_profiles_fail_before_external_work(
 
 
 def _write_valid_inputs(tmp_path: Path) -> None:
-    source = {
-        "schema": static.SOURCE_SCHEMA,
-        "source_id": "projected-static-v3-launcher-fixture",
-        "source_path": "census/p97_search/sat_generate.py",
-        "source_sha256": "a" * 64,
-        "finite_schema": "projected-static-v3-launcher-fixture/v1",
-        "cardinality_scope": "one exact finite CNF",
-        "source_theorem": "Problem97.projectedStaticV3LauncherFixture",
-        "claims": {
-            "source_entitlement": False,
-            "theorem_coverage": False,
-            "universal_lift": False,
-            "lean_closure": False,
-        },
-    }
-    source_raw = canonical_json_bytes(source)
-    producer = {
-        "schema": static.PRODUCER_SCHEMA,
-        "producer_id": "projected-static-v3-launcher-producer",
-        "producer_kind": "static-dimacs",
-        "source_manifest": source,
-        "source_manifest_sha256": hashlib.sha256(source_raw).hexdigest(),
-        "variable_map_sha256": "b" * 64,
-        "backend": "cadical",
-        "solver_profile": "sat",
-        "query_polarity": "UNSAT_MEANS_OBSTRUCTION",
-        "claims": {
-            **source["claims"],
-            "one_process": False,
-            "one_core": False,
-        },
-    }
-    producer_raw = canonical_json_bytes(producer)
-    base_hash = "c" * 64
+    bundle = provisioning.build_current_unsharded_projected_v3_bundle()
+    qualification = launcher.qualification
     authority = {
-        "schema": launcher.qualification.PRODUCTION_V2_AUTHORITY_SCHEMA,
+        "schema": qualification.PRODUCTION_V3_AUTHORITY_SCHEMA,
+        "base_scope": qualification.PRODUCTION_V3_BASE_SCOPE,
+        "builder_base_scope": bundle.base_scope,
+        "profile": bundle.profile,
+        "num_variables": bundle.num_variables,
+        "num_clauses": bundle.num_clauses,
+        "base_cnf_sha256": bundle.base_cnf_sha256,
+        "variable_map_sha256": bundle.variable_map_sha256,
+        "variable_map_bytes": len(bundle.variable_map),
+        "source_bundle_sha256": bundle.source_bundle_sha256,
+        "source_bundle_bytes": len(bundle.source_bundle),
+        "encoding_configuration_sha256": qualification.PRODUCTION_V3_ENCODING_CONFIGURATION_SHA256,
+        "encoding_configuration_bytes": len(bundle.encoding_configuration),
+        "source_manifest_sha256": bundle.source_manifest_sha256,
+        "source_manifest_bytes": len(bundle.source_manifest),
+        "producer_manifest_sha256": bundle.producer_manifest_sha256,
+        "producer_manifest_bytes": len(bundle.producer_manifest),
+        "shard_index": None,
+        "shard_count": None,
+        "shard_literals": None,
         "daemon_url": "http://127.0.0.1:7272",
         "daemon_version_pre_sha256": "d" * 64,
-        "source_manifest_sha256": hashlib.sha256(source_raw).hexdigest(),
-        "producer_manifest_sha256": hashlib.sha256(producer_raw).hexdigest(),
-        "base_cnf_sha256": base_hash,
-        "raw_dimacs_identity": oracle.raw_dimacs_identity(
-            backend="cadical",
-            solver_profile="sat",
-            cnf_sha256=base_hash,
-            producer_manifest_sha256=hashlib.sha256(producer_raw).hexdigest(),
-            requested_core_limit=1,
-        ),
+        "raw_dimacs_identity": bundle.raw_dimacs_identity,
         "producer_job_id": "22222222-2222-4222-8222-222222222222",
+        "producer_job_requested_core_limit": 1,
+        "prepared_existing": True,
         "solver": {
-            "name": "piqd-satworker-cadical-3.0.0",
-            "sha256": "e" * 64,
-            "signature": "cadical-3.0.0",
-            "backend": "cadical",
-            "lane": "sat",
+            "name": qualification.PRODUCTION_SOLVER_NAME,
+            "sha256": qualification.PRODUCTION_SOLVER_SHA256,
+            "signature": qualification.PRODUCTION_SOLVER_SIGNATURE,
+            "backend": qualification.PRODUCTION_SOLVER_BACKEND,
+            "lane": qualification.PRODUCTION_SOLVER_LANE,
         },
-        "policy": dict(launcher.qualification.PRODUCTION_V2_POLICY),
+        "policy": dict(qualification.PRODUCTION_V3_POLICY),
+        "claims": dict(qualification.PRODUCTION_V3_CLAIMS),
     }
     authority["authority_sha256"] = hashlib.sha256(
         canonical_json_bytes(authority)
     ).hexdigest()
-    (tmp_path / "source.json").write_bytes(source_raw)
-    (tmp_path / "producer.json").write_bytes(producer_raw)
+    (tmp_path / "source.json").write_bytes(bundle.source_manifest)
+    (tmp_path / "producer.json").write_bytes(bundle.producer_manifest)
     (tmp_path / "authority.json").write_bytes(canonical_json_bytes(authority))
 
 
@@ -229,7 +209,7 @@ def test_complete_profile_is_validated_then_delegated_with_exact_argv(
     assert delegated == [argv]
 
 
-def test_malformed_v2_authority_fails_before_delegation_or_output(
+def test_malformed_v3_authority_fails_before_delegation_or_output(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

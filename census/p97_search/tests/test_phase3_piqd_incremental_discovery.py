@@ -67,6 +67,10 @@ class FakeSessionTransport:
         session_label_override: str | None = None,
         solver_stats_value: Any = NO_SOLVER_STATS,
         solver_stats_methods: tuple[str, ...] = (),
+        omit_response_effective_deadline: bool = False,
+        omit_receipt_effective_deadline: bool = False,
+        response_effective_deadline_override: Any = None,
+        receipt_effective_deadline_override: Any = None,
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.job_id = job_id
@@ -93,6 +97,10 @@ class FakeSessionTransport:
         self.session_label = session_label_override
         self.capture_session_label = session_label_override is None
         self.solver_stats_value = solver_stats_value
+        self.omit_response_effective_deadline = omit_response_effective_deadline
+        self.omit_receipt_effective_deadline = omit_receipt_effective_deadline
+        self.response_effective_deadline_override = response_effective_deadline_override
+        self.receipt_effective_deadline_override = receipt_effective_deadline_override
         self.solver_stats_methods = frozenset(solver_stats_methods)
         self._append_lost = False
         self._solve_receipts_lost = False
@@ -251,6 +259,16 @@ class FakeSessionTransport:
             }
             if payload.get("timeout_ms") is not None:
                 receipt["timeout_ms"] = payload["timeout_ms"]
+                if not self.omit_receipt_effective_deadline:
+                    receipt["effective_deadline_ms"] = (
+                        self.receipt_effective_deadline_override
+                        if self.receipt_effective_deadline_override is not None
+                        else payload["timeout_ms"] + 30_000
+                    )
+            elif self.receipt_effective_deadline_override is not None:
+                receipt["effective_deadline_ms"] = (
+                    self.receipt_effective_deadline_override
+                )
             if payload.get("conflict_limit") is not None:
                 receipt["conflict_limit"] = payload["conflict_limit"]
             if self.interrupted_by is not None:
@@ -264,6 +282,17 @@ class FakeSessionTransport:
                 "solve_index": index,
                 "result_sha256": result_hash,
             }
+            if payload.get("timeout_ms") is not None:
+                if not self.omit_response_effective_deadline:
+                    response["effective_deadline_ms"] = (
+                        self.response_effective_deadline_override
+                        if self.response_effective_deadline_override is not None
+                        else payload["timeout_ms"] + 30_000
+                    )
+            elif self.response_effective_deadline_override is not None:
+                response["effective_deadline_ms"] = (
+                    self.response_effective_deadline_override
+                )
             if model is not None:
                 response["model"] = model
             if core is not None:
@@ -331,6 +360,67 @@ def test_seed_frontier_append_solve_and_receipt_custody(tmp_path: Path) -> None:
     assert result.proof_verified is False and result.closure_claim is False
     assert result.receipt["base_bytes"] == len(transport._journal())
     assert all(not path.startswith("blobs/") for _, path, _ in transport.calls)
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(omit_response_effective_deadline=True),
+        FakeSessionTransport(response_effective_deadline_override=30_024),
+        FakeSessionTransport(response_effective_deadline_override=True),
+        FakeSessionTransport(response_effective_deadline_override=30_025.0),
+    ],
+)
+def test_timed_solve_rejects_inexact_response_effective_deadline(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = runner(tmp_path, transport)
+    active.append_clauses([(-2,)])
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="effective_deadline_ms",
+    ):
+        active.solve(timeout_ms=25)
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(omit_receipt_effective_deadline=True),
+        FakeSessionTransport(receipt_effective_deadline_override=30_024),
+        FakeSessionTransport(receipt_effective_deadline_override=False),
+        FakeSessionTransport(receipt_effective_deadline_override=30_025.0),
+    ],
+)
+def test_timed_solve_rejects_inexact_receipt_effective_deadline(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = runner(tmp_path, transport)
+    active.append_clauses([(-2,)])
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="effective_deadline_ms",
+    ):
+        active.solve(timeout_ms=25)
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(response_effective_deadline_override=30_000),
+        FakeSessionTransport(receipt_effective_deadline_override=30_000),
+    ],
+)
+def test_untimed_solve_forbids_effective_deadline(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = runner(tmp_path, transport)
+    active.append_clauses([(-2,)])
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="effective_deadline_ms",
+    ):
+        active.solve()
 
 
 def test_session_solver_binary_cannot_drift_during_custody(tmp_path: Path) -> None:

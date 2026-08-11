@@ -1813,12 +1813,13 @@ def test_incremental_piqd_qualification_authority_is_validated_and_forwarded(
     def import_module(name: str) -> Any:
         if name == "census.p97_search.phase3_piqd_projected_v3_qualification":
             return SimpleNamespace(
-                load_production_authority_v2=lambda path: (
+                load_production_authority_v3=lambda path: (
                     authority
                     if path == authority_path
                     else pytest.fail("wrong authority path")
                 ),
-                validate_production_launch_authority_v2=lambda *args, **kwargs: (
+                capture_production_control_input_v3=lambda path: path.read_bytes(),
+                validate_production_launch_authority_v3=lambda *args, **kwargs: (
                     validations.append({"args": args, **kwargs})
                 ),
             )

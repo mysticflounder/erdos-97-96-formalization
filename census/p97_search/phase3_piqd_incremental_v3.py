@@ -45,6 +45,7 @@ _RECEIPT_OPTIONAL = frozenset(
     {
         "conflict_limit",
         "timeout_ms",
+        "effective_deadline_ms",
         "interrupted_by",
         "core",
         "batch_key",
@@ -241,7 +242,26 @@ def _validated_receipt(
             label="PIQD receipt batch_request_sha256",
         )
     if "timeout_ms" in receipt:
-        _builtin_int(receipt["timeout_ms"], label="PIQD receipt timeout_ms", minimum=0)
+        timeout_ms = _builtin_int(
+            receipt["timeout_ms"], label="PIQD receipt timeout_ms", minimum=0
+        )
+        if "effective_deadline_ms" not in receipt:
+            raise PiqdIncrementalV3Error(
+                "PIQD timed receipt lacks effective_deadline_ms"
+            )
+        effective_deadline_ms = _builtin_int(
+            receipt["effective_deadline_ms"],
+            label="PIQD receipt effective_deadline_ms",
+            minimum=30_000,
+        )
+        if effective_deadline_ms != timeout_ms + 30_000:
+            raise PiqdIncrementalV3Error(
+                "PIQD receipt effective_deadline_ms disagrees with timeout_ms"
+            )
+    elif "effective_deadline_ms" in receipt:
+        raise PiqdIncrementalV3Error(
+            "PIQD untimed receipt unexpectedly records effective_deadline_ms"
+        )
     if "conflict_limit" in receipt:
         _builtin_int(
             receipt["conflict_limit"],
@@ -431,7 +451,7 @@ class PiqdIncrementalV3SolverRunner:
     producer_job_id: str
     solver_name: str
     local_proof_runner: SolverBackend
-    production_authority: qualification.ProductionAuthorityV2 | None = None
+    production_authority: qualification.ProductionAuthorityV3 | None = None
     source_manifest_path: Path | None = None
     producer_manifest_path: Path | None = None
     transport: Transport | None = None
@@ -443,7 +463,7 @@ class PiqdIncrementalV3SolverRunner:
     _runner: incremental.PiqdIncrementalDiscoveryRunner | None = field(
         default=None, init=False, repr=False
     )
-    _qualification_contract: qualification.ProductionQualificationV2 | None = field(
+    _qualification_contract: qualification.ProductionQualificationV3 | None = field(
         default=None, init=False, repr=False
     )
     _closed: bool = field(default=False, init=False, repr=False)
@@ -471,10 +491,10 @@ class PiqdIncrementalV3SolverRunner:
         if self.production_authority is not None:
             if (
                 type(self.production_authority)
-                is not qualification.ProductionAuthorityV2
+                is not qualification.ProductionAuthorityV3
             ):
                 raise PiqdIncrementalV3Error(
-                    "production_authority must be exact qualification v2 authority"
+                    "production_authority must be exact qualification v3 authority"
                 )
             if self.allow_unqualified_test_profile:
                 raise PiqdIncrementalV3Error(
@@ -495,7 +515,7 @@ class PiqdIncrementalV3SolverRunner:
                 raise PiqdIncrementalV3Error(
                     "production authority requires exact manifest custody paths"
                 )
-            qualification.validate_production_launch_authority_v2(
+            qualification.validate_production_launch_authority_v3(
                 self.production_authority,
                 daemon_url=self.base_url,
                 source_manifest=self.source_manifest,
@@ -595,7 +615,7 @@ class PiqdIncrementalV3SolverRunner:
                     selected_transport = _stdlib_transport
                 try:
                     self._qualification_contract = (
-                        qualification.prepare_production_qualification_v2(
+                        qualification.prepare_production_qualification_v3(
                             authority=self.production_authority,
                             output_dir=self.custody_root,
                             base_cnf_path=self.base_cnf_path,
@@ -700,7 +720,7 @@ class PiqdIncrementalV3SolverRunner:
         self._closed = True
 
     def finalize_qualification(self, driver_status: str) -> dict[str, Any] | None:
-        """Finalize v2 only after the driver has closed this runner."""
+        """Finalize authority-v3 only after the driver has closed this runner."""
 
         if self.production_authority is None:
             return None
@@ -711,13 +731,13 @@ class PiqdIncrementalV3SolverRunner:
         if self._qualification_contract is None:
             # A successful driver status without a discovery solve is outside
             # the authority policy and cannot manufacture a seal.
-            if driver_status in qualification.PRODUCTION_V2_SUCCESS_STATUSES:
+            if driver_status in qualification.PRODUCTION_V3_SUCCESS_STATUSES:
                 raise PiqdIncrementalV3Error(
                     "successful production status has no PIQD session custody"
                 )
             return None
         try:
-            return qualification.finalize_production_qualification_v2(
+            return qualification.finalize_production_qualification_v3(
                 self._qualification_contract, driver_status=driver_status
             )
         except qualification.QualificationError as exc:
@@ -734,7 +754,7 @@ def make_piqd_incremental_v3_solver_runner(
     producer_job_id: str,
     solver_name: str,
     local_proof_runner: SolverBackend,
-    production_authority: qualification.ProductionAuthorityV2 | None = None,
+    production_authority: qualification.ProductionAuthorityV3 | None = None,
     source_manifest_path: Path | None = None,
     producer_manifest_path: Path | None = None,
     transport: Transport | None = None,

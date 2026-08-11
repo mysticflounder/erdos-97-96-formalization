@@ -933,7 +933,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         selection = load_selected_system(args.system_id, args.inputs or DEFAULT_INPUTS)
         prepared = prepare_system(selection, timeout_ms=args.timeout_ms)
         transport = neutral.UrllibPiqdTransport(
-            args.server, http_timeout_s=args.timeout_ms / 1000 + 30
+            args.server,
+            http_timeout_s=neutral.bounded_solve_http_timeout_s(args.timeout_ms),
         )
         result = run_prepared_system(prepared, args.out, transport)
     except (MetricPiqdCvc5Error, neutral.SmtSourceAdapterError) as exc:

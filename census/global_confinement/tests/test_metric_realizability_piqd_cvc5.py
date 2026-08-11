@@ -143,6 +143,9 @@ class FakePiqd:
                 "solve_ms": 3,
                 "solve_index": 1,
                 "result_sha256": digest,
+                "effective_deadline_ms": (
+                    body["timeout_ms"] + neutral.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+                ),
                 "replayed": False,
             }
             receipt = {
@@ -154,6 +157,9 @@ class FakePiqd:
                 "solver_sha256": _sha(b"fake-cvc5-binary"),
                 "assumptions": list(body["assumptions"]),
                 "timeout_ms": body["timeout_ms"],
+                "effective_deadline_ms": (
+                    body["timeout_ms"] + neutral.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+                ),
                 "include_model": body["include_model"],
                 "get_values": list(body["get_values"]),
                 **answer,
@@ -161,6 +167,23 @@ class FakePiqd:
                 "result_sha256": digest,
                 "at": 14,
             }
+            if self.tamper == "response_deadline_missing":
+                response.pop("effective_deadline_ms")
+            if self.tamper == "response_deadline_bool":
+                response["effective_deadline_ms"] = True
+            if self.tamper == "response_deadline_arithmetic":
+                response["effective_deadline_ms"] += 1
+            if self.tamper == "receipt_deadline_extra":
+                receipt["unexpected_deadline_field"] = 1
+            if self.tamper == "receipt_deadline_float":
+                receipt["effective_deadline_ms"] = float(
+                    receipt["effective_deadline_ms"]
+                )
+            if self.tamper == "receipt_deadline_arithmetic":
+                receipt["effective_deadline_ms"] += 1
+            if self.tamper == "crossed_deadline":
+                receipt["timeout_ms"] += 1_000
+                receipt["effective_deadline_ms"] += 1_000
             if self.tamper == "receipt_base_hash":
                 receipt["base_sha256"] = "0" * 64
             if self.tamper == "receipt_signature":
@@ -352,6 +375,12 @@ def test_known_sat_control_replays_every_assertion_exactly(
         "convex_order": 8,
     }
     assert fake.solve_calls == 1 and fake.active == 0
+    solve = json.loads((tmp_path / "sat" / "cvc5.solve.json").read_bytes())
+    receipt = json.loads((tmp_path / "sat" / "cvc5.receipts.json").read_bytes())[
+        "receipts"
+    ][0]
+    assert solve["effective_deadline_ms"] == 35_000
+    assert receipt["effective_deadline_ms"] == 35_000
 
 
 def test_historical_full_convex_unsat_control_is_diagnostic_only(
@@ -408,6 +437,10 @@ def test_lost_solve_response_reconciles_from_durable_receipt(
     assert result["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
     assert result["engine"]["response_lost"] is True
     assert result["engine"]["reconciled_from_receipt"] is True
+    reconciled = json.loads(
+        (tmp_path / "reconciled" / "cvc5.reconciled-solve.json").read_bytes()
+    )
+    assert reconciled["effective_deadline_ms"] == 35_000
 
 
 def test_lost_response_waits_for_delayed_unknown_receipt_once(
@@ -446,6 +479,30 @@ def test_lost_response_waits_for_delayed_unknown_receipt_once(
     ],
 )
 def test_receipt_reconciliation_adversaries_fail_closed(
+    tmp_path: Path,
+    prepared: subject.PreparedSystem,
+    tamper: str,
+    message: str,
+) -> None:
+    fake = FakePiqd("SAT", tamper=tamper)
+    with pytest.raises(neutral.SmtSourceAdapterError, match=message):
+        subject.run_prepared_system(prepared, tmp_path / tamper, fake)
+    assert fake.solve_calls == 1 and fake.active == 0
+
+
+@pytest.mark.parametrize(
+    ("tamper", "message"),
+    [
+        ("response_deadline_missing", "unexpected keys"),
+        ("response_deadline_bool", "exact integer"),
+        ("response_deadline_arithmetic", r"request timeout_ms \+ 30000"),
+        ("receipt_deadline_extra", "unexpected keys"),
+        ("receipt_deadline_float", "non-builtin JSON value"),
+        ("receipt_deadline_arithmetic", r"receipt timeout_ms \+ 30000"),
+        ("crossed_deadline", "solve response disagree"),
+    ],
+)
+def test_effective_deadline_adversaries_fail_closed_through_metric_adapter(
     tmp_path: Path,
     prepared: subject.PreparedSystem,
     tamper: str,
@@ -583,3 +640,57 @@ def test_cli_has_no_worker_or_local_solver_surface() -> None:
     assert args.system_id == "0b12b25bf5daa7566f98"
     assert not hasattr(args, "workers")
     assert not hasattr(args, "cvc5")
+
+
+def test_cli_http_timeout_exceeds_disclosed_effective_deadline(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    captured: dict[str, object] = {}
+    selection = object()
+    prepared = object()
+    transport = object()
+
+    monkeypatch.setattr(subject, "load_selected_system", lambda *_args: selection)
+
+    def fake_prepare(candidate: object, *, timeout_ms: int) -> object:
+        assert candidate is selection
+        captured["timeout_ms"] = timeout_ms
+        return prepared
+
+    def fake_transport(server: str, *, http_timeout_s: float) -> object:
+        captured["server"] = server
+        captured["http_timeout_s"] = http_timeout_s
+        return transport
+
+    def fake_run(candidate: object, output: Path, client: object) -> dict[str, object]:
+        assert candidate is prepared and client is transport
+        assert output == tmp_path / "out"
+        return {
+            "classification": "UNKNOWN_INCONCLUSIVE",
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "system_id": "system",
+        }
+
+    monkeypatch.setattr(subject, "prepare_system", fake_prepare)
+    monkeypatch.setattr(subject.neutral, "UrllibPiqdTransport", fake_transport)
+    monkeypatch.setattr(subject, "run_prepared_system", fake_run)
+
+    assert (
+        subject.main(
+            [
+                "--system-id",
+                "system",
+                "--out",
+                os.fspath(tmp_path / "out"),
+                "--timeout-ms",
+                "20000",
+            ]
+        )
+        == 0
+    )
+    assert captured == {
+        "timeout_ms": 20_000,
+        "server": "http://127.0.0.1:7272",
+        "http_timeout_s": 55.0,
+    }
+    assert captured["http_timeout_s"] * 1000 > 50_000

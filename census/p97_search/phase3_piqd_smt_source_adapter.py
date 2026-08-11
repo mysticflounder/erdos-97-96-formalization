@@ -41,6 +41,8 @@ MAX_SOURCE_BYTES = 32 * 1024 * 1024
 MAX_SOURCE_TOTAL_BYTES = 128 * 1024 * 1024
 MAX_SMT2_BYTES = 64 * 1024 * 1024
 MAX_EXPORT_BYTES = 64 * 1024 * 1024
+PIQD_EFFECTIVE_DEADLINE_GRACE_MS = 30_000
+PIQD_HTTP_RESPONSE_MARGIN_MS = 5_000
 MAX_OUTPUT_BYTES = 96 * 1024 * 1024
 MAX_OUTPUT_TOTAL_BYTES = 768 * 1024 * 1024
 MAX_JSON_DEPTH = 64
@@ -277,6 +279,19 @@ def _integer(value: object, where: str, *, minimum: int = 0) -> int:
         f"{where} must be an exact integer >= {minimum}",
     )
     return value
+
+
+def effective_deadline_ms(timeout_ms: object, where: str = "timeout_ms") -> int:
+    """Return the exact bounded-solve deadline disclosed by current PIQD."""
+
+    timeout = _integer(timeout_ms, where, minimum=1)
+    return timeout + PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+
+
+def bounded_solve_http_timeout_s(timeout_ms: object) -> float:
+    """Leave a transport-only response margin beyond PIQD's solver deadline."""
+
+    return (effective_deadline_ms(timeout_ms) + PIQD_HTTP_RESPONSE_MARGIN_MS) / 1000
 
 
 def _digest(value: object, where: str) -> str:
@@ -1496,7 +1511,13 @@ def piqd_result_digest(result: Mapping[str, object]) -> str:
     return digest.hexdigest()
 
 
-_SOLVE_REQUIRED = {"status", "solve_ms", "solve_index", "result_sha256"}
+_SOLVE_REQUIRED = {
+    "status",
+    "solve_ms",
+    "solve_index",
+    "result_sha256",
+    "effective_deadline_ms",
+}
 _SOLVE_OPTIONAL = {"interrupted_by", "core", "terminal_unsat", "model", "values"}
 _SOLVE_RESPONSE_OPTIONAL = _SOLVE_OPTIONAL | {"replayed"}
 
@@ -1539,7 +1560,7 @@ def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
         _fail(present <= {"interrupted_by"}, f"{where} UNKNOWN payload shape mismatch")
 
 
-def _validate_solve(value: object) -> dict[str, Any]:
+def _validate_solve(value: object, *, timeout_ms: int) -> dict[str, Any]:
     obj = _object(
         value,
         _SOLVE_REQUIRED,
@@ -1550,6 +1571,15 @@ def _validate_solve(value: object) -> dict[str, Any]:
     _integer(obj["solve_ms"], "solve.solve_ms")
     _integer(obj["solve_index"], "solve.solve_index", minimum=1)
     _digest(obj["result_sha256"], "solve.result_sha256")
+    _fail(
+        _integer(
+            obj["effective_deadline_ms"],
+            "solve.effective_deadline_ms",
+            minimum=1,
+        )
+        == effective_deadline_ms(timeout_ms, "solve request timeout_ms"),
+        "solve effective deadline does not equal request timeout_ms + 30000",
+    )
     if "replayed" in obj:
         _fail(
             type(obj["replayed"]) is bool and obj["replayed"] is False,
@@ -1568,6 +1598,7 @@ _RECEIPT_REQUIRED = {
     "solver_sha256",
     "assumptions",
     "timeout_ms",
+    "effective_deadline_ms",
     "include_model",
     "get_values",
     "status",
@@ -1641,8 +1672,24 @@ def _validate_receipts(
     _fail(
         type(receipt["include_model"]) is bool, "receipt include_model must be Boolean"
     )
-    _integer(receipt["timeout_ms"], "receipt.timeout_ms", minimum=1)
+    receipt_timeout_ms = _integer(
+        receipt["timeout_ms"], "receipt.timeout_ms", minimum=1
+    )
+    _fail(
+        _integer(
+            receipt["effective_deadline_ms"],
+            "receipt.effective_deadline_ms",
+            minimum=1,
+        )
+        == effective_deadline_ms(receipt_timeout_ms, "receipt.timeout_ms"),
+        "receipt effective deadline does not equal receipt timeout_ms + 30000",
+    )
     _validate_answer_fields(receipt, "receipt")
+    if solve is not None:
+        _fail(
+            receipt["effective_deadline_ms"] == solve["effective_deadline_ms"],
+            "receipt effective deadline and solve response disagree",
+        )
     _fail(
         receipt["solve_index"] == 1
         and receipt["base_commands"] == len(query.journal_commands)
@@ -1689,6 +1736,7 @@ def _solve_from_receipt(receipt: Mapping[str, object]) -> dict[str, object]:
         "solve_ms": receipt["solve_ms"],
         "solve_index": receipt["solve_index"],
         "result_sha256": receipt["result_sha256"],
+        "effective_deadline_ms": receipt["effective_deadline_ms"],
     }
 
 
@@ -1985,7 +2033,8 @@ def _run_solver(
         response_lost = False
         try:
             solve = _validate_solve(
-                _json_call(transport, "POST", f"{route}/solve", solve_request)
+                _json_call(transport, "POST", f"{route}/solve", solve_request),
+                timeout_ms=solve_request["timeout_ms"],
             )
         except PiqdTransportLoss:
             response_lost = True
@@ -2322,6 +2371,8 @@ class _NoRedirect(urllib.request.HTTPRedirectHandler):
 
 __all__ = [
     "MANIFEST_SCHEMA",
+    "PIQD_EFFECTIVE_DEADLINE_GRACE_MS",
+    "PIQD_HTTP_RESPONSE_MARGIN_MS",
     "QUERY_SCHEMA",
     "RESULT_SCHEMA",
     "SOLVER_PROFILE_SCHEMA",
@@ -2334,6 +2385,8 @@ __all__ = [
     "SourceSemanticQuery",
     "SourceSnapshot",
     "UrllibPiqdTransport",
+    "bounded_solve_http_timeout_s",
+    "effective_deadline_ms",
     "load_source_semantic_query",
     "normalize_state_journal",
     "piqd_result_digest",

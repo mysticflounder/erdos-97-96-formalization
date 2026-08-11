@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 from census.p97_search import phase3_piqd_incremental_discovery as incremental
+from census.p97_search import phase3_piqd_projected_v3_provisioning as provisioning
 from census.p97_search import phase3_piqd_projected_v3_qualification as qualification
 from census.p97_search import phase3_piqd_static_solver_runner as static
 from census.p97_search.phase3_cegar_wave import canonical_json_bytes
@@ -47,6 +48,11 @@ JOB_PROGRESS = {
     "solver_started": True,
     "spawn_failure": None,
 }
+
+
+@pytest.fixture(scope="module")
+def current_bundle() -> provisioning.CurrentUnshardedBundle:
+    return provisioning.build_current_unsharded_projected_v3_bundle()
 
 
 def _sha(data: bytes) -> str:
@@ -479,6 +485,7 @@ def _production_authority(
     version_raw: bytes,
     base: bytes = BASE,
 ) -> qualification.ProductionAuthorityV2:
+    tmp_path.mkdir(parents=True, exist_ok=True)
     producer_hash = _sha(producer_raw)
     base_hash = _sha(base)
     value = {
@@ -509,6 +516,165 @@ def _production_authority(
     path = tmp_path / "production-authority-v2.input.json"
     path.write_bytes(canonical_json_bytes(value))
     return qualification.load_production_authority_v2(path)
+
+
+def _production_authority_v3(
+    tmp_path: Path,
+    *,
+    bundle: provisioning.CurrentUnshardedBundle,
+    version_raw: bytes,
+    prepared_existing: bool = True,
+) -> qualification.ProductionAuthorityV3:
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    value = {
+        "schema": qualification.PRODUCTION_V3_AUTHORITY_SCHEMA,
+        "base_scope": qualification.PRODUCTION_V3_BASE_SCOPE,
+        "builder_base_scope": qualification.PRODUCTION_V3_BUILDER_BASE_SCOPE,
+        "profile": qualification.PRODUCTION_V3_PROFILE,
+        "num_variables": qualification.PRODUCTION_V3_VARIABLES,
+        "num_clauses": qualification.PRODUCTION_V3_BASE_CLAUSES,
+        "base_cnf_sha256": qualification.PRODUCTION_V3_BASE_SHA256,
+        "variable_map_sha256": qualification.PRODUCTION_V3_VARIABLE_MAP_SHA256,
+        "variable_map_bytes": qualification.PRODUCTION_V3_VARIABLE_MAP_BYTES,
+        "source_bundle_sha256": bundle.source_bundle_sha256,
+        "source_bundle_bytes": len(bundle.source_bundle),
+        "encoding_configuration_sha256": (
+            qualification.PRODUCTION_V3_ENCODING_CONFIGURATION_SHA256
+        ),
+        "encoding_configuration_bytes": (
+            qualification.PRODUCTION_V3_ENCODING_CONFIGURATION_BYTES
+        ),
+        "source_manifest_sha256": bundle.source_manifest_sha256,
+        "source_manifest_bytes": len(bundle.source_manifest),
+        "producer_manifest_sha256": bundle.producer_manifest_sha256,
+        "producer_manifest_bytes": len(bundle.producer_manifest),
+        "shard_index": None,
+        "shard_count": None,
+        "shard_literals": None,
+        "daemon_url": "http://piqd.test",
+        "daemon_version_pre_sha256": _sha(version_raw),
+        "raw_dimacs_identity": bundle.raw_dimacs_identity,
+        "producer_job_id": JOB_ID,
+        "producer_job_requested_core_limit": 1,
+        "prepared_existing": prepared_existing,
+        "solver": {
+            "name": SOLVER,
+            "sha256": SOLVER_HASH,
+            "signature": SIGNATURE,
+            "backend": "cadical",
+            "lane": "sat",
+        },
+        "policy": dict(qualification.PRODUCTION_V3_POLICY),
+        "claims": dict(qualification.PRODUCTION_V3_CLAIMS),
+    }
+    value["authority_sha256"] = _sha(canonical_json_bytes(value))
+    path = tmp_path / "production-authority-v3.input.json"
+    path.write_bytes(canonical_json_bytes(value))
+    return qualification.load_production_authority_v3(path)
+
+
+def _resign_authority(path: Path, mutate: Callable[[dict[str, Any]], None]) -> None:
+    value = json.loads(path.read_bytes())
+    mutate(value)
+    value.pop("authority_sha256")
+    value["authority_sha256"] = _sha(canonical_json_bytes(value))
+    path.write_bytes(canonical_json_bytes(value))
+
+
+def _production_session(
+    *, variables: int, clauses: int, solves: int, state: str
+) -> bytes:
+    value = json.loads(_session(state=state, solves=solves))
+    value["clauses"] = clauses
+    value["max_var"] = variables
+    value["declared_num_vars"] = variables
+    if solves == 1:
+        value["last_status"] = "UNSAT"
+        value["last_solve_index"] = 1
+        value["last_assumption_free"] = True
+        value["last_terminal_unsat"] = True
+    return canonical_json_bytes(value)
+
+
+def _prepare_v3(
+    tmp_path: Path,
+    *,
+    bundle: provisioning.CurrentUnshardedBundle,
+    transport: FakeTransport | None = None,
+) -> tuple[qualification.ProductionQualificationV3, FakeTransport]:
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    version_raw = _version()
+    authority = _production_authority_v3(
+        tmp_path, bundle=bundle, version_raw=version_raw
+    )
+    root = tmp_path / "out"
+    root.mkdir(mode=0o700)
+    source_path = tmp_path / "source-manifest-v3.input.json"
+    producer_path = tmp_path / "producer-manifest-v3.input.json"
+    source_path.write_bytes(bundle.source_manifest)
+    producer_path.write_bytes(bundle.producer_manifest)
+    _private(root / "base.cnf", bundle.base_cnf)
+    _private(root / ".solver.cnf", bundle.base_cnf)
+    descriptor = incremental.DiscoveryDescriptor(
+        seed_cnf=bundle.base_cnf,
+        producer_manifest=bundle.producer_manifest,
+        source_manifest=bundle.source_manifest,
+        solver_name=SOLVER,
+        producer_job_id=JOB_ID,
+    )
+    job = _job(
+        overrides={
+            "cnf_blob_hash": bundle.base_cnf_sha256,
+            "identity_hash": bundle.raw_dimacs_identity,
+            "producer_manifest_hash": bundle.producer_manifest_sha256,
+        }
+    )
+    fake = transport or FakeTransport(
+        job=job,
+        blob=bundle.base_cnf,
+        version_pre=version_raw,
+        create=_production_session(
+            variables=bundle.num_variables,
+            clauses=bundle.num_clauses,
+            solves=0,
+            state="live",
+        ),
+        close=_production_session(
+            variables=bundle.num_variables,
+            clauses=bundle.num_clauses + 2,
+            solves=1,
+            state="closed",
+        ),
+        solve1=canonical_json_bytes(
+            {
+                "status": "UNSAT",
+                "solve_ms": 1,
+                "solve_index": 1,
+                "result_sha256": incremental._result_digest("UNSAT", None, [], None),
+                "core": [],
+                "terminal_unsat": True,
+            }
+        ),
+    )
+    blob_path = f"/jobs/{JOB_ID}/blobs/{bundle.base_cnf_sha256}"
+    fake.response_overrides[("GET", blob_path)] = HttpResponse(200, bundle.base_cnf, {})
+    contract = qualification.prepare_production_qualification_v3(
+        authority=authority,
+        output_dir=root,
+        base_cnf_path=root / "base.cnf",
+        runtime_cnf_path=root / ".solver.cnf",
+        source_manifest_path=source_path,
+        producer_manifest_path=producer_path,
+        source_manifest=bundle.source_manifest,
+        producer_manifest=bundle.producer_manifest,
+        daemon_url="http://piqd.test",
+        producer_job_id=JOB_ID,
+        solver_name=SOLVER,
+        descriptor=descriptor,
+        transport=fake,
+    )
+    fake.session_label = contract.transport.expected_label
+    return contract, fake
 
 
 def _prepare_v2(
@@ -594,6 +760,84 @@ def _complete_v2(
     if tamper_custody is not None:
         tamper_custody(contract)
     return qualification.finalize_production_qualification_v2(
+        contract, driver_status=driver_status
+    )
+
+
+def _complete_v3(
+    contract: qualification.ProductionQualificationV3,
+    *,
+    driver_status: str = "STRUCTURAL_UNSAT_VERIFIED",
+) -> dict[str, Any] | None:
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    additions = [(1,), (-1,)]
+    transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/clauses",
+        canonical_json_bytes({"clauses": [list(item) for item in additions]}),
+        {},
+    )
+    solve_raw = transport(
+        "POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {}
+    ).body
+    solve = json.loads(solve_raw)
+    variables, base = incremental.parse_dimacs(contract.descriptor.seed_cnf)
+    frontier = [*base, *additions]
+    descriptor_root = contract.descriptor.descriptor_root
+    events: list[dict[str, Any]] = []
+
+    def add(payload: dict[str, Any]) -> None:
+        events.append(
+            _event(
+                {"descriptor_root": descriptor_root, **payload},
+                len(events),
+                events[-1]["event_sha256"] if events else None,
+            )
+        )
+
+    add(
+        {
+            "event": "open",
+            "seed_blob_hash": contract.descriptor.seed_blob_hash,
+            "seed_sha256": contract.descriptor.seed_sha256,
+            "frontier_count": len(base),
+            "frontier_sha256": incremental._frontier_hash(variables, list(base)),
+        }
+    )
+    add(
+        {
+            "event": "append",
+            "clauses": [list(item) for item in additions],
+            "prior_frontier_sha256": incremental._frontier_hash(variables, list(base)),
+            "frontier_count": len(frontier),
+            "frontier_sha256": incremental._frontier_hash(variables, frontier),
+        }
+    )
+    add(
+        {
+            "event": "solve",
+            "status": "UNSAT",
+            "solve_index": 1,
+            "result_sha256": solve["result_sha256"],
+            "receipt": _receipt("UNSAT", 1, frontier, solve["result_sha256"]),
+            "model": None,
+            "frontier_count": len(frontier),
+            "frontier_sha256": incremental._frontier_hash(variables, frontier),
+            "proof_verified": False,
+            "closure_claim": False,
+        }
+    )
+    _private(
+        contract.directory / qualification.JOURNAL_NAME,
+        b"".join(canonical_json_bytes(event) + b"\n" for event in events),
+    )
+    _private(
+        contract.runtime_cnf_path,
+        qualification._render_dimacs(variables, tuple(frontier)),
+    )
+    transport("DELETE", f"http://piqd.test/sessions/{SESSION_ID}", None, {})
+    return qualification.finalize_production_qualification_v3(
         contract, driver_status=driver_status
     )
 
@@ -1054,6 +1298,14 @@ def test_control_and_near_miss_binary_routes_retain_control_limit(
             qualification.QualificationError, match="bounded exact bytes"
         ):
             transport("GET", path, None, {})
+
+    assert qualification.MAX_JOB_STATUS_BYTES == 64 << 10
+    exact_job_path = f"http://piqd.test/jobs/{JOB_ID}"
+    fake.response_overrides[("GET", exact_job_path)] = HttpResponse(
+        200, b"j" * (qualification.MAX_JOB_STATUS_BYTES + 1), {}
+    )
+    with pytest.raises(qualification.QualificationError, match="bounded exact bytes"):
+        transport("GET", exact_job_path, None, {})
 
 
 def test_unbound_test_transport_cannot_elevate_job_blob_limit(tmp_path: Path) -> None:
@@ -1622,3 +1874,327 @@ def test_production_v2_authority_policy_is_exact(tmp_path: Path) -> None:
 
     with pytest.raises(qualification.QualificationError, match="policy"):
         qualification.load_production_authority_v2(authority.path)
+
+
+@pytest.mark.parametrize("prepared_existing", [False, True])
+def test_production_v3_authority_loads_only_current_global_bundle(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    prepared_existing: bool,
+) -> None:
+    authority = _production_authority_v3(
+        tmp_path,
+        bundle=current_bundle,
+        version_raw=_version(),
+        prepared_existing=prepared_existing,
+    )
+    assert authority.value["base_scope"] == "global"
+    assert authority.value["builder_base_scope"] == "global-unsharded"
+    assert authority.value["prepared_existing"] is prepared_existing
+    assert authority.value["shard_index"] is None
+    assert authority.value["shard_count"] is None
+    assert authority.value["shard_literals"] is None
+    with pytest.raises(qualification.QualificationError):
+        qualification.load_production_authority_v2(authority.path)
+
+
+@pytest.mark.parametrize(
+    "attack",
+    [
+        "schema",
+        "base-scope",
+        "profile",
+        "variables-bool",
+        "clauses-float",
+        "map",
+        "source",
+        "producer",
+        "shard-index",
+        "shard-count",
+        "shard-literals",
+        "existing-int",
+        "solver",
+        "claim",
+    ],
+)
+def test_production_v3_authority_schema_profile_and_builtin_attacks_fail(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    attack: str,
+) -> None:
+    authority = _production_authority_v3(
+        tmp_path, bundle=current_bundle, version_raw=_version()
+    )
+
+    def mutate(value: dict[str, Any]) -> None:
+        if attack == "schema":
+            value["schema"] = qualification.PRODUCTION_V2_AUTHORITY_SCHEMA
+        elif attack == "base-scope":
+            value["base_scope"] = "projected-static-v3-shard"
+        elif attack == "profile":
+            value["profile"] += ";shard=4/32;units=-91,-92,93,-94,-95"
+        elif attack == "variables-bool":
+            value["num_variables"] = True
+        elif attack == "clauses-float":
+            value["num_clauses"] = 58_314.0
+        elif attack == "map":
+            value["variable_map_sha256"] = "f" * 64
+        elif attack == "source":
+            value["source_manifest_sha256"] = "f" * 64
+        elif attack == "producer":
+            value["producer_manifest_sha256"] = "f" * 64
+        elif attack == "shard-index":
+            value["shard_index"] = 4
+        elif attack == "shard-count":
+            value["shard_count"] = 32
+        elif attack == "shard-literals":
+            value["shard_literals"] = [-91, -92, 93, -94, -95]
+        elif attack == "existing-int":
+            value["prepared_existing"] = 1
+        elif attack == "solver":
+            value["solver"]["sha256"] = "f" * 64
+        elif attack == "claim":
+            value["claims"]["piqd_closure"] = True
+
+    _resign_authority(authority.path, mutate)
+    with pytest.raises(qualification.QualificationError):
+        qualification.load_production_authority_v3(authority.path)
+
+
+def test_production_v3_rejects_noncanonical_v2_and_exact_type_crossing(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    authority = _production_authority_v3(
+        tmp_path / "v3", bundle=current_bundle, version_raw=_version()
+    )
+    value = json.loads(authority.raw)
+    authority.path.write_bytes(json.dumps(value, indent=2).encode())
+    with pytest.raises(qualification.QualificationError, match="canonical"):
+        qualification.load_production_authority_v3(authority.path)
+
+    source, producer = _manifests(b"# frozen v2 crossing\n")
+    v2 = _production_authority(
+        tmp_path / "v2",
+        source_raw=source,
+        producer_raw=producer,
+        version_raw=_version(),
+    )
+    with pytest.raises(qualification.QualificationError):
+        qualification.load_production_authority_v3(v2.path)
+
+    class AuthoritySubclass(qualification.ProductionAuthorityV3):
+        pass
+
+    crossed = AuthoritySubclass(authority.path, authority.raw, value)
+    with pytest.raises(qualification.QualificationError, match="exact v3"):
+        qualification.validate_production_launch_authority_v3(
+            crossed,
+            daemon_url="http://piqd.test",
+            source_manifest=current_bundle.source_manifest,
+            producer_manifest=current_bundle.producer_manifest,
+            producer_job_id=JOB_ID,
+            solver_name=SOLVER,
+        )
+
+
+def test_production_v3_rejects_caller_selected_manifests_and_custody_crossing(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    authority = _production_authority_v3(
+        tmp_path / "manifests", bundle=current_bundle, version_raw=_version()
+    )
+    substituted_source, substituted_producer = _manifests(b"# substituted\n")
+    with pytest.raises(qualification.QualificationError, match="current public bundle"):
+        qualification.validate_production_launch_authority_v3(
+            authority,
+            daemon_url="http://piqd.test",
+            source_manifest=substituted_source,
+            producer_manifest=substituted_producer,
+            producer_job_id=JOB_ID,
+            solver_name=SOLVER,
+        )
+
+    authority = _production_authority_v3(
+        tmp_path / "custody", bundle=current_bundle, version_raw=_version()
+    )
+    _resign_authority(
+        authority.path,
+        lambda value: value.__setitem__("producer_job_id", "f" * 36),
+    )
+    with pytest.raises(qualification.QualificationError):
+        qualification.validate_production_launch_authority_v3(
+            authority,
+            daemon_url="http://piqd.test",
+            source_manifest=current_bundle.source_manifest,
+            producer_manifest=current_bundle.producer_manifest,
+            producer_job_id=JOB_ID,
+            solver_name=SOLVER,
+        )
+
+
+def test_production_v3_full_arbitrary_append_unsat_lifecycle_seals(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    seal = _complete_v3(contract)
+    assert seal is not None
+    assert seal["schema"] == qualification.PRODUCTION_V3_QUALIFICATION_SCHEMA
+    assert seal["statuses"] == ["UNSAT"]
+    assert seal["solve_count"] == 1
+    assert contract.transport.event_sequence == ["append", "solve"]
+    assert seal["final_frontier_count"] == current_bundle.num_clauses + 2
+    assert seal["daemon_version_pre_sha256"] == seal["daemon_version_post_sha256"]
+    preflight = json.loads(
+        (contract.directory / qualification.PRODUCTION_V3_PREFLIGHT_NAME).read_bytes()
+    )
+    assert preflight["producer_job_requested_core_limit"] == 1
+    assert seal["policy"] == dict(qualification.PRODUCTION_V3_POLICY)
+    assert all(claim is False for claim in seal["claims"].values())
+    assert fake.version_calls == 2
+    assert (
+        contract.directory / qualification.PRODUCTION_V3_SESSION_RESULT_NAME
+    ).exists()
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("cnf_blob_hash", None),
+        ("identity_hash", None),
+        ("producer_manifest_hash", None),
+        ("cnf_blob_hash", "f" * 64),
+        ("identity_hash", "f" * 64),
+        ("producer_manifest_hash", "f" * 64),
+        ("producer_manifest_hash", True),
+        ("producer_manifest_hash", 1.0),
+    ],
+)
+def test_production_v3_requires_exact_job_status_custody_hashes(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    field: str,
+    replacement: Any,
+) -> None:
+    value = json.loads(
+        _job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        )
+    )
+    if replacement is None:
+        del value[field]
+    else:
+        value[field] = replacement
+    fake = FakeTransport(job=canonical_json_bytes(value))
+    with pytest.raises(qualification.QualificationError, match="producer job"):
+        _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+
+
+def test_production_v3_accepts_exact_timed_effective_deadline(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    solve = json.loads(_raw_solve(2))
+    solve["solve_index"] = 1
+    solve["effective_deadline_ms"] = 33_000
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        solve1=canonical_json_bytes(solve),
+    )
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    response = transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/solve",
+        canonical_json_bytes(
+            {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+        ),
+        {},
+    )
+    assert json.loads(response.body)["effective_deadline_ms"] == 33_000
+
+
+@pytest.mark.parametrize("deadline", [None, 32_999, True, 33_000.0])
+def test_production_v3_rejects_inexact_timed_effective_deadline(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+    deadline: Any,
+) -> None:
+    solve = json.loads(_raw_solve(2))
+    solve["solve_index"] = 1
+    if deadline is not None:
+        solve["effective_deadline_ms"] = deadline
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        solve1=canonical_json_bytes(solve),
+    )
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
+    with pytest.raises(qualification.QualificationError):
+        contract.transport(
+            "POST",
+            f"http://piqd.test/sessions/{SESSION_ID}/solve",
+            canonical_json_bytes(
+                {"assumptions": [], "include_model": True, "timeout_ms": 3_000}
+            ),
+            {},
+        )
+
+
+def test_production_v3_untimed_solve_forbids_effective_deadline(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    solve = json.loads(_raw_solve(2))
+    solve["solve_index"] = 1
+    solve["effective_deadline_ms"] = 30_000
+    fake = FakeTransport(
+        job=_job(
+            overrides={
+                "cnf_blob_hash": current_bundle.base_cnf_sha256,
+                "identity_hash": current_bundle.raw_dimacs_identity,
+                "producer_manifest_hash": current_bundle.producer_manifest_sha256,
+            }
+        ),
+        solve1=canonical_json_bytes(solve),
+    )
+    contract, _ = _prepare_v3(tmp_path, bundle=current_bundle, transport=fake)
+    contract.transport("POST", "http://piqd.test/sessions", b"{}", {})
+    with pytest.raises(qualification.QualificationError, match="inexact schema"):
+        contract.transport(
+            "POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {}
+        )
+
+
+def test_production_v3_version_drift_never_seals(
+    tmp_path: Path,
+    current_bundle: provisioning.CurrentUnshardedBundle,
+) -> None:
+    contract, fake = _prepare_v3(tmp_path, bundle=current_bundle)
+    fake.version_post = _version(version="drifted")
+    with pytest.raises(
+        qualification.QualificationError, match="version object changed"
+    ):
+        _complete_v3(contract)
+    assert not (
+        contract.directory / qualification.PRODUCTION_V3_QUALIFICATION_NAME
+    ).exists()

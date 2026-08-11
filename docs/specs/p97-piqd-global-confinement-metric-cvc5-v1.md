@@ -69,6 +69,16 @@ solver list to be exactly `["cvc5"]`, binds the invoked solver to that entry,
 and checks the independently reconstructed complete journal. The existing
 public z3-then-cvc5 wave retains its exact two-solver descriptor contract.
 
+For every bounded solve, the current daemon response and durable receipt must
+both contain the exact built-in integer `effective_deadline_ms`. The adapter
+binds the outbound `timeout_ms`, response, and receipt and requires
+`effective_deadline_ms = timeout_ms + 30000` in each record. Missing fields,
+extra fields, Booleans, floats, wrong arithmetic, and crossed response/receipt
+deadlines fail closed. This invocation always sets `timeout_ms`, so omission is
+never valid on its current route. Artifacts from pre-`fd1cacee` daemons that
+omit the field remain honestly legacy records: this adapter neither rewrites
+them nor accepts them as current-contract evidence.
+
 A lost solve response enters a fixed seven-sample reconciliation schedule with
 delays `0, 10, 25, 50, 100, 250, 500` milliseconds (935 milliseconds total).
 Each sample authenticates both `GET /sessions/:id` and the durable receipt
@@ -86,11 +96,15 @@ silently promoted to a new protocol gate.
 
 This client-side reconciliation fixes the response-loss race observed for live
 session `3a2ffaea-21f8-49fa-904c-14b51364a869`; it does not change PIQD timeout
-semantics. The separately confirmed PIQD core defect is that the daemon's fixed
-30-second grace is currently on the critical path for cvc5 (so a requested
-20-second bound was interrupted by `daemon_deadline` after about 50 seconds).
-That daemon behavior remains maintainer-owned and is not treated as an adapter
-fix or silently compensated for here.
+semantics. The prior issue was missing deadline disclosure and a client schema
+that could not bind the effective bound, not a PIQD timeout defect. cvc5 1.3.3
+does not honor PIQD's `tlimit-per` request, so the daemon's existing 30-second
+grace is intentionally the effective bound for this solver: requested 20
+seconds means `effective_deadline_ms = 50000`. The production client uses a
+55-second HTTP timeout for that request, leaving a separate five-second
+transport/response margin beyond the disclosed daemon deadline. A receipt with
+`solve_ms > timeout_ms` is therefore not reclassified as an overrun; its
+requested and effective deadlines remain distinct and explicit.
 
 ## Outcome semantics
 
@@ -127,5 +141,7 @@ scripts/test-p97-piqd-global-metric-cvc5.sh
 
 It fixes common numerical, runtime, and package-manager thread counts to one,
 runs the focused shared-session and metric tests with one pytest worker, and
-checks Ruff style for both adapters and test modules. Its transport is fake: it
+checks Ruff style for both adapters and test modules. The tests include strict
+deadline-schema type/arithmetic/cross-binding attacks, HTTP timeout sizing, and
+lost-response recovery from the durable deadline-bearing receipt. Its transport is fake: it
 does not contact PIQD, execute cvc5, run Lean, or mutate proof-blueprint state.

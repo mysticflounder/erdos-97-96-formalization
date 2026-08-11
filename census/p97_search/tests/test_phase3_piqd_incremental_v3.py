@@ -67,37 +67,10 @@ def _private_file(path: Path, data: bytes) -> None:
 
 def _production_authority(
     tmp_path: Path, source: bytes, producer: bytes
-) -> qualification.ProductionAuthorityV2:
-    base_sha256 = sha256_bytes(SEED)
-    producer_sha256 = sha256_bytes(producer)
-    value = {
-        "schema": qualification.PRODUCTION_V2_AUTHORITY_SCHEMA,
-        "daemon_url": "http://piqd.test",
-        "daemon_version_pre_sha256": "c" * 64,
-        "source_manifest_sha256": sha256_bytes(source),
-        "producer_manifest_sha256": producer_sha256,
-        "base_cnf_sha256": base_sha256,
-        "raw_dimacs_identity": qualification.raw_dimacs_identity(
-            backend="cadical",
-            solver_profile="sat",
-            cnf_sha256=base_sha256,
-            producer_manifest_sha256=producer_sha256,
-            requested_core_limit=1,
-        ),
-        "producer_job_id": JOB_ID,
-        "solver": {
-            "name": "fake-cadical",
-            "sha256": "a" * 64,
-            "signature": "fake-cadical",
-            "backend": "cadical",
-            "lane": "sat",
-        },
-        "policy": dict(qualification.PRODUCTION_V2_POLICY),
-    }
-    value["authority_sha256"] = sha256_bytes(canonical_json_bytes(value))
-    path = tmp_path / "production-authority-v2.json"
-    path.write_bytes(canonical_json_bytes(value))
-    return qualification.load_production_authority_v2(path)
+) -> qualification.ProductionAuthorityV3:
+    del source, producer
+    path = tmp_path / "production-authority-v3.json"
+    return qualification.ProductionAuthorityV3(path, b"authority-v3 fixture", {})
 
 
 def _current_cnf(*clauses: tuple[int, ...]) -> bytes:
@@ -428,7 +401,7 @@ def test_production_runner_requires_full_solver_and_session_identity(
         )
 
 
-def test_production_v2_prepares_qualified_transport_and_recovers_lost_close_once(
+def test_production_v3_prepares_qualified_transport_and_recovers_lost_close_once(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     out = tmp_path / "out"
@@ -460,8 +433,13 @@ def test_production_v2_prepares_qualified_transport_and_recovers_lost_close_once
         finalized.append((actual, driver_status))
         return {"sealed": False}
 
-    monkeypatch.setattr(qualification, "prepare_production_qualification_v2", prepare)
-    monkeypatch.setattr(qualification, "finalize_production_qualification_v2", finalize)
+    monkeypatch.setattr(
+        qualification,
+        "validate_production_launch_authority_v3",
+        lambda *_args, **_kwargs: None,
+    )
+    monkeypatch.setattr(qualification, "prepare_production_qualification_v3", prepare)
+    monkeypatch.setattr(qualification, "finalize_production_qualification_v3", finalize)
     runner = incremental_v3.make_piqd_incremental_v3_solver_runner(
         base_url="http://piqd.test",
         custody_root=out,
@@ -597,6 +575,50 @@ def test_normalization_rejects_non_builtin_receipt_values(
     receipt[field] = value
     with pytest.raises(incremental_v3.PiqdIncrementalV3Error, match=match):
         _normalize_fixture(replace(valid, receipt=receipt), clauses)
+
+
+@pytest.mark.parametrize(
+    ("mutation", "match"),
+    [
+        ({"timeout_ms": 25}, "lacks effective_deadline_ms"),
+        (
+            {"timeout_ms": 25, "effective_deadline_ms": 30_024},
+            "disagrees with timeout_ms",
+        ),
+        (
+            {"timeout_ms": 25, "effective_deadline_ms": True},
+            "effective_deadline_ms",
+        ),
+        (
+            {"timeout_ms": 25, "effective_deadline_ms": 30_025.0},
+            "effective_deadline_ms",
+        ),
+        (
+            {"timeout_ms": 25, "effective_deadline_ms": _IntSubclass(30_025)},
+            "effective_deadline_ms",
+        ),
+        ({"effective_deadline_ms": 30_000}, "untimed receipt"),
+    ],
+)
+def test_normalization_cross_binds_effective_deadline(
+    mutation: dict[str, Any], match: str
+) -> None:
+    valid, clauses = _discovery_fixture()
+    receipt = {**valid.receipt, **mutation}
+    with pytest.raises(incremental_v3.PiqdIncrementalV3Error, match=match):
+        _normalize_fixture(replace(valid, receipt=receipt), clauses)
+
+
+def test_normalization_accepts_exact_effective_deadline() -> None:
+    valid, clauses = _discovery_fixture()
+    receipt = {
+        **valid.receipt,
+        "timeout_ms": 25,
+        "effective_deadline_ms": 30_025,
+    }
+    assert _normalize_fixture(replace(valid, receipt=receipt), clauses).verdict == (
+        "UNSAT"
+    )
 
 
 def test_normalization_rejects_receipt_dict_subclass() -> None:
