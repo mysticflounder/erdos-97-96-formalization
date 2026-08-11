@@ -42,8 +42,7 @@ def membershipRowWF (e : MembershipRowEntry) : Bool :=
 
 def membershipRowEntry (outputClauseIndex : Nat) (clause : List Int)
     (rowVar : Nat) (row : RowSupportAtom)
-    (m1 m2 m3 m4 : Nat × MembershipAtom) (_ : membershipRowWF
-      { outputClauseIndex, clause, rowVar, row, m1, m2, m3, m4 } = true) : MembershipRowEntry :=
+    (m1 m2 m3 m4 : Nat × MembershipAtom) : MembershipRowEntry :=
   { outputClauseIndex, clause, rowVar, row, m1, m2, m3, m4 }
 
 structure RowArcEntry where
@@ -64,8 +63,7 @@ def rowArcWF (e : RowArcEntry) : Bool :=
 
 def rowArcEntry (outputClauseIndex : Nat) (clause : List Int) (rowVar : Nat)
     (row : RowSupportAtom) (arcVar : Nat) (arc : OuterArcAtom)
-    (datum : DirectRowArcFiniteDatum) (_ : rowArcWF
-      { outputClauseIndex, clause, rowVar, row, arcVar, arc, datum } = true) : RowArcEntry :=
+    (datum : DirectRowArcFiniteDatum) : RowArcEntry :=
   { outputClauseIndex, clause, rowVar, row, arcVar, arc, datum }
 
 structure NoFourEntry where
@@ -89,8 +87,7 @@ def noFourWF (e : NoFourEntry) : Bool :=
   litsSubset (noFourLits e) e.clause
 
 def noFourEntry (outputClauseIndex : Nat) (clause : List Int)
-    (a1 a2 a3 a4 : Nat × OuterArcAtom) (_ : noFourWF
-      { outputClauseIndex, clause, a1, a2, a3, a4 } = true) : NoFourEntry :=
+    (a1 a2 a3 a4 : Nat × OuterArcAtom) : NoFourEntry :=
   { outputClauseIndex, clause, a1, a2, a3, a4 }
 
 inductive MirrorEntry where

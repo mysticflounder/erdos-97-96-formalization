@@ -18,1873 +18,1792 @@ def reflectedDatum_09453 : DirectRowArcFiniteDatum :=
 
 def entry_09453 : MirrorEntry := .rowArc (rowArcEntry 9453 [1171, -1215]
   1215 ⟨3, {0, 2, 7, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
-  reflectedDatum_09453 (by native_decide))
+  reflectedDatum_09453)
 
 def reflectedDatum_09454 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 8, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09454 : MirrorEntry := .rowArc (rowArcEntry 9454 [1182, -1215]
   1215 ⟨3, {0, 2, 7, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09454 (by native_decide))
+  reflectedDatum_09454)
 
 def entry_09455 : MirrorEntry := .membershipRow (membershipRowEntry 9455 [-33, 1216, -31, -38, -39]
   1216 ⟨3, {0, 2, 8, 9}⟩
   (33, ⟨3, 2⟩)
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09456 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 8, 10}⟩, arc := ⟨7, .right, {1, 2}⟩ }
 
 def entry_09456 : MirrorEntry := .rowArc (rowArcEntry 9456 [1171, -1216]
   1216 ⟨3, {0, 2, 8, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
-  reflectedDatum_09456 (by native_decide))
+  reflectedDatum_09456)
 
 def reflectedDatum_09457 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 8, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09457 : MirrorEntry := .rowArc (rowArcEntry 9457 [1180, -1216]
   1216 ⟨3, {0, 2, 8, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09457 (by native_decide))
+  reflectedDatum_09457)
 
 def entry_09458 : MirrorEntry := .membershipRow (membershipRowEntry 9458 [-33, 1217, -31, -40, -38]
   1217 ⟨3, {0, 2, 8, 10}⟩
   (33, ⟨3, 2⟩)
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09459 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 8, 10}⟩, arc := ⟨7, .right, {1, 2}⟩ }
 
 def entry_09459 : MirrorEntry := .rowArc (rowArcEntry 9459 [1171, -1217]
   1217 ⟨3, {0, 2, 8, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
-  reflectedDatum_09459 (by native_decide))
+  reflectedDatum_09459)
 
 def reflectedDatum_09460 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 8, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09460 : MirrorEntry := .rowArc (rowArcEntry 9460 [1182, -1217]
   1217 ⟨3, {0, 2, 8, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09460 (by native_decide))
+  reflectedDatum_09460)
 
 def entry_09461 : MirrorEntry := .membershipRow (membershipRowEntry 9461 [-33, 1218, -31, -40, -39]
   1218 ⟨3, {0, 2, 9, 10}⟩
   (33, ⟨3, 2⟩)
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09462 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 8, 10}⟩, arc := ⟨7, .right, {1, 2}⟩ }
 
 def entry_09462 : MirrorEntry := .rowArc (rowArcEntry 9462 [1171, -1218]
   1218 ⟨3, {0, 2, 9, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
-  reflectedDatum_09462 (by native_decide))
+  reflectedDatum_09462)
 
 def reflectedDatum_09463 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 8, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09463 : MirrorEntry := .rowArc (rowArcEntry 9463 [1182, -1218]
   1218 ⟨3, {0, 2, 9, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09463 (by native_decide))
+  reflectedDatum_09463)
 
 def entry_09464 : MirrorEntry := .membershipRow (membershipRowEntry 9464 [-34, -35, -37, -31, 1219]
   1219 ⟨3, {0, 4, 5, 7}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09465 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09465 : MirrorEntry := .rowArc (rowArcEntry 9465 [1220, -1219]
   1219 ⟨3, {0, 4, 5, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09465 (by native_decide))
+  reflectedDatum_09465)
 
 def reflectedDatum_09466 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 10}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09466 : MirrorEntry := .rowArc (rowArcEntry 9466 [-1219, 1172]
   1219 ⟨3, {0, 4, 5, 7}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09466 (by native_decide))
+  reflectedDatum_09466)
 
 def entry_09467 : MirrorEntry := .membershipRow (membershipRowEntry 9467 [-34, -35, -31, 1221, -38]
   1221 ⟨3, {0, 4, 5, 8}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (31, ⟨3, 0⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09468 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09468 : MirrorEntry := .rowArc (rowArcEntry 9468 [1222, -1221]
   1221 ⟨3, {0, 4, 5, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09468 (by native_decide))
+  reflectedDatum_09468)
 
 def reflectedDatum_09469 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 10}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09469 : MirrorEntry := .rowArc (rowArcEntry 9469 [-1221, 1172]
   1221 ⟨3, {0, 4, 5, 8}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09469 (by native_decide))
+  reflectedDatum_09469)
 
 def entry_09470 : MirrorEntry := .membershipRow (membershipRowEntry 9470 [-34, -35, -39, -31, 1223]
   1223 ⟨3, {0, 4, 5, 9}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09471 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09471 : MirrorEntry := .rowArc (rowArcEntry 9471 [1224, -1223]
   1223 ⟨3, {0, 4, 5, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09471 (by native_decide))
+  reflectedDatum_09471)
 
 def reflectedDatum_09472 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 10}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09472 : MirrorEntry := .rowArc (rowArcEntry 9472 [-1223, 1172]
   1223 ⟨3, {0, 4, 5, 9}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09472 (by native_decide))
+  reflectedDatum_09472)
 
 def entry_09473 : MirrorEntry := .membershipRow (membershipRowEntry 9473 [-34, -35, -40, 1225, -31]
   1225 ⟨3, {0, 4, 5, 10}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (40, ⟨3, 10⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09474 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09474 : MirrorEntry := .rowArc (rowArcEntry 9474 [1226, -1225]
   1225 ⟨3, {0, 4, 5, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09474 (by native_decide))
+  reflectedDatum_09474)
 
 def reflectedDatum_09475 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 10}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09475 : MirrorEntry := .rowArc (rowArcEntry 9475 [-1225, 1172]
   1225 ⟨3, {0, 4, 5, 10}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09475 (by native_decide))
+  reflectedDatum_09475)
 
 def entry_09476 : MirrorEntry := .membershipRow (membershipRowEntry 9476 [-36, -34, -31, -37, 1227]
   1227 ⟨3, {0, 4, 6, 7}⟩
   (36, ⟨3, 6⟩)
   (34, ⟨3, 4⟩)
   (31, ⟨3, 0⟩)
-  (37, ⟨3, 7⟩)
-  (by native_decide))
+  (37, ⟨3, 7⟩))
 
 def reflectedDatum_09477 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09477 : MirrorEntry := .rowArc (rowArcEntry 9477 [1220, -1227]
   1227 ⟨3, {0, 4, 6, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09477 (by native_decide))
+  reflectedDatum_09477)
 
 def reflectedDatum_09478 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 10}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09478 : MirrorEntry := .rowArc (rowArcEntry 9478 [1174, -1227]
   1227 ⟨3, {0, 4, 6, 7}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09478 (by native_decide))
+  reflectedDatum_09478)
 
 def entry_09479 : MirrorEntry := .membershipRow (membershipRowEntry 9479 [-34, -36, -38, 1228, -31]
   1228 ⟨3, {0, 4, 6, 8}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09480 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09480 : MirrorEntry := .rowArc (rowArcEntry 9480 [1222, -1228]
   1228 ⟨3, {0, 4, 6, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09480 (by native_decide))
+  reflectedDatum_09480)
 
 def reflectedDatum_09481 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 10}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09481 : MirrorEntry := .rowArc (rowArcEntry 9481 [1174, -1228]
   1228 ⟨3, {0, 4, 6, 8}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09481 (by native_decide))
+  reflectedDatum_09481)
 
 def entry_09482 : MirrorEntry := .membershipRow (membershipRowEntry 9482 [-34, -36, -39, -31, 1229]
   1229 ⟨3, {0, 4, 6, 9}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09483 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09483 : MirrorEntry := .rowArc (rowArcEntry 9483 [1224, -1229]
   1229 ⟨3, {0, 4, 6, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09483 (by native_decide))
+  reflectedDatum_09483)
 
 def reflectedDatum_09484 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 6, 10}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09484 : MirrorEntry := .rowArc (rowArcEntry 9484 [1174, -1229]
   1229 ⟨3, {0, 4, 6, 9}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09484 (by native_decide))
+  reflectedDatum_09484)
 
 def entry_09485 : MirrorEntry := .membershipRow (membershipRowEntry 9485 [-34, -36, -40, 1230, -31]
   1230 ⟨3, {0, 4, 6, 10}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (40, ⟨3, 10⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09486 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09486 : MirrorEntry := .rowArc (rowArcEntry 9486 [1226, -1230]
   1230 ⟨3, {0, 4, 6, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09486 (by native_decide))
+  reflectedDatum_09486)
 
 def reflectedDatum_09487 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 6, 10}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09487 : MirrorEntry := .rowArc (rowArcEntry 9487 [1174, -1230]
   1230 ⟨3, {0, 4, 6, 10}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09487 (by native_decide))
+  reflectedDatum_09487)
 
 def entry_09488 : MirrorEntry := .membershipRow (membershipRowEntry 9488 [1231, -34, -31, -37, -38]
   1231 ⟨3, {0, 4, 7, 8}⟩
   (34, ⟨3, 4⟩)
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09489 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09489 : MirrorEntry := .rowArc (rowArcEntry 9489 [1222, -1231]
   1231 ⟨3, {0, 4, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09489 (by native_decide))
+  reflectedDatum_09489)
 
 def reflectedDatum_09490 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09490 : MirrorEntry := .rowArc (rowArcEntry 9490 [1176, -1231]
   1231 ⟨3, {0, 4, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09490 (by native_decide))
+  reflectedDatum_09490)
 
 def entry_09491 : MirrorEntry := .membershipRow (membershipRowEntry 9491 [-34, -39, -37, 1232, -31]
   1232 ⟨3, {0, 4, 7, 9}⟩
   (34, ⟨3, 4⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09492 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09492 : MirrorEntry := .rowArc (rowArcEntry 9492 [1224, -1232]
   1232 ⟨3, {0, 4, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09492 (by native_decide))
+  reflectedDatum_09492)
 
 def reflectedDatum_09493 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09493 : MirrorEntry := .rowArc (rowArcEntry 9493 [1176, -1232]
   1232 ⟨3, {0, 4, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09493 (by native_decide))
+  reflectedDatum_09493)
 
 def entry_09494 : MirrorEntry := .membershipRow (membershipRowEntry 9494 [1233, -40, -37, -34, -31]
   1233 ⟨3, {0, 4, 7, 10}⟩
   (40, ⟨3, 10⟩)
   (37, ⟨3, 7⟩)
   (34, ⟨3, 4⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09495 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09495 : MirrorEntry := .rowArc (rowArcEntry 9495 [1226, -1233]
   1233 ⟨3, {0, 4, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09495 (by native_decide))
+  reflectedDatum_09495)
 
 def reflectedDatum_09496 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09496 : MirrorEntry := .rowArc (rowArcEntry 9496 [1176, -1233]
   1233 ⟨3, {0, 4, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09496 (by native_decide))
+  reflectedDatum_09496)
 
 def entry_09497 : MirrorEntry := .membershipRow (membershipRowEntry 9497 [-34, -38, -39, 1234, -31]
   1234 ⟨3, {0, 4, 8, 9}⟩
   (34, ⟨3, 4⟩)
   (38, ⟨3, 8⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09498 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09498 : MirrorEntry := .rowArc (rowArcEntry 9498 [1224, -1234]
   1234 ⟨3, {0, 4, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09498 (by native_decide))
+  reflectedDatum_09498)
 
 def reflectedDatum_09499 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09499 : MirrorEntry := .rowArc (rowArcEntry 9499 [1178, -1234]
   1234 ⟨3, {0, 4, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09499 (by native_decide))
+  reflectedDatum_09499)
 
 def entry_09500 : MirrorEntry := .membershipRow (membershipRowEntry 9500 [1235, -38, -40, -34, -31]
   1235 ⟨3, {0, 4, 8, 10}⟩
   (38, ⟨3, 8⟩)
   (40, ⟨3, 10⟩)
   (34, ⟨3, 4⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09501 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09501 : MirrorEntry := .rowArc (rowArcEntry 9501 [1226, -1235]
   1235 ⟨3, {0, 4, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09501 (by native_decide))
+  reflectedDatum_09501)
 
 def reflectedDatum_09502 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09502 : MirrorEntry := .rowArc (rowArcEntry 9502 [1178, -1235]
   1235 ⟨3, {0, 4, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09502 (by native_decide))
+  reflectedDatum_09502)
 
 def entry_09503 : MirrorEntry := .membershipRow (membershipRowEntry 9503 [1236, -34, -31, -40, -39]
   1236 ⟨3, {0, 4, 9, 10}⟩
   (34, ⟨3, 4⟩)
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09504 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 6, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09504 : MirrorEntry := .rowArc (rowArcEntry 9504 [1226, -1236]
   1236 ⟨3, {0, 4, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09504 (by native_decide))
+  reflectedDatum_09504)
 
 def reflectedDatum_09505 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 6, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09505 : MirrorEntry := .rowArc (rowArcEntry 9505 [1180, -1236]
   1236 ⟨3, {0, 4, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09505 (by native_decide))
+  reflectedDatum_09505)
 
 def reflectedDatum_09506 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09506 : MirrorEntry := .rowArc (rowArcEntry 9506 [1224, -1237]
   1237 ⟨3, {0, 5, 6, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09506 (by native_decide))
+  reflectedDatum_09506)
 
 def reflectedDatum_09507 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09507 : MirrorEntry := .rowArc (rowArcEntry 9507 [1226, -1238]
   1238 ⟨3, {0, 5, 6, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09507 (by native_decide))
+  reflectedDatum_09507)
 
 def entry_09508 : MirrorEntry := .membershipRow (membershipRowEntry 9508 [-35, -38, -31, -37, 1239]
   1239 ⟨3, {0, 5, 7, 8}⟩
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
   (31, ⟨3, 0⟩)
-  (37, ⟨3, 7⟩)
-  (by native_decide))
+  (37, ⟨3, 7⟩))
 
 def reflectedDatum_09509 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09509 : MirrorEntry := .rowArc (rowArcEntry 9509 [1222, -1239]
   1239 ⟨3, {0, 5, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09509 (by native_decide))
+  reflectedDatum_09509)
 
 def reflectedDatum_09510 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09510 : MirrorEntry := .rowArc (rowArcEntry 9510 [1176, -1239]
   1239 ⟨3, {0, 5, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09510 (by native_decide))
+  reflectedDatum_09510)
 
 def entry_09511 : MirrorEntry := .membershipRow (membershipRowEntry 9511 [-35, -39, -37, -31, 1240]
   1240 ⟨3, {0, 5, 7, 9}⟩
   (35, ⟨3, 5⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09512 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09512 : MirrorEntry := .rowArc (rowArcEntry 9512 [1224, -1240]
   1240 ⟨3, {0, 5, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09512 (by native_decide))
+  reflectedDatum_09512)
 
 def reflectedDatum_09513 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09513 : MirrorEntry := .rowArc (rowArcEntry 9513 [1176, -1240]
   1240 ⟨3, {0, 5, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09513 (by native_decide))
+  reflectedDatum_09513)
 
 def entry_09514 : MirrorEntry := .membershipRow (membershipRowEntry 9514 [-35, -40, -37, -31, 1241]
   1241 ⟨3, {0, 5, 7, 10}⟩
   (35, ⟨3, 5⟩)
   (40, ⟨3, 10⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09515 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09515 : MirrorEntry := .rowArc (rowArcEntry 9515 [1226, -1241]
   1241 ⟨3, {0, 5, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09515 (by native_decide))
+  reflectedDatum_09515)
 
 def reflectedDatum_09516 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09516 : MirrorEntry := .rowArc (rowArcEntry 9516 [1176, -1241]
   1241 ⟨3, {0, 5, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09516 (by native_decide))
+  reflectedDatum_09516)
 
 def entry_09517 : MirrorEntry := .membershipRow (membershipRowEntry 9517 [-35, -38, -39, -31, 1242]
   1242 ⟨3, {0, 5, 8, 9}⟩
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09518 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09518 : MirrorEntry := .rowArc (rowArcEntry 9518 [1224, -1242]
   1242 ⟨3, {0, 5, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09518 (by native_decide))
+  reflectedDatum_09518)
 
 def reflectedDatum_09519 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09519 : MirrorEntry := .rowArc (rowArcEntry 9519 [1178, -1242]
   1242 ⟨3, {0, 5, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09519 (by native_decide))
+  reflectedDatum_09519)
 
 def entry_09520 : MirrorEntry := .membershipRow (membershipRowEntry 9520 [-35, 1243, -31, -40, -38]
   1243 ⟨3, {0, 5, 8, 10}⟩
   (35, ⟨3, 5⟩)
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09521 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09521 : MirrorEntry := .rowArc (rowArcEntry 9521 [1226, -1243]
   1243 ⟨3, {0, 5, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09521 (by native_decide))
+  reflectedDatum_09521)
 
 def reflectedDatum_09522 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09522 : MirrorEntry := .rowArc (rowArcEntry 9522 [1178, -1243]
   1243 ⟨3, {0, 5, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09522 (by native_decide))
+  reflectedDatum_09522)
 
 def entry_09523 : MirrorEntry := .membershipRow (membershipRowEntry 9523 [-35, -40, -39, -31, 1244]
   1244 ⟨3, {0, 5, 9, 10}⟩
   (35, ⟨3, 5⟩)
   (40, ⟨3, 10⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09524 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 5, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09524 : MirrorEntry := .rowArc (rowArcEntry 9524 [1226, -1244]
   1244 ⟨3, {0, 5, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09524 (by native_decide))
+  reflectedDatum_09524)
 
 def reflectedDatum_09525 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 5, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09525 : MirrorEntry := .rowArc (rowArcEntry 9525 [-1244, 1180]
   1244 ⟨3, {0, 5, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09525 (by native_decide))
+  reflectedDatum_09525)
 
 def entry_09526 : MirrorEntry := .membershipRow (membershipRowEntry 9526 [-36, -38, -37, 1245, -31]
   1245 ⟨3, {0, 6, 7, 8}⟩
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09527 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09527 : MirrorEntry := .rowArc (rowArcEntry 9527 [1222, -1245]
   1245 ⟨3, {0, 6, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09527 (by native_decide))
+  reflectedDatum_09527)
 
 def reflectedDatum_09528 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09528 : MirrorEntry := .rowArc (rowArcEntry 9528 [1176, -1245]
   1245 ⟨3, {0, 6, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09528 (by native_decide))
+  reflectedDatum_09528)
 
 def entry_09529 : MirrorEntry := .membershipRow (membershipRowEntry 9529 [-36, -39, -37, -31, 1246]
   1246 ⟨3, {0, 6, 7, 9}⟩
   (36, ⟨3, 6⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09530 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09530 : MirrorEntry := .rowArc (rowArcEntry 9530 [1224, -1246]
   1246 ⟨3, {0, 6, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09530 (by native_decide))
+  reflectedDatum_09530)
 
 def reflectedDatum_09531 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09531 : MirrorEntry := .rowArc (rowArcEntry 9531 [1176, -1246]
   1246 ⟨3, {0, 6, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09531 (by native_decide))
+  reflectedDatum_09531)
 
 def entry_09532 : MirrorEntry := .membershipRow (membershipRowEntry 9532 [-36, 1247, -31, -37, -40]
   1247 ⟨3, {0, 6, 7, 10}⟩
   (36, ⟨3, 6⟩)
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09533 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09533 : MirrorEntry := .rowArc (rowArcEntry 9533 [1226, -1247]
   1247 ⟨3, {0, 6, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09533 (by native_decide))
+  reflectedDatum_09533)
 
 def reflectedDatum_09534 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09534 : MirrorEntry := .rowArc (rowArcEntry 9534 [1176, -1247]
   1247 ⟨3, {0, 6, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09534 (by native_decide))
+  reflectedDatum_09534)
 
 def entry_09535 : MirrorEntry := .membershipRow (membershipRowEntry 9535 [-36, -38, -39, -31, 1248]
   1248 ⟨3, {0, 6, 8, 9}⟩
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
   (39, ⟨3, 9⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09536 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09536 : MirrorEntry := .rowArc (rowArcEntry 9536 [1224, -1248]
   1248 ⟨3, {0, 6, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09536 (by native_decide))
+  reflectedDatum_09536)
 
 def reflectedDatum_09537 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09537 : MirrorEntry := .rowArc (rowArcEntry 9537 [1178, -1248]
   1248 ⟨3, {0, 6, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09537 (by native_decide))
+  reflectedDatum_09537)
 
 def entry_09538 : MirrorEntry := .membershipRow (membershipRowEntry 9538 [-36, 1249, -31, -38, -40]
   1249 ⟨3, {0, 6, 8, 10}⟩
   (36, ⟨3, 6⟩)
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09539 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09539 : MirrorEntry := .rowArc (rowArcEntry 9539 [1226, -1249]
   1249 ⟨3, {0, 6, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09539 (by native_decide))
+  reflectedDatum_09539)
 
 def reflectedDatum_09540 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09540 : MirrorEntry := .rowArc (rowArcEntry 9540 [1178, -1249]
   1249 ⟨3, {0, 6, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09540 (by native_decide))
+  reflectedDatum_09540)
 
 def entry_09541 : MirrorEntry := .membershipRow (membershipRowEntry 9541 [-36, 1250, -31, -39, -40]
   1250 ⟨3, {0, 6, 9, 10}⟩
   (36, ⟨3, 6⟩)
   (31, ⟨3, 0⟩)
   (39, ⟨3, 9⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09542 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 4, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09542 : MirrorEntry := .rowArc (rowArcEntry 9542 [1226, -1250]
   1250 ⟨3, {0, 6, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09542 (by native_decide))
+  reflectedDatum_09542)
 
 def reflectedDatum_09543 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 4, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09543 : MirrorEntry := .rowArc (rowArcEntry 9543 [1180, -1250]
   1250 ⟨3, {0, 6, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09543 (by native_decide))
+  reflectedDatum_09543)
 
 def entry_09544 : MirrorEntry := .membershipRow (membershipRowEntry 9544 [-38, -39, -37, 1251, -31]
   1251 ⟨3, {0, 7, 8, 9}⟩
   (38, ⟨3, 8⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09545 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 3, 10}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09545 : MirrorEntry := .rowArc (rowArcEntry 9545 [1224, -1251]
   1251 ⟨3, {0, 7, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09545 (by native_decide))
+  reflectedDatum_09545)
 
 def reflectedDatum_09546 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 3, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09546 : MirrorEntry := .rowArc (rowArcEntry 9546 [1178, -1251]
   1251 ⟨3, {0, 7, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09546 (by native_decide))
+  reflectedDatum_09546)
 
 def entry_09547 : MirrorEntry := .membershipRow (membershipRowEntry 9547 [1252, -40, -37, -38, -31]
   1252 ⟨3, {0, 7, 8, 10}⟩
   (40, ⟨3, 10⟩)
   (37, ⟨3, 7⟩)
   (38, ⟨3, 8⟩)
-  (31, ⟨3, 0⟩)
-  (by native_decide))
+  (31, ⟨3, 0⟩))
 
 def reflectedDatum_09548 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 3, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09548 : MirrorEntry := .rowArc (rowArcEntry 9548 [1226, -1252]
   1252 ⟨3, {0, 7, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09548 (by native_decide))
+  reflectedDatum_09548)
 
 def reflectedDatum_09549 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 3, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09549 : MirrorEntry := .rowArc (rowArcEntry 9549 [1178, -1252]
   1252 ⟨3, {0, 7, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09549 (by native_decide))
+  reflectedDatum_09549)
 
 def entry_09550 : MirrorEntry := .membershipRow (membershipRowEntry 9550 [1253, -40, -37, -31, -39]
   1253 ⟨3, {0, 7, 9, 10}⟩
   (40, ⟨3, 10⟩)
   (37, ⟨3, 7⟩)
   (31, ⟨3, 0⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09551 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 3, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09551 : MirrorEntry := .rowArc (rowArcEntry 9551 [1226, -1253]
   1253 ⟨3, {0, 7, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09551 (by native_decide))
+  reflectedDatum_09551)
 
 def reflectedDatum_09552 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 3, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09552 : MirrorEntry := .rowArc (rowArcEntry 9552 [-1253, 1180]
   1253 ⟨3, {0, 7, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09552 (by native_decide))
+  reflectedDatum_09552)
 
 def reflectedDatum_09553 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 2, 10}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09553 : MirrorEntry := .rowArc (rowArcEntry 9553 [1226, -1254]
   1254 ⟨3, {0, 8, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09553 (by native_decide))
+  reflectedDatum_09553)
 
 def reflectedDatum_09554 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 2, 10}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09554 : MirrorEntry := .rowArc (rowArcEntry 9554 [-1254, 1180]
   1254 ⟨3, {0, 8, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09554 (by native_decide))
+  reflectedDatum_09554)
 
 def reflectedDatum_09555 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {5, 6, 8, 9}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09555 : MirrorEntry := .rowArc (rowArcEntry 9555 [-1255, 1172]
   1255 ⟨3, {1, 2, 4, 5}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09555 (by native_decide))
+  reflectedDatum_09555)
 
 def reflectedDatum_09556 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {4, 6, 8, 9}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09556 : MirrorEntry := .rowArc (rowArcEntry 9556 [1174, -1256]
   1256 ⟨3, {1, 2, 4, 6}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09556 (by native_decide))
+  reflectedDatum_09556)
 
 def reflectedDatum_09557 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 6, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09557 : MirrorEntry := .rowArc (rowArcEntry 9557 [1176, -1257]
   1257 ⟨3, {1, 2, 4, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09557 (by native_decide))
+  reflectedDatum_09557)
 
 def reflectedDatum_09558 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 6, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09558 : MirrorEntry := .rowArc (rowArcEntry 9558 [1178, -1258]
   1258 ⟨3, {1, 2, 4, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09558 (by native_decide))
+  reflectedDatum_09558)
 
 def reflectedDatum_09559 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 6, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09559 : MirrorEntry := .rowArc (rowArcEntry 9559 [1182, -1259]
   1259 ⟨3, {1, 2, 4, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09559 (by native_decide))
+  reflectedDatum_09559)
 
 def reflectedDatum_09560 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {4, 5, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09560 : MirrorEntry := .rowArc (rowArcEntry 9560 [-1260, 1162]
   1260 ⟨3, {1, 2, 5, 6}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09560 (by native_decide))
+  reflectedDatum_09560)
 
 def entry_09561 : MirrorEntry := .membershipRow (membershipRowEntry 9561 [-32, -33, -37, -35, 1261]
   1261 ⟨3, {1, 2, 5, 7}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (37, ⟨3, 7⟩)
-  (35, ⟨3, 5⟩)
-  (by native_decide))
+  (35, ⟨3, 5⟩))
 
 def reflectedDatum_09562 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09562 : MirrorEntry := .rowArc (rowArcEntry 9562 [1162, -1261]
   1261 ⟨3, {1, 2, 5, 7}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09562 (by native_decide))
+  reflectedDatum_09562)
 
 def reflectedDatum_09563 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09563 : MirrorEntry := .rowArc (rowArcEntry 9563 [1176, -1261]
   1261 ⟨3, {1, 2, 5, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09563 (by native_decide))
+  reflectedDatum_09563)
 
 def entry_09564 : MirrorEntry := .membershipRow (membershipRowEntry 9564 [-32, -35, -38, -33, 1262]
   1262 ⟨3, {1, 2, 5, 8}⟩
   (32, ⟨3, 1⟩)
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09565 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09565 : MirrorEntry := .rowArc (rowArcEntry 9565 [1162, -1262]
   1262 ⟨3, {1, 2, 5, 8}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09565 (by native_decide))
+  reflectedDatum_09565)
 
 def reflectedDatum_09566 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09566 : MirrorEntry := .rowArc (rowArcEntry 9566 [1178, -1262]
   1262 ⟨3, {1, 2, 5, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09566 (by native_decide))
+  reflectedDatum_09566)
 
 def entry_09567 : MirrorEntry := .membershipRow (membershipRowEntry 9567 [-32, -33, 1263, -39, -35]
   1263 ⟨3, {1, 2, 5, 9}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (39, ⟨3, 9⟩)
-  (35, ⟨3, 5⟩)
-  (by native_decide))
+  (35, ⟨3, 5⟩))
 
 def reflectedDatum_09568 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09568 : MirrorEntry := .rowArc (rowArcEntry 9568 [1162, -1263]
   1263 ⟨3, {1, 2, 5, 9}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09568 (by native_decide))
+  reflectedDatum_09568)
 
 def entry_09569 : MirrorEntry := .membershipRow (membershipRowEntry 9569 [-32, -33, -40, -35, 1264]
   1264 ⟨3, {1, 2, 5, 10}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (40, ⟨3, 10⟩)
-  (35, ⟨3, 5⟩)
-  (by native_decide))
+  (35, ⟨3, 5⟩))
 
 def reflectedDatum_09570 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09570 : MirrorEntry := .rowArc (rowArcEntry 9570 [1162, -1264]
   1264 ⟨3, {1, 2, 5, 10}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09570 (by native_decide))
+  reflectedDatum_09570)
 
 def reflectedDatum_09571 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09571 : MirrorEntry := .rowArc (rowArcEntry 9571 [1182, -1264]
   1264 ⟨3, {1, 2, 5, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09571 (by native_decide))
+  reflectedDatum_09571)
 
 def entry_09572 : MirrorEntry := .membershipRow (membershipRowEntry 9572 [-36, 1265, -37, -33, -32]
   1265 ⟨3, {1, 2, 6, 7}⟩
   (36, ⟨3, 6⟩)
   (37, ⟨3, 7⟩)
   (33, ⟨3, 2⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09573 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09573 : MirrorEntry := .rowArc (rowArcEntry 9573 [1162, -1265]
   1265 ⟨3, {1, 2, 6, 7}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09573 (by native_decide))
+  reflectedDatum_09573)
 
 def reflectedDatum_09574 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09574 : MirrorEntry := .rowArc (rowArcEntry 9574 [1176, -1265]
   1265 ⟨3, {1, 2, 6, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09574 (by native_decide))
+  reflectedDatum_09574)
 
 def entry_09575 : MirrorEntry := .membershipRow (membershipRowEntry 9575 [-36, 1266, -38, -33, -32]
   1266 ⟨3, {1, 2, 6, 8}⟩
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
   (33, ⟨3, 2⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09576 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09576 : MirrorEntry := .rowArc (rowArcEntry 9576 [1162, -1266]
   1266 ⟨3, {1, 2, 6, 8}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09576 (by native_decide))
+  reflectedDatum_09576)
 
 def reflectedDatum_09577 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09577 : MirrorEntry := .rowArc (rowArcEntry 9577 [1178, -1266]
   1266 ⟨3, {1, 2, 6, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09577 (by native_decide))
+  reflectedDatum_09577)
 
 def entry_09578 : MirrorEntry := .membershipRow (membershipRowEntry 9578 [-32, -36, -39, -33, 1267]
   1267 ⟨3, {1, 2, 6, 9}⟩
   (32, ⟨3, 1⟩)
   (36, ⟨3, 6⟩)
   (39, ⟨3, 9⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09579 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09579 : MirrorEntry := .rowArc (rowArcEntry 9579 [1162, -1267]
   1267 ⟨3, {1, 2, 6, 9}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09579 (by native_decide))
+  reflectedDatum_09579)
 
 def reflectedDatum_09580 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09580 : MirrorEntry := .rowArc (rowArcEntry 9580 [1180, -1267]
   1267 ⟨3, {1, 2, 6, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09580 (by native_decide))
+  reflectedDatum_09580)
 
 def entry_09581 : MirrorEntry := .membershipRow (membershipRowEntry 9581 [-36, 1268, -40, -33, -32]
   1268 ⟨3, {1, 2, 6, 10}⟩
   (36, ⟨3, 6⟩)
   (40, ⟨3, 10⟩)
   (33, ⟨3, 2⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09582 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09582 : MirrorEntry := .rowArc (rowArcEntry 9582 [1162, -1268]
   1268 ⟨3, {1, 2, 6, 10}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09582 (by native_decide))
+  reflectedDatum_09582)
 
 def reflectedDatum_09583 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09583 : MirrorEntry := .rowArc (rowArcEntry 9583 [1182, -1268]
   1268 ⟨3, {1, 2, 6, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09583 (by native_decide))
+  reflectedDatum_09583)
 
 def entry_09584 : MirrorEntry := .membershipRow (membershipRowEntry 9584 [-33, -38, -37, -32, 1269]
   1269 ⟨3, {1, 2, 7, 8}⟩
   (33, ⟨3, 2⟩)
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09585 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09585 : MirrorEntry := .rowArc (rowArcEntry 9585 [1162, -1269]
   1269 ⟨3, {1, 2, 7, 8}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09585 (by native_decide))
+  reflectedDatum_09585)
 
 def reflectedDatum_09586 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09586 : MirrorEntry := .rowArc (rowArcEntry 9586 [1178, -1269]
   1269 ⟨3, {1, 2, 7, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09586 (by native_decide))
+  reflectedDatum_09586)
 
 def entry_09587 : MirrorEntry := .membershipRow (membershipRowEntry 9587 [-32, -39, -37, -33, 1270]
   1270 ⟨3, {1, 2, 7, 9}⟩
   (32, ⟨3, 1⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09588 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09588 : MirrorEntry := .rowArc (rowArcEntry 9588 [1162, -1270]
   1270 ⟨3, {1, 2, 7, 9}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09588 (by native_decide))
+  reflectedDatum_09588)
 
 def entry_09589 : MirrorEntry := .membershipRow (membershipRowEntry 9589 [-32, -33, -37, 1271, -40]
   1271 ⟨3, {1, 2, 7, 10}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (37, ⟨3, 7⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09590 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09590 : MirrorEntry := .rowArc (rowArcEntry 9590 [1162, -1271]
   1271 ⟨3, {1, 2, 7, 10}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09590 (by native_decide))
+  reflectedDatum_09590)
 
 def reflectedDatum_09591 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09591 : MirrorEntry := .rowArc (rowArcEntry 9591 [1182, -1271]
   1271 ⟨3, {1, 2, 7, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09591 (by native_decide))
+  reflectedDatum_09591)
 
 def entry_09592 : MirrorEntry := .membershipRow (membershipRowEntry 9592 [-32, -33, -38, -39, 1272]
   1272 ⟨3, {1, 2, 8, 9}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (38, ⟨3, 8⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09593 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09593 : MirrorEntry := .rowArc (rowArcEntry 9593 [1162, -1272]
   1272 ⟨3, {1, 2, 8, 9}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09593 (by native_decide))
+  reflectedDatum_09593)
 
 def entry_09594 : MirrorEntry := .membershipRow (membershipRowEntry 9594 [-32, -33, -38, 1273, -40]
   1273 ⟨3, {1, 2, 8, 10}⟩
   (32, ⟨3, 1⟩)
   (33, ⟨3, 2⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09595 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09595 : MirrorEntry := .rowArc (rowArcEntry 9595 [1162, -1273]
   1273 ⟨3, {1, 2, 8, 10}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09595 (by native_decide))
+  reflectedDatum_09595)
 
 def reflectedDatum_09596 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09596 : MirrorEntry := .rowArc (rowArcEntry 9596 [1182, -1273]
   1273 ⟨3, {1, 2, 8, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09596 (by native_decide))
+  reflectedDatum_09596)
 
 def entry_09597 : MirrorEntry := .membershipRow (membershipRowEntry 9597 [-32, -40, -39, -33, 1274]
   1274 ⟨3, {1, 2, 9, 10}⟩
   (32, ⟨3, 1⟩)
   (40, ⟨3, 10⟩)
   (39, ⟨3, 9⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09598 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 8, 9}⟩, arc := ⟨7, .right, {2}⟩ }
 
 def entry_09598 : MirrorEntry := .rowArc (rowArcEntry 9598 [1162, -1274]
   1274 ⟨3, {1, 2, 9, 10}⟩ 1162 ⟨3, .left, {8}⟩
-  reflectedDatum_09598 (by native_decide))
+  reflectedDatum_09598)
 
 def reflectedDatum_09599 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 8, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩ }
 
 def entry_09599 : MirrorEntry := .rowArc (rowArcEntry 9599 [1182, -1274]
   1274 ⟨3, {1, 2, 9, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
-  reflectedDatum_09599 (by native_decide))
+  reflectedDatum_09599)
 
 def entry_09600 : MirrorEntry := .membershipRow (membershipRowEntry 9600 [-34, -35, -37, -32, 1275]
   1275 ⟨3, {1, 4, 5, 7}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (37, ⟨3, 7⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09601 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09601 : MirrorEntry := .rowArc (rowArcEntry 9601 [1220, -1275]
   1275 ⟨3, {1, 4, 5, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09601 (by native_decide))
+  reflectedDatum_09601)
 
 def reflectedDatum_09602 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 9}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09602 : MirrorEntry := .rowArc (rowArcEntry 9602 [-1275, 1172]
   1275 ⟨3, {1, 4, 5, 7}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09602 (by native_decide))
+  reflectedDatum_09602)
 
 def entry_09603 : MirrorEntry := .membershipRow (membershipRowEntry 9603 [-32, -34, -35, -38, 1276]
   1276 ⟨3, {1, 4, 5, 8}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09604 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09604 : MirrorEntry := .rowArc (rowArcEntry 9604 [1222, -1276]
   1276 ⟨3, {1, 4, 5, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09604 (by native_decide))
+  reflectedDatum_09604)
 
 def reflectedDatum_09605 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 9}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09605 : MirrorEntry := .rowArc (rowArcEntry 9605 [-1276, 1172]
   1276 ⟨3, {1, 4, 5, 8}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09605 (by native_decide))
+  reflectedDatum_09605)
 
 def entry_09606 : MirrorEntry := .membershipRow (membershipRowEntry 9606 [-34, -35, -39, 1277, -32]
   1277 ⟨3, {1, 4, 5, 9}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (39, ⟨3, 9⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09607 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09607 : MirrorEntry := .rowArc (rowArcEntry 9607 [1224, -1277]
   1277 ⟨3, {1, 4, 5, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09607 (by native_decide))
+  reflectedDatum_09607)
 
 def reflectedDatum_09608 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 9}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09608 : MirrorEntry := .rowArc (rowArcEntry 9608 [-1277, 1172]
   1277 ⟨3, {1, 4, 5, 9}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09608 (by native_decide))
+  reflectedDatum_09608)
 
 def entry_09609 : MirrorEntry := .membershipRow (membershipRowEntry 9609 [-34, -32, -35, 1278, -40]
   1278 ⟨3, {1, 4, 5, 10}⟩
   (34, ⟨3, 4⟩)
   (32, ⟨3, 1⟩)
   (35, ⟨3, 5⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09610 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09610 : MirrorEntry := .rowArc (rowArcEntry 9610 [1226, -1278]
   1278 ⟨3, {1, 4, 5, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09610 (by native_decide))
+  reflectedDatum_09610)
 
 def reflectedDatum_09611 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 9}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09611 : MirrorEntry := .rowArc (rowArcEntry 9611 [-1278, 1172]
   1278 ⟨3, {1, 4, 5, 10}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09611 (by native_decide))
+  reflectedDatum_09611)
 
 def entry_09612 : MirrorEntry := .membershipRow (membershipRowEntry 9612 [-34, -36, -37, -32, 1279]
   1279 ⟨3, {1, 4, 6, 7}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (37, ⟨3, 7⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09613 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09613 : MirrorEntry := .rowArc (rowArcEntry 9613 [1220, -1279]
   1279 ⟨3, {1, 4, 6, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09613 (by native_decide))
+  reflectedDatum_09613)
 
 def reflectedDatum_09614 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 9}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09614 : MirrorEntry := .rowArc (rowArcEntry 9614 [1174, -1279]
   1279 ⟨3, {1, 4, 6, 7}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09614 (by native_decide))
+  reflectedDatum_09614)
 
 def entry_09615 : MirrorEntry := .membershipRow (membershipRowEntry 9615 [-32, -34, -36, -38, 1280]
   1280 ⟨3, {1, 4, 6, 8}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09616 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09616 : MirrorEntry := .rowArc (rowArcEntry 9616 [1222, -1280]
   1280 ⟨3, {1, 4, 6, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09616 (by native_decide))
+  reflectedDatum_09616)
 
 def reflectedDatum_09617 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 9}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09617 : MirrorEntry := .rowArc (rowArcEntry 9617 [1174, -1280]
   1280 ⟨3, {1, 4, 6, 8}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09617 (by native_decide))
+  reflectedDatum_09617)
 
 def entry_09618 : MirrorEntry := .membershipRow (membershipRowEntry 9618 [-32, -34, -36, -39, 1281]
   1281 ⟨3, {1, 4, 6, 9}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09619 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09619 : MirrorEntry := .rowArc (rowArcEntry 9619 [1224, -1281]
   1281 ⟨3, {1, 4, 6, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09619 (by native_decide))
+  reflectedDatum_09619)
 
 def reflectedDatum_09620 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 6, 9}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09620 : MirrorEntry := .rowArc (rowArcEntry 9620 [1174, -1281]
   1281 ⟨3, {1, 4, 6, 9}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09620 (by native_decide))
+  reflectedDatum_09620)
 
 def entry_09621 : MirrorEntry := .membershipRow (membershipRowEntry 9621 [-34, -32, -36, 1282, -40]
   1282 ⟨3, {1, 4, 6, 10}⟩
   (34, ⟨3, 4⟩)
   (32, ⟨3, 1⟩)
   (36, ⟨3, 6⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09622 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09622 : MirrorEntry := .rowArc (rowArcEntry 9622 [1226, -1282]
   1282 ⟨3, {1, 4, 6, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09622 (by native_decide))
+  reflectedDatum_09622)
 
 def reflectedDatum_09623 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 6, 9}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09623 : MirrorEntry := .rowArc (rowArcEntry 9623 [1174, -1282]
   1282 ⟨3, {1, 4, 6, 10}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09623 (by native_decide))
+  reflectedDatum_09623)
 
 def entry_09624 : MirrorEntry := .membershipRow (membershipRowEntry 9624 [1283, -32, -34, -38, -37]
   1283 ⟨3, {1, 4, 7, 8}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (38, ⟨3, 8⟩)
-  (37, ⟨3, 7⟩)
-  (by native_decide))
+  (37, ⟨3, 7⟩))
 
 def reflectedDatum_09625 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09625 : MirrorEntry := .rowArc (rowArcEntry 9625 [1222, -1283]
   1283 ⟨3, {1, 4, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09625 (by native_decide))
+  reflectedDatum_09625)
 
 def reflectedDatum_09626 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09626 : MirrorEntry := .rowArc (rowArcEntry 9626 [1176, -1283]
   1283 ⟨3, {1, 4, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09626 (by native_decide))
+  reflectedDatum_09626)
 
 def entry_09627 : MirrorEntry := .membershipRow (membershipRowEntry 9627 [1284, -32, -34, -37, -39]
   1284 ⟨3, {1, 4, 7, 9}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (37, ⟨3, 7⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09628 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09628 : MirrorEntry := .rowArc (rowArcEntry 9628 [1224, -1284]
   1284 ⟨3, {1, 4, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09628 (by native_decide))
+  reflectedDatum_09628)
 
 def reflectedDatum_09629 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09629 : MirrorEntry := .rowArc (rowArcEntry 9629 [1176, -1284]
   1284 ⟨3, {1, 4, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09629 (by native_decide))
+  reflectedDatum_09629)
 
 def entry_09630 : MirrorEntry := .membershipRow (membershipRowEntry 9630 [-32, -34, 1285, -37, -40]
   1285 ⟨3, {1, 4, 7, 10}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (37, ⟨3, 7⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09631 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09631 : MirrorEntry := .rowArc (rowArcEntry 9631 [1226, -1285]
   1285 ⟨3, {1, 4, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09631 (by native_decide))
+  reflectedDatum_09631)
 
 def reflectedDatum_09632 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09632 : MirrorEntry := .rowArc (rowArcEntry 9632 [1176, -1285]
   1285 ⟨3, {1, 4, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09632 (by native_decide))
+  reflectedDatum_09632)
 
 def entry_09633 : MirrorEntry := .membershipRow (membershipRowEntry 9633 [1286, -32, -34, -38, -39]
   1286 ⟨3, {1, 4, 8, 9}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (38, ⟨3, 8⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09634 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09634 : MirrorEntry := .rowArc (rowArcEntry 9634 [1224, -1286]
   1286 ⟨3, {1, 4, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09634 (by native_decide))
+  reflectedDatum_09634)
 
 def reflectedDatum_09635 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09635 : MirrorEntry := .rowArc (rowArcEntry 9635 [1178, -1286]
   1286 ⟨3, {1, 4, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09635 (by native_decide))
+  reflectedDatum_09635)
 
 def entry_09636 : MirrorEntry := .membershipRow (membershipRowEntry 9636 [-32, -34, 1287, -38, -40]
   1287 ⟨3, {1, 4, 8, 10}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09637 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09637 : MirrorEntry := .rowArc (rowArcEntry 9637 [1226, -1287]
   1287 ⟨3, {1, 4, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09637 (by native_decide))
+  reflectedDatum_09637)
 
 def reflectedDatum_09638 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09638 : MirrorEntry := .rowArc (rowArcEntry 9638 [1178, -1287]
   1287 ⟨3, {1, 4, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09638 (by native_decide))
+  reflectedDatum_09638)
 
 def entry_09639 : MirrorEntry := .membershipRow (membershipRowEntry 9639 [-32, -34, 1288, -39, -40]
   1288 ⟨3, {1, 4, 9, 10}⟩
   (32, ⟨3, 1⟩)
   (34, ⟨3, 4⟩)
   (39, ⟨3, 9⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09640 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 6, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09640 : MirrorEntry := .rowArc (rowArcEntry 9640 [1226, -1288]
   1288 ⟨3, {1, 4, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09640 (by native_decide))
+  reflectedDatum_09640)
 
 def reflectedDatum_09641 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 6, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09641 : MirrorEntry := .rowArc (rowArcEntry 9641 [-1288, 1180]
   1288 ⟨3, {1, 4, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09641 (by native_decide))
+  reflectedDatum_09641)
 
 def reflectedDatum_09642 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 4, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09642 : MirrorEntry := .rowArc (rowArcEntry 9642 [1224, -1289]
   1289 ⟨3, {1, 5, 6, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09642 (by native_decide))
+  reflectedDatum_09642)
 
 def reflectedDatum_09643 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 4, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09643 : MirrorEntry := .rowArc (rowArcEntry 9643 [1226, -1290]
   1290 ⟨3, {1, 5, 6, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09643 (by native_decide))
+  reflectedDatum_09643)
 
 def entry_09644 : MirrorEntry := .membershipRow (membershipRowEntry 9644 [-35, -38, -37, -32, 1291]
   1291 ⟨3, {1, 5, 7, 8}⟩
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09645 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09645 : MirrorEntry := .rowArc (rowArcEntry 9645 [1222, -1291]
   1291 ⟨3, {1, 5, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09645 (by native_decide))
+  reflectedDatum_09645)
 
 def reflectedDatum_09646 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09646 : MirrorEntry := .rowArc (rowArcEntry 9646 [1176, -1291]
   1291 ⟨3, {1, 5, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09646 (by native_decide))
+  reflectedDatum_09646)
 
 def entry_09647 : MirrorEntry := .membershipRow (membershipRowEntry 9647 [-35, 1292, -37, -32, -39]
   1292 ⟨3, {1, 5, 7, 9}⟩
   (35, ⟨3, 5⟩)
   (37, ⟨3, 7⟩)
   (32, ⟨3, 1⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09648 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09648 : MirrorEntry := .rowArc (rowArcEntry 9648 [1224, -1292]
   1292 ⟨3, {1, 5, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09648 (by native_decide))
+  reflectedDatum_09648)
 
 def reflectedDatum_09649 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09649 : MirrorEntry := .rowArc (rowArcEntry 9649 [1176, -1292]
   1292 ⟨3, {1, 5, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09649 (by native_decide))
+  reflectedDatum_09649)
 
 def entry_09650 : MirrorEntry := .membershipRow (membershipRowEntry 9650 [-32, -35, -37, 1293, -40]
   1293 ⟨3, {1, 5, 7, 10}⟩
   (32, ⟨3, 1⟩)
   (35, ⟨3, 5⟩)
   (37, ⟨3, 7⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09651 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09651 : MirrorEntry := .rowArc (rowArcEntry 9651 [1226, -1293]
   1293 ⟨3, {1, 5, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09651 (by native_decide))
+  reflectedDatum_09651)
 
 def reflectedDatum_09652 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09652 : MirrorEntry := .rowArc (rowArcEntry 9652 [1176, -1293]
   1293 ⟨3, {1, 5, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09652 (by native_decide))
+  reflectedDatum_09652)
 
 def entry_09653 : MirrorEntry := .membershipRow (membershipRowEntry 9653 [-35, 1294, -38, -32, -39]
   1294 ⟨3, {1, 5, 8, 9}⟩
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
   (32, ⟨3, 1⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09654 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09654 : MirrorEntry := .rowArc (rowArcEntry 9654 [1224, -1294]
   1294 ⟨3, {1, 5, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09654 (by native_decide))
+  reflectedDatum_09654)
 
 def reflectedDatum_09655 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09655 : MirrorEntry := .rowArc (rowArcEntry 9655 [1178, -1294]
   1294 ⟨3, {1, 5, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09655 (by native_decide))
+  reflectedDatum_09655)
 
 def entry_09656 : MirrorEntry := .membershipRow (membershipRowEntry 9656 [-32, -35, -38, 1295, -40]
   1295 ⟨3, {1, 5, 8, 10}⟩
   (32, ⟨3, 1⟩)
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09657 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09657 : MirrorEntry := .rowArc (rowArcEntry 9657 [1226, -1295]
   1295 ⟨3, {1, 5, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09657 (by native_decide))
+  reflectedDatum_09657)
 
 def reflectedDatum_09658 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09658 : MirrorEntry := .rowArc (rowArcEntry 9658 [1178, -1295]
   1295 ⟨3, {1, 5, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09658 (by native_decide))
+  reflectedDatum_09658)
 
 def entry_09659 : MirrorEntry := .membershipRow (membershipRowEntry 9659 [-32, -35, -40, 1296, -39]
   1296 ⟨3, {1, 5, 9, 10}⟩
   (32, ⟨3, 1⟩)
   (35, ⟨3, 5⟩)
   (40, ⟨3, 10⟩)
-  (39, ⟨3, 9⟩)
-  (by native_decide))
+  (39, ⟨3, 9⟩))
 
 def reflectedDatum_09660 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 5, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09660 : MirrorEntry := .rowArc (rowArcEntry 9660 [1226, -1296]
   1296 ⟨3, {1, 5, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09660 (by native_decide))
+  reflectedDatum_09660)
 
 def reflectedDatum_09661 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 5, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09661 : MirrorEntry := .rowArc (rowArcEntry 9661 [-1296, 1180]
   1296 ⟨3, {1, 5, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09661 (by native_decide))
+  reflectedDatum_09661)
 
 def entry_09662 : MirrorEntry := .membershipRow (membershipRowEntry 9662 [-36, -38, -37, -32, 1297]
   1297 ⟨3, {1, 6, 7, 8}⟩
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩)
-  (32, ⟨3, 1⟩)
-  (by native_decide))
+  (32, ⟨3, 1⟩))
 
 def reflectedDatum_09663 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09663 : MirrorEntry := .rowArc (rowArcEntry 9663 [1222, -1297]
   1297 ⟨3, {1, 6, 7, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09663 (by native_decide))
+  reflectedDatum_09663)
 
 def reflectedDatum_09664 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 3, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09664 : MirrorEntry := .rowArc (rowArcEntry 9664 [1176, -1297]
   1297 ⟨3, {1, 6, 7, 8}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09664 (by native_decide))
+  reflectedDatum_09664)
 
 def entry_09665 : MirrorEntry := .membershipRow (membershipRowEntry 9665 [-32, -39, -37, -36, 1298]
   1298 ⟨3, {1, 6, 7, 9}⟩
   (32, ⟨3, 1⟩)
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
-  (36, ⟨3, 6⟩)
-  (by native_decide))
+  (36, ⟨3, 6⟩))
 
 def reflectedDatum_09666 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09666 : MirrorEntry := .rowArc (rowArcEntry 9666 [1224, -1298]
   1298 ⟨3, {1, 6, 7, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09666 (by native_decide))
+  reflectedDatum_09666)
 
 def reflectedDatum_09667 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 3, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09667 : MirrorEntry := .rowArc (rowArcEntry 9667 [1176, -1298]
   1298 ⟨3, {1, 6, 7, 9}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09667 (by native_decide))
+  reflectedDatum_09667)
 
 def entry_09668 : MirrorEntry := .membershipRow (membershipRowEntry 9668 [-32, -36, -37, 1299, -40]
   1299 ⟨3, {1, 6, 7, 10}⟩
   (32, ⟨3, 1⟩)
   (36, ⟨3, 6⟩)
   (37, ⟨3, 7⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09669 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09669 : MirrorEntry := .rowArc (rowArcEntry 9669 [1226, -1299]
   1299 ⟨3, {1, 6, 7, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09669 (by native_decide))
+  reflectedDatum_09669)
 
 def reflectedDatum_09670 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 3, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6}⟩ }
 
 def entry_09670 : MirrorEntry := .rowArc (rowArcEntry 9670 [1176, -1299]
   1299 ⟨3, {1, 6, 7, 10}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
-  reflectedDatum_09670 (by native_decide))
+  reflectedDatum_09670)
 
 def entry_09671 : MirrorEntry := .membershipRow (membershipRowEntry 9671 [-32, -38, -39, -36, 1300]
   1300 ⟨3, {1, 6, 8, 9}⟩
   (32, ⟨3, 1⟩)
   (38, ⟨3, 8⟩)
   (39, ⟨3, 9⟩)
-  (36, ⟨3, 6⟩)
-  (by native_decide))
+  (36, ⟨3, 6⟩))
 
 def reflectedDatum_09672 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09672 : MirrorEntry := .rowArc (rowArcEntry 9672 [1224, -1300]
   1300 ⟨3, {1, 6, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09672 (by native_decide))
+  reflectedDatum_09672)
 
 def reflectedDatum_09673 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09673 : MirrorEntry := .rowArc (rowArcEntry 9673 [1178, -1300]
   1300 ⟨3, {1, 6, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09673 (by native_decide))
+  reflectedDatum_09673)
 
 def entry_09674 : MirrorEntry := .membershipRow (membershipRowEntry 9674 [-32, -36, -38, 1301, -40]
   1301 ⟨3, {1, 6, 8, 10}⟩
   (32, ⟨3, 1⟩)
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09675 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09675 : MirrorEntry := .rowArc (rowArcEntry 9675 [1226, -1301]
   1301 ⟨3, {1, 6, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09675 (by native_decide))
+  reflectedDatum_09675)
 
 def reflectedDatum_09676 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09676 : MirrorEntry := .rowArc (rowArcEntry 9676 [1178, -1301]
   1301 ⟨3, {1, 6, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09676 (by native_decide))
+  reflectedDatum_09676)
 
 def entry_09677 : MirrorEntry := .membershipRow (membershipRowEntry 9677 [-32, -40, -39, -36, 1302]
   1302 ⟨3, {1, 6, 9, 10}⟩
   (32, ⟨3, 1⟩)
   (40, ⟨3, 10⟩)
   (39, ⟨3, 9⟩)
-  (36, ⟨3, 6⟩)
-  (by native_decide))
+  (36, ⟨3, 6⟩))
 
 def reflectedDatum_09678 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 4, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09678 : MirrorEntry := .rowArc (rowArcEntry 9678 [1226, -1302]
   1302 ⟨3, {1, 6, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09678 (by native_decide))
+  reflectedDatum_09678)
 
 def reflectedDatum_09679 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 4, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09679 : MirrorEntry := .rowArc (rowArcEntry 9679 [1180, -1302]
   1302 ⟨3, {1, 6, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09679 (by native_decide))
+  reflectedDatum_09679)
 
 def entry_09680 : MirrorEntry := .membershipRow (membershipRowEntry 9680 [1303, -39, -37, -32, -38]
   1303 ⟨3, {1, 7, 8, 9}⟩
   (39, ⟨3, 9⟩)
   (37, ⟨3, 7⟩)
   (32, ⟨3, 1⟩)
-  (38, ⟨3, 8⟩)
-  (by native_decide))
+  (38, ⟨3, 8⟩))
 
 def reflectedDatum_09681 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 3, 9}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09681 : MirrorEntry := .rowArc (rowArcEntry 9681 [1224, -1303]
   1303 ⟨3, {1, 7, 8, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09681 (by native_decide))
+  reflectedDatum_09681)
 
 def reflectedDatum_09682 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 2, 3, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09682 : MirrorEntry := .rowArc (rowArcEntry 9682 [1178, -1303]
   1303 ⟨3, {1, 7, 8, 9}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09682 (by native_decide))
+  reflectedDatum_09682)
 
 def entry_09683 : MirrorEntry := .membershipRow (membershipRowEntry 9683 [-32, 1304, -37, -38, -40]
   1304 ⟨3, {1, 7, 8, 10}⟩
   (32, ⟨3, 1⟩)
   (37, ⟨3, 7⟩)
   (38, ⟨3, 8⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09684 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 3, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09684 : MirrorEntry := .rowArc (rowArcEntry 9684 [1226, -1304]
   1304 ⟨3, {1, 7, 8, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09684 (by native_decide))
+  reflectedDatum_09684)
 
 def reflectedDatum_09685 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 2, 3, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7}⟩ }
 
 def entry_09685 : MirrorEntry := .rowArc (rowArcEntry 9685 [1178, -1304]
   1304 ⟨3, {1, 7, 8, 10}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
-  reflectedDatum_09685 (by native_decide))
+  reflectedDatum_09685)
 
 def entry_09686 : MirrorEntry := .membershipRow (membershipRowEntry 9686 [-32, 1305, -37, -39, -40]
   1305 ⟨3, {1, 7, 9, 10}⟩
   (32, ⟨3, 1⟩)
   (37, ⟨3, 7⟩)
   (39, ⟨3, 9⟩)
-  (40, ⟨3, 10⟩)
-  (by native_decide))
+  (40, ⟨3, 10⟩))
 
 def reflectedDatum_09687 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 3, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09687 : MirrorEntry := .rowArc (rowArcEntry 9687 [1226, -1305]
   1305 ⟨3, {1, 7, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09687 (by native_decide))
+  reflectedDatum_09687)
 
 def reflectedDatum_09688 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 3, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09688 : MirrorEntry := .rowArc (rowArcEntry 9688 [-1305, 1180]
   1305 ⟨3, {1, 7, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09688 (by native_decide))
+  reflectedDatum_09688)
 
 def reflectedDatum_09689 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 2, 9}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09689 : MirrorEntry := .rowArc (rowArcEntry 9689 [1226, -1306]
   1306 ⟨3, {1, 8, 9, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09689 (by native_decide))
+  reflectedDatum_09689)
 
 def reflectedDatum_09690 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 1, 2, 9}⟩, arc := ⟨7, .left, {4, 5, 6, 7, 8}⟩ }
 
 def entry_09690 : MirrorEntry := .rowArc (rowArcEntry 9690 [-1306, 1180]
   1306 ⟨3, {1, 8, 9, 10}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
-  reflectedDatum_09690 (by native_decide))
+  reflectedDatum_09690)
 
 def entry_09691 : MirrorEntry := .membershipRow (membershipRowEntry 9691 [-34, -35, -37, -33, 1307]
   1307 ⟨3, {2, 4, 5, 7}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (37, ⟨3, 7⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09692 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09692 : MirrorEntry := .rowArc (rowArcEntry 9692 [1220, -1307]
   1307 ⟨3, {2, 4, 5, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09692 (by native_decide))
+  reflectedDatum_09692)
 
 def reflectedDatum_09693 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 5, 6, 8}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09693 : MirrorEntry := .rowArc (rowArcEntry 9693 [-1307, 1172]
   1307 ⟨3, {2, 4, 5, 7}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09693 (by native_decide))
+  reflectedDatum_09693)
 
 def entry_09694 : MirrorEntry := .membershipRow (membershipRowEntry 9694 [-34, -35, -38, -33, 1308]
   1308 ⟨3, {2, 4, 5, 8}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (38, ⟨3, 8⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09695 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09695 : MirrorEntry := .rowArc (rowArcEntry 9695 [1222, -1308]
   1308 ⟨3, {2, 4, 5, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09695 (by native_decide))
+  reflectedDatum_09695)
 
 def reflectedDatum_09696 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 5, 6, 8}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09696 : MirrorEntry := .rowArc (rowArcEntry 9696 [-1308, 1172]
   1308 ⟨3, {2, 4, 5, 8}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09696 (by native_decide))
+  reflectedDatum_09696)
 
 def entry_09697 : MirrorEntry := .membershipRow (membershipRowEntry 9697 [-34, -35, -39, 1309, -33]
   1309 ⟨3, {2, 4, 5, 9}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (39, ⟨3, 9⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09698 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2, 10}⟩ }
 
 def entry_09698 : MirrorEntry := .rowArc (rowArcEntry 9698 [1224, -1309]
   1309 ⟨3, {2, 4, 5, 9}⟩ 1224 ⟨3, .left, {0, 8, 9, 10}⟩
-  reflectedDatum_09698 (by native_decide))
+  reflectedDatum_09698)
 
 def reflectedDatum_09699 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {1, 5, 6, 8}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09699 : MirrorEntry := .rowArc (rowArcEntry 9699 [-1309, 1172]
   1309 ⟨3, {2, 4, 5, 9}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09699 (by native_decide))
+  reflectedDatum_09699)
 
 def entry_09700 : MirrorEntry := .membershipRow (membershipRowEntry 9700 [-34, -35, -40, -33, 1310]
   1310 ⟨3, {2, 4, 5, 10}⟩
   (34, ⟨3, 4⟩)
   (35, ⟨3, 5⟩)
   (40, ⟨3, 10⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09701 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2}⟩ }
 
 def entry_09701 : MirrorEntry := .rowArc (rowArcEntry 9701 [1226, -1310]
   1310 ⟨3, {2, 4, 5, 10}⟩ 1226 ⟨3, .left, {8, 9, 10}⟩
-  reflectedDatum_09701 (by native_decide))
+  reflectedDatum_09701)
 
 def reflectedDatum_09702 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {0, 5, 6, 8}⟩, arc := ⟨7, .left, {4}⟩ }
 
 def entry_09702 : MirrorEntry := .rowArc (rowArcEntry 9702 [-1310, 1172]
   1310 ⟨3, {2, 4, 5, 10}⟩ 1172 ⟨3, .right, {6}⟩
-  reflectedDatum_09702 (by native_decide))
+  reflectedDatum_09702)
 
 def entry_09703 : MirrorEntry := .membershipRow (membershipRowEntry 9703 [-34, -36, -37, -33, 1311]
   1311 ⟨3, {2, 4, 6, 7}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (37, ⟨3, 7⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09704 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2, 8, 9, 10}⟩ }
 
 def entry_09704 : MirrorEntry := .rowArc (rowArcEntry 9704 [1220, -1311]
   1311 ⟨3, {2, 4, 6, 7}⟩ 1220 ⟨3, .left, {0, 1, 2, 8, 9, 10}⟩
-  reflectedDatum_09704 (by native_decide))
+  reflectedDatum_09704)
 
 def reflectedDatum_09705 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {3, 4, 6, 8}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09705 : MirrorEntry := .rowArc (rowArcEntry 9705 [1174, -1311]
   1311 ⟨3, {2, 4, 6, 7}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09705 (by native_decide))
+  reflectedDatum_09705)
 
 def entry_09706 : MirrorEntry := .membershipRow (membershipRowEntry 9706 [-34, -36, -38, -33, 1312]
   1312 ⟨3, {2, 4, 6, 8}⟩
   (34, ⟨3, 4⟩)
   (36, ⟨3, 6⟩)
   (38, ⟨3, 8⟩)
-  (33, ⟨3, 2⟩)
-  (by native_decide))
+  (33, ⟨3, 2⟩))
 
 def reflectedDatum_09707 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 8}⟩, arc := ⟨7, .right, {0, 1, 2, 9, 10}⟩ }
 
 def entry_09707 : MirrorEntry := .rowArc (rowArcEntry 9707 [1222, -1312]
   1312 ⟨3, {2, 4, 6, 8}⟩ 1222 ⟨3, .left, {0, 1, 8, 9, 10}⟩
-  reflectedDatum_09707 (by native_decide))
+  reflectedDatum_09707)
 
 def reflectedDatum_09708 : DirectRowArcFiniteDatum :=
   { row := ⟨7, {2, 4, 6, 8}⟩, arc := ⟨7, .left, {4, 5}⟩ }
 
 def entry_09708 : MirrorEntry := .rowArc (rowArcEntry 9708 [1174, -1312]
   1312 ⟨3, {2, 4, 6, 8}⟩ 1174 ⟨3, .right, {5, 6}⟩
-  reflectedDatum_09708 (by native_decide))
+  reflectedDatum_09708)
 
 def bridgeChunk05 : List MirrorEntry := [
   entry_09453,

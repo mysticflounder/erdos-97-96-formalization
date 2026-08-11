@@ -18,10 +18,13 @@ is deliberately ignored.
 For mirror semantics, centers, support points, and turn-mask labels are sent
 by `reflFin (10-i)`, while `left` and `right` are swapped.  Each row-to-arc
 entry includes its reflected `DirectRowArcFiniteDatum`.  The generator checks
-the finite formula before emitting it; generated Lean will prove its `.Valid`
-with `native_decide`.  That later theorem must be axiom-audited under the
-approved profile and its evaluated code closure reviewed, as required by the
-project trust policy.
+the finite formula before emitting it; generated Lean proves entry
+well-formedness (including `.Valid`) with the chunk-level
+`bridgeChunkNN_wf : bridgeChunkNN.all MirrorEntry.wf = true := by native_decide`
+theorems.  Entry constructors take no per-entry proof arguments; the chunk
+theorems carry the whole obligation.  Those theorems must be axiom-audited
+under the approved profile and their evaluated code closure reviewed, as
+required by the project trust policy.
 
 ## Deliberate current boundary
 

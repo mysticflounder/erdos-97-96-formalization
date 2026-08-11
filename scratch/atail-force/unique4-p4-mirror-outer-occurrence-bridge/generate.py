@@ -374,8 +374,7 @@ def render_chunk(number: int, entries: list[dict[str, Any]]) -> str:
   ({members[0]['var']}, ⟨{members[0]['center']}, {members[0]['point']}⟩)
   ({members[1]['var']}, ⟨{members[1]['center']}, {members[1]['point']}⟩)
   ({members[2]['var']}, ⟨{members[2]['center']}, {members[2]['point']}⟩)
-  ({members[3]['var']}, ⟨{members[3]['center']}, {members[3]['point']}⟩)
-  (by native_decide)'''
+  ({members[3]['var']}, ⟨{members[3]['center']}, {members[3]['point']}⟩)'''
             body = f".membershipRow ({body})"
         elif shape["kind"] == "row_arc":
             datum = shape["reflected_datum"]
@@ -384,13 +383,12 @@ def render_chunk(number: int, entries: list[dict[str, Any]]) -> str:
                       f"  ⟨{lean_row(datum['row'])}, {lean_arc(datum['arc'])}⟩", ""]
             body = f'''.rowArc (rowArcEntry {entry['output']} {lean_ints(entry['clause'])}
   {shape['row_var']} {lean_row(shape['row'])} {shape['arc_var']} {lean_arc(shape['arc'])}
-  {datum_name} (by native_decide))'''
+  {datum_name})'''
         else:
             arcs = shape["arcs"]
             body = f'''.noFour (noFourEntry {entry['output']} {lean_ints(entry['clause'])}
   ({arcs[0]['var']}, {lean_arc(arcs[0])}) ({arcs[1]['var']}, {lean_arc(arcs[1])})
-  ({arcs[2]['var']}, {lean_arc(arcs[2])}) ({arcs[3]['var']}, {lean_arc(arcs[3])})
-  (by native_decide))'''
+  ({arcs[2]['var']}, {lean_arc(arcs[2])}) ({arcs[3]['var']}, {lean_arc(arcs[3])}))'''
         lines += [f"def {name} : MirrorEntry := {body}", ""]
     list_name = f"bridgeChunk{number:02d}"
     lines += [f"def {list_name} : List MirrorEntry := [", *[f"  {name}," for name in names], "]", "",
@@ -557,8 +555,7 @@ def membershipRowWF (e : MembershipRowEntry) : Bool :=
 
 def membershipRowEntry (outputClauseIndex : Nat) (clause : List Int)
     (rowVar : Nat) (row : RowSupportAtom)
-    (m1 m2 m3 m4 : Nat × MembershipAtom) (_ : membershipRowWF
-      { outputClauseIndex, clause, rowVar, row, m1, m2, m3, m4 } = true) : MembershipRowEntry :=
+    (m1 m2 m3 m4 : Nat × MembershipAtom) : MembershipRowEntry :=
   { outputClauseIndex, clause, rowVar, row, m1, m2, m3, m4 }
 
 structure RowArcEntry where
@@ -579,8 +576,7 @@ def rowArcWF (e : RowArcEntry) : Bool :=
 
 def rowArcEntry (outputClauseIndex : Nat) (clause : List Int) (rowVar : Nat)
     (row : RowSupportAtom) (arcVar : Nat) (arc : OuterArcAtom)
-    (datum : DirectRowArcFiniteDatum) (_ : rowArcWF
-      { outputClauseIndex, clause, rowVar, row, arcVar, arc, datum } = true) : RowArcEntry :=
+    (datum : DirectRowArcFiniteDatum) : RowArcEntry :=
   { outputClauseIndex, clause, rowVar, row, arcVar, arc, datum }
 
 structure NoFourEntry where
@@ -604,8 +600,7 @@ def noFourWF (e : NoFourEntry) : Bool :=
   litsSubset (noFourLits e) e.clause
 
 def noFourEntry (outputClauseIndex : Nat) (clause : List Int)
-    (a1 a2 a3 a4 : Nat × OuterArcAtom) (_ : noFourWF
-      { outputClauseIndex, clause, a1, a2, a3, a4 } = true) : NoFourEntry :=
+    (a1 a2 a3 a4 : Nat × OuterArcAtom) : NoFourEntry :=
   { outputClauseIndex, clause, a1, a2, a3, a4 }
 
 inductive MirrorEntry where

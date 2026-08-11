@@ -5,1283 +5,1027 @@ namespace Problem97.P4MirrorOuterOccurrenceBridgeScratch
 
 def entry_15341 : MirrorEntry := .noFour (noFourEntry 15341 [-1943, -742, -1871, -2179]
   (1943, ⟨8, .right, {0, 1}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
-  (by native_decide))
+  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
 def entry_15342 : MirrorEntry := .noFour (noFourEntry 15342 [-1936, -742, -1871, -2179]
   (1936, ⟨8, .right, {0, 1, 10}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
-  (by native_decide))
+  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
 def entry_15343 : MirrorEntry := .noFour (noFourEntry 15343 [-2179, -742, -1973, -1871]
   (2179, ⟨9, .left, {2, 3}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1871, ⟨7, .left, {4, 5, 6}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1871, ⟨7, .left, {4, 5, 6}⟩))
 
 def entry_15344 : MirrorEntry := .noFour (noFourEntry 15344 [-2187, -742, -1871, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1871, ⟨7, .left, {4, 5, 6}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1871, ⟨7, .left, {4, 5, 6}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15345 : MirrorEntry := .noFour (noFourEntry 15345 [-2151, -742, -1871, -2179]
   (2151, ⟨9, .right, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
-  (by native_decide))
+  (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
 def entry_15346 : MirrorEntry := .noFour (noFourEntry 15346 [-2179, -742, -1871, -2187]
   (2179, ⟨9, .left, {2, 3}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1871, ⟨7, .left, {4, 5, 6}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (1871, ⟨7, .left, {4, 5, 6}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15347 : MirrorEntry := .noFour (noFourEntry 15347 [-2187, -1964, -742, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1964, ⟨8, .left, {3}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15348 : MirrorEntry := .noFour (noFourEntry 15348 [-2187, -1959, -742, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15349 : MirrorEntry := .noFour (noFourEntry 15349 [-2187, -742, -1953, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15350 : MirrorEntry := .noFour (noFourEntry 15350 [-2187, -742, -1946, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (742, ⟨1, .right, {7, 8}⟩)
-  (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15351 : MirrorEntry := .noFour (noFourEntry 15351 [-2397, -2159, -742, -2392]
   (2397, ⟨10, .right, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15352 : MirrorEntry := .noFour (noFourEntry 15352 [-2397, -2159, -742, -2388]
   (2397, ⟨10, .right, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2388, ⟨10, .left, {1, 2, 3}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2388, ⟨10, .left, {1, 2, 3}⟩))
 
 def entry_15353 : MirrorEntry := .noFour (noFourEntry 15353 [-2397, -2159, -742, -2383]
   (2397, ⟨10, .right, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩))
 
 def entry_15354 : MirrorEntry := .noFour (noFourEntry 15354 [-2397, -2159, -742, -2377]
   (2397, ⟨10, .right, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩))
 
 def entry_15355 : MirrorEntry := .noFour (noFourEntry 15355 [-2370, -2159, -742, -2397]
   (2370, ⟨10, .left, {1, 2, 3, 4, 5, 6}⟩) (2159, ⟨9, .right, {0}⟩)
-  (742, ⟨1, .right, {7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (742, ⟨1, .right, {7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15356 : MirrorEntry := .noFour (noFourEntry 15356 [-950, -749, -1865, -1369]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15357 : MirrorEntry := .noFour (noFourEntry 15357 [-950, -749, -1971, -1369]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15358 : MirrorEntry := .noFour (noFourEntry 15358 [-950, -749, -1369, -1943]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15359 : MirrorEntry := .noFour (noFourEntry 15359 [-950, -749, -1369, -1936]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩))
 
 def entry_15360 : MirrorEntry := .noFour (noFourEntry 15360 [-950, -749, -1369, -2183]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15361 : MirrorEntry := .noFour (noFourEntry 15361 [-950, -749, -1369, -2159]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15362 : MirrorEntry := .noFour (noFourEntry 15362 [-950, -749, -1369, -2151]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15363 : MirrorEntry := .noFour (noFourEntry 15363 [-950, -749, -1369, -2395]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15364 : MirrorEntry := .noFour (noFourEntry 15364 [-950, -749, -1369, -2392]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15365 : MirrorEntry := .noFour (noFourEntry 15365 [-1943, -749, -1370, -950]
   (1943, ⟨8, .right, {0, 1}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15366 : MirrorEntry := .noFour (noFourEntry 15366 [-950, -749, -1370, -1936]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩))
 
 def entry_15367 : MirrorEntry := .noFour (noFourEntry 15367 [-2159, -749, -1370, -950]
   (2159, ⟨9, .right, {0}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15368 : MirrorEntry := .noFour (noFourEntry 15368 [-2151, -749, -1370, -950]
   (2151, ⟨9, .right, {0, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15369 : MirrorEntry := .noFour (noFourEntry 15369 [-950, -749, -2395, -1370]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩))
 
 def entry_15370 : MirrorEntry := .noFour (noFourEntry 15370 [-950, -749, -1865, -1444]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15371 : MirrorEntry := .noFour (noFourEntry 15371 [-1444, -950, -749, -1971]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩))
 
 def entry_15372 : MirrorEntry := .noFour (noFourEntry 15372 [-1936, -950, -749, -1444]
   (1936, ⟨8, .right, {0, 1, 10}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15373 : MirrorEntry := .noFour (noFourEntry 15373 [-2183, -1444, -749, -950]
   (2183, ⟨9, .left, {2}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15374 : MirrorEntry := .noFour (noFourEntry 15374 [-1444, -950, -749, -2159]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15375 : MirrorEntry := .noFour (noFourEntry 15375 [-2151, -1444, -749, -950]
   (2151, ⟨9, .right, {0, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15376 : MirrorEntry := .noFour (noFourEntry 15376 [-1444, -950, -749, -2395]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15377 : MirrorEntry := .noFour (noFourEntry 15377 [-1444, -950, -2392, -749]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩))
 
 def entry_15378 : MirrorEntry := .noFour (noFourEntry 15378 [-1446, -950, -749, -1943]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15379 : MirrorEntry := .noFour (noFourEntry 15379 [-1936, -1446, -749, -950]
   (1936, ⟨8, .right, {0, 1, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15380 : MirrorEntry := .noFour (noFourEntry 15380 [-1446, -950, -749, -2159]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15381 : MirrorEntry := .noFour (noFourEntry 15381 [-1446, -950, -749, -2151]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15382 : MirrorEntry := .noFour (noFourEntry 15382 [-1446, -749, -2395, -950]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15383 : MirrorEntry := .noFour (noFourEntry 15383 [-1448, -950, -749, -2159]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15384 : MirrorEntry := .noFour (noFourEntry 15384 [-1448, -950, -749, -2151]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15385 : MirrorEntry := .noFour (noFourEntry 15385 [-950, -749, -1865, -1959]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15386 : MirrorEntry := .noFour (noFourEntry 15386 [-950, -749, -1953, -1865]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (1865, ⟨7, .right, {0, 1, 2, 10}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (1865, ⟨7, .right, {0, 1, 2, 10}⟩))
 
 def entry_15387 : MirrorEntry := .noFour (noFourEntry 15387 [-1959, -950, -749, -1943]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15388 : MirrorEntry := .noFour (noFourEntry 15388 [-1959, -950, -749, -2183]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15389 : MirrorEntry := .noFour (noFourEntry 15389 [-1959, -950, -749, -2159]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15390 : MirrorEntry := .noFour (noFourEntry 15390 [-1959, -950, -749, -2151]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15391 : MirrorEntry := .noFour (noFourEntry 15391 [-950, -749, -2395, -1959]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15392 : MirrorEntry := .noFour (noFourEntry 15392 [-1959, -950, -749, -2392]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15393 : MirrorEntry := .noFour (noFourEntry 15393 [-950, -749, -1971, -1953]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1971, ⟨8, .right, {1}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15394 : MirrorEntry := .noFour (noFourEntry 15394 [-950, -749, -1953, -1943]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15395 : MirrorEntry := .noFour (noFourEntry 15395 [-950, -749, -1953, -1936]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩))
 
 def entry_15396 : MirrorEntry := .noFour (noFourEntry 15396 [-2183, -950, -749, -1953]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15397 : MirrorEntry := .noFour (noFourEntry 15397 [-950, -749, -1953, -2159]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15398 : MirrorEntry := .noFour (noFourEntry 15398 [-950, -749, -1953, -2151]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15399 : MirrorEntry := .noFour (noFourEntry 15399 [-950, -749, -2395, -1953]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15400 : MirrorEntry := .noFour (noFourEntry 15400 [-950, -749, -1953, -2392]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15401 : MirrorEntry := .noFour (noFourEntry 15401 [-2174, -1936, -749, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15402 : MirrorEntry := .noFour (noFourEntry 15402 [-2174, -950, -749, -2151]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15403 : MirrorEntry := .noFour (noFourEntry 15403 [-950, -749, -2395, -2174]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15404 : MirrorEntry := .noFour (noFourEntry 15404 [-2383, -950, -749, -2159]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15405 : MirrorEntry := .noFour (noFourEntry 15405 [-2151, -950, -749, -2392]
   (2151, ⟨9, .right, {0, 10}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15406 : MirrorEntry := .noFour (noFourEntry 15406 [-2383, -950, -749, -2151]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15407 : MirrorEntry := .noFour (noFourEntry 15407 [-950, -749, -2377, -2151]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15408 : MirrorEntry := .noFour (noFourEntry 15408 [-749, -1971, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15409 : MirrorEntry := .noFour (noFourEntry 15409 [-749, -1943, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15410 : MirrorEntry := .noFour (noFourEntry 15410 [-749, -2183, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15411 : MirrorEntry := .noFour (noFourEntry 15411 [-749, -2159, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15412 : MirrorEntry := .noFour (noFourEntry 15412 [-749, -2395, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15413 : MirrorEntry := .noFour (noFourEntry 15413 [-749, -2392, -996, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15414 : MirrorEntry := .noFour (noFourEntry 15414 [-749, -1370, -996, -1943]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15415 : MirrorEntry := .noFour (noFourEntry 15415 [-2159, -749, -1370, -996]
   (2159, ⟨9, .right, {0}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15416 : MirrorEntry := .noFour (noFourEntry 15416 [-749, -2395, -996, -1370]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩))
 
 def entry_15417 : MirrorEntry := .noFour (noFourEntry 15417 [-1943, -1444, -749, -996]
   (1943, ⟨8, .right, {0, 1}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15418 : MirrorEntry := .noFour (noFourEntry 15418 [-2183, -749, -996, -1444]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15419 : MirrorEntry := .noFour (noFourEntry 15419 [-1444, -749, -996, -2159]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15420 : MirrorEntry := .noFour (noFourEntry 15420 [-1444, -749, -996, -2395]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15421 : MirrorEntry := .noFour (noFourEntry 15421 [-1444, -749, -996, -2392]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15422 : MirrorEntry := .noFour (noFourEntry 15422 [-1943, -1446, -749, -996]
   (1943, ⟨8, .right, {0, 1}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15423 : MirrorEntry := .noFour (noFourEntry 15423 [-1446, -749, -996, -2159]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15424 : MirrorEntry := .noFour (noFourEntry 15424 [-1446, -749, -2395, -996]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15425 : MirrorEntry := .noFour (noFourEntry 15425 [-2159, -1448, -749, -996]
   (2159, ⟨9, .right, {0}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15426 : MirrorEntry := .noFour (noFourEntry 15426 [-1959, -749, -996, -2183]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15427 : MirrorEntry := .noFour (noFourEntry 15427 [-1959, -749, -996, -2159]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15428 : MirrorEntry := .noFour (noFourEntry 15428 [-1959, -749, -2395, -996]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15429 : MirrorEntry := .noFour (noFourEntry 15429 [-1959, -749, -2392, -996]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15430 : MirrorEntry := .noFour (noFourEntry 15430 [-2183, -749, -996, -1953]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15431 : MirrorEntry := .noFour (noFourEntry 15431 [-749, -1953, -996, -2392]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15432 : MirrorEntry := .noFour (noFourEntry 15432 [-2174, -1943, -749, -996]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15433 : MirrorEntry := .noFour (noFourEntry 15433 [-749, -2395, -996, -2174]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15434 : MirrorEntry := .noFour (noFourEntry 15434 [-2383, -2159, -749, -996]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (2159, ⟨9, .right, {0}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15435 : MirrorEntry := .noFour (noFourEntry 15435 [-749, -1971, -994, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15436 : MirrorEntry := .noFour (noFourEntry 15436 [-2183, -749, -994, -1369]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15437 : MirrorEntry := .noFour (noFourEntry 15437 [-749, -2395, -994, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15438 : MirrorEntry := .noFour (noFourEntry 15438 [-749, -2392, -994, -1369]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15439 : MirrorEntry := .noFour (noFourEntry 15439 [-749, -2395, -994, -1370]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩))
 
 def entry_15440 : MirrorEntry := .noFour (noFourEntry 15440 [-1673, -749, -994, -1442]
   (1673, ⟨6, .right, {2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15441 : MirrorEntry := .noFour (noFourEntry 15441 [-749, -1675, -994, -1442]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15442 : MirrorEntry := .noFour (noFourEntry 15442 [-2183, -749, -994, -1442]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15443 : MirrorEntry := .noFour (noFourEntry 15443 [-2179, -749, -994, -1442]
   (2179, ⟨9, .left, {2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15444 : MirrorEntry := .noFour (noFourEntry 15444 [-749, -2395, -994, -1442]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15445 : MirrorEntry := .noFour (noFourEntry 15445 [-1442, -749, -994, -2392]
   (1442, ⟨5, .right, {4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15446 : MirrorEntry := .noFour (noFourEntry 15446 [-2388, -749, -994, -1442]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15447 : MirrorEntry := .noFour (noFourEntry 15447 [-1444, -749, -994, -2183]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15448 : MirrorEntry := .noFour (noFourEntry 15448 [-1444, -749, -994, -2395]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15449 : MirrorEntry := .noFour (noFourEntry 15449 [-1444, -749, -994, -2392]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15450 : MirrorEntry := .noFour (noFourEntry 15450 [-1446, -749, -994, -1660]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15451 : MirrorEntry := .noFour (noFourEntry 15451 [-1446, -749, -2395, -994]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (994, ⟨2, .left, {0, 9, 10}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (994, ⟨2, .left, {0, 9, 10}⟩))
 
 def entry_15452 : MirrorEntry := .noFour (noFourEntry 15452 [-1660, -749, -994, -1448]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩))
 
 def entry_15453 : MirrorEntry := .noFour (noFourEntry 15453 [-1660, -749, -994, -1673]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩))
 
 def entry_15454 : MirrorEntry := .noFour (noFourEntry 15454 [-1660, -749, -994, -1675]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩))
 
 def entry_15455 : MirrorEntry := .noFour (noFourEntry 15455 [-2183, -749, -994, -1660]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15456 : MirrorEntry := .noFour (noFourEntry 15456 [-1660, -749, -994, -2179]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2179, ⟨9, .left, {2, 3}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
 def entry_15457 : MirrorEntry := .noFour (noFourEntry 15457 [-1660, -749, -994, -2174]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15458 : MirrorEntry := .noFour (noFourEntry 15458 [-1660, -749, -994, -2392]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15459 : MirrorEntry := .noFour (noFourEntry 15459 [-2388, -749, -994, -1660]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15460 : MirrorEntry := .noFour (noFourEntry 15460 [-1660, -749, -994, -2383]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩))
 
 def entry_15461 : MirrorEntry := .noFour (noFourEntry 15461 [-1959, -749, -994, -2183]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15462 : MirrorEntry := .noFour (noFourEntry 15462 [-749, -2395, -994, -1959]
   (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15463 : MirrorEntry := .noFour (noFourEntry 15463 [-1959, -749, -2392, -994]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (994, ⟨2, .left, {0, 9, 10}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (994, ⟨2, .left, {0, 9, 10}⟩))
 
 def entry_15464 : MirrorEntry := .noFour (noFourEntry 15464 [-2183, -749, -994, -1953]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15465 : MirrorEntry := .noFour (noFourEntry 15465 [-749, -1953, -994, -2392]
   (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (994, ⟨2, .left, {0, 9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15466 : MirrorEntry := .noFour (noFourEntry 15466 [-2183, -992, -749, -1369]
   (2183, ⟨9, .left, {2}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15467 : MirrorEntry := .noFour (noFourEntry 15467 [-1673, -992, -749, -1442]
   (1673, ⟨6, .right, {2, 3}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15468 : MirrorEntry := .noFour (noFourEntry 15468 [-2183, -992, -749, -1442]
   (2183, ⟨9, .left, {2}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15469 : MirrorEntry := .noFour (noFourEntry 15469 [-2179, -992, -749, -1442]
   (2179, ⟨9, .left, {2, 3}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15470 : MirrorEntry := .noFour (noFourEntry 15470 [-1444, -992, -749, -2183]
   (1444, ⟨5, .right, {3, 4}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15471 : MirrorEntry := .noFour (noFourEntry 15471 [-1446, -992, -749, -1660]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15472 : MirrorEntry := .noFour (noFourEntry 15472 [-1660, -992, -749, -1673]
   (1660, ⟨6, .left, {5}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1673, ⟨6, .right, {2, 3}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1673, ⟨6, .right, {2, 3}⟩))
 
 def entry_15473 : MirrorEntry := .noFour (noFourEntry 15473 [-1660, -992, -749, -2183]
   (1660, ⟨6, .left, {5}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15474 : MirrorEntry := .noFour (noFourEntry 15474 [-1660, -992, -749, -2179]
   (1660, ⟨6, .left, {5}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2179, ⟨9, .left, {2, 3}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
 def entry_15475 : MirrorEntry := .noFour (noFourEntry 15475 [-1660, -992, -749, -2174]
   (1660, ⟨6, .left, {5}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15476 : MirrorEntry := .noFour (noFourEntry 15476 [-2183, -992, -749, -1959]
   (2183, ⟨9, .left, {2}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15477 : MirrorEntry := .noFour (noFourEntry 15477 [-2183, -992, -749, -1953]
   (2183, ⟨9, .left, {2}⟩) (992, ⟨2, .left, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15478 : MirrorEntry := .noFour (noFourEntry 15478 [-2187, -749, -1971, -1369]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15479 : MirrorEntry := .noFour (noFourEntry 15479 [-2397, -749, -1971, -1369]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15480 : MirrorEntry := .noFour (noFourEntry 15480 [-1943, -749, -1369, -2397]
   (1943, ⟨8, .right, {0, 1}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15481 : MirrorEntry := .noFour (noFourEntry 15481 [-2183, -1973, -749, -1369]
   (2183, ⟨9, .left, {2}⟩) (1973, ⟨8, .right, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15482 : MirrorEntry := .noFour (noFourEntry 15482 [-2187, -749, -1369, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15483 : MirrorEntry := .noFour (noFourEntry 15483 [-2183, -749, -1369, -2397]
   (2183, ⟨9, .left, {2}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15484 : MirrorEntry := .noFour (noFourEntry 15484 [-2159, -749, -1369, -2397]
   (2159, ⟨9, .right, {0}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15485 : MirrorEntry := .noFour (noFourEntry 15485 [-2187, -749, -2395, -1369]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15486 : MirrorEntry := .noFour (noFourEntry 15486 [-2187, -749, -2392, -1369]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (1369, ⟨4, .right, {3, 4, 5}⟩))
 
 def entry_15487 : MirrorEntry := .noFour (noFourEntry 15487 [-2397, -749, -1369, -2395]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15488 : MirrorEntry := .noFour (noFourEntry 15488 [-2397, -749, -1369, -2392]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1369, ⟨4, .right, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (1369, ⟨4, .right, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15489 : MirrorEntry := .noFour (noFourEntry 15489 [-2397, -749, -1370, -1943]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15490 : MirrorEntry := .noFour (noFourEntry 15490 [-2159, -749, -1370, -2397]
   (2159, ⟨9, .right, {0}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15491 : MirrorEntry := .noFour (noFourEntry 15491 [-2187, -749, -2395, -1370]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩))
 
 def entry_15492 : MirrorEntry := .noFour (noFourEntry 15492 [-2397, -749, -1370, -2395]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15493 : MirrorEntry := .noFour (noFourEntry 15493 [-1671, -749, -1879, -1442]
   (1671, ⟨6, .right, {3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15494 : MirrorEntry := .noFour (noFourEntry 15494 [-1673, -749, -1973, -1442]
   (1673, ⟨6, .right, {2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15495 : MirrorEntry := .noFour (noFourEntry 15495 [-2187, -1673, -749, -1442]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15496 : MirrorEntry := .noFour (noFourEntry 15496 [-2187, -1442, -749, -1675]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩))
 
 def entry_15497 : MirrorEntry := .noFour (noFourEntry 15497 [-1964, -749, -1879, -1442]
   (1964, ⟨8, .left, {3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15498 : MirrorEntry := .noFour (noFourEntry 15498 [-2183, -1973, -749, -1442]
   (2183, ⟨9, .left, {2}⟩) (1973, ⟨8, .right, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15499 : MirrorEntry := .noFour (noFourEntry 15499 [-2179, -749, -1973, -1442]
   (2179, ⟨9, .left, {2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15500 : MirrorEntry := .noFour (noFourEntry 15500 [-2183, -1442, -749, -2187]
   (2183, ⟨9, .left, {2}⟩) (1442, ⟨5, .right, {4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15501 : MirrorEntry := .noFour (noFourEntry 15501 [-2179, -1442, -749, -2187]
   (2179, ⟨9, .left, {2, 3}⟩) (1442, ⟨5, .right, {4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15502 : MirrorEntry := .noFour (noFourEntry 15502 [-2187, -749, -2395, -1442]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15503 : MirrorEntry := .noFour (noFourEntry 15503 [-2187, -749, -2392, -1442]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (1442, ⟨5, .right, {4}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (1442, ⟨5, .right, {4}⟩))
 
 def entry_15504 : MirrorEntry := .noFour (noFourEntry 15504 [-2388, -1442, -749, -2187]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (1442, ⟨5, .right, {4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15505 : MirrorEntry := .noFour (noFourEntry 15505 [-1660, -749, -1879, -1444]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15506 : MirrorEntry := .noFour (noFourEntry 15506 [-1943, -1444, -749, -2397]
   (1943, ⟨8, .right, {0, 1}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15507 : MirrorEntry := .noFour (noFourEntry 15507 [-1444, -749, -1973, -2183]
   (1444, ⟨5, .right, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15508 : MirrorEntry := .noFour (noFourEntry 15508 [-2187, -1444, -749, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15509 : MirrorEntry := .noFour (noFourEntry 15509 [-2397, -2183, -749, -1444]
   (2397, ⟨10, .right, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15510 : MirrorEntry := .noFour (noFourEntry 15510 [-2397, -1444, -749, -2159]
   (2397, ⟨10, .right, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15511 : MirrorEntry := .noFour (noFourEntry 15511 [-2187, -1444, -749, -2395]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15512 : MirrorEntry := .noFour (noFourEntry 15512 [-2187, -1444, -749, -2392]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15513 : MirrorEntry := .noFour (noFourEntry 15513 [-2397, -1444, -749, -2395]
   (2397, ⟨10, .right, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15514 : MirrorEntry := .noFour (noFourEntry 15514 [-2397, -1444, -749, -2392]
   (2397, ⟨10, .right, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15515 : MirrorEntry := .noFour (noFourEntry 15515 [-1660, -749, -1973, -1446]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩))
 
 def entry_15516 : MirrorEntry := .noFour (noFourEntry 15516 [-2187, -1446, -749, -1660]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15517 : MirrorEntry := .noFour (noFourEntry 15517 [-2397, -1446, -749, -2159]
   (2397, ⟨10, .right, {9, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15518 : MirrorEntry := .noFour (noFourEntry 15518 [-2187, -1446, -749, -2395]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15519 : MirrorEntry := .noFour (noFourEntry 15519 [-1446, -749, -2395, -2397]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15520 : MirrorEntry := .noFour (noFourEntry 15520 [-1660, -1448, -749, -2187]
   (1660, ⟨6, .left, {5}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15521 : MirrorEntry := .noFour (noFourEntry 15521 [-2159, -1448, -749, -2397]
   (2159, ⟨9, .right, {0}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15522 : MirrorEntry := .noFour (noFourEntry 15522 [-1660, -749, -1973, -1673]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩))
 
 def entry_15523 : MirrorEntry := .noFour (noFourEntry 15523 [-2187, -1673, -749, -1660]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1673, ⟨6, .right, {2, 3}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15524 : MirrorEntry := .noFour (noFourEntry 15524 [-2187, -749, -1675, -1660]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1675, ⟨6, .right, {1, 2, 3}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (1675, ⟨6, .right, {1, 2, 3}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15525 : MirrorEntry := .noFour (noFourEntry 15525 [-1660, -749, -1879, -1964]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1964, ⟨8, .left, {3}⟩)
-  (by native_decide))
+  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1964, ⟨8, .left, {3}⟩))
 
 def entry_15526 : MirrorEntry := .noFour (noFourEntry 15526 [-1660, -749, -1879, -1959]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (1879, ⟨7, .right, {0, 1, 2, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15527 : MirrorEntry := .noFour (noFourEntry 15527 [-1660, -749, -1973, -2183]
   (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15528 : MirrorEntry := .noFour (noFourEntry 15528 [-2179, -749, -1973, -1660]
   (2179, ⟨9, .left, {2, 3}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15529 : MirrorEntry := .noFour (noFourEntry 15529 [-2174, -749, -1973, -1660]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (1973, ⟨8, .right, {0, 1, 9, 10}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15530 : MirrorEntry := .noFour (noFourEntry 15530 [-2183, -1660, -749, -2187]
   (2183, ⟨9, .left, {2}⟩) (1660, ⟨6, .left, {5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15531 : MirrorEntry := .noFour (noFourEntry 15531 [-2179, -1660, -749, -2187]
   (2179, ⟨9, .left, {2, 3}⟩) (1660, ⟨6, .left, {5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15532 : MirrorEntry := .noFour (noFourEntry 15532 [-2174, -1660, -749, -2187]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1660, ⟨6, .left, {5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15533 : MirrorEntry := .noFour (noFourEntry 15533 [-2187, -749, -2392, -1660]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (1660, ⟨6, .left, {5}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (1660, ⟨6, .left, {5}⟩))
 
 def entry_15534 : MirrorEntry := .noFour (noFourEntry 15534 [-2388, -2187, -1660, -749]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (by native_decide))
+  (1660, ⟨6, .left, {5}⟩) (749, ⟨1, .right, {6, 7, 8}⟩))
 
 def entry_15535 : MirrorEntry := .noFour (noFourEntry 15535 [-2383, -1660, -749, -2187]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1660, ⟨6, .left, {5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15536 : MirrorEntry := .noFour (noFourEntry 15536 [-2183, -1973, -749, -1959]
   (2183, ⟨9, .left, {2}⟩) (1973, ⟨8, .right, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15537 : MirrorEntry := .noFour (noFourEntry 15537 [-2187, -1959, -749, -2183]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15538 : MirrorEntry := .noFour (noFourEntry 15538 [-2397, -1959, -749, -2183]
   (2397, ⟨10, .right, {9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15539 : MirrorEntry := .noFour (noFourEntry 15539 [-2397, -1959, -749, -2159]
   (2397, ⟨10, .right, {9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15540 : MirrorEntry := .noFour (noFourEntry 15540 [-2187, -1959, -749, -2395]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15541 : MirrorEntry := .noFour (noFourEntry 15541 [-2187, -1959, -749, -2392]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15542 : MirrorEntry := .noFour (noFourEntry 15542 [-2397, -1959, -749, -2395]
   (2397, ⟨10, .right, {9, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15543 : MirrorEntry := .noFour (noFourEntry 15543 [-1959, -749, -2392, -2397]
   (1959, ⟨8, .left, {3, 4}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15544 : MirrorEntry := .noFour (noFourEntry 15544 [-2183, -1973, -749, -1953]
   (2183, ⟨9, .left, {2}⟩) (1973, ⟨8, .right, {0, 1, 9, 10}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15545 : MirrorEntry := .noFour (noFourEntry 15545 [-2183, -1953, -749, -2187]
   (2183, ⟨9, .left, {2}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2187, ⟨9, .right, {0, 9, 10}⟩))
 
 def entry_15546 : MirrorEntry := .noFour (noFourEntry 15546 [-2397, -2183, -749, -1953]
   (2397, ⟨10, .right, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩))
 
 def entry_15547 : MirrorEntry := .noFour (noFourEntry 15547 [-2187, -749, -1953, -2392]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15548 : MirrorEntry := .noFour (noFourEntry 15548 [-2397, -749, -1953, -2392]
   (2397, ⟨10, .right, {9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (1953, ⟨8, .left, {3, 4, 5}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15549 : MirrorEntry := .noFour (noFourEntry 15549 [-2174, -1943, -749, -2397]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2397, ⟨10, .right, {9, 10}⟩))
 
 def entry_15550 : MirrorEntry := .noFour (noFourEntry 15550 [-2187, -749, -2395, -2174]
   (2187, ⟨9, .right, {0, 9, 10}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15551 : MirrorEntry := .noFour (noFourEntry 15551 [-2397, -2174, -749, -2395]
   (2397, ⟨10, .right, {9, 10}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15552 : MirrorEntry := .noFour (noFourEntry 15552 [-2397, -2168, -749, -2159]
   (2397, ⟨10, .right, {9, 10}⟩) (2168, ⟨9, .left, {2, 3, 4, 5}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15553 : MirrorEntry := .noFour (noFourEntry 15553 [-2397, -2159, -749, -2383]
   (2397, ⟨10, .right, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (749, ⟨1, .right, {6, 7, 8}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩)
-  (by native_decide))
+  (749, ⟨1, .right, {6, 7, 8}⟩) (2383, ⟨10, .left, {1, 2, 3, 4}⟩))
 
 def entry_15554 : MirrorEntry := .noFour (noFourEntry 15554 [-950, -755, -1865, -1444]
   (950, ⟨2, .left, {9}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15555 : MirrorEntry := .noFour (noFourEntry 15555 [-1444, -950, -755, -1971]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1971, ⟨8, .right, {1}⟩))
 
 def entry_15556 : MirrorEntry := .noFour (noFourEntry 15556 [-1444, -950, -755, -1943]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15557 : MirrorEntry := .noFour (noFourEntry 15557 [-1444, -950, -755, -2183]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15558 : MirrorEntry := .noFour (noFourEntry 15558 [-2159, -1444, -755, -950]
   (2159, ⟨9, .right, {0}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15559 : MirrorEntry := .noFour (noFourEntry 15559 [-1444, -950, -755, -2395]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15560 : MirrorEntry := .noFour (noFourEntry 15560 [-1444, -950, -2392, -755]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩))
 
 def entry_15561 : MirrorEntry := .noFour (noFourEntry 15561 [-1446, -950, -1971, -755]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (1971, ⟨8, .right, {1}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩))
 
 def entry_15562 : MirrorEntry := .noFour (noFourEntry 15562 [-1446, -950, -755, -1943]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15563 : MirrorEntry := .noFour (noFourEntry 15563 [-1446, -950, -755, -1936]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩))
 
 def entry_15564 : MirrorEntry := .noFour (noFourEntry 15564 [-1446, -950, -755, -2159]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15565 : MirrorEntry := .noFour (noFourEntry 15565 [-1446, -950, -755, -2151]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15566 : MirrorEntry := .noFour (noFourEntry 15566 [-1446, -950, -755, -2395]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15567 : MirrorEntry := .noFour (noFourEntry 15567 [-1448, -950, -755, -2159]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15568 : MirrorEntry := .noFour (noFourEntry 15568 [-1448, -950, -755, -2151]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15569 : MirrorEntry := .noFour (noFourEntry 15569 [-950, -755, -1865, -1959]
   (950, ⟨2, .left, {9}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (1865, ⟨7, .right, {0, 1, 2, 10}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15570 : MirrorEntry := .noFour (noFourEntry 15570 [-1959, -950, -755, -1943]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15571 : MirrorEntry := .noFour (noFourEntry 15571 [-1959, -950, -755, -2183]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15572 : MirrorEntry := .noFour (noFourEntry 15572 [-1959, -950, -755, -2159]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15573 : MirrorEntry := .noFour (noFourEntry 15573 [-950, -755, -2395, -1959]
   (950, ⟨2, .left, {9}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (1959, ⟨8, .left, {3, 4}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (1959, ⟨8, .left, {3, 4}⟩))
 
 def entry_15574 : MirrorEntry := .noFour (noFourEntry 15574 [-1959, -950, -2392, -755]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (2392, ⟨10, .left, {1, 2}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (by native_decide))
+  (2392, ⟨10, .left, {1, 2}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩))
 
 def entry_15575 : MirrorEntry := .noFour (noFourEntry 15575 [-950, -755, -1971, -2174]
   (950, ⟨2, .left, {9}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (1971, ⟨8, .right, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩)
-  (by native_decide))
+  (1971, ⟨8, .right, {1}⟩) (2174, ⟨9, .left, {2, 3, 4}⟩))
 
 def entry_15576 : MirrorEntry := .noFour (noFourEntry 15576 [-2174, -950, -755, -1943]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1943, ⟨8, .right, {0, 1}⟩))
 
 def entry_15577 : MirrorEntry := .noFour (noFourEntry 15577 [-2174, -950, -755, -1936]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (1936, ⟨8, .right, {0, 1, 10}⟩))
 
 def entry_15578 : MirrorEntry := .noFour (noFourEntry 15578 [-2174, -950, -755, -2151]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15579 : MirrorEntry := .noFour (noFourEntry 15579 [-2174, -755, -2395, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (950, ⟨2, .left, {9}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (950, ⟨2, .left, {9}⟩))
 
 def entry_15580 : MirrorEntry := .noFour (noFourEntry 15580 [-2383, -950, -755, -2159]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15581 : MirrorEntry := .noFour (noFourEntry 15581 [-2151, -950, -755, -2392]
   (2151, ⟨9, .right, {0, 10}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15582 : MirrorEntry := .noFour (noFourEntry 15582 [-2383, -950, -755, -2151]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (2151, ⟨9, .right, {0, 10}⟩))
 
 def entry_15583 : MirrorEntry := .noFour (noFourEntry 15583 [-1444, -755, -996, -1971]
   (1444, ⟨5, .right, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1971, ⟨8, .right, {1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1971, ⟨8, .right, {1}⟩))
 
 def entry_15584 : MirrorEntry := .noFour (noFourEntry 15584 [-1943, -1444, -755, -996]
   (1943, ⟨8, .right, {0, 1}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15585 : MirrorEntry := .noFour (noFourEntry 15585 [-2183, -755, -996, -1444]
   (2183, ⟨9, .left, {2}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1444, ⟨5, .right, {3, 4}⟩))
 
 def entry_15586 : MirrorEntry := .noFour (noFourEntry 15586 [-2159, -1444, -755, -996]
   (2159, ⟨9, .right, {0}⟩) (1444, ⟨5, .right, {3, 4}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15587 : MirrorEntry := .noFour (noFourEntry 15587 [-1444, -755, -996, -2395]
   (1444, ⟨5, .right, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15588 : MirrorEntry := .noFour (noFourEntry 15588 [-1444, -755, -996, -2392]
   (1444, ⟨5, .right, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩))
 
 def entry_15589 : MirrorEntry := .noFour (noFourEntry 15589 [-1446, -755, -996, -1971]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (1971, ⟨8, .right, {1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (1971, ⟨8, .right, {1}⟩))
 
 def entry_15590 : MirrorEntry := .noFour (noFourEntry 15590 [-1943, -1446, -755, -996]
   (1943, ⟨8, .right, {0, 1}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15591 : MirrorEntry := .noFour (noFourEntry 15591 [-1446, -755, -996, -2159]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15592 : MirrorEntry := .noFour (noFourEntry 15592 [-1446, -755, -996, -2395]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2395, ⟨10, .left, {1}⟩))
 
 def entry_15593 : MirrorEntry := .noFour (noFourEntry 15593 [-2159, -1448, -755, -996]
   (2159, ⟨9, .right, {0}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
-  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (755, ⟨1, .right, {5, 6, 7, 8}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def entry_15594 : MirrorEntry := .noFour (noFourEntry 15594 [-1959, -755, -996, -2183]
   (1959, ⟨8, .left, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2183, ⟨9, .left, {2}⟩))
 
 def entry_15595 : MirrorEntry := .noFour (noFourEntry 15595 [-1959, -755, -996, -2159]
   (1959, ⟨8, .left, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩)
-  (by native_decide))
+  (996, ⟨2, .left, {9, 10}⟩) (2159, ⟨9, .right, {0}⟩))
 
 def entry_15596 : MirrorEntry := .noFour (noFourEntry 15596 [-1959, -755, -2395, -996]
   (1959, ⟨8, .left, {3, 4}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
-  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩)
-  (by native_decide))
+  (2395, ⟨10, .left, {1}⟩) (996, ⟨2, .left, {9, 10}⟩))
 
 def bridgeChunk28 : List MirrorEntry := [
   entry_15341,
