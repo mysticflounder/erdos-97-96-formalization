@@ -1166,14 +1166,12 @@ theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_cross_inc
     have hx₁' : x₁ ∈ U5BoundedAuditCenters D q p T H.u H.a0 H.a1 := by
       simpa [T] using hx₁
     simp only [S, U5BoundedSupport]
-    exact Finset.mem_insert_of_mem p
-      (Finset.mem_insert_of_mem q hx₁')
+    exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem hx₁')
   have hx₂S : x₂ ∈ S := by
     have hx₂' : x₂ ∈ U5BoundedAuditCenters D q p T H.u H.a0 H.a1 := by
       simpa [T] using hx₂
     simp only [S, U5BoundedSupport]
-    exact Finset.mem_insert_of_mem p
-      (Finset.mem_insert_of_mem q hx₂')
+    exact Finset.mem_insert_of_mem (Finset.mem_insert_of_mem hx₂')
   have hq₁ : q ≠ x₁ := by
     intro h
     apply hqCenters
@@ -1189,16 +1187,16 @@ theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_cross_inc
   have hB₂erase : B₂ ⊆ S.erase q := by
     intro z hz
     exact Finset.mem_erase.mpr ⟨fun hzq => K₂.q_not_mem (hzq ▸ hz), hB₂ hz⟩
-  have hx₁Sq : x₁ ∈ S.erase q := Finset.mem_erase.mpr ⟨hq₁, hx₁S⟩
-  have hx₂Sq : x₂ ∈ S.erase q := Finset.mem_erase.mpr ⟨hq₂, hx₂S⟩
+  have hx₁Sq : x₁ ∈ S.erase q := Finset.mem_erase.mpr ⟨hq₁.symm, hx₁S⟩
+  have hx₂Sq : x₂ ∈ S.erase q := Finset.mem_erase.mpr ⟨hq₂.symm, hx₂S⟩
   have hx₂Sx₁ : x₂ ∈ (S.erase q).erase x₁ :=
     Finset.mem_erase.mpr ⟨hxne.symm, hx₂Sq⟩
   have hSCard : S.card = 8 := by
     simpa [S, T] using U3FixedTripleAuditFrame.boundedSupport_card_eq_eight H
   have hRCard : (((S.erase q).erase x₁).erase x₂).card = 5 := by
-    rw [Finset.card_erase_of_mem hqS,
+    rw [Finset.card_erase_of_mem hx₂Sx₁,
       Finset.card_erase_of_mem hx₁Sq,
-      Finset.card_erase_of_mem hx₂Sx₁, hSCard]
+      Finset.card_erase_of_mem hqS, hSCard]
   by_cases hcross : x₁ ∈ B₂ ∨ x₂ ∈ B₁
   · exact ⟨x₁, x₂, hx₁, hx₂, hxne, B₁, B₂, ⟨K₁⟩,
       hB₁card, hB₁, ⟨K₂⟩, hB₂card, hB₂,
@@ -1214,19 +1212,15 @@ theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_cross_inc
       have hzSq : z ∈ S.erase q := hB₁erase hz
       have hz₁ : z ≠ x₁ := (Finset.mem_erase.mp (K₁.subset hz)).1
       have hz₂ : z ≠ x₂ := by
-        intro hz
-        apply hnot₂
-        rw [← hz]
-        exact hz
+        intro hzx₂
+        exact hnot₂ (hzx₂ ▸ hz)
       exact Finset.mem_erase.mpr ⟨hz₂, Finset.mem_erase.mpr ⟨hz₁, hzSq⟩⟩
     have hB₂R : B₂ ⊆ ((S.erase q).erase x₁).erase x₂ := by
       intro z hz
       have hzSq : z ∈ S.erase q := hB₂erase hz
       have hz₁ : z ≠ x₁ := by
-        intro hz
-        apply hnot₁
-        rw [← hz]
-        exact hz
+        intro hzx₁
+        exact hnot₁ (hzx₁ ▸ hz)
       have hz₂ : z ≠ x₂ := (Finset.mem_erase.mp (K₂.subset hz)).1
       exact Finset.mem_erase.mpr ⟨hz₂, Finset.mem_erase.mpr ⟨hz₁, hzSq⟩⟩
     have hunionR : B₁ ∪ B₂ ⊆ ((S.erase q).erase x₁).erase x₂ := by
@@ -1236,7 +1230,7 @@ theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_cross_inc
       · exact hB₂R hz
     have hunionCard : (B₁ ∪ B₂).card ≤ 5 := by
       calc
-        (B₁ ∪ B₂).card ≤ ((S.erase q).erase x₁).erase x₂).card :=
+        (B₁ ∪ B₂).card ≤ (((S.erase q).erase x₁).erase x₂).card :=
           Finset.card_le_card hunionR
         _ = 5 := hRCard
     have hunionIdentity := Finset.card_union_add_card_inter B₁ B₂
