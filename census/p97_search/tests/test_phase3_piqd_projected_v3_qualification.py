@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -376,7 +377,10 @@ def _write_result(
     canary: tuple[int, ...] = (2,),
     swapped_appends: bool = False,
 ) -> None:
-    preflight = json.loads((directory / qualification.PREFLIGHT_NAME).read_bytes())
+    preflight_path = directory / qualification.PREFLIGHT_NAME
+    if not preflight_path.exists():
+        preflight_path = directory / qualification.PRODUCTION_V2_PREFLIGHT_NAME
+    preflight = json.loads(preflight_path.read_bytes())
     descriptor_root = preflight["descriptor_root"]
     base = [(1, 2)]
     current = [*base, (-2,)]
@@ -465,6 +469,133 @@ def _write_result(
         b"".join(canonical_json_bytes(event) + b"\n" for event in events),
     )
     _private(directory / ".solver.cnf", TERMINAL)
+
+
+def _production_authority(
+    tmp_path: Path,
+    *,
+    source_raw: bytes,
+    producer_raw: bytes,
+    version_raw: bytes,
+    base: bytes = BASE,
+) -> qualification.ProductionAuthorityV2:
+    producer_hash = _sha(producer_raw)
+    base_hash = _sha(base)
+    value = {
+        "schema": qualification.PRODUCTION_V2_AUTHORITY_SCHEMA,
+        "daemon_url": "http://piqd.test",
+        "daemon_version_pre_sha256": _sha(version_raw),
+        "source_manifest_sha256": _sha(source_raw),
+        "producer_manifest_sha256": producer_hash,
+        "base_cnf_sha256": base_hash,
+        "raw_dimacs_identity": qualification.raw_dimacs_identity(
+            backend="cadical",
+            solver_profile="sat",
+            cnf_sha256=base_hash,
+            producer_manifest_sha256=producer_hash,
+            requested_core_limit=1,
+        ),
+        "producer_job_id": JOB_ID,
+        "solver": {
+            "name": SOLVER,
+            "sha256": SOLVER_HASH,
+            "signature": SIGNATURE,
+            "backend": "cadical",
+            "lane": "sat",
+        },
+        "policy": dict(qualification.PRODUCTION_V2_POLICY),
+    }
+    value["authority_sha256"] = _sha(canonical_json_bytes(value))
+    path = tmp_path / "production-authority-v2.input.json"
+    path.write_bytes(canonical_json_bytes(value))
+    return qualification.load_production_authority_v2(path)
+
+
+def _prepare_v2(
+    tmp_path: Path,
+    *,
+    transport: FakeTransport | None = None,
+) -> tuple[qualification.ProductionQualificationV2, FakeTransport]:
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    source_raw, producer_raw = _manifests(b"# v2 fixture\n")
+    version_raw = _version()
+    authority = _production_authority(
+        tmp_path,
+        source_raw=source_raw,
+        producer_raw=producer_raw,
+        version_raw=version_raw,
+    )
+    root = tmp_path / "out"
+    root.mkdir(mode=0o700)
+    source_path = tmp_path / "source-manifest-v2.input.json"
+    producer_path = tmp_path / "producer-manifest-v2.input.json"
+    source_path.write_bytes(source_raw)
+    producer_path.write_bytes(producer_raw)
+    _private(root / "base.cnf", BASE)
+    _private(root / ".solver.cnf", CURRENT)
+    descriptor = incremental.DiscoveryDescriptor(
+        seed_cnf=BASE,
+        producer_manifest=producer_raw,
+        source_manifest=source_raw,
+        solver_name=SOLVER,
+        producer_job_id=JOB_ID,
+    )
+    fake = transport or FakeTransport(version_pre=version_raw)
+    fake.response_overrides[("GET", f"/jobs/{JOB_ID}/blobs/{_sha(BASE)}")] = (
+        HttpResponse(200, BASE, {})
+    )
+    contract = qualification.prepare_production_qualification_v2(
+        authority=authority,
+        output_dir=root,
+        base_cnf_path=root / "base.cnf",
+        runtime_cnf_path=root / ".solver.cnf",
+        source_manifest_path=source_path,
+        producer_manifest_path=producer_path,
+        source_manifest=source_raw,
+        producer_manifest=producer_raw,
+        daemon_url="http://piqd.test",
+        producer_job_id=JOB_ID,
+        solver_name=SOLVER,
+        descriptor=descriptor,
+        transport=fake,
+    )
+    fake.session_label = contract.transport.expected_label
+    return contract, fake
+
+
+def _complete_v2(
+    contract: qualification.ProductionQualificationV2,
+    *,
+    driver_status: str = "STRUCTURAL_UNSAT_VERIFIED",
+    tamper_runtime: bool = False,
+    tamper_custody: Callable[[qualification.ProductionQualificationV2], None]
+    | None = None,
+) -> dict[str, Any] | None:
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/clauses",
+        canonical_json_bytes({"clauses": [[-2]]}),
+        {},
+    )
+    transport("POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {})
+    transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/clauses",
+        canonical_json_bytes({"clauses": [[2]]}),
+        {},
+    )
+    transport("POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {})
+    _write_result(contract.directory)
+    if tamper_runtime:
+        _private(contract.runtime_cnf_path, BASE)
+    transport("DELETE", f"http://piqd.test/sessions/{SESSION_ID}", None, {})
+    if tamper_custody is not None:
+        tamper_custody(contract)
+    return qualification.finalize_production_qualification_v2(
+        contract, driver_status=driver_status
+    )
 
 
 def _prepare(
@@ -1281,3 +1412,213 @@ def test_close_must_attest_terminal_and_assumption_free_separately(
     )
     with pytest.raises(qualification.QualificationError, match="exact session"):
         _complete(contract)
+
+
+def test_production_v2_generalized_transport_accepts_dense_solve_sequence(
+    tmp_path: Path,
+) -> None:
+    def response(status: str, index: int) -> bytes:
+        common: dict[str, Any] = {
+            "status": status,
+            "solve_ms": index,
+            "solve_index": index,
+        }
+        if status == "SAT":
+            common["model"] = MODEL
+            common["result_sha256"] = incremental._result_digest(
+                "SAT", None, None, MODEL
+            )
+        else:
+            common["core"] = []
+            common["terminal_unsat"] = True
+            common["result_sha256"] = incremental._result_digest(
+                "UNSAT", None, [], None
+            )
+        return canonical_json_bytes(common)
+
+    class ThreeSolveTransport(FakeTransport):
+        def __init__(self) -> None:
+            super().__init__()
+            self.responses = [
+                response("SAT", 1),
+                response("SAT", 2),
+                response("UNSAT", 3),
+            ]
+
+        def __call__(
+            self, method: str, path: str, body: Any, headers: Any
+        ) -> HttpResponse:
+            if method == "POST" and path.endswith("/solve"):
+                self.calls.append((method, path))
+                raw = self.responses[self.solve_calls]
+                self.solve_calls += 1
+                return HttpResponse(200, raw, {})
+            return super().__call__(method, path, body, headers)
+
+    contract, _ = _prepare_v2(tmp_path, transport=ThreeSolveTransport())
+    transport = contract.transport
+    transport("POST", "http://piqd.test/sessions", b"{}", {})
+    transport("POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {})
+    transport(
+        "POST",
+        f"http://piqd.test/sessions/{SESSION_ID}/clauses",
+        canonical_json_bytes({"clauses": [[-2]]}),
+        {},
+    )
+    transport("POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {})
+    transport("POST", f"http://piqd.test/sessions/{SESSION_ID}/solve", b"{}", {})
+
+    assert transport.statuses == ["SAT", "SAT", "UNSAT"]
+    assert transport.event_sequence == ["solve", "append", "solve", "solve"]
+
+
+def test_production_v2_seals_only_after_closed_terminal_run(tmp_path: Path) -> None:
+    contract, fake = _prepare_v2(tmp_path)
+    assert not (
+        contract.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).exists()
+
+    seal = _complete_v2(contract)
+
+    assert seal is not None
+    assert seal["statuses"] == ["SAT", "UNSAT"]
+    assert seal["solve_count"] == 2
+    assert seal["claims"] == {
+        "piqd_proof_verified": False,
+        "piqd_closure": False,
+        "global_obstruction": False,
+        "theorem_coverage": False,
+        "universal_lift": False,
+        "lean_closure": False,
+    }
+    assert fake.version_calls == 2
+    assert (
+        contract.directory / qualification.PRODUCTION_V2_SESSION_RESULT_NAME
+    ).exists()
+    assert (
+        contract.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).read_bytes() == canonical_json_bytes(seal)
+
+
+def test_production_v2_failed_run_preserves_forensics_without_seal(
+    tmp_path: Path,
+) -> None:
+    contract, _ = _prepare_v2(tmp_path)
+
+    assert _complete_v2(contract, driver_status="UNKNOWN") is None
+
+    assert (contract.directory / qualification.PRODUCTION_V2_PREFLIGHT_NAME).exists()
+    assert (contract.directory / qualification.CLOSE_RESPONSE_NAME).exists()
+    assert not (
+        contract.directory / qualification.PRODUCTION_V2_SESSION_RESULT_NAME
+    ).exists()
+    assert not (
+        contract.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).exists()
+
+
+def test_production_v2_version_drift_and_runtime_tamper_do_not_seal(
+    tmp_path: Path,
+) -> None:
+    drift, _ = _prepare_v2(
+        tmp_path / "drift",
+        transport=FakeTransport(version_post=_version(version="changed")),
+    )
+    with pytest.raises(
+        qualification.QualificationError, match="version object changed"
+    ):
+        _complete_v2(drift)
+    assert not (
+        drift.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).exists()
+
+    tampered, _ = _prepare_v2(tmp_path / "tampered")
+    with pytest.raises(
+        qualification.QualificationError, match="not the journal frontier"
+    ):
+        _complete_v2(tampered, tamper_runtime=True)
+    assert not (
+        tampered.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).exists()
+
+
+def test_production_v2_rejects_byte_only_version_drift(tmp_path: Path) -> None:
+    same_value_different_bytes = json.dumps(
+        json.loads(_version()), indent=2, sort_keys=False
+    ).encode("utf-8")
+    contract, _ = _prepare_v2(
+        tmp_path,
+        transport=FakeTransport(version_post=same_value_different_bytes),
+    )
+
+    with pytest.raises(
+        qualification.QualificationError, match="version object changed"
+    ):
+        _complete_v2(contract)
+
+    assert not (
+        contract.directory / qualification.PRODUCTION_V2_QUALIFICATION_NAME
+    ).exists()
+
+
+def test_production_v2_rejects_mutated_preflight_and_unknown_journal_fields(
+    tmp_path: Path,
+) -> None:
+    preflight, _ = _prepare_v2(tmp_path / "preflight")
+
+    def alter_preflight(contract: qualification.ProductionQualificationV2) -> None:
+        _replace_json(
+            contract.directory / qualification.PRODUCTION_V2_PREFLIGHT_NAME,
+            lambda value: value.__setitem__("base_clauses", 99),
+        )
+
+    with pytest.raises(qualification.QualificationError, match="preflight custody"):
+        _complete_v2(preflight, tamper_custody=alter_preflight)
+
+    journal, _ = _prepare_v2(tmp_path / "journal")
+
+    def add_unknown_journal_field(
+        contract: qualification.ProductionQualificationV2,
+    ) -> None:
+        path = contract.directory / qualification.JOURNAL_NAME
+        events = [json.loads(line) for line in path.read_bytes().splitlines()]
+        events[1]["unexpected"] = True
+        prior: str | None = None
+        for event in events:
+            event["prior_event_sha256"] = prior
+            event.pop("event_sha256", None)
+            event["event_sha256"] = _sha(canonical_json_bytes(event))
+            prior = event["event_sha256"]
+        _private(
+            path,
+            b"".join(canonical_json_bytes(event) + b"\n" for event in events),
+        )
+
+    with pytest.raises(qualification.QualificationError, match="inexact schema"):
+        _complete_v2(journal, tamper_custody=add_unknown_journal_field)
+
+
+def test_production_v2_revalidates_mutable_authority_snapshot(tmp_path: Path) -> None:
+    contract, _ = _prepare_v2(tmp_path)
+    contract.authority.value["policy"]["workers"] = 2
+
+    with pytest.raises(qualification.QualificationError, match="changed after loading"):
+        _complete_v2(contract)
+
+
+def test_production_v2_authority_policy_is_exact(tmp_path: Path) -> None:
+    source_raw, producer_raw = _manifests(b"# exact policy\n")
+    authority = _production_authority(
+        tmp_path,
+        source_raw=source_raw,
+        producer_raw=producer_raw,
+        version_raw=_version(),
+    )
+    value = json.loads(authority.path.read_bytes())
+    value["policy"]["workers"] = 2
+    value.pop("authority_sha256")
+    value["authority_sha256"] = _sha(canonical_json_bytes(value))
+    authority.path.write_bytes(canonical_json_bytes(value))
+
+    with pytest.raises(qualification.QualificationError, match="policy"):
+        qualification.load_production_authority_v2(authority.path)

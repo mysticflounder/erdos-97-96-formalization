@@ -45,8 +45,8 @@ false until separate source-clean consumers establish them.
 | 5 | Exact12 v14 CardHead static CaDiCaL | Onboarded and pushed; live SAT canary and independent total-model/custody replay pass, receipt `d74c396e…` | Reuse the qualified producer-specific boundary; preserve finite-only and false source-entitlement claims |
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
 | 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | CardHead and the F-Gamma base-discovery call are onboarded. F-Gamma job `5b9afcf1…` returned a total 23-variable SAT model; independent source/map/CNF/model/custody replay and daemon-side corroboration pass | Bind the remaining frontier producer dialects; keep F-Gamma's two proof-producing DRAT gates local until PIQD has an authenticated certificate path |
-| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared incremental adapter is green; a live SAT→append→UNSAT canary recovered a deliberately truncated local journal from authoritative frontier/receipts without replaying mutations | Route each active phase3 caller through the qualified static or incremental boundary; keep unsupported mutation/retry shapes fail-closed |
-| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green. Fresh sequential Z3/cvc5 sessions and archived replays pass; Phase-3 Survivor-CVC5 now has a source-authenticated one-session live canary and independent offline audit, receipt `a5a61938…4ddbe`, finite only | Reuse the qualified source/session/replay contract for each remaining SMT dialect; remove direct subprocesses without adding fallback, proof, or universal claims |
+| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 now has a sealed qualification-v2 authority for arbitrary dense append/solve journals and a fail-closed production launcher; its 173-test fake gate and independent audit are green, but no production qualification has run | Run and independently audit one bounded qualification-v2 production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
+| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green. FreshThird and Survivor-CVC5 have authenticated live canaries and offline replay. The global-confinement cvc5 adapter has exact source/query custody, one-session/one-solve `:nl-cov`, independent exact-rational SAT replay, and a green 74-test fake/adversarial gate. Its first live canary durably ended `UNKNOWN / daemon_deadline`; it also exposed a fixed P97 late-receipt reconciliation race and an open PIQD cvc5 timeout-semantics defect | Await the PIQD timeout ruling, then rerun and independently audit one fresh bounded full-convex canary. Assess endpoint and core-mining dialects separately; do not promote diagnostic UNSAT or UNKNOWN outcomes |
 | 10 | Active msolve and Singular algebra probes | No PIQD backend or receipt | PIQD-BACKEND-002 typed algebra execution, or an explicit unsupported disposition |
 | 11 | Certificate and Lean ingress | Clause-map consumer green; handoff incomplete | CERT-001 immutable source-to-certificate manifest and authenticated checker/replay receipt |
 | 12 | Theorem/candidate bank in PIQD | BANK-001 live but arbitrary payload ingestion incomplete | Hash-verifying atomic payload upload, stable error codes, remaining concurrency/cursor/rollback tests, strict P97 client, dry-run migration, byte-for-byte export audit |
@@ -237,6 +237,29 @@ For each lane:
 8. search the indexed theorem banks and name the exact Lean consumer, if any;
 9. update the lane status without moving the proof spine for finite evidence;
 10. commit and push only a reviewed, scoped change set when requested.
+
+### Global-confinement metric-cvc5 timeout checkpoint
+
+The first bounded metric canary selected frontier system
+`8b6ceb4eed2ec9f83827` and opened PIQD session
+`3a2ffaea-21f8-49fa-904c-14b51364a869` with `timeout_ms = 20000`. The client
+lost the HTTP response at 50 seconds, but the durable session subsequently
+settled to one solve and one receipt: `UNKNOWN`,
+`interrupted_by = daemon_deadline`, `solve_ms = 50004`, and result SHA
+`beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a`.
+The run therefore supplies a finite diagnostic `UNKNOWN`, not an inconclusive
+or missing solver record.
+
+This checkpoint exposed two distinct failures. PIQD currently adds a fixed
+30-second grace to every bounded cvc5 solve, so the requested 20-second bound
+became the actual 50-second daemon deadline; the maintainer owns that
+timeout-semantics defect. Separately, the P97 adapter sampled reconciliation
+before the receipt committed and initially mislabeled the run. The adapter now
+uses a fixed bounded reconciliation schedule, authenticates terminal session
+state and exactly one durable receipt together, never retries the solve, and
+closes exactly once. The deterministic delayed-receipt regression is included
+in the 74-test gate. See convo `#4960`, `#4961`, `#4964`, and `#4967`. No fresh
+live retry is permitted until the PIQD timeout behavior is ruled and deployed.
 
 ## Completion criteria
 

@@ -19,6 +19,7 @@ import json
 import os
 import stat
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -46,6 +47,12 @@ MAX_JSON_DEPTH = 64
 MAX_JSON_NODES = 250_000
 MAX_COMMANDS = 250_000
 MAX_SMT_DEPTH = 512
+
+# A solve response can time out at the client a few milliseconds before PIQD
+# commits its terminal session fields and append-only receipt.  Reconciliation
+# is deliberately small and finite: it never resubmits POST /solve, and its
+# total sleeping budget is below one second.
+TRANSPORT_RECONCILIATION_DELAYS_S = (0.0, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5)
 
 STATE_COMMANDS = frozenset(
     {
@@ -837,7 +844,13 @@ def _validate_identity(value: object, where: str) -> dict[str, Any]:
     return obj
 
 
-def _validate_descriptor(value: object) -> dict[str, Any]:
+def _validate_descriptor_for_solver_profile(
+    value: object,
+    *,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+    solvers: tuple[str, ...],
+) -> dict[str, Any]:
     obj = _object(
         value,
         {
@@ -857,7 +870,7 @@ def _validate_descriptor(value: object) -> dict[str, Any]:
         },
         "descriptor",
     )
-    _fail(obj["schema"] == QUERY_SCHEMA, "descriptor schema mismatch")
+    _fail(obj["schema"] == descriptor_schema, "descriptor schema mismatch")
     _validate_identity(obj["producer"], "descriptor.producer")
     _validate_identity(obj["semantic_verifier"], "descriptor.semantic_verifier")
     for key in ("stage_id", "query_id"):
@@ -959,11 +972,28 @@ def _validate_descriptor(value: object) -> dict[str, Any]:
     profile = _object(
         obj["solver_profile"], {"schema", "solvers", "timeout_ms"}, "solver_profile"
     )
-    _fail(profile["schema"] == SOLVER_PROFILE_SCHEMA, "solver profile schema mismatch")
-    _fail(profile["solvers"] == list(SOLVERS), "solver profile must run z3 then cvc5")
+    _fail(
+        profile["schema"] == solver_profile_schema,
+        "solver profile schema mismatch",
+    )
+    _fail(
+        profile["solvers"] == list(solvers),
+        f"solver profile must run {' then '.join(solvers)}",
+    )
     timeout_ms = _integer(profile["timeout_ms"], "solver_profile.timeout_ms", minimum=1)
     _fail(timeout_ms <= 3_600_000, "solver timeout exceeds one hour")
     return obj
+
+
+def _validate_descriptor(value: object) -> dict[str, Any]:
+    """Validate the maintained public two-solver descriptor contract."""
+
+    return _validate_descriptor_for_solver_profile(
+        value,
+        descriptor_schema=QUERY_SCHEMA,
+        solver_profile_schema=SOLVER_PROFILE_SCHEMA,
+        solvers=SOLVERS,
+    )
 
 
 def load_source_semantic_query(
@@ -1018,8 +1048,15 @@ def load_source_semantic_query(
         os.close(root_fd)
 
 
-def _revalidate_query_snapshot(value: SourceSemanticQuery) -> SourceSemanticQuery:
-    """Rebuild all derived fields before crossing the public execution boundary."""
+def _revalidate_query_snapshot_for_contract(
+    value: SourceSemanticQuery,
+    *,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+    solvers: tuple[str, ...],
+    authenticated_journal_commands: tuple[str, ...] | None,
+) -> SourceSemanticQuery:
+    """Rebuild all derived fields against one explicit descriptor contract."""
 
     _fail(type(value) is SourceSemanticQuery, "query has the wrong type")
     _fail(type(value.descriptor_bytes) is bytes, "descriptor bytes are not immutable")
@@ -1027,8 +1064,11 @@ def _revalidate_query_snapshot(value: SourceSemanticQuery) -> SourceSemanticQuer
         len(value.descriptor_bytes) <= MAX_DESCRIPTOR_BYTES,
         "descriptor exceeds byte cap",
     )
-    descriptor = _validate_descriptor(
-        _strict_json(value.descriptor_bytes, "embedded descriptor")
+    descriptor = _validate_descriptor_for_solver_profile(
+        _strict_json(value.descriptor_bytes, "embedded descriptor"),
+        descriptor_schema=descriptor_schema,
+        solver_profile_schema=solver_profile_schema,
+        solvers=solvers,
     )
     supplied_descriptor = _snapshot_builtin_json(
         value.descriptor, "embedded query descriptor"
@@ -1046,7 +1086,30 @@ def _revalidate_query_snapshot(value: SourceSemanticQuery) -> SourceSemanticQuer
         and _sha256(original_smt2) == original_entry["sha256"],
         "embedded original SMT2 custody mismatch",
     )
-    commands, journal = normalize_state_journal(original_smt2)
+    if authenticated_journal_commands is None:
+        commands, journal = normalize_state_journal(original_smt2)
+    else:
+        _fail(
+            type(authenticated_journal_commands) is tuple
+            and bool(authenticated_journal_commands)
+            and len(authenticated_journal_commands) <= MAX_COMMANDS
+            and all(
+                type(command) is str and "\x00" not in command
+                for command in authenticated_journal_commands
+            ),
+            "authenticated journal commands are not an immutable nonempty tuple",
+        )
+        commands = authenticated_journal_commands
+        try:
+            journal = b"".join(command.encode("utf-8") + b"\n" for command in commands)
+        except UnicodeEncodeError as exc:
+            raise SmtSourceAdapterError(
+                "authenticated journal command is not UTF-8 encodable"
+            ) from exc
+        _fail(
+            len(journal) <= MAX_SMT2_BYTES,
+            "authenticated journal exceeds byte cap",
+        )
     _fail(
         type(value.journal_commands) is tuple
         and all(type(command) is str for command in value.journal_commands)
@@ -1090,6 +1153,57 @@ def _revalidate_query_snapshot(value: SourceSemanticQuery) -> SourceSemanticQuer
         journal_commands=commands,
         journal_smt2=journal,
         source_files=tuple(sources),
+    )
+
+
+def _revalidate_query_snapshot(value: SourceSemanticQuery) -> SourceSemanticQuery:
+    """Rebuild the maintained two-solver query at its public execution boundary."""
+
+    return _revalidate_query_snapshot_for_contract(
+        value,
+        descriptor_schema=QUERY_SCHEMA,
+        solver_profile_schema=SOLVER_PROFILE_SCHEMA,
+        solvers=SOLVERS,
+        authenticated_journal_commands=None,
+    )
+
+
+def validate_authenticated_single_solver_query(
+    value: SourceSemanticQuery,
+    *,
+    solver: str,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+    authenticated_journal_commands: tuple[str, ...],
+) -> SourceSemanticQuery:
+    """Validate one producer-authenticated descriptor for exactly one solver.
+
+    The producer adapter must independently reconstruct the descriptor schema,
+    solver-profile schema, and complete state-command journal before supplying
+    them here.  This boundary then re-parses the immutable descriptor bytes,
+    binds its one-element solver list to ``solver``, and rechecks every source,
+    original-SMT2, descriptor, and journal cross-binding.  It is deliberately
+    separate from, and does not weaken, the maintained z3-then-cvc5 wave.
+    """
+
+    _fail(
+        type(solver) is str and solver in SOLVERS,
+        "single-solver selection is not supported",
+    )
+    for schema, where in (
+        (descriptor_schema, "descriptor schema"),
+        (solver_profile_schema, "solver profile schema"),
+    ):
+        _fail(
+            type(schema) is str and bool(schema) and len(schema.encode("utf-8")) <= 256,
+            f"authenticated {where} is invalid",
+        )
+    return _revalidate_query_snapshot_for_contract(
+        value,
+        descriptor_schema=descriptor_schema,
+        solver_profile_schema=solver_profile_schema,
+        solvers=(solver,),
+        authenticated_journal_commands=authenticated_journal_commands,
     )
 
 
@@ -1578,6 +1692,119 @@ def _solve_from_receipt(receipt: Mapping[str, object]) -> dict[str, object]:
     }
 
 
+def _validate_live_reconciliation_state(
+    live: Mapping[str, object],
+    *,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+) -> bool:
+    """Validate a live session snapshot and report whether solve 1 is terminal."""
+
+    identity_keys = (
+        "id",
+        "solver_name",
+        "solver_sha256",
+        "solver_signature",
+        "protocol_version",
+        "journal_path",
+        "created_at",
+        "label",
+    )
+    _fail(
+        all(live[key] == created[key] for key in identity_keys),
+        "reconciliation PIQD session identity changed",
+    )
+    _fail(
+        live["clauses"] == len(query.journal_commands),
+        "reconciliation PIQD session command count mismatch",
+    )
+    if live["solves"] == 0:
+        _fail(
+            live["last_status"] is None
+            and live["last_solve_index"] is None
+            and live["last_assumption_free"] is None
+            and live["last_terminal_unsat"] is None,
+            "pending reconciliation session has terminal fields",
+        )
+        return False
+    _fail(
+        live["solves"] == 1
+        and live["last_solve_index"] == 1
+        and live["last_status"] in {"SAT", "UNSAT", "UNKNOWN"}
+        and live["last_assumption_free"] is (not bool(query.assumptions))
+        and (
+            (live["last_status"] == "UNSAT")
+            == (type(live["last_terminal_unsat"]) is bool)
+        ),
+        "terminal reconciliation session state mismatch",
+    )
+    return True
+
+
+def _bounded_reconciliation_wait(delay_s: float) -> None:
+    """Sleep for one audited response-loss reconciliation delay."""
+
+    time.sleep(delay_s)
+
+
+def _reconcile_lost_solve_response(
+    *,
+    transport: PiqdTransport,
+    route: str,
+    solver: str,
+    label: str,
+    session: Mapping[str, object],
+    query: SourceSemanticQuery,
+    receipts_before: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, object] | None, dict[str, Any] | None, int]:
+    """Boundedly recover one durable terminal solve without resubmitting it."""
+
+    receipts = receipts_before
+    observed_receipt: dict[str, Any] | None = None
+    observed_live: dict[str, Any] | None = None
+    terminal_observed = False
+    for attempt, delay_s in enumerate(TRANSPORT_RECONCILIATION_DELAYS_S, start=1):
+        if delay_s:
+            _bounded_reconciliation_wait(delay_s)
+        try:
+            live = _validate_session(
+                _json_call(transport, "GET", route),
+                solver=solver,
+                label=label,
+                expected_state="live",
+            )
+            terminal = _validate_live_reconciliation_state(
+                live, created=session, query=query
+            )
+            candidate_receipts, candidate_receipt = _validate_receipts(
+                _json_call(transport, "GET", f"{route}/receipts"),
+                session=session,
+                query=query,
+                solve=None,
+            )
+        except PiqdTransportLoss:
+            continue
+        receipts = candidate_receipts
+        observed_live = live
+        terminal_observed = terminal_observed or terminal
+        if candidate_receipt is not None:
+            _fail(
+                observed_receipt is None or candidate_receipt == observed_receipt,
+                "durable PIQD receipt changed during reconciliation",
+            )
+            observed_receipt = candidate_receipt
+        if terminal and candidate_receipt is not None:
+            solve = _solve_from_receipt(candidate_receipt)
+            _validate_closed_session(live, created=session, query=query, solve=solve)
+            return receipts, solve, live, attempt
+
+    _fail(
+        not terminal_observed and observed_receipt is None,
+        "bounded reconciliation ended with incomplete terminal PIQD state",
+    )
+    return receipts, None, observed_live, len(TRANSPORT_RECONCILIATION_DELAYS_S)
+
+
 def _unsat_assumption_provenance(
     query: SourceSemanticQuery, solve: Mapping[str, object]
 ) -> dict[str, object] | None:
@@ -1763,14 +1990,28 @@ def _run_solver(
         except PiqdTransportLoss:
             response_lost = True
             solve = None
-        receipts, receipt = _validate_receipts(
-            _json_call(transport, "GET", f"{route}/receipts"),
-            session=session,
-            query=query,
-            solve=solve,
-        )
-        if response_lost and receipt is not None:
-            solve = _solve_from_receipt(receipt)
+        reconciliation_session = None
+        reconciliation_attempts = 0
+        if response_lost:
+            receipts, solve, reconciliation_session, reconciliation_attempts = (
+                _reconcile_lost_solve_response(
+                    transport=transport,
+                    route=route,
+                    solver=solver,
+                    label=label,
+                    session=session,
+                    query=query,
+                    receipts_before=receipts_before,
+                )
+            )
+            receipt = None if solve is None else receipts["receipts"][0]
+        else:
+            receipts, receipt = _validate_receipts(
+                _json_call(transport, "GET", f"{route}/receipts"),
+                session=session,
+                query=query,
+                solve=solve,
+            )
         if solve is None:
             _fail(receipt is None, "receipt reconciliation state is inconsistent")
             artifacts = {
@@ -1798,6 +2039,7 @@ def _run_solver(
                 "result_sha256": None,
                 "response_lost": True,
                 "reconciled_from_receipt": False,
+                "reconciliation_attempts": reconciliation_attempts,
                 "result_digest_advisory": None,
                 "unsat_assumptions": None,
                 "semantic_replay": None,
@@ -1834,6 +2076,12 @@ def _run_solver(
             artifacts["reconciled_solve" if response_lost else "solve"] = (
                 _write_immutable(output_fd, solve_artifact, _json_artifact(solve))
             )
+            if reconciliation_session is not None:
+                artifacts["reconciliation_session"] = _write_immutable(
+                    output_fd,
+                    f"{solver}.reconciliation-session.json",
+                    _json_artifact(reconciliation_session),
+                )
             if semantic is not None:
                 artifacts["semantic"] = _write_immutable(
                     output_fd, f"{solver}.semantic.json", _json_artifact(semantic)
@@ -1849,6 +2097,7 @@ def _run_solver(
                 "result_sha256": receipt["result_sha256"],
                 "response_lost": response_lost,
                 "reconciled_from_receipt": response_lost,
+                "reconciliation_attempts": reconciliation_attempts,
                 "result_digest_advisory": {
                     "algorithm": "piqd-smt-solve-result/v1",
                     "locally_recomputed": locally_recomputed_digest,
@@ -1883,6 +2132,57 @@ def _run_solver(
     )
     _validate_unsat_output_boundary(engine)
     return engine
+
+
+def run_authenticated_single_solver_query(
+    query: SourceSemanticQuery,
+    *,
+    solver: str,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+    authenticated_journal_commands: tuple[str, ...],
+    transport: PiqdTransport,
+    semantic_verifier: SemanticVerifier,
+    output_fd: int,
+    used_session_ids: set[str] | None = None,
+) -> dict[str, object]:
+    """Run one authenticated solver in one fresh PIQD session and one solve.
+
+    This is the low-level production boundary for a producer that owns its
+    create-once output staging.  The exact one-solver descriptor and complete
+    journal are validated before transport.  There is no second solver or
+    fallback.  Durable receipt reconciliation and semantic SAT replay use the
+    same hardened machinery as the public two-solver wave.  PIQD's maintained
+    receipt/solve digest agreement remains binding, while this adapter's local
+    recomputation of ``result_sha256`` remains explicitly advisory.
+    """
+
+    query = validate_authenticated_single_solver_query(
+        query,
+        solver=solver,
+        descriptor_schema=descriptor_schema,
+        solver_profile_schema=solver_profile_schema,
+        authenticated_journal_commands=authenticated_journal_commands,
+    )
+    _fail(
+        type(output_fd) is int and output_fd >= 0,
+        "single-solver output descriptor is invalid",
+    )
+    if used_session_ids is None:
+        used_session_ids = set()
+    _fail(
+        type(used_session_ids) is set
+        and all(type(session_id) is str for session_id in used_session_ids),
+        "used session identities must be an exact string set",
+    )
+    return _run_solver(
+        query,
+        solver,
+        transport,
+        semantic_verifier,
+        output_fd,
+        used_session_ids,
+    )
 
 
 def run_source_semantic_query(
@@ -2037,6 +2337,8 @@ __all__ = [
     "load_source_semantic_query",
     "normalize_state_journal",
     "piqd_result_digest",
+    "run_authenticated_single_solver_query",
     "run_source_semantic_query",
     "split_smt2_commands",
+    "validate_authenticated_single_solver_query",
 ]

@@ -143,6 +143,7 @@ class FakeCurrentPiqd:
         receipt_terminal_mismatch: bool = False,
         solve_transport_loss: set[str] | None = None,
         transport_loss_commits: bool = True,
+        transport_loss_visibility_delay: int = 0,
         malformed_create: bool = False,
         nonfresh_create: bool = False,
         reuse_session_id: bool = False,
@@ -162,6 +163,7 @@ class FakeCurrentPiqd:
         self.receipt_terminal_mismatch = receipt_terminal_mismatch
         self.solve_transport_loss = solve_transport_loss or set()
         self.transport_loss_commits = transport_loss_commits
+        self.transport_loss_visibility_delay = transport_loss_visibility_delay
         self.malformed_create = malformed_create
         self.nonfresh_create = nonfresh_create
         self.reuse_session_id = reuse_session_id
@@ -200,6 +202,9 @@ class FakeCurrentPiqd:
                 "receipt": None,
                 "solve_request": None,
                 "answer": None,
+                "pending_answer": None,
+                "pending_receipt": None,
+                "visibility_delay": 0,
             }
             self.sessions[session_id] = data
             self.active += 1
@@ -280,11 +285,44 @@ class FakeCurrentPiqd:
                 data["solver"] not in self.solve_transport_loss
                 or self.transport_loss_commits
             ):
-                data["answer"] = answer
-                data["receipt"] = receipt
+                if (
+                    data["solver"] in self.solve_transport_loss
+                    and self.transport_loss_visibility_delay > 0
+                ):
+                    data["pending_answer"] = answer
+                    data["pending_receipt"] = receipt
+                    data["visibility_delay"] = self.transport_loss_visibility_delay
+                else:
+                    data["answer"] = answer
+                    data["receipt"] = receipt
             if data["solver"] in self.solve_transport_loss:
                 raise subject.PiqdTransportLoss("simulated response loss")
             return subject.JsonResponse(200, response)
+        if method == "GET" and suffix == "":
+            assert body is None
+            if data["pending_answer"] is not None:
+                if data["visibility_delay"] == 0:
+                    data["answer"] = data["pending_answer"]
+                    data["receipt"] = data["pending_receipt"]
+                    data["pending_answer"] = None
+                    data["pending_receipt"] = None
+                else:
+                    data["visibility_delay"] -= 1
+            answer = data["answer"] or {}
+            return subject.JsonResponse(
+                200,
+                _session(
+                    session_id,
+                    data["solver"],
+                    data["label"],
+                    commands=len(data["commands"]),
+                    solves=0 if not answer else 1,
+                    status=answer.get("status"),
+                    assumptions=(data["solve_request"] or {}).get("assumptions"),
+                    terminal_unsat=answer.get("terminal_unsat"),
+                    journal_path=self._journal_path(session_id),
+                ),
+            )
         if method == "GET" and suffix == "/receipts":
             assert body is None
             receipts = [] if data["receipt"] is None else [data["receipt"]]
@@ -381,6 +419,23 @@ def _load(
     ), original
 
 
+def _single_solver_query(
+    query: subject.SourceSemanticQuery, solver: str = "cvc5"
+) -> subject.SourceSemanticQuery:
+    descriptor = json.loads(_canonical(query.descriptor))
+    descriptor["schema"] = "test-authenticated-single-solver-query/v1"
+    descriptor["solver_profile"] = {
+        "schema": "test-authenticated-single-solver-profile/v1",
+        "solvers": [solver],
+        "timeout_ms": 17_000,
+    }
+    return replace(
+        query,
+        descriptor=descriptor,
+        descriptor_bytes=_canonical(descriptor) + b"\n",
+    )
+
+
 def _assert_empty_tombstones(parent: Path, *, minimum: int = 1) -> list[Path]:
     tombstones = list(parent.glob(".piqd-smt-tombstone-*"))
     assert len(tombstones) >= minimum
@@ -460,6 +515,50 @@ def test_sat_custody_real_routes_sequential_sessions_and_semantic_replay(
         "receipts",
         *fake.sessions,
     }
+
+
+def test_public_authenticated_single_solver_boundary_binds_exact_selection(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd()
+    artifact_root = tmp_path / "single-solver-artifacts"
+    artifact_root.mkdir()
+    output_fd = os.open(
+        artifact_root,
+        os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_NOFOLLOW", 0),
+    )
+    try:
+        engine = subject.run_authenticated_single_solver_query(
+            query,
+            solver="cvc5",
+            descriptor_schema="test-authenticated-single-solver-query/v1",
+            solver_profile_schema="test-authenticated-single-solver-profile/v1",
+            authenticated_journal_commands=query.journal_commands,
+            transport=fake,
+            semantic_verifier=_accepting_verifier,
+            output_fd=output_fd,
+        )
+    finally:
+        os.close(output_fd)
+    assert engine["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
+    assert fake.created_solvers == ["cvc5"]
+    assert fake.active == 0
+
+    crossed = FakeCurrentPiqd()
+    with pytest.raises(subject.SmtSourceAdapterError, match="must run z3"):
+        subject.run_authenticated_single_solver_query(
+            query,
+            solver="z3",
+            descriptor_schema="test-authenticated-single-solver-query/v1",
+            solver_profile_schema="test-authenticated-single-solver-profile/v1",
+            authenticated_journal_commands=query.journal_commands,
+            transport=crossed,
+            semantic_verifier=_accepting_verifier,
+            output_fd=-1,
+        )
+    assert crossed.calls == []
 
 
 @pytest.mark.parametrize(
@@ -868,8 +967,9 @@ def test_session_identity_uniqueness_and_close_state_are_bound(tmp_path: Path) -
 
 @pytest.mark.parametrize("committed", [True, False])
 def test_solve_response_loss_reconciles_receipt_or_downgrades_and_closes(
-    tmp_path: Path, committed: bool
+    tmp_path: Path, committed: bool, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    monkeypatch.setattr(subject, "_bounded_reconciliation_wait", lambda _: None)
     query, _ = _load(tmp_path)
     fake = FakeCurrentPiqd(
         solve_transport_loss={"z3"}, transport_loss_commits=committed
@@ -882,6 +982,10 @@ def test_solve_response_loss_reconciles_receipt_or_downgrades_and_closes(
     assert z3["effective_status"] == (
         "SAT_SEMANTICALLY_REPLAYED" if committed else "INCONCLUSIVE_TRANSPORT_LOSS"
     )
+    expected_attempts = (
+        1 if committed else len(subject.TRANSPORT_RECONCILIATION_DELAYS_S)
+    )
+    assert z3["reconciliation_attempts"] == expected_attempts
     assert z3["result_sha256"] is not None if committed else z3["result_sha256"] is None
     if committed:
         reconciled = json.loads((output / "z3.reconciled-solve.json").read_bytes())
@@ -891,6 +995,62 @@ def test_solve_response_loss_reconciles_receipt_or_downgrades_and_closes(
         assert z3["result_sha256"] == subject.piqd_result_digest(reconciled)
     assert fake.active == 0
     assert len(fake.deleted_session_ids) == 2
+    z3_id = str(uuid.UUID(int=1))
+    assert (
+        sum(
+            method == "POST" and path == f"/sessions/{z3_id}/solve"
+            for method, path, _ in fake.calls
+        )
+        == 1
+    )
+    assert fake.deleted_session_ids.count(z3_id) == 1
+    assert (
+        sum(
+            method == "GET" and path == f"/sessions/{z3_id}"
+            for method, path, _ in fake.calls
+        )
+        == expected_attempts
+    )
+
+
+def test_response_loss_waits_for_delayed_unknown_receipt_without_second_solve(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    query, _ = _load(tmp_path)
+    waits: list[float] = []
+    monkeypatch.setattr(subject, "_bounded_reconciliation_wait", waits.append)
+    fake = FakeCurrentPiqd(
+        statuses={"z3": "UNKNOWN", "cvc5": "SAT"},
+        unknown_interruption="daemon_deadline",
+        solve_transport_loss={"z3"},
+        transport_loss_visibility_delay=1,
+    )
+
+    result = subject.run_source_semantic_query(
+        query, tmp_path / "delayed-receipt", fake, _accepting_verifier
+    )
+
+    z3 = result["engines"][0]
+    assert z3["raw_status"] == "UNKNOWN"
+    assert z3["effective_status"] == "INCONCLUSIVE_UNKNOWN"
+    assert z3["response_lost"] is True
+    assert z3["reconciled_from_receipt"] is True
+    assert z3["reconciliation_attempts"] == 2
+    assert waits == [subject.TRANSPORT_RECONCILIATION_DELAYS_S[1]]
+    z3_id = str(uuid.UUID(int=1))
+    assert (
+        sum(
+            method == "POST" and path == f"/sessions/{z3_id}/solve"
+            for method, path, _ in fake.calls
+        )
+        == 1
+    )
+    assert fake.deleted_session_ids.count(z3_id) == 1
+    receipt = json.loads(
+        (tmp_path / "delayed-receipt" / "z3.receipts.json").read_bytes()
+    )["receipts"][0]
+    assert receipt["status"] == "UNKNOWN"
+    assert receipt["interrupted_by"] == "daemon_deadline"
 
 
 def test_private_staging_rolls_back_and_atomic_publication_resists_races(

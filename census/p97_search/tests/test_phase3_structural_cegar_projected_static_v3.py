@@ -821,6 +821,53 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
     assert local_calls[0][0].read_bytes() == (out / "terminal.cnf").read_bytes()
 
 
+def test_terminal_publication_closes_before_qualification_finalization(
+    tmp_path: Path,
+) -> None:
+    events: list[tuple[str, str | None]] = []
+
+    class QualifiedBackend:
+        closed = False
+
+        def __call__(
+            self, _cnf: Path, _timeout: int, proof: Path | None
+        ) -> Any:
+            if proof is not None:
+                proof.write_bytes(b"0\n")
+            return v3.sat.SolverResult(
+                "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
+            )
+
+        def close(self) -> None:
+            self.closed = True
+            events.append(("close", None))
+
+        def finalize_qualification(self, status: str) -> None:
+            assert self.closed is True
+            events.append(("finalize", status))
+
+        def manifest_metadata(self) -> dict[str, Any]:
+            return {"proof_verified": False, "closure_claim": False}
+
+    result = v3.run_driver(
+        tmp_path / "qualified-finalization",
+        timeout_s=5,
+        learned_core_limit=2,
+        survivor_limit=2,
+        bootstrap_results=None,
+        algebraic_bootstrap=None,
+        projected_static_v3=True,
+        solver_runner=QualifiedBackend(),
+        checker_runner=lambda *_args: v3.sat.CheckerResult(
+            True, 0, "s VERIFIED\n", ""
+        ),
+    )
+
+    assert result["status"] == "STRUCTURAL_UNSAT_VERIFIED"
+    assert events[0] == ("close", None)
+    assert events[1] == ("finalize", "STRUCTURAL_UNSAT_VERIFIED")
+
+
 def test_static_piqd_split_routes_unknown_without_local_fallback(
     tmp_path: Path,
 ) -> None:
@@ -1745,6 +1792,75 @@ def test_incremental_piqd_factory_receives_exact_manifest_bytes_and_values(
         "solver_name": "fake-cadical",
         "local_proof_runner": local_proof,
     }
+
+
+def test_incremental_piqd_qualification_authority_is_validated_and_forwarded(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    source_bytes = b'{"canonical":"production-source"}\n'
+    producer_bytes = b'{"canonical":"production-producer"}\n'
+    source_path = tmp_path / "source-manifest.json"
+    producer_path = tmp_path / "producer-manifest.json"
+    authority_path = tmp_path / "authority.json"
+    source_path.write_bytes(source_bytes)
+    producer_path.write_bytes(producer_bytes)
+    authority_path.write_bytes(b"sealed authority fixture")
+    authority = object()
+    validations: list[dict[str, Any]] = []
+    real_import = v3.importlib.import_module
+
+    def import_module(name: str) -> Any:
+        if name == "census.p97_search.phase3_piqd_projected_v3_qualification":
+            return SimpleNamespace(
+                load_production_authority_v2=lambda path: (
+                    authority
+                    if path == authority_path
+                    else pytest.fail("wrong authority path")
+                ),
+                validate_production_launch_authority_v2=lambda *args, **kwargs: (
+                    validations.append({"args": args, **kwargs})
+                ),
+            )
+        return real_import(name)
+
+    monkeypatch.setattr(v3.importlib, "import_module", import_module)
+    args = v3._parse_args(
+        [
+            *_incremental_piqd_cli_args(tmp_path),
+            "--piqd-qualification-authority",
+            str(authority_path),
+        ]
+    )
+    config = v3._incremental_piqd_caller_config(args)
+    assert config is not None
+    assert config.qualification_authority is authority
+    expected_validation = {
+        "args": (authority,),
+        "daemon_url": "http://127.0.0.1:7272",
+        "source_manifest": source_bytes,
+        "producer_manifest": producer_bytes,
+        "producer_job_id": "22222222-2222-4222-8222-222222222222",
+        "solver_name": "fake-cadical",
+    }
+    assert validations
+    assert all(item == expected_validation for item in validations)
+
+    captured: dict[str, Any] = {}
+    monkeypatch.setattr(
+        v3,
+        "_make_incremental_piqd_solver_runner",
+        lambda **kwargs: captured.update(kwargs) or object(),
+    )
+    local_proof = lambda *_args: pytest.fail("not called")
+    v3._incremental_solver_runner_from_config(
+        config,
+        base_cnf_path=tmp_path / "out" / "base.cnf",
+        local_proof_runner=local_proof,
+    )
+    assert captured["production_authority"] is authority
+    assert captured["source_manifest_path"] == source_path
+    assert captured["producer_manifest_path"] == producer_path
 
 
 def test_local_persistent_cli_path_is_preserved_without_piqd_inputs() -> None:

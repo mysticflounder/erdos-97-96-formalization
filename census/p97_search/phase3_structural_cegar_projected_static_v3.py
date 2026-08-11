@@ -592,6 +592,7 @@ class _IncrementalPiqdCallerConfig:
     producer_manifest: Path
     producer_job_id: str
     solver_name: str
+    qualification_authority: Any | None = None
 
 
 class StructuralCegarError(RuntimeError):
@@ -653,10 +654,16 @@ def _incremental_piqd_caller_config(
         args.piqd_producer_job_id,
         args.piqd_solver_name,
     )
+    authority_path = args.piqd_qualification_authority
     if not args.persistent_discovery:
-        if args.piqd_producer_job_id is not None or args.piqd_solver_name is not None:
+        if (
+            args.piqd_producer_job_id is not None
+            or args.piqd_solver_name is not None
+            or authority_path is not None
+        ):
             raise StructuralCegarError(
-                "--piqd-producer-job-id and --piqd-solver-name require "
+                "--piqd-producer-job-id, --piqd-solver-name, and "
+                "--piqd-qualification-authority require "
                 "--persistent-discovery"
             )
         return None
@@ -687,6 +694,25 @@ def _incremental_piqd_caller_config(
         raise StructuralCegarError(
             "persistent PIQD discovery requires --projected-static-v3"
         )
+    authority = None
+    if authority_path is not None:
+        qualification = importlib.import_module(
+            "census.p97_search.phase3_piqd_projected_v3_qualification"
+        )
+        try:
+            authority = qualification.load_production_authority_v2(authority_path)
+            qualification.validate_production_launch_authority_v2(
+                authority,
+                daemon_url=args.piqd_base_url,
+                source_manifest=args.piqd_source_manifest.read_bytes(),
+                producer_manifest=args.piqd_producer_manifest.read_bytes(),
+                producer_job_id=args.piqd_producer_job_id,
+                solver_name=args.piqd_solver_name,
+            )
+        except (OSError, qualification.QualificationError) as exc:
+            raise StructuralCegarError(
+                f"invalid PIQD production qualification authority: {exc}"
+            ) from exc
     return _IncrementalPiqdCallerConfig(
         base_url=args.piqd_base_url,
         custody_root=args.piqd_journal_root,
@@ -694,6 +720,7 @@ def _incremental_piqd_caller_config(
         producer_manifest=args.piqd_producer_manifest,
         producer_job_id=args.piqd_producer_job_id,
         solver_name=args.piqd_solver_name,
+        qualification_authority=authority,
     )
 
 
@@ -740,10 +767,20 @@ def _make_incremental_piqd_solver_runner(
     producer_job_id: str,
     solver_name: str,
     local_proof_runner: SolverRunner,
+    production_authority: Any | None = None,
+    source_manifest_path: Path | None = None,
+    producer_manifest_path: Path | None = None,
 ) -> SolverRunner:
     incremental_v3 = importlib.import_module(
         "census.p97_search.phase3_piqd_incremental_v3"
     )
+    kwargs: dict[str, Any] = {}
+    if production_authority is not None:
+        kwargs = {
+            "production_authority": production_authority,
+            "source_manifest_path": source_manifest_path,
+            "producer_manifest_path": producer_manifest_path,
+        }
     return incremental_v3.make_piqd_incremental_v3_solver_runner(
         base_url=base_url,
         custody_root=custody_root,
@@ -753,6 +790,7 @@ def _make_incremental_piqd_solver_runner(
         producer_job_id=producer_job_id,
         solver_name=solver_name,
         local_proof_runner=local_proof_runner,
+        **kwargs,
     )
 
 
@@ -762,6 +800,13 @@ def _incremental_solver_runner_from_config(
     base_cnf_path: Path,
     local_proof_runner: SolverRunner,
 ) -> SolverRunner:
+    kwargs: dict[str, Any] = {}
+    if config.qualification_authority is not None:
+        kwargs = {
+            "production_authority": config.qualification_authority,
+            "source_manifest_path": config.source_manifest,
+            "producer_manifest_path": config.producer_manifest,
+        }
     return _make_incremental_piqd_solver_runner(
         base_url=config.base_url,
         custody_root=config.custody_root,
@@ -771,6 +816,7 @@ def _incremental_solver_runner_from_config(
         producer_job_id=config.producer_job_id,
         solver_name=config.solver_name,
         local_proof_runner=local_proof_runner,
+        **kwargs,
     )
 
 
@@ -10117,6 +10163,11 @@ def run_driver(
             and status == "RUNNING"
         )
         if (
+            finalize_qualification = getattr(
+                solver_backend, "finalize_qualification", None
+            )
+            if callable(finalize_qualification):
+                finalize_qualification(status)
             prospective_state is not None
             and published_manifest is not None
             and status == "RUNNING"
@@ -11302,6 +11353,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-new-raw", type=int)
     args = parser.parse_args(argv)
+    piqd_group.add_argument(
+        "--piqd-qualification-authority",
+        type=Path,
+        help=(
+            "sealed projected-static-v3 production qualification-v2 authority; "
+            "requires the complete persistent PIQD input group"
+        ),
+    )
     try:
         _static_piqd_caller_config(args)
         _incremental_piqd_caller_config(args)
@@ -11339,8 +11398,8 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     return args
 
 
-def main() -> int:
-    args = _parse_args()
+def main(argv: Sequence[str] | None = None) -> int:
+    args = _parse_args(argv)
     if args.verify_shards is not None:
         coverage = verify_shard_coverage(args.verify_shards)
         print(json.dumps(coverage, indent=2, sort_keys=True))

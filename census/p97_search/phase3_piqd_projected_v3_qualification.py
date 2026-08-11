@@ -21,7 +21,12 @@ from urllib.parse import urlsplit
 
 from census.p97_search import phase3_piqd_incremental_discovery as incremental
 from census.p97_search import phase3_piqd_static_solver_runner as static
-from census.p97_search.phase3_piqd_oracle import HttpResponse, PreparedJob, Transport
+from census.p97_search.phase3_piqd_oracle import (
+    HttpResponse,
+    PreparedJob,
+    Transport,
+    raw_dimacs_identity,
+)
 
 SCHEMA = "p97-piqd-projected-static-v3-qualification/v3"
 TEST_SCHEMA = "p97-piqd-projected-static-v3-qualification-test-only/v3"
@@ -104,6 +109,47 @@ QUALIFICATION_NAME = "qualification.json"
 SESSION_RESULT_NAME = "session-result.json"
 SOLVE_RESPONSE_NAMES = ("solve-response-1.json", "solve-response-2.json")
 CLOSE_RESPONSE_NAME = "session-close-response.json"
+
+# The historical v3 canary above remains deliberately exact: SAT, append (91),
+# then terminal assumption-free UNSAT.  These v2 names describe the separate
+# generalized production lifecycle and do not relax that canary.
+PRODUCTION_V2_AUTHORITY_SCHEMA = "p97-piqd-projected-static-v3-production-authority/v2"
+PRODUCTION_V2_PREFLIGHT_SCHEMA = "p97-piqd-projected-static-v3-production-preflight/v2"
+PRODUCTION_V2_QUALIFICATION_SCHEMA = (
+    "p97-piqd-projected-static-v3-production-qualification/v2"
+)
+PRODUCTION_V2_SESSION_RESULT_SCHEMA = (
+    "p97-piqd-projected-static-v3-production-session-result/v2"
+)
+PRODUCTION_V2_AUTHORITY_NAME = "production-authority-v2.json"
+PRODUCTION_V2_PREFLIGHT_NAME = "production-preflight-v2.json"
+PRODUCTION_V2_SESSION_RESULT_NAME = "production-session-result-v2.json"
+PRODUCTION_V2_QUALIFICATION_NAME = "production-qualification-v2.json"
+
+PRODUCTION_V2_POLICY = MappingProxyType(
+    {
+        "workers": 1,
+        "parallel_mode": "sequential",
+        "projected_static_v3": True,
+        "persistent_discovery": True,
+        "resume": False,
+        "shards": False,
+        "cube_batching": False,
+        "discovery_proof_path": None,
+        "terminal_proof": "fresh-local-drat",
+        "session": "fresh-one-session",
+        "journal": "dense-append-solve-v1",
+        "proof_verified": False,
+        "closure_claim": False,
+    }
+)
+PRODUCTION_V2_SUCCESS_STATUSES = frozenset(
+    {
+        "STRUCTURAL_UNSAT_VERIFIED",
+        "P97_EUCLIDEAN_GAUGE_UNSAT_VERIFIED",
+        "ENUMERATION_COMPLETE_WITH_SURVIVORS",
+    }
+)
 
 JOB_STATUS_KEYS = {
     "id",
@@ -390,6 +436,18 @@ def _get_json(transport: Transport, path: str, *, label: str) -> bytes:
     if response.status != 200:
         raise QualificationError(f"{label} evidence request failed")
     return _json_bytes(_strict_json(response.body, label=label, canonical=False))
+
+
+def _get_json_exact_bytes(transport: Transport, path: str, *, label: str) -> bytes:
+    response = _response(
+        transport("GET", path, None, {"Accept": "application/json"}),
+        label=label,
+        limit=MAX_CONTROL_BYTES,
+    )
+    if response.status != 200:
+        raise QualificationError(f"{label} evidence request failed")
+    _strict_json(response.body, label=label, canonical=False)
+    return response.body
 
 
 def _version_object(value: dict[str, Any], *, label: str) -> str:
@@ -732,7 +790,12 @@ class QualificationContract:
 
 
 class QualificationTransport:
-    """Capture one exact session identity, two solves, and one close observation."""
+    """Capture one exact session identity and one close observation.
+
+    The default is the frozen two-solve canary.  ``generalized=True`` is used
+    only behind a validated production-v2 authority and accepts a dense,
+    otherwise unbounded sequence of assumption-free solves.
+    """
 
     def __init__(
         self,
@@ -745,6 +808,7 @@ class QualificationTransport:
         descriptor_root: str,
         producer_job_id: str | None = None,
         base_sha256: str | None = None,
+        generalized: bool = False,
     ) -> None:
         self.inner = inner
         self.root = Path(root)
@@ -773,8 +837,13 @@ class QualificationTransport:
         self.base_sha256 = (
             None if base_sha256 is None else _hex(base_sha256, label="base_sha256")
         )
+        if type(generalized) is not bool:
+            raise QualificationError("generalized must be a builtin boolean")
+        self.generalized = generalized
         self.session_id: str | None = None
         self.solve_count = 0
+        self.statuses: list[str] = []
+        self.event_sequence: list[str] = []
         self.close_observed = False
         self.close_method: str | None = None
         self.close_path: str | None = None
@@ -899,6 +968,53 @@ class QualificationTransport:
         value = _strict_json(
             raw, label=f"solve response {expected_index}", canonical=False
         )
+        if self.generalized:
+            common = {"status", "solve_ms", "solve_index", "result_sha256"}
+            status = value.get("status")
+            expected = (
+                common | {"model"}
+                if status == "SAT"
+                else common | {"core", "terminal_unsat"}
+                if status == "UNSAT"
+                else common
+                | ({"interrupted_by"} if "interrupted_by" in value else set())
+                if status == "UNKNOWN"
+                else set()
+            )
+            _keys(value, expected, label=f"solve response {expected_index}")
+            if value.get("solve_index") != expected_index:
+                raise QualificationError("production solve index is not dense")
+            _integer(value["solve_ms"], label="solve.solve_ms")
+            _hex(value["result_sha256"], label="solve.result_sha256")
+            if status == "SAT":
+                model = value["model"]
+                if type(model) is not list or any(
+                    type(item) is not int or item == 0 for item in model
+                ):
+                    raise QualificationError("production SAT model is malformed")
+                expected_digest = incremental._result_digest("SAT", None, None, model)
+            elif status == "UNSAT":
+                if value["core"] != [] or type(value["core"]) is not list:
+                    raise QualificationError(
+                        "production UNSAT must be assumption-free with an empty core"
+                    )
+                if value["terminal_unsat"] is not True:
+                    raise QualificationError(
+                        "production UNSAT must be terminal_unsat=true"
+                    )
+                expected_digest = incremental._result_digest("UNSAT", None, [], None)
+            elif status == "UNKNOWN":
+                interrupted = value.get("interrupted_by")
+                if interrupted is not None:
+                    _string(interrupted, label="solve.interrupted_by")
+                expected_digest = incremental._result_digest(
+                    "UNKNOWN", interrupted, None, None
+                )
+            else:
+                raise QualificationError("production solve status is invalid")
+            if value["result_sha256"] != expected_digest:
+                raise QualificationError("raw solve response result digest disagrees")
+            return value
         common = {"status", "solve_ms", "solve_index", "result_sha256"}
         expected = (
             common | {"model"}
@@ -941,13 +1057,19 @@ class QualificationTransport:
             and segments[-3] == "sessions"
             and segments[-1] == "solve"
         )
+        is_append = (
+            method == "POST"
+            and len(segments) >= 3
+            and segments[-3] == "sessions"
+            and segments[-1] == "clauses"
+        )
         is_delete = (
             method == "DELETE" and len(segments) >= 2 and segments[-2] == "sessions"
         )
         expected_status = self._expected_status(method, segments)
         if is_create and self.session_id is not None:
             raise QualificationError("qualification permits exactly one session")
-        if is_solve and self.solve_count >= 2:
+        if is_solve and not self.generalized and self.solve_count >= 2:
             raise QualificationError("qualification permits exactly two solves")
         if is_delete and self.close_observed:
             raise QualificationError("qualification session was already closed")
@@ -978,8 +1100,26 @@ class QualificationTransport:
                     "solve preceded authenticated session creation"
                 )
             next_index = self.solve_count + 1
-            self._solve_payload(response.body, expected_index=next_index)
+            solve = self._solve_payload(response.body, expected_index=next_index)
             self.solve_count = next_index
+            self.statuses.append(solve["status"])
+            self.event_sequence.append("solve")
+        elif is_append:
+            if self.session_id is None or session_path_id != self.session_id:
+                raise QualificationError(
+                    "append preceded authenticated session creation"
+                )
+            request = _strict_json(body, label="clause append request")
+            _keys(request, {"clauses"}, label="clause append request")
+            clauses = request["clauses"]
+            if type(clauses) is not list or not clauses:
+                raise QualificationError("production append must add clauses")
+            for clause in clauses:
+                if type(clause) is not list or any(
+                    type(literal) is not int or literal == 0 for literal in clause
+                ):
+                    raise QualificationError("production append clause is malformed")
+            self.event_sequence.append("append")
         elif is_delete or (
             method == "GET" and len(segments) >= 2 and segments[-2] == "sessions"
         ):
@@ -1043,6 +1183,10 @@ class QualificationTransport:
     def capture_post_version(self) -> bytes:
         if not self.close_observed:
             raise QualificationError("post-version capture must follow confirmed close")
+        if self.generalized:
+            return _get_json_exact_bytes(
+                self.inner, "/version", label="daemon version post"
+            )
         return _get_json(self.inner, "/version", label="daemon version post")
 
 
@@ -2394,6 +2538,663 @@ def validate_test_qualification(directory: Path) -> dict[str, Any]:
     return _validate_qualification(directory, production=False)
 
 
+@dataclass(frozen=True)
+class ProductionAuthorityV2:
+    """Offline, self-authenticating entitlement for one fresh production run."""
+
+    path: Path
+    raw: bytes = field(repr=False)
+    value: Mapping[str, Any] = field(repr=False)
+
+    @property
+    def solver(self) -> Mapping[str, Any]:
+        return self.value["solver"]
+
+
+@dataclass(frozen=True)
+class ProductionQualificationV2:
+    """Live preflight custody; it is not a consumable qualification seal."""
+
+    directory: Path
+    authority: ProductionAuthorityV2
+    descriptor: incremental.DiscoveryDescriptor
+    transport: QualificationTransport
+    base_cnf_path: Path = field(repr=False)
+    runtime_cnf_path: Path = field(repr=False)
+    source_manifest_path: Path = field(repr=False)
+    producer_manifest_path: Path = field(repr=False)
+    base_cnf_sha256: str = field(repr=False)
+    initial_runtime_sha256: str = field(repr=False)
+    version_pre_raw: bytes = field(repr=False)
+    preflight_raw: bytes = field(repr=False)
+
+
+def _production_v2_authority_value(raw: bytes, *, path: Path) -> ProductionAuthorityV2:
+    value = _strict_json(raw, label="production qualification authority")
+    _keys(
+        value,
+        {
+            "schema",
+            "daemon_url",
+            "daemon_version_pre_sha256",
+            "source_manifest_sha256",
+            "producer_manifest_sha256",
+            "base_cnf_sha256",
+            "raw_dimacs_identity",
+            "producer_job_id",
+            "solver",
+            "policy",
+            "authority_sha256",
+        },
+        label="production qualification authority",
+    )
+    if value["schema"] != PRODUCTION_V2_AUTHORITY_SCHEMA:
+        raise QualificationError("production authority schema is not v2")
+    _string(value["daemon_url"], label="authority.daemon_url")
+    if value["daemon_url"] != value["daemon_url"].rstrip("/"):
+        raise QualificationError("authority daemon URL must not end in a slash")
+    for key in (
+        "daemon_version_pre_sha256",
+        "source_manifest_sha256",
+        "producer_manifest_sha256",
+        "base_cnf_sha256",
+        "raw_dimacs_identity",
+        "authority_sha256",
+    ):
+        _hex(value[key], label=f"authority.{key}")
+    _uuid(value["producer_job_id"], label="authority.producer_job_id")
+    solver = value["solver"]
+    if type(solver) is not dict:
+        raise QualificationError("authority.solver must be an exact object")
+    _keys(
+        solver,
+        {"name", "sha256", "signature", "backend", "lane"},
+        label="authority.solver",
+    )
+    _string(solver["name"], label="authority.solver.name")
+    _hex(solver["sha256"], label="authority.solver.sha256")
+    _string(solver["signature"], label="authority.solver.signature")
+    if solver["backend"] != "cadical" or solver["lane"] != "sat":
+        raise QualificationError("authority solver is outside the cadical SAT lane")
+    if value["policy"] != dict(PRODUCTION_V2_POLICY):
+        raise QualificationError("authority policy is not the sealed production policy")
+    unsigned = dict(value)
+    seal = unsigned.pop("authority_sha256")
+    if _sha(_json_bytes(unsigned)) != seal:
+        raise QualificationError("production authority seal is invalid")
+    return ProductionAuthorityV2(Path(path), raw, value)
+
+
+def load_production_authority_v2(path: Path) -> ProductionAuthorityV2:
+    """Load a canonical authority without creating output or using transport."""
+
+    absolute = Path(os.path.abspath(os.fspath(path)))
+    return _production_v2_authority_value(
+        _capture(absolute, limit=MAX_CONTROL_BYTES), path=absolute
+    )
+
+
+def capture_production_control_input_v2(path: Path) -> bytes:
+    """Capture one bounded launcher input without following a final symlink."""
+
+    absolute = Path(os.path.abspath(os.fspath(path)))
+    return _capture(absolute, limit=MAX_CONTROL_BYTES)
+
+
+def _revalidate_production_authority_v2(
+    authority: ProductionAuthorityV2,
+) -> ProductionAuthorityV2:
+    if type(authority) is not ProductionAuthorityV2:
+        raise QualificationError("production launch requires exact v2 authority")
+    checked = _production_v2_authority_value(authority.raw, path=authority.path)
+    if authority.value != checked.value:
+        raise QualificationError("production authority changed after loading")
+    return checked
+
+
+def validate_production_launch_authority_v2(
+    authority: ProductionAuthorityV2,
+    *,
+    daemon_url: str,
+    source_manifest: bytes,
+    producer_manifest: bytes,
+    producer_job_id: str,
+    solver_name: str,
+) -> static.StaticManifestContract:
+    """Bind an offline authority to the exact launcher inputs."""
+
+    authority = _revalidate_production_authority_v2(authority)
+    try:
+        authenticated = static.authenticate_static_manifests(
+            source_manifest=source_manifest,
+            producer_manifest=producer_manifest,
+        )
+    except static.StaticPiqdRunnerError as exc:
+        raise QualificationError(str(exc)) from exc
+    value = authority.value
+    if (
+        value["daemon_url"] != daemon_url.rstrip("/")
+        or value["source_manifest_sha256"] != authenticated.source_sha256
+        or value["producer_manifest_sha256"] != authenticated.producer_sha256
+        or value["producer_job_id"] != producer_job_id
+        or value["solver"]["name"] != solver_name
+    ):
+        raise QualificationError("production authority disagrees with launcher inputs")
+    expected_raw_identity = raw_dimacs_identity(
+        backend=authenticated.producer["backend"],
+        solver_profile=authenticated.producer["solver_profile"],
+        cnf_sha256=value["base_cnf_sha256"],
+        producer_manifest_sha256=authenticated.producer_sha256,
+        requested_core_limit=1,
+    )
+    if value["raw_dimacs_identity"] != expected_raw_identity:
+        raise QualificationError("authority raw DIMACS identity is inconsistent")
+    return authenticated
+
+
+def prepare_production_qualification_v2(
+    *,
+    authority: ProductionAuthorityV2,
+    output_dir: Path,
+    base_cnf_path: Path,
+    runtime_cnf_path: Path,
+    source_manifest_path: Path,
+    producer_manifest_path: Path,
+    source_manifest: bytes,
+    producer_manifest: bytes,
+    daemon_url: str,
+    producer_job_id: str,
+    solver_name: str,
+    descriptor: incremental.DiscoveryDescriptor,
+    transport: Transport,
+) -> ProductionQualificationV2:
+    """Authenticate runtime inputs and capture v2 preflight in an existing output."""
+
+    authority = _revalidate_production_authority_v2(authority)
+    authenticated = validate_production_launch_authority_v2(
+        authority,
+        daemon_url=daemon_url,
+        source_manifest=source_manifest,
+        producer_manifest=producer_manifest,
+        producer_job_id=producer_job_id,
+        solver_name=solver_name,
+    )
+    root = Path(os.path.abspath(os.fspath(output_dir)))
+    _private_dir(root)
+    for name in (
+        PRODUCTION_V2_AUTHORITY_NAME,
+        PRODUCTION_V2_PREFLIGHT_NAME,
+        PRODUCTION_V2_SESSION_RESULT_NAME,
+        PRODUCTION_V2_QUALIFICATION_NAME,
+        IDENTITY_NAME,
+        JOURNAL_NAME,
+        CLOSE_RESPONSE_NAME,
+    ):
+        if (root / name).exists():
+            raise QualificationError("production v2 requires fresh custody")
+    base_path = Path(os.path.abspath(os.fspath(base_cnf_path)))
+    runtime_path = Path(os.path.abspath(os.fspath(runtime_cnf_path)))
+    source_path = Path(os.path.abspath(os.fspath(source_manifest_path)))
+    producer_path = Path(os.path.abspath(os.fspath(producer_manifest_path)))
+    if _capture(source_path, limit=MAX_CONTROL_BYTES) != source_manifest:
+        raise QualificationError("source manifest path changed before preflight")
+    if _capture(producer_path, limit=MAX_CONTROL_BYTES) != producer_manifest:
+        raise QualificationError("producer manifest path changed before preflight")
+    base = _capture(base_path)
+    current = _capture(runtime_path)
+    if _sha(base) != authority.value["base_cnf_sha256"]:
+        raise QualificationError("runtime base CNF disagrees with authority")
+    base_variables, base_clauses = incremental.parse_dimacs(base)
+    current_variables, current_clauses = incremental.parse_dimacs(current)
+    if (
+        current_variables != base_variables
+        or current_clauses[: len(base_clauses)] != base_clauses
+    ):
+        raise QualificationError(
+            "runtime .solver.cnf is not an append-only base extension"
+        )
+    if descriptor.seed_cnf != base or (
+        descriptor.source_manifest != authenticated.source_bytes
+        or descriptor.producer_manifest != authenticated.producer_bytes
+        or descriptor.producer_job_id != producer_job_id
+        or descriptor.solver_name != solver_name
+    ):
+        raise QualificationError("production descriptor is not preflight-rooted")
+
+    version_pre_raw = _get_json_exact_bytes(
+        transport, "/version", label="daemon version pre"
+    )
+    version_pre = _strict_json(
+        version_pre_raw, label="daemon version pre", canonical=False
+    )
+    _version_object(version_pre, label="daemon version pre")
+    if _sha(version_pre_raw) != authority.value["daemon_version_pre_sha256"]:
+        raise QualificationError("daemon pre-version snapshot disagrees with authority")
+    job_raw = _get_json(transport, f"/jobs/{producer_job_id}", label="producer job")
+    job = _strict_json(job_raw, label="producer job")
+    _job_contract(
+        job,
+        producer_job_id,
+        prepared={
+            "backend": authenticated.producer["backend"],
+            "cnf_blob_hash": authority.value["base_cnf_sha256"],
+            "identity_hash": authority.value["raw_dimacs_identity"],
+        },
+    )
+    blob_response = _response(
+        transport(
+            "GET",
+            f"/jobs/{producer_job_id}/blobs/{authority.value['base_cnf_sha256']}",
+            None,
+            {"Accept": "application/octet-stream"},
+        ),
+        label="producer job base blob",
+        limit=MAX_CNF_ARTIFACT_RESPONSE_BYTES,
+    )
+    if blob_response.status != 200 or blob_response.body != base:
+        raise QualificationError("producer job base blob disagrees with local base")
+    registry_raw = _get_json(transport, "/solvers", label="solver registry")
+    selected = _solver_entry(
+        _strict_json(registry_raw, label="solver registry"), solver_name
+    )
+    solver = authority.solver
+    if (
+        selected["sha256"] != solver["sha256"]
+        or selected["solver_signature"] != solver["signature"]
+        or selected["solver"] != solver["backend"]
+        or selected["lane"] != solver["lane"]
+    ):
+        raise QualificationError("live solver registry disagrees with authority")
+
+    preflight = {
+        "schema": PRODUCTION_V2_PREFLIGHT_SCHEMA,
+        "authority_sha256": authority.value["authority_sha256"],
+        "daemon_version_pre_sha256": _sha(version_pre_raw),
+        "source_manifest_sha256": authenticated.source_sha256,
+        "producer_manifest_sha256": authenticated.producer_sha256,
+        "base_cnf_sha256": _sha(base),
+        "base_variables": base_variables,
+        "base_clauses": len(base_clauses),
+        "initial_runtime_sha256": _sha(current),
+        "initial_runtime_clauses": len(current_clauses),
+        "raw_dimacs_identity": authority.value["raw_dimacs_identity"],
+        "producer_job_id": producer_job_id,
+        "producer_job_sha256": _sha(job_raw),
+        "solver_registry_sha256": _sha(registry_raw),
+        "descriptor_root": descriptor.descriptor_root,
+        "policy": dict(PRODUCTION_V2_POLICY),
+        "claims": _claims(),
+    }
+    _write_once(root / PRODUCTION_V2_AUTHORITY_NAME, authority.raw)
+    _write_once(root / "daemon-version-pre-v2.json", version_pre_raw)
+    _write_once(root / "source-manifest-v2.json", source_manifest)
+    _write_once(root / "producer-manifest-v2.json", producer_manifest)
+    _write_once(root / "producer-job-v2.json", job_raw)
+    _write_once(root / "solver-registry-v2.json", registry_raw)
+    _write_once(root / "initial-runtime-v2.cnf", current)
+    preflight_raw = _json_bytes(preflight)
+    _write_once(root / PRODUCTION_V2_PREFLIGHT_NAME, preflight_raw)
+    wrapper = QualificationTransport(
+        transport,
+        root=root,
+        solver_name=solver_name,
+        solver_sha256=solver["sha256"],
+        solver_signature=solver["signature"],
+        descriptor_root=descriptor.descriptor_root,
+        producer_job_id=producer_job_id,
+        base_sha256=_sha(base),
+        generalized=True,
+    )
+    return ProductionQualificationV2(
+        root,
+        authority,
+        descriptor,
+        wrapper,
+        base_path,
+        runtime_path,
+        source_path,
+        producer_path,
+        _sha(base),
+        _sha(current),
+        version_pre_raw,
+        preflight_raw,
+    )
+
+
+def _validate_production_v2_journal(
+    contract: ProductionQualificationV2,
+) -> dict[str, Any]:
+    raw = _read_custody(contract.directory, JOURNAL_NAME)
+    if not raw or not raw.endswith(b"\n"):
+        raise QualificationError("production journal is empty or incomplete")
+    variables, base_clauses = incremental.parse_dimacs(_capture(contract.base_cnf_path))
+    clauses = list(base_clauses)
+    tail: str | None = None
+    session_id: str | None = None
+    solve_count = 0
+    statuses: list[str] = []
+    event_sequence: list[str] = []
+    common = {
+        "schema",
+        "sequence",
+        "prior_event_sha256",
+        "event_sha256",
+        "event",
+        "session_id",
+        "producer_job_id",
+        "descriptor_root",
+        "frontier_count",
+        "frontier_sha256",
+        "learned_state",
+    }
+    event_keys = {
+        "open": common | {"seed_blob_hash", "seed_sha256"},
+        "append": common | {"clauses", "prior_frontier_sha256"},
+        "solve": common
+        | {
+            "status",
+            "solve_index",
+            "result_sha256",
+            "receipt",
+            "model",
+            "proof_verified",
+            "closure_claim",
+        },
+    }
+    for sequence, line in enumerate(raw.splitlines(keepends=True)):
+        if not line.endswith(b"\n"):
+            raise QualificationError("production journal has a partial record")
+        event = _strict_json(line[:-1], label="production journal event")
+        kind = event.get("event")
+        if kind not in event_keys:
+            raise QualificationError("production journal has an unknown event")
+        _keys(event, event_keys[kind], label=f"production journal {kind} event")
+        unsigned = dict(event)
+        event_hash = unsigned.pop("event_sha256", None)
+        if (
+            event.get("schema") != incremental.SCHEMA
+            or event.get("sequence") != sequence
+            or event.get("prior_event_sha256") != tail
+            or _sha(_json_bytes(unsigned)) != event_hash
+        ):
+            raise QualificationError("production journal hash chain is invalid")
+        if (
+            event.get("producer_job_id") != contract.descriptor.producer_job_id
+            or event.get("descriptor_root") != contract.descriptor.descriptor_root
+        ):
+            raise QualificationError("production journal is not descriptor-rooted")
+        if session_id is None:
+            session_id = _uuid(event.get("session_id"), label="journal session UUID")
+        elif event.get("session_id") != session_id:
+            raise QualificationError("production journal session identity drifted")
+        if sequence == 0:
+            if (
+                kind != "open"
+                or event.get("seed_blob_hash") != contract.descriptor.seed_blob_hash
+                or event.get("seed_sha256") != contract.descriptor.seed_sha256
+                or event.get("seed_sha256") != contract.base_cnf_sha256
+            ):
+                raise QualificationError("production journal has no exact fresh open")
+        elif kind == "open" or kind == "revive":
+            raise QualificationError(
+                "production journal is not a fresh one-session run"
+            )
+        if event.get("learned_state") != "not_claimed":
+            raise QualificationError("production journal makes a learned-state claim")
+        if kind == "append":
+            additions = event.get("clauses")
+            if type(additions) is not list or not additions:
+                raise QualificationError("production append event is empty")
+            prior = incremental._frontier_hash(variables, clauses)
+            checked = [incremental._check_clause(item, variables) for item in additions]
+            clauses.extend(checked)
+            event_sequence.append("append")
+            if event.get("prior_frontier_sha256") != prior:
+                raise QualificationError("production append prior frontier drifted")
+        elif kind == "solve":
+            solve_count += 1
+            status = event.get("status")
+            if (
+                event.get("solve_index") != solve_count
+                or status not in {"SAT", "UNSAT", "UNKNOWN"}
+                or event.get("proof_verified") is not False
+                or event.get("closure_claim") is not False
+            ):
+                raise QualificationError(
+                    "production solve event is unsafe or not dense"
+                )
+            receipt = event.get("receipt")
+            result_sha256 = _hex(
+                event.get("result_sha256"), label="production solve result_sha256"
+            )
+            _validate_receipt(
+                receipt,
+                status=status,
+                solve_index=solve_count,
+                result_sha256=result_sha256,
+                frontier=clauses,
+            )
+            if status == "SAT":
+                _validate_model(event.get("model"), variables, clauses)
+            elif event.get("model") is not None:
+                raise QualificationError("non-SAT production solve records a model")
+            statuses.append(status)
+            event_sequence.append("solve")
+        frontier = incremental._frontier_hash(variables, clauses)
+        if (
+            event.get("frontier_count") != len(clauses)
+            or event.get("frontier_sha256") != frontier
+        ):
+            raise QualificationError("production journal frontier is invalid")
+        tail = event_hash
+    if solve_count < 1 or statuses != contract.transport.statuses:
+        raise QualificationError("production journal solve history is incomplete")
+    if event_sequence != contract.transport.event_sequence:
+        raise QualificationError("transport and journal append/solve order disagree")
+    runtime = _capture(contract.runtime_cnf_path)
+    runtime_variables, runtime_clauses = incremental.parse_dimacs(runtime)
+    if runtime_variables != variables or runtime_clauses != tuple(clauses):
+        raise QualificationError("runtime .solver.cnf is not the journal frontier")
+    return {
+        "session_id": session_id,
+        "journal_sha256": _sha(raw),
+        "solve_count": solve_count,
+        "statuses": statuses,
+        "final_frontier_count": len(clauses),
+        "final_frontier_sha256": incremental._frontier_hash(variables, clauses),
+        "final_runtime_sha256": _sha(runtime),
+    }
+
+
+def _write_seal_last(path: Path, data: bytes) -> None:
+    """Install a complete seal atomically without overwriting an existing one."""
+
+    temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
+    _write_once(temporary, data)
+    parent = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC)
+    try:
+        try:
+            os.link(
+                temporary.name,
+                path.name,
+                src_dir_fd=parent,
+                dst_dir_fd=parent,
+                follow_symlinks=False,
+            )
+        except FileExistsError as exc:
+            raise QualificationError(
+                "production qualification is already sealed"
+            ) from exc
+        os.fsync(parent)
+        os.unlink(temporary.name, dir_fd=parent)
+        os.fsync(parent)
+    finally:
+        os.close(parent)
+
+
+def finalize_production_qualification_v2(
+    contract: ProductionQualificationV2,
+    *,
+    driver_status: str,
+) -> dict[str, Any] | None:
+    """Seal only a closed, successful, fully cross-bound production run."""
+
+    if type(contract) is not ProductionQualificationV2:
+        raise QualificationError("production finalization requires exact v2 custody")
+    if driver_status not in PRODUCTION_V2_SUCCESS_STATUSES:
+        return None
+    root = contract.directory
+    if (root / PRODUCTION_V2_QUALIFICATION_NAME).exists():
+        raise QualificationError("production qualification is already sealed")
+    if not contract.transport.close_observed:
+        raise QualificationError("production finalization requires confirmed close")
+    if contract.transport.solve_count < 1 or "UNKNOWN" in contract.transport.statuses:
+        raise QualificationError("incomplete or UNKNOWN production runs cannot seal")
+    if contract.transport.statuses[-1] != "UNSAT":
+        raise QualificationError("production qualification must end at PIQD UNSAT")
+    authority = _revalidate_production_authority_v2(contract.authority)
+    if (
+        _read_custody(root, PRODUCTION_V2_AUTHORITY_NAME, limit=MAX_CONTROL_BYTES)
+        != authority.raw
+    ):
+        raise QualificationError("production authority custody changed during the run")
+    if (
+        _read_custody(root, "daemon-version-pre-v2.json", limit=MAX_CONTROL_BYTES)
+        != contract.version_pre_raw
+    ):
+        raise QualificationError("daemon pre-version custody changed during the run")
+    version_pre = _strict_json(
+        contract.version_pre_raw, label="daemon version pre", canonical=False
+    )
+    _version_object(version_pre, label="daemon version pre")
+    if _sha(contract.version_pre_raw) != authority.value["daemon_version_pre_sha256"]:
+        raise QualificationError("daemon pre-version no longer matches authority")
+    if (
+        _read_custody(root, PRODUCTION_V2_PREFLIGHT_NAME, limit=MAX_CONTROL_BYTES)
+        != contract.preflight_raw
+    ):
+        raise QualificationError("production preflight custody changed during the run")
+    base = _capture(contract.base_cnf_path)
+    if (
+        _sha(base) != contract.base_cnf_sha256
+        or _sha(base) != authority.value["base_cnf_sha256"]
+    ):
+        raise QualificationError("production base CNF changed during the run")
+    source_raw = _read_custody(root, "source-manifest-v2.json", limit=MAX_CONTROL_BYTES)
+    producer_raw = _read_custody(
+        root, "producer-manifest-v2.json", limit=MAX_CONTROL_BYTES
+    )
+    if _capture(contract.source_manifest_path, limit=MAX_CONTROL_BYTES) != source_raw:
+        raise QualificationError("source manifest changed during the run")
+    if (
+        _capture(contract.producer_manifest_path, limit=MAX_CONTROL_BYTES)
+        != producer_raw
+    ):
+        raise QualificationError("producer manifest changed during the run")
+    authenticated = validate_production_launch_authority_v2(
+        authority,
+        daemon_url=authority.value["daemon_url"],
+        source_manifest=source_raw,
+        producer_manifest=producer_raw,
+        producer_job_id=contract.descriptor.producer_job_id,
+        solver_name=contract.descriptor.solver_name,
+    )
+    initial_runtime = _read_custody(root, "initial-runtime-v2.cnf")
+    if _sha(initial_runtime) != contract.initial_runtime_sha256:
+        raise QualificationError("initial runtime custody changed during the run")
+    base_variables, base_clauses = incremental.parse_dimacs(base)
+    initial_variables, initial_clauses = incremental.parse_dimacs(initial_runtime)
+    if (
+        initial_variables != base_variables
+        or initial_clauses[: len(base_clauses)] != base_clauses
+        or contract.descriptor.seed_cnf != base
+        or contract.descriptor.source_manifest != authenticated.source_bytes
+        or contract.descriptor.producer_manifest != authenticated.producer_bytes
+    ):
+        raise QualificationError("production preflight roots are inconsistent")
+    job_raw = _read_custody(root, "producer-job-v2.json", limit=MAX_CONTROL_BYTES)
+    registry_raw = _read_custody(
+        root, "solver-registry-v2.json", limit=MAX_CONTROL_BYTES
+    )
+    preflight = _strict_json(contract.preflight_raw, label="production preflight")
+    expected_preflight = {
+        "schema": PRODUCTION_V2_PREFLIGHT_SCHEMA,
+        "authority_sha256": authority.value["authority_sha256"],
+        "daemon_version_pre_sha256": _sha(contract.version_pre_raw),
+        "source_manifest_sha256": authenticated.source_sha256,
+        "producer_manifest_sha256": authenticated.producer_sha256,
+        "base_cnf_sha256": _sha(base),
+        "base_variables": base_variables,
+        "base_clauses": len(base_clauses),
+        "initial_runtime_sha256": _sha(initial_runtime),
+        "initial_runtime_clauses": len(initial_clauses),
+        "raw_dimacs_identity": authority.value["raw_dimacs_identity"],
+        "producer_job_id": contract.descriptor.producer_job_id,
+        "producer_job_sha256": _sha(job_raw),
+        "solver_registry_sha256": _sha(registry_raw),
+        "descriptor_root": contract.descriptor.descriptor_root,
+        "policy": dict(PRODUCTION_V2_POLICY),
+        "claims": _claims(),
+    }
+    if preflight != expected_preflight:
+        raise QualificationError("production preflight no longer matches its roots")
+    journal = _validate_production_v2_journal(contract)
+    close_raw = _read_custody(root, CLOSE_RESPONSE_NAME, limit=MAX_CONTROL_BYTES)
+    close = _strict_json(close_raw, label="production close response")
+    if (
+        close.get("id") != journal["session_id"]
+        or contract.transport.session_id != journal["session_id"]
+        or close.get("state") != "closed"
+        or close.get("solves") != journal["solve_count"]
+        or close.get("last_solve_index") != journal["solve_count"]
+        or close.get("last_status") != journal["statuses"][-1]
+        or close.get("clauses") != journal["final_frontier_count"]
+        or close.get("last_assumption_free") is not True
+        or close.get("last_terminal_unsat") is not True
+    ):
+        raise QualificationError("close response does not bind final production state")
+    version_post_raw = contract.transport.capture_post_version()
+    version_post = _strict_json(
+        version_post_raw, label="daemon version post", canonical=False
+    )
+    _version_object(version_post, label="daemon version post")
+    if version_post_raw != contract.version_pre_raw:
+        raise QualificationError("daemon version object changed during production run")
+    _write_once(root / "daemon-version-post-v2.json", version_post_raw)
+    session_result = {
+        "schema": PRODUCTION_V2_SESSION_RESULT_SCHEMA,
+        **journal,
+        "close_response_sha256": _sha(close_raw),
+        "close_method": contract.transport.close_method,
+        "close_path": contract.transport.close_path,
+        "driver_status": driver_status,
+        "proof_verified": False,
+        "closure_claim": False,
+    }
+    session_result_raw = _json_bytes(session_result)
+    _write_once(root / PRODUCTION_V2_SESSION_RESULT_NAME, session_result_raw)
+    seal = {
+        "schema": PRODUCTION_V2_QUALIFICATION_SCHEMA,
+        "authority_sha256": authority.value["authority_sha256"],
+        "preflight_sha256": _sha(contract.preflight_raw),
+        "daemon_version_pre_sha256": _sha(contract.version_pre_raw),
+        "daemon_version_post_sha256": _sha(version_post_raw),
+        "daemon_version_equal": True,
+        "session_result_sha256": _sha(session_result_raw),
+        "solve_count": journal["solve_count"],
+        "statuses": journal["statuses"],
+        "final_frontier_count": journal["final_frontier_count"],
+        "final_frontier_sha256": journal["final_frontier_sha256"],
+        "final_runtime_sha256": journal["final_runtime_sha256"],
+        "driver_status": driver_status,
+        "policy": dict(PRODUCTION_V2_POLICY),
+        "claims": _claims(),
+        "terminal_policy": "PIQD discovery only; fresh local DRAT is the terminal proof boundary",
+    }
+    _write_seal_last(root / PRODUCTION_V2_QUALIFICATION_NAME, _json_bytes(seal))
+    return seal
+
+
 __all__ = [
     "CLOSE_RESPONSE_NAME",
     "IDENTITY_NAME",
@@ -2416,6 +3217,14 @@ __all__ = [
     "PRODUCTION_SUFFIX_BYTES",
     "PRODUCTION_SUFFIX_CLAUSES",
     "PRODUCTION_SUFFIX_SHA256",
+    "PRODUCTION_V2_AUTHORITY_NAME",
+    "PRODUCTION_V2_AUTHORITY_SCHEMA",
+    "PRODUCTION_V2_POLICY",
+    "PRODUCTION_V2_PREFLIGHT_NAME",
+    "PRODUCTION_V2_QUALIFICATION_NAME",
+    "PRODUCTION_V2_QUALIFICATION_SCHEMA",
+    "PRODUCTION_V2_SESSION_RESULT_NAME",
+    "PRODUCTION_V2_SUCCESS_STATUSES",
     "PRODUCTION_VARIABLES",
     "PRODUCTION_VARIABLE_MAP_SHA256",
     "SCHEMA",
@@ -2423,13 +3232,20 @@ __all__ = [
     "SESSION_RESULT_NAME",
     "SOLVE_RESPONSE_NAMES",
     "TEST_SCHEMA",
+    "ProductionAuthorityV2",
+    "ProductionQualificationV2",
     "QualificationContract",
     "QualificationError",
     "QualificationTransport",
+    "capture_production_control_input_v2",
+    "finalize_production_qualification_v2",
     "finalize_qualification",
+    "load_production_authority_v2",
+    "prepare_production_qualification_v2",
     "prepare_qualification",
     "prepare_test_qualification",
     "qualified_transport",
+    "validate_production_launch_authority_v2",
     "validate_qualification",
     "validate_test_qualification",
 ]
