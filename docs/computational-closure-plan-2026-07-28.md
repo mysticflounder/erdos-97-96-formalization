@@ -1666,6 +1666,70 @@ After this repair is independently audited, committed, and pushed, exactly one
 retry of the identical v21 cell-6 formula in a fresh immutable workdir is
 authorized.  No successor formula is authorized by this pre-submission failure.
 
+Exact-12 v21 diagnostic result and v22 proof-family checkpoint (2026-08-12):
+the authorized identical retry completed through PIQD as
+`SAT_WITNESS_REPLAYED` and `STRUCTURALLY_UNRESOLVED`.  The producer job id was
+`2c342b3c672e5dc95241a88fb98716bb646689c86c3e841b0e3c536c46e1d29a`;
+the PIQD job UUID and identity were respectively
+`88592318-8532-4d9b-96bc-a43c7b7a9827` and
+`f25cfc3593f9cf823cb501cfdbb0fd1fed576fba885a4bf25579e5a39176f05c`.
+The authenticated job and survivor SHA-256 values were
+`daa8532b0c5bea5acde90e52a2a6eafd993097f79f10e1170dc1487ea1d0f246`
+and
+`4ee0e843295f47a961a5256247813e6a97318b882451263f03ede5432afd32f0`;
+all exact-CNF, canonical-extension, candidate, added-constraint, and named-arm
+replay checks passed.  The formula was the byte-identical 645,155-clause v21
+formula with SHA-256
+`a69826e5588cad4f42ab1d23edd3e20378ae4a21ff8dc43b616c4e9c4be53c6d`.
+There is no terminal verdict, proof, or Lean ingress.
+
+The mandatory all-order pass covered all 48 source orders by the convex
+common-five rule: 24 forward and 24 reverse, equally split between direct and
+reflected source orientations.  Its primary role assignment is
+`(a,x,b,c,y) = (7,10,4,6,11)`, with selected-row requirements
+`c:{b,x,y}`, `x:{a,b}`, and `y:{a,b}`; swapping `x` and `y` gives the second
+recorded closure certificate.  The certificate, containing artifact, and
+mining-summary SHA-256 values are respectively
+`7f08558037c21a73a307b9f59d244a525722ad65abf464bec0b57c64afc24247`,
+`ed4aec7de66d5511041964ac176fa71173121faf3432f8670b04711f5cbafea5`,
+and
+`be527d8fbdc32c0a05eb93cbfa7c34dae2069e7ae0f76e63f9467c9de6c9a04f`.
+This is finite diagnostic evidence only: the miner emitted no Lean nogood.
+Before any v22 solver launch, these three row requirements must be generalized
+over their source roles, proved against both frozen boundary orientations,
+compiled into a Python/Lean-parity-checked membership-family bank, and
+installed with fail-closed source-manifest authentication.  No successor
+formula is authorized until that proof-carrying cut is complete.
+
+That v22 promotion gate is now complete.  The source-clean Lean theorem
+`FrozenBoundaryOrder.commonFiveOrientation_firstOppositePairSurplusSecondOpposite`
+proves both boundary orientations for every one of the 48 source roles, and
+`SourceOrderPositiveNogood.ofFirstOppositePairSurplusSecondOppositeCommonFive`
+exports the corresponding source-order nogood.  The mixed membership-family
+bank reuses the 24 already authenticated variables 45,201--45,224, defines
+12 new variables 45,358--45,369, emits 96 explicit definition implications
+and 48 three-literal blocking clauses, and therefore changes the frozen bank
+from 45,357 variables and 644,207 clauses to 45,369 variables and 644,351
+clauses.  The 144-clause delta SHA-256 is
+`6c7cbf33dfda08ee20db8a880feeb32914d2a180a9d63d5d89943a43698ae098`;
+the final DIMACS, compiled-family, role-table, and installed-bank SHA-256
+values are respectively
+`082162cdbee0f545dab56035ea768e3ad37ce06b9fb580c568781fd63b0d1200`,
+`fbeff8c5164367c737c5793850ac153bb76f00f536a9cc8b51a5cd5c01776b77`,
+`bc988efc9807e393faefdd67c31dfabc1c48c066f49f44747a8592a10540862f`,
+and
+`5d6333590a1289f9346ef38135872afb368e82f3f20aad6e66c5b753d204be21`.
+The exact Lean bridge and source consumer pass targeted elaboration with no
+`sorryAx` (under the already governed native-decision trust boundary).  The
+focused Python suite passes 4/4 after reconstructing the full authenticated
+parent chain; it compares every fresh definition, implication, and blocking
+clause against Lean and tests source tampering, reuse, installation, and
+rollback.  Ruff check and format check are clean, and an independent
+read-only implementation audit found no defect.  This authorizes exactly one
+bounded v22 cell-6 successor canary after the checkpoint is committed and
+pushed.  It remains a finite proof-carrying refinement, not terminal UNSAT,
+all-cell coverage, universal promotion, or closure of a Lean `sorry`.
+
 PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
 raw CNF bytes, job identity, and solver result that it receives.  It does not
 interpret or validate the caller's Python-to-Lean variable semantics, source
