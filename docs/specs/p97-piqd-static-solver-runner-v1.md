@@ -67,9 +67,15 @@ The adapter stores the exact canonical source bytes, exact canonical producer
 bytes, and exact CNF bytes as local content-addressed attempt artifacts.
 Embedding the complete source object in the producer bytes also binds the
 source declaration transitively. The producer hash is then bound into both the
-wave manifest and PIQD raw identity. Current PIQD job retrieval returns the
-producer-manifest hash, not the producer-manifest bytes; their retrievable
-custody therefore remains adapter-local.
+wave manifest and PIQD raw identity. For eligible newly prepared raw-DIMACS
+jobs, current PIQD also stores the exact submitted producer-manifest bytes,
+advertises their content address as `producer_manifest_blob_hash`, and returns
+them through the generic blob route only after rehashing. This does not validate
+their source or Lean semantics, retain the source files named inside them,
+validate proofs, or backfill historical manifests. `producer_manifest_hash`
+remains the distinct job-identity digest; the blob hash may be null for older
+jobs, jobs without a submitted manifest, and non-raw-DIMACS jobs. Caller-local
+custody remains mandatory even where PIQD has the additional exact-byte copy.
 
 The CNF path is made absolute lexically and captured from a held filesystem-root
 descriptor. Every parent component is opened with `O_DIRECTORY|O_NOFOLLOW` and
