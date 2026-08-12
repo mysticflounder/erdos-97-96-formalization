@@ -53,8 +53,8 @@ false until separate source-clean consumers establish them.
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
 | 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | CardHead and the F-Gamma base-discovery call are onboarded. F-Gamma job `5b9afcf1…` returned a total 23-variable SAT model; independent source/map/CNF/model/custody replay and daemon-side corroboration pass | Bind the remaining frontier producer dialects; keep F-Gamma's two proof-producing DRAT gates local until PIQD has an authenticated certificate path |
 | 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 now has a qualification-v3 authority for the exact current global unsharded base, complete variable map, current source custody, and arbitrary dense append/solve journals. Its 313-test fake gate is green; historical shard qualification-v2 remains frozen, and no v3 production qualification has run | Recapture the authority from a clean immutable structural source, then run and independently audit one bounded qualification-v3 production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
-| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapter is green. FreshThird and Survivor-CVC5 have authenticated live canaries and offline replay. The global full-convex cvc5 boundary is live-qualified at its finite diagnostic boundary: session `f779df51-aeb9-4aee-85d3-c4745ec09073` made one assumption-free solve, durably returned `UNKNOWN / daemon_deadline`, disclosed the exact 50-second effective deadline, closed, and passed standalone validation plus independent audit. The endpoint-confinement metric and ATAIL geometry lanes are likewise live-qualified at their finite replay boundaries. Two remaining direct Z3 diagnostics now default to strict fake-qualified PIQD routes: the Phase-3 survivor-metric lane uses fresh sequential exact/full/conditional-convex sessions, exact-rational SAT replay, immutable result custody, and standalone validation; its independent audit passes 39 tests. The global metric core-miner uses guarded append-CAS sessions, total polarity assumptions, deterministic request IDs, durable receipt continuity, exact cvc5 SAT replay, status-only PIQD Z3 cross-checks, and standalone validation; its independent audit passes 21 tests. The combined sequential gate `./scripts/test-p97-piqd-remaining-solvers.sh` passes all 60 tests with Ruff lint and formatting clean. These two new routes have not yet run bounded live canaries. Native cores remain diagnostic; source-promotable named cores remain blocked on maintainer contract `#5400`. Named-core, source-entitlement, proof, theorem, global, universal, Lean, and `sorry`-closure claims remain false. | Run and independently audit one fresh bounded canary for each of the Phase-3 survivor-metric and global metric core-miner routes, then retain the validated artifacts as finite checkpoints. Reuse the already qualified global full-convex, endpoint, and ATAIL boundaries. Do not generalize fixture/model evidence or proofless UNSAT into theorem claims. Keep source-promotable named-core/MUS migration blocked until `#5400` binds the caller-owned assumption commitment into the PIQD receipt/result digest. |
-| 10 | Singular algebra probes | PIQD-BACKEND-002 is deferred by Adam, neither accepted nor rejected. The active equality-ideal screen therefore still executes Singular directly with caller-owned custody and no PIQD receipt; certificate-producing Singular calls remain intentional local proof boundaries. The old msolve pilots are historical or superseded. PIQD's live content-addressed blob upload can custody bytes but does not attest execution or semantics | Keep the direct route as an explicit governed exception and do not count algebra execution as onboarded. Await Adam's product decision before specifying or implementing a typed backend; blob-ingest plus `/evidence` may custody external evidence only with execution attestation false |
+| 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapters are green. FreshThird, Survivor-CVC5, global full-convex cvc5, endpoint metric, ATAIL geometry, Phase-3 survivor-metric, and the global metric core-miner now have bounded live qualification at their stated finite diagnostic boundaries plus standalone validation or independent artifact audit. The survivor-metric live checkpoint used two fresh sequential one-solve Z3 sessions: exact-metric `UNKNOWN` and full-convex proofless diagnostic `UNSAT` with an empty unnamed core. The core-miner live checkpoint used closed cvc5 and Z3 sessions and remains diagnostic. Native cores remain diagnostic; source-promotable named cores remain blocked on maintainer contract `#5400`. Named-core, source-entitlement, proof, theorem, global, universal, Lean, and `sorry`-closure claims remain false. | Reuse the qualified boundaries for finite diagnostics. Do not promote a core before `#5400` and independent source replay are green; keep proofless UNSAT off the proof spine |
+| 10 | Singular algebra probes | A maintained PIQD Singular execution-custody backend and standalone artifact validator are implemented. `equality_ideal_probe.py` and `structural_screen.py` now default to one-worker sequential PIQD execution with no local fallback; the old local subprocess route is explicit legacy-only. Caller contexts bind source and query semantics, and callers independently parse and validate retained transcripts. Fake/adversarial gates are green, including output-parent and rebinding attacks. This attests process execution and immutable transcript custody only: `RAN` is not UNIT/NONUNIT, a proof, or theorem closure. Certificate-producing Singular calls remain intentional local proof boundaries, and old msolve pilots are historical or superseded. | Commit the reviewed adapter/caller checkpoint, then run one bounded live Singular canary and the public offline validator. Preserve caller-owned semantic replay and keep certificate/proof-producing algebra local unless a separately checked certificate route exists |
 | 11 | Certificate and Lean ingress | Clause-map consumer green; handoff incomplete | CERT-001 immutable source-to-certificate manifest and authenticated checker/replay receipt |
 | 12 | Theorem/candidate bank in PIQD | The strict seven-component P97 planner and read-only export auditor are green. PIQD evidence v2 and hash-verifying blob upload are live, but APPLY remains disabled | Add atomic blob-plus-evidence publication and snapshot-consistent export, then run the strict P97 migration and byte-for-byte audit. Blob upload alone is not migration authority |
 | 13 | Prover9, Mace4, and march_cu references | No active non-test subprocess entry point found | Keep classified inactive; require typed PIQD backend and replay contract before revival |
@@ -403,16 +403,18 @@ explicit retirement classification:
   local CaDiCaL, even where a narrower selected-boundary PIQD canary exists;
 - `census/global_confinement/metric_realizability_probe.py` remains an
   operational default-local API and CLI; and
-- `census/p97_search/structural_screen.py` is an additional active caller of
-  the Adam-deferred Singular backend, alongside `equality_ideal_probe.py`.
+- `census/p97_search/structural_screen.py` and `equality_ideal_probe.py` were
+  active direct Singular callers; both now use the shared PIQD execution-custody
+  backend by default, while retaining an explicit legacy-local route.
 
 These are P97 caller-migration and ledger/retirement gaps, not PIQD product
 bugs. ATAIL's old Z3/cvc5 checkpoints are terminal historical work, and MARCO
 has no non-test caller; they are not active migration blockers. Intentional
-local proof/certificate boundaries remain local under `CERT-001`. Singular
-remains governed by the Adam-deferred `PIQD-BACKEND-002` decision. Therefore
-the project-wide onboarding completion criteria are not yet met even though
-the global metric core-miner lane itself is live-qualified.
+local proof/certificate boundaries remain local under `CERT-001`. The shared
+Singular backend closes execution and transcript custody only; it does not
+promote algebraic verdicts or certificates. The project-wide onboarding
+completion criteria are still unmet because remaining direct Z3 and
+frontier-package callers are not yet migrated or retired.
 
 ## Rollout protocol
 
@@ -437,10 +439,10 @@ Onboarding is complete only when every active solver call is either:
 - explicitly classified as historical, inactive, or an intentionally local
   proof/certificate boundary.
 
-A product-deferred backend such as PIQD-BACKEND-002 is not silently counted as
-onboarded. It must remain visible as a governed exception until Adam rules;
-the current direct Singular route may continue only with caller custody and an
-explicitly false PIQD-execution/receipt claim.
+An execution-custody backend is not silently counted as proof production.
+Singular callers must retain explicit caller-side transcript semantics and
+false proof/theorem/Lean claims; certificate-producing routes remain governed
+local boundaries until a checked certificate path exists.
 
 The final audit must find no unclassified active direct solver subprocess, no
 duplicated candidate-bank authority, no ambiguous mutating retry, no
