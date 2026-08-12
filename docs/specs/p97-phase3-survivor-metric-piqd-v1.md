@@ -138,6 +138,49 @@ inventory, validates every archived PIQD lifecycle and solver identity, repeats
 exact-rational SAT replay, rejects session reuse or invalid stage control flow,
 and rederives the whole staged result.
 
+## Live qualification (2026-08-11)
+
+The repaired immutable checkpoint
+`3a72216df8821e7f4e9a8dde33b5bbf0b9b8d78b` completed one bounded selected-order
+live canary against PIQD build
+`e00419994dac6c4ae8446b94eac0ae84a7025ea97ee0b3ffa42a20734367cd8f`.
+The command selected survivor `0`, case `0`, and `order-00`, used one worker,
+and requested a two-second timeout per stage. The only invocation that reached
+the daemon created two fresh sequential Z3 sessions; both made exactly one
+solve and closed:
+
+- exact-metric relaxation session
+  `17824ba5-e9b5-4d10-ab8f-360bee952fb6` returned `UNKNOWN`, with result SHA-256
+  `a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf`;
+- full-convex session `7d1000ba-d406-4b8f-a2ae-a1e7e44981d1` returned
+  proofless `UNSAT`, with result SHA-256
+  `263c80e04403ba263e76bb8855a11960feb3a9e8341fd6e577c0a8b6e4104dcf`.
+
+Both sessions bound Z3 `4.17.0`, solver SHA-256
+`b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a`,
+`replayed = false`, and the disclosed 32-second effective deadline. The
+full-convex empty core is unnamed and remains discovery-only. The driver
+therefore published the finite diagnostic classification
+`ALL_CAP_ORDERS_SOLVER_UNSAT_NOT_LEAN_CLOSURE`; the separate equality-only
+metric core remained `UNKNOWN`.
+
+The public standalone validator passed on the published order custody. Its
+custody inventory SHA-256 is
+`3d2b4adbd5edd5260e194d7fdaf2c0a20474028920482ef75d5b91d5179fc829`;
+the driver manifest, results JSONL, and source-manifest SHA-256 values are,
+respectively,
+`25b6ad43590daf2888af733d56004e27274236ec9eed36b54a66c1749d287d5f`,
+`1eb70018298a8948070a5682f859dc24ea55d99d167af3a369ea5c96466637af`,
+and `a33fc3d6e0387ec7d84f2e01dfdc99dae0ed1a1fd32734f03a8566e4ed585303`.
+An independent artifact audit reported the complete source/order/query/hash,
+one-solve, one-receipt, closed-session, canonicalization, and self-hash chain
+valid in nthdegree conversation message `#5472`.
+
+This qualifies the operational PIQD route and its offline custody boundary for
+one real selected-order run. It does not promote the diagnostic `UNSAT` to a
+proof or establish source entitlement, enumeration completeness, a global or
+universal theorem, a Lean result, or P97 closure.
+
 ## Deliberate limitations
 
 - This route is a producer of finite diagnostic evidence only.
@@ -145,5 +188,6 @@ and rederives the whole staged result.
 - UNKNOWN and rejected SAT replay are not evidence of impossibility.
 - The standalone validator requires the authenticated source tree and the same
   bound implementation revisions whose bytes were archived.
-- The route does not start or manage PIQD, and the focused tests use an
-  adversarial current-schema in-memory transport rather than a live daemon.
+- The route does not start or manage PIQD. Its focused tests use an adversarial
+  current-schema in-memory transport; the dated qualification above is the
+  separate bounded live-daemon evidence.

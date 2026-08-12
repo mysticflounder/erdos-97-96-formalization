@@ -356,6 +356,12 @@ and independent fake/offline audits:
   replay identities instead of class-sensitive dataclass equality, with an
   exact module-entrypoint regression. That failed attempt created no session,
   solver run, or output artifact; it was a P97 integration defect, not PIQD.
+  The repaired immutable checkpoint
+  `3a72216df8821e7f4e9a8dde33b5bbf0b9b8d78b` subsequently completed one bounded
+  selected-order live canary. Two fresh sequential Z3 sessions made exactly
+  one solve each and closed: exact-metric returned `UNKNOWN`, then full-convex
+  returned proofless diagnostic `UNSAT` with an empty unnamed core. The public
+  standalone validator and independent artifact audit `#5472` passed.
 - `metric_realizability_cvc5_core_miner.py` defaults to the PIQD core-mining
   route, with local cvc5/Z3 retained only behind `--legacy-local`. The adapter
   uses guarded append-CAS, total polarity assumptions, deterministic request
@@ -364,15 +370,15 @@ and independent fake/offline audits:
   corrected gate passes 21 tests and an independent audit.
 
 The aggregate command `./scripts/test-p97-piqd-remaining-solvers.sh` runs both
-lane gates sequentially with one pytest worker and thread caps. The repaired
-checkpoint passes all 69 tests; Ruff lint and format checks are clean. The
-global metric core-miner is now also live-qualified at its finite diagnostic
-boundary: one
-fresh cvc5 session made 32 solves, one fresh Z3 session made two status-only
-solves, both sessions closed, and the standalone validator plus independent
-seven-artifact audit passed. The Phase-3 survivor-metric route still needs one
-fresh bounded live canary from the repaired immutable checkpoint, standalone
-validation, and independent artifact audit.
+lane gates sequentially with one pytest worker and thread caps. The dated live
+qualification checkpoint passes all 69 tests; Ruff lint and format checks are
+clean. Both originally targeted lanes are now live-qualified at their finite
+diagnostic boundaries. The global metric core-miner used one fresh cvc5
+session for 32 solves and one fresh Z3 session for two status-only solves; both
+sessions closed, and the standalone validator plus independent seven-artifact
+audit passed. The Phase-3 survivor-metric route used the two fresh one-solve
+sessions described above; its standalone validator and independent custody
+audit also passed.
 
 The core-miner can use native cores only as diagnostic evidence. Promotion of
 a named core tied to P97 source statements remains blocked on maintainer
