@@ -1368,6 +1368,111 @@ theorem freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The exact finite blocker boundary for a `Q` row: either its actual
+blocker fiber has the maximal four sources and therefore has exactly the
+selected `Q` support as carrier image, or one support point is sourced at a
+distinct blocker and supplies the two deletion successors above.
+
+This is a cardinality-independent boundary theorem, not a closure theorem.
+It keeps the missing source identity explicit instead of identifying an
+anonymous support point with a named `Q` source. -/
+theorem freshThird_qRow_exact_blocker_boundary
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    ((ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 4 ∧
+        (ATailSurvivalCover.actualBlockerFiber H Q.source₁).image
+            (fun source => source.1) =
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support) ∨
+      ∃ source : CriticalShellSystem.CarrierVertex D.A,
+        source.1 ∈
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.support ∧
+          H.centerAt source.1 source.2 ≠
+            H.centerAt Q.source₁.1 Q.source₁.2 ∧
+          2 ≤
+            ((H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.support \
+              (H.selectedAt source.1
+                source.2).toCriticalFourShell.support).card ∧
+          ∀ w ∈
+              (H.selectedAt Q.source₁.1
+                  Q.source₁.2).toCriticalFourShell.support \
+                (H.selectedAt source.1
+                  source.2).toCriticalFourShell.support,
+            w ≠ source.1 ∧
+              HasNEquidistantPointsAt 4 (D.A.erase w)
+                (H.centerAt source.1 source.2) := by
+  classical
+  let KQ :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell
+  let fiber := ATailSurvivalCover.actualBlockerFiber H Q.source₁
+  by_cases hcard : fiber.card = 4
+  · exact Or.inl ⟨hcard, by
+      exact
+        ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
+          H Q.source₁ hcard⟩
+  · right
+    have hfiberle : fiber.card ≤ 4 := by
+      exact ATailSurvivalCover.actualBlockerFiber_card_le_four H Q.source₁
+    have hfiberlt : fiber.card < 4 := by omega
+    have himage_subset :
+        fiber.image (fun source => source.1) ⊆ KQ.support := by
+      intro z hz
+      rcases Finset.mem_image.mp hz with ⟨source, hsource, rfl⟩
+      have hblocker := (Finset.mem_filter.mp hsource).2
+      have hcenter :
+          H.centerAt source.1 source.2 =
+            H.centerAt Q.source₁.1 Q.source₁.2 :=
+        congrArg Subtype.val hblocker
+      have hsupport :=
+        ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+          H source.2 Q.source₁.2 hcenter
+      rw [← hsupport]
+      exact
+        (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
+    have hex :
+        ∃ z ∈ KQ.support,
+          z ∉ fiber.image (fun source => source.1) := by
+      by_contra hno
+      have hsup :
+          KQ.support ⊆ fiber.image (fun source => source.1) := by
+        intro z hz
+        by_contra hz'
+        exact hno ⟨z, hz, hz'⟩
+      have heq :
+          KQ.support = fiber.image (fun source => source.1) :=
+        Finset.Subset.antisymm hsup himage_subset
+      have himage_card :
+          (fiber.image (fun source => source.1)).card = fiber.card :=
+        Finset.card_image_of_injective _ Subtype.val_injective
+      have hcard_eq : KQ.support.card = fiber.card := by
+        rw [heq]
+        exact himage_card
+      rw [KQ.support_card] at hcard_eq
+      omega
+    rcases hex with ⟨z, hzKQ, hzImage⟩
+    let source : CriticalShellSystem.CarrierVertex D.A :=
+      ⟨z, KQ.support_subset_A hzKQ⟩
+    have hcenter :
+        H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 := by
+      intro hEq
+      have hsourceFiber : source ∈ fiber := by
+        apply Finset.mem_filter.mpr
+        refine ⟨Finset.mem_univ source, ?_⟩
+        exact Subtype.ext hEq
+      have hzImage' :
+          z ∈ fiber.image (fun source => source.1) := by
+        exact Finset.mem_image.mpr ⟨source, hsourceFiber, rfl⟩
+      exact hzImage hzImage'
+    have hsuccessors :=
+      freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
+        (P := P) (Pρ := Pρ) Q source hcenter
+    exact ⟨source, hzKQ, hcenter, hsuccessors.1, hsuccessors.2⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- If the two canonical cap sources share the fresh Q blocker and the four
 named carrier vertices are distinct, then they exhaust that blocker fiber and
 their carrier points are exactly the Q selected support.

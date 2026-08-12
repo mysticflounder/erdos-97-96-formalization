@@ -1,0 +1,35 @@
+PASS all carrier centers are carriers
+PASS center is not source
+PASS mem has carrier endpoints
+PASS self membership
+PASS each row exact four
+PASS equal centers equal supports
+PASS distinct-center intersections at most two
+PASS blocked deletion lies in selected row
+PASS own deletion blocked
+PASS center fibers have size at most four
+PASS named points are carriers
+PASS retained pairs disjoint
+PASS retained pairs mutually disjoint
+PASS Q pair distinct
+PASS C pair distinct
+PASS Q avoids retained endpoints
+PASS C avoids retained endpoints
+PASS C avoids oppApex1
+PASS retained endpoints avoid oppApex1
+PASS Q mutual support
+PASS Q blocker differs from retained centers
+PASS Q/C blocker equality
+PASS C blocker differs from oppApex1
+PASS C omits one endpoint of each retained pair
+PASS co is retained endpoint
+PASS C rows omit co
+PASS ca omission/survival equivalence
+PASS cb omission/survival equivalence
+PASS oppApex1 does not block retained sources
+PASS retained P blocker equality
+PASS retained P-rho blocker equality
+PASS retained blocker centers are distinct
+PASS fifteen carrier witnesses
+PASS fifteen witnesses pairwise distinct
+VALIDATION PASS: every v2 clause family

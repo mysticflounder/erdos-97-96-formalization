@@ -9862,6 +9862,51 @@ same landing.  The remaining mathematical risk is that the weakened packet is
 still satisfiable, in which case the next step must be a new uniform source
 clause rather than another fixed-cardinality or frozen-assignment wave.
 
+#### 13.24.1.10 Corrected FirstNonHit incidence projection (2026-08-12)
+
+The later corrected packet in
+`scratch/p97-consumer-first/freshthird_firstnonhit_fo_v2/` repairs a stale
+incidence model that had omitted the two retained-pair blocker equalities and
+their blocker-center inequality.  The corrected packet also retains the live
+lower bound through fifteen pairwise-distinct carrier witnesses.  A bounded
+Mace4 search at domain size fifteen timed out and Prover9 found no proof; both
+outcomes are **inconclusive** and are not evidence for either satisfiability or
+contradiction.
+
+The corrected projection is nevertheless satisfiable.  The independent
+artifact in
+`scratch/p97-consumer-first/freshthird_firstnonhit_fo_v2_explicit_model/`
+gives an explicit fifteen-carrier assignment.  Its Python checker validates
+every corrected v2 clause family, and separately generated pinned SMT queries
+are `sat` in both Z3 4.17.0 and cvc5 1.3.3.  The malformed pinned control is
+`unsat` in both solvers, with clean exits and empty stderr.  The assignment
+uses a saturated four-source Q blocker fiber and keeps every distinct-center
+row intersection at cardinality at most two.
+
+This is an **incidence-projection SAT witness only**.  It omits Euclidean
+coordinates, strict cap geometry and cyclic order, selected-radius metric
+equalities, the full deletion packets, and the complete P97 minimality
+interface.  It is not a P97 counterexample, not a general-cardinality model,
+not a finite-to-universal lift, and it closes no Lean `sorry`.
+
+A fresh theorem-bank search after this correction found no source-clean
+producer for the live terminal.  The exact missing contract remains a carrier
+source with blocker center distinct from Q's blocker together with at least
+three Q-support points whose deletions are all blocked at that source center.
+The clean generic blocked-deletion lemma then puts those three points into the
+new selected row and the existing two-circle consumer closes the branch.
+Current named rows cannot supply the witness: each is either centered at Q or
+has intersection cardinality at most two.
+
+Accordingly, the pure blocker/row-incidence abstraction is now exhausted for
+this anchor.  The next admissible refinement must add a new source-proved
+cap/cyclic-order or metric clause, or provide a formally proved bounded-
+obstruction/general-cardinality lift before further finite enumeration.  The
+safe six-anchor-plus-nine-fresh symmetry reduction recorded in
+`scratch/p97-consumer-first/freshthird_firstnonhit_fo_v2_optimization_audit/`
+does not change this status and need not be run: the explicit model already
+settles the corrected incidence projection as satisfiable.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

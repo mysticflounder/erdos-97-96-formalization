@@ -1,0 +1,12 @@
+The solvers' logical stdout statuses are authoritative for this SMT check;
+stderr was empty for every run.
+
+Z3:
+  known_sat.smt2       exit 0, stdout sat
+  malformed_unsat.smt2 exit 0, stdout unsat
+  pinned_model.smt2    exit 0, stdout sat
+
+cvc5:
+  known_sat.smt2       exit 0, stdout sat
+  malformed_unsat.smt2 exit 0, stdout unsat
+  pinned_model.smt2    exit 0, stdout sat

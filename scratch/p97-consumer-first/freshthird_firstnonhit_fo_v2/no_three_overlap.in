@@ -1,0 +1,10 @@
+% Negation of the finite named incidence projection of the target conclusion.
+formulas(goals).
+  all u all w all x all y (
+    car(u) & cen(u) != cen(qa) &
+    mem(u,w) & mem(qa,w) &
+    mem(u,x) & mem(qa,x) &
+    mem(u,y) & mem(qa,y) ->
+      (w = x | w = y | x = y)
+  ).
+end_of_list.

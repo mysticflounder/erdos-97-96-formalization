@@ -1,0 +1,18 @@
+{
+  "status": "SAT_PROJECTION_ONLY",
+  "carrier_cardinality": 15,
+  "independent_validator": "PASS",
+  "controls": {
+    "known_sat": {"z3": {"status": "sat", "exit": 0}, "cvc5": {"status": "sat", "exit": 0}},
+    "malformed_unsat": {"z3": {"status": "unsat", "exit": 0}, "cvc5": {"status": "unsat", "exit": 0}}
+  },
+  "pinned_model": {"z3": {"status": "sat", "exit": 0}, "cvc5": {"status": "sat", "exit": 0}},
+  "universal_lean_closure": false,
+  "euclidean_realization": false,
+  "general_n_result": false,
+  "notes": [
+    "The query is the corrected incidence projection from firstnonhit_v2.in.",
+    "The model omits the geometric and full P97 packet hypotheses documented in source-map.md.",
+    "No solver result is interpreted as a universal theorem or sorry closure."
+  ]
+}
