@@ -185,3 +185,37 @@ zero transport calls and no output directory; missing/extra/link/nonregular/
 oversized artifacts; noncanonical, floating, subclassed, Boolean-confused, and
 over-deep data; crossed archived identities; final byte changes; and output-root
 replacement. All tests run in one capped pytest process.
+
+## Live qualification: 2026-08-11
+
+The bounded fixture-only live qualification is preserved at
+`scratch/p97-endpoint-metric-live-canary-20260811-v4`. It ran the two stages
+sequentially through fresh PIQD Z3 sessions and then ran the public standalone
+validator against the published `smoke-sat` directory.
+
+- `00-exact-metric-relaxation` used session
+  `6075896f-73b2-468c-babe-6cbcbbe230fd` and accepted one assumption-free
+  `SAT` result only after exact-rational replay of all 23 asserted constraints.
+- `01-full-convex` used session
+  `92857ed5-dcaf-4b3c-a19b-905b02a46475` and accepted one assumption-free
+  `SAT` result only after exact-rational replay of all 38 asserted constraints.
+- Both sessions are closed with exactly one solve. The replayed coordinates are
+  `(0,0)`, `(1,0)`, `(4/5,3/5)`, `(0,1)`, and `(-4/5,3/5)`.
+- Pre/post daemon bytes are identical with SHA-256
+  `5b0ec812230a885336e76e97c077dae6320fd2b18ca30bf9d67c9cdd1e26afad`;
+  pre/post solver-registry bytes are identical with SHA-256
+  `f5038ff6895fe47304f6c29bc98425d8f00549880a88e395ca5e73f48145db65`.
+- The public offline validator returned `checked: true`, and an independent
+  read-only audit revalidated the 34-entry custody inventory, exact source and
+  query bindings, both session/receipt/result chains, the two rational models,
+  and the closed terminal state. That audit is recorded in the project convo
+  as `#5375`.
+- The deterministic `smoke-unsat` fixture was rejected by the symbolic
+  prefilter and made no PIQD submission.
+
+This qualifies the endpoint adapter's finite diagnostic boundary. It does not
+establish source entitlement for a production theorem input, a proof of
+`UNSAT`, a global or universal geometric statement, a Problem 97 theorem, a
+Lean theorem, or closure of any `sorry`. The earlier sandbox-denied v1 attempt
+and algebraic-model v2 `UNKNOWN` remain preserved failure evidence; neither is
+silently reclassified.
