@@ -311,8 +311,29 @@ custody now records and rechecks every component-wise no-follow directory
 identity plus exact source-file metadata, including after SMT reconstruction;
 byte-identical file replacement and ancestor-directory rebinding fail closed.
 Descriptor cleanup attempts every close without masking a primary validation
-error. The capped fake-only metric gate passes 116 tests. No second live metric
-solve has run yet.
+error. The capped fake-only metric gate passes 116 tests.
+
+The bounded retry has now qualified that operational boundary. Frontier system
+`8b6ceb4eed2ec9f83827` ran in fresh cvc5 session
+`f779df51-aeb9-4aee-85d3-c4745ec09073` with exactly one assumption-free solve,
+one durable receipt, and a closed session. It returned `UNKNOWN` with
+`interrupted_by = daemon_deadline`, requested `timeout_ms = 20000`, disclosed
+`effective_deadline_ms = 50000`, `solve_ms = 50007`, and result SHA
+`beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a`.
+The public standalone validator accepted the exact 11-file output at
+`scratch/p97-global-metric-piqd-8b6ceb4eed2ec9f83827`, and the independent
+audit in convo `#5385` rechecked its source custody, canonical source/system
+records, daemon journal and receipt, one-session lifecycle, and false-claim
+boundary. Maintainer clarification `#5384` confirms that capacity planning for
+this cvc5 profile must use the disclosed 50-second effective deadline, not the
+20-second request.
+
+This closes live PIQD onboarding and custody qualification for the selected
+full-convex cvc5 stage. It does not close the mathematical obligation: there is
+no SAT model, UNSAT certificate, proof, source-entitlement promotion, theorem,
+global or universal conclusion, Lean result, or proof-spine movement. The next
+progress on this system must come from decomposition, a justified larger
+budget, or a stronger backend rather than from retrying the same solve.
 
 ## Rollout protocol
 

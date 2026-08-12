@@ -119,6 +119,32 @@ transport/response margin beyond the disclosed daemon deadline. A receipt with
 `solve_ms > timeout_ms` is therefore not reclassified as an overrun; its
 requested and effective deadlines remain distinct and explicit.
 
+### Live qualification checkpoint, 2026-08-11
+
+The bounded production retry for frontier system `8b6ceb4eed2ec9f83827`
+opened fresh cvc5 session `f779df51-aeb9-4aee-85d3-c4745ec09073`, performed
+exactly one assumption-free solve, recorded exactly one durable receipt, and
+closed the session. The response and receipt agree on `UNKNOWN`,
+`interrupted_by = daemon_deadline`, requested `timeout_ms = 20000`, disclosed
+`effective_deadline_ms = 50000`, `solve_ms = 50007`, solve index 1, and result
+SHA `beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a`.
+The solver identity was cvc5 1.3.3 with SHA
+`fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74`.
+
+The public standalone validator accepted the exact 11-file output at
+`scratch/p97-global-metric-piqd-8b6ceb4eed2ec9f83827`. Independent audit
+`#5385` rechecked current-source custody, canonical source/system records,
+daemon journal and receipt, and the one-session lifecycle. Maintainer note
+`#5384` confirms that operational planning for this profile must use the
+50-second effective deadline. There was no response loss, reconciliation,
+solve resubmission, local fallback, SAT model, or proof artifact.
+
+This checkpoint qualifies the PIQD transport, lifecycle, custody, deadline,
+and offline-validation boundary for this selected stage. Its solver result is
+still mathematically inconclusive, and every source-entitlement, proof,
+theorem, global, universal, Euclidean Problem 97, Lean, and proof-spine claim
+remains false.
+
 ## Outcome semantics
 
 `SAT` is retained only when every declared point coordinate has one bounded
