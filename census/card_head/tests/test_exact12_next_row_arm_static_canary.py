@@ -7,6 +7,9 @@ from census.card_head.candidate_surface import build_model
 from census.card_head.exact12_adjacent_apex_cross_block_membership_family_bank import (
     install_adjacent_apex_cross_block_membership_family_bank,
 )
+from census.card_head.exact12_apex_internal_shared_pair_common_five_membership_family_bank import (
+    install_apex_internal_shared_pair_common_five_membership_family_bank,
+)
 from census.card_head.exact12_apex_pair_cross_block_membership_family_bank import (
     install_apex_pair_cross_block_membership_family_bank,
 )
@@ -166,6 +169,16 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(
             apex_shared_pair_cross_block_family_bank["family_id"],
             "apex-shared-pair-cross-block-a6789-b345-c1011.v1",
+        )
+        self.assertEqual(
+            install_apex_internal_shared_pair_common_five_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                apex_shared_pair_cross_block_family_bank,
+                cell_index=1,
+            )["family_id"],
+            "apex-internal-shared-pair-common-five-a6789-b345-c6789.v1",
         )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)

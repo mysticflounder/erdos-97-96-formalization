@@ -325,11 +325,55 @@ clean, and the targeted Lean build succeeds.  This is one finite
 proof-backed refinement, not terminal UNSAT, all-arm coverage, a universal
 lift, or live theorem closure.
 
-These completed promotion gates authorize exactly one fresh successor canary.
-If it is SAT, the lane stops again for mandatory theorem mining before any
-further solve; if it is UNSAT, acceptance still requires the runner's fresh
-byte-identical proof rerun, checked RUP/Lean ingress, and expansion from one
-coordinate to all 648 exact-12 arm coordinates.
+The one successor canary authorized at that checkpoint was consumed.  It
+returned a fully replayed `SAT` witness, so the stop rule fired before another
+solve.  Mandatory mining extracted the next source-order-independent family:
+for four distinct second-cap roles `a,x,c,y ∈ {6,7,8,9}` whose ordered pairs
+have the same direction, and `b ∈ {3,4,5}`, positive rows
+`x:{a,b}`, `y:{a,b}`, and `c:{b,x,y}` force the checked common-five
+obstruction.  The exact role domain has 36 assignments.
+
+The apex-internal shared-pair compiler uses 60 distinct row requirements.  Of
+those, 24 are exact variables inherited from the second-cap/apex/surplus and
+surplus/ThreeTriad parents; only 36 are fresh.  A pre-solve audit rejected an
+initial Lean adapter that silently redeclared all 60 as fresh.  The corrected
+adapter declares exactly variables `45127,...,45162`, imports the exact 24
+parent definitions, generates implication clauses only for the fresh
+definitions, and requires the caller to supply the source meaning of every
+reused variable.  An executable cross-artifact regression resolves every Lean
+parent reference to its Python SAT variable, compares all fresh definitions,
+compares the complete 36-role Lean/Python role list, and checks the generic
+role-to-block wiring.  Thus reused variables cannot acquire a fresh default
+meaning at this boundary.
+
+The repaired family adds 36 variables and 1,212 clauses.  Its delta SHA-256 is
+`55bac342e4e178e27d9b2fbbe863812d87935a64d15108f04cd027144cb7a705`,
+its compiled-payload SHA-256 is
+`23b07449e37accf9cd161d2913aaa3bbe6993f01acccbd2acb159776cd5e6f92`,
+its role-list SHA-256 is
+`d97c470d4600181c8f55cb043528c7849a4f1506627e362585df695719cfabab`,
+and its current authenticated family-bank SHA-256 is
+`c18805a271e810241dab349c213789cf8bee8a030fb7f9d5517b2210adbb25cd`.
+The strengthened prefix has 45,162 variables and 640,454 clauses with DIMACS
+SHA-256
+`34e2a2d14aaa2ca93cf71af94f5f3e19f4bb67ae106d9c9cdff33d1c582d182e`.
+After the 867-clause named-arm suffix it has 641,321 clauses and SHA-256
+`291f4dbf3649090e4068920026e754ba6d10e02528b557a3665927567c6ebb57`;
+after the unchanged 81-entry source-order bank it has 641,402 clauses and final
+SHA-256
+`0e24885e3e2e7474441aa687216ee1cf862a7d05e6ab2bbd7c1637e7fd22ec12`.
+
+The four focused family regressions, downstream formula-materialization gate,
+Ruff check, and direct elaboration of both Lean modules pass.  An independent
+read-only trust-boundary audit classified the checkpoint `CHECKPOINT_GREEN`
+for one bounded canary.  It did not classify the modules as promotion-ready:
+terminal proof replay, transitive axiom audit, exact terminal ingress, all-arm
+coverage, and the cardinality lift remain separate obligations.  These gates
+authorize exactly one fresh successor canary.  If it is `SAT`, the lane stops
+again for mandatory theorem mining before any further solve; if it is `UNSAT`,
+acceptance still requires the runner's fresh byte-identical proof rerun,
+checked RUP/Lean ingress, and expansion from one coordinate to all 648 exact-12
+arm coordinates.
 
 These are finite SAT/replay and theorem-family results only.  They do not
 establish exact-12 closure, aggregate six-arm/placement coverage, a

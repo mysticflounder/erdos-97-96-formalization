@@ -28,6 +28,11 @@ from .exact12_adjacent_apex_cross_block_membership_family_bank import (
     attest_adjacent_apex_cross_block_membership_family_bank_live_sources,
     install_adjacent_apex_cross_block_membership_family_bank,
 )
+from .exact12_apex_internal_shared_pair_common_five_membership_family_bank import (
+    Exact12ApexInternalSharedPairCommonFiveMembershipFamilyBankError,
+    attest_apex_internal_shared_pair_common_five_membership_family_bank_live_sources,
+    install_apex_internal_shared_pair_common_five_membership_family_bank,
+)
 from .exact12_apex_pair_cross_block_membership_family_bank import (
     Exact12ApexPairCrossBlockMembershipFamilyBankError,
     attest_apex_pair_cross_block_membership_family_bank_live_sources,
@@ -115,23 +120,23 @@ JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v2"
 ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
-EXPECTED_PREFIX_VARIABLES = 45_126
-EXPECTED_PREFIX_CLAUSES = 639_242
+EXPECTED_PREFIX_VARIABLES = 45_162
+EXPECTED_PREFIX_CLAUSES = 640_454
 EXPECTED_PREFIX_DIMACS_SHA256 = (
-    "a141b3223365f27eaa4d5b583293986b602e0b3f5467e7d74f319a24d5782d75"
+    "34e2a2d14aaa2ca93cf71af94f5f3e19f4bb67ae106d9c9cdff33d1c582d182e"
 )
 EXPECTED_ARM_SUFFIX_CLAUSES = 867
-EXPECTED_POST_ARM_CLAUSES = 640_109
+EXPECTED_POST_ARM_CLAUSES = 641_321
 EXPECTED_POST_ARM_DIMACS_SHA256 = (
-    "18b26eae3aef9f9aa07af520b3d1e82f732a9547fe7efddf19af4bc1df672c9b"
+    "291f4dbf3649090e4068920026e754ba6d10e02528b557a3665927567c6ebb57"
 )
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "84d27968cd8becaa9fe56e67839f3b54e6da53acd76f4f8ea700f0288f0377e5"
 )
-EXPECTED_FINAL_CLAUSES = 640_190
+EXPECTED_FINAL_CLAUSES = 641_402
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "376e67a55551eeb8e6303835c52f8ce8331f7c19af82c95a0906bacaa1d61360"
+    "0e24885e3e2e7474441aa687216ee1cf862a7d05e6ab2bbd7c1637e7fd22ec12"
 )
 TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_ARM_STATIC_LEAN_INGRESS"
 SUCCESS_STATUSES = frozenset({"SAT_WITNESS_REPLAYED", TERMINAL_STATUS})
@@ -144,6 +149,10 @@ SOURCE_PATHS = (
     "census/card_head/exact12_next_row_valuation.py",
     "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py",
     ("census/card_head/exact12_apex_shared_pair_cross_block_membership_family_bank.py"),
+    (
+        "census/card_head/"
+        "exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    ),
     "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py",
     ("census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"),
     ("census/card_head/exact12_second_cap_apex_surplus_membership_family_bank.py"),
@@ -169,6 +178,14 @@ SOURCE_PATHS = (
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221ApexSharedPairCrossBlockMembershipFamilyCnf.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexInternalSharedPairCommonFiveCertificate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexInternalSharedPairCommonFiveMembershipFamilyCnf.lean"
     ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
@@ -230,6 +247,7 @@ class MaterializedArmStaticCanary:
     apex_zero_cross_block_family_bank: dict[str, Any]
     apex_pair_cross_block_family_bank: dict[str, Any]
     apex_shared_pair_cross_block_family_bank: dict[str, Any]
+    apex_internal_shared_pair_common_five_family_bank: dict[str, Any]
     arm_suffix: dict[str, Any]
     source_order_bank: dict[str, Any]
     prepared_source_order_bank: PreparedSourceOrderBank
@@ -454,6 +472,18 @@ def materialize_arm_static_canary(
         attest_apex_shared_pair_cross_block_membership_family_bank_live_sources(
             repo_root, apex_shared_pair_cross_block_family_bank
         )
+        apex_internal_shared_pair_common_five_family_bank = (
+            install_apex_internal_shared_pair_common_five_membership_family_bank(
+                repo_root,
+                instance,
+                layout,
+                apex_shared_pair_cross_block_family_bank,
+                cell_index=SUPPORTED_PLACEMENT_INDEX,
+            )
+        )
+        attest_apex_internal_shared_pair_common_five_membership_family_bank_live_sources(
+            repo_root, apex_internal_shared_pair_common_five_family_bank
+        )
     except Exact12SurplusApexPairMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AdjacentApexCrossBlockMembershipFamilyBankError as exc:
@@ -469,6 +499,8 @@ def materialize_arm_static_canary(
     except Exact12ApexPairCrossBlockMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12ApexSharedPairCrossBlockMembershipFamilyBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except Exact12ApexInternalSharedPairCommonFiveMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
 
     arm_instance = SourceFaithfulCoverInstance(
@@ -523,6 +555,9 @@ def materialize_arm_static_canary(
         apex_pair_cross_block_family_bank=apex_pair_cross_block_family_bank,
         apex_shared_pair_cross_block_family_bank=(
             apex_shared_pair_cross_block_family_bank
+        ),
+        apex_internal_shared_pair_common_five_family_bank=(
+            apex_internal_shared_pair_common_five_family_bank
         ),
         arm_suffix=arm_suffix,
         source_order_bank=source_order_bank,
@@ -590,6 +625,9 @@ def _build_job(
     apex_shared_pair_cross_block_family_bank = (
         materialized.apex_shared_pair_cross_block_family_bank
     )
+    apex_internal_shared_pair_common_five_family_bank = (
+        materialized.apex_internal_shared_pair_common_five_family_bank
+    )
     source_order_bank = materialized.source_order_bank
     payload = {
         "schema": JOB_SCHEMA,
@@ -652,6 +690,16 @@ def _build_job(
             "schema": apex_shared_pair_cross_block_family_bank.get("schema"),
             "sha256": apex_shared_pair_cross_block_family_bank.get("bank_sha256"),
             "family_id": apex_shared_pair_cross_block_family_bank.get("family_id"),
+            "lean_terminal_ingress_ready": False,
+        },
+        "apex_internal_shared_pair_common_five_membership_family_bank": {
+            "schema": apex_internal_shared_pair_common_five_family_bank.get("schema"),
+            "sha256": apex_internal_shared_pair_common_five_family_bank.get(
+                "bank_sha256"
+            ),
+            "family_id": apex_internal_shared_pair_common_five_family_bank.get(
+                "family_id"
+            ),
             "lean_terminal_ingress_ready": False,
         },
         "arm_suffix": {
@@ -734,6 +782,9 @@ def run_arm_static_canary(
         apex_shared_pair_cross_block_family_bank_path = (
             workdir / "apex_shared_pair_cross_block_family_bank.json"
         )
+        apex_internal_shared_pair_common_five_family_bank_path = (
+            workdir / "apex_internal_shared_pair_common_five_family_bank.json"
+        )
         source_order_bank_path = workdir / "source_order_bank.json"
         source_order_installation_path = workdir / "source_order_installation.json"
         discovery_cnf_path = workdir / "discovery.cnf"
@@ -775,6 +826,10 @@ def run_arm_static_canary(
         _write_json(
             apex_shared_pair_cross_block_family_bank_path,
             materialized.apex_shared_pair_cross_block_family_bank,
+        )
+        _write_json(
+            apex_internal_shared_pair_common_five_family_bank_path,
+            materialized.apex_internal_shared_pair_common_five_family_bank,
         )
         _write_json(source_order_bank_path, materialized.source_order_bank)
         _write_json(
@@ -914,6 +969,9 @@ def run_arm_static_canary(
             "apex_shared_pair_cross_block_family_bank": _artifact(
                 apex_shared_pair_cross_block_family_bank_path
             ),
+            "apex_internal_shared_pair_common_five_family_bank": _artifact(
+                apex_internal_shared_pair_common_five_family_bank_path
+            ),
             "source_order_bank": _artifact(source_order_bank_path),
             "source_order_installation": _artifact(source_order_installation_path),
             "discovery_cnf": _artifact(discovery_cnf_path),
@@ -950,6 +1008,9 @@ def run_arm_static_canary(
             ),
             "apex_shared_pair_cross_block_family_bank": _json_sha256(
                 materialized.apex_shared_pair_cross_block_family_bank
+            ),
+            "apex_internal_shared_pair_common_five_family_bank": _json_sha256(
+                materialized.apex_internal_shared_pair_common_five_family_bank
             ),
             "source_order_bank": _json_sha256(materialized.source_order_bank),
             "source_order_installation": _json_sha256(
