@@ -1,0 +1,6 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf
+
+/-! Axiom audit for the exact-twelve apex-triple membership family. -/
+
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf.implicationDimacs_sat
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf.false_of_blockingClause_false

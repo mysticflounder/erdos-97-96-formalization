@@ -462,6 +462,53 @@ source-to-CNF trust-boundary audit are green for one bounded canary.  This is
 not promotion readiness.  Once committed and pushed, this checkpoint
 authorizes exactly one fresh successor canary, not a wave.
 
+That authorized successor canary has now been consumed.  It returned
+`SAT_WITNESS_REPLAYED` / `STRUCTURALLY_UNRESOLVED`, with assignment SHA-256
+`34850fcc6db05ad37be177322b4ee02c3743ba352506b1ed7862b4d3f8912172`
+and survivor-artifact SHA-256
+`0f85c6db2e0de0655427da839596cdbdb3753c48287bbf864befabedeba86bc7`.
+There is no terminal proof artifact.  The stop rule fired before another solve.
+Mandatory all-order mining found the common-five core
+`(a,x,b,c,y)=(1,0,2,3,7)`: the rows centered at `0` and `7` share `{1,2}`,
+and the row centered at `3` contains `{2,0,7}`.  This survivor does not
+instantiate the preceding 96-role family because its fixed apex/first-opposite
+roles occupy different frozen blocks; that is a role-domain distinction, not
+an installation failure.
+
+The resulting source-clean family fixes `(a,x,b)=(1,0,2)` and ranges over the
+twelve pairs `c ∈ {3,4,5}`, `y ∈ {6,7,8,9}`.  The generic Lean
+certificate and exact positive-membership CNF bridge cover those twelve roles.
+The authenticated compiler introduces 17 fresh definitions and 211 clauses.
+Its delta SHA-256 is
+`ff3fef9fe7c16b849e6964f738f8475686394dc4f3ff1ccad1cc2ff5a47f0c16`,
+its compiled-payload SHA-256 is
+`cb9c658562230dfd4d71a4e5d646c3eb555910d344add8fcfe7df507d801a771`,
+its role-list SHA-256 is
+`cfd5b1fce6c3fc1a14d514eb90a111e4480c6e0a22d9c43948defeb88254f72f`,
+and its current authenticated family-bank SHA-256 is
+`60f70e569bc87fc0c65e45f201d485d672bb20f9aca9d248aec906abd7cee296`.
+The strengthened prefix has 45,241 variables and 642,191 clauses with DIMACS
+SHA-256
+`b475d468f085adb54ecb352277c0df0c69d27ef00c61b89562edb2d5445385b7`.
+After the unchanged 867-clause named-arm suffix it has 643,058 clauses and
+SHA-256
+`b47bd14179d18e526ba7915fe123b0e96b2929c2512b1b9851390cf7a65b02bb`;
+after the unchanged 81-entry source-order bank it has 643,139 clauses and final
+SHA-256
+`e9ba86c01dbf491500295d0964b9f2cc6f601f468c57b7b4913e566b054117b8`.
+Direct targeted Lean builds, Ruff, authenticated materialization, and fourteen
+focused bank/canary tests are green.  Two independent read-only audits found no
+remaining source-to-CNF, role-order, source-closure, job-binding, or fail-closed
+artifact issue.  The initial real-definition lookup fallback was hardened
+before this validation: out-of-family variables now map to an empty-support
+sentinel, while all twelve entries name their three checked definitions
+explicitly.  Once this checkpoint is committed and pushed, it authorizes
+exactly one successor canary, not a wider wave.  The two terminal family
+theorems' axiom reports contain only `propext`, `Classical.choice`,
+`Quot.sound`, and the governed `Lean.ofReduceBool` / `Lean.trustCompiler`
+boundary introduced by their finite `native_decide` validations; there is no
+`sorryAx`.
+
 These are finite SAT/replay and theorem-family results only.  They do not
 establish exact-12 closure, aggregate six-arm/placement coverage, a
 cardinality-at-least-13 producer or lift, Lean terminal ingress, or closure of
