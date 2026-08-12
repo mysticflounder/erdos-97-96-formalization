@@ -1649,6 +1649,21 @@ It must stop on the first authenticated SAT or UNSAT result: SAT returns to
 all-order theorem mining before any successor formula, while UNSAT enters the
 separate byte-identical local proof-producing terminal path.
 
+The first authorized v21 launch stopped before PIQD submission and therefore
+produced no solver result.  The producer computes its root and suffix record
+identities with sorted, indented JSON plus a trailing newline, while the new
+adapter initially rechecked them with PIQD's compact canonical-JSON digest.
+That serialization mismatch rejected the otherwise canonical root job before
+any external state change.  The adapter now validates producer-owned root and
+suffix identities with the producer's established `_json_sha256` convention;
+PIQD-owned descriptors, manifests, and receipts retain their compact canonical
+JSON convention.  The synthetic adapter suite passes 8/8, Ruff is clean, and a
+real v21 materialize/build-job/build-descriptor integration test passes.  The
+repair does not migrate producer hashes or enlarge PIQD's trust boundary.
+After this repair is independently audited, committed, and pushed, exactly one
+retry of the identical v21 cell-6 formula in a fresh immutable workdir is
+authorized.  No successor formula is authorized by this pre-submission failure.
+
 PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
 raw CNF bytes, job identity, and solver result that it receives.  It does not
 interpret or validate the caller's Python-to-Lean variable semantics, source

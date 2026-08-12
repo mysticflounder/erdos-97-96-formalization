@@ -29,8 +29,12 @@ false until separate source-clean consumers establish them.
 
 1. Capture each producer input once in caller-owned custody with component-wise
    no-follow reads; embed or content-address the exact downstream bytes and
-   retain them locally, since current PIQD job retrieval exposes only
-   `producer_manifest_hash` for the producer manifest.
+   retain them locally.  For eligible newly prepared raw-DIMACS jobs, current
+   PIQD additionally exposes exact submitted manifest bytes through
+   `producer_manifest_blob_hash` and the rehashing blob route.  This is a
+   redundant byte-custody copy, not semantic validation, source-file custody,
+   proof validation, or historical backfill; `producer_manifest_hash` remains
+   the distinct job-identity digest.
 2. Recompute CNF, variable-map, model, clause-map, and bank identities at every
    trust boundary. Do not copy claimed hashes from adjacent JSON.
 3. Use one canonical schema and one canonical byte representation per artifact.
