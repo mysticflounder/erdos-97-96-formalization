@@ -727,6 +727,66 @@ through commit and push of this checkpoint. Once published, this broad checked
 family may authorize exactly one successor canary; that canary must again stop
 on SAT for all-order theorem mining or on UNSAT for terminal RUP production.
 
+Exact-12 v18 SAT-stop theorem-mining checkpoint (2026-08-12): the one
+authorized v18 cell-6 successor canary returned `SAT_WITNESS_REPLAYED` and was
+classified `STRUCTURALLY_UNRESOLVED`.  The final v5 formula had 45,277
+variables and 644,327 clauses with DIMACS SHA-256
+`57bfa7269a86b09ad2f63b5c882145fd3f55b77e31da866b227e2663f48c740b`;
+the replayed survivor SHA-256 was
+`298bfee77e52186588b96c46acac60c1aa7e5e06f0c319a41f4e18307da319db`.
+All source-candidate, named-arm, complete-CNF, and canonical-static-extension
+replay gates passed.  There is no terminal proof artifact.  The mandatory
+all-order pass covered all 48 frozen orders with one common-five core
+`(2,0,3,9,11)`.  Its embedded certificate SHA-256 is
+`28f54643fc21f9392a42e21505fa58745ff59da2f8345dfa1d24d2fe00ed6a8f`,
+while the containing JSON artifact has SHA-256
+`6715879ab1e5a3f2e80eb63d91a8cd86dadbd4078b2121b6ab2958da112ae5fd`.
+It mined the 24-role source-clean family
+`b ∈ {3,4,5}`, `c ∈ {6,7,8,9}`, `y ∈ {10,11}` with positive
+selected rows `0:{2,b}`, `y:{2,b}`, and `c:{0,b,y}`.  The source theorem
+checks both frozen boundary orientations and feeds the existing convex
+common-five contradiction.
+
+The v18 family is now represented by
+`ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveCertificate.lean`,
+its explicit Lean CNF semantic binding, and a Python bank implementation that
+authenticates both Lean roots.
+The binding reuses exactly variables `44903`--`44905`, allocates the 30 fresh
+variables `45278`--`45307`, and emits 24 blocks after 30 fresh plus 3 reused
+definitions, a 426-clause delta.  Current source constants freeze the resulting
+prefix at 45,307 variables and 643,805 clauses with DIMACS SHA-256
+`fcf2a28e970cfc3cdc7b831a54ea68617eb1e65eeea8de64a7bc329a76d67e9e`;
+the delta, compiled-payload, role, and bank SHA-256 values are respectively
+`d8031ca31bb6b5774a4b0d3c9ac40e5996b1d9a0c1ec0311450f4ac59a149561`,
+`6212b4d6eda2c42e2eeac1166d70630eec570bcc39eaca94eb8d8cfbbcc965e6`,
+`2642abc7fd08eb33a1d02b49e3eadd493bfea095d0b27a837d26f141e6291729`,
+and `46424dec2c7a0cc3d182f1b596aa86619baac7293973e50f2c55926bc578c52f`.
+Current runner schema v6 source installs and re-attests this bank before the
+unchanged 867-clause named-arm suffix and 81-clause source-order suffix.  Its
+post-arm and final DIMACS SHA-256 values are
+`fb309c981015de11aa446a96df537144aded81f2a314bcb471e908c101b81133`
+and `93f44e0f19ba9a4b9c207a01abb96b47f4d0642f7dcee002b11c2f31f6007913`;
+the expected final formula has 644,753 clauses.  These v18-prefix and v6-final
+identities are frozen source expectations, not artifacts from the earlier v5
+SAT-stop workdir; the first real v6 canary remains the runtime acceptance gate.
+A permissive but unreachable Lean
+definition-lookup fallback found by independent audit was removed in favor of
+explicit wiring of all 24 roles.  The source theorem's explicit axiom audit
+has no `sorryAx`; the CNF binding has only the documented `native_decide`
+compiler-trust footprint beyond standard axioms.  Local checkpoint validation,
+not itself a production certificate artifact, reports that the Python bank's
+five focused tests and Ruff pass, the Lean modules pass targeted governed
+builds, and the runner passes a no-solver materialization smoke.  The combined
+bank and fake-solver runner regression passes 15/15; no real solver is invoked
+by that suite.
+
+This remains a finite exact-12 theorem-bank refinement.  It is not terminal
+UNSAT, all-arm coverage, a general-cardinality lift, or live closure.  The
+anchor still forwards to four open children: two exact-12 leaves and two
+cardinality-at-least-13 leaves.  A successor canary is authorized only after
+the complete v18 checkpoint is committed and pushed; it must again stop on SAT
+for all-order theorem mining or on UNSAT for terminal proof production.
+
 ## 0. Universal-ingress contract (binding, 2026-08-04)
 
 Before a computational campaign is called production, record all five parts of

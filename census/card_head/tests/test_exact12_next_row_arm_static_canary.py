@@ -46,6 +46,8 @@ from census.card_head.exact12_apex_zero_cross_block_membership_family_bank impor
 )
 from census.card_head.exact12_next_row_arm_static_canary import (
     EXPECTED_ARM_SUFFIX_CLAUSES,
+    EXPECTED_FINAL_CLAUSES,
+    EXPECTED_FINAL_DIMACS_SHA256,
     EXPECTED_POST_ARM_CLAUSES,
     EXPECTED_POST_ARM_DIMACS_SHA256,
     EXPECTED_PREFIX_CLAUSES,
@@ -70,6 +72,12 @@ from census.card_head.exact12_next_row_arm_static_canary import (
 from census.card_head.exact12_next_row_valuation import (
     arm_cells,
     compile_arm_cell,
+)
+from census.card_head.exact12_second_apex_surplus_second_first_common_five_membership_family_bank import (
+    _source_paths as second_apex_surplus_second_first_common_five_source_paths,
+)
+from census.card_head.exact12_second_apex_surplus_second_first_common_five_membership_family_bank import (
+    install_second_apex_surplus_second_first_common_five_membership_family_bank,
 )
 from census.card_head.exact12_second_cap_apex_surplus_membership_family_bank import (
     install_second_cap_apex_surplus_membership_family_bank,
@@ -120,6 +128,9 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             run_arm_static_canary(REPO_ROOT, REPO_ROOT / "unused", 5)
 
     def test_authenticated_arm_suffix_has_frozen_identity(self) -> None:
+        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 45_307)
+        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 644_672)
+        self.assertEqual(EXPECTED_FINAL_CLAUSES, 644_753)
         instance, compiled, layout, membership_bank = (
             materialize_positive_membership_static_cell(REPO_ROOT, 1)
         )
@@ -291,6 +302,19 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             fifth_family_bank["family_id"],
             "apex-first-surplus-second-common-five-a1011-b345-y6789.v1",
         )
+        sixth_family_bank = (
+            install_second_apex_surplus_second_first_common_five_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                fifth_family_bank,
+                cell_index=6,
+            )
+        )
+        self.assertEqual(
+            sixth_family_bank["family_id"],
+            "second-apex-surplus-second-first-common-five-b345-c6789-y1011.v1",
+        )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
         self.assertEqual(_cnf_sha256(instance), EXPECTED_PREFIX_DIMACS_SHA256)
@@ -311,7 +335,11 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_run.v5",
+            "p97_rigid221_exact12_next_row_arm_static_canary_run.v6",
+        )
+        self.assertEqual(
+            JOB_SCHEMA,
+            "p97_rigid221_exact12_next_row_arm_static_canary_job.v6",
         )
         bank = (
             materialized.apex_first_opposite_shared_pair_common_five_family_bank
@@ -352,6 +380,14 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         ]
         self.assertEqual(fifth_binding["sha256"], fifth_bank["bank_sha256"])
         self.assertEqual(fifth_binding["family_id"], fifth_bank["family_id"])
+        sixth_bank = (
+            materialized.second_apex_surplus_second_first_common_five_family_bank
+        )
+        sixth_binding = job[
+            "second_apex_surplus_second_first_common_five_membership_family_bank"
+        ]
+        self.assertEqual(sixth_binding["sha256"], sixth_bank["bank_sha256"])
+        self.assertEqual(sixth_binding["family_id"], sixth_bank["family_id"])
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
@@ -371,6 +407,9 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         )
         expected_source_paths.update(
             apex_first_surplus_second_common_five_source_paths(REPO_ROOT)
+        )
+        expected_source_paths.update(
+            second_apex_surplus_second_first_common_five_source_paths(REPO_ROOT)
         )
         self.assertEqual(
             {record["path"] for record in job["sources"]}, expected_source_paths
@@ -425,6 +464,23 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
         artifacts.pop("apex_first_surplus_second_common_five_family_bank")
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts[
+            "second_apex_surplus_second_first_common_five_family_bank"
+        ] = {"sha256": "0" * 64}
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop("second_apex_surplus_second_first_common_five_family_bank")
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        self.assertEqual(materialized.instance.cnf.n_variables, 45_307)
+        self.assertEqual(len(materialized.instance.cnf.clauses), EXPECTED_FINAL_CLAUSES)
+        self.assertEqual(
+            _cnf_sha256(materialized.instance), EXPECTED_FINAL_DIMACS_SHA256
+        )
 
     def test_success_statuses_require_their_result_artifacts(self) -> None:
         survivor = {"job_id": "bound-job", "assignment_sha256": "1" * 64}
@@ -490,6 +546,15 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             "census.card_head.exact12_next_row_arm_static_canary."
             "apex_first_surplus_second_common_five_source_paths",
             side_effect=ValueError("new family source drift"),
+        ), self.assertRaisesRegex(
+            Exact12NextRowArmStaticCanaryError,
+            "required canary source failed authentication",
+        ):
+            _source_manifest(REPO_ROOT)
+        with patch(
+            "census.card_head.exact12_next_row_arm_static_canary."
+            "second_apex_surplus_second_first_common_five_source_paths",
+            side_effect=ValueError("v18 family source drift"),
         ), self.assertRaisesRegex(
             Exact12NextRowArmStaticCanaryError,
             "required canary source failed authentication",
