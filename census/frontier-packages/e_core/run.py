@@ -25,6 +25,13 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import encoding as enc  # noqa: E402
 
+from census.card_head.frontier_lane_piqd import (  # noqa: E402
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out"
 
 
@@ -34,6 +41,9 @@ def run_one(
     base_clauses: list[tuple[int, ...]],
     extra_clauses: list[tuple[int, ...]],
     timeout_seconds: int,
+    *,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     instance = enc.RunInstance(encoder, base_clauses)
     cnf_path = OUT_DIR / f"{name}.cnf"
@@ -44,7 +54,7 @@ def run_one(
         for lit in clause:
             n_vars = max(n_vars, abs(lit))
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance,
         cnf_path,
         extra_clauses=extra_clauses,
@@ -62,6 +72,14 @@ def run_one(
         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
         "proof_verified": result.proof_verified,
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parent,
+        )
+    )
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / f"{name}.model.json"
         model_path.write_text(
@@ -79,22 +97,44 @@ def run_one(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.EEncoder()
+    solver = solver_from_args(
+        args=args,
+        lane="E",
+        encoder=encoder,
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     manifest: list[dict[str, Any]] = []
 
     # 1. base
-    base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
+    base_record = run_one(
+        encoder,
+        "base",
+        list(encoder.base_clauses),
+        [],
+        args.timeout_seconds,
+        solver=solver,
+        backend=args.solver_backend,
+    )
     manifest.append(base_record)
 
     # 2/3. base+dom1, base+dom2 (arm-isolation runs)
     for arm in ("dom1", "dom2"):
         extra = encoder.dom_unit_clause(arm)
         record = run_one(
-            encoder, f"base+{arm}", list(encoder.base_clauses), extra, args.timeout_seconds
+            encoder,
+            f"base+{arm}",
+            list(encoder.base_clauses),
+            extra,
+            args.timeout_seconds,
+            solver=solver,
+            backend=args.solver_backend,
         )
         manifest.append(record)
 
@@ -108,7 +148,11 @@ def main() -> int:
             f"wall={record['wall_seconds']:.3f}s"
         )
     print(f"manifest -> {manifest_path}")
-    return 0
+    return 0 if all(
+        record["verdict"] in {"SAT", "UNSAT"}
+        and (record["verdict"] != "UNSAT" or record["proof_verified"])
+        for record in manifest
+    ) else 1
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ Run from the repo root:
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
@@ -18,6 +19,18 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import encoding as enc  # noqa: E402
 
+from census.card_head.frontier_lane_piqd import (  # noqa: E402
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+)
+from census.card_head.piqd_frontier_bc import (  # noqa: E402
+    C_SMOKE_SOURCES,
+    AllocationPhase,
+    BcCallerPackageProfile,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out" / "smoke"
 
 
@@ -26,11 +39,13 @@ def _lit(encoder: "enc.CCoreEncoder", name: str, value: bool) -> tuple[int]:
     return (var if value else -var,)
 
 
-def gate_base(encoder: "enc.CCoreEncoder", timeout_seconds: int) -> dict[str, Any]:
+def gate_base(
+    encoder: "enc.CCoreEncoder", timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
     instance = enc.RunInstance(encoder, encoder.base_clauses)
     cnf_path = OUT_DIR / "g_base.cnf"
     start = time.monotonic()
-    result = enc.solve_cadical(instance, cnf_path, timeout_seconds=timeout_seconds)
+    result = solver(instance, cnf_path, timeout_seconds=timeout_seconds)
     wall = time.monotonic() - start
     return {
         "gate": "G-BASE",
@@ -200,12 +215,14 @@ def hand_built_assumptions(encoder: "enc.CCoreEncoder") -> list[tuple[int, ...]]
     return assumptions
 
 
-def gate_sat(encoder: "enc.CCoreEncoder", timeout_seconds: int) -> dict[str, Any]:
+def gate_sat(
+    encoder: "enc.CCoreEncoder", timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
     assumptions = hand_built_assumptions(encoder)
     instance = enc.RunInstance(encoder, encoder.base_clauses)
     cnf_path = OUT_DIR / "g_sat.cnf"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance, cnf_path, extra_clauses=assumptions, timeout_seconds=timeout_seconds
     )
     wall = time.monotonic() - start
@@ -229,7 +246,11 @@ def gate_sat(encoder: "enc.CCoreEncoder", timeout_seconds: int) -> dict[str, Any
 
 
 def gate_c1_srcu_clash(
-    encoder: "enc.CCoreEncoder", c1_extra: list[tuple[int, ...]], timeout_seconds: int
+    encoder: "enc.CCoreEncoder",
+    c1_extra: list[tuple[int, ...]],
+    timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     """G-EXCL analog, part 1 (spec section 7): base+C1 delta + srcU must be
     UNSAT (C1's own (C9.3) unit already forces ~srcU -- trivial unit
@@ -240,13 +261,13 @@ def gate_c1_srcu_clash(
     cnf_path = OUT_DIR / "g_excl_c1_srcu.cnf"
     proof_path = OUT_DIR / "g_excl_c1_srcu.drat"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance, cnf_path, extra_clauses=extra,
         timeout_seconds=timeout_seconds, proof_path=proof_path,
     )
     wall = time.monotonic() - start
-    ok = result.verdict == "UNSAT"
-    return {
+    ok = result.verdict == "UNSAT" and result.proof_verified is True
+    record: dict[str, Any] = {
         "gate": "G-EXCL-analog (base+C1+srcU)",
         "verdict": result.verdict,
         "expected": "UNSAT",
@@ -254,10 +275,23 @@ def gate_c1_srcu_clash(
         "proof_verified": result.proof_verified,
         "wall_seconds": round(wall, 3),
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parents[1],
+        )
+    )
+    return record
 
 
 def gate_c1_del_triple(
-    encoder: "enc.CCoreEncoder", c1_extra: list[tuple[int, ...]], timeout_seconds: int
+    encoder: "enc.CCoreEncoder",
+    c1_extra: list[tuple[int, ...]],
+    timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     """G-EXCL analog, part 2 / DEL3 gate (spec section 7, = A's P-DEL3
     pattern): base+C1 delta + del(zd)&del(u)&del(xu) must be UNSAT
@@ -272,13 +306,13 @@ def gate_c1_del_triple(
     cnf_path = OUT_DIR / "g_excl_c1_del_triple.cnf"
     proof_path = OUT_DIR / "g_excl_c1_del_triple.drat"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance, cnf_path, extra_clauses=extra,
         timeout_seconds=timeout_seconds, proof_path=proof_path,
     )
     wall = time.monotonic() - start
-    ok = result.verdict == "UNSAT"
-    return {
+    ok = result.verdict == "UNSAT" and result.proof_verified is True
+    record: dict[str, Any] = {
         "gate": "G-EXCL-analog (base+C1+del-triple, DEL3 gate)",
         "verdict": result.verdict,
         "expected": "UNSAT",
@@ -286,6 +320,15 @@ def gate_c1_del_triple(
         "proof_verified": result.proof_verified,
         "wall_seconds": round(wall, 3),
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parents[1],
+        )
+    )
+    return record
 
 
 def gate_c69(
@@ -293,6 +336,8 @@ def gate_c69(
     c1_extra: list[tuple[int, ...]],
     c2_extra: list[tuple[int, ...]],
     timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     """Regression for the kernel-backed C6.9 projection in both physical
     verdict leaves.
@@ -346,7 +391,7 @@ def gate_c69(
         proof_path = OUT_DIR / f"{stem}.drat" if expected == "UNSAT" else None
         instance = enc.RunInstance(encoder, encoder.base_clauses)
         start = time.monotonic()
-        result = enc.solve_cadical(
+        result = solver(
             instance,
             OUT_DIR / f"{stem}.cnf",
             extra_clauses=list(branch_extra) + assumptions,
@@ -355,8 +400,7 @@ def gate_c69(
         )
         wall = time.monotonic() - start
         proof_ok = expected != "UNSAT" or result.proof_verified is True
-        variants.append(
-            {
+        record: dict[str, Any] = {
                 "branch": branch,
                 "variant": variant,
                 "verdict": result.verdict,
@@ -364,8 +408,17 @@ def gate_c69(
                 "pass": result.verdict == expected and proof_ok,
                 "proof_verified": result.proof_verified,
                 "wall_seconds": round(wall, 3),
-            }
-        )
+        }
+        if proof_path is not None:
+            record.update(
+                proof_manifest_fields(
+                    backend=backend,
+                    requested_proof_path=proof_path,
+                    result=result,
+                    relative_to=OUT_DIR.parents[1],
+                )
+            )
+        variants.append(record)
 
     for branch, current in (("C1", c1_extra), ("C2", c2_extra)):
         old = _without_c69(current)
@@ -387,6 +440,8 @@ def gate_probes(
     encoder: "enc.CCoreEncoder",
     c2_extra: list[tuple[int, ...]],
     timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     """(spec section 7) The four named probes: each must be UNSAT with a
     verified DRAT proof."""
@@ -401,13 +456,13 @@ def gate_probes(
         cnf_path = OUT_DIR / f"g_probe_{probe_name}.cnf"
         proof_path = OUT_DIR / f"g_probe_{probe_name}.drat"
         start = time.monotonic()
-        result = enc.solve_cadical(
+        result = solver(
             instance, cnf_path, extra_clauses=list(base_extra) + list(extra),
             timeout_seconds=timeout_seconds, proof_path=proof_path,
         )
         wall = time.monotonic() - start
-        ok = result.verdict == "UNSAT"
-        return {
+        ok = result.verdict == "UNSAT" and result.proof_verified is True
+        record: dict[str, Any] = {
             "probe": probe_name,
             "verdict": result.verdict,
             "expected": "UNSAT",
@@ -415,6 +470,15 @@ def gate_probes(
             "proof_verified": result.proof_verified,
             "wall_seconds": round(wall, 3),
         }
+        record.update(
+            proof_manifest_fields(
+                backend=backend,
+                requested_proof_path=proof_path,
+                result=result,
+                relative_to=OUT_DIR.parents[1],
+            )
+        )
+        return record
 
     # P-SRC: base + ~srcU + row_src(u) -> UNSAT [(C6.12)].
     probes.append(
@@ -466,8 +530,13 @@ def gate_probes(
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
+    args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.CCoreEncoder()
+    base_n_variables = encoder.cnf.n_variables
 
     # Build both leaf extensions exactly once each here, threading their
     # outputs into every check/gate/probe that needs them -- same
@@ -476,12 +545,47 @@ def main() -> int:
     # base_clauses prefix; build_leaf_c2_extension raises on a second call
     # since it registers uniquely-named atoms).
     del3_extra = encoder.build_del3_clauses()
+    del3_n_variables = encoder.cnf.n_variables
     c1_extra = encoder.leaf_c1_delta_clauses(del3_extra)
     c2_extra = encoder.build_leaf_c2_extension()
+    solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=BcCallerPackageProfile(
+            lane="C",
+            source_paths=C_SMOKE_SOURCES,
+            allocation_phases=(
+                AllocationPhase(
+                    "C common base allocation",
+                    base_n_variables,
+                    "C-core common named and cardinality variables",
+                ),
+                AllocationPhase(
+                    "C1 DEL3 auxiliary allocation",
+                    del3_n_variables,
+                    "Sinz auxiliaries for the leaf-C1 deletion at-most-two delta",
+                ),
+                AllocationPhase(
+                    "C2 fresh-P extension allocation",
+                    encoder.cnf.n_variables,
+                    "leaf-C2 P, collision, and restoration variables",
+                ),
+            ),
+            live_leaf="C-core C1/C2 finite-local smoke regressions",
+            finite_schema="p97-c-core-layer1.v1.1-smoke",
+            cardinality_scope="named C-core regression atoms and symbolic cardinality buckets",
+            source_theorem=(
+                "Problem97.ATailCriticalPairFrontier."
+                "cross_deletion_survives_iff_not_mem_selected_support"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     report: dict[str, Any] = {}
 
-    base_result = gate_base(encoder, timeout_seconds=60)
+    base_result = gate_base(encoder, args.timeout_seconds, solver)
     report["G-BASE"] = base_result
     print(json.dumps(base_result, indent=2))
 
@@ -493,23 +597,48 @@ def main() -> int:
         )
         return 1
 
-    sat_result = gate_sat(encoder, timeout_seconds=60)
+    sat_result = gate_sat(encoder, args.timeout_seconds, solver)
     report["G-SAT"] = sat_result
     print(json.dumps(sat_result, indent=2))
 
-    srcu_clash = gate_c1_srcu_clash(encoder, c1_extra, timeout_seconds=60)
+    srcu_clash = gate_c1_srcu_clash(
+        encoder,
+        c1_extra,
+        args.timeout_seconds,
+        solver,
+        args.solver_backend,
+    )
     report["G-EXCL-srcU"] = srcu_clash
     print(json.dumps(srcu_clash, indent=2))
 
-    del_triple = gate_c1_del_triple(encoder, c1_extra, timeout_seconds=60)
+    del_triple = gate_c1_del_triple(
+        encoder,
+        c1_extra,
+        args.timeout_seconds,
+        solver,
+        args.solver_backend,
+    )
     report["G-EXCL-del-triple"] = del_triple
     print(json.dumps(del_triple, indent=2))
 
-    c69_result = gate_c69(encoder, c1_extra, c2_extra, timeout_seconds=60)
+    c69_result = gate_c69(
+        encoder,
+        c1_extra,
+        c2_extra,
+        args.timeout_seconds,
+        solver,
+        args.solver_backend,
+    )
     report["G-C69"] = c69_result
     print(json.dumps(c69_result, indent=2))
 
-    probes_result = gate_probes(encoder, c2_extra, timeout_seconds=60)
+    probes_result = gate_probes(
+        encoder,
+        c2_extra,
+        args.timeout_seconds,
+        solver,
+        args.solver_backend,
+    )
     report["G-PROBES"] = probes_result
     print(json.dumps(probes_result, indent=2))
 

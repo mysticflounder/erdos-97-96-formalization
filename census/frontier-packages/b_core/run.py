@@ -10,6 +10,18 @@ from typing import Any
 
 import encoding as enc
 
+from census.card_head.frontier_lane_piqd import (
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+)
+from census.card_head.piqd_frontier_bc import (
+    B_RUN_SOURCES,
+    AllocationPhase,
+    BcCallerPackageProfile,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out"
 
 
@@ -20,13 +32,16 @@ def run_one(
     extra: list[tuple[int, ...]],
     timeout_seconds: int,
     classification: str,
+    *,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     clauses = encoder.clauses(*layers)
     instance = enc.RunInstance(encoder, clauses)
     cnf_path = OUT_DIR / f"{name}.cnf"
     proof_path = OUT_DIR / f"{name}.drat"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance,
         cnf_path,
         extra_clauses=extra,
@@ -46,6 +61,14 @@ def run_one(
         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
         "proof_verified": result.proof_verified,
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parent,
+        )
+    )
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / f"{name}.model.json"
         model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2) + "\n")
@@ -57,9 +80,35 @@ def run_one(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.BEncoder()
+    solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=BcCallerPackageProfile(
+            lane="B",
+            source_paths=B_RUN_SOURCES,
+            allocation_phases=(
+                AllocationPhase(
+                    "B named atom allocation",
+                    encoder.cnf.n_variables,
+                    "deterministic B-core named propositional variables",
+                ),
+            ),
+            live_leaf="B-core named-local diagnostic projection",
+            finite_schema="p97-b-core-named-local.v1",
+            cardinality_scope=(
+                "named-local B-core atoms only; no finite-carrier completeness claim"
+            ),
+            source_theorem=(
+                "NONE: named-local B-core projection has no theorem entitlement"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     matrix: list[tuple[str, tuple[str, ...], list[tuple[int, ...]], str]] = [
         ("base", ("base",), [], "diagnostic baseline"),
@@ -101,7 +150,16 @@ def main() -> int:
         )
 
     records = [
-        run_one(encoder, name, layers, extra, args.timeout_seconds, classification)
+        run_one(
+            encoder,
+            name,
+            layers,
+            extra,
+            args.timeout_seconds,
+            classification,
+            solver=solver,
+            backend=args.solver_backend,
+        )
         for name, layers, extra, classification in matrix
     ]
     manifest = {
@@ -125,7 +183,15 @@ def main() -> int:
         )
     print("B1 official verdict: OMITTED_PREREQUISITE_INGRESS_MISSING")
     print(f"manifest -> {manifest_path}")
-    return 0 if all(r["verdict"] in {"SAT", "UNSAT"} for r in records) else 1
+    return (
+        0
+        if all(
+            record["verdict"] in {"SAT", "UNSAT"}
+            and (record["verdict"] != "UNSAT" or record["proof_verified"] is True)
+            for record in records
+        )
+        else 1
+    )
 
 
 if __name__ == "__main__":

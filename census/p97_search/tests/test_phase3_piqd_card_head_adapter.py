@@ -30,6 +30,7 @@ from census.p97_search.phase3_piqd_card_head_adapter import (
     CurrentPiqdRun,
     EndpointLimits,
     build_source_faithful_canary_package,
+    make_current_piqd_packet_transport,
     run_production_canary,
     validate_production_output,
 )
@@ -253,6 +254,8 @@ class FakeCurrentApi:
         self.assignment = assignment
         self.job_id = job_id
         self.proof = proof
+        self.kept_cnf = canonical_kept_dimacs(package.cnf)
+        self.kept_cnf_blob_hash = sha256_bytes(self.kept_cnf)
         self.existing = existing
         self.map = _map_bytes(package.cnf)
         self.lean = _lean_bytes(job_id, package.cnf, proof)
@@ -329,6 +332,10 @@ class FakeCurrentApi:
                     "requested_core_limit": 1,
                     "attested_solver_processes": 1,
                     "attestation_basis": "SINGLE_PROCESS_NO_PARALLEL_FLAG",
+                    "identity_hash": identity,
+                    "cnf_blob_hash": self.package.cnf_sha256,
+                    "producer_manifest_hash": self.package.producer_manifest_sha256,
+                    "kept_cnf_blob_hash": self.kept_cnf_blob_hash,
                 },
             )
         if method == "GET" and path == f"/jobs/{self.job_id}/model":
@@ -368,6 +375,15 @@ class FakeCurrentApi:
             )
         if method == "GET" and path == f"/jobs/{self.job_id}/clause-map":
             return HttpResponse(200, self.map, {"Content-Type": "application/json"})
+        if (
+            method == "GET"
+            and path == f"/jobs/{self.job_id}/blobs/{self.kept_cnf_blob_hash}"
+        ):
+            return HttpResponse(
+                200,
+                self.kept_cnf,
+                {"Content-Type": "application/octet-stream"},
+            )
         expected_lean = f"/jobs/{self.job_id}/lean?{urllib.parse.urlencode({'toolchain': LEAN_TOOLCHAIN})}"
         if method == "GET" and path == expected_lean:
             return HttpResponse(
@@ -688,6 +704,21 @@ def test_json_depth_nodes_and_response_size_are_bounded() -> None:
         core.get("/jobs/job/model")
 
 
+def test_authenticated_package_rejects_endpoint_limit_subclass(
+    cell_package: AuthenticatedPackageSnapshot,
+) -> None:
+    class CustomLimits(EndpointLimits):
+        pass
+
+    with pytest.raises(CardHeadPiqdAdapterError, match="exactly EndpointLimits"):
+        AuthenticatedPackageSnapshot(
+            cell_package.cnf,
+            cell_package.producer_manifest,
+            cell_package.wave_manifest_bytes,
+            limits=CustomLimits(),
+        )
+
+
 def test_bounded_transport_rejects_nonexact_headers_before_iteration() -> None:
     class HostileHeaders(dict[str, str]):
         def items(self) -> Any:
@@ -749,6 +780,164 @@ def test_bounded_transport_rejects_duplicate_content_type_headers() -> None:
     with pytest.raises(PiqdOracleError, match="content-type mismatch"):
         core.get("/jobs/job/model")
     assert core.responses == []
+
+
+def test_bounded_transport_accepts_only_exact_job_bound_blob_route() -> None:
+    body = b"p cnf 0 0\n"
+    blob_hash = sha256_bytes(body)
+    requested: list[str] = []
+
+    def transport(_method: str, url: str, *_args: object) -> HttpResponse:
+        requested.append(urllib.parse.urlsplit(url).path)
+        return HttpResponse(200, body, {"Content-Type": "application/octet-stream"})
+
+    core = BoundedCurrentPiqdHttpTransport(
+        "http://piqd.invalid",
+        transport,
+    )
+
+    response = core.get(f"/jobs/job/blobs/{blob_hash}")
+    assert response.body == body
+    assert requested == [f"/jobs/job/blobs/{blob_hash}"]
+    for path in (
+        f"/jobs/job/blobs/{blob_hash.upper()}",
+        f"/jobs/job/blobs/{blob_hash}/extra",
+        f"/jobs/job/blob/{blob_hash}",
+    ):
+        with pytest.raises(PiqdOracleError, match="unsupported|digest"):
+            core.get(path)
+    assert requested == [f"/jobs/job/blobs/{blob_hash}"]
+
+
+@pytest.mark.parametrize(
+    ("response", "message"),
+    [
+        (
+            HttpResponse(
+                404, b"p cnf 0 0\n", {"Content-Type": "application/octet-stream"}
+            ),
+            "HTTP 404",
+        ),
+        (
+            HttpResponse(200, b"p cnf 0 0\n", {"Content-Type": "application/json"}),
+            "content-type",
+        ),
+        (
+            HttpResponse(
+                200, b"123456789", {"Content-Type": "application/octet-stream"}
+            ),
+            "exceeds limit",
+        ),
+        (object(), "malformed HttpResponse"),
+    ],
+)
+def test_job_bound_blob_transport_rejects_status_type_and_size(
+    response: object, message: str
+) -> None:
+    limits = EndpointLimits(cnf_bytes=8)
+    core = BoundedCurrentPiqdHttpTransport(
+        "http://piqd.invalid",
+        lambda *_args: response,  # type: ignore[arg-type,return-value]
+        limits=limits,
+    )
+    with pytest.raises(PiqdOracleError, match=message):
+        core.get(f"/jobs/job/blobs/{'0' * 64}")
+    assert core.responses == []
+
+
+def test_certified_packet_tail_is_explicit_and_observational_route_unchanged(
+    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
+) -> None:
+    def assemble(fetch: bool, directory: str):
+        api = FakeCurrentApi(cell_package, result="UNSAT")
+
+        def run_factory(_request: object) -> CurrentPiqdRun:
+            strict = BoundedCurrentPiqdHttpTransport(
+                "http://piqd.invalid", api, limits=cell_package.limits
+            )
+            runner = PiqdCegarDriver(
+                client=PiqdRawDimacsClient("http://piqd.invalid", transport=strict),
+                journal=DurableAttemptJournal(
+                    tmp_path / directory / "attempt.jsonl",
+                    manifest=cell_package.wave_manifest,
+                ),
+                policy=DriverPolicy(
+                    max_prepare_attempts=1,
+                    max_confirm_attempts=1,
+                    max_polls=1,
+                    max_result_attempts=1,
+                    poll_interval_s=0,
+                    requested_core_limit=1,
+                ),
+                sleep=lambda _seconds: None,
+            )
+            return CurrentPiqdRun(runner, strict)
+
+        (tmp_path / directory).mkdir()
+        request = CardHeadPiqdAdapter(cell_package, transport=lambda _r: None)._request(  # type: ignore[arg-type]
+            30, 10, True
+        )
+        packet = CurrentPiqdPacketAssembler(
+            cell_package,
+            run_factory,
+            fetch_certified_kept_blob=fetch,
+        )(request)
+        return packet, api
+
+    observed, observed_api = assemble(False, "observed")
+    assert observed.kept_cnf_blob_hash is None
+    assert observed.kept_cnf_blob is None
+    assert not any("/blobs/" in path for _method, path in observed_api.calls)
+
+    certified, certified_api = assemble(True, "certified")
+    assert certified.kept_cnf_blob_hash == sha256_bytes(certified.kept_cnf_blob)
+    assert any("/blobs/" in path for _method, path in certified_api.calls)
+
+
+def test_public_production_transport_owns_fresh_attempt_root(
+    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
+) -> None:
+    attempt_root = tmp_path / "piqd-attempts"
+    packet_transport = make_current_piqd_packet_transport(
+        cell_package,
+        output_root=attempt_root,
+        base_url="http://piqd.invalid",
+        transport=lambda *_args: HttpResponse(
+            500, b"{}", {"Content-Type": "application/json"}
+        ),
+        max_polls=1,
+        poll_interval_s=0,
+    )
+    assert type(packet_transport) is CurrentPiqdPacketAssembler
+    assert packet_transport.fetch_certified_kept_blob is True
+    assert attempt_root.is_dir()
+    assert not any(attempt_root.iterdir())
+
+    with pytest.raises(CardHeadPiqdAdapterError, match="already exists"):
+        make_current_piqd_packet_transport(
+            cell_package,
+            output_root=attempt_root,
+            base_url="http://piqd.invalid",
+            transport=lambda *_args: HttpResponse(
+                500, b"{}", {"Content-Type": "application/json"}
+            ),
+            max_polls=1,
+            poll_interval_s=0,
+        )
+
+
+def test_public_production_transport_validates_before_creating_root(
+    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
+) -> None:
+    attempt_root = tmp_path / "must-not-exist"
+    with pytest.raises(CardHeadPiqdAdapterError, match="max_polls"):
+        make_current_piqd_packet_transport(
+            cell_package,
+            output_root=attempt_root,
+            base_url="http://piqd.invalid",
+            max_polls=False,
+        )
+    assert not attempt_root.exists()
 
 
 def test_cli_fails_closed_on_nonexact_response_headers(

@@ -11,6 +11,18 @@ from typing import Any
 
 import encoding as enc
 
+from census.card_head.frontier_lane_piqd import (
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+)
+from census.card_head.piqd_frontier_bc import (
+    B_SMOKE_SOURCES,
+    AllocationPhase,
+    BcCallerPackageProfile,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out"
 
 
@@ -73,13 +85,19 @@ class SmokeInstance:
 
 
 def run_case(
-    encoder: SmokeEncoder, name: str, omitted: str | None, timeout_seconds: int
+    encoder: SmokeEncoder,
+    name: str,
+    omitted: str | None,
+    timeout_seconds: int,
+    *,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     clauses = encoder.clauses(omitted)
     cnf_path = OUT_DIR / f"smoke-{name}.cnf"
     proof_path = OUT_DIR / f"smoke-{name}.drat"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         SmokeInstance(encoder, clauses),
         cnf_path,
         timeout_seconds=timeout_seconds,
@@ -111,6 +129,14 @@ def run_case(
             "SMOKE-bank:apex-at-most-two-bisectors",
         ],
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parent,
+        )
+    )
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / f"smoke-{name}.model.json"
         model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2) + "\n")
@@ -122,17 +148,58 @@ def run_case(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = SmokeEncoder()
+    solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=BcCallerPackageProfile(
+            lane="B",
+            source_paths=B_SMOKE_SOURCES,
+            allocation_phases=(
+                AllocationPhase(
+                    "B smoke atom allocation",
+                    encoder.cnf.n_variables,
+                    "six named third-bisector smoke atoms",
+                ),
+            ),
+            live_leaf=(
+                "Problem97.ATailFrontierLiveClosure."
+                "false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision"
+            ),
+            finite_schema="p97-b-core-third-bisector-smoke.v1",
+            cardinality_scope="six named theorem-bank regression atoms only",
+            source_theorem=(
+                "Problem97.ATailFrontierLiveClosure."
+                "b1_live_false_of_third_bisector_carrier"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
     cases = [
         ("third-bisector", None),
         ("drop-Bis-t", "Bis(t)"),
         ("drop-Ne-t-b1", "Ne(t,b1)"),
         ("drop-Ne-t-a2", "Ne(t,a2)"),
     ]
-    records = [run_case(encoder, name, omitted, args.timeout_seconds) for name, omitted in cases]
-    full_ok = records[0]["verdict"] == "UNSAT" and records[0]["proof_verified"]
+    records = [
+        run_case(
+            encoder,
+            name,
+            omitted,
+            args.timeout_seconds,
+            solver=solver,
+            backend=args.solver_backend,
+        )
+        for name, omitted in cases
+    ]
+    full_ok = (
+        records[0]["verdict"] == "UNSAT"
+        and records[0]["proof_verified"] is True
+    )
     near_ok = all(
         r["verdict"] == "SAT" and r.get("omitted_atom_false_in_model") is True
         for r in records[1:]
@@ -141,8 +208,8 @@ def main() -> int:
         "schema": "p97-b-core-third-bisector-smoke.v1",
         "status": "PASS" if full_ok and near_ok else "FAIL",
         "note": (
-            "DRAT applies to the UNSAT full gate. SAT near-misses are checked "
-            "by CaDiCaL models, including falsity of the omitted atom."
+            "A checked proof applies to the UNSAT full gate. SAT near-misses "
+            "are checked by exact models, including falsity of the omitted atom."
         ),
         "cases": records,
     }

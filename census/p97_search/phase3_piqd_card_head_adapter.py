@@ -9,6 +9,7 @@ the independently fetched proof to the submitted source CNF.
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
 import stat
@@ -229,6 +230,10 @@ class AuthenticatedPackageSnapshot:
     num_clauses: int = field(init=False)
 
     def __post_init__(self) -> None:
+        if type(self.limits) is not EndpointLimits:
+            raise CardHeadPiqdAdapterError(
+                "package limits must be exactly EndpointLimits"
+            )
         if type(self.cnf) is not bytes or len(self.cnf) > self.limits.cnf_bytes:
             raise CardHeadPiqdAdapterError("package CNF bytes are invalid or oversized")
         producer = _json(
@@ -355,6 +360,9 @@ class CardHeadPiqdPacket:
     certificate_kind: str | None = None
     certificate: bytes | None = None
     lean_response: bytes | None = None
+    proof_blob_hash: str | None = None
+    kept_cnf_blob_hash: str | None = None
+    kept_cnf_blob: bytes | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -430,9 +438,13 @@ class BoundedCurrentPiqdHttpTransport:
             raise PiqdOracleError("current PIQD request escaped configured base URL")
         parsed = urllib.parse.urlsplit(url)
         path_query = parsed.path + (f"?{parsed.query}" if parsed.query else "")
+        try:
+            expected_type, limit = self._request_contract(method, path_query)
+        except CardHeadPiqdAdapterError as exc:
+            raise PiqdOracleError(str(exc)) from exc
         response = self.transport(method, url, body, headers)
         try:
-            self._validate(method, path_query, response)
+            self._validate(method, path_query, response, expected_type, limit)
         except CardHeadPiqdAdapterError as exc:
             raise PiqdOracleError(str(exc)) from exc
         self.responses.append((method, path_query, response))
@@ -441,23 +453,7 @@ class BoundedCurrentPiqdHttpTransport:
     def get(self, path: str) -> HttpResponse:
         return self("GET", f"{self.base_url}{path}", None, {})
 
-    def _validate(self, method: str, path: str, response: HttpResponse) -> None:
-        if (
-            type(response) is not HttpResponse
-            or type(response.status) is not int
-            or type(response.body) is not bytes
-        ):
-            raise CardHeadPiqdAdapterError("transport returned malformed HttpResponse")
-        if type(response.headers) is not dict or any(
-            type(key) is not str or type(value) is not str
-            for key, value in response.headers.items()
-        ):
-            raise CardHeadPiqdAdapterError(
-                "transport returned malformed HttpResponse headers"
-            )
-        expected_status = 200
-        expected_type: str
-        limit: int
+    def _request_contract(self, method: str, path: str) -> tuple[str, int]:
         if method == "POST" and path == "/jobs/prepare-cnf":
             expected_type, limit = "application/json", self.limits.json_bytes
         elif method == "POST" and path.startswith("/jobs/confirm?job_id="):
@@ -469,10 +465,20 @@ class BoundedCurrentPiqdHttpTransport:
         elif method == "GET":
             route = path.partition("?")[0]
             parts = route.strip("/").split("/")
-            if len(parts) not in {2, 3} or parts[0] != "jobs":
+            if len(parts) not in {2, 3, 4} or parts[0] != "jobs":
                 raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
             _job_id(parts[1], "endpoint job id")
-            suffix = parts[2] if len(parts) == 3 else "status"
+            if len(parts) == 4:
+                if parts[2] != "blobs":
+                    raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
+                _digest(parts[3], "endpoint blob digest")
+                expected_type, limit = (
+                    "application/octet-stream",
+                    self.limits.cnf_bytes,
+                )
+                suffix = "blob"
+            else:
+                suffix = parts[2] if len(parts) == 3 else "status"
             if suffix in {"status", "model", "clause-map"}:
                 expected_type = "application/json"
                 limit = (
@@ -504,11 +510,36 @@ class BoundedCurrentPiqdHttpTransport:
                     "text/plain; charset=utf-8",
                     self.limits.log_bytes,
                 )
+            elif suffix == "blob":
+                pass
             else:
                 raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
         else:
             raise CardHeadPiqdAdapterError("unsupported current PIQD method/path")
-        if response.status != expected_status:
+        return expected_type, limit
+
+    def _validate(
+        self,
+        method: str,
+        path: str,
+        response: HttpResponse,
+        expected_type: str,
+        limit: int,
+    ) -> None:
+        if (
+            type(response) is not HttpResponse
+            or type(response.status) is not int
+            or type(response.body) is not bytes
+        ):
+            raise CardHeadPiqdAdapterError("transport returned malformed HttpResponse")
+        if type(response.headers) is not dict or any(
+            type(key) is not str or type(value) is not str
+            for key, value in response.headers.items()
+        ):
+            raise CardHeadPiqdAdapterError(
+                "transport returned malformed HttpResponse headers"
+            )
+        if response.status != 200:
             raise CardHeadPiqdAdapterError(
                 f"current PIQD endpoint returned HTTP {response.status}"
             )
@@ -891,10 +922,19 @@ class CurrentPiqdPacketAssembler:
     """Run the shared driver and assemble only current endpoint contracts."""
 
     def __init__(
-        self, package: AuthenticatedPackageSnapshot, run_factory: RunFactory
+        self,
+        package: AuthenticatedPackageSnapshot,
+        run_factory: RunFactory,
+        *,
+        fetch_certified_kept_blob: bool = False,
     ) -> None:
+        if type(fetch_certified_kept_blob) is not bool:
+            raise CardHeadPiqdAdapterError(
+                "fetch_certified_kept_blob must be builtin bool"
+            )
         self.package = package
         self.run_factory = run_factory
+        self.fetch_certified_kept_blob = fetch_certified_kept_blob
 
     @staticmethod
     def _get(run: CurrentPiqdRun, path: str) -> HttpResponse:
@@ -969,12 +1009,28 @@ class CurrentPiqdPacketAssembler:
             ]
             if header_values != [sha256_bytes(proof_response.body)]:
                 raise CardHeadPiqdAdapterError("proof endpoint hash header mismatch")
+            proof_blob_hash = header_values[0]
             _validate_lrat(
                 proof_response.body, max_bytes=self.package.limits.proof_bytes
             )
             clause_map = self._get(run, f"/jobs/{job.job_id}/clause-map").body
             lean_path = f"/jobs/{job.job_id}/lean?{urllib.parse.urlencode({'toolchain': LEAN_TOOLCHAIN})}"
             lean = self._get(run, lean_path).body
+            kept_cnf_blob_hash: str | None = None
+            kept_cnf_blob: bytes | None = None
+            if self.fetch_certified_kept_blob:
+                kept_cnf_blob_hash = _digest(
+                    status.get("kept_cnf_blob_hash"),
+                    "status kept_cnf_blob_hash",
+                )
+                kept_cnf_blob = self._get(
+                    run,
+                    f"/jobs/{job.job_id}/blobs/{kept_cnf_blob_hash}",
+                ).body
+                if sha256_bytes(kept_cnf_blob) != kept_cnf_blob_hash:
+                    raise CardHeadPiqdAdapterError(
+                        "kept CNF blob bytes disagree with status hash"
+                    )
             return CardHeadPiqdPacket(
                 job,
                 driver_result,
@@ -989,6 +1045,9 @@ class CurrentPiqdPacketAssembler:
                 certificate_kind=CERTIFICATE_KIND,
                 certificate=proof_response.body,
                 lean_response=lean,
+                proof_blob_hash=proof_blob_hash,
+                kept_cnf_blob_hash=kept_cnf_blob_hash,
+                kept_cnf_blob=kept_cnf_blob,
             )
         return CardHeadPiqdPacket(
             job,
@@ -1571,6 +1630,62 @@ class _ProductionRunFactory:
         )
         self.journal_paths.append(journal_path)
         return CurrentPiqdRun(driver, strict_http)
+
+
+def make_current_piqd_packet_transport(
+    package: AuthenticatedPackageSnapshot,
+    *,
+    output_root: Path,
+    base_url: str,
+    transport: Transport | None = None,
+    max_polls: int = 300,
+    poll_interval_s: float = 2.0,
+    fetch_certified_kept_blob: bool = True,
+) -> CurrentPiqdPacketAssembler:
+    """Create the production packet transport used by certified callers.
+
+    ``output_root`` is an attempt-journal root owned by this transport.  Its
+    parent must already exist as a real, no-follow directory and
+    ``output_root`` itself must not exist; this function creates it once with
+    mode 0700.  This keeps its lifecycle separate from the legacy canary's
+    already-owned output tree.
+    """
+
+    if type(package) is not AuthenticatedPackageSnapshot:
+        raise CardHeadPiqdAdapterError(
+            "production transport requires an authenticated package snapshot"
+        )
+    if not isinstance(output_root, Path):
+        raise CardHeadPiqdAdapterError("output_root must be a native Path value")
+    if type(max_polls) is not int or max_polls <= 0:
+        raise CardHeadPiqdAdapterError("max_polls must be a positive builtin int")
+    if (
+        type(poll_interval_s) not in {int, float}
+        or not math.isfinite(poll_interval_s)
+        or poll_interval_s < 0
+    ):
+        raise CardHeadPiqdAdapterError(
+            "poll_interval_s must be a finite nonnegative builtin number"
+        )
+    if type(fetch_certified_kept_blob) is not bool:
+        raise CardHeadPiqdAdapterError("fetch_certified_kept_blob must be builtin bool")
+    selected_transport = stdlib_http_transport if transport is None else transport
+    # Validate the URL/transport pair before claiming the create-once root.
+    BoundedCurrentPiqdHttpTransport(base_url, selected_transport, limits=package.limits)
+    _mkdir_create_once(output_root)
+    run_factory = _ProductionRunFactory(
+        package,
+        output_root,
+        base_url,
+        selected_transport,
+        max_polls=max_polls,
+        poll_interval_s=float(poll_interval_s),
+    )
+    return CurrentPiqdPacketAssembler(
+        package,
+        run_factory,
+        fetch_certified_kept_blob=fetch_certified_kept_blob,
+    )
 
 
 def _write_package_snapshot(root: Path, package: SourceFaithfulCanaryPackage) -> None:

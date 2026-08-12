@@ -1,4 +1,4 @@
-"""D4 exactly-two-bisector smoke gate with checked DRAT.
+"""D4 exactly-two-bisector smoke gate with a checked proof.
 
 The positive fixture supplies the banked D4 pair ``a1,b`` and a fresh named
 carrier probe ``c3`` distinct from both.  Adding ``bis(q,w;c3)`` must be UNSAT
@@ -19,6 +19,13 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import encoding as enc  # noqa: E402
 
+from census.card_head.frontier_lane_piqd import (  # noqa: E402
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out" / "smoke"
 
 
@@ -27,15 +34,18 @@ def solve(
     name: str,
     clauses: list[enc.TaggedClause],
     timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
     proof: bool = False,
 ) -> tuple[dict[str, Any], enc.CadicalResult]:
     instance = enc.RunInstance(encoder, clauses)
     start = time.monotonic()
-    result = enc.solve_cadical(
+    proof_path = OUT_DIR / f"{name}.drat"
+    result = solver(
         instance,
         OUT_DIR / f"{name}.cnf",
         timeout_seconds=timeout_seconds,
-        proof_path=(OUT_DIR / f"{name}.drat") if proof else None,
+        proof_path=proof_path if proof else None,
     )
     (OUT_DIR / f"{name}.clauses.json").write_text(
         json.dumps(encoder.clause_map(clauses), sort_keys=True, indent=2),
@@ -51,15 +61,32 @@ def solve(
         "proof_verified": result.proof_verified,
         "wall_seconds": round(time.monotonic() - start, 3),
     }
+    if proof:
+        record.update(
+            proof_manifest_fields(
+                backend=backend,
+                requested_proof_path=proof_path,
+                result=result,
+                relative_to=OUT_DIR.parents[1],
+            )
+        )
     return record, result
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.DEEncoder()
+    solver = solver_from_args(
+        args=args,
+        lane="DE",
+        encoder=encoder,
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     # Keep D4, but omit its direct named no-third unit.  The smoke target is
     # the general convex-carrier line bound, not that residual field.
@@ -69,7 +96,12 @@ def main() -> int:
     ]
     fixture = d4 + encoder.smoke_probe_units()
     positive, positive_result = solve(
-        encoder, "d4_two_bisector_positive", fixture, args.timeout_seconds
+        encoder,
+        "d4_two_bisector_positive",
+        fixture,
+        args.timeout_seconds,
+        solver,
+        args.solver_backend,
     )
 
     third = enc.TaggedClause(
@@ -80,6 +112,8 @@ def main() -> int:
         "d4_fresh_third_unsat",
         fixture + [third],
         args.timeout_seconds,
+        solver,
+        args.solver_backend,
         proof=True,
     )
 
@@ -94,6 +128,8 @@ def main() -> int:
         "d4_third_without_bisector_geom",
         no_bis_geom + [third],
         args.timeout_seconds,
+        solver,
+        args.solver_backend,
     )
 
     manifest = [positive, negative, dependency]

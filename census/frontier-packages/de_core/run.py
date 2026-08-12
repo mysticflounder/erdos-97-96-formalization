@@ -12,16 +12,30 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import encoding as enc  # noqa: E402
 
+from census.card_head.frontier_lane_piqd import (  # noqa: E402
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+    solver_from_args,
+)
+
 OUT_DIR = Path(__file__).resolve().parent / "out"
 
 
-def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str, Any]:
+def run_one(
+    encoder: enc.DEEncoder,
+    name: str,
+    timeout_seconds: int,
+    *,
+    solver: FrontierSolver,
+    backend: str,
+) -> dict[str, Any]:
     clauses = encoder.clauses_for(name)
     instance = enc.RunInstance(encoder, clauses)
     cnf_path = OUT_DIR / f"{name}.cnf"
     proof_path = OUT_DIR / f"{name}.drat"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance,
         cnf_path,
         timeout_seconds=timeout_seconds,
@@ -46,6 +60,14 @@ def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str
         "clause_map_file": str(clause_map_path.relative_to(OUT_DIR.parent)),
         "proof_verified": result.proof_verified,
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parent,
+        )
+    )
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / f"{name}.model.json"
         model_path.write_text(
@@ -60,10 +82,27 @@ def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.DEEncoder()
-    manifest = [run_one(encoder, name, args.timeout_seconds) for name in encoder.RUNS]
+    solver = solver_from_args(
+        args=args,
+        lane="DE",
+        encoder=encoder,
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
+    manifest = [
+        run_one(
+            encoder,
+            name,
+            args.timeout_seconds,
+            solver=solver,
+            backend=args.solver_backend,
+        )
+        for name in encoder.RUNS
+    ]
     (OUT_DIR / "manifest.json").write_text(
         json.dumps(manifest, sort_keys=True, indent=2), encoding="utf-8"
     )

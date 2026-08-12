@@ -15,6 +15,7 @@ Run from the repo root:
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
@@ -23,6 +24,13 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import encoding as enc  # noqa: E402
+
+from census.card_head.frontier_lane_piqd import (  # noqa: E402
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+    solver_from_args,
+)
 
 OUT_DIR = Path(__file__).resolve().parent / "out" / "smoke"
 
@@ -44,11 +52,13 @@ def _lit(encoder: "enc.EEncoder", name: str, value: bool) -> tuple[int]:
     return (var if value else -var,)
 
 
-def gate_base(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]:
+def gate_base(
+    encoder: "enc.EEncoder", timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
     instance = enc.RunInstance(encoder, encoder.base_clauses)
     cnf_path = OUT_DIR / "g_base.cnf"
     start = time.monotonic()
-    result = enc.solve_cadical(instance, cnf_path, timeout_seconds=timeout_seconds)
+    result = solver(instance, cnf_path, timeout_seconds=timeout_seconds)
     wall = time.monotonic() - start
     return {
         "gate": "G-BASE",
@@ -183,12 +193,14 @@ def shadow_assumptions(encoder: "enc.EEncoder") -> list[tuple[int, ...]]:
     return assumptions
 
 
-def gate_shadow(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]:
+def gate_shadow(
+    encoder: "enc.EEncoder", timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
     assumptions = shadow_assumptions(encoder)
     instance = enc.RunInstance(encoder, encoder.base_clauses)
     cnf_path = OUT_DIR / "g_shadow.cnf"
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance, cnf_path, extra_clauses=assumptions, timeout_seconds=timeout_seconds
     )
     wall = time.monotonic() - start
@@ -212,9 +224,14 @@ def gate_shadow(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]
     return record
 
 
-def gate_probes(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]:
+def gate_probes(
+    encoder: "enc.EEncoder",
+    timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
+) -> dict[str, Any]:
     """(spec section 5) The five probes: each must be UNSAT with a verified
-    DRAT proof."""
+    backend-honest proof."""
 
     lit = lambda name, value: _lit(encoder, name, value)
     probes: list[dict[str, Any]] = []
@@ -224,13 +241,13 @@ def gate_probes(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]
         cnf_path = OUT_DIR / f"g_probe_{probe_name}.cnf"
         proof_path = OUT_DIR / f"g_probe_{probe_name}.drat"
         start = time.monotonic()
-        result = enc.solve_cadical(
+        result = solver(
             instance, cnf_path, extra_clauses=extra,
             timeout_seconds=timeout_seconds, proof_path=proof_path,
         )
         wall = time.monotonic() - start
-        ok = result.verdict == "UNSAT"
-        return {
+        ok = result.verdict == "UNSAT" and result.proof_verified
+        record = {
             "probe": probe_name,
             "verdict": result.verdict,
             "expected": "UNSAT",
@@ -238,6 +255,15 @@ def gate_probes(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]
             "proof_verified": result.proof_verified,
             "wall_seconds": round(wall, 3),
         }
+        record.update(
+            proof_manifest_fields(
+                backend=backend,
+                requested_proof_path=proof_path,
+                result=result,
+                relative_to=OUT_DIR.parents[1],
+            )
+        )
+        return record
 
     # P-EBM3: base + b(x1,a1) -> UNSAT.
     probes.append(_run_probe("P-EBM3", [lit("b(x1,a1)", True)]))
@@ -271,13 +297,24 @@ def gate_probes(encoder: "enc.EEncoder", timeout_seconds: int) -> dict[str, Any]
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
+    args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.EEncoder()
+    solver = solver_from_args(
+        args=args,
+        lane="E",
+        encoder=encoder,
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     report: dict[str, Any] = {}
     report["eq4_no_triangle"] = check_eq4_no_triangle(encoder)
 
-    base_result = gate_base(encoder, timeout_seconds=60)
+    base_result = gate_base(encoder, args.timeout_seconds, solver)
     report["G-BASE"] = base_result
     print(json.dumps(base_result, indent=2))
 
@@ -290,16 +327,20 @@ def main() -> int:
         )
         return 1
 
-    shadow_result = gate_shadow(encoder, timeout_seconds=60)
+    shadow_result = gate_shadow(encoder, args.timeout_seconds, solver)
     report["G-SHADOW"] = shadow_result
     print(json.dumps(shadow_result, indent=2))
 
-    probes_result = gate_probes(encoder, timeout_seconds=60)
+    probes_result = gate_probes(
+        encoder, args.timeout_seconds, solver, args.solver_backend
+    )
     report["G-PROBES"] = probes_result
     print(json.dumps(probes_result, indent=2))
 
     report["ALL_GATES_PASS"] = (
-        base_result["pass"] and shadow_result["pass"] and probes_result["pass"]
+        base_result["pass"]
+        and shadow_result["pass"]
+        and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(
         json.dumps(report, sort_keys=True, indent=2), encoding="utf-8"
