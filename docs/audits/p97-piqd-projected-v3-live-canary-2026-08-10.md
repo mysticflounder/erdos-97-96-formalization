@@ -5,6 +5,11 @@ Date: 2026-08-10
 Status: authenticated finite discovery checkpoint; no proof, theorem-coverage,
 universal-lift, Lean-closure, or publish-spine claim.
 
+Scope note: this is the historical shard/v2 canary for the frozen 58,319-clause
+base at commit `942ba5770a847b9b253916191c9f1bfb3c8946c2`. It is not live
+qualification of the current 58,314-clause global-unsharded authority-v3
+production route.
+
 ## Outcome
 
 The projected-static-v3 incremental discovery route completed its bounded live

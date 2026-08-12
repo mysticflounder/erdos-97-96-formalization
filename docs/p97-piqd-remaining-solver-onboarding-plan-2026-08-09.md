@@ -51,16 +51,30 @@ false until separate source-clean consumers establish them.
 
 ## Lane status and order
 
+The status labels in this ledger are deliberately cumulative:
+
+- **adapter implemented** means the production seam and fail-closed custody
+  contract exist. A standalone offline validator is lane-specific and is
+  stated explicitly where present;
+- **fake-qualified** means the adversarial/fake-transport gate passes without a
+  real daemon or solver; and
+- **live-qualified** means a bounded current-daemon run produced durable
+  session/receipt evidence and passed independent replay or artifact audit.
+
+A historical live canary qualifies only its exact frozen route and inputs. It
+does not qualify a newer producer profile. None of these labels is a proof,
+theorem, universal result, Lean result, or proof-spine closure.
+
 | Order | Boundary | Current status | Next acceptance gate |
 |---:|---|---|---|
 | 1 | Exact17 static and seeded CaDiCaL | Onboarded canaries; finite only | Continue through strict shared adapters; no legacy attestation reuse |
 | 2 | Rank-four direct-six refinement | Onboarded SAT canary; finite only | Use authenticated PIQD session roots and mandatory theorem-bank search after each wave |
 | 3 | Exact12 source54 static CaDiCaL | Onboarded and pushed | Reuse as the custody baseline for other exact12 cells |
 | 4 | Frontier A-core static CaDiCaL | Onboarded: source-faithful retry package, durable runner, one-process live SAT canary, and authenticated no-argument standalone replay are green; receipt `643ebab4…ed40`, finite only | Reuse the qualified retry-aware boundary; preserve false source-entitlement, theorem-coverage, universal-lift, and Lean-closure claims |
-| 5 | Exact12 v14 CardHead static CaDiCaL | Onboarded and pushed; live SAT canary and independent total-model/custody replay pass, receipt `d74c396e…` | Reuse the qualified producer-specific boundary; preserve finite-only and false source-entitlement claims |
+| 5 | Exact12 CardHead static and arm-static CaDiCaL | The v14 CardHead static lane is onboarded and live-qualified: its SAT canary and independent total-model/custody replay pass, receipt `d74c396e…`. The v8-r1 arm-static lane now defaults to PIQD for discovery and is fake/adversarial qualified with exact job/source/CNF custody and total-model replay. Observational PIQD UNSAT triggers exactly one byte-identical local DRAT terminal rerun; UNKNOWN, transport, custody, and malformed results fail closed without fallback. The arm-static route has not yet run a live PIQD canary | Reuse the qualified v14 boundary. Run one bounded arm-static live discovery canary and independently validate its artifacts; keep the terminal proof rerun local and preserve finite-only, false source-entitlement, and false Lean-closure claims |
 | 6 | FreshThird Z3/cvc5 SMT sessions | Onboarded: corrected constrained-symbol packet, 91 fake/adversarial tests, one-core 24-session live wave, and two independent standalone replays are green; receipt `eb697bfd…e9ab`, finite only | Reuse the qualified source/session/replay contract for the remaining direct SMT entry points; preserve false theorem and source-entitlement claims |
 | 7 | Shared static CardHead/F-Gamma/frontier CaDiCaL | CardHead and the F-Gamma base-discovery call are onboarded. The shared frontier seam now authenticates each effective query, fetches the exact kept CNF, validates the source-to-kept clause map, and accepts UNSAT only after caller-owned compact-LRAT Lean replay. A/B/C/DE/DR/E default callers are migrated and fake-qualified; live qualification remains pending | Live-qualify the migrated A/B/C/DE/DR/E callers. Keep raw DRAT and any other non-LRAT certificate products explicit legacy-local boundaries |
-| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 now has a qualification-v3 authority for the exact current global unsharded base, complete variable map, current source custody, and arbitrary dense append/solve journals. Its 313-test fake gate is green; historical shard qualification-v2 remains frozen, and no v3 production qualification has run | Recapture the authority from a clean immutable structural source, then run and independently audit one bounded qualification-v3 production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
+| 8 | Phase3 static, projected-static, and incremental CaDiCaL CEGAR | Shared adapters and recovery canaries are green. Structural and five-omission production launchers route discovery through PIQD. Projected-static-v3 has an implemented and fake-qualified authority-v3 route for the exact current global-unsharded base, complete variable map, current source custody, and arbitrary dense append/solve journals. Its historical shard/v2 SAT-to-UNSAT canary is live-qualified only for that frozen shard profile; it does not qualify the current global-unsharded authority-v3 production route | Recapture authority-v3 from a clean immutable structural source, then run and independently audit one bounded current global-unsharded production wave with resume, shards, and parallelism disabled. Direct APIs remain diagnostic and the terminal DRAT rerun remains explicitly local until CERT-001 |
 | 9 | Other direct Z3/cvc5 diagnostics | Producer-neutral source-semantic adapters are green. FreshThird, Survivor-CVC5, global full-convex cvc5, endpoint metric, ATAIL geometry, Phase-3 survivor-metric, and the global metric core-miner now have bounded live qualification at their stated finite diagnostic boundaries plus standalone validation or independent artifact audit. The survivor-metric live checkpoint used two fresh sequential one-solve Z3 sessions: exact-metric `UNKNOWN` and full-convex proofless diagnostic `UNSAT` with an empty unnamed core. The core-miner live checkpoint used closed cvc5 and Z3 sessions and remains diagnostic. PIQD named-core labels and digest coverage requested in `#5400` are shipped. Native and named cores remain diagnostic until the caller binds every exact label to authenticated P97 source semantics and independently replays that mapping. Source-entitlement, proof, theorem, global, universal, Lean, and `sorry`-closure claims remain false. | Reuse the qualified boundaries for finite diagnostics. Require exact caller-owned label-to-source bindings and independent semantic replay before any core promotion; keep proofless UNSAT off the proof spine |
 | 10 | Singular algebra probes | A maintained PIQD Singular execution-custody backend and standalone artifact validator are implemented and pushed in checkpoint `765691c`. `equality_ideal_probe.py` and `structural_screen.py` now default to one-worker sequential PIQD execution with no local fallback; the old local subprocess route is explicit legacy-only. Caller contexts bind source and query semantics, and callers independently parse and validate retained transcripts. Fake/adversarial gates are green, including output-parent and rebinding attacks. This attests process execution and immutable transcript custody only: `RAN` is not UNIT/NONUNIT, a proof, or theorem closure. Certificate-producing Singular calls remain intentional local proof boundaries, and old msolve pilots are historical or superseded. | Run one bounded live Singular canary and the public offline validator. Preserve caller-owned semantic replay and keep certificate/proof-producing algebra local unless a separately checked certificate route exists |
 | 11 | Certificate and Lean ingress | Clause-map consumer green. `CERT-001` is closed as a scope correction: PIQD authenticates solver execution artifacts, while proof/certificate production and kernel replay remain explicit caller-owned boundaries. The shared frontier certified seam now enforces exact kept-CNF/map custody and validated compact-LRAT Lean replay | Live-qualify each migrated frontier caller without inferring theorem closure from PIQD execution or from an unchecked solver verdict |
@@ -368,22 +382,25 @@ and independent fake/offline audits:
   corrected gate passes 21 tests and an independent audit.
 
 The aggregate command `./scripts/test-p97-piqd-remaining-solvers.sh` now runs
-the ATAIL opt-in guard, global metric core-miner, Phase-3 survivor metric,
-A-core metric, pinned-general-m, rigid221, and the complete A/B/C/DE/DR/E
-certified-frontier gates sequentially with one pytest worker and thread caps.
-The 2026-08-12 offline checkpoint passes all 350 tests; Ruff lint and format
-checks are clean. This aggregate result is not a blanket live qualification.
+the ATAIL opt-in guard, Exact12 arm-static discovery, global metric core-miner,
+Phase-3 survivor metric, A-core metric, pinned-general-m, rigid221, and the
+complete A/B/C/DE/DR/E certified-frontier gates sequentially with one pytest
+worker and thread caps. The 2026-08-12 offline checkpoint passes its complete
+365-test fake/adversarial suite; Ruff lint and format checks are clean. This
+aggregate result is not a blanket live qualification.
 The two originally targeted lanes are separately live-qualified at their
 finite diagnostic boundaries: the global metric core-miner used one fresh
 cvc5 session for 32 solves and one fresh Z3 session for two status-only solves;
 both sessions closed, and the standalone validator plus independent
 seven-artifact audit passed. The Phase-3 survivor-metric route used the two
 fresh one-solve sessions described above; its standalone validator and
-independent custody audit also passed. The newly aggregated A-core,
-pinned-general-m, rigid221, and certified-frontier routes remain
+independent custody audit also passed. The newly aggregated Exact12 arm-static,
+A-core, pinned-general-m, rigid221, and certified-frontier routes remain
 fake/adversarial or offline qualified only until their separately bounded live
-canaries and independent artifact validations complete. The separately
-implemented Singular routes have the same live-validation boundary.
+canaries and independent artifact validations complete. The arm-static PIQD
+route covers discovery only: its authenticated terminal DRAT rerun remains
+intentionally local. The separately implemented Singular routes have the same
+live-validation boundary.
 
 Maintainer contract `#5400` is now shipped: PIQD accepts caller-owned
 `assumption_labels`, returns `core_labels`, and covers both in the result
@@ -431,6 +448,20 @@ explicit retirement classification:
   active direct Singular callers; both now use the shared PIQD execution-custody
   backend by default, while retaining an explicit legacy-local route.
 
+The audit also classifies retained but non-production entry points instead of
+counting every solver import as an onboarding gap:
+
+- `census/q3_two_center/*`, `census/candidate_d_probe/encoder.py`, and
+  `census/card_head/source_faithful_run.py` are historical diagnostic or
+  superseded producers;
+- `census/atail_force/separator_pilot.py --run` and
+  `census/p97_search/realize.py` remain explicit legacy diagnostic entry
+  points, not default production routes; and
+- the unchanged dynamic next-row structural wave is not authorized as a
+  production lane. Its imported helpers remain active, while any future live
+  runner must receive its own authenticated PIQD caller migration rather than
+  inheriting the static-lane qualification.
+
 These are P97 caller-migration and ledger/retirement gaps, not PIQD product
 bugs. ATAIL's old Z3/cvc5 checkpoints are terminal historical work. Its
 retained manifest and geometry diagnostics now reject omitted legacy-local
@@ -441,8 +472,9 @@ closed `CERT-001` scope correction, proof and certificate checking remains a
 local caller responsibility. The shared Singular backend closes execution and
 transcript custody only; it does not promote algebraic verdicts or
 certificates. The project-wide onboarding completion criteria remain unmet:
-the new A-core metric, pinned-general-m, rigid221, A/B/C/DE/DR/E certified
-frontier, and Singular routes still need their stated bounded live
+the new Exact12 arm-static discovery, A-core metric, pinned-general-m,
+rigid221, A/B/C/DE/DR/E certified frontier, and Singular routes still need
+their stated bounded live
 qualifications and independent artifact validation. Explicit legacy-local
 diagnostics are no longer silently selected production defaults and remain
 outside theorem closure.

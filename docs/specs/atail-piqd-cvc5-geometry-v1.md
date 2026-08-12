@@ -155,6 +155,25 @@ UNSAT is classified exactly `UNSAT_DISCOVERY_ONLY`. An empty-assumption UNSAT re
 The canonical proof-blueprint reference is session `019fdf9c`, anchored at
 `Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier`. This onboarding leaves it unchanged: `OPEN` and `OFF_SPINE`. PIQD routing and exact SAT replay do not close or promote that proof obligation.
 
+## Bounded live qualification
+
+The exact adapter at commit
+`82ec9dc34416009c4eeb75cb269805442d87aae7` is live-qualified at its finite
+diagnostic boundary. The preserved output is
+`scratch/p97-atail-geometry-piqd-live-20260811-v1`.
+
+- session `0739bf44-ab85-4421-a570-607affaf7dda` returned SAT and the
+  standalone validator independently replayed all five retained relations;
+- a separate contradictory-control session
+  `e437bbc7-62e3-4c94-aa45-506e3dd33231` returned diagnostic-only UNSAT; and
+- both sessions closed, both run directories passed `validate_run_directory`,
+  and the pre/post daemon-version and solver-registry identities matched.
+
+This live qualification is execution, receipt, custody, and SAT-replay
+evidence only. The contradictory UNSAT result has no named source core or proof
+object, and all source-entitlement, proof, theorem, global, universal, and Lean
+claims remain false.
+
 ## Test contract
 
 `scripts/test-p97-piqd-atail-geometry.sh` runs one pytest process against fake transport only and Ruff checks over the two owned Python files. It caps common native thread pools at one and fixes Python hash seeding. The fixtures cover deterministic SAT replay for all five relations; a contradictory UNSAT query; exact source/query custody; intermediate and leaf symlinks; hard-linked, nonregular, and oversize sources; same-size source mutation with restored mtime; ancestor replacement; immutable-output hardlink, replacement, symlink, and directory-fsync races; descriptor/schema and blueprint attacks; intra-ledger `_safe` and cross-ledger SMT-symbol collisions; structural-token budget enforcement; complete readback; rational-only values; model/readback disagreement; relation rejection; committed-response reconciliation; export tampering; the prohibition on a second solve; standalone normal and reconciled run validation; file, inventory, symlink, hardlink, swapped-source, crossed-lifecycle, crossed-result, re-signed schema, semantic, claim-escalation, and final-recapture attacks.

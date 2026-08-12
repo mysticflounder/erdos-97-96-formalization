@@ -5,6 +5,12 @@ session `019fdf9c` unchanged, open, and off-spine. It establishes no verified
 UNSAT proof, global obstruction, theorem coverage, universal lift, or Lean
 closure.
 
+This document and schema are the frozen historical shard/v2 qualification
+profile. Its live SAT-to-UNSAT canary does **not** qualify the current
+global-unsharded authority-v3 production route, whose base has 58,314 clauses
+and whose lifecycle is specified separately by the current producer and
+production-launcher contracts.
+
 ## Production identity
 
 The production schema is hard-coded to the historical frontier at commit
