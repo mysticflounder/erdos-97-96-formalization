@@ -7,6 +7,7 @@ from __future__ import annotations
 import shutil
 import unittest
 
+from census.global_confinement import metric_realizability_cvc5 as cvc5_module
 from census.global_confinement.metric_realizability_cvc5 import (
     STAGES,
     _frontier,
@@ -24,6 +25,10 @@ from census.global_confinement.metric_realizability_probe import (
 
 
 class MetricRealizabilityCvc5Tests(unittest.TestCase):
+    def test_local_cli_requires_explicit_opt_in(self) -> None:
+        with self.assertRaisesRegex(SystemExit, "pass --legacy-local"):
+            cvc5_module.main([])
+
     def test_status_parser_ignores_diagnostics(self) -> None:
         self.assertEqual(_parse_status("warning\nunknown\n"), "UNKNOWN")
         self.assertEqual(_parse_status("sat\n(model omitted)\n"), "SAT")

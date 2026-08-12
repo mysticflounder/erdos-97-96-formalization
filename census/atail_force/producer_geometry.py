@@ -29,6 +29,7 @@ from census.atail_force import producer_surface as surface
 Relation = Literal["eq", "ge", "gt", "ne", "or_ne"]
 MAX_Z3_TIMEOUT_MS = 30_000
 MAX_CVC5_TIMEOUT_SECONDS = 30.0
+LEGACY_LOCAL_CVC5_BACKEND = "legacy-local"
 
 
 class GeometryError(ValueError):
@@ -558,21 +559,55 @@ def build_cvc5_smt2(
     return "\n".join(lines)
 
 
+def _resolve_cvc5_executable(
+    cvc5: str | Path | None, backend: str | None
+) -> str:
+    """Resolve an explicitly selected cvc5 backend, without implicit fallback."""
+
+    if backend is not None:
+        _require(
+            backend == LEGACY_LOCAL_CVC5_BACKEND,
+            f"unknown cvc5 backend {backend!r}; expected "
+            f"{LEGACY_LOCAL_CVC5_BACKEND!r}",
+        )
+        _require(
+            cvc5 is None,
+            "cvc5 path and backend cannot both be provided",
+        )
+    _require(
+        cvc5 is not None or backend == LEGACY_LOCAL_CVC5_BACKEND,
+        "cvc5 backend is not selected; pass cvc5=... or "
+        f"backend={LEGACY_LOCAL_CVC5_BACKEND!r}",
+    )
+    executable = str(
+        cvc5
+        if cvc5 is not None
+        else shutil.which("cvc5") or "/Users/adam/bin/cvc5"
+    )
+    _require(Path(executable).is_file(), f"cvc5 executable not found: {executable}")
+    return executable
+
+
 def run_cvc5_bounded(
     system: GeometrySystem,
     enabled_atoms: Iterable[str] | None = None,
     *,
     cvc5: str | Path | None = None,
+    backend: str | None = None,
     timeout_seconds: float = 1.0,
 ) -> dict[str, object]:
-    """Run exactly one cvc5 query under both internal and host time bounds."""
+    """Run one explicitly selected cvc5 query under bounded time limits.
+
+    A direct executable path is explicit.  The retained PATH/local executable
+    discovery requires ``backend="legacy-local"``; there is no implicit local
+    fallback for library callers.
+    """
 
     _require(
         0 < timeout_seconds <= MAX_CVC5_TIMEOUT_SECONDS,
         f"cvc5 timeout must be at most {MAX_CVC5_TIMEOUT_SECONDS:g} seconds",
     )
-    executable = str(cvc5 or shutil.which("cvc5") or "/Users/adam/bin/cvc5")
-    _require(Path(executable).is_file(), f"cvc5 executable not found: {executable}")
+    executable = _resolve_cvc5_executable(cvc5, backend)
     smt2 = build_cvc5_smt2(system, enabled_atoms)
     command = [
         executable, "--lang=smt2", "--nl-cov", "--produce-unsat-cores",
@@ -620,16 +655,18 @@ def z3_smoke_gate() -> dict[str, object]:
 
 
 def cvc5_smoke_gate(
-    *, cvc5: str | Path | None = None, timeout_seconds: float = 1.0
+    *,
+    cvc5: str | Path | None = None,
+    backend: str | None = None,
+    timeout_seconds: float = 1.0,
 ) -> dict[str, object]:
-    """Optional external-engine smoke gate; it performs no producer query."""
+    """Run the smoke gate for an explicitly selected external backend."""
 
     _require(
         0 < timeout_seconds <= MAX_CVC5_TIMEOUT_SECONDS,
         f"cvc5 timeout must be at most {MAX_CVC5_TIMEOUT_SECONDS:g} seconds",
     )
-    executable = str(cvc5 or shutil.which("cvc5") or "/Users/adam/bin/cvc5")
-    _require(Path(executable).is_file(), f"cvc5 executable not found: {executable}")
+    executable = _resolve_cvc5_executable(cvc5, backend)
     probes = {
         "sat": "(set-logic QF_NRA)\n(declare-fun x () Real)\n(assert (= (* x x) 1))\n(check-sat)\n",
         "unsat": "(set-logic QF_NRA)\n(declare-fun x () Real)\n(assert (< (* x x) 0))\n(check-sat)\n",

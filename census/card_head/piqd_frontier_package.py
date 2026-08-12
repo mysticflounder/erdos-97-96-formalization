@@ -36,7 +36,7 @@ VARIABLE_MAP_SCHEMA = "p97-piqd-frontier-total-variable-map/v1"
 SOURCE_MANIFEST_SCHEMA = "p97-piqd-frontier-source-manifest/v1"
 BUILD_PHASE_LEDGER_SCHEMA = "p97-piqd-frontier-build-phase-ledger/v1"
 
-_LANES = frozenset({"B", "C", "DE", "DR", "E"})
+_LANES = frozenset({"A", "B", "C", "DE", "DR", "E"})
 _POLARITIES = frozenset({SAT_MEANS_COUNTEREXAMPLE, UNSAT_MEANS_OBSTRUCTION})
 _SAFE_LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,255}\Z")
 _HEX = frozenset("0123456789abcdef")
@@ -726,7 +726,7 @@ class FrontierLaneProfile:
 
     def __post_init__(self) -> None:
         if type(self.lane) is not str or self.lane not in _LANES:
-            raise FrontierPackageError("lane must be one of B/C/DE/DR/E")
+            raise FrontierPackageError("lane must be one of A/B/C/DE/DR/E")
         for name in ("query_id", "wave_id"):
             _label(getattr(self, name), name)
         for name in (

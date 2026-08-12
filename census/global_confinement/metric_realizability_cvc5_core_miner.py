@@ -3,6 +3,7 @@
 # Author: Adam McKenna <adam@mysticflounder.ai>
 
 """Minimize and cross-check cvc5 UNSAT row systems from the metric frontier."""
+
 from __future__ import annotations
 
 import argparse
@@ -14,20 +15,22 @@ import subprocess
 import sys
 import tempfile
 import time
+from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 from .metric_realizability_cvc5 import (
     DEFAULT_OUT,
     HERE,
-    SCHEMA as INPUT_SCHEMA,
     _parse_status,
     _run_query,
     build_smt2,
 )
-
+from .metric_realizability_cvc5 import (
+    SCHEMA as INPUT_SCHEMA,
+)
 
 SCHEMA = "p97-global-confinement-metric-realizability-cvc5-cores-v1"
 DEFAULT_CORE_OUT = HERE / "metric_realizability_cvc5_cores.json"
@@ -78,7 +81,9 @@ def _run_z3_query(
         "constraint_counts": counts,
         "return_code": process.returncode,
     }
-    if status == "UNKNOWN" or (status is None and diagnostics.strip().lower() == "timeout"):
+    if status == "UNKNOWN" or (
+        status is None and diagnostics.strip().lower() == "timeout"
+    ):
         result["status"] = "UNKNOWN"
         result["reason"] = diagnostics[-2000:] or "z3-returned-unknown"
     elif status is None or process.returncode != 0:
@@ -394,7 +399,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     source = json.loads(input_bytes)
     if source.get("schema") != INPUT_SCHEMA:
         raise SystemExit(f"unsupported input schema: {source.get('schema')}")
-    systems = [result for result in source["results"] if result["status"] == "CVC5_UNSAT"]
+    systems = [
+        result for result in source["results"] if result["status"] == "CVC5_UNSAT"
+    ]
     if args.system_id:
         requested = set(args.system_id)
         systems = [system for system in systems if system["system_id"] in requested]
@@ -428,7 +435,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     results = [results_by_id[system_id] for system_id in sorted(results_by_id)]
     payload = {
         "schema": SCHEMA,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "input": {
             "path": str(args.input),
             "sha256": hashlib.sha256(input_bytes).hexdigest(),
@@ -445,7 +452,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     }
     _atomic_json(args.out, payload)
     args.markdown.write_text(_render_markdown(payload), encoding="utf-8")
-    return 0 if all(r["crosscheck_status"] != "SOLVER_DISAGREEMENT" for r in results) else 1
+    return (
+        0
+        if all(r["crosscheck_status"] != "SOLVER_DISAGREEMENT" for r in results)
+        else 1
+    )
 
 
 if __name__ == "__main__":

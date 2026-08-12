@@ -595,7 +595,7 @@ class MetricRealizabilityProbeTests(unittest.TestCase):
         )
 
     def test_metric_smoke_gate(self) -> None:
-        result = run_smoke(10.0)
+        result = run_smoke(10.0, backend="legacy-local-z3")
         self.assertTrue(result["passed"], result)
 
 

@@ -15,8 +15,7 @@ if str(ROOT) not in sys.path:
 
 driver = importlib.import_module("census.p97_search.phase3_survivor_metric_driver")
 TEST_SOURCE = (
-    ROOT
-    / "census/p97_search/tests/fixtures/phase3_structural_survivors_100_current"
+    ROOT / "census/p97_search/tests/fixtures/phase3_structural_survivors_100_current"
 )
 
 
@@ -61,9 +60,7 @@ def _mock_convex(n, rows, order, _timeout_s):
 def _running_snapshot(tmp_path: Path, count: int) -> Path:
     source_dir = tmp_path / f"running-{count}"
     source_dir.mkdir()
-    source_records = (
-        TEST_SOURCE.joinpath("survivors.jsonl").read_bytes().splitlines()
-    )
+    source_records = TEST_SOURCE.joinpath("survivors.jsonl").read_bytes().splitlines()
     survivor_bytes = b"\n".join(source_records[:count]) + b"\n"
     (source_dir / "survivors.jsonl").write_bytes(survivor_bytes)
 

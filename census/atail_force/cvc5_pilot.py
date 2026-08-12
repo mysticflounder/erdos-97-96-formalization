@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Manifest-bound cvc5 cross-engine pilot for ATAIL-FORCE.
+"""Retained local-cvc5 cross-engine pilot for ATAIL-FORCE.
 
 This runner submits exactly the seven immutable full-inequality systems from
 ``inequality_pilot_manifest.json`` to cvc5's nonlinear-coverings engine.  It is
@@ -552,14 +552,29 @@ def main() -> int:
     mode.add_argument("--manifest-write", action="store_true")
     mode.add_argument("--manifest-check", action="store_true")
     mode.add_argument("--run", action="store_true")
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help="explicitly opt into this bounded local diagnostic run",
+    )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--results", type=Path, default=DEFAULT_RESULTS)
     args = parser.parse_args()
     try:
+        if (args.manifest_write or args.manifest_check) and not args.legacy_local:
+            parser.error(
+                "manifest write/check rebuilds local solver metadata; pass "
+                "--legacy-local"
+            )
         if args.manifest_write:
             _write_atomic(args.manifest, _canonical(build_manifest()), exclusive=True)
         elif args.manifest_check:
             _load_current_manifest(args.manifest)
+        elif not args.legacy_local:
+            parser.error(
+                "--run is a retained local diagnostic; pass --legacy-local "
+                "or use the PIQD ATAIL adapter"
+            )
         else:
             print(_canonical(run_pilot(args.manifest, args.results)), end="")
         return 0

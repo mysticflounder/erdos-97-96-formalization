@@ -25,7 +25,19 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import encoding as enc  # noqa: E402
+import encoding as enc
+
+from census.card_head.frontier_lane_piqd import (
+    FrontierSolver,
+    add_solver_arguments,
+    proof_manifest_fields,
+)
+from census.card_head.piqd_frontier_a import (
+    A_RUN_SOURCES,
+    ACoreCallerPackageProfile,
+    AllocationPhase,
+    solver_from_args,
+)
 
 OUT_DIR = Path(__file__).resolve().parent / "out"
 
@@ -33,11 +45,14 @@ LEAVES = ("A2", "A3", "A6", "A7", "A8")
 
 
 def run_one(
-    encoder: "enc.ACoreEncoder",
+    encoder: enc.ACoreEncoder,
     name: str,
     base_clauses: list[tuple[int, ...]],
     extra_clauses: list[tuple[int, ...]],
     timeout_seconds: int,
+    *,
+    solver: FrontierSolver,
+    backend: str,
 ) -> dict[str, Any]:
     instance = enc.RunInstance(encoder, base_clauses)
     cnf_path = OUT_DIR / f"{name}.cnf"
@@ -48,7 +63,7 @@ def run_one(
         for lit in clause:
             n_vars = max(n_vars, abs(lit))
     start = time.monotonic()
-    result = enc.solve_cadical(
+    result = solver(
         instance,
         cnf_path,
         extra_clauses=extra_clauses,
@@ -66,6 +81,14 @@ def run_one(
         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
         "proof_verified": result.proof_verified,
     }
+    record.update(
+        proof_manifest_fields(
+            backend=backend,
+            requested_proof_path=proof_path,
+            result=result,
+            relative_to=OUT_DIR.parent,
+        )
+    )
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / f"{name}.model.json"
         model_path.write_text(
@@ -83,15 +106,47 @@ def run_one(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    add_solver_arguments(parser)
     args = parser.parse_args()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.ACoreEncoder()
+    base_n_variables = encoder.cnf.n_variables
+    cardinality_scope = "named A-core incidence atoms and symbolic cardinality buckets"
+    base_phase = AllocationPhase(
+        "A common base allocation",
+        base_n_variables,
+        "A-core common named and cardinality variables",
+    )
+    base_solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=ACoreCallerPackageProfile(
+            source_paths=A_RUN_SOURCES,
+            allocation_phases=(base_phase,),
+            live_leaf="A-core abstract/common finite-local diagnostic base",
+            finite_schema="p97-a-core-layer1.v1.3-base",
+            cardinality_scope=cardinality_scope,
+            source_theorem=(
+                "NONE: A-core finite-local projection has no theorem entitlement"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     manifest: list[dict[str, Any]] = []
 
     # 1. base
-    base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
+    base_record = run_one(
+        encoder,
+        "base",
+        list(encoder.base_clauses),
+        [],
+        args.timeout_seconds,
+        solver=base_solver,
+        backend=args.solver_backend,
+    )
     manifest.append(base_record)
 
     # (DEL3, v1.2) built here: strictly after 'base' has already been run
@@ -100,6 +155,27 @@ def main() -> int:
     # 𝔓-only, same placement mechanics as (DEL2); NOT in base, NOT in
     # base+A1 -- see encoding.py::build_del3_clauses docstring.
     del3_extra = encoder.build_del3_clauses()
+    del3_phase = AllocationPhase(
+        "A physical DEL3 allocation",
+        encoder.cnf.n_variables,
+        "Sinz auxiliaries for the physical deletion at-most-two delta",
+    )
+    physical_solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=ACoreCallerPackageProfile(
+            source_paths=A_RUN_SOURCES,
+            allocation_phases=(base_phase, del3_phase),
+            live_leaf="A-core physical finite-local package and leaf diagnostics",
+            finite_schema="p97-a-core-layer1.v1.3-physical",
+            cardinality_scope=cardinality_scope,
+            source_theorem=(
+                "NONE: A-core finite-local projection has no theorem entitlement"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
 
     # 2. base+P (= base + DEL2 + C10 + DEL3).  C10 is the exact
     # source-support projection enabled by P3; see encoding.py / RESULTS.md.
@@ -107,7 +183,13 @@ def main() -> int:
         list(encoder.del2_clauses) + list(encoder.c10_clauses) + list(del3_extra)
     )
     base_p_record = run_one(
-        encoder, "base+P", list(encoder.base_clauses), base_p_extra, args.timeout_seconds
+        encoder,
+        "base+P",
+        list(encoder.base_clauses),
+        base_p_extra,
+        args.timeout_seconds,
+        solver=physical_solver,
+        backend=args.solver_backend,
     )
     manifest.append(base_p_record)
 
@@ -120,19 +202,57 @@ def main() -> int:
             + encoder.leaf_delta_clauses(leaf)
         )
         record = run_one(
-            encoder, f"base+P+{leaf}", list(encoder.base_clauses), extra, args.timeout_seconds
+            encoder,
+            f"base+P+{leaf}",
+            list(encoder.base_clauses),
+            extra,
+            args.timeout_seconds,
+            solver=physical_solver,
+            backend=args.solver_backend,
         )
         manifest.append(record)
 
     # 4. base+A1  (built last: mutates encoder.cnf past base_clauses)
     a1_extra = encoder.build_a1_extension()
+    a1_solver = solver_from_args(
+        args=args,
+        encoder=encoder,
+        profile=ACoreCallerPackageProfile(
+            source_paths=A_RUN_SOURCES,
+            allocation_phases=(
+                base_phase,
+                del3_phase,
+                AllocationPhase(
+                    "A1 extension allocation",
+                    encoder.cnf.n_variables,
+                    "A1 gamma, cap, coincidence, and cardinality auxiliaries",
+                ),
+            ),
+            live_leaf="A-core A1 finite-local extension diagnostic",
+            finite_schema="p97-a-core-layer1.v1.3-A1",
+            cardinality_scope=cardinality_scope,
+            source_theorem=(
+                "NONE: A-core finite-local projection has no theorem entitlement"
+            ),
+        ),
+        artifact_root=OUT_DIR,
+        legacy_solver=enc.solve_cadical,
+    )
     a1_record = run_one(
-        encoder, "base+A1", list(encoder.base_clauses), a1_extra, args.timeout_seconds
+        encoder,
+        "base+A1",
+        list(encoder.base_clauses),
+        a1_extra,
+        args.timeout_seconds,
+        solver=a1_solver,
+        backend=args.solver_backend,
     )
     manifest.append(a1_record)
 
     manifest_path = OUT_DIR / "manifest.json"
-    manifest_path.write_text(json.dumps(manifest, sort_keys=True, indent=2), encoding="utf-8")
+    manifest_path.write_text(
+        json.dumps(manifest, sort_keys=True, indent=2), encoding="utf-8"
+    )
 
     for record in manifest:
         print(
@@ -141,7 +261,7 @@ def main() -> int:
             f"wall={record['wall_seconds']:.3f}s"
         )
     print(f"manifest -> {manifest_path}")
-    return 0
+    return 0 if all(record["verdict"] == "SAT" for record in manifest) else 1
 
 
 if __name__ == "__main__":

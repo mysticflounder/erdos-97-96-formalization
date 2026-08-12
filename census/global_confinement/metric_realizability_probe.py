@@ -45,6 +45,7 @@ DEFAULT_INPUTS = (
 )
 SCHEMA = "p97-global-confinement-metric-realizability-v1"
 DIRECT_ROWS_SCHEMA = "p97-direct-metric-rows-realizability-v1"
+LEGACY_LOCAL_Z3_BACKEND = "legacy-local-z3"
 DIRECT_ROWS_TRUST_CLASS = (
     "TRUSTED_PYTHON_OR_Z3_COMPUTATION_NOT_KERNEL_CHECKED"
 )
@@ -1749,6 +1750,16 @@ def _exact_metric_unsat_core(
     }
 
 
+def _require_legacy_local_z3_backend(backend: str | None) -> None:
+    """Reject the old local solver unless the caller names it explicitly."""
+
+    if type(backend) is not str or backend != LEGACY_LOCAL_Z3_BACKEND:
+        raise ValueError(
+            "metric realizability requires explicit "
+            "backend='legacy-local-z3'"
+        )
+
+
 def _jsonable(value: Any) -> bool:
     try:
         json.dumps(value)
@@ -2348,8 +2359,9 @@ def probe_metric_rows(
     *,
     order: Sequence[int],
     timeout_s: float = 2.0,
+    backend: str | None = None,
 ) -> dict[str, Any]:
-    """Run the existing Euclidean backend on caller-supplied metric rows.
+    """Run the explicitly selected legacy Euclidean backend on metric rows.
 
     Unlike :func:`_normalize_assignment`, this entry point does not impose a
     four-label support convention.  It accepts any nonempty, distinct support
@@ -2362,6 +2374,7 @@ def probe_metric_rows(
     trusted Python/Z3 computations, not kernel-checked certificates.
     """
 
+    _require_legacy_local_z3_backend(backend)
     if (
         isinstance(timeout_s, bool)
         or not isinstance(timeout_s, (int, float))
@@ -2431,6 +2444,8 @@ def probe_metric_rows(
             "row_count": len(normalized_rows),
             "exact_row_count": sum(row.exact for row in normalized_rows),
             "backend_status": backend_status,
+            "backend": backend,
+            "legacy_local_z3_explicit": True,
             "status": public_status,
             "resolved": confirmed_realization or confirmed_exclusion,
             "confirmed_realization": confirmed_realization,
@@ -2478,7 +2493,10 @@ def _smoke_systems() -> tuple[dict[str, Any], dict[str, Any]]:
     return sat, unsat
 
 
-def run_smoke(timeout_s: float = 10.0) -> dict[str, Any]:
+def run_smoke(
+    timeout_s: float = 10.0, *, backend: str | None = None
+) -> dict[str, Any]:
+    _require_legacy_local_z3_backend(backend)
     sat_system, unsat_system = _smoke_systems()
     sat_result = _probe_system(sat_system, timeout_s)
     unsat_result = _probe_system(unsat_system, timeout_s)
@@ -2682,6 +2700,12 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--smoke-only", action="store_true")
     parser.add_argument("--explain-exact-core", action="store_true")
+    parser.add_argument(
+        "--backend",
+        choices=(LEGACY_LOCAL_Z3_BACKEND,),
+        required=True,
+        help="explicitly retain the historical local Z3 diagnostic route",
+    )
     return parser.parse_args(argv)
 
 
@@ -2694,7 +2718,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.checkpoint_every < 1:
         raise SystemExit("--checkpoint-every must be positive")
 
-    smoke = run_smoke(max(10.0, args.timeout))
+    smoke = run_smoke(max(10.0, args.timeout), backend=args.backend)
     if not smoke["passed"]:
         print(json.dumps(smoke, indent=2, sort_keys=True))
         raise SystemExit("metric realizability smoke gate failed")

@@ -2,7 +2,7 @@
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
 
-"""Independent cvc5 triage for the metric-realizability residual frontier.
+"""Retired local-cvc5 triage for the metric-realizability residual frontier.
 
 This runner reconstructs the systems that survive the deterministic equality
 prefilters in ``metric_realizability_probe`` and submits the same three QF_NRA
@@ -464,12 +464,29 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--system-id", action="append", default=[])
     parser.add_argument("--checkpoint-every", type=int, default=5)
     parser.add_argument("--allow-selection-drift", action="store_true")
-    parser.add_argument("--smoke-only", action="store_true")
+    parser.add_argument(
+        "--smoke-only",
+        action="store_true",
+        help="run the legacy local cvc5 smoke gate only (requires --legacy-local)",
+    )
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help=(
+            "explicitly opt into this retained local diagnostic; use "
+            "metric_realizability_piqd_cvc5 for the active PIQD route"
+        ),
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parse_args(argv)
+    if not args.legacy_local:
+        raise SystemExit(
+            "local metric cvc5 runner is retired; pass --legacy-local for "
+            "diagnostic-only execution or use metric_realizability_piqd_cvc5"
+        )
     if args.workers < 1 or args.workers > 8:
         raise SystemExit("--workers must be between 1 and 8")
     if args.timeout <= 0:

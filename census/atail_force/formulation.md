@@ -181,6 +181,13 @@ No decision engine is invoked by that command.
 
 ## Bounded full-inequality pilot
 
+`inequality_pilot.py`, `cvc5_pilot.py`, and `producer_probe.py` are retained
+local-solver diagnostics, not production proof or PIQD entry points. Their
+solver-executing modes require explicit `--legacy-local`; manifest/check and
+pure producer helpers remain available without that flag. The authenticated
+successor for one named cvc5 query is
+`piqd_cvc5_adapter.py` (see `docs/specs/atail-piqd-cvc5-geometry-v1.md`).
+
 `inequality_pilot.py` freezes the same seven representatives used by the
 separator pilot, one in every interior-support stratum 6 through 12, but emits
 the complete disk, nonobtuse, cap-sign, and global-order constraint set. The

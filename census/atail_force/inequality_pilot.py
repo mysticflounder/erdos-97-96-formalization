@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Manifest-bound full-inequality QF_NRA pilot for ATAIL-FORCE.
+"""Retained local-Z3 full-inequality pilot for ATAIL-FORCE.
 
 This is deliberately a seven-case theorem-discovery probe, not a sweep of the
 30,997 symmetry-reduced systems.  Solver UNSAT is only a proposal because Z3
@@ -495,6 +495,7 @@ def run_pilot(manifest_path: Path, results_path: Path) -> dict[str, Any]:
             case["case_id"],
             "--manifest",
             str(manifest_path),
+            "--legacy-local",
         ]
         environment = dict(os.environ)
         environment.update(
@@ -561,16 +562,36 @@ def main() -> int:
     mode.add_argument("--manifest-check", action="store_true")
     mode.add_argument("--run", action="store_true")
     mode.add_argument("--worker-case")
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help="explicitly opt into this bounded local diagnostic run",
+    )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument("--results", type=Path, default=DEFAULT_RESULTS)
     args = parser.parse_args()
     try:
         if args.manifest_write:
+            if not args.legacy_local:
+                parser.error(
+                    "manifest write rebuilds local solver metadata; pass "
+                    "--legacy-local"
+                )
             _write_atomic(args.manifest, _canonical(build_manifest()), exclusive=True)
         elif args.manifest_check:
             _read_manifest(args.manifest)
+        elif args.worker_case and not args.legacy_local:
+            parser.error(
+                "--worker-case is a retained local diagnostic; pass "
+                "--legacy-local"
+            )
         elif args.worker_case:
             print(_canonical(run_worker(args.manifest, args.worker_case)), end="")
+        elif not args.legacy_local:
+            parser.error(
+                "--run is a retained local diagnostic; pass --legacy-local "
+                "or use a PIQD solver route"
+            )
         else:
             print(_canonical(run_pilot(args.manifest, args.results)), end="")
         return 0

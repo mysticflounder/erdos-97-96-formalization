@@ -234,16 +234,33 @@ def _assignment_record(item: SelectedAssignment) -> dict[str, Any]:
 def _default_runner(
     system: geometry.GeometrySystem,
     enabled_atoms: Iterable[str] | None,
+    *,
+    backend: str,
 ) -> Mapping[str, Any]:
     return geometry.run_cvc5_bounded(
         system,
         enabled_atoms,
+        backend=backend,
         timeout_seconds=CVC5_TIMEOUT_SECONDS,
     )
 
 
-def run_census(*, runner: Runner = _default_runner) -> dict[str, Any]:
+def run_census(
+    *, runner: Runner | None = None, backend: str | None = None
+) -> dict[str, Any]:
     """Execute the immutable 24-query census once, without retries."""
+
+    if runner is None:
+        _require(
+            backend == geometry.LEGACY_LOCAL_CVC5_BACKEND,
+            "local cvc5 census requires explicit backend='legacy-local'",
+        )
+
+        def runner(
+            system: geometry.GeometrySystem,
+            enabled_atoms: Iterable[str] | None,
+        ) -> Mapping[str, Any]:
+            return _default_runner(system, enabled_atoms, backend=backend)
 
     items = tuple(
         item
@@ -371,9 +388,16 @@ def main() -> None:
     mode.add_argument("--run", action="store_true")
     mode.add_argument("--check", action="store_true")
     parser.add_argument("--checkpoint", type=Path, default=DEFAULT_CHECKPOINT)
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help="explicitly opt into the retained local cvc5 diagnostic",
+    )
     args = parser.parse_args()
     if args.run:
-        document = run_census()
+        if not args.legacy_local:
+            parser.error("--run requires --legacy-local")
+        document = run_census(backend=geometry.LEGACY_LOCAL_CVC5_BACKEND)
         _write_atomic(args.checkpoint, _canonical(document))
         print(_canonical(document), end="")
     else:

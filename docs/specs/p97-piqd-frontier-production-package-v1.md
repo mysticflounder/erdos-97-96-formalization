@@ -1,8 +1,8 @@
 # P97 PIQD frontier production package v1
 
-Status: frozen finite-evidence custody boundary for frontier lanes B, C, DE, DR,
-and E. This boundary does not promote a theorem and does not establish a PIQD
-product result.
+Status: frozen finite-evidence custody boundary for frontier lanes A, B, C, DE,
+DR, and E. This boundary does not promote a theorem and does not establish a
+PIQD product result.
 
 ## Purpose and composition
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded first probe of the geometry-faithful ATAIL producer surface.
+"""Retained local-solver probe of the geometry-faithful ATAIL surface.
 
 The probe chooses the first canonical finite assignment satisfying the target
 negation for each role-aware case, scans all formalized equality-core banks,
@@ -104,7 +104,7 @@ def named_core_from_cvc5(
 
 
 def build_document(
-    *, z3_timeout_ms: int, cvc5_timeout_seconds: float
+    *, z3_timeout_ms: int, cvc5_timeout_seconds: float, backend: str
 ) -> dict[str, Any]:
     cases = []
     for case in producer_surface.PRODUCER_CASES:
@@ -119,7 +119,7 @@ def build_document(
             system, timeout_ms=z3_timeout_ms
         )
         cvc5_full = producer_geometry.run_cvc5_bounded(
-            system, timeout_seconds=cvc5_timeout_seconds
+            system, backend=backend, timeout_seconds=cvc5_timeout_seconds
         )
         cvc5_core = named_core_from_cvc5(system, cvc5_full)
         z3_core = (
@@ -165,7 +165,7 @@ def build_document(
         },
         "smoke_gates": {
             "z3": producer_geometry.z3_smoke_gate(),
-            "cvc5": producer_geometry.cvc5_smoke_gate(),
+            "cvc5": producer_geometry.cvc5_smoke_gate(backend=backend),
         },
         "cases": cases,
         "scope": {
@@ -184,13 +184,24 @@ def build_document(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help="explicitly opt into this bounded local diagnostic run",
+    )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--z3-timeout-ms", type=int, default=5_000)
     parser.add_argument("--cvc5-timeout-seconds", type=float, default=5.0)
     args = parser.parse_args()
+    if not args.legacy_local:
+        parser.error(
+            "producer_probe is a retained local diagnostic; pass "
+            "--legacy-local or use the PIQD ATAIL adapter"
+        )
     document = build_document(
         z3_timeout_ms=args.z3_timeout_ms,
         cvc5_timeout_seconds=args.cvc5_timeout_seconds,
+        backend=producer_geometry.LEGACY_LOCAL_CVC5_BACKEND,
     )
     args.output.write_text(
         json.dumps(document, indent=2, sort_keys=True) + "\n", encoding="utf-8"

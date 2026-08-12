@@ -15,6 +15,19 @@ class _ReachedMetricEncoder(RuntimeError):
 
 
 class DirectMetricRowsProbeTests(unittest.TestCase):
+    def test_missing_backend_is_rejected_before_solver_discovery(self) -> None:
+        row = metric.MetricRow(0, (1, 2, 3), False)
+        with (
+            patch.object(metric, "_probe_system") as backend,
+            self.assertRaisesRegex(ValueError, "legacy-local-z3"),
+        ):
+            metric.probe_metric_rows(
+                5,
+                (row,),
+                order=tuple(range(5)),
+            )
+        backend.assert_not_called()
+
     def test_exact_five_row_reaches_existing_metric_encoder(self) -> None:
         row = metric.MetricRow(0, (5, 3, 1, 4, 2), True)
 
@@ -28,6 +41,7 @@ class DirectMetricRowsProbeTests(unittest.TestCase):
                 (row,),
                 order=tuple(range(7)),
                 timeout_s=1.0,
+                backend="legacy-local-z3",
             )
 
         self.assertEqual(
@@ -84,6 +98,7 @@ class DirectMetricRowsProbeTests(unittest.TestCase):
                         (row,),
                         order=tuple(range(7)),
                         timeout_s=1.0,
+                        backend="legacy-local-z3",
                     )
 
                 self.assertEqual(result["backend_status"], backend_status)
@@ -123,6 +138,7 @@ class DirectMetricRowsProbeTests(unittest.TestCase):
                         (row,),
                         order=tuple(range(7)),
                         timeout_s=1.0,
+                        backend="legacy-local-z3",
                     )
 
                 self.assertTrue(result["resolved"])
@@ -149,6 +165,7 @@ class DirectMetricRowsProbeTests(unittest.TestCase):
                 (row,),
                 order=tuple(range(7)),
                 timeout_s=1.0,
+                backend="legacy-local-z3",
             )
         self.assertEqual(result["backend_status"], "SAT")
         self.assertEqual(result["status"], "ERROR")
@@ -162,6 +179,7 @@ class DirectMetricRowsProbeTests(unittest.TestCase):
                     (metric.MetricRow(0, (1, 2, 3, 4, 4), False),),
                     order=tuple(range(7)),
                     timeout_s=1.0,
+                    backend="legacy-local-z3",
                 )
             backend.assert_not_called()
 

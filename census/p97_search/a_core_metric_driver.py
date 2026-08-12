@@ -24,6 +24,7 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 import re
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor
@@ -44,6 +45,8 @@ DEFAULT_OUTPUT = (
     / "p97-distinct-distance-lane"
     / "a_core_metric_physical_leaves.json"
 )
+DEFAULT_PIQD_SERVER = "http://127.0.0.1:7272"
+SOLVER_ROUTES = ("piqd", "legacy-local-z3")
 
 SCHEMA = "p97-a-core-direct-metric-adapter-v1"
 TRUST_CLASS = "TRUSTED_PYTHON_OR_Z3_COMPUTATION_NOT_KERNEL_CHECKED"
@@ -685,6 +688,7 @@ def _probe_task(task: Mapping[str, Any]) -> dict[str, Any]:
         rows,
         order=task["order"],
         timeout_s=task["timeout_s"],
+        backend="legacy-local-z3",
     )
     return _summarize_probe_result(task, result)
 
@@ -735,6 +739,89 @@ def _run_tasks(
         return list(executor.map(_probe_task, tasks))
 
 
+def _piqd_task_result(result: Mapping[str, Any]) -> dict[str, Any]:
+    status = result.get("status")
+    if status not in {"SAT", "UNSAT", "UNKNOWN"}:
+        status = "ERROR"
+    stages = [
+        {
+            key: stage.get(key)
+            for key in (
+                "stage",
+                "status",
+                "effective_status",
+                "classification",
+            )
+        }
+        for stage in result.get("stages", [])
+        if isinstance(stage, Mapping)
+    ]
+    diagnostic = (
+        "SAT_EXACT_RATIONAL_REPLAYED_ROW_LEVEL_DIAGNOSTIC"
+        if status == "SAT"
+        else (
+            "Z3_UNSAT_DIAGNOSTIC_NOT_PROOF_CHECKED"
+            if status == "UNSAT"
+            else "UNKNOWN_OR_INCONCLUSIVE_NO_VERDICT"
+        )
+    )
+    serialized = json.dumps(result, sort_keys=True, separators=(",", ":"))
+    return {
+        "run": result["run"],
+        "order_index": result["order_index"],
+        "order": list(result["order"]),
+        "status": status,
+        "backend_status": stages[-1]["status"] if stages else None,
+        "decisive_stage": result.get("decisive_stage"),
+        "fail_closed": status not in {"SAT", "UNSAT"},
+        "verification": result.get("verification"),
+        "diagnostic": diagnostic,
+        "stages": stages,
+        "raw_result_sha256": hashlib.sha256(serialized.encode()).hexdigest(),
+    }
+
+
+def _run_piqd_tasks(
+    tasks: Sequence[dict[str, Any]],
+    *,
+    adaptations: Mapping[str, Mapping[str, Any]],
+    a_core_dir: Path,
+    timeout_s: float,
+    transport: Any,
+    output_directory: Path,
+) -> list[dict[str, Any]]:
+    """Run selected A-core orders sequentially, without a local fallback."""
+
+    from census.p97_search import a_core_metric_piqd as piqd
+
+    bindings = piqd.capture_sources(a_core_dir)
+    by_run = {binding.run: binding for binding in bindings}
+    for run, adaptation in adaptations.items():
+        binding = by_run.get(run)
+        if binding is None or binding.adaptation != adaptation:
+            raise ACoreMetricAdapterError("PIQD A-core binding crossed ingress replay")
+    piqd.create_output_root(output_directory)
+    run_roots: dict[str, Path] = {}
+    results: list[dict[str, Any]] = []
+    for task in tasks:
+        run = task["run"]
+        binding = by_run[run]
+        run_root = run_roots.get(run)
+        if run_root is None:
+            run_root = output_directory / run.replace("+", "-")
+            run_root.mkdir(mode=0o700)
+            run_roots[run] = run_root
+        result = piqd.run_staged_order(
+            binding,
+            task["order_index"],
+            timeout_s=timeout_s,
+            transport=transport,
+            output_directory=run_root / f"order-{task['order_index']:05d}",
+        )
+        results.append(_piqd_task_result(result))
+    return results
+
+
 def _aggregate_status(results: Sequence[Mapping[str, Any]]) -> str:
     statuses = [result.get("status") for result in results]
     if "SAT" in statuses:
@@ -747,28 +834,78 @@ def _aggregate_status(results: Sequence[Mapping[str, Any]]) -> str:
 def run_current_physical_leaves(
     *,
     output_path: Path = DEFAULT_OUTPUT,
-    workers: int = 4,
+    workers: int = 1,
     timeout_s: float = 2.0,
     a_core_dir: Path = A_CORE_DIR,
+    solver_route: str = "piqd",
+    piqd_transport: Any | None = None,
+    piqd_server: str = DEFAULT_PIQD_SERVER,
+    piqd_output_directory: Path | None = None,
+    run: str | None = None,
+    order_index: int | None = None,
     probe_runner: Callable[[Mapping[str, Any]], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    if timeout_s <= 0:
+    if type(output_path) is not type(Path()):
+        raise ACoreMetricAdapterError("output_path must be an exact platform Path")
+    if type(a_core_dir) is not type(Path()):
+        raise ACoreMetricAdapterError("a_core_dir must be an exact platform Path")
+    if type(solver_route) is not str or solver_route not in SOLVER_ROUTES:
+        raise ACoreMetricAdapterError("unknown metric solver route")
+    if (
+        type(timeout_s) not in {int, float}
+        or type(timeout_s) is bool
+        or not math.isfinite(timeout_s)
+        or timeout_s <= 0
+    ):
         raise ACoreMetricAdapterError("timeout_s must be positive")
+    if type(workers) is not int or not 1 <= workers <= 24:
+        raise ACoreMetricAdapterError("workers must lie in [1, 24]")
+    if (run is None) != (order_index is None):
+        raise ACoreMetricAdapterError("run and order_index must be supplied together")
+    if run is not None and run not in PHYSICAL_LEAF_BLOCKER:
+        raise ACoreMetricAdapterError("selected run is not a physical A-core leaf")
+    if order_index is not None and (type(order_index) is not int or order_index < 0):
+        raise ACoreMetricAdapterError("order_index must be nonnegative")
+    injected_test_route = probe_runner is not None
+    if solver_route == "piqd" and workers != 1:
+        raise ACoreMetricAdapterError("PIQD metric route requires workers=1")
+    if injected_test_route and workers != 1:
+        raise ACoreMetricAdapterError("custom probe runner requires workers=1")
+    if output_path.exists():
+        raise ACoreMetricAdapterError(f"refusing to overwrite output: {output_path}")
+    selected_piqd_output = piqd_output_directory
+    if solver_route == "piqd" and not injected_test_route:
+        if selected_piqd_output is None:
+            selected_piqd_output = Path(f"{output_path}.piqd")
+        if type(selected_piqd_output) is not type(Path()):
+            raise ACoreMetricAdapterError(
+                "piqd_output_directory must be an exact platform Path"
+            )
+        if selected_piqd_output.exists():
+            raise ACoreMetricAdapterError(
+                f"refusing to overwrite PIQD custody root: {selected_piqd_output}"
+            )
     cubes, provenance = load_current_physical_cubes(a_core_dir)
     adaptations: list[dict[str, Any]] = []
+    authenticated_adaptations: dict[str, dict[str, Any]] = {}
     tasks: list[dict[str, Any]] = []
     for cube in cubes:
         adaptation = adapt_physical_cube(cube["run"], cube["model"])
+        if run is not None and cube["run"] != run:
+            continue
+        authenticated_adaptations[cube["run"]] = dict(adaptation)
         adaptation["source_model"] = cube["model_path"]
         adaptation["source_model_sha256"] = cube["model_sha256"]
         adaptations.append(adaptation)
         if adaptation["status"] != "READY_NAMED_PROJECTION":
             continue
-        for order_index, order in enumerate(adaptation["orders"]):
+        for task_order_index, order in enumerate(adaptation["orders"]):
+            if run is not None and task_order_index != order_index:
+                continue
             tasks.append(
                 {
                     "run": cube["run"],
-                    "order_index": order_index,
+                    "order_index": task_order_index,
                     "order": order,
                     "n_vertices": adaptation["n_vertices"],
                     "metric_rows": adaptation["metric_rows"],
@@ -776,9 +913,40 @@ def run_current_physical_leaves(
                 }
             )
 
-    probe_results = _run_tasks(
-        tasks, workers=workers, probe_runner=probe_runner
-    )
+    if run is not None and not tasks:
+        raise ACoreMetricAdapterError("selected order_index is out of range")
+    if solver_route == "piqd" and not injected_test_route:
+        from census.p97_search import phase3_piqd_smt_source_adapter as neutral
+
+        transport = piqd_transport
+        if transport is None:
+            if run is None:
+                transport = neutral.UrllibPiqdTransport(piqd_server)
+            else:
+                transport = neutral.UrllibPiqdTransport(
+                    piqd_server,
+                    http_timeout_s=neutral.bounded_solve_http_timeout_s(
+                        max(1, int(float(timeout_s) * 1000))
+                    ),
+                )
+        if selected_piqd_output is None:
+            raise ACoreMetricAdapterError("PIQD custody root was not selected")
+        probe_results = _run_piqd_tasks(
+            tasks,
+            adaptations=authenticated_adaptations,
+            a_core_dir=a_core_dir,
+            timeout_s=float(timeout_s),
+            transport=transport,
+            output_directory=selected_piqd_output,
+        )
+        effective_route = "piqd-z3-qfnra"
+    else:
+        probe_results = _run_tasks(
+            tasks, workers=workers, probe_runner=probe_runner
+        )
+        effective_route = (
+            "injected-test-runner" if injected_test_route else "legacy-local-z3"
+        )
     stage_status_counts: dict[str, int] = {}
     for result in probe_results:
         for stage in result.get("stages", []):
@@ -811,7 +979,20 @@ def run_current_physical_leaves(
         "schema": SCHEMA,
         "trust_class": TRUST_CLASS,
         "scope": SCOPE,
-        "parameters": {"workers": workers, "timeout_s": timeout_s},
+        "parameters": {
+            "workers": workers,
+            "timeout_s": timeout_s,
+            "solver_route": effective_route,
+            "requested_solver_route": solver_route,
+            "legacy_local_z3_explicit": solver_route == "legacy-local-z3",
+            "local_fallback": False,
+            "proof_blueprint": {
+                "session_id": "019fdf9c",
+                "state": "OPEN",
+                "relation": "OFF_SPINE",
+                "changed": False,
+            },
+        },
         "source_provenance": provenance,
         "totals": {
             "physical_leaves": len(leaves),
@@ -840,23 +1021,48 @@ def run_current_physical_leaves(
         ),
         "leaves": leaves,
     }
+    if selected_piqd_output is not None and effective_route == "piqd-z3-qfnra":
+        artifact["parameters"]["piqd_output_directory"] = str(
+            selected_piqd_output
+        )
+    if run is not None:
+        artifact["parameters"]["selection"] = {
+            "run": run,
+            "order_index": order_index,
+            "authenticated_physical_leaf_count": len(cubes),
+        }
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
-        json.dumps(artifact, sort_keys=True, separators=(",", ":")) + "\n"
-    )
+    payload = json.dumps(artifact, sort_keys=True, separators=(",", ":")) + "\n"
+    with output_path.open("x", encoding="utf-8") as handle:
+        handle.write(payload)
     return artifact
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--timeout-s", type=float, default=2.0)
+    parser.add_argument(
+        "--solver-route",
+        choices=SOLVER_ROUTES,
+        default="piqd",
+        help="production PIQD route (default) or explicit legacy local Z3",
+    )
+    parser.add_argument("--piqd-server", default=DEFAULT_PIQD_SERVER)
+    parser.add_argument("--piqd-output-directory", type=Path)
+    parser.add_argument("--run", choices=tuple(PHYSICAL_LEAF_BLOCKER))
+    parser.add_argument("--order-index", type=int)
     args = parser.parse_args(argv)
     artifact = run_current_physical_leaves(
         output_path=args.output,
         workers=args.workers,
         timeout_s=args.timeout_s,
+        solver_route=args.solver_route,
+        piqd_server=args.piqd_server,
+        piqd_output_directory=args.piqd_output_directory,
+        run=args.run,
+        order_index=args.order_index,
     )
     print(
         json.dumps(

@@ -22,6 +22,9 @@ FILES=(
 )
 
 uv run pytest -q \
-  census/global_confinement/tests/test_metric_realizability_piqd_core_miner.py
+  census/global_confinement/tests/test_metric_realizability_piqd_core_miner.py \
+  census/global_confinement/tests/test_metric_realizability_cvc5.py::MetricRealizabilityCvc5Tests::test_local_cli_requires_explicit_opt_in
 uv run --with ruff ruff check "${FILES[@]}"
+uv run --with ruff ruff check \
+  census/global_confinement/tests/test_metric_realizability_cvc5.py
 uv run --with ruff ruff format --check "${FILES[@]}"

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import shutil
+import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import sympy as sp
 
@@ -10,6 +12,34 @@ from census.atail_force import cvc5_pilot
 
 
 class Cvc5PilotTests(unittest.TestCase):
+    def test_manifest_write_requires_legacy_local_before_discovery(self) -> None:
+        with (
+            mock.patch.object(sys, "argv", ["cvc5_pilot", "--manifest-write"]),
+            mock.patch.object(
+                cvc5_pilot,
+                "build_manifest",
+                side_effect=AssertionError("manifest discovery reached"),
+            ) as build_manifest,
+            self.assertRaises(SystemExit) as raised,
+        ):
+            cvc5_pilot.main()
+        self.assertEqual(raised.exception.code, 2)
+        build_manifest.assert_not_called()
+
+    def test_manifest_check_requires_legacy_local_before_discovery(self) -> None:
+        with (
+            mock.patch.object(sys, "argv", ["cvc5_pilot", "--manifest-check"]),
+            mock.patch.object(
+                cvc5_pilot,
+                "build_manifest",
+                side_effect=AssertionError("manifest discovery reached"),
+            ) as build_manifest,
+            self.assertRaises(SystemExit) as raised,
+        ):
+            cvc5_pilot.main()
+        self.assertEqual(raised.exception.code, 2)
+        build_manifest.assert_not_called()
+
     def test_status_parser(self) -> None:
         self.assertEqual(cvc5_pilot._parse_status("warning\nunknown\n"), "UNKNOWN")
         self.assertEqual(cvc5_pilot._parse_status("sat\n"), "SAT")

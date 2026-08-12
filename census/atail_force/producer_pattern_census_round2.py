@@ -114,10 +114,16 @@ def select_survivors(
 
 
 def _default_cvc5_runner(
-    system: geometry.GeometrySystem, enabled: Iterable[str] | None
+    system: geometry.GeometrySystem,
+    enabled: Iterable[str] | None,
+    *,
+    backend: str,
 ) -> Mapping[str, Any]:
     return geometry.run_cvc5_bounded(
-        system, enabled, timeout_seconds=CVC5_TIMEOUT_SECONDS
+        system,
+        enabled,
+        backend=backend,
+        timeout_seconds=CVC5_TIMEOUT_SECONDS,
     )
 
 
@@ -204,9 +210,22 @@ def _item_record(item: SelectedSurvivor) -> dict[str, Any]:
 
 def run_census(
     *,
-    cvc5_runner: Runner = _default_cvc5_runner,
+    cvc5_runner: Runner | None = None,
     z3_runner: Z3Runner = _default_z3_runner,
+    backend: str | None = None,
 ) -> dict[str, Any]:
+    if cvc5_runner is None:
+        _require(
+            backend == geometry.LEGACY_LOCAL_CVC5_BACKEND,
+            "local cvc5 census requires explicit backend='legacy-local'",
+        )
+
+        def cvc5_runner(
+            system: geometry.GeometrySystem,
+            enabled: Iterable[str] | None,
+        ) -> Mapping[str, Any]:
+            return _default_cvc5_runner(system, enabled, backend=backend)
+
     items = tuple(
         item for case in surface.PRODUCER_CASES for item in select_survivors(case)
     )
@@ -366,9 +385,16 @@ def main() -> None:
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--repair-timeouts", action="store_true")
     parser.add_argument("--checkpoint", type=Path, default=DEFAULT_CHECKPOINT)
+    parser.add_argument(
+        "--legacy-local",
+        action="store_true",
+        help="explicitly opt into the retained local cvc5 diagnostic",
+    )
     args = parser.parse_args()
     if args.run:
-        document = run_census()
+        if not args.legacy_local:
+            parser.error("--run requires --legacy-local")
+        document = run_census(backend=geometry.LEGACY_LOCAL_CVC5_BACKEND)
         round1._write_atomic(args.checkpoint, round1._canonical(document))
         print(round1._canonical(document["summary"]), end="")
         return

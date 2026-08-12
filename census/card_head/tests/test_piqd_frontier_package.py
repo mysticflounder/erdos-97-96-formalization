@@ -208,13 +208,13 @@ def test_profile_is_canonical_closed_finite_local_record() -> None:
     assert set(value["claims"].values()) == {False}
 
 
-@pytest.mark.parametrize("lane", ["B", "C", "DE", "DR", "E"])
+@pytest.mark.parametrize("lane", ["A", "B", "C", "DE", "DR", "E"])
 def test_closed_lane_set_accepts_all_frontier_lanes(lane: str) -> None:
     profile = _profile(lane=lane, query_id=f"{lane}.query")
     assert _package(profile=profile).snapshot.cnf == CNF
 
 
-@pytest.mark.parametrize("lane", ["A", "F", "b", True, 1])
+@pytest.mark.parametrize("lane", ["F", "b", True, 1])
 def test_closed_lane_set_rejects_other_or_nonexact_values(lane: object) -> None:
     with pytest.raises(FrontierPackageError, match="lane"):
         _profile(lane=lane)  # type: ignore[arg-type]

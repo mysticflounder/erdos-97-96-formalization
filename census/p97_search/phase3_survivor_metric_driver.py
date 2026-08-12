@@ -477,7 +477,13 @@ def _convex_order_backend(
     order: Sequence[int],
     timeout_s: float,
 ) -> Mapping[str, Any]:
-    return metric.probe_metric_rows(n, rows, order=order, timeout_s=timeout_s)
+    return metric.probe_metric_rows(
+        n,
+        rows,
+        order=order,
+        timeout_s=timeout_s,
+        backend="legacy-local-z3",
+    )
 
 
 def _normalize_exact_result(raw: Any) -> dict[str, Any]:

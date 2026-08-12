@@ -90,6 +90,18 @@ artifact coverage, not a Lean proof that every arbitrary PIN-GENERAL frame
 produces one of those cores. See
 `docs/audits/2026-07-10-global-confinement-metric-core-audit.md`.
 
+The historical 1,325-system batch is retained as an explicit legacy
+diagnostic. The old global metric Z3 API and CLI have no default-local solve:
+callers must select `backend="legacy-local-z3"` or
+`--backend legacy-local-z3`. This is a retirement/classification boundary, not
+a PIQD migration or a new production backend; the retained batch does not
+claim universal or kernel-checked closure.
+
+The standalone `metric_realizability_cvc5.py` runner is retained only as a
+bounded local diagnostic. Its solver-executing CLI now requires the explicit
+`--legacy-local` opt-in; the active production route is
+`metric_realizability_piqd_cvc5.py`.
+
 `surplus_source_metric_core_results_n11_12` is an active, resumable follow-up.
 It adds the theorem-facing requirement that the selected four-class at the
 surplus apex contain the deleted surplus point, then asks for a full-center,

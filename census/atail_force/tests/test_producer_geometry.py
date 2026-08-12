@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
 import sympy as sp
 
@@ -140,6 +141,22 @@ class ProducerGeometryTests(unittest.TestCase):
                 enabled,
                 timeout_seconds=geometry.MAX_CVC5_TIMEOUT_SECONDS + 1,
             )
+
+    def test_cvc5_bounded_requires_explicit_backend_before_discovery(self) -> None:
+        with patch.object(
+            geometry.shutil,
+            "which",
+            side_effect=AssertionError("implicit cvc5 discovery"),
+        ), self.assertRaisesRegex(geometry.GeometryError, "backend='legacy-local'"):
+            geometry.run_cvc5_bounded(self.system)
+
+    def test_cvc5_smoke_requires_explicit_backend_before_discovery(self) -> None:
+        with patch.object(
+            geometry.shutil,
+            "which",
+            side_effect=AssertionError("implicit cvc5 discovery"),
+        ), self.assertRaisesRegex(geometry.GeometryError, "backend='legacy-local'"):
+            geometry.cvc5_smoke_gate()
 
     def test_cvc5_serializes_constant_polynomial(self) -> None:
         self.assertEqual(geometry._poly_to_smt2(sp.Integer(0)), "0.0")

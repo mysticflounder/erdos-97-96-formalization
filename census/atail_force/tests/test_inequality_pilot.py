@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import sys
 import unittest
 from types import SimpleNamespace
+from unittest import mock
 
 import sympy as sp
 import z3
@@ -11,6 +13,22 @@ from census.atail_force import inequality_pilot as pilot
 
 
 class InequalityPilotTests(unittest.TestCase):
+    def test_manifest_write_requires_legacy_local_before_discovery(self) -> None:
+        with (
+            mock.patch.object(
+                sys, "argv", ["inequality_pilot", "--manifest-write"]
+            ),
+            mock.patch.object(
+                pilot,
+                "build_manifest",
+                side_effect=AssertionError("manifest discovery reached"),
+            ) as build_manifest,
+            self.assertRaises(SystemExit) as raised,
+        ):
+            pilot.main()
+        self.assertEqual(raised.exception.code, 2)
+        build_manifest.assert_not_called()
+
     @classmethod
     def setUpClass(cls) -> None:
         if pilot.DEFAULT_MANIFEST.exists():

@@ -25,6 +25,7 @@ TEST_FILES=(
   census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
   census/card_head/tests/test_piqd_certified_solver.py
   census/card_head/tests/test_piqd_frontier_package.py
+  census/card_head/tests/test_piqd_frontier_a_callers.py
   census/card_head/tests/test_piqd_frontier_bc.py
   census/card_head/tests/test_frontier_derde_piqd_callers.py
 )
@@ -38,6 +39,8 @@ OWNED_PYTHON_FILES=(
   census/card_head/tests/test_piqd_certified_solver.py
   census/card_head/piqd_frontier_package.py
   census/card_head/tests/test_piqd_frontier_package.py
+  census/card_head/piqd_frontier_a.py
+  census/card_head/tests/test_piqd_frontier_a_callers.py
   census/card_head/frontier_lane_piqd.py
   census/card_head/piqd_frontier_bc.py
   census/card_head/tests/test_piqd_frontier_bc.py
@@ -45,6 +48,8 @@ OWNED_PYTHON_FILES=(
 )
 
 CALLER_FILES=(
+  census/frontier-packages/a_core/run.py
+  census/frontier-packages/a_core/smoke.py
   census/frontier-packages/b_core/run.py
   census/frontier-packages/b_core/smoke.py
   census/frontier-packages/c_core/run.py
@@ -68,5 +73,6 @@ uv run --with ruff ruff check --select I,RUF022 "${CALLER_FILES[@]}"
 bash -n \
   scripts/test-p97-piqd-certified-frontier.sh \
   scripts/test-p97-piqd-frontier-package.sh \
+  census/frontier-packages/test-a-piqd-callers.sh \
   scripts/test-p97-piqd-bc-core.sh \
   census/frontier-packages/test-derde-piqd-callers.sh
