@@ -1,0 +1,34 @@
+{
+  "analysis_sha256": "4fc7e975f31fac4be986d65b11e309e48bbd5dda3e91f8899797d65ef658fb26",
+  "canonical_records": [
+    "equality-convex-four-point-two-circle-bisector-order-reverse",
+    "equality-convex-four-point-two-circle-bisector-order",
+    "equality-convex-five-point-reverse",
+    "equality-convex-two-kalmanson-cancellation"
+  ],
+  "canonical_records_rejected": {
+    "equality-convex-five-point-reverse": true,
+    "equality-convex-four-point-two-circle-bisector-order": true,
+    "equality-convex-four-point-two-circle-bisector-order-reverse": true,
+    "equality-convex-two-kalmanson-cancellation": true
+  },
+  "clauses": 5846200,
+  "motivating_model_cut_clauses": {
+    "bisector": [
+      5846189
+    ],
+    "cancellation": [
+      5846197
+    ],
+    "convex_five": [
+      5846193
+    ]
+  },
+  "new_clauses": 12,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "parent_sha256": "e719b8c17edf85e089d859fbc1ab8aaa43d8a6e9514f32eb4a76842a665dd3ce",
+  "schema": "p97-exact17-twentieth-model-refinements-export-validation/v1",
+  "suffix_sha256": "b65f656255bc02b7a286b909fe7971d0d6a49b287364dde82cc775629332df38",
+  "variables": 308
+}

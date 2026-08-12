@@ -397,18 +397,20 @@ source-clean; the expected compiler-trust axioms come only from the accepted
 variables, 5,846,084 clauses, 291,568,228 bytes, and SHA-256
 `6ab37b78e0db7cc98e2a1d62999d54d15a278135621aad95d520598afc7b47c2`.
 The independent suffix validator and recursive ingress both pass, and clause
-5,846,081 rejects the motivating tenth model.  Submission remains gated on
-restarting daemon build `0cfc9577...` and rerunning the disposable canary.
+5,846,081 rejects the motivating tenth model.  Daemon build `0cfc9577...` is
+live, the fresh disposable canary passed, and immutable eleventh-root job
+`c06c0e77-271d-4642-906a-2801119904af` is solving.
 
 ## Active goal
 
 Close the existing exact-17 cap-nine production leaf through this Lean-owned
-successor chain.  The tenth root is a fully replayed `SAT` checkpoint.  Its
-mandatory scan recovered six source-backed consumers, and the only new exact
-occurrence reused the already-proved generic cancellation theorem.  The second
-orbit is now a checked Lean-generated finite refinement with a
-`SourceRealization` bridge, and the eleventh root is ready behind the daemon
-restart and canary gate.  A
+successor chain. The twentieth root is now a fully authenticated and replayed
+`SAT` checkpoint. Its mandatory scan recovered four exact records, compressed
+to three nonredundant source-backed motif families: two-center bisector order,
+convex-five order, and generic two-Kalmanson cancellation. Their complete
+12-clause orbit is banked in Lean with `SourceRealization` bridges, and the
+twenty-first root has passed both independent export validation and recursive
+ingress. A
 terminal `UNSAT` result must preserve the
 submitted-to-certificate clause map, pass independent proof replay, be banked
 as `extendedCnf_unsat`, and compose with the exact-cover extractor and the
@@ -420,11 +422,15 @@ alternative production path.
 1. The PIQD maintainer has built and installed daemon
    `0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360`,
    which raises the common prepare/blob/session-seed envelope from 256 MiB to
-   384 MiB.  The running daemon still reports the older build and must be
-   restarted by Adam.  After restart, rerun the disposable canary before any
-   immutable proof root.  Do not bypass PIQD, truncate the formula, submit a differently
-   authored root, or special-case one endpoint.  `piqc version` now reports
-   this exact live identity.
+   384 MiB.  Adam restarted the daemon onto that exact build.  The disposable
+   post-restart canary then passed under immutable PIQD job
+   `d458b002-dbfe-409b-94d3-15b784f11c99`, before submission of the eleventh
+   proof root.  The canary runner's required audited run label may
+   distinguish disposable infrastructure checks, but grants no source or proof
+   entitlement and must not appear in a production manifest.  Do not bypass
+   PIQD, truncate the formula, submit a differently
+   authored root, or special-case one endpoint.  `piqc version` reports this
+   exact live identity.
 2. The exact-scale throwaway artifact has qualified validation, storage,
    reread hashing, session custody, and solver handoff.  The canary is
    `scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf`, with the
@@ -512,3 +518,31 @@ result requires complete replay and another mandatory general-theorem search
 before any successor; an `UNSAT` result requires independent certificate
 replay, banking the child theorem, and composition into the cap-nine source
 leaf before it counts as closure.
+
+## Twenty-first Lean-owned child checkpoint — 2026-08-11
+
+The twentieth root returned authenticated `SAT` as immutable PIQD job
+`51cdf518-1150-47f5-ac2f-94a98159eb82`; all 5,846,188 clauses replayed against
+the returned model. The mandatory general-theorem scan produced four exact
+records and no unexplained proposal. After minimization, three source-clean
+occurrence families remain: the two-center bisector order motif, the
+convex-five motif, and a generic two-Kalmanson cancellation. Their Lean bank is
+`BlockerVExactSeventeenTwentiethModelRefinements.lean`. It supplies the full
+12-clause finite orbit, source-evaluation theorem, and conditional terminal
+adapter. Targeted Lean checking is green and the relevant declarations contain
+no `sorryAx`; finite evaluation uses the accepted `native_decide` boundary.
+
+The final twenty-first root has 308 variables and 5,846,200 clauses, is
+291,573,600 bytes, and has SHA-256
+`bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720`.
+The parent prefix is byte-identical. The independent validator regenerated all
+12 suffix clauses, verified that every motif rejects the motivating model, and
+rejected all four canonical child-20 records. Recursive ingress passed with
+manifest SHA-256
+`6ffd148a57458b23929dc933eeb2b35607f860c790b8cda347090311105cbe22`
+and live PIQD daemon SHA-256
+`fa66c08a9f341bb03ce1c39d32737f6b5bb91efe31d6a55f86f903caf207383c`.
+The checkpoint is ready for immutable PIQD submission. Exact 17 remains open
+until this or a later authenticated child is proved `UNSAT`, its certificate is
+independently replayed and banked, and the resulting theorem is composed into
+the on-spine cap-nine leaf.

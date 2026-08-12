@@ -1,0 +1,29 @@
+{
+  "canonical_records_rejected": {
+    "equality-convex-five-point-reverse": true,
+    "equality-convex-four-point-two-circle-bisector-order": true,
+    "equality-convex-four-point-two-circle-bisector-order-reverse": true,
+    "equality-convex-two-kalmanson-cancellation": true
+  },
+  "clauses": 5846200,
+  "dimacs_bytes": 291573600,
+  "dimacs_sha256": "bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720",
+  "manifest_sha256": "6ffd148a57458b23929dc933eeb2b35607f860c790b8cda347090311105cbe22",
+  "motivating_model_cut_clauses": {
+    "bisector": [
+      5846189
+    ],
+    "cancellation": [
+      5846197
+    ],
+    "convex_five": [
+      5846193
+    ]
+  },
+  "new_clauses": 12,
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "fa66c08a9f341bb03ce1c39d32737f6b5bb91efe31d6a55f86f903caf207383c",
+  "schema": "p97-exact17-twentieth-model-refinements-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}
