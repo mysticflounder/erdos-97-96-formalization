@@ -284,6 +284,47 @@ targeted Lean module build succeeds.  The bank's `cell_index = 1` denotes the
 frozen placement, while `arm_cell_index = 6` denotes the canary coordinate;
 those values are intentionally different.
 
+Those promotion gates authorized exactly one v11 successor canary.  It
+completed as `SAT_WITNESS_REPLAYED` with all replay gates true; the assignment
+SHA-256 is
+`5a3c7970e3531771b8d26e97f4b9ed9b416eb11fab0ff9a78226f0e00c963304`
+and the survivor artifact SHA-256 is
+`2233bc3a7f2b9377ecd671db8255a8a9247d16853769e03acd26530cf6eeaf71`.
+The stop rule fired before any further solve.
+
+Mandatory mining of that survivor produced the 24-role apex-shared-pair
+cross-block family.  For every `a ∈ {6,7,8,9}`, `b ∈ {3,4,5}`, and
+`c ∈ {10,11}`, positive selected rows `0:{a,b}`, `1:{a,b}`, and
+`c:{0,1,b}` force the common-five obstruction `(a,0,b,c,1)` in every frozen
+source order.  Exhaustive replay checked all 24 roles against all 48 orders:
+576 direct cases use the reverse orientation, 576 mirrored cases use the
+forward orientation, and no case fails.  The generic Lean certificate and
+exact positive-membership CNF bridge are kernel checked.
+
+The family deduplicates 72 raw row requirements into 30 definitions and adds
+294 implication clauses plus 24 blockers.  Its delta SHA-256 is
+`86a80a42906f71d59a30e0d0d26cc579e94d378137e1ab45a5f139e1c9076491`,
+authenticated family-bank SHA-256 is
+`409d64ec7178857320e2284c36c24a38c19a5ad801f9b7ded9c98e1476d2b418`,
+compiled-payload SHA-256 is
+`e9272240042cdb96d95e3eef0465d57eda9025dad301d6d65265b622768e2179`,
+and role-list SHA-256 is
+`c1b263ad53eedf0850a95f95dfe5b64ada71a0807d7414d91211ea4138725af2`.
+The strengthened prefix has 45,126 variables and 639,242 clauses with DIMACS
+SHA-256
+`a141b3223365f27eaa4d5b583293986b602e0b3f5467e7d74f319a24d5782d75`.
+After the 867-clause arm suffix it has 640,109 clauses and SHA-256
+`18b26eae3aef9f9aa07af520b3d1e82f732a9547fe7efddf19af4bc1df672c9b`;
+after the unchanged 81-entry source-order bank it has 640,190 clauses and
+final SHA-256
+`376e67a55551eeb8e6303835c52f8ce8331f7c19af82c95a0906bacaa1d61360`.
+Standalone bank attestation now checks the bank digest and exact four-file
+source manifest, rather than accepting a valid but truncated manifest.  The
+family plus canary regressions pass 13 focused tests, Ruff and formatting are
+clean, and the targeted Lean build succeeds.  This is one finite
+proof-backed refinement, not terminal UNSAT, all-arm coverage, a universal
+lift, or live theorem closure.
+
 These completed promotion gates authorize exactly one fresh successor canary.
 If it is SAT, the lane stops again for mandatory theorem mining before any
 further solve; if it is UNSAT, acceptance still requires the runner's fresh
