@@ -555,17 +555,20 @@ bank source manifest now includes its direct source-faithful candidate-surface
 dependency, and installation is transactional: any authenticated-payload drift
 restores the variable count, clause suffix, and pattern-variable table.  This
 is still not a terminal UNSAT result, all-arm coverage, a cardinality lift, or
-closure of a live `sorry`.  Runner schema v4 installs and re-attests the family
-before the named-arm suffix, binds it into the authenticated source inventory
-and job, writes its bank artifact, and requires its hash before acceptance.
-Successful replayed-SAT results require the exact survivor JSON hash;
-successful verified-UNSAT results require the frozen terminal-CNF and proof
-hashes.  An exceptional interrupted run can leave an unusable partial workdir,
-but no partial directory is accepted or resumed.  The full fake-solver runner
-regression suite passes 10/10, and the independent follow-up audit confirms
-that the result-artifact fix closes the acceptance gap under the runner's
-exclusive-workdir contract.  This v16 checkpoint was published at `7570a31b`;
-the one permitted successor canary is the v17 SAT checkpoint recorded below.
+closure of a live `sorry`.  Runner schema v4 now installs and re-attests the
+family before the named-arm suffix, binds it into the authenticated source
+inventory and job, writes its bank artifact, and requires its hash before
+acceptance.  The first independent end-to-end audit found that successful
+branch outputs were listed but not status-conditionally required; the runner
+now requires the exact survivor JSON hash after replayed SAT, and the frozen
+terminal-CNF plus proof hashes after verified UNSAT.  The remaining audit note
+is recoverability-only: an exceptional interrupted run can leave an unusable
+partial workdir, but no partial directory is accepted or resumed.  The full
+runner regression suite passes 10/10 with fake solvers only.  The independent
+follow-up audit confirms that the result-artifact fix closes the acceptance
+gap under the runner's exclusive-workdir contract.  This v16 checkpoint was
+published at `7570a31b`; the one permitted successor canary is the v17 SAT
+checkpoint recorded below.
 
 Historical v4 predecessor checkpoint: the fresh twelve-cell wave completed
 100 authenticated records in every cell and ended `ITERATION_LIMIT`
@@ -691,6 +694,740 @@ live-spine audit. All-cell expansion remains gated on source-clean whole-formula
 ingress; no terminal UNSAT, aggregate exact-12 coverage, cardinality lift, or
 live `sorry` closure is claimed.
 
+Exact-12 next-row static-parent/v5-r1 checkpoint (2026-08-10): the generated
+layout gate named above is now complete in isolated Lean.  The equality,
+equilateral-bisector, and perpendicular-bisector clause families have explicit
+source valuations, and `frozenParentDimacs` packages the complete 634,859-clause
+cell formula with a source-derived satisfying assignment.  Separate rolling
+fingerprints and byte-for-byte Python differential tests bind the equality,
+geometry, and convex clause order; their SHA-256 values are respectively
+`bca24367d5601a5870432b568848717ea50a0dcb703be03b74cefcfcbc799b83`,
+`dc07e3eff4dc21b32d38e4ca8e1225e90210db62ce306e615b01f969fa4bbb9b`,
+and `49e6e5d5b8b4c68f7bccb0356d5bf38ce9ee25b0397fe555a00f9cddb2fbafa2`.
+`ExactTwelveRigid221StaticTerminalConsumer.lean` gives the conditional typed
+consumer for `frozenParentDimacs ++ bank.map learnedClause`: a terminal
+`DimacsUnsatisfiable` closes the finite job only when every learned entry is a
+proved `SourceOrderPositiveNogood`.  This is the missing whole-static-parent
+ingress and consumer contract, not a terminal certificate or live closure.
+
+The fresh twelve-core v5-r1 **diagnostic** wave under
+`scratch/rigid221-sourceheavy-anchor/exact12-next-row-tagged-cegar-wave-i400-20260810-v5-r1`
+then produced 3,960 authenticated refinements.  That wave used the older
+structural runner: it started from the source-faithful cell CNF but did **not**
+install `frozenParentDimacs`.  It therefore does not test the new static-parent
+terminal route, and its rediscovery of static duplicate/equilateral/perpendicular
+contradictions is expected rather than evidence that the static ingress failed.
+Six cells reached the
+400-record iteration limit and six stopped at a structurally unresolved SAT
+survivor; no cell reached terminal UNSAT.  The aggregate stages are 3,814
+duplicate-center, 81 equilateral-bisector, 48 perpendicular-bisector, twelve
+three-triad, three equal-K4, one six-point-five-circle-A, and one existing
+source-order positive-coverage cut.  These Python structural certificates are
+not yet typed terminal-bank entries, so the wave cannot be promoted wholesale.
+
+The first unresolved survivor, in cell 1 after 212 cuts, identifies a narrower
+and immediately actionable adapter gap rather than new geometry.  The existing
+ordered-coverage generator replays all 48 source-entitled boundary orders
+through the already formalized convex common-five theorem.  Canonical
+minimization uses two common-five cores and six positive row memberships.
+`ExactTwelveRigid221V5R1Cell1CommonFivePositiveCut.lean` now packages them as a
+typed `SourceOrderPositiveNogood`; isolated Lean elaboration and Python replay
+both cover 48/48 orders, split 24/24 across the two cores, and compile the clause
+`(-1,-61,-912,-1194,-1630,-2218)`.  The binding is appended to
+`PROOF_BACKED_CUBE_BINDINGS`, preserving every existing authenticated bank
+index.  The v4 static runner authenticates the whole-static-parent consumer and
+correctly labels a verified terminal DRAT as still awaiting conversion to a
+Lean `DimacsUnsatisfiable` theorem.  Its fresh cell-1 canary is the next exact
+gate; continue only if the survivor strictly changes or the cell becomes
+terminal.  In
+parallel, the remaining structural stages need stage-specific typed positive
+row adapters before any terminal journal containing them can enter the Lean
+consumer.  No bounded result here supplies the separate card-at-least-13
+producer or closes the anchored universal leaf.
+
+The first v4 static-parent cell-1 canary then behaved as intended: it admitted
+exactly the new six-row cut, replayed the post-static formula and one-record
+journal exactly, and returned a different `STRUCTURALLY_UNRESOLVED` survivor.
+That new cube is again blocked for all 48 source orders by the existing
+common-five theorem.  Canonical minimization uses four cores with coverage
+counts 24/8/8/8 in canonical core order and seven full selected rows, compiling
+the clause `(-61,-175,-554,-912,-1630,-2239,-2702)`.
+`ExactTwelveRigid221StaticCell1SecondCommonFivePositiveCut.lean` now packages
+that obstruction as a typed `SourceOrderPositiveNogood`.  Its coverage proof
+splits the six possible orders of the three surplus labels before invoking
+linear arithmetic; isolated Lean elaboration is green under the scoped
+two-million-heartbeat policy.  The authenticated live source has 11,237 bytes,
+SHA-256
+`2b14137d887d42f46db21b355fa27fd9d154d0e21c4cb0292af2de0d6148ed65`,
+and differential Python replay covers all 48 orders with certificate SHA-256
+`285fe54c8a4cebbbcea52ae5224544c38e539c6a9828c669f907744e0c92d08f`.
+The binding is appended without reordering the prior bank.  The fresh v4-r2
+cell-1 canary completed from its new authenticated work directory with exact
+formula-extension and journal replay, admitted exactly the two proof-backed
+source-order cuts, and again returned `SAT` / `STRUCTURALLY_UNRESOLVED`; there
+is no terminal CNF or proof.  Its new survivor is different from both earlier
+cell-1 survivors.  The mandatory theorem search covers all 48 source orders,
+but again only with `false_of_convexFivePointCore`: four canonical cores cover
+24/8/8/8 orders, their eight selected rows compile the diagnostic clause
+`(-1,-61,-175,-554,-912,-1194,-1630,-2302)`, and the diagnostic certificate
+SHA-256 is
+`5f890592615b481ad510017c2f0fd05c4bf23113235028cbe1e2e5de95a33f74`.
+This is now a repeated theorem family, not a genuinely new predicate.  Before
+adding another survivor-specific adapter, the next gate is to generalize or
+finitely precompile the common-five family and prove that its generated clauses
+carry the same typed `SourceOrderPositiveNogood` evidence.  If that family gate
+cannot cover the next survivor without another hand-written proof, the static
+wave must stop and expose a genuinely new source-entitled predicate instead.
+None of these finite cuts is terminal UNSAT, all-cell coverage, a
+cardinality-at-least-13 lift, or live `sorry` closure.
+
+An exact family-level minimization improves that diagnostic substantially.
+Among all common-five cores available in the r2 survivor, the single core
+`(a,x,b,c,y) = (6,5,0,3,1)` covers all 48 source orders and consumes only the
+selected rows centered at `1`, `3`, and `5`.  The corresponding static cell-1
+clause is `(-61,-175,-912)`.  This is stronger than the detector's former
+first-core-per-order union, which used four cores and eight rows.  The reason is
+uniform rather than a 48-case accident: label `6` is in the second-opposite
+block, labels `5` and `3` are in the surplus block, and the direct or reflected
+cap-block order gives the two turns of `(6,5,0,3,1)` one common orientation.
+`ExactTwelveRigid221BlockSpanningCommonFiveCertificate.lean` now checks those
+three role memberships, the two needed distinctness facts, and the four
+positive-row equality steps once; it constructs a proof-carrying
+`SourceOrderPositiveNogood` without using the forced internal order of the
+second-opposite cap.  The r2-specific
+`ExactTwelveRigid221StaticCell1ThirdBlockSpanningPositiveCut.lean` is data only,
+and both modules elaborate in the isolated exact-12 overlay.  Python registry,
+source-manifest, and deterministic-minimizer integration are now complete, with
+the focused registry and bank tests green.  The authenticated v4-r3 cell-1
+canary replayed all three source-order records exactly and returned another
+`SAT` / `UNADMITTED_STRUCTURAL_SURVIVOR`; it produced no terminal CNF or proof.
+The r3 survivor changes only the unused fourth member of the row centered at
+`5`: the same three partial requirements
+
+* center `1` contains `{0,6}`;
+* center `3` contains `{0,1,5}`; and
+* center `5` contains `{0,6}`
+
+still instantiate the same block-spanning core `(6,5,0,3,1)` and cover all 48
+source orders.  This shows that the exact-support clause
+`(-61,-175,-912)` underuses the proved theorem: it excludes one support triple
+while 3,675 exact support triples realize the same three partial requirements
+in cell 1.  The next canary must therefore install the existing authenticated
+positive-membership CNF compiler and a Lean valuation bridge for the
+three-literal auxiliary block, rather than append a fourth survivor-specific
+full-support clause.  The independent theorem-bank pass also recognized the r3
+cube as a `ThreeTriadCollisionCore` with `(A,B,C,D,E) = (11,1,6,2,9)`; that is
+a source-clean five-row fallback predicate, but it is strictly larger than the
+three-requirement common-five cut and is not yet wired into the static parent.
+This remains a reusable finite cut producer, not a terminal certificate,
+all-cell result, cardinality lift, or proof-spine reduction.
+
+That positive-membership gate is now implemented.  The v6/v7 runner installs
+the authenticated positive-membership compiler and its Lean valuation bridge,
+and the ThreeTriad fallback has been consumed by a smaller common-five
+certificate rather than treated as an unproved predicate.  The first v7
+cell-1 canary admitted the three-row core
+`(a,x,b,c,y) = (8,1,3,9,11)`, using rows centered at `1`, `9`, and `11`, and
+compiled the source-order clause `(-61,-2239,-2994)`.  Its Lean source
+`ExactTwelveRigid221StaticCell1AfterThreeTriadCommonFivePositiveCut.lean`
+elaborates in the isolated overlay and is pinned at 5,159 bytes with SHA-256
+`09fd5952729856ee94f238f0725d4cf4145cb5b70bbfc0816eb4eaced72a3997`.
+The fresh canary retained one exact-replay record and stopped at
+`SAT` / `ITERATION_LIMIT`; it supplied no terminal CNF or proof.
+
+The next seeded solve moved to a different `STRUCTURALLY_UNRESOLVED` survivor.
+A new role-parametric theorem, rather than a survivor-specific 48-case proof,
+now covers that residual: whenever `b` is in the first-opposite interior block,
+`c` is in the second-opposite interior block, and `y` is in the surplus block,
+the positive row steps at centers `2`, `y`, and `c` force the common-five core
+`(0,2,b,c,y)` in one orientation for every one of the 48 source-entitled
+orders.  `ExactTwelveRigid221ApexCrossBlockCommonFiveCertificate.lean` proves
+this reusable family and is pinned at 5,132 bytes with SHA-256
+`aa4495ab51060fcc584afe7b9cf98803b23650adaadc3b4f8117e5c4ee08ebcc`.
+The cell-1 data adapter instantiates `(b,c,y) = (10,9,5)`, uses rows centered
+at `2`, `5`, and `9`, and compiles the clause `(-155,-924,-2301)`; its source is
+pinned at 1,883 bytes with SHA-256
+`befc4dc730916bdd84df5edaf270aa722052a089ddb3316cd1533fd6a8c776d0`.
+The resulting proof-backed registry has 65 entries and 69 authenticated Lean
+sources; focused coverage, bank-build, and clause-installation tests are green.
+This is a reusable finite cut family and a strictly changed survivor, but still
+not terminal UNSAT, all-cell coverage, a cardinality lift, or live `sorry`
+closure.  The next exact gate is a fresh canary against the 65-entry bank.
+
+That canary is now complete and again returned `SAT` /
+`STRUCTURALLY_UNRESOLVED`, with exact journal replay, two admitted source-order
+records, and no terminal CNF or proof.  Its journal SHA-256 is
+`ccdfda719a2a8647cdcacd1d0d43e4b543a3ecc43e83987a65ae872437d49b77` and
+its survivor SHA-256 is
+`8169c3a26e305cb10756681eb14a34dc29209ddc938c7fc720defc6b5b2e47a9`.
+The new survivor exposes another reusable role family rather than requiring a
+48-order data proof.  For a first-opposite apex `a` and second-opposite apex
+`y`, the positive rows centered at `0`, `1`, `2`, and `y` force the common-five
+core `(a,2,0,1,y)`; in the survivor `(a,y) = (11,6)`.  The generic proof
+`ExactTwelveRigid221OppositeApexChainCommonFiveCertificate.lean` elaborates in
+the isolated overlay and is pinned at 5,205 bytes with SHA-256
+`acf0e0dcf1ba2ad94a6a9ac60dbe08f6c11e92171b42fc5baed1e5717ed0af67`.
+Its cell-1 adapter
+`ExactTwelveRigid221StaticCell1FourthOppositeApexChainPositiveCut.lean` is
+pinned at 1,918 bytes with SHA-256
+`43371eaadd025ec32d4040ac079408df8d9057140129c945875730fff1d2bc4a` and
+compiles the four full selected rows to `(-1,-61,-155,-1195)`.  This raises the
+proof-backed registry to 66 entries and the authenticated Lean-source manifest
+to 71 sources.  The focused coverage, bank-build, and clause-installation tests
+are green, as are Ruff and the scoped whitespace audit.
+It is a source-clean finite cut producer, not terminal UNSAT, all-cell coverage,
+a cardinality lift, or live `sorry` closure.  The next exact gate is a fresh
+cell-1 canary past all three v7 source-order families.
+
+That fourth cell-1 canary is now complete.  It again returned `SAT` /
+`STRUCTURALLY_UNRESOLVED`, admitted three source-order-positive records, and
+produced no terminal CNF or proof.  Exact journal replay succeeds.  The
+authenticated work directory is
+`scratch/exact12-cell1-opposite-apex-chain-v7-r4-canary-20260811`; its journal
+SHA-256 is
+`6265d4a408b928931cee994444564218c8bd87e2dbf61c199326855fe0c70edc`,
+its survivor SHA-256 is
+`8cb38e9be1c6ef421f92e5611a2bf44092094841053462fbf505754cd69ccd91`,
+and its reconstructed discovery-CNF SHA-256 is
+`9f48ec2b759eb5d1d48d183a37966297ed2a2bd62c7d5ac0b18d76d0efa1363f`.
+The survivor has one common-five core covering all 48 source orders:
+`(a,x,b,c,y) = (4,2,11,5,8)`, using selected rows centered at `2`, `5`,
+and `8`.
+
+The survivor has been generalized source-cleanly rather than recorded as a
+one-off 48-order table.  If `a,c` lie in the surplus block, `b` lies in the
+first-opposite block, and `y` lies in the second-opposite block, then the four
+positive row steps at centers `2`, `y`, and `c` force the core
+`(a,2,b,c,y)`.  Direct boundary order supplies its reverse orientation and
+reflected boundary order supplies its forward orientation; no relative order
+of `a` and `c` is needed.
+`ExactTwelveRigid221SurplusCrossBlockCommonFiveCertificate.lean` elaborates in
+the isolated overlay and is pinned at 5,487 bytes with SHA-256
+`b1b90652bd38b26dc9fe4302e5b0f25a8995d1c4eaaaa419075280a518d61e75`.
+Its cell-1 adapter
+`ExactTwelveRigid221StaticCell1SurplusCrossBlockCommonFivePositiveCut.lean`
+is pinned at 1,890 bytes with SHA-256
+`032c1e0a54e7900b579272b04f421acbf261b4e7b09075902bbefdfeeefea8fa`
+and compiles rows `2`, `5`, and `8` to `(-157,-1032,-2065)`.  The append-only
+proof-backed registry therefore has 67 entries and 73 authenticated Lean
+sources.  This remains a finite cut producer: there is still no terminal
+UNSAT, all-cell coverage, cardinality lift, proof-spine reduction, or live
+`sorry` closure.
+
+The r4 canary used the runner's pre-migration direct local CaDiCaL discovery
+path.  Further exact-12 discovery runs are paused while this packet is onboarded
+to the strict PIQD discovery adapter.  Terminal acceptance is deliberately not
+being migrated: a reported terminal UNSAT must still be reproduced from the
+identical materialized CNF by a fresh local proof-producing CaDiCaL run and
+checked by `drat-trim` until the certificate authority contract is extended.
+
+That onboarding gate is now green.  The additive adapter replaces only the
+`proof_path = None` discovery call; the existing byte-identical local terminal
+rerun and DRAT authentication remain unchanged.  A raw-DIMACS control pair
+returned one total SAT model and one UNSAT verdict through PIQD with
+byte-identical readback.  The adapter's local offline gate passed 13 focused
+fake-transport tests, Ruff, and formatting checks before a live exact-12
+formula was submitted.
+
+The first attempted continuation also established an important journal rule:
+the three-record r4 journal correctly fails chain authentication against the
+67-entry source bank, because the append-only source addition changes the root
+job identity from
+`1ae46bfaa5e8b56e470659940df8319da6ee9a02824e4a6b24a1faf406fc93de`
+to
+`062fbc09b3859957294143d0ed0aff1ab0f624d95479a29915d981225a4299e9`.
+No record was silently migrated across that change.  A fresh-journal live
+canary then completed successfully: PIQD returned `SAT`, exact-CNF and static
+witness replay succeeded, one source-order-positive cut was admitted, and the
+new journal replayed exactly.  The authenticated work directory is
+`scratch/exact12-cell1-opposite-apex-chain-v7-r5-fresh-piqd-canary-20260811`;
+its journal SHA-256 is
+`5a0374cd995a95c85ee55f1d97c208bca7931a71ccf7f5da366e6341d2e94c6e`,
+and its terminal record is
+`8e0afab2703cfffafc30506f9b5645e4d9e487487bb466a8a2d432c36115df16`.
+The status is still `ITERATION_LIMIT`: this is a discovery-ingress checkpoint,
+not terminal UNSAT, all-cell coverage, a cardinality lift, proof-spine
+reduction, or live `sorry` closure.  The next exact action is a bounded
+same-job continuation from this one-record journal, with theorem-bank mining
+after each completed wave.
+
+That bounded r5 continuation admitted two further proof-backed source-order
+cuts and then stopped fail-closed on an unadmitted structural survivor.  The
+three-record journal SHA-256 is
+`871c1a6e85f9211cadef8bc282fcc317d26c02f4c1ea9cfe9da55c873928a553`;
+the survivor SHA-256 is
+`73c07a0fc95a326bc2238eb6cff46864d23a3627b44aaacb0573caba176fc7df`.
+There is no terminal CNF, proof, or UNSAT result.  The mandatory general-theorem
+mine found only already-banked cardinality-free contradiction consumers; it
+found no source-clean producer or cardinality lift for `nextRowOnlyHit` or the
+anchored parent.
+
+The broader exact diagnostic did identify one clean next finite cut: all 48
+source-entitled boundary orders are covered by the common-five core
+`(a,x,b,c,y) = (6,1,0,2,11)`, using the three full selected rows at centers
+`1`, `2`, and `11`.  The resulting source-clean Lean nogood
+`staticCell1PostChainCommonFivePositiveNogood` elaborates directly and compiles
+in cell 1 to `(-61,-155,-2803)`.  It is append-only bank entry 68.  This is a
+finite exact-12 obstruction, not a universal producer or live closure.
+
+The static coordinator now prepares and authenticates the immutable
+source-order bank once per run, binds it to the exact materialized SAT instance,
+and uses only precompiled subset matching in the per-model hot path.  Replay
+prepares an independently authenticated bank against the shadow instance.  The
+new immutability and instance-binding tests pass, and the 68-entry source bank
+replays against 74 pinned Lean sources.  Because entry 68 changes the bank and
+job identities, the next r6 PIQD canary starts from an empty journal; no r5
+journal record is migrated across that boundary.
+
+The empty-journal r6 live canary is green.  Its job id is
+`dc8dd3f7efdce15c75eb622650d57ba8b4a02d4921e524326aeaab1bcb96c6c5`;
+PIQD returned `SAT`, local exact-CNF and canonical-static replay passed, and
+bank entry 63 admitted clause `(-61,-2239,-2994)`.  The one-record journal
+SHA-256 is
+`3d79c532d6f2a8ef0db77f8c2589283585b5521943f1c5f64a06ee5dbe89a7ab`.
+The status is `ITERATION_LIMIT`, with no terminal CNF, proof, UNSAT result, or
+live closure.  A bounded same-job continuation is now the exact next step.
+
+That bounded r6 continuation is complete.  It admitted four authenticated
+source-order-positive records and then returned another `SAT` /
+`UNADMITTED_STRUCTURAL_SURVIVOR`.  Exact journal replay and canonical-static
+CNF replay pass.  The authenticated work directory is
+`scratch/exact12-cell1-opposite-apex-chain-v7-r6-piqd-wave1-20260811`; its
+journal SHA-256 is
+`42ab526a3ba7487b73a2a7de97c6f0fa5b29fa7995af4bef90300bf0302c4ace`,
+its survivor SHA-256 is
+`ab6a7a191d1eace9231e5fedc1a5802882566e4b103b88d234c8e7cce8082a27`,
+and its exact reconstructed discovery-CNF SHA-256 is
+`3f36edaccd484dc13116aa022fb8f7d5dc3fa7044f31352f1306cc505257d776`.
+There is no terminal CNF, proof, or UNSAT verdict.
+
+The survivor supplies a four-row, order-independent instance of the existing
+cardinality-free `ThreeTriadCollisionCore`, with roles
+`(A,B,C,D,E) = (5,8,6,11,10)` and selected rows centered at `6`, `8`, `10`,
+and `11`.  The source-clean Lean consumer and source-order wrapper are in
+`ExactTwelveRigid221StaticCell1PostCommonFiveThreeTriadPositiveCut.lean`;
+the file elaborates directly and is pinned at 3,788 bytes with SHA-256
+`1d59b0ed92417c9121619ad0e83fcc36c99ab5539f6672469b4d331e64c8f7d9`.
+The authenticated structural replay has proof SHA-256
+`7f7f22bc1a5d32577f06e88d9185bf306cbe6b84baa6232b601e14b04ac0afac`
+and nogood SHA-256
+`8ecf0ef078b2b31d48326929978a38560a601ba5b4ebc7519c03720b70059388`.
+It compiles in cell 1 to `(-1451,-1957,-2672,-2955)` and is append-only bank
+entry 69.  Focused source authentication, clause replay, bank construction,
+and Ruff checks are green; the bank now has 69 cuts and 75 pinned Lean source
+files.
+
+The mandatory post-wave theorem-bank mine found no source-clean
+cardinality-free producer that forces these four selected rows from the live
+parent.  Thus the mathematical contradiction consumer is general, but its
+current ingress remains a finite exact-12 computational producer.  This is a
+stronger replayable refinement, not terminal UNSAT, all-cell coverage, a
+cardinality lift, or closure of the anchored live `sorry`.  Because entry 69
+changes the authenticated bank and job identity, the next cell-1 PIQD canary
+must again start from an empty journal.
+
+The empty-journal r7 canary and its bounded five-step continuation are now
+complete.  The canary job id is
+`032985d439b0c655b83a68a452399a6ccdc3cfbf33ff62d1d3b40fd1f80e3d4a`;
+its one-record journal SHA-256 is
+`88f22a13dc231617f2c1dc0c7943ff476a652ee929a3ac52ef5fad2d91fba03f`.
+The continuation admitted five authenticated source-order records and then
+returned `SAT` / `STRUCTURALLY_UNRESOLVED`.  Its work directory is
+`scratch/exact12-cell1-opposite-apex-chain-v7-r7-piqd-wave1-20260811`,
+journal SHA-256 is
+`5542e8881945be9eb078a366667a15f27976898102c2b5261685b56502178df1`,
+survivor SHA-256 is
+`17c88e7dd312d537b6564b7372702a3fe6699df8e6ddabf49484ce2295041e59`,
+and reconstructed discovery-CNF SHA-256 is
+`5cf52b68429690270291a7ccddd02f41aa73a60909a0f6cca69da137d7994903`.
+There is no terminal CNF, proof, or UNSAT verdict.
+
+The mandatory ordered diagnostic covers all 48 source orders of that survivor
+with three cardinality-free common-five consumers, each covering 16 orders:
+`(a,x,b,c,y) = (3,10,5,6,4)`, `(3,4,5,6,10)`, and `(7,5,0,3,4)`.
+Their finite ingress uses the five full selected rows centered at `3`, `4`,
+`5`, `6`, and `10`.  The source-clean Lean wrapper is
+`ExactTwelveRigid221StaticCell1LateThreeCoreCommonFivePositiveCut.lean`; it
+elaborates directly, is pinned at 9,881 bytes with SHA-256
+`4270d1b7a0f034176c42e3565f708b998df306b201cc31585d33fd8626efdb74`,
+and produces certificate SHA-256
+`4d0bbe8f74ddd0aa730ebfd73a1ece8d0cacd687e250514a6688c244a16f1b76`.
+It compiles in cell 1 to `(-175,-554,-924,-1431,-2672)` and is append-only
+bank entry 70.  Direct Lean elaboration and Ruff are green; focused replay and
+full authenticated-bank checks are green (25 tests and 81 subtests).  The three consumers are
+cardinality-free, but forcing their five selected rows is still an exact-12
+computational ingress.  Therefore this is not terminal UNSAT, all-cell
+coverage, a general-cardinality lift, or closure of the anchored live `sorry`.
+
+The subsequent empty-journal r8 canary and five-step continuation exposed a
+solver-ingress defect in that bank path.  Although the 70-entry bank was
+rebuilt, authenticated, bound into the job identity, and used for typed
+per-model matching, its clauses were not installed in the initial discovery
+CNF.  Consequently r7 and r8 had the same 635,440-clause initial CNF with
+SHA-256
+`5cdfec59aae93a18a667338e7d412a01f1e3162d8f5685cc7a9285b9711d5c4a`.
+The r8 continuation repeated the first five r7 cubes and then admitted entry 70
+as its sixth record.  This is not a PIQD defect and does not invalidate the
+proof-backed cuts; it shows that the purported static bank was functioning as
+an authenticated lazy detector bank rather than as an eager SAT bank.
+
+That eager-installation repair is now implemented in the v8/r9 runner.  The
+authenticated 70-clause source-order suffix is installed before job identity
+and discovery-CNF materialization, and replay reconstructs and attests the same
+installation transactionally.  The fresh empty-journal local canary has 44,902
+variables and 635,510 clauses, with root CNF SHA-256
+`ab5bd9a69b0fafbc23cc4ebf9628563b64af5d36d44ff6bab4cf043bcbfa2282`;
+this differs from the defective 635,440-clause r7/r8 root.  Its source-order
+bank SHA-256 is
+`56bce9e97c550ed7f4f992d01309d3e5b2ddf34dec360800dd737d6c81cd3d45`,
+its exact 70-clause suffix SHA-256 is
+`f2dd6292f9ff9ab232167e803577c33eff84bddb101092ed5b721f326d91de94`,
+and its installation attestation SHA-256 is
+`0f11bf677e07514090fcc074c37bc2f8ca51b4d48a83efcfc56a79232569fae4`.
+The strict coordinator/PIQD wrapper is green with 34 focused tests, Ruff, and
+format checks.
+
+The first live PIQD v8/r9 iteration returned `SAT` /
+`STRUCTURALLY_UNRESOLVED`, not terminal UNSAT.  All exact-CNF, candidate,
+canonical-extension, and added-constraint replay gates passed; the journal is
+empty, so none of the old lazily rediscovered source-order cuts recurred.  The
+survivor SHA-256 is
+`674a64e2af69d45eb397f5b1d9f44918ef4c16fe3fcb676ba0bae9e51d9179c8`.
+The broader ordered diagnostic covers all 48 source orders with one common-five
+core `(a,x,b,c,y) = (4,7,10,5,9)` using selected rows centered at `5`, `7`, and
+`9`.  Its certificate SHA-256 is
+`264281c3ca4b3fe639c70b5e7b5b6cfcf600dece176d0330e50c144df766e275`
+and it compiles in cell 1 to the new clause `(-924,-1748,-2312)`.  That clause
+is absent from the 70-entry bank, but the diagnostic currently has no generated
+Lean nogood binding; it is therefore a candidate for theorem production, not
+an admissible production refinement yet.  The cardinality-free consumer is
+available, while forcing these three selected rows remains exact-12 ingress.
+There is still no terminal CNF, proof, aggregate coverage, general-cardinality
+lift, proof-spine reduction, or live `sorry` closure.
+
+The theorem-production checkpoint has now converted that candidate into
+append-only bank entry 71.  The source-clean Lean file
+`ExactTwelveRigid221StaticCell1R9CommonFivePositiveCut.lean` is 4,650 bytes
+with SHA-256
+`6e0238189115f0d4252533aab8fc4de489531fb16adf3f5327d66e96186396ad`;
+direct Lean elaboration is green.  Its generated binding authenticates exactly
+the three selected rows above and replays to `(-924,-1748,-2312)`.  Installing
+the resulting 71-entry bank gives bank SHA-256
+`ebd33a1728ccd879365369c546f11d3b5471f6cde653047ddcc02058a4d4dccb`,
+71-clause suffix SHA-256
+`3505baab0583632884bb8ff2c3a03a077de2aba73e59cbf9f6f927c297011a33`,
+installation SHA-256
+`d7c70fb6e1eff1125ed994a95e92f75668a3386b05da87ee95173ccb6b45d526`,
+and a 44,902-variable, 635,511-clause root CNF with SHA-256
+`b0539d7604861ecf6c7c0d948e9ea74214f2a51c89a82d578c879e0920c20295`.
+The next PIQD continuation therefore uses the fresh project namespace
+`p97-exact12-next-row-static-cell1-v8-r10`; no v8-r9 root, job, descriptor, or
+journal is a valid continuation input.  This is still one finite exact-12 cut,
+not terminal UNSAT, aggregate coverage, a universal lift, or closure of a live
+theorem.
+
+The first live v8/r10 iteration likewise returned `SAT` /
+`STRUCTURALLY_UNRESOLVED`, with every replay and provenance gate green and an
+empty journal.  Its survivor SHA-256 is
+`e7d117ef1d81ce1a4b7582130ab17d046bf3f2795002a6013966e6972be88248`.
+The mandatory ordered diagnostic covered all 48 source orders, but required
+the explicit disjunction of the two swapped common-five cores
+`(6,7,4,9,11)` and `(6,11,4,9,7)`; the one-core formulation is not justified.
+The diagnostic certificate SHA-256 is
+`dca985bc9ff5893e2fd6198ab0f2cf40636bfe62759f47496776a98eacf16718`
+and its exact cell-1 clause is `(-1748,-2309,-3008)`.
+
+That result is now append-only bank entry 72.  The source-clean Lean file
+`ExactTwelveRigid221StaticCell1R10CommonFivePositiveCut.lean` is 5,454 bytes
+with SHA-256
+`048d2f876c5b50536973d21b205f70dc9670518c9d526deef92582c8430d8494`;
+direct targeted elaboration is green.  Its theorem exposes the required
+two-arm orientation disjunction and its nogood binding replays exactly to the
+clause above.  The complete strict coordinator/PIQD wrapper is green with 35
+tests plus Ruff and format checks.  Installing the 72-entry bank gives bank
+SHA-256
+`bac52fca93b9e7f90c15cf1f78796e79880cdc4289b1a812fe8206edcabfa785`,
+72-clause suffix SHA-256
+`e45a320e8eb522afce1047b2b8f660b891442be3203bfa109ab1da5c6555623f`,
+installation SHA-256
+`cbad2dc5e5d23927d951ea62383debbdc3a0ac7066bc8bd566be9dce95c5f512`,
+and a 44,902-variable, 635,512-clause root CNF with SHA-256
+`66d03254dde7c37afd1155a2fb0bfae17839e251325f3c8c7c8194d5109b5dd7`.
+The next live continuation therefore uses the fresh namespace
+`p97-exact12-next-row-static-cell1-v8-r11`.
+
+The accompanying general-theorem search found the cardinality-independent
+consumer
+`Problem97.U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility`
+and the nearby producer
+`pentagonOffClassBlocker_xvDeletion_threeExactRows_common_u`.  The producer
+supplies three exact rows and their common point, but does **not** supply the
+five positive incidences needed by the common-five consumer (nor an equivalent
+source-order theorem).  Existing `Census554` three-triad declarations are
+finite-only.  Thus entries 71 and 72 are legitimate exact-12 refinements and
+theorem-discovery data, but they do not provide the universal ingress/lift for
+the anchored live leaf.  The next mathematical target is a source-clean
+five-incidence or equivalent order producer from the anchored hypotheses; do
+not promote a terminal exact-12 result as universal closure without that
+theorem.
+
+The first live v8/r11 iteration again returned `SAT` /
+`STRUCTURALLY_UNRESOLVED`, with all replay/provenance gates green and an empty
+journal.  Its survivor SHA-256 is
+`dc3792133700d406c267091821883c864503d1cb6fe03325a47ccf60c9c8a81d`
+and assignment SHA-256 is
+`dfca46be3211b483c72caaca876fe8468383dbe07d0647b6d4fe6247a99cdb81`.
+The structural detector found a four-row three-triad collision, while the
+mandatory ordered diagnostic found a strictly smaller three-row common-five
+nogood.  The latter covers all 48 source orders with the single core
+`(a,x,b,c,y) = (8,10,5,6,11)`, has certificate SHA-256
+`b33517d187f135a4982cce5a3fe8e9cad21799d59a181e3fe007ea7600dbec80`,
+and compiles in cell 1 to `(-1433,-2672,-2958)`.
+
+That stronger three-row cut is now append-only bank entry 73.  The source-clean
+Lean file `ExactTwelveRigid221StaticCell1R11CommonFivePositiveCut.lean` is
+4,688 bytes with SHA-256
+`63718eee44aa8d97a427dbb64dd01a63493e1640100f268e79a76717003efb62`;
+direct targeted elaboration is green.  Exact clause replay, Ruff, the fresh
+73-entry bank build, and the complete strict wrapper (35 tests plus formatting)
+are green.  Installing the bank gives bank SHA-256
+`0248c81f9143d5b09c03d4b0481c841655defd0b50126105b9ba0ca11cab5253`,
+73-clause suffix SHA-256
+`0c97f202b8f44fd05b918236604a8dbf81d62aae59347fa2b96db416213ad1f1`,
+installation SHA-256
+`01b7598adefac5b86e11e9543353085719f4539256380799938a41bba3f1f937`,
+and a 44,902-variable, 635,513-clause root CNF with SHA-256
+`91bb17d7201e638239cb7f327cf7b989e95447047361e4484498451247eb90a2`.
+The completed v8-r13 request was a genuinely fresh 600-second PIQD request.
+It returned `SAT` in 1.3 seconds.  Its survivor SHA-256 is
+`35c79bde18367524958963519ba46a72ed14434d17d4c4530799cd1b60c3b86b` and its
+assignment SHA-256 is
+`0d5197f4f0ced33cfe7f935e74b2388ed949343ca58258f86e3c7d22d5daea08`.
+There was no terminal UNSAT, aggregate coverage, universal producer/lift, or
+live closure.  No r13 root, job, descriptor, or journal is valid continuation
+input for the fresh route below.
+
+The fresh r14 route appends bank entry 74:
+`ExactTwelveRigid221StaticCell1R13MixedSourceOrderPositiveCut.lean`.  Direct
+Lean elaboration is green.  The source uses centers `0,2,3,4,5,10,11`, compiles
+the clause `[-1,-155,-175,-554,-924,-2672,-2958]`, and is 10,233 bytes with
+SHA-256
+`5371965813d8d53001975d2a6a7a1bea3febd0c36250881b730785cbd4fde207`.
+The exact 74-entry identities are: bank SHA-256
+`23ba74539463389b7665f3b100646e95496b6c2dc0addbb8cbeb5f1542c3f0fc`;
+base 44,902 variables / 635,440 clauses, SHA-256
+`5cdfec59aae93a18a667338e7d412a01f1e3162d8f5685cc7a9285b9711d5c4a`;
+74-clause suffix SHA-256
+`2d17f16177376b1b5ed954dc715b846d29ac0a1d6d5dfa43bf3fe9c502b27b96`;
+final 44,902 variables / 635,514 clauses, SHA-256
+`d1a9f992afc89420c12bd42524f7b3f49a05390f33fc9c350455df232f18c2db`;
+and installation SHA-256
+`68fde4133262449bd2826ec5c8a395b89364fd2d3777ecb2cb4783f4b324f3d8`.
+The new live namespace is
+`p97-exact12-next-row-static-cell1-v8-r14`.  This remains finite exact-12
+infrastructure only: there is no terminal UNSAT, aggregate coverage,
+universal producer/lift, or live closure.  The universal producer/lift remains
+the load-bearing mathematical target.
+
+The r14 request returned `SAT`, with authenticated survivor SHA-256
+`32b2dd81231f7b01bfd89328c4da56821e637a7c1f2cf3d78e9d395ed28d33b9`.
+Its minimized obstruction is the single 48-order common-five core
+`(a,x,b,c,y) = (4,7,10,5,9)`, using only rows centered at `5,7,9`.
+`ExactTwelveRigid221StaticCell1R14CommonFivePositiveCut.lean` packages the
+clause `[-924,-1748,-2308]` as entry 75; the 4,756-byte source has SHA-256
+`689479a9b53010de095632125883da286705e90fac0aad84d7a04f3472f1bf4e`.
+The ensuing r15 request installed the exact 75-entry bank (bank SHA-256
+`7a7c7711563fe0fd082b6980718216b6f2f2b0d25eebe1b48d39b85becf1b716`;
+suffix SHA-256
+`89829efe56c1f57f671e1b26b21b999b4ca1b6a78caf9bf6a7718120f4ce7454`)
+and submitted the 44,902-variable / 635,515-clause formula with SHA-256
+`a9653b9070a0237d476845d35ba194e91455e06d0308db1b1d6c7e9d2b3d4d38`.
+
+The r15 request also returned `SAT`; its authenticated survivor SHA-256 is
+`c03359b36af09c5a2f6bf641f6b131a2e586e46e14af973264dc9aa8276c5017`.
+Again a single three-row common-five core covers all 48 source orders, now
+`(a,x,b,c,y) = (4,7,8,9,10)`. Entry 76,
+`ExactTwelveRigid221StaticCell1R15CommonFivePositiveCut.lean`, packages clause
+`[-1748,-2362,-2487]`; its 4,622-byte source has SHA-256
+`f86d3ba815b41162d8370b690feade1dc971d7352c12c202a0fb5e97c460e811`.
+Direct Lean elaboration, exact 48-order replay, focused registry/bank tests, and
+Ruff are green. This remains a finite learned cut, not terminal UNSAT or a live
+closure.
+
+No unchanged r16 wave should be launched. A subsequent source-transport audit
+rejected the initially proposed interpretation of this core as
+`(xv,O,u,c,centerAt c)`. The finite labels are exactly
+`(4,7,8,9,10)`: label `4` has no fixed named source role, and the rows centered
+at `9` and `10` are rows of the generic faithful carrier pattern. The checked
+next-row ingress does not identify these three finite rows with a conditional
+consumer requiring only `O ∈ Kc.support` and `u ∈ Kc.support`. Entry 76 is
+therefore only an authenticated finite cut. The ingress-differential audit is
+now complete: the omitted finite consequence is the source-proved
+`FrozenNamedDeletionSixArm` described in the 2026-08-11 checkpoint above. The
+next checkpoint is an authenticated runner and bounded wave over the separate
+72 placement-by-arm cells; the r15 core is not reinterpreted as source
+geometry.
+
+That checkpoint is now complete.  The additive arm runner binds each of the
+12 ordered `(jointDeletion,v)` placements and six named-deletion arms to a
+separate job, authenticates the complete source inventory, and replays the
+source-faithful candidate, the base next-row constraints, the selected
+named-deletion arm, and the exact CNF independently.  Discovery `UNSAT` is
+accepted only after a fresh byte-identical proof-producing run and successful
+DRAT verification.  Focused validation reports 21 tests plus 10 subtests and a
+clean Ruff check.
+
+Historical 72-cell direct-wave checkpoint: the wave at
+`scratch/rigid221-sourceheavy-anchor/exact12-next-row-arm-direct-wave-20260811-v2`
+returned 68 `SAT_WITNESS_REPLAYED` cells and four
+`UNSAT_DRAT_VERIFIED` cells.  The finite UNSAT cells are indices
+`52,58,65,71`: placements `8..11`, in the `xu_q` or `xu_w` arm whose omitted
+label is already the placement's `jointDeletion`.  These four contradictions
+are the direct consequence of the compiled physical-cycle row at the `xu`
+blocker; they do not constitute a new general geometric obstruction.  In
+particular, the source six-arm disjunction still has a SAT witness in at least
+one other arm for every placement, so this wave neither proves aggregate
+six-arm coverage nor closes the exact-12 child.
+
+The then-mandatory gate was theorem mining over the 68 authenticated SAT
+witnesses.  First test the existing exact-false metric and source-order banks
+against those witnesses and record recurring replayed certificate families.
+Only a source-clean predicate that eliminates surviving arms may authorize an
+arm-aware CEGAR successor.  Do not reinterpret the four tautological finite
+UNSAT cells as a universal producer, and do not expand the old 12-cell journal
+under the new arm schema.
+
+That theorem-mining gate has also completed.  The authenticated report
+`postwave-theorem-search.json` replays all 72 arm jobs, all four terminal proof
+custody records, and all 68 SAT source predicates.  Every SAT witness admits an
+independently replayed `equality-duplicate-center` certificate when its selected
+supports are interpreted as `exact=False`; no direct survivor reaches an
+unclassified stage.  At that checkpoint this authorized an **additive
+arm-aware structural CEGAR runner** using the existing exact-false detector and
+proof-backed source-order bank.  It did not authorize importing the old
+12-cell journals: the arm job
+identity, independent arm replay, record schema, and terminal coverage remain
+separate.  Run a small canary first, stop on any replay or detector repeat, and
+only then launch a bounded parallel wave over the 68 nonterminal arm cells.
+
+Historical additive-runner checkpoint: the structural adapter was implemented in
+`exact12_next_row_arm_cegar.py` with arm-specific run and cut schemas.  The
+historical 12-cell schemas and workdirs are not reused.  A cell-6 canary
+replayed five consecutive SAT assignments through the candidate, base
+next-row, named-deletion-arm, and exact-CNF gates, appended five
+`equality-duplicate-center` cuts, and reproduced the complete journal and CNF
+from a fresh materialization.  Its status is still `ITERATION_LIMIT`; the
+canary proves the arm ingress and replay path, not finite UNSAT or leaf closure.
+Same-arm resume copies are accepted only after full arm-schema journal replay;
+cross-arm warm starts remain forbidden without independent rematerialization
+and certificate replay.
+
+The general-theorem audit of the 68 direct-wave SAT models found the same first
+`DuplicateCenterCore` in every case: centers `2,3` with shared labels `0,1,4`.
+All 68 existing structural certificates replay, in three row-set variants.
+This is strong theorem-mining evidence and uses an already source-proved
+carrier-level obstruction.  The subsequent static-equality work now provides
+the source-side duplicate-center semantics, so the missing finite ingress is no
+longer an invitation to learn the same cores one at a time.  It is instead an
+authentication and formula-composition obligation: the named-deletion arm must
+be reflected as an exact suffix of the frozen static/membership formula, and a
+terminal result must be replayed by a Lean consumer for that exact clause order.
+
+Historical pre-v4 arm-static cell-6 progression: the following 76--79-entry
+counts and hashes record the predecessor canaries.  They are retained for
+provenance and are superseded as the current status by the v4 checkpoint and
+24-pattern family layer near the top of this plan.
+
+Arm-aware structural CEGAR was therefore stopped after the bounded twelve-cell
+pilot reached 240 authenticated records, all at stage
+`equality-duplicate-center`, with no terminal cell.  Continuing cell 0 exposed
+another shared-label variant rather than convergence.  No unchanged dynamic
+wave is authorized.  The production route is now the eager formula
+
+1. frozen static-convex plus block-spanning/ThreeTriad membership prefix;
+2. separately authenticated named-deletion-arm clause suffix; and
+3. a source-order bank rebuilt and installed after that suffix.
+
+The historical membership installers authenticate their original parent
+hashes, so the named arm cannot be inserted before them without invalidating
+their contracts.  For arm cell 6 (placement 1, arm `u_q`), the frozen prefix has
+44,902 variables and 635,440 clauses.  Appending the 867-clause arm suffix gives
+636,307 clauses and SHA-256
+`4f555b1bee7eea93706d7d92f19ebc30aafc45b85c9400db64b8b76622f00356`;
+installing the initial 76-entry source-order bank gives 636,383 clauses and
+final SHA-256
+`979e8dee3a8eba9f0a37b9629e44c2349bb280b398c12e1e082e7fda1abbcb47`.
+The authenticated canary for this formula returned a fully replayed SAT
+witness and `STRUCTURALLY_UNRESOLVED`, not terminal UNSAT.  Mandatory
+theorem-family search then extracted a three-row common-five source-order cut:
+centers `5`, `6`, and `9` force core `(0,6,7,9,5)` over all 48 frozen orders,
+with 24 direct and 24 mirror certificates.  The checked proof body is recorded
+by
+`ExactTwelveRigid221ArmStaticCell6CommonFivePositiveCut.lean`.  Appending that
+cut as bank entry 77 gives 636,384 clauses and final SHA-256
+`5b7703ae5dc77007653320957ae0235c46af5190303d258827a040feb930ba9d`.
+That strengthened canary also returned a fully replayed SAT witness.  Its
+mandatory theorem gate found no order-independent metric core but extracted a
+second 48-order common-five cut: centers `2`, `3`, and `11` force core
+`(5,11,0,2,3)`, with 24 direct and 24 mirror certificates and certificate
+SHA-256
+`b3bd1412377bfcb07e90258fc484fdefc32f26b4c1032edf842f8aa44fc6bb6e`.
+The checked proof body is recorded by
+`ExactTwelveRigid221ArmStaticCell6SecondCommonFivePositiveCut.lean`.
+Appending it as bank entry 78 gives 636,385 clauses and final SHA-256
+`fe78cb1be270ce053354f581c9c4e95912b48ea848432a3c7a2ccba6a7b088e4`.
+That canary also returned a fully replayed SAT witness.  Its mandatory theorem
+gate found no order-independent metric core but extracted a third 48-order
+common-five cut: centers `1`, `3`, and `6` force core `(4,6,0,1,3)`, with 24
+direct and 24 mirror certificates and certificate SHA-256
+`2b0ba71e08c9395d75549709fec94910b5cefdcf0083e49559e51c743f0f9e0f`.
+The checked orientation and equality-core proof are recorded by
+`ExactTwelveRigid221ArmStaticCell6ThirdCommonFivePositiveCut.lean`.  Appending
+it as bank entry 79 gives 636,386 clauses and final SHA-256
+`d7f71ef4e105e1c9ce8d580abce3058031bfc1c1c328f8a077b1590e4a13de1f`.
+These counts, hashes, and finite cuts are exact composition and theorem-mining
+evidence, not terminal UNSAT or Lean closure.
+
+Lean source semantics and parent-ingress declarations for the six named arms
+have been written.  The exact-order one-arm consumer
+`false_of_terminalStaticNextRowThreeTriadNamedDeletionArmBank` constructs a
+source valuation for the historical production sequence above.  The current
+formula additionally contains the 24-pattern surplus/apex-pair family, so its
+exact Lean CNF bridge and terminal consumer must be extended before a terminal
+artifact is promotion-ready.  The next fresh immutable-workdir canary uses the
+strengthened 80-binding, 636,908-clause formula recorded at the top of this
+plan.  Every further SAT result must again pass theorem-family mining before
+another solver wave is authorized.  Even verified finite UNSAT remains bounded
+evidence until that exact Lean ingress and complete six-arm/placement coverage
+are checked.
+
+The four-row structural certificate could separately be formalized through
+`SourceOrderPositiveNogood.ofThreeTriadCollisionCore` and
+`Census554.ThreeTriadCollision.not_realizes_of_threeTriadCollisionCore`, but
+its clause is weaker than entry 73 on this survivor and is therefore not being
+added merely to duplicate coverage.  A fresh universal theorem-bank audit also
+found no declaration deriving either that three-triad core or the required
+common-five incidences from the anchored Rigid221 hypotheses.  The nearby
+`pentagonOffClassBlocker_*_threeExactRows_*` declarations are finite producers
+of three exact rows; their tetrahedron declarations consume the missing
+cross-center incidences rather than produce them.  This leaves the universal
+producer/lift as the load-bearing mathematical target even if the finite r14
+campaign eventually reaches terminal UNSAT.
+
+The mandatory theorem-mining pass over the diagnostic wave failed closed before
+writing an aggregate report, but the follow-up audit established that the cell-4
+journal is internally valid.  Its first record carries the wave-authenticated
+source-order-bank SHA-256
+`f5732fc392792362df145b999c4fe739f931d4329c46d8bde7038ac2b85db5d6`,
+whereas the live bank changed after the new cell-1 proof-backed binding was
+appended.  Replaying all 400 records against the wave's authenticated bank
+digest succeeds.  Thus the validator correctly rejected stale provenance; the
+postwave wrapper was at fault only for hiding the underlying hash mismatch.
+Historical theorem mining must use the authenticated source snapshot (or a
+fresh wave), never rewrite the journal's source hash.  The wrapper now includes
+the underlying replay error in its fail-closed message.  This audit is not a
+theorem-search result and supplies no closure claim.
+
 Five-omission v3 checkpoint (2026-08-10): the authenticated twelve-shard wave
 completed 275 local refinements in every deleted-label shard.  Every run ended
 `ITERATION_LIMIT`, with no terminal proof.  Each run produced 259
@@ -760,7 +1497,7 @@ the delta, compiled-payload, role, and bank SHA-256 values are respectively
 `d8031ca31bb6b5774a4b0d3c9ac40e5996b1d9a0c1ec0311450f4ac59a149561`,
 `6212b4d6eda2c42e2eeac1166d70630eec570bcc39eaca94eb8d8cfbbcc965e6`,
 `2642abc7fd08eb33a1d02b49e3eadd493bfea095d0b27a837d26f141e6291729`,
-and `46424dec2c7a0cc3d182f1b596aa86619baac7293973e50f2c55926bc578c52f`.
+and `1e5f9ae70d15fddf80e5ad2b4736db6d3c889fa23c0d0a67eb190a9ea5c30347`.
 Current runner schema v6 source installs and re-attests this bank before the
 unchanged 867-clause named-arm suffix and 81-clause source-order suffix.  Its
 post-arm and final DIMACS SHA-256 values are
@@ -769,23 +1506,97 @@ and `93f44e0f19ba9a4b9c207a01abb96b47f4d0642f7dcee002b11c2f31f6007913`;
 the expected final formula has 644,753 clauses.  These v18-prefix and v6-final
 identities are frozen source expectations, not artifacts from the earlier v5
 SAT-stop workdir; the first real v6 canary remains the runtime acceptance gate.
-A permissive but unreachable Lean
-definition-lookup fallback found by independent audit was removed in favor of
-explicit wiring of all 24 roles.  The source theorem's explicit axiom audit
-has no `sorryAx`; the CNF binding has only the documented `native_decide`
-compiler-trust footprint beyond standard axioms.  Local checkpoint validation,
-not itself a production certificate artifact, reports that the Python bank's
-five focused tests and Ruff pass, the Lean modules pass targeted governed
-builds, and the runner passes a no-solver materialization smoke.  The combined
-bank and fake-solver runner regression passes 15/15; no real solver is invoked
-by that suite.
+The first published v18 Lean CNF bridge was **not** semantically sound: all 30
+fresh variable numbers were permuted relative to Python's allocation order,
+and the emitted requirement-block order also differed.  PIQD replay could not
+detect that cross-language error because the submitted Python DIMACS bytes
+were internally consistent.  The bridge is now corrected to Python's exact
+allocation and normalized block order, and it exposes an exact
+`blockingClauses_eq` theorem.  A new regression parses every Lean
+`(variable, center, support)` definition and all 24 blocking clauses and
+compares them, in order, with the Python compilation.  That repaired focused
+bank suite passes 7/7 in 450.19 seconds and Ruff is clean.  The changed Lean
+source manifest accounts for the corrected bank SHA-256 above; the DIMACS
+delta and final formula identities are unchanged because Python had emitted
+the intended formula throughout.  The source theorem's explicit axiom audit
+has no `sorryAx`; the CNF binding retains only the documented `native_decide`
+compiler-trust footprint beyond standard axioms.  Earlier v18/v6 source
+manifest and runner records that name the defective Lean bridge are retired
+as promotion artifacts even when their raw CNF hash still matches.
 
 This remains a finite exact-12 theorem-bank refinement.  It is not terminal
 UNSAT, all-arm coverage, a general-cardinality lift, or live closure.  The
 anchor still forwards to four open children: two exact-12 leaves and two
 cardinality-at-least-13 leaves.  A successor canary is authorized only after
-the complete v18 checkpoint is committed and pushed; it must again stop on SAT
-for all-order theorem mining or on UNSAT for terminal proof production.
+the repaired bridge, its cross-language regression, and the successor
+bank/runner checkpoint are committed and pushed; it must again stop on SAT for
+all-order theorem mining or on UNSAT for terminal proof production.
+
+Exact-12 v19 diagnostic result (2026-08-12): before the bridge defect was
+found, one v6 cell-6 canary used the same 45,307-variable, 644,753-clause raw
+CNF and returned `SAT_WITNESS_REPLAYED`, classified
+`UNADMITTED_STRUCTURAL_SURVIVOR`.  The job id was
+`fed61fb72d3d7f6330a41d02a80953aee69214a36b8b602e06602177b937e1ba`;
+the replayed assignment SHA-256 was
+`02f517a24a53f7e9edfa56258010dfe03bbffdbde20043552ea702bd9aee2d40`.
+There was no terminal proof artifact or Lean ingress.  All-order mining covered
+all 48 source orders by convex common-five orientation and found four cores.
+The primary core is `(a,x,b,c,y) = (0,6,10,2,3)`, requiring selected rows
+`2:{3,6,10}`, `3:{0,10}`, and `6:{0,10}`.  The embedded certificate SHA-256 is
+`460ccb1222553275300534d0003d22ecb44167a953bf7caf3dbc0d33d8ce6b20`;
+the containing artifact SHA-256 is
+`d40553e41c879660db1b33375c65f2dbeb0dbcc8aea943de7e73503833a54268`.
+Because the Python formula itself did not change, this remains valid finite
+theorem-mining evidence.  Because its source manifest authenticated the
+defective Lean bridge, it is not a promotable source-to-Lean certificate.
+
+Exact-12 v20 source and semantic-ingress checkpoint (2026-08-12): the v19
+primary core has been generalized to the 24 roles
+`x ∈ {6,7,8,9}`, `b ∈ {10,11}`, `y ∈ {3,4,5}`, requiring selected rows
+`x:{0,b}`, `y:{0,b}`, and `2:{b,x,y}`.  The source theorem checks the two
+frozen boundary orientations and derives the existing convex common-five
+contradiction.  Its `SourceOrderPositiveNogood` constructor has only standard
+core axioms; the exact CNF consumer additionally has the repository-governed
+`Lean.ofReduceBool`/`Lean.trustCompiler` footprint from `native_decide`, with
+no `sorryAx` in either audit.
+
+The v20 bank reuses variables `45167`--`45174`, allocates fresh variables
+`45308`--`45337`, and adds 30 definitions plus 24 blocks to the repaired v18
+prefix.  The frozen result has 45,337 variables and 644,063 clauses with
+DIMACS SHA-256
+`4f4314afc7c11b672655f6c67ea48286fc0adc3ae1d54f0e41f65c903947aed5`.
+The delta, compiled-payload, role, and bank SHA-256 values are respectively
+`f511a76eec4163417ed58ed06b06221875a7d7318e7198b3b16ebdde76c858bd`,
+`e3ec43d05e335ac4c7e24828677afc8674e87c3da074a94864e7372fd22c8863`,
+`cde3ccc0e4b90052ba7cae5ce7669919fc992e416657d9a41df0c2ff9edea72c`,
+and `fa032aeb2a403dd8fbffac84a48e27e2bd2208b862097f48c13dab0ffd1cf91a`.
+Its focused suite and separate exact semantic-lock rerun are green: every Lean
+fresh and reused variable binding and all 24 blocking clauses agree in order
+with Python.  Runner schema v7 now installs and re-attests the v20 bank before
+the unchanged 867-clause named-arm suffix and 81-clause source-order suffix.
+The post-arm formula has 644,930 clauses with DIMACS SHA-256
+`0066a25a45828e1a230c1fbef77fe159dc5e0dc6d4d914db92d21f00530c17bc`;
+the final formula has 645,011 clauses with DIMACS SHA-256
+`2fca0633a644f0dbe3d8cfc0d25c716575ba69484a0f1f38f7b7724fcfdb1e67`.
+The focused no-solver/fake-solver runner suite passes 10/10 and Ruff is clean.
+The v3 all-order miner now requires the v7 schemas and authenticates the v20
+bank artifact.  No successor solver has been launched, and this is not
+terminal UNSAT, general-cardinality closure, or a live `sorry` reduction.
+
+PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
+raw CNF bytes, job identity, and solver result that it receives.  It does not
+interpret or validate the caller's Python-to-Lean variable semantics, source
+entitlement, or proof-assistant consumer.  Moreover, the current producer
+manifest contract hashes the exact submitted bytes into the job identity but
+retains only parsed JSON; no PIQD response supplies bytes that re-hash to that
+producer digest, so the caller must preserve its own exact manifest bytes.
+The contradictory PIQD CLI/source capability text was corrected upstream in
+PIQD commit `4cb8fb1`; exact-byte manifest retention and retrieval remains a
+separate requested feature, not a current capability.  Consequently every P97
+bank promotion must independently compare the complete numeric variable-to-
+source-requirement map and emitted clause order across Python and Lean.  A
+successful PIQD replay cannot substitute for that cross-language semantic
+test.
 
 ## 0. Universal-ingress contract (binding, 2026-08-04)
 
@@ -1036,6 +1847,28 @@ They reduce the previously implicit eight-incidence tetrahedron sketch to one
 explicit five-incidence producer obligation and give future CEGAR/theorem
 mining a precise source-level predicate vocabulary.
 
+Current producer target (audited 2026-08-11): factor those five facts into one
+endpoint-parametric packet, provisionally named
+`PentagonEndpointCrossCenterPacket q source₁ source₂`, where `q` is either
+`P.u.1` or `packet.xv`, `K₁` and `K₂` are the corresponding selected critical
+four-shells, and `BO` is the selected class centered at `S.oppApex2` after
+deleting `q`.  The packet must assert exactly
+
+```text
+c₁ ∈ BO,   O ∈ K₁,   c₂ ∈ K₁,   O ∈ K₂,   c₁ ∈ K₂.
+```
+
+The two live cardinality-at-least-13 leaves are specializations of this one
+producer boundary: the `u` arm uses the fixed source pair `xu` and
+`jointDeletion.deleted`, while the `xv` arm uses its supplied arbitrary source
+pair.  Existing crossed-row and three-exact-row lemmas stop short of this
+packet, and the tetrahedron declarations consume rather than produce it.
+Accordingly this is genuine new source-level mathematics, not an import or
+adapter gap.  The next unbounded-lane milestone is the endpoint-parametric
+producer itself (or a strictly equivalent universal lift), followed by two
+thin adapters into the existing consumers; merely declaring the packet does
+not close either leaf.
+
 The 2026-08-12 source audit isolates the first packet field more sharply.  For
 `K₁ := (Hlate.selectedAt source₁.1 source₁.2).toCriticalFourShell`, the existing
 `K₁.center_mem` already proves `center source₁ ∈ D.A`; hence
@@ -1054,6 +1887,19 @@ contextual source `P.u`; neither supplies this field.  Thus the carrier
 ingress is already available, but the physical-radius/deletion-survival pair
 is genuine producer work.  This refinement does not reduce the live leaf
 count.
+
+The 2026-08-11 producer audit sharpens this boundary.  In both residual
+theorems the hypothesis `13 ≤ D.A.card` is currently unused after the checked
+three-row exporter; each residual assumes precisely the negation of the
+five-incidence packet.  Moreover, the existing rational convex-octagon local
+model shows that common endpoints, equal row radii, and cyclic order alone do
+not force the missing center incidence.  Therefore another local K4 or
+third-bisector adapter cannot be promoted as the producer.  The next proof
+must use the cardinality hypothesis through global minimality/deletion data:
+derive an endpoint-crossing disjunction from saturated actual-blocker fibers,
+then use third-bisector/fiber-card lemmas to eliminate its non-crossing arm.
+The argument should be endpoint-parametric so that the `u` and `xv` deletion
+leaves are discharged by thin adapters rather than two unrelated proofs.
 
 The unbounded leaf is now a checked nested fan-out-two coordinator.  In both
 endpoint arms the complete five-incidence packet is discharged by a checked
@@ -1246,10 +2092,12 @@ off-class blocker of the `xv` row and `Kc` is the row reselected at `c`, then
 Its proof localizes the blocker of `Kc` to the strict second cap from any two
 of those three physical-class hits and applies the existing four-point
 strict-cap equidistance contradiction.  The theorem-bank audit found no direct
-consumer.  The smallest missing complementary producer is two distinct hits
-of `{u, xu, xv}` in `Kc`; the current source data instead forces other
-physical-class memberships (`xu`, `deleted`, and `v`) in a different selected
-row.  Consequently this result is banked geometry, not a discharged child.
+consumer.  The initially claimed r15 two-incidence consumer was invalidated by
+the exact label-and-row transport audit: the r15 cut is stated over the generic
+labeled row pattern and does not identify its core rows with `Kc.support`.
+Consequently the strict-triple bound remains banked geometry, while r15 remains
+a finite learned cut; neither is a discharged child or a source-level producer
+for the other.
 
 The complementary fixed-center deletion fan is now promoted as
 `pentagonOffClassBlocker_physicalClass_commonDeletionFan`.  It proves that at
@@ -1277,6 +2125,14 @@ explicit exact-12 ingress contract with either the named interior source plus
 surviving `q`/`w` deletion, or the two exact radius classes plus their checked
 two-by-two partition of `{u,c,xv,xu}`.  Extending the same undifferentiated
 row-only journal is diagnostic enumeration, not a closure route.
+
+The later proof-backed source-order sequence through r15 supersedes another
+undifferentiated continuation of that diagnostic. It authenticated 76 finite
+cuts and repeatedly reduced the current cell-1 survivor to a common-five core,
+but remained SAT. It did not produce a valid source-level two-incidence
+consumer. More survivor-specific common-five waves are paused until a
+Lean-proved source predicate, absent from the current finite ingress, is
+identified and compiled.
 
 That successor experiment is now instantiated in a fresh Class-C v4
 namespace.  It replays the 10,000 inherited row clauses and adds 780 clauses
@@ -2618,9 +3474,10 @@ it survives every admissible placement normalization.  Finally,
 `exists_source_normalized_physicalCycle_nextRowOnlyHitDichotomy` installs the
 predicate together with `FrozenSafeCubeOK`, the complete five-cycle row trace,
 the actual-blocker identifications, and one of the twelve checked placement
-representatives.  Both new modules pass direct Lean elaboration and contain no
-local `sorry` or axiom declaration; the first also passes the targeted Lake
-build.
+representatives.  At that historical checkpoint both modules passed direct
+Lean elaboration and contained no local `sorry` or axiom declaration; the
+first also passed the then-targeted Lake build.  This is not a current green
+promotion claim for the later arm-static route.
 
 The exact successor-job contract is now explicit in
 `ExactTwelveRigid221NextRowJobSemantics.lean`.  Its theorem
@@ -2689,9 +3546,9 @@ SHA-256
 `f3aef3b9b7ad921f3dccff027f1cbb82ca147d3c5369cc92142c65ba5586ab47`
 and no terminal proof.
 
-The fresh twelve-cell v4 wave under
+Historical twelve-cell v4 wave: the run under
 `scratch/rigid221-sourceheavy-anchor/exact12-next-row-tagged-cegar-wave-i100-20260810-v4`
-has now completed with 100 authenticated records in every cell.  All twelve
+completed with 100 authenticated records in every cell.  All twelve
 cells ended `ITERATION_LIMIT`; there is no terminal CNF or DRAT proof.  Across
 the 1,200 records, 1,184 are duplicate-center cuts, eleven are
 equilateral-bisector collisions, three are three-triad collisions, one is a
@@ -2731,20 +3588,22 @@ common-prefix-plus-selector delta below the exact variable ceiling 42,730.
 `ExactTwelveRigid221NextRowCompiledJob.lean` adds the base-CNF agreement and
 satisfaction proofs and packages
 `baseDimacs ++ reconstructedClauseDelta cell` as a concrete
-`CompiledNextRowJob`.  Targeted 32 GB direct elaboration is green; the higher
-cap is currently needed because the imported frozen-v14 native computation
-exceeds the ordinary 16 GB wrapper cap.  The axiom audit contains no
+`CompiledNextRowJob`.  At that historical checkpoint targeted 32 GB direct
+elaboration was green; the higher cap was needed because the imported
+frozen-v14 native computation exceeded the ordinary 16 GB wrapper cap.  The
+axiom audit contained no
 `sorryAx`, but does contain `Lean.trustCompiler` through those existing native
 encoding checks.
 
-This object is deliberately named `reconstructedCompiledNextRowJob`: it does
+This object is deliberately named `reconstructedCompiledNextRowJob`: it did
 not yet authenticate that the Python emitter serialized the same ordered
-clause list.  The next exact target is an emitted per-cell clause artifact and
-a checked equality
+clause list.  The next exact target at that checkpoint was an emitted per-cell
+clause artifact and a checked equality
 `serializedClauseDelta = reconstructedClauseDelta cell`, following the
-existing v14 cell-0000 pattern.  That equality upgrades the reconstruction to
-an authenticated `CompiledNextRowJob`; only then should a fresh v5 canary and
-another bounded wave run.  This checkpoint still has no terminal DRAT proof,
+existing v14 cell-0000 pattern.  That equality upgraded the reconstruction to
+an authenticated `CompiledNextRowJob`; the subsequent v5 work is historical
+and has been superseded by the arm-static route above.  This checkpoint had no
+terminal DRAT proof,
 all-cell coverage, universal lift, or live `sorry` closure.
 
 A fresh theorem-family search over the last 100 records of all twelve
@@ -2758,7 +3617,8 @@ arm of `Census554.MetricCoreAlternative`, consumed generally by
 It therefore identifies no missing local geometry consumer and proves no
 coverage theorem.
 
-The next exact targets are now two independent source producers:
+Background mathematical producer obligations, independent of the immediate
+arm-static canary, are:
 
 1. map the exact-twelve `FiveSurvivorFaithfulCarrierBoundary`, together with
    only source-entitled role/order data, to `Census554.MetricCoreAlternative`;
