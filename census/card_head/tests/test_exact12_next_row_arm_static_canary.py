@@ -35,12 +35,6 @@ from census.card_head.exact12_apex_triple_surplus_second_opposite_common_five_me
 from census.card_head.exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank import (
     install_apex_triple_surplus_second_opposite_common_five_membership_family_bank,
 )
-from census.card_head.exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
-    _source_paths as surplus_pair_second_opposite_apex_pair_common_five_source_paths,
-)
-from census.card_head.exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
-    install_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank,
-)
 from census.card_head.exact12_apex_zero_cross_block_membership_family_bank import (
     install_apex_zero_cross_block_membership_family_bank,
 )
@@ -52,11 +46,13 @@ from census.card_head.exact12_next_row_arm_static_canary import (
     EXPECTED_PREFIX_DIMACS_SHA256,
     EXPECTED_PREFIX_VARIABLES,
     SOURCE_PATHS,
+    TERMINAL_STATUS,
     Exact12NextRowArmStaticCanaryError,
     _build_job,
     _cnf_sha256,
     _required_artifact_hashes,
     _required_artifacts_authenticated,
+    _required_result_artifact_hashes,
     _source_manifest,
     append_authenticated_named_arm_suffix,
     materialize_arm_static_canary,
@@ -72,6 +68,12 @@ from census.card_head.exact12_second_cap_apex_surplus_membership_family_bank imp
 )
 from census.card_head.exact12_surplus_apex_pair_membership_family_bank import (
     install_surplus_apex_pair_membership_family_bank,
+)
+from census.card_head.exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
+    _source_paths as surplus_pair_second_opposite_apex_pair_common_five_source_paths,
+)
+from census.card_head.exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
+    install_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank,
 )
 from census.card_head.exact12_surplus_three_triad_membership_family_bank import (
     install_surplus_three_triad_membership_family_bank,
@@ -377,6 +379,57 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             "surplus_pair_second_opposite_apex_pair_common_five_family_bank"
         )
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+    def test_success_statuses_require_their_result_artifacts(self) -> None:
+        survivor = {"job_id": "bound-job", "assignment_sha256": "1" * 64}
+        sat_required = _required_result_artifact_hashes(
+            "SAT_WITNESS_REPLAYED",
+            survivor=survivor,
+            terminal_proof_sha256=None,
+        )
+        sat_artifacts = {
+            "survivor": {"sha256": sat_required["survivor"]},
+        }
+        self.assertTrue(
+            _required_artifacts_authenticated(sat_artifacts, sat_required)
+        )
+        sat_artifacts["survivor"] = {"sha256": "0" * 64}
+        self.assertFalse(
+            _required_artifacts_authenticated(sat_artifacts, sat_required)
+        )
+        with self.assertRaisesRegex(
+            Exact12NextRowArmStaticCanaryError, "omitted its survivor"
+        ):
+            _required_result_artifact_hashes(
+                "SAT_WITNESS_REPLAYED",
+                survivor=None,
+                terminal_proof_sha256=None,
+            )
+
+        terminal_required = _required_result_artifact_hashes(
+            TERMINAL_STATUS,
+            survivor=None,
+            terminal_proof_sha256="2" * 64,
+        )
+        terminal_artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in terminal_required.items()
+        }
+        self.assertTrue(
+            _required_artifacts_authenticated(terminal_artifacts, terminal_required)
+        )
+        terminal_artifacts.pop("proof")
+        self.assertFalse(
+            _required_artifacts_authenticated(terminal_artifacts, terminal_required)
+        )
+        with self.assertRaisesRegex(
+            Exact12NextRowArmStaticCanaryError, "omitted its proof hash"
+        ):
+            _required_result_artifact_hashes(
+                TERMINAL_STATUS,
+                survivor=None,
+                terminal_proof_sha256=None,
+            )
 
     def test_source_manifest_failure_is_rejected(self) -> None:
         with patch(

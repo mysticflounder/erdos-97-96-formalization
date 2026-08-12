@@ -514,6 +514,59 @@ establish exact-12 closure, aggregate six-arm/placement coverage, a
 cardinality-at-least-13 producer or lift, Lean terminal ingress, or closure of
 a live `sorry`.
 
+The exactly one successor canary authorized by that checkpoint has now been
+consumed.  Cell 6 returned `SAT_WITNESS_REPLAYED` /
+`STRUCTURALLY_UNRESOLVED`; every candidate, added-constraint, named-deletion
+arm, exact-CNF, and canonical-static-extension replay gate passed.  The
+survivor artifact SHA-256 is
+`3e810b280aa04463f326ab7edc6e033abc35194cc085f949cfaf095bbc1734d9`,
+and the assignment SHA-256 is
+`0ea7db6cd391f8937668e40a88b58b44d9765ea409157f01257942083398c5fb`.
+There is no terminal proof artifact.  The stop rule fired immediately, and no
+further solve is authorized until the following mined family is checked,
+authenticated, and independently audited.
+
+Mandatory all-order mining covered all 48 frozen source orders with
+certificate SHA-256
+`b2cf25482c4fafa7efbd64a1572251b0ce615cbe38ec27c403f12f7f5a2ca776`.
+The source-clean family has 24 roles: `a` and `y` are ordered distinct
+labels in `{3,4,5}`, `x ∈ {6,7,8,9}`, and the apex pair is fixed as `(0,1)`.
+Positive selected rows `x:{0,a}`, `y:{0,a}`, and `1:{0,x,y}` force the
+common-five core `(a,x,0,1,y)`.  In the mined survivor, the representative
+role is `(a,x,y)=(4,6,3)`; 24 direct source orders use the reverse orientation
+and 24 reflected orders use the forward orientation.  This paragraph records
+an active proof-family checkpoint.  A pre-compilation reuse audit found 30
+logical requirements: all twelve second-opposite-center pairs and all twelve
+apex-center triples already have exact variables in the parent prefix, while
+only the six ordered-distinct surplus-center pairs are fresh.  The checked Lean
+and authenticated Python bridges now reuse those 24 parent definitions and
+allocate only variables `45242`--`45247`; a 30-fresh-variable adapter remains
+rejected.  The compiled bank extends the frozen parent from 45,241 variables
+and 642,191 clauses to 45,247 variables and 642,425 clauses.  Its delta SHA-256
+is `be73759811e6cbc9423ab95540ceedbc83f1df314746e3451821127a5444e417`,
+its final DIMACS SHA-256 is
+`d23b721936153e866afc6ca780b6829a8d3a9217e55f420fad9489baf1a7b7bb`,
+and its compiled-payload SHA-256 is
+`6a76bc83e87ded45297d12d8153b66c1c177b1e0a44a29775644678286b8c3b0`.
+The two Lean modules build, their public endpoints have no `sorryAx` (the CNF
+bridge has the repository-governed `Lean.trustCompiler` footprint from
+`native_decide`), the six focused Python tests pass, and Ruff is clean.  The
+bank source manifest now includes its direct source-faithful candidate-surface
+dependency, and installation is transactional: any authenticated-payload drift
+restores the variable count, clause suffix, and pattern-variable table.  This
+is still not a terminal UNSAT result, all-arm coverage, a cardinality lift, or
+closure of a live `sorry`.  Runner schema v4 installs and re-attests the family
+before the named-arm suffix, binds it into the authenticated source inventory
+and job, writes its bank artifact, and requires its hash before acceptance.
+Successful replayed-SAT results require the exact survivor JSON hash;
+successful verified-UNSAT results require the frozen terminal-CNF and proof
+hashes.  An exceptional interrupted run can leave an unusable partial workdir,
+but no partial directory is accepted or resumed.  The full fake-solver runner
+regression suite passes 10/10, and the independent follow-up audit confirms
+that the result-artifact fix closes the acceptance gap under the runner's
+exclusive-workdir contract.  Publication is the only remaining gate before
+the single next canary.
+
 Historical v4 predecessor checkpoint: the fresh twelve-cell wave completed
 100 authenticated records in every cell and ended `ITERATION_LIMIT`
 throughout.  Its mandatory theorem-family
@@ -896,6 +949,25 @@ are therefore a checked consumer boundary, not closure of the unbounded leaf.
 They reduce the previously implicit eight-incidence tetrahedron sketch to one
 explicit five-incidence producer obligation and give future CEGAR/theorem
 mining a precise source-level predicate vocabulary.
+
+The 2026-08-12 source audit isolates the first packet field more sharply.  For
+`K₁ := (Hlate.selectedAt source₁.1 source₁.2).toCriticalFourShell`, the existing
+`K₁.center_mem` already proves `center source₁ ∈ D.A`; hence
+`center source₁ ∈ BO` reduces exactly to the two missing source facts
+
+```text
+center source₁ ≠ deleted,
+dist S.oppApex2 (center source₁) = P.rho.
+```
+
+The corresponding concrete targets are `c₁ ≠ packet.xv` plus the radius
+equality in the `xv` branch, and `cXu ≠ P.u.1` plus the radius equality in the
+fixed-`u` branch.  `centerAt_ne_source` gives only inequality with the
+center's own source, while `P.hsourceBlockerClass` applies only to the
+contextual source `P.u`; neither supplies this field.  Thus the carrier
+ingress is already available, but the physical-radius/deletion-survival pair
+is genuine producer work.  This refinement does not reduce the live leaf
+count.
 
 The unbounded leaf is now a checked nested fan-out-two coordinator.  In both
 endpoint arms the complete five-incidence packet is discharged by a checked

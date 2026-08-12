@@ -67,14 +67,6 @@ from .exact12_apex_triple_surplus_second_opposite_common_five_membership_family_
 from .exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank import (
     _source_paths as apex_triple_surplus_second_opposite_common_five_source_paths,
 )
-from .exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
-    Exact12SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyBankError,
-    attest_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank_live_sources,
-    install_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank,
-)
-from .exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
-    _source_paths as surplus_pair_second_opposite_apex_pair_common_five_source_paths,
-)
 from .exact12_apex_zero_cross_block_membership_family_bank import (
     Exact12ApexZeroCrossBlockMembershipFamilyBankError,
     attest_apex_zero_cross_block_membership_family_bank_live_sources,
@@ -117,6 +109,14 @@ from .exact12_surplus_apex_pair_membership_family_bank import (
     Exact12SurplusApexPairMembershipFamilyBankError,
     attest_surplus_apex_pair_membership_family_bank_live_sources,
     install_surplus_apex_pair_membership_family_bank,
+)
+from .exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
+    Exact12SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyBankError,
+    attest_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank_live_sources,
+    install_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank,
+)
+from .exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank import (
+    _source_paths as surplus_pair_second_opposite_apex_pair_common_five_source_paths,
 )
 from .exact12_surplus_three_triad_membership_family_bank import (
     Exact12SurplusThreeTriadMembershipFamilyBankError,
@@ -1016,6 +1016,32 @@ def _required_artifact_hashes(
     }
 
 
+def _required_result_artifact_hashes(
+    status: str,
+    *,
+    survivor: Mapping[str, Any] | None,
+    terminal_proof_sha256: str | None,
+) -> dict[str, str]:
+    """Bind every artifact required by a successful result branch."""
+
+    if status == "SAT_WITNESS_REPLAYED":
+        if survivor is None:
+            raise Exact12NextRowArmStaticCanaryError(
+                "replayed SAT status omitted its survivor payload"
+            )
+        return {"survivor": _json_sha256(survivor)}
+    if status == TERMINAL_STATUS:
+        if terminal_proof_sha256 is None:
+            raise Exact12NextRowArmStaticCanaryError(
+                "verified UNSAT status omitted its proof hash"
+            )
+        return {
+            "terminal_cnf": EXPECTED_FINAL_DIMACS_SHA256,
+            "proof": terminal_proof_sha256,
+        }
+    return {}
+
+
 def _required_artifacts_authenticated(
     artifacts: Mapping[str, Mapping[str, Any] | None],
     required: Mapping[str, str],
@@ -1185,6 +1211,8 @@ def run_arm_static_canary(
         }
         classification: str | None = None
         terminal_proof_authenticated = False
+        terminal_proof_sha256: str | None = None
+        survivor: dict[str, Any] | None = None
         status: str
         error: str | None = None
 
@@ -1262,6 +1290,7 @@ def run_arm_static_canary(
                 and identical_terminal
             ):
                 status = TERMINAL_STATUS
+                terminal_proof_sha256 = _sha256_file(proof_path)
             else:
                 status = "DISCOVERY_UNSAT_UNVERIFIED"
                 error = (
@@ -1322,6 +1351,13 @@ def run_arm_static_canary(
             "proof": _artifact(proof_path),
         }
         required = _required_artifact_hashes(job, materialized)
+        required.update(
+            _required_result_artifact_hashes(
+                status,
+                survivor=survivor,
+                terminal_proof_sha256=terminal_proof_sha256,
+            )
+        )
         if not _required_artifacts_authenticated(artifacts, required):
             status = "ARTIFACT_ERROR"
             error = "required canary artifact failed authentication"
