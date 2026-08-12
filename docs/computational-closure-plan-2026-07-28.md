@@ -1642,9 +1642,12 @@ supplement in
 `docs/specs/p97-exact12-next-row-static-piqd-discovery-v1.md`.
 This checkpoint remains finite theorem-bank refinement: it is not terminal
 UNSAT, all-arm coverage, a general-cardinality lift, or a live `sorry`
-reduction.  No v21 solver is authorized until the cross-language parity,
-rollback, runner, Lean, axiom, documentation, commit, push, and independent
-audit gates are green.
+reduction.  The cross-language parity, rollback, runner, Lean, axiom,
+documentation, commit, push, and independent-audit gates are green in pushed
+checkpoint `6746daca`.  Exactly one v21 cell-6 canary is therefore authorized.
+It must stop on the first authenticated SAT or UNSAT result: SAT returns to
+all-order theorem mining before any successor formula, while UNSAT enters the
+separate byte-identical local proof-producing terminal path.
 
 PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
 raw CNF bytes, job identity, and solver result that it receives.  It does not
