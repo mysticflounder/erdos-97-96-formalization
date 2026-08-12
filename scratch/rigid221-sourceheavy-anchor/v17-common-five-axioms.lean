@@ -1,0 +1,10 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf
+
+/-! Axiom audit for the exact-12 v17 apex-first/surplus/second common-five checkpoint. -/
+
+open Problem97 ATailFrontierLiveClosure
+
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenBoundaryOrder.commonFiveOrientation_apexFirstSurplusSecond
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.implicationDimacs_sat
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.family_shape
+#print axioms Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.false_of_blockingClause_false

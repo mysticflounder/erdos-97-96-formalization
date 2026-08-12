@@ -564,8 +564,8 @@ hashes.  An exceptional interrupted run can leave an unusable partial workdir,
 but no partial directory is accepted or resumed.  The full fake-solver runner
 regression suite passes 10/10, and the independent follow-up audit confirms
 that the result-artifact fix closes the acceptance gap under the runner's
-exclusive-workdir contract.  Publication is the only remaining gate before
-the single next canary.
+exclusive-workdir contract.  This v16 checkpoint was published at `7570a31b`;
+the one permitted successor canary is the v17 SAT checkpoint recorded below.
 
 Historical v4 predecessor checkpoint: the fresh twelve-cell wave completed
 100 authenticated records in every cell and ended `ITERATION_LIMIT`
@@ -700,6 +700,32 @@ separate from 275 distinct new local cuts, with zero overlap, and exposes their
 716-cut union only as a derived projection.  This is replayable finite
 structural evidence, not terminal UNSAT, a universal producer or lift, or live
 Lean closure.
+
+Exact-12 v17 SAT-stop theorem-mining checkpoint (2026-08-12): the v17 canary
+returned `SAT_WITNESS_REPLAYED` and was classified
+`STRUCTURALLY_UNRESOLVED`. The mandatory theorem-mining pass found a selected
+24-role, source-clean apex-first/surplus/second common-five family; its
+common-five coverage accounts for all 48 source orders. The Lean source
+theorem and CNF binding are
+`ExactTwelveRigid221ApexFirstSurplusSecondCommonFiveCertificate.lean` and
+`ExactTwelveRigid221ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.lean`.
+The new bank has 45,277 variables and 643,379 clauses, with DIMACS SHA-256
+`18f09d0b8a854cfbe0783c6f84130366dc90011b25ce816eaeb8cdd5b8000ea8`. With
+the arm and order suffixes, the final formula has 644,327 clauses and DIMACS
+SHA-256
+`57bfa7269a86b09ad2f63b5c882145fd3f55b77e31da866b227e2663f48c740b`.
+This is theorem-bank refinement, not terminal UNSAT, general-n closure, or
+live closure. The source theorem and CNF binding pass the governed targeted
+Lean build and the explicit axiom audit contains no `sorryAx`; the CNF checks
+retain the repository-governed `Lean.trustCompiler` footprint from
+`native_decide`. The focused bank suite passes 6/6, the v5 fake-solver runner
+suite passes 10/10, and Ruff is clean. An independent semantic audit found one
+permissive unknown-variable fallback; it now maps to the impossible
+center-self requirement and has a source proof that every
+`FrozenSafeCubeOK` row rejects it. The solver stop rule remains in force
+through commit and push of this checkpoint. Once published, this broad checked
+family may authorize exactly one successor canary; that canary must again stop
+on SAT for all-order theorem mining or on UNSAT for terminal RUP production.
 
 ## 0. Universal-ingress contract (binding, 2026-08-04)
 
