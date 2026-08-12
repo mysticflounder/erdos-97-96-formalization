@@ -1256,6 +1256,236 @@ theorem freshThirdCapSourceInteraction_centerEq_or_inter_card_le_two
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every carrier source lying in the canonical `Q` row either has the same
+actual blocker as `Q`, or omits another point of that row and therefore
+survives that point's deletion at its own blocker.
+
+This is the cardinality-independent row-relocation step behind the
+FirstNonHit search.  Iterating it can only stop at the canonical blocker
+fiber; any closure of that terminal fiber needs additional global geometry. -/
+theorem freshThird_qRow_member_sameBlocker_or_omissionSuccessor
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsourceQ :
+      source.1 ∈
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support) :
+    H.centerAt source.1 source.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2 ∨
+      ∃ w ∈
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support,
+        w ≠ source.1 ∧
+          HasNEquidistantPointsAt 4 (D.A.erase w)
+            (H.centerAt source.1 source.2) := by
+  by_cases hcenter :
+      H.centerAt source.1 source.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2
+  · exact Or.inl hcenter
+  · right
+    let Ksource :=
+      (H.selectedAt source.1 source.2).toCriticalFourShell.toSelectedFourClass
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    have hinter : (Ksource.support ∩ KQ.support).card ≤ 2 :=
+      SelectedFourClass.inter_card_le_two Ksource KQ hcenter
+    have hexists : ∃ w ∈ KQ.support, w ∉ Ksource.support := by
+      by_contra hnone
+      push_neg at hnone
+      have hsubset : KQ.support ⊆ Ksource.support := by
+        intro w hw
+        exact hnone w hw
+      have hinterEq : Ksource.support ∩ KQ.support = KQ.support :=
+        Finset.inter_eq_right.mpr hsubset
+      rw [hinterEq, KQ.support_card] at hinter
+      omega
+    rcases hexists with ⟨w, hwQ, hwSource⟩
+    refine ⟨w, hwQ, ?_, ?_⟩
+    · intro hws
+      subst w
+      exact hwSource
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.q_mem_support
+    · exact
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).mpr hwSource
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A row at a blocker distinct from the canonical `Q` blocker omits at least
+two points of the exact `Q` row.  Each omitted point is a genuine deletion
+successor at the new blocker.
+
+This is the sharp source-clean relocation bound: two distinct circles meet in
+at most two carrier points, so two of the four `Q`-row points remain available
+for the next deletion step. -/
+theorem freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenter :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2) :
+    2 ≤
+        ((H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support \
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support).card ∧
+      ∀ w ∈
+          (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.support \
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support,
+        w ≠ source.1 ∧
+          HasNEquidistantPointsAt 4 (D.A.erase w)
+            (H.centerAt source.1 source.2) := by
+  let Ksource :=
+    (H.selectedAt source.1 source.2).toCriticalFourShell.toSelectedFourClass
+  let KQ :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have hinter : (Ksource.support ∩ KQ.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two Ksource KQ hcenter
+  have hinter' : (KQ.support ∩ Ksource.support).card ≤ 2 := by
+    simpa [Finset.inter_comm] using hinter
+  have hsplit := Finset.card_sdiff_add_card_inter KQ.support Ksource.support
+  have htwo : 2 ≤ (KQ.support \ Ksource.support).card := by
+    rw [KQ.support_card] at hsplit
+    omega
+  constructor
+  · exact htwo
+  · intro w hw
+    have hw' := Finset.mem_sdiff.mp hw
+    constructor
+    · intro hws
+      subst w
+      exact hw'.2
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.q_mem_support
+    · exact
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).mpr hw'.2
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If the two canonical cap sources share the fresh Q blocker and the four
+named carrier vertices are distinct, then they exhaust that blocker fiber and
+their carrier points are exactly the Q selected support.
+
+The cardinality premise is intentionally explicit: the FreshThird packets do
+not exclude a canonical source from being one of the two Q sources.  In those
+aliasing cases the named set has cardinality two or three, so saturation cannot
+be claimed. -/
+theorem freshThird_sameBlocker_namedSources_saturate_of_card_eq_four
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirst :
+      H.centerAt C.firstSource.1 C.firstSource.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (hsecond :
+      H.centerAt C.secondSource.1 C.secondSource.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (hcard :
+      ({C.firstSource, C.secondSource, Q.source₁, Q.source₂} :
+        Finset (CriticalShellSystem.CarrierVertex D.A)).card = 4) :
+    ATailSurvivalCover.actualBlockerFiber H Q.source₁ =
+        {C.firstSource, C.secondSource, Q.source₁, Q.source₂} ∧
+      ({C.firstSource, C.secondSource, Q.source₁, Q.source₂} :
+          Finset (CriticalShellSystem.CarrierVertex D.A)).image
+          (fun source => source.1) =
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support := by
+  classical
+  let V : Finset (CriticalShellSystem.CarrierVertex D.A) :=
+    {C.firstSource, C.secondSource, Q.source₁, Q.source₂}
+  have hQcenters :
+      H.centerAt Q.source₂.1 Q.source₂.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2 :=
+    (congrArg Subtype.val Q.blockers_eq).symm
+  have hsubset :
+      V ⊆ ATailSurvivalCover.actualBlockerFiber H Q.source₁ := by
+    intro source hsource
+    apply Finset.mem_filter.mpr
+    refine ⟨Finset.mem_univ source, Subtype.ext ?_⟩
+    simp only [V, Finset.mem_insert, Finset.mem_singleton] at hsource
+    rcases hsource with rfl | rfl | rfl | rfl
+    · exact hfirst
+    · exact hsecond
+    · rfl
+    · exact hQcenters
+  have hfiberLe :
+      (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card ≤ 4 :=
+    ATailSurvivalCover.actualBlockerFiber_card_le_four H Q.source₁
+  have hVcard : V.card = 4 := by simpa [V] using hcard
+  have hfiberCard :
+      (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 4 := by
+    have hVle := Finset.card_le_card hsubset
+    omega
+  have hVeq :
+      V = ATailSurvivalCover.actualBlockerFiber H Q.source₁ :=
+    Finset.eq_of_subset_of_card_le hsubset (by omega)
+  constructor
+  · simpa [V] using hVeq.symm
+  · change V.image (fun source => source.1) = _
+    rw [hVeq]
+    exact
+      ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
+        H Q.source₁ hfiberCard
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If both canonical cap-source rows are the canonical Q row, then that row
+contains two distinct points of the strict first cap.  Unlike the blocker-fiber
+saturation theorem above, this conclusion does not require excluding aliases
+between a canonical source and a Q source. -/
+theorem freshThird_sameBlocker_qRow_capInterior_card_ge_two
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirstSupport :
+      (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support)
+    (hsecondSupport :
+      (H.selectedAt C.secondSource.1
+          C.secondSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support) :
+    2 ≤
+      ((H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support ∩
+        S.capInteriorByIndex S.oppIndex1).card := by
+  classical
+  let V : Finset ℝ² := {C.firstSource.1, C.secondSource.1}
+  have hVcard : V.card = 2 := by
+    simp [V, C.sources_ne]
+  have hsubset :
+      V ⊆
+        (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support ∩
+          S.capInteriorByIndex S.oppIndex1 := by
+    intro x hx
+    simp only [V, Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · apply Finset.mem_inter.mpr
+      constructor
+      · rw [← hfirstSupport]
+        exact
+          (H.selectedAt C.firstSource.1
+            C.firstSource.2).toCriticalFourShell.q_mem_support
+      · exact C.firstSource_data.2.1
+    · apply Finset.mem_inter.mpr
+      constructor
+      · rw [← hsecondSupport]
+        exact
+          (H.selectedAt C.secondSource.1
+            C.secondSource.2).toCriticalFourShell.q_mem_support
+      · exact C.secondSource_data.2.1
+  have hcardLe := Finset.card_le_card hsubset
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Apply global minimal deletion to the canonical Q row.  This is the exact
 cardinality-independent finite ingress: `V` is a nonempty subset of four
 named row points, deleting all of `V` blocks K4 at a carrier center outside
@@ -1303,6 +1533,425 @@ theorem exists_freshThird_qRow_cardMinimalBlockingSubdeletion
     rw [← hinsertCard]
     exact Finset.card_le_card hinsertSubset
   omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The generic deletion-core dichotomy specialized to the canonical Q row.
+The fresh center remains outside the exact Q support; the output is either a
+co-radial pair in the minimal deletion set or a pairwise-disjoint minimal
+deletion core at that same center. -/
+theorem exists_freshThird_qRow_sharedRadiusPair_or_minimalDeletionCore
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ KQ.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ((∃ s ∈ V, ∃ t ∈ V,
+          s ≠ t ∧ dist center s = dist center t) ∨
+        Nonempty
+          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+            D.A V center)) := by
+  dsimp only
+  let KQ : SelectedFourClass D.A
+      (H.centerAt Q.source₁.1 Q.source₁.2) :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have hcenterA :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.center_mem).2
+  have hremaining : (D.A \ KQ.support).Nonempty := by
+    refine ⟨H.centerAt Q.source₁.1 Q.source₁.2, ?_⟩
+    exact Finset.mem_sdiff.mpr ⟨hcenterA, KQ.center_not_mem⟩
+  simpa [KQ] using
+    (exists_fresh_sharedRadiusPair_or_minimalDeletionCore
+      (D := D) (hmin := R.minimal) (U := KQ.support)
+      KQ.support_subset_A KQ.support_nonempty hremaining)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A cardinality-independent finite abstraction ingress for the canonical Q
+row.  The blocking set has at most four points because it lies in the exact
+four-point Q support.  In the deletion-core arm, the core itself supplies one
+exact four-point shell for each of those at most four labels.
+
+This is a projection of every live carrier into bounded named data, not an
+induced subcarrier: anonymous K4 witnesses outside the packet are deliberately
+forgotten. -/
+theorem exists_freshThird_qRow_boundedSharedRadiusPair_or_minimalDeletionCore
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ KQ.support ∧
+      V.card ≤ 4 ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ((∃ s ∈ V, ∃ t ∈ V,
+          s ≠ t ∧ dist center s = dist center t) ∨
+        Nonempty
+          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+            D.A V center)) := by
+  dsimp only
+  let KQ : SelectedFourClass D.A
+      (H.centerAt Q.source₁.1 Q.source₁.2) :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  change ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+    V.Nonempty ∧ V ⊆ KQ.support ∧ V.card ≤ 4 ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ((∃ s ∈ V, ∃ t ∈ V,
+          s ≠ t ∧ dist center s = dist center t) ∨
+        Nonempty
+          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+            D.A V center))
+  have hbase :=
+    exists_freshThird_qRow_sharedRadiusPair_or_minimalDeletionCore
+      (P := P) (Pρ := Pρ) (R := R) (H := H) Q
+  change ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+    V.Nonempty ∧ V ⊆ KQ.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ((∃ s ∈ V, ∃ t ∈ V,
+          s ≠ t ∧ dist center s = dist center t) ∨
+        Nonempty
+          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+            D.A V center)) at hbase
+  rcases hbase with
+    ⟨center, hcenter, V, hVne, hVsub, hblocked, hcases⟩
+  have hVcard : V.card ≤ 4 := by
+    calc
+      V.card ≤ KQ.support.card := Finset.card_le_card hVsub
+      _ = 4 := KQ.support_card
+  exact
+    ⟨center, hcenter, V, hVne, hVsub, hVcard, hblocked, hcases⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A member restored from a deletion-minimal blocker leaves exactly three
+points on its radius after the whole blocker is deleted. -/
+theorem selectedClass_card_eq_three_of_minimalBlockingSubdeletion_member
+    {A U : Finset ℝ²} {center s : ℝ²}
+    (hUsub : U ⊆ A)
+    (hsU : s ∈ U)
+    (hrestore :
+      HasNEquidistantPointsAt 4 (A \ (U.erase s)) center)
+    (hblocked :
+      ¬ HasNEquidistantPointsAt 4 (A \ U) center) :
+    (SelectedClass (A \ U) center (dist center s)).card = 3 := by
+  classical
+  have hEraseEq :
+      (A \ (U.erase s)).erase s = A \ U := by
+    ext x
+    by_cases hxs : x = s
+    · subst x
+      simp [hsU]
+    · simp [hxs]
+  have hblockedErase :
+      ¬ HasNEquidistantPointsAt 4
+        ((A \ (U.erase s)).erase s) center := by
+    rw [hEraseEq]
+    exact hblocked
+  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hrestore with
+    ⟨radius, hradius, hcard⟩
+  have hsClass :
+      s ∈ SelectedClass (A \ (U.erase s)) center radius := by
+    by_contra hsNot
+    apply hblockedErase
+    have hsameCard := selectedClass_erase_card_eq_of_not_mem
+      (A := A \ (U.erase s)) (x := s) (s := center) (d := radius)
+      hsNot
+    refine ⟨radius, hradius, ?_⟩
+    have hcardErased :
+        4 ≤
+          (SelectedClass ((A \ (U.erase s)).erase s)
+            center radius).card := by
+      rw [hsameCard]
+      exact hcard
+    simpa [SelectedClass] using hcardErased
+  have hsDist : dist center s = radius :=
+    (mem_selectedClass.mp hsClass).2
+  have hsClass' :
+      s ∈ SelectedClass (A \ (U.erase s)) center (dist center s) := by
+    simpa [hsDist] using hsClass
+  have hclassEq :
+      SelectedClass (A \ U) center (dist center s) =
+        (SelectedClass (A \ (U.erase s)) center (dist center s)).erase s := by
+    rw [← hEraseEq]
+    exact selectedClass_erase_eq (A \ (U.erase s)) s center (dist center s)
+  have hlower :
+      3 ≤ (SelectedClass (A \ U) center (dist center s)).card := by
+    rw [hclassEq, Finset.card_erase_of_mem hsClass']
+    have hcard' :
+        4 ≤ (SelectedClass (A \ (U.erase s)) center (dist center s)).card := by
+      simpa [hsDist] using hcard
+    omega
+  have hupper :
+      ¬ 4 ≤ (SelectedClass (A \ U) center (dist center s)).card := by
+    intro hfour
+    apply hblocked
+    refine ⟨dist center s, ?_, ?_⟩
+    · simpa [hsDist] using hradius
+    · simpa [SelectedClass] using hfour
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The shared-radius arm of a Q-row minimal blocker feeds the ambient
+five-point selected-class consumer. -/
+theorem qRow_five_le_selectedClass_of_cardMinimalBlockingSubdeletion_sharedRadius
+    (Q : FreshThirdBlockerFiber P Pρ)
+    {center : ℝ²} {V : Finset ℝ²} {s t : ℝ²}
+    (hVsub :
+      V ⊆
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support)
+    (hsV : s ∈ V)
+    (htV : t ∈ V)
+    (hst : s ≠ t)
+    (hrestore :
+      HasNEquidistantPointsAt 4 (D.A \ (V.erase s)) center)
+    (hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center)
+    (hsame : dist center s = dist center t) :
+    5 ≤ (SelectedClass D.A center (dist center s)).card := by
+  apply five_le_selectedClass_of_restoration_and_sharedRadius
+    (hUsub := hVsub.trans
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support_subset_A)
+    (hsU := hsV) (htU := htV) (hst := hst)
+    (hrestore := hrestore) (hblocked := hblocked) (hsame := hsame)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Refine the Q-row minimal blocker by eliminating the co-radial branch as
+an actual-blocker candidate.  If two members of the minimal deletion set have
+the same radius, restoration gives a five-point ambient class, so the fresh
+center is fully deletion robust.  Otherwise the distinct radii assemble into
+a pairwise-disjoint minimal deletion core at the same center.
+
+The robust arm cannot equal `H.centerAt source` for any carrier source by
+`FullyDeletionRobustAt.centerAt_ne`; hence only the deletion-core arm can
+possibly produce the anonymous selected row needed by FirstNonHit. -/
+theorem exists_freshThird_qRow_robustCenter_or_minimalDeletionCore
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ KQ.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      (FullyDeletionRobustAt D center ∨
+        Nonempty
+          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+            D.A V center)) := by
+  dsimp only
+  rcases exists_freshThird_qRow_cardMinimalBlockingSubdeletion
+      (P := P) (Pρ := Pρ) (R := R) (H := H) Q with
+    ⟨center, hcenterRemaining, V, hVne, hVsub, hblocked, hminimal⟩
+  refine
+    ⟨center, hcenterRemaining, V, hVne, hVsub, hblocked, ?_⟩
+  by_cases hcollision :
+      ∃ s ∈ V, ∃ t ∈ V,
+        s ≠ t ∧ dist center s = dist center t
+  · rcases hcollision with ⟨s, hsV, t, htV, hst, hsame⟩
+    left
+    apply fullyDeletionRobustAt_of_large_class
+    · have hcenterNeS : center ≠ s := by
+        intro hcenterS
+        exact
+          (Finset.mem_sdiff.mp hcenterRemaining).2
+            (hcenterS.symm ▸ hVsub hsV)
+      exact (dist_pos : 0 < dist center s ↔ center ≠ s).2 hcenterNeS
+    · exact
+        qRow_five_le_selectedClass_of_cardMinimalBlockingSubdeletion_sharedRadius
+          (P := P) (Pρ := Pρ) (R := R) (H := H) Q hVsub hsV htV hst
+          (hminimal s hsV) hblocked hsame
+  · right
+    apply ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+      (hVsub.trans
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support_subset_A)
+      (Finset.mem_sdiff.mp hcenterRemaining).1
+    · intro s hsV t htV hst hsame
+      exact hcollision ⟨s, hsV, t, htV, hst, hsame⟩
+    · exact hblocked
+    · exact hminimal
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If a minimal blocking set restores K4 after restoring `s`, then deleting a
+different member `w` alone still preserves K4.  Consequently, when the
+blocking center is an actual selected-row center, `w` is omitted from that
+row.  This is the sharp direction of the minimal-subdeletion ingress: sets of
+cardinality at least two produce omissions, not the three positive incidences
+needed by the FirstNonHit terminal. -/
+theorem cardMinimalBlockingSubdeletion_not_mem_actualRow_of_restores_other
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {center : ℝ²} {V : Finset ℝ²} {s w : ℝ²}
+    (hsV : s ∈ V)
+    (hwV : w ∈ V)
+    (hsw : s ≠ w)
+    (hrestore :
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center)
+    (hcenter : center = H.centerAt source.1 source.2) :
+    w ∉ (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
+  have hwErase : w ∈ V.erase s :=
+    Finset.mem_erase.mpr ⟨Ne.symm hsw, hwV⟩
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase w) center := by
+    apply hasNEquidistantPointsAt_mono
+      (T := D.A.erase w) (p := center) _ hrestore
+    intro z hz
+    have hzParts := Finset.mem_sdiff.mp hz
+    apply Finset.mem_erase.mpr
+    refine ⟨?_, hzParts.1⟩
+    intro hzw
+    subst z
+    exact hzParts.2 hwErase
+  have hsurvivesAtSource :
+      HasNEquidistantPointsAt 4 (D.A.erase w)
+        (H.centerAt source.1 source.2) := by
+    simpa [hcenter] using hsurvives
+  exact
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H source.2).mp hsurvivesAtSource
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A minimal blocking set with at least two members is disjoint from every
+actual selected row centered at its blocking center. -/
+theorem cardMinimalBlockingSubdeletion_disjoint_actualRow_of_center_eq
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {center : ℝ²} {V : Finset ℝ²}
+    (hcard : 2 ≤ V.card)
+    (hminimal : ∀ s ∈ V,
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center)
+    (hcenter : center = H.centerAt source.1 source.2) :
+    Disjoint V
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
+  have hone : 1 < V.card := by omega
+  rcases Finset.one_lt_card.mp hone with ⟨a, haV, b, hbV, hab⟩
+  rw [Finset.disjoint_left]
+  intro w hwV hwRow
+  by_cases hwa : w = a
+  · have hbneW : b ≠ w := by simpa [hwa] using hab.symm
+    exact
+      cardMinimalBlockingSubdeletion_not_mem_actualRow_of_restores_other
+        source hbV hwV hbneW (hminimal b hbV) hcenter hwRow
+  · have haneW : a ≠ w := fun haw => hwa haw.symm
+    exact
+      cardMinimalBlockingSubdeletion_not_mem_actualRow_of_restores_other
+        source haV hwV haneW (hminimal a haV) hcenter hwRow
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A nonempty deletion-minimal blocking set centered at an actual blocker is
+a singleton.  Indeed, if it had two members, the preceding theorem would make
+it disjoint from the exact four-point selected row at that blocker, so that
+row would survive deletion of the whole blocking set. -/
+theorem cardMinimalBlockingSubdeletion_card_eq_one_of_center_eq
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {center : ℝ²} {V : Finset ℝ²}
+    (hVne : V.Nonempty)
+    (hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center)
+    (hminimal : ∀ s ∈ V,
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center)
+    (hcenter : center = H.centerAt source.1 source.2) :
+    V.card = 1 := by
+  have hcardPos : 0 < V.card := Finset.card_pos.mpr hVne
+  by_contra hcardNe
+  have hcard : 2 ≤ V.card := by omega
+  have hdisjoint :
+      Disjoint V
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support :=
+    cardMinimalBlockingSubdeletion_disjoint_actualRow_of_center_eq
+      source hcard hminimal hcenter
+  let K := (H.selectedAt source.1 source.2).toCriticalFourShell
+  have hsupport :
+      K.support ⊆ SelectedClass (D.A \ V) center K.radius := by
+    intro z hz
+    rw [mem_selectedClass]
+    refine ⟨Finset.mem_sdiff.mpr ⟨K.support_subset_A hz, ?_⟩, ?_⟩
+    · intro hzV
+      exact (Finset.disjoint_left.mp hdisjoint) hzV hz
+    · simpa [hcenter] using K.support_eq_radius z hz
+  apply hblocked
+  refine ⟨K.radius, K.radius_pos, ?_⟩
+  have hcardSelected :
+      4 ≤ (SelectedClass (D.A \ V) center K.radius).card := by
+    rw [← K.support_card]
+    exact Finset.card_le_card hsupport
+  simpa [SelectedClass] using hcardSelected
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A deletion-minimal blocking set with at least two members cannot be
+centered at any actual blocker.  Thus a multi-point minimal core is an ambient
+center obstruction, not an actual selected-row producer. -/
+theorem cardMinimalBlockingSubdeletion_center_ne_actualRow_of_two_le_card
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {center : ℝ²} {V : Finset ℝ²}
+    (hcard : 2 ≤ V.card)
+    (hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center)
+    (hminimal : ∀ s ∈ V,
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center) :
+    center ≠ H.centerAt source.1 source.2 := by
+  intro hcenter
+  have hVne : V.Nonempty :=
+    Finset.card_pos.mp (by omega)
+  have hone :=
+    cardMinimalBlockingSubdeletion_card_eq_one_of_center_eq
+      source hVne hblocked hminimal hcenter
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The Q-row minimal-blocking ingress has only two honest outcomes: its
+blocking set is a singleton, or its center is outside the image of every
+actual blocker.  In particular, the multi-point arm cannot itself furnish the
+actual selected row required by the FirstNonHit three-overlap terminal. -/
+theorem exists_freshThird_qRow_minimalBlocker_singleton_or_nonactualCenter
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ KQ.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      (∀ s ∈ V,
+        HasNEquidistantPointsAt 4
+          (D.A \ (V.erase s)) center) ∧
+      (V.card = 1 ∨
+        ∀ source : CriticalShellSystem.CarrierVertex D.A,
+          center ≠ H.centerAt source.1 source.2) := by
+  dsimp only
+  rcases exists_freshThird_qRow_cardMinimalBlockingSubdeletion
+      (P := P) (Pρ := Pρ) (R := R) (H := H) Q with
+    ⟨center, hcenterRemaining, V, hVne, hVsub, hblocked, hminimal⟩
+  refine
+    ⟨center, hcenterRemaining, V, hVne, hVsub, hblocked, hminimal, ?_⟩
+  by_cases hone : V.card = 1
+  · exact Or.inl hone
+  · right
+    intro source
+    apply cardMinimalBlockingSubdeletion_center_ne_actualRow_of_two_le_card
+      source (hblocked := hblocked) (hminimal := hminimal)
+    have hcardPos : 0 < V.card := Finset.card_pos.mpr hVne
+    omega
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -1408,6 +2057,297 @@ theorem exists_selectedRow_overlap_card_ge_three_of_blocked_deletions
   refine ⟨source, hcenters, ?_⟩
   exact selectedRow_inter_card_ge_three_of_blocked_deletions
     source target blocked hcard hsubset hblocked
+
+include hfrontierFour hfrontierInteriorEq T in
+/-- The fully robust retained first-apex row supplies a mutual-deletion pair,
+and the exact cap census classifies that pair into the only four possible
+geometric locations.
+
+This is a source-clean finite producer.  It does not assert a contradiction:
+the remaining FreshThird work is to connect one of these location arms to the
+canonical `Q` row. -/
+theorem exists_retainedFirstApex_mutualDeletionPair_locationCases :
+    ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+      z.1 ∈ SelectedClass D.A S.oppApex1 radius ∧
+        w.1 ∈ SelectedClass D.A S.oppApex1 radius ∧
+        z ≠ w ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w.1)
+          (H.centerAt z.1 z.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase z.1)
+          (H.centerAt w.1 w.2) ∧
+        H.centerAt z.1 z.2 ≠ H.centerAt w.1 w.2 ∧
+        ((z.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+            w.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²)) ∨
+          (z.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+            (w.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∨
+              w.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1)) ∨
+          ((z.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∨
+              z.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∧
+            w.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²)) ∨
+          ((z.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+              w.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+            (z.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+              w.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1))) := by
+  classical
+  let K : SelectedFourClass D.A S.oppApex1 :=
+    SelectedFourClass.ofSelectedClass F.radius_pos hfrontierFour
+  have G : TriApexAllLargeContext D S :=
+    triApexAllLargeContext_of_residuals (H := H) L N T
+  have hfan : SourceFaithfulSelectedFourDeletionFan D S H K :=
+    sourceFaithfulDeletionFan_of_triApexAllLargeContext G K
+  rcases
+      nonrobustCenter_or_exists_mutualCrossDeletion_pair_of_sourceFaithfulFan
+        K hfan with
+    hnonrobust | ⟨z, w, hzK, hwK, hzw, hzwSurvives, hwzSurvives,
+      hcenters⟩
+  · exact (hnonrobust
+      (fullyDeletionRobustAt_of_apexRichClassStructure
+        T.oppApex1_rich)).elim
+  · have hzClass : z.1 ∈ SelectedClass D.A S.oppApex1 radius := by
+      simpa [K, SelectedFourClass.ofSelectedClass] using hzK
+    have hwClass : w.1 ∈ SelectedClass D.A S.oppApex1 radius := by
+      simpa [K, SelectedFourClass.ofSelectedClass] using hwK
+    have hzwVal : z.1 ≠ w.1 := by
+      intro h
+      exact hzw (Subtype.ext h)
+    have outside_mem_adjacent : ∀ {x : ℝ²},
+        x ∈ SelectedClass D.A S.oppApex1 radius →
+        x ∉ S.capInteriorByIndex S.oppIndex1 →
+        x ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∨
+          x ∈ S.rightAdjacentCapByIndex S.oppIndex1 := by
+      intro x hxClass hxOutside
+      have hxClass' :
+          x ∈ SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) radius := by
+        simpa using hxClass
+      rcases Finset.mem_union.mp
+          (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+            S.oppIndex1 F.radius_pos
+            (Finset.mem_sdiff.mpr ⟨hxClass', hxOutside⟩)) with hx | hx
+      · exact Or.inl (Finset.mem_inter.mp hx).2
+      · exact Or.inr (Finset.mem_inter.mp hx).2
+    refine ⟨z, w, hzClass, hwClass, hzw, hzwSurvives, hwzSurvives,
+      hcenters, ?_⟩
+    by_cases hzInterior : z.1 ∈ S.capInteriorByIndex S.oppIndex1
+    · have hzRetained :
+          z.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²) := by
+        rw [← hfrontierInteriorEq]
+        exact Finset.mem_inter.mpr ⟨hzClass, hzInterior⟩
+      by_cases hwInterior : w.1 ∈ S.capInteriorByIndex S.oppIndex1
+      · left
+        refine ⟨hzRetained, ?_⟩
+        rw [← hfrontierInteriorEq]
+        exact Finset.mem_inter.mpr ⟨hwClass, hwInterior⟩
+      · exact Or.inr (Or.inl
+          ⟨hzRetained, outside_mem_adjacent hwClass hwInterior⟩)
+    · have hzAdjacent := outside_mem_adjacent hzClass hzInterior
+      by_cases hwInterior : w.1 ∈ S.capInteriorByIndex S.oppIndex1
+      · exact Or.inr (Or.inr (Or.inl
+          ⟨hzAdjacent, by
+            rw [← hfrontierInteriorEq]
+            exact Finset.mem_inter.mpr ⟨hwClass, hwInterior⟩⟩))
+      · have hwAdjacent := outside_mem_adjacent hwClass hwInterior
+        rcases hzAdjacent with hzLeft | hzRight <;>
+          rcases hwAdjacent with hwLeft | hwRight
+        · have hle :
+              (SelectedClass D.A S.oppApex1 radius ∩
+                S.leftAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
+              simpa using
+                S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+                  D.convex S.oppIndex1 radius
+          have hlt :
+              1 < (SelectedClass D.A S.oppApex1 radius ∩
+                S.leftAdjacentCapByIndex S.oppIndex1).card :=
+            Finset.one_lt_card.mpr
+              ⟨z.1, Finset.mem_inter.mpr ⟨hzClass, hzLeft⟩, w.1,
+                Finset.mem_inter.mpr ⟨hwClass, hwLeft⟩, hzwVal⟩
+          omega
+        · exact Or.inr (Or.inr (Or.inr (Or.inl ⟨hzLeft, hwRight⟩)))
+        · exact Or.inr (Or.inr (Or.inr (Or.inr ⟨hzRight, hwLeft⟩)))
+        · have hle :
+              (SelectedClass D.A S.oppApex1 radius ∩
+                S.rightAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
+              simpa using
+                S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+                  D.convex S.oppIndex1 radius
+          have hlt :
+              1 < (SelectedClass D.A S.oppApex1 radius ∩
+                S.rightAdjacentCapByIndex S.oppIndex1).card :=
+            Finset.one_lt_card.mpr
+              ⟨z.1, Finset.mem_inter.mpr ⟨hzClass, hzRight⟩, w.1,
+                Finset.mem_inter.mpr ⟨hwClass, hwRight⟩, hzwVal⟩
+          omega
+
+include hfrontierFour hfrontierInteriorEq T in
+/-- The mutual-deletion pair cannot consist of the two retained interior
+sources: those sources have the same blocker center, whereas the deletion-fan
+pair has distinct centers.  Hence only the two mixed orientations or the
+opposite-adjacent placement remain. -/
+theorem exists_retainedFirstApex_mutualDeletionPair_threeLocationCases :
+    ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+      z.1 ∈ SelectedClass D.A S.oppApex1 radius ∧
+        w.1 ∈ SelectedClass D.A S.oppApex1 radius ∧
+        z ≠ w ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w.1)
+          (H.centerAt z.1 z.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase z.1)
+          (H.centerAt w.1 w.2) ∧
+        H.centerAt z.1 z.2 ≠ H.centerAt w.1 w.2 ∧
+        ((z.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+            (w.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∨
+              w.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1)) ∨
+          ((z.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∨
+              z.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∧
+            w.1 ∈ ({P.source₁, P.source₂} : Finset ℝ²)) ∨
+          ((z.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+              w.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+            (z.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+              w.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1))) := by
+  classical
+  rcases exists_retainedFirstApex_mutualDeletionPair_locationCases
+      (D := D) (S := S) (H := H) (P := P) (F := F) (L := L) (N := N)
+      (Pρ := Pρ) (hρne := hρne) (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour) (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq) (T := T)
+      (hpairsDisjoint := hpairsDisjoint) (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP) with
+    ⟨z, w, hzClass, hwClass, hzw, hzwSurvives, hwzSurvives,
+      hcenters, hlocation⟩
+  refine ⟨z, w, hzClass, hwClass, hzw, hzwSurvives, hwzSurvives,
+    hcenters, ?_⟩
+  rcases hlocation with hboth | hmixed | hmixed | hopposite
+  · have hz : z.1 = P.source₁ ∨ z.1 = P.source₂ := by
+      simpa using hboth.1
+    have hw : w.1 = P.source₁ ∨ w.1 = P.source₂ := by
+      simpa using hboth.2
+    rcases hz with hz | hz <;> rcases hw with hw | hw
+    · exact (hzw (Subtype.ext (hz.trans hw.symm))).elim
+    · exact (hcenters (by simpa [hz, hw] using P.blockers_eq)).elim
+    · exact (hcenters (by simpa [hz, hw] using P.blockers_eq.symm)).elim
+    · exact (hzw (Subtype.ext (hz.trans hw.symm))).elim
+  · exact Or.inl hmixed
+  · exact Or.inr (Or.inl hmixed)
+  · exact Or.inr (Or.inr hopposite)
+
+include hfrontierFour hfrontierInteriorEq in
+/-- If the two points outside the retained first-apex interior occupy opposite
+adjacent caps, they are exactly the two remaining points of the radius class.
+
+This converts the geometric placement arm into an exact four-point support,
+which is the form expected by the row-incidence and cyclic-order consumers. -/
+theorem retainedFirstApex_selectedClass_eq_fourPoints_of_oppositeAdjacent
+    (z w : CriticalShellSystem.CarrierVertex D.A)
+    (hzClass : z.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hwClass : w.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hopposite :
+      (z.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+          w.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+        (z.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+          w.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1)) :
+    SelectedClass D.A S.oppApex1 radius =
+      ({P.source₁, P.source₂, z.1, w.1} : Finset ℝ²) := by
+  classical
+  have hinteriorCard :
+      (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card = 2 := by
+    rw [hfrontierInteriorEq]
+    simp [P.sources_ne]
+  have hfrontierFour' :
+      (SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex1) radius).card = 4 := by
+    simpa using hfrontierFour
+  have hinteriorCard' :
+      (SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+        S.capInteriorByIndex S.oppIndex1).card = 2 := by
+    simpa using hinteriorCard
+  have hadjacent :
+      (SelectedClass D.A S.oppApex1 radius ∩
+            S.leftAdjacentCapByIndex S.oppIndex1).card = 1 ∧
+        (SelectedClass D.A S.oppApex1 radius ∩
+            S.rightAdjacentCapByIndex S.oppIndex1).card = 1 := by
+    simpa using
+      S.selectedClass_exactOne_eachAdjacent_of_card_four_of_interior_card_two
+        D.convex S.oppIndex1 F.radius_pos hfrontierFour' hinteriorCard'
+  have exactSupport
+      (leftPoint rightPoint : CriticalShellSystem.CarrierVertex D.A)
+      (hleftClass :
+        leftPoint.1 ∈ SelectedClass D.A S.oppApex1 radius)
+      (hrightClass :
+        rightPoint.1 ∈ SelectedClass D.A S.oppApex1 radius)
+      (hleft : leftPoint.1 ∈ S.leftAdjacentCapByIndex S.oppIndex1)
+      (hright : rightPoint.1 ∈ S.rightAdjacentCapByIndex S.oppIndex1) :
+      SelectedClass D.A S.oppApex1 radius =
+        ({P.source₁, P.source₂, leftPoint.1, rightPoint.1} : Finset ℝ²) := by
+    have hleftEq :
+        SelectedClass D.A S.oppApex1 radius ∩
+            S.leftAdjacentCapByIndex S.oppIndex1 = {leftPoint.1} := by
+      obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hadjacent.1
+      have hpointx : leftPoint.1 = x := by
+        have : leftPoint.1 ∈ ({x} : Finset ℝ²) := by
+          rw [← hx]
+          exact Finset.mem_inter.mpr ⟨hleftClass, hleft⟩
+        simpa using this
+      simpa [hpointx] using hx
+    have hrightEq :
+        SelectedClass D.A S.oppApex1 radius ∩
+            S.rightAdjacentCapByIndex S.oppIndex1 = {rightPoint.1} := by
+      obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hadjacent.2
+      have hpointx : rightPoint.1 = x := by
+        have : rightPoint.1 ∈ ({x} : Finset ℝ²) := by
+          rw [← hx]
+          exact Finset.mem_inter.mpr ⟨hrightClass, hright⟩
+        simpa using this
+      simpa [hpointx] using hx
+    ext x
+    constructor
+    · intro hxClass
+      by_cases hxInterior : x ∈ S.capInteriorByIndex S.oppIndex1
+      · have hxRetained :
+            x ∈ ({P.source₁, P.source₂} : Finset ℝ²) := by
+          rw [← hfrontierInteriorEq]
+          exact Finset.mem_inter.mpr ⟨hxClass, hxInterior⟩
+        simp only [Finset.mem_insert, Finset.mem_singleton] at hxRetained ⊢
+        aesop
+      · have hxClass' :
+            x ∈ SelectedClass D.A
+              (S.oppositeVertexByIndex S.oppIndex1) radius := by
+          simpa using hxClass
+        have hxCover :=
+          S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+            S.oppIndex1 F.radius_pos
+            (Finset.mem_sdiff.mpr ⟨hxClass', hxInterior⟩)
+        rcases Finset.mem_union.mp hxCover with hxLeft | hxRight
+        · have : x = leftPoint.1 := by
+            have : x ∈ ({leftPoint.1} : Finset ℝ²) := by
+              rw [← hleftEq]
+              simpa using hxLeft
+            simpa using this
+          simp [this]
+        · have : x = rightPoint.1 := by
+            have : x ∈ ({rightPoint.1} : Finset ℝ²) := by
+              rw [← hrightEq]
+              simpa using hxRight
+            simpa using this
+          simp [this]
+    · intro hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with hx | hx | hx | hx
+      · subst x
+        exact (Finset.mem_inter.mp (by
+          rw [hfrontierInteriorEq]
+          simp)).1
+      · subst x
+        exact (Finset.mem_inter.mp (by
+          rw [hfrontierInteriorEq]
+          simp)).1
+      · simpa [hx] using hleftClass
+      · simpa [hx] using hrightClass
+  rcases hopposite with ⟨hzLeft, hwRight⟩ | ⟨hzRight, hwLeft⟩
+  · exact exactSupport z w hzClass hwClass hzLeft hwRight
+  · exact (exactSupport w z hwClass hzClass hwLeft hzRight).trans (by
+        ext x
+        simp [and_left_comm, and_comm, and_assoc, or_left_comm, or_comm,
+          or_assoc])
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

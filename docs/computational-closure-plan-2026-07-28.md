@@ -8807,6 +8807,46 @@ computational methods can refute candidate incidence assignments and discover
 cuts, but cannot close this universal `sorry`.  Broad theorem search and
 additional local constructor splitting are therefore paused.
 
+#### 13.24.1.7 First-non-hit finite abstract ingress (2026-08-12)
+
+The first production contract named above is now available in a weaker and
+more useful form.  The source-clean theorem
+`exists_freshThird_qRow_boundedSharedRadiusPair_or_minimalDeletionCore`
+projects every live canonical Q row to bounded named data:
+
+- a fresh center outside the exact four-point Q support;
+- a nonempty blocking set `V` contained in that support, hence `V.card ≤ 4`;
+- failure of K4 after deleting `V`; and
+- either a same-radius pair in `V`, or a `MinimalDeletionCore` with one exact
+  four-point restoration shell for each of the at most four labels in `V`.
+
+This is deliberately **not** an induced finite carrier or a smaller
+`CounterexampleData`.  K4 is not downward-hereditary, so restricting the live
+carrier would be unsound.  Instead, the finite encoder must forget anonymous
+witnesses and retain only source-proved fields of this packet.  Its formal
+ingress obligation is
+
+```text
+LiveFirstNonHit -> exists valuation, EncodedWeakPacket valuation.
+```
+
+Accordingly, an exact `UNSAT` certificate for `EncodedWeakPacket`, followed by
+kernel-checked coverage and the existing clean terminal, would refute every
+live carrier without a finite-to-induced-carrier lift.  The encoder may not
+assert absence of omitted witnesses, identify the packet with the whole
+carrier, impose a finite carrier cardinality, or add global K4/row facts not
+separately derived from the source.  Any retained, non-hit, interaction, cap,
+or blocker clause used by the certificate must have its own explicit source
+map into the finite valuation.
+
+This theorem does not itself close a `sorry`.  It licenses one scoped
+source-mapped abstraction wave.  `SAT` remains diagnostic only; `UNSAT` is
+promotion-relevant only with the live-to-packet theorem, exact certificate
+replay, kernel-checked finite coverage, and a named on-spine consumer in the
+same landing.  The remaining mathematical risk is that the weakened packet is
+still satisfiable, in which case the next step must be a new uniform source
+clause rather than another fixed-cardinality or frozen-assignment wave.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
