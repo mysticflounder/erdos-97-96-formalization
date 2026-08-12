@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SameBoundaryOrderIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceOrderPositiveNogood
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221TerminalBankConsumer
 
 /-!
@@ -18,7 +18,7 @@ incidences contradictory.
 
 The distinction is deliberate: an ordered detector record is not terminal by
 itself.  It becomes admissible here only after its all-source-order coverage
-has been translated into the `refutes` field below.  This file supplies the
+has been translated into the imported nogood interface.  This file supplies the
 typed consumer boundary; it does not generate those proofs, certify a solver
 journal, prove terminal UNSAT, cover all cells, or close a live residual.
 -/
@@ -36,29 +36,6 @@ open ExactTwelveCarrierIngress
 open GenericRowNogoodCertificate
 open SafeCoverIndexBridge
 open TerminalBankConsumer
-
-/-- A learned positive-row cut together with its source-order semantic proof.
-The proof is uniform in the realized row pattern and in the particular common
-boundary order supplied by the source ingress. -/
-structure SourceOrderPositiveNogood where
-  choices : List (RowChoice Label)
-  refutes :
-    ∀ {row : RowPattern Label} {pointOf : Label → ℝ²},
-      Realizes row pointOf →
-      (order : FrozenBoundaryOrder pointOf) →
-      FrozenForcedSecondCapOrder order.position →
-      ConvexIndep (Finset.univ.image pointOf) →
-      PositiveRowsMatch row choices → False
-
-/-- A checked duplicate-center cut is a source-order cut that simply does not
-need the additional order or convexity hypotheses. -/
-def SourceOrderPositiveNogood.ofDuplicateCenter
-    (nogood : DuplicateCenterNogood Label) (hcheck : nogood.check = true) :
-    SourceOrderPositiveNogood where
-  choices := nogood.choices
-  refutes := by
-    intro row pointOf hreal order hforced hconv hpositive
-    exact (nogood.not_realizes_of_positiveCheck hcheck hpositive) ⟨pointOf, hreal⟩
 
 /-- Complete terminal formula for one normalized-v14 cell and a bank of
 proof-carrying source-order cuts. -/

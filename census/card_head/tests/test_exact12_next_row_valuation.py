@@ -6,16 +6,21 @@ from dataclasses import replace
 
 from census.card_head.candidate_surface import build_model
 from census.card_head.exact12_next_row_valuation import (
+    ARM_SPEC,
     XU,
     XV,
     C,
     Exact12NextRowValuationError,
     U,
     added_constraints_hold,
+    arm_cells,
     cells,
+    compile_arm_cell,
     compile_cell,
     decode_distinguished_d,
     frozen_next_row_only_hit_dichotomy_holds,
+    named_deletion_added_constraints_hold,
+    named_deletion_arm_holds,
 )
 from census.card_head.exact12_v14_valuation import SOURCE_FAITHFUL_PYTHON_PROFILE
 from census.card_head.source_faithful_candidate_surface import (
@@ -23,6 +28,7 @@ from census.card_head.source_faithful_candidate_surface import (
 )
 
 CELL = cells()[0]
+ARM_CELL = arm_cells()[0]
 
 
 def fresh_instance() -> SourceFaithfulCoverInstance:
@@ -76,6 +82,66 @@ class Exact12NextRowValuationTest(unittest.TestCase):
             "exists_source_normalized_nextRowOnlyHitJob",
         )
         self.assertNotIn("proof_verified", manifest)
+
+    def test_all_seventy_two_arm_cells_compile_deterministically(self) -> None:
+        schedule = arm_cells()
+        self.assertEqual(len(schedule), 72)
+        first = compile_arm_cell(fresh_instance(), ARM_CELL)
+        second = compile_arm_cell(fresh_instance(), ARM_CELL)
+        self.assertEqual(first, second)
+        self.assertEqual(first.manifest(), second.manifest())
+        for cell in schedule:
+            self.assertEqual(compile_arm_cell(fresh_instance(), cell).cell, cell)
+
+    def test_arm_manifest_binds_stronger_lean_ingress(self) -> None:
+        manifest = compile_arm_cell(fresh_instance(), ARM_CELL).manifest()
+        self.assertEqual(
+            manifest["schema"],
+            "p97_rigid221_exact12_next_row_named_deletion_arm_compiler.v1",
+        )
+        self.assertEqual(
+            manifest["lean_ingress_theorem"],
+            "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+            "exists_source_normalized_nextRowNamedDeletionJob",
+        )
+        self.assertIn("no terminal", manifest["scope"])
+
+    def test_all_six_named_deletion_arms_replay(self) -> None:
+        cube, blockers = replay_fixture()
+        for cell in arm_cells()[:6]:
+            with self.subTest(arm=cell.arm):
+                self.assertTrue(
+                    named_deletion_arm_holds(cell.arm, cube, blockers)
+                )
+                self.assertTrue(
+                    named_deletion_added_constraints_hold(
+                        cell, cube, blockers, 0
+                    )
+                )
+
+                source, deletion = ARM_SPEC[cell.arm]
+                changed = copy.deepcopy(cube)
+                changed[blockers[source]].add(deletion)
+                self.assertFalse(
+                    named_deletion_arm_holds(cell.arm, changed, blockers)
+                )
+                self.assertFalse(
+                    named_deletion_added_constraints_hold(
+                        cell, changed, blockers, 0
+                    )
+                )
+
+    def test_invalid_arm_and_tampered_arm_placement_fail_closed(self) -> None:
+        with self.assertRaisesRegex(Exact12NextRowValuationError, "arm"):
+            compile_arm_cell(
+                fresh_instance(),
+                replace(ARM_CELL, arm="not_an_arm"),
+            )
+        with self.assertRaisesRegex(Exact12NextRowValuationError, "coordinates"):
+            compile_arm_cell(
+                fresh_instance(),
+                replace(ARM_CELL, v=3),
+            )
 
     def test_five_distinct_arm_replays(self) -> None:
         cube, blockers = replay_fixture()

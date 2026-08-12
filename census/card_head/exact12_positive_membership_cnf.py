@@ -122,20 +122,16 @@ class CompiledPositiveMembershipBank:
         }
 
 
-def compile_positive_membership_bank(
+def _compile_positive_membership_bank(
     instance: CoverInstance,
     patterns: Sequence[Sequence[Mapping[str, Any]]],
+    *,
+    require_empty_pattern_variables: bool,
+    require_fresh_requirements: bool,
 ) -> CompiledPositiveMembershipBank:
-    """Install and return the canonical auxiliary CNF for ``patterns``.
-
-    The instance must not already contain pattern variables.  This makes the
-    variable allocation and complete clause delta independent of caller state
-    beyond the authenticated parent CNF.
-    """
-
     if instance.model.cardinality != 12:
         raise PositiveMembershipCnfError("membership bank requires cardinality 12")
-    if instance.pattern_variables:
+    if require_empty_pattern_variables and instance.pattern_variables:
         raise PositiveMembershipCnfError("pattern variables are already installed")
     normalized = tuple(
         normalize_memberships(instance.model.cardinality, choices)
@@ -153,6 +149,11 @@ def compile_positive_membership_bank(
     variables: dict[tuple[int, tuple[int, ...]], int] = {}
 
     for center, required in unique_requirements:
+        internal_key = (center, frozenset(required))
+        if require_fresh_requirements and internal_key in instance.pattern_variables:
+            raise PositiveMembershipCnfError(
+                f"membership ({center}, {required}) is already installed"
+            )
         hits = [
             index
             for index, candidate in enumerate(instance.candidates[center])
@@ -220,10 +221,50 @@ def compile_positive_membership_bank(
     )
 
 
+def compile_positive_membership_bank(
+    instance: CoverInstance,
+    patterns: Sequence[Sequence[Mapping[str, Any]]],
+) -> CompiledPositiveMembershipBank:
+    """Install a canonical positive-membership bank on a fresh parent.
+
+    The instance must not already contain pattern variables.  This makes the
+    variable allocation and complete clause delta independent of caller state
+    beyond the authenticated parent CNF.
+    """
+
+    return _compile_positive_membership_bank(
+        instance,
+        patterns,
+        require_empty_pattern_variables=True,
+        require_fresh_requirements=True,
+    )
+
+
+def compile_fresh_positive_membership_extension(
+    instance: CoverInstance,
+    patterns: Sequence[Sequence[Mapping[str, Any]]],
+) -> CompiledPositiveMembershipBank:
+    """Append a bank whose membership requirements are all newly allocated.
+
+    Earlier positive-membership banks may already be installed.  Every
+    requirement in ``patterns`` must nevertheless be fresh, so the returned
+    delta remains self-contained and deterministic relative to its
+    authenticated parent formula.
+    """
+
+    return _compile_positive_membership_bank(
+        instance,
+        patterns,
+        require_empty_pattern_variables=False,
+        require_fresh_requirements=True,
+    )
+
+
 __all__ = [
     "SCHEMA",
     "CompiledPositiveMembershipBank",
     "PositiveMembershipCnfError",
+    "compile_fresh_positive_membership_extension",
     "compile_positive_membership_bank",
     "normalize_memberships",
 ]

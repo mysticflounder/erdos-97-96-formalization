@@ -15,7 +15,11 @@ from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import Any
 
-from .exact12_v14_schedule import PLACEMENT_REPRESENTATIVES, json_sha256
+from .exact12_v14_schedule import (
+    NAMED_DELETION_ARMS,
+    PLACEMENT_REPRESENTATIVES,
+    json_sha256,
+)
 from .sat_encoding import CoverInstance, EncodingError
 from .source_faithful_candidate_surface import (
     SOURCE_FAITHFUL_CANDIDATE_SCHEMA,
@@ -24,10 +28,17 @@ from .source_faithful_candidate_surface import (
 )
 
 COMPILER_SCHEMA = "p97_rigid221_exact12_next_row_only_hit_compiler.v2"
+ARM_COMPILER_SCHEMA = (
+    "p97_rigid221_exact12_next_row_named_deletion_arm_compiler.v1"
+)
 SEMANTIC_STATUS = "FINITE_SOURCE_PREDICATE_COMPILER"
 LEAN_INGRESS_THEOREM = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
     "exists_source_normalized_nextRowOnlyHitJob"
+)
+ARM_LEAN_INGRESS_THEOREM = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "exists_source_normalized_nextRowNamedDeletionJob"
 )
 FROZEN_CANDIDATE_TABLE_SHA256 = (
     "46b88900a6373390c13de522913df992c91edb717c5c7fe058b8230f825ddbae"
@@ -42,6 +53,17 @@ U = 6
 C = 7
 XV = 8
 XU = 9
+Q = 10
+W = 11
+
+ARM_SPEC: Mapping[str, tuple[int, int]] = {
+    "u_q": (U, Q),
+    "u_w": (U, W),
+    "xv_q": (XV, Q),
+    "xv_w": (XV, W),
+    "xu_q": (XU, Q),
+    "xu_w": (XU, W),
+}
 
 
 class Exact12NextRowValuationError(ValueError):
@@ -55,6 +77,25 @@ class Exact12NextRowCell:
     placement_index: int
     joint_deletion: int
     v: int
+
+
+@dataclass(frozen=True)
+class Exact12NextRowArmCell:
+    """One placement together with one source-proved named-deletion arm."""
+
+    placement_index: int
+    joint_deletion: int
+    v: int
+    arm: str
+
+    def base_cell(self) -> Exact12NextRowCell:
+        """Forget the named-deletion arm."""
+
+        return Exact12NextRowCell(
+            self.placement_index,
+            self.joint_deletion,
+            self.v,
+        )
 
 
 @dataclass(frozen=True)
@@ -129,12 +170,79 @@ class CompiledExact12NextRowCell:
         }
 
 
+@dataclass(frozen=True)
+class CompiledExact12NextRowArmCell:
+    """One additive fixed-arm refinement of a compiled successor cell."""
+
+    cell: Exact12NextRowArmCell
+    base: CompiledExact12NextRowCell
+    final_n_variables: int
+    final_n_clauses: int
+    clause_delta: tuple[tuple[int, ...], ...]
+    named_deletion_clause_delta: tuple[tuple[int, ...], ...]
+    clause_delta_sha256: str
+    named_deletion_clause_delta_sha256: str
+
+    def manifest(self) -> dict[str, Any]:
+        """Return deterministic metadata without making a closure claim."""
+
+        return {
+            "schema": ARM_COMPILER_SCHEMA,
+            "semantic_status": SEMANTIC_STATUS,
+            "lean_ingress_theorem": ARM_LEAN_INGRESS_THEOREM,
+            "scope": (
+                "one finite placement by named-deletion-arm refinement of the "
+                "next-row-only-hit successor schema; no terminal, aggregate "
+                "coverage, universal lift, or Lean-closure claim"
+            ),
+            "cell": {
+                "placement_index": self.cell.placement_index,
+                "joint_deletion": self.cell.joint_deletion,
+                "v": self.cell.v,
+                "arm": self.cell.arm,
+            },
+            "base_compiler_manifest": self.base.manifest(),
+            "counts": {
+                "base_variables": self.base.base_n_variables,
+                "base_clauses": self.base.base_n_clauses,
+                "final_variables": self.final_n_variables,
+                "final_clauses": self.final_n_clauses,
+                "added_clauses": self.final_n_clauses
+                - self.base.base_n_clauses,
+                "named_deletion_added_clauses": len(
+                    self.named_deletion_clause_delta
+                ),
+            },
+            "hashes": {
+                "clause_delta_sha256": self.clause_delta_sha256,
+                "named_deletion_clause_delta_sha256": (
+                    self.named_deletion_clause_delta_sha256
+                ),
+            },
+        }
+
+
 def cells() -> tuple[Exact12NextRowCell, ...]:
     """Return the complete frozen twelve-cell placement schedule."""
 
     return tuple(
         Exact12NextRowCell(index, joint_deletion, v)
         for index, (joint_deletion, v) in enumerate(PLACEMENT_REPRESENTATIVES)
+    )
+
+
+def arm_cells() -> tuple[Exact12NextRowArmCell, ...]:
+    """Return the complete deterministic 12 by 6 refinement schedule."""
+
+    return tuple(
+        Exact12NextRowArmCell(
+            cell.placement_index,
+            cell.joint_deletion,
+            cell.v,
+            arm,
+        )
+        for cell in cells()
+        for arm in NAMED_DELETION_ARMS
     )
 
 
@@ -154,6 +262,16 @@ def _validate_cell(cell: Exact12NextRowCell) -> None:
     ):
         raise Exact12NextRowValuationError(
             "placement coordinates do not match their index"
+        )
+
+
+def _validate_arm_cell(cell: Exact12NextRowArmCell) -> None:
+    if not isinstance(cell, Exact12NextRowArmCell):
+        raise Exact12NextRowValuationError("arm cell has the wrong type")
+    _validate_cell(cell.base_cell())
+    if cell.arm not in NAMED_DELETION_ARMS or cell.arm not in ARM_SPEC:
+        raise Exact12NextRowValuationError(
+            "named-deletion arm is outside the schedule"
         )
 
 
@@ -280,6 +398,36 @@ def _add_physical_cycle(
     return blocker, edges
 
 
+def _add_named_deletion_arm(
+    instance: CoverInstance,
+    blocker: Mapping[tuple[int, int], int],
+    arm: str,
+) -> None:
+    """Compile one arm of ``FrozenNamedDeletionSixArm`` exactly."""
+
+    if arm not in NAMED_DELETION_ARMS or arm not in ARM_SPEC:
+        raise Exact12NextRowValuationError(
+            "named-deletion arm is outside the schedule"
+        )
+    source, deletion = ARM_SPEC[arm]
+    generated = 0
+    for (candidate_source, center), blocker_variable in sorted(blocker.items()):
+        if candidate_source != source:
+            continue
+        if center == 2:
+            instance.cnf.add_clause((-blocker_variable,))
+            generated += 1
+        for index, row in enumerate(instance.candidates[center]):
+            if deletion in row:
+                choice = instance.choice_variables[(center, index)]
+                instance.cnf.add_clause((-blocker_variable, -choice))
+                generated += 1
+    if generated == 0:
+        raise Exact12NextRowValuationError(
+            f"named-deletion arm {arm} generated no clauses"
+        )
+
+
 def _add_distinguished_d_disjunction(
     instance: CoverInstance,
     blocker: Mapping[tuple[int, int], int],
@@ -383,6 +531,32 @@ def compile_cell(
     )
 
 
+def compile_arm_cell(
+    instance: CoverInstance,
+    cell: Exact12NextRowArmCell,
+) -> CompiledExact12NextRowArmCell:
+    """Compile one fixed arm without changing the existing 12-cell contract."""
+
+    _validate_arm_cell(cell)
+    base = compile_cell(instance, cell.base_cell())
+    arm_clause_start = len(instance.cnf.clauses)
+    _add_named_deletion_arm(instance, base.blocker_variables, cell.arm)
+    named_deletion_clause_delta = tuple(instance.cnf.clauses[arm_clause_start:])
+    clause_delta = tuple(instance.cnf.clauses[base.base_n_clauses:])
+    return CompiledExact12NextRowArmCell(
+        cell=cell,
+        base=base,
+        final_n_variables=instance.cnf.n_variables,
+        final_n_clauses=len(instance.cnf.clauses),
+        clause_delta=clause_delta,
+        named_deletion_clause_delta=named_deletion_clause_delta,
+        clause_delta_sha256=json_sha256(clause_delta),
+        named_deletion_clause_delta_sha256=json_sha256(
+            named_deletion_clause_delta
+        ),
+    )
+
+
 def frozen_next_row_only_hit_dichotomy_holds(
     cell: Exact12NextRowCell,
     cube: Mapping[int, Collection[int]],
@@ -483,6 +657,54 @@ def added_constraints_hold(
         if source not in rows[center] or rows[center] & physical != edges[source]:
             return False
     return frozen_next_row_only_hit_dichotomy_holds(cell, rows, blockers, d)
+
+
+def named_deletion_arm_holds(
+    arm: str,
+    cube: Mapping[int, Collection[int]],
+    blockers: Mapping[int, int],
+) -> bool:
+    """Replay one fixed arm of ``FrozenNamedDeletionSixArm``."""
+
+    if arm not in NAMED_DELETION_ARMS or arm not in ARM_SPEC:
+        return False
+    source, deletion = ARM_SPEC[arm]
+    if source not in blockers:
+        return False
+    center = blockers[source]
+    if (
+        isinstance(center, bool)
+        or not isinstance(center, int)
+        or not 0 <= center < N
+        or center not in cube
+    ):
+        return False
+    row = frozenset(cube[center])
+    if any(
+        isinstance(point, bool)
+        or not isinstance(point, int)
+        or not 0 <= point < N
+        for point in row
+    ):
+        return False
+    return center != 2 and deletion not in row
+
+
+def named_deletion_added_constraints_hold(
+    cell: Exact12NextRowArmCell,
+    cube: Mapping[int, Collection[int]],
+    blockers: Mapping[int, int],
+    d: int,
+) -> bool:
+    """Replay the complete next-row contract and one named-deletion arm."""
+
+    try:
+        _validate_arm_cell(cell)
+    except Exact12NextRowValuationError:
+        return False
+    return added_constraints_hold(cell.base_cell(), cube, blockers, d) and (
+        named_deletion_arm_holds(cell.arm, cube, blockers)
+    )
 
 
 def decode_distinguished_d(

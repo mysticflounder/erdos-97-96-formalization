@@ -4,15 +4,15 @@
 
 """Authenticated finite positive-membership source-order bank.
 
-This module intentionally contains one entry: the third static-convex cell-0
-membership binding.  It authenticates the Lean source bytes and binding,
-replays the finite 48-order certificate, and binds the deterministic positive
-membership CNF delta to the exact static-convex parent formula.
+Each build selects one append-only proof-backed binding by registry index.  It
+authenticates the Lean source bytes and binding, replays the finite 48-order
+certificate, and binds the deterministic positive-membership CNF delta to the
+exact static-convex parent formula.
 
-The result is finite infrastructure only.  The pattern-CNF bridge is complete,
-but the static-convex parent formula still lacks a Lean valuation theorem.  The
-bank does not register a terminal promotion, integrate a runner, prove UNSAT,
-or close a Lean theorem.
+The result is finite infrastructure only.  The pattern-CNF bridge and its
+static-parent terminal consumer are complete, but the bank does not itself
+register a terminal promotion, prove UNSAT, cover every placement cell, or
+close a live Lean theorem.
 """
 
 from __future__ import annotations
@@ -40,17 +40,35 @@ from .exact12_v14_ordered_coverage import (
 from .source_faithful_candidate_surface import SourceFaithfulCoverInstance
 
 BANK_SCHEMA = "p97_rigid221_exact12_positive_membership_source_order_bank.v2"
-PROMOTION_STATUS = (
-    "LEAN_PATTERN_CNF_BRIDGE_COMPLETE_AWAITING_STATIC_PARENT_VALUATION"
-)
+PROMOTION_STATUS = "LEAN_PATTERN_CNF_BRIDGE_COMPLETE_AWAITING_STATIC_PARENT_VALUATION"
 PATTERN_BRIDGE_SCHEMA = "p97_exact12_positive_membership_lean_bridge.v1"
 SEMANTIC_STATUS = "FINITE_POSITIVE_MEMBERSHIP_SOURCE_ORDER"
 COMPILER_SOURCE_PATH = "census/card_head/exact12_positive_membership_cnf.py"
 ORDER_COUNT = 48
 
+# Cell-keyed production selection is intentionally separate from the
+# append-only proof registry.  A runner must never infer semantics from a raw
+# tuple position.  Cell 1 is the current block-spanning production target.
+PRODUCTION_BINDING_INDEX_BY_CELL = {1: 1}
+
 
 class Exact12PositiveMembershipSourceOrderBankError(ValueError):
     """An authenticated membership bank input or compiled delta is malformed."""
+
+
+def production_binding_index_for_cell(cell_index: int) -> int:
+    """Return the explicitly approved membership binding for one schedule cell."""
+
+    if type(cell_index) is not int:
+        raise Exact12PositiveMembershipSourceOrderBankError(
+            "membership cell index must be an integer"
+        )
+    try:
+        return PRODUCTION_BINDING_INDEX_BY_CELL[cell_index]
+    except KeyError as exc:
+        raise Exact12PositiveMembershipSourceOrderBankError(
+            f"no production positive-membership binding for cell {cell_index}"
+        ) from exc
 
 
 _BANK_CLAIMS = {
@@ -142,12 +160,16 @@ def _source_record(repo_root: Path, relative: str) -> dict[str, Any]:
     return {"path": relative, "bytes": byte_count, "sha256": digest.hexdigest()}
 
 
-def _single_binding() -> tuple[dict[str, list[int]], dict[str, Any], list[dict[str, Any]]]:
-    if len(PROOF_BACKED_MEMBERSHIP_BINDINGS) != 1:
+def _binding_at(
+    binding_index: int,
+) -> tuple[dict[str, list[int]], dict[str, Any], list[dict[str, Any]]]:
+    if type(binding_index) is not int or not 0 <= binding_index < len(
+        PROOF_BACKED_MEMBERSHIP_BINDINGS
+    ):
         raise Exact12PositiveMembershipSourceOrderBankError(
-            "membership source bank is not restricted to one binding"
+            "membership source bank binding index is out of range"
         )
-    cube, binding, choices = PROOF_BACKED_MEMBERSHIP_BINDINGS[0]
+    cube, binding, choices = PROOF_BACKED_MEMBERSHIP_BINDINGS[binding_index]
     if not isinstance(cube, Mapping) or not isinstance(binding, Mapping):
         raise Exact12PositiveMembershipSourceOrderBankError(
             "membership binding registry entry is malformed"
@@ -328,13 +350,18 @@ def _build_body(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
+    binding_index: int,
 ) -> dict[str, Any]:
-    cube, binding, choices = _single_binding()
+    cube, binding, choices = _binding_at(binding_index)
     certificate = _certificate_and_binding(cube, binding, choices)
     parent = _parent_record(instance, layout)
     compiler_source = _source_record(repo_root, COMPILER_SOURCE_PATH)
+    claims = copy.deepcopy(_BANK_CLAIMS)
+    claims["runner_integrated"] = binding_index in set(
+        PRODUCTION_BINDING_INDEX_BY_CELL.values()
+    )
     entry_body = {
-        "index": 0,
+        "index": binding_index,
         "cube": cube,
         "cube_sha256": _sha256_json(cube),
         "certificate": certificate,
@@ -364,7 +391,8 @@ def _build_body(
         "schema": BANK_SCHEMA,
         "semantic_status": SEMANTIC_STATUS,
         "promotion_status": PROMOTION_STATUS,
-        "claims": copy.deepcopy(_BANK_CLAIMS),
+        "claims": claims,
+        "binding_index": binding_index,
         "parent_static_convex": parent,
         "compiler_source": compiler_source,
         "lean_source_manifest": _authenticated_lean_sources(repo_root, binding),
@@ -377,10 +405,11 @@ def build_positive_membership_source_order_bank(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
+    binding_index: int = 0,
 ) -> dict[str, Any]:
-    """Build the one-entry bank after authenticating all live inputs."""
+    """Build one selected entry after authenticating all live inputs."""
 
-    return _build_body(repo_root.resolve(), instance, layout)
+    return _build_body(repo_root.resolve(), instance, layout, binding_index)
 
 
 def validate_positive_membership_source_order_bank(
@@ -388,6 +417,7 @@ def validate_positive_membership_source_order_bank(
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
     bank: Mapping[str, Any],
+    binding_index: int = 0,
 ) -> None:
     """Require exact equality with a fresh live-source authenticated rebuild."""
 
@@ -395,7 +425,9 @@ def validate_positive_membership_source_order_bank(
         raise Exact12PositiveMembershipSourceOrderBankError(
             "membership source bank is not a mapping"
         )
-    fresh = build_positive_membership_source_order_bank(repo_root, instance, layout)
+    fresh = build_positive_membership_source_order_bank(
+        repo_root, instance, layout, binding_index
+    )
     if _canonical_json_bytes(bank) != _canonical_json_bytes(fresh):
         raise Exact12PositiveMembershipSourceOrderBankError(
             "membership source bank differs from fresh authenticated rebuild"
@@ -440,6 +472,7 @@ def install_positive_membership_source_order_bank(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
+    binding_index: int = 0,
 ) -> dict[str, Any]:
     """Validate once, then append the complete authenticated compiler delta."""
 
@@ -447,8 +480,12 @@ def install_positive_membership_source_order_bank(
         raise Exact12PositiveMembershipSourceOrderBankError(
             "positive-membership source bank is already installed"
         )
-    bank = build_positive_membership_source_order_bank(repo_root, instance, layout)
-    validate_positive_membership_source_order_bank(repo_root, instance, layout, bank)
+    bank = build_positive_membership_source_order_bank(
+        repo_root, instance, layout, binding_index
+    )
+    validate_positive_membership_source_order_bank(
+        repo_root, instance, layout, bank, binding_index
+    )
     choices = bank["entries"][0]["choices"]
     compiled = compile_positive_membership_bank(instance, (choices,)).as_dict()
     expected = copy.deepcopy(bank["entries"][0]["compiled"])
@@ -464,6 +501,7 @@ def install_positive_membership_source_order_bank(
 __all__ = [
     "BANK_SCHEMA",
     "COMPILER_SOURCE_PATH",
+    "PRODUCTION_BINDING_INDEX_BY_CELL",
     "PROMOTION_STATUS",
     "SEMANTIC_STATUS",
     "Exact12PositiveMembershipSourceOrderBankError",
@@ -472,5 +510,6 @@ __all__ = [
     "attest_positive_membership_source_order_bank_live_sources",
     "build_positive_membership_source_order_bank",
     "install_positive_membership_source_order_bank",
+    "production_binding_index_for_cell",
     "validate_positive_membership_source_order_bank",
 ]

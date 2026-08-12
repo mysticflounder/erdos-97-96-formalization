@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceOrderTerminalBankConsumer
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221LearnedClauseBridge
 
 /-!
 # Source semantics for exact-twelve positive-membership CNF variables
@@ -30,7 +30,6 @@ open ExactTwelveCarrierIngress
 open GenericRowNogoodCertificate
 open SafeCoverCnf
 open SafeCoverIndexBridge
-open SourceOrderTerminalBankConsumer
 
 /-- A fresh CNF variable and the partial source row that it denotes. -/
 structure PositiveMembershipDefinition where

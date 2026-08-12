@@ -195,7 +195,7 @@ theorem FrozenBoundaryOrder.false_of_twoRowsSharedLatePair
     hreal.equidist a c hC_mem_a d hD_mem_a
   have hBeq : dist (pointOf b) (pointOf c) = dist (pointOf b) (pointOf d) :=
     hreal.equidist b c hC_mem_b d hD_mem_b
-  simpa only [order.point_eq] at hstrict
+  simp only [order.point_eq] at hstrict
   linarith
 
 /-- Direct-cap-block Kalmanson terminal used by the two ordered survivor

@@ -25,6 +25,7 @@ namespace ExactTwelveRigid221Ingress
 
 open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
+open ATailExactFourPhysicalConsumer
 open ATailUniqueFourLateChoiceTerminalScratch
 open Census554.EqualityCore
 open Census554.GeneralCarrierBridge
@@ -44,6 +45,35 @@ def FrozenNextRowOnlyHitAddedConstraintsHold (row : RowPattern Label)
     (∀ i, row (blocker i) ∩ frozenPhysicalLabels jointDeletion v =
       frozenPhysicalEdges jointDeletion v i) ∧
     FrozenNextRowOnlyHitDichotomy row blocker
+
+/-- Source-faithful successor contract after retaining the named-source and
+`q`-or-`w` deletion alternative from the live exact-twelve leaf.  The original
+successor compiler omitted this six-arm disjunction. -/
+def FrozenNextRowNamedDeletionAddedConstraintsHold (row : RowPattern Label)
+    (blocker : Fin 5 → Label) (jointDeletion v : Label) : Prop :=
+  FrozenNextRowOnlyHitAddedConstraintsHold row blocker jointDeletion v ∧
+    FrozenNamedDeletionSixArm row blocker
+
+/-- Fixed-arm form of the named-deletion successor contract.  This is the
+semantic predicate compiled by one of the `12 × 6` Python arm cells. -/
+def FrozenNextRowFixedNamedDeletionArmAddedConstraintsHold
+    (row : RowPattern Label) (blocker : Fin 5 → Label)
+    (jointDeletion v : Label) (arm : FrozenNamedDeletionArm) : Prop :=
+  FrozenNextRowOnlyHitAddedConstraintsHold row blocker jointDeletion v ∧
+    arm.Holds row blocker
+
+/-- The source-level six-arm disjunction selects one fixed compiler arm. -/
+theorem exists_fixedNamedDeletionArm_of_addedConstraints
+    {row : RowPattern Label} {blocker : Fin 5 → Label}
+    {jointDeletion v : Label}
+    (h : FrozenNextRowNamedDeletionAddedConstraintsHold
+      row blocker jointDeletion v) :
+    ∃ arm : FrozenNamedDeletionArm,
+      FrozenNextRowFixedNamedDeletionArmAddedConstraintsHold
+        row blocker jointDeletion v arm := by
+  obtain ⟨hbase, hsix⟩ := h
+  obtain ⟨arm, harm⟩ := frozenNamedDeletionSixArm_iff_exists_arm.mp hsix
+  exact ⟨arm, hbase, harm⟩
 
 /-- Forget the successor-only dichotomy while retaining the exact common
 physical-cycle facts used by the shared CNF prefix. -/
@@ -187,6 +217,134 @@ theorem exists_source_normalized_nextRowOnlyHitJob
     simpa [frozenPhysicalEdges, Finset.ext_iff,
       or_assoc, or_left_comm, or_comm] using h
   refine ⟨carrierPattern, labeling, blocker, hplacement, hsafe, ?_⟩
+  exact ⟨hrowOne, hrowSeven, hblockerInjective, hblockerU,
+    hblockerXv, hblockerNeFrozenSource, hblockerNeOne,
+    hrowTraceFrozen, hnext⟩
+
+/-- The live exact-twelve next-row branch produces the successor job together
+with one of its six source/deletion arms.  This is the source ingress required
+by the next compiler revision; it is not finite coverage or closure. -/
+theorem exists_source_normalized_nextRowNamedDeletionJob
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hcard : D.A.card = 12)
+    (hsurplus : S.surplusCap.card = 5)
+    (hfirst : S.oppCap1.card = 4)
+    (hsecond : S.oppCap2.card = 6)
+    (hsecondInterior :
+      S.capInteriorByIndex S.oppIndex2 =
+        {P.u.1,
+          (lateFirstApexSystem R).centerAt packet.xv Q.hxvA,
+          packet.xv, packet.xu})
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hsourceNamed :
+      source.1 = P.u.1 ∨
+        source.1 = packet.xv ∨ source.1 = packet.xu)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2))
+    (hnextRowOnlyHit :
+      let Hlate := lateFirstApexSystem R
+      let Kxv :=
+        (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+      let c := Hlate.centerAt packet.xv Q.hxvA
+      let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+      let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+      packet.xu ∈ Kc.support ∧
+        P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support) :
+    ∃ carrierPattern : FaithfulCarrierPattern D.A,
+      ∃ labeling : FrozenRoleLabeling Q carrierPattern,
+        ∃ blocker : Fin 5 → Label,
+          (labeling.e P.jointDeletion.deleted, labeling.e P.v) ∈
+              frozenSeparatedPlacementRepresentatives ∧
+            FrozenSafeCubeOK
+              (labeledRowPattern carrierPattern labeling.e) ∧
+            FrozenNextRowNamedDeletionAddedConstraintsHold
+              (labeledRowPattern carrierPattern labeling.e) blocker
+              (labeling.e P.jointDeletion.deleted) (labeling.e P.v) := by
+  classical
+  obtain ⟨carrierPattern, labeling, hplacement, hsafe, hphysicalRow,
+      _hdeletedRow, _hvRow, _hnotSurplus, _hnotFirst, blocker,
+      hblockerInjective, hblockerU, hblockerXv, hblockerActual,
+      hblockerNeSource, hblockerNeOne, hrowTrace, hnext⟩ :=
+    exists_source_normalized_physicalCycle_nextRowOnlyHitDichotomy
+      Q hcard hsurplus hfirst hsecond hsecondInterior hnextRowOnlyHit
+  let row := labeledRowPattern carrierPattern labeling.e
+  let jointDeletion := labeling.e P.jointDeletion.deleted
+  let v := labeling.e P.v
+  let Hlate := lateFirstApexSystem R
+  have hphysical :
+      labelsOf labeling.e (SelectedClass D.A S.oppApex2 P.rho) =
+        frozenPhysicalLabels jointDeletion v := by
+    simpa [jointDeletion, v] using
+      labelsOf_physicalClass_eq_frozenPhysicalLabels Q labeling
+  have hrowOne : row 1 = frozenRowAtOne jointDeletion v := by
+    calc
+      row 1 = labelsOf labeling.e
+          (SelectedClass (D.A.erase packet.xu) S.oppApex2 P.rho) := by
+        simpa [row] using hphysicalRow
+      _ = frozenRowAtOne jointDeletion v := by
+        simpa [jointDeletion, v] using
+          labelsOf_erasedPhysicalClass_eq_frozenRowAtOne Q labeling
+  have hblockerNeFrozenSource :
+      ∀ i, blocker i ≠ frozenPhysicalSources jointDeletion v i := by
+    intro i
+    rw [← physicalSourceLabels_eq_frozenPhysicalSources Q labeling i]
+    exact hblockerNeSource i
+  have hrowTraceFrozen : ∀ i,
+      row (blocker i) ∩ frozenPhysicalLabels jointDeletion v =
+        frozenPhysicalEdges jointDeletion v i := by
+    intro i
+    calc
+      row (blocker i) ∩ frozenPhysicalLabels jointDeletion v =
+          row (blocker i) ∩
+            labelsOf labeling.e (SelectedClass D.A S.oppApex2 P.rho) := by
+        rw [hphysical]
+      _ = labelsOf labeling.e (![
+          ({P.u.1, packet.xu} : Finset ℝ²),
+          {packet.xu, P.jointDeletion.deleted.1},
+          {P.jointDeletion.deleted.1, P.v.1},
+          {P.v.1, packet.xv},
+          {packet.xv, P.u.1}] i) := by
+        simpa [row] using hrowTrace i
+      _ = frozenPhysicalEdges jointDeletion v i := by
+        simpa [jointDeletion, v] using
+          labelsOf_physicalEdges_eq_frozenPhysicalEdges Q labeling i
+  have hrowSeven :
+      row 7 ∩ frozenPhysicalLabels jointDeletion v = {6, 8} := by
+    have h := hrowTraceFrozen 4
+    rw [hblockerXv] at h
+    simpa [frozenPhysicalEdges, Finset.ext_iff,
+      or_assoc, or_left_comm, or_comm] using h
+  have hblockerUValue :
+      (labeling.e.symm (blocker 0)).1 = Hlate.centerAt P.u.1 P.u.2 := by
+    rw [hblockerActual 0, Equiv.symm_apply_apply]
+    rfl
+  have hblockerXuValue :
+      (labeling.e.symm (blocker 1)).1 =
+        Hlate.centerAt packet.xu Q.hxuA := by
+    rw [hblockerActual 1, Equiv.symm_apply_apply]
+    rfl
+  have hblockerXvValue :
+      (labeling.e.symm (blocker 4)).1 =
+        Hlate.centerAt packet.xv Q.hxvA := by
+    rw [hblockerActual 4, Equiv.symm_apply_apply]
+    rfl
+  have harm : FrozenNamedDeletionSixArm row blocker :=
+    frozenNamedDeletionSixArm_of_actualBlockers
+      Q carrierPattern labeling source hsourceOutside hsourceNamed hsurvives
+        blocker hblockerUValue hblockerXuValue hblockerXvValue
+  refine ⟨carrierPattern, labeling, blocker, hplacement, hsafe, ?_⟩
+  refine ⟨?_, harm⟩
   exact ⟨hrowOne, hrowSeven, hblockerInjective, hblockerU,
     hblockerXv, hblockerNeFrozenSource, hblockerNeOne,
     hrowTraceFrozen, hnext⟩

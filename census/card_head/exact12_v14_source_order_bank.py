@@ -43,6 +43,14 @@ DETECTOR_FILES: tuple[str, ...] = (
     "census/card_head/exact12_v14_ordered_coverage.py",
     "census/card_head/sat_encoding.py",
 )
+SOURCE_ORDER_NOGOOD_INTERFACE_SOURCE = (
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+    "ExactTwelveRigid221SourceOrderPositiveNogood.lean"
+)
+SOURCE_ORDER_NOGOOD_INTERFACE_BYTES = 2226
+SOURCE_ORDER_NOGOOD_INTERFACE_SHA256 = (
+    "e526a82dd08accdea7ca967424aa773804c893891a999704c0a889ab7b08ede5"
+)
 
 
 class Exact12V14SourceOrderBankError(ValueError):
@@ -191,6 +199,18 @@ def _expected_lean_source_manifest() -> list[dict[str, Any]]:
                 raise Exact12V14SourceOrderBankError(
                     "generated Lean bindings disagree on source bytes"
                 )
+    interface_record = {
+        "path": SOURCE_ORDER_NOGOOD_INTERFACE_SOURCE,
+        "bytes": SOURCE_ORDER_NOGOOD_INTERFACE_BYTES,
+        "sha256": SOURCE_ORDER_NOGOOD_INTERFACE_SHA256,
+    }
+    previous = expected_by_path.setdefault(
+        SOURCE_ORDER_NOGOOD_INTERFACE_SOURCE, interface_record
+    )
+    if previous != interface_record:
+        raise Exact12V14SourceOrderBankError(
+            "source-order nogood interface manifest disagrees with bindings"
+        )
     return [expected_by_path[path] for path in sorted(expected_by_path)]
 
 
@@ -289,6 +309,27 @@ def snapshot_source_order_bank(
             "proof-backed source-order bank failed exact recompilation"
         )
     return frozen
+
+
+def attest_source_order_bank_live_sources(
+    repo_root: Path, bank: Mapping[str, Any]
+) -> None:
+    """Bind a validated bank snapshot to the current no-follow source bytes."""
+
+    repo_root = repo_root.resolve()
+    if bank.get("lean_source_manifest") != _current_lean_source_manifest(repo_root):
+        raise Exact12V14SourceOrderBankError(
+            "proof-backed source-order bank Lean sources are not live-current"
+        )
+    current_detector_manifest = _detector_manifest(repo_root)
+    if (
+        bank.get("detector_manifest") != current_detector_manifest
+        or bank.get("detector_manifest_sha256")
+        != _sha256_json(current_detector_manifest)
+    ):
+        raise Exact12V14SourceOrderBankError(
+            "proof-backed source-order bank detector sources are not live-current"
+        )
 
 
 def _manifest_from_authenticated_sources(

@@ -16,10 +16,27 @@ from census.card_head.source_faithful_candidate_surface import (
     SOURCE_FAITHFUL_PYTHON_PROFILE,
     SOURCE_THEOREM_PROFILE,
     SourceFaithfulCoverInstance,
+    five_omission_boundary_ok,
+    five_omission_boundary_witnesses,
     source_faithful_candidate_class_ok,
     source_faithful_candidate_classes,
     source_faithful_cube_ok,
 )
+
+SAT_CUBE = {
+    0: [4, 5, 9, 11],
+    1: [7, 8, 9, 11],
+    2: [5, 8, 10, 11],
+    3: [6, 8, 9, 10],
+    4: [6, 7, 10, 11],
+    5: [4, 7, 9, 10],
+    6: [4, 5, 7, 8],
+    7: [3, 5, 6, 9],
+    8: [3, 4, 6, 11],
+    9: [2, 5, 6, 7],
+    10: [2, 4, 6, 8],
+    11: [2, 3, 5, 10],
+}
 
 
 class SourceFaithfulCandidateSurfaceTests(unittest.TestCase):
@@ -48,6 +65,19 @@ class SourceFaithfulCandidateSurfaceTests(unittest.TestCase):
             set(SOURCE_FAITHFUL_EXCLUDED_RULES),
         )
 
+    def test_known_sat_cube_has_replayed_five_omission_boundaries(self):
+        self.assertTrue(source_faithful_cube_ok(self.model, SAT_CUBE))
+        witnesses = tuple(five_omission_boundary_witnesses(SAT_CUBE))
+        self.assertEqual(len(witnesses), 1458)
+        self.assertEqual(witnesses[0], (2, 9, (0, 1, 2, 3, 4)))
+        self.assertTrue(five_omission_boundary_ok(SAT_CUBE, *witnesses[0]))
+
+    def test_five_omission_boundary_rejects_each_distinctness_failure(self):
+        witness = (2, 9, (0, 1, 2, 3, 4))
+        self.assertFalse(five_omission_boundary_ok(SAT_CUBE, 2, 2, witness[2]))
+        self.assertFalse(five_omission_boundary_ok(SAT_CUBE, 2, 0, witness[2]))
+        self.assertFalse(five_omission_boundary_ok(SAT_CUBE, 2, 9, (0, 1, 2, 3)))
+
     def test_representative_mixed_row_is_source_safe_only(self):
         center = 3
         mixed_row = (0, 1, 4, 5)
@@ -67,16 +97,10 @@ class SourceFaithfulCandidateSurfaceTests(unittest.TestCase):
                 self.assertFalse(
                     source_faithful_candidate_class_ok(self.model, center, row)
                 )
-                with self.assertRaisesRegex(
-                    CandidateSurfaceError, "outside the model"
-                ):
+                with self.assertRaisesRegex(CandidateSurfaceError, "outside the model"):
                     source_faithful_candidate_classes(self.model, center)
-        self.assertFalse(
-            source_faithful_candidate_class_ok(self.model, 3, row[:-1])
-        )
-        self.assertFalse(
-            source_faithful_candidate_class_ok(self.model, 3, (*row, 8))
-        )
+        self.assertFalse(source_faithful_candidate_class_ok(self.model, 3, row[:-1]))
+        self.assertFalse(source_faithful_candidate_class_ok(self.model, 3, (*row, 8)))
         self.assertFalse(source_faithful_cube_ok(self.model, {3: row}))
         self.assertFalse(cube_ok(self.model, {3: row}))
         with self.assertRaisesRegex(CandidateSurfaceError, "frozen profile"):

@@ -10,7 +10,7 @@ kernel checked.
 
 from __future__ import annotations
 
-from collections.abc import Collection, Mapping
+from collections.abc import Collection, Iterator, Mapping
 from itertools import combinations
 
 from .candidate_surface import (
@@ -21,9 +21,7 @@ from .candidate_surface import (
 )
 from .sat_encoding import CoverInstance
 
-SOURCE_FAITHFUL_CANDIDATE_SCHEMA = (
-    "p97_rigid221_exact12_source_safe_candidate.v1"
-)
+SOURCE_FAITHFUL_CANDIDATE_SCHEMA = "p97_rigid221_exact12_source_safe_candidate.v1"
 # ``CapHeadModel`` orders its last two caps oppositely to the theorem-facing
 # ingress.  Thus Python profile (5,6,4) represents theorem profile (5,4,6).
 SOURCE_FAITHFUL_PYTHON_PROFILE = (5, 6, 4)
@@ -60,10 +58,7 @@ def source_faithful_candidate_class_ok(
 ) -> bool:
     """Check exactly the source-proved per-center safe candidate rules."""
 
-    if (
-        model.cardinality != 12
-        or model.profile != SOURCE_FAITHFUL_PYTHON_PROFILE
-    ):
+    if model.cardinality != 12 or model.profile != SOURCE_FAITHFUL_PYTHON_PROFILE:
         return False
     chosen = frozenset(candidate)
     if not 0 <= center < model.cardinality:
@@ -78,8 +73,7 @@ def source_faithful_candidate_class_ok(
         return True
 
     return (
-        len(chosen & MOSER) <= 2
-        and len(chosen & model.own_cap_interior(center)) <= 2
+        len(chosen & MOSER) <= 2 and len(chosen & model.own_cap_interior(center)) <= 2
     )
 
 
@@ -122,16 +116,75 @@ def source_faithful_cube_ok(
     )
 
 
+def five_omission_boundary_ok(
+    cube: Mapping[int, Collection[int]],
+    deleted: int,
+    blocker: int,
+    centers: Collection[int],
+) -> bool:
+    """Replay the finite incidence fields of ``FrozenFiveOmissionBoundary``.
+
+    This predicate deliberately does not replay the source-faithful candidate
+    rules.  A caller claiming the full live finite ingress must check both
+    ``source_faithful_cube_ok`` and this boundary on the same cube.
+    """
+
+    labels = set(range(12))
+    if set(cube) != labels:
+        return False
+    if (
+        isinstance(deleted, bool)
+        or not isinstance(deleted, int)
+        or isinstance(blocker, bool)
+        or not isinstance(blocker, int)
+        or deleted not in labels
+        or blocker not in labels
+    ):
+        return False
+    normalized_rows = {center: frozenset(row) for center, row in cube.items()}
+    if any(not row <= labels for row in normalized_rows.values()):
+        return False
+    normalized_centers = frozenset(centers)
+    if not normalized_centers <= labels or len(normalized_centers) != 5:
+        return False
+    return (
+        blocker != deleted
+        and blocker not in normalized_centers
+        and deleted in normalized_rows[blocker]
+        and all(deleted not in normalized_rows[center] for center in normalized_centers)
+    )
+
+
+def five_omission_boundary_witnesses(
+    cube: Mapping[int, Collection[int]],
+) -> Iterator[tuple[int, int, tuple[int, int, int, int, int]]]:
+    """Enumerate all exact-12 five-omission witnesses deterministically."""
+
+    labels = set(range(12))
+    if set(cube) != labels:
+        return
+    normalized_rows = {center: frozenset(row) for center, row in cube.items()}
+    if any(not row <= labels for row in normalized_rows.values()):
+        return
+    for deleted in range(12):
+        omitted_centers = tuple(
+            center for center in range(12) if deleted not in normalized_rows[center]
+        )
+        for centers in combinations(omitted_centers, 5):
+            for blocker in range(12):
+                if five_omission_boundary_ok(
+                    normalized_rows, deleted, blocker, centers
+                ):
+                    yield deleted, blocker, centers
+
+
 class SourceFaithfulCoverInstance(CoverInstance):
     """C1/C2/C4 CNF over the exact-12 Rigid221 source-safe candidates."""
 
     schema = SOURCE_FAITHFUL_CANDIDATE_SCHEMA
 
     def __init__(self, model: CapHeadModel) -> None:
-        if (
-            model.cardinality != 12
-            or model.profile != SOURCE_FAITHFUL_PYTHON_PROFILE
-        ):
+        if model.cardinality != 12 or model.profile != SOURCE_FAITHFUL_PYTHON_PROFILE:
             raise CandidateSurfaceError(
                 "the Rigid221 source-faithful contract requires the exact-12 "
                 "frozen profile"

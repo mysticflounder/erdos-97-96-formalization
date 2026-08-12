@@ -8,6 +8,7 @@ import pytest
 from census.card_head.candidate_surface import build_model
 from census.card_head.exact12_positive_membership_cnf import (
     PositiveMembershipCnfError,
+    compile_fresh_positive_membership_extension,
     compile_positive_membership_bank,
     normalize_memberships,
 )
@@ -142,3 +143,23 @@ def test_compile_rejects_reuse_duplicate_and_unrealizable_requirement() -> None:
             _instance(),
             (({"center": 0, "support": (1, 2, 3, 6)},),),
         )
+
+
+def test_fresh_extension_appends_after_an_existing_membership_bank() -> None:
+    instance = _instance()
+    first = compile_positive_membership_bank(instance, (PATTERN,))
+    extension_pattern = (
+        {"center": 0, "support": (2, 3)},
+        {"center": 6, "support": (2, 3)},
+        {"center": 10, "support": (0, 2, 6)},
+    )
+    extension = compile_fresh_positive_membership_extension(
+        instance, (extension_pattern,)
+    )
+    assert extension.initial_n_variables == first.final_n_variables
+    assert extension.initial_n_clauses == first.final_n_clauses
+    assert extension.final_n_variables == extension.initial_n_variables + 3
+    assert len(extension.entries) == 1
+
+    with pytest.raises(PositiveMembershipCnfError, match="already installed"):
+        compile_fresh_positive_membership_extension(instance, (PATTERN,))

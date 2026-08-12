@@ -9,9 +9,18 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
+from census.card_head.exact12_next_row_arm_static_canary import (
+    EXPECTED_SOURCE_ORDER_BANK_SHA256,
+)
 from census.card_head.exact12_v14_bound_jobs import materialize_cell
 from census.card_head.exact12_v14_ordered_coverage import (
+    ARM_STATIC_CELL6_COMMON_FIVE_LEAN_BINDING,
+    ARM_STATIC_CELL6_FIFTH_COMMON_FIVE_LEAN_BINDING,
+    ARM_STATIC_CELL6_FOURTH_COMMON_FIVE_LEAN_BINDING,
+    ARM_STATIC_CELL6_SECOND_COMMON_FIVE_LEAN_BINDING,
+    ARM_STATIC_CELL6_THIRD_COMMON_FIVE_LEAN_BINDING,
     FROZEN_V8_LEAN_BINDING,
     MIXED_V3_CELL2_LEAN_BINDING,
     MIXED_V3_CELL4_LEAN_BINDING,
@@ -68,12 +77,33 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V7_CELL8_TWENTY_FOURTH_LEAN_BINDING,
     MIXED_V7_CELL8_TWENTY_SECOND_LEAN_BINDING,
     MIXED_V7_CELL8_TWENTY_THIRD_LEAN_BINDING,
+    NEXT_ROW_CELL3_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_BINDING,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_BINDING,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_BINDING,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R13_MIXED_LEAN_BINDING,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_BINDING,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_BINDING,
+    V5R1_CELL1_COMMON_FIVE_LEAN_BINDING,
 )
 from census.card_head.exact12_v14_source_order_bank import (
     BANK_SCHEMA,
     Exact12V14SourceOrderBankError,
     _sha256_json,
     _source_record,
+    attest_source_order_bank_live_sources,
     build_source_order_bank,
     build_source_order_bank_from_authenticated_sources,
     install_source_order_bank,
@@ -89,12 +119,15 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         self.materialized = materialize_cell(0)
         self.instance = self.materialized.instance
 
-    def test_builds_fifty_six_lean_source_pinned_static_cuts(self) -> None:
+    def test_builds_eighty_one_lean_source_pinned_static_cuts(self) -> None:
         bank = build_source_order_bank(REPO_ROOT, self.instance)
         entry = bank["entries"][0]
 
         self.assertEqual(bank["schema"], BANK_SCHEMA)
-        self.assertEqual(len(bank["entries"]), 56)
+        self.assertEqual(len(bank["entries"]), 81)
+        self.assertEqual(
+            bank["bank_sha256"], EXPECTED_SOURCE_ORDER_BANK_SHA256
+        )
         self.assertEqual(entry["certificate_kind"], "source_order_positive_coverage")
         self.assertEqual(entry["certificate_schema"], entry["certificate"]["schema"])
         self.assertEqual(entry["generated_lean_nogood"], FROZEN_V8_LEAN_BINDING)
@@ -102,7 +135,7 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
             entry["learned_clause"],
             [-variable for variable in entry["lean_choice_variables"]],
         )
-        self.assertEqual(len(bank["lean_source_manifest"]), 58)
+        self.assertEqual(len(bank["lean_source_manifest"]), 88)
         self.assertEqual(
             entry["learned_clause"],
             [-42, -55, -169, -312, -501, -868, -1605, -2024, -2317, -2573, -2884],
@@ -229,6 +262,106 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
                 MIXED_V7_CELL8_TWENTY_FIFTH_LEAN_BINDING,
                 [-504, -2118, -2484],
             ),
+            (
+                NEXT_ROW_CELL3_LEAN_BINDING,
+                [-4, -87, -157, -817, -891, -1343, -1473, -2160, -2710, -2848],
+            ),
+            (
+                NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING,
+                [-55, -231, -839, -1234, -1620, -2471, -2997],
+            ),
+            (
+                NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING,
+                [-231, -987, -1234, -1620, -2307, -2997],
+            ),
+            (
+                NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING,
+                [-231, -1442, -1620, -2471, -2997],
+            ),
+            (
+                V5R1_CELL1_COMMON_FIVE_LEAN_BINDING,
+                [-1, -61, -912, -1194, -1630, -2218],
+            ),
+            (
+                STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_BINDING,
+                [-61, -175, -554, -912, -1630, -2239, -2702],
+            ),
+            (
+                STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_BINDING,
+                [-61, -175, -912],
+            ),
+            (
+                STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_BINDING,
+                [-61, -2239, -2994],
+            ),
+            (
+                STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_BINDING,
+                [-155, -924, -2301],
+            ),
+            (
+                STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_BINDING,
+                [-1, -61, -155, -1195],
+            ),
+            (
+                STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_BINDING,
+                [-157, -1032, -2065],
+            ),
+            (
+                STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_BINDING,
+                [-61, -155, -2803],
+            ),
+            (
+                STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_BINDING,
+                [-1451, -1957, -2672, -2955],
+            ),
+            (
+                STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_BINDING,
+                [-175, -554, -924, -1431, -2672],
+            ),
+            (
+                STATIC_CELL1_R9_COMMON_FIVE_LEAN_BINDING,
+                [-924, -1748, -2312],
+            ),
+            (
+                STATIC_CELL1_R10_COMMON_FIVE_LEAN_BINDING,
+                [-1748, -2309, -3008],
+            ),
+            (
+                STATIC_CELL1_R11_COMMON_FIVE_LEAN_BINDING,
+                [-1433, -2672, -2958],
+            ),
+            (
+                STATIC_CELL1_R13_MIXED_LEAN_BINDING,
+                [-1, -155, -175, -554, -924, -2672, -2958],
+            ),
+            (
+                STATIC_CELL1_R14_COMMON_FIVE_LEAN_BINDING,
+                [-924, -1748, -2308],
+            ),
+            (
+                STATIC_CELL1_R15_COMMON_FIVE_LEAN_BINDING,
+                [-1748, -2362, -2487],
+            ),
+            (
+                ARM_STATIC_CELL6_COMMON_FIVE_LEAN_BINDING,
+                [-925, -1198, -2258],
+            ),
+            (
+                ARM_STATIC_CELL6_SECOND_COMMON_FIVE_LEAN_BINDING,
+                [-156, -175, -2820],
+            ),
+            (
+                ARM_STATIC_CELL6_THIRD_COMMON_FIVE_LEAN_BINDING,
+                [-61, -175, -1226],
+            ),
+            (
+                ARM_STATIC_CELL6_FOURTH_COMMON_FIVE_LEAN_BINDING,
+                [-18, -1342, -2445],
+            ),
+            (
+                ARM_STATIC_CELL6_FIFTH_COMMON_FIVE_LEAN_BINDING,
+                [-838, -1584, -2205],
+            ),
         )
         for bank_entry, (binding, clause) in zip(
             bank["entries"][1:], expected, strict=True
@@ -245,8 +378,8 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
         bank = install_source_order_bank(REPO_ROOT, self.instance)
         clauses = [tuple(entry["learned_clause"]) for entry in bank["entries"]]
 
-        self.assertEqual(len(self.instance.cnf.clauses), before + 56)
-        self.assertEqual(self.instance.cnf.clauses[-56:], clauses)
+        self.assertEqual(len(self.instance.cnf.clauses), before + 81)
+        self.assertEqual(self.instance.cnf.clauses[-81:], clauses)
         with self.assertRaisesRegex(
             Exact12V14SourceOrderBankError, "already installed"
         ):
@@ -422,6 +555,47 @@ class Exact12V14SourceOrderBankTest(unittest.TestCase):
                 Exact12V14SourceOrderBankError, "missing regular"
             ):
                 _source_record(root, fifo.name)
+
+    def test_live_source_attestation_rejects_lean_or_detector_drift(self) -> None:
+        lean_manifest = [{"path": "source.lean", "bytes": 1, "sha256": "a"}]
+        detector_manifest = [
+            {"path": "detector.py", "bytes": 1, "sha256": "b"}
+        ]
+        bank = {
+            "lean_source_manifest": lean_manifest,
+            "detector_manifest": detector_manifest,
+            "detector_manifest_sha256": _sha256_json(detector_manifest),
+        }
+        with mock.patch(
+            "census.card_head.exact12_v14_source_order_bank."
+            "_current_lean_source_manifest",
+            return_value=lean_manifest,
+        ), mock.patch(
+            "census.card_head.exact12_v14_source_order_bank._detector_manifest",
+            return_value=detector_manifest,
+        ):
+            attest_source_order_bank_live_sources(REPO_ROOT, bank)
+
+        with mock.patch(
+            "census.card_head.exact12_v14_source_order_bank."
+            "_current_lean_source_manifest",
+            return_value=[],
+        ), self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "Lean sources"
+        ):
+            attest_source_order_bank_live_sources(REPO_ROOT, bank)
+
+        with mock.patch(
+            "census.card_head.exact12_v14_source_order_bank."
+            "_current_lean_source_manifest",
+            return_value=lean_manifest,
+        ), mock.patch(
+            "census.card_head.exact12_v14_source_order_bank._detector_manifest",
+            return_value=[],
+        ), self.assertRaisesRegex(
+            Exact12V14SourceOrderBankError, "detector sources"
+        ):
+            attest_source_order_bank_live_sources(REPO_ROOT, bank)
 
 
 if __name__ == "__main__":

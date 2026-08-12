@@ -28,12 +28,17 @@ from census.card_head.exact12_v14_ordered_cut_adapter import (
     SOURCE_ORDER_CERTIFICATE_KIND,
     SOURCE_ORDER_DETECTOR_STAGE,
     Exact12V14OrderedCutAdapterError,
+    attest_prepared_source_order_bank_installed,
+    clone_installed_source_order_bank,
     detect_proof_backed_source_order_cut,
+    install_prepared_source_order_bank,
+    prepare_proof_backed_source_order_bank,
     replay_proof_backed_source_order_cut,
 )
 from census.card_head.exact12_v14_source_order_bank import (
     _sha256_json,
     build_source_order_bank,
+    snapshot_source_order_bank,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -203,6 +208,110 @@ class Exact12V14OrderedCutAdapterTest(unittest.TestCase):
                 MIXED_V4_CELL10_CUBE,
                 source_order_bank=tampered,
             )
+
+    def test_prepared_bank_compiles_once_and_matches_many(self) -> None:
+        bank = build_source_order_bank(REPO_ROOT, self.instance)
+        with patch(
+            "census.card_head.exact12_v14_ordered_cut_adapter."
+            "snapshot_source_order_bank",
+            wraps=snapshot_source_order_bank,
+        ) as snapshot:
+            prepared = prepare_proof_backed_source_order_bank(self.instance, bank)
+            first = detect_proof_backed_source_order_cut(
+                None,
+                self.instance,
+                MIXED_V4_CELL10_CUBE,
+                source_order_bank=prepared,
+            )
+            second = detect_proof_backed_source_order_cut(
+                None,
+                self.instance,
+                MIXED_V4_CELL1_CUBE,
+                source_order_bank=prepared,
+            )
+        self.assertEqual(snapshot.call_count, 1)
+        self.assertIsNotNone(first)
+        self.assertIsNotNone(second)
+        assert first is not None and second is not None
+        self.assertEqual(first.bank_index, 10)
+        self.assertEqual(second.bank_index, 7)
+
+    def test_prepared_bank_is_instance_bound_and_snapshot_detached(self) -> None:
+        prepared = prepare_proof_backed_source_order_bank(
+            self.instance, build_source_order_bank(REPO_ROOT, self.instance)
+        )
+        detached = prepared.snapshot()
+        detached["entries"][0]["learned_clause"][0] = 1
+        admitted = detect_proof_backed_source_order_cut(
+            None,
+            self.instance,
+            FROZEN_V8_CUBE,
+            source_order_bank=prepared,
+        )
+        self.assertIsNotNone(admitted)
+
+        other_instance = materialize_cell(0).instance
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "different SAT instance"
+        ):
+            detect_proof_backed_source_order_cut(
+                None,
+                other_instance,
+                FROZEN_V8_CUBE,
+                source_order_bank=prepared,
+            )
+
+    def test_prepared_bank_installs_as_one_authenticated_exact_suffix(self) -> None:
+        prepared = prepare_proof_backed_source_order_bank(
+            self.instance, build_source_order_bank(REPO_ROOT, self.instance)
+        )
+        base_clauses = tuple(self.instance.cnf.clauses)
+        expected_suffix = tuple(entry.learned_clause for entry in prepared.entries)
+        installation = install_prepared_source_order_bank(self.instance, prepared)
+
+        self.assertEqual(tuple(self.instance.cnf.clauses[: len(base_clauses)]), base_clauses)
+        self.assertEqual(tuple(self.instance.cnf.clauses[len(base_clauses) :]), expected_suffix)
+        self.assertEqual(installation["base_n_clauses"], len(base_clauses))
+        self.assertEqual(installation["suffix_n_clauses"], len(expected_suffix))
+        self.assertEqual(
+            installation,
+            attest_prepared_source_order_bank_installed(self.instance, prepared),
+        )
+        clone, rebound = clone_installed_source_order_bank(self.instance, prepared)
+        self.assertEqual(clone.dimacs(), self.instance.dimacs())
+        self.assertEqual(
+            installation,
+            attest_prepared_source_order_bank_installed(clone, rebound),
+        )
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "already installed"
+        ):
+            install_prepared_source_order_bank(self.instance, prepared)
+
+        self.instance.cnf.clauses[-1] = (-1,)
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "exact unique CNF suffix"
+        ):
+            attest_prepared_source_order_bank_installed(self.instance, prepared)
+
+    def test_rejects_boolean_cube_keys(self) -> None:
+        cube = {int(center): copy.deepcopy(support) for center, support in FROZEN_V8_CUBE.items()}
+        support = cube.pop(1)
+        cube[True] = support
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "every center exactly once"
+        ):
+            detect_proof_backed_source_order_cut(REPO_ROOT, self.instance, cube)
+
+    def test_prepared_bank_rejects_base_formula_drift_before_installation(self) -> None:
+        prepared = prepare_proof_backed_source_order_bank(
+            self.instance, build_source_order_bank(REPO_ROOT, self.instance)
+        )
+        self.instance.cnf.add_clause((-1,))
+        with self.assertRaisesRegex(
+            Exact12V14OrderedCutAdapterError, "changed after.*preparation"
+        ):
+            install_prepared_source_order_bank(self.instance, prepared)
 
     def test_rejects_reindexed_or_reordered_bank(self) -> None:
         bank = copy.deepcopy(build_source_order_bank(REPO_ROOT, self.instance))

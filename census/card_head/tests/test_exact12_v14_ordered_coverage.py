@@ -346,10 +346,137 @@ from census.card_head.exact12_v14_ordered_coverage import (
     MIXED_V7_CELL8_TWENTY_THIRD_LEAN_SOURCE,
     MIXED_V7_CELL8_TWENTY_THIRD_LEAN_SOURCE_BYTES,
     MIXED_V7_CELL8_TWENTY_THIRD_LEAN_SOURCE_SHA256,
+    NEXT_ROW_CELL3_CUBE,
+    NEXT_ROW_CELL3_LEAN_BINDING,
+    NEXT_ROW_CELL3_LEAN_CHOICES,
+    NEXT_ROW_CELL3_LEAN_SOURCE,
+    NEXT_ROW_CELL3_LEAN_SOURCE_BYTES,
+    NEXT_ROW_CELL3_LEAN_SOURCE_SHA256,
+    NEXT_ROW_STATIC_CONVEX_CELL0_CUBE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_CHOICES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_BYTES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_SHA256,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_CHOICES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_BYTES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_SHA256,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_CHOICES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+    NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
     ORDER_UNIVERSE_SHA256,
     REQUIRED_SOURCE_HYPOTHESES,
     SOURCE_ORDERS,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_CUBE,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_BINDING,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_CHOICES,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_CUBE,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_CUBE,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_BINDING,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_CHOICES,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_CUBE,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_CUBE,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_CUBE,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_BINDING,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_CHOICES,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R9_COMMON_FIVE_CUBE,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R10_COMMON_FIVE_CUBE,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R11_COMMON_FIVE_CUBE,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R13_MIXED_CUBE,
+    STATIC_CELL1_R13_MIXED_LEAN_BINDING,
+    STATIC_CELL1_R13_MIXED_LEAN_CHOICES,
+    STATIC_CELL1_R13_MIXED_LEAN_SOURCE,
+    STATIC_CELL1_R13_MIXED_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R13_MIXED_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R14_COMMON_FIVE_CUBE,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_R15_COMMON_FIVE_CUBE,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_SECOND_COMMON_FIVE_CUBE,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_BINDING,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_CHOICES,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_CUBE,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_BINDING,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_CHOICES,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE_SHA256,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_CUBE,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_BINDING,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_CHOICES,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE_BYTES,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE_SHA256,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_NOGOOD,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE_BYTES,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE_SHA256,
+    V5R1_CELL1_COMMON_FIVE_CUBE,
+    V5R1_CELL1_COMMON_FIVE_LEAN_BINDING,
+    V5R1_CELL1_COMMON_FIVE_LEAN_CHOICES,
+    V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE,
+    V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE_BYTES,
+    V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE_SHA256,
     Exact12V14OrderedCoverageError,
+    _common_five_point_cores,
+    _metric_rows,
+    _select_minimal_common_five_core_family,
     detect_ordered_coverage,
     detect_proof_backed_ordered_coverage,
     learned_clause_for_proof_backed_ordered_coverage,
@@ -898,6 +1025,196 @@ MIXED_CASES = (
         MIXED_V7_CELL8_TWENTY_FIFTH_LEAN_SOURCE_SHA256,
         (-504, -2118, -2484),
     ),
+    (
+        "next-row-cell-3",
+        NEXT_ROW_CELL3_CUBE,
+        NEXT_ROW_CELL3_LEAN_BINDING,
+        NEXT_ROW_CELL3_LEAN_CHOICES,
+        NEXT_ROW_CELL3_LEAN_SOURCE,
+        NEXT_ROW_CELL3_LEAN_SOURCE_BYTES,
+        NEXT_ROW_CELL3_LEAN_SOURCE_SHA256,
+        (-4, -87, -157, -817, -891, -1343, -1473, -2160, -2710, -2848),
+    ),
+    (
+        "next-row-static-convex-cell-0",
+        NEXT_ROW_STATIC_CONVEX_CELL0_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_CHOICES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_BYTES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_LEAN_SOURCE_SHA256,
+        (-55, -231, -839, -1234, -1620, -2471, -2997),
+    ),
+    (
+        "next-row-static-convex-cell-0-second",
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_CHOICES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_BYTES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_SECOND_LEAN_SOURCE_SHA256,
+        (-231, -987, -1234, -1620, -2307, -2997),
+    ),
+    (
+        "next-row-static-convex-cell-0-third",
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_CUBE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_BINDING,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_CHOICES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_BYTES,
+        NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_LEAN_SOURCE_SHA256,
+        (-231, -1442, -1620, -2471, -2997),
+    ),
+    (
+        "v5-r1-cell-1-common-five",
+        V5R1_CELL1_COMMON_FIVE_CUBE,
+        V5R1_CELL1_COMMON_FIVE_LEAN_BINDING,
+        V5R1_CELL1_COMMON_FIVE_LEAN_CHOICES,
+        V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE,
+        V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        V5R1_CELL1_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-1, -61, -912, -1194, -1630, -2218),
+    ),
+    (
+        "static-cell-1-second-common-five",
+        STATIC_CELL1_SECOND_COMMON_FIVE_CUBE,
+        STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_SECOND_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-61, -175, -554, -912, -1630, -2239, -2702),
+    ),
+    (
+        "static-cell-1-after-three-triad-common-five",
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_CUBE,
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_AFTER_THREE_TRIAD_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-61, -2239, -2994),
+    ),
+    (
+        "static-cell-1-after-apex-cross-block",
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_CUBE,
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_BINDING,
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_CHOICES,
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE,
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_AFTER_APEX_CROSS_BLOCK_LEAN_SOURCE_SHA256,
+        (-155, -924, -2301),
+    ),
+    (
+        "static-cell-1-fourth-opposite-apex-chain",
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_CUBE,
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_BINDING,
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_CHOICES,
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE,
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_FOURTH_OPPOSITE_APEX_CHAIN_LEAN_SOURCE_SHA256,
+        (-1, -61, -155, -1195),
+    ),
+    (
+        "static-cell-1-surplus-cross-block",
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_CUBE,
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_BINDING,
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_CHOICES,
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE,
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_SURPLUS_CROSS_BLOCK_LEAN_SOURCE_SHA256,
+        (-157, -1032, -2065),
+    ),
+    (
+        "static-cell-1-post-chain-common-five",
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_CUBE,
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_POST_CHAIN_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-61, -155, -2803),
+    ),
+    (
+        "static-cell-1-post-common-five-three-triad",
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_CUBE,
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_BINDING,
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_CHOICES,
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE,
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_LEAN_SOURCE_SHA256,
+        (-1451, -1957, -2672, -2955),
+    ),
+    (
+        "static-cell-1-late-three-core-common-five",
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_CUBE,
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-175, -554, -924, -1431, -2672),
+    ),
+    (
+        "static-cell-1-r9-common-five",
+        STATIC_CELL1_R9_COMMON_FIVE_CUBE,
+        STATIC_CELL1_R9_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_R9_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R9_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-924, -1748, -2312),
+    ),
+    (
+        "static-cell-1-r10-common-five",
+        STATIC_CELL1_R10_COMMON_FIVE_CUBE,
+        STATIC_CELL1_R10_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_R10_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R10_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-1748, -2309, -3008),
+    ),
+    (
+        "static-cell-1-r11-common-five",
+        STATIC_CELL1_R11_COMMON_FIVE_CUBE,
+        STATIC_CELL1_R11_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_R11_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R11_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-1433, -2672, -2958),
+    ),
+    (
+        "static-cell-1-r13-mixed",
+        STATIC_CELL1_R13_MIXED_CUBE,
+        STATIC_CELL1_R13_MIXED_LEAN_BINDING,
+        STATIC_CELL1_R13_MIXED_LEAN_CHOICES,
+        STATIC_CELL1_R13_MIXED_LEAN_SOURCE,
+        STATIC_CELL1_R13_MIXED_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R13_MIXED_LEAN_SOURCE_SHA256,
+        (-1, -155, -175, -554, -924, -2672, -2958),
+    ),
+    (
+        "static-cell-1-r14-common-five",
+        STATIC_CELL1_R14_COMMON_FIVE_CUBE,
+        STATIC_CELL1_R14_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_R14_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R14_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-924, -1748, -2308),
+    ),
+    (
+        "static-cell-1-r15-common-five",
+        STATIC_CELL1_R15_COMMON_FIVE_CUBE,
+        STATIC_CELL1_R15_COMMON_FIVE_LEAN_BINDING,
+        STATIC_CELL1_R15_COMMON_FIVE_LEAN_CHOICES,
+        STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE,
+        STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE_BYTES,
+        STATIC_CELL1_R15_COMMON_FIVE_LEAN_SOURCE_SHA256,
+        (-1748, -2362, -2487),
+    ),
 )
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
@@ -1056,14 +1373,25 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                     ],
                 )
                 self.assertEqual(len(certificate["coverage"]), 48)
-                expected_rule = (
-                    "source-independent-structural-core"
+                expected_rules = (
+                    {"source-independent-structural-core"}
                     if "source_independent_structural_detection" in binding
-                    else "convex-five-point-common-orientation"
+                    else {
+                        "convex-five-point-common-orientation",
+                        "selected-rows-kalmanson",
+                        "two-rows-shared-late-pair",
+                    }
+                    if cell == "static-cell-1-r13-mixed"
+                    else {
+                        "convex-five-point-common-orientation",
+                        "selected-rows-kalmanson",
+                    }
+                    if cell == "next-row-cell-3"
+                    else {"convex-five-point-common-orientation"}
                 )
                 self.assertEqual(
                     {entry["rule"] for entry in certificate["coverage"]},
-                    {expected_rule},
+                    expected_rules,
                 )
                 if cell == "v4-cell-1":
                     preferred = binding["preferred_common_five_core"]
@@ -1071,6 +1399,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                         {
                             tuple(sorted(entry["core"].items()))
                             for entry in certificate["coverage"]
+                            if "core" in entry
                         },
                         {tuple(sorted(preferred.items()))},
                     )
@@ -1090,6 +1419,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                         {
                             tuple(sorted(entry["core"].items()))
                             for entry in certificate["coverage"]
+                            if "core" in entry
                         },
                         {
                             tuple(sorted(preferred.items()))
@@ -1099,6 +1429,18 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                     expected_counts = (
                         [24, 12, 12]
                         if cell == "v7-cell-8-eighteenth"
+                        else [24, 12, 6]
+                        if cell == "next-row-cell-3"
+                        else [24, 12, 8, 4]
+                        if cell == "next-row-static-convex-cell-0"
+                        else [24, 12, 12]
+                        if cell
+                        in {
+                            "next-row-static-convex-cell-0-second",
+                            "next-row-static-convex-cell-0-third",
+                        }
+                        else [24, 8, 8, 8]
+                        if cell == "static-cell-1-second-common-five"
                         else [
                             len(certificate["coverage"]) // len(preferred_many)
                             for _preferred in preferred_many
@@ -1107,7 +1449,7 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                     self.assertEqual(
                         [
                             sum(
-                                entry["core"] == preferred
+                                entry.get("core") == preferred
                                 for entry in certificate["coverage"]
                             )
                             for preferred in preferred_many
@@ -1121,6 +1463,138 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
                 source = (REPO_ROOT / source_path).read_bytes()
                 self.assertEqual(len(source), source_bytes)
                 self.assertEqual(hashlib.sha256(source).hexdigest(), source_sha256)
+
+    def test_surplus_cross_block_clause_replays_in_its_cell1_instance(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_SURPLUS_CROSS_BLOCK_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-157, -1032, -2065),
+        )
+
+    def test_post_chain_clause_replays_in_its_cell1_instance(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_POST_CHAIN_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-61, -155, -2803),
+        )
+
+    def test_post_common_five_three_triad_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_POST_COMMON_FIVE_THREE_TRIAD_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-1451, -1957, -2672, -2955),
+        )
+
+    def test_late_three_core_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_LATE_THREE_CORE_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-175, -554, -924, -1431, -2672),
+        )
+
+    def test_r9_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R9_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-924, -1748, -2312),
+        )
+
+    def test_r10_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R10_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-1748, -2309, -3008),
+        )
+
+    def test_r11_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R11_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-1433, -2672, -2958),
+        )
+
+    def test_r13_mixed_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R13_MIXED_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            [row["center"] for row in certificate["selected_rows"]],
+            [0, 2, 3, 4, 5, 10, 11],
+        )
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-1, -155, -175, -554, -924, -2672, -2958),
+        )
+
+    def test_r14_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R14_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            [row["center"] for row in certificate["selected_rows"]],
+            [5, 7, 9],
+        )
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-924, -1748, -2308),
+        )
+
+    def test_r15_common_five_clause_replays_in_cell1(self) -> None:
+        instance = materialize_cell(1).instance
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_R15_COMMON_FIVE_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        assert certificate is not None
+        self.assertEqual(
+            [row["center"] for row in certificate["selected_rows"]],
+            [7, 9, 10],
+        )
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(instance, certificate),
+            (-1748, -2362, -2487),
+        )
 
     def test_learned_clause_uses_bound_selected_rows_and_is_falsified(self) -> None:
         instance = materialize_cell(0).instance
@@ -1152,6 +1626,66 @@ class Exact12V14OrderedCoverageTest(unittest.TestCase):
             learned_clause_for_proof_backed_ordered_coverage(
                 materialize_cell(0).instance, diagnostic
             )
+
+    def test_r2_diagnostic_selector_uses_one_core_and_three_centers(self) -> None:
+        rows = _metric_rows(STATIC_CELL1_THIRD_BLOCK_SPANNING_CUBE)
+        cores = _common_five_point_cores(rows)
+
+        selected = _select_minimal_common_five_core_family(rows, cores)
+
+        self.assertEqual(
+            selected,
+            ({"a": 6, "x": 5, "b": 0, "c": 3, "y": 1},),
+        )
+
+    def test_r2_registry_binding_retains_exact_certificate_metadata(self) -> None:
+        certificate = detect_proof_backed_ordered_coverage(
+            STATIC_CELL1_THIRD_BLOCK_SPANNING_CUBE
+        )
+        self.assertIsNotNone(certificate)
+        self.assertEqual(
+            certificate["generated_lean_nogood"],
+            STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_BINDING,
+        )
+        self.assertEqual(len(certificate["coverage"]), 48)
+        self.assertEqual(
+            {
+                tuple(entry["core"][key] for key in ("a", "x", "b", "c", "y"))
+                for entry in certificate["coverage"]
+            },
+            {(6, 5, 0, 3, 1)},
+        )
+        self.assertEqual(
+            certificate["selected_rows"],
+            [dict(row, exact=False) for row in STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_CHOICES],
+        )
+        self.assertEqual(
+            tuple(center for center, _required in replay_ordered_coverage(certificate)),
+            (1, 3, 5),
+        )
+        self.assertEqual(
+            learned_clause_for_proof_backed_ordered_coverage(
+                materialize_cell(0).instance, certificate
+            ),
+            (-61, -175, -912),
+        )
+        binding = certificate["generated_lean_nogood"]
+        self.assertEqual(binding["nogood_declaration"], STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_NOGOOD)
+        self.assertEqual(
+            binding["coverage_source_path"],
+            STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE,
+        )
+        self.assertEqual(
+            binding["coverage_source_bytes"],
+            STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE_BYTES,
+        )
+        self.assertEqual(
+            binding["coverage_source_sha256"],
+            STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_COVERAGE_SOURCE_SHA256,
+        )
+        self.assertEqual(binding["source_path"], STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE)
+        self.assertEqual(binding["source_bytes"], STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE_BYTES)
+        self.assertEqual(binding["source_sha256"], STATIC_CELL1_THIRD_BLOCK_SPANNING_LEAN_SOURCE_SHA256)
 
     def test_certificate_binding_does_not_alias_module_constant(self) -> None:
         mutated = detect_proof_backed_ordered_coverage(FROZEN_CUBE)

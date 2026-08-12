@@ -21,11 +21,14 @@ from census.card_head.exact12_positive_membership_source_order_bank import (
     attest_positive_membership_source_order_bank_live_sources,
     build_positive_membership_source_order_bank,
     install_positive_membership_source_order_bank,
+    production_binding_index_for_cell,
     validate_positive_membership_source_order_bank,
 )
 from census.card_head.exact12_v14_ordered_coverage import (
     NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_BINDING,
     NEXT_ROW_STATIC_CONVEX_CELL0_THIRD_MEMBERSHIP_LEAN_CHOICES,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_MEMBERSHIP_LEAN_BINDING,
+    STATIC_CELL1_THIRD_BLOCK_SPANNING_MEMBERSHIP_LEAN_CHOICES,
 )
 from census.card_head.source_faithful_candidate_surface import (
     SOURCE_FAITHFUL_PYTHON_PROFILE,
@@ -35,11 +38,11 @@ from census.card_head.source_faithful_candidate_surface import (
 REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
-def _parent() -> tuple[SourceFaithfulCoverInstance, object]:
+def _parent(cell_index: int = 0) -> tuple[SourceFaithfulCoverInstance, object]:
     instance = SourceFaithfulCoverInstance(
         build_model(12, SOURCE_FAITHFUL_PYTHON_PROFILE)
     )
-    compiled = compile_cell(instance, cells()[0])
+    compiled = compile_cell(instance, cells()[cell_index])
     return instance, install_static_convex_extension(instance, compiled)
 
 
@@ -165,3 +168,65 @@ def test_install_appends_complete_delta_once() -> None:
         match="already installed",
     ):
         install_positive_membership_source_order_bank(REPO_ROOT, instance, layout)
+
+
+def test_cell1_block_spanning_binding_compiles_the_partial_membership_family() -> None:
+    instance, layout = _parent(1)
+    bank = build_positive_membership_source_order_bank(
+        REPO_ROOT, instance, layout, binding_index=1
+    )
+    entry = bank["entries"][0]
+    compiled = entry["compiled"]
+
+    assert bank["binding_index"] == 1
+    assert bank["claims"]["runner_integrated"] is True
+    assert entry["index"] == 1
+    assert entry["generated_lean_membership_binding"] == (
+        STATIC_CELL1_THIRD_BLOCK_SPANNING_MEMBERSHIP_LEAN_BINDING
+    )
+    assert entry["choices"] == (
+        STATIC_CELL1_THIRD_BLOCK_SPANNING_MEMBERSHIP_LEAN_CHOICES
+    )
+    assert entry["replayed_memberships"] == [
+        {"center": 1, "required": [0, 6]},
+        {"center": 3, "required": [0, 1, 5]},
+        {"center": 5, "required": [0, 6]},
+    ]
+    assert len(entry["certificate"]["coverage"]) == 48
+    assert compiled["initial_n_variables"] == 44875
+    assert compiled["initial_n_clauses"] == 634859
+    assert compiled["final_n_variables"] == 44878
+    assert compiled["final_n_clauses"] == 634917
+    assert compiled["delta_sha256"] == (
+        "0702dfd404f79d8d3b1689c7b8693ab2ba8576939c96b261512e033df5e04b3b"
+    )
+
+    installed = install_positive_membership_source_order_bank(
+        REPO_ROOT, instance, layout, binding_index=1
+    )
+    assert installed == bank
+
+
+def test_binding_index_fails_closed() -> None:
+    instance, layout = _parent(1)
+    with pytest.raises(
+        Exact12PositiveMembershipSourceOrderBankError,
+        match="binding index is out of range",
+    ):
+        build_positive_membership_source_order_bank(
+            REPO_ROOT, instance, layout, binding_index=2
+        )
+
+
+def test_production_binding_selection_is_cell_keyed_and_fail_closed() -> None:
+    assert production_binding_index_for_cell(1) == 1
+    with pytest.raises(
+        Exact12PositiveMembershipSourceOrderBankError,
+        match="no production positive-membership binding for cell 0",
+    ):
+        production_binding_index_for_cell(0)
+    with pytest.raises(
+        Exact12PositiveMembershipSourceOrderBankError,
+        match="cell index must be an integer",
+    ):
+        production_binding_index_for_cell(True)
