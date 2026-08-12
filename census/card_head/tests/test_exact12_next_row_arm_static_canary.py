@@ -7,10 +7,16 @@ from census.card_head.candidate_surface import build_model
 from census.card_head.exact12_adjacent_apex_cross_block_membership_family_bank import (
     install_adjacent_apex_cross_block_membership_family_bank,
 )
+from census.card_head.exact12_apex_zero_cross_block_membership_family_bank import (
+    install_apex_zero_cross_block_membership_family_bank,
+)
 from census.card_head.exact12_next_row_arm_static_canary import (
     EXPECTED_ARM_SUFFIX_CLAUSES,
     EXPECTED_POST_ARM_CLAUSES,
     EXPECTED_POST_ARM_DIMACS_SHA256,
+    EXPECTED_PREFIX_CLAUSES,
+    EXPECTED_PREFIX_DIMACS_SHA256,
+    EXPECTED_PREFIX_VARIABLES,
     Exact12NextRowArmStaticCanaryError,
     _cnf_sha256,
     append_authenticated_named_arm_suffix,
@@ -44,6 +50,9 @@ from census.card_head.exact12_v14_ordered_coverage import (
     ARM_STATIC_CELL6_THIRD_COMMON_FIVE_LEAN_BINDING,
     detect_proof_backed_ordered_coverage,
     learned_clause_for_proof_backed_ordered_coverage,
+)
+from census.card_head.exact12_zero_center_cross_block_membership_family_bank import (
+    install_zero_center_cross_block_membership_family_bank,
 )
 from census.card_head.source_faithful_candidate_surface import (
     SOURCE_FAITHFUL_PYTHON_PROFILE,
@@ -91,25 +100,52 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
                 cell_index=1,
             )
         )
-        install_surplus_three_triad_membership_family_bank(
-            REPO_ROOT,
-            instance,
-            layout,
-            second_cap_apex_surplus_family_bank,
-            cell_index=1,
+        surplus_three_triad_family_bank = (
+            install_surplus_three_triad_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                second_cap_apex_surplus_family_bank,
+                cell_index=1,
+            )
         )
+        zero_center_cross_block_family_bank = (
+            install_zero_center_cross_block_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                surplus_three_triad_family_bank,
+                cell_index=1,
+            )
+        )
+        self.assertEqual(
+            zero_center_cross_block_family_bank["family_id"],
+            "zero-center-cross-block-x345-b6789-y1011.v1",
+        )
+        apex_zero_cross_block_family_bank = (
+            install_apex_zero_cross_block_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                zero_center_cross_block_family_bank,
+                cell_index=1,
+            )
+        )
+        self.assertEqual(
+            apex_zero_cross_block_family_bank["family_id"],
+            "apex-zero-cross-block-a345-x6789-c1011.v1",
+        )
+        self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
+        self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
+        self.assertEqual(_cnf_sha256(instance), EXPECTED_PREFIX_DIMACS_SHA256)
         arm_instance = SourceFaithfulCoverInstance(
             build_model(12, SOURCE_FAITHFUL_PYTHON_PROFILE)
         )
         arm_compiled = compile_arm_cell(arm_instance, arm_cells()[6])
 
-        suffix = append_authenticated_named_arm_suffix(
-            instance, compiled, arm_compiled
-        )
+        suffix = append_authenticated_named_arm_suffix(instance, compiled, arm_compiled)
 
-        self.assertEqual(
-            suffix["suffix"]["n_clauses"], EXPECTED_ARM_SUFFIX_CLAUSES
-        )
+        self.assertEqual(suffix["suffix"]["n_clauses"], EXPECTED_ARM_SUFFIX_CLAUSES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_POST_ARM_CLAUSES)
         self.assertEqual(_cnf_sha256(instance), EXPECTED_POST_ARM_DIMACS_SHA256)
 

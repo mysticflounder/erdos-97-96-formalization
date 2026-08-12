@@ -28,6 +28,11 @@ from .exact12_adjacent_apex_cross_block_membership_family_bank import (
     attest_adjacent_apex_cross_block_membership_family_bank_live_sources,
     install_adjacent_apex_cross_block_membership_family_bank,
 )
+from .exact12_apex_zero_cross_block_membership_family_bank import (
+    Exact12ApexZeroCrossBlockMembershipFamilyBankError,
+    attest_apex_zero_cross_block_membership_family_bank_live_sources,
+    install_apex_zero_cross_block_membership_family_bank,
+)
 from .exact12_next_row_cell_run import (
     _artifact,
     _claim_empty_workdir,
@@ -83,6 +88,11 @@ from .exact12_v14_source_order_bank import (
     attest_source_order_bank_live_sources,
     build_source_order_bank,
 )
+from .exact12_zero_center_cross_block_membership_family_bank import (
+    Exact12ZeroCenterCrossBlockMembershipFamilyBankError,
+    attest_zero_center_cross_block_membership_family_bank_live_sources,
+    install_zero_center_cross_block_membership_family_bank,
+)
 from .sat_encoding import CadicalResult, EncodingError, solve_cadical
 from .source_faithful_candidate_surface import (
     SOURCE_FAITHFUL_CANDIDATE_SCHEMA,
@@ -92,28 +102,26 @@ from .source_faithful_candidate_surface import (
 
 RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v2"
 JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v2"
-ARM_SUFFIX_SCHEMA = (
-    "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
-)
+ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
-EXPECTED_PREFIX_VARIABLES = 45_010
-EXPECTED_PREFIX_CLAUSES = 637_414
+EXPECTED_PREFIX_VARIABLES = 45_077
+EXPECTED_PREFIX_CLAUSES = 638_704
 EXPECTED_PREFIX_DIMACS_SHA256 = (
-    "2844611d6030452f2513307fde1de2439eb51a2eea11df2621bb653314b8dab4"
+    "269d2527f22b59ee34d0521fca931553c5a969a7171a4e3b4df9498951f19f4e"
 )
 EXPECTED_ARM_SUFFIX_CLAUSES = 867
-EXPECTED_POST_ARM_CLAUSES = 638_281
+EXPECTED_POST_ARM_CLAUSES = 639_571
 EXPECTED_POST_ARM_DIMACS_SHA256 = (
-    "0a05ebe0f6c5c48697ed7026e740316c5ea095ea0be0d3f2043e739ae8b2a43f"
+    "f445925eb81af8208433b2072decd058af04f3c9a3db21217d31ecd87f1ee134"
 )
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "84d27968cd8becaa9fe56e67839f3b54e6da53acd76f4f8ea700f0288f0377e5"
 )
-EXPECTED_FINAL_CLAUSES = 638_362
+EXPECTED_FINAL_CLAUSES = 639_652
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "0f12ab70b208e5fed7457666a8c129cdc2ab5a3ada4dfc9cadf45cc2d92b2455"
+    "a3e0954a16f25f6d6058f5709226381d4e7a422357e28d95a0e913423e36de0c"
 )
 TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_ARM_STATIC_LEAN_INGRESS"
 SUCCESS_STATUSES = frozenset({"SAT_WITNESS_REPLAYED", TERMINAL_STATUS})
@@ -124,20 +132,24 @@ SOURCE_PATHS = (
     "census/card_head/exact12_next_row_static_cegar.py",
     "census/card_head/exact12_next_row_static_convex.py",
     "census/card_head/exact12_next_row_valuation.py",
-    (
-        "census/card_head/"
-        "exact12_adjacent_apex_cross_block_membership_family_bank.py"
-    ),
-    (
-        "census/card_head/"
-        "exact12_second_cap_apex_surplus_membership_family_bank.py"
-    ),
+    "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py",
+    ("census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"),
+    ("census/card_head/exact12_second_cap_apex_surplus_membership_family_bank.py"),
     "census/card_head/exact12_surplus_apex_pair_membership_family_bank.py",
     "census/card_head/exact12_surplus_three_triad_membership_family_bank.py",
+    "census/card_head/exact12_zero_center_cross_block_membership_family_bank.py",
     "census/card_head/exact12_v14_ordered_cut_adapter.py",
     "census/card_head/exact12_v14_source_order_bank.py",
     "census/card_head/source_faithful_candidate_surface.py",
     "census/card_head/sat_encoding.py",
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexZeroCrossBlockCommonFiveCertificate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexZeroCrossBlockMembershipFamilyCnf.lean"
+    ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221NextRowJobSemantics.lean"
@@ -157,6 +169,14 @@ SOURCE_PATHS = (
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221SurplusThreeTriadMembershipFamilyCnf.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ZeroCenterCrossBlockCommonFiveCertificate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ZeroCenterCrossBlockMembershipFamilyCnf.lean"
     ),
 )
 
@@ -178,6 +198,8 @@ class MaterializedArmStaticCanary:
     adjacent_apex_cross_block_family_bank: dict[str, Any]
     second_cap_apex_surplus_family_bank: dict[str, Any]
     surplus_three_triad_family_bank: dict[str, Any]
+    zero_center_cross_block_family_bank: dict[str, Any]
+    apex_zero_cross_block_family_bank: dict[str, Any]
     arm_suffix: dict[str, Any]
     source_order_bank: dict[str, Any]
     prepared_source_order_bank: PreparedSourceOrderBank
@@ -276,9 +298,7 @@ def append_authenticated_named_arm_suffix(
         "suffix": {
             "clauses": [list(clause) for clause in suffix],
             "n_clauses": len(suffix),
-            "clause_delta_sha256": (
-                arm_compiled.named_deletion_clause_delta_sha256
-            ),
+            "clause_delta_sha256": (arm_compiled.named_deletion_clause_delta_sha256),
         },
         "post_arm": {
             "variables": instance.cnf.n_variables,
@@ -356,6 +376,30 @@ def materialize_arm_static_canary(
         attest_surplus_three_triad_membership_family_bank_live_sources(
             repo_root, surplus_three_triad_family_bank
         )
+        zero_center_cross_block_family_bank = (
+            install_zero_center_cross_block_membership_family_bank(
+                repo_root,
+                instance,
+                layout,
+                surplus_three_triad_family_bank,
+                cell_index=SUPPORTED_PLACEMENT_INDEX,
+            )
+        )
+        attest_zero_center_cross_block_membership_family_bank_live_sources(
+            repo_root, zero_center_cross_block_family_bank
+        )
+        apex_zero_cross_block_family_bank = (
+            install_apex_zero_cross_block_membership_family_bank(
+                repo_root,
+                instance,
+                layout,
+                zero_center_cross_block_family_bank,
+                cell_index=SUPPORTED_PLACEMENT_INDEX,
+            )
+        )
+        attest_apex_zero_cross_block_membership_family_bank_live_sources(
+            repo_root, apex_zero_cross_block_family_bank
+        )
     except Exact12SurplusApexPairMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AdjacentApexCrossBlockMembershipFamilyBankError as exc:
@@ -364,16 +408,16 @@ def materialize_arm_static_canary(
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12SurplusThreeTriadMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except Exact12ZeroCenterCrossBlockMembershipFamilyBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except Exact12ApexZeroCrossBlockMembershipFamilyBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
 
     arm_instance = SourceFaithfulCoverInstance(
         build_model(12, SOURCE_FAITHFUL_PYTHON_PROFILE)
     )
-    arm_compiled = compile_arm_cell(
-        arm_instance, arm_cells()[arm_cell_index]
-    )
-    arm_suffix = append_authenticated_named_arm_suffix(
-        instance, compiled, arm_compiled
-    )
+    arm_compiled = compile_arm_cell(arm_instance, arm_cells()[arm_cell_index])
+    arm_suffix = append_authenticated_named_arm_suffix(instance, compiled, arm_compiled)
 
     try:
         prepared = prepare_proof_backed_source_order_bank(
@@ -396,13 +440,11 @@ def materialize_arm_static_canary(
         installation != attested_installation
         or type(entries) is not list
         or len(entries) != EXPECTED_SOURCE_ORDER_CLAUSES
-        or source_order_bank.get("bank_sha256")
-        != EXPECTED_SOURCE_ORDER_BANK_SHA256
+        or source_order_bank.get("bank_sha256") != EXPECTED_SOURCE_ORDER_BANK_SHA256
         or instance.cnf.n_variables != EXPECTED_PREFIX_VARIABLES
         or len(instance.cnf.clauses) != EXPECTED_FINAL_CLAUSES
         or _cnf_sha256(instance) != EXPECTED_FINAL_DIMACS_SHA256
-        or installation.get("final_cnf_sha256")
-        != EXPECTED_FINAL_DIMACS_SHA256
+        or installation.get("final_cnf_sha256") != EXPECTED_FINAL_DIMACS_SHA256
     ):
         raise Exact12NextRowArmStaticCanaryError(
             "rebuilt source-order installation differs from the frozen canary"
@@ -415,13 +457,11 @@ def materialize_arm_static_canary(
         layout=layout,
         positive_membership_bank=membership_bank,
         surplus_apex_pair_family_bank=surplus_apex_pair_family_bank,
-        adjacent_apex_cross_block_family_bank=(
-            adjacent_apex_cross_block_family_bank
-        ),
-        second_cap_apex_surplus_family_bank=(
-            second_cap_apex_surplus_family_bank
-        ),
+        adjacent_apex_cross_block_family_bank=(adjacent_apex_cross_block_family_bank),
+        second_cap_apex_surplus_family_bank=(second_cap_apex_surplus_family_bank),
         surplus_three_triad_family_bank=surplus_three_triad_family_bank,
+        zero_center_cross_block_family_bank=zero_center_cross_block_family_bank,
+        apex_zero_cross_block_family_bank=apex_zero_cross_block_family_bank,
         arm_suffix=arm_suffix,
         source_order_bank=source_order_bank,
         prepared_source_order_bank=prepared,
@@ -459,8 +499,7 @@ def replay_arm_static_sat_witness(
 def _source_manifest(repo_root: Path) -> list[dict[str, Any]]:
     try:
         return [
-            _source_record(repo_root.resolve(), path)
-            for path in sorted(SOURCE_PATHS)
+            _source_record(repo_root.resolve(), path) for path in sorted(SOURCE_PATHS)
         ]
     except (OSError, ValueError) as exc:
         raise Exact12NextRowArmStaticCanaryError(
@@ -473,18 +512,18 @@ def _build_job(
 ) -> dict[str, Any]:
     instance = materialized.instance
     membership_bank = materialized.positive_membership_bank
-    surplus_apex_pair_family_bank = (
-        materialized.surplus_apex_pair_family_bank
-    )
+    surplus_apex_pair_family_bank = materialized.surplus_apex_pair_family_bank
     adjacent_apex_cross_block_family_bank = (
         materialized.adjacent_apex_cross_block_family_bank
     )
     second_cap_apex_surplus_family_bank = (
         materialized.second_cap_apex_surplus_family_bank
     )
-    surplus_three_triad_family_bank = (
-        materialized.surplus_three_triad_family_bank
+    surplus_three_triad_family_bank = materialized.surplus_three_triad_family_bank
+    zero_center_cross_block_family_bank = (
+        materialized.zero_center_cross_block_family_bank
     )
+    apex_zero_cross_block_family_bank = materialized.apex_zero_cross_block_family_bank
     source_order_bank = materialized.source_order_bank
     payload = {
         "schema": JOB_SCHEMA,
@@ -509,28 +548,32 @@ def _build_job(
         },
         "adjacent_apex_cross_block_membership_family_bank": {
             "schema": adjacent_apex_cross_block_family_bank.get("schema"),
-            "sha256": adjacent_apex_cross_block_family_bank.get(
-                "bank_sha256"
-            ),
-            "family_id": adjacent_apex_cross_block_family_bank.get(
-                "family_id"
-            ),
+            "sha256": adjacent_apex_cross_block_family_bank.get("bank_sha256"),
+            "family_id": adjacent_apex_cross_block_family_bank.get("family_id"),
             "lean_terminal_ingress_ready": False,
         },
         "second_cap_apex_surplus_membership_family_bank": {
             "schema": second_cap_apex_surplus_family_bank.get("schema"),
-            "sha256": second_cap_apex_surplus_family_bank.get(
-                "bank_sha256"
-            ),
-            "family_id": second_cap_apex_surplus_family_bank.get(
-                "family_id"
-            ),
+            "sha256": second_cap_apex_surplus_family_bank.get("bank_sha256"),
+            "family_id": second_cap_apex_surplus_family_bank.get("family_id"),
             "lean_terminal_ingress_ready": False,
         },
         "surplus_three_triad_membership_family_bank": {
             "schema": surplus_three_triad_family_bank.get("schema"),
             "sha256": surplus_three_triad_family_bank.get("bank_sha256"),
             "family_id": surplus_three_triad_family_bank.get("family_id"),
+            "lean_terminal_ingress_ready": False,
+        },
+        "zero_center_cross_block_membership_family_bank": {
+            "schema": zero_center_cross_block_family_bank.get("schema"),
+            "sha256": zero_center_cross_block_family_bank.get("bank_sha256"),
+            "family_id": zero_center_cross_block_family_bank.get("family_id"),
+            "lean_terminal_ingress_ready": False,
+        },
+        "apex_zero_cross_block_membership_family_bank": {
+            "schema": apex_zero_cross_block_family_bank.get("schema"),
+            "sha256": apex_zero_cross_block_family_bank.get("bank_sha256"),
+            "family_id": apex_zero_cross_block_family_bank.get("family_id"),
             "lean_terminal_ingress_ready": False,
         },
         "arm_suffix": {
@@ -574,18 +617,14 @@ def run_arm_static_canary(
 
     _validate_supported_arm_cell(arm_cell_index)
     if type(timeout_seconds) is not int or timeout_seconds <= 0:
-        raise Exact12NextRowArmStaticCanaryError(
-            "timeout_seconds must be positive"
-        )
+        raise Exact12NextRowArmStaticCanaryError("timeout_seconds must be positive")
     if type(nice) is not int or not 1 <= nice <= 19:
         raise Exact12NextRowArmStaticCanaryError("nice must lie in [1, 19]")
 
     repo_root = repo_root.resolve()
     lock_path = _claim_empty_workdir(workdir)
     try:
-        materialized = materialize_arm_static_canary(
-            repo_root, arm_cell_index
-        )
+        materialized = materialize_arm_static_canary(repo_root, arm_cell_index)
         instance = materialized.instance
         cnf_bytes = instance.dimacs().encode("ascii")
         job = _build_job(repo_root, materialized)
@@ -605,10 +644,14 @@ def run_arm_static_canary(
         surplus_three_triad_family_bank_path = (
             workdir / "surplus_three_triad_family_bank.json"
         )
-        source_order_bank_path = workdir / "source_order_bank.json"
-        source_order_installation_path = (
-            workdir / "source_order_installation.json"
+        zero_center_cross_block_family_bank_path = (
+            workdir / "zero_center_cross_block_family_bank.json"
         )
+        apex_zero_cross_block_family_bank_path = (
+            workdir / "apex_zero_cross_block_family_bank.json"
+        )
+        source_order_bank_path = workdir / "source_order_bank.json"
+        source_order_installation_path = workdir / "source_order_installation.json"
         discovery_cnf_path = workdir / "discovery.cnf"
         terminal_cnf_path = workdir / "terminal.cnf"
         proof_path = workdir / "terminal.drat"
@@ -616,9 +659,7 @@ def run_arm_static_canary(
 
         _write_json(job_path, job)
         _write_json(arm_suffix_path, materialized.arm_suffix)
-        _write_json(
-            membership_bank_path, materialized.positive_membership_bank
-        )
+        _write_json(membership_bank_path, materialized.positive_membership_bank)
         _write_json(
             surplus_apex_pair_family_bank_path,
             materialized.surplus_apex_pair_family_bank,
@@ -634,6 +675,14 @@ def run_arm_static_canary(
         _write_json(
             surplus_three_triad_family_bank_path,
             materialized.surplus_three_triad_family_bank,
+        )
+        _write_json(
+            zero_center_cross_block_family_bank_path,
+            materialized.zero_center_cross_block_family_bank,
+        )
+        _write_json(
+            apex_zero_cross_block_family_bank_path,
+            materialized.apex_zero_cross_block_family_bank,
         )
         _write_json(source_order_bank_path, materialized.source_order_bank)
         _write_json(
@@ -677,9 +726,7 @@ def run_arm_static_canary(
                         detect_typed_source_order_cut(
                             instance,
                             cube,
-                            source_order_bank=(
-                                materialized.prepared_source_order_bank
-                            ),
+                            source_order_bank=(materialized.prepared_source_order_bank),
                         )
                     )
                     if admitted is not None:
@@ -692,8 +739,7 @@ def run_arm_static_canary(
                         "arm_cell_index": arm_cell_index,
                         "classification": classification,
                         "cube": {
-                            str(center): row
-                            for center, row in sorted(cube.items())
+                            str(center): row for center, row in sorted(cube.items())
                         },
                         "positive_variables": sorted(positive),
                         "assignment_sha256": _json_sha256(sorted(positive)),
@@ -722,8 +768,7 @@ def run_arm_static_canary(
             )
             identical_terminal = (
                 terminal_cnf_path.is_file()
-                and _sha256_file(terminal_cnf_path)
-                == EXPECTED_FINAL_DIMACS_SHA256
+                and _sha256_file(terminal_cnf_path) == EXPECTED_FINAL_DIMACS_SHA256
             )
             terminal_proof_authenticated = _terminal_proof_authenticated(
                 solver,
@@ -765,10 +810,14 @@ def run_arm_static_canary(
             "surplus_three_triad_family_bank": _artifact(
                 surplus_three_triad_family_bank_path
             ),
-            "source_order_bank": _artifact(source_order_bank_path),
-            "source_order_installation": _artifact(
-                source_order_installation_path
+            "zero_center_cross_block_family_bank": _artifact(
+                zero_center_cross_block_family_bank_path
             ),
+            "apex_zero_cross_block_family_bank": _artifact(
+                apex_zero_cross_block_family_bank_path
+            ),
+            "source_order_bank": _artifact(source_order_bank_path),
+            "source_order_installation": _artifact(source_order_installation_path),
             "discovery_cnf": _artifact(discovery_cnf_path),
             "survivor": _artifact(survivor_path),
             "terminal_cnf": _artifact(terminal_cnf_path),
@@ -792,17 +841,20 @@ def run_arm_static_canary(
             "surplus_three_triad_family_bank": _json_sha256(
                 materialized.surplus_three_triad_family_bank
             ),
-            "source_order_bank": _json_sha256(
-                materialized.source_order_bank
+            "zero_center_cross_block_family_bank": _json_sha256(
+                materialized.zero_center_cross_block_family_bank
             ),
+            "apex_zero_cross_block_family_bank": _json_sha256(
+                materialized.apex_zero_cross_block_family_bank
+            ),
+            "source_order_bank": _json_sha256(materialized.source_order_bank),
             "source_order_installation": _json_sha256(
                 materialized.source_order_installation
             ),
             "discovery_cnf": EXPECTED_FINAL_DIMACS_SHA256,
         }
         if any(
-            artifacts[name] is None
-            or artifacts[name]["sha256"] != expected_sha256
+            artifacts[name] is None or artifacts[name]["sha256"] != expected_sha256
             for name, expected_sha256 in required.items()
         ):
             status = "ARTIFACT_ERROR"
@@ -818,9 +870,7 @@ def run_arm_static_canary(
             "classification": classification,
             "discovery_verdict": discovery.verdict,
             "terminal_verdict": terminal.verdict if terminal else None,
-            "terminal_proof_verified": (
-                terminal.proof_verified if terminal else False
-            ),
+            "terminal_proof_verified": (terminal.proof_verified if terminal else False),
             "terminal_proof_authenticated": terminal_proof_authenticated,
             "lean_terminal_ingress_ready": False,
             "replay": replay,
@@ -841,9 +891,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--workdir", type=Path, required=True)
-    parser.add_argument(
-        "--arm-cell-index", type=int, default=SUPPORTED_ARM_CELL_INDEX
-    )
+    parser.add_argument("--arm-cell-index", type=int, default=SUPPORTED_ARM_CELL_INDEX)
     parser.add_argument("--timeout-seconds", type=int, default=3_600)
     parser.add_argument("--nice", type=int, default=10)
     args = parser.parse_args()

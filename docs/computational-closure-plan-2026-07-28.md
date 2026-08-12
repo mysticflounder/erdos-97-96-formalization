@@ -1,4 +1,4 @@
-# Computational closure plan — remaining frontier (updated 2026-08-10)
+# Computational closure plan — remaining frontier (updated 2026-08-11)
 
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
@@ -13,7 +13,8 @@ consumer.  This plan supersedes the round-2 solve-prompt lane as the primary
 closure route; the bridge prompts remain valid side-channels if run, but
 nothing below depends on them.
 
-Exact-12 ordered-v4 checkpoint (2026-08-08): all 37 solver-selected ordered
+Historical ordered-v4 replay checkpoint (2026-08-08; distinct from the
+arm-static cell-6 v4 canary): all 37 solver-selected ordered
 records have kernel consumers, with the promoted replay chain and reproducible
 artifact partition recorded in
 [the exact-12 replay checkpoint](exact-twelve-rigid221-ordered-v4-replay-checkpoint-2026-08-08.md).
@@ -21,7 +22,8 @@ This closes learned-cut replay only.  The run remains `ITERATION_LIMIT`, and
 source-exhaustive selector/arm/placement coverage plus its placement/signature
 lift are still required before either exact-12 live leaf can close.
 
-Exact-12 next-row successor checkpoint (2026-08-10): the source-to-finite
+Historical dynamic next-row successor checkpoint (2026-08-10; distinct from
+the arm-static cell-6 route): the source-to-finite
 `nextRowOnlyHit` ingress and independent compiler v2 remain green.  The former
 cell-3 order diagnostic is now proof-backed by the no-`sorryAx` declaration
 `nextRowCell3PositiveNogood`, whose 48 source orders split into 42
@@ -33,8 +35,229 @@ replay reattests the live Lean and detector bytes and validates the complete
 journal on a shadow CNF before installing any cut.  Legacy v2/v3 journals fail
 closed.
 
-The fresh twelve-cell v4 wave completed 100 authenticated records in every
-cell and ended `ITERATION_LIMIT` throughout.  Its mandatory theorem-family
+Exact-12 `nextRowOnlyHit`/six-arm route correction (2026-08-11): the complete
+live leaf supplies a named source outside the first-apex fiber, identifies it
+with one of `u`, `xv`, or `xu`, and proves that its K4 survives deletion of `q`
+or `w`.  The arm-aware dynamic pilot nevertheless stopped after 12 cells times
+20 authenticated cuts, 240 records total.  Every record was an
+`equality-duplicate-center` cut; extending cell 0 exposed another shared-label
+variant rather than convergence.  No unchanged dynamic wave is authorized.
+
+The active route is eager formula composition:
+
+1. the historical frozen static-convex plus block-spanning/ThreeTriad
+   membership prefix;
+2. a proof-backed parametric membership-family layer mined from repeated
+   survivors;
+3. a separately authenticated named-deletion-arm suffix; and
+4. a source-order bank rebuilt and installed after that suffix.
+
+Current arm-static cell-6 v4 checkpoint (2026-08-11): the fresh placement-1,
+`u_q` canary returned `SAT_WITNESS_REPLAYED` and was classified
+`UNADMITTED_STRUCTURAL_SURVIVOR`; all candidate, base-predicate, named-arm,
+exact-CNF, and canonical-static replay gates passed.  The v4 artifact itself
+contains the 79-entry source-order installation and 636,386 clauses.  It has no
+terminal CNF or terminal proof.
+
+The fourth recurrence is checked in
+`ExactTwelveRigid221ArmStaticCell6FourthCommonFivePositiveCut.lean`; it supplies
+the next, 80th source-order binding, but that binding is not retroactively part
+of the v4 artifact.  Mandatory theorem mining showed that the four consecutive
+survivors are instances of one source-order-independent family: for
+`a ∈ {3,4,5}`, `c ∈ {10,11}`, and `y ∈ {6,7,8,9}`, positive selected rows
+`0:{2,a}`, `y:{2,a}`, and `c:{0,2,y}` force a common-five obstruction in both
+frozen cap-block orders.  The no-`sorry` generic certificate is recorded in
+`ExactTwelveRigid221SurplusApexPairCommonFiveCertificate.lean`.
+
+Three proof-backed parametric discovery refinements are now composed eagerly.
+The first surplus/apex-pair family has 24 role assignments, adds 23 shared
+variables and 521 clauses, and produces the 44,925-variable, 635,961-clause
+prefix with SHA-256
+`014ac24d16b93f2c63413eb979c01e2259bfb9783adecd73afc26bd78a1c6a13`.
+The second adjacent-apex/cross-block family has 24 role assignments, adds 39
+shared variables and 669 clauses, and produces 44,964 variables and 636,630
+clauses with SHA-256
+`393c08c6837740304f9102020d6299a9fd0a6ac4879a87c3b48c9ab39a6038d9`;
+its delta SHA-256 is
+`65190cf69763a7ae55b356e60d1e9554a3c5310a26594eef4a1acf5678d0ff4b`.
+The third second-cap/apex/surplus family is the exact 24-role source-universal
+family: for each surplus label and each monotone or antimonotone ordered triple
+of second-cap labels, rows `x:{2,b}`, `y:{2,b}`, and `c:{x,b,y}` force the
+common-five obstruction in all 48 source orders.  It adds 36 shared variables
+and 606 clauses, giving a 45,000-variable, 637,236-clause prefix with SHA-256
+`2a7a0f63bcbeb983d9019b87797ffb8fa4c1c644045a21c1e79141b631075f90`;
+its delta SHA-256 is
+`4855eb70ff77277d5708a21c0115fbd55c009dd12624c176d73569cd6eab9d9f`.
+
+Mandatory theorem mining on the next cell-6 survivor found no new geometric
+theorem: it is a source-order-independent `ThreeTriadCollisionCore`.  In fixed
+roles `B=9`, `C=7`, `D=6`, `E=8`, the varying surplus label is
+`a ∈ {3,4,5}` and the four positive selected rows contain
+`9:{6,7}`, `6:{a,9}`, `7:{a,6,8}`, and `8:{a,6,9}`.  The typed certificate
+`ExactTwelveRigid221SurplusThreeTriadCertificate` uses selected-row incidence
+only and does not treat a selected support as a complete metric fibre.  Its
+exact three-role membership family adds ten shared variables and 178 clauses,
+giving a 45,010-variable, 637,414-clause prefix with SHA-256
+`2844611d6030452f2513307fde1de2439eb51a2eea11df2621bb653314b8dab4`;
+the delta SHA-256 is
+`ad8988be515c9828a29a00dfa47c59cafb29415dd0d621faddec06d4e65c5f75`.
+The frozen survivor with assignment SHA-256
+`5be3956a4bafa46e9667e75da7f8338bc218da2a31de941b69368e2cfb8633a5`
+matches exactly the `a=4` entry and is blocked by its four-literal clause.
+
+After the 867-clause arm suffix and rebuilt 80-entry source-order bank, the
+strengthened bounded canary formula has 45,010 variables and 638,361 clauses
+with
+SHA-256
+`74741f8ed04fd901444e083c9d23edba3dd98dba4692f6e12042a367ed9b862f`.
+The four Python family compilers, live-source authentication, fail-closed
+tamper checks, complete family-artifact custody, arm-canary integration, and
+focused tests are green; the fourth-family plus canary suites pass 12 focused
+tests with Ruff clean.  The fourth-family generic Lean certificate is clean in
+the live language server.  Its exact CNF bridge and the subsequently mined
+fifth common-five cut both pass targeted `lake-build` checks.
+The generic positive-membership CNF bridge
+now imports only the learned-clause bridge, removing an unnecessary dependency
+on terminal-bank reconstruction.  The proof-carrying
+`SourceOrderPositiveNogood` interface has likewise been extracted into the
+lightweight `ExactTwelveRigid221SourceOrderPositiveNogood` module; the three
+common-five family certificates depend on that interface rather than the
+terminal formula.  This makes the complete family-CNF layer a bounded
+validation target while leaving the terminal consumer API unchanged.
+The third family's exact CNF bridge now builds successfully through this
+smaller dependency path.  The earlier aggregate target still fails first in
+the upstream `ExactTwelveRigid221V14JobCnf` interpreter at the 16 GB memory
+limit; that failure is isolated from the family bridge and is not being hidden
+as a successful terminal build.
+
+The one authorized schema-v2 successor cell-6 canary completed as
+`SAT_WITNESS_REPLAYED`.  Its exact formula is the 638,361-clause formula above;
+the assignment SHA-256 is
+`1be1053548e67a2bfc2ea6710a38bd3b868084d2694db85b8f0ace45a48ff7b8`
+and the survivor artifact SHA-256 is
+`f71a013e8a53c9c8ab81bc629e1924169d7be19269049915a115cbe95d907291`.
+All candidate, exact-CNF, canonical-static-extension, named-deletion-arm, and
+added-constraint replay gates passed.  This is a finite survivor, not closure.
+
+Mandatory theorem mining on that survivor found no new geometry family.  All
+48 frozen source orders are refuted by the existing convex-five-point consumer
+with core `(a,x,b,c,y)=(2,7,1,5,9)`, using the selected rows centered at
+`5`, `7`, and `9`.  The unbound detector certificate SHA-256 is
+`31a7165ba53f94ff2272e599667bdd1e0897adae0e0f5cde6bae9e1582428e13`.
+`ExactTwelveRigid221ArmStaticCell6FifthCommonFivePositiveCut.lean` now promotes
+the result to a proof-backed source-order cut with learned clause
+`[-838,-1584,-2205]`; after embedding the authenticated Lean binding, the
+certificate SHA-256 is
+`4d339fa4812f2453669925094e572ea41243d11d220d868c2e15114e3f925f2c`.
+The rebuilt source-order bank has 81 entries and SHA-256
+`84d27968cd8becaa9fe56e67839f3b54e6da53acd76f4f8ea700f0288f0377e5`.
+Installing it yields 638,362 clauses with exact DIMACS SHA-256
+`0f12ab70b208e5fed7457666a8c129cdc2ab5a3ada4dfc9cadf45cc2d92b2455`.
+The arm canary now freezes both identities; this closes the narrower-test gap
+that had allowed a stale intermediate bank hash to remain in this plan.
+After the generic membership bridge was reduced to its lightweight
+`LearnedClauseBridge` import, its authenticated source identity was rebound and
+the positive-membership source-bank suite passed 12 tests in 20.09 seconds.
+The earlier post-import source-bank suite passed eight tests and nine subtests
+in 960.44 seconds; the companion arm-canary suite passed seven tests in 15.44
+seconds, and Ruff was clean on the four touched Python files.
+The independent theorem-mining review also confirmed that this is a positive-
+membership cut only and does not treat selected supports as complete metric
+fibres.  The fifth cut now imports the lightweight
+`ExactTwelveRigid221SourceOrderPositiveNogood` interface rather than the heavy
+terminal-bank reconstruction; its persistent module build succeeds, and its
+axiom report contains only `propext`, `Classical.choice`, and `Quot.sound`.
+Those gates authorized exactly one fresh successor canary.  It was consumed by
+the cell-6 v8 run and completed as `SAT_WITNESS_REPLAYED`, with assignment
+SHA-256
+`235fd341501aacb82105e1d6ed8e514cae92ddafe5c0ed5e46b09932c7599e5c`
+and survivor artifact SHA-256
+`4c5649d31d5c180bd1975e65b3a6456c8eb8afc5f300df43e8feb00292252f71`.
+All source-candidate, added-constraint, named-arm, exact-CNF, and canonical
+static-extension replay gates passed.  The stop rule then fired; no second
+solve was launched before theorem mining and promotion.
+
+Mandatory mining of that survivor produced a new 24-role zero-center
+cross-block common-five family.  For every
+`x ∈ {3,4,5}`, `b ∈ {6,7,8,9}`, and `y ∈ {10,11}`, selected rows
+`x:{1,b}`, `y:{1,b}`, and `0:{x,b,y}` force the checked common-five
+obstruction `(1,x,b,0,y)` in both orientations of every frozen source order.
+`ExactTwelveRigid221ZeroCenterCrossBlockCommonFiveCertificate` proves the
+source-order nogood, while
+`ExactTwelveRigid221ZeroCenterCrossBlockMembershipFamilyCnf` binds all 24
+instances to the exact positive-membership CNF.  An independent role/order and
+polarity audit found no mismatch between the Python compiler and Lean family.
+The family adds 44 shared variables and 772 clauses.  Its delta SHA-256 is
+`2d899d2fca5ac3a6027ac95e5ff8c730ba2b0fc0fd015c08cace2397aad7549f`;
+the authenticated family-bank SHA-256 is
+`2d58441ab3f3deb058b229f088d0070688705e0fa7067f62a5f054c94d62de03`.
+The resulting prefix has 45,054 variables and 638,186 clauses with DIMACS
+SHA-256
+`80c0ba1bb134e446b123c6081705a481166d2217e0f6e793ba495d29d749d61e`.
+After the 867-clause arm suffix and unchanged 81-entry source-order bank, the
+successor canary formula has 639,134 clauses with exact DIMACS SHA-256
+`eef97c600d8fcfcea1acceb5a7058c756e9213fb1a7d3e9ba99af77e0abd3c1a`.
+The two family tests plus arm-canary integration pass 13 focused tests in
+40.36 seconds; Ruff and format checks are clean.  Targeted Lean builds pass.
+The generic source producer has only `propext`, `Classical.choice`, and
+`Quot.sound`; the exact CNF consumer additionally has the audited
+`Lean.ofReduceBool` and `Lean.trustCompiler` dependencies from its two
+`native_decide` checks and no `sorryAx`.  A source scan of every project
+definition evaluated by those checks found no `unsafe`, `implemented_by`, or
+`extern` declaration.
+
+Those completed promotion gates authorized exactly one fresh successor
+canary.  The cell-6 v9 run completed as `SAT_WITNESS_REPLAYED`, with assignment
+SHA-256
+`f8247a6470d7434f5b4858a8bf3bf4f564f22ae1a5d16725fb273f6b492c72f6`
+and survivor artifact SHA-256
+`a4169a7ac45e9f483057c95449ead37b540ea19e4a8238e8cdaee7ed772eee9c`.
+All replay gates passed.  The stop rule fired immediately; no second solve was
+launched before all-order theorem mining and promotion.
+
+Mandatory mining found a second 24-role common-five family.  For every
+`a ∈ {3,4,5}`, `x ∈ {6,7,8,9}`, and `c ∈ {10,11}`, selected rows
+`1:{0,a}`, `x:{0,a}`, and `c:{0,1,x}` force the checked common-five
+obstruction `(a,x,0,c,1)` in both orientations of every frozen source order.
+An independent exhaustive audit checked all 24 roles against all 48 source
+orders (1,152 cases) with zero failures or order mismatches.  The generic Lean
+certificate and exact CNF bridge bind all 24 instances to the source-faithful
+positive-membership semantics.  The authenticated Python compiler shares the
+72 raw requirements into 23 definitions and adds 494 implication clauses plus
+24 blocking clauses, for a total delta of 23 variables and 518 clauses.
+
+The new authenticated prefix therefore has 45,077 variables and 638,704
+clauses with exact DIMACS SHA-256
+`269d2527f22b59ee34d0521fca931553c5a969a7171a4e3b4df9498951f19f4e`.
+Its family delta SHA-256 is
+`fd05515311dd750d4864256b7bb0e29e80b18413ffa331db00f2faccfec573e7`,
+the authenticated family-bank SHA-256 is
+`e6b1e4b6000e4af8deeb681d62478faf2427c2774d249185131ced61f57581bd`,
+and the compiled family SHA-256 is
+`74853129ad62941ab8cb30a8a13deaf2688b39f9376fb491bb327d5b636e3396`.
+After the 867-clause arm suffix and unchanged 81-entry source-order bank, the
+successor canary formula has 639,652 clauses with exact DIMACS SHA-256
+`a3e0954a16f25f6d6058f5709226381d4e7a422357e28d95a0e913423e36de0c`.
+The combined zero-center family, new family, and arm-canary regressions pass 19
+tests.  The generic source theorem has only `propext`, `Classical.choice`, and
+`Quot.sound`; the exact CNF consumer has the expected governed
+`Lean.ofReduceBool` and `Lean.trustCompiler` dependencies and no source-scan
+warning.
+
+These completed promotion gates authorize exactly one fresh successor canary.
+If it is SAT, the lane stops again for mandatory theorem mining before any
+further solve; if it is UNSAT, acceptance still requires the runner's fresh
+byte-identical proof rerun, checked RUP/Lean ingress, and expansion from one
+coordinate to all 648 exact-12 arm coordinates.
+
+These are finite SAT/replay and theorem-family results only.  They do not
+establish exact-12 closure, aggregate six-arm/placement coverage, a
+cardinality-at-least-13 producer or lift, Lean terminal ingress, or closure of
+a live `sorry`.
+
+Historical v4 predecessor checkpoint: the fresh twelve-cell wave completed
+100 authenticated records in every cell and ended `ITERATION_LIMIT`
+throughout.  Its mandatory theorem-family
 search found no missing local geometry family.  The lane-specific v5 terminal
 consumer now rejects the historical v14 formula mismatch, and the exact Lean
 reconstruction of the shared physical-cycle prefix plus next-row selector
@@ -44,8 +267,9 @@ the canonical source assignment on all base variables.  Targeted elaboration
 is green and its axiom audit contains no `sorryAx`; it inherits
 `Lean.trustCompiler` from the frozen native-evaluated encoding anchors.
 
-The current-source embedded-list replay checkpoint now materializes all twelve
-scheduled cells under `certificates/p97_exact12_next_row/`.  Every artifact
+Historical generated-replay checkpoint: the current-source embedded-list
+replay materialized all twelve scheduled cells under
+`certificates/p97_exact12_next_row/`.  Every artifact
 records the semantic coordinate, frozen base and candidate hashes, a
 lane-specific source inventory, the exact 384-clause ordered suffix, and its
 complete DIMACS hash.  The generator rechecks the recorded inventory before
@@ -62,12 +286,12 @@ the embedded lists.  The aggregate is an import collection, not a coverage
 theorem.  The generator refuses overwrite, rejects coordinate/count/hash and
 frozen-input tampering, and has a byte-exact `--check` mode.  This establishes
 current Python generation and independent Lean reconstruction agree on those
-twelve embedded ordered lists only.  The next gate is a checked learned
-terminal bank or terminal RUP/UNSAT certificate consumed through these typed
-jobs.  There is still no terminal UNSAT cell, all-cell learned-bank coverage,
-arbitrary-cardinality lift, or live closure.
+twelve embedded ordered lists only.  At that checkpoint the next gate was a
+checked learned terminal bank or terminal RUP/UNSAT certificate consumed
+through these typed jobs.  There was no terminal UNSAT cell, all-cell
+learned-bank coverage, arbitrary-cardinality lift, or live closure.
 
-Exact-12 next-row route change (2026-08-10): the next implementation target is
+Historical static-equality v1 predecessor (2026-08-10): this route introduced
 the fresh-schema static equality-closure extension specified in
 [the exact-12 nextRow static-equality goal](specs/p97-exact12-next-row-static-equality-v1.md).
 The earlier shorthand “shared-triple clauses” was misleading: direct overlap
