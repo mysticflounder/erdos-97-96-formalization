@@ -38,9 +38,11 @@ artifacts fail closed without invoking local discovery.
 
 The producer-owned root-job and arm-suffix identities retain the canary's
 established sorted, indented JSON plus trailing-newline digest convention.
-PIQD-owned descriptors, manifests, and receipts use compact canonical JSON.
-The adapter validates each object with its owner's convention; these hashes
-are not interchangeable.
+The PIQD discovery descriptor is serialized as compact canonical JSON plus one
+trailing newline before hashing and storage.  PIQD manifest and receipt
+self-hashes use compact canonical JSON without that descriptor newline.  The
+adapter validates each object with its owner's exact byte convention; these
+hashes are not interchangeable.
 
 The shared static PIQD runner receives the raw DIMACS unchanged. It owns the
 prepare/upload/confirm/status/model-or-log lifecycle, a sealed per-attempt
