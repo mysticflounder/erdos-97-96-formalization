@@ -20,6 +20,12 @@ from census.card_head.exact12_apex_first_opposite_shared_pair_second_opposite_co
 from census.card_head.exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank import (
     install_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank,
 )
+from census.card_head.exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank import (
+    _source_paths as apex_first_opposite_shared_pair_surplus_common_five_source_paths,
+)
+from census.card_head.exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank import (
+    install_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank,
+)
 from census.card_head.exact12_apex_first_surplus_second_common_five_membership_family_bank import (
     _source_paths as apex_first_surplus_second_common_five_source_paths,
 )
@@ -128,9 +134,10 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             run_arm_static_canary(REPO_ROOT, REPO_ROOT / "unused", 5)
 
     def test_authenticated_arm_suffix_has_frozen_identity(self) -> None:
-        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 45_307)
-        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 644_672)
-        self.assertEqual(EXPECTED_FINAL_CLAUSES, 644_753)
+        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 45_337)
+        self.assertEqual(EXPECTED_PREFIX_CLAUSES, 644_063)
+        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 644_930)
+        self.assertEqual(EXPECTED_FINAL_CLAUSES, 645_011)
         instance, compiled, layout, membership_bank = (
             materialize_positive_membership_static_cell(REPO_ROOT, 1)
         )
@@ -315,6 +322,20 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             sixth_family_bank["family_id"],
             "second-apex-surplus-second-first-common-five-b345-c6789-y1011.v1",
         )
+        surplus_family_bank = (
+            install_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                sixth_family_bank,
+                cell_index=6,
+            )
+        )
+        self.assertEqual(
+            surplus_family_bank["family_id"],
+            "apex-first-opposite-shared-pair-surplus-common-five-"
+            "x6789-b1011-y345.v1",
+        )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
         self.assertEqual(_cnf_sha256(instance), EXPECTED_PREFIX_DIMACS_SHA256)
@@ -335,11 +356,11 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_run.v6",
+            "p97_rigid221_exact12_next_row_arm_static_canary_run.v7",
         )
         self.assertEqual(
             JOB_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_job.v6",
+            "p97_rigid221_exact12_next_row_arm_static_canary_job.v7",
         )
         bank = (
             materialized.apex_first_opposite_shared_pair_common_five_family_bank
@@ -388,6 +409,14 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         ]
         self.assertEqual(sixth_binding["sha256"], sixth_bank["bank_sha256"])
         self.assertEqual(sixth_binding["family_id"], sixth_bank["family_id"])
+        surplus_bank = (
+            materialized.apex_first_opposite_shared_pair_surplus_common_five_family_bank
+        )
+        surplus_binding = job[
+            "apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank"
+        ]
+        self.assertEqual(surplus_binding["sha256"], surplus_bank["bank_sha256"])
+        self.assertEqual(surplus_binding["family_id"], surplus_bank["family_id"])
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
@@ -410,6 +439,9 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         )
         expected_source_paths.update(
             second_apex_surplus_second_first_common_five_source_paths(REPO_ROOT)
+        )
+        expected_source_paths.update(
+            apex_first_opposite_shared_pair_surplus_common_five_source_paths(REPO_ROOT)
         )
         self.assertEqual(
             {record["path"] for record in job["sources"]}, expected_source_paths
@@ -476,7 +508,22 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         artifacts.pop("second_apex_surplus_second_first_common_five_family_bank")
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
 
-        self.assertEqual(materialized.instance.cnf.n_variables, 45_307)
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts[
+            "apex_first_opposite_shared_pair_surplus_common_five_family_bank"
+        ] = {"sha256": "0" * 64}
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop(
+            "apex_first_opposite_shared_pair_surplus_common_five_family_bank"
+        )
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        self.assertEqual(
+            materialized.instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES
+        )
         self.assertEqual(len(materialized.instance.cnf.clauses), EXPECTED_FINAL_CLAUSES)
         self.assertEqual(
             _cnf_sha256(materialized.instance), EXPECTED_FINAL_DIMACS_SHA256

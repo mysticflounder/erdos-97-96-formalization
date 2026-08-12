@@ -5,33 +5,30 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221PositiveMembershipCnfBridge
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveCertificate
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SurplusApexPairMembershipFamilyCnf
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ApexFirstOppositeSharedPairSurplusCommonFiveCertificate
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf
 
 /-!
-# Exact CNF binding for the second-apex/surplus/second-opposite/first-opposite common-five family
+# Exact CNF binding for the apex/first-opposite/surplus common-five family
 
-This file binds the 24 checked `(b, c, y)` role instances to the deterministic
-positive-membership extension installed after the surplus-apex-pair family.
-The three `row 0 ⊇ {2, b}` requirements reuse exact variables from that
-family.  In the Python compiler's sorted requirement order, the 24
-`row c ⊇ {0, b, y}` requirements receive variables 45278--45301 and the six
-`row y ⊇ {2, b}` requirements receive variables 45302--45307.
+This file binds the 24 checked `(x, b, y)` role instances to the deterministic
+positive-membership extension installed after the v18 family.  The eight
+`row x ⊇ {0, b}` requirements reuse variables 45167--45174.  The 24
+`row 2 ⊇ {b, x, y}` requirements and six `row y ⊇ {0, b}` requirements
+receive fresh variables 45308--45337 in the Python compiler's sorted
+requirement order.
 
-Candidate implication lists are emitted only for those 30 fresh definitions.
-Every role block explicitly uses its two fresh definitions and its reused
-center-zero definition.  Out-of-family fresh-variable lookups resolve to an
-empty-support sentinel, never to a real family definition.
-
-This is an exact-twelve predicate-ingress bridge.  It does not assert terminal
-UNSAT, complete arm/placement coverage, an arbitrary-cardinality lift, or live
-theorem closure.
+The exact definition and blocking-clause tables below are executable
+cross-language byte-order anchors.  This is finite exact-twelve predicate
+ingress only: it does not assert terminal UNSAT, complete arm coverage, an
+arbitrary-cardinality lift, or closure of a live Rigid221 residual.
 -/
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
 namespace ExactTwelveRigid221Ingress
-namespace SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf
+namespace ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf
 
 open Census554.CoverCnf
 open Census554.EqualityCore
@@ -48,65 +45,69 @@ private def mkDefinition (varIndex : Nat) (center : Label)
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
--- The 24 fresh second-opposite-center requirements.
-def definition6_0310 := mkDefinition 45278 6 {0, 3, 10}
-def definition6_0311 := mkDefinition 45279 6 {0, 3, 11}
-def definition6_0410 := mkDefinition 45280 6 {0, 4, 10}
-def definition6_0411 := mkDefinition 45281 6 {0, 4, 11}
-def definition6_0510 := mkDefinition 45282 6 {0, 5, 10}
-def definition6_0511 := mkDefinition 45283 6 {0, 5, 11}
-def definition7_0310 := mkDefinition 45284 7 {0, 3, 10}
-def definition7_0311 := mkDefinition 45285 7 {0, 3, 11}
-def definition7_0410 := mkDefinition 45286 7 {0, 4, 10}
-def definition7_0411 := mkDefinition 45287 7 {0, 4, 11}
-def definition7_0510 := mkDefinition 45288 7 {0, 5, 10}
-def definition7_0511 := mkDefinition 45289 7 {0, 5, 11}
-def definition8_0310 := mkDefinition 45290 8 {0, 3, 10}
-def definition8_0311 := mkDefinition 45291 8 {0, 3, 11}
-def definition8_0410 := mkDefinition 45292 8 {0, 4, 10}
-def definition8_0411 := mkDefinition 45293 8 {0, 4, 11}
-def definition8_0510 := mkDefinition 45294 8 {0, 5, 10}
-def definition8_0511 := mkDefinition 45295 8 {0, 5, 11}
-def definition9_0310 := mkDefinition 45296 9 {0, 3, 10}
-def definition9_0311 := mkDefinition 45297 9 {0, 3, 11}
-def definition9_0410 := mkDefinition 45298 9 {0, 4, 10}
-def definition9_0411 := mkDefinition 45299 9 {0, 4, 11}
-def definition9_0510 := mkDefinition 45300 9 {0, 5, 10}
-def definition9_0511 := mkDefinition 45301 9 {0, 5, 11}
+-- The 24 fresh apex-center requirements, in sorted compiler order.
+def definition2_3610 := mkDefinition 45308 2 {3, 6, 10}
+def definition2_3611 := mkDefinition 45309 2 {3, 6, 11}
+def definition2_3710 := mkDefinition 45310 2 {3, 7, 10}
+def definition2_3711 := mkDefinition 45311 2 {3, 7, 11}
+def definition2_3810 := mkDefinition 45312 2 {3, 8, 10}
+def definition2_3811 := mkDefinition 45313 2 {3, 8, 11}
+def definition2_3910 := mkDefinition 45314 2 {3, 9, 10}
+def definition2_3911 := mkDefinition 45315 2 {3, 9, 11}
+def definition2_4610 := mkDefinition 45316 2 {4, 6, 10}
+def definition2_4611 := mkDefinition 45317 2 {4, 6, 11}
+def definition2_4710 := mkDefinition 45318 2 {4, 7, 10}
+def definition2_4711 := mkDefinition 45319 2 {4, 7, 11}
+def definition2_4810 := mkDefinition 45320 2 {4, 8, 10}
+def definition2_4811 := mkDefinition 45321 2 {4, 8, 11}
+def definition2_4910 := mkDefinition 45322 2 {4, 9, 10}
+def definition2_4911 := mkDefinition 45323 2 {4, 9, 11}
+def definition2_5610 := mkDefinition 45324 2 {5, 6, 10}
+def definition2_5611 := mkDefinition 45325 2 {5, 6, 11}
+def definition2_5710 := mkDefinition 45326 2 {5, 7, 10}
+def definition2_5711 := mkDefinition 45327 2 {5, 7, 11}
+def definition2_5810 := mkDefinition 45328 2 {5, 8, 10}
+def definition2_5811 := mkDefinition 45329 2 {5, 8, 11}
+def definition2_5910 := mkDefinition 45330 2 {5, 9, 10}
+def definition2_5911 := mkDefinition 45331 2 {5, 9, 11}
 
--- The six fresh first-opposite-center requirements.
-def definition10_23 := mkDefinition 45302 10 {2, 3}
-def definition10_24 := mkDefinition 45303 10 {2, 4}
-def definition10_25 := mkDefinition 45304 10 {2, 5}
-def definition11_23 := mkDefinition 45305 11 {2, 3}
-def definition11_24 := mkDefinition 45306 11 {2, 4}
-def definition11_25 := mkDefinition 45307 11 {2, 5}
+-- The six fresh surplus-center requirements.
+def definition3_010 := mkDefinition 45332 3 {0, 10}
+def definition3_011 := mkDefinition 45333 3 {0, 11}
+def definition4_010 := mkDefinition 45334 4 {0, 10}
+def definition4_011 := mkDefinition 45335 4 {0, 11}
+def definition5_010 := mkDefinition 45336 5 {0, 10}
+def definition5_011 := mkDefinition 45337 5 {0, 11}
 
 /-- The 30 genuinely fresh definitions, in compiler allocation order. -/
 def freshDefinitions : List PositiveMembershipDefinition :=
-  [definition6_0310, definition6_0311, definition6_0410,
-    definition6_0411, definition6_0510, definition6_0511,
-    definition7_0310, definition7_0311, definition7_0410,
-    definition7_0411, definition7_0510, definition7_0511,
-    definition8_0310, definition8_0311, definition8_0410,
-    definition8_0411, definition8_0510, definition8_0511,
-    definition9_0310, definition9_0311, definition9_0410,
-    definition9_0411, definition9_0510, definition9_0511,
-    definition10_23, definition10_24, definition10_25,
-    definition11_23, definition11_24, definition11_25]
+  [definition2_3610, definition2_3611, definition2_3710,
+    definition2_3711, definition2_3810, definition2_3811,
+    definition2_3910, definition2_3911, definition2_4610,
+    definition2_4611, definition2_4710, definition2_4711,
+    definition2_4810, definition2_4811, definition2_4910,
+    definition2_4911, definition2_5610, definition2_5611,
+    definition2_5710, definition2_5711, definition2_5810,
+    definition2_5811, definition2_5910, definition2_5911,
+    definition3_010, definition3_011, definition4_010,
+    definition4_011, definition5_010, definition5_011]
 
 /-- Exact parent definitions reused by the compiler. -/
 def reusedDefinitions : List PositiveMembershipDefinition :=
-  [SurplusApexPairMembershipFamilyCnf.definition0_23,
-    SurplusApexPairMembershipFamilyCnf.definition0_24,
-    SurplusApexPairMembershipFamilyCnf.definition0_25]
+  [ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45167,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45168,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45169,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45170,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45171,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45172,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45173,
+    ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.d45174]
 
 /-- Every distinct definition referenced by a family block. -/
 def definitions : List PositiveMembershipDefinition :=
   freshDefinitions ++ reusedDefinitions
 
-/-- Deliberately impossible source meaning outside the 30 fresh indices: a
-valid frozen row never contains its own center. -/
+/-- Deliberately impossible source meaning outside the 30 fresh indices. -/
 def outOfFamilyRequirement : RowChoice Label :=
   { center := 0, support := {0} }
 
@@ -115,14 +116,11 @@ theorem outOfFamilyRequirement_not_satisfied
     ¬outOfFamilyRequirement.support ⊆ row outOfFamilyRequirement.center := by
   simpa [outOfFamilyRequirement] using hrow.sourceCube.center_not_mem 0
 
-/-- Total source meaning for the 30 fresh variables, failing closed outside
-their exact indices. -/
 def requirementAt (v : Nat) : RowChoice Label :=
-  (freshDefinitions.find? fun definition =>
-    decide (definition.varIndex = v)).map
-      (fun definition => definition.requirement) |>.getD outOfFamilyRequirement
+  ((freshDefinitions.find? fun definition =>
+    decide (definition.varIndex = v)).map fun definition =>
+      definition.requirement).getD outOfFamilyRequirement
 
-/-- The candidate-index computation performed by the Python compiler. -/
 def candidateIndicesFor
     (definition : PositiveMembershipDefinition) : List Nat :=
   (List.range (SafeCoverCnf.candCount definition.requirement.center.val)).filter
@@ -131,7 +129,6 @@ def candidateIndicesFor
         ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
           candidateIndex 0).testBit a.val = true)
 
-/-- Deterministic candidate implications for the 30 fresh definitions only. -/
 def implicationDimacs : List (List Int) :=
   freshDefinitions.flatMap fun definition =>
     positiveMembershipIndexImplicationClauses
@@ -139,13 +136,13 @@ def implicationDimacs : List (List Int) :=
 
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
-  decide (45277 < definition.varIndex ∧
+  decide (45307 < definition.varIndex ∧
       requirementAt definition.varIndex = definition.requirement) &&
     (candidateIndicesFor definition).all fun candidateIndex =>
       decide (candidateIndex <
           SafeCoverCnf.candCount definition.requirement.center.val ∧
         SafeCoverCnf.xVar definition.requirement.center.val candidateIndex ≤
-          45277 ∧
+          45307 ∧
         ∀ a ∈ definition.requirement.support,
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
@@ -153,13 +150,13 @@ private def definitionCompilerValid
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
-    45277 < definition.varIndex ∧
+    45307 < definition.varIndex ∧
       requirementAt definition.varIndex = definition.requirement ∧
       ∀ candidateIndex ∈ candidateIndicesFor definition,
         candidateIndex <
             SafeCoverCnf.candCount definition.requirement.center.val ∧
           SafeCoverCnf.xVar definition.requirement.center.val candidateIndex ≤
-            45277 ∧
+            45307 ∧
           ∀ a ∈ definition.requirement.support,
             ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
               candidateIndex 0).testBit a.val = true := by
@@ -180,12 +177,12 @@ theorem implicationDimacs_sat
     (hbase : ∀ v, v ≤ SafeCoverCnf.baseNumVars →
       base v = SafeCoverCnf.finalAssign (coverIndex row) v)
     {clause : List Int} (hclause : clause ∈ implicationDimacs) :
-    evalClauseD (positiveMembershipAssign base 45277 row requirementAt)
+    evalClauseD (positiveMembershipAssign base 45307 row requirementAt)
       clause = true := by
   obtain ⟨definition, hdefinition, hclause⟩ :=
     List.mem_flatMap.mp hclause
   have hvalid := definition_compiler_valid hdefinition
-  apply positiveMembershipIndexImplicationClauses_sat hrow base 45277
+  apply positiveMembershipIndexImplicationClauses_sat hrow base 45307
     requirementAt definition.requirement.center
       (candidateIndicesFor definition) definition
   · intro candidateIndex hcandidateIndex
@@ -209,27 +206,27 @@ theorem implicationDimacs_sat
   · exact hvalid.2.1
   · exact hclause
 
-/-- The 24 roles, as three surplus choices times four second-opposite choices
-times two first-opposite choices. -/
-def familyData : List SecondApexSurplusSecondFirstCommonFiveData :=
-  ([3, 4, 5] : List Label).flatMap fun b =>
-    ([6, 7, 8, 9] : List Label).flatMap fun c =>
-      ([10, 11] : List Label).map fun y => {b := b, c := c, y := y}
+/-- The 24 roles, in Python compiler order. -/
+def familyData : List ApexFirstOppositeSharedPairSurplusCommonFiveData :=
+  ([6, 7, 8, 9] : List Label).flatMap fun x =>
+    ([10, 11] : List Label).flatMap fun b =>
+      ([3, 4, 5] : List Label).map fun y => {x := x, b := b, y := y}
 
+/-- Requirements are in the compiler's normalized center order. -/
 def familyChoices
-    (data : SecondApexSurplusSecondFirstCommonFiveData) :
+    (data : ApexFirstOppositeSharedPairSurplusCommonFiveData) :
     List (RowChoice Label) :=
-  [{center := 0, support := {2, data.b}},
-    {center := data.c, support := {0, data.b, data.y}},
-    {center := data.y, support := {2, data.b}}]
+  [{center := 2, support := {data.b, data.x, data.y}},
+    {center := data.y, support := {0, data.b}},
+    {center := data.x, support := {0, data.b}}]
 
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
-    decide (definition.requirement = requirement)).getD definition6_0310
+    decide (definition.requirement = requirement)).getD definition2_3610
 
 structure FamilyEntry where
-  data : SecondApexSurplusSecondFirstCommonFiveData
+  data : ApexFirstOppositeSharedPairSurplusCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
@@ -244,28 +241,28 @@ def blockingClauses : List (List Int) :=
 /-- Executable byte-order anchor for all 24 Python-installed blocks. -/
 theorem blockingClauses_eq :
     blockingClauses =
-      [[-44903, -45278, -45302], [-44903, -45279, -45305],
-        [-44903, -45284, -45302], [-44903, -45285, -45305],
-        [-44903, -45290, -45302], [-44903, -45291, -45305],
-        [-44903, -45296, -45302], [-44903, -45297, -45305],
-        [-44904, -45280, -45303], [-44904, -45281, -45306],
-        [-44904, -45286, -45303], [-44904, -45287, -45306],
-        [-44904, -45292, -45303], [-44904, -45293, -45306],
-        [-44904, -45298, -45303], [-44904, -45299, -45306],
-        [-44905, -45282, -45304], [-44905, -45283, -45307],
-        [-44905, -45288, -45304], [-44905, -45289, -45307],
-        [-44905, -45294, -45304], [-44905, -45295, -45307],
-        [-44905, -45300, -45304], [-44905, -45301, -45307]] := by
+      [[-45308, -45332, -45167], [-45316, -45334, -45167],
+        [-45324, -45336, -45167], [-45309, -45333, -45168],
+        [-45317, -45335, -45168], [-45325, -45337, -45168],
+        [-45310, -45332, -45169], [-45318, -45334, -45169],
+        [-45326, -45336, -45169], [-45311, -45333, -45170],
+        [-45319, -45335, -45170], [-45327, -45337, -45170],
+        [-45312, -45332, -45171], [-45320, -45334, -45171],
+        [-45328, -45336, -45171], [-45313, -45333, -45172],
+        [-45321, -45335, -45172], [-45329, -45337, -45172],
+        [-45314, -45332, -45173], [-45322, -45334, -45173],
+        [-45330, -45336, -45173], [-45315, -45333, -45174],
+        [-45323, -45335, -45174], [-45331, -45337, -45174]] := by
   native_decide
 
 /-- Executable cardinality, distinctness, and variable-range anchor. -/
 theorem family_shape :
-    freshDefinitions.length = 30 ∧ reusedDefinitions.length = 3 ∧
-      definitions.length = 33 ∧ entries.length = 24 ∧
+    freshDefinitions.length = 30 ∧ reusedDefinitions.length = 8 ∧
+      definitions.length = 38 ∧ entries.length = 24 ∧
       blockingClauses.length = 24 ∧
       (definitions.map fun definition => definition.requirement).Nodup ∧
       freshDefinitions.all (fun definition => decide
-        (45278 ≤ definition.varIndex ∧ definition.varIndex ≤ 45307)) = true := by
+        (45308 ≤ definition.varIndex ∧ definition.varIndex ≤ 45337)) = true := by
   native_decide
 
 private def entryValid (entry : FamilyEntry) : Bool :=
@@ -289,9 +286,9 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
-    definition.varIndex ≤ 45277 := by
+    definition.varIndex ≤ 45307 := by
   have hall : (reusedDefinitions.all fun current =>
-      decide (current.varIndex ≤ 45277)) = true := by
+      decide (current.varIndex ≤ 45307)) = true := by
     native_decide
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
@@ -304,12 +301,12 @@ private theorem positiveRowsMatch_of_mixed_blockingClause_false
       base definition.varIndex = decide
         (definition.requirement.support ⊆ row definition.requirement.center))
     (hfalse : evalClauseD
-      (positiveMembershipAssign base 45277 row requirementAt)
+      (positiveMembershipAssign base 45307 row requirementAt)
       (positiveMembershipBlockingClause entryDefinitions) = false) :
     PositiveRowsMatch row (entryDefinitions.map fun definition =>
       definition.requirement) := by
   have hall : ∀ literal ∈ positiveMembershipBlockingClause entryDefinitions,
-      evalLitD (positiveMembershipAssign base 45277 row requirementAt)
+      evalLitD (positiveMembershipAssign base 45307 row requirementAt)
         literal = false := by
     rw [evalClauseD, List.any_eq_false] at hfalse
     intro literal hliteral
@@ -356,7 +353,7 @@ theorem false_of_blockingClause_false
         (definition.requirement.support ⊆ row definition.requirement.center))
     (entry : FamilyEntry) (hentry : entry ∈ entries)
     (hfalse : evalClauseD
-      (positiveMembershipAssign base 45277 row requirementAt)
+      (positiveMembershipAssign base 45307 row requirementAt)
       (positiveMembershipBlockingClause entry.definitions) = false) : False := by
   have hvalid := entry_valid hentry
   have hpositive : PositiveRowsMatch row
@@ -364,13 +361,13 @@ theorem false_of_blockingClause_false
     positiveRowsMatch_of_mixed_blockingClause_false base row entry.definitions
       hvalid.2 hreused hfalse
   let nogood :=
-    SourceOrderPositiveNogood.ofSecondApexSurplusSecondFirstCommonFive
+    SourceOrderPositiveNogood.ofApexFirstOppositeSharedPairSurplusCommonFive
       (entry.definitions.map fun definition => definition.requirement)
       entry.data hvalid.1
   apply nogood.refutes hreal order hforced hconv
   simpa [nogood] using hpositive
 
-end SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf
+end ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf
 end ExactTwelveRigid221Ingress
 end ATailFrontierLiveClosure
 end Problem97

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import re
 from pathlib import Path
 
 import pytest
@@ -47,6 +48,48 @@ CNF_PATH = (
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
     "ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf.lean"
 )
+
+
+def _lean_mk_definition_bindings(path: Path) -> tuple[tuple[int, int, tuple[int, ...]], ...]:
+    declaration_pattern = re.compile(
+        r"^\s*def\s+definition[0-9_]+\s*:=\s*mkDefinition\s+"
+        r"(?P<variable>[0-9]+)\s+(?P<center>[0-9]+)\s*"
+        r"\{(?P<support>[0-9, \t]*)\}\s*$",
+        re.MULTILINE,
+    )
+    declarations = tuple(declaration_pattern.finditer(path.read_text(encoding="utf-8")))
+    assert len(declarations) == len(EXPECTED_FRESH_PATTERN_VARIABLES)
+    return tuple(
+        (
+            int(declaration.group("variable")),
+            int(declaration.group("center")),
+            tuple(
+                sorted(
+                    int(label)
+                    for label in declaration.group("support").split(",")
+                    if label.strip()
+                )
+            ),
+        )
+        for declaration in declarations
+    )
+
+
+def _lean_blocking_clauses(path: Path) -> tuple[tuple[int, ...], ...]:
+    source = path.read_text(encoding="utf-8")
+    theorem = re.search(
+        r"theorem\s+blockingClauses_eq\s*:\s*blockingClauses\s*=\s*"
+        r"(?P<body>.*?)\s*:=\s*by",
+        source,
+        re.DOTALL,
+    )
+    assert theorem is not None
+    return tuple(
+        tuple(int(literal.strip()) for literal in clause.split(","))
+        for clause in re.findall(
+            r"\[([+-]?\d+(?:\s*,\s*[+-]?\d+)*)\]", theorem.group("body")
+        )
+    )
 
 
 def _parent():
@@ -119,6 +162,28 @@ def test_roles_and_frozen_payload(bank_and_parent) -> None:
     validate_second_apex_surplus_second_first_common_five_membership_family_bank(
         REPO_ROOT, instance, layout, parent, bank, cell_index=6
     )
+
+
+def test_committed_lean_cnf_bindings_match_python_expectations() -> None:
+    expected_bindings = tuple(
+        (variable, center, tuple(support))
+        for (center, support), variable in zip(
+            EXPECTED_FRESH_REQUIREMENTS,
+            EXPECTED_FRESH_PATTERN_VARIABLES,
+            strict=True,
+        )
+    )
+    assert tuple(sorted(_lean_mk_definition_bindings(REPO_ROOT / CNF_PATH))) == tuple(
+        sorted(expected_bindings)
+    )
+
+
+def test_committed_lean_blocking_clause_order_matches_python(bank_and_parent) -> None:
+    bank, _instance, _layout, _parent_bank = bank_and_parent
+    expected_clauses = tuple(
+        tuple(entry["blocking_clause"]) for entry in bank["compiled"]["entries"]
+    )
+    assert _lean_blocking_clauses(REPO_ROOT / CNF_PATH) == expected_clauses
 
 
 def test_source_manifest_covers_v18_roots(bank_and_parent) -> None:

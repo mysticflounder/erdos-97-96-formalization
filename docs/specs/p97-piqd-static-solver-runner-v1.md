@@ -63,11 +63,13 @@ fields:
   polarity; and
 - all source claims plus `one_process` and `one_core`, again exactly `false`.
 
-The exact canonical source bytes, exact canonical producer bytes, and exact CNF
-bytes are each separately stored as content-addressed attempt artifacts.
+The adapter stores the exact canonical source bytes, exact canonical producer
+bytes, and exact CNF bytes as local content-addressed attempt artifacts.
 Embedding the complete source object in the producer bytes also binds the
 source declaration transitively. The producer hash is then bound into both the
-wave manifest and PIQD raw identity.
+wave manifest and PIQD raw identity. Current PIQD job retrieval returns the
+producer-manifest hash, not the producer-manifest bytes; their retrievable
+custody therefore remains adapter-local.
 
 The CNF path is made absolute lexically and captured from a held filesystem-root
 descriptor. Every parent component is opened with `O_DIRECTORY|O_NOFOLLOW` and
