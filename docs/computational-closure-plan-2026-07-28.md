@@ -244,6 +244,46 @@ tests.  The generic source theorem has only `propext`, `Classical.choice`, and
 `Lean.ofReduceBool` and `Lean.trustCompiler` dependencies and no source-scan
 warning.
 
+Those completed promotion gates authorized exactly one fresh successor
+canary.  The cell-6 v10 run completed as `SAT_WITNESS_REPLAYED`, with
+assignment SHA-256
+`3edbb2910a325f7b61acbc07968d54c8346a4b2d656d9ffaacf4a4468d4aad0c`.
+All source-candidate, added-constraint, named-arm, exact-CNF, and canonical
+static-extension replay gates passed.  The stop rule fired immediately; no
+second solve was launched before all-order theorem mining and promotion.
+
+Mandatory mining found a twelve-role apex-pair cross-block common-five
+family.  For every `x ∈ {6,7,8,9}` and `y ∈ {3,4,5}`, selected rows
+`x:{0,2}`, `y:{0,2}`, and `1:{0,y,x}` force the checked common-five
+obstruction `(2,x,0,1,y)` in every frozen source order.  The mining
+certificate SHA-256 is
+`b19b07e3437e5212b3138a70542bea51301f78eac9a74689bdfbb1911b46e34f`.
+An independent exhaustive audit checked all twelve roles against all 48
+orders: all 288 direct instances have the reverse orientation, all 288 mirror
+instances have the forward orientation, and there are no failed, missing, or
+ambiguous cases.  The 36 raw row requirements deduplicate to exactly nineteen
+CNF definitions.  The generic Lean certificate and exact CNF bridge bind all
+576 instances to the source-faithful positive-membership semantics.
+
+The family adds nineteen variables and 244 clauses.  Its delta SHA-256 is
+`53196e064ff651efd020ce449cb968a0b04df5568cc2c1475625b544d038060e`;
+the authenticated family-bank SHA-256 is
+`4dc37cd0afd6daffaa162fc0038ca7905649c04a5f5a4dbda1b4b0c33d41d85c`,
+and the compiled family SHA-256 is
+`772685d231bb834e41915f27805958eb03986262fbd6440019cc06acb70ca205`.
+The strengthened prefix has 45,096 variables and 638,948 clauses with DIMACS
+SHA-256
+`5ec0371e698496e001a75d67d4e39bd874232453d7cd9fbb2c6fc75258645a90`.
+After the 867-clause arm suffix it has 639,815 clauses and SHA-256
+`ce42d607d28d4e527c90493a776e3c3a2881de5c2b59d05fba26c5a86764949f`;
+after the unchanged 81-entry source-order bank it has 639,896 clauses and
+final SHA-256
+`dd2902bddb68d9b7cfab8fb86df91bce32c44e3dc530e3fadca4bba28d3662c0`.
+The family and arm-canary focused suites pass 13 tests, Ruff is clean, and the
+targeted Lean module build succeeds.  The bank's `cell_index = 1` denotes the
+frozen placement, while `arm_cell_index = 6` denotes the canary coordinate;
+those values are intentionally different.
+
 These completed promotion gates authorize exactly one fresh successor canary.
 If it is SAT, the lane stops again for mandatory theorem mining before any
 further solve; if it is UNSAT, acceptance still requires the runner's fresh
