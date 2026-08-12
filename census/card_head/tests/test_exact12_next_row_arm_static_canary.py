@@ -373,6 +373,14 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
     def test_job_and_required_artifacts_bind_new_family_fail_closed(self) -> None:
         materialized = materialize_arm_static_canary(REPO_ROOT)
         job = _build_job(REPO_ROOT, materialized)
+        from census.card_head.exact12_next_row_arm_static_piqd import (
+            build_discovery_descriptor,
+        )
+
+        descriptor = build_discovery_descriptor(
+            materialized, job, repo_root=REPO_ROOT
+        )
+        self.assertEqual(descriptor["root_job_id"], job["job_id"])
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
