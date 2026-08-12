@@ -60,7 +60,7 @@
   },
   "piqd": {
     "daemon_protocol_version": 1,
-    "daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+    "daemon_sha256": "c853176aff2cd9cadec20e10d58b917bde5f016ddc5bd10f06e5e525321b4d81",
     "ingress": "raw-dimacs/v1",
     "backend": "cadical",
     "solver_profile": "sat",

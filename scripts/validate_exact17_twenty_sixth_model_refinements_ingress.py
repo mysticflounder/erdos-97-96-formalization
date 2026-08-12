@@ -18,7 +18,7 @@ from validate_exact17_sixteenth_model_refinements_ingress import (
 )
 
 SCHEMA = "p97-exact17-lean-twenty-sixth-model-refinements-piqd-ingress/v1"
-DAEMON_SHA256 = "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396"
+DAEMON_SHA256 = "c853176aff2cd9cadec20e10d58b917bde5f016ddc5bd10f06e5e525321b4d81"
 ROOT_SHA256 = "566d394436a30d1fee4c85240433f0217223c6f2ecf80e2945568ea37646194b"
 ROOT_BYTES = 291_577_238
 PARENT_ROOT_SHA256 = "d238b81bfdc40c53c948c7655285e0b74203711e1b5cd013fb8d8c9ad1a642f5"

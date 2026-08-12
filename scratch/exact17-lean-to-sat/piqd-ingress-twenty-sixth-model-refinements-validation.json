@@ -3,7 +3,7 @@
   "clauses": 5846284,
   "dimacs_bytes": 291577238,
   "dimacs_sha256": "566d394436a30d1fee4c85240433f0217223c6f2ecf80e2945568ea37646194b",
-  "manifest_sha256": "9298e55d6274c7860e40217a993712022edf1332e332fd8b32acd0e0a2ad4d16",
+  "manifest_sha256": "7c8d60e7e7847a7c219047fc7023aff862ed5d32b6ee6e688e68d62aad2a3a44",
   "motivating_model_cut_clauses": {
     "bisector": [
       5846275
@@ -18,7 +18,7 @@
   "new_clauses": 12,
   "parent_dimacs_sha256": "d238b81bfdc40c53c948c7655285e0b74203711e1b5cd013fb8d8c9ad1a642f5",
   "perpendicular_bisector_subsumed_by_bisector": true,
-  "piqd_daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+  "piqd_daemon_sha256": "c853176aff2cd9cadec20e10d58b917bde5f016ddc5bd10f06e5e525321b4d81",
   "schema": "p97-exact17-twenty-sixth-model-refinements-piqd-ingress-validation/v1",
   "status": "PASS",
   "variables": 308

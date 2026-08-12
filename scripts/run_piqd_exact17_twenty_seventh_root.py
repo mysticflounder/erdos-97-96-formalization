@@ -57,8 +57,8 @@ def main() -> None:
             "CLAUSES": 5_846_284,
             "BYTES": 291_577_238,
             "CNF_SHA256": "566d394436a30d1fee4c85240433f0217223c6f2ecf80e2945568ea37646194b",
-            "MANIFEST_SHA256": "9298e55d6274c7860e40217a993712022edf1332e332fd8b32acd0e0a2ad4d16",
-            "DAEMON_SHA256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+            "MANIFEST_SHA256": "7c8d60e7e7847a7c219047fc7023aff862ed5d32b6ee6e688e68d62aad2a3a44",
+            "DAEMON_SHA256": "c853176aff2cd9cadec20e10d58b917bde5f016ddc5bd10f06e5e525321b4d81",
             "SOLVER_NAME": "piqd-satworker-cadical-3.0.0",
             "SOLVER_SHA256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
         }
