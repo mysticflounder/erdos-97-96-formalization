@@ -9,9 +9,11 @@ each of the 15 fixed v/w rows, it asks whether masks at the eight nonfixed
 centers can satisfy all currently proved finite constraints while defeating
 every one of the row's relaxed singleton certificates.
 
-Run:
+Production run (PIQD, 45 sequential fresh Z3 sessions):
   UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python \
     scripts/pinned-generalm-certificate-coverage.py
+
+The former local subprocess path is retained only as ``--backend legacy-local``.
 """
 
 from __future__ import annotations
@@ -19,20 +21,22 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
-import z3
+from census.global_confinement import pinned_generalm_piqd
+from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
-
-REPO = Path(__file__).resolve().parents[1]
+REPO = Path(os.path.abspath(__file__)).parents[1]
 LABELS = ("u", "v", "w", "s1", "s2", "s3", "Pw", "Pu", "Q1", "Q2")
 LABEL_INDEX = {label: index for index, label in enumerate(LABELS)}
 NONFIXED_CENTERS = tuple(label for label in LABELS if label not in {"v", "w"})
 CARDINALITY_FLOORS = (2, 3, 4)
 SCHEMA = "pinned_surplus_generalm_certificate_coverage.v1"
+z3: Any = None
 
 DEFAULT_REQUIRED_FACTS = (
     REPO
@@ -56,6 +60,10 @@ DEFAULT_JSON_OUT = (
     / "pinned_surplus_generalm_certificate_coverage.json"
 )
 DEFAULT_MARKDOWN_OUT = DEFAULT_JSON_OUT.with_suffix(".md")
+DEFAULT_PIQD_DATA_ROOT = REPO / "scratch" / "piqd-pinned-generalm"
+DEFAULT_PIQD_OUTPUT_NAME = "pinned-generalm-certificate-coverage-v1"
+DEFAULT_PIQD_SERVER = "http://127.0.0.1:7272"
+DEFAULT_TIMEOUT_MS = 300_000
 
 
 def load_shadow_tool() -> Any:
@@ -129,9 +137,7 @@ def add_cross_separation(
                     )
 
 
-def add_pair_count_bounds(
-    solver: z3.Solver, masks: dict[str, z3.BitVecRef]
-) -> None:
+def add_pair_count_bounds(solver: z3.Solver, masks: dict[str, z3.BitVecRef]) -> None:
     for left_index, left in enumerate(LABELS):
         for right in LABELS[left_index + 1 :]:
             uses = [
@@ -250,18 +256,30 @@ def markdown_report(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--backend", choices=("piqd", "legacy-local"), default="piqd")
     parser.add_argument("--required-facts", type=Path, default=DEFAULT_REQUIRED_FACTS)
     parser.add_argument("--incidence", type=Path, default=DEFAULT_INCIDENCE)
     parser.add_argument("--json-out", type=Path, default=DEFAULT_JSON_OUT)
     parser.add_argument("--markdown-out", type=Path, default=DEFAULT_MARKDOWN_OUT)
-    return parser.parse_args()
+    parser.add_argument("--piqd-server", default=DEFAULT_PIQD_SERVER)
+    parser.add_argument("--piqd-data-root", type=Path, default=DEFAULT_PIQD_DATA_ROOT)
+    parser.add_argument("--output-name", default=DEFAULT_PIQD_OUTPUT_NAME)
+    parser.add_argument("--timeout-ms", type=int, default=DEFAULT_TIMEOUT_MS)
+    parser.add_argument("--workers", type=int, choices=(1,), default=1)
+    parser.add_argument(
+        "--check",
+        type=Path,
+        metavar="PUBLISHED_DIRECTORY",
+        help="offline validation only; never contacts PIQD or a solver",
+    )
+    return parser.parse_args(argv)
 
 
-def main() -> int:
-    args = parse_args()
-    shadow_tool = load_shadow_tool()
+def run_legacy_local(args: argparse.Namespace, shadow_tool: Any) -> int:
+    global z3
+    z3 = importlib.import_module("z3")
     required_facts = json.loads(args.required_facts.read_text())
     incidence = json.loads(args.incidence.read_text())
 
@@ -327,6 +345,62 @@ def main() -> int:
         return 1
     print(json.dumps(actual, sort_keys=True))
     return 0
+
+
+def _output_directory(args: argparse.Namespace) -> Path:
+    if (
+        type(args.output_name) is not str
+        or args.output_name in {"", ".", ".."}
+        or "/" in args.output_name
+        or "\\" in args.output_name
+    ):
+        raise pinned_generalm_piqd.PinnedGeneralmPiqdError(
+            "output-name must be one safe path component"
+        )
+    return args.piqd_data_root / args.output_name
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+    shadow_tool = load_shadow_tool()
+    shadow_path = REPO / "scripts" / "surplus-compg-shadow.py"
+    if args.check is not None:
+        pinned_generalm_piqd.validate_publication(
+            args.check,
+            repo_root=REPO,
+            caller_script_path=Path(__file__),
+            shadow_tool_path=shadow_path,
+            shadow_tool=shadow_tool,
+        )
+        print(f"validated {args.check}")
+        return 0
+    if args.backend == "legacy-local":
+        return run_legacy_local(args, shadow_tool)
+
+    bundle = pinned_generalm_piqd.capture_source_bundle(
+        repo_root=REPO,
+        required_facts_path=args.required_facts,
+        incidence_path=args.incidence,
+        caller_script_path=Path(__file__),
+        shadow_tool_path=shadow_path,
+    )
+    transport = neutral.UrllibPiqdTransport(
+        args.piqd_server,
+        http_timeout_s=neutral.bounded_solve_http_timeout_s(args.timeout_ms),
+    )
+    report = pinned_generalm_piqd.run_piqd(
+        bundle,
+        shadow_tool,
+        transport=transport,
+        output_directory=_output_directory(args),
+        timeout_ms=args.timeout_ms,
+        workers=args.workers,
+    )
+    actual = {
+        floor["cardinality_floor"]: floor["summary"] for floor in report["floors"]
+    }
+    print(json.dumps(actual, sort_keys=True))
+    return 0 if pinned_generalm_piqd.expected_profile(report) else 1
 
 
 if __name__ == "__main__":
