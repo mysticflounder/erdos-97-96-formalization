@@ -1,0 +1,13 @@
+% Positive smoke control for the exact missing producer contract.
+% The base must become inconsistent if a new, different-center source blocks
+% deletion of three distinct members of the Q row at its own chosen center.
+
+formulas(assumptions).
+  car(ta). car(da). car(db). car(dc).
+  da != db. da != dc. db != dc.
+  cen(ta) != cen(qa).
+  mem(qa,da). mem(qa,db). mem(qa,dc).
+  blocked(da,cen(ta)).
+  blocked(db,cen(ta)).
+  blocked(dc,cen(ta)).
+end_of_list.

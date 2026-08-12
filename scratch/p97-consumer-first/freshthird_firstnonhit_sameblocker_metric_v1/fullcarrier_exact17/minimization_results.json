@@ -1,0 +1,15 @@
+{
+  "scope": "group-level source-clause minimization of exact-17 rich-stage UNSAT",
+  "probes": [
+    {"name": "rich_geometry_cap", "z3": "UNKNOWN:timeout", "z3_cli": "TIMEOUT", "cvc5": "UNKNOWN"},
+    {"name": "rich_geometry_k4_selected", "z3": "UNSAT", "z3_cli": "UNSAT", "cvc5": "UNSAT"},
+    {"name": "rich_geometry_selected", "z3": "UNKNOWN:timeout", "z3_cli": "TIMEOUT", "cvc5": "UNKNOWN"},
+    {"name": "rich_cap_k4_selected", "z3": "UNSAT", "z3_cli": "UNSAT", "cvc5": "UNSAT"},
+    {"name": "rich_geometry_cap_k4", "z3": "UNSAT", "z3_cli": "UNSAT", "cvc5": "UNSAT"},
+    {"name": "rich_k4_selected", "z3": "UNSAT", "z3_cli": "UNSAT", "cvc5": "UNSAT"},
+    {"name": "rich_selected", "z3": "UNKNOWN:timeout", "z3_cli": "TIMEOUT", "cvc5": "TIMEOUT"},
+    {"name": "rich_k4", "z3": "UNSAT", "z3_cli": "UNSAT", "cvc5": "UNSAT", "clause_count": 97}
+  ],
+  "minimal_joint_group": ["k4_witness_equalities", "rich_radius_pattern"],
+  "classification": "finite/local exact-17 obstruction; no cardinality-independent Lean lift"
+}

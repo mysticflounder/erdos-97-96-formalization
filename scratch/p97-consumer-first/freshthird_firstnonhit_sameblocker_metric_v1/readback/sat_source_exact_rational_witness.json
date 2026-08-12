@@ -1,0 +1,39 @@
+{
+  "label": "sat_source_exact_rational_witness",
+  "z3": "sat",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/artifacts/sat_source_exact_rational_witness.smt2",
+  "readback": {
+    "q1": [
+      "-4/5",
+      "-3/5"
+    ],
+    "q2": [
+      "3/5",
+      "-4/5"
+    ],
+    "c1": [
+      "4/5",
+      "3/5"
+    ],
+    "c2": [
+      "-3/5",
+      "4/5"
+    ],
+    "p1": [
+      "6/5",
+      "11/10"
+    ],
+    "p2": [
+      "-6/5",
+      "11/10"
+    ],
+    "r1": [
+      "9/5",
+      "19/10"
+    ],
+    "r2": [
+      "-9/5",
+      "19/10"
+    ]
+  }
+}

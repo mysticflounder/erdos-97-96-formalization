@@ -1,0 +1,305 @@
+{
+  "blocker_image_centers": [
+    7,
+    8,
+    9,
+    10,
+    12
+  ],
+  "closure_claim": "NONE",
+  "controls": [
+    {
+      "artifact": "generated/sameblocker_malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.065,
+        "status": "UNSAT"
+      },
+      "query": "sameblocker_malformed_reversed_boundary",
+      "z3": {
+        "seconds": 0.017,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.032,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.015,
+        "status": "UNSAT"
+      },
+      "query": "sameblocker_malformed_break_k4_equality",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.008,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 30,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.008,
+        "status": "UNSAT"
+      },
+      "query": "sameblocker_malformed_equal_rich_radii",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.007,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.007,
+        "status": "UNSAT"
+      },
+      "query": "sameblocker_malformed_break_singleton",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.007,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "counterexample_interpretation": "a SAT result here is still not a P97 counterexample because complete source ingress is not encoded",
+  "fidelity": "source-entitled shared-coordinate assignment test after global K4, minimality/image exactness, cap geometry, retained D44 projections, and Q/C same-blocker exact support; incomplete as an original-P97 model",
+  "first_joint_unsat_stage": "rich_radius_pattern",
+  "incidence_validation": "PASS",
+  "nonfirst_rich_branches": [
+    {
+      "branch": "D44",
+      "cap_index": 1
+    },
+    {
+      "branch": "D44",
+      "cap_index": 2
+    }
+  ],
+  "omitted_scope": [
+    "complete original P97 and CriticalShellSystem ingress",
+    "the two deletion residual constructors",
+    "the other FreshThird constructors and arm combinations",
+    "coverage of all exact-17 assignments",
+    "all cardinalities other than 17",
+    "a universal finite-core lift"
+  ],
+  "queries": [
+    {
+      "artifact": "generated/sameblocker_row_equalities_only_preflight.smt2",
+      "check_sat_count": 1,
+      "clause_count": 136,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 10.043,
+        "status": "UNKNOWN"
+      },
+      "query": "sameblocker_row_equalities_only_preflight",
+      "z3": {
+        "seconds": 10.236,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 10.017,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_geometry_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 705,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 11.643,
+        "status": "UNKNOWN"
+      },
+      "query": "sameblocker_geometry_core",
+      "stage": "geometry_core",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/sameblocker_geometry_core_z3_model.json",
+        "seconds": 1.773,
+        "status": "SAT",
+        "validation_errors": []
+      },
+      "z3_cli": {
+        "seconds": 1.992,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_cap_classification.smt2",
+      "check_sat_count": 1,
+      "clause_count": 756,
+      "cvc5": {
+        "seconds": 15.013,
+        "status": "TIMEOUT"
+      },
+      "query": "sameblocker_cap_classification",
+      "stage": "cap_classification",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/sameblocker_cap_classification_z3_model.json",
+        "seconds": 1.989,
+        "status": "SAT",
+        "validation_errors": []
+      },
+      "z3_cli": {
+        "seconds": 1.806,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_k4_witness_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 824,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 14.107,
+        "status": "UNKNOWN"
+      },
+      "query": "sameblocker_k4_witness_equalities",
+      "stage": "k4_witness_equalities",
+      "z3": {
+        "seconds": 12.286,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 10.017,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_selected_support_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 892,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 14.195,
+        "status": "UNKNOWN"
+      },
+      "query": "sameblocker_selected_support_equalities",
+      "stage": "selected_support_equalities",
+      "z3": {
+        "seconds": 12.282,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 10.017,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/sameblocker_rich_radius_pattern.smt2",
+      "check_sat_count": 1,
+      "clause_count": 921,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.15,
+        "status": "UNSAT"
+      },
+      "query": "sameblocker_rich_radius_pattern",
+      "stage": "rich_radius_pattern",
+      "z3": {
+        "seconds": 0.008,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.027,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "rejected_unsourced_controls": [
+    {
+      "centers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11,
+        13,
+        14,
+        15,
+        16
+      ],
+      "name": "exactness_at_unused_k4_center",
+      "status": "REJECTED_UNSOURCED"
+    }
+  ],
+  "scope": "exact-17 retained FreshThird same-blocker x same-blocker packet",
+  "source_assignment": "generated/sameblocker_assignment.json",
+  "source_valid_sat_controls": [
+    {
+      "artifact": "generated/sameblocker_source_valid_sat_geometry_gauge.smt2",
+      "check_sat_count": 1,
+      "clause_count": 5,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.008,
+        "status": "SAT"
+      },
+      "query": "sameblocker_source_valid_sat_geometry_gauge",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/sameblocker_source_valid_sat_geometry_gauge_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      },
+      "z3_cli": {
+        "seconds": 0.008,
+        "status": "SAT"
+      }
+    }
+  ],
+  "unused_k4_centers_without_exactness": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    11,
+    13,
+    14,
+    15,
+    16
+  ]
+}

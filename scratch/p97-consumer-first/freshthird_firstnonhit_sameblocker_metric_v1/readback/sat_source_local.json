@@ -1,0 +1,39 @@
+{
+  "label": "sat_source_local",
+  "z3": "sat",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/artifacts/sat_source_local.smt2",
+  "readback": {
+    "q1": [
+      "-0.8660254037?",
+      "-1/2"
+    ],
+    "q2": [
+      "0",
+      "-1"
+    ],
+    "c1": [
+      "0",
+      "1"
+    ],
+    "c2": [
+      "-0.8660254037?",
+      "1/2"
+    ],
+    "p1": [
+      "1.3228756555?",
+      "1"
+    ],
+    "p2": [
+      "-1.3228756555?",
+      "1"
+    ],
+    "r1": [
+      "2.5980762113?",
+      "1"
+    ],
+    "r2": [
+      "-2.5980762113?",
+      "1"
+    ]
+  }
+}

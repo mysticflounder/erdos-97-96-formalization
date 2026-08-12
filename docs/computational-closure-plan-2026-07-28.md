@@ -8449,6 +8449,88 @@ target this producer (or a direct clean metric contradiction), not another
 local case split.  This checkpoint strengthens the production theorem bank but
 does not close a `sorry`.
 
+#### 13.24.1.5 First-non-hit cardinality-independent preflight and metric gate (2026-08-11)
+
+The source-mapped FOL packet in
+`scratch/p97-consumer-first/freshthird_firstnonhit_fo_v1/` has no
+carrier-cardinality or finite-domain axiom.  Mace4, stopped after its first
+model, found a domain-eight model of the named incidence abstraction.  This is
+a finite abstraction countermodel only, not a Euclidean realization or a P97
+counterexample.  Vampire refuted both landing-contract controls: an explicit
+three-point overlap at distinct centers and the stronger three-blocked-
+deletions packet.  These refutations validate the clean Lean consumer; they do
+not produce the live witness or close the `sorry`.
+
+A scoped theorem-bank and source audit also rejects the proposed reverse-
+Kalmanson shortcut.  The retained packet proves the strict inequality
+
+```text
+d(rL,rR) + d(rhoL,rhoR) < d(rL,rhoR) + d(rhoL,rR),
+```
+
+but `FreshThirdAlignedCommonDeletionCorePairPacket` contains only omission,
+deletion-survival, and minimal-core data.  It neither identifies its deleted
+endpoints with the four adjacent-cap hits nor supplies any metric relation
+among those hits.  The opposite weak inequality would immediately contradict
+the strict cut, but it is an additional global theorem, not a consequence of
+the current interface.
+
+The three-blocked-deletions formulation is **not** a weaker production gate.
+`cross_deletion_survives_iff_not_mem_selected_support` identifies deletion
+failure at a selected-row center with membership in that selected support.
+Consequently, three distinct points of the Q row whose deletions are blocked
+at one distinct center are exactly the required three-point overlap, written
+in deletion language.  The Vampire refutation is therefore a landing-contract
+control, not evidence for an intermediate producer.
+
+The production gate is a genuinely stronger source-clean carrier-wide fact
+that forces those memberships: for example, a row-relocation theorem, a
+cap-order/metric theorem tying a newly produced actual row to three Q-row
+points, or a direct contradiction.  The existing five-source blocker-fiber
+and deletion-fan banks stop at distinct blockers or common-deletion packets;
+they do not supply a third Q-row incidence.  Named-incidence SAT, the two
+logical control refutations, and the retained-grid strict inequality remain
+preflight evidence only; none is universal closure.
+
+#### 13.24.1.6 First-non-hit metric and exact-17 stop result (2026-08-11)
+
+The next bounded metric checks separate local feasibility from a frozen
+full-carrier rejection.  The named same-blocker configuration has an exact
+rational Euclidean realization: the Q row contains the two Q endpoints and
+the two canonical sources on one circle, the retained endpoints lie off that
+circle, and both Z3 and cvc5 accept the exact witness.  A malformed control
+placing the same point on two distinct radii is rejected by both solvers.  The
+artifacts are in
+`scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/`.
+This proves only that the named local geometry is not the missing
+contradiction; it is not a P97 counterexample because it omits the complete
+carrier-wide K4, minimality, cap-order, and deletion ingress.
+
+One exact-17 replay in the `fullcarrier_exact17/` subdirectory is dual-solver
+UNSAT after the rich-radius groups are added.  The small conflict is a frozen
+incidence inconsistency: a chosen K4 support at one apex contains points from
+two declared distinct rich-radius arms.  The live FirstNonHit packet does not
+force that chosen support or that cross-arm incidence.  Thus the result
+rejects one proposed exact-17 assignment; it does not cover all assignments,
+produce the required distinct-center three-overlap row, or lift to arbitrary
+carrier cardinality.  It closes no Lean obligation.
+
+This round establishes a hard stop for further ad hoc fixed-assignment waves.
+Another computation is production-relevant only after one of the following
+contracts is present:
+
+1. a source-faithful exhaustive encoder whose variables range over every live
+   K4/selected-row choice, together with a proved bounded-obstruction or
+   general-cardinality lift; or
+2. a new cardinality-independent source theorem forcing a distinct-center
+   selected row to contain at least three points of the Q row, equivalently
+   forcing three Q-support deletions to be blocked at that same center.
+
+Until one of those contracts is proved, the honest status is that current
+computational methods can refute candidate incidence assignments and discover
+cuts, but cannot close this universal `sorry`.  Broad theorem search and
+additional local constructor splitting are therefore paused.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

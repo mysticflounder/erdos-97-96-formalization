@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceTripleShellEscape
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdRetainedProducer
 import Erdos9796Proof.P97.ATail.FirstApexInteriorPairGeometry
+import Erdos9796Proof.P97.ATail.GlobalMinimalDeletion
 import Erdos9796Proof.P97.ATail.TwoTripleRowSixPointEuclideanObstruction
 import Erdos9796Proof.P97.Census554.ZeroCutBoundaryIndexing
 
@@ -26,6 +27,7 @@ open ATailCriticalFiberRetainedRadiusSelector
 open ATailDeletionRobustness
 open ATailExactFourPhysicalConsumer
 open ATailExactFourRobustCapExpansion
+open ATailGlobalMinimalDeletion
 open ATailMinimalUniqueFourCover
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
@@ -1251,6 +1253,161 @@ theorem freshThirdCapSourceInteraction_centerEq_or_inter_card_le_two
         intro h
         exact Q.sources_ne (Subtype.ext h)
       simp [hvals]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Apply global minimal deletion to the canonical Q row.  This is the exact
+cardinality-independent finite ingress: `V` is a nonempty subset of four
+named row points, deleting all of `V` blocks K4 at a carrier center outside
+the Q row, and restoring any one member restores K4.
+
+The conclusion intentionally says nothing about the four-class selected at
+`center`; that identification would be a stronger, currently unavailable
+producer. -/
+theorem exists_freshThird_qRow_cardMinimalBlockingSubdeletion
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    let KQ :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    ∃ center ∈ D.A \ KQ.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ KQ.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ∀ s ∈ V,
+        HasNEquidistantPointsAt 4
+          (D.A \ (V.erase s)) center := by
+  dsimp only
+  apply exists_global_cardMinimal_blocking_subdeletion_of_selectedFourClass
+    R.minimal
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  let KQ :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have hcenterA :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.center_mem).2
+  have hinsertSubset :
+      insert (H.centerAt Q.source₁.1 Q.source₁.2) KQ.support ⊆ D.A := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with rfl | hz
+    · exact hcenterA
+    · exact KQ.support_subset_A hz
+  have hinsertCard :
+      (insert (H.centerAt Q.source₁.1 Q.source₁.2) KQ.support).card = 5 := by
+    rw [Finset.card_insert_of_notMem KQ.center_not_mem,
+      KQ.support_card]
+  have hfive : 5 ≤ D.A.card := by
+    rw [← hinsertCard]
+    exact Finset.card_le_card hinsertSubset
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- In the Q-center arm of the minimal-deletion ingress, the minimal blocking
+set is a singleton.  If two Q-row points remained in `V`, restoring one would
+give K4 on a subset of the carrier with the other deleted, contradicting the
+source-criticality characterization of Q's exact selected row. -/
+theorem qRow_cardMinimalBlockingSubdeletion_card_eq_one_of_center_eq
+    (Q : FreshThirdBlockerFiber P Pρ)
+    {center : ℝ²} {V : Finset ℝ²}
+    (hVne : V.Nonempty)
+    (hVsub :
+      V ⊆
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support)
+    (hVminimal : ∀ s ∈ V,
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center)
+    (hcenter : center = H.centerAt Q.source₁.1 Q.source₁.2) :
+    V.card = 1 := by
+  have hcardLe : V.card ≤ 1 := by
+    rw [Finset.card_le_one]
+    intro s hs t ht
+    by_contra hst
+    have htErase : t ∈ V.erase s :=
+      Finset.mem_erase.mpr ⟨Ne.symm hst, ht⟩
+    have hrestore := hVminimal s hs
+    have hsurvives :
+        HasNEquidistantPointsAt 4 (D.A.erase t) center := by
+      apply hasNEquidistantPointsAt_mono
+        (T := D.A.erase t) (p := center) _ hrestore
+      intro z hz
+      have hzParts := Finset.mem_sdiff.mp hz
+      apply Finset.mem_erase.mpr
+      refine ⟨?_, hzParts.1⟩
+      intro hzt
+      subst z
+      exact hzParts.2 htErase
+    have hsurvivesQ :
+        HasNEquidistantPointsAt 4 (D.A.erase t)
+          (H.centerAt Q.source₁.1 Q.source₁.2) := by
+      simpa [hcenter] using hsurvives
+    have htNot :=
+      (cross_deletion_survives_iff_not_mem_selected_support
+        H Q.source₁.2).mp hsurvivesQ
+    exact htNot (hVsub ht)
+  have hcardPos : 0 < V.card := Finset.card_pos.mpr hVne
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Three blocked deletions drawn from one exact selected row force those
+points into a second selected row.  This is the cardinality-independent
+landing contract for a global FirstNonHit incidence producer: the hard input
+is the shared blocking center, not the final finite-set count. -/
+theorem selectedRow_inter_card_ge_three_of_blocked_deletions
+    (source target : CriticalShellSystem.CarrierVertex D.A)
+    (blocked : Finset (EuclideanSpace ℝ (Fin 2)))
+    (hcard : 3 ≤ blocked.card)
+    (hsubset :
+      blocked ⊆
+        (H.selectedAt target.1 target.2).toCriticalFourShell.support)
+    (hblocked : ∀ w ∈ blocked,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+        (H.centerAt source.1 source.2)) :
+    3 ≤
+      ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+        (H.selectedAt target.1 target.2).toCriticalFourShell.support).card := by
+  apply hcard.trans
+  apply Finset.card_le_card
+  intro w hw
+  simp only [Finset.mem_inter]
+  exact ⟨
+    ATAILStageOnePrescribedApexDichotomy.source_mem_critical_support_of_no_qfree
+      (H.selectedAt source.1 source.2) (hblocked w hw),
+    hsubset hw⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Consumer-ready form of
+`selectedRow_inter_card_ge_three_of_blocked_deletions`.  A solver or geometric
+producer may land here by certifying three target-row deletions blocked at one
+distinct actual center; no cap-wide alignment is assumed. -/
+theorem exists_selectedRow_overlap_card_ge_three_of_blocked_deletions
+    (source target : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠ H.centerAt target.1 target.2)
+    (blocked : Finset (EuclideanSpace ℝ (Fin 2)))
+    (hcard : 3 ≤ blocked.card)
+    (hsubset :
+      blocked ⊆
+        (H.selectedAt target.1 target.2).toCriticalFourShell.support)
+    (hblocked : ∀ w ∈ blocked,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+        (H.centerAt source.1 source.2)) :
+    ∃ witness : CriticalShellSystem.CarrierVertex D.A,
+      H.centerAt witness.1 witness.2 ≠
+          H.centerAt target.1 target.2 ∧
+        3 ≤
+          ((H.selectedAt witness.1 witness.2).toCriticalFourShell.support ∩
+            (H.selectedAt target.1
+              target.2).toCriticalFourShell.support).card := by
+  refine ⟨source, hcenters, ?_⟩
+  exact selectedRow_inter_card_ge_three_of_blocked_deletions
+    source target blocked hcard hsubset hblocked
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

@@ -27,6 +27,18 @@ namespace ATailGlobalMinimalDeletion
 
 open ATAILStageOneMinimalDeletionCore
 
+/-- Equidistant-point witnesses persist when the ambient finite set grows. -/
+theorem hasNEquidistantPointsAt_mono
+    {n : ℕ} {S T : Finset ℝ²} {p : ℝ²}
+    (hsub : S ⊆ T)
+    (h : HasNEquidistantPointsAt n S p) :
+    HasNEquidistantPointsAt n T p := by
+  rcases h with ⟨radius, hradius, hcard⟩
+  refine ⟨radius, hradius, hcard.trans (Finset.card_le_card ?_)⟩
+  intro z hz
+  rcases Finset.mem_filter.mp hz with ⟨hzS, hzdist⟩
+  exact Finset.mem_filter.mpr ⟨hsub hzS, hzdist⟩
+
 /-- A nonempty proper subset of a minimal counterexample carrier cannot
 retain the global four-equidistant property. -/
 theorem not_hasNEquidistantProperty_of_nonempty_proper_subset
@@ -209,6 +221,36 @@ theorem exists_global_cardMinimal_blocking_subdeletion
     ⟨V, hVne, hVsub, hVblocked, hVminimal⟩
   exact ⟨center, hcenterRemaining, V, hVne, hVsub,
     hVblocked, hVminimal⟩
+
+/-- Apply global cardinal-minimal deletion to the support of an exact selected
+four-class.  The fresh blocking center lies outside the selected support, and
+the returned deletion set is a nonempty subset of that four-point support.
+
+This is deliberately only a *simultaneous-deletion* ingress.  Its restoration
+field concerns `D.A \ (V.erase s)`; it does not assert that deleting `s` alone
+blocks K4 at the fresh center. -/
+theorem exists_global_cardMinimal_blocking_subdeletion_of_selectedFourClass
+    {D : CounterexampleData} (hmin : D.Minimal)
+    {selectedCenter : ℝ²} (K : SelectedFourClass D.A selectedCenter)
+    (hcarrier : 4 < D.A.card) :
+    ∃ center ∈ D.A \ K.support, ∃ V : Finset ℝ²,
+      V.Nonempty ∧
+      V ⊆ K.support ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A \ V) center ∧
+      ∀ s ∈ V,
+        HasNEquidistantPointsAt 4
+          (D.A \ (V.erase s)) center := by
+  classical
+  have hproper : K.support ≠ D.A := by
+    intro heq
+    have hcard : D.A.card = 4 := by
+      simpa [heq] using K.support_card
+    omega
+  have hremaining : (D.A \ K.support).Nonempty :=
+    Finset.sdiff_nonempty.mpr fun hsubset =>
+      hproper (Finset.Subset.antisymm K.support_subset_A hsubset)
+  exact exists_global_cardMinimal_blocking_subdeletion
+    hmin K.support_subset_A K.support_nonempty hremaining
 
 /-- Global deletion-critical bridge.
 

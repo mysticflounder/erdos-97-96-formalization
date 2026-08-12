@@ -1,0 +1,55 @@
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:171:      Nonempty (CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:228:private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:229:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1268:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1289:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1325:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1338:      FreshThirdAcyclicCanonicalConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1402:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1474:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1689:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1946:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2044:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2203:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2262:theorem freshThird_exactSupport_endpointRow_radius_eq_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2263:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2288:theorem freshThird_exactSupport_commonRadius_card_ge_four
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2289:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2329:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3005:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3202:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3538:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3667:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3928:theorem false_of_freshThird_commonRadius_distinctCaps_survivingRow
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3929:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4196:theorem exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4197:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4451:private theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4452:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4635:theorem false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4636:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4686:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1140:abbrev FreshThirdAcyclicCanonicalConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1143:    Nonempty (CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1148:    FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:150:structure CommonRadiusTwoCapSourceThirdCanonicalRowSurface where
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:490:theorem false_of_commonRadius_equalCenters_noncanonicalSameCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:536:theorem false_of_commonRadius_equalCenters_noncanonicalSameCap_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:537:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:562:theorem freshThird_commonRadius_distinctCaps_sources_off_canonicalCap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:563:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:676:theorem false_or_freshCap_ne_opp_of_commonRadius_distinctCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:677:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:807:theorem freshThird_commonRadius_distinctCaps_dual_packet
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:808:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:2078:theorem false_of_twoCapSources_commonRadius_mutualCrossMembership
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3196:    ∃ Ccommon : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ,
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3222:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1067:theorem exists_two_firstFiberCapSourceWitness_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1103:theorem exists_two_capSourceThirdCanonicalRowSurface_of_commonRadius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1145:theorem exists_commonRadius_twoCapSourceThirdCanonicalRowSurface_of_not_retained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1182:theorem exists_commonRadius_twoCapSourceThirdCanonicalRowSurface_packet_of_not_retained
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1187:    Nonempty (CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2941:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2980:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:3010:    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)

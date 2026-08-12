@@ -1,0 +1,105 @@
+% Source-mapped, cardinality-independent FirstNonHit incidence core.
+% Prover9/Mace4 syntax.  Identifiers beginning u..z are variables.
+
+formulas(assumptions).
+
+  % Every carrier point has a chosen critical exact-four row.
+  all u (car(u) -> car(cen(u))).
+  all u (car(u) -> cen(u) != u).
+  all u all v (mem(u,v) -> car(u) & car(v)).
+  all u (car(u) -> mem(u,u)).
+  all u (
+    car(u) ->
+      exists v exists w exists x exists y (
+        mem(u,v) & mem(u,w) & mem(u,x) & mem(u,y) &
+        v != w & v != x & v != y &
+        w != x & w != y & x != y &
+        all z (mem(u,z) -> (z = v | z = w | z = x | z = y))
+      )
+  ).
+
+  % Equal actual blocker centers give equal selected supports.
+  all u all v all w (
+    car(u) & car(v) & cen(u) = cen(v) ->
+      (mem(u,w) <-> mem(v,w))
+  ).
+
+  % Three common support points force equal centers.
+  all u all v all w all x all y (
+    car(u) & car(v) & cen(u) != cen(v) &
+    mem(u,w) & mem(v,w) &
+    mem(u,x) & mem(v,x) &
+    mem(u,y) & mem(v,y) ->
+      (w = x | w = y | x = y)
+  ).
+
+  % A deletion blocked at a chosen critical center lies in that row.
+  all u all v (
+    car(u) & car(v) & blocked(v,cen(u)) -> mem(u,v)
+  ).
+
+  % CriticalShellSystem.no_qfree_at for the source's own deletion.
+  all u (car(u) -> blocked(u,cen(u))).
+
+  % Every actual-blocker fiber contains at most four carrier sources.
+  all u all v all w all x all y (
+    car(u) & car(v) & car(w) & car(x) & car(y) &
+    cen(u) = cen(v) & cen(u) = cen(w) &
+    cen(u) = cen(x) & cen(u) = cen(y) ->
+      (u = v | u = w | u = x | u = y |
+       v = w | v = x | v = y |
+       w = x | w = y | x = y)
+  ).
+
+  % Named carrier points: two retained endpoint pairs, Q, C, and oppApex1.
+  car(pa). car(pb). car(ra). car(rb).
+  car(qa). car(qb). car(ca). car(cb). car(oa).
+
+  % The retained endpoint pairs are disjoint, and Q/C avoid them.
+  pa != pb. ra != rb.
+  pa != ra. pa != rb. pb != ra. pb != rb.
+  qa != qb. ca != cb.
+  qa != pa. qa != pb. qa != ra. qa != rb.
+  qb != pa. qb != pb. qb != ra. qb != rb.
+  ca != pa. ca != pb. ca != ra. ca != rb.
+  cb != pa. cb != pb. cb != ra. cb != rb.
+  % Both canonical C sources lie in the strict first cap, hence differ from
+  % its opposite Moser apex.
+  ca != oa. cb != oa.
+
+  % Retained endpoints and canonical C sources are strict first-cap points,
+  % hence differ from the opposite Moser apex.
+  pa != oa. pb != oa. ra != oa. rb != oa.
+
+  % Source-clean FreshThird Q facts and the sameBlocker/sameBlocker branch.
+  mem(qa,qb). mem(qb,qa).
+  cen(qa) != cen(pa). cen(qa) != cen(ra).
+  cen(qa) = cen(qb).
+  cen(ca) = cen(qa).
+  cen(cb) = cen(qa).
+  cen(ca) != oa. cen(cb) != oa.
+
+  % Each source row omits an endpoint from each retained pair.  The common
+  % omission branch also supplies one endpoint omitted by both rows; the
+  % other omitted endpoint may differ between the rows.
+  (-mem(ca,pa) | -mem(ca,pb)).
+  (-mem(ca,ra) | -mem(ca,rb)).
+  (-mem(cb,pa) | -mem(cb,pb)).
+  (-mem(cb,ra) | -mem(cb,rb)).
+  (co = pa | co = pb | co = ra | co = rb).
+  -mem(ca,co). -mem(cb,co).
+
+  % On these four named endpoints, selected-support omission is equivalent to
+  % survival of deletion at the source's chosen center.
+  all v (
+    (v = pa | v = pb | v = ra | v = rb) ->
+      (-mem(ca,v) <-> -blocked(v,cen(ca)))
+  ).
+  all v (
+    (v = pa | v = pb | v = ra | v = rb) ->
+      (-mem(cb,v) <-> -blocked(v,cen(cb)))
+  ).
+  % FullyDeletionRobustAt at oppApex1 gives the opposite polarity here.
+  -blocked(pa,oa). -blocked(ra,oa).
+
+end_of_list.

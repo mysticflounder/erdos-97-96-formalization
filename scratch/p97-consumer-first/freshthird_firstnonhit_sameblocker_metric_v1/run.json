@@ -1,0 +1,88 @@
+[
+  {
+    "label": "sat_source_local",
+    "z3": "sat",
+    "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/artifacts/sat_source_local.smt2",
+    "readback": {
+      "q1": [
+        "-0.8660254037?",
+        "-1/2"
+      ],
+      "q2": [
+        "0",
+        "-1"
+      ],
+      "c1": [
+        "0",
+        "1"
+      ],
+      "c2": [
+        "-0.8660254037?",
+        "1/2"
+      ],
+      "p1": [
+        "1.3228756555?",
+        "1"
+      ],
+      "p2": [
+        "-1.3228756555?",
+        "1"
+      ],
+      "r1": [
+        "2.5980762113?",
+        "1"
+      ],
+      "r2": [
+        "-2.5980762113?",
+        "1"
+      ]
+    },
+    "cvc5": "sat"
+  },
+  {
+    "label": "sat_source_exact_rational_witness",
+    "z3": "sat",
+    "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/artifacts/sat_source_exact_rational_witness.smt2",
+    "readback": {
+      "q1": [
+        "-4/5",
+        "-3/5"
+      ],
+      "q2": [
+        "3/5",
+        "-4/5"
+      ],
+      "c1": [
+        "4/5",
+        "3/5"
+      ],
+      "c2": [
+        "-3/5",
+        "4/5"
+      ],
+      "p1": [
+        "6/5",
+        "11/10"
+      ],
+      "p2": [
+        "-6/5",
+        "11/10"
+      ],
+      "r1": [
+        "9/5",
+        "19/10"
+      ],
+      "r2": [
+        "-9/5",
+        "19/10"
+      ]
+    },
+    "cvc5": "sat"
+  },
+  {
+    "label": "unsat_malformed_two_radii",
+    "z3": "unsat",
+    "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_sameblocker_metric_v1/artifacts/unsat_malformed_two_radii.smt2",
+    "cvc5": "unsat"
+  }
+]
