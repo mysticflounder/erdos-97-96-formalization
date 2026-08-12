@@ -8709,3 +8709,23 @@ until Lean supplies the complete finite orbit for that exact cancellation
 instance and a `SourceRealization` bridge from the cap-nine source packet.  The
 active route is therefore that orbit and bridge, followed by one authenticated
 PIQD successor only if the resulting Lean-owned child is still satisfiable.
+
+### 13.28.1 Twentieth-root production checkpoint — 2026-08-11
+
+The exact-17 cap-nine route has advanced through an authenticated nineteenth
+`SAT` root. Complete model replay and the required theorem-bank scan produced
+six nonredundant, source-clean motif families. Lean now banks their occurrence
+bridges, a 24-clause suffix, the extended-CNF source evaluator, and a
+conditional terminal adapter in
+`BlockerVExactSeventeenNineteenthModelRefinements.lean`; the targeted build and
+axiom audit show no `sorryAx` (with the accepted `native_decide` trust boundary).
+The exporter and independent ingress validators passed.
+
+The authorized twentieth root is SHA-256
+`e719b8c17edf85e089d859fbc1ab8aaa43d8a6e9514f32eb4a76842a665dd3ce`,
+with 308 variables and 5,846,188 clauses. Immutable PIQD job
+`51cdf518-1150-47f5-ac2f-94a98159eb82` is running. This remains a finite
+exact-17 cap-nine campaign, not full P97 closure. The next admissible step is
+determined by the authenticated terminal result: replay and mine another
+`SAT` model, or independently replay an `UNSAT` certificate and compose its
+banked theorem into the exact-17 source leaf.

@@ -1,0 +1,29 @@
+{
+  "clauses": 5846188,
+  "motivating_model_cut_clauses": {
+    "bisector_one": [
+      5846170
+    ],
+    "bisector_two": [
+      5846173
+    ],
+    "cancellation": [
+      5846181
+    ],
+    "convex_five": [
+      5846177
+    ],
+    "duplicate_center": [
+      5846185
+    ],
+    "five_row": [
+      5846165
+    ]
+  },
+  "new_clauses": 24,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-nineteenth-model-refinements-export-validation/v1",
+  "suffix_sha256": "34449599a7d4e9500db3d6d5cc54634fa2919d5b23a1cafae0307bb110390260",
+  "variables": 308
+}
