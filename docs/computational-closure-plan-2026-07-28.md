@@ -1583,20 +1583,95 @@ The v3 all-order miner now requires the v7 schemas and authenticates the v20
 bank artifact.  No successor solver has been launched, and this is not
 terminal UNSAT, general-cardinality closure, or a live `sorry` reduction.
 
+Exact-12 v20 diagnostic result and v21 ingress checkpoint (2026-08-12): the
+sole authorized v20 cell-6 canary returned `SAT_WITNESS_REPLAYED` and was
+classified `STRUCTURALLY_UNRESOLVED`.  Its job id was
+`5dae106ba07e4782ef1d61593ec10f80b72b26398bc8a2c539104b52253a2a1f`;
+the authenticated job, assignment, survivor, and discovery-CNF SHA-256 values
+were respectively
+`208d858a325d96121bc61f6cbd1bcf38461b7eaa1debd363d5be86e4a2f622b5`,
+`6e90856d4f749264bb2443a89a05ed5c5ed2aa23c62af6e5729fb69c59399f1b`,
+`2fa17b90d7ef784a36f45a5f63e9faf09e86470016079e7e500fea5f3e858060`,
+and
+`2fca0633a644f0dbe3d8cfc0d25c716575ba69484a0f1f38f7b7724fcfdb1e67`.
+There is no terminal proof artifact.
+
+The mandatory all-order pass covered all 48 source orders with the same
+common-five core `(a,x,b,c,y) = (10,5,2,9,0)`: 24 forward and 24 reverse,
+equally split between the direct and reflected source orientations.  The
+certificate and containing-artifact SHA-256 values are
+`ffbfbfe5546caf71ca590ba8459f0b84c05baf7af2c2dd21d7aa2a57916aef66`
+and
+`f8c393b976e445eeade8d51114d90b3144a60cb263d7d9c3a3aa3710a893cf77`.
+This mined a source-proved 24-role family with `a ∈ {10,11}`,
+`x ∈ {3,4,5}`, and `c ∈ {6,7,8,9}` requiring selected rows
+`a:{2,x}`, `2:{a,x}`, `0:{2,a}`, and `c:{0,2,x}`.  The Lean producer checks
+both frozen boundary orientations and feeds the existing convex common-five
+terminal.
+
+The v21 CNF bridge represents the two center-`c` pair requirements by their
+equivalent triple requirement.  It reuses exactly six authenticated parent
+variables `45302`--`45307`, allocates twenty fresh variables
+`45338`--`45357`, and emits 120 source-faithful implication clauses followed
+by 24 four-literal role blocks.  The frozen prefix therefore has 45,357
+variables and 644,207 clauses.  Its DIMACS, delta, compiled-payload, role, and
+bank SHA-256 values are respectively
+`ee31f59067eb0dc9140e0a9a4cc1a5fd077154c2b8f54910ed42162ff95adc9c`,
+`596466a1a6131c08c073a560bb5c14cdcd352abf21446cede380b0425b49794b`,
+`b199915ca71557108ff1574fc694a7341edbf8014fd4c45844640f409e59a35d`,
+`68b644141ef61f37beef118890d5164b63d10d1e0845b9007a1dd91861c7151b`,
+and
+`3e717aebe7ad5f614123461f2e1f10c0315f0c8308d56c3808426a61457227dd`.
+The compiler rejects requirements with no candidate realization, unexpected
+fresh-variable reuse, or drift in the exact inherited variable identities.
+Runner schema v8 installs and re-attests this bank before the unchanged named-
+arm and source-order suffixes.  The post-arm formula has 645,074 clauses with
+DIMACS SHA-256
+`1d7ef9f39e6c6c2127599ef7911d1535d36028fe22038d72b5a4eff10e5e05a3`;
+the rebuilt source-order bank has SHA-256
+`84d27968cd8becaa9fe56e67839f3b54e6da53acd76f4f8ea700f0288f0377e5`;
+and the final 645,155-clause formula has DIMACS SHA-256
+`a69826e5588cad4f42ab1d23edd3e20378ae4a21ff8dc43b616c4e9c4be53c6d`.
+The exact bank suite passes 6/6, including literal Python-to-Lean comparison
+of all 120 implications and 24 blocks, zero-candidate rejection, tamper
+rejection, and rollback.  The no-solver/fake-solver runner suite passes 10/10;
+targeted Lean elaboration and the recorded axiom-boundary checks are green;
+and an independent source audit found no parity, fail-closed, runner, or PIQD-
+contract defect.  Its documentation-freshness finding is resolved by the v21
+supplement in
+`docs/specs/p97-exact12-next-row-static-piqd-discovery-v1.md`.
+This checkpoint remains finite theorem-bank refinement: it is not terminal
+UNSAT, all-arm coverage, a general-cardinality lift, or a live `sorry`
+reduction.  No v21 solver is authorized until the cross-language parity,
+rollback, runner, Lean, axiom, documentation, commit, push, and independent
+audit gates are green.
+
 PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
 raw CNF bytes, job identity, and solver result that it receives.  It does not
 interpret or validate the caller's Python-to-Lean variable semantics, source
-entitlement, or proof-assistant consumer.  Moreover, the current producer
-manifest contract hashes the exact submitted bytes into the job identity but
-retains only parsed JSON; no PIQD response supplies bytes that re-hash to that
-producer digest, so the caller must preserve its own exact manifest bytes.
-The contradictory PIQD CLI/source capability text was corrected upstream in
-PIQD commit `4cb8fb1`; exact-byte manifest retention and retrieval remains a
-separate requested feature, not a current capability.  Consequently every P97
-bank promotion must independently compare the complete numeric variable-to-
+entitlement, or proof-assistant consumer.  PIQD commit `773ccde` introduced
+retention of the exact producer-manifest bytes for newly prepared raw-DIMACS
+jobs.  `GET /jobs/:id` advertises their content address as
+`producer_manifest_blob_hash`, and `GET /jobs/:id/blobs/:hash` returns bytes
+that are re-hashed against that address.  This is an exact-byte custody
+contract for the submitted manifest, not semantic validation of the manifest
+or custody of the source files named inside it.  The field is null for
+pre-change jobs, raw-DIMACS jobs submitted without a manifest, and non-raw-
+DIMACS jobs; historical manifest bytes cannot be backfilled.  The distinct
+`producer_manifest_hash` remains the digest folded into job identity and is
+not evidence that bytes are retrievable.  Consequently every P97 bank
+promotion must still independently compare the complete numeric variable-to-
 source-requirement map and emitted clause order across Python and Lean.  A
 successful PIQD replay cannot substitute for that cross-language semantic
-test.
+test.  Commit `3cff11c` introduced enforcement of one daemon per
+data directory with an exclusive advisory lock; this prevents the previously
+possible two-daemon/double-solve corruption mode without changing routes,
+identity, or deduplication semantics.  At this checkpoint, `piqd status`
+reports the running daemon build as
+`aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107`;
+the deployed binary exposes the producer-manifest content-address field and
+blob route.  That deployment observation does not enlarge the custody
+contract described above.
 
 ## 0. Universal-ingress contract (binding, 2026-08-04)
 

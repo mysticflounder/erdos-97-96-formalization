@@ -37,6 +37,21 @@ from census.card_head.exact12_next_row_arm_static_canary import (
     _source_manifest,
 )
 from census.card_head.exact12_next_row_cell_run import _json_sha256
+from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
+    BANK_SCHEMA as RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SCHEMA,
+)
+from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
+    EXPECTED_BANK_SHA256 as EXPECTED_RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SHA256,
+)
+from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
+    FAMILY_ID as RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_FAMILY_ID,
+)
+from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
+    _sha256_json as _reciprocal_first_opposite_surplus_second_opposite_common_five_bank_sha256,
+)
+from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
+    attest_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank_live_sources,
+)
 from census.card_head.exact12_v14_ordered_coverage import (
     SOURCE_ORDERS,
     _closure_memberships,
@@ -60,6 +75,7 @@ from census.global_confinement import (
 )
 
 MINING_SCHEMA = "p97_rigid221_exact12_static_canary_all_order_mining.v3"
+EXPECTED_SURVIVOR_CLASSIFICATION = "STRUCTURALLY_UNRESOLVED"
 
 
 class MiningError(RuntimeError):
@@ -130,6 +146,10 @@ def mine(workdir: Path) -> dict[str, Any]:
     apex_first_opposite_shared_pair_surplus_common_five_bank_path = (
         workdir / "apex_first_opposite_shared_pair_surplus_common_five_family_bank.json"
     )
+    reciprocal_first_opposite_surplus_second_opposite_common_five_bank_path = (
+        workdir
+        / "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank.json"
+    )
     discovery_cnf_path = workdir / "discovery.cnf"
     summary = _read_json(summary_path)
     job = _read_json(job_path)
@@ -137,6 +157,9 @@ def mine(workdir: Path) -> dict[str, Any]:
     source_order_bank = _read_json(source_order_bank_path)
     apex_first_opposite_shared_pair_surplus_common_five_bank = _read_json(
         apex_first_opposite_shared_pair_surplus_common_five_bank_path
+    )
+    reciprocal_first_opposite_surplus_second_opposite_common_five_bank = _read_json(
+        reciprocal_first_opposite_surplus_second_opposite_common_five_bank_path
     )
 
     if summary.get("schema") != RUN_SCHEMA:
@@ -147,7 +170,7 @@ def mine(workdir: Path) -> dict[str, Any]:
         raise MiningError("static canary is not a replayed SAT survivor")
     if summary.get("discovery_verdict") != "SAT":
         raise MiningError("static canary summary does not record discovery SAT")
-    if summary.get("classification") != "UNADMITTED_STRUCTURAL_SURVIVOR":
+    if summary.get("classification") != EXPECTED_SURVIVOR_CLASSIFICATION:
         raise MiningError("static canary is not structurally unresolved")
     if (
         summary.get("terminal_verdict") is not None
@@ -185,6 +208,13 @@ def mine(workdir: Path) -> dict[str, Any]:
             summary=summary,
             key="apex_first_opposite_shared_pair_surplus_common_five_family_bank",
             path=apex_first_opposite_shared_pair_surplus_common_five_bank_path,
+        )
+    )
+    reciprocal_first_opposite_surplus_second_opposite_common_five_bank_artifact = (
+        _require_artifact(
+            summary=summary,
+            key="reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank",
+            path=reciprocal_first_opposite_surplus_second_opposite_common_five_bank_path,
         )
     )
     source_discovery_cnf_artifact = _require_artifact(
@@ -278,11 +308,61 @@ def mine(workdir: Path) -> dict[str, Any]:
             f"attestation failed: {exc}"
         ) from exc
 
+    reciprocal_job = job.get(
+        "reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank"
+    )
+    reciprocal_snapshot = dict(
+        reciprocal_first_opposite_surplus_second_opposite_common_five_bank
+    )
+    reciprocal_digest = reciprocal_snapshot.pop("bank_sha256", None)
+    if (
+        reciprocal_job
+        != {
+            "schema": RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SCHEMA,
+            "family_id": RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_FAMILY_ID,
+            "sha256": EXPECTED_RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SHA256,
+            "lean_terminal_ingress_ready": False,
+        }
+        or reciprocal_first_opposite_surplus_second_opposite_common_five_bank.get(
+            "schema"
+        )
+        != RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SCHEMA
+        or reciprocal_first_opposite_surplus_second_opposite_common_five_bank.get(
+            "family_id"
+        )
+        != RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_FAMILY_ID
+        or reciprocal_digest
+        != EXPECTED_RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SHA256
+        or reciprocal_digest
+        != _reciprocal_first_opposite_surplus_second_opposite_common_five_bank_sha256(
+            reciprocal_snapshot
+        )
+        or reciprocal_first_opposite_surplus_second_opposite_common_five_bank_artifact[
+            "sha256"
+        ]
+        != _artifact(
+            reciprocal_first_opposite_surplus_second_opposite_common_five_bank_path
+        )["sha256"]
+    ):
+        raise MiningError(
+            "reciprocal first/surplus/second common-five bank provenance failed"
+        )
+    try:
+        attest_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank_live_sources(
+            Path(__file__).resolve().parents[2],
+            reciprocal_first_opposite_surplus_second_opposite_common_five_bank,
+        )
+    except ValueError as exc:
+        raise MiningError(
+            "reciprocal first/surplus/second common-five bank source "
+            f"attestation failed: {exc}"
+        ) from exc
+
     positive_variables = survivor.get("positive_variables")
     if (
         survivor.get("job_id") != job_id
         or survivor.get("arm_cell_index") != SUPPORTED_ARM_CELL_INDEX
-        or survivor.get("classification") != "UNADMITTED_STRUCTURAL_SURVIVOR"
+        or survivor.get("classification") != EXPECTED_SURVIVOR_CLASSIFICATION
         or survivor.get("replay") != replay
         or not isinstance(positive_variables, list)
         or any(type(value) is not int for value in positive_variables)
@@ -402,6 +482,9 @@ def mine(workdir: Path) -> dict[str, Any]:
             "source_order_bank": source_order_bank_artifact,
             "apex_first_opposite_shared_pair_surplus_common_five_family_bank": (
                 apex_first_opposite_shared_pair_surplus_common_five_bank_artifact
+            ),
+            "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank": (
+                reciprocal_first_opposite_surplus_second_opposite_common_five_bank_artifact
             ),
             "discovery_cnf": source_discovery_cnf_artifact,
             "job_id": job_id,
