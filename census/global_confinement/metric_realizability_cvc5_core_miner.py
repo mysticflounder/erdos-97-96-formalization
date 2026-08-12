@@ -11,6 +11,7 @@ import json
 import math
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -374,7 +375,13 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    args = _parse_args(argv)
+    raw_argv = list(sys.argv[1:] if argv is None else argv)
+    if "--legacy-local" not in raw_argv:
+        from . import metric_realizability_piqd_core_miner as piqd_core
+
+        return piqd_core.main(raw_argv)
+    raw_argv.remove("--legacy-local")
+    args = _parse_args(raw_argv)
     if args.workers < 1 or args.workers > 8:
         raise SystemExit("--workers must be between 1 and 8")
     if args.deletion_timeout <= 0 or args.validation_timeout <= 0:

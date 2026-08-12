@@ -48,6 +48,8 @@ RESULT_SCHEMA = "p97-phase3-survivor-metric-result-v1"
 EXPECTED_SOURCE_COUNT = 100
 ORDER_COUNT = 24
 MAX_WORKERS = 24
+DEFAULT_PIQD_SERVER = "http://127.0.0.1:7272"
+SOLVER_ROUTES = ("piqd", "legacy-local-z3")
 RUNNING_SNAPSHOT_SCOPE = "immutable-running-partial-survivor-snapshot"
 SURVIVOR_LIMIT_SCOPE = "survivor-limit-checkpoint"
 STATUSES = ("SAT", "UNSAT", "UNKNOWN", "ERROR")
@@ -195,6 +197,33 @@ def _atomic_bytes(path: Path, data: bytes) -> None:
 
 def _atomic_json(path: Path, value: Any) -> None:
     _atomic_bytes(path, json.dumps(value, indent=2, sort_keys=True).encode() + b"\n")
+
+
+def _immutable_bytes(path: Path, data: bytes) -> None:
+    """Create one output artifact without following or replacing a target."""
+
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(path, flags, 0o600)
+    try:
+        view = memoryview(data)
+        while view:
+            written = os.write(descriptor, view)
+            if written <= 0:
+                raise SurvivorMetricError(f"short immutable write for {path.name}")
+            view = view[written:]
+        os.fsync(descriptor)
+    except BaseException:
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
+        raise
+    finally:
+        os.close(descriptor)
+
+
+def _immutable_json(path: Path, value: Any) -> None:
+    _immutable_bytes(path, json.dumps(value, indent=2, sort_keys=True).encode() + b"\n")
 
 
 def _status_counts(values: Sequence[str]) -> dict[str, int]:
@@ -597,7 +626,95 @@ def _with_record_hash(
 
 def _write_results(path: Path, records: Sequence[Mapping[str, Any]]) -> None:
     data = b"".join(_canonical_bytes(record) + b"\n" for record in records)
-    _atomic_bytes(path, data)
+    _immutable_bytes(path, data)
+
+
+def _piqd_exact_result(stage: Mapping[str, Any]) -> dict[str, Any]:
+    raw_status = stage.get("status")
+    effective = stage.get("effective_status")
+    status = raw_status
+    if raw_status == "SAT" and effective != "SAT_SEMANTICALLY_REPLAYED":
+        status = "UNKNOWN"
+    if status not in {"SAT", "UNSAT", "UNKNOWN"}:
+        status = "ERROR"
+    return {
+        "stage": "exact-metric-relaxation",
+        "status": status,
+        "diagnostic": str(stage.get("classification", "INCONCLUSIVE_NO_VERDICT")),
+        "backend_result": dict(stage),
+    }
+
+
+def _piqd_order_result(
+    result: Mapping[str, Any], order_spec: realize.OrderSpec
+) -> dict[str, Any]:
+    status = result.get("status")
+    if status not in {"SAT", "UNSAT", "UNKNOWN"}:
+        status = "ERROR"
+    decisive = result.get("decisive_stage")
+    diagnostic = (
+        "SAT_EXACT_RATIONAL_REPLAYED_ROW_LEVEL_DIAGNOSTIC"
+        if status == "SAT"
+        else (
+            "Z3_UNSAT_DIAGNOSTIC_NOT_PROOF_CHECKED"
+            if status == "UNSAT"
+            else "UNKNOWN_OR_INCONCLUSIVE_NO_VERDICT"
+        )
+    )
+    return {
+        "status": status,
+        "diagnostic": diagnostic,
+        "raw_result_sha256": _sha256_value(result),
+        "backend_result": dict(result),
+        "decisive_stage": decisive,
+        "order_id": order_spec.order_id,
+        "order": list(order_spec.order),
+    }
+
+
+def _run_piqd_tasks(
+    cases: Sequence[SurvivorCase],
+    *,
+    source_dir: Path,
+    expected_count: int,
+    running_snapshot: bool,
+    timeout_s: float,
+    transport: Any,
+    output_directory: Path,
+) -> tuple[dict[int, dict[str, Any]], dict[tuple[int, str], dict[str, Any]]]:
+    """Run every PIQD leaf sequentially; no ProcessPool or local fallback."""
+
+    from census.p97_search import phase3_survivor_metric_piqd as piqd
+
+    bindings = piqd.capture_sources(
+        source_dir,
+        expected_count=expected_count,
+        running_snapshot=running_snapshot,
+    )
+    if tuple(binding.case for binding in bindings) != tuple(cases):
+        raise SurvivorMetricError("PIQD survivor bindings crossed ingress replay")
+    piqd.create_output_root(output_directory)
+    exact_results: dict[int, dict[str, Any]] = {}
+    convex_results: dict[tuple[int, str], dict[str, Any]] = {}
+    for binding in bindings:
+        case_root = output_directory / f"survivor-{binding.case.index:04d}"
+        case_root.mkdir(mode=0o700)
+        for order_index, order_spec in enumerate(binding.case.orders):
+            result = piqd.run_staged_order(
+                binding,
+                order_spec,
+                timeout_s=timeout_s,
+                transport=transport,
+                output_directory=case_root / f"{order_index:02d}-{order_spec.order_id}",
+            )
+            if order_index == 0:
+                exact_results[binding.case.index] = _piqd_exact_result(
+                    result["stages"][0]
+                )
+            convex_results[(binding.case.index, order_spec.order_id)] = (
+                _piqd_order_result(result, order_spec)
+            )
+    return exact_results, convex_results
 
 
 def _run_tasks(
@@ -689,9 +806,15 @@ def run_driver(
     running_snapshot: bool = False,
     exact_runner: ExactRunner = _exact_metric_backend,
     convex_runner: ConvexRunner = _convex_order_backend,
+    solver_route: str = "piqd",
+    piqd_transport: Any | None = None,
+    piqd_server: str = DEFAULT_PIQD_SERVER,
+    piqd_output_directory: Path | None = None,
 ) -> dict[str, Any]:
-    """Replay, classify, and atomically publish one complete survivor census."""
+    """Replay, classify, and publish one complete survivor census."""
 
+    if type(solver_route) is not str or solver_route not in SOLVER_ROUTES:
+        raise ValueError("unknown metric solver route")
     if type(workers) is not int or not 1 <= workers <= MAX_WORKERS:
         raise ValueError(f"workers must be in 1..{MAX_WORKERS}")
     if (
@@ -701,15 +824,30 @@ def run_driver(
         or timeout_s <= 0
     ):
         raise ValueError("timeout_s must be positive")
-    occupied = [
-        name
-        for name in ("manifest.json", "results.jsonl", "source-manifest.json")
-        if (out_dir / name).exists()
-    ]
-    if occupied:
+    injected_test_route = (
+        exact_runner is not _exact_metric_backend
+        or convex_runner is not _convex_order_backend
+    )
+    if solver_route == "piqd" and not injected_test_route and workers != 1:
+        raise SurvivorMetricError("PIQD metric route requires workers=1")
+    if solver_route == "piqd" and injected_test_route and workers != 1:
         raise SurvivorMetricError(
-            f"refusing to overwrite existing output artifacts: {occupied}"
+            "custom solver runners are supported only with workers=1"
         )
+    if out_dir.exists():
+        raise SurvivorMetricError(
+            f"refusing to overwrite existing output directory: {out_dir}"
+        )
+    selected_piqd_output = piqd_output_directory
+    if solver_route == "piqd" and not injected_test_route:
+        if selected_piqd_output is None:
+            selected_piqd_output = Path(f"{out_dir}.piqd")
+        if type(selected_piqd_output) is not type(Path()):
+            raise ValueError("piqd_output_directory must be an exact platform Path")
+        if selected_piqd_output.exists():
+            raise SurvivorMetricError(
+                f"refusing to overwrite PIQD custody root: {selected_piqd_output}"
+            )
 
     source_manifest_path = _source_manifest_path(
         source_dir, running_snapshot=running_snapshot
@@ -727,13 +865,35 @@ def run_driver(
     ):
         raise SurvivorMetricError("source snapshot changed during ingress replay")
     equality_results = {case.index: classify_equality_only(case.rows) for case in cases}
-    exact_results, convex_results = _run_tasks(
-        cases,
-        workers=workers,
-        timeout_s=float(timeout_s),
-        exact_runner=exact_runner,
-        convex_runner=convex_runner,
-    )
+    if solver_route == "piqd" and not injected_test_route:
+        from census.p97_search import phase3_piqd_smt_source_adapter as neutral
+
+        transport = piqd_transport
+        if transport is None:
+            transport = neutral.UrllibPiqdTransport(piqd_server)
+        if selected_piqd_output is None:
+            raise SurvivorMetricError("PIQD custody root was not selected")
+        exact_results, convex_results = _run_piqd_tasks(
+            cases,
+            source_dir=source_dir,
+            expected_count=expected_count,
+            running_snapshot=running_snapshot,
+            timeout_s=float(timeout_s),
+            transport=transport,
+            output_directory=selected_piqd_output,
+        )
+        effective_route = "piqd-z3-qfnra"
+    else:
+        exact_results, convex_results = _run_tasks(
+            cases,
+            workers=workers,
+            timeout_s=float(timeout_s),
+            exact_runner=exact_runner,
+            convex_runner=convex_runner,
+        )
+        effective_route = (
+            "injected-test-runner" if injected_test_route else "legacy-local-z3"
+        )
 
     records: list[dict[str, Any]] = []
     previous: str | None = None
@@ -787,10 +947,10 @@ def run_driver(
     ):
         raise SurvivorMetricError("source snapshot changed during metric screening")
 
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=False)
     results_path = out_dir / "results.jsonl"
     _write_results(results_path, records)
-    _atomic_bytes(out_dir / "source-manifest.json", source_manifest_bytes)
+    _immutable_bytes(out_dir / "source-manifest.json", source_manifest_bytes)
 
     equality_statuses = [
         str(record["equality_only_metric_core"]["status"]) for record in records
@@ -807,6 +967,10 @@ def run_driver(
         "mode": "cap+blocker-annotated",
         "metric_row_exact": False,
         "workers": workers,
+        "solver_route": effective_route,
+        "requested_solver_route": solver_route,
+        "legacy_local_z3_explicit": solver_route == "legacy-local-z3",
+        "local_fallback": False,
         "timeout_seconds_per_solver_call": float(timeout_s),
         "order_count_per_survivor": ORDER_COUNT,
         "dependency_sha256": {
@@ -814,9 +978,22 @@ def run_driver(
             for relative in (
                 *SOURCE_DEPENDENCIES,
                 "census/p97_search/phase3_survivor_metric_driver.py",
+                *(
+                    (
+                        "census/p97_search/phase3_survivor_metric_piqd.py",
+                        "census/p97_search/phase3_piqd_smt_source_adapter.py",
+                        "census/endpoint_confinement/metric_realizability_piqd.py",
+                    )
+                    if effective_route == "piqd-z3-qfnra"
+                    else ()
+                ),
             )
         },
     }
+    if selected_piqd_output is not None and effective_route == "piqd-z3-qfnra":
+        configuration["piqd_output_directory"] = _portable_source_reference(
+            selected_piqd_output
+        )
     source = {
         "directory": _portable_source_reference(source_dir),
         "manifest_file_sha256": _sha256_bytes(source_manifest_bytes),
@@ -882,7 +1059,8 @@ def run_driver(
                 "not a P97 configuration"
             ),
             "solver_unsat": (
-                "trusted Z3 computation for the encoded system, not Lean closure"
+                "proofless Z3 diagnostic for the encoded system, not a checked "
+                "proof or Lean closure"
             ),
             "unknown_error": "no verdict",
             "lean": "NOT_LANDED",
@@ -892,7 +1070,7 @@ def run_driver(
         **unsigned_manifest,
         "manifest_sha256": _sha256_value(unsigned_manifest),
     }
-    _atomic_json(out_dir / "manifest.json", manifest)
+    _immutable_json(out_dir / "manifest.json", manifest)
     return manifest
 
 
@@ -903,9 +1081,21 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--workers",
         type=int,
-        default=min(MAX_WORKERS, os.cpu_count() or 1),
+        default=1,
     )
     parser.add_argument("--timeout", type=float, default=2.0)
+    parser.add_argument(
+        "--solver-route",
+        choices=SOLVER_ROUTES,
+        default="piqd",
+        help="production PIQD route (default) or explicit legacy local Z3",
+    )
+    parser.add_argument("--piqd-server", default=DEFAULT_PIQD_SERVER)
+    parser.add_argument(
+        "--piqd-output-directory",
+        type=Path,
+        help="create-once PIQD custody root (default: <out>.piqd)",
+    )
     parser.add_argument(
         "--expected-count",
         type=int,
@@ -933,6 +1123,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             timeout_s=args.timeout,
             expected_count=args.expected_count,
             running_snapshot=args.running_snapshot,
+            solver_route=args.solver_route,
+            piqd_server=args.piqd_server,
+            piqd_output_directory=args.piqd_output_directory,
         )
     except (OSError, ValueError, SurvivorMetricError) as exc:
         print(f"phase3 survivor metric driver failed: {exc}")
