@@ -28,6 +28,14 @@ from .exact12_adjacent_apex_cross_block_membership_family_bank import (
     attest_adjacent_apex_cross_block_membership_family_bank_live_sources,
     install_adjacent_apex_cross_block_membership_family_bank,
 )
+from .exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank import (
+    Exact12ApexFirstOppositeSharedPairCommonFiveMembershipFamilyBankError,
+    attest_apex_first_opposite_shared_pair_common_five_membership_family_bank_live_sources,
+    install_apex_first_opposite_shared_pair_common_five_membership_family_bank,
+)
+from .exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank import (
+    _source_paths as apex_first_opposite_shared_pair_common_five_source_paths,
+)
 from .exact12_apex_internal_shared_pair_common_five_membership_family_bank import (
     Exact12ApexInternalSharedPairCommonFiveMembershipFamilyBankError,
     attest_apex_internal_shared_pair_common_five_membership_family_bank_live_sources,
@@ -120,23 +128,23 @@ JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v2"
 ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
-EXPECTED_PREFIX_VARIABLES = 45_162
-EXPECTED_PREFIX_CLAUSES = 640_454
+EXPECTED_PREFIX_VARIABLES = 45_176
+EXPECTED_PREFIX_CLAUSES = 640_828
 EXPECTED_PREFIX_DIMACS_SHA256 = (
-    "34e2a2d14aaa2ca93cf71af94f5f3e19f4bb67ae106d9c9cdff33d1c582d182e"
+    "1c5e5128225ad7d3878a2e1580f3628ca8955172982b0803d599ed2ad94c2d59"
 )
 EXPECTED_ARM_SUFFIX_CLAUSES = 867
-EXPECTED_POST_ARM_CLAUSES = 641_321
+EXPECTED_POST_ARM_CLAUSES = 641_695
 EXPECTED_POST_ARM_DIMACS_SHA256 = (
-    "291f4dbf3649090e4068920026e754ba6d10e02528b557a3665927567c6ebb57"
+    "d93616f6553e9fc8e5ecdb56921b7279f24368cb47375f8811581a6bc5a66ad5"
 )
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "84d27968cd8becaa9fe56e67839f3b54e6da53acd76f4f8ea700f0288f0377e5"
 )
-EXPECTED_FINAL_CLAUSES = 641_402
+EXPECTED_FINAL_CLAUSES = 641_776
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "0e24885e3e2e7474441aa687216ee1cf862a7d05e6ab2bbd7c1637e7fd22ec12"
+    "e2128c88bb9af157621674205f30596d4d9ca8f86911c070c03e3055767a3dcf"
 )
 TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_ARM_STATIC_LEAN_INGRESS"
 SUCCESS_STATUSES = frozenset({"SAT_WITNESS_REPLAYED", TERMINAL_STATUS})
@@ -152,6 +160,10 @@ SOURCE_PATHS = (
     (
         "census/card_head/"
         "exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    ),
+    (
+        "census/card_head/"
+        "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
     ),
     "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py",
     ("census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"),
@@ -186,6 +198,26 @@ SOURCE_PATHS = (
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221ApexInternalSharedPairCommonFiveMembershipFamilyCnf.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexFirstOppositeSharedPairCommonFiveCertificate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221OrderedThreeRowCuts.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221PositiveMembershipCnfBridge.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221SourceOrderPositiveNogood.lean"
     ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
@@ -248,6 +280,7 @@ class MaterializedArmStaticCanary:
     apex_pair_cross_block_family_bank: dict[str, Any]
     apex_shared_pair_cross_block_family_bank: dict[str, Any]
     apex_internal_shared_pair_common_five_family_bank: dict[str, Any]
+    apex_first_opposite_shared_pair_common_five_family_bank: dict[str, Any]
     arm_suffix: dict[str, Any]
     source_order_bank: dict[str, Any]
     prepared_source_order_bank: PreparedSourceOrderBank
@@ -484,6 +517,18 @@ def materialize_arm_static_canary(
         attest_apex_internal_shared_pair_common_five_membership_family_bank_live_sources(
             repo_root, apex_internal_shared_pair_common_five_family_bank
         )
+        apex_first_opposite_shared_pair_common_five_family_bank = (
+            install_apex_first_opposite_shared_pair_common_five_membership_family_bank(
+                repo_root,
+                instance,
+                layout,
+                apex_internal_shared_pair_common_five_family_bank,
+                cell_index=SUPPORTED_PLACEMENT_INDEX,
+            )
+        )
+        attest_apex_first_opposite_shared_pair_common_five_membership_family_bank_live_sources(
+            repo_root, apex_first_opposite_shared_pair_common_five_family_bank
+        )
     except Exact12SurplusApexPairMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AdjacentApexCrossBlockMembershipFamilyBankError as exc:
@@ -501,6 +546,8 @@ def materialize_arm_static_canary(
     except Exact12ApexSharedPairCrossBlockMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12ApexInternalSharedPairCommonFiveMembershipFamilyBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except Exact12ApexFirstOppositeSharedPairCommonFiveMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
 
     arm_instance = SourceFaithfulCoverInstance(
@@ -559,6 +606,9 @@ def materialize_arm_static_canary(
         apex_internal_shared_pair_common_five_family_bank=(
             apex_internal_shared_pair_common_five_family_bank
         ),
+        apex_first_opposite_shared_pair_common_five_family_bank=(
+            apex_first_opposite_shared_pair_common_five_family_bank
+        ),
         arm_suffix=arm_suffix,
         source_order_bank=source_order_bank,
         prepared_source_order_bank=prepared,
@@ -595,8 +645,12 @@ def replay_arm_static_sat_witness(
 
 def _source_manifest(repo_root: Path) -> list[dict[str, Any]]:
     try:
+        source_paths = set(SOURCE_PATHS)
+        source_paths.update(
+            apex_first_opposite_shared_pair_common_five_source_paths(repo_root)
+        )
         return [
-            _source_record(repo_root.resolve(), path) for path in sorted(SOURCE_PATHS)
+            _source_record(repo_root.resolve(), path) for path in sorted(source_paths)
         ]
     except (OSError, ValueError) as exc:
         raise Exact12NextRowArmStaticCanaryError(
@@ -627,6 +681,9 @@ def _build_job(
     )
     apex_internal_shared_pair_common_five_family_bank = (
         materialized.apex_internal_shared_pair_common_five_family_bank
+    )
+    apex_first_opposite_shared_pair_common_five_family_bank = (
+        materialized.apex_first_opposite_shared_pair_common_five_family_bank
     )
     source_order_bank = materialized.source_order_bank
     payload = {
@@ -702,6 +759,18 @@ def _build_job(
             ),
             "lean_terminal_ingress_ready": False,
         },
+        "apex_first_opposite_shared_pair_common_five_membership_family_bank": {
+            "schema": apex_first_opposite_shared_pair_common_five_family_bank.get(
+                "schema"
+            ),
+            "sha256": apex_first_opposite_shared_pair_common_five_family_bank.get(
+                "bank_sha256"
+            ),
+            "family_id": apex_first_opposite_shared_pair_common_five_family_bank.get(
+                "family_id"
+            ),
+            "lean_terminal_ingress_ready": False,
+        },
         "arm_suffix": {
             "schema": ARM_SUFFIX_SCHEMA,
             "sha256": materialized.arm_suffix["suffix_record_sha256"],
@@ -727,6 +796,64 @@ def _build_job(
         "sources": _source_manifest(repo_root),
     }
     return {**payload, "job_id": _json_sha256(payload)}
+
+
+def _required_artifact_hashes(
+    job: Mapping[str, Any], materialized: MaterializedArmStaticCanary
+) -> dict[str, str]:
+    return {
+        "job": _json_sha256(job),
+        "arm_suffix": _json_sha256(materialized.arm_suffix),
+        "positive_membership_bank": _json_sha256(
+            materialized.positive_membership_bank
+        ),
+        "surplus_apex_pair_family_bank": _json_sha256(
+            materialized.surplus_apex_pair_family_bank
+        ),
+        "adjacent_apex_cross_block_family_bank": _json_sha256(
+            materialized.adjacent_apex_cross_block_family_bank
+        ),
+        "second_cap_apex_surplus_family_bank": _json_sha256(
+            materialized.second_cap_apex_surplus_family_bank
+        ),
+        "surplus_three_triad_family_bank": _json_sha256(
+            materialized.surplus_three_triad_family_bank
+        ),
+        "zero_center_cross_block_family_bank": _json_sha256(
+            materialized.zero_center_cross_block_family_bank
+        ),
+        "apex_zero_cross_block_family_bank": _json_sha256(
+            materialized.apex_zero_cross_block_family_bank
+        ),
+        "apex_pair_cross_block_family_bank": _json_sha256(
+            materialized.apex_pair_cross_block_family_bank
+        ),
+        "apex_shared_pair_cross_block_family_bank": _json_sha256(
+            materialized.apex_shared_pair_cross_block_family_bank
+        ),
+        "apex_internal_shared_pair_common_five_family_bank": _json_sha256(
+            materialized.apex_internal_shared_pair_common_five_family_bank
+        ),
+        "apex_first_opposite_shared_pair_common_five_family_bank": _json_sha256(
+            materialized.apex_first_opposite_shared_pair_common_five_family_bank
+        ),
+        "source_order_bank": _json_sha256(materialized.source_order_bank),
+        "source_order_installation": _json_sha256(
+            materialized.source_order_installation
+        ),
+        "discovery_cnf": EXPECTED_FINAL_DIMACS_SHA256,
+    }
+
+
+def _required_artifacts_authenticated(
+    artifacts: Mapping[str, Mapping[str, Any] | None],
+    required: Mapping[str, str],
+) -> bool:
+    for name, expected_sha256 in required.items():
+        artifact = artifacts.get(name)
+        if not isinstance(artifact, Mapping) or artifact.get("sha256") != expected_sha256:
+            return False
+    return True
 
 
 def run_arm_static_canary(
@@ -785,6 +912,10 @@ def run_arm_static_canary(
         apex_internal_shared_pair_common_five_family_bank_path = (
             workdir / "apex_internal_shared_pair_common_five_family_bank.json"
         )
+        apex_first_opposite_shared_pair_common_five_family_bank_path = (
+            workdir
+            / "apex_first_opposite_shared_pair_common_five_family_bank.json"
+        )
         source_order_bank_path = workdir / "source_order_bank.json"
         source_order_installation_path = workdir / "source_order_installation.json"
         discovery_cnf_path = workdir / "discovery.cnf"
@@ -830,6 +961,10 @@ def run_arm_static_canary(
         _write_json(
             apex_internal_shared_pair_common_five_family_bank_path,
             materialized.apex_internal_shared_pair_common_five_family_bank,
+        )
+        _write_json(
+            apex_first_opposite_shared_pair_common_five_family_bank_path,
+            materialized.apex_first_opposite_shared_pair_common_five_family_bank,
         )
         _write_json(source_order_bank_path, materialized.source_order_bank)
         _write_json(
@@ -972,6 +1107,9 @@ def run_arm_static_canary(
             "apex_internal_shared_pair_common_five_family_bank": _artifact(
                 apex_internal_shared_pair_common_five_family_bank_path
             ),
+            "apex_first_opposite_shared_pair_common_five_family_bank": _artifact(
+                apex_first_opposite_shared_pair_common_five_family_bank_path
+            ),
             "source_order_bank": _artifact(source_order_bank_path),
             "source_order_installation": _artifact(source_order_installation_path),
             "discovery_cnf": _artifact(discovery_cnf_path),
@@ -979,49 +1117,8 @@ def run_arm_static_canary(
             "terminal_cnf": _artifact(terminal_cnf_path),
             "proof": _artifact(proof_path),
         }
-        required = {
-            "job": _json_sha256(job),
-            "arm_suffix": _json_sha256(materialized.arm_suffix),
-            "positive_membership_bank": _json_sha256(
-                materialized.positive_membership_bank
-            ),
-            "surplus_apex_pair_family_bank": _json_sha256(
-                materialized.surplus_apex_pair_family_bank
-            ),
-            "adjacent_apex_cross_block_family_bank": _json_sha256(
-                materialized.adjacent_apex_cross_block_family_bank
-            ),
-            "second_cap_apex_surplus_family_bank": _json_sha256(
-                materialized.second_cap_apex_surplus_family_bank
-            ),
-            "surplus_three_triad_family_bank": _json_sha256(
-                materialized.surplus_three_triad_family_bank
-            ),
-            "zero_center_cross_block_family_bank": _json_sha256(
-                materialized.zero_center_cross_block_family_bank
-            ),
-            "apex_zero_cross_block_family_bank": _json_sha256(
-                materialized.apex_zero_cross_block_family_bank
-            ),
-            "apex_pair_cross_block_family_bank": _json_sha256(
-                materialized.apex_pair_cross_block_family_bank
-            ),
-            "apex_shared_pair_cross_block_family_bank": _json_sha256(
-                materialized.apex_shared_pair_cross_block_family_bank
-            ),
-            "apex_internal_shared_pair_common_five_family_bank": _json_sha256(
-                materialized.apex_internal_shared_pair_common_five_family_bank
-            ),
-            "source_order_bank": _json_sha256(materialized.source_order_bank),
-            "source_order_installation": _json_sha256(
-                materialized.source_order_installation
-            ),
-            "discovery_cnf": EXPECTED_FINAL_DIMACS_SHA256,
-        }
-        if any(
-            artifacts[name] is None or artifacts[name]["sha256"] != expected_sha256
-            for name, expected_sha256 in required.items()
-        ):
+        required = _required_artifact_hashes(job, materialized)
+        if not _required_artifacts_authenticated(artifacts, required):
             status = "ARTIFACT_ERROR"
             error = "required canary artifact failed authentication"
 

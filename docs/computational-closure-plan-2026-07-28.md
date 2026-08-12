@@ -1,4 +1,4 @@
-# Computational closure plan — remaining frontier (updated 2026-08-11)
+# Computational closure plan — remaining frontier (updated 2026-08-12)
 
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
@@ -368,12 +368,52 @@ Ruff check, and direct elaboration of both Lean modules pass.  An independent
 read-only trust-boundary audit classified the checkpoint `CHECKPOINT_GREEN`
 for one bounded canary.  It did not classify the modules as promotion-ready:
 terminal proof replay, transitive axiom audit, exact terminal ingress, all-arm
-coverage, and the cardinality lift remain separate obligations.  These gates
-authorize exactly one fresh successor canary.  If it is `SAT`, the lane stops
-again for mandatory theorem mining before any further solve; if it is `UNSAT`,
-acceptance still requires the runner's fresh byte-identical proof rerun,
-checked RUP/Lean ingress, and expansion from one coordinate to all 648 exact-12
-arm coordinates.
+coverage, and the cardinality lift remain separate obligations.
+
+The one successor canary authorized by that checkpoint was consumed.  It
+returned a fully replayed `SAT` witness with assignment SHA-256
+`b040b5fa4e418fe9719dbddb1470340d74c94b8dcb08734045f224381393e97d`
+and survivor-record SHA-256
+`18cf2524df941ee240ace7b08cc5e4b124e2acaca701d87912c1d36d760d8f6f`.
+There is no terminal proof artifact.  The stop rule fired before another
+solve, and mandatory theorem mining covered all 48 frozen source orders with
+certificate SHA-256
+`c49b79aaec5f2df5a344fd943773e316ca22bccde2c3c05f5e7b4bfeb3d2118d`.
+The mined family has eight valid `(x,b,y)` assignments: `x ∈ {6,7,8,9}` and
+distinct `b,y ∈ {10,11}`.  Positive rows `x:{0,b}`, `y:{0,b}`, and
+`2:{b,x,y}` force one of the two checked common-five orientations obtained by
+swapping `x` and `y`.
+
+The new apex/first-opposite shared-pair family introduces 14 fresh membership
+variables and eight blockers, with no reused requirements or duplicate
+blocks.  It adds 374 clauses.  Its delta SHA-256 is
+`7f4d1279b9473a900370100061a12b3ac93f6a7ccb08c275be375c1f01de4ea0`,
+its compiled-payload SHA-256 is
+`fac6a62933f8fcdde0d523f07f66136d8d2b917c271380ca3ef4bc625a65aada`,
+and its role-list SHA-256 is
+`0261c9b8e86a75a150b04d7f6faeacf4ca62153b40cb0ba9104b730db0d4a46b`.
+The strengthened prefix has 45,176 variables and 640,828 clauses with DIMACS
+SHA-256
+`1c5e5128225ad7d3878a2e1580f3628ca8955172982b0803d599ed2ad94c2d59`.
+After the unchanged 867-clause arm suffix it has 641,695 clauses and SHA-256
+`d93616f6553e9fc8e5ecdb56921b7279f24368cb47375f8811581a6bc5a66ad5`;
+after the unchanged 81-entry source-order bank it has 641,776 clauses and final
+SHA-256
+`e2128c88bb9af157621674205f30596d4d9ca8f86911c070c03e3055767a3dcf`.
+Authenticated end-to-end materialization, the combined 15 focused tests,
+Ruff, and direct Lean elaboration now pass.  The bank and canary authenticate
+the complete 2,877-file repository-local Lean import closure of the two proof
+roots, rather than only a hand-maintained direct-source list.  The independent
+read-only source-to-CNF re-audit found no remaining material correctness or
+authentication issue.  Transitive axiom reports contain only the standard
+`propext`, `Classical.choice`, and `Quot.sound` axioms for the geometric
+producer, plus the governed `Lean.ofReduceBool` / `Lean.trustCompiler` native
+boundary for the finite CNF theorem; no project `unsafe`, `implemented_by`, or
+`extern` declaration was found in the evaluated closure.  This checkpoint
+authorizes exactly one successor canary, not a broader wave.  A later `UNSAT`
+would still require the runner's fresh byte-identical proof rerun, checked
+RUP/Lean ingress, and expansion from one coordinate to all 648 exact-12 arm
+coordinates.
 
 These are finite SAT/replay and theorem-family results only.  They do not
 establish exact-12 closure, aggregate six-arm/placement coverage, a
