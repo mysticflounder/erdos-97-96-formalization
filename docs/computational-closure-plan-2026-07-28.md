@@ -415,6 +415,53 @@ would still require the runner's fresh byte-identical proof rerun, checked
 RUP/Lean ingress, and expansion from one coordinate to all 648 exact-12 arm
 coordinates.
 
+The one successor canary authorized by that checkpoint has now been consumed.
+It returned `SAT_WITNESS_REPLAYED` / `STRUCTURALLY_UNRESOLVED`, with assignment
+SHA-256
+`ec0d9b8d6e4aa0352155eb7a82e6bb6c99a2dc17ba1352596966881d550e3eda`
+and authenticated survivor-artifact SHA-256
+`67f3a18bdec6bc11c55767ebce0564ff874e235da21b6fdbde4c13938d16d4b7`.
+There is no terminal proof artifact.  The stop rule fired before another solve.
+Mandatory theorem mining then produced a 96-role source-clean common-five
+family.  For `a,c ∈ {6,7,8,9}`, `b ∈ {3,4,5}`, and `y ∈ {10,11}`, rows centered
+at `0` and `y` share `{a,b}`, while the row centered at `c` contains
+`{b,0,y}`.  The frozen boundary blocks orient the resulting common-five core;
+no inequality or relative order between `a` and `c` is assumed.
+
+The exact compiler partition is 60 logical requirements: 48 fresh definitions
+occupy variables `45177,...,45224`, while twelve center-`0` requirements reuse
+exact parent definitions and variables `45097,...,45108`.  The first draft
+incorrectly treated all 60 requirements as fresh.  It was rejected and
+replaced before any solve: the repaired Lean bridge emits implications only
+for the 48 fresh definitions, includes both partitions in family blocks, and
+requires the caller to provide the source meaning of every reused definition.
+An executable cross-artifact regression resolves those twelve Lean parent
+references and compares their variable, center, and support triples with the
+Python compiler state.
+
+The repaired family adds 48 variables and 1,152 clauses.  Its delta SHA-256 is
+`04728382408884774f44b3afe07598a7b84d420f10990eb3c062c44ef00e033e`,
+its compiled-payload SHA-256 is
+`e703aabe4c3c353ab82a6f21c3ba25ddac94911e426db869a42ad04d1448837d`,
+its role-list SHA-256 is
+`989a84237110c09d421ad0ee27f96deded608c71809d1959a2da545bd125c0c4`,
+and its authenticated family-bank SHA-256 is
+`8f7005479eb9cf440468ac55b5cc3d5d3a869674934b69c786e90e49531e3e25`.
+The strengthened prefix has 45,224 variables and 641,980 clauses with DIMACS
+SHA-256
+`ffbfbff4b327943b0a889bb16b99b75ae934ec72027d829e0f332f24a98f5f9d`.
+After the unchanged 867-clause named-arm suffix it has 642,847 clauses and
+SHA-256
+`353af10a0b4a49389ec743b520332c1fedb717b5f70d2acf31a28359b9c86e17`;
+after the unchanged 81-entry source-order bank it has 642,928 clauses and final
+SHA-256
+`2879cb8d1899c5a96e3d4ef4a5e89ed4ed20ec6c60d8ed06b59f0baec60d8ad5`.
+The canary serializes, hashes, and binds the new family bank and complete
+recursive Lean source closure.  The focused regressions and an independent
+source-to-CNF trust-boundary audit are green for one bounded canary.  This is
+not promotion readiness.  Once committed and pushed, this checkpoint
+authorizes exactly one fresh successor canary, not a wave.
+
 These are finite SAT/replay and theorem-family results only.  They do not
 establish exact-12 closure, aggregate six-arm/placement coverage, a
 cardinality-at-least-13 producer or lift, Lean terminal ingress, or closure of

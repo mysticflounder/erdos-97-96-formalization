@@ -14,6 +14,12 @@ from census.card_head.exact12_apex_first_opposite_shared_pair_common_five_member
 from census.card_head.exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank import (
     install_apex_first_opposite_shared_pair_common_five_membership_family_bank,
 )
+from census.card_head.exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank import (
+    _source_paths as apex_first_opposite_shared_pair_second_opposite_common_five_source_paths,
+)
+from census.card_head.exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank import (
+    install_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank,
+)
 from census.card_head.exact12_apex_internal_shared_pair_common_five_membership_family_bank import (
     install_apex_internal_shared_pair_common_five_membership_family_bank,
 )
@@ -196,15 +202,32 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             apex_internal_shared_pair_common_five_family_bank["family_id"],
             "apex-internal-shared-pair-common-five-a6789-b345-c6789.v1",
         )
-        self.assertEqual(
+        first_family_bank = (
             install_apex_first_opposite_shared_pair_common_five_membership_family_bank(
                 REPO_ROOT,
                 instance,
                 layout,
                 apex_internal_shared_pair_common_five_family_bank,
                 cell_index=1,
-            )["family_id"],
+            )
+        )
+        self.assertEqual(
+            first_family_bank["family_id"],
             "apex-first-opposite-shared-pair-common-five-x6789-b1011-y1011.v1",
+        )
+        second_family_bank = (
+            install_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                first_family_bank,
+                cell_index=1,
+            )
+        )
+        self.assertEqual(
+            second_family_bank["family_id"],
+            "apex-first-opposite-shared-pair-second-opposite-common-five-"
+            "a6789-b345-c6789-y1011.v1",
         )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
@@ -232,9 +255,22 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
 
         self.assertEqual(binding["sha256"], bank["bank_sha256"])
         self.assertEqual(binding["family_id"], bank["family_id"])
+        second_bank = (
+            materialized.apex_first_opposite_shared_pair_second_opposite_common_five_family_bank
+        )
+        second_binding = job[
+            "apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank"
+        ]
+        self.assertEqual(second_binding["sha256"], second_bank["bank_sha256"])
+        self.assertEqual(second_binding["family_id"], second_bank["family_id"])
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
+        )
+        expected_source_paths.update(
+            apex_first_opposite_shared_pair_second_opposite_common_five_source_paths(
+                REPO_ROOT
+            )
         )
         self.assertEqual(
             {record["path"] for record in job["sources"]}, expected_source_paths
