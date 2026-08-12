@@ -10128,3 +10128,37 @@ exact-17 cap-nine campaign, not full P97 closure. The next admissible step is
 determined by the authenticated terminal result: replay and mine another
 `SAT` model, or independently replay an `UNSAT` certificate and compose its
 banked theorem into the exact-17 source leaf.
+
+### 13.28.2 Twenty-eighth-root production checkpoint — 2026-08-12
+
+Superseding the preceding running checkpoint, the production chain has now
+advanced through authenticated child 27. Immutable job
+`b0f49ec3-89ea-4c18-a86f-c9c6ad5dcf7f` returned `SAT`; its complete assignment
+replayed all 5,846,284 clauses of root
+`566d394436a30d1fee4c85240433f0217223c6f2ecf80e2945568ea37646194b`.
+The mandatory complete theorem-bank scan found exactly one source-backed hit
+and no unreplayed proposal: a new occurrence of the already general
+two-Kalmanson cancellation consumer.
+
+That occurrence is banked in Lean with independently checked forward and
+reverse witnesses, its `SourceRealization` clause bridge, the complete
+four-clause finite orbit, an extended-CNF evaluator, and the conditional
+terminal adapter in
+`BlockerVExactSeventeenTwentySeventhModelRefinements.lean`. A targeted build
+and axiom audit pass with no `sorryAx`; the finite evaluator uses the accepted
+`native_decide` trust boundary.
+
+Lean exports child 28 with 308 variables and 5,846,288 clauses. Its SHA-256 is
+`86bbb7f4a8f78372e9df8ff830a6737475e44defd42a013d41885fe1966ab02c`.
+Independent validation regenerated all four appended clauses, checked the
+5,846,284-clause parent prefix byte-for-byte, and confirmed that the new orbit
+cuts the motivating child-27 model. The fail-closed ingress is pinned to PIQD
+daemon SHA-256
+`aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107`.
+
+This checkpoint does not close exact 17 or a production `sorry`. The next
+admissible step is one immutable PIQD run of these exact child-28 bytes. `SAT`
+again requires total replay, the mandatory general-theorem scan, and Lean-first
+banking before any successor; `UNSAT` requires independently replayed proof
+evidence and composition through the existing exact-cover extractor and
+terminal adapter.

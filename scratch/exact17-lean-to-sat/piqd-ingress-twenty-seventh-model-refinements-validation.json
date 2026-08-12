@@ -1,0 +1,18 @@
+{
+  "canonical_hit_replayed": true,
+  "clauses": 5846288,
+  "dimacs_bytes": 291577468,
+  "dimacs_sha256": "86bbb7f4a8f78372e9df8ff830a6737475e44defd42a013d41885fe1966ab02c",
+  "manifest_sha256": "1857b429d589e404ad7d9e871dd8a1b6b9d4d485ef46c08375a9f4ce7894a03c",
+  "motivating_model_cut_clauses": {
+    "cancellation": [
+      5846287
+    ]
+  },
+  "new_clauses": 4,
+  "parent_dimacs_sha256": "566d394436a30d1fee4c85240433f0217223c6f2ecf80e2945568ea37646194b",
+  "piqd_daemon_sha256": "aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107",
+  "schema": "p97-exact17-twenty-seventh-model-refinements-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}
