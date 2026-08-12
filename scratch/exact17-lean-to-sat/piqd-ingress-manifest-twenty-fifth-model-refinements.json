@@ -1,0 +1,69 @@
+{
+  "schema": "p97-exact17-lean-twenty-fifth-model-refinements-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-twenty-sixth-root-twenty-fifth-model-refinements.cnf",
+    "sha256": "d238b81bfdc40c53c948c7655285e0b74203711e1b5cd013fb8d8c9ad1a642f5",
+    "bytes": 291576766,
+    "variables": 308,
+    "clauses": 5846272,
+    "parent_prefix_clauses": 5846252,
+    "checked_new_clauses": 20
+  },
+  "parent_ingress": {
+    "dimacs_path": "scratch/exact17-lean-to-sat/exact17-twenty-fifth-root-twenty-fourth-model-refinements.cnf",
+    "dimacs_sha256": "8cd560206d0e38a1d63e65925fe4027d2523bf8a4084a87456ce10d71986fa6a",
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-twenty-fourth-model-refinements.json",
+    "manifest_sha256": "6dfcf6113aa382493835372a879dd06f9bdc825c37d41b5a8848223da84c0e8b",
+    "parent_prefix_byte_identical": true
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFifthModelRefinements.lean",
+        "sha256": "be6f6ab6aa4df5af68052d096e9e7caa52357e3ea42593623e808678450636eb"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFifthModelRefinementsExport.lean",
+        "sha256": "8cd544b7e28ede3593f18dc9f5d3651449feb054ae3279aa1b7f661994bb2c2c"
+      }
+    ],
+    "targeted_module_build": "PASS",
+    "public_clause_and_terminal_adapter_axioms": [
+      "propext",
+      "Classical.choice",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler",
+      "Quot.sound"
+    ],
+    "sorryAx": false
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_twenty_fifth_model_refinements_export.py",
+    "script_sha256": "d1c11eb994bfd9b1dc7dd9ad5976f62f8b0f4f9f67e5cd876e93c8164664a025",
+    "report": "scratch/exact17-lean-to-sat/exact17-twenty-sixth-root-validation.json",
+    "report_sha256": "3cdcc97a324cf2f71dd3fdebe5b884158f9a91ab424d9060c74b3c620878a651",
+    "model": "scratch/exact17-lean-to-sat/piqd-twenty-fifth-root-model.json",
+    "model_sha256": "a6ec287cf9e16c5d88a19358ca2fedd56bf723f75172cc601a27f77a81126894",
+    "theorem_bank": "scratch/exact17-lean-to-sat/piqd-twenty-fifth-root-model-theorem-bank-minimized.json",
+    "theorem_bank_sha256": "45b5a4e15b31129696af14381910e353feac75262e29c7bb6f91741912a62f6e",
+    "analysis": "scratch/exact17-lean-to-sat/piqd-twenty-fifth-root-model-analysis.json",
+    "analysis_sha256": "f840572c030c9c68237f59255ac3e76fd3b2c6ca898cae1d89641dff3f81dcd2",
+    "theorem_bank_miner": "scripts/mine_exact17_cdefg_model_bank.py",
+    "theorem_bank_miner_sha256": "eee3f5f669b5fae786da97a81e0fae15b4ee7646d3ff0c7bb0fb3531d185c41e",
+    "parent_prefix_byte_identical": true,
+    "all_twenty_fifth_model_refinement_clauses_independently_regenerated": true,
+    "all_five_motivating_occurrences_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}
