@@ -61,7 +61,12 @@ then reuses the driver's strict manifest, dependency-hash, survivor hash-chain,
 assignment, decoded-row, canonical-digest, and 24-order replay. It accepts the
 driver result only when the selected manifest path, manifest bytes, digest and
 inode identity, and journal bytes, digest and inode identity are unchanged
-after that replay. It then freezes
+after that replay. The driver compares the two independently reconstructed
+case sets through a canonical identity containing every source record, decoded
+row, canonical digest, and ordered cap order. This comparison is deliberately
+independent of Python dataclass class identity, because the supported
+`python -m` entrypoint loads the CLI body as `__main__` while the adapter imports
+the canonical package module. It then freezes
 the authenticated source-manifest bytes, complete survivor-journal digest, and
 exact JSONL record bytes for each survivor. Every staged query binds:
 

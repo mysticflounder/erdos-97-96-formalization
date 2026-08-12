@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import runpy
+import sys
 import uuid
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -547,6 +549,51 @@ def test_driver_selected_canary_bounds_adapter_transport_timeout(
             "http_timeout_s": neutral.bounded_solve_http_timeout_s(2000),
         },
     }
+
+
+def test_module_entrypoint_accepts_authenticated_replay_from_canonical_import(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    source = _running_snapshot(tmp_path)
+    fake = FakeCurrentPiqd(["UNSAT"])
+    output = tmp_path / "driver-output"
+    custody = tmp_path / "piqd-custody"
+    monkeypatch.setattr(neutral, "UrllibPiqdTransport", lambda *_args, **_kw: fake)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            str(driver.__file__),
+            "--source",
+            str(source),
+            "--out",
+            str(output),
+            "--workers",
+            "1",
+            "--timeout",
+            "1",
+            "--expected-count",
+            "1",
+            "--running-snapshot",
+            "--case-index",
+            "0",
+            "--order-id",
+            "order-00",
+            "--piqd-output-directory",
+            str(custody),
+        ],
+    )
+
+    with pytest.raises(SystemExit) as raised:
+        runpy.run_path(str(driver.__file__), run_name="__main__")
+
+    assert raised.value.code == 0
+    assert len(fake.created_ids) == len(fake.deleted_ids) == 1
+    assert (output / "manifest.json").is_file()
+    assert (
+        custody
+        / "survivor-0000/00-order-00/00-exact-metric-relaxation/stage-result.json"
+    ).is_file()
 
 
 @pytest.mark.parametrize(

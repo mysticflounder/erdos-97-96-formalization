@@ -96,6 +96,23 @@ class SurvivorCase:
     orders: tuple[realize.OrderSpec, ...]
 
 
+def _survivor_case_replay_identity(case: SurvivorCase) -> bytes:
+    """Canonical identity independent of the module name owning the dataclass."""
+
+    return _canonical_bytes(
+        {
+            "canonical_digest": case.canonical_digest,
+            "index": case.index,
+            "orders": [
+                {"order": list(order.order), "order_id": order.order_id}
+                for order in case.orders
+            ],
+            "rows": [row.as_dict() for row in case.rows],
+            "source_record": case.source_record,
+        }
+    )
+
+
 def _canonical_bytes(value: Any) -> bytes:
     return json.dumps(
         value, allow_nan=False, separators=(",", ":"), sort_keys=True
@@ -693,7 +710,9 @@ def _run_piqd_tasks(
         expected_count=expected_count,
         running_snapshot=running_snapshot,
     )
-    if tuple(binding.case for binding in bindings) != tuple(cases):
+    if tuple(
+        _survivor_case_replay_identity(binding.case) for binding in bindings
+    ) != tuple(_survivor_case_replay_identity(case) for case in cases):
         raise SurvivorMetricError("PIQD survivor bindings crossed ingress replay")
     piqd.create_output_root(output_directory)
     exact_results: dict[int, dict[str, Any]] = {}
