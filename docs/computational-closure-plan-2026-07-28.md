@@ -10240,3 +10240,43 @@ again requires total replay, the mandatory general-theorem scan, and Lean-first
 banking before any successor; `UNSAT` requires independently replayed proof
 evidence and composition through the existing exact-cover extractor and
 terminal adapter.
+
+### 13.28.3 Twenty-ninth-root production checkpoint — 2026-08-12
+
+Immutable PIQD job `4fb8046d-594b-47ea-8778-fb10fb93fbba` returned
+authenticated `SAT` for child 28.  Its complete model replayed all 5,846,288
+clauses of root
+`86bbb7f4a8f78372e9df8ff830a6737475e44defd42a013d41885fe1966ab02c`.
+The mandatory theorem-bank scan found five source-backed hits and no
+unreplayed proposal.  A complete two-Kalmanson cancellation scan then checked
+183 candidate cancellations, deduplicated them to 104 support sets, and found
+64 inclusion-minimal supports.  Both forward and reflected exact certificates
+replay for every retained support.
+
+Lean now banks all 64 occurrence records as one general source-valid family,
+their `SourceRealization` bridge, the complete 256-clause suffix, the extended
+CNF evaluator, and a conditional terminal adapter in
+`BlockerVExactSeventeenTwentyEighthModelRefinements.lean`.  This deliberately
+uses the complete minimal family rather than provisioning a first-hit-only
+successor.  The targeted exporter build and axiom audit pass with no
+`sorryAx`; the finite evaluator uses the accepted `native_decide` trust
+boundary.
+
+Lean exports child 29 with 308 variables and 5,846,544 clauses.  Its exact
+SHA-256 is
+`620ea5ad066edf6526d11eb51c4cff93284130f6fd27de46d8d0c2e5ff9c0c53`.
+Independent validation replayed every serialized cancellation certificate,
+regenerated all 256 suffix clauses from the 64 support records, checked the
+5,846,288-clause parent prefix byte-for-byte, and confirmed that each retained
+occurrence cuts the motivating child-28 model.  The fail-closed ingress passes
+against manifest SHA-256
+`29bfc11cfb30f807252e38aa0e0ea0cc4470fd1e6a805e552596a0b4b3573a4a`
+and PIQD daemon SHA-256
+`aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107`.
+
+This checkpoint authorizes one immutable PIQD run of those child-29 bytes; it
+does not itself close exact 17 or a production `sorry`.  A `SAT` result again
+requires complete replay, exhaustive general-refinement mining, and Lean-first
+banking before any child 30.  An `UNSAT` result requires certificate retrieval
+and independent replay, a child-specific Lean UNSAT theorem, and composition
+through `exists_exactSeventeenSourceRealization_of_exactCover` and the landing

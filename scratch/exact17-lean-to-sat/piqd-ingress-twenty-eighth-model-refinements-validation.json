@@ -1,0 +1,14 @@
+{
+  "all_serialized_certificates_replayed": true,
+  "clauses": 5846544,
+  "dimacs_bytes": 291588188,
+  "dimacs_sha256": "620ea5ad066edf6526d11eb51c4cff93284130f6fd27de46d8d0c2e5ff9c0c53",
+  "manifest_sha256": "29bfc11cfb30f807252e38aa0e0ea0cc4470fd1e6a805e552596a0b4b3573a4a",
+  "minimal_occurrence_count": 64,
+  "new_clauses": 256,
+  "parent_dimacs_sha256": "86bbb7f4a8f78372e9df8ff830a6737475e44defd42a013d41885fe1966ab02c",
+  "piqd_daemon_sha256": "aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107",
+  "schema": "p97-exact17-twenty-eighth-model-refinements-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}
