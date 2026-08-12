@@ -10,10 +10,12 @@ realization: all ambient labels are distinct vertices of a strictly convex
 polygon in the recorded cyclic order, every row is equidistant from its center,
 and an exact row contains every point at that radius.
 
-An UNSAT result is an exclusion of that saved assignment.  A SAT result is only
-a realization of this row-level relaxation, not a Problem 97 counterexample.
-Z3 results are trusted computations rather than kernel-checked certificates.
+An UNSAT result is diagnostic evidence about that saved assignment.  A SAT
+result is only a realization of this row-level relaxation, not a Problem 97
+counterexample.  The production route uses one-shot PIQD Z3 sessions and
+accepts SAT only after exact replay; results are not kernel-checked proofs.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -23,17 +25,17 @@ import os
 import tempfile
 import time
 from collections import Counter
+from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from itertools import combinations, permutations
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
 from census.multi_center import multi_center_census as mc
 
 from .shadow import hull_order
-
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -1080,7 +1082,12 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
     return systems, extraction
 
 
-def _probe_system(system: Mapping[str, Any], timeout_s: float) -> dict[str, Any]:
+def _probe_system(
+    system: Mapping[str, Any],
+    timeout_s: float,
+    *,
+    staged_backend: Any | None = None,
+) -> dict[str, Any]:
     """Worker entrypoint.  All Z3 objects remain process-local."""
     n = int(system["n"])
     order = tuple(int(point) for point in system["order"])
@@ -1227,6 +1234,9 @@ def _probe_system(system: Mapping[str, Any], timeout_s: float) -> dict[str, Any]
                 "constraint_counts": constraint_counts,
                 "rhombus_equilateral_core": rhombus_equilateral_core,
             }
+
+    if staged_backend is not None:
+        return staged_backend(system, timeout_s)
 
     import z3
 
@@ -1453,6 +1463,7 @@ def _smoke_systems() -> tuple[dict[str, Any], dict[str, Any]]:
         "profile": [0, 0, 0],
         "order": [0, 1, 2, 3, 4],
         "rows": [MetricRow(0, (1, 2, 3, 4), True).as_dict()],
+        "sources": [],
     }
     unsat = {
         "system_id": "smoke-unsat",
@@ -1463,18 +1474,125 @@ def _smoke_systems() -> tuple[dict[str, Any], dict[str, Any]]:
             MetricRow(0, (1, 2, 3, 4), True).as_dict(),
             MetricRow(0, (1, 2, 3, 5), True).as_dict(),
         ],
+        "sources": [],
     }
     return sat, unsat
 
 
-def run_smoke(timeout_s: float = 10.0) -> dict[str, Any]:
+def probe_system(
+    system: Mapping[str, Any],
+    timeout_s: float,
+    *,
+    solver_route: str = "piqd",
+    workers: int = 1,
+    piqd_transport: Any | None = None,
+    piqd_server: str = "http://127.0.0.1:7272",
+    piqd_output_directory: Path | None = None,
+    source_paths: Sequence[Path] = (),
+    _piqd_fixture_only: bool = False,
+) -> dict[str, Any]:
+    """Dispatch one system; PIQD is default and local Z3 is explicit legacy."""
+
+    if type(solver_route) is not str or solver_route not in {
+        "piqd",
+        "legacy-local-z3",
+    }:
+        raise ValueError("unknown metric solver route")
+    if type(workers) is not int or type(workers) is bool or workers < 1:
+        raise ValueError("workers must be a positive exact integer")
+    if solver_route == "legacy-local-z3":
+        legacy = dict(_probe_system(system, timeout_s))
+        legacy.update(
+            {
+                "route": "legacy-local-z3",
+                "requested_solver_route": "legacy-local-z3",
+                "legacy_local_z3_explicit": True,
+                "local_fallback": False,
+            }
+        )
+        return legacy
+    if workers != 1:
+        raise ValueError("PIQD metric route requires workers=1")
+    if not isinstance(piqd_output_directory, Path):
+        raise ValueError("PIQD metric route requires an exact output Path")
+    from census.p97_search import phase3_piqd_smt_source_adapter as neutral
+
+    from . import metric_realizability_piqd as piqd
+
+    transport = piqd_transport
+    if transport is None:
+        transport = neutral.UrllibPiqdTransport(piqd_server)
+    result = dict(
+        _probe_system(
+            system,
+            timeout_s,
+            staged_backend=lambda selected, selected_timeout: piqd.run_staged_system(
+                selected,
+                timeout_s=selected_timeout,
+                transport=transport,
+                output_directory=piqd_output_directory,
+                source_paths=source_paths,
+                _fixture_only=_piqd_fixture_only,
+            ),
+        )
+    )
+    result.setdefault("route", "deterministic-symbolic-prefilter")
+    result["requested_solver_route"] = "piqd"
+    result["piqd_submitted"] = result["route"] == "piqd-z3-qfnra"
+    result["local_fallback"] = False
+    return result
+
+
+def run_smoke(
+    timeout_s: float = 10.0,
+    *,
+    solver_route: str = "piqd",
+    workers: int = 1,
+    piqd_transport: Any | None = None,
+    piqd_server: str = "http://127.0.0.1:7272",
+    piqd_output_directory: Path | None = None,
+) -> dict[str, Any]:
     sat_system, unsat_system = _smoke_systems()
-    sat_result = _probe_system(sat_system, timeout_s)
-    unsat_result = _probe_system(unsat_system, timeout_s)
+    if solver_route == "piqd":
+        if not isinstance(piqd_output_directory, Path):
+            raise ValueError("PIQD smoke requires an exact output Path")
+        from . import metric_realizability_piqd as piqd
+
+        piqd._create_output_root(piqd_output_directory)
+    sat_output = (
+        None if piqd_output_directory is None else piqd_output_directory / "smoke-sat"
+    )
+    unsat_output = (
+        None if piqd_output_directory is None else piqd_output_directory / "smoke-unsat"
+    )
+    sat_result = probe_system(
+        sat_system,
+        timeout_s,
+        solver_route=solver_route,
+        workers=workers,
+        piqd_transport=piqd_transport,
+        piqd_server=piqd_server,
+        piqd_output_directory=sat_output,
+        _piqd_fixture_only=True,
+    )
+    unsat_result = probe_system(
+        unsat_system,
+        timeout_s,
+        solver_route=solver_route,
+        workers=workers,
+        piqd_transport=piqd_transport,
+        piqd_server=piqd_server,
+        piqd_output_directory=unsat_output,
+        _piqd_fixture_only=True,
+    )
+    verification = sat_result.get("verification", {})
+    replayed = (
+        verification.get("all_asserted_atoms_replayed") is True
+        if solver_route == "piqd"
+        else verification.get("all_z3_assertions_true") is True
+    )
     passed = (
-        sat_result["status"] == "SAT"
-        and sat_result.get("verification", {}).get("all_z3_assertions_true") is True
-        and unsat_result["status"] == "UNSAT"
+        sat_result["status"] == "SAT" and replayed and unsat_result["status"] == "UNSAT"
     )
     return {"passed": passed, "sat": sat_result, "unsat": unsat_result}
 
@@ -1663,7 +1781,7 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--markdown", type=Path, default=HERE / "metric_realizability_results.md"
     )
-    parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--timeout", type=float, default=2.0)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--system-id", action="append", default=[])
@@ -1671,6 +1789,18 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--smoke-only", action="store_true")
     parser.add_argument("--explain-exact-core", action="store_true")
+    parser.add_argument(
+        "--solver-route",
+        choices=("piqd", "legacy-local-z3"),
+        default="piqd",
+        help="production PIQD route (default) or explicit legacy local Z3",
+    )
+    parser.add_argument("--piqd-server", default="http://127.0.0.1:7272")
+    parser.add_argument(
+        "--piqd-output-directory",
+        type=Path,
+        help="create-once PIQD custody root (default: <out>.piqd)",
+    )
     return parser.parse_args(argv)
 
 
@@ -1678,12 +1808,39 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = _parse_args(argv)
     if args.workers < 1 or args.workers > 8:
         raise SystemExit("--workers must be between 1 and 8")
+    if args.solver_route == "piqd" and args.workers != 1:
+        raise SystemExit("PIQD metric route requires --workers 1")
     if args.timeout <= 0:
         raise SystemExit("--timeout must be positive")
     if args.checkpoint_every < 1:
         raise SystemExit("--checkpoint-every must be positive")
+    if args.solver_route == "piqd" and args.resume:
+        raise SystemExit("--resume is not supported by the PIQD metric route")
+    if args.explain_exact_core and args.solver_route != "legacy-local-z3":
+        raise SystemExit(
+            "--explain-exact-core requires --solver-route legacy-local-z3"
+        )
 
-    smoke = run_smoke(max(10.0, args.timeout))
+    piqd_output_directory = args.piqd_output_directory
+    if piqd_output_directory is None:
+        piqd_output_directory = Path(f"{args.out}.piqd")
+    piqd_transport = None
+    if args.solver_route == "piqd":
+        from census.p97_search import phase3_piqd_smt_source_adapter as neutral
+
+        from . import metric_realizability_piqd as piqd
+
+        piqd_transport = neutral.UrllibPiqdTransport(args.piqd_server)
+    smoke = run_smoke(
+        max(10.0, args.timeout),
+        solver_route=args.solver_route,
+        workers=args.workers,
+        piqd_transport=piqd_transport,
+        piqd_server=args.piqd_server,
+        piqd_output_directory=(
+            piqd_output_directory if args.solver_route == "piqd" else None
+        ),
+    )
     if not smoke["passed"]:
         print(json.dumps(smoke, indent=2, sort_keys=True))
         raise SystemExit("metric realizability smoke gate failed")
@@ -1691,7 +1848,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(json.dumps(smoke, indent=2, sort_keys=True))
         return 0
 
-    inputs = tuple(path.resolve() for path in (args.inputs or DEFAULT_INPUTS))
+    inputs = tuple(
+        Path(os.path.abspath(os.fspath(path))) for path in (args.inputs or DEFAULT_INPUTS)
+    )
     systems, extraction = extract_systems(inputs)
     if args.system_id:
         selected_ids = set(args.system_id)
@@ -1742,6 +1901,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         "timeout_seconds": args.timeout,
         "checkpoint_every": args.checkpoint_every,
         "resume": args.resume,
+        "solver_route": args.solver_route,
+        "piqd_server": args.piqd_server if args.solver_route == "piqd" else None,
+        "local_fallback": False if args.solver_route == "piqd" else None,
     }
     _write_checkpoint(
         args.out,
@@ -1755,6 +1917,51 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     completed = 0
     started = time.monotonic()
+    if args.solver_route == "piqd":
+        for system in pending:
+            system_id = system["system_id"]
+            try:
+                results_by_id[system_id] = probe_system(
+                    system,
+                    args.timeout,
+                    solver_route="piqd",
+                    workers=args.workers,
+                    piqd_transport=piqd_transport,
+                    piqd_server=args.piqd_server,
+                    piqd_output_directory=piqd_output_directory / system_id,
+                    source_paths=inputs,
+                )
+            except (
+                piqd.EndpointMetricPiqdError,
+                neutral.SmtSourceAdapterError,
+                OSError,
+            ) as error:
+                results_by_id[system_id] = {
+                    "system_id": system_id,
+                    "status": "ERROR",
+                    "decisive_stage": None,
+                    "error": f"{type(error).__name__}: {error}",
+                    "stages": [],
+                    "route": "piqd-z3-qfnra",
+                    "local_fallback": False,
+                }
+            completed += 1
+            if completed % args.checkpoint_every == 0 or completed == len(pending):
+                _write_checkpoint(
+                    args.out,
+                    args.markdown,
+                    extraction=extraction,
+                    config=config,
+                    smoke=smoke,
+                    systems_by_id=systems_by_id,
+                    results_by_id=results_by_id,
+                )
+        return (
+            0
+            if all(result["status"] != "ERROR" for result in results_by_id.values())
+            else 1
+        )
+
     with ProcessPoolExecutor(max_workers=args.workers) as executor:
         futures = {
             executor.submit(_probe_system, system, args.timeout): system["system_id"]
