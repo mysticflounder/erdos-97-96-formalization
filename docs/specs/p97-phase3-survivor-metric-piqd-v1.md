@@ -24,6 +24,34 @@ It sets the common native-library thread caps to one, uses one pytest process,
 and runs separate Ruff lint and formatting checks. It does not start a daemon
 or invoke a real solver.
 
+The historical `DEFAULT_SOURCE`/`DEFAULT_OUT` values remain unchanged for
+reproducibility, but that saved 2026-07-29 source can fail current dependency
+hash authentication after source revisions. Do not silently substitute it.
+For a bounded production canary, authenticate the current fixture and select
+one case/order explicitly:
+
+```bash
+uv run python -m census.p97_search.phase3_survivor_metric_driver \
+  --source census/p97_search/tests/fixtures/phase3_structural_survivors_100_current \
+  --out scratch/p97-survivor-metric-canary \
+  --piqd-output-directory scratch/p97-survivor-metric-canary.piqd \
+  --workers 1 --timeout 2 --case-index 0 --order-id order-00
+```
+
+The selector still authenticates all 100 source survivors, then publishes one
+driver record and the corresponding per-order PIQD custody directory. For this
+explicit single-order canary, the driver derives the bounded PIQD HTTP timeout
+from `--timeout`; an unselected complete-census run preserves the adapter's
+historical 3900-second transport timeout. The PIQD route remains sequential and
+has no local fallback. Run the standalone validator on
+the published order directory, not on the driver root:
+
+```bash
+uv run python -m census.p97_search.phase3_survivor_metric_piqd \
+  --check scratch/p97-survivor-metric-canary.piqd/survivor-0000/00-order-00 \
+  --source census/p97_search/tests/fixtures/phase3_structural_survivors_100_current
+```
+
 ## Authenticated source binding
 
 Before submission, `phase3_survivor_metric_piqd.capture_sources` captures the

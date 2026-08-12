@@ -359,10 +359,13 @@ and independent fake/offline audits:
 
 The aggregate command `./scripts/test-p97-piqd-remaining-solvers.sh` runs both
 lane gates sequentially with one pytest worker and thread caps. It currently
-passes all 60 tests; Ruff lint and format checks are clean. This closes the
-fake/offline adapter, replay, and custody implementation checkpoint, not live
-qualification. Each route still needs one fresh bounded live canary plus
-standalone validation and independent artifact audit.
+passes all 60 tests; Ruff lint and format checks are clean. The global metric
+core-miner is now also live-qualified at its finite diagnostic boundary: one
+fresh cvc5 session made 32 solves, one fresh Z3 session made two status-only
+solves, both sessions closed, and the standalone validator plus independent
+seven-artifact audit passed. The Phase-3 survivor-metric route still needs its
+fresh bounded live canary, standalone validation, and independent artifact
+audit.
 
 The core-miner can use native cores only as diagnostic evidence. Promotion of
 a named core tied to P97 source statements remains blocked on maintainer
@@ -370,6 +373,33 @@ contract `#5400`: PIQD must bind a caller-owned opaque assumption commitment
 into the receipt and result digest. No source entitlement, proof, theorem,
 global or universal result, Lean result, or proof-spine movement follows from
 this checkpoint.
+
+### Residual direct-solver audit correction
+
+The earlier phrase “two remaining active Z3 diagnostic producers” was too
+narrow. A caller-level audit at commit `299bd24067b622153356cc2ac4b6b063ad0e2a44`
+found additional operational entry points that still bypass PIQD or need an
+explicit retirement classification:
+
+- `scripts/pinned-generalm-certificate-coverage.py` directly instantiates Z3;
+- `census/rigid221_pentagon_oracle.py` imports a private local probe and also
+  creates a local Z3 core;
+- `census/p97_search/a_core_metric_driver.py` defaults to the local global
+  metric probe, with four workers by default;
+- the A/B/C/DE/DR/E frontier-package reproduction entry points still call
+  local CaDiCaL, even where a narrower selected-boundary PIQD canary exists;
+- `census/global_confinement/metric_realizability_probe.py` remains an
+  operational default-local API and CLI; and
+- `census/p97_search/structural_screen.py` is an additional active caller of
+  the Adam-deferred Singular backend, alongside `equality_ideal_probe.py`.
+
+These are P97 caller-migration and ledger/retirement gaps, not PIQD product
+bugs. ATAIL's old Z3/cvc5 checkpoints are terminal historical work, and MARCO
+has no non-test caller; they are not active migration blockers. Intentional
+local proof/certificate boundaries remain local under `CERT-001`. Singular
+remains governed by the Adam-deferred `PIQD-BACKEND-002` decision. Therefore
+the project-wide onboarding completion criteria are not yet met even though
+the global metric core-miner lane itself is live-qualified.
 
 ## Rollout protocol
 

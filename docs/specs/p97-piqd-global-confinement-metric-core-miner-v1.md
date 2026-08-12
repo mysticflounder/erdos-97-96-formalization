@@ -113,3 +113,30 @@ does not start PIQD or execute a real solver. The script fixes Python import
 custody to the repository root, caps the supported process/thread pools at one,
 runs one focused pytest process, then runs Ruff lint and Ruff format checks over
 the producer, adapter, and focused test.
+
+## Live qualification checkpoint
+
+The bounded live canary from commit `299bd24067b622153356cc2ac4b6b063ad0e2a44`
+selected system `0b12b25bf5daa7566f98` from the current archived frontier. It
+created exactly two fresh sessions and left both closed:
+
+- cvc5 session `c8ed7755-12c6-4540-857e-1e404fd45891` produced 32 unique
+  solves and durable receipts: 15 `UNSAT` and 17 `UNKNOWN`;
+- Z3 session `f9e39bf2-1770-424c-bf32-a778d8a91ab7` produced two unique
+  status-only `UNSAT` solves and durable receipts.
+
+The final cvc5 row and atom validations and both Z3 cross-checks were `UNSAT`.
+The diagnostic core contains rows `[1, 5, 6, 9, 10, 11]` and equality atoms
+`(1,6)`, `(1,8)`, `(1,9)`, `(5,9)`, `(5,11)`, `(6,5)`, `(9,1)`, `(9,6)`,
+`(10,9)`, `(10,11)`, and `(11,9)`. The published result SHA-256 is
+`54aa763c4fd59cab822d4b2c50245a33b8039ebb46ed662f3f49662f04fbcd5c`;
+the manifest SHA-256 is
+`87662bb7366b610e13f713028e183b6bb5ce1b3dce06100b9395f2566fd585d6`.
+
+The public standalone validator and an independent seven-artifact custody
+audit both passed. This qualifies the PIQD transport, lifecycle, receipt,
+publication, and offline-replay boundary for this finite diagnostic run. It
+does not promote the native core to named source statements: maintainer
+contract `#5400` is still required. All source-entitlement, named-core,
+proof, theorem, global, universal, Lean, and `sorry`-closure claims remain
+false.

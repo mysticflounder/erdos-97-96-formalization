@@ -490,6 +490,65 @@ def test_driver_default_route_is_complete_sequential_piqd(tmp_path: Path) -> Non
     )
 
 
+def test_driver_default_route_preserves_adapter_transport_timeout(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    source = _running_snapshot(tmp_path)
+    fake = FakeCurrentPiqd(["UNSAT"] * driver.ORDER_COUNT)
+    captured: dict[str, Any] = {}
+
+    def construct(server: str, **kwargs: object) -> FakeCurrentPiqd:
+        captured["server"] = server
+        captured["kwargs"] = kwargs
+        return fake
+
+    monkeypatch.setattr(neutral, "UrllibPiqdTransport", construct)
+    driver.run_driver(
+        source_dir=source,
+        out_dir=tmp_path / "driver-output",
+        workers=1,
+        timeout_s=1,
+        expected_count=1,
+        running_snapshot=True,
+        piqd_output_directory=tmp_path / "piqd-custody",
+    )
+
+    assert captured == {"server": driver.DEFAULT_PIQD_SERVER, "kwargs": {}}
+
+
+def test_driver_selected_canary_bounds_adapter_transport_timeout(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    source = _running_snapshot(tmp_path)
+    fake = FakeCurrentPiqd(["UNSAT"])
+    captured: dict[str, Any] = {}
+
+    def construct(server: str, **kwargs: object) -> FakeCurrentPiqd:
+        captured["server"] = server
+        captured["kwargs"] = kwargs
+        return fake
+
+    monkeypatch.setattr(neutral, "UrllibPiqdTransport", construct)
+    driver.run_driver(
+        source_dir=source,
+        out_dir=tmp_path / "driver-output",
+        workers=1,
+        timeout_s=2,
+        expected_count=1,
+        running_snapshot=True,
+        case_index=0,
+        order_id="order-00",
+        piqd_output_directory=tmp_path / "piqd-custody",
+    )
+
+    assert captured == {
+        "server": driver.DEFAULT_PIQD_SERVER,
+        "kwargs": {
+            "http_timeout_s": neutral.bounded_solve_http_timeout_s(2000),
+        },
+    }
+
+
 @pytest.mark.parametrize(
     ("statuses", "expected_stages"),
     [

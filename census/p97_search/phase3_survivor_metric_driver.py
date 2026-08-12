@@ -26,7 +26,7 @@ import os
 import tempfile
 from collections import Counter
 from collections.abc import Callable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -681,6 +681,8 @@ def _run_piqd_tasks(
     timeout_s: float,
     transport: Any,
     output_directory: Path,
+    case_index: int | None = None,
+    order_id: str | None = None,
 ) -> tuple[dict[int, dict[str, Any]], dict[tuple[int, str], dict[str, Any]]]:
     """Run every PIQD leaf sequentially; no ProcessPool or local fallback."""
 
@@ -696,10 +698,27 @@ def _run_piqd_tasks(
     piqd.create_output_root(output_directory)
     exact_results: dict[int, dict[str, Any]] = {}
     convex_results: dict[tuple[int, str], dict[str, Any]] = {}
-    for binding in bindings:
+    selected_bindings = (
+        bindings
+        if case_index is None
+        else tuple(binding for binding in bindings if binding.case.index == case_index)
+    )
+    for binding in selected_bindings:
         case_root = output_directory / f"survivor-{binding.case.index:04d}"
         case_root.mkdir(mode=0o700)
-        for order_index, order_spec in enumerate(binding.case.orders):
+        selected_orders = (
+            binding.case.orders
+            if order_id is None
+            else tuple(
+                order for order in binding.case.orders if order.order_id == order_id
+            )
+        )
+        for order_spec in selected_orders:
+            order_index = next(
+                index
+                for index, candidate in enumerate(binding.case.orders)
+                if candidate.order_id == order_spec.order_id
+            )
             result = piqd.run_staged_order(
                 binding,
                 order_spec,
@@ -707,7 +726,7 @@ def _run_piqd_tasks(
                 transport=transport,
                 output_directory=case_root / f"{order_index:02d}-{order_spec.order_id}",
             )
-            if order_index == 0:
+            if binding.case.index not in exact_results:
                 exact_results[binding.case.index] = _piqd_exact_result(
                     result["stages"][0]
                 )
@@ -791,9 +810,40 @@ def _run_tasks(
 
     if len(exact_results) != len(cases):
         raise SurvivorMetricError("exact-metric task result count mismatch")
-    if len(convex_results) != len(cases) * ORDER_COUNT:
+    expected_order_count = sum(len(case.orders) for case in cases)
+    if len(convex_results) != expected_order_count:
         raise SurvivorMetricError("convex-order task result count mismatch")
     return exact_results, convex_results
+
+
+def _select_cases(
+    cases: Sequence[SurvivorCase],
+    *,
+    case_index: int | None,
+    order_id: str | None,
+) -> tuple[SurvivorCase, ...]:
+    """Select a bounded replay without weakening complete source ingress."""
+
+    if (case_index is None) != (order_id is None):
+        raise ValueError("case_index and order_id must be supplied together")
+    if case_index is None:
+        return tuple(cases)
+    if type(case_index) is not int or case_index < 0:
+        raise ValueError("case_index must be a nonnegative exact int")
+    if type(order_id) is not str or not order_id:
+        raise ValueError("order_id must be a nonempty exact str")
+    matches = tuple(case for case in cases if case.index == case_index)
+    if len(matches) != 1:
+        raise SurvivorMetricError(
+            "selected case_index is not an authenticated survivor"
+        )
+    case = matches[0]
+    selected_orders = tuple(
+        order for order in case.orders if order.order_id == order_id
+    )
+    if len(selected_orders) != 1:
+        raise SurvivorMetricError("selected order_id is not an authenticated cap order")
+    return (replace(case, orders=selected_orders),)
 
 
 def run_driver(
@@ -810,6 +860,8 @@ def run_driver(
     piqd_transport: Any | None = None,
     piqd_server: str = DEFAULT_PIQD_SERVER,
     piqd_output_directory: Path | None = None,
+    case_index: int | None = None,
+    order_id: str | None = None,
 ) -> dict[str, Any]:
     """Replay, classify, and publish one complete survivor census."""
 
@@ -864,13 +916,29 @@ def run_driver(
         or _sha256_file(source_dir / "survivors.jsonl") != source_survivors_sha256
     ):
         raise SurvivorMetricError("source snapshot changed during ingress replay")
-    equality_results = {case.index: classify_equality_only(case.rows) for case in cases}
+    selected_cases = _select_cases(cases, case_index=case_index, order_id=order_id)
+    equality_results = {
+        case.index: classify_equality_only(case.rows) for case in selected_cases
+    }
     if solver_route == "piqd" and not injected_test_route:
         from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
         transport = piqd_transport
         if transport is None:
-            transport = neutral.UrllibPiqdTransport(piqd_server)
+            if case_index is None:
+                # Preserve the adapter's historical 3900-second transport
+                # timeout for the complete census route. The CLI timeout is
+                # a solver budget, not a transport budget on this path.
+                transport = neutral.UrllibPiqdTransport(piqd_server)
+            else:
+                # An explicitly selected single-order canary is the bounded
+                # seam: keep its HTTP wait bounded by the requested timeout.
+                transport = neutral.UrllibPiqdTransport(
+                    piqd_server,
+                    http_timeout_s=neutral.bounded_solve_http_timeout_s(
+                        max(1, int(float(timeout_s) * 1000))
+                    ),
+                )
         if selected_piqd_output is None:
             raise SurvivorMetricError("PIQD custody root was not selected")
         exact_results, convex_results = _run_piqd_tasks(
@@ -881,11 +949,13 @@ def run_driver(
             timeout_s=float(timeout_s),
             transport=transport,
             output_directory=selected_piqd_output,
+            case_index=case_index,
+            order_id=order_id,
         )
         effective_route = "piqd-z3-qfnra"
     else:
         exact_results, convex_results = _run_tasks(
-            cases,
+            selected_cases,
             workers=workers,
             timeout_s=float(timeout_s),
             exact_runner=exact_runner,
@@ -897,7 +967,7 @@ def run_driver(
 
     records: list[dict[str, Any]] = []
     previous: str | None = None
-    for case in cases:
+    for case in selected_cases:
         order_results = [
             convex_results[(case.index, order.order_id)] for order in case.orders
         ]
@@ -990,6 +1060,13 @@ def run_driver(
             )
         },
     }
+    if case_index is not None:
+        configuration["selection"] = {
+            "case_index": case_index,
+            "order_id": order_id,
+            "authenticated_source_survivor_count": len(cases),
+            "published_survivor_count": len(selected_cases),
+        }
     if selected_piqd_output is not None and effective_route == "piqd-z3-qfnra":
         configuration["piqd_output_directory"] = _portable_source_reference(
             selected_piqd_output
@@ -1007,18 +1084,21 @@ def run_driver(
         source["manifest_name"] = source_manifest_path.name
         source["scope"] = RUNNING_SNAPSHOT_SCOPE
 
+    counts = {
+        "source_survivor_count": len(cases),
+        "cap_order_leaf_count": len(order_statuses),
+        "equality_only_metric_core": _status_counts(equality_statuses),
+        "exact_metric": _status_counts(exact_statuses),
+        "convexity_order": _status_counts(order_statuses),
+        "source_classification": dict(sorted(classifications.items())),
+    }
+    if case_index is not None:
+        counts["published_survivor_count"] = len(selected_cases)
     unsigned_manifest = {
         "schema": SCHEMA,
         "configuration": configuration,
         "source": source,
-        "counts": {
-            "source_survivor_count": len(cases),
-            "cap_order_leaf_count": len(order_statuses),
-            "equality_only_metric_core": _status_counts(equality_statuses),
-            "exact_metric": _status_counts(exact_statuses),
-            "convexity_order": _status_counts(order_statuses),
-            "source_classification": dict(sorted(classifications.items())),
-        },
+        "counts": counts,
         "artifacts": {
             "results.jsonl": {
                 "count": len(records),
@@ -1030,6 +1110,13 @@ def run_driver(
         },
         "result_claim": (
             (
+                "bounded canary screening of exactly one selected survivor and "
+                f"order {order_id} from an authenticated source of "
+                f"{len(cases)} survivors; selected order only, not exhaustive "
+                "and not SURVIVOR_LIMIT"
+            )
+            if case_index is not None
+            else (
                 "immutable partial survivor snapshot screening of exactly "
                 f"{len(cases)} survivors captured from a RUNNING structural "
                 "CEGAR journal under the encoded row systems and 24 "
@@ -1110,6 +1197,15 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
             "manifest status is RUNNING"
         ),
     )
+    parser.add_argument(
+        "--case-index",
+        type=int,
+        help="bounded canary case index; requires --order-id",
+    )
+    parser.add_argument(
+        "--order-id",
+        help="bounded canary order identifier; requires --case-index",
+    )
     return parser.parse_args(argv)
 
 
@@ -1126,6 +1222,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             solver_route=args.solver_route,
             piqd_server=args.piqd_server,
             piqd_output_directory=args.piqd_output_directory,
+            case_index=args.case_index,
+            order_id=args.order_id,
         )
     except (OSError, ValueError, SurvivorMetricError) as exc:
         print(f"phase3 survivor metric driver failed: {exc}")

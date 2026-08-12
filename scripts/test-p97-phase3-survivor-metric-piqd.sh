@@ -20,10 +20,13 @@ PYTHON_FILES=(
   census/p97_search/phase3_survivor_metric_driver.py
   census/p97_search/phase3_survivor_metric_piqd.py
   census/p97_search/tests/test_phase3_survivor_metric_piqd.py
+  census/p97_search/tests/test_phase3_survivor_metric_driver.py
 )
 
 # One sequential pytest process; the current-schema fake never contacts PIQD
-# or invokes a local solver. Ruff lint and format are separate read-only gates.
+# or invokes a local solver. This also exercises the bounded case/order CLI
+# selector through the injected, one-worker driver route. Ruff lint and format
+# are separate read-only gates.
 uv run --with pytest pytest -q \
   census/p97_search/tests/test_phase3_survivor_metric_piqd.py \
   census/p97_search/tests/test_phase3_survivor_metric_driver.py
