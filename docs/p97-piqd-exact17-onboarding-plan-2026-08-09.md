@@ -782,3 +782,33 @@ the live daemon and solver, pin and emit the ingress manifest, validate it
 recursively, and bind the runner to that manifest and exact root. No child-34
 job exists yet. This checkpoint closes neither exact 17 nor a production
 `sorry`.
+
+## Child-35 exact-root qualification — 2026-08-13
+
+Child-34 job `3dc8ef3d-5cc3-49c1-b0e4-afc9d2552941` returned authenticated
+`SAT` on root
+`ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819`.
+The retrieved total assignment satisfied all 5,847,256 clauses under an
+independent streaming replay. The wave-only mine initially classified the
+perpendicular-bisector support with foci `3,13` and witnesses `1,4,12` as
+diagnostic because it lacked a source bridge. The subsequent source audit
+proved that bridge in Lean for both named orders and orientations, yielding
+exactly four source-valid clauses. No other diagnostic Child-34 motif was
+admitted.
+
+The resulting immutable Lean-owned Child-35 root has 308 variables,
+5,847,260 clauses, 291,621,156 bytes, and SHA-256
+`0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f`.
+Its export-receipt SHA-256 is
+`5c1ad79eedbe7a12619478015c90706662bc52b33e703569d1ae415bbc24476b`.
+The ingress manifest is provisioned at SHA-256
+`3241c3f22d0bb4a1635430ad35a395a0c46cd8b3a06423e05a682999533a72ae`
+and binds the live daemon build `f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089`
+and solver `piqd-satworker-cadical-3.0.0` at SHA-256
+`0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965`.
+Strict publication, recursive ingress, live static validation, 276 focused
+adversarial tests, and the targeted Lean exporter build pass.
+
+No Child-35 PIQD custody intent or job exists at this checkpoint. The next
+production action is one fresh, authenticated submission of this exact root.
+This checkpoint closes neither exact 17 nor a production `sorry`.

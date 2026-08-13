@@ -100,6 +100,9 @@ class FakeClient:
         )
         assert type(requested_core_limit) is int
         assert requested_core_limit == runner.REQUESTED_CORE_LIMIT
+        if runner._uses_hardened_protocol(self.spec):
+            assert timeout_s == self.spec.timeout_s
+            assert march_timeout_s == self.spec.march_timeout_s
         response = {
             "existing": self.existing,
             "cnf_blob_hash": self.spec.root_sha256,
@@ -113,10 +116,6 @@ class FakeClient:
             "producer_manifest_blob_hash": self.spec.manifest_sha256,
             "requested_core_limit": self.prepare_core_override,
         }
-        if self.spec.artifact_namespace == "child33":
-            response.update(
-                {"timeout_s": timeout_s, "march_timeout_s": march_timeout_s}
-            )
         return response
 
     def _status(self, phase: str, *, result: str | None = None) -> dict[str, Any]:
@@ -129,6 +128,8 @@ class FakeClient:
             "project": self.spec.project,
             "backend": self.spec.ingress.backend,
             "solver_profile": self.spec.ingress.solver_profile,
+            "num_vars": self.spec.variables,
+            "num_clauses": self.spec.clauses,
             "status": phase,
             "requested_core_limit": self.status_core_override,
             "run_epoch": (
@@ -140,7 +141,7 @@ class FakeClient:
         }
         if self.omit_recovery_action:
             payload.pop("recovery_action")
-        if self.spec.artifact_namespace == "child33":
+        if runner._uses_hardened_protocol(self.spec):
             payload.update(
                 {"timeout_s": self.spec.timeout_s, "march_timeout_s": self.spec.march_timeout_s}
             )
@@ -385,6 +386,44 @@ def _child33_fixture(
         project="erdos-97-96-exact17-child33",
         artifact_namespace="child33",
     ), root
+
+
+def test_hardened_prepare_omits_timeouts_and_status_binds_them(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    state = runner.start(client, paths, spec, ingress_validator=_validated)
+    submitted = state["prepared_record"]["submitted"]
+    assert "timeout_s" not in submitted and "march_timeout_s" not in submitted
+    prepared_status = state["prepared_record"]["prepared_status"]
+    assert prepared_status["timeout_s"] == spec.timeout_s
+    assert prepared_status["march_timeout_s"] == spec.march_timeout_s
+    assert state["binding"]["timeout_s"] == spec.timeout_s
+    assert state["binding"]["march_timeout_s"] == spec.march_timeout_s
+
+
+@pytest.mark.parametrize("field", ["timeout_s", "march_timeout_s"])
+@pytest.mark.parametrize("replacement", ["missing", None, 0, True, 1.0, "3600", 3601])
+def test_hardened_status_requires_exact_timeouts_before_confirmation(
+    tmp_path: Path, field: str, replacement: Any
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def crossed_status(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        if replacement == "missing":
+            payload.pop(field)
+        else:
+            payload[field] = replacement
+        return payload
+
+    client.status = crossed_status
+    with pytest.raises(ValueError, match="timeout crossed hardened identity"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 0
 
 
 def test_child33_sat_requires_bound_model_check_row(tmp_path: Path) -> None:
@@ -811,6 +850,25 @@ def test_job_guard_rejects_omitted_recovery_marker(
     status = client._status(phase)
     status.pop("recovery_action")
     with pytest.raises(ValueError, match="omitted its recovery action"):
+        runner._check_job(status, "job-child32", spec, phase)
+
+
+@pytest.mark.parametrize("field", ["num_vars", "num_clauses"])
+@pytest.mark.parametrize("phase", ["prepared", "completed"])
+@pytest.mark.parametrize(
+    "replacement", [None, "missing", False, True, 0, 1, 1.0, "3", [], {}]
+)
+def test_job_guard_rejects_missing_wrong_typed_or_wrong_counts(
+    tmp_path: Path, field: str, phase: str, replacement: Any
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    if replacement == "missing":
+        status.pop(field)
+    else:
+        status[field] = replacement
+    with pytest.raises(ValueError, match=f"PIQD {field} crossed child32 identity"):
         runner._check_job(status, "job-child32", spec, phase)
 
 

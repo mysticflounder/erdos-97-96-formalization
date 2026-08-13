@@ -828,6 +828,15 @@ def _check_job(
     }
     for key, value in expected.items():
         _require(status.get(key) == value, f"PIQD {key} crossed child32 identity")
+    for key, value in (
+        ("num_vars", spec.variables),
+        ("num_clauses", spec.clauses),
+    ):
+        observed = status.get(key)
+        _require(
+            type(observed) is int and observed == value,
+            f"PIQD {key} crossed child32 identity",
+        )
     if _uses_hardened_protocol(spec):
         _require(status.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed hardened identity")
         _require(
@@ -882,12 +891,12 @@ def _check_prepare_response(
     }
     for key, value in expected.items():
         _require(response.get(key) == value, f"PIQD prepare {key} crossed child32 identity")
-    if _uses_hardened_protocol(spec):
-        _require(response.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed hardened identity")
-        _require(
-            response.get("march_timeout_s") == spec.march_timeout_s,
-            "PIQD march timeout crossed hardened identity",
-        )
+    # The raw-DIMACS prepare response binds the content-addressed identity but
+    # does not echo either timeout.  Those execution parameters live on the
+    # job row and are checked by `_check_job` against the authoritative status
+    # response before confirmation.  Requiring nonexistent prepare fields
+    # leaves a correctly prepared job stranded after its immutable intent has
+    # already been written.
     existing = response.get("existing")
     _require(type(existing) is bool, "PIQD prepare omitted exact existing flag")
     observed_core_limit = response.get("requested_core_limit")
