@@ -59,7 +59,8 @@ def ApexInternalSharedPairCommonFiveData.rolesValid
     ((data.a.val < data.x.val ∧ data.c.val < data.y.val) ∨
       (data.x.val < data.a.val ∧ data.y.val < data.c.val))
 
-instance (data : ApexInternalSharedPairCommonFiveData) :
+instance instDecidableApexInternalSharedPairCommonFiveRolesValid
+    (data : ApexInternalSharedPairCommonFiveData) :
     Decidable data.rolesValid := by
   unfold ApexInternalSharedPairCommonFiveData.rolesValid
   infer_instance

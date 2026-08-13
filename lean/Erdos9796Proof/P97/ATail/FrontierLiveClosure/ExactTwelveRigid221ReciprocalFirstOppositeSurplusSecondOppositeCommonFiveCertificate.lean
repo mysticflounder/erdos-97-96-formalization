@@ -46,7 +46,8 @@ def ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData.rolesValid
     data.x ∈ surplusInteriorLabels ∧
     data.c ∈ secondOppositeInteriorLabels
 
-instance (data : ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData) :
+instance instDecidableReciprocalFirstOppositeSurplusSecondOppositeCommonFiveRolesValid
+    (data : ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData) :
     Decidable data.rolesValid := by
   unfold ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData.rolesValid
   infer_instance

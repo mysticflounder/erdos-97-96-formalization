@@ -206,6 +206,25 @@ theorem false_of_terminalStaticNextRowThreeTriadMembershipBank
                   StaticCell1AfterFamilyThreeTriadMembershipCnf.blockingClause with
               | false => exact False.elim (hfalse heval)
               | true => rfl
+          · obtain ⟨nogood, hnogood, rfl⟩ := List.mem_map.mp hbank
+            by_cases hfalse : evalClauseD σ
+                (learnedClause nogood.choices) = false
+            · have hsourceFalse :
+                  evalClauseD (SafeCoverCnf.finalAssign (coverIndex row))
+                      (learnedClause nogood.choices) = false := by
+                rw [← evalClauseD_of_agreesOnBase_learnedClause_eq
+                  nogood.choices (hencodable nogood hnogood) hσbase]
+                exact hfalse
+              have hselected := selectedByCoverIndex_of_learnedClause_false hrow
+                (hencodable nogood hnogood) hsourceFalse
+              have hpositive := positiveRowsMatch_of_selectedByCoverIndex hrow
+                hselected
+              exact False.elim
+                (nogood.refutes hreal order hforced hconv hpositive)
+            · cases heval : evalClauseD σ
+                  (learnedClause nogood.choices) with
+              | false => exact False.elim (hfalse heval)
+              | true => rfl
 
 /-- Exact production order for one fixed named-deletion arm: the historical
 static/two-membership prefix, then the independently compiled arm suffix, then
@@ -388,26 +407,6 @@ theorem false_of_terminalStaticNextRowThreeTriadNamedDeletionArmBank
                     (learnedClause nogood.choices) with
                 | false => exact False.elim (hfalse heval)
                 | true => rfl
-          · obtain ⟨nogood, hnogood, rfl⟩ := List.mem_map.mp hbank
-            by_cases hfalse : evalClauseD σ
-                (learnedClause nogood.choices) = false
-            · have hsourceFalse :
-                  evalClauseD (SafeCoverCnf.finalAssign (coverIndex row))
-                      (learnedClause nogood.choices) = false := by
-                rw [← evalClauseD_of_agreesOnBase_learnedClause_eq
-                  nogood.choices (hencodable nogood hnogood) hσbase]
-                exact hfalse
-              have hselected := selectedByCoverIndex_of_learnedClause_false hrow
-                (hencodable nogood hnogood) hsourceFalse
-              have hpositive := positiveRowsMatch_of_selectedByCoverIndex hrow
-                hselected
-              exact False.elim
-                (nogood.refutes hreal order hforced hconv hpositive)
-            · cases heval : evalClauseD σ
-                  (learnedClause nogood.choices) with
-              | false => exact False.elim (hfalse heval)
-              | true => rfl
-
 end ThreeTriadMembershipTerminalConsumer
 end ExactTwelveRigid221Ingress
 end ATailFrontierLiveClosure
