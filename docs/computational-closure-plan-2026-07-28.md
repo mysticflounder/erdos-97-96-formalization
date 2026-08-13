@@ -10335,6 +10335,50 @@ production query.  This checkpoint closes no FirstNonHit branch and no
 load-bearing `sorry`; it removes an impossible producer target and sharply
 narrows the next theorem/CEGAR contract.
 
+#### 13.24.1.21 W4 repeated-omission synchronization maximum (2026-08-13)
+
+The cardinality-independent W4 audit has now extracted the strongest generic
+synchronization forced by the corrected omission polarity.  The source-clean
+theorem
+`freshThird_commonRadius_sameBlocker_exists_two_repeated_qRow_omissionSuccessors`
+produces two distinct points of the exact Q row.  Each point is omitted by the
+actual selected rows of two distinct W4 sources in the strict canonical cap,
+and deletion of that point preserves K4 at each of those two actual centers.
+Its proof is a finite incidence count internal to the universal packet: four
+sources each omit at least two points from a four-point Q row, so two distinct
+Q-row points are each omitted at least twice.  No finite carrier bound or
+solver result is used.
+
+Both possible blocker-center follow-ups have been audited against the clean
+consumer bank:
+
+* If the two source centers associated with one omitted point are distinct,
+  the data forms a generic two-center common-deletion packet.  Existing
+  source-clean consumers only normalize that packet into further escape,
+  robustness, or exact-row residuals; none yields `False` or the required
+  three-point Q-row overlap.
+* If centers coincide, the repeated pairs induce actual-blocker fibers on two,
+  three, or four distinct W4 sources.  The clean cap-filter bound says only
+  that a fiber containing at least three strict-canonical-cap sources has its
+  blocker center outside the canonical cap.  It does not contradict K4,
+  deletion minimality, or the W4 packet.  No exported theorem synchronizes
+  that blocker center back into the canonical cap.
+
+Thus repeated omission is the maximum conclusion of the raw W4 incidence
+route under the current source interface.  Its polarity remains opposite the
+FirstNonHit terminal, and neither center partition converts it into a blocked
+deletion triple.  No further W4-only case split or solver wave is admissible
+without a materially new source theorem.  In particular, this checkpoint does
+not close a FirstNonHit branch or any load-bearing `sorry`.
+
+The next production route therefore remains §13.24.1.20: extract the full
+universally produced pinned-endpoint fan packet, including its endpoint,
+outside-seed, exact-row, cap, metric, and cyclic-order fields, to a bounded role
+structure with a formal arbitrary-cardinality lift.  A structurally different
+source theorem that closes one of that packet's row-valued outcomes is an
+equally valid successor.  Raw W4, cap-only, incidence-only, and fixed-cardinality
+projections remain diagnostic rather than closure campaigns.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

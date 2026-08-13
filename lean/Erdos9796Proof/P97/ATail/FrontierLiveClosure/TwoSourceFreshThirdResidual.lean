@@ -1369,6 +1369,89 @@ theorem freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The common-radius four-source packet has the opposite incidence polarity
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+private theorem firstNonHit_exists_repeated_mem_of_card_lt_sum
+    {α β : Type*} [DecidableEq α] [DecidableEq β]
+    (W : Finset α) (Q : Finset β) (O : α → Finset β)
+    (hsub : ∀ z ∈ W, O z ⊆ Q)
+    (hcard : Q.card < ∑ z ∈ W, (O z).card) :
+    ∃ w ∈ Q, ∃ z₁ ∈ W, ∃ z₂ ∈ W,
+      z₁ ≠ z₂ ∧ w ∈ O z₁ ∧ w ∈ O z₂ := by
+  let I : Finset (Σ _ : α, β) := W.sigma O
+  have hIcard : Q.card < I.card := by
+    simpa only [I, Finset.card_sigma] using hcard
+  have hmap : Set.MapsTo (fun x : Σ _ : α, β => x.2) I Q := by
+    intro x hx
+    have hx' := Finset.mem_sigma.mp hx
+    exact hsub x.1 hx'.1 hx'.2
+  obtain ⟨x, hxI, y, hyI, hxy, hproj⟩ :=
+    Finset.exists_ne_map_eq_of_card_lt_of_maps_to
+      (s := I) (t := Q) (f := fun x : Σ _ : α, β => x.2)
+      hIcard hmap
+  have hx := Finset.mem_sigma.mp hxI
+  have hy := Finset.mem_sigma.mp hyI
+  have hfirst : x.1 ≠ y.1 := by
+    intro hfirst
+    apply hxy
+    cases x
+    cases y
+    simp only at hfirst hproj ⊢
+    subst hfirst
+    subst hproj
+    rfl
+  exact
+    ⟨x.2, hsub x.1 hx.1 hx.2, x.1, hx.1, y.1, hy.1,
+      hfirst, hx.2, hproj ▸ hy.2⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+private theorem exists_two_repeated_mem_of_four_two
+    {α β : Type*} [DecidableEq α] [DecidableEq β]
+    (W : Finset α) (Q : Finset β) (O : α → Finset β)
+    (hW : W.card = 4) (hQ : Q.card = 4)
+    (hsub : ∀ z ∈ W, O z ⊆ Q)
+    (hcard : ∀ z ∈ W, 2 ≤ (O z).card) :
+    ∃ w₁ ∈ Q, ∃ w₂ ∈ Q, w₁ ≠ w₂ ∧
+      (∃ z₁ ∈ W, ∃ z₂ ∈ W,
+        z₁ ≠ z₂ ∧ w₁ ∈ O z₁ ∧ w₁ ∈ O z₂) ∧
+      (∃ z₁ ∈ W, ∃ z₂ ∈ W,
+        z₁ ≠ z₂ ∧ w₂ ∈ O z₁ ∧ w₂ ∈ O z₂) := by
+  have hsum : W.card * 2 ≤ ∑ z ∈ W, (O z).card := by
+    simpa only [Finset.sum_const, smul_eq_mul] using
+      Finset.sum_le_sum (fun z hz => hcard z hz)
+  have hlt : Q.card < ∑ z ∈ W, (O z).card := by omega
+  obtain ⟨w₁, hw₁Q, z₁, hz₁W, z₂, hz₂W, hzNe, hw₁z₁, hw₁z₂⟩ :=
+    firstNonHit_exists_repeated_mem_of_card_lt_sum W Q O hsub hlt
+  let O' : α → Finset β := fun z => (O z).erase w₁
+  have hsub' : ∀ z ∈ W, O' z ⊆ Q.erase w₁ := by
+    intro z hz x hx
+    have hx' := Finset.mem_erase.mp hx
+    exact Finset.mem_erase.mpr ⟨hx'.1, hsub z hz hx'.2⟩
+  have hcard' : ∀ z ∈ W, 1 ≤ (O' z).card := by
+    intro z hz
+    have hzCard := hcard z hz
+    by_cases hw₁ : w₁ ∈ O z
+    · simp only [O', Finset.card_erase_of_mem hw₁]
+      omega
+    · simp only [O', Finset.erase_eq_self.mpr hw₁]
+      omega
+  have hsum' : W.card ≤ ∑ z ∈ W, (O' z).card := by
+    simpa only [Finset.sum_const, smul_eq_mul, mul_one] using
+      Finset.sum_le_sum (fun z hz => hcard' z hz)
+  have hQerase : (Q.erase w₁).card = 3 := by
+    rw [Finset.card_erase_of_mem hw₁Q, hQ]
+  have hlt' : (Q.erase w₁).card < ∑ z ∈ W, (O' z).card := by omega
+  obtain ⟨w₂, hw₂Q, z₃, hz₃W, z₄, hz₄W, hz34Ne, hw₂z₃, hw₂z₄⟩ :=
+    firstNonHit_exists_repeated_mem_of_card_lt_sum W (Q.erase w₁) O' hsub' hlt'
+  have hw₂Q' := Finset.mem_erase.mp hw₂Q
+  exact
+    ⟨w₁, hw₁Q, w₂, hw₂Q'.2, hw₂Q'.1.symm,
+      ⟨z₁, hz₁W, z₂, hz₂W, hzNe, hw₁z₁, hw₁z₂⟩,
+      ⟨z₃, hz₃W, z₄, hz₄W, hz34Ne,
+        (Finset.mem_erase.mp hw₂z₃).2,
+        (Finset.mem_erase.mp hw₂z₄).2⟩⟩
+
 from the three-point-overlap terminal.  Every strict-cap source in the packet
 lies off the `Q` row, survives deletion at the `Q` blocker, and has an actual
 row omitting at least two `Q`-row points.  Those omitted points in turn survive
@@ -1441,6 +1524,149 @@ theorem
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The exact finite blocker boundary for a `Q` row: either its actual
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Among the four strict-cap sources supplied by the common-radius
+same-blocker packet, two distinct points of the exact `Q` row are each omitted
+by the actual rows of two distinct sources.  Each omission is accompanied by
+the corresponding deletion-survival fact at that source's actual blocker.
+
+This is the first cardinality-independent synchronization consequence of the
+`W4` packet.  It is not yet the three-incidence terminal: its polarity is still
+omission/survival rather than membership/blocking. -/
+theorem
+    freshThird_commonRadius_sameBlocker_exists_two_repeated_qRow_omissionSuccessors
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirstSupport :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support)
+    (hsecondSupport :
+      (H.selectedAt C.surface.secondSource.1
+          C.surface.secondSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support) :
+    ∃ w₁ ∈ (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support,
+      ∃ w₂ ∈ (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support,
+        w₁ ≠ w₂ ∧
+          (∃ source₁ source₂ : CriticalShellSystem.CarrierVertex D.A,
+            source₁.1 ≠ source₂.1 ∧
+            source₁.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+            source₂.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+            H.centerAt source₁.1 source₁.2 ≠
+              H.centerAt Q.source₁.1 Q.source₁.2 ∧
+            H.centerAt source₂.1 source₂.2 ≠
+              H.centerAt Q.source₁.1 Q.source₁.2 ∧
+            w₁ ∉ (H.selectedAt source₁.1
+              source₁.2).toCriticalFourShell.support ∧
+            w₁ ∉ (H.selectedAt source₂.1
+              source₂.2).toCriticalFourShell.support ∧
+            HasNEquidistantPointsAt 4 (D.A.erase w₁)
+              (H.centerAt source₁.1 source₁.2) ∧
+            HasNEquidistantPointsAt 4 (D.A.erase w₁)
+              (H.centerAt source₂.1 source₂.2)) ∧
+          (∃ source₁ source₂ : CriticalShellSystem.CarrierVertex D.A,
+            source₁.1 ≠ source₂.1 ∧
+            source₁.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+            source₂.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+            H.centerAt source₁.1 source₁.2 ≠
+              H.centerAt Q.source₁.1 Q.source₁.2 ∧
+            H.centerAt source₂.1 source₂.2 ≠
+              H.centerAt Q.source₁.1 Q.source₁.2 ∧
+            w₂ ∉ (H.selectedAt source₁.1
+              source₁.2).toCriticalFourShell.support ∧
+            w₂ ∉ (H.selectedAt source₂.1
+              source₂.2).toCriticalFourShell.support ∧
+            HasNEquidistantPointsAt 4 (D.A.erase w₂)
+              (H.centerAt source₁.1 source₁.2) ∧
+            HasNEquidistantPointsAt 4 (D.A.erase w₂)
+              (H.centerAt source₂.1 source₂.2)) := by
+  classical
+  rcases
+      freshThird_commonRadius_sameBlocker_exists_four_sources_with_two_qRow_omissions
+        (D := D) (S := S) (H := H) (P := P) (Pρ := Pρ)
+        (T := T) (C := C) (Q := Q) hfirstSupport hsecondSupport with
+    ⟨W, hWcard, hW⟩
+  let KQ :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.support
+  let source : ↥W → CriticalShellSystem.CarrierVertex D.A := fun z =>
+    ⟨z.1, Classical.choose ((hW z.1 z.2).2.2)⟩
+  let O : ↥W → Finset ℝ² := fun z =>
+    KQ \ (H.selectedAt (source z).1
+      (source z).2).toCriticalFourShell.support
+  have hsourceData (z : ↥W) :
+      H.centerAt (source z).1 (source z).2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        ((H.selectedAt (source z).1
+            (source z).2).toCriticalFourShell.support ∩ KQ).card ≤ 2 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase z.1)
+          (H.centerAt Q.source₁.1 Q.source₁.2) ∧
+        2 ≤ (O z).card ∧
+        ∀ w ∈ O z,
+          w ≠ z.1 ∧
+            HasNEquidistantPointsAt 4 (D.A.erase w)
+              (H.centerAt (source z).1 (source z).2) := by
+    simpa only [source, O, KQ] using
+      Classical.choose_spec ((hW z.1 z.2).2.2)
+  have hUnivCard : (Finset.univ : Finset ↥W).card = 4 := by
+    simpa using hWcard
+  have hKQcard : KQ.card = 4 := by
+    simpa only [KQ] using
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support_card
+  have hsub : ∀ z ∈ (Finset.univ : Finset ↥W), O z ⊆ KQ := by
+    intro z _
+    exact Finset.sdiff_subset
+  have hOcard : ∀ z ∈ (Finset.univ : Finset ↥W), 2 ≤ (O z).card := by
+    intro z _
+    exact (hsourceData z).2.2.2.1
+  obtain
+      ⟨w₁, hw₁KQ, w₂, hw₂KQ, hwNe,
+        ⟨z₁, _, z₂, _, hzNe, hw₁z₁, hw₁z₂⟩,
+        ⟨z₃, _, z₄, _, hz34Ne, hw₂z₃, hw₂z₄⟩⟩ :=
+    exists_two_repeated_mem_of_four_two
+      (Finset.univ : Finset ↥W) KQ O hUnivCard hKQcard hsub hOcard
+  have packageRepeated
+      (w : ℝ²) {x y : ↥W} (hxy : x ≠ y)
+      (hwx : w ∈ O x) (hwy : w ∈ O y) :
+      ∃ source₁ source₂ : CriticalShellSystem.CarrierVertex D.A,
+        source₁.1 ≠ source₂.1 ∧
+        source₁.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+        source₂.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+        H.centerAt source₁.1 source₁.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        H.centerAt source₂.1 source₂.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        w ∉ (H.selectedAt source₁.1
+          source₁.2).toCriticalFourShell.support ∧
+        w ∉ (H.selectedAt source₂.1
+          source₂.2).toCriticalFourShell.support ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt source₁.1 source₁.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt source₂.1 source₂.2) := by
+    have hvalues : x.1 ≠ y.1 := by
+      intro hEq
+      exact hxy (Subtype.ext hEq)
+    have hxCap := (hW x.1 x.2).1
+    have hyCap := (hW y.1 y.2).1
+    have hwx' := Finset.mem_sdiff.mp hwx
+    have hwy' := Finset.mem_sdiff.mp hwy
+    exact
+      ⟨source x, source y, hvalues, hxCap, hyCap,
+        (hsourceData x).1, (hsourceData y).1,
+        hwx'.2, hwy'.2,
+        ((hsourceData x).2.2.2.2 w hwx).2,
+        ((hsourceData y).2.2.2.2 w hwy).2⟩
+  exact
+    ⟨w₁, by simpa only [KQ] using hw₁KQ,
+      w₂, by simpa only [KQ] using hw₂KQ, hwNe,
+      packageRepeated w₁ hzNe hw₁z₁ hw₁z₂,
+      packageRepeated w₂ hz34Ne hw₂z₃ hw₂z₄⟩
+
 blocker fiber has the maximal four sources and therefore has exactly the
 selected `Q` support as carrier image, or one support point is sourced at a
 distinct blocker and supplies the two deletion successors above.
