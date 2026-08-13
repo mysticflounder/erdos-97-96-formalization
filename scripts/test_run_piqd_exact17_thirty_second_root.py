@@ -855,21 +855,53 @@ def test_job_guard_rejects_omitted_recovery_marker(
 
 @pytest.mark.parametrize("field", ["num_vars", "num_clauses"])
 @pytest.mark.parametrize("phase", ["prepared", "completed"])
+def test_job_guard_accepts_status_schema_omitting_prepare_only_counts(
+    tmp_path: Path, field: str, phase: str
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    status.pop(field)
+    assert runner._check_job(status, "job-child32", spec, phase) == phase
+
+
+@pytest.mark.parametrize("field", ["num_vars", "num_clauses"])
+@pytest.mark.parametrize("phase", ["prepared", "completed"])
 @pytest.mark.parametrize(
-    "replacement", [None, "missing", False, True, 0, 1, 1.0, "3", [], {}]
+    "replacement", [None, False, True, 0, 1, 1.0, "3", [], {}]
 )
-def test_job_guard_rejects_missing_wrong_typed_or_wrong_counts(
+def test_job_guard_rejects_wrong_typed_or_wrong_echoed_counts(
     tmp_path: Path, field: str, phase: str, replacement: Any
 ) -> None:
     _paths, spec, root = _fixture(tmp_path)
     client = FakeClient(root, spec)
     status = client._status(phase)
-    if replacement == "missing":
-        status.pop(field)
-    else:
-        status[field] = replacement
+    status[field] = replacement
     with pytest.raises(ValueError, match=f"PIQD {field} crossed child32 identity"):
         runner._check_job(status, "job-child32", spec, phase)
+
+
+@pytest.mark.parametrize("field", ["num_vars", "num_clauses"])
+def test_prepare_guard_still_requires_declared_counts(
+    tmp_path: Path, field: str
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    response = client.submit(
+        paths.ingress.export.child,
+        paths.ingress.manifest,
+        backend=spec.ingress.backend,
+        profile=spec.ingress.solver_profile,
+        project=spec.project,
+        requested_core_limit=runner.REQUESTED_CORE_LIMIT,
+        timeout_s=spec.timeout_s,
+        march_timeout_s=spec.march_timeout_s,
+    )
+    response.pop(field)
+    with pytest.raises(ValueError, match=f"PIQD prepare {field} crossed child32 identity"):
+        runner._check_prepare_response(
+            response, "job-child32", spec, expected_existing=False
+        )
 
 
 def test_confirmed_status_requires_pre_run_epoch_zero(tmp_path: Path) -> None:
@@ -1019,6 +1051,41 @@ def test_explicit_reconciliation_recovers_intent_without_resubmitting(
         state["prepared_record"]["submission_mode"]
         == "reconciled_after_prepare_response_failure"
     )
+    assert client.submit_calls == 1 and client.confirm_calls == 1
+
+
+def test_explicit_reconciliation_accepts_status_without_prepare_only_counts(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+    original_status = client.status
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected lost prepare response")
+
+    def status_without_prepare_counts(job_id: str) -> dict[str, Any]:
+        status = original_status(job_id)
+        status.pop("num_vars", None)
+        status.pop("num_clauses", None)
+        return status
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="lost prepare response"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+
+    client.submit = original_submit
+    client.status = status_without_prepare_counts
+    state = runner.reconcile_prepared_job(
+        client,
+        "job-child32",
+        paths,
+        spec,
+        ingress_validator=_validated,
+    )
+    assert state["phase"] == "confirmed"
     assert client.submit_calls == 1 and client.confirm_calls == 1
 
 

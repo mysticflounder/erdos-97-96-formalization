@@ -828,15 +828,22 @@ def _check_job(
     }
     for key, value in expected.items():
         _require(status.get(key) == value, f"PIQD {key} crossed child32 identity")
+    # The raw-DIMACS prepare response reports and binds both declared counts,
+    # but the ordinary GET /jobs/:id StatusResponse does not carry them.  The
+    # lifecycle additionally retrieves the stored CNF and requires it to equal
+    # the immutable local snapshot byte-for-byte before confirmation.  Accept
+    # the status schema's omission; if a future daemon does echo either count,
+    # require the echoed value to be exactly right.
     for key, value in (
         ("num_vars", spec.variables),
         ("num_clauses", spec.clauses),
     ):
-        observed = status.get(key)
-        _require(
-            type(observed) is int and observed == value,
-            f"PIQD {key} crossed child32 identity",
-        )
+        if key in status:
+            observed = status[key]
+            _require(
+                type(observed) is int and observed == value,
+                f"PIQD {key} crossed child32 identity",
+            )
     if _uses_hardened_protocol(spec):
         _require(status.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed hardened identity")
         _require(
