@@ -1640,6 +1640,32 @@ theorem mutualCrossMembership_or_oneSidedDeletionSurvival
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
+/-- The common-radius packet exposes the exact equal-blocker trace or the
+one-sided deletion survivor for its two same-radius cap sources. -/
+theorem commonRadius_pair_equalBlockerExactTrace_or_oneSidedDeletionSurvival
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hblockersEq :
+      H.blockerVertex C.surface.firstSource =
+        H.blockerVertex C.surface.secondSource)
+    (hshellInterCapEq :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 =
+        {C.surface.firstSource.1, C.surface.secondSource.1}) :
+    AllCollisionEndpointsOmitted P Pρ
+        C.surface.firstSource C.surface.secondSource ∨
+      TwoCapSourcesOneSidedDeletionSurvival (H := H)
+        C.surface.firstSource C.surface.secondSource := by
+  rcases mutualCrossMembership_or_oneSidedDeletionSurvival
+      C.surface.firstSource C.surface.secondSource with
+    hmutual | hsurvival
+  · exact Or.inl <|
+      allCollisionEndpointsOmitted_of_equalBlocker_shell_inter_cap_eq
+        (P := P) (Pρ := Pρ) C.surface.firstSource C.surface.secondSource
+        C.surface.firstSource_data C.surface.secondSource_data
+        hblockersEq hshellInterCapEq
+  · exact Or.inr hsurvival
+
 /-- A retained cap-source witness is a source-exposed instance of the original
 cap-source surface. -/
 private theorem capSourceSurface_of_firstFiberWitness

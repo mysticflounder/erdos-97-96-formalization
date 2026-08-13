@@ -1006,6 +1006,30 @@ def SourceFaithfulSelectedFourDeletionFan
                 (Row.support_subset_A hw)).toCriticalFourShell.support).card ≤
               2))
 
+/-- The complete source-faithful packet attached by the deletion fan to one
+selected-row point.  This alias lets pair-producing lemmas retain the
+dependent packet proofs rather than merely retaining the fan as a whole. -/
+def SourceFaithfulSelectedFourDeletionPacket
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    (H : CriticalShellSystem D.A)
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (w : ℝ²) (hw : w ∈ Row.support) : Prop :=
+  ∃ blockerCap : Fin 3,
+    H.centerAt w (Row.support_subset_A hw) ∈
+        S.capInteriorByIndex blockerCap ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+        (H.centerAt w (Row.support_subset_A hw)) ∧
+      ((center = H.centerAt w (Row.support_subset_A hw) ∧
+          Row.support =
+            (H.selectedAt w
+              (Row.support_subset_A hw)).toCriticalFourShell.support ∧
+          ¬ FullyDeletionRobustAt D center) ∨
+        (center ≠ H.centerAt w (Row.support_subset_A hw) ∧
+          (Row.support ∩
+            (H.selectedAt w
+              (Row.support_subset_A hw)).toCriticalFourShell.support).card ≤
+            2))
+
 /-- The source-faithful deletion fan over all points of a selected four-row.
 
 For every row point, its canonical blocker is cap-localized and genuinely
@@ -1042,6 +1066,61 @@ theorem sourceFaithfulDeletionFan_of_triApexAllLargeContext
         ⟨heq,
           SelectedFourClass.inter_card_le_two Row
             (H.selectedAt w hwA).toCriticalFourShell.toSelectedFourClass heq⟩
+
+/-- Two points outside a chosen cap retain their complete source-faithful
+deletion-fan packets.  The two points are returned as carrier vertices, with
+their outside proofs made explicit so the dependent packets remain available
+to the endpoint consumer. -/
+theorem exists_distinct_outsideCap_sourceFaithful_packets
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (i : Fin 3)
+    (houtside : 2 ≤ (Row.support \ S.capByIndex i).card)
+    (hfan : SourceFaithfulSelectedFourDeletionFan D S H Row) :
+    ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+      ∃ hz : z.1 ∈ Row.support \ S.capByIndex i,
+        ∃ hw : w.1 ∈ Row.support \ S.capByIndex i,
+          z ≠ w ∧ SourceFaithfulSelectedFourDeletionPacket D S H Row z.1
+              (Finset.mem_sdiff.mp hz).1 ∧
+            SourceFaithfulSelectedFourDeletionPacket D S H Row w.1
+              (Finset.mem_sdiff.mp hw).1 := by
+  classical
+  let outside : Finset ℝ² := Row.support \ S.capByIndex i
+  have hpair : ∃ x ∈ outside, ∃ y ∈ outside, x ≠ y := by
+    by_contra hno
+    have hle : outside.card ≤ 1 := Finset.card_le_one.mpr (by
+      intro x hx y hy
+      by_contra hxy
+      exact hno ⟨x, hx, y, hy, hxy⟩)
+    have : 2 ≤ outside.card := by simpa [outside] using houtside
+    omega
+  rcases hpair with ⟨x, hx, y, hy, hxy⟩
+  have hxRow : x ∈ Row.support :=
+    (Finset.mem_sdiff.mp (by simpa [outside] using hx)).1
+  have hyRow : y ∈ Row.support :=
+    (Finset.mem_sdiff.mp (by simpa [outside] using hy)).1
+  let z : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨x, Row.support_subset_A hxRow⟩
+  let w : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨y, Row.support_subset_A hyRow⟩
+  have hz : z.1 ∈ Row.support \ S.capByIndex i := by
+    simpa [z, outside] using hx
+  have hw : w.1 ∈ Row.support \ S.capByIndex i := by
+    simpa [w, outside] using hy
+  have hzw : z ≠ w := by
+    intro h
+    apply hxy
+    exact congrArg Subtype.val h
+  exact ⟨z, w, hz, hw, hzw,
+    (show SourceFaithfulSelectedFourDeletionPacket D S H Row z.1
+        (Finset.mem_sdiff.mp hz).1 from by
+      simpa [SourceFaithfulSelectedFourDeletionPacket] using
+        hfan z.1 (Finset.mem_sdiff.mp hz).1),
+    (show SourceFaithfulSelectedFourDeletionPacket D S H Row w.1
+        (Finset.mem_sdiff.mp hw).1 from by
+      simpa [SourceFaithfulSelectedFourDeletionPacket] using
+        hfan w.1 (Finset.mem_sdiff.mp hw).1)⟩
 
 /-- Four source-faithful blocker-cap choices on one selected four-row contain
 two distinct row points whose actual blockers lie in the same strict indexed
@@ -1359,6 +1438,36 @@ theorem exists_mutualCrossDeletion_pair_of_sourceFaithfulFan_no_centerBlocker
         H (source j).2).mpr hjiNotMem,
       blocker_centers_ne_of_not_mem_other_selected_support
         H (source i).2 (source j).2 hjiNotMem⟩
+
+/-- Preserve the concrete source and canonical blocker when a source-faithful
+four-row enters its nonrobust-center arm.  The existing cap-synchronized fan
+theorem deliberately forgets this witness; this adapter retains the blocker
+cap, blocked deletion, selected-shell equality, and unique-four provenance. -/
+theorem exists_nonrobustCenter_witness_of_sourceFaithfulFan
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (hfan : SourceFaithfulSelectedFourDeletionFan D S H Row)
+    (hcenterBlocker :
+      ∃ (q : ℝ²) (hq : q ∈ Row.support),
+        center = H.centerAt q (Row.support_subset_A hq)) :
+    ∃ (q : ℝ²) (hq : q ∈ Row.support) (blockerCap : Fin 3),
+      center = H.centerAt q (Row.support_subset_A hq) ∧
+        H.centerAt q (Row.support_subset_A hq) ∈
+          S.capInteriorByIndex blockerCap ∧
+        ¬ HasNEquidistantPointsAt 4 (D.A.erase q)
+          (H.centerAt q (Row.support_subset_A hq)) ∧
+        Row.support =
+          (H.selectedAt q
+            (Row.support_subset_A hq)).toCriticalFourShell.support ∧
+        IsUniqueFourCenter D.A center ∧
+        ¬ FullyDeletionRobustAt D center := by
+  rcases hcenterBlocker with ⟨q, hq, hcenter⟩
+  rcases hfan q hq with ⟨blockerCap, hcap, hblocked, hsame | hdistinct⟩
+  · refine ⟨q, hq, blockerCap, hcenter, hcap, hblocked, hsame.2.1, ?_, hsame.2.2⟩
+    rw [hcenter]
+    exact isUniqueFourCenter_centerAt H q (Row.support_subset_A hq)
+  · exact False.elim (hdistinct.1 hcenter)
 
 /-- Every source-faithful four-row exposes one of the two genuinely global
 fan outcomes: either its center is not deletion-robust, or two row sources

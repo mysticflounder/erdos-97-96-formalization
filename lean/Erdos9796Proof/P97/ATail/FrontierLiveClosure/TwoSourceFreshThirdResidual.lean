@@ -1473,6 +1473,48 @@ theorem freshThird_qRow_exact_blocker_boundary
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If the actual-blocker fiber saturates a selected Q row, deleting any
+point of that row destroys K4 at the common Q blocker center.
+
+This is the strongest immediate source-clean consequence of the saturated
+arm of `freshThird_qRow_exact_blocker_boundary`.  It deliberately retains
+the common-center conclusion: obtaining a blocker center distinct from the Q
+center is the remaining geometric relocation step. -/
+theorem freshThird_qRow_saturated_deletions_blocked_at_qCenter
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (himage :
+      (ATailSurvivalCover.actualBlockerFiber H Q.source₁).image
+          (fun source => source.1) =
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support) :
+    ∀ w ∈
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt Q.source₁.1 Q.source₁.2) := by
+  classical
+  intro w hw
+  have hwImage :
+      w ∈
+        (ATailSurvivalCover.actualBlockerFiber H Q.source₁).image
+          (fun source => source.1) := by
+    rw [himage]
+    exact hw
+  rcases Finset.mem_image.mp hwImage with
+    ⟨source, hsourceFiber, hsourceVal⟩
+  have hblockerVertex := (Finset.mem_filter.mp hsourceFiber).2
+  have hcenter :
+      H.centerAt source.1 source.2 =
+        H.centerAt Q.source₁.1 Q.source₁.2 :=
+    congrArg Subtype.val hblockerVertex
+  subst w
+  intro hK4
+  apply H.no_qfree_at source.1 source.2
+  rw [hcenter]
+  exact hK4
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- If the two canonical cap sources share the fresh Q blocker and the four
 named carrier vertices are distinct, then they exhaust that blocker fiber and
 their carrier points are exactly the Q selected support.
@@ -2163,6 +2205,46 @@ theorem exists_selectedRow_overlap_card_ge_three_of_blocked_deletions
   exact selectedRow_inter_card_ge_three_of_blocked_deletions
     source target blocked hcard hsubset hblocked
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Exact landing contract for FirstNonHit theorem discovery.  Three deletions
+from the target row blocked at one distinct actual center are equivalent to the
+three-point selected-row overlap consumed by the terminal theorem.  Thus a
+finite or geometric producer must establish the blocked-deletion packet; this
+equivalence itself does not add a new incidence assumption. -/
+theorem exists_blockedDeletionTriple_iff_exists_selectedRow_overlap_card_ge_three
+    (target : CriticalShellSystem.CarrierVertex D.A) :
+    (∃ source : CriticalShellSystem.CarrierVertex D.A,
+        H.centerAt source.1 source.2 ≠ H.centerAt target.1 target.2 ∧
+        ∃ blocked : Finset (EuclideanSpace ℝ (Fin 2)),
+          blocked ⊆
+              (H.selectedAt target.1 target.2).toCriticalFourShell.support ∧
+            blocked.card = 3 ∧
+            ∀ w ∈ blocked,
+              ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+                (H.centerAt source.1 source.2)) ↔
+      ∃ source : CriticalShellSystem.CarrierVertex D.A,
+        H.centerAt source.1 source.2 ≠ H.centerAt target.1 target.2 ∧
+          3 ≤
+            ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+              (H.selectedAt target.1
+                target.2).toCriticalFourShell.support).card := by
+  constructor
+  · rintro ⟨source, hcenters, blocked, hsubset, hcard, hblocked⟩
+    refine ⟨source, hcenters, ?_⟩
+    exact selectedRow_inter_card_ge_three_of_blocked_deletions
+      source target blocked (by omega) hsubset hblocked
+  · rintro ⟨source, hcenters, hthree⟩
+    obtain ⟨blocked, hsubset, hcard⟩ := Finset.exists_subset_card_eq hthree
+    refine ⟨source, hcenters, blocked, ?_, hcard, ?_⟩
+    · intro w hw
+      exact (Finset.mem_inter.mp (hsubset hw)).2
+    · intro w hw hsurvives
+      have hnotMem :=
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).mp hsurvives
+      exact hnotMem (Finset.mem_inter.mp (hsubset hw)).1
+
 include hfrontierFour hfrontierInteriorEq T in
 /-- The fully robust retained first-apex row supplies a mutual-deletion pair,
 and the exact cap census classifies that pair into the only four possible
@@ -2456,13 +2538,30 @@ theorem retainedFirstApex_selectedClass_eq_fourPoints_of_oppositeAdjacent
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- Exact global-incidence producer needed by the first-source non-hit branch.
+/-- Direct source-level residual for the first-source non-hit branch.
 
-The produced selected row has a center distinct from the canonical Q-row
-center and overlaps that Q row in at least three points.  This is precisely the
-positive packet consumed by the clean two-circle terminal
-`false_of_centerAt_selectedFourClass_inter_card_ge_three`; proving it is the
-remaining mathematical content of this residual. -/
+The local named-row alternatives do not produce a third row: each named row
+either has the canonical Q-row center or has overlap at most two with the Q
+row.  Closing this theorem therefore requires genuinely carrier-wide
+incidence, cap-order, or metric information. -/
+theorem false_of_freshThird_firstNonHit
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+    False := by
+  sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Compatibility form of `false_of_freshThird_firstNonHit` for consumers that
+expect a distinct-center selected row with three-point overlap.  The
+existential is itself contradictory by the two-circle terminal, so it is not a
+weaker producer and is intentionally derived only after the direct residual is
+closed. -/
 theorem exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ)
@@ -2477,23 +2576,8 @@ theorem exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
       3 ≤
         ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
           (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support).card := by
-  sorry
-
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- Close the first-source non-hit branch from its exact global-incidence
-producer.  This adapter keeps the existing `False` interface stable for every
-downstream caller. -/
-theorem false_of_freshThird_firstNonHit
-    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
-    (Q : FreshThirdBlockerFiber P Pρ)
-    (hingress :
-      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
-    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
-    (secondInteraction :
-      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
-    False := by
-  rcases exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
+  exact False.elim <|
+    false_of_freshThird_firstNonHit
       (P := P) (Pρ := Pρ)
       (hρne := hρne)
       (hfrontierFour := hfrontierFour) (hρfour := hρfour)
@@ -2505,14 +2589,7 @@ theorem false_of_freshThird_firstNonHit
       (LP := LP) (hLP := hLP) (MP := MP)
       (C := C) (Q := Q)
       (hingress := hingress) (data := data)
-      (secondInteraction := secondInteraction) with
-    ⟨source, hcenters, hthree⟩
-  apply false_of_centerAt_selectedFourClass_inter_card_ge_three
-    H source.1 source.2
-    (H.selectedAt Q.source₁.1
-      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
-    hcenters
-  simpa only [CriticalFourShell.toSelectedFourClass] using hthree
+      (secondInteraction := secondInteraction)
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

@@ -926,6 +926,42 @@ abbrev FreshThirdAlignedRetainedConsumerPacket
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
+/-- Swapping the two collision rows preserves the aligned retained packet,
+with the two canonical sources and the two deleted endpoints exchanged. -/
+theorem freshThird_alignedRetainedConsumerPacket_swap
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C) :
+    FreshThirdAlignedRetainedConsumerPacket
+      (P := Pρ) (Pρ := P)
+      (twoCapSourceThirdCanonicalRowSurface_swap P Pρ C) := by
+  rcases hretained with
+    ⟨hradiiNe, hfirstSingleton, hsecondSingleton,
+      hfirstPacket, hsecondPacket, haligned⟩
+  have swapSourcePacket
+      (source : CriticalShellSystem.CarrierVertex D.A)
+      (hpacket : FreshThirdAlignedSourceDeletionCorePacket
+        (P := P) (Pρ := Pρ) source) :
+      FreshThirdAlignedSourceDeletionCorePacket
+        (P := Pρ) (Pρ := P) source := by
+    rcases hpacket with ⟨x, y, hx, hy, hfixed⟩
+    rcases hfixed with
+      ⟨hxOmitted, hyOmitted, hsourceSurvives, hblocked, hcore⟩
+    refine ⟨y, x, hy, hx, hyOmitted, hxOmitted, ?_, ?_, ?_⟩
+    · simpa only [Finset.erase_right_comm] using hsourceSurvives
+    · simpa only [Finset.erase_right_comm] using hblocked
+    · simpa only [Finset.pair_comm] using hcore
+  refine ⟨hradiiNe.symm, hsecondSingleton, hfirstSingleton, ?_, ?_, ?_⟩
+  · exact swapSourcePacket C.secondSource hsecondPacket
+  · exact swapSourcePacket C.firstSource hfirstPacket
+  · intro r hmulti
+    rcases haligned r hmulti with hradius | hρ
+    · exact Or.inr hradius
+    · exact Or.inl hρ
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
 /-- The aligned retained packet excludes both canonical sources from every
 first-apex radius whose strict first-cap slice contains at least two points. -/
 theorem freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
