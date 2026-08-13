@@ -10048,6 +10048,153 @@ must either prove a genuinely carrier-wide source theorem producing three
 Q-support incidences at one distinct actual center, or first prove a formal
 bounded-obstruction/general-cardinality lift before resuming finite search.
 
+#### 13.24.1.15 FirstNonHit six-named-point order audit (2026-08-13)
+
+The targeted pro-model response has been audited against the live source.  Its
+proposed `FreshThirdQRowActualBlockerFiberPacket` is not a new producer: it
+already packages a distinct actual blocker center together with at least three
+sources in that center's actual blocker fiber whose values lie in Q's selected
+row.  This is a stronger restatement of the active three-overlap gate, not a
+strict reduction of the frontier.  Do not add the suggested `_core` wrapper or
+resume the four-bit quotient on the strength of that packet.  The response's
+16-case incidence model remains an interface obstruction only; it omits
+Euclidean realization, cyclic order, global minimality, and carrier-wide
+coupling.
+
+The response's six-point follow-up does expose one authorized, genuinely new
+computation.  In the geometric interaction constructors
+`distinctBlockersDifferentCaps` and `sameCapWithInternalFiberSource`, the live
+packet supplies two distinct row centers, their exact shared two-point chord,
+two non-chord remainder points in each selected-four row, and the four metric
+equalities consumed by
+`TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities`.
+The first missing antecedent is a source-entitled cyclic placement of one
+remainder from each row.  Enumerating the cyclic orders of these six named
+points is cardinality-free role enumeration inside every live instance; it is
+not a fixed-`n` census or an induced-subcarrier reduction.
+
+The next executable checkpoint is therefore an exact order-type audit for the
+two geometric constructors.  It must:
+
+1. state and validate the live-to-six-role ingress, including distinctness,
+   exact row intersections, the four squared-distance equalities, and every
+   boundary-order fact used by the encoder;
+2. enumerate every cyclic order compatible with those proved facts and every
+   legal choice of the two remainder roles;
+3. replay each eliminated order in exact arithmetic against the existing
+   five/six-point kernels, while retaining an exact Euclidean witness for every
+   surviving order;
+4. emit complete order-coverage and provenance artifacts, then run the
+   mandatory theorem mine only on this audit's new eliminations and survivors;
+5. formalize the weakest source-clean cyclic-placement lemma found and wire it
+   directly into the two geometric interaction arms, with a targeted build,
+   transitive axiom audit, and fresh spine check before claiming closure.
+
+If every admissible order is eliminated, the promoted result may close only
+the two geometric interaction arms after the Lean ingress and consumer are
+proved.  If any order survives, stop the unchanged search, publish its exact
+witness, and name the additional cap-placement or global-order producer needed
+to exclude it.  The `sameBlocker` and `sourceRowOmission` constructors are not
+covered by this six-point lane; keep them parked behind a separate
+source-level equality/incidence producer.  This subsection authorizes the
+order audit only and claims no FirstNonHit or Lean `sorry` closure.
+
+#### 13.24.1.16 FirstNonHit six-point outcome and source retarget (2026-08-13)
+
+The exact order audit changes the status of §13.24.1.15 from an open
+computation to a bounded negative route result.  The live branch is slightly
+more asymmetric than the earlier shorthand suggested: `data` is a
+`FreshThirdCapSourceNonHit` for the first source, while only
+`secondInteraction` can enter one of the two geometric constructors.  The
+local audit therefore tests the two selected-four rows supplied by that
+geometric second interaction; it does not model the first-source non-hit arm.
+
+Fixing one named chord endpoint as the cyclic anchor gives 120 oriented orders
+of the six roles.  The proved shared-pair separation leaves 40 admissible
+orders.  Twelve match proved lower-level Euclidean kernel schemas: four lie in
+the generated two-triple-row schema set and eight in the generated sparse
+six-point schema set.  This is deliberately weaker than saying that the
+current boundary declarations directly consume all twelve words.  Two matches
+have a direct linear-order adapter, six require a cyclic cut, and four require
+both a cyclic cut and orientation reversal.  The remaining 28 orders are
+exactly realizable over the rationals.  In particular, the stronger
+two-complete-row fragment has the following strict-convexity witness (common
+chord endpoints `A,D`, row centers `B,F`):
+
+```text
+A  = (-1, 0)                 D  = (1, 0)
+B  = (0, 1/2)                F  = (0, -1/2)
+C1 = (-41/37, 24/37)         C2 = (-121/109, 69/109)
+E1 = (61/58, -51/58)         E2 = (31/29, -24/29)
+```
+
+Its cyclic order is `A,F,E1,E2,D,B,C1,C2`; the two exact supports are
+`{A,D,C1,C2}` and `{A,D,E1,E2}`, with intersection `{A,D}` and common squared
+radius `5/4`.  This is a witness only for the local two-row abstraction.  It
+omits the cap-placement fields, the first-source non-hit packet, and all
+carrier-wide coupling, so it is neither a model of the live branch nor a Lean
+closure.
+
+The finite checkpoint is now complete.  The deterministic enumerator and
+replayer are
+`census/p97_search/freshthird_firstnonhit_six_point_order_audit.py`, the
+focused test is
+`census/p97_search/test_freshthird_firstnonhit_six_point_order_audit.py`, and
+the authenticated artifact is
+`certificates/p97_freshthird_firstnonhit/audit.json`.  Its payload, coverage,
+and order digests are respectively
+`157da0a582144704b1e0308032a79e652b92d9f0a07d1a395e549101cbbcc20c`,
+`2bd55080774b727a269ec0d58371d10549fe0219efbd4f54f2aebdc767cb2d39`,
+and `5f4e72233b1b9aee18631cb18e64b0a1d28cf0b5920d836e70300a50b5583a7a`.
+Replay covers all 120 anchored words, the 40-word source subset, every generated
+schema match, and all 28 exact rational witnesses; it leaves zero `UNKNOWN`.
+Five focused tests and Ruff pass.
+
+The source-faithful Lean ingress is now frozen in
+`FreshThirdTwoRowSixPointIngress.lean`.  It proves the exact two-row support
+arithmetic, legal remainder choices, six-point distinctness, four metric
+equalities, both geometric second-interaction ingresses, and the shared-pair
+cyclic separation derived from the live `D.K4` boundary.  It is wired into the
+`FrontierLiveClosure` umbrella, whose targeted build succeeds.  All six new
+exports have transitive axiom sets consisting only of `propext`,
+`Classical.choice`, and `Quot.sound`; there is no `sorryAx`.
+
+Accordingly, stop unchanged six-role enumeration after that checkpoint.  The
+next source target is a cap-placement/global-order producer, not another
+two-row kernel search: prove that the cap fields of either geometric
+constructor exclude all 28 exact survivor words, equivalently forcing every
+legal remainder choice into one of the twelve kernel-schema words.  Promotion
+through all twelve would additionally require the recorded cyclic-cut and
+reverse-orientation adapters, but those adapters cannot remove any of the 28
+realizable words.  This contract is meaningful on both arms of
+`FreshThirdAcyclicCanonicalConsumerPacket` and is the narrowest direct consumer
+of the finite audit.
+
+There is also a stronger three-row route, but it must not be advertised as a
+consumer of arbitrary `hingress`.  On the common-radius arm only, one may
+produce a selected-four endpoint row centered at one of the shared chord
+endpoints whose exact support is the two canonical sources together with the
+two fresh-row remainders.  That is precisely the missing input of
+`freshThird_exactSupport_threeRowCyclicSeparations`, whose existing consumer
+turns the three shared-pair separations into the formal six-point
+contradiction.  The retained ingress arm does not supply a
+`CommonRadiusTwoCapSourceThirdCanonicalRowSurface`, so it must instead obtain
+the cap-order theorem above, promote to common-radius data by a separate
+source theorem, or reach the existing selected-row overlap-cardinality
+terminal.  The rational survivors show that every such producer must use cap
+or global data; none follows from the two circle rows alone.
+
+The mandatory theorem mine for this wave has one negative and one positive
+output.  Negatively, two exact selected-four circle rows with exact two-point
+overlap admit strict-convex rational realizations, so no universal
+two-row-only contradiction schema is available.  Positively, the reusable
+consumer boundaries are now exact: a cap-order exclusion of the 28 survivor
+words works on both ingress arms (followed by the small recorded adapters),
+while the endpoint-row theorem feeds the existing three-row cyclic consumer
+only after common-radius ingress has been exposed.  The
+`sameBlocker` and `sourceRowOmission` constructors remain out of scope for this
+lane.  No FirstNonHit arm or load-bearing `sorry` is closed by this audit.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
