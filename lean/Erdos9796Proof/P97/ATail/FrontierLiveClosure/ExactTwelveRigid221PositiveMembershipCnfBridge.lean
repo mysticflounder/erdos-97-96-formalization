@@ -64,6 +64,102 @@ def positiveMembershipAssign (base : Nat → Bool) (cutoff : Nat)
         row (requirementAt v).center) := by
   simp [positiveMembershipAssign, Nat.not_le.mpr hv]
 
+/-- Extending a global source-valued membership assignment by one generated
+layer does not change values through that layer's final variable, provided the
+two requirement maps agree on the fresh interval.  This is the composition
+law used by terminal consumers with several independently generated banks. -/
+theorem positiveMembershipAssign_over_global_agrees_up_to
+    (base : Nat → Bool) (globalCutoff localCutoff layerEnd : Nat)
+    (row : RowPattern Label)
+    (globalRequirementAt localRequirementAt : Nat → RowChoice Label)
+    (hcutoff : globalCutoff ≤ localCutoff)
+    (hrequirements : ∀ v, localCutoff < v → v ≤ layerEnd →
+      localRequirementAt v = globalRequirementAt v)
+    {v : Nat} (hv : v ≤ layerEnd) :
+    positiveMembershipAssign
+        (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+        localCutoff row localRequirementAt v =
+      positiveMembershipAssign base globalCutoff row globalRequirementAt v := by
+  by_cases hlocal : v ≤ localCutoff
+  · exact positiveMembershipAssign_of_le _ _ _ _ hlocal
+  · have hlocal_lt : localCutoff < v := Nat.lt_of_not_ge hlocal
+    have hglobal_lt : globalCutoff < v := lt_of_le_of_lt hcutoff hlocal_lt
+    rw [positiveMembershipAssign_of_lt _ _ _ _ hlocal_lt,
+      positiveMembershipAssign_of_lt _ _ _ _ hglobal_lt,
+      hrequirements v hlocal_lt hv]
+
+/-- Clause evaluation is unchanged by the same one-layer extension whenever
+all clause variables lie below the authenticated end of that layer. -/
+theorem evalClauseD_positiveMembershipAssign_over_global_agrees_up_to
+    (base : Nat → Bool) (globalCutoff localCutoff layerEnd : Nat)
+    (row : RowPattern Label)
+    (globalRequirementAt localRequirementAt : Nat → RowChoice Label)
+    (hcutoff : globalCutoff ≤ localCutoff)
+    (hrequirements : ∀ v, localCutoff < v → v ≤ layerEnd →
+      localRequirementAt v = globalRequirementAt v)
+    {clause : List Int}
+    (hbound : ∀ literal ∈ clause, literal.natAbs ≤ layerEnd) :
+    evalClauseD
+        (positiveMembershipAssign
+          (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+          localCutoff row localRequirementAt) clause =
+      evalClauseD
+        (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+        clause := by
+  apply SafeCoverCnf.evalClauseD_congr
+  intro literal hliteral
+  exact positiveMembershipAssign_over_global_agrees_up_to
+    base globalCutoff localCutoff layerEnd row globalRequirementAt
+      localRequirementAt hcutoff hrequirements (hbound literal hliteral)
+
+/-- A generated layer may have been compiled against an older prefix while
+other independently compiled layers occupy intervening variable intervals.
+For such a layer, agreement is needed only at variables that actually occur
+in the clause, not throughout one contiguous interval. -/
+theorem positiveMembershipAssign_over_global_agrees_on
+    (base : Nat → Bool) (globalCutoff localCutoff : Nat)
+    (row : RowPattern Label)
+    (globalRequirementAt localRequirementAt : Nat → RowChoice Label)
+    (hcutoff : globalCutoff ≤ localCutoff)
+    {v : Nat}
+    (hrequirement : localCutoff < v →
+      localRequirementAt v = globalRequirementAt v) :
+    positiveMembershipAssign
+        (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+        localCutoff row localRequirementAt v =
+      positiveMembershipAssign base globalCutoff row globalRequirementAt v := by
+  by_cases hlocal : v ≤ localCutoff
+  · exact positiveMembershipAssign_of_le _ _ _ _ hlocal
+  · have hlocal_lt : localCutoff < v := Nat.lt_of_not_ge hlocal
+    have hglobal_lt : globalCutoff < v := lt_of_le_of_lt hcutoff hlocal_lt
+    rw [positiveMembershipAssign_of_lt _ _ _ _ hlocal_lt,
+      positiveMembershipAssign_of_lt _ _ _ _ hglobal_lt,
+      hrequirement hlocal_lt]
+
+/-- Clause-level form of
+`positiveMembershipAssign_over_global_agrees_on`. -/
+theorem evalClauseD_positiveMembershipAssign_over_global_agrees_on
+    (base : Nat → Bool) (globalCutoff localCutoff : Nat)
+    (row : RowPattern Label)
+    (globalRequirementAt localRequirementAt : Nat → RowChoice Label)
+    (hcutoff : globalCutoff ≤ localCutoff)
+    {clause : List Int}
+    (hrequirements : ∀ literal ∈ clause, localCutoff < literal.natAbs →
+      localRequirementAt literal.natAbs =
+        globalRequirementAt literal.natAbs) :
+    evalClauseD
+        (positiveMembershipAssign
+          (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+          localCutoff row localRequirementAt) clause =
+      evalClauseD
+        (positiveMembershipAssign base globalCutoff row globalRequirementAt)
+        clause := by
+  apply SafeCoverCnf.evalClauseD_congr
+  intro literal hliteral
+  exact positiveMembershipAssign_over_global_agrees_on
+    base globalCutoff localCutoff row globalRequirementAt localRequirementAt
+      hcutoff (hrequirements literal hliteral)
+
 /-- A selected exact candidate row forces one fresh positive-membership
 variable. -/
 def positiveMembershipImplicationClause (candidate : RowChoice Label)
