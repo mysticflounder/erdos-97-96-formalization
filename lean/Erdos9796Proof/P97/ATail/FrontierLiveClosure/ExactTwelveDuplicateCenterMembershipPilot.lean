@@ -23,12 +23,10 @@ def bank : List (DuplicateCenterNogood Label) :=
 theorem bank_valid : ∀ nogood ∈ bank, nogood.check = true := by
   intro nogood hmem
   simp only [bank, List.mem_append] at hmem
-  rcases hmem with hmem | hmem
+  rcases hmem with ((hmem | hmem) | hmem) | hmem
   · exact Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_001.bank_valid nogood hmem
-  rcases hmem with hmem | hmem
   · exact Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_002.bank_valid nogood hmem
-  rcases hmem with hmem | hmem
   · exact Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_003.bank_valid nogood hmem
-  exact Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_004.bank_valid nogood hmem
+  · exact Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_004.bank_valid nogood hmem
 
 end Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilot
