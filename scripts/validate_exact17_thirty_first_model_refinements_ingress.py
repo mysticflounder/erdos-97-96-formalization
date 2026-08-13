@@ -23,8 +23,8 @@ from validate_exact17_thirty_first_model_refinements_export import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-SCHEMA = "p97-exact17-thirty-first-model-refinements-piqd-ingress/v1"
-DAEMON_SHA256 = "bb1c0283b3358219559f42bc2685c58d4728858ef5bf7a893b3a854f9958bad9"
+SCHEMA = "p97-exact17-thirty-first-model-refinements-piqd-ingress/v2"
+DAEMON_SHA256 = "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a"
 SOLVER_NAME = "piqd-satworker-cadical-3.0.0"
 SOLVER_SHA256 = "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965"
 PARENT_MANIFEST_SHA256 = (
@@ -61,7 +61,7 @@ PRODUCTION_INGRESS_PATHS = IngressPaths(
     "piqd-ingress-manifest-thirtieth-model-refinements.json",
     manifest=ROOT
     / "scratch/exact17-lean-to-sat/"
-    "piqd-ingress-manifest-thirty-first-model-refinements.json",
+    "piqd-ingress-manifest-thirty-first-model-refinements-core1.json",
 )
 PRODUCTION_INGRESS_SPEC = IngressSpec(
     export=PRODUCTION_SPEC,

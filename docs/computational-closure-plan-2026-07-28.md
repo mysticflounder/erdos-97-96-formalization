@@ -10451,3 +10451,39 @@ do not submit another. On `SAT`, replay every clause and mine only the new wave
 before proving any child-33 source bridge. On `UNSAT`, independently replay the
 retrieved certificate, bank the child-specific theorem, and compose it through
 the exact-cover source realization and landing contract.
+
+### 13.28.5 Child-33 adversarial prelaunch checkpoint — 2026-08-13
+
+The child-32 core-one result is quarantined rather than promoted. A PIQD daemon
+restart duplicated its solver process, and the old terminal attestation did not
+account for the pre-restart process. Both processes were stopped; that job ended
+`UNKNOWN`. It supplies neither a model nor an UNSAT certificate and closes no
+part of exact 17.
+
+The restart-custody defect has been repaired in PIQD. The fresh child-33 root is
+Lean-owned, has 308 variables and 5,847,248 clauses, and has SHA-256
+`775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9`.
+Its provisioned ingress manifest has SHA-256
+`1f802e69fc382ba262cb54a9b21bee3b62b4c53cf6cbfaff837181cd9444fcfd`.
+
+An adversarial caller audit found and repaired two additional fail-closed
+integration defects before launch. First, the SAT model-check validator omitted
+PIQD's `clause_index` field, treated the `announcement` string as nullable, and
+did not bind PIQD's model digest to the independently retrieved assignment.
+Second, terminal log custody used the wrong response field and did not request
+`GET /jobs/:id?log_digest=1`. The runner now validates the exact live schemas,
+checks the independently recomputed model digest, requests the terminal log
+digest explicitly, and compares it with the retrieved log bytes.
+
+Ruff and 251 focused publication, export, ingress, runner, recovery, and
+adversarial tests pass. The live static check also pins the child root, manifest,
+transaction-generated daemon build receipt, daemon binary, solver binary, and
+single-core profile. No child-33 production job has been prepared or confirmed.
+
+After this source checkpoint, revalidate the committed bytes and submit exactly
+one fresh job. A promotable terminal must report epoch one with no recovery or
+replacement. `SAT` requires exact replay of every CNF clause against the
+retrieved assignment plus PIQD's `SATISFIED` model check before mining the next
+general refinement. `UNSAT` remains provisional until the kept CNF and
+clause-map-bound LRAT certificate replay independently. This checkpoint itself
+closes neither exact 17 nor a production `sorry`.

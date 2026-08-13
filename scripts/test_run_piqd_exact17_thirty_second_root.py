@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
-import subprocess
 import sys
 from dataclasses import replace
 from pathlib import Path
-from typing import Any
+from typing import Any, Self
 
 import pytest
 
@@ -32,6 +31,22 @@ class FakeClient:
         self.confirm_failure: str | None = None
         self.daemon_protocol = spec.ingress.daemon_protocol_version
         self.model_job_id = "job-child32"
+        self.model_backend = spec.ingress.backend
+        self.model_profile = spec.ingress.solver_profile
+        self.model_num_assigned = spec.variables
+        self.terminal_result = "SAT"
+        self.model_check_calls = 0
+        self.model_check_payload: dict[str, Any] | None = None
+        self.prepare_core_override: Any = runner.REQUESTED_CORE_LIMIT
+        self.status_core_override: Any = runner.REQUESTED_CORE_LIMIT
+        self.run_epoch_override: Any | None = None
+        self.recovery_action_override: Any = None
+        self.omit_recovery_action = False
+        self.attestation_overrides: dict[str, Any] = {}
+        self.attestation_missing: set[str] = set()
+        self.log_mode = "valid"
+        self.log_bytes = b"c SATISFIABLE\nv 1 2 3 0\n"
+        self.log_calls = 0
 
     def version(self) -> dict[str, Any]:
         return {
@@ -69,6 +84,9 @@ class FakeClient:
         backend: str,
         profile: str,
         project: str,
+        requested_core_limit: int,
+        timeout_s: int | None = None,
+        march_timeout_s: int | None = None,
     ) -> dict[str, Any]:
         self.submit_calls += 1
         assert cnf.read_bytes() == self.root
@@ -80,7 +98,9 @@ class FakeClient:
             self.spec.ingress.solver_profile,
             self.spec.project,
         )
-        return {
+        assert type(requested_core_limit) is int
+        assert requested_core_limit == runner.REQUESTED_CORE_LIMIT
+        response = {
             "existing": self.existing,
             "cnf_blob_hash": self.spec.root_sha256,
             "num_vars": self.spec.variables,
@@ -89,7 +109,15 @@ class FakeClient:
             "job_id": "job-child32",
             "backend": self.spec.ingress.backend,
             "solver_profile": self.spec.ingress.solver_profile,
+            "producer_manifest_hash": self.spec.manifest_sha256,
+            "producer_manifest_blob_hash": self.spec.manifest_sha256,
+            "requested_core_limit": self.prepare_core_override,
         }
+        if self.spec.artifact_namespace == "child33":
+            response.update(
+                {"timeout_s": timeout_s, "march_timeout_s": march_timeout_s}
+            )
+        return response
 
     def _status(self, phase: str, *, result: str | None = None) -> dict[str, Any]:
         payload: dict[str, Any] = {
@@ -102,15 +130,53 @@ class FakeClient:
             "backend": self.spec.ingress.backend,
             "solver_profile": self.spec.ingress.solver_profile,
             "status": phase,
+            "requested_core_limit": self.status_core_override,
+            "run_epoch": (
+                self.run_epoch_override
+                if self.run_epoch_override is not None
+                else (0 if phase in {"prepared", "confirmed"} else 1)
+            ),
+            "recovery_action": self.recovery_action_override,
         }
+        if self.omit_recovery_action:
+            payload.pop("recovery_action")
+        if self.spec.artifact_namespace == "child33":
+            payload.update(
+                {"timeout_s": self.spec.timeout_s, "march_timeout_s": self.spec.march_timeout_s}
+            )
         if result is not None:
             payload["result"] = result
             payload["daemon_sha256"] = self.spec.ingress.daemon_sha256
+            payload["attested_solver_processes"] = runner.ATTESTED_SOLVER_PROCESSES
+            payload["attestation_basis"] = runner.ATTESTATION_BASIS
+            payload["log_sha256"] = hashlib.sha256(self.log_bytes).hexdigest()
+            if self.spec.artifact_namespace == "child33":
+                payload.update(
+                    {
+                        "completed_at": 123456789,
+                        "proof_blob_hash": None,
+                        "kept_cnf_blob_hash": None,
+                        "proof_format": None,
+                        "model_blob_hash": None,
+                    }
+                )
+                if result == "UNSAT":
+                    payload.update(
+                        {
+                            "proof_blob_hash": "a" * 64,
+                            "kept_cnf_blob_hash": "b" * 64,
+                            "proof_format": "compacted_lrat",
+                            "model_blob_hash": None,
+                        }
+                    )
+            payload.update(self.attestation_overrides)
+            for field in self.attestation_missing:
+                payload.pop(field, None)
         return payload
 
     def status(self, _job_id: str) -> dict[str, Any]:
         if self.phase == "completed":
-            return self._status("completed", result="SAT")
+            return self._status("completed", result=self.terminal_result)
         return self._status(self.phase)
 
     def retrieve_cnf(self, _job_id: str, destination: Path) -> None:
@@ -128,6 +194,8 @@ class FakeClient:
         if self.confirm_failure == "before_effect":
             raise RuntimeError("injected pre-confirm crash")
         self.phase = "confirmed"
+        if self.confirm_failure == "conflict":
+            raise runner.ConfirmConflictError("injected HTTP 409")
         if self.confirm_failure == "after_effect":
             raise RuntimeError("injected post-confirm crash")
         return {
@@ -140,11 +208,51 @@ class FakeClient:
         return {
             "job_id": self.model_job_id,
             "result": "SAT",
-            "num_assigned": 3,
-            "cnf_blob_hash": self.spec.root_sha256,
-            "producer_manifest_hash": self.spec.manifest_sha256,
-            "identity_hash": runner.expected_identity_hash(self.spec),
+            "backend": self.model_backend,
+            "solver_profile": self.model_profile,
+            "num_assigned": self.model_num_assigned,
             "assignment": [1, 2, 3],
+        }
+
+    def model_check(self, job_id: str) -> dict[str, Any]:
+        self.model_check_calls += 1
+        if self.model_check_payload is not None:
+            return self.model_check_payload
+        return {
+            "job_id": job_id,
+            "project": self.spec.project,
+            "cnf_blob_hash": self.spec.root_sha256,
+            "outcome": "SATISFIED",
+            "announcement": "NONE",
+            "detail": None,
+            "clause_index": None,
+            "clause": None,
+            "num_vars": self.spec.variables,
+            "num_clauses": self.spec.clauses,
+            "num_assigned": self.spec.variables,
+            "ce_scope": None,
+            "checked_at": 123456790,
+            "announced_at": None,
+            "model_sha256": hashlib.sha256(b"1 2 3").hexdigest(),
+            "job_completed_at": 123456789,
+        }
+
+    def retrieve_log(self, _job_id: str, destination: Path) -> dict[str, Any]:
+        self.log_calls += 1
+        if self.log_mode == "missing":
+            raise RuntimeError("injected missing solver log")
+        if self.log_mode == "empty":
+            payload = b""
+        elif self.log_mode == "truncated":
+            payload = self.log_bytes[: max(1, len(self.log_bytes) // 2)]
+        elif self.log_mode == "changed":
+            payload = self.log_bytes + b"changed\n"
+        else:
+            payload = self.log_bytes
+        destination.write_bytes(payload)
+        return {
+            "bytes": len(payload),
+            "sha256": hashlib.sha256(payload).hexdigest(),
         }
 
 
@@ -207,6 +315,7 @@ def _fixture(tmp_path: Path) -> tuple[runner.RunnerPaths, runner.RunnerSpec, byt
         state=tmp_path / "state.json",
         final=tmp_path / "final.json",
         model=tmp_path / "model.json",
+        solver_log=tmp_path / "solver.log",
         lock=tmp_path / "runner.lock",
     )
     return paths, spec, root
@@ -229,13 +338,26 @@ def test_immutable_records_are_private_atomic_and_never_overwritten(
     assert list(tmp_path.glob(".custody.json.*.tmp")) == []
 
 
+def test_start_refuses_stale_solver_log_before_submission(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    paths.solver_log.write_text("stale\n", encoding="utf-8")
+    with pytest.raises(FileExistsError, match="stale"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.submit_calls == 0
+    assert not paths.intent.exists()
+
+
 def test_start_and_sat_finalize_bind_every_identity(tmp_path: Path) -> None:
     paths, spec, root = _fixture(tmp_path)
     client = FakeClient(root, spec)
     state = runner.start(client, paths, spec, ingress_validator=_validated)
     assert state["phase"] == "confirmed"
     assert state["binding"]["solver_profile"] == "sat"
-    assert "producer_manifest_hash" not in state["prepared_record"]["submitted"]
+    assert (
+        state["prepared_record"]["submitted"]["producer_manifest_hash"]
+        == spec.manifest_sha256
+    )
     assert (
         state["prepared_record"]["prepared_status"]["producer_manifest_hash"]
         == spec.manifest_sha256
@@ -244,7 +366,219 @@ def test_start_and_sat_finalize_bind_every_identity(tmp_path: Path) -> None:
     report = runner.finalize(client, paths, spec, ingress_validator=_validated)
     assert report["result"] == "SAT"
     assert report["model_replay"] == {"clauses_checked": 2, "satisfies_all": True}
+    assert client.log_calls == 1
+    assert report["solver_log"]["sha256"] == hashlib.sha256(client.log_bytes).hexdigest()
     assert paths.model.is_file() and paths.final.is_file()
+
+
+def _child33_fixture(
+    tmp_path: Path,
+) -> tuple[runner.RunnerPaths, runner.RunnerSpec, bytes]:
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    paths, spec, root = _fixture(tmp_path)
+    return paths, replace(
+        spec,
+        project="erdos-97-96-exact17-child33",
+        artifact_namespace="child33",
+    ), root
+
+
+def test_child33_sat_requires_bound_model_check_row(tmp_path: Path) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    report = runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert report["model_check"]["job_completed_at"] == 123456789
+    assert client.model_check_calls == 1
+
+    paths, spec, root = _child33_fixture(tmp_path / "bad")
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.model_check_payload = {
+        **FakeClient(root, spec).model_check("job-child32"),
+        "project": "wrong-project",
+    }
+    with pytest.raises(ValueError, match="model-check crossed project"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+def test_child33_sat_binds_model_check_to_exact_assignment_and_schema(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path / "digest")
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.model_check_payload = {
+        **FakeClient(root, spec).model_check("job-child32"),
+        "model_sha256": "d" * 64,
+    }
+    with pytest.raises(ValueError, match="model-check crossed model identity"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+    paths, spec, root = _child33_fixture(tmp_path / "schema")
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    payload = FakeClient(root, spec).model_check("job-child32")
+    del payload["clause_index"]
+    client.model_check_payload = payload
+    with pytest.raises(ValueError, match="model-check schema drifted"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+def test_child33_sat_rejects_nonnull_proof_shape(tmp_path: Path) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    original_status = client.status
+
+    def crossed_status(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        payload["proof_blob_hash"] = "a" * 64
+        return payload
+
+    client.status = crossed_status
+    with pytest.raises(ValueError, match="SAT populated proof_blob_hash"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert client.log_calls == 0
+
+
+def test_child33_unsat_requires_compacted_lrat_and_never_model_checks(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    report = runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert report["proof_replay_complete"] is False
+    assert client.model_check_calls == 0
+    assert not paths.model.exists()
+
+    paths, spec, root = _child33_fixture(tmp_path / "bad")
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    original_status = client.status
+
+    def crossed_status(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        payload["proof_format"] = "march_cu_manifest"
+        return payload
+
+    client.status = crossed_status
+    with pytest.raises(ValueError, match="proof format"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert client.model_check_calls == 0
+
+
+@pytest.mark.parametrize("replacement", [0, 2, True, 1.0, "1", None])
+def test_prepare_requested_core_limit_is_exactly_builtin_one(
+    tmp_path: Path, replacement: Any
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.prepare_core_override = replacement
+    with pytest.raises(ValueError, match="requested[ _]core[ _]limit"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+
+
+@pytest.mark.parametrize("replacement", [0, 2, True, 1.0, "1", None])
+def test_status_requested_core_limit_is_exactly_builtin_one(
+    tmp_path: Path, replacement: Any
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def crossed_status(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        payload["requested_core_limit"] = replacement
+        return payload
+
+    client.status = crossed_status
+    with pytest.raises(ValueError, match="requested[ _]core[ _]limit"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("attested_solver_processes", "missing"),
+        ("attested_solver_processes", None),
+        ("attested_solver_processes", 0),
+        ("attested_solver_processes", True),
+        ("attested_solver_processes", 1.0),
+        ("attestation_basis", "missing"),
+        ("attestation_basis", None),
+        ("attestation_basis", "WRONG"),
+        ("attestation_basis", 1),
+        ("log_sha256", "missing"),
+        ("log_sha256", None),
+        ("log_sha256", "0"),
+    ],
+)
+def test_completed_attestation_is_exact_and_typed(
+    tmp_path: Path, field: str, replacement: Any
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    if replacement == "missing":
+        client.attestation_missing.add(field)
+    else:
+        client.attestation_overrides[field] = replacement
+    with pytest.raises(ValueError, match="attestation|single-process|solver-log"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert client.log_calls == 0
+
+
+@pytest.mark.parametrize("mode", ["missing", "empty", "truncated", "changed"])
+def test_completed_solver_log_is_nonempty_complete_and_bound(
+    tmp_path: Path, mode: str
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.log_mode = mode
+    with pytest.raises((RuntimeError, ValueError), match="log|artifact|hash|empty|truncated"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+def test_completed_solver_log_digest_is_mandatory(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.attestation_missing.add("log_sha256")
+    with pytest.raises(ValueError, match="solver-log"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+
+
+def test_confirm_http_409_recovers_by_same_job_status(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.confirm_failure = "conflict"
+    state = runner.start(client, paths, spec, ingress_validator=_validated)
+    assert state["confirmation"] == {
+        "method": "confirm_409_status_recovery",
+        "recovered_from": "confirmed",
+    }
+    assert client.confirm_calls == 1
 
 
 @pytest.mark.parametrize(
@@ -276,6 +610,229 @@ def test_prepare_status_remains_authoritative_for_manifest_binding(
         runner.start(client, paths, spec, ingress_validator=_validated)
     assert paths.intent.is_file()
     assert not paths.prepared.exists() and not paths.state.exists()
+
+
+@pytest.mark.parametrize("replacement", [None, True, 1.0, 1, 2])
+def test_pre_run_status_requires_exact_zero_run_epoch(
+    tmp_path: Path, replacement: Any
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.run_epoch_override = replacement
+    if replacement is None:
+        original_status = client.status
+
+        def status_without_epoch(job_id: str) -> dict[str, Any]:
+            payload = original_status(job_id)
+            payload.pop("run_epoch")
+            return payload
+
+        client.status = status_without_epoch
+    with pytest.raises(ValueError, match="run epoch"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 0
+
+
+@pytest.mark.parametrize("replacement", [None, True, 0, 1.0, 2])
+def test_terminal_status_requires_exact_one_run_epoch(
+    tmp_path: Path, replacement: Any
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.run_epoch_override = replacement
+    if replacement is None:
+        original_status = client.status
+
+        def status_without_epoch(job_id: str) -> dict[str, Any]:
+            payload = original_status(job_id)
+            payload.pop("run_epoch")
+            return payload
+
+        client.status = status_without_epoch
+    with pytest.raises(ValueError, match="run epoch"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+@pytest.mark.parametrize("mode", ["missing", "recovered"])
+def test_status_rejects_missing_or_nonnull_recovery_action(
+    tmp_path: Path, mode: str
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    if mode == "missing":
+        client.omit_recovery_action = True
+    else:
+        client.recovery_action_override = "REQUEUED_AFTER_KILL"
+    with pytest.raises(ValueError, match="recovery history|recovery action"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 0
+
+
+@pytest.mark.parametrize(
+    ("phase", "run_epoch"),
+    [
+        ("prepared", 0),
+        ("confirmed", 0),
+        ("running", 1),
+        ("completed", 1),
+        ("failed", 1),
+    ],
+)
+def test_job_guard_accepts_only_fresh_lifecycle_epochs(
+    tmp_path: Path, phase: str, run_epoch: int
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    status["run_epoch"] = run_epoch
+    assert runner._check_job(status, "job-child32", spec, phase) == phase
+
+
+@pytest.mark.parametrize(
+    "phase", ["prepared", "confirmed", "running", "completed", "failed"]
+)
+@pytest.mark.parametrize(
+    "replacement", [None, False, True, 0.0, 1.0, "0", "1", 2, [], {}]
+)
+def test_job_guard_rejects_null_wrong_type_or_wrong_epoch(
+    tmp_path: Path, phase: str, replacement: Any
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    status["run_epoch"] = replacement
+    with pytest.raises(ValueError, match="run epoch"):
+        runner._check_job(status, "job-child32", spec, phase)
+
+
+@pytest.mark.parametrize("phase", ["prepared", "confirmed", "running", "completed", "failed"])
+@pytest.mark.parametrize(
+    "replacement", [False, 0, "REQUEUED_AFTER_KILL", [], {}]
+)
+def test_job_guard_rejects_every_nonnull_recovery_marker(
+    tmp_path: Path, phase: str, replacement: Any
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    status["recovery_action"] = replacement
+    with pytest.raises(ValueError, match="recovery history"):
+        runner._check_job(status, "job-child32", spec, phase)
+
+
+@pytest.mark.parametrize(
+    "phase", ["prepared", "confirmed", "running", "completed", "failed"]
+)
+def test_job_guard_rejects_omitted_recovery_marker(
+    tmp_path: Path, phase: str
+) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    status = client._status(phase)
+    status.pop("recovery_action")
+    with pytest.raises(ValueError, match="omitted its recovery action"):
+        runner._check_job(status, "job-child32", spec, phase)
+
+
+def test_confirmed_status_requires_pre_run_epoch_zero(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def corrupt_confirmed_epoch(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        if payload["status"] == "confirmed":
+            payload["run_epoch"] = 1
+        return payload
+
+    client.status = corrupt_confirmed_epoch
+    with pytest.raises(ValueError, match="run epoch"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 1
+    assert paths.prepared.is_file() and not paths.state.exists()
+
+
+@pytest.mark.parametrize("mode", ["missing", "nonnull"])
+def test_confirmed_status_requires_explicit_null_recovery_action(
+    tmp_path: Path, mode: str
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def corrupt_confirmed_recovery(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        if payload["status"] == "confirmed":
+            if mode == "missing":
+                payload.pop("recovery_action")
+            else:
+                payload["recovery_action"] = "REQUEUED_AFTER_KILL"
+        return payload
+
+    client.status = corrupt_confirmed_recovery
+    with pytest.raises(ValueError, match="recovery history|recovery action"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 1
+    assert paths.prepared.is_file() and not paths.state.exists()
+
+
+@pytest.mark.parametrize("phase", ["running", "completed", "failed"])
+def test_post_confirm_route_accepts_fresh_first_run_lifecycle(
+    tmp_path: Path, phase: str
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def advance_after_confirm(job_id: str) -> dict[str, Any]:
+        if client.phase == "confirmed":
+            return client._status(phase)
+        return original_status(job_id)
+
+    client.status = advance_after_confirm
+    state = runner.start(client, paths, spec, ingress_validator=_validated)
+    assert state["post_confirm_status"]["status"] == phase
+    assert state["post_confirm_status"]["run_epoch"] == 1
+    assert state["post_confirm_status"]["recovery_action"] is None
+
+
+def test_nonterminal_null_attestation_fields_are_not_identity_claims(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def status_with_null_attestation(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        payload["daemon_sha256"] = None
+        payload["attested_solver_processes"] = None
+        return payload
+
+    client.status = status_with_null_attestation
+    state = runner.start(client, paths, spec, ingress_validator=_validated)
+    assert state["phase"] == "confirmed"
+    assert client.submit_calls == 1 and client.confirm_calls == 1
+
+
+def test_nonterminal_populated_attestation_field_must_match(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def status_with_wrong_daemon(job_id: str) -> dict[str, Any]:
+        payload = original_status(job_id)
+        payload["daemon_sha256"] = "0" * 64
+        return payload
+
+    client.status = status_with_wrong_daemon
+    with pytest.raises(ValueError, match="daemon_sha256 crossed child32 identity"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
     assert client.confirm_calls == 0
 
 
@@ -328,6 +885,59 @@ def test_explicit_reconciliation_recovers_intent_without_resubmitting(
         == "reconciled_after_prepare_response_failure"
     )
     assert client.submit_calls == 1 and client.confirm_calls == 1
+
+
+def test_reconciliation_refuses_stale_solver_log(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected lost prepare response")
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="lost prepare response"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    paths.solver_log.write_text("stale\n", encoding="utf-8")
+
+    client.submit = original_submit
+    with pytest.raises(FileExistsError, match="existing child32 custody"):
+        runner.reconcile_prepared_job(
+            client,
+            "job-child32",
+            paths,
+            spec,
+            ingress_validator=_validated,
+        )
+    assert client.submit_calls == 1 and client.confirm_calls == 0
+
+
+def test_resume_refuses_stale_solver_log(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.confirm_failure = "before_effect"
+    with pytest.raises(RuntimeError, match="pre-confirm crash"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert paths.prepared.is_file() and not paths.state.exists()
+    paths.solver_log.write_text("stale\n", encoding="utf-8")
+
+    client.confirm_failure = None
+    with pytest.raises(FileExistsError, match="stale"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.submit_calls == 1 and client.confirm_calls == 1
+
+
+def test_finalize_refuses_stale_solver_log(tmp_path: Path) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    paths.solver_log.write_text("stale\n", encoding="utf-8")
+    client.phase = "completed"
+
+    with pytest.raises(FileExistsError, match="stale"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert client.log_calls == 0
 
 
 def test_crash_before_confirm_resumes_from_durable_prepared_record(tmp_path: Path) -> None:
@@ -409,32 +1019,61 @@ def test_bad_protocol_and_crossed_model_fail_closed(tmp_path: Path) -> None:
 @pytest.mark.parametrize(
     "field",
     [
-        "cnf_blob_hash",
-        "producer_manifest_hash",
-        "identity_hash",
-        "project",
+        "job_id",
         "backend",
         "solver_profile",
-        "completion_identity_hash",
+        "result",
+        "num_assigned",
     ],
 )
-def test_model_metadata_cannot_cross_child32_binding(tmp_path: Path, field: str) -> None:
+def test_model_endpoint_shape_cannot_cross_child32_binding(
+    tmp_path: Path, field: str
+) -> None:
     paths, spec, root = _fixture(tmp_path)
     client = FakeClient(root, spec)
     runner.start(client, paths, spec, ingress_validator=_validated)
     client.phase = "completed"
-    client.model = lambda _job_id: {
+    model = {
         "job_id": "job-child32",
         "result": "SAT",
-        "num_assigned": 3,
-        "cnf_blob_hash": spec.root_sha256,
-        "producer_manifest_hash": spec.manifest_sha256,
-        "identity_hash": runner.expected_identity_hash(spec),
+        "backend": spec.ingress.backend,
+        "solver_profile": spec.ingress.solver_profile,
+        "num_assigned": spec.variables,
         "assignment": [1, 2, 3],
-        field: "wrong",
     }
-    with pytest.raises(ValueError, match=f"(model|PIQD) {field}"):
+    if field == "job_id":
+        model[field] = "different-job"
+    elif field == "backend":
+        model[field] = "wrong-backend"
+    elif field == "solver_profile":
+        model[field] = "wrong-profile"
+    elif field == "result":
+        model[field] = "UNKNOWN"
+    else:
+        model[field] = 2
+    client.model = lambda _job_id: model
+    expected_errors = {
+        "job_id": "model crossed",
+        "backend": "model backend",
+        "solver_profile": "model profile",
+        "result": "model endpoint",
+        "num_assigned": "model width",
+    }
+    with pytest.raises(ValueError, match=expected_errors[field]):
         runner.finalize(client, paths, spec, ingress_validator=_validated)
+
+
+def test_model_fixture_matches_live_endpoint_shape(tmp_path: Path) -> None:
+    _paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    assert set(client.model("job-child32")) == {
+        "job_id",
+        "result",
+        "backend",
+        "solver_profile",
+        "num_assigned",
+        "assignment",
+    }
 
 
 def test_prepared_and_confirmed_state_records_are_reauthenticated(tmp_path: Path) -> None:
@@ -608,31 +1247,120 @@ def test_sat_replay_uses_held_remote_cnf_after_local_path_swap(
     assert paths.ingress.export.child.read_bytes() == b"attacker root\n"
 
 
-def test_subprocess_adapter_accepts_existing_and_passes_fds() -> None:
+def test_subprocess_adapter_delegates_prepare_with_exact_core_limit(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     client = runner.SubprocessPiqdClient()
     observed: dict[str, Any] = {}
 
-    def fake_run(
-        command: list[str], *, pass_fds: tuple[int, ...] = ()
-    ) -> subprocess.CompletedProcess[str]:
-        observed.update({"command": command, "pass_fds": pass_fds})
-        return subprocess.CompletedProcess(
-            command,
-            0,
-            stdout=json.dumps({"existing": True}),
-            stderr="",
+    def fake_prepare(
+        cnf: Path,
+        manifest: Path,
+        *,
+        backend: str,
+        profile: str,
+        project: str,
+        requested_core_limit: int,
+    ) -> dict[str, Any]:
+        observed.update(
+            {
+                "cnf": cnf,
+                "manifest": manifest,
+                "backend": backend,
+                "profile": profile,
+                "project": project,
+                "requested_core_limit": requested_core_limit,
+            }
         )
+        return {"existing": True}
 
-    client._run = fake_run
+    monkeypatch.setattr(runner, "_stream_prepare_cnf", fake_prepare)
     result = client.submit(
         Path("/dev/fd/17"),
         Path("/dev/fd/18"),
         backend="cadical",
         profile="sat",
         project="fixture",
+        requested_core_limit=runner.REQUESTED_CORE_LIMIT,
     )
     assert result == {"existing": True}
-    assert observed["pass_fds"] == (17, 18)
+    assert observed["cnf"] == Path("/dev/fd/17")
+    assert observed["manifest"] == Path("/dev/fd/18")
+    assert observed["backend"] == "cadical"
+    assert observed["profile"] == "sat"
+    assert observed["project"] == "fixture"
+    assert observed["requested_core_limit"] == runner.REQUESTED_CORE_LIMIT
+
+
+def test_subprocess_adapter_model_check_is_strict_and_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = runner.SubprocessPiqdClient()
+    observed: dict[str, Any] = {}
+
+    class Response:
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+        def read(self) -> bytes:
+            return b'{"job_id":"job/1"}'
+
+    def fake_urlopen(request: Any, *, timeout: int) -> Response:
+        observed.update({"url": request.full_url, "method": request.method, "timeout": timeout})
+        return Response()
+
+    monkeypatch.setattr(runner.urllib.request, "urlopen", fake_urlopen)
+    assert client.model_check("job/1") == {"job_id": "job/1"}
+    assert observed == {
+        "url": "http://127.0.0.1:7272/jobs/job%2F1/model-check",
+        "method": "GET",
+        "timeout": 900,
+    }
+
+    def reject_urlopen(_request: Any, *, timeout: int) -> Response:
+        raise runner.urllib.error.HTTPError(
+            "http://127.0.0.1:7272/jobs/job%2F1/model-check",
+            404,
+            "missing",
+            {},
+            None,
+        )
+
+    monkeypatch.setattr(runner.urllib.request, "urlopen", reject_urlopen)
+    with pytest.raises(runner.urllib.error.HTTPError):
+        client.model_check("job/1")
+
+
+def test_subprocess_adapter_status_requests_terminal_log_digest(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = runner.SubprocessPiqdClient()
+    observed: dict[str, Any] = {}
+
+    class Response:
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+        def read(self) -> bytes:
+            return b'{"id":"job/1","log_sha256":"abc"}'
+
+    def fake_urlopen(request: Any, *, timeout: int) -> Response:
+        observed.update({"url": request.full_url, "method": request.method, "timeout": timeout})
+        return Response()
+
+    monkeypatch.setattr(runner.urllib.request, "urlopen", fake_urlopen)
+    assert client.status("job/1") == {"id": "job/1", "log_sha256": "abc"}
+    assert observed == {
+        "url": "http://127.0.0.1:7272/jobs/job%2F1?log_digest=1",
+        "method": "GET",
+        "timeout": 900,
+    }
 
 
 def test_unprovisioned_runner_refuses_before_client() -> None:
