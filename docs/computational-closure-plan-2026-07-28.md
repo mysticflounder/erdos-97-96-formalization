@@ -10238,6 +10238,62 @@ successor must add a materially new source-entitled coupling—such as actual
 blocker/row synchronization for W—or first formalize a bounded-obstruction and
 general-cardinality lift.
 
+#### 13.24.1.18 FirstNonHit prescribed remainder and cap-only hard stop (2026-08-13)
+
+The six-point ingress now has a source-clean prescribed-remainder form.  The
+general adapter
+`selectedFourClass_twoRow_six_point_ingress_of_left_remainder` accepts a
+specified point of the left selected support outside the right support.  Its
+FreshThird specialization
+`freshThird_secondSource_prescribed_remainder_ingress_of_geometric_data`
+uses `C.secondSource` and records its strict canonical-cap membership.  The
+conclusion deliberately retains the alias arm
+`C.secondSource.1 = H.centerAt Q.source₁.1 Q.source₁.2`; current source
+hypotheses do not exclude that equality.  Both declarations build in the
+targeted Lean job, and their transitive axiom sets contain only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+The corresponding cap-interval projection has now been exhausted rather than
+assumed contradictory.  The deterministic enumerator
+`census/p97_search/freshthird_firstnonhit_cap_interval_audit.py` fail-closed
+replays the 40-word six-point artifact, prescribes the second cap source in
+the distinguished strict cap, and enumerates both source-entitled interaction
+arms.  Marker/role endpoint use is represented as physical coincidence, not
+as adjacency.  The omitted first cap source is tracked only as cap-membership
+metadata; no identity or order relative to the six roles is inferred.  The
+focused tests and the original six-point tests pass 9/9, and Ruff is clean.
+The authenticated artifact is
+`certificates/p97_freshthird_firstnonhit/cap_interval_audit.json`, with payload
+SHA-256
+`30ff09caaad06331f4fce7ff3b0ccd6a5466441b43437b8397d0eefc33047789`
+and record SHA-256
+`9b589c8a2987e72d31188a036d6b66606232dbcfa95738f84a58d0f7aace796d`.
+
+The result is a hard stop for the cap-only target stated in §13.24.1.16:
+all 28 rational survivor words admit a distinct-strict-cap extension, all 28
+admit a same-strict-cap/closed-source extension, and all 28 admit the stronger
+endpoint-coincidence version.  The twelve kernel-schema words also admit both
+interaction arms.  Thus the currently exposed cap fields exclude 0 of 40
+source-alternating words.  This is an authenticated finite combinatorial
+extension result, not a Euclidean realization, a P97 model, a formal
+independence theorem, or closure of the anchored `sorry`.
+
+Consequently the next admissible FirstNonHit producer is carrier-wide.  It
+must couple named strict-cap off-Q sources to their actual blockers and
+selected supports (or produce an equivalent blocked-deletion triple), rather
+than add more cap labels or six-role orders.  The weakest existing landing is
+the three-point-overlap terminal: produce one actual center distinct from the
+Q center whose selected row contains at least three Q-row points, equivalently
+three Q-row deletions blocked at that center.  A successor finite query must
+therefore include the named sources, each source's actual blocker and selected
+support, the Q row, and the source-clean deletion-survival links.  Before any
+finite verdict is promoted, it additionally needs a bounded-obstruction or
+deletion-minimality lift to arbitrary carrier cardinality.  The common-radius
+W4 packet in §13.24.1.17 is a useful ingress for this synchronization query,
+but its present cap placement and Q-center deletion survivals do not supply
+the missing actual-row incidences by themselves.  No FirstNonHit branch or
+load-bearing `sorry` is closed at this checkpoint.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

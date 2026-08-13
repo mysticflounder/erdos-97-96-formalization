@@ -200,6 +200,112 @@ theorem selectedFourClass_twoRow_six_point_ingress
     Finset.card_insert_of_notMem hE_not_mem]
   simp
 
+/-- A prescribed left-row remainder either coincides with the opposite row
+center, or it can be used as the left fresh role in the six-point packet.
+This is the form needed when the prescribed remainder has independent cap
+placement data. -/
+theorem selectedFourClass_twoRow_six_point_ingress_of_left_remainder
+    {A : Finset ℝ²} {B C F : ℝ²}
+    (KB : SelectedFourClass A B) (KF : SelectedFourClass A F)
+    (hBF : B ≠ F) {a d : ℝ²} (had : a ≠ d)
+    (haB : a ∈ KB.support) (hdB : d ∈ KB.support)
+    (haF : a ∈ KF.support) (hdF : d ∈ KF.support)
+    (hinter : KB.support ∩ KF.support = {a, d})
+    (hCmemB : C ∈ KB.support) (hCnotF : C ∉ KF.support) :
+    C = F ∨
+      ∃ E,
+        E ∈ KF.support ∧ E ∉ KB.support ∧
+          ({a, B, C, d, E, F} : Finset ℝ²).card = 6 ∧
+          dist B a = dist B C ∧ dist B a = dist B d ∧
+          dist F a = dist F d ∧ dist F a = dist F E := by
+  classical
+  by_cases hCF : C = F
+  · exact Or.inl hCF
+  · have hcards := selectedFourClass_twoRow_sdiff_card_eq_two KB KF had hinter
+    have hFdiff : 1 < (KF.support \ KB.support).card := by omega
+    rcases Finset.one_lt_card.mp hFdiff with ⟨E, hE, E', hE', hEE'⟩
+    have hEB_or : E ≠ B ∨ E' ≠ B := by
+      by_contra h
+      push_neg at h
+      exact hEE' (h.1.trans h.2.symm)
+    rcases hEB_or with hEB | hE'B
+    · have hEmemF := (Finset.mem_sdiff.mp hE).1
+      have hEnotB := (Finset.mem_sdiff.mp hE).2
+      refine Or.inr ⟨E, hEmemF, hEnotB, ?_, ?_, ?_, ?_, ?_⟩
+      · have hab : a ≠ B := fun h => KB.center_not_mem (h ▸ haB)
+        have hdb : d ≠ B := fun h => KB.center_not_mem (h ▸ hdB)
+        have hcb : C ≠ B := fun h => KB.center_not_mem (h ▸ hCmemB)
+        have haf : a ≠ F := fun h => KF.center_not_mem (h ▸ haF)
+        have hdf : d ≠ F := fun h => KF.center_not_mem (h ▸ hdF)
+        have hef : E ≠ F := fun h => KF.center_not_mem (h ▸ hEmemF)
+        have hac : a ≠ C := fun h => hCnotF (h ▸ haF)
+        have hdc : d ≠ C := fun h => hCnotF (h ▸ hdF)
+        have hae : a ≠ E := fun h => hEnotB (h ▸ haB)
+        have hde : d ≠ E := fun h => hEnotB (h ▸ hdB)
+        have hce : C ≠ E := fun h => hCnotF (h ▸ hEmemF)
+        have ha_not_mem : a ∉ ({B, C, d, E, F} : Finset ℝ²) := by
+          simp [hab, hac, had, hae, haf]
+        have hB_not_mem : B ∉ ({C, d, E, F} : Finset ℝ²) := by
+          simp [hcb.symm, hdb.symm, hEB.symm, hBF]
+        have hC_not_mem : C ∉ ({d, E, F} : Finset ℝ²) := by
+          simp [hdc.symm, hce, hCF]
+        have hd_not_mem : d ∉ ({E, F} : Finset ℝ²) := by
+          simp [hde, hdf]
+        have hE_not_mem : E ∉ ({F} : Finset ℝ²) := by
+          simp [hef]
+        rw [Finset.card_insert_of_notMem ha_not_mem,
+          Finset.card_insert_of_notMem hB_not_mem,
+          Finset.card_insert_of_notMem hC_not_mem,
+          Finset.card_insert_of_notMem hd_not_mem,
+          Finset.card_insert_of_notMem hE_not_mem]
+        simp
+      · exact (KB.support_eq_radius a haB).trans
+          (KB.support_eq_radius C hCmemB).symm
+      · exact (KB.support_eq_radius a haB).trans
+          (KB.support_eq_radius d hdB).symm
+      · exact (KF.support_eq_radius a haF).trans
+          (KF.support_eq_radius d hdF).symm
+      · exact (KF.support_eq_radius a haF).trans
+          (KF.support_eq_radius E hEmemF).symm
+    · have hE'memF := (Finset.mem_sdiff.mp hE').1
+      have hE'notB := (Finset.mem_sdiff.mp hE').2
+      refine Or.inr ⟨E', hE'memF, hE'notB, ?_, ?_, ?_, ?_, ?_⟩
+      · have hab : a ≠ B := fun h => KB.center_not_mem (h ▸ haB)
+        have hdb : d ≠ B := fun h => KB.center_not_mem (h ▸ hdB)
+        have hcb : C ≠ B := fun h => KB.center_not_mem (h ▸ hCmemB)
+        have haf : a ≠ F := fun h => KF.center_not_mem (h ▸ haF)
+        have hdf : d ≠ F := fun h => KF.center_not_mem (h ▸ hdF)
+        have he'f : E' ≠ F := fun h => KF.center_not_mem (h ▸ hE'memF)
+        have hac : a ≠ C := fun h => hCnotF (h ▸ haF)
+        have hdc : d ≠ C := fun h => hCnotF (h ▸ hdF)
+        have hae' : a ≠ E' := fun h => hE'notB (h ▸ haB)
+        have hde' : d ≠ E' := fun h => hE'notB (h ▸ hdB)
+        have hce' : C ≠ E' := fun h => hCnotF (h ▸ hE'memF)
+        have ha_not_mem : a ∉ ({B, C, d, E', F} : Finset ℝ²) := by
+          simp [hab, hac, had, hae', haf]
+        have hB_not_mem : B ∉ ({C, d, E', F} : Finset ℝ²) := by
+          simp [hcb.symm, hdb.symm, hE'B.symm, hBF]
+        have hC_not_mem : C ∉ ({d, E', F} : Finset ℝ²) := by
+          simp [hdc.symm, hce', hCF]
+        have hd_not_mem : d ∉ ({E', F} : Finset ℝ²) := by
+          simp [hde', hdf]
+        have hE'_not_mem : E' ∉ ({F} : Finset ℝ²) := by
+          simp [he'f]
+        rw [Finset.card_insert_of_notMem ha_not_mem,
+          Finset.card_insert_of_notMem hB_not_mem,
+          Finset.card_insert_of_notMem hC_not_mem,
+          Finset.card_insert_of_notMem hd_not_mem,
+          Finset.card_insert_of_notMem hE'_not_mem]
+        simp
+      · exact (KB.support_eq_radius a haB).trans
+          (KB.support_eq_radius C hCmemB).symm
+      · exact (KB.support_eq_radius a haB).trans
+          (KB.support_eq_radius d hdB).symm
+      · exact (KF.support_eq_radius a haF).trans
+          (KF.support_eq_radius d hdF).symm
+      · exact (KF.support_eq_radius a haF).trans
+          (KF.support_eq_radius E' hE'memF).symm
+
 section FreshThirdSourceAdapter
 
 variable
@@ -276,6 +382,101 @@ theorem freshThird_secondSource_six_point_support_ingress_of_geometric_data
     by simpa [KF] using hYKF, by simpa [KB] using hYnotKB,
     by simpa [KB, KF] using hroles,
     hBX, hBX₂, hFY₂, hFY⟩
+
+/-- The second canonical cap source is a prescribed remainder of its own
+selected row unless it is exactly the opposite row center.  In the proper
+remainder arm this retains the source's first-cap placement, eliminating one
+existential role from the six-point ingress.  The center-equality arm is kept
+explicit: current source interfaces do not rule it out. -/
+theorem freshThird_secondSource_prescribed_remainder_ingress_of_geometric_data
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (centers_ne :
+      H.centerAt C.secondSource.1 C.secondSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (source₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.support)
+    (source₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.support)
+    (overlap_eq :
+      (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support =
+        {Q.source₁.1, Q.source₂.1}) :
+    C.secondSource.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+      (C.secondSource.1 = H.centerAt Q.source₁.1 Q.source₁.2 ∨
+        ∃ Y,
+          Y ∈ (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support ∧
+            Y ∉
+              (H.selectedAt C.secondSource.1
+                C.secondSource.2).toCriticalFourShell.support ∧
+            ({Q.source₁.1, H.centerAt C.secondSource.1 C.secondSource.2,
+                C.secondSource.1, Q.source₂.1, Y,
+                H.centerAt Q.source₁.1 Q.source₁.2} : Finset ℝ²).card = 6 ∧
+            dist (H.centerAt C.secondSource.1 C.secondSource.2) Q.source₁.1 =
+              dist (H.centerAt C.secondSource.1 C.secondSource.2) C.secondSource.1 ∧
+            dist (H.centerAt C.secondSource.1 C.secondSource.2) Q.source₁.1 =
+              dist (H.centerAt C.secondSource.1 C.secondSource.2) Q.source₂.1 ∧
+            dist (H.centerAt Q.source₁.1 Q.source₁.2) Q.source₁.1 =
+              dist (H.centerAt Q.source₁.1 Q.source₁.2) Q.source₂.1 ∧
+            dist (H.centerAt Q.source₁.1 Q.source₁.2) Q.source₁.1 =
+              dist (H.centerAt Q.source₁.1 Q.source₁.2) Y) := by
+  classical
+  let KB : SelectedFourClass D.A
+      (H.centerAt C.secondSource.1 C.secondSource.2) :=
+    (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.toSelectedFourClass
+  let KF : SelectedFourClass D.A
+      (H.centerAt Q.source₁.1 Q.source₁.2) :=
+    (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have hsource₁_mem : Q.source₁.1 ∈ KB.support := by
+    simpa [KB] using source₁_mem
+  have hsource₂_mem : Q.source₂.1 ∈ KB.support := by
+    simpa [KB] using source₂_mem
+  have hQsource₁_mem : Q.source₁.1 ∈ KF.support := by
+    simpa [KF] using
+      (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.q_mem_support
+  have hQsource₂_mem : Q.source₂.1 ∈ KF.support := by
+    simpa [KF] using Q.source₂_mem_source₁_shell
+  have hpoints_ne : Q.source₁.1 ≠ Q.source₂.1 := by
+    intro h
+    exact Q.sources_ne (Subtype.ext h)
+  have hinter : KB.support ∩ KF.support = {Q.source₁.1, Q.source₂.1} := by
+    simpa [KB, KF] using overlap_eq
+  have hCmemB : C.secondSource.1 ∈ KB.support := by
+    simpa [KB] using
+      (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.q_mem_support
+  have hC_ne_source₁ : C.secondSource.1 ≠ Q.source₁.1 := by
+    intro h
+    apply centers_ne
+    simp [h]
+  have hQcenters :
+      H.centerAt Q.source₁.1 Q.source₁.2 =
+        H.centerAt Q.source₂.1 Q.source₂.2 := by
+    exact congrArg Subtype.val Q.blockers_eq
+  have hC_ne_source₂ : C.secondSource.1 ≠ Q.source₂.1 := by
+    intro h
+    apply centers_ne
+    calc
+      H.centerAt C.secondSource.1 C.secondSource.2 =
+          H.centerAt Q.source₂.1 Q.source₂.2 := by simp [h]
+      _ = H.centerAt Q.source₁.1 Q.source₁.2 := hQcenters.symm
+  have hCnotF : C.secondSource.1 ∉ KF.support := by
+    intro hCmemF
+    have hCinter : C.secondSource.1 ∈ KB.support ∩ KF.support :=
+      Finset.mem_inter.mpr ⟨hCmemB, hCmemF⟩
+    rw [hinter] at hCinter
+    rcases Finset.mem_insert.mp hCinter with h | h
+    · exact hC_ne_source₁ h
+    · exact hC_ne_source₂ (Finset.mem_singleton.mp h)
+  refine ⟨C.secondSource_data.2.1, ?_⟩
+  rcases selectedFourClass_twoRow_six_point_ingress_of_left_remainder
+      KB KF centers_ne hpoints_ne hsource₁_mem hsource₂_mem hQsource₁_mem
+        hQsource₂_mem hinter hCmemB hCnotF with hcenter | hpacket
+  · exact Or.inl hcenter
+  · rcases hpacket with ⟨Y, hYF, hYnotB, hcard, hBX, hBD, hFD, hFY⟩
+    exact Or.inr ⟨Y, by simpa [KF] using hYF, by simpa [KB] using hYnotB,
+      by simpa [KB, KF] using hcard, hBX, hBD, hFD, hFY⟩
 
 /-- Live-source cyclic separation for the second-source geometric row.  The
 faithful `rowAt` is rebuilt from `D.K4`, so this adapter does not import the
