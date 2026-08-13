@@ -23,7 +23,11 @@ export UV_CACHE_DIR="${UV_CACHE_DIR:-$ROOT/scratch/uv-cache}"
 ./scripts/test-p97-piqd-atail-geometry.sh
 ./scripts/test-p97-piqd-exact12-next-row-arm-static.sh
 uv run pytest -q \
-  census/card_head/tests/test_exact12_next_row_arm_static_validator.py
+  census/card_head/tests/test_exact12_next_row_arm_static_validator.py \
+  census/card_head/tests/test_exact12_next_row_arm_static_v22_validator.py \
+  census/card_head/tests/test_exact12_next_row_postwave.py \
+  census/card_head/tests/test_exact12_next_row_arm_postwave.py \
+  census/card_head/tests/test_exact12_next_row_structural_postwave.py
 ./scripts/test-p97-piqd-exact12-next-row-static.sh
 uv run pytest -q \
   census/card_head/tests/test_sat_encoding.py \

@@ -36,6 +36,9 @@ from census.card_head.exact12_next_row_arm_static_canary import (
     SUPPORTED_ARM_CELL_INDEX,
     _source_manifest,
 )
+from census.card_head.exact12_next_row_arm_static_v22_validator import (
+    validate_v22_workdir,
+)
 from census.card_head.exact12_next_row_cell_run import _json_sha256
 from census.card_head.exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
     BANK_SCHEMA as RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_OPPOSITE_COMMON_FIVE_BANK_SCHEMA,
@@ -139,6 +142,15 @@ def _core_key(coverage: Mapping[str, Any]) -> tuple[int, int, int, int, int]:
 
 
 def mine(workdir: Path) -> dict[str, Any]:
+    repo_root = Path(__file__).resolve().parents[2]
+    validator_result = validate_v22_workdir(
+        workdir,
+        repo_root,
+        piqd_root=workdir / "piqd-journal",
+    )
+    if validator_result.get("status") != "SAT_WITNESS_REPLAYED":
+        raise MiningError("all-order mining requires a v22-validated SAT survivor")
+
     summary_path = workdir / "summary.json"
     job_path = workdir / "job.json"
     survivor_path = workdir / "survivor.json"
@@ -476,6 +488,7 @@ def mine(workdir: Path) -> dict[str, Any]:
             "Lean closure"
         ),
         "source": {
+            "v22_validator": validator_result,
             "summary": source_summary_artifact,
             "job": source_job_artifact,
             "survivor": source_survivor_artifact,
