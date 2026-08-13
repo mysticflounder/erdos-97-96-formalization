@@ -10439,10 +10439,15 @@ accepted `native_decide` boundary. Live SAT-model replay and synthetic compact-
 LRAT retrieval/replay smoke tests both pass. The latter verifies custody and
 checker plumbing, not exact-17 UNSAT.
 
-No production child-32 job has been submitted. Submit exactly once after this
-checkpoint is pushed. On `SAT`, replay every clause and mine only the new wave
+The first production prepare created PIQD job
+`2506986e-0445-465f-9b05-eff6bb9a5983`, which remains `prepared`. The runner
+correctly stopped before confirmation, but for the wrong local reason: it
+required a manifest hash that the prepare response does not contain. Live job
+status and independently retrieved bytes bind the exact CNF and manifest. The
+runner now validates those authoritative records and supports explicit recovery
+by known job ID followed by direct confirmation. Thirty-five focused runner
+tests and lint pass. Reconcile and confirm this existing job after checkpoint;
+do not submit another. On `SAT`, replay every clause and mine only the new wave
 before proving any child-33 source bridge. On `UNSAT`, independently replay the
 retrieved certificate, bank the child-specific theorem, and compose it through
-the exact-cover source realization and landing contract. PIQD still needs an
-idempotent prepare intent token to permit safe recovery from a lost prepare
-response; until then the runner deliberately fails closed.
+the exact-cover source realization and landing contract.

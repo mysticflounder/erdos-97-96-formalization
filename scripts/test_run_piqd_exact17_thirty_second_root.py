@@ -81,19 +81,14 @@ class FakeClient:
             self.spec.project,
         )
         return {
-            "response": {
-                "existing": self.existing,
-                "cnf_blob_hash": self.spec.root_sha256,
-                "num_vars": self.spec.variables,
-                "num_clauses": self.spec.clauses,
-                "identity_hash": runner.expected_identity_hash(self.spec),
-                "job_id": "job-child32",
-                "producer_manifest_hash": self.spec.manifest_sha256,
-                "project": self.spec.project,
-                "backend": self.spec.ingress.backend,
-                "solver_profile": self.spec.ingress.solver_profile,
-            },
-            "confirmation_code": "confirm-child32",
+            "existing": self.existing,
+            "cnf_blob_hash": self.spec.root_sha256,
+            "num_vars": self.spec.variables,
+            "num_clauses": self.spec.clauses,
+            "identity_hash": runner.expected_identity_hash(self.spec),
+            "job_id": "job-child32",
+            "backend": self.spec.ingress.backend,
+            "solver_profile": self.spec.ingress.solver_profile,
         }
 
     def _status(self, phase: str, *, result: str | None = None) -> dict[str, Any]:
@@ -127,9 +122,9 @@ class FakeClient:
         assert blob_hash == self.spec.manifest_sha256
         destination.write_bytes(self.stored_manifest)
 
-    def confirm(self, code: str) -> dict[str, Any]:
+    def confirm(self, job_id: str) -> dict[str, Any]:
         self.confirm_calls += 1
-        assert code == "confirm-child32"
+        assert job_id == "job-child32"
         if self.confirm_failure == "before_effect":
             raise RuntimeError("injected pre-confirm crash")
         self.phase = "confirmed"
@@ -240,11 +235,48 @@ def test_start_and_sat_finalize_bind_every_identity(tmp_path: Path) -> None:
     state = runner.start(client, paths, spec, ingress_validator=_validated)
     assert state["phase"] == "confirmed"
     assert state["binding"]["solver_profile"] == "sat"
+    assert "producer_manifest_hash" not in state["prepared_record"]["submitted"]
+    assert (
+        state["prepared_record"]["prepared_status"]["producer_manifest_hash"]
+        == spec.manifest_sha256
+    )
     client.phase = "completed"
     report = runner.finalize(client, paths, spec, ingress_validator=_validated)
     assert report["result"] == "SAT"
     assert report["model_replay"] == {"clauses_checked": 2, "satisfies_all": True}
     assert paths.model.is_file() and paths.final.is_file()
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("producer_manifest_hash", None),
+        ("producer_manifest_hash", "wrong"),
+        ("producer_manifest_blob_hash", None),
+        ("producer_manifest_blob_hash", "wrong"),
+    ],
+)
+def test_prepare_status_remains_authoritative_for_manifest_binding(
+    tmp_path: Path, field: str, replacement: str | None
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_status = client.status
+
+    def crossed_status(job_id: str) -> dict[str, Any]:
+        status = original_status(job_id)
+        if replacement is None:
+            status.pop(field)
+        else:
+            status[field] = replacement
+        return status
+
+    client.status = crossed_status
+    with pytest.raises(ValueError, match=f"PIQD {field} crossed child32 identity"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert paths.intent.is_file()
+    assert not paths.prepared.exists() and not paths.state.exists()
+    assert client.confirm_calls == 0
 
 
 def test_exact_existing_job_is_unattributable_and_never_resubmitted(
@@ -261,6 +293,41 @@ def test_exact_existing_job_is_unattributable_and_never_resubmitted(
     with pytest.raises(runner.UnreconciledPrepareError, match="refusing resubmit"):
         runner.start(client, paths, spec, ingress_validator=_validated)
     assert client.submit_calls == 1
+
+
+def test_explicit_reconciliation_recovers_intent_without_resubmitting(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected lost prepare response")
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="lost prepare response"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert paths.intent.is_file()
+    assert not paths.prepared.exists() and not paths.state.exists()
+
+    client.submit = original_submit
+    state = runner.reconcile_prepared_job(
+        client,
+        "job-child32",
+        paths,
+        spec,
+        ingress_validator=_validated,
+    )
+    assert state["phase"] == "confirmed"
+    assert state["confirmation"]["method"] == "direct"
+    assert state["prepared_record"]["submitted"] is None
+    assert (
+        state["prepared_record"]["submission_mode"]
+        == "reconciled_after_prepare_response_failure"
+    )
+    assert client.submit_calls == 1 and client.confirm_calls == 1
 
 
 def test_crash_before_confirm_resumes_from_durable_prepared_record(tmp_path: Path) -> None:
@@ -541,8 +608,7 @@ def test_sat_replay_uses_held_remote_cnf_after_local_path_swap(
     assert paths.ingress.export.child.read_bytes() == b"attacker root\n"
 
 
-def test_subprocess_adapter_accepts_existing_without_confirmation_code_and_passes_fds(
-) -> None:
+def test_subprocess_adapter_accepts_existing_and_passes_fds() -> None:
     client = runner.SubprocessPiqdClient()
     observed: dict[str, Any] = {}
 
@@ -565,10 +631,7 @@ def test_subprocess_adapter_accepts_existing_without_confirmation_code_and_passe
         profile="sat",
         project="fixture",
     )
-    assert result == {
-        "response": {"existing": True},
-        "confirmation_code": None,
-    }
+    assert result == {"existing": True}
     assert observed["pass_fds"] == (17, 18)
 
 

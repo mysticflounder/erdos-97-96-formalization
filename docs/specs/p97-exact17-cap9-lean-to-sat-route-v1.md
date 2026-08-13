@@ -573,12 +573,22 @@ Both terminal custody paths have also been exercised against the live PIQD
 service: a known-SAT model was retrieved and replayed, and a synthetic
 known-UNSAT compact-LRAT proof was retrieved and independently accepted by the
 pinned Lean LRAT checker. The synthetic smoke validates the mechanism only; it
-is not evidence about the exact-17 root. A lost `prepare-cnf` response remains
-fail-closed and cannot be retried blindly until PIQD supplies an idempotent
-intent token.
+is not evidence about the exact-17 root.
 
-Production child 32 has **not** been submitted at this checkpoint. The next
-authorized action is one exact submission of the pinned root. Terminal `SAT`
+A first production prepare created immutable PIQD job
+`2506986e-0445-465f-9b05-eff6bb9a5983`, but the local runner stopped before
+confirmation because it incorrectly expected the manifest hash in the prepare
+response. PIQD source and live status establish that prepare does not return
+that field; `GET /jobs/:id` is authoritative. The job remains `prepared`, both
+status manifest hashes match the pinned manifest, and independently retrieved
+CNF and manifest bytes match their local snapshots exactly. The repaired runner
+uses direct job-ID confirmation and has an explicit recovery path that validates
+the persisted intent, live identity, status, and both stored inputs before
+confirming. Thirty-five focused runner tests and lint pass.
+
+Production child 32 is therefore prepared but **not yet confirmed** at this
+checkpoint. The next authorized action is reconciliation and one confirmation
+of that existing job, never another submission. Terminal `SAT`
 requires full model replay, new-wave-only general-theorem mining, and Lean-first
 banking before child 33. Terminal `UNSAT` requires authenticated proof retrieval,
 independent replay, a child-specific Lean UNSAT theorem, and composition through

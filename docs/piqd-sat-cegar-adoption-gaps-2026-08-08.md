@@ -795,10 +795,12 @@ retrieval with independent Lean-checker replay. The qualified child-32 root has
 308 variables and 5,847,240 clauses; publication, export, ingress, and runner
 validators plus 71 adversarial tests pass.
 
-One operational gap remains load-bearing: after sending `prepare-cnf`, a lost
-response cannot be reconciled safely because the service does not yet accept an
-idempotent client intent token. The runner therefore records intent before the
-request and fails closed on an ambiguous response instead of retrying and
-risking duplicate provisioning. This does not weaken result soundness, but it
-prevents automatic recovery. The production child-32 solve has not yet been
-submitted, and the synthetic UNSAT smoke is not exact-scale proof evidence.
+The child-32 prepare exposed one runner/API schema mismatch: prepare does not
+return producer-manifest hashes, so those hashes must be checked in live job
+status and against retrieved manifest bytes. That repair is covered by focused
+adversarial tests. A persisted intent can now be reconciled safely when the
+exact prepared job ID is known: status, identity, CNF, and manifest are all
+revalidated before direct job-ID confirmation. Recovery remains fail-closed if
+the prepare response is lost and no job ID or identity lookup is available.
+Production job `2506986e-0445-465f-9b05-eff6bb9a5983` is prepared but not yet
+confirmed, and the synthetic UNSAT smoke is not exact-scale proof evidence.

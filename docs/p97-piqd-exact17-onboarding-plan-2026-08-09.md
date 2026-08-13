@@ -747,6 +747,10 @@ The onboarding gate now covers strict publication and recursive ingress,
 immutable export custody, live daemon/solver identity, exact CNF retrieval,
 SAT-model replay, and synthetic compact-LRAT retrieval plus independent Lean
 checker replay. Seventy-one adversarial tests and the targeted Lean exporter
-build pass. Production child 32 remains unsubmitted. Recovery from a lost
-`prepare-cnf` response is intentionally fail-closed pending PIQD support for an
-idempotent prepare intent token.
+build pass. Production child 32 is now prepared as job
+`2506986e-0445-465f-9b05-eff6bb9a5983` but remains unconfirmed. The runner has
+been corrected to treat job status—not prepare response—as authoritative for
+manifest hashes, and an explicit known-job recovery path revalidates intent,
+status, and both stored inputs before direct job-ID confirmation. General
+recovery remains fail-closed when neither a job ID nor an identity lookup is
+available.

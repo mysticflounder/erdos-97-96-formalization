@@ -41,11 +41,6 @@ from validate_exact17_thirty_first_model_refinements_ingress import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIRM_RE = re.compile(
-    r"\bconfirm(?:ation)?(?: code)?:\s*([A-Za-z0-9_-]+)\b", re.IGNORECASE
-)
-
-
 @dataclass(frozen=True)
 class RunnerPaths:
     ingress: IngressPaths
@@ -121,7 +116,7 @@ class PiqdClient(Protocol):
 
     def retrieve_blob(self, job_id: str, blob_hash: str, destination: Path) -> None: ...
 
-    def confirm(self, code: str) -> dict[str, Any]: ...
+    def confirm(self, job_id: str) -> dict[str, Any]: ...
 
     def model(self, job_id: str) -> dict[str, Any]: ...
 
@@ -208,18 +203,10 @@ class SubprocessPiqdClient:
             pass_fds=pass_fds,
         )
         response = _strict_json_text(completed.stdout)
-        matches = CONFIRM_RE.findall(completed.stderr)
         existing = response.get("existing")
-        if existing is False and len(matches) != 1:
-            raise ValueError("PIQD did not emit exactly one confirmation code")
-        if existing is True and matches:
-            raise ValueError("PIQD emitted a confirmation code for an existing job")
         if existing not in {True, False}:
             raise ValueError("PIQD prepare response omitted exact existing status")
-        return {
-            "response": response,
-            "confirmation_code": matches[0] if matches else None,
-        }
+        return response
 
     def status(self, job_id: str) -> dict[str, Any]:
         return self._json(["piqc", "status", job_id])
@@ -247,8 +234,14 @@ class SubprocessPiqdClient:
             while chunk := response.read(1024 * 1024):
                 _write_all(fd, chunk)
 
-    def confirm(self, code: str) -> dict[str, Any]:
-        return self._json(["piqc", "confirm", code])
+    def confirm(self, job_id: str) -> dict[str, Any]:
+        base = os.environ.get("PIQD_URL", "http://127.0.0.1:7272").rstrip("/")
+        query = urllib.parse.urlencode({"job_id": job_id})
+        request = urllib.request.Request(
+            f"{base}/jobs/confirm?{query}", data=b"", method="POST"
+        )
+        with urllib.request.urlopen(request, timeout=900) as response:
+            return _strict_json_text(response.read().decode("utf-8"))
 
     def model(self, job_id: str) -> dict[str, Any]:
         return self._json(["piqc", "job", "model", job_id])
@@ -525,9 +518,7 @@ def _check_prepare_response(
     expected = {
         "job_id": job_id,
         "cnf_blob_hash": spec.root_sha256,
-        "producer_manifest_hash": spec.manifest_sha256,
         "identity_hash": expected_identity_hash(spec),
-        "project": spec.project,
         "backend": spec.ingress.backend,
         "solver_profile": spec.ingress.solver_profile,
         "num_vars": spec.variables,
@@ -634,7 +625,7 @@ def _check_prepared_record(
     intent_sha256: str,
 ) -> str:
     _require(
-        prepared.get("schema") == "p97-exact17-child32-piqd-prepared/v2",
+        prepared.get("schema") == "p97-exact17-child32-piqd-prepared/v3",
         "prepared custody schema drifted",
     )
     _require(prepared.get("phase") == "prepared", "prepared custody phase drifted")
@@ -649,10 +640,15 @@ def _check_prepared_record(
     )
     job_id = prepared.get("job_id")
     _require(isinstance(job_id, str) and bool(job_id), "prepared record omitted job ID")
+    submission_mode = prepared.get("submission_mode")
     submitted = prepared.get("submitted")
-    _require(isinstance(submitted, dict), "prepared record omitted submit response")
-    _check_prepare_response(submitted, job_id, spec, expected_existing=False)
-    _require(prepared.get("submission_mode") == "created", "prepared submission mode drifted")
+    if submission_mode == "created":
+        _require(isinstance(submitted, dict), "prepared record omitted submit response")
+        _check_prepare_response(submitted, job_id, spec, expected_existing=False)
+    elif submission_mode == "reconciled_after_prepare_response_failure":
+        _require(submitted is None, "reconciled prepared record invented a submit response")
+    else:
+        raise ValueError("prepared submission mode drifted")
     prepared_status = prepared.get("prepared_status")
     _require(isinstance(prepared_status, dict), "prepared record omitted PIQD status")
     _check_job(prepared_status, job_id, spec, "prepared")
@@ -661,8 +657,6 @@ def _check_prepared_record(
         prepared.get("stored_preconfirm") == _expected_remote_report(spec, local),
         "prepared stored input identity drifted",
     )
-    code = prepared.get("confirmation_code")
-    _require(isinstance(code, str) and bool(code), "prepared record omitted confirmation code")
     return job_id
 
 
@@ -868,7 +862,7 @@ def _finish_prepared(
         "resumed PIQD job no longer stores the child32 inputs",
     )
     if lifecycle == "prepared":
-        confirmed = client.confirm(prepared["confirmation_code"])
+        confirmed = client.confirm(job_id)
         _require(
             confirmed
             == {"job_id": job_id, "blob_hash": spec.root_sha256, "status": "confirmed"},
@@ -951,24 +945,17 @@ def start(
                 intent = _make_intent(spec, local, identity, manifest_snapshot)
                 _immutable_json(paths.intent, intent)
                 intent_sha256 = sha256_file(paths.intent)
-                submitted = client.submit(
+                response = client.submit(
                     root_snapshot.path,
                     manifest_snapshot.path,
                     backend=spec.ingress.backend,
                     profile=spec.ingress.solver_profile,
                     project=spec.project,
                 )
-                _require(
-                    set(submitted) == {"response", "confirmation_code"},
-                    "malformed submit envelope",
-                )
-                response = submitted["response"]
-                code = submitted["confirmation_code"]
                 _require(isinstance(response, dict), "malformed PIQD prepare response")
                 job_id = response.get("job_id")
                 _require(isinstance(job_id, str) and bool(job_id), "PIQD omitted job ID")
                 _check_prepare_response(response, job_id, spec, expected_existing=False)
-                _require(isinstance(code, str) and bool(code), "PIQD omitted confirmation code")
                 prepared_status = client.status(job_id)
                 _check_job(prepared_status, job_id, spec, "prepared")
                 _check_optional_protocol_bindings(prepared_status, spec, identity)
@@ -986,7 +973,7 @@ def start(
                     )
                     stored = _remote_report(remote_cnf, remote_manifest)
                 prepared = {
-                    "schema": "p97-exact17-child32-piqd-prepared/v2",
+                    "schema": "p97-exact17-child32-piqd-prepared/v3",
                     "phase": "prepared",
                     "job_id": job_id,
                     "root": local,
@@ -999,7 +986,6 @@ def start(
                     "submitted": response,
                     "prepared_status": prepared_status,
                     "stored_preconfirm": stored,
-                    "confirmation_code": code,
                 }
                 _immutable_json(paths.prepared, prepared)
                 return _finish_prepared(
@@ -1013,6 +999,90 @@ def start(
                     intent_sha256,
                     stored_current=stored,
                 )
+
+
+def reconcile_prepared_job(
+    client: PiqdClient,
+    job_id: str,
+    paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
+    spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
+    *,
+    ingress_validator: IngressValidator = validate_ingress,
+) -> dict[str, Any]:
+    """Recover one known prepare whose response was lost after intent persistence."""
+    with _transaction_lock(paths.lock):
+        _require(bool(job_id), "reconciliation omitted PIQD job ID")
+        if paths.prepared.exists() or paths.state.exists() or paths.final.exists() or paths.model.exists():
+            raise FileExistsError("refusing reconciliation over existing child32 custody")
+        _require(paths.intent.is_file(), "reconciliation requires persisted submission intent")
+        local = validate_local(paths, spec, ingress_validator=ingress_validator)
+        identity = live_identity(client, spec)
+        intent = strict_json_read(paths.intent)
+        _check_intent_record(intent, spec, local, identity)
+        intent_sha256 = sha256_file(paths.intent)
+        prepared_status = client.status(job_id)
+        _check_job(prepared_status, job_id, spec, "prepared")
+        _check_optional_protocol_bindings(prepared_status, spec, identity)
+
+        header = f"p cnf {spec.variables} {spec.clauses}\n".encode()
+        with _held_snapshot(  # noqa: SIM117 -- compare both immutable inputs together
+            paths.ingress.export.child,
+            paths.intent.parent,
+            expected_sha256=str(spec.root_sha256),
+            expected_bytes=spec.root_bytes,
+            expected_header=header,
+        ) as root_snapshot:
+            with _held_snapshot(
+                paths.ingress.manifest,
+                paths.intent.parent,
+                expected_sha256=str(spec.manifest_sha256),
+                expected_bytes=local["manifest_bytes"],
+            ) as manifest_snapshot:
+                _require(
+                    _snapshot_matches_bytes(manifest_snapshot, _intent_manifest_bytes(intent)),
+                    "current producer manifest differs from persisted intent bytes",
+                )
+                with _remote_inputs(client, job_id, spec, paths.state.parent) as (
+                    remote_cnf,
+                    remote_manifest,
+                ):
+                    _require(
+                        _snapshot_equals(remote_cnf, root_snapshot),
+                        "reconciled PIQD CNF differs from intended child32 snapshot",
+                    )
+                    _require(
+                        _snapshot_equals(remote_manifest, manifest_snapshot),
+                        "reconciled PIQD manifest differs from intended child32 snapshot",
+                    )
+                    stored = _remote_report(remote_cnf, remote_manifest)
+
+        prepared = {
+            "schema": "p97-exact17-child32-piqd-prepared/v3",
+            "phase": "prepared",
+            "job_id": job_id,
+            "root": local,
+            "daemon": identity["version"],
+            "solver": identity["solver"],
+            "binding": _expected_binding(spec),
+            "intent_sha256": intent_sha256,
+            "intent": intent,
+            "submission_mode": "reconciled_after_prepare_response_failure",
+            "submitted": None,
+            "prepared_status": prepared_status,
+            "stored_preconfirm": stored,
+        }
+        _immutable_json(paths.prepared, prepared)
+        return _finish_prepared(
+            client,
+            paths,
+            spec,
+            local,
+            identity,
+            prepared,
+            intent,
+            intent_sha256,
+            stored_current=stored,
+        )
 
 
 def replay_model(path: Path, assignment: object, spec: RunnerSpec) -> dict[str, Any]:
@@ -1167,7 +1237,10 @@ def finalize(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("static-check", "start", "finalize"))
+    parser.add_argument(
+        "command", choices=("static-check", "start", "reconcile", "finalize")
+    )
+    parser.add_argument("--job-id")
     args = parser.parse_args()
     client = SubprocessPiqdClient()
     if args.command == "static-check":
@@ -1177,6 +1250,10 @@ def main() -> int:
         }
     elif args.command == "start":
         payload = start(client)
+    elif args.command == "reconcile":
+        if not args.job_id:
+            parser.error("reconcile requires --job-id")
+        payload = reconcile_prepared_job(client, args.job_id)
     else:
         payload = finalize(client)
     print(json.dumps(payload, indent=2, sort_keys=True))
