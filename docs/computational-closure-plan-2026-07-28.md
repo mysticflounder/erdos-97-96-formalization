@@ -10487,3 +10487,38 @@ retrieved assignment plus PIQD's `SATISFIED` model check before mining the next
 general refinement. `UNSAT` remains provisional until the kept CNF and
 clause-map-bound LRAT certificate replay independently. This checkpoint itself
 closes neither exact 17 nor a production `sorry`.
+
+### 13.28.6 Child-34 Lean-first refinement checkpoint — 2026-08-13
+
+The fresh child-33 job
+`6304e936-8ef3-4b92-a153-062263a4aa01` is authenticated `SAT` at epoch one on
+the 308-variable, 5,847,248-clause root with SHA-256
+`775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9`.
+Independent replay checked every clause against the retrieved total assignment.
+This is an abstract source-normal-form survivor, not a P97 counterexample.
+
+The mandatory new-wave mine found five candidate motif families. Only paired
+Kalmanson and perpendicular-bisector currently have source-valid
+`SourceRealization` bridges, so only those two were admitted. Their Lean bank
+contains eight exact clauses, source-evaluation theorems, and a conditional
+terminal adapter. The other three hits remain theorem candidates and contribute
+no child clauses. Targeted axiom checks show no `sorryAx`; the finite evaluator
+uses the accepted `native_decide` boundary.
+
+The official Lean exporter produced child 34 with 308 variables, 5,847,256
+clauses, 291,620,980 bytes, and SHA-256
+`ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819`.
+Its immutable receipt has SHA-256
+`dfd27a4fcdaabba87270259988b4b39a5debcf8f0d1d56802a35b40a035c59fc`.
+The child is the exact parent body plus the ordered eight-clause suffix; all
+eight clauses are semantic-new. Ruff and 251 focused tests pass.
+
+The export is provisioned, but PIQD ingress and the production runner are not.
+All stale child-33 daemon and solver pins were cleared. A fresh post-`acefb4a`
+daemon build receipt and live identity audit are mandatory before emitting the
+child-34 ingress or launching a job. This is the next operational gate. On
+`SAT`, replay the whole model and repeat wave-only theorem mining followed by a
+Lean source bridge; on `UNSAT`, retrieve and independently replay the exact
+certificate, bank the child-specific theorem, and compose it through
+`exists_exactSeventeenSourceRealization_of_exactCover` and the landing contract.
+Exact 17 and the production `sorry` remain open.

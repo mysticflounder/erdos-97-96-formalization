@@ -224,7 +224,11 @@ class FakeClient:
             "cnf_blob_hash": self.spec.root_sha256,
             "outcome": "SATISFIED",
             "announcement": "NONE",
-            "detail": None,
+            "detail": (
+                f"the model satisfies all {self.spec.clauses} clauses. "
+                f"Project {self.spec.project} declares no counterexample scope, "
+                "so piqd makes no claim about what that means"
+            ),
             "clause_index": None,
             "clause": None,
             "num_vars": self.spec.variables,
@@ -420,6 +424,18 @@ def test_child33_sat_binds_model_check_to_exact_assignment_and_schema(
         runner.finalize(client, paths, spec, ingress_validator=_validated)
     assert not paths.final.exists()
 
+    paths, spec, root = _child33_fixture(tmp_path / "detail")
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    client.model_check_payload = {
+        **FakeClient(root, spec).model_check("job-child32"),
+        "detail": None,
+    }
+    with pytest.raises(ValueError, match="model-check no-scope detail drifted"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
     paths, spec, root = _child33_fixture(tmp_path / "schema")
     client = FakeClient(root, spec)
     runner.start(client, paths, spec, ingress_validator=_validated)
@@ -428,6 +444,67 @@ def test_child33_sat_binds_model_check_to_exact_assignment_and_schema(
     del payload["clause_index"]
     client.model_check_payload = payload
     with pytest.raises(ValueError, match="model-check schema drifted"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+@pytest.mark.parametrize(
+    ("mutation", "error"),
+    [
+        ("detail_punctuation", "model-check no-scope detail drifted"),
+        ("detail_whitespace", "model-check no-scope detail drifted"),
+        ("detail_count", "model-check no-scope detail drifted"),
+        ("detail_project", "model-check no-scope detail drifted"),
+        ("announcement", "model-check announcement drifted"),
+        ("ce_scope", "model-check CE scope drifted"),
+        ("clause_index", "model-check names a clause index"),
+        ("clause", "model-check names a clause"),
+        ("completed_at", "model-check crossed completed_at"),
+        ("checked_at", "model-check checked_at predates completion"),
+        ("announced_at", "model-check was already announced"),
+        ("extra_key", "model-check schema drifted"),
+    ],
+)
+def test_child33_sat_rejects_model_check_contract_drift(
+    tmp_path: Path,
+    mutation: str,
+    error: str,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path / mutation)
+    client = FakeClient(root, spec)
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    payload = FakeClient(root, spec).model_check("job-child32")
+    if mutation == "detail_punctuation":
+        payload["detail"] += "."
+    elif mutation == "detail_whitespace":
+        payload["detail"] = payload["detail"].replace(" clauses. Project", " clauses.  Project")
+    elif mutation == "detail_count":
+        payload["detail"] = payload["detail"].replace(
+            str(spec.clauses), str(spec.clauses - 1)
+        )
+    elif mutation == "detail_project":
+        payload["detail"] = payload["detail"].replace(spec.project, "wrong-project")
+    elif mutation == "announcement":
+        payload["announcement"] = "POSSIBLE_COUNTEREXAMPLE"
+    elif mutation == "ce_scope":
+        payload["ce_scope"] = {"name": "wrong-scope"}
+    elif mutation == "clause_index":
+        payload["clause_index"] = 1
+    elif mutation == "clause":
+        payload["clause"] = [1, -2]
+    elif mutation == "completed_at":
+        payload["job_completed_at"] -= 1
+    elif mutation == "checked_at":
+        payload["checked_at"] = payload["job_completed_at"] - 1
+    elif mutation == "announced_at":
+        payload["announced_at"] = payload["checked_at"]
+    elif mutation == "extra_key":
+        payload["unexpected"] = "field"
+    else:  # pragma: no cover - the parametrization is exhaustive
+        raise AssertionError(f"unhandled mutation: {mutation}")
+    client.model_check_payload = payload
+    with pytest.raises(ValueError, match=error):
         runner.finalize(client, paths, spec, ingress_validator=_validated)
     assert not paths.final.exists()
 

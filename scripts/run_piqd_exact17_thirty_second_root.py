@@ -48,6 +48,7 @@ ATTESTED_SOLVER_PROCESSES = 1
 ATTESTATION_BASIS = "SINGLE_PROCESS_NO_PARALLEL_FLAG"
 TIMEOUT_S = 3600
 MARCH_TIMEOUT_S = 900
+HARDENED_ARTIFACT_NAMESPACES = frozenset({"child33", "child34"})
 
 
 @dataclass(frozen=True)
@@ -78,7 +79,7 @@ class RunnerSpec:
     march_timeout_s: int = MARCH_TIMEOUT_S
 
     def __post_init__(self) -> None:
-        if self.artifact_namespace not in {"child32", "child33"}:
+        if self.artifact_namespace not in {"child32"} | HARDENED_ARTIFACT_NAMESPACES:
             raise ValueError("unsupported runner artifact namespace")
         if type(self.timeout_s) is not int or self.timeout_s <= 0:
             raise ValueError("timeout_s must be a positive integer")
@@ -98,6 +99,10 @@ class RunnerSpec:
             and self.root_sha256 == self.ingress.export.child_sha256
             and self.root_bytes == self.ingress.export.child_bytes
         )
+
+
+def _uses_hardened_protocol(spec: RunnerSpec) -> bool:
+    return spec.artifact_namespace in HARDENED_ARTIFACT_NAMESPACES
 
 
 PRODUCTION_RUNNER_PATHS = RunnerPaths(
@@ -823,11 +828,11 @@ def _check_job(
     }
     for key, value in expected.items():
         _require(status.get(key) == value, f"PIQD {key} crossed child32 identity")
-    if spec.artifact_namespace == "child33":
-        _require(status.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed child33 identity")
+    if _uses_hardened_protocol(spec):
+        _require(status.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed hardened identity")
         _require(
             status.get("march_timeout_s") == spec.march_timeout_s,
-            "PIQD march timeout crossed child33 identity",
+            "PIQD march timeout crossed hardened identity",
         )
     observed_core_limit = status.get("requested_core_limit")
     _require(
@@ -877,11 +882,11 @@ def _check_prepare_response(
     }
     for key, value in expected.items():
         _require(response.get(key) == value, f"PIQD prepare {key} crossed child32 identity")
-    if spec.artifact_namespace == "child33":
-        _require(response.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed child33 identity")
+    if _uses_hardened_protocol(spec):
+        _require(response.get("timeout_s") == spec.timeout_s, "PIQD timeout crossed hardened identity")
         _require(
             response.get("march_timeout_s") == spec.march_timeout_s,
-            "PIQD march timeout crossed child33 identity",
+            "PIQD march timeout crossed hardened identity",
         )
     existing = response.get("existing")
     _require(type(existing) is bool, "PIQD prepare omitted exact existing flag")
@@ -905,7 +910,7 @@ def _expected_binding(spec: RunnerSpec) -> dict[str, Any]:
         "solver_profile": spec.ingress.solver_profile,
         "requested_core_limit": REQUESTED_CORE_LIMIT,
     }
-    if spec.artifact_namespace == "child33":
+    if _uses_hardened_protocol(spec):
         binding.update(
             {"timeout_s": spec.timeout_s, "march_timeout_s": spec.march_timeout_s}
         )
@@ -1215,11 +1220,12 @@ _MODEL_CHECK_KEYS = frozenset(
 )
 
 
-def _check_child33_result_shape(
+def _check_hardened_result_shape(
     status: dict[str, Any], spec: RunnerSpec, result: str
 ) -> None:
-    if spec.artifact_namespace != "child33":
+    if not _uses_hardened_protocol(spec):
         return
+    lane = spec.artifact_namespace
     fields = (
         "proof_blob_hash",
         "kept_cnf_blob_hash",
@@ -1227,48 +1233,56 @@ def _check_child33_result_shape(
         "model_blob_hash",
     )
     for field in fields:
-        _require(field in status, f"child33 status omitted {field}")
+        _require(field in status, f"{lane} status omitted {field}")
     if result == "SAT":
         for field in fields:
-            _require(status[field] is None, f"child33 SAT populated {field}")
+            _require(status[field] is None, f"{lane} SAT populated {field}")
         _require(
             type(status.get("completed_at")) is int,
-            "child33 SAT status omitted exact completed_at",
+            f"{lane} SAT status omitted exact completed_at",
         )
     elif result == "UNSAT":
-        _require(status["model_blob_hash"] is None, "child33 UNSAT populated model_blob_hash")
+        _require(status["model_blob_hash"] is None, f"{lane} UNSAT populated model_blob_hash")
         for field in ("proof_blob_hash", "kept_cnf_blob_hash"):
             _require(
                 isinstance(status[field], str)
                 and re.fullmatch(r"[0-9a-f]{64}", status[field]) is not None,
-                f"child33 UNSAT supplied malformed {field}",
+                f"{lane} UNSAT supplied malformed {field}",
             )
         _require(
             status["proof_format"] == "compacted_lrat",
-            "child33 UNSAT proof format is not compacted_lrat",
+            f"{lane} UNSAT proof format is not compacted_lrat",
         )
 
 
-def _check_child33_model_check(
+def _check_hardened_model_check(
     row: dict[str, Any],
     status: dict[str, Any],
     job_id: str,
     spec: RunnerSpec,
     assignment: list[int],
 ) -> None:
-    _require(set(row) == _MODEL_CHECK_KEYS, "child33 model-check schema drifted")
-    _require(row.get("job_id") == job_id, "child33 model-check crossed job identity")
-    _require(row.get("project") == spec.project, "child33 model-check crossed project")
+    lane = spec.artifact_namespace
+    _require(set(row) == _MODEL_CHECK_KEYS, f"{lane} model-check schema drifted")
+    _require(row.get("job_id") == job_id, f"{lane} model-check crossed job identity")
+    _require(row.get("project") == spec.project, f"{lane} model-check crossed project")
     _require(
         row.get("cnf_blob_hash") == spec.root_sha256,
-        "child33 model-check crossed root identity",
+        f"{lane} model-check crossed root identity",
     )
-    _require(row.get("outcome") == "SATISFIED", "child33 model-check is not SATISFIED")
-    _require(row.get("announcement") == "NONE", "child33 model-check announcement drifted")
-    _require(row.get("detail") is None, "child33 model-check unexpectedly has detail")
-    _require(row.get("clause_index") is None, "child33 model-check names a clause index")
-    _require(row.get("clause") is None, "child33 model-check names a clause")
-    _require(row.get("ce_scope") is None, "child33 model-check CE scope drifted")
+    _require(row.get("outcome") == "SATISFIED", f"{lane} model-check is not SATISFIED")
+    _require(row.get("announcement") == "NONE", f"{lane} model-check announcement drifted")
+    expected_detail = (
+        f"the model satisfies all {spec.clauses} clauses. Project {spec.project} "
+        "declares no counterexample scope, so piqd makes no claim about what that means"
+    )
+    _require(
+        row.get("detail") == expected_detail,
+        f"{lane} model-check no-scope detail drifted",
+    )
+    _require(row.get("clause_index") is None, f"{lane} model-check names a clause index")
+    _require(row.get("clause") is None, f"{lane} model-check names a clause")
+    _require(row.get("ce_scope") is None, f"{lane} model-check CE scope drifted")
     for field, expected in (
         ("num_vars", spec.variables),
         ("num_clauses", spec.clauses),
@@ -1276,25 +1290,25 @@ def _check_child33_model_check(
     ):
         _require(
             type(row.get(field)) is int and row[field] == expected,
-            f"child33 model-check {field} drifted",
+            f"{lane} model-check {field} drifted",
         )
     _require(
         type(status.get("completed_at")) is int
         and row.get("job_completed_at") == status["completed_at"],
-        "child33 model-check crossed completed_at",
+        f"{lane} model-check crossed completed_at",
     )
     _require(
         type(row.get("checked_at")) is int
         and row["checked_at"] >= status["completed_at"],
-        "child33 model-check checked_at predates completion",
+        f"{lane} model-check checked_at predates completion",
     )
-    _require(row.get("announced_at") is None, "child33 model-check was already announced")
+    _require(row.get("announced_at") is None, f"{lane} model-check was already announced")
     expected_model_sha256 = hashlib.sha256(
         " ".join(str(lit) for lit in assignment).encode()
     ).hexdigest()
     _require(
         row.get("model_sha256") == expected_model_sha256,
-        "child33 model-check crossed model identity",
+        f"{lane} model-check crossed model identity",
     )
 
 
@@ -1599,7 +1613,7 @@ def start(
                     "project": spec.project,
                     "requested_core_limit": REQUESTED_CORE_LIMIT,
                 }
-                if spec.artifact_namespace == "child33":
+                if _uses_hardened_protocol(spec):
                     submit_kwargs.update(
                         timeout_s=spec.timeout_s,
                         march_timeout_s=spec.march_timeout_s,
@@ -1867,7 +1881,7 @@ def finalize(
                 "completed PIQD job has no proof-relevant result",
             )
             assert isinstance(result, str)
-            _check_child33_result_shape(status, spec, result)
+            _check_hardened_result_shape(status, spec, result)
         with _remote_inputs(client, job_id, spec, paths.final.parent) as (
             remote_cnf,
             remote_manifest,
@@ -1946,9 +1960,9 @@ def finalize(
                             remote_cnf.path, model.get("assignment"), spec
                         )
                         model_check: dict[str, Any] | None = None
-                        if spec.artifact_namespace == "child33":
+                        if _uses_hardened_protocol(spec):
                             model_check = client.model_check(job_id)
-                            _check_child33_model_check(
+                            _check_hardened_model_check(
                                 model_check,
                                 status,
                                 job_id,
@@ -1969,7 +1983,7 @@ def finalize(
                                 "model_replay": replay,
                                 **(
                                     {"model_check": model_check}
-                                    if spec.artifact_namespace == "child33"
+                                    if _uses_hardened_protocol(spec)
                                     else {}
                                 ),
                                 "next_gate": "mandatory_general_theorem_search",

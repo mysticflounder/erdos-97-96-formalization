@@ -1,5 +1,13 @@
 # P97 PIQD post-wave theorem-search gate v1
 
+> **Exact-17 production precondition (2026-08-10).** This gate may continue to
+> analyze frozen models, but it must not authorize a new production exact-17
+> wave until the root was produced by the Lean finite-normal-form and checked
+> SAT-export route in
+> `docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`. A reusable Lean
+> consumer entitles a learned clause only after its hypotheses have been
+> extracted from that checked finite packet.
+
 Status: implemented and fail-closed by
 `census/p97_search/phase3_piqd_postwave_gate.py`, with one-wave enforcement in
 `census/p97_search/phase3_piqd_theorem_gated_discovery.py`.
@@ -156,3 +164,13 @@ An authenticated receipt establishes only that a finite CEGAR refinement was
 searched, source-backed, and admitted according to this contract.  It does not
 establish exact-cardinality coverage, a universal lift, a Lean theorem, a
 closed `sorry`, or P97/P96.
+
+The child-33 theorem mine on 2026-08-13 makes one additional distinction
+explicit. A motif reported by model analysis is only a **candidate hit**. It may
+enter a successor formula only after a source-valid producer proves the
+corresponding clause from `SourceRealization` and the Lean exporter emits that
+exact clause. In that mine, five motif families were detected, but only paired
+Kalmanson and perpendicular-bisector met this promotion contract. The other
+three remained diagnostic and supplied no clauses. Post-wave reports and
+receipts must record candidate discovery separately from admitted source-valid
+families.

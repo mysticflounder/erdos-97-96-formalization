@@ -593,3 +593,48 @@ requires full model replay, new-wave-only general-theorem mining, and Lean-first
 banking before child 33. Terminal `UNSAT` requires authenticated proof retrieval,
 independent replay, a child-specific Lean UNSAT theorem, and composition through
 `exists_exactSeventeenSourceRealization_of_exactCover` and the landing contract.
+
+## Thirty-fourth Lean-owned child checkpoint — 2026-08-13
+
+This section supersedes the child-32 current-status paragraph above. The fresh
+child-33 production job
+`6304e936-8ef3-4b92-a153-062263a4aa01` terminated `SAT` at epoch one on the
+308-variable, 5,847,248-clause root with SHA-256
+`775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9`.
+Its retrieved total assignment passed an independent streaming replay of every
+root clause. This is a source-normal-form SAT assignment, not a Euclidean P97
+counterexample.
+
+The mandatory new-wave theorem search reported five motif families. Only the
+paired-Kalmanson and perpendicular-bisector families had the required
+`SourceRealization` bridges and were promoted. The forward/reverse two-circle
+bisector, convex-five, and two-Kalmanson-cancellation hits remain diagnostic
+candidates; their occurrence in the abstract model does not authorize a
+successor clause. The two admitted families are banked in Lean as eight exact
+clauses, together with source-evaluation theorems and a conditional terminal
+adapter. Targeted axiom checks report no `sorryAx`; finite evaluation uses the
+accepted `native_decide` trust boundary.
+
+The official child-34 DIMACS was rendered directly by the Lean exporter. It is
+the byte-identical child-33 prefix followed by exactly those eight clauses:
+
+- 308 variables;
+- 5,847,256 clauses;
+- 291,620,980 bytes; and
+- SHA-256
+  `ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819`.
+
+The immutable export receipt has SHA-256
+`dfd27a4fcdaabba87270259988b4b39a5debcf8f0d1d56802a35b40a035c59fc`.
+Publication validation confirms the exact ordered suffix and zero semantic-new
+duplicates. Ruff and 251 focused publication, ingress, runner, recovery,
+post-wave-analysis, and adversarial tests pass.
+
+Only the export is provisioned. Child-34 PIQD ingress and its runner are
+deliberately `UNPROVISIONED`: all inherited child-33 daemon and solver pins were
+cleared, and the gates fail closed until a fresh post-`acefb4a` PIQD build
+receipt and live daemon/solver identities are supplied. No child-34 PIQD job has
+been prepared or launched. After that fresh identity is available, emit and
+validate one immutable ingress manifest, pin the runner to it and to the exact
+root above, then submit exactly one job. Exact 17 and the production `sorry`
+remain open.

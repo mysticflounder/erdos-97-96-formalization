@@ -754,3 +754,31 @@ manifest hashes, and an explicit known-job recovery path revalidates intent,
 status, and both stored inputs before direct job-ID confirmation. General
 recovery remains fail-closed when neither a job ID nor an identity lookup is
 available.
+
+## Child-34 export qualification — 2026-08-13
+
+Child-33 job `6304e936-8ef3-4b92-a153-062263a4aa01` returned authenticated
+`SAT` on root
+`775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9`.
+The retrieved total assignment satisfied all 5,847,248 clauses under an
+independent streaming replay. The required wave-only theorem mine found five
+candidate motif families, but only paired Kalmanson and perpendicular-bisector
+had source-valid Lean bridges. Those two families—not the three diagnostic-only
+hits—supply the exact eight-clause child-34 suffix.
+
+The immutable Lean-owned child-34 export is now provisioned at SHA-256
+`ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819`,
+291,620,980 bytes, 308 variables, and 5,847,256 clauses. Its receipt SHA-256 is
+`dfd27a4fcdaabba87270259988b4b39a5debcf8f0d1d56802a35b40a035c59fc`.
+The validator proves a byte-identical parent prefix, exact ordered eight-clause
+suffix, and no semantic-new duplicates. The Lean source bridge and conditional
+terminal adapter have no `sorryAx`; Ruff and 251 focused tests pass.
+
+This is deliberately a two-phase onboarding checkpoint. Export publication is
+complete, but PIQD ingress and the runner remain `UNPROVISIONED`. The old
+child-33 daemon and solver identities were cleared instead of being inherited.
+Before launch, obtain a fresh post-`acefb4a` daemon build receipt, authenticate
+the live daemon and solver, pin and emit the ingress manifest, validate it
+recursively, and bind the runner to that manifest and exact root. No child-34
+job exists yet. This checkpoint closes neither exact 17 nor a production
+`sorry`.

@@ -804,3 +804,24 @@ revalidated before direct job-ID confirmation. Recovery remains fail-closed if
 the prepare response is lost and no job ID or identity lookup is available.
 Production job `2506986e-0445-465f-9b05-eff6bb9a5983` is prepared but not yet
 confirmed, and the synthetic UNSAT smoke is not exact-scale proof evidence.
+
+## Exact-17 child-34 export-only update — 2026-08-13
+
+This section supersedes the child-32 production status above. The later
+child-32 restart attempt `547cca82-e479-468c-abe1-fb318d7004e6` is quarantined
+`UNKNOWN`: a daemon restart duplicated its solver process, so it contributes no
+mathematical verdict. The previously recorded known-SAT and synthetic
+known-UNSAT/LRAT exercises are historical mechanism tests only; they do not
+qualify a fresh production launch.
+
+After the authenticated child-33 SAT result and its source-valid theorem mine,
+the Lean-owned child-34 export is provisioned at SHA-256
+`ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819`.
+It has 308 variables, 5,847,256 clauses, exactly eight semantic-new refinement
+clauses, and immutable export-receipt SHA-256
+`dfd27a4fcdaabba87270259988b4b39a5debcf8f0d1d56802a35b40a035c59fc`.
+
+PIQD ingress and the production runner remain deliberately `UNPROVISIONED`;
+no child-34 ingress manifest or job exists. A fresh post-`acefb4a` daemon build
+receipt, live daemon and solver identity audit, recursive manifest validation,
+and exactly one fresh submission are required before production can resume.
