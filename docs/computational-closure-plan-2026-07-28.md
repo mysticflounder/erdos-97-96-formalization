@@ -10586,3 +10586,31 @@ Lean source bridge; on `UNSAT`, retrieve and independently replay the exact
 certificate, bank the child-specific theorem, and compose it through
 `exists_exactSeventeenSourceRealization_of_exactCover` and the landing contract.
 Exact 17 and the production `sorry` remain open.
+
+### 13.28.7 Child-36 canonical-position correction — 2026-08-13
+
+Child 34 and child 35 both terminated authenticated `SAT`, with independent
+full-CNF replay. Child 35 has 308 variables, 5,847,260 clauses, and SHA-256
+`0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f`.
+The post-wave audit found that its four new perpendicular-bisector clauses
+used raw carrier labels where the theorem requires positions in a named cyclic
+order. The clauses were consequently no-ops on the motivating model. This was
+an ineffective refinement, not an incorrect SAT or UNSAT verdict.
+
+The repaired Lean producer canonicalizes labels to cyclic positions before
+applying the metric obstruction. Its `SourceRealization` bridge and exact
+four-clause orbit are banked. The corrected Lean-owned child 36 is the exact
+child-35 prefix plus those four clauses:
+
+- 308 variables and 5,847,264 clauses;
+- 291,621,334 bytes;
+- SHA-256
+  `e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`.
+
+The production validator replays all parent clauses against the authenticated
+child-35 model and requires at least one new suffix clause to reject it;
+corrected clause 3 does. It also pins the exact source and artifact bytes,
+rejects semantic duplicates, and publishes the receipt last. Child 36 is
+exported but not yet submitted. Next emit and validate one immutable PIQD
+ingress, launch one job, and follow the existing SAT-refine / UNSAT-replay
+contract. Exact 17 and the cap-nine production leaf remain open.

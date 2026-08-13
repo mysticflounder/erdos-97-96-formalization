@@ -638,3 +638,56 @@ been prepared or launched. After that fresh identity is available, emit and
 validate one immutable ingress manifest, pin the runner to it and to the exact
 root above, then submit exactly one job. Exact 17 and the production `sorry`
 remain open.
+
+## Thirty-sixth Lean-owned child checkpoint — 2026-08-13
+
+Child 34 terminated authenticated `SAT` as immutable PIQD job
+`3dc8ef3d-5cc3-49c1-b0e4-afc9d2552941`; independent replay checked all
+5,847,256 clauses. The wave-only theorem mine found no genuinely new
+source-valid family beyond the paired-Kalmanson bank. The remaining
+two-circle, convex-five, and cancellation occurrences still lack the required
+`SourceRealization` producer and therefore contributed no clauses.
+
+Child 35 added four proposed perpendicular-bisector clauses and terminated
+authenticated `SAT` as immutable PIQD job
+`4fa2037f-d0da-42b9-862d-6e78cc3a9498` on the 308-variable,
+5,847,260-clause root with SHA-256
+`0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f`.
+The total assignment passed exact replay. A mandatory post-wave audit then
+found that the four new clauses had encoded raw carrier labels as cyclic
+positions, so all four were satisfied by the motivating child-34 model. This
+does not invalidate any SAT result or Lean theorem; it makes that refinement
+operationally ineffective. No successor may rely on it as having removed the
+model.
+
+The corrected source theorem first canonicalizes carrier labels through the
+named cyclic order and then applies the perpendicular-bisector obstruction to
+the resulting positions. It is banked with its `SourceRealization` bridge,
+four exact clauses, source-evaluation theorem, and conditional terminal
+adapter. Targeted Lean diagnostics and axiom checks are clean; the finite
+evaluation uses the accepted `native_decide` boundary.
+
+The official corrected child-36 DIMACS was rendered directly by Lean and
+published ledger-last through the fail-closed boundary:
+
+- 308 variables;
+- 5,847,264 clauses;
+- 291,621,334 bytes; and
+- SHA-256
+  `e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`.
+
+The child is byte-for-byte child 35 followed by the four corrected clauses.
+The validator replays the authenticated child-35 assignment against every
+parent clause, proves that corrected suffix clause 3 rejects that exact
+assignment, rejects semantic duplicates, pins all Lean source bytes, and
+refuses substituted artifact or source pins. The immutable export receipt has
+SHA-256
+`fe6a1456c7ca467c9e76db4f94079bec39b2291f7d388425e324b4e30221b7b8`;
+five focused adversarial tests and Ruff pass.
+
+Child 36 is now exported but has not yet been submitted to PIQD. The next
+authorized step is a freshly validated immutable ingress and exactly one PIQD
+job. `SAT` requires full replay followed by a wave-only general-theorem mine;
+`UNSAT` requires independent certificate replay and composition through the
+exact-17 source-realization and landing contracts. Exact 17 and the production
+`sorry` remain open at this checkpoint.
