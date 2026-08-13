@@ -10787,3 +10787,31 @@ The publication tests, ingress validation, and live PIQD identity gate pass.
 No Child37 job exists yet. Submit exactly one job after this checkpoint, then
 apply the established SAT replay-and-mine or UNSAT certificate-and-compose
 contract. Exact 17 and the cap-nine production leaf remain open.
+### 13.28.9 Child-38 second cancellation checkpoint — 2026-08-13
+
+Child 37 terminated authenticated `SAT` at epoch one as PIQD job
+`ba0b8d07-328d-4e43-873e-b99d005b1578`; independent replay checked all
+5,847,268 clauses. The wave-only mine found exactly two new source-valid
+six-hit Kalmanson-cancellation occurrences. No other new occurrence had the
+required source bridge. The resulting two-orientation Lean bank contributes
+eight exact clauses, source and extended-CNF evaluators, and a conditional
+terminal adapter. Targeted builds and transitive axiom checks pass without
+`sorryAx`; finite evaluation remains under the accepted `native_decide`
+boundary. Suffix clause 7 rejects the authenticated Child37 assignment.
+
+The Lean exporter produced the exact Child38 successor with 308 variables,
+5,847,276 clauses, 291,621,758 bytes, and SHA-256
+`07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7`.
+Its immutable ingress manifest has SHA-256
+`6b74b75871940761fa346469b04c0ad17064a36b56766c5413c2ff6e048ad815`.
+Publication is interruption-safe and ledger-last; exact parent-prefix,
+ordered-suffix, motivating-model-cut, source-hash, receipt, ingress, and live
+PIQD identity validation pass. The 263-test lifecycle suite, eight focused
+Child38 tests, and Ruff pass.
+
+No Child38 job exists at this checkpoint. Submit exactly one job through the
+pinned runner. On `SAT`, replay the entire model and mine only the new wave
+before admitting any source-proved successor clause. On `UNSAT`, retrieve and
+independently replay the certificate, bank the child-specific theorem, and
+compose through `exists_exactSeventeenSourceRealization_of_exactCover` and the
+landing contract. Exact 17 and the cap-nine production leaf remain open.

@@ -727,3 +727,42 @@ checkpoint. The next authorized action is exactly one immutable Child37 job,
 followed by full replay and wave-only mining on `SAT`, or independent proof
 replay and Lean composition on `UNSAT`. Exact 17 and the production `sorry`
 remain open.
+
+## Thirty-eighth Lean-owned child checkpoint — 2026-08-13
+
+Child 37 terminated authenticated `SAT` at epoch one as immutable PIQD job
+`ba0b8d07-328d-4e43-873e-b99d005b1578` after 643.664 seconds. Its exact root
+had 308 variables, 5,847,268 clauses, and SHA-256
+`98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3`;
+the retrieved total assignment passed independent replay of every clause. This
+is an abstract source-normal-form survivor, not a Euclidean counterexample.
+
+The mandatory wave-only theorem mine found exactly two new source-valid
+six-hit Kalmanson-cancellation occurrences and no other admissible family.
+Their two orientations expand to an eight-clause Lean-owned suffix. The source
+bridge, suffix evaluator, extended-CNF evaluator, and conditional terminal
+adapter are banked in Lean. Targeted builds pass, and transitive axiom checks
+report no `sorryAx`; the finite evaluator uses the accepted `native_decide`
+boundary. Suffix clause 7 rejects the authenticated Child37 model.
+
+The official Child38 root was rendered directly by Lean and published with an
+exclusive hard link followed by a ledger-last receipt. It is the byte-identical
+Child37 prefix followed by exactly those eight clauses:
+
+- 308 variables;
+- 5,847,276 clauses;
+- 291,621,758 bytes; and
+- SHA-256
+  `07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7`.
+
+The immutable export receipt has SHA-256
+`62b40115c0b5f4f7af1968d93fc880df48effa66c7a352c346dd0bbeb213faa6`,
+and the recursively validated PIQD ingress manifest has SHA-256
+`6b74b75871940761fa346469b04c0ad17064a36b56766c5413c2ff6e048ad815`.
+The full 263-test lifecycle suite, eight Child38-specific adversarial tests,
+Ruff, exact export/ingress replay, source-pin validation, and the live PIQD
+identity gate pass. No Child38 job exists at this checkpoint. The next action is
+exactly one runner-mediated submission. Terminal `SAT` repeats exact replay and
+wave-only theorem mining; terminal `UNSAT` requires independent certificate
+replay and Lean composition through the exact-17 source-realization and landing
+contracts. Exact 17 and the cap-nine production `sorry` remain open.
