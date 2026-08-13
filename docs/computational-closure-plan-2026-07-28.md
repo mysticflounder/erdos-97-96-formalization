@@ -10294,6 +10294,47 @@ but its present cap placement and Q-center deletion survivals do not supply
 the missing actual-row incidences by themselves.  No FirstNonHit branch or
 load-bearing `sorry` is closed at this checkpoint.
 
+#### 13.24.1.19 W4 polarity correction and pinned-endpoint retarget (2026-08-13)
+
+The direct W4-to-three-overlap target from §13.24.1.18 is now retired.  The
+source-clean theorem
+`freshThird_commonRadius_sameBlocker_exists_four_sources_with_two_qRow_omissions`
+combines the four-source common-radius packet with the exact distinct-circle
+relocation bound.  For every `z ∈ W`, it proves all of the following:
+
+1. `z` lies in the strict canonical cap and outside the Q selected support;
+2. its actual blocker differs from the Q blocker;
+3. its actual selected support meets the Q support in at most two points;
+4. deleting `z` preserves K4 at the Q blocker; and
+5. at least two Q-support points are omitted from `z`'s actual selected row,
+   with deletion of each omitted point preserving K4 at `z`'s blocker.
+
+Thus the W4 sources have the opposite polarity from the three-blocked-deletion
+terminal: they formally supply two or more *surviving* Q-row deletions and
+overlap at most two.  No source-faithful CEGAR query may select a W4 source as
+the promised distinct-center row of Q-overlap at least three.  The theorem
+builds in the targeted `TwoSourceFreshThirdResidual` job and its transitive
+axiom set is exactly `propext`, `Classical.choice`, and `Quot.sound`.
+
+The corrected universal finite ingress is the already source-produced
+pinned-endpoint outside-seed residual, not raw W4.  It contains an escaping
+selected-four row, the full `SourceFaithfulSelectedFourDeletionFan`, endpoint
+and boundary-row data, cap placement, and order information.  The generic fan
+consumers reduce this packet to center nonrobustness, same-cap blocker
+collision/cross-deletion rows, or mutually surviving cross-deletion rows.  No
+proved theorem currently makes those outcomes incompatible with the retained
+endpoint, outside-seed witness, `hrowAt`, and cap/order data.
+
+Accordingly the next exact target is a source-clean pinned-endpoint fan
+incompatibility theorem consuming those row-valued outcomes while retaining
+the full endpoint/outside-seed/cap-order packet.  This is a
+cardinality-independent ingress: a finite search is admissible only if it
+encodes that exact packet and emits a replayable obstruction accepted by the
+new consumer.  A cap-only or fan-Boolean projection is too weak and is not a
+production query.  This checkpoint closes no FirstNonHit branch and no
+load-bearing `sorry`; it removes an impossible producer target and sharply
+narrows the next theorem/CEGAR contract.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

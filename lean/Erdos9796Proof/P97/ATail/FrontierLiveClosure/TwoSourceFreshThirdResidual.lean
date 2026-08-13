@@ -1367,6 +1367,78 @@ theorem freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
           H source.2).mpr hw'.2
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The common-radius four-source packet has the opposite incidence polarity
+from the three-point-overlap terminal.  Every strict-cap source in the packet
+lies off the `Q` row, survives deletion at the `Q` blocker, and has an actual
+row omitting at least two `Q`-row points.  Those omitted points in turn survive
+deletion at the source's actual blocker.
+
+Thus none of the four packet sources can itself be the distinct-center row
+meeting the `Q` row in at least three points.  Any such terminal producer must
+introduce another center or use additional global synchronization beyond the
+present `W4` ingress. -/
+theorem
+    freshThird_commonRadius_sameBlocker_exists_four_sources_with_two_qRow_omissions
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirstSupport :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support)
+    (hsecondSupport :
+      (H.selectedAt C.surface.secondSource.1
+          C.surface.secondSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support) :
+    ∃ W : Finset ℝ²,
+      W.card = 4 ∧
+      ∀ z ∈ W,
+        z ∈ S.capInteriorByIndex S.oppIndex1 ∧
+        z ∉ (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support ∧
+        ∃ hzA : z ∈ D.A,
+          H.centerAt z hzA ≠ H.centerAt Q.source₁.1 Q.source₁.2 ∧
+          ((H.selectedAt z hzA).toCriticalFourShell.support ∩
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.support).card ≤ 2 ∧
+          HasNEquidistantPointsAt 4 (D.A.erase z)
+            (H.centerAt Q.source₁.1 Q.source₁.2) ∧
+          2 ≤
+            ((H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.support \
+              (H.selectedAt z hzA).toCriticalFourShell.support).card ∧
+          ∀ w ∈
+              (H.selectedAt Q.source₁.1
+                  Q.source₁.2).toCriticalFourShell.support \
+                (H.selectedAt z hzA).toCriticalFourShell.support,
+            w ≠ z ∧
+              HasNEquidistantPointsAt 4 (D.A.erase w)
+                (H.centerAt z hzA) := by
+  rcases
+      freshThird_commonRadius_sameBlocker_exists_four_capInterior_sources_off_selectedShell_with_deletion_survivals
+        (D := D) (S := S) (H := H) (P := P) (Pρ := Pρ)
+        (T := T) (C := C) (Q := Q) hfirstSupport hsecondSupport with
+    ⟨W, hWcard, hW⟩
+  refine ⟨W, hWcard, ?_⟩
+  intro z hzW
+  rcases hW z hzW with
+    ⟨hzCap, hzOutside, hzA, hzCenter, hzSurvives⟩
+  have hoverlap :
+      ((H.selectedAt z hzA).toCriticalFourShell.support ∩
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two
+      (H.selectedAt z hzA).toCriticalFourShell.toSelectedFourClass
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass hzCenter
+  have hrelocation :=
+    freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
+      (P := P) (Pρ := Pρ) (H := H) Q ⟨z, hzA⟩ hzCenter
+  exact
+    ⟨hzCap, hzOutside, hzA, hzCenter, hoverlap, hzSurvives,
+      hrelocation.1, hrelocation.2⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The exact finite blocker boundary for a `Q` row: either its actual
 blocker fiber has the maximal four sources and therefore has exactly the
