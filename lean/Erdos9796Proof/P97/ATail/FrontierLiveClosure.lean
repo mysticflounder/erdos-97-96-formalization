@@ -9,6 +9,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavyCommonDeletion
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface
