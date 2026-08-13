@@ -110,11 +110,9 @@ repository-only Lean search and reserves `--current-project` for prose docs.
 **Classification:** WITHDRAWN.
 **Severity:** Not applicable.
 
-The parent `AGENTS.md:59-67` says:
-
-- commit every checkpoint;
-- push every five checkpoints; and
-- agents are always allowed to commit and push their own work.
+At audit time, the parent `AGENTS.md:59-67` said to commit every checkpoint,
+push every five checkpoints, and treated agents as always authorized to commit
+and push their own work.
 
 The original audit treated this standing permission as inferred authorization.
 That was incorrect. The global policy forbids *inferring* authority from a task;
@@ -134,9 +132,11 @@ operations, force-pushes, or changes outside the current repository.
 ```
 
 **Resolution (2026-08-13):** finding withdrawn after the user clarified that the
-standing language intentionally grants automatic commit-and-push authority. No
-policy restriction is recommended. The replacement above is optional clarity,
-not a correction of a conflict.
+standing language intentionally grants automatic commit-and-push authority. The
+parent policy was then rewritten to make the standing permission explicit,
+require every durable checkpoint to be committed and pushed automatically, and
+exclude unrelated changes, other contributors' work, destructive history
+rewrites, force-pushes, and cross-repository Git operations.
 
 ### I-03 — persistent-memory authority is contradictory
 
