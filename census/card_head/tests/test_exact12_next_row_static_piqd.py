@@ -30,6 +30,7 @@ from census.card_head.exact12_next_row_static_piqd import (
     Exact12NextRowStaticPiqdError,
     Exact12StaticPiqdDiscoveryFactory,
     build_discovery_descriptor,
+    run_exact12_static_piqd,
 )
 from census.card_head.exact12_next_row_valuation import COMPILER_SCHEMA
 from census.card_head.sat_encoding import CadicalResult
@@ -401,13 +402,81 @@ def test_unknown_has_no_local_fallback(tmp_path: Path) -> None:
     repo_root, request = _request(tmp_path)
     api = FakePiqd(result="UNKNOWN")
     discovery = _discovery(tmp_path, repo_root, request, api)
+    shared_runner = discovery.runner
+    proof_arguments: list[object] = []
+
+    def capture_literal_proof_argument(*args: object):
+        proof_arguments.append(args[2])
+        return shared_runner(*args)
+
+    discovery.runner = capture_literal_proof_argument
 
     result = _invoke(tmp_path, discovery, request)
 
     assert result.verdict == "UNKNOWN"
     assert result.proof_verified is False
+    assert proof_arguments == [None]
     assert sum(path == "/jobs/prepare-cnf" for _, path in api.calls) == 1
     assert all(not path.endswith("/proof") for _, path in api.calls)
+
+
+@pytest.mark.parametrize(
+    ("workers", "parallel_mode", "message"),
+    ((2, "sequential", "exactly one worker"), (1, "parallel", "sequential")),
+)
+def test_production_route_rejects_nonsequential_resource_requests_before_factory(
+    tmp_path: Path, workers: int, parallel_mode: str, message: str
+) -> None:
+    with (
+        mock.patch(
+            "census.card_head.exact12_next_row_static_piqd."
+            "Exact12StaticPiqdDiscoveryFactory",
+            side_effect=AssertionError("resource gate constructed PIQD"),
+        ),
+        pytest.raises(Exact12NextRowStaticPiqdError, match=message),
+    ):
+        run_exact12_static_piqd(
+            tmp_path,
+            tmp_path / "run",
+            piqd_base_url="http://piqd.invalid",
+            piqd_journal_root=tmp_path / "piqd",
+            workers=workers,
+            parallel_mode=parallel_mode,
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    (
+        ("repo_root", "repo", "roots must be Paths"),
+        ("workdir", "run", "roots must be Paths"),
+        ("piqd_base_url", 7272, "nonempty URL"),
+        ("piqd_journal_root", "piqd", "journal root must be a Path"),
+        ("workers", True, "exactly one worker"),
+        ("parallel_mode", 1, "sequential"),
+    ),
+)
+def test_production_route_rejects_crossed_input_types_before_factory(
+    tmp_path: Path, field: str, value: object, message: str
+) -> None:
+    kwargs: dict[str, object] = {
+        "repo_root": tmp_path,
+        "workdir": tmp_path / "run",
+        "piqd_base_url": "http://piqd.invalid",
+        "piqd_journal_root": tmp_path / "piqd",
+        "workers": 1,
+        "parallel_mode": "sequential",
+    }
+    kwargs[field] = value
+    with (
+        mock.patch(
+            "census.card_head.exact12_next_row_static_piqd."
+            "Exact12StaticPiqdDiscoveryFactory",
+            side_effect=AssertionError("type gate constructed PIQD"),
+        ),
+        pytest.raises(Exact12NextRowStaticPiqdError, match=message),
+    ):
+        run_exact12_static_piqd(**kwargs)  # type: ignore[arg-type]
 
 
 def test_crossed_shared_receipt_is_rejected(tmp_path: Path) -> None:

@@ -107,12 +107,21 @@ PIQD observational UNSAT remains blocked by `CERT-001`. Until that blocker is
 closed, the only promotable finite terminal outcome is the existing fresh
 local CaDiCaL rerun followed by DRAT/drat-trim authentication.
 
+The ordinary static cell-1 command selects PIQD discovery by default. Its
+operational defaults are the loopback daemon URL, a PIQD journal below the
+selected work directory, one worker, and sequential execution. These values
+do not supply new formula, source, or custody authority: the authenticated
+manifests and exact DIMACS remain derived from the live request. Local
+discovery is retained only behind the explicit `--solver-backend legacy-local`
+selection.
+
 ## Additive coordinator seam
 
 `run_static_cegar` has one optional keyword-only `discovery_solver_factory`.
-The default is `None`, so the pre-existing all-local behavior is unchanged.
-When present, the factory is called once for each current formula and receives
-an immutable `StaticDiscoveryRequest` containing:
+This low-level injection seam remains available to tests and to the explicitly
+selected legacy-local route. The ordinary CLI constructs the PIQD factory by
+default. When present, the factory is called once for each current formula and
+receives an immutable `StaticDiscoveryRequest` containing:
 
 - the exact current in-memory instance and DIMACS bytes;
 - current SHA-256 and DIMACS variable/clause dimensions;
@@ -180,8 +189,10 @@ The adapter delegates transport, raw-DIMACS custody, attempt journals, status
 attestation, and solver receipts to
 `phase3_piqd_static_solver_runner.make_static_piqd_solver_runner`. Every
 formula gets a fresh runner invocation under a revision-specific project; r14
-used `p97-exact12-next-row-static-cell1-v8-r14` with requested core limit one. The
-request is not a one-core or one-process claim; those claims remain false.
+used `p97-exact12-next-row-static-cell1-v8-r14` with requested core limit one.
+The caller and driver require one worker and sequential dispatch, while the
+receipt separately authenticates the processes PIQD actually attests. A
+requested core limit is not a claim about the daemon host's physical cores.
 
 Every appended cut changes the authenticated bank, suffix, root CNF, source
 manifest, and root job identities. Consequently no r13 root, job, descriptor,
@@ -240,10 +251,16 @@ particular, none of them reaches the terminal proof branch.
 
 ## Entry point and offline check
 
-The production module is
-`census.card_head.exact12_next_row_static_piqd`. Its CLI requires an explicit
-PIQD base URL, PIQD journal root, and local work directory. It has no default
-daemon endpoint and no discovery fallback.
+The ordinary production entry point is
+`census.card_head.exact12_next_row_static_cegar`. For cell 1 it defaults to
+PIQD discovery at `http://127.0.0.1:7272`, stores the discovery journal below
+`WORKDIR/piqd-discovery`, and requires `--workers 1 --parallel-mode
+sequential`. The URL and journal root may be overridden explicitly. The
+legacy-local route must be selected explicitly and rejects PIQD-only inputs.
+The dedicated `census.card_head.exact12_next_row_static_piqd` entry point has
+the same defaults and single-worker/sequential gates. Neither entry point has
+a local discovery fallback after PIQD construction, transport, UNKNOWN,
+custody, or validation failure.
 
 The offline focused check is:
 

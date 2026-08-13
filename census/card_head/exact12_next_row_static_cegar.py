@@ -27,7 +27,7 @@ import os
 import shutil
 import stat
 from collections import Counter
-from collections.abc import Callable, Collection, Mapping
+from collections.abc import Callable, Collection, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, BinaryIO
@@ -118,9 +118,15 @@ DETECTOR_CONTRACT = (
     "and source-proved ThreeTriad supplemental cut; a post-SAT source-order hit "
     "is an invariant failure and all other structural stages fail closed"
 )
-TERMINAL_PROMOTION_STATUS = (
-    "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE"
+TERMINAL_PROMOTION_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE"
+PIQD_DISCOVERY_BACKEND = "piqd"
+LEGACY_LOCAL_DISCOVERY_BACKEND = "legacy-local"
+DISCOVERY_BACKENDS = (
+    PIQD_DISCOVERY_BACKEND,
+    LEGACY_LOCAL_DISCOVERY_BACKEND,
 )
+DEFAULT_PIQD_BASE_URL = "http://127.0.0.1:7272"
+SEQUENTIAL_MODE = "sequential"
 STATIC_STAGES = frozenset(
     {
         "equality-duplicate-center",
@@ -550,9 +556,7 @@ def _source_manifest(repo_root: Path) -> list[dict[str, Any]]:
 
 def materialize_static_cell(
     cell_index: int,
-) -> tuple[
-    SourceFaithfulCoverInstance, CompiledExact12NextRowCell, StaticConvexLayout
-]:
+) -> tuple[SourceFaithfulCoverInstance, CompiledExact12NextRowCell, StaticConvexLayout]:
     if type(cell_index) is not int or not 0 <= cell_index < len(cells()):
         raise Exact12NextRowStaticCegarError("cell_index is outside the schedule")
     instance = SourceFaithfulCoverInstance(
@@ -616,10 +620,7 @@ def _build_job(
         membership_schema != POSITIVE_MEMBERSHIP_BANK_SCHEMA
         or not isinstance(membership_sha256, str)
         or len(membership_sha256) != 64
-        or any(
-            character not in "0123456789abcdef"
-            for character in membership_sha256
-        )
+        or any(character not in "0123456789abcdef" for character in membership_sha256)
         or not isinstance(membership_cut_id, str)
         or not membership_cut_id
         or not isinstance(membership_family_id, str)
@@ -857,9 +858,7 @@ def _make_survivor(
         "local_iteration": local_iteration,
         "formula_schema": STATIC_CONVEX_SCHEMA,
         "static_convex_manifest_sha256": _sha256_json(layout.manifest()),
-        "positive_membership_bank_sha256": positive_membership_bank[
-            "bank_sha256"
-        ],
+        "positive_membership_bank_sha256": positive_membership_bank["bank_sha256"],
         "positive_membership_family_id": family_bank["family_id"],
         "three_triad_membership_cut_id": positive_membership_bank["cut_id"],
         "classification": classification,
@@ -947,8 +946,7 @@ def replay_journal(
     if (
         type(membership_compiled) is not dict
         or type(source_order_entries) is not list
-        or membership_compiled.get("final_n_variables")
-        != instance.cnf.n_variables
+        or membership_compiled.get("final_n_variables") != instance.cnf.n_variables
         or membership_compiled.get("final_n_clauses")
         != len(instance.cnf.clauses) - len(source_order_entries)
     ):
@@ -1071,12 +1069,9 @@ def replay_journal(
                 or record["detector_contract_sha256"] != detector_contract_sha256
                 or record["static_convex_manifest_sha256"] != static_manifest_sha256
                 or record["cell_index"] != cell_index
-                or record["positive_membership_bank_sha256"]
-                != membership_sha256
-                or record["positive_membership_family_id"]
-                != membership_family_id
-                or record["three_triad_membership_cut_id"]
-                != membership_cut_id
+                or record["positive_membership_bank_sha256"] != membership_sha256
+                or record["positive_membership_family_id"] != membership_family_id
+                or record["three_triad_membership_cut_id"] != membership_cut_id
                 or record["detector_contract"] != DETECTOR_CONTRACT
                 or record["source_order_bank_sha256"] != bank_sha256
                 or record["terminal_formula_consumer"] != TERMINAL_FORMULA_CONSUMER
@@ -1213,9 +1208,7 @@ def _terminal_proof_authenticated(
     if certifier is None:
         return False
     try:
-        return (
-            certifier(instance, terminal_path, proof_path, terminal) is True
-        )
+        return certifier(instance, terminal_path, proof_path, terminal) is True
     except Exception:  # noqa: BLE001 - an untrusted certifier must fail closed
         return False
 
@@ -1266,9 +1259,7 @@ def run_static_cegar(
             )
             source_order_bank = prepared_source_order_bank.snapshot()
             attest_source_order_bank_live_sources(repo_root, source_order_bank)
-            install_prepared_source_order_bank(
-                instance, prepared_source_order_bank
-            )
+            install_prepared_source_order_bank(instance, prepared_source_order_bank)
         except (
             Exact12V14OrderedCutAdapterError,
             Exact12V14SourceOrderBankError,
@@ -1561,9 +1552,7 @@ def run_static_cegar(
             "status": status,
             "terminal_promotion_status": TERMINAL_PROMOTION_STATUS,
             "lean_terminal_ingress_ready": True,
-            "positive_membership_bank_sha256": positive_membership_bank[
-                "bank_sha256"
-            ],
+            "positive_membership_bank_sha256": positive_membership_bank["bank_sha256"],
             "positive_membership_family_id": positive_membership_bank[
                 "block_spanning_family_bank"
             ]["family_id"],
@@ -1590,26 +1579,87 @@ def run_static_cegar(
         lock.unlink(missing_ok=True)
 
 
-def main() -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--workdir", type=Path, required=True)
-    parser.add_argument("--cell-index", type=int, required=True)
+    parser.add_argument("--cell-index", type=int, default=1)
     parser.add_argument("--max-iterations", type=int, default=100)
     parser.add_argument("--timeout-seconds", type=int, default=60)
     parser.add_argument("--nice", type=int, default=10)
     parser.add_argument("--seed-journal", type=Path)
-    args = parser.parse_args()
+    parser.add_argument(
+        "--solver-backend",
+        choices=DISCOVERY_BACKENDS,
+        default=PIQD_DISCOVERY_BACKEND,
+        help=(
+            "PIQD discovery by default; local CaDiCaL discovery only when "
+            "explicitly selected"
+        ),
+    )
+    parser.add_argument("--piqd-base-url")
+    parser.add_argument("--piqd-journal-root", type=Path)
+    parser.add_argument("--workers", type=int, choices=(1,), default=1)
+    parser.add_argument(
+        "--parallel-mode",
+        choices=(SEQUENTIAL_MODE,),
+        default=SEQUENTIAL_MODE,
+    )
+    args = parser.parse_args(argv)
     try:
-        summary = run_static_cegar(
-            args.repo_root,
-            args.workdir,
-            args.cell_index,
-            max_iterations=args.max_iterations,
-            timeout_seconds=args.timeout_seconds,
-            nice=args.nice,
-            seed_journal=args.seed_journal,
-        )
+        if args.solver_backend == LEGACY_LOCAL_DISCOVERY_BACKEND:
+            if args.piqd_base_url is not None or args.piqd_journal_root is not None:
+                raise Exact12NextRowStaticCegarError(
+                    "legacy-local discovery forbids PIQD connection or custody inputs"
+                )
+            summary = run_static_cegar(
+                args.repo_root,
+                args.workdir,
+                args.cell_index,
+                max_iterations=args.max_iterations,
+                timeout_seconds=args.timeout_seconds,
+                nice=args.nice,
+                seed_journal=args.seed_journal,
+            )
+        else:
+            if args.solver_backend != PIQD_DISCOVERY_BACKEND:
+                raise Exact12NextRowStaticCegarError(
+                    "unknown Exact12 static discovery backend"
+                )
+            if args.cell_index != 1:
+                raise Exact12NextRowStaticCegarError(
+                    "PIQD discovery is restricted to Exact12 static cell 1"
+                )
+            from .exact12_next_row_static_piqd import (
+                Exact12NextRowStaticPiqdError,
+                run_exact12_static_piqd,
+            )
+
+            try:
+                summary = run_exact12_static_piqd(
+                    args.repo_root,
+                    args.workdir,
+                    piqd_base_url=(
+                        args.piqd_base_url
+                        if args.piqd_base_url is not None
+                        else DEFAULT_PIQD_BASE_URL
+                    ),
+                    piqd_journal_root=(
+                        args.piqd_journal_root
+                        if args.piqd_journal_root is not None
+                        else args.workdir / "piqd-discovery"
+                    ),
+                    max_iterations=args.max_iterations,
+                    timeout_seconds=args.timeout_seconds,
+                    nice=args.nice,
+                    seed_journal=args.seed_journal,
+                    workers=args.workers,
+                    parallel_mode=args.parallel_mode,
+                )
+            except Exact12NextRowStaticPiqdError as exc:
+                raise Exact12NextRowStaticCegarError(
+                    "PIQD discovery failed closed"
+                ) from exc
     except (
         EncodingError,
         Exact12NextRowStaticCegarError,

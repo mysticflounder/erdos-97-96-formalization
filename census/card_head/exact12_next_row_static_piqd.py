@@ -13,7 +13,7 @@ import json
 import os
 import stat
 import time
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -51,6 +51,8 @@ from .source_faithful_candidate_surface import SOURCE_FAITHFUL_CANDIDATE_SCHEMA
 DESCRIPTOR_SCHEMA = "p97_rigid221_exact12_next_row_static_piqd_descriptor.v2"
 PIQD_PROJECT = "p97-exact12-next-row-static-cell1-v8-r15"
 CELL_INDEX = 1
+DEFAULT_PIQD_BASE_URL = "http://127.0.0.1:7272"
+SEQUENTIAL_MODE = "sequential"
 MAX_CNF_BYTES = 256 * 1024 * 1024
 MAX_DESCRIPTOR_BYTES = 1024 * 1024
 
@@ -903,8 +905,31 @@ def run_exact12_static_piqd(
     seed_journal: Path | None = None,
     transport: Transport | None = None,
     sleep: Callable[[float], None] = time.sleep,
+    workers: int = 1,
+    parallel_mode: str = SEQUENTIAL_MODE,
 ) -> dict[str, Any]:
     """Run cell 1 with PIQD only at the per-iteration discovery seam."""
+
+    if not isinstance(repo_root, Path) or not isinstance(workdir, Path):
+        raise Exact12NextRowStaticPiqdError(
+            "Exact12 static PIQD repository and work roots must be Paths"
+        )
+    if type(piqd_base_url) is not str or not piqd_base_url.strip():
+        raise Exact12NextRowStaticPiqdError(
+            "Exact12 static PIQD discovery requires a nonempty URL"
+        )
+    if not isinstance(piqd_journal_root, Path):
+        raise Exact12NextRowStaticPiqdError(
+            "Exact12 static PIQD journal root must be a Path"
+        )
+    if type(workers) is not int or workers != 1:
+        raise Exact12NextRowStaticPiqdError(
+            "Exact12 static PIQD discovery requires exactly one worker"
+        )
+    if type(parallel_mode) is not str or parallel_mode != SEQUENTIAL_MODE:
+        raise Exact12NextRowStaticPiqdError(
+            "Exact12 static PIQD discovery requires sequential scheduling"
+        )
 
     factory = Exact12StaticPiqdDiscoveryFactory(
         repo_root=repo_root,
@@ -925,27 +950,39 @@ def run_exact12_static_piqd(
     )
 
 
-def main() -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--workdir", type=Path, required=True)
-    parser.add_argument("--piqd-base-url", required=True)
-    parser.add_argument("--piqd-journal-root", type=Path, required=True)
+    parser.add_argument("--piqd-base-url", default=DEFAULT_PIQD_BASE_URL)
+    parser.add_argument("--piqd-journal-root", type=Path)
     parser.add_argument("--max-iterations", type=int, default=100)
     parser.add_argument("--timeout-seconds", type=int, default=60)
     parser.add_argument("--nice", type=int, default=10)
     parser.add_argument("--seed-journal", type=Path)
-    args = parser.parse_args()
+    parser.add_argument("--workers", type=int, choices=(1,), default=1)
+    parser.add_argument(
+        "--parallel-mode",
+        choices=(SEQUENTIAL_MODE,),
+        default=SEQUENTIAL_MODE,
+    )
+    args = parser.parse_args(argv)
     try:
         result = run_exact12_static_piqd(
             args.repo_root,
             args.workdir,
             piqd_base_url=args.piqd_base_url,
-            piqd_journal_root=args.piqd_journal_root,
+            piqd_journal_root=(
+                args.piqd_journal_root
+                if args.piqd_journal_root is not None
+                else args.workdir / "piqd-discovery"
+            ),
             max_iterations=args.max_iterations,
             timeout_seconds=args.timeout_seconds,
             nice=args.nice,
             seed_journal=args.seed_journal,
+            workers=args.workers,
+            parallel_mode=args.parallel_mode,
         )
     except (Exact12NextRowStaticPiqdError, StaticPiqdRunnerError, OSError) as exc:
         print(json.dumps({"status": "PIPELINE_ERROR", "error": str(exc)}))
@@ -960,8 +997,10 @@ if __name__ == "__main__":
 
 __all__ = [
     "CELL_INDEX",
+    "DEFAULT_PIQD_BASE_URL",
     "DESCRIPTOR_SCHEMA",
     "PIQD_PROJECT",
+    "SEQUENTIAL_MODE",
     "Exact12NextRowStaticPiqdError",
     "Exact12StaticPiqdDiscovery",
     "Exact12StaticPiqdDiscoveryFactory",

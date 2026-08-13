@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import stat
 from collections.abc import Callable, Collection
 from pathlib import Path
 from typing import Any
@@ -98,19 +99,36 @@ def _artifact(path: Path) -> dict[str, Any] | None:
 
 def _claim_empty_workdir(workdir: Path) -> Path:
     try:
-        workdir.mkdir(parents=True, exist_ok=False)
+        workdir.mkdir(parents=True, exist_ok=False, mode=0o700)
     except FileExistsError as exc:
-        if not workdir.is_dir():
+        try:
+            metadata = workdir.lstat()
+        except OSError as stat_exc:
+            raise EncodingError(
+                f"cannot inspect existing workdir: {workdir}"
+            ) from stat_exc
+        if not stat.S_ISDIR(metadata.st_mode):
             raise EncodingError(f"workdir is not a directory: {workdir}") from exc
+        if stat.S_IMODE(metadata.st_mode) != 0o700:
+            raise EncodingError(
+                f"existing workdir must have exact mode 0700: {workdir}"
+            ) from exc
         stale = next(workdir.iterdir(), None)
         if stale is not None:
             raise EncodingError(
                 f"workdir must be empty; found stale artifact: {stale.name}"
             ) from exc
+    try:
+        metadata = workdir.lstat()
+    except OSError as exc:
+        raise EncodingError(f"cannot inspect claimed workdir: {workdir}") from exc
+    if not stat.S_ISDIR(metadata.st_mode) or stat.S_IMODE(metadata.st_mode) != 0o700:
+        raise EncodingError(f"claimed workdir must have exact mode 0700: {workdir}")
 
     lock_path = workdir / ".exact12_next_row_cell_run.lock"
     try:
-        lock_path.touch(exist_ok=False)
+        lock_path.touch(mode=0o600, exist_ok=False)
+        lock_path.chmod(0o600)
     except FileExistsError as exc:
         raise EncodingError(f"workdir is already claimed: {workdir}") from exc
     stale = next((path for path in workdir.iterdir() if path != lock_path), None)

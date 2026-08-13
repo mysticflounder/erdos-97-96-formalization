@@ -10,6 +10,7 @@ from types import SimpleNamespace
 from unittest import mock
 
 from census.card_head.exact12_next_row_static_cegar import (
+    DEFAULT_PIQD_BASE_URL,
     DETECTOR_CONTRACT,
     JOB_SCHEMA,
     LEAN_INGRESS_THEOREM,
@@ -28,6 +29,7 @@ from census.card_head.exact12_next_row_static_cegar import (
     _make_survivor,
     _sha256_json,
     detect_typed_source_order_cut,
+    main,
     materialize_positive_membership_static_cell,
     materialize_static_cell,
     replay_journal,
@@ -76,9 +78,7 @@ def _fake_prepare_source_order_bank(instance, _bank):
 
 def _fake_attest_source_order_bank(instance, _prepared):
     if not instance.cnf.clauses or instance.cnf.clauses[-1] != (1,):
-        raise Exact12NextRowStaticCegarError(
-            "fake source-order bank is not installed"
-        )
+        raise Exact12NextRowStaticCegarError("fake source-order bank is not installed")
     base = copy.deepcopy(instance)
     base.cnf.clauses = list(base.cnf.clauses[:-1])
     return {
@@ -197,12 +197,8 @@ class Exact12NextRowStaticCegarTest(unittest.TestCase):
         self.assertEqual(job["terminal_promotion_status"], TERMINAL_PROMOTION_STATUS)
         self.assertEqual(job["lean_ingress_theorem"], LEAN_INGRESS_THEOREM)
         self.assertTrue(job["lean_terminal_ingress_ready"])
-        self.assertEqual(
-            job["cnf"]["variables"], instance.cnf.n_variables
-        )
-        self.assertEqual(
-            job["cnf"]["clauses"], len(instance.cnf.clauses)
-        )
+        self.assertEqual(job["cnf"]["variables"], instance.cnf.n_variables)
+        self.assertEqual(job["cnf"]["clauses"], len(instance.cnf.clauses))
         self.assertEqual(
             job["positive_membership_bank"]["sha256"],
             self.membership_bank["bank_sha256"],
@@ -628,23 +624,23 @@ class Exact12NextRowStaticCegarTest(unittest.TestCase):
             TemporaryDirectory() as raw,
             _fake_source_order_pipeline(),
             mock.patch(
-                    "census.card_head.exact12_next_row_static_cegar."
-                    "replay_static_convex_sat_witness",
-                    return_value=(DETECTOR_CLEAN_CUBE, frozenset({1}), replay),
+                "census.card_head.exact12_next_row_static_cegar."
+                "replay_static_convex_sat_witness",
+                return_value=(DETECTOR_CLEAN_CUBE, frozenset({1}), replay),
             ),
             mock.patch(
-                    "census.card_head.exact12_next_row_static_cegar."
-                    "detect_proof_backed_source_order_cut",
-                    return_value=None,
+                "census.card_head.exact12_next_row_static_cegar."
+                "detect_proof_backed_source_order_cut",
+                return_value=None,
             ),
             mock.patch(
-                    "census.card_head.exact12_next_row_static_cegar."
-                    "detect_structural_certificate",
-                    return_value=certificate,
+                "census.card_head.exact12_next_row_static_cegar."
+                "detect_structural_certificate",
+                return_value=certificate,
             ),
             mock.patch(
-                    "census.card_head.exact12_next_row_static_cegar._write_json",
-                    side_effect=tampering_write_json,
+                "census.card_head.exact12_next_row_static_cegar._write_json",
+                side_effect=tampering_write_json,
             ),
         ):
             summary = run_static_cegar(
@@ -750,6 +746,87 @@ class Exact12NextRowStaticCegarTest(unittest.TestCase):
             self.assertTrue(summary["lean_terminal_ingress_ready"])
             survivor = json_load(workdir / "survivor.json")
             self.assertEqual(survivor["unadmitted_structural_certificate"], certificate)
+
+    def test_cli_defaults_to_cell1_piqd_with_sequential_single_worker(self) -> None:
+        from census.card_head import exact12_next_row_static_piqd as piqd
+
+        with TemporaryDirectory() as raw:
+            workdir = Path(raw) / "run"
+            with (
+                mock.patch(
+                    "census.card_head.exact12_next_row_static_cegar.run_static_cegar",
+                    side_effect=AssertionError("default route reached legacy-local"),
+                ),
+                mock.patch.object(
+                    piqd,
+                    "run_exact12_static_piqd",
+                    return_value={"status": "UNKNOWN"},
+                ) as routed,
+            ):
+                self.assertEqual(main(["--workdir", str(workdir)]), 0)
+
+        routed.assert_called_once()
+        kwargs = routed.call_args.kwargs
+        self.assertEqual(routed.call_args.args[1], workdir)
+        self.assertEqual(kwargs["piqd_base_url"], DEFAULT_PIQD_BASE_URL)
+        self.assertEqual(kwargs["piqd_journal_root"], workdir / "piqd-discovery")
+        self.assertEqual(kwargs["workers"], 1)
+        self.assertEqual(kwargs["parallel_mode"], "sequential")
+
+    def test_cli_legacy_local_discovery_requires_explicit_selection(self) -> None:
+        from census.card_head import exact12_next_row_static_piqd as piqd
+
+        with TemporaryDirectory() as raw:
+            workdir = Path(raw) / "run"
+            with (
+                mock.patch(
+                    "census.card_head.exact12_next_row_static_cegar.run_static_cegar",
+                    return_value={"status": "UNKNOWN"},
+                ) as local,
+                mock.patch.object(
+                    piqd,
+                    "run_exact12_static_piqd",
+                    side_effect=AssertionError("legacy-local constructed PIQD"),
+                ),
+            ):
+                self.assertEqual(
+                    main(
+                        [
+                            "--workdir",
+                            str(workdir),
+                            "--solver-backend",
+                            "legacy-local",
+                        ]
+                    ),
+                    0,
+                )
+
+        local.assert_called_once()
+
+    def test_cli_rejects_parallel_workers_before_routing(self) -> None:
+        with TemporaryDirectory() as raw, self.assertRaises(SystemExit):
+            main(["--workdir", str(Path(raw) / "run"), "--workers", "2"])
+
+    def test_default_piqd_construction_failure_has_no_local_fallback(self) -> None:
+        from census.card_head import exact12_next_row_static_piqd as piqd
+
+        with TemporaryDirectory() as raw:
+            workdir = Path(raw) / "run"
+            with (
+                mock.patch(
+                    "census.card_head.exact12_next_row_static_cegar.run_static_cegar",
+                    side_effect=AssertionError("PIQD failure fell back to local"),
+                ),
+                mock.patch.object(
+                    piqd,
+                    "run_exact12_static_piqd",
+                    side_effect=piqd.Exact12NextRowStaticPiqdError(
+                        "synthetic PIQD construction failure"
+                    ),
+                ),
+                self.assertRaises(SystemExit),
+            ):
+                main(["--workdir", str(workdir)])
 
 
 def json_load(path: Path):

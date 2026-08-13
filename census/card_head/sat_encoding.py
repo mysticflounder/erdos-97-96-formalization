@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 from collections.abc import Callable, Collection, Mapping, Sequence
 from dataclasses import dataclass
@@ -266,15 +267,48 @@ def solve_cadical(
     timeout_seconds: int = 30,
     nice: int = 10,
     proof_path: Path | None = None,
+    cnf_fd: int | None = None,
+    proof_fd: int | None = None,
 ) -> CadicalResult:
-    """Solve one persisted CNF and optionally verify its UNSAT DRAT proof."""
+    """Solve one persisted CNF and optionally verify its UNSAT DRAT proof.
+
+    When ``cnf_fd`` is supplied, the caller retains custody of every supplied
+    descriptor.  CaDiCaL and drat-trim receive only the corresponding
+    ``/dev/fd`` paths; this helper neither reopens the artifact pathnames nor
+    closes the descriptors.  Omitting the descriptors preserves the legacy
+    pathname-based behavior.
+    """
 
     if timeout_seconds <= 0:
         raise EncodingError("timeout_seconds must be positive")
     if not 1 <= nice <= 19:
         raise EncodingError("nice must be between 1 and 19")
-    cnf_path.parent.mkdir(parents=True, exist_ok=True)
-    cnf_path.write_text(instance.dimacs(extra_clauses), encoding="utf-8")
+    held_mode = cnf_fd is not None
+    if held_mode:
+        _validate_held_fd("cnf_fd", cnf_fd)
+        if proof_path is None:
+            if proof_fd is not None:
+                raise EncodingError("proof_fd requires proof_path")
+        else:
+            _validate_held_fd("proof_fd", proof_fd)
+            if proof_fd == cnf_fd:
+                raise EncodingError("cnf_fd and proof_fd must be distinct")
+    elif proof_fd is not None:
+        raise EncodingError("proof_fd requires cnf_fd held mode")
+
+    dimacs = instance.dimacs(extra_clauses)
+    if held_mode:
+        assert cnf_fd is not None
+        _replace_fd_bytes(cnf_fd, dimacs.encode("utf-8"))
+        if proof_fd is not None:
+            _reset_fd(proof_fd)
+        cnf_argument = f"/dev/fd/{cnf_fd}"
+        inherited_fds = (cnf_fd,) if proof_fd is None else (cnf_fd, proof_fd)
+    else:
+        cnf_path.parent.mkdir(parents=True, exist_ok=True)
+        cnf_path.write_text(dimacs, encoding="utf-8")
+        cnf_argument = str(cnf_path)
+        inherited_fds = ()
     command = [
         "nice",
         "-n",
@@ -283,10 +317,13 @@ def solve_cadical(
         "-q",
         "-t",
         str(timeout_seconds),
-        str(cnf_path),
+        cnf_argument,
     ]
     if proof_path is not None:
-        command.append(str(proof_path))
+        command.append(
+            f"/dev/fd/{proof_fd}" if held_mode else str(proof_path)
+        )
+    inherited_kwargs = {"pass_fds": inherited_fds} if held_mode else {}
     try:
         completed = subprocess.run(
             command,
@@ -294,6 +331,7 @@ def solve_cadical(
             text=True,
             timeout=timeout_seconds + 30,
             check=False,
+            **inherited_kwargs,
         )
     except subprocess.TimeoutExpired:
         return CadicalResult("TIMEOUT", None, None, False, "subprocess timeout")
@@ -322,15 +360,33 @@ def solve_cadical(
 
     proof_verified = False
     if proof_path is not None:
-        if not proof_path.is_file():
+        if not held_mode and not proof_path.is_file():
             raise EncodingError("CaDiCaL returned UNSAT without the requested proof")
+        if held_mode:
+            assert cnf_fd is not None and proof_fd is not None
+            os.fsync(proof_fd)
+            os.lseek(cnf_fd, 0, os.SEEK_SET)
+            os.lseek(proof_fd, 0, os.SEEK_SET)
+            checker_cnf = f"/dev/fd/{cnf_fd}"
+            checker_proof = f"/dev/fd/{proof_fd}"
+        else:
+            checker_cnf = str(cnf_path)
+            checker_proof = str(proof_path)
         try:
             checked = subprocess.run(
-                ["nice", "-n", str(nice), "drat-trim", str(cnf_path), str(proof_path)],
+                [
+                    "nice",
+                    "-n",
+                    str(nice),
+                    "drat-trim",
+                    checker_cnf,
+                    checker_proof,
+                ],
                 capture_output=True,
                 text=True,
                 timeout=timeout_seconds + 30,
                 check=False,
+                **inherited_kwargs,
             )
         except subprocess.TimeoutExpired as exc:
             raise EncodingError("DRAT verification timed out") from exc
@@ -339,6 +395,40 @@ def solve_cadical(
         if not proof_verified:
             raise EncodingError(f"DRAT verification failed: {proof_output[-1000:]}")
     return CadicalResult("UNSAT", None, completed.returncode, proof_verified, tail)
+
+
+def _validate_held_fd(name: str, descriptor: int | None) -> None:
+    if type(descriptor) is not int or descriptor < 0:
+        raise EncodingError(f"{name} must be a nonnegative exact built-in int")
+    try:
+        os.fstat(descriptor)
+    except OSError as exc:
+        raise EncodingError(f"{name} is not a valid open descriptor") from exc
+
+
+def _replace_fd_bytes(descriptor: int, payload: bytes) -> None:
+    try:
+        os.ftruncate(descriptor, 0)
+        os.lseek(descriptor, 0, os.SEEK_SET)
+        view = memoryview(payload)
+        while view:
+            written = os.write(descriptor, view)
+            if written <= 0:
+                raise OSError("short write to held CNF descriptor")
+            view = view[written:]
+        os.fsync(descriptor)
+        os.lseek(descriptor, 0, os.SEEK_SET)
+    except OSError as exc:
+        raise EncodingError("cannot write held CNF descriptor") from exc
+
+
+def _reset_fd(descriptor: int) -> None:
+    try:
+        os.ftruncate(descriptor, 0)
+        os.fsync(descriptor)
+        os.lseek(descriptor, 0, os.SEEK_SET)
+    except OSError as exc:
+        raise EncodingError("cannot reset held proof descriptor") from exc
 
 
 def _unit(instance: CoverInstance, center: int, candidate: Collection[int]) -> list[int]:

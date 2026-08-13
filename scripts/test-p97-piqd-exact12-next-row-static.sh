@@ -15,6 +15,7 @@ export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export VECLIB_MAXIMUM_THREADS=1
+export BLIS_NUM_THREADS=1
 export RAYON_NUM_THREADS=1
 export PYTEST_ADDOPTS="-p no:xdist"
 
@@ -32,6 +33,4 @@ PYTHON_FILES=(
 )
 
 uv run --with ruff ruff check "${PYTHON_FILES[@]}"
-uv run --with ruff ruff format --check \
-  census/card_head/exact12_next_row_static_piqd.py \
-  census/card_head/tests/test_exact12_next_row_static_piqd.py
+uv run --with ruff ruff format --check "${PYTHON_FILES[@]}"
