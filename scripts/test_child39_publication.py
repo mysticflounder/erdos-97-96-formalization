@@ -4,6 +4,8 @@ import hashlib
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import export_exact17_thirty_ninth_root as exporter
@@ -44,6 +46,28 @@ def test_export_ingress_and_runner_are_bound_without_external_work() -> None:
 def test_child39_paths_are_new_and_do_not_alias_child38_root() -> None:
     assert exporter.PRODUCTION_PATHS.child.name == "exact17-thirty-ninth-root-thirty-eighth-model-refinements.cnf"
     assert exporter.PRODUCTION_PATHS.receipt.name == "child39-export-receipt.json"
-    assert runner.PRODUCTION_RUNNER_PATHS.model == Path(export_validation.MODEL_PATH)
-    assert runner.PRODUCTION_RUNNER_PATHS.intent.name.startswith("piqd-child39-")
-    assert runner.PRODUCTION_RUNNER_PATHS.solver_log.name.startswith("piqd-child39-")
+    lifecycle = runner.PRODUCTION_RUNNER_PATHS
+    for field in ("intent", "prepared", "state", "final", "model", "solver_log", "lock"):
+        path = getattr(lifecycle, field)
+        assert path.name.startswith("piqd-child39-")
+        assert "child32" not in str(path)
+
+
+def test_stale_child32_artifacts_are_irrelevant_to_child39_start(tmp_path: Path) -> None:
+    stale = tmp_path / "child32" / "piqd-child32-core1-fresh-custody-final.json"
+    stale.parent.mkdir()
+    stale.write_text("stale child32 final\n", encoding="utf-8")
+    child39 = tmp_path / "child39"
+    paths = runner.RunnerPaths(
+        runner.PRODUCTION_INGRESS_PATHS,
+        *(child39 / f"piqd-child39-core1-custody-{field}.json" for field in ("intent", "prepared", "live-state", "final", "model")),
+        child39 / "piqd-child39-core1-custody-solver.log",
+        child39 / "piqd-child39-core1-custody-runner.lock",
+    )
+
+    class NoContact:
+        def version(self) -> None:
+            raise AssertionError("PIQD contact must not be made by this test")
+
+    with pytest.raises(AssertionError, match="PIQD contact"):
+        runner.start(NoContact(), paths=paths, ingress_validator=lambda *_args, **_kwargs: {"status": "PASS"})

@@ -84,7 +84,7 @@ PRODUCTION_RUNNER_PATHS = RunnerPaths(
     ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-prepared.json",
     ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-live-state.json",
     ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-final.json",
-    ROOT / "scratch/exact17-lean-to-sat/piqd-child38-core1-custody-model.json",
+    ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-model.json",
     ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-solver.log",
     ROOT / "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-runner.lock",
 )
