@@ -786,3 +786,19 @@ producer, coverage or lift, direct Lean consumer, and transitive axiom audit.
 - [`audits/p97-cegar-process-audit-2026-08-08.md`](audits/p97-cegar-process-audit-2026-08-08.md)
 - [`audits/piqd-integration-bugs-2026-08-07.md`](audits/piqd-integration-bugs-2026-08-07.md)
 - [`computational-closure-plan-2026-07-28.md`](computational-closure-plan-2026-07-28.md)
+
+## Exact-17 child-32 qualification update — 2026-08-12
+
+The exact-17 route now exercises PIQD end to end for immutable root custody,
+identity pinning, SAT-model retrieval/replay, and synthetic compact-LRAT
+retrieval with independent Lean-checker replay. The qualified child-32 root has
+308 variables and 5,847,240 clauses; publication, export, ingress, and runner
+validators plus 71 adversarial tests pass.
+
+One operational gap remains load-bearing: after sending `prepare-cnf`, a lost
+response cannot be reconciled safely because the service does not yet accept an
+idempotent client intent token. The runner therefore records intent before the
+request and fails closed on an ambiguous response instead of retrying and
+risking duplicate provisioning. This does not weaken result soundness, but it
+prevents automatic recovery. The production child-32 solve has not yet been
+submitted, and the synthetic UNSAT smoke is not exact-scale proof evidence.

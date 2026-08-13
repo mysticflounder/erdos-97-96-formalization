@@ -546,3 +546,40 @@ The checkpoint is ready for immutable PIQD submission. Exact 17 remains open
 until this or a later authenticated child is proved `UNSAT`, its certificate is
 independently replayed and banked, and the resulting theorem is composed into
 the on-spine cap-nine leaf.
+
+## Thirty-second Lean-owned child checkpoint — 2026-08-12
+
+This checkpoint supersedes earlier current-status text in this route. Children
+29, 30, and 31 were authenticated `SAT`; child 31 was PIQD job
+`53044c24-da6c-4fdd-9f50-f4f539891383` on the 5,846,904-clause root with
+SHA-256 `3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204`.
+Complete model replay followed by the mandatory new-wave theorem search found
+84 subset-minimal occurrences. They have now been banked in Lean as six
+source-valid clause families, with 336 ordered orbit clauses and a conditional
+terminal adapter.
+
+The resulting child-32 root has 308 variables and 5,847,240 clauses. Its
+immutable CNF SHA-256 is
+`c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d`,
+and its recursively validated ingress-manifest SHA-256 is
+`f5da5c5bb0c5cbb7f1f95dd3230aef848ae62623330e9fecb5c62d9b66cba82e`.
+The exporter proves that the parent is a byte-identical prefix and that the
+suffix is exactly the Lean-owned 336-clause bank. Publication, export, ingress,
+and runner validation pass; 71 focused adversarial tests pass. The targeted
+Lean build passes with no `sorryAx`; finite CNF evaluation remains inside the
+accepted `native_decide` trust boundary.
+
+Both terminal custody paths have also been exercised against the live PIQD
+service: a known-SAT model was retrieved and replayed, and a synthetic
+known-UNSAT compact-LRAT proof was retrieved and independently accepted by the
+pinned Lean LRAT checker. The synthetic smoke validates the mechanism only; it
+is not evidence about the exact-17 root. A lost `prepare-cnf` response remains
+fail-closed and cannot be retried blindly until PIQD supplies an idempotent
+intent token.
+
+Production child 32 has **not** been submitted at this checkpoint. The next
+authorized action is one exact submission of the pinned root. Terminal `SAT`
+requires full model replay, new-wave-only general-theorem mining, and Lean-first
+banking before child 33. Terminal `UNSAT` requires authenticated proof retrieval,
+independent replay, a child-specific Lean UNSAT theorem, and composition through
+`exists_exactSeventeenSourceRealization_of_exactCover` and the landing contract.

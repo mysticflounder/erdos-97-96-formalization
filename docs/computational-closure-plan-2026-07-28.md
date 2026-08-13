@@ -10406,3 +10406,30 @@ requires complete replay, exhaustive general-refinement mining, and Lean-first
 banking before any child 30.  An `UNSAT` result requires certificate retrieval
 and independent replay, a child-specific Lean UNSAT theorem, and composition
 through `exists_exactSeventeenSourceRealization_of_exactCover` and the landing
+contract before any closure claim.
+
+### 13.28.4 Thirty-second-child publication and pre-submission checkpoint — 2026-08-12
+
+This subsection supersedes older active-child status in this plan. Exact-17
+children 29–31 terminated `SAT` with complete model replay. The child-31 wave
+yielded 84 subset-minimal, source-backed occurrences. Lean now owns all six
+resulting refinement families and their complete 336-clause orbit suffix; the
+conditional terminal adapter is banked in the same chain.
+
+The provisioned child-32 CNF has 308 variables, 5,847,240 clauses, and SHA-256
+`c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d`.
+Its ingress manifest has SHA-256
+`f5da5c5bb0c5cbb7f1f95dd3230aef848ae62623330e9fecb5c62d9b66cba82e`.
+Strict publication, export, ingress, and runner validation pass; 71 focused
+tests pass; and the targeted Lean exporter build is `sorryAx`-free under the
+accepted `native_decide` boundary. Live SAT-model replay and synthetic compact-
+LRAT retrieval/replay smoke tests both pass. The latter verifies custody and
+checker plumbing, not exact-17 UNSAT.
+
+No production child-32 job has been submitted. Submit exactly once after this
+checkpoint is pushed. On `SAT`, replay every clause and mine only the new wave
+before proving any child-33 source bridge. On `UNSAT`, independently replay the
+retrieved certificate, bank the child-specific theorem, and compose it through
+the exact-cover source realization and landing contract. PIQD still needs an
+idempotent prepare intent token to permit safe recovery from a lost prepare
+response; until then the runner deliberately fails closed.

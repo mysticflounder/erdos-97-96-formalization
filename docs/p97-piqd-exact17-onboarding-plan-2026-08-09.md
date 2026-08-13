@@ -732,3 +732,21 @@ duplicate full-lineage replays fail immediately instead of consuming a second
 validator process.  No Wave64 solve has been launched; the lane is paused.
 Neither exact-17, full P97, nor a production `sorry` is closed by this
 checkpoint.
+
+## Child-32 exact-root qualification — 2026-08-12
+
+The current production route is no longer the legacy Wave64 root described
+above. The exact child-32 root is Lean-owned through a 336-clause refinement
+suffix over the authenticated child-31 prefix. It has 308 variables, 5,847,240
+clauses, CNF SHA-256
+`c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d`,
+and ingress-manifest SHA-256
+`f5da5c5bb0c5cbb7f1f95dd3230aef848ae62623330e9fecb5c62d9b66cba82e`.
+
+The onboarding gate now covers strict publication and recursive ingress,
+immutable export custody, live daemon/solver identity, exact CNF retrieval,
+SAT-model replay, and synthetic compact-LRAT retrieval plus independent Lean
+checker replay. Seventy-one adversarial tests and the targeted Lean exporter
+build pass. Production child 32 remains unsubmitted. Recovery from a lost
+`prepare-cnf` response is intentionally fail-closed pending PIQD support for an
+idempotent prepare intent token.
