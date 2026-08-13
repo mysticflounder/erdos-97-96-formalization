@@ -766,3 +766,50 @@ exactly one runner-mediated submission. Terminal `SAT` repeats exact replay and
 wave-only theorem mining; terminal `UNSAT` requires independent certificate
 replay and Lean composition through the exact-17 source-realization and landing
 contracts. Exact 17 and the cap-nine production `sorry` remain open.
+
+## Thirty-ninth Lean-owned child checkpoint — 2026-08-13
+
+Child38 terminated authenticated `SAT` at epoch one as PIQD job
+`aeaefb24-0f57-4b1f-9c62-644208e65977` after 647.509 seconds. Its exact root
+had 308 variables, 5,847,276 clauses, and SHA-256
+`07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7`;
+the retrieved assignment passed an independent replay of every clause. This is
+an abstract SAT witness, not a Euclidean counterexample.
+
+The mandatory wave-only mine exhaustively enumerated 597 forward and 597
+reverse cancellation records, yielding 317 distinct supports, 101
+subset-minimal supports, and exactly 28 minimum six-hit supports. All 28 are
+instances of the existing cardinality-independent `CancellationOccurrence`
+theorem family. Their two orientations produce a 112-clause Lean-owned suffix.
+The strict generator now freezes the complete census funnel and all generated
+output hashes, rather than merely trusting the final selected list.
+
+The four Lean shards and coordinator prove all 112 source clauses, their
+extended-CNF evaluator, the `SourceRealization` bridge, and the conditional
+terminal adapter. Targeted diagnostics and axiom checks pass with no
+`sorryAx`; the finite evaluator uses the accepted `native_decide` trust
+boundary.
+
+The official Child39 root was rendered directly from the Lean-owned CNF and is
+the byte-identical Child38 prefix followed by exactly those 112 clauses:
+
+- 308 variables;
+- 5,847,388 clauses;
+- 291,625,610 bytes; and
+- SHA-256
+  `989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`.
+
+The suffix has SHA-256
+`4cc66a1b3f4af46d60ed0a2c59f4fb6b0cb016f3ab1b111989ffe015f5b33925`,
+the immutable export receipt has SHA-256
+`2dc3c78fb19ee4cef8b7fe45c9f49f0f0bd75201f9c0bed57891215bae565ecc`,
+and the recursively validated PIQD ingress manifest has SHA-256
+`275a61b6febdc1ca5104ebe932919c24e2226f794e68b22caf02ffcbb076c83d`.
+Ruff, nine focused adversarial tests, exact export/ingress replay, and the
+runner's static gate pass.
+
+No Child39 PIQD job exists at this checkpoint. Submit exactly one job through
+the pinned runner after publication. On terminal `SAT`, replay the entire model
+and mine only that new wave. On terminal `UNSAT`, independently replay the
+certificate and compose the banked theorem through the source-realization and
+landing contracts. Exact 17 and the cap-nine production `sorry` remain open.

@@ -10955,3 +10955,36 @@ before admitting any source-proved successor clause. On `UNSAT`, retrieve and
 independently replay the certificate, bank the child-specific theorem, and
 compose through `exists_exactSeventeenSourceRealization_of_exactCover` and the
 landing contract. Exact 17 and the cap-nine production leaf remain open.
+
+### 13.28.10 Child-39 exhaustive six-hit cancellation bank — 2026-08-13
+
+Child 38 terminated authenticated `SAT` at epoch one as PIQD job
+`aeaefb24-0f57-4b1f-9c62-644208e65977` after 647.509 seconds. The exact root
+had 308 variables, 5,847,276 clauses, and SHA-256
+`07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7`.
+Its retrieved assignment passed independent full-CNF replay; it is not a
+Euclidean counterexample.
+
+The required wave-only theorem mine exhaustively found 597 records in each
+orientation, 317 distinct supports, 101 subset-minimal supports, and exactly 28
+minimum six-hit supports. These are source-valid instances of the existing
+cardinality-independent `CancellationOccurrence` family, so they generate a
+112-clause Lean-owned suffix. The generator freezes the entire census funnel
+and all output hashes. The four Lean shards and coordinator prove the clauses,
+extended evaluation, source-realization bridge, and conditional terminal
+adapter. Targeted checks report no `sorryAx`; finite evaluation uses the
+accepted `native_decide` boundary.
+
+Child 39 is the exact Child38 prefix plus those 112 clauses. It has 308
+variables, 5,847,388 clauses, 291,625,610 bytes, and SHA-256
+`989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`.
+The suffix, immutable export receipt, and recursive ingress manifest have
+SHA-256 values `4cc66a1b3f4af46d60ed0a2c59f4fb6b0cb016f3ab1b111989ffe015f5b33925`,
+`2dc3c78fb19ee4cef8b7fe45c9f49f0f0bd75201f9c0bed57891215bae565ecc`,
+and `275a61b6febdc1ca5104ebe932919c24e2226f794e68b22caf02ffcbb076c83d`.
+Ruff, nine focused adversarial tests, exact export/ingress replay, and the
+runner static gate pass.
+
+No Child39 PIQD job exists at this checkpoint. After publication, submit
+exactly one job through the pinned runner and apply the established terminal
+contract. Exact 17 and the cap-nine production leaf remain open.
