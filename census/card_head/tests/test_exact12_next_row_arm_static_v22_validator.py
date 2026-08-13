@@ -16,10 +16,84 @@ from census.card_head.exact12_next_row_arm_static_v22_validator import (
     _dimacs,
     _read,
     _replay,
+    _receipt_server_job_identity,
+    _validate_custody_receipt_binding,
     _validate_live_sources,
     _validate_receipt_flags,
     _validate_receipt_outcome,
 )
+
+
+def test_root_job_hash_distinguishes_compact_and_producer_pretty_json() -> None:
+    value = {"b": 2, "a": {"z": "é", "x": 1}}
+    compact = validator.sha256_json(value)
+    producer_bytes = (json.dumps(value, sort_keys=True, indent=2) + "\n").encode("utf-8")
+    producer_pretty = validator._producer_pretty_json_sha256(value)
+    assert producer_pretty == hashlib.sha256(producer_bytes).hexdigest()
+    assert producer_pretty != compact
+
+
+def test_survivor_assignment_hash_matches_producer_pretty_json_contract() -> None:
+    assignment = [1, 7, 42]
+    assert validator._producer_pretty_json_sha256(assignment) != validator.sha256_json(assignment)
+
+
+def test_descriptor_filename_hash_includes_producer_trailing_lf() -> None:
+    raw = b'{"schema":"v1"}\n'
+    assert validator._descriptor_file_sha256(raw) == hashlib.sha256(raw).hexdigest()
+    assert validator._descriptor_file_sha256(raw) != hashlib.sha256(raw[:-1]).hexdigest()
+
+
+def test_descriptor_claims_use_descriptor_contract_not_receipt_contract() -> None:
+    claims = {key: False for key in validator._DESCRIPTOR_FALSE_CLAIMS}
+    validator._false_claims(claims, "descriptor.claims", validator._DESCRIPTOR_FALSE_CLAIMS)
+    with pytest.raises(V22ValidationError, match="missing or extra claim"):
+        validator._false_claims(claims, "descriptor.claims")
+
+
+def test_post_arm_identity_digest_matches_immutable_canary_contract() -> None:
+    assert len(validator.EXPECTED_POST_ARM_SHA256) == 64
+    assert validator.EXPECTED_POST_ARM_SHA256 == (
+        "3a58f8f21e1c23ecd78c76f17872ca7cb1065f58ebddb9225ec1acdc9f4f266a"
+    )
+
+
+def test_receipt_job_id_is_the_piqd_server_identity_not_root_job_id() -> None:
+    receipt = {
+        "job_id": "52b5acb2-6ce2-4cfa-8b49-dc334c265f3e",
+        "job_identity": {
+            "job_id": "52b5acb2-6ce2-4cfa-8b49-dc334c265f3e",
+        },
+    }
+    assert _receipt_server_job_identity(receipt)["job_id"] == receipt["job_id"]
+    receipt["job_identity"]["job_id"] = "18ee49e2aae3d1642f8aef7f8bd20e60ddfd7b7f5c4dc7dd3885c1b40043af81"
+    with pytest.raises(V22ValidationError, match="server job identity"):
+        _receipt_server_job_identity(receipt)
+
+
+def test_custody_receipt_identity_matches_producer_device_and_inode(tmp_path: Path) -> None:
+    receipt_path = tmp_path / "solver-receipt.json"
+    receipt_raw = b'{"schema":"v1"}\n'
+    receipt_path.write_bytes(receipt_raw)
+    info = os.stat(receipt_path)
+    custody = {
+        "receipt_sha256": "receipt-self-hash",
+        "receipt_file_sha256": hashlib.sha256(receipt_raw).hexdigest(),
+        "receipt_file_size": len(receipt_raw),
+        "receipt_device": info.st_dev,
+        "receipt_inode": info.st_ino,
+    }
+    _validate_custody_receipt_binding(custody, "receipt-self-hash", receipt_path, receipt_raw)
+    assert {"receipt_device", "receipt_inode"} <= validator._CUSTODY_KEYS
+    custody["receipt_inode"] += 1
+    with pytest.raises(V22ValidationError, match="custody seal does not bind receipt"):
+        _validate_custody_receipt_binding(custody, "receipt-self-hash", receipt_path, receipt_raw)
+
+
+def test_survivor_classification_matches_static_cegar_non_admitted_contract() -> None:
+    assert "UNADMITTED_STRUCTURAL_SURVIVOR" in validator._SURVIVOR_CLASSIFICATIONS
+    assert "STATIC_CONVEX_INVARIANT_FAILED" in validator._SURVIVOR_CLASSIFICATIONS
+    assert "SOURCE_ORDER_CUT" not in validator._SURVIVOR_CLASSIFICATIONS
 
 
 def test_tampered_assignment_is_not_complete_or_replayable() -> None:

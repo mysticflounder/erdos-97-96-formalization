@@ -39,7 +39,7 @@ EXPECTED_PREFIX_VARS = 45369
 EXPECTED_PREFIX_CLAUSES = 644351
 EXPECTED_PREFIX_SHA256 = "082162cdbee0f545dab56035ea768e3ad37ce06b9fb580c568781fd63b0d1200"
 EXPECTED_POST_ARM_CLAUSES = 645218
-EXPECTED_POST_ARM_SHA256 = "3a58f8f21e1c23ecd78c76f17872ca7cb1065f58ebddb9225ec1acdc9f4f266"
+EXPECTED_POST_ARM_SHA256 = "3a58f8f21e1c23ecd78c76f17872ca7cb1065f58ebddb9225ec1acdc9f4f266a"
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_SHA256 = "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c"
 EXPECTED_FINAL_VARS = 45369
@@ -87,11 +87,24 @@ _RECEIPT_KEYS = frozenset({"schema", "attempt", "attempt_directory", "journal", 
                            "model_response_sha256", "endpoint_trace", "failure_detail",
                            "custody_retry_policy", "legacy_drat_proof_path_written", "proof_endpoint_called",
                            "certificate_blocker", "claims", "receipt_sha256"})
+_CUSTODY_KEYS = frozenset({
+    "schema", "attempt_directory_device", "attempt_directory_inode",
+    "receipt_sha256", "receipt_file_sha256", "receipt_file_size",
+    "receipt_device", "receipt_inode", "inventory", "retry_policy",
+    "custody_seal_sha256",
+})
 _ATTEMPT_KEYS = frozenset({"schema", "attempt_id", "attempt_index", "wave_manifest_sha256",
                            "previous_attempt_sha256", "backend", "solver_profile", "outcome",
                            "artifacts", "detail", "record_sha256"})
 _FALSE_CLAIMS = ("source_entitlement", "theorem_coverage", "universal_lift",
                  "lean_closure", "one_process", "one_core")
+_DESCRIPTOR_FALSE_CLAIMS = ("source_entitlement", "theorem_coverage", "universal_lift",
+                            "lean_closure")
+_SURVIVOR_CLASSIFICATIONS = frozenset({
+    "STRUCTURALLY_UNRESOLVED",
+    "STATIC_CONVEX_INVARIANT_FAILED",
+    "UNADMITTED_STRUCTURAL_SURVIVOR",
+})
 
 
 class V22ValidationError(ValueError):
@@ -113,6 +126,16 @@ def sha256_json(value: Any) -> str:
 
 def _pretty_json_bytes(value: Any) -> bytes:
     return (json.dumps(value, sort_keys=True, indent=2, allow_nan=False) + "\n").encode()
+
+
+def _producer_pretty_json_sha256(value: Any) -> str:
+    """Hash the producer's root-job JSON representation (pretty JSON + LF)."""
+    return sha256_bytes(_pretty_json_bytes(value))
+
+
+def _descriptor_file_sha256(raw: bytes) -> str:
+    """Hash the producer's exact descriptor file bytes, including its LF."""
+    return sha256_bytes(raw)
 
 
 def _fail(message: str) -> None:
@@ -261,11 +284,11 @@ def _int(value: Any, name: str) -> int:
     return value
 
 
-def _false_claims(value: Any, name: str) -> None:
+def _false_claims(value: Any, name: str, expected: tuple[str, ...] = _FALSE_CLAIMS) -> None:
     claims = _obj(value, name)
-    if set(claims) != set(_FALSE_CLAIMS):
+    if set(claims) != set(expected):
         _fail(f"{name} has missing or extra claim fields")
-    if any(type(claims[key]) is not bool or claims[key] is not False for key in _FALSE_CLAIMS):
+    if any(type(claims[key]) is not bool or claims[key] is not False for key in expected):
         _fail(f"{name} contains an affirmative/ambiguous claim")
 
 
@@ -389,6 +412,34 @@ def _validate_receipt_flags(receipt: dict[str, Any]) -> None:
     _false_claims(receipt.get("claims"), "receipt.claims")
 
 
+def _receipt_server_job_identity(receipt: dict[str, Any]) -> dict[str, Any]:
+    """Bind the receipt's PIQD server job ID to its nested identity record."""
+    receipt_job_id = _str(receipt.get("job_id"), "receipt.job_id")
+    identity = _obj(receipt.get("job_identity"), "receipt.job_identity")
+    if identity.get("job_id") != receipt_job_id:
+        _fail("receipt server job identity mismatch")
+    return identity
+
+
+def _validate_custody_receipt_binding(
+    custody: dict[str, Any], claimed_receipt_sha: str, receipt_path: Path, receipt_raw: bytes
+) -> None:
+    if custody.get("receipt_sha256") != claimed_receipt_sha:
+        _fail("custody seal does not bind receipt")
+    receipt_fd, receipt_info = _open_regular(receipt_path)
+    try:
+        expected = {
+            "receipt_file_sha256": sha256_bytes(receipt_raw),
+            "receipt_file_size": len(receipt_raw),
+            "receipt_device": receipt_info.st_dev,
+            "receipt_inode": receipt_info.st_ino,
+        }
+    finally:
+        os.close(receipt_fd)
+    if any(custody.get(key) != value for key, value in expected.items()):
+        _fail("custody seal does not bind receipt")
+
+
 def _validate_receipt_outcome(receipt: dict[str, Any], branch: str) -> None:
     expected = ("STRUCTURAL_SAT", "SAT", 10) if branch == "SAT" else ("DISCOVERY_UNSAT", "UNSAT", 20)
     if (receipt.get("outcome"), receipt.get("adapter_verdict"), receipt.get("adapter_returncode")) != expected:
@@ -454,7 +505,7 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
     job = _obj(_json(_read(workdir / "job.json"), workdir / "job.json"), "job")
     if job.get("schema") != JOB_SCHEMA or job.get("arm_cell_index") != EXPECTED_ARM_CELL:
         _fail("v9 job identity mismatch")
-    if job.get("job_id") != sha256_json({key: value for key, value in job.items() if key != "job_id"}) or summary.get("job_id") != job["job_id"] or summary.get("job_sha256") != sha256_json(job):
+    if job.get("job_id") != _producer_pretty_json_sha256({key: value for key, value in job.items() if key != "job_id"}) or summary.get("job_id") != job["job_id"] or summary.get("job_sha256") != _producer_pretty_json_sha256(job):
         _fail("job self/hash identity mismatch")
     promotion = _obj(job.get("promotion"), "job.promotion")
     if promotion.get("lean_terminal_ingress_ready") is not False:
@@ -472,14 +523,14 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
     descriptor_path = descriptors[0]
     descriptor_raw = _read(descriptor_path)
     descriptor = _obj(_json(descriptor_raw[:-1] if descriptor_raw.endswith(b"\n") else descriptor_raw, descriptor_path), "descriptor")
-    descriptor_sha = sha256_bytes(descriptor_raw[:-1] if descriptor_raw.endswith(b"\n") else descriptor_raw)
+    descriptor_sha = _descriptor_file_sha256(descriptor_raw)
     if descriptor_path.name != f"descriptor-{descriptor_sha}.json" or descriptor.get("schema") != DESCRIPTOR_SCHEMA:
         _fail("descriptor filename/schema hash mismatch")
     if descriptor.get("root_job_id") != job["job_id"] or descriptor.get("job_sha256") != sha256_json(job):
         _fail("descriptor is not bound to job")
     if descriptor.get("sources") != job.get("sources") or descriptor.get("sources_sha256") != sha256_json(job.get("sources")):
         _fail("descriptor/source manifest mismatch")
-    _false_claims(descriptor.get("claims"), "descriptor.claims")
+    _false_claims(descriptor.get("claims"), "descriptor.claims", _DESCRIPTOR_FALSE_CLAIMS)
     source_job = _obj(job.get("source_order_bank"), "job.source_order_bank")
     if source_job.get("sha256") != EXPECTED_SOURCE_ORDER_SHA256 or source_job.get("n_clauses") != EXPECTED_SOURCE_ORDER_CLAUSES:
         _fail("job source-order identity mismatch")
@@ -532,7 +583,7 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
     receipt = _obj(_canonical_file(receipt_raw, attempt / "solver-receipt.json"), "receipt")
     if set(receipt) != _RECEIPT_KEYS:
         _fail("receipt field inventory mismatch")
-    if receipt.get("schema") != RECEIPT_SCHEMA or receipt.get("job_id") != job["job_id"]:
+    if receipt.get("schema") != RECEIPT_SCHEMA:
         _fail("receipt schema/job mismatch")
     if receipt.get("cnf_sha256") != EXPECTED_FINAL_SHA256 or receipt.get("num_variables") != EXPECTED_FINAL_VARS or receipt.get("num_clauses") != EXPECTED_FINAL_CLAUSES:
         _fail("receipt CNF identity mismatch")
@@ -563,8 +614,8 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
     }
     if receipt.get("source_manifest_sha256") != sha256_bytes(canonical_json_bytes(source_manifest)) or receipt.get("producer_manifest_sha256") != sha256_bytes(canonical_json_bytes(producer_manifest)):
         _fail("receipt source/producer manifest hash mismatch")
-    identity = _obj(receipt.get("job_identity"), "receipt.job_identity")
-    if (identity.get("job_id") != job["job_id"] or identity.get("backend") != "cadical"
+    identity = _receipt_server_job_identity(receipt)
+    if (identity.get("backend") != "cadical"
             or identity.get("solver_profile") != "sat" or identity.get("project") != PROJECT
             or identity.get("cnf_blob_hash") != EXPECTED_FINAL_SHA256
             or identity.get("num_vars") != EXPECTED_FINAL_VARS
@@ -576,10 +627,13 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
     if claimed != sha256_json(receipt_unsigned): _fail("receipt self-hash mismatch")
     custody_raw = _read(attempt / "custody-seal.json")
     custody = _obj(_canonical_file(custody_raw, attempt / "custody-seal.json"), "custody seal")
-    if set(custody) != {"schema", "attempt_directory_device", "attempt_directory_inode", "receipt_sha256", "receipt_file_sha256", "receipt_file_size", "inventory", "retry_policy", "custody_seal_sha256"}:
+    if set(custody) != _CUSTODY_KEYS:
         _fail("custody seal field inventory mismatch")
-    if custody.get("schema") != CUSTODY_SCHEMA or custody.get("receipt_sha256") != claimed or custody.get("receipt_file_sha256") != sha256_bytes(_read(attempt / "solver-receipt.json")):
+    if custody.get("schema") != CUSTODY_SCHEMA:
         _fail("custody seal does not bind receipt")
+    _validate_custody_receipt_binding(
+        custody, claimed, attempt / "solver-receipt.json", receipt_raw
+    )
     custody_unsigned = dict(custody); custody_claimed = custody_unsigned.pop("custody_seal_sha256", None)
     if custody_claimed != sha256_json(custody_unsigned): _fail("custody seal self-hash mismatch")
     if custody.get("retry_policy") != "REMOVE_UNSEALED_RESERVED_ATTEMPT" or type(custody.get("inventory")) is not dict:
@@ -594,7 +648,10 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
         survivor = artifacts.get("survivor")
         if survivor is None: _fail("SAT branch lacks survivor")
         survivor_obj = _obj(_json(survivor, workdir / "survivor.json"), "survivor")
-        if survivor_obj.get("job_id") != job["job_id"] or survivor_obj.get("arm_cell_index") != EXPECTED_ARM_CELL or survivor_obj.get("classification") != "STRUCTURALLY_UNRESOLVED":
+        if (survivor_obj.get("job_id") != job["job_id"]
+                or survivor_obj.get("arm_cell_index") != EXPECTED_ARM_CELL
+                or survivor_obj.get("classification") not in _SURVIVOR_CLASSIFICATIONS
+                or summary.get("classification") != survivor_obj.get("classification")):
             _fail("SAT survivor identity/classification mismatch")
         replay = _obj(survivor_obj.get("replay"), "survivor.replay")
         if set(replay) != {"candidate", "added_constraints", "named_deletion_arm", "exact_cnf", "canonical_static_extension"} or any(type(value) is not bool or value is not True for value in replay.values()):
@@ -608,7 +665,10 @@ def validate_v22_workdir(workdir: Path, repo_root: Path, *, piqd_root: Path | No
             _fail("SAT survivor positive-variable list is malformed")
         assignment = [item if item in positive else -item for item in range(1, variables + 1)]
         _assignment(assignment, variables); _replay(parsed, set(positive))
-        if survivor_obj.get("assignment_sha256") != sha256_json(sorted(positive)) or summary.get("discovery_verdict") != "SAT" or summary.get("terminal_verdict") is not None:
+        if (survivor_obj.get("assignment_sha256")
+                != _producer_pretty_json_sha256(sorted(positive))
+                or summary.get("discovery_verdict") != "SAT"
+                or summary.get("terminal_verdict") is not None):
             _fail("SAT status/assignment binding mismatch")
     elif status == TERMINAL_STATUS:
         _validate_receipt_outcome(receipt, "UNSAT")

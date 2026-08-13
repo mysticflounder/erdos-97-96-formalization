@@ -29,6 +29,7 @@ uv run pytest -q \
   census/card_head/tests/test_exact12_next_row_arm_postwave.py \
   census/card_head/tests/test_exact12_next_row_structural_postwave.py
 ./scripts/test-p97-piqd-exact12-next-row-static.sh
+./scripts/test-p97-piqd-exact12-v14-structural.sh
 uv run pytest -q \
   census/card_head/tests/test_sat_encoding.py \
   census/card_head/tests/test_exact12_next_row_structural_cegar.py \

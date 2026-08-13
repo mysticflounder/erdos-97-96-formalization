@@ -20,7 +20,7 @@ import io
 import json
 import os
 import shutil
-from collections.abc import Collection, Mapping
+from collections.abc import Callable, Collection, Mapping
 from pathlib import Path
 from typing import Any, BinaryIO
 
@@ -61,6 +61,7 @@ STRUCTURAL_CERTIFICATE_SCHEMA = "p97_phase3_structural_certificate_payload.v1"
 DETECTOR_CONTRACT = (
     "tagged structural replay or exact Lean-backed source-order bank replay"
 )
+SEQUENTIAL_MODE = "sequential"
 # Complete semantic source closure for certificate detection, replay, and
 # selected-row clause compilation.  This intentionally excludes eager imports
 # which are not reached by that contract.
@@ -680,8 +681,13 @@ def run_structural_cegar(
     timeout_seconds: int = 60,
     nice: int = 10,
     seed_journal: Path | None = None,
+    discovery_solver_factory: Callable[
+        [CoverInstance, Mapping[str, Any]], Callable[..., CadicalResult]
+    ] | None = None,
+    terminal_solver: Callable[..., CadicalResult] = solve_cadical,
+    legacy_local: bool = False,
 ) -> dict[str, Any]:
-    """Run replay-gated order-independent CEGAR for one finite cell."""
+    """Run one finite cell; discovery is PIQD unless legacy-local is explicit."""
 
     if (
         isinstance(max_iterations, bool)
@@ -698,6 +704,10 @@ def run_structural_cegar(
         or not 1 <= nice <= 19
     ):
         raise Exact12V14StructuralCegarError("invalid solver timeout or nice value")
+    if discovery_solver_factory is None and legacy_local is not True:
+        raise Exact12V14StructuralCegarError(
+            "discovery requires the PIQD adapter; set legacy_local=True explicitly"
+        )
 
     repo_root = repo_root.resolve()
     lock = _claim_workdir(workdir)
@@ -709,6 +719,13 @@ def run_structural_cegar(
         )
         instance = materialized.instance
         compiled = materialized.compiled
+        discovery_solver = solve_cadical
+        if discovery_solver_factory is not None:
+            discovery_solver = discovery_solver_factory(instance, job)
+            if not callable(discovery_solver):
+                raise Exact12V14StructuralCegarError(
+                    "discovery solver factory returned a non-callable"
+                )
         job_sha256 = json_sha256(job)
         detector_manifest = _detector_manifest(repo_root)
         detector_contract_sha256 = _sha256_json(detector_manifest)
@@ -744,7 +761,7 @@ def run_structural_cegar(
 
         for local_iteration in range(max_iterations):
             discovery_path = workdir / "discovery.cnf"
-            discovery = solve_cadical(
+            discovery = discovery_solver(
                 instance,
                 discovery_path,
                 timeout_seconds=timeout_seconds,
@@ -755,7 +772,7 @@ def run_structural_cegar(
                 discovery_sha256 = _sha256_file(discovery_path)
                 terminal_path = workdir / "terminal.cnf"
                 proof_path = workdir / "terminal.drat"
-                terminal = solve_cadical(
+                terminal = terminal_solver(
                     instance,
                     terminal_path,
                     timeout_seconds=timeout_seconds,
@@ -914,17 +931,58 @@ def main() -> int:
     parser.add_argument("--timeout-seconds", type=int, default=60)
     parser.add_argument("--nice", type=int, default=10)
     parser.add_argument("--seed-journal", type=Path)
+    parser.add_argument(
+        "--solver-backend",
+        choices=("piqd", "legacy-local"),
+        default="piqd",
+        help="discovery backend; legacy-local is an explicit diagnostic route",
+    )
+    parser.add_argument(
+        "--piqd-base-url", default="http://127.0.0.1:7272"
+    )
+    parser.add_argument("--piqd-journal-root", type=Path)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument(
+        "--parallel-mode", choices=("sequential",), default="sequential"
+    )
     args = parser.parse_args()
     try:
-        summary = run_structural_cegar(
-            args.repo_root.resolve(),
-            args.workdir,
-            args.cell_index,
-            max_iterations=args.max_iterations,
-            timeout_seconds=args.timeout_seconds,
-            nice=args.nice,
-            seed_journal=args.seed_journal,
-        )
+        if args.solver_backend == "piqd":
+            from .exact12_v14_structural_piqd import (
+                run_exact12_v14_structural_piqd,
+            )
+
+            summary = run_exact12_v14_structural_piqd(
+                args.repo_root.resolve(),
+                args.workdir,
+                args.cell_index,
+                piqd_base_url=args.piqd_base_url,
+                piqd_journal_root=(
+                    args.piqd_journal_root
+                    or args.workdir / "piqd-discovery"
+                ),
+                max_iterations=args.max_iterations,
+                timeout_seconds=args.timeout_seconds,
+                nice=args.nice,
+                seed_journal=args.seed_journal,
+                workers=args.workers,
+                parallel_mode=args.parallel_mode,
+            )
+        else:
+            if args.workers != 1 or args.parallel_mode != "sequential":
+                raise Exact12V14StructuralCegarError(
+                    "legacy-local route also requires one sequential worker"
+                )
+            summary = run_structural_cegar(
+                args.repo_root.resolve(),
+                args.workdir,
+                args.cell_index,
+                max_iterations=args.max_iterations,
+                timeout_seconds=args.timeout_seconds,
+                nice=args.nice,
+                seed_journal=args.seed_journal,
+                legacy_local=True,
+            )
     except (EncodingError, Exact12V14StructuralCegarError, OSError) as exc:
         parser.error(str(exc))
     print(json.dumps(summary, sort_keys=True, indent=2))
