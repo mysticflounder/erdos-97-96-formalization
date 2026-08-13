@@ -13,6 +13,15 @@ consumer.  This plan supersedes the round-2 solve-prompt lane as the primary
 closure route; the bridge prompts remain valid side-channels if run, but
 nothing below depends on them.
 
+A mandatory post-wave general-theorem mine analyzes only the artifacts newly
+produced by that CEGAR or PIQD wave.  It is not a fresh search of the
+accumulated theorem bank, indexed Lean corpora, mathlib, or literature.  When
+wave data yields a concrete candidate theorem, run one bounded external reuse
+preflight for that candidate before deriving it.  Forward-looking round
+protocols below use "current-wave-data general-theorem mine" for this step;
+historical checkpoint records keep the terminology under which their searches
+were actually performed.
+
 Historical ordered-v4 replay checkpoint (2026-08-08; distinct from the
 arm-static cell-6 v4 canary): all 37 solver-selected ordered
 records have kernel consumers, with the promoted replay chain and reproducible
@@ -4623,8 +4632,9 @@ The dated v30 signal is positive for workstreams 1 and 2 but not a convergence
 certificate: roughly 6,950 authenticated UNSAT assignments yielded 437 short
 projected cores across all 23 active cases, while closing zero cases near
 mid-budget.  The long v28 run has no completeness or termination bound.  Every
-round therefore ends with a global theorem-bank audit, and every odd round also
-gets an efficiency/observability review before more compute is launched.
+round therefore ends with a current-wave-data general-theorem mine, and every
+odd round also gets an efficiency/observability review before more compute is
+launched.
 
 One exact-15/SDD cut family is now banked, but it does not change the uniform
 frontier.  Its soundness theorem is stronger than the original exact-15 form:
@@ -6935,8 +6945,8 @@ survival alternative, together with the deleted point it avoids and the full
 finite radius class.  A round must not be reported as covering the order
 theorem unless its matrix covers both mappings, all four arms, and both
 surviving-row alternatives at the derived selected endpoint.  There is not yet
-a SAT/UNSAT result, post-round theorem-bank pass, arbitrary-cardinality
-survivor-row obstruction, or closed Lean leaf.
+a SAT/UNSAT result, post-round current-wave-data general-theorem mine,
+arbitrary-cardinality survivor-row obstruction, or closed Lean leaf.
 
 The Lean landing interface now matches that dynamic contract exactly.
 `FreshThirdOrderSelectedEndpointDeletionObstructions` records the realized
@@ -7155,8 +7165,10 @@ same Schema-9 negation in solver-friendly direct form: for each `(c,a,b)` with
 `b != c`, `Avalid(c,a)` implies at most one shared point inside the open
 interval and at most one outside it.  Equivalence and polarity self-checks are
 mandatory.  Any resulting CEGAR verdict remains diagnostic until a general
-Lean producer and lift are proved, and it must again be followed by a global
-theorem-bank pass.  The three-constructor residual interface remains the
+Lean producer and lift are proved, and it must again be followed by a
+current-wave-data general-theorem mine, with one bounded reuse preflight only
+if that mine yields a concrete candidate.  The three-constructor residual
+interface remains the
 correct coordinator granularity; no further load-bearing split is authorized
 unless the same change closes at least one resulting arm.
 
@@ -9643,7 +9655,8 @@ downstream callers are unchanged.  This rewrite does not reduce the open-sorry
 count; it makes the one remaining obligation explicit.  Do not introduce
 another local alignment producer or further case fan-out; computation is
 justified only after a source-faithful producer/consumer contract is stated
-and the global theorem bank has been searched.
+and the bounded theorem-reuse preflight for that stated candidate has been
+run.
 
 #### 13.24.1.2 First-non-hit retained-core audit (2026-08-10)
 

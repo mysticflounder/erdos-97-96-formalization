@@ -31,6 +31,14 @@ nthdegree docs search --lean "<mathematical statement or theorem name>"
 nthdegree docs search --lean --agentic "<mathematical statement or theorem name>"
 ```
 
+Treat this as one bounded reuse preflight per concrete theorem candidate, not
+a recurring checkpoint during ordinary proof work. Record the candidate,
+immediate consumer, first missing antecedent or circularity, and relevant
+source/import revision. Separately, after every completed CEGAR wave, mine
+only that wave's new solver data for general theorems. Search the Lean corpus
+again only if that mine produces a concrete new candidate or the reuse-search
+key materially changes.
+
 The sibling census has already identified:
 
 - 96 general-n U5 class-level incidence incompatibility families, supported by
