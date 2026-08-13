@@ -22,7 +22,7 @@ There is no discovery fallback.
 Before transport, the adapter publishes a canonical, content-addressed
 descriptor under a no-follow custody chain. It binds:
 
-- the canonical v8 arm-static `job_id` and the complete job hash;
+- the canonical v9 arm-static `job_id` and the complete job hash;
 - arm cell 6 and placement 1;
 - exact raw DIMACS bytes, SHA-256 digest, variable count, and clause count;
 - the arm compiler/variable-map manifest;
@@ -64,7 +64,7 @@ blob hash may correctly be null for older jobs, jobs without a submitted
 manifest, or non-raw-DIMACS jobs.
 
 The fresh production namespace is
-`p97-exact12-next-row-arm-static-cell6-v8-r1`. A short-timeout probe must not be
+`p97-exact12-next-row-arm-static-cell6-v9-r1`. A short-timeout probe must not be
 run in this namespace: PIQD job identity is content-addressed, so a terminal
 UNKNOWN from a probe could be reused by a later identical request.
 
