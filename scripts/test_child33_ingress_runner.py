@@ -17,6 +17,12 @@ import validate_exact17_thirty_second_model_refinements_export as export_validat
 import validate_exact17_thirty_second_model_refinements_ingress as ingress
 
 
+def test_production_identity_matches_piqd_raw_dimacs_v1_contract() -> None:
+    assert runner.expected_identity_hash() == (
+        "031ddc62b4d41ef0cfc1767cc43f4be2d9a9a7d0cf85784d72c9bfa5eb9c367f"
+    )
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, sort_keys=True) + "\n", encoding="utf-8")
 

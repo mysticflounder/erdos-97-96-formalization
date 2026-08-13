@@ -686,14 +686,18 @@ def _transaction_lock(path: Path):
 def expected_identity_hash(spec: RunnerSpec) -> str:
     if not spec.provisioned:
         raise UnprovisionedError("child32 PIQD runner is UNPROVISIONED")
+    # PIQD's raw-dimacs/v1 identity is deliberately content-addressed by the
+    # backend, canonical solver profile, exact CNF, exact producer manifest,
+    # and optional core limit.  Runtime timeouts are persisted on the job but
+    # are not part of that identity; child33 binds them separately in both the
+    # prepare response and every status check.  Requiring ``existing = false``
+    # also prevents a differently timed pre-existing job from being adopted.
     return hashlib.sha256(
         (
             "raw-dimacs/v1\n"
             f"{spec.ingress.backend}\n{spec.ingress.solver_profile}\n"
             f"{spec.root_sha256}\n{spec.manifest_sha256}\n"
-            f"cores={REQUESTED_CORE_LIMIT}\n"
-            f"timeout_s={spec.timeout_s}\n"
-            f"march_timeout_s={spec.march_timeout_s}"
+            f"cores={REQUESTED_CORE_LIMIT}"
         ).encode()
     ).hexdigest()
 
