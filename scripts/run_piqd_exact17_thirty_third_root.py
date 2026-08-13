@@ -140,6 +140,28 @@ def reconcile_prepared_job(
     )
 
 
+def reconcile_legacy_identity_prepared_job(
+    client: PiqdClient,
+    job_id: str,
+    paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
+    spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
+    *,
+    ingress_validator=validate_ingress,
+) -> dict[str, Any]:
+    """Migrate the exact pre-fix child33 intent while preserving its bytes."""
+    _require_child33_namespace(spec)
+    return _delegate(
+        lambda: _child32.reconcile_prepared_job(
+            client,
+            job_id,
+            paths,
+            spec,
+            ingress_validator=ingress_validator,
+            allow_legacy_intent_migration=True,
+        )
+    )
+
+
 def replay_model(path: Path, assignment: object, spec: RunnerSpec = PRODUCTION_RUNNER_SPEC) -> dict[str, Any]:
     _require_child33_namespace(spec)
     return _child32.replay_model(path, assignment, spec)
@@ -160,7 +182,16 @@ def finalize(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("static-check", "start", "reconcile", "finalize"))
+    parser.add_argument(
+        "command",
+        choices=(
+            "static-check",
+            "start",
+            "reconcile",
+            "reconcile-legacy-identity",
+            "finalize",
+        ),
+    )
     parser.add_argument("--job-id")
     args = parser.parse_args()
     client = SubprocessPiqdClient()
@@ -175,6 +206,10 @@ def main() -> int:
         if not args.job_id:
             parser.error("reconcile requires --job-id")
         payload = reconcile_prepared_job(client, args.job_id)
+    elif args.command == "reconcile-legacy-identity":
+        if not args.job_id:
+            parser.error("reconcile-legacy-identity requires --job-id")
+        payload = reconcile_legacy_identity_prepared_job(client, args.job_id)
     else:
         payload = finalize(client)
     print(json.dumps(payload, indent=2, sort_keys=True))

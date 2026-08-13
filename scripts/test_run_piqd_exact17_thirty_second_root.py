@@ -887,6 +887,146 @@ def test_explicit_reconciliation_recovers_intent_without_resubmitting(
     assert client.submit_calls == 1 and client.confirm_calls == 1
 
 
+def test_child33_reconciliation_records_exact_legacy_identity_migration(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected pre-fix prepare response loss")
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="pre-fix prepare response loss"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+
+    intent = json.loads(paths.intent.read_text(encoding="utf-8"))
+    intent["binding"] = runner._legacy_timeout_inclusive_binding(spec)
+    paths.intent.write_text(
+        json.dumps(intent, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    client.submit = original_submit
+
+    with pytest.raises(ValueError, match="requires explicit identity-contract migration"):
+        runner.reconcile_prepared_job(
+            client,
+            "job-child32",
+            paths,
+            spec,
+            ingress_validator=_validated,
+        )
+    assert client.confirm_calls == 0
+    assert not paths.prepared.exists() and not paths.state.exists()
+
+    state = runner.reconcile_prepared_job(
+        client,
+        "job-child32",
+        paths,
+        spec,
+        ingress_validator=_validated,
+        allow_legacy_intent_migration=True,
+    )
+    prepared = state["prepared_record"]
+    assert prepared["submission_mode"] == "reconciled_after_identity_contract_fix"
+    assert prepared["binding"] == runner._expected_binding(spec)
+    assert prepared["intent_binding_migration"] == (
+        runner._expected_intent_binding_migration(
+            spec, runner.sha256_file(paths.intent), "job-child32"
+        )
+    )
+    assert client.submit_calls == 1 and client.confirm_calls == 1
+
+    client.phase = "completed"
+    report = runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert report["result"] == "SAT"
+    assert report["model_replay"] == {"clauses_checked": 2, "satisfies_all": True}
+
+
+def test_child33_reconciliation_rejects_near_legacy_identity(
+    tmp_path: Path,
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected prepare response loss")
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="prepare response loss"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    intent = json.loads(paths.intent.read_text(encoding="utf-8"))
+    intent["binding"] = runner._legacy_timeout_inclusive_binding(spec)
+    intent["binding"]["identity_hash"] = "0" * 64
+    paths.intent.write_text(
+        json.dumps(intent, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    client.submit = original_submit
+
+    with pytest.raises(ValueError, match="submission intent binding drifted"):
+        runner.reconcile_prepared_job(
+            client,
+            "job-child32",
+            paths,
+            spec,
+            ingress_validator=_validated,
+        )
+    assert client.confirm_calls == 0
+    assert not paths.prepared.exists() and not paths.state.exists()
+
+
+@pytest.mark.parametrize(
+    "field",
+    ("job_id", "intent_sha256", "from_binding", "to_binding"),
+)
+def test_child33_migrated_prepared_record_rejects_tampering(
+    tmp_path: Path, field: str
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    original_submit = client.submit
+
+    def lose_prepare_response(*args: Any, **kwargs: Any) -> dict[str, Any]:
+        original_submit(*args, **kwargs)
+        raise RuntimeError("injected prepare response loss")
+
+    client.submit = lose_prepare_response
+    with pytest.raises(RuntimeError, match="prepare response loss"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    intent = json.loads(paths.intent.read_text(encoding="utf-8"))
+    intent["binding"] = runner._legacy_timeout_inclusive_binding(spec)
+    paths.intent.write_text(
+        json.dumps(intent, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    client.submit = original_submit
+    runner.reconcile_prepared_job(
+        client,
+        "job-child32",
+        paths,
+        spec,
+        ingress_validator=_validated,
+        allow_legacy_intent_migration=True,
+    )
+
+    paths.state.unlink()
+    prepared = json.loads(paths.prepared.read_text(encoding="utf-8"))
+    migration = prepared["intent_binding_migration"]
+    if field in {"job_id", "intent_sha256"}:
+        migration[field] = "0" * 64
+    else:
+        migration[field]["identity_hash"] = "0" * 64
+    paths.prepared.write_text(
+        json.dumps(prepared, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+
+    with pytest.raises(ValueError, match="prepared intent-binding migration drifted"):
+        runner.start(client, paths, spec, ingress_validator=_validated)
+    assert client.confirm_calls == 1
+
+
 def test_reconciliation_refuses_stale_solver_log(tmp_path: Path) -> None:
     paths, spec, root = _fixture(tmp_path)
     client = FakeClient(root, spec)

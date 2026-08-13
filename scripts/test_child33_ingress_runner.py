@@ -274,6 +274,31 @@ def test_child33_timeout_request_propagates(monkeypatch: pytest.MonkeyPatch) -> 
     assert observed == {"timeout_s": 123, "march_timeout_s": 456}
 
 
+def test_child33_legacy_reconciliation_is_an_explicit_opt_in(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed: dict[str, object] = {}
+
+    def fake_reconcile(*args: object, **kwargs: object) -> dict[str, str]:
+        observed["args"] = args
+        observed["kwargs"] = kwargs
+        return {"phase": "confirmed"}
+
+    monkeypatch.setattr(runner._child32, "reconcile_prepared_job", fake_reconcile)
+    payload = runner.reconcile_legacy_identity_prepared_job(
+        object(),
+        "job",
+        runner.PRODUCTION_RUNNER_PATHS,
+        runner.PRODUCTION_RUNNER_SPEC,
+        ingress_validator=ingress.validate_ingress,
+    )
+    assert payload == {"phase": "confirmed"}
+    assert observed["kwargs"] == {
+        "ingress_validator": ingress.validate_ingress,
+        "allow_legacy_intent_migration": True,
+    }
+
+
 def test_transaction_lock_rejects_symlink(tmp_path: Path) -> None:
     target = tmp_path / "target"
     target.write_text("target\n", encoding="utf-8")

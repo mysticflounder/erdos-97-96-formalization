@@ -702,6 +702,24 @@ def expected_identity_hash(spec: RunnerSpec) -> str:
     ).hexdigest()
 
 
+def _legacy_timeout_inclusive_identity_hash(spec: RunnerSpec) -> str:
+    """Recompute the exact child33 pre-fix identity, for custody migration only."""
+    _require(
+        spec.artifact_namespace == "child33",
+        "legacy timeout-inclusive identity is child33-only",
+    )
+    return hashlib.sha256(
+        (
+            "raw-dimacs/v1\n"
+            f"{spec.ingress.backend}\n{spec.ingress.solver_profile}\n"
+            f"{spec.root_sha256}\n{spec.manifest_sha256}\n"
+            f"cores={REQUESTED_CORE_LIMIT}\n"
+            f"timeout_s={spec.timeout_s}\n"
+            f"march_timeout_s={spec.march_timeout_s}"
+        ).encode()
+    ).hexdigest()
+
+
 def validate_local(
     paths: RunnerPaths,
     spec: RunnerSpec,
@@ -892,6 +910,37 @@ def _expected_binding(spec: RunnerSpec) -> dict[str, Any]:
     return binding
 
 
+def _legacy_timeout_inclusive_binding(spec: RunnerSpec) -> dict[str, Any]:
+    binding = _expected_binding(spec)
+    binding["identity_hash"] = _legacy_timeout_inclusive_identity_hash(spec)
+    return binding
+
+
+def _intent_binding_kind(intent: dict[str, Any], spec: RunnerSpec) -> str:
+    observed = intent.get("binding")
+    if observed == _expected_binding(spec):
+        return "canonical"
+    if (
+        spec.artifact_namespace == "child33"
+        and observed == _legacy_timeout_inclusive_binding(spec)
+    ):
+        return "legacy-timeout-inclusive/v1"
+    raise ValueError("submission intent binding drifted")
+
+
+def _expected_intent_binding_migration(
+    spec: RunnerSpec, intent_sha256: str, job_id: str
+) -> dict[str, Any]:
+    return {
+        "schema": _artifact_schema(spec, "intent-binding-migration", 1),
+        "reason": "runner-pre-fix-timeout-inclusive-identity/v1",
+        "job_id": job_id,
+        "intent_sha256": intent_sha256,
+        "from_binding": _legacy_timeout_inclusive_binding(spec),
+        "to_binding": _expected_binding(spec),
+    }
+
+
 def _artifact_schema(spec: RunnerSpec, kind: str, version: int) -> str:
     return f"p97-exact17-{spec.artifact_namespace}-piqd-{kind}/v{version}"
 
@@ -930,7 +979,9 @@ def _check_intent_record(
     spec: RunnerSpec,
     local: dict[str, Any],
     identity: dict[str, Any],
-) -> None:
+    *,
+    allow_legacy_timeout_inclusive: bool = False,
+) -> str:
     _require(
         intent.get("schema") == _artifact_schema(spec, "intent", 1),
         "submission intent schema drifted",
@@ -944,7 +995,11 @@ def _check_intent_record(
     _require(intent.get("root") == local, "submission intent root identity drifted")
     _require(intent.get("daemon") == identity["version"], "submission intent daemon drifted")
     _require(intent.get("solver") == identity["solver"], "submission intent solver drifted")
-    _require(intent.get("binding") == _expected_binding(spec), "submission intent binding drifted")
+    binding_kind = _intent_binding_kind(intent, spec)
+    _require(
+        binding_kind == "canonical" or allow_legacy_timeout_inclusive,
+        "legacy submission intent requires explicit identity-contract migration",
+    )
     encoded = intent.get("manifest_base64")
     _require(isinstance(encoded, str), "submission intent omitted producer manifest bytes")
     try:
@@ -956,6 +1011,7 @@ def _check_intent_record(
         hashlib.sha256(manifest).hexdigest() == spec.manifest_sha256,
         "submission intent manifest hash drifted",
     )
+    return binding_kind
 
 
 def _intent_manifest_bytes(intent: dict[str, Any]) -> bytes:
@@ -995,11 +1051,25 @@ def _check_prepared_record(
     _require(isinstance(job_id, str) and bool(job_id), "prepared record omitted job ID")
     submission_mode = prepared.get("submission_mode")
     submitted = prepared.get("submitted")
+    binding_kind = _intent_binding_kind(intent, spec)
     if submission_mode == "created":
+        _require(binding_kind == "canonical", "created custody used a legacy intent binding")
         _require(isinstance(submitted, dict), "prepared record omitted submit response")
         _check_prepare_response(submitted, job_id, spec, expected_existing=False)
     elif submission_mode == "reconciled_after_prepare_response_failure":
+        _require(binding_kind == "canonical", "ordinary reconciliation used a legacy intent binding")
         _require(submitted is None, "reconciled prepared record invented a submit response")
+    elif submission_mode == "reconciled_after_identity_contract_fix":
+        _require(
+            binding_kind == "legacy-timeout-inclusive/v1",
+            "identity-contract migration omitted the exact legacy intent binding",
+        )
+        _require(submitted is None, "identity-contract migration invented a submit response")
+        _require(
+            prepared.get("intent_binding_migration")
+            == _expected_intent_binding_migration(spec, intent_sha256, job_id),
+            "prepared intent-binding migration drifted",
+        )
     else:
         raise ValueError("prepared submission mode drifted")
     prepared_status = prepared.get("prepared_status")
@@ -1476,8 +1546,17 @@ def start(
         if paths.prepared.exists():
             _require(paths.intent.is_file(), "prepared custody omitted submission intent")
             intent = strict_json_read(paths.intent)
-            _check_intent_record(intent, spec, local, identity)
             prepared = strict_json_read(paths.prepared)
+            _check_intent_record(
+                intent,
+                spec,
+                local,
+                identity,
+                allow_legacy_timeout_inclusive=(
+                    prepared.get("submission_mode")
+                    == "reconciled_after_identity_contract_fix"
+                ),
+            )
             return _finish_prepared(
                 client,
                 paths,
@@ -1582,6 +1661,7 @@ def reconcile_prepared_job(
     spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
     *,
     ingress_validator: IngressValidator = validate_ingress,
+    allow_legacy_intent_migration: bool = False,
 ) -> dict[str, Any]:
     """Recover one known prepare whose response was lost after intent persistence."""
     with _transaction_lock(paths.lock):
@@ -1598,7 +1678,13 @@ def reconcile_prepared_job(
         local = validate_local(paths, spec, ingress_validator=ingress_validator)
         identity = live_identity(client, spec)
         intent = strict_json_read(paths.intent)
-        _check_intent_record(intent, spec, local, identity)
+        binding_kind = _check_intent_record(
+            intent,
+            spec,
+            local,
+            identity,
+            allow_legacy_timeout_inclusive=allow_legacy_intent_migration,
+        )
         intent_sha256 = sha256_file(paths.intent)
         prepared_status = client.status(job_id)
         _check_job(prepared_status, job_id, spec, "prepared")
@@ -1636,6 +1722,7 @@ def reconcile_prepared_job(
                     )
                     stored = _remote_report(remote_cnf, remote_manifest)
 
+        migrated = binding_kind == "legacy-timeout-inclusive/v1"
         prepared = {
             "schema": _artifact_schema(spec, "prepared", 3),
             "phase": "prepared",
@@ -1646,11 +1733,19 @@ def reconcile_prepared_job(
             "binding": _expected_binding(spec),
             "intent_sha256": intent_sha256,
             "intent": intent,
-            "submission_mode": "reconciled_after_prepare_response_failure",
+            "submission_mode": (
+                "reconciled_after_identity_contract_fix"
+                if migrated
+                else "reconciled_after_prepare_response_failure"
+            ),
             "submitted": None,
             "prepared_status": prepared_status,
             "stored_preconfirm": stored,
         }
+        if migrated:
+            prepared["intent_binding_migration"] = _expected_intent_binding_migration(
+                spec, intent_sha256, job_id
+            )
         _immutable_json(paths.prepared, prepared)
         return _finish_prepared(
             client,
@@ -1710,10 +1805,19 @@ def finalize(
             raise FileExistsError("refusing stale child32 final/model/log reuse")
         local = validate_local(paths, spec, ingress_validator=ingress_validator)
         identity = live_identity(client, spec)
-        intent = strict_json_read(paths.intent)
-        _check_intent_record(intent, spec, local, identity)
-        intent_sha256 = sha256_file(paths.intent)
         prepared = strict_json_read(paths.prepared)
+        intent = strict_json_read(paths.intent)
+        _check_intent_record(
+            intent,
+            spec,
+            local,
+            identity,
+            allow_legacy_timeout_inclusive=(
+                prepared.get("submission_mode")
+                == "reconciled_after_identity_contract_fix"
+            ),
+        )
+        intent_sha256 = sha256_file(paths.intent)
         prepared_job_id = _check_prepared_record(
             prepared, spec, local, identity, intent, intent_sha256
         )
