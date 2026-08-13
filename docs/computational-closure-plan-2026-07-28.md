@@ -9984,6 +9984,39 @@ safe six-anchor-plus-nine-fresh symmetry reduction recorded in
 does not change this status and need not be run: the explicit model already
 settles the corrected incidence projection as satisfiable.
 
+#### 13.24.1.12 FirstNonHit cap-fan route hard stop (2026-08-13)
+
+A source-level audit has now exhausted the proposed endpoint cap-fan route
+without launching another CEGAR wave.  The clean fan theorem can produce two
+row points whose actual blocker centers lie in one strict cap and then splits
+into equal-blocker and cross-deletion alternatives.  Neither alternative
+reaches the live three-overlap terminal:
+
+- in the equal-blocker alternative, equality of the actual blockers does
+  identify the two exact selected supports, but the API does not synchronize
+  the fan's blocker cap with the endpoint row's `rowCap`, put the endpoint row
+  center in that blocker cap, or put the chosen pair outside it;
+- the cross-deletion alternatives retain only one blocked deletion at each
+  actual center, whereas the clean landing theorem needs three Q-support
+  deletions blocked at one center distinct from `qCenter`.
+
+The specialized retained-collision localization theorem does not repair this
+gap.  It can identify an actual-row center with a common blocker only after a
+`RetainedRadiusCollision` and a row containing that retained collision pair
+are already supplied.  The arbitrary fan pair has neither the retained-radius
+membership nor the pre-existing common-blocker packet required by that
+theorem.  Thus it cannot create the missing blocker equality or cap
+synchronization.
+
+This is a source-interface obstruction, not a finite SAT result and not a Lean
+closure.  No mandatory post-wave theorem search is due because no solver wave
+was run.  Retire this cap-fan route rather than extending its local case split.
+The live gate remains
+`exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three`: future work
+must either prove a genuinely carrier-wide source theorem producing three
+Q-support incidences at one distinct actual center, or first prove a formal
+bounded-obstruction/general-cardinality lift before resuming finite search.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

@@ -165,6 +165,72 @@ structure CommonRadiusTwoCapSourceThirdCanonicalRowSurface where
       SelectedClass D.A S.oppApex1 commonRadius
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- If both common-radius source rows are the fresh blocker's selected row,
+the two distinct common-radius cap-interior sources localize that blocker in
+the canonical first cap. -/
+theorem freshThird_commonRadius_sameBlocker_freshCenter_mem_canonicalCap
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirstSupport :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support)
+    (hsecondSupport :
+      (H.selectedAt C.surface.secondSource.1
+          C.surface.secondSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support) :
+    H.centerAt Q.source₁.1 Q.source₁.2 ∈
+      S.capInteriorByIndex S.oppIndex1 := by
+  classical
+  have hfirstFresh :
+      C.surface.firstSource.1 ∈
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support := by
+    rw [← hfirstSupport]
+    exact
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.q_mem_support
+  have hsecondFresh :
+      C.surface.secondSource.1 ∈
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support := by
+    rw [← hsecondSupport]
+    exact
+      (H.selectedAt C.surface.secondSource.1
+        C.surface.secondSource.2).toCriticalFourShell.q_mem_support
+  have hpairSubsetSlice :
+      ({C.surface.firstSource.1, C.surface.secondSource.1} : Finset ℝ²) ⊆
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A
+              (S.oppositeVertexByIndex S.oppIndex1) C.commonRadius ∩
+            S.capInteriorByIndex S.oppIndex1) := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨hfirstFresh, by
+          simpa only [oppositeVertexByIndex_oppIndex1] using
+            Finset.mem_inter.mpr
+              ⟨C.firstSource_mem, C.surface.firstSource_data.2.1⟩⟩
+    · exact Finset.mem_inter.mpr
+        ⟨hsecondFresh, by
+          simpa only [oppositeVertexByIndex_oppIndex1] using
+            Finset.mem_inter.mpr
+              ⟨C.secondSource_mem, C.surface.secondSource_data.2.1⟩⟩
+  have htwo :
+      2 ≤
+        ((H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A
+              (S.oppositeVertexByIndex S.oppIndex1) C.commonRadius ∩
+            S.capInteriorByIndex S.oppIndex1)).card := by
+    simpa [C.surface.sources_ne] using Finset.card_le_card hpairSubsetSlice
+  exact
+    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+      Q.source₁.2
+      (by simpa only [oppositeVertexByIndex_oppIndex1] using T.oppApex1_rich)
+      (isUniqueFourCenter_centerAt H Q.source₁.1 Q.source₁.2)
+      htwo
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
 /-- Shared-pair separation on a caller-supplied boundary indexing.  Keeping

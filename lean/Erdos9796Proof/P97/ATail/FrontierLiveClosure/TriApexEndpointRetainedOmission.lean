@@ -4361,6 +4361,61 @@ theorem selectedFourClass_outside_overlap_card_le_one
       (by simpa [hid] using hdEq)
       (by simpa [hic] using hcEq)
 
+/-- If two distinct carrier points lie on one selected four-class and have the
+same actual selected-row centre, then the original row centre and that common
+centre cannot lie in one indexed cap while both points lie outside it. -/
+theorem false_of_selectedFourClass_common_actualCenter_pair_outside_cap
+    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+    (H : CriticalShellSystem D.A) (i : Fin 3)
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (z w : CriticalShellSystem.CarrierVertex D.A)
+    (hzRow : z.1 ∈ Row.support)
+    (hwRow : w.1 ∈ Row.support)
+    (hzw : z.1 ≠ w.1)
+    (hactualCenters :
+      H.centerAt z.1 z.2 = H.centerAt w.1 w.2)
+    (hcenterCap : center ∈ S.capByIndex i)
+    (hactualCenterCap : H.centerAt z.1 z.2 ∈ S.capByIndex i)
+    (hzOutside : z.1 ∉ S.capByIndex i)
+    (hwOutside : w.1 ∉ S.capByIndex i)
+    (hcenter_ne_actualCenter : center ≠ H.centerAt z.1 z.2) :
+    False := by
+  classical
+  let ActualRow : SelectedFourClass D.A (H.centerAt z.1 z.2) :=
+    (H.selectedAt z.1 z.2).toCriticalFourShell.toSelectedFourClass
+  have hsupports :=
+    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+      H z.2 w.2 hactualCenters
+  have hzActual : z.1 ∈ ActualRow.support := by
+    simpa [ActualRow, CriticalFourShell.toSelectedFourClass] using
+      (H.selectedAt z.1 z.2).toCriticalFourShell.q_mem_support
+  have hwActual : w.1 ∈ ActualRow.support := by
+    have hown :=
+      (H.selectedAt w.1 w.2).toCriticalFourShell.q_mem_support
+    rw [← hsupports] at hown
+    simpa [ActualRow, CriticalFourShell.toSelectedFourClass] using hown
+  have hpairSubset :
+      ({z.1, w.1} : Finset ℝ²) ⊆
+        (Row.support \ S.capByIndex i) ∩
+          (ActualRow.support \ S.capByIndex i) := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨Finset.mem_sdiff.mpr ⟨hzRow, hzOutside⟩,
+          Finset.mem_sdiff.mpr ⟨hzActual, hzOutside⟩⟩
+    · exact Finset.mem_inter.mpr
+        ⟨Finset.mem_sdiff.mpr ⟨hwRow, hwOutside⟩,
+          Finset.mem_sdiff.mpr ⟨hwActual, hwOutside⟩⟩
+  have htwo :
+      2 ≤
+        ((Row.support \ S.capByIndex i) ∩
+          (ActualRow.support \ S.capByIndex i)).card := by
+    simpa [hzw] using Finset.card_le_card hpairSubset
+  have hone :=
+    selectedFourClass_outside_overlap_card_le_one
+      S i hcenterCap hactualCenterCap hcenter_ne_actualCenter Row ActualRow
+  omega
 
 end ATailFrontierLiveClosure
 end Problem97
