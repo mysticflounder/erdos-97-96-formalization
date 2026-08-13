@@ -1497,7 +1497,7 @@ def test_subprocess_adapter_status_requests_terminal_log_digest(
     monkeypatch.setattr(runner.urllib.request, "urlopen", fake_urlopen)
     assert client.status("job/1") == {"id": "job/1", "log_sha256": "abc"}
     assert observed == {
-        "url": "http://127.0.0.1:7272/jobs/job%2F1?log_digest=1",
+        "url": "http://127.0.0.1:7272/jobs/job%2F1?log_digest=true",
         "method": "GET",
         "timeout": 900,
     }

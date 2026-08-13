@@ -241,7 +241,9 @@ class SubprocessPiqdClient:
 
     def status(self, job_id: str) -> dict[str, Any]:
         base = os.environ.get("PIQD_URL", "http://127.0.0.1:7272").rstrip("/")
-        query = urllib.parse.urlencode({"log_digest": 1})
+        # PIQD deserializes this query parameter as a JSON-style boolean.
+        # Numeric truth values such as ``1`` are rejected with HTTP 400.
+        query = urllib.parse.urlencode({"log_digest": "true"})
         request = urllib.request.Request(
             f"{base}/jobs/{urllib.parse.quote(job_id, safe='')}?{query}",
             method="GET",
