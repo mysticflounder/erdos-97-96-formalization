@@ -10195,6 +10195,49 @@ only after common-radius ingress has been exposed.  The
 `sameBlocker` and `sourceRowOmission` constructors remain out of scope for this
 lane.  No FirstNonHit arm or load-bearing `sorry` is closed by this audit.
 
+#### 13.24.1.17 FirstNonHit common-radius W4 metric probe (2026-08-13)
+
+A single bounded nonlinear wave tested one source-audited exact-17
+representative of the common-radius `sameBlocker × sameBlocker` FirstNonHit
+arm.  The live source first produces a four-point set `W` in the strict
+canonical cap and outside the Q selected row, with deletion survival at the Q
+blocker center.  It does not synchronize the actual blockers of the four
+points, put the four points on one radius, or relate their actual selected rows
+to the Q row.  The computational representative therefore records separately
+which additional label, cap, retained-endpoint, and named-row assignments are
+frozen rather than universally source-entitled.
+
+The staged shared-coordinate query has the following authenticated result:
+
+1. `geometry_core` (705 assertions) is SAT in Z3Py and external Z3.  Exact
+   substitution and rational `Fraction` replay pass, and the pinned model is
+   SAT in cvc5.  Unpinned cvc5 times out.
+2. `cap_classification` (756 assertions) has the same result and validates the
+   exact frozen closed-cap profile `8,6,6`.
+3. `canonical_three_radii` (780 assertions), which first couples the canonical,
+   retained-P, and retained-Pρ strict-cap pairs to three positive pairwise
+   distinct apex radii, is inconclusive: Z3Py returns `UNKNOWN:timeout` and
+   external Z3 and cvc5 time out.
+4. `selected_row_equalities` (795 assertions) and `blocker_exactness` (834
+   assertions) are likewise inconclusive under the same 60-second budgets.
+5. Three malformed controls are UNSAT in Z3Py, external Z3, and cvc5.
+
+The exact models from the first two stages authenticate only strict-convex
+geometry and the frozen cap layout; their unconstrained radius variables are
+not radial witnesses.  No solver status from this wave proves or refutes the
+three-radius coupling.  The artifacts and fail-closed verifier are under
+`scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/`.
+
+The mandatory wave-only theorem mine produces no concrete general theorem
+candidate: there is no UNSAT core, forced invariant, or recurring
+source-faithful survivor motif.  Accordingly this result does not trigger a
+new Lean-corpus search.  It is not a FreshThird counterexample, a universal
+survivor, a finite-to-universal lift, a Lean proof, or closure of the anchored
+`sorry`.  Do not rerun the same frozen query merely with longer timeouts.  A
+successor must add a materially new source-entitled coupling—such as actual
+blocker/row synchronization for W—or first formalize a bounded-obstruction and
+general-cardinality lift.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

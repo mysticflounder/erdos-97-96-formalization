@@ -1,0 +1,205 @@
+{
+  "contract": {
+    "boundary_rank": [
+      1,
+      6,
+      9,
+      12,
+      2,
+      3,
+      4,
+      5,
+      8,
+      13,
+      14,
+      15,
+      16,
+      10,
+      0,
+      11,
+      7
+    ],
+    "canonical_strict_cap": [
+      0,
+      1,
+      4,
+      5,
+      6,
+      7
+    ],
+    "closed_caps": [
+      [
+        0,
+        1,
+        4,
+        5,
+        6,
+        7,
+        14,
+        16
+      ],
+      [
+        3,
+        9,
+        10,
+        11,
+        12,
+        14
+      ],
+      [
+        2,
+        3,
+        8,
+        13,
+        15,
+        16
+      ]
+    ],
+    "explicit_frozen_assumptions": [
+      "carrier labels instantiate pairwise-distinct C/Q/P/P-rho roles as listed",
+      "canonical closed cap has exact card 8 and strict interior C-pair union W4",
+      "the three named selected supports are the exact four-sets listed",
+      "blocker centers for C/Q, P, and P-rho are labels 7, 8, and 9"
+    ],
+    "named_selected_rows": {
+      "7": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "8": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "9": [
+        4,
+        5,
+        10,
+        12
+      ]
+    },
+    "not_encoded": [
+      "arbitrary pointwise D.K4 witness supports",
+      "anonymous deletion packets or universal minimality",
+      "all FreshThird constructor arms",
+      "general cardinality or a finite-to-universal lift"
+    ],
+    "roles": {
+      "apex0": 3,
+      "apex1": 16,
+      "apex2": 14,
+      "c_first": 0,
+      "c_second": 1,
+      "p1": 6,
+      "p2": 7,
+      "q_other": 3,
+      "q_source": 2,
+      "rho1": 5,
+      "rho2": 4
+    },
+    "scope": "one frozen exact-17 common-radius sameBlocker x sameBlocker case",
+    "w4": [
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "queries": [
+    {
+      "assertions": 835,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--nl-cov",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_row_equality_collision.smt2"
+        ],
+        "elapsed_seconds": 0.141,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "name": "control_row_equality_collision",
+      "z3_cli": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_row_equality_collision.smt2"
+        ],
+        "elapsed_seconds": 14.102,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "z3py": {
+        "elapsed_seconds": 14.07,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "assertions": 835,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--nl-cov",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_radial_collision.smt2"
+        ],
+        "elapsed_seconds": 0.14,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "name": "control_radial_collision",
+      "z3_cli": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_radial_collision.smt2"
+        ],
+        "elapsed_seconds": 0.025,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "z3py": {
+        "elapsed_seconds": 0.009,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "assertions": 835,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--nl-cov",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_blocker_nonmember_collision.smt2"
+        ],
+        "elapsed_seconds": 0.085,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "name": "control_blocker_nonmember_collision",
+      "z3_cli": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_common_w4_metric_v1/artifacts/control_blocker_nonmember_collision.smt2"
+        ],
+        "elapsed_seconds": 0.019,
+        "exit_code": 0,
+        "status": "UNSAT"
+      },
+      "z3py": {
+        "elapsed_seconds": 0.002,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "timeout_seconds": 20
+}
