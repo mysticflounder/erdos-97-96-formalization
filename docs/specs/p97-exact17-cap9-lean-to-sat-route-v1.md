@@ -691,3 +691,39 @@ job. `SAT` requires full replay followed by a wave-only general-theorem mine;
 `UNSAT` requires independent certificate replay and composition through the
 exact-17 source-realization and landing contracts. Exact 17 and the production
 `sorry` remain open at this checkpoint.
+
+## Thirty-seventh Lean-owned child checkpoint — 2026-08-13
+
+Child 36 terminated authenticated `SAT` at epoch one as immutable PIQD job
+`acc2df0f-b219-46d7-9d3b-a926fc2465a3`. It ran for 591.435 seconds on the
+308-variable, 5,847,264-clause root with SHA-256
+`e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`.
+The retrieved total assignment passed independent replay of every clause.
+
+The mandatory wave-only mine produced exactly two records. One convex-five
+occurrence duplicates an existing seven-hit support but does not yet have the
+signed forward/reverse `SourceRealization` bridge required for admission. The
+other record is a source-valid six-hit, two-Kalmanson cancellation in both
+cyclic orientations. That family is banked in Lean as four exact clauses,
+together with its source-evaluation theorem and conditional terminal adapter.
+Targeted builds and axiom checks pass without `sorryAx`; finite evaluation uses
+the accepted `native_decide` boundary. The authenticated Child36 assignment is
+rejected by suffix clause 3.
+
+The official Child37 DIMACS was rendered directly by the Lean exporter and is
+the byte-identical Child36 prefix followed by those four clauses:
+
+- 308 variables;
+- 5,847,268 clauses;
+- 291,621,474 bytes; and
+- SHA-256
+  `98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3`.
+
+Its immutable ingress manifest has SHA-256
+`3d02b8e2a18ba75b08020e8275ca7e7aadb8e0556762a062dbca3ae546026f18`.
+Ruff, six focused adversarial tests, export/ingress validation, and live PIQD
+daemon and solver identity checks pass. No Child37 PIQD job exists at this
+checkpoint. The next authorized action is exactly one immutable Child37 job,
+followed by full replay and wave-only mining on `SAT`, or independent proof
+replay and Lean composition on `UNSAT`. Exact 17 and the production `sorry`
+remain open.

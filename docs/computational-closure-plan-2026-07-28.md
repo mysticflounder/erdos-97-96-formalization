@@ -10614,3 +10614,29 @@ rejects semantic duplicates, and publishes the receipt last. Child 36 is
 exported but not yet submitted. Next emit and validate one immutable PIQD
 ingress, launch one job, and follow the existing SAT-refine / UNSAT-replay
 contract. Exact 17 and the cap-nine production leaf remain open.
+
+### 13.28.8 Child-37 six-hit cancellation checkpoint — 2026-08-13
+
+Child 36 terminated authenticated `SAT` at epoch one as PIQD job
+`acc2df0f-b219-46d7-9d3b-a926fc2465a3` after 591.435 seconds. Its exact root
+had 308 variables, 5,847,264 clauses, and SHA-256
+`e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`;
+the retrieved assignment passed independent full-CNF replay.
+
+The wave-only mine was exhaustive and produced two records. The convex-five
+record remains diagnostic because its signed forward/reverse source bridge is
+not proved. The source-valid six-hit, two-Kalmanson cancellation is banked in
+both cyclic orientations as a four-clause Lean-owned suffix, with source
+evaluation and a conditional terminal adapter. Targeted Lean builds and axiom
+checks pass without `sorryAx`; the accepted finite evaluator uses
+`native_decide`. Suffix clause 3 rejects the authenticated Child36 model.
+
+Child 37 is the exact Child36 prefix plus those four clauses. It has 308
+variables, 5,847,268 clauses, 291,621,474 bytes, and SHA-256
+`98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3`.
+Its immutable ingress manifest has SHA-256
+`3d02b8e2a18ba75b08020e8275ca7e7aadb8e0556762a062dbca3ae546026f18`.
+The publication tests, ingress validation, and live PIQD identity gate pass.
+No Child37 job exists yet. Submit exactly one job after this checkpoint, then
+apply the established SAT replay-and-mine or UNSAT certificate-and-compose
+contract. Exact 17 and the cap-nine production leaf remain open.
