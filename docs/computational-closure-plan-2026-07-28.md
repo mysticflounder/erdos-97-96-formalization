@@ -9515,6 +9515,37 @@ No further FreshThird fan-out should be introduced unless a child is closed in
 the same change or the replacement theorem is a demonstrably stricter single
 residual, as at this checkpoint.
 
+### FreshThird source-helper publication checkpoint (2026-08-13)
+
+Commit `9b9f1b04` publishes the current source-clean FreshThird helper bank and
+the direct FirstNonHit frontier shape.  The five touched Lean modules pass a
+targeted `lake-build`.  The newly proved helper declarations were also checked
+individually for transitive axioms; they use only the expected foundational
+axioms and do not introduce `sorryAx`.  They expose conditional deletion-fan
+packets, cap-local blocker-fiber bounds, common-radius/same-blocker shell
+consequences, deletion-survival witnesses, the exact blocked-triple/row-overlap
+landing equivalence, and retained-packet symmetry.
+
+This is theorem-bank and ingress progress, not closure.  The refactor leaves
+`false_of_freshThird_firstNonHit` as the direct open `False` residual and makes
+the formerly open overlap existential a compatibility consequence via
+`False.elim`; the number of open sorries in that module is unchanged.  The
+missing mathematical producer remains carrier-wide: it must force one actual
+selected row at a center distinct from the Q-row center to block three Q-row
+deletions, equivalently to overlap the Q row in at least three points.  No
+bounded-core or general-cardinality lift currently turns a fixed finite search
+into that producer.
+
+Commit `33accb2f` separately publishes the four previously omitted exact-12
+duplicate-center membership-pilot shards and repairs their coordinator's
+append-membership proof.  Its targeted build is green.  Those generated shards
+use governed `native_decide` only to validate 100 bank records; their own
+headers correctly state that they prove neither coverage nor UNSAT.  Together
+with the earlier terminal-consumer dependency repair at `0beb6161`, this makes
+the checked Lean infrastructure reproducible from the public tree, but it does
+not provide a terminal certificate, all-cell coverage, a universal lift, or a
+live-sorry closure.
+
 ### 13.24.1 FreshThird crossed-three-row seventh-center producer (2026-08-10)
 
 The crossed-three-row leaf has now been reduced source-cleanly to one strictly
