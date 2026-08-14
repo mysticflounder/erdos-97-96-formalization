@@ -1,0 +1,74 @@
+{
+  "schema": "p97-exact17-child44-nextcenter-cells/v1",
+  "status": "DESIGN_ONLY_NOT_SUBMITTED",
+  "evidence_scope": "source-total exact-17 finite placement partition; no cell verdicts or closure claim",
+  "parent": {
+    "job_id": "f717c352-2456-412a-ae45-d910f47d3e94",
+    "root_sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+    "producer_manifest_sha256": "152570011046aee180b6d385f731fa13911dc9800bfc393dc87ad386cd031048",
+    "variables": 308,
+    "clauses": 5848820,
+    "bytes": 291704790
+  },
+  "solver": {
+    "name": "piqd-satworker-cadical-3.0.0",
+    "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "protocol_version": 1,
+    "lane": "sat",
+    "conflict_limit": 3000,
+    "timeout_ms": null
+  },
+  "variable_map": {
+    "next_center_formula": "290 + center",
+    "named_order_formula": "307 + order",
+    "named_order_is_not_fixed_by_cell": true
+  },
+  "identity_fields": [
+    "schema",
+    "parent.root_sha256",
+    "parent.producer_manifest_sha256",
+    "cell.id",
+    "cell.assumptions",
+    "solver.name",
+    "solver.sha256",
+    "solver.protocol_version",
+    "solver.conflict_limit"
+  ],
+  "coverage": {
+    "legal_next_centers": [0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16],
+    "excluded_old_centers": [8, 9, 10, 11],
+    "lean_antecedent": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceModel.nextCenter_not_old",
+    "lean_ingress_candidate": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceModel.nextCenter_mem_legalNextCenterLabels",
+    "coverage_required_before_promotion": true
+  },
+  "cells": [
+    {"id": "next-center-00", "next_center": 0, "assumptions": [290]},
+    {"id": "next-center-01", "next_center": 1, "assumptions": [291]},
+    {"id": "next-center-02", "next_center": 2, "assumptions": [292]},
+    {"id": "next-center-03", "next_center": 3, "assumptions": [293]},
+    {"id": "next-center-04", "next_center": 4, "assumptions": [294]},
+    {"id": "next-center-05", "next_center": 5, "assumptions": [295]},
+    {"id": "next-center-06", "next_center": 6, "assumptions": [296]},
+    {"id": "next-center-07", "next_center": 7, "assumptions": [297]},
+    {"id": "next-center-12", "next_center": 12, "assumptions": [302]},
+    {"id": "next-center-13", "next_center": 13, "assumptions": [303]},
+    {"id": "next-center-14", "next_center": 14, "assumptions": [304]},
+    {"id": "next-center-15", "next_center": 15, "assumptions": [305]},
+    {"id": "next-center-16", "next_center": 16, "assumptions": [306]}
+  ],
+  "result_contract": {
+    "sat": "complete model replay against the authenticated session journal, signed assumptions, raw parent CNF, and source-semantic decoder; then complete exact Kalmanson replay",
+    "unsat": "discovery only until static handoff materializes parent plus unit clause and an independent proof replay succeeds",
+    "unknown": "cell remains open; receipt must bind deterministic conflict limit and session continuity",
+    "linearly_infeasible": "extract and independently replay a minimal positive weighted Kalmanson certificate before any learned clause is admitted",
+    "kalmanson_feasible": "retire Kalmanson refinement for that model and route to Euclidean EDM/Ptolemy realizability"
+  },
+  "first_canary": {
+    "session_id": "8d9b5463-5ebf-4707-bdc7-3367af9cb530",
+    "assumptions": [290, 307],
+    "status": "UNKNOWN",
+    "timeout_ms": 1200000,
+    "result_sha256": "f763a1b8406f6d1a48536ce7882683b1ed25af6f0c7ef98bc0e7fc2c680414cc",
+    "note": "two-literal plumbing canary only; it is a strict subcell and not one of the thirteen production cells"
+  }
+}

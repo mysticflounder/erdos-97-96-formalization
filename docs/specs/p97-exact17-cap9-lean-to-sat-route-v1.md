@@ -958,7 +958,14 @@ The direct Lean rendering, exclusive hard-link publication, ledger-last
 receipt, recursive ingress validation, and live static gate have all passed.
 The immutable ingress manifest has SHA-256
 `152570011046aee180b6d385f731fa13911dc9800bfc393dc87ad386cd031048`.
-No Child44 PIQD job exists at this checkpoint.
+Child44 was subsequently submitted exactly once as immutable PIQD job
+`f717c352-2456-412a-ae45-d910f47d3e94`.  Its confirmed binding is the root and
+manifest above, with identity SHA-256
+`97825c01cb69aed6c8eceaa6e32ff7ebc0c328dfebe4406ee7dcc204f35c82a2`.
+The job terminated `SAT` at epoch one after 1,687.851 seconds.  This is not a
+Euclidean counterexample; canonical finalization, independent model replay, and
+the mandatory Child44-only theorem mine remain required before the result is a
+completed checkpoint.
 
 The shared lifecycle runner now descriptor-binds every local root, manifest,
 and custody record with no-follow opens, pre/post `fstat` checks, exact byte
@@ -981,20 +988,92 @@ frequencies, or failed theorem candidates, so cross-wave analysis was useful
 but should not be repeated until a new SAT wave or recovered missing artifacts
 add information.
 
-Exact 17 and the cap-nine production `sorry` remain open. After this requested
-checkpoint, the only authorized next solver action is exactly one authenticated
-Child44 submission. Terminal `UNSAT` requires independent certificate replay
-and Lean composition through the exact-cover and source-realization landing
-contracts.
+Exact 17 and the cap-nine production `sorry` remain open. Child44 is the only
+authorized serial successor at this checkpoint. Terminal `UNSAT` requires
+independent certificate replay and Lean composition through the exact-cover
+and source-realization landing contracts.
 
 Child44 is also the hard gate for the serial model-blocking strategy. The five
 fully mined waves Child39--Child43 contain 358 source-valid occurrences, all in
 the same two-Kalmanson cancellation family, and 110 of Child44's 228 suffix
 clauses are already parent-subsumed. Therefore a terminal Child44 `SAT` still
 requires independent model replay and a Child44-only theorem mine, but it does
-not authorize an automatic Child45. The next production test must instead
-instantiate the complete finite orbit of the already-proved cancellation
-schema. `UNSAT` of that saturated root can close exact 17 through the existing
-certificate route. `SAT` retires this theorem family as a complete exact-17
-route and requires a genuinely new global metric or realizability producer;
-another assignment-specific suffix from the same family is not progress.
+not authorize an automatic Child45.
+
+The earlier proposal to instantiate a complete finite orbit of the generic
+cancellation schema is not executable as stated.  A checked cancellation
+contains equality-closure paths selected from the current row system.  The
+existing enumerator is complete only for one supplied model; it is not an
+enumerator of every `SourceModel`, and the raw finite model space is far too
+large.  A monolithic Boolean-plus-LRA replacement was also tested previously:
+the metric-only layer is fast, but both the base and full-static mixed formulas
+timed out.  Neither route is a justified production successor.
+
+## Post-Child44 bounded placement campaign
+
+A terminal Child44 `SAT` moves the campaign to a source-total finite partition,
+not another serial suffix.  `SourceModel.nextCenter` has thirteen legal values:
+the base CNF chooses exactly one of seventeen labels and separately excludes
+the four old centers.  Together with the two named orders this gives 26 finite
+placement cells.  The authenticated Child41, Child42, and Child43 models all
+occupy the same cell, named order `1` and next center `0`; the serial loop has
+therefore repeatedly refined one cell rather than measured the whole finite
+frontier.
+
+The replacement campaign is:
+
+1. split first into the thirteen `nextCenter` cells, using the source theorem
+   that these cells cover every realization;
+2. solve all still-open cells in parallel while preserving a separate
+   immutable root, model, or proof record for each cell;
+3. independently replay every `SAT` model and run the already implemented
+   complete strict-Kalmanson linear oracle, rather than only the first static
+   motif matcher;
+4. for a linearly infeasible model, extract and exactly replay a deletion-
+   minimal positive weighted Kalmanson certificate, then admit the whole batch
+   through the existing source-clean weighted consumer;
+5. for a Kalmanson-feasible model, stop refining that cell with Kalmanson
+   clauses and send it to the Euclidean/EDM/Ptolemy realizability lane; and
+6. for an `UNSAT` cell, replay its proof against the exact cell root and mark
+   that cell closed.  Exact 17 closes when all thirteen cells are closed and a
+   thin Lean coordinator consumes the source-total case split.
+
+The source-total ingress candidate has been LSP-elaborated for
+`BlockerVExactSeventeenSourceNormalForm.lean` as
+`legalNextCenterLabels`, `legalNextCenterLabels_spec`,
+`SourceModel.nextCenter_mem_legalNextCenterLabels`,
+`legalNextCenterLabels_length`, and `legalNextCenterLabels_nodup`.  The list is
+the explicit complement of the four old centers, has thirteen duplicate-free
+entries, and every `SourceModel.nextCenter` belongs to it.  LSP elaboration is
+clean apart from the file's pre-existing `native_decide` style warning, and the
+four new theorems' axiom closures contain only the ordinary core axioms.  The
+reuse preflight at source revision `d2d146ab` found the existing
+`SourceModel.nextCenter_not_old` antecedent and CNF evaluator, but no previously
+named thirteen-cell coverage theorem.  The immediate consumer remains the
+future per-cell terminal coordinator; these declarations are ingress, not leaf
+closure by themselves.  The source hunk is deliberately deferred until after
+canonical Child44 finalization because changing any transitive exporter source
+before that custody gate would correctly trigger source-drift rejection.
+
+The frontier measure is now the number of open next-center cells, followed by
+the number of Kalmanson-feasible cells.  A round that merely adds another
+assignment-specific pair-cancellation suffix without reducing either measure
+is not progress.  Before production use, a small assumption/cell canary must
+bind the Lean variable map, replay `SAT` models, replay any `UNSAT` proofs, and
+verify the finite coverage split.  PIQD supports session assumptions, but the
+current P97 runner does not yet authenticate that interface; separately rooted
+unit-clause jobs remain the proof-producing fallback.
+
+The first session canary used the exact Child44 stored formula with assumptions
+`290` and `307`, namely next center `0` and named order `0`.  Session
+`8d9b5463-5ebf-4707-bdc7-3367af9cb530` returned `UNKNOWN` after its explicit
+1,200,000 ms timeout, with result receipt SHA-256
+`f763a1b8406f6d1a48536ce7882683b1ed25af6f0c7ef98bc0e7fc2c680414cc`.
+The canary created no model and no proof.  Its session journal canonicalized
+the root to 291,704,772 bytes with SHA-256
+`5debe2aea0b016a4178065153f9c7b2053ae0a2b79ea143a8bd52bb4704b9f41`,
+rather than preserving the raw Child44 bytes.  Production cell custody must
+therefore bind both the raw parent identity and the session journal identity,
+and terminal `UNSAT` must still pass through static handoff.  The timeout also
+rules out launching all cells under one short serial session; use deterministic
+conflict budgets and parallel cell sessions for the next canary.

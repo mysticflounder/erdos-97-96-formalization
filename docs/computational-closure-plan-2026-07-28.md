@@ -11171,3 +11171,54 @@ submitted-session clause-map retrieval, independent certificate replay, Lean
 banking, and composition through
 `exists_exactSeventeenSourceRealization_of_exactCover`. Exact 17 and the
 cap-nine production `sorry` remain open.
+
+### 13.28.14 Child44 serial gate and bounded placement pivot — 2026-08-14
+
+Child42 and Child43 also terminated authenticated `SAT`.  The complete
+Child39--43 meta-mine contains 358 source-valid occurrences, all instances of
+the already-banked two-Kalmanson cancellation family.  The Child44 successor
+adds 228 Lean-owned clauses, 110 of which are already parent-subsumed.  It has
+been submitted exactly once as PIQD job
+`f717c352-2456-412a-ae45-d910f47d3e94` against root
+`17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9`.
+It terminated `SAT` at epoch one after 1,687.851 seconds.  Child44 is the final
+serial model-blocking probe; this result does not authorize an automatic
+Child45.  Canonical finalization, independent model replay, and the mandatory
+Child44-only theorem mine remain open at this checkpoint.
+
+The post-Child44 route is a source-total split by `SourceModel.nextCenter`.
+There are thirteen legal next-center values after excluding the four old row
+centers.  Child41--43 all used named order `1` and next center `0`, so the
+serial loop repeatedly refined one of the 26 order/center cells.  The next
+campaign solves the thirteen next-center cells in parallel.  Every `SAT` model
+is independently replayed and passed through the existing complete strict-
+Kalmanson oracle; linearly infeasible models yield exact positive weighted
+certificates admitted in one batch.  A Kalmanson-feasible cell transfers to
+Euclidean/EDM/Ptolemy analysis instead of receiving another pair-cancellation
+suffix.  A cell closes only after proof-producing `UNSAT` replay against its
+exact unit-augmented root.  A source-total Lean case split over `nextCenter`
+composes the thirteen cell theorems.
+
+The source-total ingress candidate has been LSP-elaborated as the explicit
+duplicate-free `legalNextCenterLabels` table together with
+`SourceModel.nextCenter_mem_legalNextCenterLabels`; its checked length is
+thirteen.  These declarations have ordinary core axiom closure and will feed
+the eventual per-cell terminal coordinator.  They are an ingress theorem, not
+a closure claim.  Their source hunk is deferred until canonical Child44
+finalization so the frozen exporter-source identity remains unchanged during
+custody replay.
+
+This replaces two rejected successors.  The generic cancellation enumerator
+is complete only for one supplied row system, not for every `SourceModel`, so
+there is no presently executable finite global orbit.  A monolithic mixed
+Boolean-plus-LRA formulation has also timed out even though its metric-only
+subproblem is fast.  The production frontier measure is now the number of open
+next-center cells and, secondarily, the number of Kalmanson-feasible cells.
+
+The first stateful-session canary fixed next center `0` and named order `0`.
+It returned `UNKNOWN` at its 1,200,000 ms timeout and produced neither a model
+nor a proof.  The session journal also canonicalized the raw DIMACS bytes, so a
+production adapter must bind both identities and use static handoff for proof-
+producing `UNSAT`.  The next canary should use parallel sessions with
+deterministic conflict budgets; a serial short-timeout sweep is not a credible
+coverage test.
