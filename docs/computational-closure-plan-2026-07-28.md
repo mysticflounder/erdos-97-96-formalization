@@ -2080,6 +2080,27 @@ route is the production target.  No successor formula, canary, or
 solver wave is authorized until the general family is proved, banked,
 and pinned.
 
+The parallel concrete v24 family is banked in Lean.  The new module
+`ExactTwelveRigid221SecondOppositeInternalTripleApexFirstOppositeCommonFiveCertificate.lean`
+proves the sixteen-member second-opposite internal-triple/apex/
+first-opposite common-five family: roles `x, b, c` pairwise distinct in
+the second-opposite interior with `b` numerically strictly between `x`
+and `c`, role `y` in the first-opposite interior, fixed Moser apex `1`,
+consuming only positive selected-row membership plus the frozen
+direct-or-mirror cap blocks and the retained second-cap order.  The
+dominant mined core `(1, 9, 7, 6, 11)` is a checked instance, and its
+four membership facts are exactly the mine's memberships (center 6
+requires {7, 9, 11}; centers 9 and 11 each require {1, 7}).  The
+targeted build passed (10,875 jobs) and the axiom closure of the check,
+the orientation theorem, and the producer was verified twice — by the
+authoring worker and independently by the lane custodian — as exactly
+`propext`, `Classical.choice`, `Quot.sound`, with no `native_decide`
+and no heartbeat overrides.  The six sibling cores have different block
+signatures and are open candidates, not obligations.  This banking
+installs no Python family bank, pins, successor formula, or wave; the
+family serves as the concrete oracle and fallback for the label-general
+route above.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
