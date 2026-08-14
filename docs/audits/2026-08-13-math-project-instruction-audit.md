@@ -287,18 +287,33 @@ many items in the last set describe proof-spine role. Without saying that, agent
 can treat unlike labels as mutually exclusive or replace a trust label with a role
 label.
 
-**Recommended correction:** define two independent axes:
+**Recommended correction:** define three independent axes:
 
-1. epistemic status: `PROVEN`, `CONJECTURED`, `EMPIRICALLY VERIFIED`, `HEURISTIC`;
-2. proof-spine role: closure, producer, consumer, narrowing, obstruction,
-   conditional interface, infrastructure, or bookkeeping.
+1. evidence status: `PROVEN`, `CONJECTURED`, `EMPIRICALLY VERIFIED`, or
+   `HEURISTIC`;
+2. scope and dependencies: `UNCONDITIONAL`, `CONDITIONAL ON ...`, or
+   `SCOPED TO ...`;
+3. proof-spine role: closure, producer, consumer, narrowing, obstruction,
+   infrastructure, or bookkeeping.
 
-A result may then be reported as, for example, `PROVEN — PRODUCER` or
-`EMPIRICALLY VERIFIED — OBSTRUCTION CANDIDATE`.
+A result may then be reported as, for example, `PROVEN — UNCONDITIONAL —
+PRODUCER` or `EMPIRICALLY VERIFIED — SCOPED TO n <= 12 — OBSTRUCTION`. Scope
+and dependency values may be composed when a result is both bounded and
+conditional. The former compound labels decompose naturally: `COMPLETE PROOF`
+means `PROVEN — UNCONDITIONAL — CLOSURE`, `SCOPED CLOSURE` means `PROVEN —
+SCOPED TO [bounded target] — CLOSURE`, and `PROVED CONSUMER` normally means
+`PROVEN — CONDITIONAL ON [missing producer] — CONSUMER` until that producer is
+supplied.
 
 **Validation:** classify several existing cases, including a source-clean helper,
 a conditional contradiction consumer, an exhaustive finite solver result, and a
 publish theorem with approved transitive axioms.
+
+**Resolution (2026-08-13):** accepted. The canonical `project-progress-review`
+skill was changed from a single mixed-label taxonomy to the three independent
+axes above. Headline results must now state evidence, scope/dependencies, and
+proof-spine role; the interval verdict inherits the weakest load-bearing evidence
+and scope status.
 
 ### I-09 — dated theorem-bank facts are presented as permanent policy
 
