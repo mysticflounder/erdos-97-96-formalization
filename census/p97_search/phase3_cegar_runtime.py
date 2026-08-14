@@ -113,6 +113,12 @@ def _inode_anchor(info: os.stat_result) -> tuple[int, int, int]:
     return info.st_dev, info.st_ino, stat.S_IFMT(info.st_mode)
 
 
+def _directory_identity(info: os.stat_result) -> tuple[int, int, int]:
+    """Return directory identity without mutable entry-list metadata."""
+
+    return info.st_dev, info.st_ino, info.st_mode
+
+
 def capture_exact_regular_file(
     path: Path,
     *,
@@ -177,7 +183,9 @@ def capture_exact_regular_file(
             named_child = os.stat(
                 component, dir_fd=parent_descriptor, follow_symlinks=False
             )
-            if _inode_anchor(named_child) != _inode_anchor(child_before):
+            if _directory_identity(named_child) != _directory_identity(
+                child_before
+            ):
                 raise ExactFileCaptureError(
                     f"{label} parent changed while it was being opened"
                 )
@@ -235,8 +243,10 @@ def capture_exact_regular_file(
 
         root_after = os.fstat(root_descriptor)
         named_root = os.stat(os.path.sep, follow_symlinks=False)
-        if _file_identity(root_before) != _file_identity(root_after) or (
-            _inode_anchor(named_root) != _inode_anchor(root_after)
+        if _directory_identity(root_before) != _directory_identity(
+            root_after
+        ) or (
+            _directory_identity(named_root) != _directory_identity(root_after)
         ):
             raise ExactFileCaptureError(
                 f"{label} filesystem root changed during capture"
@@ -246,8 +256,11 @@ def capture_exact_regular_file(
             named_child = os.stat(
                 component, dir_fd=held_parent, follow_symlinks=False
             )
-            if _file_identity(child_before) != _file_identity(child_after) or (
-                _inode_anchor(named_child) != _inode_anchor(child_after)
+            if _directory_identity(child_before) != _directory_identity(
+                child_after
+            ) or (
+                _directory_identity(named_child)
+                != _directory_identity(child_after)
             ):
                 raise ExactFileCaptureError(
                     f"{label} parent changed or was repointed during capture"

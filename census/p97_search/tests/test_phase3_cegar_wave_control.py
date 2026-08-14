@@ -186,6 +186,7 @@ def _cleanup_plan(
     expected_sha256: str | None = None,
     approved_entrypoints: dict[str, str] | None = None,
 ) -> dict[str, object]:
+    root = root.resolve()
     if approved_entrypoints is None:
         inventory = json.loads(raw)
         approved_entrypoints = dict(
@@ -201,6 +202,24 @@ def _cleanup_plan(
         expected_inventory_sha256=expected_sha256 or sha256_bytes(raw),
         approved_entrypoints=approved_entrypoints,
     )
+
+
+def test_cleanup_plan_rejects_noncanonical_repo_root(tmp_path: Path) -> None:
+    root = tmp_path.resolve()
+    entry = _entry(root)
+    raw = _inventory(entry)
+    alias = root.parent / f"{root.name}-alias"
+    alias.symlink_to(root, target_is_directory=True)
+    try:
+        with pytest.raises(WaveControlError, match="canonical no-symlink"):
+            build_cleanup_plan(
+                raw,
+                alias,
+                expected_inventory_sha256=sha256_bytes(raw),
+                approved_entrypoints={str(entry["path"]): str(entry["sha256"])},
+            )
+    finally:
+        alias.unlink()
 
 
 def test_static_registry_is_closed_and_binds_exact_package(tmp_path: Path) -> None:

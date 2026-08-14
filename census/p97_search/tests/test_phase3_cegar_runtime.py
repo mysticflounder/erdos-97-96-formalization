@@ -23,6 +23,40 @@ class CheckerResult:
     stderr: str
 
 
+def test_exact_capture_allows_benign_parent_entry_churn(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    target = tmp_path / "target.bin"
+    payload = b"stable payload"
+    target.write_bytes(payload)
+    sibling = tmp_path / "temporary-sibling"
+    original_read = runtime.os.read
+    churned = False
+
+    def read_with_parent_churn(descriptor: int, size: int) -> bytes:
+        nonlocal churned
+        if not churned:
+            churned = True
+            sibling.write_bytes(b"temporary")
+            sibling.unlink()
+        return original_read(descriptor, size)
+
+    monkeypatch.setattr(runtime.os, "read", read_with_parent_churn)
+
+    captured = runtime.capture_exact_regular_file(
+        target,
+        max_bytes=1024,
+        require_nonempty=True,
+        require_single_link=True,
+        label="churned capture",
+    )
+
+    assert churned is True
+    assert captured.data == payload
+    assert captured.sha256 == hashlib.sha256(payload).hexdigest()
+    assert not sibling.exists()
+
+
 def _atomic_writer(path: Path, data: bytes) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(data)

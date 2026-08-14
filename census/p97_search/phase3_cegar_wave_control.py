@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import json
 import math
+import os
+import stat
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from types import MappingProxyType
@@ -98,6 +100,25 @@ _POLICY_KEYS = frozenset(
     }
 )
 _POLICY_OPTIONAL_KEYS = frozenset({"requested_core_limit"})
+
+
+def _require_canonical_repo_root(repo_root: Path) -> Path:
+    if type(repo_root) is not _NATIVE_PATH_TYPE:
+        raise WaveControlError("repo_root must be an exact native Path")
+    if not repo_root.is_absolute():
+        raise WaveControlError("repo_root must be absolute")
+    canonical = Path(os.path.realpath(os.fspath(repo_root)))
+    if canonical != repo_root:
+        raise WaveControlError("repo_root must be a canonical no-symlink path")
+    try:
+        metadata = os.stat(repo_root, follow_symlinks=False)
+    except OSError as exc:
+        raise WaveControlError("repo_root cannot be inspected") from exc
+    if not stat.S_ISDIR(metadata.st_mode):
+        raise WaveControlError("repo_root must be a directory")
+    return repo_root
+
+
 _INVENTORY_KEYS = frozenset({"schema", "entries"})
 _ENTRY_KEYS = frozenset(
     {
@@ -748,8 +769,7 @@ def build_cleanup_plan(
         )
     trusted = _trusted_entrypoints(approved_entrypoints)
     inventory = load_entrypoint_inventory(inventory_raw)
-    if type(repo_root) is not _NATIVE_PATH_TYPE:
-        raise WaveControlError("repo_root must be an exact native Path")
+    repo_root = _require_canonical_repo_root(repo_root)
     targets: list[dict[str, Any]] = []
     blocked: list[dict[str, Any]] = []
     protected_paths = _protected_inventory_paths(inventory["entries"])

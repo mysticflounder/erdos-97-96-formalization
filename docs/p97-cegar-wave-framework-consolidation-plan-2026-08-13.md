@@ -234,6 +234,32 @@ Consolidation is acceptable only if it preserves all of these boundaries:
 
 ## Migration plan
 
+### Implementation checkpoint — 2026-08-13
+
+The first executable framework tranche is implemented without migrating a
+production wave:
+
+- `phase3_cegar_wave_control.py` provides the strict control parser, closed
+  adapter registry, authenticated static-package binding, and dry-run cleanup
+  plan generator.
+- `phase3_cegar_wave_engine.py` provides the first reusable `STATIC_CNF`
+  execution boundary, a self-hashed result envelope, and a transport-free
+  offline validator. It remains discovery-only: its UNSAT classification is
+  not a certificate or theorem claim.
+- `phase3_cegar_cleanup.py` provides the cleanup safety boundary. It consumes
+  only an exact digest-selected plan, moves approved compatibility shims into
+  a create-once quarantine, and emits an immutable quarantine receipt
+  supporting later rollback. It has no
+  deletion or purge API, and no cleanup has been executed as part of this
+  checkpoint.
+- `scripts/test-p97-cegar-wave-framework.sh` is the single one-process,
+  thread-capped gate for these framework modules.
+
+Still pending are the shared CLI, registry-driven wave discovery, shadow
+migration of preserved Exact17 waves, and the first data-only native wave.
+Quarantine execution remains last and requires a separately reviewed exact
+inventory and plan digest after those migration gates pass.
+
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 
 The first implementation tranche is a dry run for cleanup plan generation only.
@@ -275,6 +301,33 @@ content-addressed plan and its supporting inventory evidence.
   archive before source removal, keep the protected evidence through the
   rollback window, and rescan the authenticated inventory after every removal
   to reverify zero references and zero writers.
+
+The bounded quarantine implementation in
+`census/p97_search/phase3_cegar_cleanup.py` is deliberately dormant during
+this tranche. It accepts only a canonical plan whose digest, externally
+authenticated inventory, and trusted entrypoint allowlist still agree; it
+revalidates exact no-follow single-link regular files, re-digests each source
+through a held descriptor immediately before rename, and atomically moves
+approved shims through held no-follow quarantine descriptors before writing an
+immutable receipt. Both cleanup planning and execution require the repository
+root to be an exact absolute canonical no-symlink path; aliases such as the
+macOS `/var` to `/private/var` path are rejected before target classification
+or quarantine creation instead of silently producing an empty plan. Cleanup is
+last in the migration order: activation is not a Phase 2 execution gate and
+remains deferred until standalone validation, actual
+engine-run tests, and evidence comparison pass. The executor is move-only
+quarantine. The shared engine output root, including its `engine-envelope.json`,
+sole attempt directory, and exact six-entry attempt inventory
+(`attempt.jsonl`, `attempt.jsonl.lock`, `attempt.jsonl.artifacts/`,
+`attempt.jsonl.seal.json`, `solver-receipt.json`, and `custody-seal.json`), is
+protected evidence and is never a cleanup target. A post-move digest failure or
+other failure after one or more moves may leave a partial quarantine root
+without a receipt; the source has already moved, so preserve that root and its
+entries as explicit rollback-window state for separate review and do not retry
+or purge automatically. The module exposes no deletion or
+purge API. Source removal, rollback-window expiry, and any future reviewed
+purge remain separate operations, with an inventory rescan required after each
+eventual removal.
 
 Exit gate: no active or externally invoked script is unclassified.
 
