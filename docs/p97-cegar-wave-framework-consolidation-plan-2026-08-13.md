@@ -246,6 +246,23 @@ production wave:
   execution boundary, a self-hashed result envelope, and a transport-free
   offline validator. It remains discovery-only: its UNSAT classification is
   not a certificate or theorem claim.
+- `cegar_exact17_shadow.py` provides an offline comparator for the preserved
+  Child38 and Child39 publication bundles. It captures the legacy inputs
+  twice, binds them to the closed `STATIC_CNF` control, and reports observed
+  parity without starting PIQD, a solver, Lean, or transport.
+  JSON inputs must be either the compact canonical encoding or the exact
+  sorted, two-space-indented, LF-terminated legacy encoding; duplicate keys,
+  non-finite numbers, reordered or differently spaced encodings, symlinks,
+  hardlinks, and path/inode replacement are rejected. The create-once shadow
+  receipt is written and recaptured through one held parent-directory and
+  file descriptor, fsynced, and rebound to the unchanged parent pathname
+  before it is accepted.
+  The legacy ingress `daemon_build_receipt` is always validated as an exact
+  absolute-path/lowercase-digest sealed reference. It enters the comparator's
+  independently captured artifact digest table only when the caller also
+  supplies that artifact for a fresh no-follow, single-link recapture; an
+  omitted or legacy hard-linked receipt is not silently promoted to captured
+  custody.
 - `phase3_cegar_cleanup.py` provides the cleanup safety boundary. It consumes
   only an exact digest-selected plan, moves approved compatibility shims into
   a create-once quarantine, and emits an immutable quarantine receipt
@@ -255,10 +272,34 @@ production wave:
 - `scripts/test-p97-cegar-wave-framework.sh` is the single one-process,
   thread-capped gate for these framework modules.
 
-Still pending are the shared CLI, registry-driven wave discovery, shadow
-migration of preserved Exact17 waves, and the first data-only native wave.
+The shared CLI and registry-driven wave discovery are now implemented. Still
+pending are switching a production Exact17 wave from its legacy entrypoint to
+that shared runtime, the first data-only native wave, and the later shim
+retirement pass.
 Quarantine execution remains last and requires a separately reviewed exact
 inventory and plan digest after those migration gates pass.
+
+### Exact17 frozen shadow checkpoint — 2026-08-14
+
+The hardened comparator was run offline against the preserved Child38 and
+Child39 bundles under `scratch/exact17-lean-to-sat/`. It emitted create-once
+receipts under
+`scratch/p97-cegar-wave-framework/exact17-shadow-20260814-v3/`:
+
+- Child38: `SAT_OBSERVED`, 308 variables, 5,847,276 clauses, CNF SHA-256
+  `07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7`,
+  receipt SHA-256
+  `244d79619e76860e84c9f4dca5bf5c48cbfe391645a67a51c4dcbf4754f2cf7d`.
+- Child39: `SAT_OBSERVED`, 308 variables, 5,847,388 clauses, CNF SHA-256
+  `989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`,
+  receipt SHA-256
+  `3bf0678011f9da44f0dff0b475c6112c963218bf0724010a726ac6e57b3f4eeb`.
+  Its exact 112-clause ordered suffix over Child38 has SHA-256
+  `4cc66a1b3f4af46d60ed0a2c59f4fb6b0cb016f3ab1b111989ffe015f5b33925`.
+
+This closes the frozen offline parity fixture only. The legacy runtime has not
+been retired, the shared runtime has not produced a replacement production
+wave, and no cleanup target is authorized by these receipts.
 
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 
@@ -365,6 +406,13 @@ enter this gate until their separate adapters preserve their domain receipts.
 
 - Use two closed consecutive Exact17 waves, initially Child38 and Child39, as
   the parity fixture. Reconstruct their specs from their frozen artifacts.
+- Run `census/p97_search/cegar_exact17_shadow.py` and its focused test against
+  offline copies of both authenticated bundles. The comparator returns
+  `SAT_OBSERVED` for an accepted bundle; the migration gate records `PASS`
+  only when both Child38 and Child39 satisfy that result and the legacy CNF,
+  receipt, manifest, model, parent binding, and ordered-suffix identities
+  agree with the generic `STATIC_CNF` control. This is observed parity
+  evidence, not a proof or theorem claim.
 - Run the generic validators against copies of their preserved outputs; do not
   mutate their campaign directories.
 - Compare exact input identities, semantic outcomes, artifact inventories,
@@ -373,7 +421,12 @@ enter this gate until their separate adapters preserve their domain receipts.
   fixtures until all meaningful fields agree.
 
 Exit gate: the generic path independently validates both frozen waves and its
-adversarial tests reject every mutation rejected by the legacy validators.
+adversarial tests reject every mutation rejected by the legacy validators. No
+cleanup plan may be executed on the strength of shadow parity alone: both
+comparators must be `PASS`, a fresh authenticated inventory rescan must show
+zero references and zero writers for any proposed shim, all immutable legacy
+artifacts and replay evidence must remain preserved, and cleanup must receive
+separate review under the exact plan digest.
 
 ### Phase 4: first native wave
 
@@ -463,6 +516,7 @@ The repository-level gate additionally runs:
 - exact parent/child/negated-cube covering-family reconstruction and LRAT checks
   for every cube campaign;
 - pre/post hashing of the exact private checker copy used by a proof gate;
+- offline Child38/Child39 shadow parity and protected-artifact non-targeting;
 - theorem-promotion checks using the existing wave publication contract; and
 - a generated-entrypoint audit proving no active wave bypasses the engine.
 

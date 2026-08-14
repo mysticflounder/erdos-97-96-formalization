@@ -18,12 +18,14 @@ python_files=(
   census/p97_search/phase3_cegar_wave_control.py
   census/p97_search/phase3_cegar_wave_engine.py
   census/p97_search/phase3_cegar_cleanup.py
+  census/p97_search/cegar_exact17_shadow.py
   census/p97_search/cegar_wave_registry.py
   census/p97_search/cegar_wave_cli.py
   census/p97_search/tests/test_phase3_cegar_runtime.py
   census/p97_search/tests/test_phase3_cegar_wave_control.py
   census/p97_search/tests/test_phase3_cegar_wave_engine.py
   census/p97_search/tests/test_phase3_cegar_cleanup.py
+  census/p97_search/tests/test_cegar_exact17_shadow.py
   census/p97_search/tests/test_cegar_wave_registry.py
   census/p97_search/tests/test_cegar_wave_cli.py
 )
@@ -35,11 +37,13 @@ format_files=(
   census/p97_search/phase3_cegar_wave_control.py
   census/p97_search/phase3_cegar_wave_engine.py
   census/p97_search/phase3_cegar_cleanup.py
+  census/p97_search/cegar_exact17_shadow.py
   census/p97_search/cegar_wave_registry.py
   census/p97_search/cegar_wave_cli.py
   census/p97_search/tests/test_phase3_cegar_wave_control.py
   census/p97_search/tests/test_phase3_cegar_wave_engine.py
   census/p97_search/tests/test_phase3_cegar_cleanup.py
+  census/p97_search/tests/test_cegar_exact17_shadow.py
   census/p97_search/tests/test_cegar_wave_registry.py
   census/p97_search/tests/test_cegar_wave_cli.py
 )
@@ -49,6 +53,7 @@ format_files=(
   census/p97_search/tests/test_phase3_cegar_wave_control.py \
   census/p97_search/tests/test_phase3_cegar_wave_engine.py \
   census/p97_search/tests/test_phase3_cegar_cleanup.py \
+  census/p97_search/tests/test_cegar_exact17_shadow.py \
   census/p97_search/tests/test_cegar_wave_registry.py \
   census/p97_search/tests/test_cegar_wave_cli.py
 .venv/bin/ruff check "${python_files[@]}"
