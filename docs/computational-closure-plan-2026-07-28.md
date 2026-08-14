@@ -11208,9 +11208,9 @@ duplicate-free `legalNextCenterLabels` table together with
 `SourceModel.nextCenter_mem_legalNextCenterLabels`; its checked length is
 thirteen.  These declarations have ordinary core axiom closure and will feed
 the eventual per-cell terminal coordinator.  They are an ingress theorem, not
-a closure claim.  Their source hunk is deferred until canonical Child44
-finalization so the frozen exporter-source identity remains unchanged during
-custody replay.
+a closure claim.  After canonical Child44 finalization, the source hunk was
+banked; its targeted module build passed, and the direct coverage theorem's
+literal axiom closure is `propext`, `Classical.choice`, and `Quot.sound`.
 
 This replaces two rejected successors.  The generic cancellation enumerator
 is complete only for one supplied row system, not for every `SourceModel`, so

@@ -1057,9 +1057,9 @@ reuse preflight at source revision `d2d146ab` found the existing
 `SourceModel.nextCenter_not_old` antecedent and CNF evaluator, but no previously
 named thirteen-cell coverage theorem.  The immediate consumer remains the
 future per-cell terminal coordinator; these declarations are ingress, not leaf
-closure by themselves.  The source hunk is deliberately deferred until after
-canonical Child44 finalization because changing any transitive exporter source
-before that custody gate would correctly trigger source-drift rejection.
+closure by themselves.  After canonical Child44 finalization, the source hunk
+was banked and its targeted module build passed.  The direct coverage theorem's
+literal axiom closure is `propext`, `Classical.choice`, and `Quot.sound`.
 
 The frontier measure is now the number of open next-center cells, followed by
 the number of Kalmanson-feasible cells.  A round that merely adds another

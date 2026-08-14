@@ -205,6 +205,32 @@ structure SourceModel where
   next_source_mem : 11 ∈ selected nextCenter
   next_physical_hits : (selected nextCenter ∩ physicalLabels).card ≤ 1
 
+/-- The thirteen labels that can serve as the next center after excluding the
+four old row centers. -/
+def legalNextCenterLabels : List Label :=
+  [0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16]
+
+/-- Membership in the explicit next-center table is exactly nonmembership in
+the four old row centers. -/
+theorem legalNextCenterLabels_spec :
+    ∀ center : Label,
+      center ∈ legalNextCenterLabels ↔
+        center ∉ ({oldCenter 0, oldCenter 1, oldCenter 2, oldCenter 3} : Finset Label) := by
+  decide
+
+/-- Every source model belongs to one of the thirteen next-center cells. -/
+theorem SourceModel.nextCenter_mem_legalNextCenterLabels (model : SourceModel) :
+    model.nextCenter ∈ legalNextCenterLabels :=
+  (legalNextCenterLabels_spec model.nextCenter).2 model.nextCenter_not_old
+
+/-- The explicit next-center table has exactly thirteen entries. -/
+theorem legalNextCenterLabels_length : legalNextCenterLabels.length = 13 := by
+  decide
+
+/-- The explicit next-center table has no duplicate label. -/
+theorem legalNextCenterLabels_nodup : legalNextCenterLabels.Nodup := by
+  decide
+
 /-- The three named finite regions are pairwise as intended and cover all
 seventeen labels.  This is a regression theorem for the checked encoder's
 literal tables. -/

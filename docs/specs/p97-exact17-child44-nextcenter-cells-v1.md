@@ -79,9 +79,10 @@ proof-producing solve, independent proof replay, and a named Lean cell theorem.
 The source theorem candidate `legalNextCenterLabels` is the explicit
 duplicate-free thirteen-element complement of the old centers.
 `SourceModel.nextCenter_mem_legalNextCenterLabels` supplies the source-total
-coverage ingress.  It was LSP-elaborated and axiom-audited, but its source hunk
-is deferred until canonical Child44 finalization preserves the frozen
-submission identity.
+coverage ingress.  It is now banked in
+`BlockerVExactSeventeenSourceNormalForm.lean`; LSP diagnostics and the targeted
+module build pass.  Its literal axiom closure is `propext`,
+`Classical.choice`, and `Quot.sound`.
 
 The terminal coordinator may close exact 17 only after every one of the
 thirteen cells has an independently replayed static `UNSAT` theorem.  It cases
@@ -97,5 +98,5 @@ subcell used to qualify plumbing, not one of the thirteen production cells.  It
 showed that short serial wall-clock sweeps are not useful and that session
 canonicalization must be authenticated explicitly.  The first framework canary
 should instead use the manifest's deterministic conflict budget across a small
-parallel subset, including cell `next-center-15`, whose parent Child44 model is
-the known positive fixture after canonical model replay completes.
+parallel subset, including cell `next-center-15`, which is the canonical
+Child44 positive fixture.
