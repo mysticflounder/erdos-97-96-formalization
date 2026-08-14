@@ -294,6 +294,81 @@ theorem isUniqueFourCenter_of_not_fullyDeletionRobust
     exact hnr (fullyDeletionRobustAt_of_large_class hrpos (by omega))
   exact ⟨hc, r, hrpos, le_antisymm hle hr4, huniq⟩
 
+/-- At a nonrobust center, an arbitrary selected four-row records exactly
+which single-point deletions preserve a four-point equidistant witness:
+precisely the deletions outside that row.
+
+The forward implication uses uniqueness forced by nonrobustness; the reverse
+implication is the unconditional survival of a selected row after deleting a
+point outside its support. -/
+theorem selectedFourClass_survives_erase_iff_not_mem_of_not_fullyDeletionRobust
+    {D : CounterexampleData} {center x : ℝ²}
+    (hcenterA : center ∈ D.A)
+    (K : SelectedFourClass D.A center)
+    (hnonrobust : ¬ FullyDeletionRobustAt D center) :
+    HasNEquidistantPointsAt 4 (D.A.erase x) center ↔ x ∉ K.support := by
+  have hunique : IsUniqueFourCenter D.A center :=
+    isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA hnonrobust
+  have hsupport : K.support = uniqueFourClass D.A center :=
+    selectedFourClass_support_eq_uniqueFourClass hunique K
+  constructor
+  · intro hsurvives hx
+    exact not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass hunique
+      (hsupport ▸ hx) hsurvives
+  · exact selectedFourClass_survives_erase_of_not_mem K
+
+/-- Exact deletion semantics for any selected four-row at a carrier center.
+A deletion preserves a four-point equidistant witness exactly when the center
+is fully deletion-robust or the deleted point lies outside the selected row.
+
+This statement is cardinality-independent and does not enumerate the ambient
+carrier. -/
+theorem selectedFourClass_survives_erase_iff_robust_or_not_mem
+    {D : CounterexampleData} {center x : ℝ²}
+    (hcenterA : center ∈ D.A)
+    (K : SelectedFourClass D.A center) :
+    HasNEquidistantPointsAt 4 (D.A.erase x) center ↔
+      FullyDeletionRobustAt D center ∨ x ∉ K.support := by
+  constructor
+  · intro hsurvives
+    by_cases hrobust : FullyDeletionRobustAt D center
+    · exact Or.inl hrobust
+    · exact Or.inr
+        ((selectedFourClass_survives_erase_iff_not_mem_of_not_fullyDeletionRobust
+          hcenterA K hrobust).mp hsurvives)
+  · rintro (hrobust | hx)
+    · by_cases hxA : x ∈ D.A
+      · exact hrobust.survives x hxA
+      · exact selectedFourClass_survives_erase_of_not_mem K
+          (fun hxK ↦ hxA (K.support_subset_A hxK))
+    · exact selectedFourClass_survives_erase_of_not_mem K hx
+
+/-- Individual deletions blocked at a nonrobust selected-four center must come
+from that selected row.  Hence any finite family of such blocked points lying
+in a second support injects into the intersection with the selected row.
+
+This is cardinality-independent.  It concerns separate one-point deletions;
+it does not apply to a set whose simultaneous deletion is blocking while each
+memberwise restoration preserves a four-point witness. -/
+theorem card_le_inter_selectedFourClass_of_blocked_deletions
+    {D : CounterexampleData} {center : ℝ²}
+    (hcenterA : center ∈ D.A)
+    (K : SelectedFourClass D.A center)
+    (target blocked : Finset ℝ²)
+    (hsubset : blocked ⊆ target)
+    (hnonrobust : ¬ FullyDeletionRobustAt D center)
+    (hblocked : ∀ x ∈ blocked,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) center) :
+    blocked.card ≤ (target ∩ K.support).card := by
+  apply Finset.card_le_card
+  intro x hx
+  have hxK : x ∈ K.support := by
+    by_contra hxNotK
+    exact hblocked x hx
+      ((selectedFourClass_survives_erase_iff_not_mem_of_not_fullyDeletionRobust
+        hcenterA K hnonrobust).2 hxNotK)
+  exact Finset.mem_inter.mpr ⟨hsubset hx, hxK⟩
+
 /-- Every member of a selected four-row at a nonrobust carrier center is a
 critical deletion source, and the resulting exact critical shell is precisely
 the selected row.

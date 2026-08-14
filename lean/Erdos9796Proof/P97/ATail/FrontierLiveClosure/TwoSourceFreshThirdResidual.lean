@@ -5,10 +5,12 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdPinnedFanPacket
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceTripleShellEscape
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdRetainedProducer
 import Erdos9796Proof.P97.ATail.FirstApexInteriorPairGeometry
 import Erdos9796Proof.P97.ATail.GlobalMinimalDeletion
+import Erdos9796Proof.P97.ATail.SelectedFourGeometry
 import Erdos9796Proof.P97.ATail.TwoTripleRowSixPointEuclideanObstruction
 import Erdos9796Proof.P97.Census554.ZeroCutBoundaryIndexing
 
@@ -50,6 +52,8 @@ open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
+
+open scoped BigOperators
 
 attribute [local instance] Classical.propDecidable
 
@@ -1109,6 +1113,130 @@ theorem collisionRows_sourceCleanMultiplicityIngress
       P Pρ hblockerMultiplicity with hcross | hresidual
   · exact Or.inl hcross
   · exact Or.inr ⟨hresidual, hglobalCapSplit⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+/-- Four omitted blocker values turn the three named collision fibers
+`P`, `Pρ`, and `Q` into a finite-map multiplicity alternative.
+
+The fourth omitted value comes from a fully deletion-robust carrier center.
+Its separation from the three robust apices is the only conditional geometric
+ingress.  The conclusion does not claim a contradiction: it exposes either a
+genuinely new blocker fiber or a third source in one of the three named
+fibers. -/
+theorem freshThird_fourOmissionBlockerMultiplicityIngress
+    (Q : FreshThirdBlockerFiber P Pρ)
+    {center : ℝ²}
+    (hcenterA : center ∈ D.A)
+    (hrobust : FullyDeletionRobustAt D center)
+    (hcenterNeOpp₁ : center ≠ S.oppApex1)
+    (hcenterNeOpp₂ : center ≠ S.oppApex2)
+    (hcenterNeSurplus : center ≠ S.surplusApex) :
+    (∃ x y, x ≠ y ∧
+        H.blockerVertex x = H.blockerVertex y ∧
+        H.blockerVertex x ≠
+          H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ ∧
+        H.blockerVertex x ≠
+          H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ ∧
+        H.blockerVertex x ≠ H.blockerVertex Q.source₁) ∨
+      (∃ x, x ≠ ⟨P.source₁, P.source₁_mem_A⟩ ∧
+        x ≠ ⟨P.source₂, P.source₂_mem_A⟩ ∧
+        H.blockerVertex x =
+          H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩) ∨
+      (∃ x, x ≠ ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ ∧
+        x ≠ ⟨Pρ.source₂, Pρ.source₂_mem_A⟩ ∧
+        H.blockerVertex x =
+          H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩) ∨
+      ∃ x, x ≠ Q.source₁ ∧ x ≠ Q.source₂ ∧
+        H.blockerVertex x = H.blockerVertex Q.source₁ := by
+  classical
+  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex1, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex2, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.surplusApex, by
+      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+  let centerVertex : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨center, hcenterA⟩
+  let a₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₁, P.source₁_mem_A⟩
+  let a₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₂, P.source₂_mem_A⟩
+  let b₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  let b₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+  have homitted₁ : ∀ x, H.blockerVertex x ≠ apex₁ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+      H x apex₁.2
+  have homitted₂ : ∀ x, H.blockerVertex x ≠ apex₂ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+      H x apex₂.2
+  have homitted₃ : ∀ x, H.blockerVertex x ≠ apex₃ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+      H x apex₃.2
+  have homitted₄ : ∀ x, H.blockerVertex x ≠ centerVertex := by
+    intro x
+    exact hrobust.blockerVertex_ne H x hcenterA
+  have hapex₁₂ : apex₁ ≠ apex₂ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2)
+        (by simpa [apex₁, apex₂] using congrArg Subtype.val h)
+  have hapex₁₃ : apex₁ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex1).symm
+        (by simpa [apex₁, apex₃] using congrArg Subtype.val h)
+  have hapex₂₃ : apex₂ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex2).symm
+        (by simpa [apex₂, apex₃] using congrArg Subtype.val h)
+  have hapex₁₄ : apex₁ ≠ centerVertex := by
+    intro h
+    exact hcenterNeOpp₁
+      (by simpa [apex₁, centerVertex] using congrArg Subtype.val h.symm)
+  have hapex₂₄ : apex₂ ≠ centerVertex := by
+    intro h
+    exact hcenterNeOpp₂
+      (by simpa [apex₂, centerVertex] using congrArg Subtype.val h.symm)
+  have hapex₃₄ : apex₃ ≠ centerVertex := by
+    intro h
+    exact hcenterNeSurplus
+      (by simpa [apex₃, centerVertex] using congrArg Subtype.val h.symm)
+  have hfa : H.blockerVertex a₁ = H.blockerVertex a₂ := by
+    apply Subtype.ext
+    exact P.blockers_eq
+  have hfb : H.blockerVertex b₁ = H.blockerVertex b₂ := by
+    apply Subtype.ext
+    exact Pρ.blockers_eq
+  have hfc : H.blockerVertex Q.source₁ = H.blockerVertex Q.source₂ :=
+    Q.blockers_eq
+  have hvaluesAB : H.blockerVertex a₁ ≠ H.blockerVertex b₁ := by
+    intro h
+    apply hblockersNe
+    exact congrArg Subtype.val h.symm
+  have hvaluesAC : H.blockerVertex a₁ ≠ H.blockerVertex Q.source₁ :=
+    Ne.symm Q.blocker_ne_first
+  have hvaluesBC : H.blockerVertex b₁ ≠ H.blockerVertex Q.source₁ :=
+    Ne.symm Q.blocker_ne_second
+  simpa [a₁, a₂, b₁, b₂] using
+    (fourth_fiber_or_larger_known_fiber_of_four_omissions
+      H.blockerVertex homitted₁ homitted₂ homitted₃ homitted₄
+      hapex₁₂ hapex₁₃ hapex₁₄ hapex₂₃ hapex₂₄ hapex₃₄
+      hfa hfb hfc hvaluesAB hvaluesAC hvaluesBC)
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -5103,6 +5231,4124 @@ theorem nonrobustCenter_or_exists_mutualCrossDeletionRows_of_sourceFaithfulFan
         exists_selectedFourClass_avoiding_of_deletion_survives hwzSurvives,
         hblockersNe⟩
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Canonical-row finite image of the no-center arm of a source-faithful fan.
+
+The primitive fan normalization retains deletion-survival propositions.  This
+packet rewrites each one as omission from the corresponding canonical exact
+four-row.  It introduces no arbitrary row witnesses and no bound on the
+ambient carrier. -/
+structure SourceFaithfulFanNoCenterBlockerRowWitness
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} {Row : SelectedFourClass D.A center}
+    (F : IndexedSourceFaithfulSelectedFourFan D S H Row) : Prop where
+  center_ne_actualBlocker : ∀ i : Fin 4, center ≠ F.blockerCenter i
+  repeatedCapPair :
+    ∃ i j : Fin 4, i ≠ j ∧
+        ∃ blockerCap : Fin 3,
+          F.blockerCenter i ∈ S.capInteriorByIndex blockerCap ∧
+            F.blockerCenter j ∈ S.capInteriorByIndex blockerCap ∧
+            (F.blockerCenter i = F.blockerCenter j ∨
+              (F.source j).1 ∉
+                (F.blockerRow i).toCriticalFourShell.support ∨
+              (F.source i).1 ∉
+                (F.blockerRow j).toCriticalFourShell.support)
+  mutualCrossRows :
+    ∃ i j : Fin 4, i ≠ j ∧
+        (F.source j).1 ∉ (F.blockerRow i).toCriticalFourShell.support ∧
+        (F.source i).1 ∉ (F.blockerRow j).toCriticalFourShell.support ∧
+        F.blockerCenter i ≠ F.blockerCenter j
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Convert the primitive no-center witness to its canonical-row finite
+image. -/
+theorem sourceFaithfulFan_noCenterBlockerRowWitness
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} {Row : SelectedFourClass D.A center}
+    (F : IndexedSourceFaithfulSelectedFourFan D S H Row)
+    (W : IndexedSourceFaithfulSelectedFourFan.NoCenterBlockerWitness F) :
+    SourceFaithfulFanNoCenterBlockerRowWitness F := by
+  refine
+    { center_ne_actualBlocker := W.center_ne_actualBlocker
+      repeatedCapPair := ?_
+      mutualCrossRows := ?_ }
+  · rcases W.repeatedCapPair with
+      ⟨i, j, hij, blockerCap, hiCap, hjCap,
+        hblockers | hzwSurvives | hwzSurvives⟩
+    · exact
+        ⟨i, j, hij, blockerCap, hiCap, hjCap,
+          Or.inl hblockers⟩
+    · exact
+        ⟨i, j, hij, blockerCap, hiCap, hjCap,
+          Or.inr (Or.inl
+            (by
+              simpa [IndexedSourceFaithfulSelectedFourFan.blockerRow] using
+                ((cross_deletion_survives_iff_not_mem_selected_support H
+                    (F.source i).2).mp hzwSurvives)))⟩
+    · exact
+        ⟨i, j, hij, blockerCap, hiCap, hjCap,
+          Or.inr (Or.inr
+            (by
+              simpa [IndexedSourceFaithfulSelectedFourFan.blockerRow] using
+                ((cross_deletion_survives_iff_not_mem_selected_support H
+                    (F.source j).2).mp hwzSurvives)))⟩
+  · rcases W.mutualCrossRows with
+      ⟨i, j, hij, hijSurvives, hjiSurvives, hblockersNe⟩
+    have hwNotMem :
+        (F.source j).1 ∉
+          (F.blockerRow i).toCriticalFourShell.support := by
+      simpa [IndexedSourceFaithfulSelectedFourFan.blockerRow] using
+        ((cross_deletion_survives_iff_not_mem_selected_support H
+            (F.source i).2).mp hijSurvives)
+    have hzNotMem :
+        (F.source i).1 ∉
+          (F.blockerRow j).toCriticalFourShell.support := by
+      simpa [IndexedSourceFaithfulSelectedFourFan.blockerRow] using
+        ((cross_deletion_survives_iff_not_mem_selected_support H
+            (F.source j).2).mp hjiSurvives)
+    exact
+      ⟨i, j, hij, hwNotMem, hzNotMem, hblockersNe⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Exact source-clean fan split used by the pinned-endpoint bounded query.
+
+The first arm retains the actual source responsible for nonrobustness.  The
+second arm simultaneously retains the same-cap and mutual-deletion row
+packets, rather than choosing one coarse consequence and forgetting the
+other. -/
+theorem centerBlocker_or_sourceFaithfulFanNoCenterBlockerRowWitness
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} {Row : SelectedFourClass D.A center}
+    (F : IndexedSourceFaithfulSelectedFourFan D S H Row) :
+    Nonempty (IndexedSourceFaithfulSelectedFourFan.CenterBlockerWitness F) ∨
+      SourceFaithfulFanNoCenterBlockerRowWitness F := by
+  rcases F.centerBlocker_or_noCenterBlockerWitness with hcenter | hnoCenter
+  · exact Or.inl hcenter
+  · exact Or.inr (sourceFaithfulFan_noCenterBlockerRowWitness F hnoCenter)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Equal actual blockers turn two sources of one selected row into a shared
+pair with the canonical blocker row.  Consequently the two sources must lie
+on opposite boundary arcs between the row center and their common blocker.
+
+This is the source adapter for the collision arm of the pinned-endpoint fan:
+all metric work is discharged here.  A remaining consumer only has to produce
+the opposite, nonalternating boundary placement from the retained endpoint
+and cap packet. -/
+theorem selectedFourClass_actualBlockerCollision_pair_separated
+    (B : BoundaryIndexing D.A)
+    {center : ℝ²} (hcenterA : center ∈ D.A)
+    (Row : SelectedFourClass D.A center)
+    (z w : CriticalShellSystem.CarrierVertex D.A)
+    (hzRow : z.1 ∈ Row.support) (hwRow : w.1 ∈ Row.support)
+    (hzw : z ≠ w)
+    (hcenterNe : center ≠ H.centerAt z.1 z.2)
+    (hblockers : H.centerAt z.1 z.2 = H.centerAt w.1 w.2) :
+    (SurplusCOMPGBank.btw
+        (B.indexOf ⟨center, hcenterA⟩)
+        (B.indexOf (H.blockerVertex z))
+        (B.indexOf z) ↔
+      ¬ SurplusCOMPGBank.btw
+        (B.indexOf ⟨center, hcenterA⟩)
+        (B.indexOf (H.blockerVertex z))
+        (B.indexOf w)) := by
+  classical
+  let BlockerRow : SelectedFourClass D.A (H.centerAt z.1 z.2) :=
+    (H.selectedAt z.1 z.2).toCriticalFourShell.toSelectedFourClass
+  have hzBlocker : z.1 ∈ BlockerRow.support := by
+    simpa [BlockerRow, CriticalFourShell.toSelectedFourClass] using
+      (H.selectedAt z.1 z.2).toCriticalFourShell.q_mem_support
+  have hsupports :=
+    selectedSupports_eq_of_actualBlockers_eq H z.2 w.2 hblockers
+  have hwBlocker : w.1 ∈ BlockerRow.support := by
+    change w.1 ∈
+      (H.selectedAt z.1 z.2).toCriticalFourShell.support
+    rw [hsupports]
+    exact (H.selectedAt w.1 w.2).toCriticalFourShell.q_mem_support
+  have hzwVal : z.1 ≠ w.1 := by
+    intro h
+    exact hzw (Subtype.ext h)
+  simpa [CriticalShellSystem.blockerVertex] using
+    (selectedFourClass_sharedPairCyclicSeparation_atBoundary
+      (D := D) B hcenterA (H.blockerVertex z).2 z.2 w.2
+      hcenterNe hzwVal Row BlockerRow hzRow hwRow hzBlocker hwBlocker)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A robust source-faithful row cannot be centered at the actual blocker of
+any one of its sources.  The two branches of the pointwise fan rule both
+exclude that equality: the equal-center branch records nonrobustness, while
+the distinct-center branch records the inequality directly. -/
+theorem selectedFourClass_center_ne_actualBlocker_of_fan_robust
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (hfan : SourceFaithfulSelectedFourDeletionFan D S H Row)
+    (hrobust : FullyDeletionRobustAt D center)
+    (z : CriticalShellSystem.CarrierVertex D.A)
+    (hzRow : z.1 ∈ Row.support) :
+    center ≠ H.centerAt z.1 z.2 := by
+  rcases hfan z.1 hzRow with ⟨_, _, _, hsame | hdistinct⟩
+  · intro hcenter
+    exact hsame.2.2 hrobust
+  · exact hdistinct.1
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Certificate-facing contradiction for the collision arm.  Once a producer
+places the equal-blocker source pair on the same boundary arc between the row
+center and common blocker, the checked shared-pair separation theorem closes
+the arm at arbitrary carrier cardinality. -/
+theorem false_of_selectedFourClass_actualBlockerCollision_nonalternating
+    (B : BoundaryIndexing D.A)
+    {center : ℝ²} (hcenterA : center ∈ D.A)
+    (Row : SelectedFourClass D.A center)
+    (z w : CriticalShellSystem.CarrierVertex D.A)
+    (hzRow : z.1 ∈ Row.support) (hwRow : w.1 ∈ Row.support)
+    (hzw : z ≠ w)
+    (hcenterNe : center ≠ H.centerAt z.1 z.2)
+    (hblockers : H.centerAt z.1 z.2 = H.centerAt w.1 w.2)
+    (hsame :
+      SurplusCOMPGBank.btw
+          (B.indexOf ⟨center, hcenterA⟩)
+          (B.indexOf (H.blockerVertex z))
+          (B.indexOf z) ↔
+        SurplusCOMPGBank.btw
+          (B.indexOf ⟨center, hcenterA⟩)
+          (B.indexOf (H.blockerVertex z))
+          (B.indexOf w)) :
+    False := by
+  have hseparated :=
+    selectedFourClass_actualBlockerCollision_pair_separated
+      (D := D) (H := H) B hcenterA Row z w hzRow hwRow hzw
+        hcenterNe hblockers
+  by_cases hzArc :
+      SurplusCOMPGBank.btw
+        (B.indexOf ⟨center, hcenterA⟩)
+        (B.indexOf (H.blockerVertex z))
+        (B.indexOf z)
+  · exact (hseparated.mp hzArc) (hsame.mp hzArc)
+  · have hwArcNot :
+        ¬ SurplusCOMPGBank.btw
+          (B.indexOf ⟨center, hcenterA⟩)
+          (B.indexOf (H.blockerVertex z))
+          (B.indexOf w) := by
+      intro hwArc
+      exact hzArc (hsame.mpr hwArc)
+    exact hzArc (hseparated.mpr hwArcNot)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Fan-facing form of the equal-blocker collision consumer.  Robustness
+supplies the only additional fact needed by the shared-pair adapter: the row
+center differs from the common actual blocker. -/
+theorem false_of_sourceFaithfulFan_blockerCollision_nonalternating
+    (B : BoundaryIndexing D.A)
+    {center : ℝ²} (hcenterA : center ∈ D.A)
+    (Row : SelectedFourClass D.A center)
+    (hfan : SourceFaithfulSelectedFourDeletionFan D S H Row)
+    (hrobust : FullyDeletionRobustAt D center)
+    (z w : CriticalShellSystem.CarrierVertex D.A)
+    (hzRow : z.1 ∈ Row.support) (hwRow : w.1 ∈ Row.support)
+    (hzw : z ≠ w)
+    (hblockers : H.centerAt z.1 z.2 = H.centerAt w.1 w.2)
+    (hsame :
+      SurplusCOMPGBank.btw
+          (B.indexOf ⟨center, hcenterA⟩)
+          (B.indexOf (H.blockerVertex z))
+          (B.indexOf z) ↔
+        SurplusCOMPGBank.btw
+          (B.indexOf ⟨center, hcenterA⟩)
+          (B.indexOf (H.blockerVertex z))
+          (B.indexOf w)) :
+    False := by
+  exact false_of_selectedFourClass_actualBlockerCollision_nonalternating
+    (D := D) (H := H) B hcenterA Row z w hzRow hwRow hzw
+      (selectedFourClass_center_ne_actualBlocker_of_fan_robust
+        (D := D) (S := S) (H := H) Row hfan hrobust z hzRow)
+      hblockers hsame
+
+/-- The complete source image consumed by the pinned-endpoint fan query.
+
+This packet deliberately keeps the FreshThird source objects in its type.  In
+particular, the six-point seed, endpoint naming, boundary order, cap placement,
+and exact fan are transported together; an exporter cannot replace them by an
+unrelated finite incidence pattern.  The ambient carrier remains arbitrary. -/
+structure FreshThirdPinnedEndpointOutsideSeedQueryPacket
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (B : BoundaryIndexing D.A) (qOutside qBetween : Fin B.n)
+    (center : ℝ²) (id : Fin B.n)
+    (DRow : SelectedFourClass D.A (B.boundary id))
+    (freshCap rowCap : Fin 3) where
+  exactRow : FreshThirdEqualCenterExactFourRow P Pρ C.surface Q
+  seedOverlap :
+    (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support ∩
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support =
+      {Q.source₁.1, Q.source₂.1}
+  endpointNames :
+    (qOutside = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩ ∧
+        qBetween = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩) ∨
+      (qOutside = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩ ∧
+        qBetween = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩)
+  orderedRow :
+    FreshThirdOrderSelectedEndpointCapSplitSurvivingRow S
+      B.boundary qOutside
+      (B.indexOf
+        ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+      qBetween
+      (B.indexOf
+        ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt C.surface.firstSource.1
+              C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+      (B.indexOf ⟨C.surface.firstSource.1,
+        C.surface.firstSource.2⟩)
+  center_mem_seed :
+    center ∈ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q
+  center_location :
+    center ∈
+        ({C.surface.firstSource.1, C.surface.secondSource.1,
+          Q.source₁.1, Q.source₂.1} : Finset ℝ²) ∨
+      center ∈ freshThirdCrossRowFreshRemainder P Pρ C.surface Q
+  center_ne_source :
+    center ≠ H.centerAt C.surface.firstSource.1 C.surface.firstSource.2
+  center_ne_fresh :
+    center ≠ H.centerAt Q.source₁.1 Q.source₁.2
+  seed_multiplicity : ∀ shellRadius : ℝ, 0 < shellRadius →
+    ((SelectedClass D.A center shellRadius) ∩
+      freshThirdCrossRowTwoShellSeed P Pρ C.surface Q).card ≤ 3
+  endpoint_center :
+    B.boundary id = Q.source₁.1 ∨ B.boundary id = Q.source₂.1
+  source_center_first_cap :
+    H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ∈
+      S.capInteriorByIndex S.oppIndex1
+  fresh_cap_ne_first : freshCap ≠ S.oppIndex1
+  fresh_center_cap :
+    H.centerAt Q.source₁.1 Q.source₁.2 ∈
+      S.capInteriorByIndex freshCap
+  endpoints_outside_first :
+    Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+      Q.source₂.1 ∉ S.capByIndex S.oppIndex1
+  orderedRowAt : FreshThirdOrderSelectedEndpointCapSplitSurvivingRowAt S
+    B.boundary
+    qOutside
+    (B.indexOf
+      ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+        (Finset.mem_erase.mp
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+    qBetween
+    (B.indexOf
+      ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+        (Finset.mem_erase.mp
+          (H.selectedAt C.surface.firstSource.1
+            C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+    (B.indexOf ⟨C.surface.firstSource.1,
+      C.surface.firstSource.2⟩)
+    id DRow rowCap
+  row_center_cap : B.boundary id ∈ S.capByIndex rowCap
+  row_cap_ne_first : rowCap ≠ S.oppIndex1
+  row_cap_inside : (DRow.support ∩ S.capByIndex rowCap).card ≤ 2
+  row_cap_outside : 2 ≤ (DRow.support \ S.capByIndex rowCap).card
+  seed_card :
+    (freshThirdCrossRowTwoShellSeed P Pρ C.surface Q).card = 6
+  fan : IndexedPinnedEndpointOutsideSeedFan D S H
+    (freshThirdCrossRowTwoShellSeed P Pρ C.surface Q)
+    center (B.boundary id) DRow
+
+/-- Arbitrary-cardinality extraction of the complete query packet from the
+live residual hypotheses.  Only the exact four-row supports are indexed; no
+upper bound is imposed on `D.A`. -/
+noncomputable def FreshThirdPinnedEndpointOutsideSeedQueryPacket.ofSource
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hexact : FreshThirdEqualCenterExactFourRow P Pρ C.surface Q)
+    (overlap_eq :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support =
+        {Q.source₁.1, Q.source₂.1})
+    (B : BoundaryIndexing D.A) (qOutside qBetween : Fin B.n)
+    (hnames :
+      (qOutside = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩ ∧
+          qBetween = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩) ∨
+        (qOutside = B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩ ∧
+          qBetween = B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩))
+    (hrow : FreshThirdOrderSelectedEndpointCapSplitSurvivingRow S
+      B.boundary qOutside
+      (B.indexOf
+        ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+      qBetween
+      (B.indexOf
+        ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt C.surface.firstSource.1
+              C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+      (B.indexOf ⟨C.surface.firstSource.1,
+        C.surface.firstSource.2⟩))
+    (center : ℝ²) (id : Fin B.n)
+    (DRow : SelectedFourClass D.A (B.boundary id))
+    (hcenterSeed :
+      center ∈ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q)
+    (hcenterLocation :
+      center ∈
+          ({C.surface.firstSource.1, C.surface.secondSource.1,
+            Q.source₁.1, Q.source₂.1} : Finset ℝ²) ∨
+        center ∈ freshThirdCrossRowFreshRemainder P Pρ C.surface Q)
+    (hcenterNeSource :
+      center ≠ H.centerAt C.surface.firstSource.1 C.surface.firstSource.2)
+    (hcenterNeFresh :
+      center ≠ H.centerAt Q.source₁.1 Q.source₁.2)
+    (hmult : ∀ shellRadius : ℝ, 0 < shellRadius →
+      ((SelectedClass D.A center shellRadius) ∩
+        freshThirdCrossRowTwoShellSeed P Pρ C.surface Q).card ≤ 3)
+    (hrowCenter :
+      B.boundary id = Q.source₁.1 ∨ B.boundary id = Q.source₂.1)
+    (hsourceCenterFirst :
+      H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ∈
+        S.capInteriorByIndex S.oppIndex1)
+    (freshCap : Fin 3) (hfreshCapNeFirst : freshCap ≠ S.oppIndex1)
+    (hfreshCenterCap :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈
+        S.capInteriorByIndex freshCap)
+    (hsource₁OutsideFirst : Q.source₁.1 ∉ S.capByIndex S.oppIndex1)
+    (hsource₂OutsideFirst : Q.source₂.1 ∉ S.capByIndex S.oppIndex1)
+    (rowCap : Fin 3)
+    (hrowAt : FreshThirdOrderSelectedEndpointCapSplitSurvivingRowAt S
+      B.boundary
+      qOutside
+      (B.indexOf
+        ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+      qBetween
+      (B.indexOf
+        ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+          (Finset.mem_erase.mp
+            (H.selectedAt C.surface.firstSource.1
+              C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+      (B.indexOf ⟨C.surface.firstSource.1,
+        C.surface.firstSource.2⟩)
+      id DRow rowCap)
+    (hrowCenterCap : B.boundary id ∈ S.capByIndex rowCap)
+    (hrowCapNeFirst : rowCap ≠ S.oppIndex1)
+    (hrowCapInside : (DRow.support ∩ S.capByIndex rowCap).card ≤ 2)
+    (hrowCapOutside : 2 ≤ (DRow.support \ S.capByIndex rowCap).card)
+    (hterminal :
+      (center ≠ B.boundary id ∧
+          (∃ z ∈ DRow.support,
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
+          ∃ K : SelectedFourClass D.A center,
+            (∃ z ∈ K.support,
+              z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
+            SourceFaithfulSelectedFourDeletionFan D S H K) ∨
+        center = B.boundary id ∧
+          (∃ z ∈ DRow.support,
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
+          SourceFaithfulSelectedFourDeletionFan D S H DRow) :
+    FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap := by
+  have hcenterA : center ∈ D.A :=
+    freshThirdCrossRowTwoShellSeed_subset_carrier
+      (P := P) (Pρ := Pρ) C.surface Q hcenterSeed
+  exact
+    { exactRow := hexact
+      seedOverlap := overlap_eq
+      endpointNames := hnames
+      orderedRow := hrow
+      center_mem_seed := hcenterSeed
+      center_location := hcenterLocation
+      center_ne_source := hcenterNeSource
+      center_ne_fresh := hcenterNeFresh
+      seed_multiplicity := hmult
+      endpoint_center := hrowCenter
+      source_center_first_cap := hsourceCenterFirst
+      fresh_cap_ne_first := hfreshCapNeFirst
+      fresh_center_cap := hfreshCenterCap
+      endpoints_outside_first :=
+        ⟨hsource₁OutsideFirst, hsource₂OutsideFirst⟩
+      orderedRowAt := hrowAt
+      row_center_cap := hrowCenterCap
+      row_cap_ne_first := hrowCapNeFirst
+      row_cap_inside := hrowCapInside
+      row_cap_outside := hrowCapOutside
+      seed_card :=
+        freshThirdCrossRowTwoShellSeed_card_eq_six
+          P Pρ C.surface Q overlap_eq
+      fan := IndexedPinnedEndpointOutsideSeedFan.ofEndpointSplit
+        hcenterA DRow hterminal }
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If the endpoint row contributes two witnesses to the distinguished first
+cap, then its pinned endpoint center and those witnesses form a genuine
+Dumitrescu cap-witness packet.
+
+This is the exact source-to-literature adapter.  It deliberately retains the
+cardinality premise: the current pinned-fan source packet does not prove that
+two row witnesses lie in the first cap. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.firstCapWitnessPacket
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (htwo :
+      2 ≤ (DRow.support ∩ S.capByIndex S.oppIndex1).card) :
+    Nonempty (SelectedFourCapWitnessPacket D.A
+      (S.capByIndex S.oppIndex1) (B.boundary id) DRow) := by
+  have hcenterA : B.boundary id ∈ D.A := by
+    have hcenterImage :
+        B.boundary id ∈ Finset.univ.image B.boundary :=
+      Finset.mem_image.mpr ⟨id, Finset.mem_univ _, rfl⟩
+    simpa only [B.boundary_image] using hcenterImage
+  have hcenterOutside : B.boundary id ∉ S.capByIndex S.oppIndex1 := by
+    rcases Packet.endpoint_center with hcenter | hcenter
+    · rw [hcenter]
+      exact Packet.endpoints_outside_first.1
+    · rw [hcenter]
+      exact Packet.endpoints_outside_first.2
+  exact DRow.nonempty_capWitnessPacket_of_two_mem
+    hcenterA hcenterOutside htwo
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Exhaustive first-cap reduction for the endpoint row.  Either the literature
+cap-witness consumer receives a genuine source-produced pair, or the remaining
+source problem has the strictly sharper incidence constraint that the endpoint
+row meets the first cap in at most one witness. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.firstCapWitnessPacket_or_card_le_one
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) :
+    Nonempty (SelectedFourCapWitnessPacket D.A
+        (S.capByIndex S.oppIndex1) (B.boundary id) DRow) ∨
+      (DRow.support ∩ S.capByIndex S.oppIndex1).card ≤ 1 := by
+  by_cases htwo : 2 ≤ (DRow.support ∩ S.capByIndex S.oppIndex1).card
+  · exact Or.inl
+      (FreshThirdPinnedEndpointOutsideSeedQueryPacket.firstCapWitnessPacket
+        (P := P) (Pρ := Pρ) (C := C) (Q := Q) (B := B)
+        (qOutside := qOutside) (qBetween := qBetween) (center := center)
+        (id := id) (DRow := DRow) (freshCap := freshCap)
+        (rowCap := rowCap) Packet htwo)
+  · exact Or.inr (by omega)
+
+/-- Source-proved robustness data for a pinned center distinct from all three
+rich apices.  Keeping this as a separate packet prevents the robust branch of
+the normalization from forgetting the hypotheses needed to choose deletion
+successors at the same center. -/
+structure FreshThirdPinnedRobustCenterSeparation (center : ℝ²) : Prop where
+  robust : FullyDeletionRobustAt D center
+  center_ne_oppApex1 : center ≠ S.oppApex1
+  center_ne_oppApex2 : center ≠ S.oppApex2
+  center_ne_surplusApex : center ≠ S.surplusApex
+
+/-- The synchronized finite image available when the pinned fan center is a
+fourth fully robust omitted blocker value, distinct from the three rich
+apices.  It retains the robustness/separation data, the canonical-row fan
+outcome, and the global four-omission multiplicity outcome; no projection is
+discarded. -/
+structure FreshThirdPinnedRobustSeparatedOutcome
+    (Q : FreshThirdBlockerFiber P Pρ)
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  centerData : FreshThirdPinnedRobustCenterSeparation (S := S) center
+  noCenterRows : SourceFaithfulFanNoCenterBlockerRowWitness Packet.fan.fan
+  blockerMultiplicity :
+    (∃ x y, x ≠ y ∧
+        H.blockerVertex x = H.blockerVertex y ∧
+        H.blockerVertex x ≠
+          H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ ∧
+        H.blockerVertex x ≠
+          H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ ∧
+        H.blockerVertex x ≠ H.blockerVertex Q.source₁) ∨
+      (∃ x, x ≠ ⟨P.source₁, P.source₁_mem_A⟩ ∧
+        x ≠ ⟨P.source₂, P.source₂_mem_A⟩ ∧
+        H.blockerVertex x =
+          H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩) ∨
+      (∃ x, x ≠ ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ ∧
+        x ≠ ⟨Pρ.source₂, Pρ.source₂_mem_A⟩ ∧
+        H.blockerVertex x =
+          H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩) ∨
+      ∃ x, x ≠ Q.source₁ ∧ x ≠ Q.source₂ ∧
+        H.blockerVertex x = H.blockerVertex Q.source₁
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Geometric normalization of the robust-separated multiplicity packet.
+
+The new-fiber and the two `P`/`Pρ` enlargement arms already fit the existing
+source-clean geometric multiplicity API.  Only enlargement of the current
+FreshThird `Q` fiber is genuinely new.  This theorem retains that final arm
+verbatim and does not invoke any FreshThird contradiction. -/
+theorem FreshThirdPinnedRobustSeparatedOutcome.geometricMultiplicity_or_qFiberThirdSource
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (Outcome : FreshThirdPinnedRobustSeparatedOutcome P Pρ Q Packet) :
+    CollisionCrossHit P Pρ ∨ GeometricMultiplicityResidual P Pρ ∨
+      ∃ x, x ≠ Q.source₁ ∧ x ≠ Q.source₂ ∧
+        H.blockerVertex x = H.blockerVertex Q.source₁ := by
+  rcases Outcome.blockerMultiplicity with hnew | hfirst | hsecond | hq
+  · rcases hnew with ⟨x, y, hxy, hblockers, hneFirst, hneSecond, _⟩
+    rcases collisionCrossHit_or_geometricMultiplicity P Pρ
+        (Or.inl ⟨x, y, hxy, hblockers, hneFirst, hneSecond⟩) with
+      hcross | hgeometric
+    · exact Or.inl hcross
+    · exact Or.inr (Or.inl hgeometric)
+  · rcases collisionCrossHit_or_geometricMultiplicity P Pρ
+        (Or.inr (Or.inl hfirst)) with hcross | hgeometric
+    · exact Or.inl hcross
+    · exact Or.inr (Or.inl hgeometric)
+  · rcases collisionCrossHit_or_geometricMultiplicity P Pρ
+        (Or.inr (Or.inr hsecond)) with hcross | hgeometric
+    · exact Or.inl hcross
+    · exact Or.inr (Or.inl hgeometric)
+  · exact Or.inr (Or.inr hq)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A genuinely new third source in the `Q` blocker fiber turns the raw
+existential multiplicity arm into the finite, source-faithful statement that
+the actual blocker fiber has cardinality at least three. -/
+theorem qFiber_card_ge_three_of_thirdSource
+    (Q : FreshThirdBlockerFiber P Pρ)
+    {x : CriticalShellSystem.CarrierVertex D.A}
+    (hx₁ : x ≠ Q.source₁)
+    (hx₂ : x ≠ Q.source₂)
+    (hblocker : H.blockerVertex x = H.blockerVertex Q.source₁) :
+    3 ≤ (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card := by
+  classical
+  let fiber := ATailSurvivalCover.actualBlockerFiber H Q.source₁
+  have hsource₁ : Q.source₁ ∈ fiber := by
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
+  have hsource₂ : Q.source₂ ∈ fiber := by
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, Q.blockers_eq.symm⟩
+  have hx : x ∈ fiber := by
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hblocker⟩
+  have hthree : 2 < fiber.card := by
+    rw [Finset.two_lt_card]
+    exact
+      ⟨Q.source₁, hsource₁, Q.source₂, hsource₂, x, hx,
+        Q.sources_ne, hx₁.symm, hx₂.symm⟩
+  have hthree' : 3 ≤ fiber.card := by omega
+  simpa [fiber] using hthree'
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The exact-three arm of the `Q` blocker boundary.  Besides recording the
+fiber cardinality, it retains the source-clean distinct-center row and the two
+deletion successors forced by the missing fourth source. -/
+structure FreshThirdQFiberThreeBoundary
+    (Q : FreshThirdBlockerFiber P Pρ) where
+  card_eq :
+    (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 3
+  source : CriticalShellSystem.CarrierVertex D.A
+  source_mem :
+    source.1 ∈
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support
+  centers_ne :
+    H.centerAt source.1 source.2 ≠
+      H.centerAt Q.source₁.1 Q.source₁.2
+  two_le_difference :
+    2 ≤
+      ((H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support \
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support).card
+  deletion_successors :
+    ∀ w ∈
+        (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support \
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support,
+      w ≠ source.1 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt source.1 source.2)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The saturated exact-four arm of the `Q` blocker boundary.  The actual
+fiber images onto the complete selected support, so every support deletion is
+blocked at the source-proved common `Q` center. -/
+structure FreshThirdQFiberFourBoundary
+    (Q : FreshThirdBlockerFiber P Pρ) where
+  card_eq :
+    (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 4
+  image_eq :
+    (ATailSurvivalCover.actualBlockerFiber H Q.source₁).image
+        (fun source => source.1) =
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support
+  deletions_blocked :
+    ∀ w ∈
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt Q.source₁.1 Q.source₁.2)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Consumer-facing exact boundary for a `Q` blocker fiber already known to
+have cardinality three or four. -/
+theorem freshThird_qFiber_three_or_fourBoundary
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hcard :
+      (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 3 ∨
+        (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 4) :
+    Nonempty (FreshThirdQFiberThreeBoundary P Pρ Q) ∨
+      Nonempty (FreshThirdQFiberFourBoundary P Pρ Q) := by
+  rcases hcard with hthree | hfour
+  · rcases freshThird_qRow_exact_blocker_boundary (P := P) (Pρ := Pρ) Q with
+      ⟨hfour', _⟩ | ⟨source, hsource, hcenters, htwo, hsuccessors⟩
+    · omega
+    · exact Or.inl ⟨⟨hthree, source, hsource, hcenters, htwo, hsuccessors⟩⟩
+  · have himage :=
+      ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
+        H Q.source₁ hfour
+    exact Or.inr ⟨⟨hfour, himage,
+      freshThird_qRow_saturated_deletions_blocked_at_qCenter
+        (P := P) (Pρ := Pρ) Q himage⟩⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Finite-cardinality landing of the robust-separated multiplicity packet.
+
+The only genuinely new geometric arm is now an exact `3`-or-`4` statement
+for the actual `Q` blocker fiber: the lower bound comes from the third source,
+and the upper bound is the general critical-shell fiber bound.  This remains a
+normalization theorem, not a contradiction or a finite-query coverage claim. -/
+theorem FreshThirdPinnedRobustSeparatedOutcome.geometricMultiplicity_or_qFiberCard
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (Outcome : FreshThirdPinnedRobustSeparatedOutcome P Pρ Q Packet) :
+    CollisionCrossHit P Pρ ∨ GeometricMultiplicityResidual P Pρ ∨
+      (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 3 ∨
+        (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 4 := by
+  rcases Outcome.geometricMultiplicity_or_qFiberThirdSource with
+    hcross | hgeometric | ⟨x, hx₁, hx₂, hblocker⟩
+  · exact Or.inl hcross
+  · exact Or.inr (Or.inl hgeometric)
+  · have hge :
+        3 ≤ (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card :=
+      qFiber_card_ge_three_of_thirdSource (P := P) (Pρ := Pρ) Q hx₁ hx₂ hblocker
+    have hle :
+        (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card ≤ 4 :=
+      ATailSurvivalCover.actualBlockerFiber_card_le_four H Q.source₁
+    omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Strongest current source-clean normalization of the robust pinned packet:
+known multiplicity geometry, an exact-three distinct-center Q-row escape, or
+an exact-four saturated Q row whose support deletions are all blocked at the
+common Q center. -/
+theorem FreshThirdPinnedRobustSeparatedOutcome.geometricMultiplicity_or_qBoundary
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (Outcome : FreshThirdPinnedRobustSeparatedOutcome P Pρ Q Packet) :
+    CollisionCrossHit P Pρ ∨ GeometricMultiplicityResidual P Pρ ∨
+      Nonempty (FreshThirdQFiberThreeBoundary P Pρ Q) ∨
+        Nonempty (FreshThirdQFiberFourBoundary P Pρ Q) := by
+  rcases Outcome.geometricMultiplicity_or_qFiberCard with
+    hcross | hgeometric | hthree | hfour
+  · exact Or.inl hcross
+  · exact Or.inr (Or.inl hgeometric)
+  · rcases freshThird_qFiber_three_or_fourBoundary (P := P) (Pρ := Pρ) Q
+        (Or.inl hthree) with hthreeBoundary | hfourBoundary
+    · exact Or.inr (Or.inr (Or.inl hthreeBoundary))
+    · exact Or.inr (Or.inr (Or.inr hfourBoundary))
+  · rcases freshThird_qFiber_three_or_fourBoundary (P := P) (Pρ := Pρ) Q
+        (Or.inr hfour) with hthreeBoundary | hfourBoundary
+    · exact Or.inr (Or.inr (Or.inl hthreeBoundary))
+    · exact Or.inr (Or.inr (Or.inr hfourBoundary))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+include T hblockersNe in
+/-- A robust pinned center away from the three rich apices simultaneously
+supplies the canonical-row fan packet and the four-omission multiplicity
+packet.  This is the source synchronization needed before any named-role
+finite query; it imposes no bound on the ambient carrier. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.robustSeparatedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (hrobust : FullyDeletionRobustAt D center)
+    (hcenterNeOpp₁ : center ≠ S.oppApex1)
+    (hcenterNeOpp₂ : center ≠ S.oppApex2)
+    (hcenterNeSurplus : center ≠ S.surplusApex) :
+    FreshThirdPinnedRobustSeparatedOutcome P Pρ Q Packet := by
+  have hcenterA : center ∈ D.A :=
+    freshThirdCrossRowTwoShellSeed_subset_carrier
+      (P := P) (Pρ := Pρ) C.surface Q Packet.center_mem_seed
+  have hnoCenter :
+      SourceFaithfulFanNoCenterBlockerRowWitness Packet.fan.fan := by
+    rcases
+        centerBlocker_or_sourceFaithfulFanNoCenterBlockerRowWitness
+          Packet.fan.fan with hcenterBlocker | hnoCenter
+    · exact (hcenterBlocker.some.nonrobust hrobust).elim
+    · exact hnoCenter
+  exact
+    { centerData :=
+        { robust := hrobust
+          center_ne_oppApex1 := hcenterNeOpp₁
+          center_ne_oppApex2 := hcenterNeOpp₂
+          center_ne_surplusApex := hcenterNeSurplus }
+      noCenterRows := hnoCenter
+      blockerMultiplicity :=
+        freshThird_fourOmissionBlockerMultiplicityIngress
+          (P := P) (Pρ := Pρ) (T := T) (hblockersNe := hblockersNe)
+            Q hcenterA hrobust hcenterNeOpp₁
+            hcenterNeOpp₂ hcenterNeSurplus }
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+include T hblockersNe in
+/-- Exhaustive source-level split for the pinned center.  The only branches
+not covered by the synchronized robust packet are genuine nonrobustness or
+equality with one of the three rich apices. -/
+theorem
+    FreshThirdPinnedEndpointOutsideSeedQueryPacket.nonrobust_or_richApexCenter_or_robustSeparatedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) :
+    ¬ FullyDeletionRobustAt D center ∨
+      center = S.oppApex1 ∨ center = S.oppApex2 ∨
+      center = S.surplusApex ∨
+      FreshThirdPinnedRobustSeparatedOutcome P Pρ Q Packet := by
+  by_cases hrobust : FullyDeletionRobustAt D center
+  · by_cases hcenterOpp₁ : center = S.oppApex1
+    · exact Or.inr (Or.inl hcenterOpp₁)
+    · by_cases hcenterOpp₂ : center = S.oppApex2
+      · exact Or.inr (Or.inr (Or.inl hcenterOpp₂))
+      · by_cases hcenterSurplus : center = S.surplusApex
+        · exact Or.inr (Or.inr (Or.inr (Or.inl hcenterSurplus)))
+        · exact Or.inr (Or.inr (Or.inr (Or.inr
+            (FreshThirdPinnedEndpointOutsideSeedQueryPacket.robustSeparatedOutcome
+              (P := P) (Pρ := Pρ) (T := T)
+              (hblockersNe := hblockersNe) Packet hrobust hcenterOpp₁
+                hcenterOpp₂ hcenterSurplus))))
+  · exact Or.inl hrobust
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The exhaustive center/multiplicity status retained after the selected-four
+fan has been normalized to its no-center-blocker arm.  The exact-three and
+exact-four constructors deliberately keep their source-clean `Q`-boundary
+witnesses; they do not assert any unsupported relocation of blocked deletions
+to another center. -/
+inductive FreshThirdPinnedNoCenterStatus
+    (Q : FreshThirdBlockerFiber P Pρ) (center : ℝ²) : Prop where
+  | nonrobust
+      (h : ¬ FullyDeletionRobustAt D center)
+      (center_ne_oppApex1 : center ≠ S.oppApex1)
+      (center_ne_oppApex2 : center ≠ S.oppApex2)
+      (center_ne_surplusApex : center ≠ S.surplusApex)
+  | firstApex
+      (h : center = S.oppApex1)
+      (robust : FullyDeletionRobustAt D center)
+  | secondApex
+      (h : center = S.oppApex2)
+      (robust : FullyDeletionRobustAt D center)
+  | surplusApex
+      (h : center = S.surplusApex)
+      (robust : FullyDeletionRobustAt D center)
+  | collisionCrossHit
+      (centerData : FreshThirdPinnedRobustCenterSeparation (S := S) center)
+      (h : CollisionCrossHit P Pρ)
+  | geometricMultiplicity
+      (centerData : FreshThirdPinnedRobustCenterSeparation (S := S) center)
+      (h : GeometricMultiplicityResidual P Pρ)
+  | qFiberThree
+      (centerData : FreshThirdPinnedRobustCenterSeparation (S := S) center)
+      (boundary : Nonempty (FreshThirdQFiberThreeBoundary P Pρ Q))
+  | qFiberFour
+      (centerData : FreshThirdPinnedRobustCenterSeparation (S := S) center)
+      (boundary : Nonempty (FreshThirdQFiberFourBoundary P Pρ Q))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Information-preserving no-center arm of the pinned-endpoint packet.  It
+keeps both finite fan consequences together with the exact center or
+`Q`-fiber status. -/
+structure FreshThirdPinnedNoCenterNormalizedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  noCenterRows :
+    SourceFaithfulFanNoCenterBlockerRowWitness Packet.fan.fan
+  status : FreshThirdPinnedNoCenterStatus P Pρ Q center
+
+/-- Endpoint-synchronized outside pair selected from the actual fan row.
+
+The two dependent deletion packets and the row-cap label stay attached to the
+selected points.  The final disjunction deliberately distinguishes blocker
+escape from the two one-sided cross-deletion survivals; it does not identify
+the blocker cap with `rowCap`. -/
+structure FreshThirdPinnedEndpointOutsidePairFanOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  exists_pair :
+    ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+      ∃ hz : z.1 ∈ Packet.fan.Row.support \ S.capByIndex rowCap,
+        ∃ hw : w.1 ∈ Packet.fan.Row.support \ S.capByIndex rowCap,
+          z ≠ w ∧
+            SourceFaithfulSelectedFourDeletionPacket D S H Packet.fan.Row z.1
+              (Finset.mem_sdiff.mp hz).1 ∧
+            SourceFaithfulSelectedFourDeletionPacket D S H Packet.fan.Row w.1
+              (Finset.mem_sdiff.mp hw).1 ∧
+            (H.centerAt z.1 z.2 ∉ S.capByIndex rowCap ∨
+              H.centerAt w.1 w.2 ∉ S.capByIndex rowCap ∨
+              HasNEquidistantPointsAt 4 (D.A.erase w.1)
+                (H.centerAt z.1 z.2) ∨
+              HasNEquidistantPointsAt 4 (D.A.erase z.1)
+                (H.centerAt w.1 w.2))
+
+/-- The exact cap-local consequence of the pinned fan's endpoint split.
+
+In the off-endpoint arm there is no source entitlement placing the fan center
+in `rowCap`, so the boundary-row escape is retained verbatim.  In the endpoint
+arm the fan row and boundary row have the same support, allowing the generic
+outside-pair producer to run without any guessed alignment. -/
+inductive FreshThirdPinnedEndpointFanCapOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  | offEndpoint
+      (center_ne_boundary : center ≠ B.boundary id)
+      (boundaryEscape :
+        ∃ z ∈ DRow.support,
+          z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q)
+  | endpoint
+      (center_eq_boundary : center = B.boundary id)
+      (support_eq : Packet.fan.Row.support = DRow.support)
+      (outsidePair : FreshThirdPinnedEndpointOutsidePairFanOutcome P Pρ Packet)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Source-clean endpoint/cap synchronization of the no-center fan arm. -/
+theorem FreshThirdPinnedNoCenterNormalizedOutcome.endpointFanCapOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (Outcome : FreshThirdPinnedNoCenterNormalizedOutcome P Pρ Packet) :
+    FreshThirdPinnedEndpointFanCapOutcome P Pρ Packet := by
+  rcases Packet.fan.endpointSplit with hoff | hendpoint
+  · exact .offEndpoint hoff.1 hoff.2
+  · rcases hendpoint with ⟨hcenter, hsupport⟩
+    have hcenterCap : center ∈ S.capByIndex rowCap := by
+      rw [hcenter]
+      exact Packet.row_center_cap
+    have houtside :
+        2 ≤ (Packet.fan.Row.support \ S.capByIndex rowCap).card := by
+      simpa only [hsupport] using Packet.row_cap_outside
+    rcases Packet.fan.fan.exists_distinct_outsideCap_escape_or_crossDeletion
+        Outcome.noCenterRows.center_ne_actualBlocker rowCap hcenterCap houtside with
+      ⟨z, w, hz, hw, hzw, hzPacket, hwPacket, hcases⟩
+    exact .endpoint hcenter hsupport
+      { exists_pair :=
+          ⟨z, w, hz, hw, hzw, hzPacket, hwPacket, hcases⟩ }
+
+/-- A source in the pinned fan whose actual blocker is the pinned center.
+
+The witness itself proves that this center is deletion-nonrobust.  Since the
+three named apices carry source-proved rich structures, it follows that the
+center is distinct from each apex.  This is the strongest unconditional
+separation available in the center-blocker branch; it uses apex robustness
+only after the witness has identified the center as a genuine blocker. -/
+structure FreshThirdPinnedCenterBlockerSeparatedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  witness : Nonempty
+    (IndexedSourceFaithfulSelectedFourFan.CenterBlockerWitness Packet.fan.fan)
+  center_ne_oppApex1 : center ≠ S.oppApex1
+  center_ne_oppApex2 : center ≠ S.oppApex2
+  center_ne_surplusApex : center ≠ S.surplusApex
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+include T in
+/-- Enrich a center-blocker witness with its source-entitled separation from
+the three rich apices. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.centerBlockerSeparatedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (W : IndexedSourceFaithfulSelectedFourFan.CenterBlockerWitness
+      Packet.fan.fan) :
+    FreshThirdPinnedCenterBlockerSeparatedOutcome P Pρ Packet := by
+  have hne₁ : center ≠ S.oppApex1 := by
+    intro hcenter
+    apply W.nonrobust
+    simpa only [hcenter] using
+      fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich
+  have hne₂ : center ≠ S.oppApex2 := by
+    intro hcenter
+    apply W.nonrobust
+    simpa only [hcenter] using
+      fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich
+  have hne₃ : center ≠ S.surplusApex := by
+    intro hcenter
+    apply W.nonrobust
+    simpa only [hcenter] using
+      fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich
+  exact
+    { witness := ⟨W⟩
+      center_ne_oppApex1 := hne₁
+      center_ne_oppApex2 := hne₂
+      center_ne_surplusApex := hne₃ }
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Three actual common points between the first FreshThird `Q` row and the
+pinned selected-four fan row contradict the already-proved distinct-center
+two-circle bound.
+
+The full packet already supplies the required center inequality, so this
+consumer applies in every normalized fan arm.  No center-blocker witness or
+cardinality bound is needed. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_qRow_overlap_card_ge_three
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (hthree :
+      3 ≤
+        ((H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support ∩
+          Packet.fan.Row.support).card) :
+    False := by
+  exact false_of_centerAt_selectedFourClass_inter_card_ge_three
+    H Q.source₁.1 Q.source₁.2 Packet.fan.Row
+      Packet.center_ne_fresh.symm hthree
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Three individually blocked deletions from the first FreshThird `Q` row
+close a nonrobust pinned-center arm.
+
+The one-point deletion hypotheses are essential: collective blocking after
+deleting the whole set, followed by memberwise restoration, does not satisfy
+this interface. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_nonrobust_qRow_blocked_deletions
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (hnonrobust : ¬ FullyDeletionRobustAt D center)
+    (blocked : Finset ℝ²)
+    (hcard : 3 ≤ blocked.card)
+    (hsubset :
+      blocked ⊆
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support)
+    (hblocked : ∀ x ∈ blocked,
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) center) :
+    False := by
+  apply Packet.false_of_qRow_overlap_card_ge_three
+  exact hcard.trans
+    (_root_.Problem97.ATailMinimalUniqueFourCover.card_le_inter_selectedFourClass_of_blocked_deletions
+      Packet.fan.fan.center_mem Packet.fan.Row
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support
+      blocked hsubset hnonrobust hblocked)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Compatibility form retaining the normalized center-blocker witness in the
+interface.  The contradiction itself is the packet-level theorem above. -/
+theorem FreshThirdPinnedCenterBlockerSeparatedOutcome.false_of_qRow_overlap_card_ge_three
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (_Outcome : FreshThirdPinnedCenterBlockerSeparatedOutcome P Pρ Packet)
+    (hthree :
+      3 ≤
+        ((H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support ∩
+          Packet.fan.Row.support).card) :
+    False :=
+  FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_qRow_overlap_card_ge_three
+    P Pρ Packet hthree
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Full source-clean normalization boundary for the pinned-endpoint
+outside-seed packet.  Either it retains the actual fan source whose blocker is
+the pinned center, or it retains both no-center fan packets and the strongest
+currently derivable center/`Q` status.  This is cardinality-independent and is
+the finite-query ingress contract; the original packet remains available to
+every consumer through the parameter. -/
+inductive FreshThirdPinnedEndpointOutsideSeedNormalizedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  | centerBlocker
+      (outcome : FreshThirdPinnedCenterBlockerSeparatedOutcome P Pρ Packet)
+  | noCenter
+      (outcome : FreshThirdPinnedNoCenterNormalizedOutcome P Pρ Packet)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+include T hblockersNe in
+/-- Produce the full normalized outcome without adding assumptions or losing
+either finite fan packet. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.normalizedOutcome
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) :
+    FreshThirdPinnedEndpointOutsideSeedNormalizedOutcome P Pρ Packet := by
+  rcases
+      centerBlocker_or_sourceFaithfulFanNoCenterBlockerRowWitness
+        Packet.fan.fan with hcenterBlocker | hnoCenter
+  · rcases hcenterBlocker with ⟨W⟩
+    exact .centerBlocker
+      (FreshThirdPinnedEndpointOutsideSeedQueryPacket.centerBlockerSeparatedOutcome
+        (P := P) (Pρ := Pρ) (T := T) Packet W)
+  · refine .noCenter { noCenterRows := hnoCenter, status := ?_ }
+    rcases Packet.nonrobust_or_richApexCenter_or_robustSeparatedOutcome
+        (T := T) (hblockersNe := hblockersNe) with
+      hnonrobust | hfirst | hsecond | hsurplus | hseparated
+    · refine .nonrobust hnonrobust ?_ ?_ ?_
+      · intro hcenter
+        apply hnonrobust
+        simpa only [hcenter] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich
+      · intro hcenter
+        apply hnonrobust
+        simpa only [hcenter] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich
+      · intro hcenter
+        apply hnonrobust
+        simpa only [hcenter] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich
+    · exact .firstApex hfirst (by
+        simpa only [hfirst] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+    · exact .secondApex hsecond (by
+        simpa only [hsecond] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+    · exact .surplusApex hsurplus (by
+        simpa only [hsurplus] using
+          fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+    · rcases hseparated.geometricMultiplicity_or_qBoundary with
+        hcross | hgeometric | hthree | hfour
+      · exact .collisionCrossHit hseparated.centerData hcross
+      · exact .geometricMultiplicity hseparated.centerData hgeometric
+      · exact .qFiberThree hseparated.centerData hthree
+      · exact .qFiberFour hseparated.centerData hfour
+
+/-- Exact consumer contract for the normalized pinned-endpoint fan packet.
+
+The two fields are universal over the *actual* witnesses produced by the
+source-faithful fan.  In particular, this interface does not identify the
+repeated-cap pair with the mutual-cross pair or with the endpoint outside
+pair, and it does not add a cyclic placement for any arbitrary fan source.
+Those synchronizations must be proved by a source theorem or checked by a
+certificate for the complete `Packet`.
+
+This structure is a certificate-facing contract, not a closure result.  Its
+purpose is to freeze the weakest exact target whose two fields, together with
+`normalizedOutcome`, are sufficient for the live residual. -/
+structure FreshThirdPinnedEndpointOutsideSeedIncompatibilityContract
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) : Prop where
+  centerBlocker :
+    ∀ outcome : FreshThirdPinnedCenterBlockerSeparatedOutcome P Pρ Packet,
+      False
+  noCenter :
+    ∀ outcome : FreshThirdPinnedNoCenterNormalizedOutcome P Pρ Packet,
+      False
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+include T hblockersNe in
+/-- The exact normalized fan packet reduces the pinned residual to the two
+fields of `FreshThirdPinnedEndpointOutsideSeedIncompatibilityContract`.
+
+This theorem performs only source-clean normalization.  It neither constructs
+the contract nor hides an unproved synchronization premise. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_incompatibilityContract
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (Contract :
+      FreshThirdPinnedEndpointOutsideSeedIncompatibilityContract P Pρ Packet) :
+    False := by
+  rcases
+      FreshThirdPinnedEndpointOutsideSeedQueryPacket.normalizedOutcome
+        (P := P) (Pρ := Pρ) (T := T) (hblockersNe := hblockersNe) Packet with
+    hcenterBlocker | hnoCenter
+  · exact Contract.centerBlocker hcenterBlocker
+  · exact Contract.noCenter hnoCenter
+
+/-- The finite point names needed by a source-faithful pinned-endpoint query.
+
+The constructors are *roles*, not distinct carrier vertices.  Their actual
+aliasing is recovered from `FreshThirdPinnedEndpointOutsideSeedFiniteView.point`
+below.  In particular, the query may not assume that two different
+constructors denote different points.
+
+Each canonical blocker row receives four support slots.  A blocker center is
+not a point of its positive-radius selected row, so representing the center
+plus only three anonymous row points (as the former synthetic Python fixture
+did) is not source-faithful. -/
+inductive FreshThirdPinnedEndpointOutsideSeedPointRole where
+  | freshRemainder (i : Fin 2)
+  | fanSource (i : Fin 4)
+  | boundarySource (i : Fin 4)
+  | blockerCenter (i : Fin 4)
+  | blockerRowSource (i j : Fin 4)
+  | pinnedCenter
+  | boundaryCenter
+  | canonicalSource
+  | canonicalSecondSource
+  | freshSourceOne
+  | freshSourceTwo
+  | sourceCenter
+  | freshCenter
+deriving DecidableEq, Fintype
+
+/-- The exact selected rows visible to the finite query. -/
+inductive FreshThirdPinnedEndpointOutsideSeedRowRole where
+  | source
+  | fresh
+  | boundary
+  | fan
+  | blocker (i : Fin 4)
+deriving DecidableEq, Fintype
+
+/-- The exact six roles comprising the union of the source and fresh rows.
+
+The packet proves that these roles denote six distinct carrier points; the
+constructors themselves remain only names until interpreted by a finite view. -/
+def freshThirdPinnedEndpointOutsideSeedSeedRole :
+    Fin 6 → FreshThirdPinnedEndpointOutsideSeedPointRole :=
+  ![.canonicalSource, .canonicalSecondSource,
+    .freshSourceOne, .freshSourceTwo,
+    .freshRemainder 0, .freshRemainder 1]
+
+/-- The four exact support slots attached to each row role.
+
+The source row is already the named four-source row.  The fresh row consists
+of its two named sources plus the exact two-point fresh remainder.  The other
+rows use their intrinsic `Fin 4` indexings. -/
+def freshThirdPinnedEndpointOutsideSeedRowSlot :
+    FreshThirdPinnedEndpointOutsideSeedRowRole → Fin 4 →
+      FreshThirdPinnedEndpointOutsideSeedPointRole
+  | .source =>
+      ![.canonicalSource, .canonicalSecondSource,
+        .freshSourceOne, .freshSourceTwo]
+  | .fresh =>
+      ![.freshSourceOne, .freshSourceTwo,
+        .freshRemainder 0, .freshRemainder 1]
+  | .boundary => fun i ↦ .boundarySource i
+  | .fan => fun i ↦ .fanSource i
+  | .blocker j => fun i ↦ .blockerRowSource j i
+
+/-- The actual center role attached to each exact selected-row role. -/
+def freshThirdPinnedEndpointOutsideSeedRowCenter :
+    FreshThirdPinnedEndpointOutsideSeedRowRole →
+      FreshThirdPinnedEndpointOutsideSeedPointRole
+  | .source => .sourceCenter
+  | .fresh => .freshCenter
+  | .boundary => .boundaryCenter
+  | .fan => .pinnedCenter
+  | .blocker i => .blockerCenter i
+
+/-- Intrinsic finite naming of every support used by the pinned-endpoint fan
+query.
+
+Only the exact two-point fresh remainder and exact four-point rows are
+indexed.  The ambient carrier itself is not enumerated, so this view applies
+unchanged at every carrier cardinality.  The full `Packet` remains in the type
+and `normalized` retains the exact center-blocker/no-center witness graph;
+this structure is therefore an ingress view, not a weakened Boolean
+projection. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) where
+  freshRemainderIndex :
+    freshThirdCrossRowFreshRemainder P Pρ C.surface Q ≃ Fin 2
+  boundaryIndex : DRow.support ≃ Fin 4
+  blockerRowIndex : ∀ i : Fin 4,
+    (Packet.fan.fan.blockerRow i).toCriticalFourShell.support ≃ Fin 4
+  normalized :
+    FreshThirdPinnedEndpointOutsideSeedNormalizedOutcome P Pρ Packet
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteView
+
+/-- Interpret a finite point role as its actual plane point. -/
+noncomputable def point
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedPointRole → ℝ²
+  | .freshRemainder i => (View.freshRemainderIndex.symm i).1
+  | .fanSource i => (Packet.fan.fan.source i).1
+  | .boundarySource i => (View.boundaryIndex.symm i).1
+  | .blockerCenter i => Packet.fan.fan.blockerCenter i
+  | .blockerRowSource i j => ((View.blockerRowIndex i).symm j).1
+  | .pinnedCenter => center
+  | .boundaryCenter => B.boundary id
+  | .canonicalSource => C.surface.firstSource.1
+  | .canonicalSecondSource => C.surface.secondSource.1
+  | .freshSourceOne => Q.source₁.1
+  | .freshSourceTwo => Q.source₂.1
+  | .sourceCenter =>
+      H.centerAt C.surface.firstSource.1 C.surface.firstSource.2
+  | .freshCenter => H.centerAt Q.source₁.1 Q.source₁.2
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every finite role denotes a genuine point of the arbitrary carrier. -/
+theorem point_mem_carrier
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (role : FreshThirdPinnedEndpointOutsideSeedPointRole) :
+    point P Pρ View role ∈ D.A := by
+  cases role with
+  | freshRemainder i =>
+      exact
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support_subset_A
+          (Finset.mem_sdiff.mp (View.freshRemainderIndex.symm i).2).1
+  | fanSource i => exact (Packet.fan.fan.source i).2
+  | boundarySource i =>
+      exact DRow.support_subset_A (View.boundaryIndex.symm i).2
+  | blockerCenter i =>
+      exact (Finset.mem_erase.mp
+        (Packet.fan.fan.blockerRow i).toCriticalFourShell.center_mem).2
+  | blockerRowSource i j =>
+      exact (Packet.fan.fan.blockerRow i).toCriticalFourShell.support_subset_A
+        ((View.blockerRowIndex i).symm j).2
+  | pinnedCenter =>
+      exact freshThirdCrossRowTwoShellSeed_subset_carrier
+        (P := P) (Pρ := Pρ) C.surface Q Packet.center_mem_seed
+  | boundaryCenter =>
+      change B.boundary id ∈ D.A
+      rcases Packet.endpoint_center with hcenter | hcenter
+      · simpa only [hcenter] using Q.source₁.2
+      · simpa only [hcenter] using Q.source₂.2
+  | canonicalSource => exact C.surface.firstSource.2
+  | canonicalSecondSource => exact C.surface.secondSource.2
+  | freshSourceOne => exact Q.source₁.2
+  | freshSourceTwo => exact Q.source₂.2
+  | sourceCenter =>
+      exact (Finset.mem_erase.mp
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.center_mem).2
+  | freshCenter =>
+      exact (Finset.mem_erase.mp
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.center_mem).2
+
+/-- Boundary position of an interpreted role.  Only these finitely many
+positions are queried; `B.n` itself remains arbitrary. -/
+noncomputable def boundaryPosition
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (role : FreshThirdPinnedEndpointOutsideSeedPointRole) : Fin B.n :=
+  B.indexOf
+    ⟨point P Pρ View role, point_mem_carrier P Pρ View role⟩
+
+/-- Actual equality of role interpretations.  This, rather than constructor
+equality, is the alias relation consumed by a finite certificate. -/
+def SamePoint
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Prop :=
+  point P Pρ View left = point P Pρ View right
+
+/-- The Lean-owned alias setoid for the finite role quotient. -/
+noncomputable def pointSetoid
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    Setoid FreshThirdPinnedEndpointOutsideSeedPointRole where
+  r := SamePoint P Pρ View
+  iseqv := ⟨fun _ ↦ rfl, fun h ↦ h.symm, fun h₁ h₂ ↦ h₁.trans h₂⟩
+
+/-- Support selected by a finite row role. -/
+noncomputable def rowSupport
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (_View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedRowRole → Finset ℝ²
+  | .source =>
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.support
+  | .fresh =>
+      (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support
+  | .boundary => DRow.support
+  | .fan => Packet.fan.Row.support
+  | .blocker i =>
+      (Packet.fan.fan.blockerRow i).toCriticalFourShell.support
+
+/-- The selected four-class underlying each finite row role.
+
+Unlike the Boolean assignment, this definition remains in the exact packet
+and therefore records the genuine row center, radius, and positive-radius
+support theorem for every role. -/
+noncomputable def rowClass
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) →
+      SelectedFourClass D.A
+        (point P Pρ View (freshThirdPinnedEndpointOutsideSeedRowCenter row))
+  | .source =>
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.toSelectedFourClass
+  | .fresh =>
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  | .boundary => DRow
+  | .fan => Packet.fan.Row
+  | .blocker i =>
+      (Packet.fan.fan.blockerRow i).toCriticalFourShell.toSelectedFourClass
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem rowClass_support_eq_rowSupport
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) :
+    (rowClass P Pρ View row).support = rowSupport P Pρ View row := by
+  cases row <;> rfl
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every visible row is an exact four-point selected class. -/
+theorem rowSupport_card_eq_four
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) :
+    (rowSupport P Pρ View row).card = 4 := by
+  cases row with
+  | source => exact
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.support_card
+  | fresh => exact
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support_card
+  | boundary => exact DRow.support_card
+  | fan => exact Packet.fan.Row.support_card
+  | blocker i => exact
+      (Packet.fan.fan.blockerRow i).toCriticalFourShell.support_card
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The fresh row is exactly its two named sources together with the indexed
+two-point remainder.  This is a consequence of the packet's exact overlap;
+it does not assert that the finite roles exhaust the ambient carrier. -/
+theorem freshRow_support_eq_pair_union_remainder
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (_View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    rowSupport P Pρ _View .fresh =
+      {Q.source₁.1, Q.source₂.1} ∪
+        freshThirdCrossRowFreshRemainder P Pρ C.surface Q := by
+  classical
+  ext x
+  simp only [rowSupport, Finset.mem_union]
+  constructor
+  · intro hx
+    by_cases hsource :
+        x ∈ (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support
+    · left
+      have hinter :
+          x ∈
+            (H.selectedAt C.surface.firstSource.1
+                C.surface.firstSource.2).toCriticalFourShell.support ∩
+              (H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.support :=
+        Finset.mem_inter.mpr ⟨hsource, hx⟩
+      rwa [Packet.seedOverlap] at hinter
+    · right
+      exact Finset.mem_sdiff.mpr ⟨hx, hsource⟩
+  · intro hx
+    rcases hx with hpair | hremainder
+    · have hinter :
+          x ∈
+            (H.selectedAt C.surface.firstSource.1
+                C.surface.firstSource.2).toCriticalFourShell.support ∩
+              (H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.support := by
+        rw [Packet.seedOverlap]
+        exact hpair
+      exact (Finset.mem_inter.mp hinter).2
+    · exact (Finset.mem_sdiff.mp hremainder).1
+
+omit P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+private theorem finset_eq_univ_image_equiv
+    {α : Type} [DecidableEq α] (support : Finset α)
+    (index : support ≃ Fin 4) :
+    support = Finset.univ.image (fun i : Fin 4 ↦ (index.symm i).1) := by
+  ext x
+  constructor
+  · intro hx
+    refine Finset.mem_image.mpr
+      ⟨index ⟨x, hx⟩, Finset.mem_univ _, ?_⟩
+    simp
+  · intro hx
+    rcases Finset.mem_image.mp hx with ⟨i, _, rfl⟩
+    exact (index.symm i).2
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every row visible to the finite query has exactly the four support slots
+declared by `freshThirdPinnedEndpointOutsideSeedRowSlot`.
+
+The right-hand side is an image, not a claim that role constructors are
+globally distinct: aliases between roles remain represented by `SamePoint`. -/
+theorem rowSupport_eq_slot_image
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) :
+    rowSupport P Pρ View row =
+      Finset.univ.image (fun i : Fin 4 ↦
+        point P Pρ View (freshThirdPinnedEndpointOutsideSeedRowSlot row i)) := by
+  classical
+  cases row with
+  | source =>
+      rw [rowSupport, Packet.exactRow.first_support_eq]
+      ext x
+      simp only [Finset.mem_insert, Finset.mem_singleton, Finset.mem_image,
+        Finset.mem_univ, true_and]
+      constructor
+      · rintro (rfl | rfl | rfl | rfl)
+        · exact ⟨0, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+        · exact ⟨1, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+        · exact ⟨2, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+        · exact ⟨3, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+      · rintro ⟨i, hi⟩
+        fin_cases i
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inl hi.symm
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inr (Or.inl hi.symm)
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inr (Or.inr (Or.inl hi.symm))
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inr (Or.inr (Or.inr hi.symm))
+  | fresh =>
+      rw [freshRow_support_eq_pair_union_remainder P Pρ View]
+      ext x
+      simp only [Finset.mem_union, Finset.mem_insert, Finset.mem_singleton,
+        Finset.mem_image, Finset.mem_univ, true_and]
+      constructor
+      · rintro ((rfl | rfl) | hremainder)
+        · exact ⟨0, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+        · exact ⟨1, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point]⟩
+        · let y : freshThirdCrossRowFreshRemainder P Pρ C.surface Q :=
+            ⟨x, hremainder⟩
+          let k : Fin 2 := View.freshRemainderIndex y
+          have hrecover : (View.freshRemainderIndex.symm k).1 = x := by
+            simpa [k, y] using
+              congrArg Subtype.val
+                (View.freshRemainderIndex.symm_apply_apply y)
+          have hk : k = 0 ∨ k = 1 := by omega
+          rcases hk with hk | hk
+          · exact ⟨2, by
+              simpa [freshThirdPinnedEndpointOutsideSeedRowSlot, point, hk] using
+                hrecover⟩
+          · exact ⟨3, by
+              simpa [freshThirdPinnedEndpointOutsideSeedRowSlot, point, hk] using
+                hrecover⟩
+      · rintro ⟨i, hi⟩
+        fin_cases i
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inl (Or.inl hi.symm)
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inl (Or.inr hi.symm)
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inr (by
+            rw [← hi]
+            exact (View.freshRemainderIndex.symm 0).2)
+        · simp [freshThirdPinnedEndpointOutsideSeedRowSlot, point] at hi
+          exact Or.inr (by
+            rw [← hi]
+            exact (View.freshRemainderIndex.symm 1).2)
+  | boundary =>
+      simpa [rowSupport, freshThirdPinnedEndpointOutsideSeedRowSlot, point] using
+        (finset_eq_univ_image_equiv
+          (support := DRow.support) (index := View.boundaryIndex))
+  | fan =>
+      simpa [rowSupport, freshThirdPinnedEndpointOutsideSeedRowSlot, point] using
+        Packet.fan.fan.support_eq_source_image
+  | blocker i =>
+      simpa [rowSupport, freshThirdPinnedEndpointOutsideSeedRowSlot, point] using
+        (finset_eq_univ_image_equiv
+          (support :=
+            (Packet.fan.fan.blockerRow i).toCriticalFourShell.support)
+          (index := View.blockerRowIndex i))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The four intrinsic slots of every visible row name four distinct semantic
+points.  This is the cardinality bridge used to turn slot-filter counts into
+actual support intersection counts. -/
+theorem rowSlot_point_injective
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) :
+    Function.Injective (fun i : Fin 4 ↦
+      point P Pρ View
+        (freshThirdPinnedEndpointOutsideSeedRowSlot row i)) := by
+  classical
+  let slotPoint : Fin 4 → ℝ² := fun i ↦
+    point P Pρ View
+      (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+  have hcardImage :
+      (Finset.univ.image slotPoint).card =
+        (Finset.univ : Finset (Fin 4)).card := by
+    rw [← rowSupport_eq_slot_image (P := P) (Pρ := Pρ) View row,
+      rowSupport_card_eq_four (P := P) (Pρ := Pρ) View row]
+    simp
+  have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+    Finset.card_image_iff.mp hcardImage
+  intro i j hij
+  exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hij
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The six intrinsic seed roles are exactly the semantic two-row seed.
+
+This is the cardinality-independent bridge needed by the multiplicity
+constraint: it enumerates the exact six-point seed, not the ambient carrier. -/
+theorem seed_eq_role_image
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    freshThirdCrossRowTwoShellSeed P Pρ C.surface Q =
+      Finset.univ.image (fun i : Fin 6 ↦
+        point P Pρ View (freshThirdPinnedEndpointOutsideSeedSeedRole i)) := by
+  classical
+  change rowSupport P Pρ View .source ∪ rowSupport P Pρ View .fresh = _
+  rw [rowSupport_eq_slot_image (P := P) (Pρ := Pρ) View
+      FreshThirdPinnedEndpointOutsideSeedRowRole.source,
+    rowSupport_eq_slot_image (P := P) (Pρ := Pρ) View
+      FreshThirdPinnedEndpointOutsideSeedRowRole.fresh]
+  ext x
+  simp only [Finset.mem_union, Finset.mem_image, Finset.mem_univ, true_and]
+  constructor
+  · rintro (⟨i, rfl⟩ | ⟨i, rfl⟩)
+    · fin_cases i
+      · exact ⟨0, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨1, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨2, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨3, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · fin_cases i
+      · exact ⟨2, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨3, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨4, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+      · exact ⟨5, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+          freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+  · rintro ⟨i, rfl⟩
+    fin_cases i
+    · exact Or.inl ⟨0, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · exact Or.inl ⟨1, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · exact Or.inl ⟨2, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · exact Or.inl ⟨3, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · exact Or.inr ⟨2, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+    · exact Or.inr ⟨3, by simp [freshThirdPinnedEndpointOutsideSeedRowSlot,
+        freshThirdPinnedEndpointOutsideSeedSeedRole]⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Interpreting the six intrinsic seed roles is injective. -/
+theorem seedRole_point_injective
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    Function.Injective (fun i : Fin 6 ↦
+      point P Pρ View (freshThirdPinnedEndpointOutsideSeedSeedRole i)) := by
+  classical
+  let seedPoint : Fin 6 → ℝ² := fun i ↦
+    point P Pρ View (freshThirdPinnedEndpointOutsideSeedSeedRole i)
+  have hcardImage :
+      (Finset.univ.image seedPoint).card =
+        (Finset.univ : Finset (Fin 6)).card := by
+    rw [← seed_eq_role_image (P := P) (Pρ := Pρ) View, Packet.seed_card]
+    simp
+  have hinj : Set.InjOn seedPoint (Finset.univ : Finset (Fin 6)) :=
+    Finset.card_image_iff.mp hcardImage
+  intro i j hij
+  exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hij
+
+/-- Exact row-incidence atom over the Lean-owned role quotient. -/
+def Incident
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (role : FreshThirdPinnedEndpointOutsideSeedPointRole)
+    (row : FreshThirdPinnedEndpointOutsideSeedRowRole) : Prop :=
+  point P Pρ View role ∈ rowSupport P Pρ View row
+
+/-- Exact cap-membership atom. -/
+def InCap
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (role : FreshThirdPinnedEndpointOutsideSeedPointRole) (cap : Fin 3) : Prop :=
+  point P Pρ View role ∈ S.capByIndex cap
+
+/-- Exact cyclic-boundary order atom. -/
+noncomputable def Before
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Prop :=
+  boundaryPosition P Pρ View left < boundaryPosition P Pρ View right
+
+/-- Exact metric-equality atom used by geometric learned cuts. -/
+noncomputable def SameDistanceFrom
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (centerRole left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Prop :=
+  dist (point P Pρ View centerRole) (point P Pρ View left) =
+    dist (point P Pρ View centerRole) (point P Pρ View right)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The packet's at-most-three seed multiplicity forbids four distinct seed
+roles at one positive radius from the pinned center.
+
+Positivity is derived intrinsically from the premise that none of the four
+chosen seed roles aliases the pinned center. -/
+theorem no_four_seed_roles_same_distance
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (e : Fin 4 ↪ Fin 6)
+    (hne : ∀ i : Fin 4,
+      point P Pρ View .pinnedCenter ≠
+        point P Pρ View
+          (freshThirdPinnedEndpointOutsideSeedSeedRole (e i))) :
+    ¬ ∀ i : Fin 4,
+      SameDistanceFrom P Pρ View .pinnedCenter
+        (freshThirdPinnedEndpointOutsideSeedSeedRole (e 0))
+        (freshThirdPinnedEndpointOutsideSeedSeedRole (e i)) := by
+  classical
+  intro hsame
+  let seedPoint : Fin 6 → ℝ² := fun i ↦
+    point P Pρ View (freshThirdPinnedEndpointOutsideSeedSeedRole i)
+  let shellRadius : ℝ := dist center (seedPoint (e 0))
+  let chosen : Finset ℝ² :=
+    Finset.univ.image (fun i : Fin 4 ↦ seedPoint (e i))
+  have hpositive : 0 < shellRadius := by
+    exact dist_pos.mpr (by
+      simpa [point] using hne 0)
+  have hchosenCard : chosen.card = 4 := by
+    have hinj : Function.Injective (fun i : Fin 4 ↦ seedPoint (e i)) :=
+      (seedRole_point_injective (P := P) (Pρ := Pρ) View).comp e.injective
+    simp [chosen, Finset.card_image_of_injective _ hinj]
+  have hchosenSubset :
+      chosen ⊆
+        (SelectedClass D.A center shellRadius) ∩
+          freshThirdCrossRowTwoShellSeed P Pρ C.surface Q := by
+    intro x hx
+    rcases Finset.mem_image.mp hx with ⟨i, _, rfl⟩
+    apply Finset.mem_inter.mpr
+    constructor
+    · apply mem_selectedClass.mpr
+      constructor
+      · exact point_mem_carrier P Pρ View _
+      · change dist center (seedPoint (e i)) = shellRadius
+        have hi := hsame i
+        simpa [SameDistanceFrom, seedPoint, shellRadius, point] using hi.symm
+    · rw [seed_eq_role_image (P := P) (Pρ := Pρ) View]
+      exact Finset.mem_image.mpr ⟨e i, Finset.mem_univ _, rfl⟩
+  have hbound := Packet.seed_multiplicity shellRadius hpositive
+  have hle := Finset.card_le_card hchosenSubset
+  rw [hchosenCard] at hle
+  omega
+
+/-- Construct the complete finite ingress view from any live packet.  This is
+the intrinsic arbitrary-cardinality lift: it indexes only exact local
+supports and keeps every other ambient point semantically possible. -/
+noncomputable def ofPacket
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet where
+  freshRemainderIndex := Finset.equivFinOfCardEq
+    (freshThirdCrossRowFreshRemainder_card_eq_two
+      P Pρ C.surface Q Packet.seedOverlap)
+  boundaryIndex := Finset.equivFinOfCardEq DRow.support_card
+  blockerRowIndex := fun i ↦
+    Finset.equivFinOfCardEq
+      (Packet.fan.fan.blockerRow i).toCriticalFourShell.support_card
+  normalized := Packet.normalizedOutcome
+    (T := T) (hblockersNe := hblockersNe)
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteView
+
+/-- Fixed Boolean vocabulary exported by the finite pinned-endpoint query.
+
+All domains are intrinsic finite role types.  In particular there is no
+ambient-cardinality variable and no assertion that the named roles exhaust
+`D.A`.  `hasFourAfterDeleting deleted atCenter` records the exact semantic
+predicate used by cross-deletion fan witnesses. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteAssignment where
+  samePoint : FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedPointRole → Bool
+  incident : FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedRowRole → Bool
+  inCap : FreshThirdPinnedEndpointOutsideSeedPointRole → Fin 3 → Bool
+  inCapInterior : FreshThirdPinnedEndpointOutsideSeedPointRole → Fin 3 → Bool
+  before : FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedPointRole → Bool
+  sameDistanceFrom : FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedPointRole → Bool
+  hasFourAfterDeleting : FreshThirdPinnedEndpointOutsideSeedPointRole →
+    FreshThirdPinnedEndpointOutsideSeedPointRole → Bool
+  nonrobust : FreshThirdPinnedEndpointOutsideSeedPointRole → Bool
+deriving DecidableEq
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
+
+abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
+
+def Same (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (left right : PointRole) : Prop :=
+  A.samePoint left right = true
+
+def Incident (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (row : RowRole) : Prop :=
+  A.incident point row = true
+
+def InCap (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (cap : Fin 3) : Prop :=
+  A.inCap point cap = true
+
+def InCapInterior (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (cap : Fin 3) : Prop :=
+  A.inCapInterior point cap = true
+
+def Before (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (left right : PointRole) : Prop :=
+  A.before left right = true
+
+def SameDistanceFrom
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (center left right : PointRole) : Prop :=
+  A.sameDistanceFrom center left right = true
+
+def HasFourAfterDeleting
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (deleted atCenter : PointRole) : Prop :=
+  A.hasFourAfterDeleting deleted atCenter = true
+
+def Nonrobust (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (center : PointRole) : Prop :=
+  A.nonrobust center = true
+
+instance decidableSame (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (left right : PointRole) : Decidable (A.Same left right) := by
+  unfold Same
+  infer_instance
+
+instance decidableIncident (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (row : RowRole) : Decidable (A.Incident point row) := by
+  unfold Incident
+  infer_instance
+
+instance decidableInCap (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (cap : Fin 3) : Decidable (A.InCap point cap) := by
+  unfold InCap
+  infer_instance
+
+instance decidableInCapInterior
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (point : PointRole) (cap : Fin 3) : Decidable (A.InCapInterior point cap) := by
+  unfold InCapInterior
+  infer_instance
+
+instance decidableBefore (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (left right : PointRole) : Decidable (A.Before left right) := by
+  unfold Before
+  infer_instance
+
+instance decidableSameDistanceFrom
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (center left right : PointRole) : Decidable (A.SameDistanceFrom center left right) := by
+  unfold SameDistanceFrom
+  infer_instance
+
+instance decidableHasFourAfterDeleting
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (deleted atCenter : PointRole) : Decidable (A.HasFourAfterDeleting deleted atCenter) := by
+  unfold HasFourAfterDeleting
+  infer_instance
+
+instance decidableNonrobust
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (center : PointRole) : Decidable (A.Nonrobust center) := by
+  unfold Nonrobust
+  infer_instance
+
+/-- Evaluate the fixed Boolean vocabulary on one exact Lean-owned view. -/
+noncomputable def ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment where
+  samePoint := fun left right ↦
+    decide (FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint
+      P Pρ View left right)
+  incident := fun point row ↦
+    decide (FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident
+      P Pρ View point row)
+  inCap := fun point cap ↦
+    decide (FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap
+      P Pρ View point cap)
+  inCapInterior := fun point cap ↦
+    decide
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View point ∈
+        S.capInteriorByIndex cap)
+  before := fun left right ↦
+    decide (FreshThirdPinnedEndpointOutsideSeedFiniteView.Before
+      P Pρ View left right)
+  sameDistanceFrom := fun centerRole left right ↦
+    decide (FreshThirdPinnedEndpointOutsideSeedFiniteView.SameDistanceFrom
+      P Pρ View centerRole left right)
+  hasFourAfterDeleting := fun deleted atCenter ↦
+    decide
+      (HasNEquidistantPointsAt 4
+        (D.A.erase
+          (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+            P Pρ View deleted))
+        (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+          P Pρ View atCenter))
+  nonrobust := fun centerRole ↦
+    decide
+      (¬ FullyDeletionRobustAt D
+        (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+          P Pρ View centerRole))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem same_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (left right : PointRole) :
+    Same (ofView P Pρ View) left right ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint
+        P Pρ View left right := by
+  simp [Same, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem incident_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (point : PointRole) (row : RowRole) :
+    Incident (ofView P Pρ View) point row ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident
+        P Pρ View point row := by
+  simp [Incident, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem inCap_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (point : PointRole) (cap : Fin 3) :
+    InCap (ofView P Pρ View) point cap ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap
+        P Pρ View point cap := by
+  simp [InCap, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem inCapInterior_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (point : PointRole) (cap : Fin 3) :
+    InCapInterior (ofView P Pρ View) point cap ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View point ∈
+        S.capInteriorByIndex cap := by
+  simp [InCapInterior, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem before_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (left right : PointRole) :
+    Before (ofView P Pρ View) left right ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.Before
+        P Pρ View left right := by
+  simp [Before, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem sameDistanceFrom_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (centerRole left right : PointRole) :
+    SameDistanceFrom (ofView P Pρ View) centerRole left right ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.SameDistanceFrom
+        P Pρ View centerRole left right := by
+  simp [SameDistanceFrom, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem hasFourAfterDeleting_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (deleted atCenter : PointRole) :
+    HasFourAfterDeleting (ofView P Pρ View) deleted atCenter ↔
+      HasNEquidistantPointsAt 4
+        (D.A.erase
+          (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+            P Pρ View deleted))
+        (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+          P Pρ View atCenter) := by
+  simp [HasFourAfterDeleting, ofView]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+@[simp] theorem nonrobust_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (centerRole : PointRole) :
+    Nonrobust (ofView P Pρ View) centerRole ↔
+      ¬ FullyDeletionRobustAt D
+        (FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+          P Pρ View centerRole) := by
+  simp [Nonrobust, ofView]
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
+
+/-- Packet-independent equality and exact-row semantics for a finite
+pinned-endpoint assignment.
+
+This is the first certificate-facing source-theory layer.  It says that
+`Same` is an equivalence relation on interpreted roles and that each visible
+selected row contains exactly the aliases of its four declared support slots.
+It does not identify role constructors: all permitted collisions continue to
+flow through the Boolean `Same` relation. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment) : Prop where
+  same_refl : ∀ point,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A point point
+  same_symm : ∀ {left right},
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A left right →
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A right left
+  same_trans : ∀ {left middle right},
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A left middle →
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A middle right →
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A left right
+  slot_same_iff_eq : ∀ row i j,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A
+        (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+        (freshThirdPinnedEndpointOutsideSeedRowSlot row j) ↔
+      i = j
+  incident_iff_slot : ∀ point row,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Incident A point row ↔
+      ∃ i : Fin 4,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same A point
+          (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+  row_center_not_incident : ∀ row,
+    ¬ FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Incident A
+      (freshThirdPinnedEndpointOutsideSeedRowCenter row) row
+  row_slots_same_distance : ∀ row i j,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.SameDistanceFrom A
+      (freshThirdPinnedEndpointOutsideSeedRowCenter row)
+      (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+      (freshThirdPinnedEndpointOutsideSeedRowSlot row j)
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every exact Lean-owned finite view satisfies the packet-independent row
+theory.  This is the semantic bridge a future finite certificate must use;
+the theorem quantifies over the arbitrary ambient carrier and enumerates only
+the exact local supports. -/
+theorem ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View) := by
+  refine
+    { same_refl := ?_
+      same_symm := ?_
+      same_trans := ?_
+      slot_same_iff_eq := ?_
+      incident_iff_slot := ?_
+      row_center_not_incident := ?_
+      row_slots_same_distance := ?_ }
+  · intro point
+    exact
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View point point).2 rfl
+  · intro left right hsame
+    apply
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View right left).2
+    exact
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View left right).1 hsame).symm
+  · intro left middle right hleft hright
+    apply
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View left right).2
+    exact
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View left middle).1 hleft).trans
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View middle right).1 hright)
+  · intro row i j
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    constructor
+    · intro hsame
+      let slotPoint : Fin 4 → ℝ² := fun k ↦
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+          (freshThirdPinnedEndpointOutsideSeedRowSlot row k)
+      have hcardImage :
+          (Finset.univ.image slotPoint).card = (Finset.univ : Finset (Fin 4)).card := by
+        rw [← FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+          (P := P) (Pρ := Pρ) View row]
+        rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_card_eq_four
+          (P := P) (Pρ := Pρ) View row]
+        simp
+      have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+        Finset.card_image_iff.mp hcardImage
+      exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hsame
+    · rintro rfl
+      rfl
+  · intro point row
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image]
+    simp only [Finset.mem_image, Finset.mem_univ, true_and]
+    constructor
+    · rintro ⟨i, hpoint⟩
+      exact ⟨i,
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View point
+            (freshThirdPinnedEndpointOutsideSeedRowSlot row i)).2 hpoint.symm⟩
+    · rintro ⟨i, hsame⟩
+      exact ⟨i,
+        ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View point
+            (freshThirdPinnedEndpointOutsideSeedRowSlot row i)).1 hsame).symm⟩
+  · intro row hincident
+    have hmem :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+            (freshThirdPinnedEndpointOutsideSeedRowCenter row) ∈
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View row :=
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hincident
+    rw [← FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass_support_eq_rowSupport
+      (P := P) (Pρ := Pρ) View row] at hmem
+    exact (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass
+      P Pρ View row).center_not_mem hmem
+  · intro row i j
+    apply
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _ _).2
+    let K := FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass P Pρ View row
+    have hi :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+            (freshThirdPinnedEndpointOutsideSeedRowSlot row i) ∈ K.support := by
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass_support_eq_rowSupport,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image]
+      exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩
+    have hj :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+            (freshThirdPinnedEndpointOutsideSeedRowSlot row j) ∈ K.support := by
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass_support_eq_rowSupport,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image]
+      exact Finset.mem_image.mpr ⟨j, Finset.mem_univ j, rfl⟩
+    exact (K.support_eq_radius _ hi).trans (K.support_eq_radius _ hj).symm
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory
+
+/-- Packet-independent finite data passed to a replayed FreshThird query.
+
+The three distinguished cap labels and the four blocker-cap labels are finite
+Skolem data.  No field bounds or enumerates the ambient carrier. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration where
+  assignment : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
+  firstCap : Fin 3
+  freshCap : Fin 3
+  rowCap : Fin 3
+  blockerCap : Fin 4 → Fin 3
+deriving DecidableEq
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
+
+abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Choose the source-produced cap label attached to an indexed fan source. -/
+noncomputable def blockerCapOfView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (_View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (i : Fin 4) : Fin 3 :=
+  Classical.choose (Packet.fan.fan.deletionPacket i)
+
+/-- Evaluate the packet-independent query configuration on an exact packet
+view. -/
+noncomputable def ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration where
+  assignment :=
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View
+  firstCap := S.oppIndex1
+  freshCap := freshCap
+  rowCap := rowCap
+  blockerCap := blockerCapOfView P Pρ View
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
+
+/-- Congruence and exact-row laws shared by every source-faithful finite
+configuration.  These laws prevent a Boolean solver from assigning different
+incidence, cap, order, metric, deletion, or robustness values to two roles
+that denote the same carrier point. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) : Prop where
+  rowTheory : FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory Config.assignment
+  inCap_congr : ∀ {left right cap},
+    Config.assignment.Same left right →
+      (Config.assignment.InCap left cap ↔ Config.assignment.InCap right cap)
+  inCapInterior_congr : ∀ {left right cap},
+    Config.assignment.Same left right →
+      (Config.assignment.InCapInterior left cap ↔
+        Config.assignment.InCapInterior right cap)
+  interior_in_cap : ∀ {point cap},
+    Config.assignment.InCapInterior point cap →
+      Config.assignment.InCap point cap
+  interior_not_in_other_cap : ∀ {point firstCap secondCap},
+    Config.assignment.InCapInterior point firstCap →
+      firstCap ≠ secondCap →
+        ¬ Config.assignment.InCap point secondCap
+  before_congr : ∀ {left left' right right'},
+    Config.assignment.Same left left' →
+      Config.assignment.Same right right' →
+      (Config.assignment.Before left right ↔
+        Config.assignment.Before left' right')
+  before_irrefl : ∀ point,
+    ¬ Config.assignment.Before point point
+  before_trans : ∀ {left middle right},
+    Config.assignment.Before left middle →
+      Config.assignment.Before middle right →
+        Config.assignment.Before left right
+  before_or_same_or_after : ∀ left right,
+    Config.assignment.Before left right ∨
+      Config.assignment.Same left right ∨
+        Config.assignment.Before right left
+  sameDistanceFrom_congr : ∀ {center center' left left' right right'},
+    Config.assignment.Same center center' →
+      Config.assignment.Same left left' →
+      Config.assignment.Same right right' →
+      (Config.assignment.SameDistanceFrom center left right ↔
+        Config.assignment.SameDistanceFrom center' left' right')
+  sameDistanceFrom_refl : ∀ center point,
+    Config.assignment.SameDistanceFrom center point point
+  sameDistanceFrom_symm : ∀ center left right,
+    Config.assignment.SameDistanceFrom center left right ↔
+      Config.assignment.SameDistanceFrom center right left
+  hasFourAfterDeleting_congr : ∀ {deleted deleted' center center'},
+    Config.assignment.Same deleted deleted' →
+      Config.assignment.Same center center' →
+      (Config.assignment.HasFourAfterDeleting deleted center ↔
+        Config.assignment.HasFourAfterDeleting deleted' center')
+  blocked_deletion_nonrobust : ∀ deleted center,
+    ¬ Config.assignment.HasFourAfterDeleting deleted center →
+      Config.assignment.Nonrobust center
+  nonrobust_congr : ∀ {left right},
+    Config.assignment.Same left right →
+      (Config.assignment.Nonrobust left ↔ Config.assignment.Nonrobust right)
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Exact packet views satisfy all packet-independent congruence laws. -/
+theorem ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View) := by
+  let Config :=
+    FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View
+  let A := Config.assignment
+  have hsame {left right : FreshThirdPinnedEndpointOutsideSeedPointRole}
+      (h : A.Same left right) :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right := by
+    exact
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View left right).1 h
+  refine
+    { rowTheory :=
+        FreshThirdPinnedEndpointOutsideSeedFiniteRowTheory.ofView
+          (P := P) (Pρ := Pρ) View
+      inCap_congr := ?_
+      inCapInterior_congr := ?_
+      interior_in_cap := ?_
+      interior_not_in_other_cap := ?_
+      before_congr := ?_
+      before_irrefl := ?_
+      before_trans := ?_
+      before_or_same_or_after := ?_
+      sameDistanceFrom_congr := ?_
+      sameDistanceFrom_refl := ?_
+      sameDistanceFrom_symm := ?_
+      hasFourAfterDeleting_congr := ?_
+      blocked_deletion_nonrobust := ?_
+      nonrobust_congr := ?_ }
+  · intro left right cap h
+    change A.Same left right at h
+    change A.InCap left cap ↔ A.InCap right cap
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] at h ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap, hsame h]
+  · intro left right cap h
+    change A.Same left right at h
+    change A.InCapInterior left cap ↔ A.InCapInterior right cap
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] at h ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simpa [hsame h]
+  · intro point cap h
+    change A.InCapInterior point cap at h
+    change A.InCap point cap
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] at h ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+      (P := P) (Pρ := Pρ)] at h
+    exact S.capInteriorByIndex_subset_capByIndex cap h
+  · intro point firstCap secondCap hInterior hne hCap
+    change A.InCapInterior point firstCap at hInterior
+    change A.InCap point secondCap at hCap
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      at hInterior hCap ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+      (P := P) (Pρ := Pρ)] at hInterior
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+      (P := P) (Pρ := Pρ)] at hCap
+    exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hInterior hne hCap
+  · intro left left' right right' hleft hright
+    change A.Same left left' at hleft
+    change A.Same right right' at hright
+    change A.Before left right ↔ A.Before left' right'
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] at hleft hright ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp [FreshThirdPinnedEndpointOutsideSeedFiniteView.Before,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+      hsame hleft, hsame hright]
+  · intro point
+    change ¬ A.Before point point
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp [FreshThirdPinnedEndpointOutsideSeedFiniteView.Before]
+  · intro left middle right hleft hright
+    change A.Before left middle at hleft
+    change A.Before middle right at hright
+    change A.Before left right
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      at hleft hright ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+      (P := P) (Pρ := Pρ)] at hleft hright ⊢
+    exact lt_trans hleft hright
+  · intro left right
+    let leftPosition :=
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition
+        P Pρ View left
+    let rightPosition :=
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition
+        P Pρ View right
+    rcases lt_trichotomy leftPosition rightPosition with hlt | heq | hgt
+    · left
+      change A.Before left right
+      dsimp [A, Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      exact hlt
+    · right
+      left
+      change A.Same left right
+      dsimp [A, Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      change
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left =
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right
+      calc
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left =
+            B.boundary leftPosition := by
+              simpa [leftPosition,
+                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+                (B.point_eq
+                  ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left,
+                    FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
+                      (P := P) (Pρ := Pρ) View left⟩).symm
+        _ = B.boundary rightPosition := congrArg B.boundary heq
+        _ = FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right := by
+              simpa [rightPosition,
+                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+                B.point_eq
+                  ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right,
+                    FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
+                      (P := P) (Pρ := Pρ) View right⟩
+    · right
+      right
+      change A.Before right left
+      dsimp [A, Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      exact hgt
+  · intro centerRole centerRole' left left' right right' hcenter hleft hright
+    change A.Same centerRole centerRole' at hcenter
+    change A.Same left left' at hleft
+    change A.Same right right' at hright
+    change
+      A.SameDistanceFrom centerRole left right ↔
+        A.SameDistanceFrom centerRole' left' right'
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      at hcenter hleft hright ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp [FreshThirdPinnedEndpointOutsideSeedFiniteView.SameDistanceFrom,
+      hsame hcenter, hsame hleft, hsame hright]
+  · intro centerRole point
+    change A.SameDistanceFrom centerRole point point
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rfl
+  · intro centerRole left right
+    change
+      A.SameDistanceFrom centerRole left right ↔
+        A.SameDistanceFrom centerRole right left
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    exact eq_comm
+  · intro deleted deleted' centerRole centerRole' hdeleted hcenter
+    change A.Same deleted deleted' at hdeleted
+    change A.Same centerRole centerRole' at hcenter
+    change
+      A.HasFourAfterDeleting deleted centerRole ↔
+        A.HasFourAfterDeleting deleted' centerRole'
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      at hdeleted hcenter ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp [hsame hdeleted, hsame hcenter]
+  · intro deleted centerRole hblocked
+    change ¬ A.HasFourAfterDeleting deleted centerRole at hblocked
+    change A.Nonrobust centerRole
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView]
+      at hblocked ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    intro hrobust
+    apply hblocked
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    exact hrobust.survives _
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
+        (P := P) (Pρ := Pρ) View deleted)
+  · intro left right h
+    change A.Same left right at h
+    change A.Nonrobust left ↔ A.Nonrobust right
+    dsimp [A, Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] at h ⊢
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simp [hsame h]
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteConstraint
+
+abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
+abbrev Assignment := FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
+abbrev Configuration := FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
+
+/-- One exact four-slot row support is contained in another.  Under the
+source theory's slot-injectivity law both rows have cardinality four, so this
+is equivalent to support equality without introducing an ambient point
+universe. -/
+def RowSupportEq (A : Assignment) (left right : RowRole) : Prop :=
+  ∀ i : Fin 4, ∃ j : Fin 4,
+    A.Same
+      (freshThirdPinnedEndpointOutsideSeedRowSlot left i)
+      (freshThirdPinnedEndpointOutsideSeedRowSlot right j)
+
+section ComputableCounts
+
+attribute [-instance] Classical.propDecidable
+
+/-- Number of slots of `left` whose actual point occurs in `right`.
+Slot injectivity makes this the cardinality of the semantic support
+intersection. -/
+def RowOverlapCount (A : Assignment) (left right : RowRole) : ℕ :=
+  (Finset.univ.filter fun i : Fin 4 ↦
+    ∃ j : Fin 4,
+      A.Same
+        (freshThirdPinnedEndpointOutsideSeedRowSlot left i)
+        (freshThirdPinnedEndpointOutsideSeedRowSlot right j)).card
+
+/-- Number of exact row slots lying in a named cap. -/
+def RowCapInsideCount
+    (A : Assignment) (row : RowRole) (cap : Fin 3) : ℕ :=
+  (Finset.univ.filter fun i : Fin 4 ↦
+    A.InCap (freshThirdPinnedEndpointOutsideSeedRowSlot row i) cap).card
+
+/-- Number of exact row slots lying outside a named cap. -/
+def RowCapOutsideCount
+    (A : Assignment) (row : RowRole) (cap : Fin 3) : ℕ :=
+  (Finset.univ.filter fun i : Fin 4 ↦
+    ¬ A.InCap (freshThirdPinnedEndpointOutsideSeedRowSlot row i) cap).card
+
+end ComputableCounts
+
+/-- A named point is outside the exact six-point two-shell seed. -/
+def OutsideSeed (A : Assignment) (point : PointRole) : Prop :=
+  ∀ i : Fin 6,
+    ¬ A.Same point (freshThirdPinnedEndpointOutsideSeedSeedRole i)
+
+/-- Finite, explicit-row version of the source predicate
+`EndpointDeletionPairCapSplitSurvivingRowAt`. -/
+def EndpointCapSplitAt (Config : Configuration)
+    (firstDeleted secondDeleted : PointRole) : Prop :=
+  let A := Config.assignment
+  (¬ A.Incident firstDeleted .boundary ∨
+      ¬ A.Incident secondDeleted .boundary) ∧
+    A.InCap .boundaryCenter Config.rowCap ∧
+    RowCapInsideCount A .boundary Config.rowCap ≤ 2 ∧
+    2 ≤ RowCapOutsideCount A .boundary Config.rowCap
+
+/-- One orientation of the exact four-arm cyclic-order/boundary-row packet.
+The separate orientation disjunction in `FiniteSourceTheory` identifies
+`qOutside` and `qBetween` with the two FreshThird endpoints. -/
+def OrderedRowAtWith (Config : Configuration)
+    (qOutside qBetween : PointRole) : Prop :=
+  let A := Config.assignment
+  (A.Before qOutside .freshCenter ∧
+      A.Before .freshCenter qBetween ∧
+      A.Before qBetween .sourceCenter ∧
+      A.Before .sourceCenter .canonicalSource ∧
+      A.Same .boundaryCenter qBetween ∧
+      EndpointCapSplitAt Config .canonicalSource qOutside) ∨
+    (A.Before qOutside .freshCenter ∧
+      A.Before .freshCenter qBetween ∧
+      A.Before qBetween .canonicalSource ∧
+      A.Before .canonicalSource .sourceCenter ∧
+      A.Same .boundaryCenter qOutside ∧
+      EndpointCapSplitAt Config .canonicalSource qBetween) ∨
+    (A.Before .canonicalSource .sourceCenter ∧
+      A.Before .sourceCenter qBetween ∧
+      A.Before qBetween .freshCenter ∧
+      A.Before .freshCenter qOutside ∧
+      A.Same .boundaryCenter qBetween ∧
+      EndpointCapSplitAt Config .canonicalSource qOutside) ∨
+    (A.Before .sourceCenter .canonicalSource ∧
+      A.Before .canonicalSource qBetween ∧
+      A.Before qBetween .freshCenter ∧
+      A.Before .freshCenter qOutside ∧
+      A.Same .boundaryCenter qOutside ∧
+      EndpointCapSplitAt Config .canonicalSource qBetween)
+
+/-- The exact center-blocker data visible in the named-role vocabulary. -/
+def CenterBlockerOutcome (Config : Configuration) : Prop :=
+  let A := Config.assignment
+  ∃ i : Fin 4, ∃ cap : Fin 3,
+    A.Same .pinnedCenter (.blockerCenter i) ∧
+      A.InCapInterior (.blockerCenter i) cap ∧
+      ¬ A.HasFourAfterDeleting (.fanSource i) (.blockerCenter i) ∧
+      RowSupportEq A .fan (.blocker i) ∧
+      A.Nonrobust .pinnedCenter
+
+/-- The complete repeated-cap and mutual-cross-deletion witness graph in the
+no-center arm. -/
+def NoCenterOutcome (Config : Configuration) : Prop :=
+  let A := Config.assignment
+  (∀ i : Fin 4, ¬ A.Same .pinnedCenter (.blockerCenter i)) ∧
+    (∃ i j : Fin 4, i ≠ j ∧
+      ∃ cap : Fin 3,
+        A.InCapInterior (.blockerCenter i) cap ∧
+        A.InCapInterior (.blockerCenter j) cap ∧
+        (A.Same (.blockerCenter i) (.blockerCenter j) ∨
+          A.HasFourAfterDeleting (.fanSource j) (.blockerCenter i) ∨
+          A.HasFourAfterDeleting (.fanSource i) (.blockerCenter j))) ∧
+    (∃ i j : Fin 4, i ≠ j ∧
+      A.HasFourAfterDeleting (.fanSource j) (.blockerCenter i) ∧
+      A.HasFourAfterDeleting (.fanSource i) (.blockerCenter j) ∧
+      ¬ A.Same (.blockerCenter i) (.blockerCenter j))
+
+/-- Source-faithful finite normalization of the selected-four deletion fan. -/
+def NormalizedFanOutcome (Config : Configuration) : Prop :=
+  CenterBlockerOutcome Config ∨ NoCenterOutcome Config
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- On a semantic view, the finite inside-cap slot count is exactly the
+cardinality of the actual row-support/cap intersection. -/
+theorem rowCapInsideCount_ofView_eq
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : RowRole) (cap : Fin 3) :
+    RowCapInsideCount
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        row cap =
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View row ∩
+        S.capByIndex cap).card := by
+  classical
+  let slotPoint : Fin 4 → ℝ² := fun i ↦
+    FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+      (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+  have hinj : Function.Injective slotPoint := by
+    simpa [slotPoint] using
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSlot_point_injective
+        (P := P) (Pρ := Pρ) View row)
+  calc
+    RowCapInsideCount
+          (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+          row cap =
+        (Finset.univ.filter fun i : Fin 4 ↦ slotPoint i ∈ S.capByIndex cap).card := by
+          apply congrArg Finset.card
+          ext i
+          simp [RowCapInsideCount, slotPoint,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap]
+    _ = ((Finset.univ.filter fun i : Fin 4 ↦
+          slotPoint i ∈ S.capByIndex cap).image slotPoint).card := by
+          symm
+          exact Finset.card_image_of_injective _ hinj
+    _ = (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View row ∩
+          S.capByIndex cap).card := by
+          apply congrArg Finset.card
+          rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+            (P := P) (Pρ := Pρ) View row]
+          ext x
+          simp only [Finset.mem_image, Finset.mem_filter, Finset.mem_univ,
+            true_and, Finset.mem_inter]
+          constructor
+          · rintro ⟨i, hi, hix⟩
+            exact ⟨⟨i, hix⟩, by simpa [hix] using hi⟩
+          · rintro ⟨⟨i, hix⟩, hx⟩
+            refine ⟨i, ?_, hix⟩
+            change
+              FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+                  (freshThirdPinnedEndpointOutsideSeedRowSlot row i) ∈
+                S.capByIndex cap
+            exact hix.symm ▸ hx
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- On a semantic view, the finite outside-cap slot count is exactly the
+cardinality of the actual row support minus that cap. -/
+theorem rowCapOutsideCount_ofView_eq
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (row : RowRole) (cap : Fin 3) :
+    RowCapOutsideCount
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        row cap =
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View row \
+        S.capByIndex cap).card := by
+  classical
+  let slotPoint : Fin 4 → ℝ² := fun i ↦
+    FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+      (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+  have hinj : Function.Injective slotPoint := by
+    simpa [slotPoint] using
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSlot_point_injective
+        (P := P) (Pρ := Pρ) View row)
+  calc
+    RowCapOutsideCount
+          (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+          row cap =
+        (Finset.univ.filter fun i : Fin 4 ↦ slotPoint i ∉ S.capByIndex cap).card := by
+          apply congrArg Finset.card
+          ext i
+          simp [RowCapOutsideCount, slotPoint,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap]
+    _ = ((Finset.univ.filter fun i : Fin 4 ↦
+          slotPoint i ∉ S.capByIndex cap).image slotPoint).card := by
+          symm
+          exact Finset.card_image_of_injective _ hinj
+    _ = (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View row \
+          S.capByIndex cap).card := by
+          apply congrArg Finset.card
+          rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+            (P := P) (Pρ := Pρ) View row]
+          ext x
+          simp only [Finset.mem_image, Finset.mem_filter, Finset.mem_univ,
+            true_and, Finset.mem_sdiff]
+          constructor
+          · rintro ⟨i, hi, hix⟩
+            exact ⟨⟨i, hix⟩, by simpa [hix] using hi⟩
+          · rintro ⟨⟨i, hix⟩, hx⟩
+            refine ⟨i, ?_, hix⟩
+            change
+              FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+                  (freshThirdPinnedEndpointOutsideSeedRowSlot row i) ∉
+                S.capByIndex cap
+            exact hix.symm ▸ hx
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- On a semantic view, overlap of finite row slots is exactly semantic
+support intersection cardinality. -/
+theorem rowOverlapCount_ofView_eq
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (left right : RowRole) :
+    RowOverlapCount
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        left right =
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View left ∩
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right).card := by
+  classical
+  let leftPoint : Fin 4 → ℝ² := fun i ↦
+    FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+      (freshThirdPinnedEndpointOutsideSeedRowSlot left i)
+  have hinj : Function.Injective leftPoint := by
+    simpa [leftPoint] using
+      (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSlot_point_injective
+        (P := P) (Pρ := Pρ) View left)
+  have hpred :
+      (Finset.univ.filter fun i : Fin 4 ↦
+        ∃ j : Fin 4,
+          FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same
+            (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+            (freshThirdPinnedEndpointOutsideSeedRowSlot left i)
+            (freshThirdPinnedEndpointOutsideSeedRowSlot right j)) =
+      Finset.univ.filter fun i : Fin 4 ↦
+        leftPoint i ∈
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right := by
+    ext i
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+      (P := P) (Pρ := Pρ) View right]
+    simp only [Finset.mem_image, Finset.mem_univ, true_and]
+    constructor
+    · rintro ⟨j, hsame⟩
+      exact ⟨j, by
+        simpa [leftPoint,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint] using
+          ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+            (P := P) (Pρ := Pρ) View _ _).1 hsame).symm⟩
+    · rintro ⟨j, heq⟩
+      exact ⟨j,
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).2 (by
+            simpa [leftPoint,
+              FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint] using heq.symm)⟩
+  calc
+    RowOverlapCount
+          (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+          left right =
+        (Finset.univ.filter fun i : Fin 4 ↦
+          leftPoint i ∈
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right).card := by
+          rw [RowOverlapCount, hpred]
+    _ = ((Finset.univ.filter fun i : Fin 4 ↦
+          leftPoint i ∈
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right).image
+          leftPoint).card := by
+          symm
+          exact Finset.card_image_of_injective _ hinj
+    _ = (FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View left ∩
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right).card := by
+          apply congrArg Finset.card
+          rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+            (P := P) (Pρ := Pρ) View left]
+          ext x
+          simp only [Finset.mem_image, Finset.mem_filter, Finset.mem_univ,
+            true_and, Finset.mem_inter]
+          constructor
+          · rintro ⟨i, hi, hix⟩
+            exact ⟨⟨i, hix⟩, by simpa [hix] using hi⟩
+          · rintro ⟨⟨i, hix⟩, hx⟩
+            refine ⟨i, ?_, hix⟩
+            change
+              FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+                  (freshThirdPinnedEndpointOutsideSeedRowSlot left i) ∈
+                FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport
+                  P Pρ View right
+            exact hix.symm ▸ hx
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Actual equality of two exact row supports yields the finite slot-level
+support equality predicate. -/
+theorem rowSupportEq_ofView_of_eq
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    {left right : RowRole}
+    (hsupport :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View left =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View right) :
+    RowSupportEq
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+      left right := by
+  classical
+  intro i
+  have hmem :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View
+          (freshThirdPinnedEndpointOutsideSeedRowSlot left i) ∈
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport P Pρ View left := by
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+      (P := P) (Pρ := Pρ) View left]
+    exact Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
+  rw [hsupport,
+    FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+      (P := P) (Pρ := Pρ) View right] at hmem
+  rcases Finset.mem_image.mp hmem with ⟨j, _, hji⟩
+  exact ⟨j,
+    (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ) View _ _).2 (by
+        simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint] using
+          hji.symm)⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The finite outside-seed predicate is exactly nonmembership of the named
+semantic point in the six-point source seed. -/
+theorem outsideSeed_ofView_iff
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (role : PointRole) :
+    OutsideSeed
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        role ↔
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role ∉
+        freshThirdCrossRowTwoShellSeed P Pρ C.surface Q := by
+  classical
+  rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.seed_eq_role_image
+    (P := P) (Pρ := Pρ) View]
+  constructor
+  · intro hout hmem
+    rcases Finset.mem_image.mp hmem with ⟨i, _, hi⟩
+    exact hout i
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 (by
+          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint] using
+            hi.symm))
+  · intro hnot i hsame
+    apply hnot
+    apply Finset.mem_image.mpr
+    refine ⟨i, Finset.mem_univ _, ?_⟩
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint] using
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hsame).symm
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Translate the source boundary-row cap split into its finite named-role
+form.  The three cardinality/cap conjuncts come from the packet itself; the
+caller supplies only the endpoint-specific deletion disjunction. -/
+theorem endpointCapSplitAt_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    {firstDeleted secondDeleted : PointRole}
+    (hdelete :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View firstDeleted ∉
+          DRow.support ∨
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View secondDeleted ∉
+          DRow.support) :
+    EndpointCapSplitAt
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View)
+      firstDeleted secondDeleted := by
+  change
+    (¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Incident
+          firstDeleted .boundary ∨
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Incident
+          secondDeleted .boundary) ∧
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).InCap
+        .boundaryCenter rowCap ∧
+      RowCapInsideCount
+          (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+          .boundary rowCap ≤ 2 ∧
+      2 ≤ RowCapOutsideCount
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        .boundary rowCap
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rcases hdelete with hfirst | hsecond
+    · exact Or.inl (by
+        rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+          (P := P) (Pρ := Pρ)]
+        simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hfirst)
+    · exact Or.inr (by
+        rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+          (P := P) (Pρ := Pρ)]
+        simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hsecond)
+  · rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.InCap,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+        Packet.row_center_cap
+  · rw [rowCapInsideCount_ofView_eq (P := P) (Pρ := Pρ) View .boundary rowCap]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+      Packet.row_cap_inside
+  · rw [rowCapOutsideCount_ofView_eq (P := P) (Pρ := Pρ) View .boundary rowCap]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+      Packet.row_cap_outside
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteConstraint
+
+/-- Packet-independent finite source theory for the pinned-endpoint query.
+
+Every field is interpreted on intrinsic row/seed indices.  The ambient
+carrier is neither enumerated nor cardinality-bounded.  The no-center status
+from the larger packet is deliberately not assumed: rejecting this weaker
+fan theory is sufficient for a sound universal contradiction. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) : Prop where
+  relational :
+    FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory Config
+  seed_same_iff_eq : ∀ i j : Fin 6,
+    Config.assignment.Same
+      (freshThirdPinnedEndpointOutsideSeedSeedRole i)
+      (freshThirdPinnedEndpointOutsideSeedSeedRole j) ↔ i = j
+  pinned_in_seed : ∃ i : Fin 6,
+    Config.assignment.Same .pinnedCenter
+      (freshThirdPinnedEndpointOutsideSeedSeedRole i)
+  pinned_ne_sourceCenter :
+    ¬ Config.assignment.Same .pinnedCenter .sourceCenter
+  pinned_ne_freshCenter :
+    ¬ Config.assignment.Same .pinnedCenter .freshCenter
+  seed_multiplicity : ∀ e : Fin 4 ↪ Fin 6,
+    (∀ i : Fin 4,
+      ¬ Config.assignment.Same .pinnedCenter
+        (freshThirdPinnedEndpointOutsideSeedSeedRole (e i))) →
+    ¬ ∀ i : Fin 4,
+      Config.assignment.SameDistanceFrom .pinnedCenter
+        (freshThirdPinnedEndpointOutsideSeedSeedRole (e 0))
+        (freshThirdPinnedEndpointOutsideSeedSeedRole (e i))
+  source_center_first_cap :
+    Config.assignment.InCapInterior .sourceCenter Config.firstCap
+  fresh_cap_ne_first : Config.freshCap ≠ Config.firstCap
+  fresh_center_cap :
+    Config.assignment.InCapInterior .freshCenter Config.freshCap
+  endpoints_outside_first :
+    ¬ Config.assignment.InCap .freshSourceOne Config.firstCap ∧
+      ¬ Config.assignment.InCap .freshSourceTwo Config.firstCap
+  point_in_some_cap : ∀ point,
+    ∃ cap : Fin 3, Config.assignment.InCap point cap
+  ordered_boundary_row :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OrderedRowAtWith
+        Config .freshSourceOne .freshSourceTwo ∨
+      FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OrderedRowAtWith
+        Config .freshSourceTwo .freshSourceOne
+  fan_source_outside_seed : ∃ i : Fin 4,
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OutsideSeed
+      Config.assignment (.fanSource i)
+  endpoint_split :
+    (¬ Config.assignment.Same .pinnedCenter .boundaryCenter ∧
+        ∃ i : Fin 4,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OutsideSeed
+            Config.assignment (.boundarySource i)) ∨
+      (Config.assignment.Same .pinnedCenter .boundaryCenter ∧
+        FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowSupportEq
+          Config.assignment .fan .boundary)
+  sourceFaithfulFan : ∀ i : Fin 4,
+    Config.assignment.InCapInterior
+        (.blockerCenter i) (Config.blockerCap i) ∧
+      ¬ Config.assignment.HasFourAfterDeleting
+        (.fanSource i) (.blockerCenter i) ∧
+      ((Config.assignment.Same .pinnedCenter (.blockerCenter i) ∧
+          FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowSupportEq
+            Config.assignment .fan (.blocker i) ∧
+          Config.assignment.Nonrobust .pinnedCenter) ∨
+        (¬ Config.assignment.Same .pinnedCenter (.blockerCenter i) ∧
+          FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
+            Config.assignment .fan (.blocker i) ≤ 2))
+  blocker_source_incident : ∀ i : Fin 4,
+    Config.assignment.Incident (.fanSource i) (.blocker i)
+  pinned_deletion_survives_iff_robust_or_not_incident : ∀ point,
+    (Config.assignment.HasFourAfterDeleting point .pinnedCenter ↔
+      ¬ Config.assignment.Nonrobust .pinnedCenter ∨
+        ¬ Config.assignment.Incident point .fan)
+  blocker_deletion_survives_iff_not_incident : ∀ i : Fin 4, ∀ point,
+    (Config.assignment.HasFourAfterDeleting point (.blockerCenter i) ↔
+      ¬ Config.assignment.Incident point (.blocker i))
+  blocker_row_all_deletions_blocked : ∀ i j : Fin 4,
+    ¬ Config.assignment.HasFourAfterDeleting
+      (.blockerRowSource i j) (.blockerCenter i)
+  normalizedFan :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.NormalizedFanOutcome Config
+
+namespace FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every blocker center in the normalized selected-four fan is nonrobust.
+
+This is the first consumer-ready consequence of the source-faithful fan and
+the relational deletion law: each fan packet explicitly records one failed
+deletion at its blocker center, and any such failed deletion contradicts full
+deletion robustness at that center. -/
+theorem blockerCenter_nonrobust
+    {Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration}
+    (Theory : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config)
+    (i : Fin 4) :
+    Config.assignment.Nonrobust (.blockerCenter i) :=
+  Theory.relational.blocked_deletion_nonrobust
+    (.fanSource i) (.blockerCenter i) (Theory.sourceFaithfulFan i).2.1
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Under the pinned-center nonrobust status, the exact deletion law reduces
+to the complement of incidence in the actual selected fan row. -/
+theorem pinned_deletion_survives_iff_not_incident_of_nonrobust
+    {Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration}
+    (Theory : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config)
+    (hnonrobust : Config.assignment.Nonrobust .pinnedCenter)
+    (point : FreshThirdPinnedEndpointOutsideSeedPointRole) :
+    (Config.assignment.HasFourAfterDeleting point .pinnedCenter ↔
+      ¬ Config.assignment.Incident point .fan) := by
+  simpa [hnonrobust] using
+    Theory.pinned_deletion_survives_iff_robust_or_not_incident point
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- If the pinned center is robust, every named deletion in the finite view
+retains a four-point witness there. -/
+theorem pinned_deletion_survives_of_not_nonrobust
+    {Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration}
+    (Theory : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config)
+    (hrobust : ¬ Config.assignment.Nonrobust .pinnedCenter)
+    (point : FreshThirdPinnedEndpointOutsideSeedPointRole) :
+    Config.assignment.HasFourAfterDeleting point .pinnedCenter :=
+  (Theory.pinned_deletion_survives_iff_robust_or_not_incident point).2
+    (Or.inl hrobust)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- In the finite named-role view, pinned-center nonrobustness therefore blocks
+deletion of each of the four actual fan sources at the pinned center. -/
+theorem fanSource_deletion_blocked_at_pinned_of_nonrobust
+    {Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration}
+    (Theory : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config)
+    (hnonrobust : Config.assignment.Nonrobust .pinnedCenter)
+    (i : Fin 4) :
+    ¬ Config.assignment.HasFourAfterDeleting (.fanSource i) .pinnedCenter := by
+  have hincident : Config.assignment.Incident (.fanSource i) .fan :=
+    (Theory.relational.rowTheory.incident_iff_slot (.fanSource i) .fan).2
+      ⟨i, Theory.relational.rowTheory.same_refl (.fanSource i)⟩
+  rw [Theory.pinned_deletion_survives_iff_robust_or_not_incident]
+  simp only [hnonrobust, not_true_eq_false, false_or, hincident,
+    not_true_eq_false, not_false_eq_true]
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The universal source-faithful deletion fan transports exactly to the
+finite named-role vocabulary.  The blocker-cap labels are the witnesses
+chosen by `FiniteConfiguration.blockerCapOfView`; no cap alignment is added. -/
+theorem sourceFaithfulFan_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    ∀ i : Fin 4,
+      let Config :=
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View
+      Config.assignment.InCapInterior
+          (.blockerCenter i) (Config.blockerCap i) ∧
+        ¬ Config.assignment.HasFourAfterDeleting
+          (.fanSource i) (.blockerCenter i) ∧
+        ((Config.assignment.Same .pinnedCenter (.blockerCenter i) ∧
+            FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowSupportEq
+              Config.assignment .fan (.blocker i) ∧
+            Config.assignment.Nonrobust .pinnedCenter) ∨
+          (¬ Config.assignment.Same .pinnedCenter (.blockerCenter i) ∧
+            FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
+              Config.assignment .fan (.blocker i) ≤ 2)) := by
+  classical
+  intro i
+  have hpacket := Classical.choose_spec (Packet.fan.fan.deletionPacket i)
+  rcases hpacket with ⟨hcap, hblocked, hcenter | hseparate⟩
+  · refine ⟨?_, ?_, Or.inl ⟨?_, ?_, ?_⟩⟩
+    · change
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).InCapInterior
+          (.blockerCenter i)
+          ((FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView
+            P Pρ View).blockerCap i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.blockerCapOfView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcap
+    · change
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
+          (.fanSource i) (.blockerCenter i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hblocked
+    · change
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Same
+          .pinnedCenter (.blockerCenter i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcenter.1
+    · apply FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowSupportEq_ofView_of_eq
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hcenter.2.1
+    · change
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Nonrobust
+          .pinnedCenter
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcenter.2.2
+  · refine ⟨?_, ?_, Or.inr ⟨?_, ?_⟩⟩
+    · change
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).InCapInterior
+          (.blockerCenter i)
+          ((FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView
+            P Pρ View).blockerCap i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.blockerCapOfView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcap
+    · change
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
+          (.fanSource i) (.blockerCenter i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hblocked
+    · change
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Same
+          .pinnedCenter (.blockerCenter i)
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hseparate.1
+    · change
+        FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
+            (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+            .fan (.blocker i) ≤ 2
+      rw [FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowOverlapCount_ofView_eq
+        (P := P) (Pρ := Pρ)]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hseparate.2
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The intrinsic fan normalization transports to the finite vocabulary
+without retaining the ambient carrier or choosing a bounded cardinality.
+
+The two branches retain exactly the source theorem's data: an actual
+center-blocker/nonrobust witness, or the universal center inequality together
+with the repeated-cap and mutual-cross-deletion pairs. -/
+theorem normalizedFan_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.NormalizedFanOutcome
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View) := by
+  classical
+  let Config :=
+    FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View
+  rcases
+      IndexedSourceFaithfulSelectedFourFan.centerBlocker_or_noCenterBlockerWitness
+        Packet.fan.fan with hcenter | hnoCenter
+  · rcases hcenter with ⟨W⟩
+    refine Or.inl ⟨W.sourceIndex, W.blockerCap, ?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using W.center_eq
+    · simpa [Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using W.blocker_mem_cap
+    · simpa [Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using W.deletion_blocked
+    · apply
+        FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowSupportEq_ofView_of_eq
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using W.support_eq
+    · simpa [Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using W.nonrobust
+  · refine Or.inr ⟨?_, ?_, ?_⟩
+    · intro i
+      simpa [Config,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+          hnoCenter.center_ne_actualBlocker i
+    · rcases hnoCenter.repeatedCapPair with
+        ⟨i, j, hij, cap, hiCap, hjCap, hsame | hijFour | hjiFour⟩
+      refine ⟨i, j, hij, cap, ?_, ?_, ?_⟩
+      · simpa [Config,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hiCap
+      · simpa [Config,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hjCap
+      · exact Or.inl (by
+          simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hsame)
+      · refine ⟨i, j, hij, cap, ?_, ?_, Or.inr (Or.inl ?_)⟩
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hiCap
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hjCap
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hijFour
+      · refine ⟨i, j, hij, cap, ?_, ?_, Or.inr (Or.inr ?_)⟩
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hiCap
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hjCap
+        · simpa [Config,
+            FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+            FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hjiFour
+    · rcases hnoCenter.mutualCrossRows with
+        ⟨i, j, hij, hijFour, hjiFour, hne⟩
+      refine ⟨i, j, hij, ?_, ?_, ?_⟩
+      · simpa [Config,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hijFour
+      · simpa [Config,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hjiFour
+      · simpa [Config,
+          FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hne
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Transport the four explicit cyclic-order arms once the two endpoint roles
+are identified with the source packet's `qOutside` and `qBetween` positions. -/
+theorem orderedRowAtWith_of_positions
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    {outside between : FreshThirdPinnedEndpointOutsideSeedPointRole}
+    (houtside :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View outside =
+        qOutside)
+    (hbetween :
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View between =
+        qBetween) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OrderedRowAtWith
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View)
+      outside between := by
+  classical
+  let Config :=
+    FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View
+  have hbefore
+      {left right : FreshThirdPinnedEndpointOutsideSeedPointRole}
+      (hlt :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View left <
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View right) :
+      Config.assignment.Before left right := by
+    have hview :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.Before P Pρ View left right := by
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Before] using hlt
+    have hassignment :=
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View left right).2 hview
+    simpa [Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] using hassignment
+  have hboundaryPoint
+      {role : FreshThirdPinnedEndpointOutsideSeedPointRole} {q : Fin B.n}
+      (hposition :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View role = q) :
+      B.boundary q =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role := by
+    rw [← hposition]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+      B.point_eq
+        ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
+            (P := P) (Pρ := Pρ) View role⟩
+  have hboundarySame
+      {role : FreshThirdPinnedEndpointOutsideSeedPointRole}
+      (hid : id =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View role) :
+      Config.assignment.Same .boundaryCenter role := by
+    have hview :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint
+          P Pρ View .boundaryCenter role := by
+      change B.boundary id =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role
+      calc
+        B.boundary id =
+            B.boundary
+              (FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition
+                P Pρ View role) := congrArg B.boundary hid
+        _ = FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role :=
+          hboundaryPoint rfl
+    have hassignment :=
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View .boundaryCenter role).2 hview
+    simpa [Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] using hassignment
+  have hcanonicalPoint :
+      B.boundary
+          (B.indexOf ⟨C.surface.firstSource.1, C.surface.firstSource.2⟩) =
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+          P Pρ View .canonicalSource := by
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+      B.point_eq ⟨C.surface.firstSource.1, C.surface.firstSource.2⟩
+  have hendpointSplit
+      {other : FreshThirdPinnedEndpointOutsideSeedPointRole} {q : Fin B.n}
+      (hposition :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition P Pρ View other = q)
+      (hsplit :
+        EndpointDeletionPairCapSplitSurvivingRowAt S (B.boundary id)
+          (B.boundary
+            (B.indexOf ⟨C.surface.firstSource.1, C.surface.firstSource.2⟩))
+          (B.boundary q) DRow rowCap) :
+      FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.EndpointCapSplitAt
+        Config .canonicalSource other := by
+    have hdelete :
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+              P Pρ View .canonicalSource ∉ DRow.support ∨
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point
+              P Pρ View other ∉ DRow.support := by
+      rw [← hcanonicalPoint, ← hboundaryPoint hposition]
+      exact hsplit.1
+    have hfinite :=
+      FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.endpointCapSplitAt_ofView
+        (P := P) (Pρ := Pρ) View hdelete
+    simpa [Config] using hfinite
+  rcases Packet.orderedRowAt with h | h | h | h
+  · refine Or.inl ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+    · apply hbefore
+      rw [houtside]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.1
+    · apply hbefore
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.2.1
+    · apply hboundarySame
+      exact h.2.2.2.2.1.trans hbetween.symm
+    · exact hendpointSplit houtside h.2.2.2.2.2
+  · refine Or.inr (Or.inl ⟨?_, ?_, ?_, ?_, ?_, ?_⟩)
+    · apply hbefore
+      rw [houtside]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.1
+    · apply hbefore
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.2.1
+    · apply hboundarySame
+      exact h.2.2.2.2.1.trans houtside.symm
+    · exact hendpointSplit hbetween h.2.2.2.2.2
+  · refine Or.inr (Or.inr (Or.inl ⟨?_, ?_, ?_, ?_, ?_, ?_⟩))
+    · apply hbefore
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.1
+    · apply hbefore
+      rw [houtside]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.2.1
+    · apply hboundarySame
+      exact h.2.2.2.2.1.trans hbetween.symm
+    · exact hendpointSplit houtside h.2.2.2.2.2
+  · refine Or.inr (Or.inr (Or.inr ⟨?_, ?_, ?_, ?_, ?_, ?_⟩))
+    · apply hbefore
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.1
+    · apply hbefore
+      rw [hbetween]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.1
+    · apply hbefore
+      rw [houtside]
+      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using h.2.2.2.1
+    · apply hboundarySame
+      exact h.2.2.2.2.1.trans houtside.symm
+    · exact hendpointSplit hbetween h.2.2.2.2.2
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The packet's endpoint naming disjunction yields the packet-independent
+ordered-row disjunction without choosing a preferred endpoint orientation. -/
+theorem ordered_boundary_row_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OrderedRowAtWith
+        (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View)
+        .freshSourceOne .freshSourceTwo ∨
+      FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.OrderedRowAtWith
+        (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View)
+        .freshSourceTwo .freshSourceOne := by
+  rcases Packet.endpointNames with hnames | hnames
+  · apply Or.inl
+    apply orderedRowAtWith_of_positions (P := P) (Pρ := Pρ) View
+    · simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hnames.1.symm
+    · simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hnames.2.symm
+  · apply Or.inr
+    apply orderedRowAtWith_of_positions (P := P) (Pρ := Pρ) View
+    · simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hnames.1.symm
+    · simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hnames.2.symm
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Every exact arbitrary-carrier packet satisfies the complete
+packet-independent finite source theory.  This theorem is the formal ingress
+contract required before a finite incompatibility result can be promoted. -/
+theorem ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View) := by
+  classical
+  let Config :=
+    FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View
+  have hsame_iff
+      (left right : FreshThirdPinnedEndpointOutsideSeedPointRole) :
+      Config.assignment.Same left right ↔
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left =
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right := by
+    change
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Same
+          (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+          left right ↔
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint P Pρ View left right
+    exact FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ) View left right
+  refine
+    { relational := by
+        simpa [Config] using
+          (FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory.ofView
+            (P := P) (Pρ := Pρ) View)
+      seed_same_iff_eq := ?_
+      pinned_in_seed := ?_
+      pinned_ne_sourceCenter := ?_
+      pinned_ne_freshCenter := ?_
+      seed_multiplicity := ?_
+      source_center_first_cap := ?_
+      fresh_cap_ne_first := ?_
+      fresh_center_cap := ?_
+      endpoints_outside_first := ?_
+      point_in_some_cap := ?_
+      ordered_boundary_row := ?_
+      fan_source_outside_seed := ?_
+      endpoint_split := ?_
+      sourceFaithfulFan := ?_
+      blocker_source_incident := ?_
+      pinned_deletion_survives_iff_robust_or_not_incident := ?_
+      blocker_deletion_survives_iff_not_incident := ?_
+      blocker_row_all_deletions_blocked := ?_
+      normalizedFan := ?_ }
+  · intro i j
+    constructor
+    · intro hij
+      exact FreshThirdPinnedEndpointOutsideSeedFiniteView.seedRole_point_injective
+        (P := P) (Pρ := Pρ) View ((hsame_iff _ _).1 hij)
+    · intro hij
+      subst j
+      exact (hsame_iff _ _).2 rfl
+  · have hcenter := Packet.center_mem_seed
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteView.seed_eq_role_image
+      (P := P) (Pρ := Pρ) View] at hcenter
+    rcases Finset.mem_image.mp hcenter with ⟨i, _, hi⟩
+    refine ⟨i, (hsame_iff _ _).2 ?_⟩
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hi.symm
+  · intro hsame
+    apply Packet.center_ne_source
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+      (hsame_iff _ _).1 hsame
+  · intro hsame
+    apply Packet.center_ne_fresh
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+      (hsame_iff _ _).1 hsame
+  · intro e hne hsame
+    apply FreshThirdPinnedEndpointOutsideSeedFiniteView.no_four_seed_roles_same_distance
+      (P := P) (Pρ := Pρ) View e
+    · intro i heq
+      exact hne i ((hsame_iff _ _).2 heq)
+    · intro i
+      exact
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _ _).1 (hsame i)
+  · exact
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 (by
+          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+            Packet.source_center_first_cap)
+  · simpa [Config,
+      FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] using
+      Packet.fresh_cap_ne_first
+  · exact
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 (by
+          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+            Packet.fresh_center_cap)
+  · constructor
+    · intro hcap
+      exact Packet.endpoints_outside_first.1
+        ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).1 hcap)
+    · intro hcap
+      exact Packet.endpoints_outside_first.2
+        ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).1 hcap)
+  · intro point
+    rcases S.exists_mem_capByIndex_of_mem
+        (FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
+          (P := P) (Pρ := Pρ) View point) with ⟨cap, hcap⟩
+    exact ⟨cap,
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff
+        (P := P) (Pρ := Pρ) View point cap).2 hcap⟩
+  · simpa [Config] using ordered_boundary_row_ofView
+      (P := P) (Pρ := Pρ) View
+  · rcases Packet.fan.rowEscape with ⟨z, hz, hzOutside⟩
+    let i : Fin 4 := Packet.fan.fan.index ⟨z, hz⟩
+    refine ⟨i, (FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.outsideSeed_ofView_iff
+      (P := P) (Pρ := Pρ) View _).2 ?_⟩
+    have hsource := Packet.fan.fan.source_index_support
+      ⟨z, Packet.fan.Row.support_subset_A hz⟩ hz
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point, i, hsource] using
+      hzOutside
+  · rcases Packet.fan.endpointSplit with hoff | hendpoint
+    · apply Or.inl
+      refine ⟨?_, ?_⟩
+      · intro hsame
+        exact hoff.1 (by
+          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+            (hsame_iff _ _).1 hsame)
+      · rcases hoff.2 with ⟨z, hz, hzOutside⟩
+        let i : Fin 4 := View.boundaryIndex ⟨z, hz⟩
+        refine ⟨i,
+          (FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.outsideSeed_ofView_iff
+            (P := P) (Pρ := Pρ) View _).2 ?_⟩
+        simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point, i] using
+          hzOutside
+    · apply Or.inr
+      refine ⟨(hsame_iff _ _).2 ?_, ?_⟩
+      · simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+          hendpoint.1
+      · apply FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowSupportEq_ofView_of_eq
+          (P := P) (Pρ := Pρ) View
+        simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+          hendpoint.2
+  · simpa [Config] using sourceFaithfulFan_ofView
+      (P := P) (Pρ := Pρ) View
+  · intro i
+    apply
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+        (Packet.fan.fan.blockerRow i).toCriticalFourShell.q_mem_support
+  · intro point
+    change
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
+          point .pinnedCenter ↔
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Nonrobust
+            .pinnedCenter ∨
+          ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Incident
+            point .fan
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ),
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff
+        (P := P) (Pρ := Pρ),
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ)]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+        (selectedFourClass_survives_erase_iff_robust_or_not_mem
+          Packet.fan.fan.center_mem Packet.fan.Row
+          (x := FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View point))
+  · intro i point
+    change
+      (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
+          point (.blockerCenter i) ↔
+        ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Incident
+          point (.blocker i)
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ),
+      FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ)]
+    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H (Packet.fan.fan.source i).2
+          (w := FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View point))
+  · intro i j
+    change
+      ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
+        (.blockerRowSource i j) (.blockerCenter i)
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    apply Packet.fan.fan.blockerRow_support_deletion_blocked i
+    exact (View.blockerRowIndex i).symm j |>.2
+  · simpa [Config] using normalizedFan_ofView
+      (P := P) (Pρ := Pρ) View
+
+/- The exact finite survivor and compiler-trusted regression checks live in
+`TwoSourceFreshThirdResidualDiagnostics`, so production consumers can build
+without elaborating the diagnostic model. -/
+
+end FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory
+
+/-- Packet-independent certificate contract for the finite role theory.
+
+A promoted certificate must reject every finite configuration satisfying the
+source theory.  It cannot inspect an ambient packet, assume a bounded carrier,
+or select one convenient indexing/alias presentation. -/
+structure FreshThirdPinnedEndpointOutsideSeedFiniteQueryContract : Prop where
+  reject : ∀ Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration,
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config → False
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+include T hblockersNe in
+/-- Any replayed finite-query contract closes the original arbitrary-carrier
+packet by applying it to the intrinsic finite view. -/
+theorem FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_finiteQueryContract
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (Contract : FreshThirdPinnedEndpointOutsideSeedFiniteQueryContract) :
+    False := by
+  let View := FreshThirdPinnedEndpointOutsideSeedFiniteView.ofPacket
+    (P := P) (Pρ := Pρ) (T := T) (hblockersNe := hblockersNe) Packet
+  exact Contract.reject
+    (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View)
+    (FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.ofView
+      (P := P) (Pρ := Pρ) View)
+
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The remaining pinned-endpoint FreshThird obligation after eliminating the
@@ -5208,18 +9454,16 @@ theorem false_of_freshThird_pinnedEndpoint_outsideSeedResidual
           SourceFaithfulSelectedFourDeletionFan D S H DRow) :
     False := by
   classical
-  have hcenterA : center ∈ D.A :=
-    freshThirdCrossRowTwoShellSeed_subset_carrier
-      (P := P) (Pρ := Pρ) C.surface Q hcenterSeed
-  rcases
-      exists_escaping_sourceFaithfulRow_of_endpoint_split DRow hterminal with
-    ⟨Row, hrowEscape, hfan⟩
-  have hfanOutcome :=
-    nonrobustCenter_or_exists_sameCap_blockerCollision_or_crossDeletionRow
-      hcenterA Row hfan
-  have hmutualOutcome :=
-    nonrobustCenter_or_exists_mutualCrossDeletionRows_of_sourceFaithfulFan
-      Row hfan
+  let Packet :=
+    FreshThirdPinnedEndpointOutsideSeedQueryPacket.ofSource
+      P Pρ C Q hexact overlap_eq B qOutside qBetween hnames hrow center id
+      DRow hcenterSeed hcenterLocation hcenterNeSource hcenterNeFresh hmult
+      hrowCenter hsourceCenterFirst freshCap hfreshCapNeFirst hfreshCenterCap
+      hsource₁OutsideFirst hsource₂OutsideFirst rowCap hrowAt hrowCenterCap
+      hrowCapNeFirst hrowCapInside hrowCapOutside hterminal
+  have hpacketOutcome :=
+    FreshThirdPinnedEndpointOutsideSeedQueryPacket.nonrobust_or_richApexCenter_or_robustSeparatedOutcome
+      (P := P) (Pρ := Pρ) (T := T) (hblockersNe := hblockersNe) Packet
   sorry
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
