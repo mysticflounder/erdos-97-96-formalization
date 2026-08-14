@@ -437,6 +437,10 @@ parent policy, then apply the documented precedence chain.
 **Validation:** after consolidating the local files, verify that both review and
 Lean workflows load the canonical policy exactly once and still see any host shim.
 
+**Resolution (2026-08-13):** accepted. The review and Lean workflows now use one
+host-aware instruction-discovery rule and the host's documented precedence chain.
+The canonical Lean worker contract and its agent mirror were synchronized.
+
 ## Verified statements
 
 The audit also checked the following claims and found them sound within the stated
