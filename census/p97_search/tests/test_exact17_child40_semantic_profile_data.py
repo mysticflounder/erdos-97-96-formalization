@@ -5,12 +5,20 @@ from pathlib import Path
 
 import pytest
 
+from census.p97_search.cegar_wave_assumption_profiles import (
+    parse_assumption_campaign_profile,
+)
 from census.p97_search.cegar_wave_registry import (
     resolve_execution_registration,
     validate_registered_ingress,
 )
 from census.p97_search.cegar_wave_semantic_profiles import parse_profile_bytes
-from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_bytes
+from census.p97_search.phase3_cegar_wave import (
+    canonical_json_bytes,
+    sha256_bytes,
+    validate_wave_manifest,
+    wave_manifest_sha256,
+)
 from census.p97_search.phase3_cegar_wave_control import load_wave_control
 from census.p97_search.phase3_piqd_static_solver_runner import (
     authenticate_static_manifests,
@@ -28,6 +36,11 @@ PACKAGE_ROOT = PROFILE_PATH.parent
 CONTROL_PATH = PACKAGE_ROOT / "control.json"
 CHILD45_PACKAGE_ROOT = Path(__file__).parents[1] / "waves" / "exact17" / "child45"
 CHILD45_EXECUTION_CONTROL_PATH = CHILD45_PACKAGE_ROOT / "execution-control-v2.json"
+CHILD45_ASSUMPTION_CAMPAIGN_PATH = CHILD45_PACKAGE_ROOT / "assumption-campaign.json"
+CHILD45_ASSUMPTION_MANIFEST_PATH = (
+    CHILD45_PACKAGE_ROOT / "assumption-wave-manifest.json"
+)
+CHILD45_ASSUMPTION_CONTROL_PATH = CHILD45_PACKAGE_ROOT / "assumption-control.json"
 
 EXPECTED_ARTIFACTS = {
     "child_cnf": (
@@ -366,3 +379,148 @@ def test_child45_native_package_replays_registered_ingress_offline() -> None:
         }
         for role, (_path, size, sha256) in sorted(EXPECTED_CHILD45_ARTIFACTS.items())
     ]
+
+
+def test_child45_assumption_package_is_canonical_and_closed() -> None:
+    campaign_raw = CHILD45_ASSUMPTION_CAMPAIGN_PATH.read_bytes()
+    manifest_raw = CHILD45_ASSUMPTION_MANIFEST_PATH.read_bytes()
+    control_raw = CHILD45_ASSUMPTION_CONTROL_PATH.read_bytes()
+    for raw in (campaign_raw, manifest_raw, control_raw):
+        assert canonical_json_bytes(json.loads(raw)) == raw
+
+    assert len(campaign_raw) == 3_097
+    assert sha256_bytes(campaign_raw) == (
+        "845e9a10137267764e07bca6e2d01c1a0b3dff5856e646b569b8c46d51c7d48f"
+    )
+    campaign_payload = json.loads(campaign_raw)
+    assert "first_canary" not in campaign_payload
+    campaign = parse_assumption_campaign_profile(campaign_raw)
+    assert campaign.schema == "p97-exact17-child45-nextcenter-cells/v1"
+    assert campaign.profile_id == "exact17-child45-nextcenter"
+    assert campaign.parent_job_id == "8726dcec-978e-4fdc-8ca0-c33d14197c81"
+    assert campaign.parent_sha256 == EXPECTED_CHILD45_ARTIFACTS["child_cnf"][2]
+    assert campaign.producer_manifest_sha256 == (
+        "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a"
+    )
+    assert (campaign.variables, campaign.clauses, campaign.parent_byte_count) == (
+        308,
+        5_848_824,
+        291_704_992,
+    )
+    assert campaign.source_parent_path == EXPECTED_CHILD45_ARTIFACTS["parent_cnf"][0]
+    assert campaign.source_parent_sha256 == EXPECTED_CHILD45_ARTIFACTS["parent_cnf"][2]
+    assert (
+        campaign.source_parent_variables,
+        campaign.source_parent_clauses,
+        campaign.source_parent_byte_count,
+    ) == (308, 5_848_820, 291_704_790)
+    assert len(campaign.cells) == 13
+    assert tuple(cell.next_center for cell in campaign.cells) == (
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        12,
+        13,
+        14,
+        15,
+        16,
+    )
+    assert campaign.cell("next-center-15").assumptions == (305,)
+
+    manifest = json.loads(manifest_raw)
+    validate_wave_manifest(manifest)
+    assert len(manifest_raw) == 1_286
+    assert sha256_bytes(manifest_raw) == (
+        "327c9a558b6828c77a69288780aaec7aec1ee17334267086eaf9fd5a9b4a0af5"
+    )
+    assert wave_manifest_sha256(manifest) == sha256_bytes(manifest_raw)
+    assert manifest["wave_id"] == "exact17-child45-nextcenter"
+    assert manifest["iteration"] == 45
+    assert manifest["parent_checkpoint_sha256"] == EXPECTED_CHILD45_ARTIFACTS[
+        "child_cnf"
+    ][2]
+    assert manifest["source"] == {
+        "cardinality_scope": "thirteen source-total next-center cells",
+        "finite_schema": "p97-exact17-child45-nextcenter-cells/v1",
+        "ingress_hypotheses_sha256": EXPECTED_CHILD45_ARTIFACTS["lean_root"][2],
+        "live_leaf": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm",
+        "source_theorem": (
+            "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceModel."
+            "nextCenter_mem_legalNextCenterLabels"
+        ),
+    }
+    assert manifest["encoding"] == {
+        "cnf_sha256": EXPECTED_CHILD45_ARTIFACTS["child_cnf"][2],
+        "num_clauses": 5_848_824,
+        "num_variables": 308,
+        "producer_manifest_sha256": (
+            "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a"
+        ),
+        "query_polarity": "SAT_MEANS_COUNTEREXAMPLE",
+        "variable_map_sha256": (
+            "78df650209311154e9a5fb6fdb88b6e532acaa624b7789d3028434c05e38e63f"
+        ),
+    }
+    assert manifest["execution"] == {
+        "backend": "cadical",
+        "order_sha256": sha256_bytes(campaign_raw),
+        "seed": 0,
+        "shard_count": 1,
+        "shard_id": 0,
+        "solver_profile": "piqd-satworker-cadical-3.0.0",
+    }
+
+    control = load_wave_control(control_raw)
+    assert len(control_raw) == 1_376
+    assert sha256_bytes(control_raw) == (
+        "ba086684a71e8dd3def1f2d10f62271677a9abafd220e420c35fc64c1b427e2b"
+    )
+    assert control.value["schema"] == "p97-cegar-wave-control/v3"
+    assert control.value["wave_kind"] == "ASSUMPTION_CNF"
+    assert control.value["semantic_validator"] == (
+        "p97-assumption-cnf-semantic-replay/v1"
+    )
+    assert control.campaign is not None
+    assert control.campaign.path == (
+        "census/p97_search/waves/exact17/child45/assumption-campaign.json"
+    )
+    assert control.campaign.sha256 == sha256_bytes(campaign_raw)
+    assert control.manifest.path == (
+        "census/p97_search/waves/exact17/child45/assumption-wave-manifest.json"
+    )
+    assert control.manifest.sha256 == sha256_bytes(manifest_raw)
+    assert control.cnf.path == EXPECTED_CHILD45_ARTIFACTS["child_cnf"][0]
+    assert control.cnf.sha256 == EXPECTED_CHILD45_ARTIFACTS["child_cnf"][2]
+    assert control.producer_manifest.path == (
+        "census/p97_search/waves/exact17/child45/producer-manifest.json"
+    )
+    assert control.producer_manifest.sha256 == (
+        "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a"
+    )
+    assert control.variable_map.path == (
+        "census/p97_search/waves/exact17/child40/variable-map.json"
+    )
+    assert control.variable_map.sha256 == (
+        "78df650209311154e9a5fb6fdb88b6e532acaa624b7789d3028434c05e38e63f"
+    )
+    registration = resolve_execution_registration(control)
+    assert registration.adapter_id == "assumption-cnf-piqd"
+    assert registration.adapter_schema == "v1"
+    assert registration.engine_schema == "p97-cegar-assumption-cnf-engine/v1"
+    assert registration.capabilities == (
+        "check",
+        "plan",
+        "run",
+        "status",
+        "validate-ingress",
+        "validate-output",
+    )
+    assert registration.permits_campaign is True
+    assert registration.permits_diagnostic_mining is True
+    assert registration.permits_export is False
+    assert registration.permits_terminal_proof is False

@@ -12,6 +12,7 @@ import pytest
 
 from census.p97_search import phase3_cegar_assumption_engine as engine
 from census.p97_search.cegar_wave_assumption_profiles import (
+    CHILD45_SCHEMA,
     assumption_campaign_metadata,
     parse_assumption_campaign_profile,
 )
@@ -228,14 +229,35 @@ class FakeSession:
 
 
 def _semantic(binding, cell) -> dict[str, Any]:
+    child45 = binding.campaign.schema == CHILD45_SCHEMA
     result = {
-        "schema": "p97-exact17-child44-assumption-sat-replay/v1",
+        "schema": (
+            "p97-exact17-child45-assumption-sat-replay/v1"
+            if child45
+            else "p97-exact17-child44-assumption-sat-replay/v1"
+        ),
         "cell_id": cell.id,
         "assumptions": list(cell.assumptions),
-        "parent_sha256": binding.campaign.parent_sha256,
-        "parent_bytes": binding.campaign.parent_byte_count,
-        "parent_variables": binding.campaign.variables,
-        "parent_clauses": binding.campaign.clauses,
+        "parent_sha256": (
+            binding.campaign.source_parent_sha256
+            if child45
+            else binding.campaign.parent_sha256
+        ),
+        "parent_bytes": (
+            binding.campaign.source_parent_byte_count
+            if child45
+            else binding.campaign.parent_byte_count
+        ),
+        "parent_variables": (
+            binding.campaign.source_parent_variables
+            if child45
+            else binding.campaign.variables
+        ),
+        "parent_clauses": (
+            binding.campaign.source_parent_clauses
+            if child45
+            else binding.campaign.clauses
+        ),
         "assignment_sha256": "5" * 64,
         "source_model": {"next_center": cell.next_center},
         "source_predicates": ["source-total"],
@@ -246,6 +268,16 @@ def _semantic(binding, cell) -> dict[str, Any]:
         },
         "result_sha256": "4" * 64,
     }
+    if child45:
+        result.update(
+            {
+                "root_sha256": binding.campaign.parent_sha256,
+                "root_bytes": binding.campaign.parent_byte_count,
+                "root_variables": binding.campaign.variables,
+                "root_clauses": binding.campaign.clauses,
+                "suffix_sha256": engine._CHILD45_SUFFIX_SHA256,
+            }
+        )
     unsigned = {
         "schema": "p97-assumption-cnf-sat-result/v1",
         "profile_sha256": binding.campaign.raw_sha256,
@@ -276,8 +308,50 @@ def _make_engine(
     close_error: bool = False,
     solve_error: bool = False,
     replay_error: bool = False,
+    child45: bool = False,
 ):
     control, binding = _fixture(tmp_path)
+    if child45:
+        source_identity = binding.parent_identity
+        root_identity = replace(
+            source_identity,
+            sha256="3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+            num_bytes=291_704_992,
+            num_clauses=5_848_824,
+            journal_sha256="4" * 64,
+            journal_bytes=291_704_973,
+        )
+        profile = replace(
+            binding.campaign,
+            schema=CHILD45_SCHEMA,
+            profile_id="exact17-child45-nextcenter",
+            parent_job_id="8726dcec-978e-4fdc-8ca0-c33d14197c81",
+            producer_manifest_sha256=(
+                "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a"
+            ),
+            parent_sha256=root_identity.sha256,
+            parent_byte_count=root_identity.num_bytes,
+            clauses=root_identity.num_clauses,
+            source_parent_path=(
+                "scratch/exact17-lean-to-sat/"
+                "exact17-forty-fourth-root-forty-third-model-refinements.cnf"
+            ),
+            source_parent_sha256=source_identity.sha256,
+            source_parent_variables=source_identity.num_vars,
+            source_parent_clauses=source_identity.num_clauses,
+            source_parent_byte_count=source_identity.num_bytes,
+        )
+        binding = replace(
+            binding,
+            parent_identity=root_identity,
+            campaign=profile,
+            source_parent_path=(
+                tmp_path
+                / "scratch/exact17-lean-to-sat/"
+                "exact17-forty-fourth-root-forty-third-model-refinements.cnf"
+            ).resolve(),
+            source_parent_identity=source_identity,
+        )
     output_parent = tmp_path / "published"
     output_parent.mkdir(parents=True)
     output = output_parent / "engine.json"
@@ -288,7 +362,13 @@ def _make_engine(
 
     monkeypatch.setattr(engine, "bind_assumption_cnf", lambda *_args: binding)
     monkeypatch.setattr(
-        engine, "stream_parent_identity", lambda _path: binding.parent_identity
+        engine,
+        "stream_parent_identity",
+        lambda path: (
+            binding.source_parent_identity
+            if child45 and path == binding.source_parent_path
+            else binding.parent_identity
+        ),
     )
 
     def factory(**kwargs):
@@ -298,7 +378,10 @@ def _make_engine(
     def replay(profile, *, parent_cnf_path, source_parent_cnf_path, assignment, cell):
         assert profile is binding.campaign
         assert parent_cnf_path == binding.parent_path
-        assert source_parent_cnf_path is None
+        if child45:
+            assert source_parent_cnf_path == binding.source_parent_path
+        else:
+            assert source_parent_cnf_path is None
         assert assignment == tuple(range(1, 309))
         if replay_error:
             raise RuntimeError("semantic replay failed")
@@ -346,6 +429,65 @@ def test_sat_campaign_replays_all_cells_and_publishes_once(
         "classification": SAT_SEMANTIC_REPLAYED,
     }
     assert len({record["request_id"] for record in envelope["cells"]}) == 13
+
+
+def test_child45_output_dispatches_and_validates_root_source_parent_contract(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, binding, _fake, _ = _make_engine(
+        tmp_path, monkeypatch, [("SAT", None)], child45=True
+    )
+    instance.run()
+    envelope = inspect_assumption_cnf_engine_output(output)
+    result = envelope["cells"][0]["semantic_replay"]["result"]
+    assert result["schema"] == "p97-exact17-child45-assumption-sat-replay/v1"
+    assert result["parent_sha256"] == binding.campaign.source_parent_sha256
+    assert result["root_sha256"] == binding.campaign.parent_sha256
+    accepted = validate_assumption_cnf_engine_output(
+        binding.control, instance.package_root, output
+    )
+    assert accepted["summary"]["sat"] == 13
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("parent_sha256", "0" * 64),
+        ("parent_bytes", 1),
+        ("parent_variables", 1),
+        ("parent_clauses", 1),
+        ("root_sha256", "0" * 64),
+        ("root_bytes", 1),
+        ("root_variables", 1),
+        ("root_clauses", 1),
+        ("suffix_sha256", "0" * 64),
+    ],
+)
+def test_child45_offline_validation_rejects_crossed_source_or_root(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    field: str,
+    replacement: str | int,
+) -> None:
+    instance, output, binding, _fake, _ = _make_engine(
+        tmp_path, monkeypatch, [("SAT", None)], child45=True
+    )
+    instance.run()
+    envelope = json.loads(output.read_bytes())
+    semantic = envelope["cells"][0]["semantic_replay"]
+    semantic["result"][field] = replacement
+    unsigned = {
+        key: value for key, value in semantic.items() if key != "serialization_sha256"
+    }
+    semantic["serialization_sha256"] = _sha(canonical_json_bytes(unsigned))
+    _rewrite(output, envelope)
+    with pytest.raises(
+        AssumptionCnfEngineError,
+        match="Child45 semantic",
+    ):
+        validate_assumption_cnf_engine_output(
+            binding.control, instance.package_root, output
+        )
 
 
 def test_nonempty_unsat_cores_remain_cell_discovery(

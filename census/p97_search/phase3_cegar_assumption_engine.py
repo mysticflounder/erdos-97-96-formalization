@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Final
 
 from .cegar_wave_assumption_profiles import (
+    CHILD45_SCHEMA,
     AssumptionCampaignProfile,
     assumption_campaign_metadata,
     replay_sat,
@@ -145,7 +146,12 @@ _REGISTRATION_VALUE_KEYS = frozenset(
     }
 )
 _RUNTIME_SOLVER_KEYS = frozenset({"signature", "campaign_descriptor_root"})
-_SEMANTIC_RESULT_KEYS = frozenset(
+_CHILD44_RESULT_SCHEMA = "p97-exact17-child44-assumption-sat-replay/v1"
+_CHILD45_RESULT_SCHEMA = "p97-exact17-child45-assumption-sat-replay/v1"
+_CHILD45_SUFFIX_SHA256 = (
+    "7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590"
+)
+_CHILD44_SEMANTIC_RESULT_KEYS = frozenset(
     {
         "schema",
         "cell_id",
@@ -160,6 +166,15 @@ _SEMANTIC_RESULT_KEYS = frozenset(
         "replay_sha256",
         "kalmanson",
         "result_sha256",
+    }
+)
+_CHILD45_SEMANTIC_RESULT_KEYS = _CHILD44_SEMANTIC_RESULT_KEYS | frozenset(
+    {
+        "root_sha256",
+        "root_bytes",
+        "root_variables",
+        "root_clauses",
+        "suffix_sha256",
     }
 )
 
@@ -523,14 +538,28 @@ def _semantic_envelope(
     if semantic["serialization_sha256"] != _sha_value(semantic_unsigned):
         _fail("semantic replay serialization hash is invalid")
     result = semantic.get("result")
+    result_schema = result.get("schema") if type(result) is dict else None
+    if result_schema == _CHILD44_RESULT_SCHEMA:
+        expected_keys = _CHILD44_SEMANTIC_RESULT_KEYS
+    elif result_schema == _CHILD45_RESULT_SCHEMA:
+        expected_keys = _CHILD45_SEMANTIC_RESULT_KEYS
+    else:
+        expected_keys = frozenset()
     if (
         type(result) is not dict
-        or set(result) != _SEMANTIC_RESULT_KEYS
-        or result.get("schema") != "p97-exact17-child44-assumption-sat-replay/v1"
+        or set(result) != expected_keys
         or result.get("cell_id") != cell_id
         or result.get("assumptions") != list(assumptions)
     ):
         _fail("semantic replay result is not cell-bound")
+    if result_schema == _CHILD45_RESULT_SCHEMA:
+        _hex64(result.get("root_sha256"), "semantic root_sha256")
+        _hex64(result.get("suffix_sha256"), "semantic suffix_sha256")
+        if result.get("suffix_sha256") != _CHILD45_SUFFIX_SHA256:
+            _fail("Child45 semantic suffix is not the reviewed contract")
+        for field in ("root_bytes", "root_variables", "root_clauses"):
+            if type(result.get(field)) is not int or result[field] < 1:
+                _fail(f"semantic {field} is invalid")
     for digest_field in ("assignment_sha256", "replay_sha256", "result_sha256"):
         _hex64(result.get(digest_field), f"semantic {digest_field}")
     return result["result_sha256"]
@@ -1230,13 +1259,45 @@ def validate_assumption_cnf_engine_output(
                 if semantic["serialization_sha256"] != _sha_value(unsigned_semantic):
                     _fail("semantic replay serialization hash is invalid")
                 result = semantic.get("result")
+                result_schema = result.get("schema") if type(result) is dict else None
+                expected_result_keys = (
+                    _CHILD45_SEMANTIC_RESULT_KEYS
+                    if result_schema == _CHILD45_RESULT_SCHEMA
+                    else _CHILD44_SEMANTIC_RESULT_KEYS
+                )
                 if (
                     type(result) is not dict
-                    or set(result) != _SEMANTIC_RESULT_KEYS
-                    or result.get("schema")
-                    != "p97-exact17-child44-assumption-sat-replay/v1"
+                    or set(result) != expected_result_keys
+                    or result_schema not in {
+                        _CHILD44_RESULT_SCHEMA,
+                        _CHILD45_RESULT_SCHEMA,
+                    }
                     or result.get("cell_id") != cell.id
                     or result.get("assumptions") != list(cell.assumptions)
+                ):
+                    _fail("semantic replay result crossed current cell/schema")
+                if profile.schema == CHILD45_SCHEMA:
+                    if (
+                        result_schema != _CHILD45_RESULT_SCHEMA
+                        or result.get("parent_sha256")
+                        != profile.source_parent_sha256
+                        or result.get("parent_bytes")
+                        != profile.source_parent_byte_count
+                        or result.get("parent_variables")
+                        != profile.source_parent_variables
+                        or result.get("parent_clauses")
+                        != profile.source_parent_clauses
+                        or result.get("root_sha256") != profile.parent_sha256
+                        or result.get("root_bytes") != profile.parent_byte_count
+                        or result.get("root_variables") != profile.variables
+                        or result.get("root_clauses") != profile.clauses
+                        or result.get("suffix_sha256") != _CHILD45_SUFFIX_SHA256
+                    ):
+                        _fail(
+                            "Child45 semantic replay crossed root/source-parent identity"
+                        )
+                elif (
+                    result_schema != _CHILD44_RESULT_SCHEMA
                     or result.get("parent_sha256") != profile.parent_sha256
                     or result.get("parent_bytes") != profile.parent_byte_count
                     or result.get("parent_variables") != profile.variables

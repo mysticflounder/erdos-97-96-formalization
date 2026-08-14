@@ -19,6 +19,7 @@ from types import MappingProxyType
 from typing import Any
 
 from census.p97_search.cegar_wave_assumption_profiles import (
+    CHILD45_SCHEMA,
     AssumptionCampaignProfile,
     AssumptionProfileError,
     parse_assumption_campaign_profile,
@@ -47,6 +48,10 @@ from census.p97_search.phase3_piqd_assumption_campaign import (
     stream_parent_identity,
 )
 from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
+from census.p97_search.phase3_piqd_static_solver_runner import (
+    StaticPiqdRunnerError,
+    authenticate_static_manifests,
+)
 
 CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
 CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
@@ -980,7 +985,7 @@ def bind_assumption_cnf(
     producer = _capture(package_root, control.producer_manifest, "producer manifest")
     variable_map = _capture(package_root, control.variable_map, "variable map")
     campaign_bytes = _capture(package_root, control.campaign, "campaign profile")
-    _strict_json(
+    producer_object = _strict_json(
         producer,
         label="producer manifest",
         max_bytes=MAX_PRODUCER_MANIFEST_BYTES,
@@ -994,6 +999,28 @@ def bind_assumption_cnf(
         campaign = parse_assumption_campaign_profile(campaign_bytes)
     except AssumptionProfileError as error:
         raise WaveControlError("assumption campaign profile failed closed") from error
+    if campaign.schema == CHILD45_SCHEMA:
+        embedded_source = producer_object.get("source_manifest")
+        if type(embedded_source) is not dict:
+            raise WaveControlError(
+                "Child45 producer manifest lacks an embedded source manifest"
+            )
+        try:
+            source_contract = authenticate_static_manifests(
+                source_manifest=canonical_json_bytes(embedded_source),
+                producer_manifest=producer,
+            )
+        except StaticPiqdRunnerError as error:
+            raise WaveControlError(
+                "Child45 producer/source manifest contract failed closed"
+            ) from error
+        if (
+            manifest["source"]["ingress_hypotheses_sha256"]
+            != source_contract.source["source_sha256"]
+        ):
+            raise WaveControlError(
+                "Child45 wave manifest crossed the Lean source-root identity"
+            )
     parent_path = package_root / control.cnf.path
     try:
         parent = stream_parent_identity(parent_path)

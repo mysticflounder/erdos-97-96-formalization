@@ -575,6 +575,118 @@ def test_assumption_binding_captures_authenticated_source_parent(
         bind_assumption_cnf(loaded_control, tmp_path)
 
 
+def _child45_provenance_fixture(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    wave_bytes: bytes | None = None,
+    producer_bytes: bytes | None = None,
+):
+    package_root = Path(__file__).parents[1] / "waves/exact17/child45"
+    campaign_bytes = (package_root / "assumption-campaign.json").read_bytes()
+    campaign = parse_assumption_campaign_profile(campaign_bytes)
+    # The provenance test is isolated from the separate source-parent stream.
+    campaign = replace(
+        campaign,
+        source_parent_path=None,
+        source_parent_sha256=None,
+        source_parent_variables=None,
+        source_parent_clauses=None,
+        source_parent_byte_count=None,
+    )
+    monkeypatch.setattr(
+        wave_control,
+        "parse_assumption_campaign_profile",
+        lambda _raw: campaign,
+    )
+    wave_bytes = (
+        (package_root / "assumption-wave-manifest.json").read_bytes()
+        if wave_bytes is None
+        else wave_bytes
+    )
+    producer_bytes = (
+        (package_root / "producer-manifest.json").read_bytes()
+        if producer_bytes is None
+        else producer_bytes
+    )
+    variable_map = (package_root.parent / "child40/variable-map.json").read_bytes()
+    payloads = {
+        "wave manifest": wave_bytes,
+        "producer manifest": producer_bytes,
+        "variable map": variable_map,
+        "campaign profile": campaign_bytes,
+    }
+    monkeypatch.setattr(
+        wave_control,
+        "_capture",
+        lambda _root, _reference, label: payloads[label],
+    )
+    identity = CnfStreamIdentity(
+        campaign.parent_sha256,
+        campaign.parent_byte_count,
+        campaign.variables,
+        campaign.clauses,
+        campaign.variables,
+        "0" * 64,
+        campaign.parent_byte_count,
+        True,
+        1,
+        2,
+        ((3, 4),),
+    )
+    monkeypatch.setattr(wave_control, "stream_parent_identity", lambda _path: identity)
+
+    control_value = json.loads((package_root / "assumption-control.json").read_text())
+    control_value["wave_manifest"]["sha256"] = sha256_bytes(wave_bytes)
+    control_value["package"]["producer_manifest"]["sha256"] = sha256_bytes(
+        producer_bytes
+    )
+    control_value["package"]["variable_map"]["sha256"] = sha256_bytes(variable_map)
+    loaded_control = load_wave_control(canonical_json_bytes(control_value))
+    return bind_assumption_cnf(loaded_control, tmp_path), tmp_path
+
+
+def test_child45_assumption_binding_cross_binds_lean_source_root(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    binding, _ = _child45_provenance_fixture(tmp_path, monkeypatch)
+    assert binding.campaign.schema == "p97-exact17-child45-nextcenter-cells/v1"
+    assert binding.wave_manifest["source"]["ingress_hypotheses_sha256"] == (
+        "f9238553222414f52c2282ccdda7764506e69aef4eca710263d7bd6930b6d7f2"
+    )
+
+
+def test_child45_assumption_binding_rejects_crossed_wave_source_identity(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    package_root = Path(__file__).parents[1] / "waves/exact17/child45"
+    manifest = json.loads((package_root / "assumption-wave-manifest.json").read_text())
+    manifest["source"]["ingress_hypotheses_sha256"] = "a" * 64
+    with pytest.raises(WaveControlError, match="Lean source-root identity"):
+        _child45_provenance_fixture(
+            tmp_path,
+            monkeypatch,
+            wave_bytes=canonical_json_bytes(manifest),
+        )
+
+
+def test_child45_assumption_binding_rejects_tampered_embedded_source_hash(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    package_root = Path(__file__).parents[1] / "waves/exact17/child45"
+    producer = json.loads((package_root / "producer-manifest.json").read_text())
+    producer["source_manifest"]["source_sha256"] = "b" * 64
+    producer["source_manifest_sha256"] = sha256_bytes(
+        canonical_json_bytes(producer["source_manifest"])
+    )
+    with pytest.raises(WaveControlError, match="Lean source-root identity"):
+        _child45_provenance_fixture(
+            tmp_path,
+            monkeypatch,
+            producer_bytes=canonical_json_bytes(producer),
+        )
+
+
 @pytest.mark.parametrize(
     ("field", "value"),
     [

@@ -86,6 +86,14 @@ or publication path.  The earlier `replay_child44_assumption_sat` remains a
 regression seam for the authenticated Child44 fixture; it is not the callback
 for new Child45 cell results.
 
+The Child45 assumption binding also authenticates the embedded static
+producer/source contract.  The wave manifest field
+`source.ingress_hypotheses_sha256` denotes the Lean source-root bytes and must
+equal
+`f9238553222414f52c2282ccdda7764506e69aef4eca710263d7bd6930b6d7f2`,
+the `source_sha256` recorded by the embedded source manifest.  It is not the
+source-manifest-object digest, parent-CNF digest, or campaign-root digest.
+
 Before evaluating an assignment, the Child45 callback streams the Child44 and
 Child45 files in lockstep: their canonical headers must differ only by the
 four-clause count, all 5,848,820 parent body lines must be byte-identical, and
