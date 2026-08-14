@@ -11032,3 +11032,37 @@ runner static gate pass.
 No Child39 PIQD job exists at this checkpoint. After publication, submit
 exactly one job through the pinned runner and apply the established terminal
 contract. Exact 17 and the cap-nine production leaf remain open.
+
+### 13.28.11 Child-40 Lean-first prepublication checkpoint — 2026-08-13
+
+Child39 subsequently terminated authenticated `SAT` at epoch one as PIQD job
+`68cfcaf6-1a90-466e-8fc3-d1c3ffc8e377` after 674.811 seconds. Its retrieved
+308-variable assignment independently replayed all 5,847,388 clauses of root
+`989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`.
+This remains an abstract source-normal-form survivor, not a Euclidean
+counterexample.
+
+The mandatory wave-only mine found 49 new source-valid occurrences of the
+existing two-Kalmanson `CancellationOccurrence` family. They expand to a
+196-clause Lean-owned suffix; no new theorem family was required. Seven Lean
+shards and their coordinator prove every source clause, the suffix and
+extended-CNF evaluators, the `SourceRealization` bridge, and the conditional
+terminal adapter. The targeted exporter build passes, and transitive axiom
+checks contain no `sorryAx`; finite evaluation uses the accepted
+`native_decide` boundary.
+
+The strict Child40 publication chain pins the Child39 prefix, the 196-clause
+suffix, the current Lean sources, and the exact 5,847,584-clause total. A
+temporary Lean-rendered export passed full validation with 308 variables,
+291,633,186 bytes, and SHA-256
+`555d1d2f63183cccf3549d4bedf9dd39817666c0f026ca1d390251c8e7c69034`.
+Ruff and all five focused adversarial publication tests pass. The temporary
+root was removed after validation; no production Child40 root, receipt,
+ingress manifest, or PIQD job exists at this checkpoint.
+
+This checkpoint does not close exact 17 or a production `sorry`. The next
+authorized action is exclusive publication and recursive ingress validation,
+followed by exactly one runner-mediated Child40 submission. Terminal `SAT`
+repeats exact replay and wave-only theorem mining; terminal `UNSAT` requires
+independent certificate replay, Lean banking, and composition through the
+exact-17 source-realization and landing contracts.

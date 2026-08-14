@@ -813,3 +813,35 @@ the pinned runner after publication. On terminal `SAT`, replay the entire model
 and mine only that new wave. On terminal `UNSAT`, independently replay the
 certificate and compose the banked theorem through the source-realization and
 landing contracts. Exact 17 and the cap-nine production `sorry` remain open.
+
+## Fortieth Lean-owned child checkpoint — 2026-08-13
+
+Child39 terminated authenticated `SAT` at epoch one as PIQD job
+`68cfcaf6-1a90-466e-8fc3-d1c3ffc8e377` after 674.811 seconds. The exact
+308-variable assignment independently replayed all 5,847,388 clauses of root
+`989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`.
+It is an abstract source-normal-form survivor, not a Euclidean counterexample.
+
+The mandatory wave-only mine found 49 new source-valid instances of the
+already general two-Kalmanson `CancellationOccurrence` theorem and no new
+theorem family. Their two orientations yield a 196-clause suffix. Seven Lean
+shards plus the coordinator prove all clauses, the source evaluator, the
+extended evaluator, the `SourceRealization` bridge, and the conditional
+terminal adapter. The targeted exporter build and axiom audit pass with no
+`sorryAx`; finite evaluation uses the accepted `native_decide` boundary.
+
+The Child40 exporter and fail-closed validators pin the immutable Child39
+prefix, exactly 196 Lean-owned suffix clauses, the current Lean sources, and a
+5,847,584-clause result. A temporary Lean-rendered export passed exact
+validation with 308 variables, 291,633,186 bytes, and SHA-256
+`555d1d2f63183cccf3549d4bedf9dd39817666c0f026ca1d390251c8e7c69034`.
+Ruff and five focused adversarial tests pass. The temporary file was removed;
+the production root, export receipt, ingress manifest, custody artifacts, and
+PIQD job are intentionally absent at this checkpoint.
+
+Next publish once with no-overwrite semantics, recursively validate ingress,
+and submit exactly one pinned Child40 job. `SAT` requires full replay and a
+new-wave-only theorem mine before any successor. `UNSAT` requires independent
+certificate replay and Lean composition through the existing exact-cover,
+source-realization, and landing contracts. Exact 17 and the cap-nine
+production `sorry` remain open.
