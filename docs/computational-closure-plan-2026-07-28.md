@@ -1758,6 +1758,243 @@ bounded v22 cell-6 successor canary after the checkpoint is committed and
 pushed.  It remains a finite proof-carrying refinement, not terminal UNSAT,
 all-cell coverage, universal promotion, or closure of a Lean `sorry`.
 
+The v22 arm-static canary integration advances both producer schemas to v9 and
+binds the complete new family source manifest into the job, discovery
+descriptor, required-artifact inventory, and published run manifest.  Its
+frozen post-arm formula has 45,369 variables and 645,218 clauses with SHA-256
+`3a58f8f21e1c23ecd78c76f17872ca7cb1065f58ebddb9225ec1acdc9f4f266a`;
+the final source-order formula has 45,369 variables and 645,299 clauses with
+SHA-256
+`d77aec4a937245dc6f0330969ccbf9c07bb2317a5e83c2b0602a5ca2d5be9b3b`.
+The launch gate requires both the full frozen-identity reconstruction and the
+fail-closed job/artifact-binding test to pass after this schema change.  Its
+first quiescent reconstruction passed every source attestation but failed
+closed because a frozen parent-bank hash still named pre-reauthentication
+bytes, while the exact CNF identity remained unchanged.  The complete
+producer chain was then reauthenticated by 13 hash-pin substitutions across
+nine files and committed and pushed as `41d65924`.  In an exact-SHA detached
+worktree, the frozen reconstruction and job/artifact-binding canary now passes
+(`1 passed in 997.05s`), and all nine shared files byte-match that green
+worktree.  The current-tree fast PIQD/runner gate passes 13/13; a broader local
+wave-tool regression passes 113 tests and two subtests after updating two
+stale permission fixtures to the required mode `0700`.  These are ingress and
+regression results, not solver results, and no v22 PIQD job has yet launched.
+
+The separate PIQD release hold is discharged.  PIQD commit `419f845` moved each
+solve onto a private content-address-verified CNF snapshot and re-hashes that
+same snapshot before and after solving and during result confirmation.  The
+current live daemon, SHA-256
+`1b2a6653620bc12d5ecc2ba2f711d433bd9c45d97afe87d93135673f76d23090`,
+also evaluates every reported SAT model clause-by-clause against that verified
+snapshot and binds the proof pointer atomically to the verdict that minted it
+(commits `0e341d3` and `24bb000`).  These daemon checks supplement rather than
+replace the P97 adapter's independent complete-CNF and source-semantic replay.
+The only remaining launch hold is the arm owner's rebased immutable v9
+arm-plus-aggregate gate on top of `41d65924`.  Once that gate is green, exactly
+one fresh immutable cell-6 v22 canary is authorized.  A SAT result triggers the
+mandatory all-order theorem-mining stop; an UNSAT result triggers a fresh
+byte-identical terminal proof-producing replay.  Neither result authorizes an
+unchanged successor wave or a twelve-cell run automatically.
+
+A separate pre-publication audit of the new wave-level postprocessors found
+that they are not yet admissible as authentication boundaries.  The structural
+postwave currently derives terminal-UNSAT aggregates from status labels without
+independently checking the terminal CNF, DRAT, and verified-verdict artifacts;
+the generic and arm SAT postwaves trust declared replay flags without fully
+rebinding each positive assignment to the authenticated source manifest and
+exact CNF.  Their link-custody checks are also weaker than the fd-anchored v21
+static-workdir validator.  These defects do not alter the authenticated v22
+canary runner/gate, but the v21 validator's frozen constants do not validate a
+new v22 result; a versioned v22 outcome validator or equivalent independent
+replay is required before publication.  The postprocessors remain prohibited
+until independent CNF/model/proof replay and adversarial symlink/hardlink tests
+are green.  No wave-level terminal or theorem-mining aggregate produced by the
+current drafts may support promotion.
+
+The card-at-least-13 producer audit has likewise narrowed the open source
+contract.  No existing source-clean lemma derives any of the five positive
+cross-incidences required by the current two residual leaves.  In the concrete
+`c1 ∉ BO` arm, the new downstream theorem
+`xvDeletion_c1_not_mem_BO_yields_self_commonDeletion` composes the existing
+three-exact-row theorem, selected-four-class conversion,
+survival-under-erase theorem, and common-deletion constructor to prove a
+nonempty `CommonDeletionTwoCenterPacket D Hlate c1 c1 O`.  Its targeted module
+build is green and `#print axioms` reports only `propext`,
+`Classical.choice`, and `Quot.sound`, with no `sorryAx`.  This is progress but
+not an eliminator: its first center is the deleted point `c1`, leaving only
+`O` as a retained surviving center, so neither global minimality nor the
+five-center terminal consumes it.  The next exact producer target is therefore
+a retained continuation
+
+The tempting physical-second-apex dispatch is not a closure shortcut.  A
+checked coordinator-level probe can split this packet with
+`physicalSecondApex_commonDeletion_robust_or_critical` and send the two arms to
+`false_of_exactFourPhysicalConsumerRobustOutcome` and
+`false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome`.  Those consumers
+are defined later in `Rigid221Closure`, however, so the two source leaves in
+`Rigid221SourceHeavy` cannot call them without an import-cycle refactor.  More
+importantly, the fresh anchored spine currently reaches the two unbounded
+missing-incidence `sorry`s, whereas that redirection would reach three distinct
+open robust/swapped terminal declarations.  It would therefore source-close
+two declarations while increasing this anchor's transitive frontier from four
+to five total `sorry` declarations.  Do not promote that redirection as proof
+progress; first prove a retained continuation or a strictly smaller clean
+consumer.
+
+```lean
+∃ (d : ℝ²) (hdA : d ∈ D.A),
+  d ≠ c1 ∧ d ≠ S.oppApex2 ∧
+  HasNEquidistantPointsAt 4 (D.A.erase c1) d
+```
+
+equivalently, a retained center distinct from `c1` and `O` whose exact-four row
+omits `c1`.  The generic minimality escape theorem does not provide the omitted
+incidence, so it is not this producer.  Even this retained continuation must
+subsequently feed a proved `MetricCoreAlternative`, third-bisector,
+three-point-overlap, or saturated-fiber comparison before the residual can be
+called closed.  The companion `u`-deletion arm also cannot use the generic
+three-row producer without the currently unavailable `not survives xv`
+ingress.  These are producer obligations, not routes already closed by the
+existing packet constructors.
+
+Exact-SHA launch and producer-audit checkpoint (2026-08-12): the launch base is
+now commit `340965af3953e534dd814e7b0152fcf0a7ce7443`.  In a detached worktree
+at that exact commit, 38 non-custody validator and postwave tests pass.  The two
+preserved-v21 custody tests also pass when code from that exact commit validates
+the original authenticated inode.  Copying the 102 MB workdir into the detached
+worktree changes the inode and is rejected by those two tests, as required by
+the fail-closed custody contract.  The focused exact-SHA arm-static gate then
+passed, and exactly one immutable v22 cell-6 canary was launched from source
+commit `f4f68481`.  Job
+`18ee49e2aae3d1642f8aef7f8bd20e60ddfd7b7f5c4dc7dd3885c1b40043af81`
+returned `SAT_WITNESS_REPLAYED` and was independently classified
+`UNADMITTED_STRUCTURAL_SURVIVOR`.  Its minimum four-row certificate is an
+`equality-three-triad-collision` core with roles
+`A=8, B=5, C=7, D=10, E=6`; all six recorded equality paths replay directly.
+The dynamic structural journal remains deliberately non-admissible in Lean:
+it proves finite Python replay, not a typed positive-membership theorem cut.
+
+The mandatory post-canary theorem mine found a source-order-independent
+positive-membership family.  Pairwise-distinct `a,c,e` range over
+`{6,7,8,9}`, `b` ranges over `{3,4,5}`, and `d` ranges over `{10,11}`.  The
+four normalized requirements are
+
+```text
+b:{c,d}, d:{b,a}, c:{a,d,e}, e:{a,b,d}.
+```
+
+There are 144 role assignments.  The source-clean Lean producer
+`SourceOrderPositiveNogood.ofSecondOppositeTripleSurplusFirstOppositeThreeTriad`
+has been written and passes targeted elaboration; it uses only positive
+selected-row membership and the checked `ThreeTriadCollisionCore`, not exact
+fibres, source order, or convexity.  The first development probe confirmed 144
+logical requirements, comprising 24 inherited predicates and 120 fresh
+predicates, but an audit caught that its fixture stopped at v21 despite the
+probe's post-v22 label.  Its CNF counts and hashes are therefore diagnostic and
+must not be used as successor-bank pins.  The corrected exact-SHA compile now
+explicitly installs the authenticated v22 parent and passes.  It starts at
+`45,369` variables and `644,351` clauses, reuses 24 definitions, allocates 120
+fresh variables, and appends 1,752 clauses, ending at `45,489` variables and
+`646,103` clauses.  Its canonical delta SHA-256 is
+`9030716a4eb59b31ed676486d481d7a41e5513aaac61eac2767287a3f3fb0496`;
+the final DIMACS SHA-256 is
+`dc63ac918ed05c66cb9207f05219f66b2ad1df0310537bad1c3028abe980c300`;
+The development probe's tuple-list serialization of the 144 roles has SHA-256
+`bf9f4b05ac59d1922a19589eb73b8e775d6a15d2080edd46ce1e428a08dfd42d`;
+the production bank's canonical keyed-role serialization instead has SHA-256
+`0e938ed52472210000f82a509a79fb72a8bb76d4620011fcb840f1da6b113fd0`.
+Only the latter is a production successor-bank pin.  The generated Lean bridge
+has 120 fresh definitions, 1,608 binary implication clauses, and 144
+four-literal family blockers; its clause anchors are chunked to keep targeted
+elaboration bounded.  A live-checkout targeted build and an independent static
+clause-count/parity audit pass, but exact-SHA bank authentication and the
+detached exact-SHA Lean build remain the active ingress gates.  These are
+successor-bank facts, not a terminal certificate.  The current exact-12 target
+is to finish those gates, extend the typed terminal consumer, and only then run
+a new bounded canary.
+There is still no terminal UNSAT, all-arm coverage, universal lift, or closed
+live `sorry` from this result.
+
+The terminal-consumer audit makes the second gate concrete.  The current
+`ExactTwelveRigid221ThreeTriadMembershipTerminalConsumer` types only the
+historical block-spanning layer and the five-variable three-triad supplement;
+it does **not** consume the later family-bank prefix now ending at variable
+45,489.  Consequently a solver result over the v23 canary would presently be
+an authenticated computational artifact but not a Lean-ingressible terminal
+certificate.  Before launch, add one source-valued global membership
+assignment, prove that every generated layer agrees with it through that
+layer's final variable, and use the existing per-layer implication and blocker
+theorems to consume the complete emitted clause order, followed by the named
+arm and source-order suffixes.  The generic assignment-composition lemma is
+now under targeted kernel validation.  Production launch remains prohibited
+until that full consumer elaborates against the exact frozen clause order.
+
+Exact-12 v23 ingress reauthentication checkpoint (2026-08-13): the corrected
+exact-SHA reconstruction now authenticates the complete v22-parent/v23-family
+chain.  The post-family prefix remains 45,489 variables and 646,103 clauses
+with SHA-256
+`dc63ac918ed05c66cb9207f05219f66b2ad1df0310537bad1c3028abe980c300`.
+After the fixed named-deletion arm suffix it has 646,970 clauses with SHA-256
+`258dee064cdd39b33a38620c25b8bd47e8d61ab6d9b78b283cf559497d9fd944`;
+after the 81-clause source-order bank it has 647,051 clauses with SHA-256
+`ccf284562911954d27db02db9589100046ac03a986b6f4d9b2a47ae9c5ce8755`.
+The source-order bank itself remains pinned at SHA-256
+`cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c`.
+The canary probe accepts these identities.  A later detached full-project
+build failed in the concurrently refactored `Rigid221SourceHeavy` module and
+therefore neither validates nor invalidates this exact-12 ingress.
+
+The full-prefix typed consumer has now been written in
+`ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean`.  It composes
+all post-parent membership layers into one source-valued assignment, proves
+the layer agreement obligations, consumes the fixed arm and source-order
+suffixes in emitted order, and exposes a one-arm `DimacsUnsatisfiable`
+terminal.  Targeted dependency validation is still in progress.  During that
+validation, the named-deletion bridge was repaired after the Lean/Census554
+refactor: its literal ceiling is now proved structurally rather than by a
+large free-variable `native_decide`, and its negative blocker literals are
+proved under the arbitrary successor-selector assignment.  That module now
+passes direct targeted elaboration.  This is still ingress infrastructure:
+the bounded 12-cell solver wave remains prohibited until the full consumer
+itself elaborates, and there is still no terminal UNSAT, all-arm coverage,
+universal lift, or closed live `sorry`.
+
+Targeted-ingress validation checkpoint (2026-08-13): the upstream
+`ExactTwelveRigid221V14JobCnf` module exceeded the 16 GB elaboration budget
+when Lean normalized all auxiliary-variable blocks together.  It is now a
+thin coordinator over bounded, dependency-ordered shards.  The named-deletion
+bridge, all nine shards, and the assembled `ExactTwelveRigid221V14JobCnf`
+coordinator now pass targeted `lake-build`; the five source-Sinz blocks are
+checked independently and then reassembled, using symbolic source-end bounds
+instead of concrete `baseNumVars + k` normalization.  The twelve finite
+representative reductions for the center-Sinz variable count are also checked
+under a bounded elevated heartbeat budget.  This is a proof-packaging refactor
+only: it does not change the frozen variable map, clauses, hashes, or accepted
+models.  The assembled full-prefix consumer remains to be validated before
+any PIQD launch.
+
+The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
+pentagon residual does not supply a
+`LargeCapUniqueFiveSecondApexRadius`: in particular it has no
+`unique_K4_radius`, no `LargeCapUniqueFiveUnusedCriticalRow`, and no pair of
+strict-interior deletions sharing one unused-row blocker.  Therefore neither
+`nonempty_twoCommonDeletionSources_of_unusedCriticalRow` nor
+`exists_third_commonDeletionSource` can be instantiated from the current
+packet.  In the `xv`-deletion arm, the first genuinely missing positive fact is
+exactly
+
+```lean
+centerAt source1 ∈
+  SelectedClass (D.A.erase packet.xv) S.oppApex2 P.rho
+```
+
+and the checked theorem `xvDeletion_c1_not_mem_BO_yields_self_commonDeletion`
+handles its negation only by producing a self-common-deletion packet.  The next
+source theorem must transport that packet to a retained distinct center and
+then to a third-bisector, fiber-card, overlap, or metric terminal.  Absent that
+theorem, this branch is a candidate for exact predicate mining, not a claimed
+source closure.
+
 PIQD responsibility-boundary correction (2026-08-12): PIQD authenticates the
 raw CNF bytes, job identity, and solver result that it receives.  It does not
 interpret or validate the caller's Python-to-Lean variable semantics, source

@@ -40,8 +40,10 @@ from .exact12_next_row_arm_static_canary import (
     EXPECTED_PREFIX_VARIABLES,
     EXPECTED_SOURCE_ORDER_CLAUSES,
     JOB_SCHEMA,
+    LEAN_INGRESS_THEOREM,
     SUPPORTED_ARM_CELL_INDEX,
     SUPPORTED_PLACEMENT_INDEX,
+    TERMINAL_STATUS,
     Exact12NextRowArmStaticCanaryError,
     MaterializedArmStaticCanary,
     run_arm_static_canary,
@@ -49,8 +51,8 @@ from .exact12_next_row_arm_static_canary import (
 from .exact12_next_row_cell_run import _json_sha256, cnf_assignment_satisfies
 from .sat_encoding import CadicalResult, solve_cadical
 
-DESCRIPTOR_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_piqd_descriptor.v1"
-PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v9-r1"
+DESCRIPTOR_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_piqd_descriptor.v2"
+PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v11-r1"
 MAX_CNF_BYTES = 256 * 1024 * 1024
 MAX_DESCRIPTOR_BYTES = 1024 * 1024
 
@@ -143,6 +145,20 @@ def build_discovery_descriptor(
         raise Exact12NextRowArmStaticPiqdError("arm-static job_id is not canonical")
     if job.get("arm_cell_index") != SUPPORTED_ARM_CELL_INDEX:
         raise Exact12NextRowArmStaticPiqdError("arm-static job cell is crossed")
+    expected_promotion = {
+        "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+        "lean_terminal_ingress_ready": True,
+        "status_on_verified_unsat": TERMINAL_STATUS,
+    }
+    if (
+        job.get("lean_ingress_theorem") != LEAN_INGRESS_THEOREM
+        or job.get("lean_terminal_ingress_ready") is not True
+        or job.get("terminal_promotion_status") != TERMINAL_STATUS
+        or job.get("promotion") != expected_promotion
+    ):
+        raise Exact12NextRowArmStaticPiqdError(
+            "arm-static Lean terminal ingress binding is crossed"
+        )
 
     try:
         cnf_bytes = materialized.instance.dimacs().encode("ascii")
@@ -245,6 +261,7 @@ def build_discovery_descriptor(
         },
         "arm_suffix": expected_suffix,
         "source_order_bank": expected_source_order,
+        "lean_terminal_ingress": expected_promotion,
         "sources": sources,
         "sources_sha256": sha256_json(sources),
         "route": "PIQD_DISCOVERY_ONLY_LOCAL_IDENTICAL_CNF_TERMINAL_PROOF",

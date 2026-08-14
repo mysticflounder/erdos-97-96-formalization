@@ -66,6 +66,7 @@ from census.card_head.exact12_next_row_arm_static_canary import (
     EXPECTED_PREFIX_DIMACS_SHA256,
     EXPECTED_PREFIX_VARIABLES,
     JOB_SCHEMA,
+    LEAN_INGRESS_THEOREM,
     RUN_SCHEMA,
     SOURCE_PATHS,
     TERMINAL_STATUS,
@@ -99,6 +100,12 @@ from census.card_head.exact12_second_apex_surplus_second_first_common_five_membe
 )
 from census.card_head.exact12_second_cap_apex_surplus_membership_family_bank import (
     install_second_cap_apex_surplus_membership_family_bank,
+)
+from census.card_head.exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank import (
+    _source_paths as second_opposite_triple_surplus_first_opposite_three_triad_source_paths,
+)
+from census.card_head.exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank import (
+    install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank,
 )
 from census.card_head.exact12_surplus_apex_pair_membership_family_bank import (
     install_surplus_apex_pair_membership_family_bank,
@@ -146,10 +153,10 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             run_arm_static_canary(REPO_ROOT, REPO_ROOT / "unused", 5)
 
     def test_authenticated_arm_suffix_has_frozen_identity(self) -> None:
-        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 45_369)
-        self.assertEqual(EXPECTED_PREFIX_CLAUSES, 644_351)
-        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 645_218)
-        self.assertEqual(EXPECTED_FINAL_CLAUSES, 645_299)
+        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 45_489)
+        self.assertEqual(EXPECTED_PREFIX_CLAUSES, 646_103)
+        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 646_970)
+        self.assertEqual(EXPECTED_FINAL_CLAUSES, 647_051)
         instance, compiled, layout, membership_bank = (
             materialize_positive_membership_static_cell(REPO_ROOT, 1)
         )
@@ -363,6 +370,18 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             "first-opposite-pair-surplus-second-opposite-common-five-"
             "a6789-b345-c6789.v1",
         )
+        second_opposite_triple_family_bank = install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
+            REPO_ROOT,
+            instance,
+            layout,
+            first_opposite_pair_family_bank,
+            cell_index=6,
+        )
+        self.assertEqual(
+            second_opposite_triple_family_bank["family_id"],
+            "second-opposite-triple-surplus-first-opposite-three-triad-"
+            "a6789-b345-c6789-d1011-e6789.v1",
+        )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
         self.assertEqual(_cnf_sha256(instance), EXPECTED_PREFIX_DIMACS_SHA256)
@@ -389,11 +408,22 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_run.v9",
+            "p97_rigid221_exact12_next_row_arm_static_canary_run.v11",
         )
         self.assertEqual(
             JOB_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_job.v9",
+            "p97_rigid221_exact12_next_row_arm_static_canary_job.v11",
+        )
+        self.assertEqual(job["lean_ingress_theorem"], LEAN_INGRESS_THEOREM)
+        self.assertIs(job["lean_terminal_ingress_ready"], True)
+        self.assertEqual(job["terminal_promotion_status"], TERMINAL_STATUS)
+        self.assertEqual(
+            job["promotion"],
+            {
+                "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+                "lean_terminal_ingress_ready": True,
+                "status_on_verified_unsat": TERMINAL_STATUS,
+            },
         )
         bank = materialized.apex_first_opposite_shared_pair_common_five_family_bank
         binding = job[
@@ -464,6 +494,20 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             first_opposite_pair_binding["family_id"],
             first_opposite_pair_bank["family_id"],
         )
+        second_opposite_triple_bank = (
+            materialized.second_opposite_triple_surplus_first_opposite_three_triad_family_bank
+        )
+        second_opposite_triple_binding = job[
+            "second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank"
+        ]
+        self.assertEqual(
+            second_opposite_triple_binding["sha256"],
+            second_opposite_triple_bank["bank_sha256"],
+        )
+        self.assertEqual(
+            second_opposite_triple_binding["family_id"],
+            second_opposite_triple_bank["family_id"],
+        )
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
@@ -498,8 +542,25 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
                 REPO_ROOT
             )
         )
+        expected_source_paths.update(
+            second_opposite_triple_surplus_first_opposite_three_triad_source_paths(
+                REPO_ROOT
+            )
+        )
         self.assertEqual(
             {record["path"] for record in job["sources"]}, expected_source_paths
+        )
+        terminal_consumer_path = (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean"
+        )
+        self.assertIn(terminal_consumer_path, expected_source_paths)
+        self.assertEqual(
+            sum(
+                record["path"] == terminal_consumer_path
+                for record in job["sources"]
+            ),
+            1,
         )
         required = _required_artifact_hashes(job, materialized)
         artifacts = {
@@ -596,6 +657,19 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         )
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
 
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts[
+            "second_opposite_triple_surplus_first_opposite_three_triad_family_bank"
+        ] = {"sha256": "0" * 64}
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop(
+            "second_opposite_triple_surplus_first_opposite_three_triad_family_bank"
+        )
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
         self.assertEqual(
             materialized.instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES
         )
@@ -680,6 +754,18 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
                 "census.card_head.exact12_next_row_arm_static_canary."
                 "second_apex_surplus_second_first_common_five_source_paths",
                 side_effect=ValueError("v18 family source drift"),
+            ),
+            self.assertRaisesRegex(
+                Exact12NextRowArmStaticCanaryError,
+                "required canary source failed authentication",
+            ),
+        ):
+            _source_manifest(REPO_ROOT)
+        with (
+            patch(
+                "census.card_head.exact12_next_row_arm_static_canary."
+                "second_opposite_triple_surplus_first_opposite_three_triad_source_paths",
+                side_effect=ValueError("v23 family source drift"),
             ),
             self.assertRaisesRegex(
                 Exact12NextRowArmStaticCanaryError,

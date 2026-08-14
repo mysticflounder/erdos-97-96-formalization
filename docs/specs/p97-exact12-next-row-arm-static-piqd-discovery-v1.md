@@ -90,3 +90,13 @@ fake local terminal solver; the added production-seam regression materializes
 the real frozen formula and passes its real producer job into the descriptor
 builder. None of these tests contacts a daemon, invokes a SAT solver, runs
 Lean, or supports any mathematical closure claim.
+
+The public standalone validator authenticates the preserved v21 complete
+workdir without transport. It uses descriptor-relative, componentwise
+no-follow opens; bounded unique regular-file reads; held directory/file
+identity recapture; and an exact closed file-and-directory inventory. Its
+manifest-only mode validates the frozen source manifest and all v21 job,
+survivor, descriptor, receipt, custody, journal, solver, model, and result
+cross-bindings. Supplying `--repo-root` additionally rehashes current source
+files and therefore exposes provenance drift; it does not silently replace the
+preserved manifest.

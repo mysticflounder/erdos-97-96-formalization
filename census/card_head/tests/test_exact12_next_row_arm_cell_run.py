@@ -249,6 +249,7 @@ class Exact12NextRowArmCellRunTest(unittest.TestCase):
 
             stale = root / "stale"
             stale.mkdir()
+            stale.chmod(0o700)
             (stale / "artifact").write_text("stale\n", encoding="ascii")
             with self.assertRaisesRegex(EncodingError, "empty"):
                 run_arm_cell(root, stale, 0)

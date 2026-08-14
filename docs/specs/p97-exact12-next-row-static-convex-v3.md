@@ -6,7 +6,8 @@ Status: the deterministic compiler, fresh-schema runner, source inventory,
 typed Lean certificate adapter source, and focused differential tests are
 implemented. Repeated authenticated cell-0 refinements remain `SAT`; no
 terminal proof exists. Three exact-row cuts are in the existing source bank.
-The latest survivor also yields a sound five-center positive-membership union
+The latest cell-0 survivor in this static-convex v3 lane also yields a sound
+five-center positive-membership union
 covering all 48 source orders. Its generic and concrete CNF bridges elaborate
 in an isolated scratch overlay, and the resulting 117-clause delta is bound by
 an authenticated one-entry v2 bank. That bank is not runner-integrated because

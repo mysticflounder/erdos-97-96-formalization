@@ -145,6 +145,14 @@ from .exact12_second_cap_apex_surplus_membership_family_bank import (
     attest_second_cap_apex_surplus_membership_family_bank_live_sources,
     install_second_cap_apex_surplus_membership_family_bank,
 )
+from .exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank import (
+    Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError,
+    attest_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank_live_sources,
+    install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank,
+)
+from .exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank import (
+    _source_paths as second_opposite_triple_surplus_first_opposite_three_triad_source_paths,
+)
 from .exact12_surplus_apex_pair_membership_family_bank import (
     Exact12SurplusApexPairMembershipFamilyBankError,
     attest_surplus_apex_pair_membership_family_bank_live_sources,
@@ -187,30 +195,35 @@ from .source_faithful_candidate_surface import (
     SourceFaithfulCoverInstance,
 )
 
-RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v9"
-JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v9"
+RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v11"
+JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v11"
 ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
-EXPECTED_PREFIX_VARIABLES = 45_369
-EXPECTED_PREFIX_CLAUSES = 644_351
+EXPECTED_PREFIX_VARIABLES = 45_489
+EXPECTED_PREFIX_CLAUSES = 646_103
 EXPECTED_PREFIX_DIMACS_SHA256 = (
-    "082162cdbee0f545dab56035ea768e3ad37ce06b9fb580c568781fd63b0d1200"
+    "dc63ac918ed05c66cb9207f05219f66b2ad1df0310537bad1c3028abe980c300"
 )
 EXPECTED_ARM_SUFFIX_CLAUSES = 867
-EXPECTED_POST_ARM_CLAUSES = 645_218
+EXPECTED_POST_ARM_CLAUSES = 646_970
 EXPECTED_POST_ARM_DIMACS_SHA256 = (
-    "3a58f8f21e1c23ecd78c76f17872ca7cb1065f58ebddb9225ec1acdc9f4f266a"
+    "258dee064cdd39b33a38620c25b8bd47e8d61ab6d9b78b283cf559497d9fd944"
 )
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c"
 )
-EXPECTED_FINAL_CLAUSES = 645_299
+EXPECTED_FINAL_CLAUSES = 647_051
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "d77aec4a937245dc6f0330969ccbf9c07bb2317a5e83c2b0602a5ca2d5be9b3b"
+    "ccf284562911954d27db02db9589100046ac03a986b6f4d9b2a47ae9c5ce8755"
 )
-TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_ARM_STATIC_LEAN_INGRESS"
+LEAN_INGRESS_THEOREM = (
+    "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
+    "FullMembershipPrefixTerminalConsumer."
+    "false_of_terminalFullMembershipNamedDeletionArmBank"
+)
+TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE"
 SUCCESS_STATUSES = frozenset({"SAT_WITNESS_REPLAYED", TERMINAL_STATUS})
 
 SOURCE_PATHS = (
@@ -247,6 +260,11 @@ SOURCE_PATHS = (
     (
         "census/card_head/"
         "exact12_first_opposite_pair_surplus_second_opposite_common_five_"
+        "membership_family_bank.py"
+    ),
+    (
+        "census/card_head/"
+        "exact12_second_opposite_triple_surplus_first_opposite_three_triad_"
         "membership_family_bank.py"
     ),
     (
@@ -365,6 +383,10 @@ SOURCE_PATHS = (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221ZeroCenterCrossBlockMembershipFamilyCnf.lean"
     ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean"
+    ),
 )
 
 
@@ -399,6 +421,9 @@ class MaterializedArmStaticCanary:
         str, Any
     ]
     first_opposite_pair_surplus_second_opposite_common_five_family_bank: dict[str, Any]
+    second_opposite_triple_surplus_first_opposite_three_triad_family_bank: dict[
+        str, Any
+    ]
     apex_triple_surplus_second_opposite_common_five_family_bank: dict[str, Any]
     surplus_pair_second_opposite_apex_pair_common_five_family_bank: dict[str, Any]
     apex_first_surplus_second_common_five_family_bank: dict[str, Any]
@@ -742,6 +767,17 @@ def materialize_arm_static_canary(
             repo_root,
             first_opposite_pair_surplus_second_opposite_common_five_family_bank,
         )
+        second_opposite_triple_surplus_first_opposite_three_triad_family_bank = install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
+            repo_root,
+            instance,
+            layout,
+            first_opposite_pair_surplus_second_opposite_common_five_family_bank,
+            cell_index=SUPPORTED_ARM_CELL_INDEX,
+        )
+        attest_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank_live_sources(
+            repo_root,
+            second_opposite_triple_surplus_first_opposite_three_triad_family_bank,
+        )
     except Exact12SurplusApexPairMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AdjacentApexCrossBlockMembershipFamilyBankError as exc:
@@ -772,6 +808,10 @@ def materialize_arm_static_canary(
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except (
         Exact12FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyBankError
+    ) as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except (
+        Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError
     ) as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except (
@@ -876,6 +916,9 @@ def materialize_arm_static_canary(
         first_opposite_pair_surplus_second_opposite_common_five_family_bank=(
             first_opposite_pair_surplus_second_opposite_common_five_family_bank
         ),
+        second_opposite_triple_surplus_first_opposite_three_triad_family_bank=(
+            second_opposite_triple_surplus_first_opposite_three_triad_family_bank
+        ),
         apex_triple_surplus_second_opposite_common_five_family_bank=(
             apex_triple_surplus_second_opposite_common_five_family_bank
         ),
@@ -947,6 +990,11 @@ def _source_manifest(repo_root: Path) -> list[dict[str, Any]]:
             )
         )
         source_paths.update(
+            second_opposite_triple_surplus_first_opposite_three_triad_source_paths(
+                repo_root
+            )
+        )
+        source_paths.update(
             apex_triple_surplus_second_opposite_common_five_source_paths(repo_root)
         )
         source_paths.update(
@@ -1002,6 +1050,9 @@ def _build_job(
     first_opposite_pair_surplus_second_opposite_common_five_family_bank = (
         materialized.first_opposite_pair_surplus_second_opposite_common_five_family_bank
     )
+    second_opposite_triple_surplus_first_opposite_three_triad_family_bank = (
+        materialized.second_opposite_triple_surplus_first_opposite_three_triad_family_bank
+    )
     apex_triple_surplus_second_opposite_common_five_family_bank = (
         materialized.apex_triple_surplus_second_opposite_common_five_family_bank
     )
@@ -1019,11 +1070,16 @@ def _build_job(
         "schema": JOB_SCHEMA,
         "scope": (
             "one finite exact-12 placement-1 named-arm static canary; no "
-            "aggregate arm coverage, universal lift, or Lean closure"
+            "aggregate arm coverage, universal lift, or Lean closure; the "
+            "typed terminal consumer is ready, but a verified terminal proof "
+            "must still be converted into a Lean DimacsUnsatisfiable witness"
         ),
         "arm_cell_index": SUPPORTED_ARM_CELL_INDEX,
         "candidate_schema": SOURCE_FAITHFUL_CANDIDATE_SCHEMA,
         "candidate_profile": list(SOURCE_FAITHFUL_PYTHON_PROFILE),
+        "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+        "lean_terminal_ingress_ready": True,
+        "terminal_promotion_status": TERMINAL_STATUS,
         "compiler_manifest": materialized.arm_compiled.manifest(),
         "positive_membership_bank": {
             "schema": membership_bank.get("schema"),
@@ -1148,6 +1204,18 @@ def _build_job(
             ),
             "lean_terminal_ingress_ready": False,
         },
+        "second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank": {
+            "schema": second_opposite_triple_surplus_first_opposite_three_triad_family_bank.get(
+                "schema"
+            ),
+            "sha256": second_opposite_triple_surplus_first_opposite_three_triad_family_bank.get(
+                "bank_sha256"
+            ),
+            "family_id": second_opposite_triple_surplus_first_opposite_three_triad_family_bank.get(
+                "family_id"
+            ),
+            "lean_terminal_ingress_ready": False,
+        },
         "apex_triple_surplus_second_opposite_common_five_membership_family_bank": {
             "schema": apex_triple_surplus_second_opposite_common_five_family_bank.get(
                 "schema"
@@ -1213,7 +1281,8 @@ def _build_job(
             "clauses": len(instance.cnf.clauses),
         },
         "promotion": {
-            "lean_terminal_ingress_ready": False,
+            "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+            "lean_terminal_ingress_ready": True,
             "status_on_verified_unsat": TERMINAL_STATUS,
         },
         "sources": _source_manifest(repo_root),
@@ -1269,6 +1338,9 @@ def _required_artifact_hashes(
         ),
         "first_opposite_pair_surplus_second_opposite_common_five_family_bank": _json_sha256(
             materialized.first_opposite_pair_surplus_second_opposite_common_five_family_bank
+        ),
+        "second_opposite_triple_surplus_first_opposite_three_triad_family_bank": _json_sha256(
+            materialized.second_opposite_triple_surplus_first_opposite_three_triad_family_bank
         ),
         "apex_triple_surplus_second_opposite_common_five_family_bank": _json_sha256(
             materialized.apex_triple_surplus_second_opposite_common_five_family_bank
@@ -1414,6 +1486,10 @@ def run_arm_static_canary(
             workdir
             / "first_opposite_pair_surplus_second_opposite_common_five_family_bank.json"
         )
+        second_opposite_triple_surplus_first_opposite_three_triad_family_bank_path = (
+            workdir
+            / "second_opposite_triple_surplus_first_opposite_three_triad_family_bank.json"
+        )
         apex_triple_surplus_second_opposite_common_five_family_bank_path = (
             workdir / "apex_triple_surplus_second_opposite_common_five_family_bank.json"
         )
@@ -1492,6 +1568,10 @@ def run_arm_static_canary(
         _write_json(
             first_opposite_pair_surplus_second_opposite_common_five_family_bank_path,
             materialized.first_opposite_pair_surplus_second_opposite_common_five_family_bank,
+        )
+        _write_json(
+            second_opposite_triple_surplus_first_opposite_three_triad_family_bank_path,
+            materialized.second_opposite_triple_surplus_first_opposite_three_triad_family_bank,
         )
         _write_json(
             apex_triple_surplus_second_opposite_common_five_family_bank_path,
@@ -1668,6 +1748,9 @@ def run_arm_static_canary(
             "first_opposite_pair_surplus_second_opposite_common_five_family_bank": _artifact(
                 first_opposite_pair_surplus_second_opposite_common_five_family_bank_path
             ),
+            "second_opposite_triple_surplus_first_opposite_three_triad_family_bank": _artifact(
+                second_opposite_triple_surplus_first_opposite_three_triad_family_bank_path
+            ),
             "apex_triple_surplus_second_opposite_common_five_family_bank": _artifact(
                 apex_triple_surplus_second_opposite_common_five_family_bank_path
             ),
@@ -1711,7 +1794,9 @@ def run_arm_static_canary(
             "terminal_verdict": terminal.verdict if terminal else None,
             "terminal_proof_verified": (terminal.proof_verified if terminal else False),
             "terminal_proof_authenticated": terminal_proof_authenticated,
-            "lean_terminal_ingress_ready": False,
+            "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+            "lean_terminal_ingress_ready": True,
+            "terminal_promotion_status": TERMINAL_STATUS,
             "replay": replay,
             "timeout_seconds": timeout_seconds,
             "nice": nice,

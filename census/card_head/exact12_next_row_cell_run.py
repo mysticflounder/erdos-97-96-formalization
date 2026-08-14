@@ -133,7 +133,6 @@ def _claim_empty_workdir(workdir: Path) -> Path:
         raise EncodingError(f"workdir is already claimed: {workdir}") from exc
     stale = next((path for path in workdir.iterdir() if path != lock_path), None)
     if stale is not None:
-        lock_path.unlink()
         raise EncodingError(
             f"workdir must be empty; found stale artifact: {stale.name}"
         )
@@ -244,7 +243,7 @@ def run_cell(
     if not 1 <= nice <= 19:
         raise EncodingError("nice must lie in [1, 19]")
 
-    lock_path = _claim_empty_workdir(workdir)
+    _claim_empty_workdir(workdir)
     try:
         instance = SourceFaithfulCoverInstance(
             build_model(12, SOURCE_FAITHFUL_PYTHON_PROFILE)
@@ -415,7 +414,10 @@ def run_cell(
         _write_json(workdir / "summary.json", summary)
         return summary
     finally:
-        lock_path.unlink(missing_ok=True)
+        # Retain the create-once claim.  Removing it by pathname would permit
+        # a concurrent replacement to be deleted, and would make reuse
+        # ambiguous; explicit operator cleanup is required instead.
+        pass
 
 
 def main() -> int:

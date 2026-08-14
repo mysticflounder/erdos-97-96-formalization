@@ -161,7 +161,8 @@ class Exact12NextRowCellRunTest(unittest.TestCase):
             self.assertFalse((root / "invalid").exists())
 
             stale = root / "stale"
-            stale.mkdir()
+            stale.mkdir(mode=0o700)
+            stale.chmod(0o700)
             (stale / "artifact").write_text("stale\n", encoding="ascii")
             with self.assertRaisesRegex(EncodingError, "empty"):
                 run_cell(root, stale, 0)

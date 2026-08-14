@@ -18,6 +18,7 @@ from census.card_head import exact12_next_row_arm_static_piqd as adapter
 from census.card_head.exact12_next_row_arm_static_canary import (
     ARM_SUFFIX_SCHEMA,
     JOB_SCHEMA,
+    LEAN_INGRESS_THEOREM,
     TERMINAL_STATUS,
     MaterializedArmStaticCanary,
     run_arm_static_canary,
@@ -223,6 +224,9 @@ def _fixture(
         "schema": JOB_SCHEMA,
         "scope": "one synthetic finite exact-12 arm-static test",
         "arm_cell_index": 6,
+        "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+        "lean_terminal_ingress_ready": True,
+        "terminal_promotion_status": TERMINAL_STATUS,
         "compiler_manifest": materialized.arm_compiled.manifest(),
         "arm_suffix": {
             "schema": ARM_SUFFIX_SCHEMA,
@@ -241,6 +245,11 @@ def _fixture(
             "sha256": cnf_sha256,
             "variables": 1,
             "clauses": 1,
+        },
+        "promotion": {
+            "lean_ingress_theorem": LEAN_INGRESS_THEOREM,
+            "lean_terminal_ingress_ready": True,
+            "status_on_verified_unsat": TERMINAL_STATUS,
         },
         "sources": [
             {
@@ -304,9 +313,45 @@ def test_descriptor_binds_arm_cnf_map_sources_and_no_proof_claims(
     assert descriptor["compiler"]["manifest"] == job["compiler_manifest"]
     assert descriptor["arm_suffix"] == job["arm_suffix"]
     assert descriptor["source_order_bank"] == job["source_order_bank"]
+    assert descriptor["lean_terminal_ingress"] == job["promotion"]
     assert descriptor["sources"] == job["sources"]
     assert descriptor["certificate_blocker"] == CERTIFICATE_BLOCKER
     assert not any(descriptor["claims"].values())
+
+
+def test_descriptor_rejects_crossed_lean_terminal_ingress(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo_root, materialized, job, _ = _fixture(tmp_path, monkeypatch)
+    variants: list[dict[str, Any]] = []
+
+    crossed_theorem = dict(job)
+    crossed_theorem["lean_ingress_theorem"] = "Problem97.crossed"
+    variants.append(crossed_theorem)
+
+    crossed_ready = dict(job)
+    crossed_ready["lean_terminal_ingress_ready"] = False
+    variants.append(crossed_ready)
+
+    crossed_status = dict(job)
+    crossed_status["terminal_promotion_status"] = "CROSSED"
+    variants.append(crossed_status)
+
+    crossed_promotion = dict(job)
+    crossed_promotion["promotion"] = {
+        **job["promotion"],
+        "lean_terminal_ingress_ready": False,
+    }
+    variants.append(crossed_promotion)
+
+    for crossed in variants:
+        crossed.pop("job_id")
+        crossed["job_id"] = _json_sha256(crossed)
+        with pytest.raises(
+            Exact12NextRowArmStaticPiqdError,
+            match="Lean terminal ingress binding",
+        ):
+            build_discovery_descriptor(materialized, crossed, repo_root=repo_root)
 
 
 def test_fresh_production_namespace_and_sequential_request(
@@ -317,7 +362,7 @@ def test_fresh_production_namespace_and_sequential_request(
     discovery = _discovery(tmp_path, repo_root, materialized, job, api)
     producer = json.loads(discovery.producer_manifest)
 
-    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v9-r1"
+    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v11-r1"
     assert producer["producer_id"].startswith(f"{PIQD_PROJECT}:")
     assert producer["claims"]["one_process"] is False
     assert producer["claims"]["one_core"] is False
@@ -466,6 +511,9 @@ def test_observational_unsat_triggers_one_identical_local_terminal_rerun(
         )
 
     assert summary["status"] == TERMINAL_STATUS
+    assert summary["lean_ingress_theorem"] == LEAN_INGRESS_THEOREM
+    assert summary["lean_terminal_ingress_ready"] is True
+    assert summary["terminal_promotion_status"] == TERMINAL_STATUS
     assert terminal_calls == [cnf_bytes]
     assert (
         summary["artifacts"]["discovery_cnf"]["sha256"]

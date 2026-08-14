@@ -2,17 +2,16 @@
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
 
-"""Authenticated reciprocal first/surplus/second common-five family.
+"""Authenticated second-opposite-triple/surplus/first-opposite three-triad family.
 
-For every ``a`` in ``{10,11}``, ``x`` in ``{3,4,5}``, and ``c`` in
-``{6,7,8,9}``, the checked source producer refutes the positive rows
+For pairwise-distinct ``a,c,e`` in ``{6,7,8,9}``, ``b`` in ``{3,4,5}``, and
+``d`` in ``{10,11}``, the checked source producer refutes the positive rows
 
-    a:{2,x}, 2:{a,x}, 0:{2,a}, c:{0,2,x}.
+    b:{c,d}, d:{b,a}, c:{a,d,e}, e:{a,b,d}.
 
-The compiler merges the producer's two center-``c`` pair requirements into
-the equivalent triple requirement.  Six first-opposite pair definitions reuse
-the authenticated parent variables 45302--45307; twenty requirements are
-fresh.  The family adds 24 four-literal role blocks after the v20 bank.
+The twenty-four center-``d`` pair definitions are reused from the
+authenticated v22 parent.  The other 120 definitions are fresh.  The family
+appends their implications followed by 144 four-literal blocks.
 
 This is not terminal UNSAT, aggregate coverage, a universal lift, or live
 closure.
@@ -26,16 +25,16 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from .exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank import (
+from .exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank import (
     BANK_SCHEMA as PARENT_BANK_SCHEMA,
 )
-from .exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank import (
+from .exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank import (
     FAMILY_ID as PARENT_FAMILY_ID,
 )
-from .exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank import (
+from .exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank import (
     _lean_import_modules,
     _project_lean_source_path,
-    attest_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank_live_sources,
+    attest_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank_live_sources,
 )
 from .exact12_next_row_static_convex import StaticConvexLayout
 from .exact12_positive_membership_cnf import SCHEMA as MEMBERSHIP_CNF_SCHEMA
@@ -48,78 +47,80 @@ from .exact12_positive_membership_source_order_bank import (
 from .source_faithful_candidate_surface import SourceFaithfulCoverInstance
 
 BANK_SCHEMA = (
-    "p97_rigid221_exact12_reciprocal_first_opposite_surplus_second_"
-    "opposite_common_five_membership_family_bank.v1"
+    "p97_rigid221_exact12_second_opposite_triple_surplus_first_opposite_"
+    "three_triad_membership_family_bank.v1"
 )
 FAMILY_ID = (
-    "reciprocal-first-opposite-surplus-second-opposite-common-five-"
-    "a1011-x345-c6789.v1"
+    "second-opposite-triple-surplus-first-opposite-three-triad-"
+    "a6789-b345-c6789-d1011-e6789.v1"
 )
 SEMANTIC_STATUS = (
-    "FINITE_SOURCE_PROVED_RECIPROCAL_FIRST_OPPOSITE_SURPLUS_SECOND_"
-    "OPPOSITE_COMMON_FIVE_MEMBERSHIP_FAMILY"
+    "FINITE_SOURCE_PROVED_SECOND_OPPOSITE_TRIPLE_SURPLUS_FIRST_OPPOSITE_"
+    "THREE_TRIAD_MEMBERSHIP_FAMILY"
 )
 PRODUCTION_FAMILY_ID_BY_CELL = {6: FAMILY_ID}
 
-EXPECTED_PARENT_VARIABLES = 45_337
-EXPECTED_PARENT_CLAUSES = 644_063
+EXPECTED_PARENT_VARIABLES = 45_369
+EXPECTED_PARENT_CLAUSES = 644_351
 EXPECTED_PARENT_DIMACS_SHA256 = (
-    "4f4314afc7c11b672655f6c67ea48286fc0adc3ae1d54f0e41f65c903947aed5"
+    "082162cdbee0f545dab56035ea768e3ad37ce06b9fb580c568781fd63b0d1200"
 )
 EXPECTED_PARENT_BANK_SHA256 = (
-    "2d758d969081e624e4624f7b23ee5f3db65758b0f6de7e083b9825a2fc4decc2"
+    "f33d3c0b220ee502a49914a892580d3477337bb44fddff7e93eddad7733694e3"
 )
-EXPECTED_FINAL_VARIABLES = 45_357
-EXPECTED_FINAL_CLAUSES = 644_207
+EXPECTED_FINAL_VARIABLES = 45_489
+EXPECTED_FINAL_CLAUSES = 646_103
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "ee31f59067eb0dc9140e0a9a4cc1a5fd077154c2b8f54910ed42162ff95adc9c"
+    "dc63ac918ed05c66cb9207f05219f66b2ad1df0310537bad1c3028abe980c300"
 )
 EXPECTED_DELTA_SHA256 = (
-    "596466a1a6131c08c073a560bb5c14cdcd352abf21446cede380b0425b49794b"
+    "9030716a4eb59b31ed676486d481d7a41e5513aaac61eac2767287a3f3fb0496"
 )
 EXPECTED_COMPILED_SHA256 = (
-    "b199915ca71557108ff1574fc694a7341edbf8014fd4c45844640f409e59a35d"
+    "51980848a4ebe7e419b73d79e6a88c3ff4c4fd1497e5cfe5f3de753243eabfec"
 )
 EXPECTED_BANK_SHA256 = (
-    "ec78e577a7bf33d9e0995a2a0cb88767e930b2851e6378efc2a92368d2c4a510"
+    "fdc0308a147dcfd0b1b99da000ec1b32e60010fd34f192c86f3d794f2f56a348"
 )
 EXPECTED_ROLES_SHA256 = (
-    "68b644141ef61f37beef118890d5164b63d10d1e0845b9007a1dd91861c7151b"
+    "0e938ed52472210000f82a509a79fb72a8bb76d4620011fcb840f1da6b113fd0"
 )
-EXPECTED_PATTERN_COUNT = 24
-EXPECTED_LOGICAL_REQUIREMENT_COUNT = 26
-EXPECTED_REUSED_REQUIREMENT_COUNT = 6
-EXPECTED_FRESH_REQUIREMENT_COUNT = 20
-EXPECTED_DEFINITION_COUNT = 26
+EXPECTED_PATTERN_COUNT = 144
+EXPECTED_LOGICAL_REQUIREMENT_COUNT = 144
+EXPECTED_REUSED_REQUIREMENT_COUNT = 24
+EXPECTED_FRESH_REQUIREMENT_COUNT = 120
+EXPECTED_DEFINITION_COUNT = 144
 EXPECTED_REUSED_REQUIREMENTS = tuple(
-    (a, (2, x)) for a in (10, 11) for x in (3, 4, 5)
+    (center, (b, a)) for center in (10, 11) for b in (3, 4, 5) for a in (6, 7, 8, 9)
 )
-EXPECTED_REUSED_PATTERN_VARIABLES = tuple(range(45_302, 45_308))
-EXPECTED_FRESH_REQUIREMENTS = (
-    ((0, (2, 10)), (0, (2, 11)))
-    + tuple((2, (x, a)) for x in (3, 4, 5) for a in (10, 11))
-    + tuple((c, (0, 2, x)) for c in (6, 7, 8, 9) for x in (3, 4, 5))
+EXPECTED_REUSED_PATTERN_VARIABLES = tuple(range(45_201, 45_225))
+EXPECTED_FRESH_REQUIREMENTS = tuple(
+    sorted(
+        {
+            *((b, tuple(sorted((c, d)))) for b in (3, 4, 5) for c in (6, 7, 8, 9) for d in (10, 11)),
+            *((c, tuple(sorted((a, d, e)))) for a in (6, 7, 8, 9) for c in (6, 7, 8, 9) for d in (10, 11) for e in (6, 7, 8, 9) if len({a, c, e}) == 3),
+            *((e, tuple(sorted((a, b, d)))) for a in (6, 7, 8, 9) for b in (3, 4, 5) for d in (10, 11) for e in (6, 7, 8, 9) if a != e),
+        }
+    )
 )
-EXPECTED_FRESH_PATTERN_VARIABLES = tuple(range(45_338, 45_358))
+EXPECTED_FRESH_PATTERN_VARIABLES = tuple(range(45_370, 45_490))
 
 COMPILER_SOURCE_PATH = "census/card_head/exact12_positive_membership_cnf.py"
-HELPER_SOURCE_PATH = (
-    "census/card_head/exact12_positive_membership_source_order_bank.py"
-)
+HELPER_SOURCE_PATH = "census/card_head/exact12_positive_membership_source_order_bank.py"
 SURFACE_SOURCE_PATH = "census/card_head/source_faithful_candidate_surface.py"
 LEAN_ROOT_MODULES = (
     (
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
-        "ExactTwelveRigid221ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveCertificate"
+        "ExactTwelveRigid221SecondOppositeTripleSurplusFirstOppositeThreeTriadCertificate"
     ),
     (
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
-        "ExactTwelveRigid221ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf"
+        "ExactTwelveRigid221SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf"
     ),
 )
 
 
-class Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+class Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
     ValueError
 ):
     """The family, its authenticated sources, or frozen parent drifted."""
@@ -142,7 +143,7 @@ def _lean_source_paths(repo_root: Path) -> tuple[str, ...]:
         try:
             source = source_path.read_text(encoding="utf-8")
         except (OSError, UnicodeError) as exc:
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
                 f"repository-local Lean import is unreadable: {relative_path}"
             ) from exc
         source_paths.add(relative_path)
@@ -169,36 +170,38 @@ def _source_paths(repo_root: Path) -> tuple[str, ...]:
 
 def production_family_id_for_cell(cell_index: int) -> str:
     if type(cell_index) is not int:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal common-five family cell index must be an integer"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family cell index must be an integer"
         )
     try:
         return PRODUCTION_FAMILY_ID_BY_CELL[cell_index]
     except KeyError as exc:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            f"no production reciprocal common-five family for cell {cell_index}"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            f"no production second-opposite-triple family for cell {cell_index}"
         ) from exc
 
 
-def family_roles() -> tuple[tuple[int, int, int], ...]:
+def family_roles() -> tuple[tuple[int, int, int, int, int], ...]:
     return tuple(
-        (a, x, c)
-        for a in (10, 11)
-        for x in (3, 4, 5)
+        (a, b, c, d, e)
+        for a in (6, 7, 8, 9)
+        for b in (3, 4, 5)
         for c in (6, 7, 8, 9)
+        for d in (10, 11)
+        for e in (6, 7, 8, 9)
+        if len({a, c, e}) == 3
     )
 
 
 def family_patterns() -> tuple[tuple[dict[str, Any], ...], ...]:
     return tuple(
         (
-            {"center": a, "support": [2, x]},
-            {"center": 2, "support": [a, x]},
-            {"center": 0, "support": [2, a]},
-            {"center": c, "support": [2, x]},
-            {"center": c, "support": [0, 2]},
+            {"center": b, "support": [c, d]},
+            {"center": d, "support": [b, a]},
+            {"center": c, "support": [a, d, e]},
+            {"center": e, "support": [a, b, d]},
         )
-        for a, x, c in family_roles()
+        for a, b, c, d, e in family_roles()
     )
 
 
@@ -221,17 +224,19 @@ def _parent_record(
         or dimacs_sha256 != EXPECTED_PARENT_DIMACS_SHA256
         or not getattr(
             instance,
-            "_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank_installed",
+            "_first_opposite_pair_surplus_second_opposite_common_five_"
+            "membership_family_bank_installed",
             False,
         )
         or getattr(
             instance,
-            "_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank_installed",
+            "_second_opposite_triple_surplus_first_opposite_three_triad_"
+            "membership_family_bank_installed",
             False,
         )
     ):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "instance is not the frozen post-v20 common-five parent"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "instance is not the frozen post-v22 three-triad parent"
         )
     return {
         "schema": PARENT_BANK_SCHEMA,
@@ -268,20 +273,20 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
             if set(required) <= set(candidate)
         ]
         if not candidate_indices:
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
                 "positive membership requirement has no candidate realization"
             )
         inherited_variable = instance.pattern_variables.get(key)
         expected_reused_variable = expected_reused_variables.get((center, required))
         if expected_reused_variable is None:
             if inherited_variable is not None:
-                raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+                raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
                     "fresh membership requirement was unexpectedly inherited"
                 )
             reused = False
         else:
             if inherited_variable != expected_reused_variable:
-                raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+                raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
                     "authenticated parent membership variable changed"
                 )
             reused = True
@@ -289,15 +294,13 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
         variable = instance.pattern_variable(center, required)
         implications = tuple(instance.cnf.clauses[before:])
         candidate_variables = tuple(
-            instance.choice_variables[(center, index)]
-            for index in candidate_indices
+            instance.choice_variables[(center, index)] for index in candidate_indices
         )
         expected = tuple(
-            (-choice_variable, variable)
-            for choice_variable in candidate_variables
+            (-choice_variable, variable) for choice_variable in candidate_variables
         )
         if (reused and implications) or (not reused and implications != expected):
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
                 "pattern implication compiler drifted"
             )
         variables[(center, required)] = variable
@@ -318,8 +321,8 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
     for index, pattern in enumerate(normalized):
         block = tuple(-variables[item] for item in pattern)
         if block in blocks:
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-                "reciprocal family contains a duplicate block"
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+                "three-triad family contains a duplicate block"
             )
         instance.cnf.add_clause(block)
         blocks.add(block)
@@ -359,7 +362,9 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
         (definition["center"], tuple(definition["required"]))
         for definition in definitions
     )
-    variables = tuple(definition["pattern_variable"] for definition in definitions)
+    definition_variables = tuple(
+        definition["pattern_variable"] for definition in definitions
+    )
     reused = tuple(
         requirement
         for requirement, definition in zip(
@@ -369,7 +374,7 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
     )
     reused_variables = tuple(
         variable
-        for variable, definition in zip(variables, definitions, strict=True)
+        for variable, definition in zip(definition_variables, definitions, strict=True)
         if definition["reused"]
     )
     fresh = tuple(
@@ -381,7 +386,7 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
     )
     fresh_variables = tuple(
         variable
-        for variable, definition in zip(variables, definitions, strict=True)
+        for variable, definition in zip(definition_variables, definitions, strict=True)
         if not definition["reused"]
     )
     if (
@@ -395,8 +400,8 @@ def _compile(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
         or fresh != EXPECTED_FRESH_REQUIREMENTS
         or fresh_variables != EXPECTED_FRESH_PATTERN_VARIABLES
     ):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family requirement binding drifted"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family requirement binding drifted"
         )
     return compiled
 
@@ -413,19 +418,21 @@ def _compile_payload(instance: SourceFaithfulCoverInstance) -> dict[str, Any]:
         or compiled["delta_sha256"] != EXPECTED_DELTA_SHA256
         or final_sha256 != EXPECTED_FINAL_DIMACS_SHA256
     ):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "compiled reciprocal family counts or hashes drifted"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "compiled three-triad family counts or hashes drifted"
         )
     compiled["final_dimacs_sha256"] = final_sha256
     compiled["compiled_sha256"] = _sha256_json(compiled)
     if compiled["compiled_sha256"] != EXPECTED_COMPILED_SHA256:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "compiled reciprocal family payload hash drifted"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "compiled three-triad family payload hash drifted: "
+            f"expected {EXPECTED_COMPILED_SHA256}, "
+            f"observed {compiled['compiled_sha256']}"
         )
     return compiled
 
 
-def build_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+def build_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
@@ -434,16 +441,19 @@ def build_reciprocal_first_opposite_surplus_second_opposite_common_five_membersh
     cell_index: int,
 ) -> dict[str, Any]:
     family_id = production_family_id_for_cell(cell_index)
-    attest_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank_live_sources(
+    attest_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank_live_sources(
         repo_root, parent_bank
     )
     parent = _parent_record(instance, layout, parent_bank)
     compiled = _compile_payload(instance)
-    roles = [{"a": a, "x": x, "c": c} for a, x, c in family_roles()]
+    roles = [
+        {"a": a, "b": b, "c": c, "d": d, "e": e}
+        for a, b, c, d, e in family_roles()
+    ]
     roles_sha256 = _sha256_json(roles)
     if roles_sha256 != EXPECTED_ROLES_SHA256:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family role hash drifted"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family role hash drifted"
         )
     body = {
         "schema": BANK_SCHEMA,
@@ -457,10 +467,8 @@ def build_reciprocal_first_opposite_surplus_second_opposite_common_five_membersh
             "universal_lift": False,
             "live_theorem_closure": False,
         },
-        "parent_apex_first_opposite_shared_pair_surplus_common_five_bank": parent,
-        "apex_first_opposite_shared_pair_surplus_common_five_bank": copy.deepcopy(
-            dict(parent_bank)
-        ),
+        "parent_first_opposite_pair_common_five_bank": parent,
+        "first_opposite_pair_common_five_bank": copy.deepcopy(dict(parent_bank)),
         "roles": roles,
         "roles_sha256": roles_sha256,
         "patterns": [list(pattern) for pattern in family_patterns()],
@@ -468,36 +476,39 @@ def build_reciprocal_first_opposite_surplus_second_opposite_common_five_membersh
         "compiled": compiled,
         "reused_requirement_count": EXPECTED_REUSED_REQUIREMENT_COUNT,
         "source_manifest": [
-            _source_record(repo_root.resolve(), path) for path in _source_paths(repo_root)
+            _source_record(repo_root.resolve(), path)
+            for path in _source_paths(repo_root)
         ],
     }
     bank_sha256 = _sha256_json(body)
     if bank_sha256 != EXPECTED_BANK_SHA256:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family bank hash drifted: "
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family bank hash drifted: "
             f"expected {EXPECTED_BANK_SHA256}, observed {bank_sha256}"
         )
     return {**body, "bank_sha256": bank_sha256}
 
 
-def attest_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank_live_sources(
+def attest_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank_live_sources(
     repo_root: Path, bank: Mapping[str, Any]
 ) -> None:
-    parent = bank.get("apex_first_opposite_shared_pair_surplus_common_five_bank")
+    parent = bank.get("first_opposite_pair_common_five_bank")
     if not isinstance(parent, Mapping):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "embedded v20 common-five bank is malformed"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "embedded v22 common-five bank is malformed"
         )
-    attest_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank_live_sources(
+    attest_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank_live_sources(
         repo_root, parent
     )
     manifest = bank.get("source_manifest")
     expected_paths = list(_source_paths(repo_root))
-    if not isinstance(manifest, list) or [
-        record.get("path") for record in manifest if isinstance(record, Mapping)
-    ] != expected_paths:
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family source path set drifted"
+    if (
+        not isinstance(manifest, list)
+        or [record.get("path") for record in manifest if isinstance(record, Mapping)]
+        != expected_paths
+    ):
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family source path set drifted"
         )
     for record in manifest:
         if (
@@ -506,12 +517,12 @@ def attest_reciprocal_first_opposite_surplus_second_opposite_common_five_members
             or not isinstance(record.get("path"), str)
             or _source_record(repo_root.resolve(), record["path"]) != record
         ):
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-                "reciprocal family source bytes or hashes drifted"
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+                "three-triad family source bytes or hashes drifted"
             )
 
 
-def validate_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+def validate_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
@@ -520,16 +531,16 @@ def validate_reciprocal_first_opposite_surplus_second_opposite_common_five_membe
     *,
     cell_index: int,
 ) -> None:
-    fresh = build_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+    fresh = build_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
         repo_root, instance, layout, parent_bank, cell_index=cell_index
     )
     if _canonical_json_bytes(bank) != _canonical_json_bytes(fresh):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family differs from a live authenticated rebuild"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family differs from a live authenticated rebuild"
         )
 
 
-def install_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+def install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
     repo_root: Path,
     instance: SourceFaithfulCoverInstance,
     layout: StaticConvexLayout,
@@ -538,17 +549,17 @@ def install_reciprocal_first_opposite_surplus_second_opposite_common_five_member
     cell_index: int,
 ) -> dict[str, Any]:
     attribute = (
-        "_reciprocal_first_opposite_surplus_second_opposite_common_five_"
+        "_second_opposite_triple_surplus_first_opposite_three_triad_"
         "membership_family_bank_installed"
     )
     if getattr(instance, attribute, False):
-        raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-            "reciprocal family is already installed"
+        raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+            "three-triad family is already installed"
         )
-    bank = build_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+    bank = build_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
         repo_root, instance, layout, parent_bank, cell_index=cell_index
     )
-    validate_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank(
+    validate_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank(
         repo_root, instance, layout, parent_bank, bank, cell_index=cell_index
     )
     initial_n_variables = instance.cnf.n_variables
@@ -560,8 +571,8 @@ def install_reciprocal_first_opposite_surplus_second_opposite_common_five_member
         expected.pop("compiled_sha256")
         expected.pop("final_dimacs_sha256")
         if installed != expected:
-            raise Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
-                "installed reciprocal family differs from its authenticated bank"
+            raise Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError(
+                "installed three-triad family differs from its authenticated bank"
             )
     except Exception:
         instance.cnf.n_variables = initial_n_variables
@@ -592,12 +603,12 @@ __all__ = [
     "EXPECTED_REUSED_REQUIREMENT_COUNT",
     "EXPECTED_ROLES_SHA256",
     "FAMILY_ID",
-    "Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError",
-    "attest_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank_live_sources",
-    "build_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+    "Exact12SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyBankError",
+    "attest_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank_live_sources",
+    "build_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
     "family_patterns",
     "family_roles",
-    "install_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+    "install_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
     "production_family_id_for_cell",
-    "validate_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+    "validate_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
 ]
