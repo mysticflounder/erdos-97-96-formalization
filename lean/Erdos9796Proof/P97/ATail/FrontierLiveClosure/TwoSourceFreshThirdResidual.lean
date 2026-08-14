@@ -8575,6 +8575,12 @@ structure FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory
         (freshThirdPinnedEndpointOutsideSeedSeedRole (e i))
   source_center_first_cap :
     Config.assignment.InCapInterior .sourceCenter Config.firstCap
+  canonical_sources_first_cap :
+    Config.assignment.InCapInterior .canonicalSource Config.firstCap ∧
+      Config.assignment.InCapInterior .canonicalSecondSource Config.firstCap
+  source_fresh_overlap_two :
+    FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
+      Config.assignment .source .fresh = 2
   fresh_cap_ne_first : Config.freshCap ≠ Config.firstCap
   fresh_center_cap :
     Config.assignment.InCapInterior .freshCenter Config.freshCap
@@ -9149,6 +9155,8 @@ theorem ofView
       pinned_ne_freshCenter := ?_
       seed_multiplicity := ?_
       source_center_first_cap := ?_
+      canonical_sources_first_cap := ?_
+      source_fresh_overlap_two := ?_
       fresh_cap_ne_first := ?_
       fresh_center_cap := ?_
       endpoints_outside_first := ?_
@@ -9198,6 +9206,33 @@ theorem ofView
         (P := P) (Pρ := Pρ) View _ _).2 (by
           simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
             Packet.source_center_first_cap)
+  · constructor
+    · exact
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).2 (by
+            simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+              C.surface.firstSource_data.2.1)
+    · exact
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).2 (by
+            simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+              C.surface.secondSource_data.2.1)
+  · change
+      FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
+        (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
+        .source .fresh = 2
+    rw [FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowOverlapCount_ofView_eq
+      (P := P) (Pρ := Pρ) View .source .fresh]
+    change
+      ((H.selectedAt C.surface.firstSource.1
+            C.surface.firstSource.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support).card = 2
+    rw [Packet.seedOverlap]
+    have hsourcesNe : Q.source₁.1 ≠ Q.source₂.1 := by
+      intro h
+      exact Q.sources_ne (Subtype.ext h)
+    simpa using Finset.card_pair hsourcesNe
   · simpa [Config,
       FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView] using
       Packet.fresh_cap_ne_first

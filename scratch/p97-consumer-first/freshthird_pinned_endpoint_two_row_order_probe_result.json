@@ -1,0 +1,50 @@
+{
+  "classification": {
+    "constraint_counts": {
+      "convex_order": 48,
+      "distinctness": 28,
+      "equalities": 6,
+      "exact_exclusions": 0
+    },
+    "decisive_stage": "full-convex",
+    "metric_relaxation_status": "SAT",
+    "status": "UNSAT",
+    "system_id": "direct-metric-rows-426acea19ecd80bf929d"
+  },
+  "order": [
+    "freshSourceOne",
+    "freshCenter",
+    "freshSourceTwo",
+    "sourceCenter",
+    "canonicalSource",
+    "canonicalSecondSource",
+    "freshRemainder0",
+    "freshRemainder1"
+  ],
+  "rows": [
+    {
+      "center": "sourceCenter",
+      "exact": false,
+      "support": [
+        "freshSourceOne",
+        "freshSourceTwo",
+        "canonicalSource",
+        "canonicalSecondSource"
+      ]
+    },
+    {
+      "center": "freshCenter",
+      "exact": false,
+      "support": [
+        "freshSourceOne",
+        "freshSourceTwo",
+        "freshRemainder0",
+        "freshRemainder1"
+      ]
+    }
+  ],
+  "scope": "One distinct-role total order extending the first live OrderedRowAtWith arm; trusted Python/Z3 theorem-discovery result only.",
+  "schema": "p97-freshthird-pinned-endpoint-two-row-order-probe-v1",
+  "trust": "NOT_LEAN_CERTIFIED",
+  "universal_coverage": false
+}

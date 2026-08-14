@@ -10871,6 +10871,52 @@ requirement remains the cardinality-independent synchronization of three
 contradiction.  This checkpoint closes no FirstNonHit branch and no
 load-bearing `sorry`.
 
+#### 13.24.1.33 Source/fresh two-row order cut and finite-ingress completion (2026-08-14)
+
+The pinned-endpoint finite ingress now records two previously omitted
+source-proved facts.  Both canonical source roles lie in the first cap
+interior, and the exact source and fresh selected rows overlap in exactly the
+two FreshThird endpoints.  The arbitrary-cardinality `ofView` theorem proves
+both statements from the live packet.  The diagnostic assignment has been
+repaired accordingly and still satisfies the strengthened source theory, so
+neither fact is a missing contradiction.
+
+Two conditional five-point Euclidean replay adapters are formalized in
+`FreshThirdPinnedEndpointFivePointCuts`.  They transport exact finite-view row
+roles into the existing generic five-point consumers without bounding the
+ambient carrier.  Both build with the standard three axioms only.  Neither
+pattern occurs in the explicit diagnostic assignment, so they are reusable
+CEGAR cuts rather than closure evidence.
+
+A bounded theorem-discovery probe found one genuinely order-sensitive cut in
+the diagnostic's source/fresh subsystem.  With all eight roles distinct, the
+total order
+
+`freshSourceOne < freshCenter < freshSourceTwo < sourceCenter <`
+`canonicalSource < canonicalSecondSource < freshRemainder0 < freshRemainder1`
+
+and the two exact-row equality families are metric-realizable without convex
+order but inconsistent with strict convexity.  Exact-radius exclusions are
+not needed.  The fail-closed legacy-Z3 result is
+`direct-metric-rows-426acea19ecd80bf929d`: the 34-constraint metric relaxation
+is `SAT`, while adding the 48 convex-order constraints makes the 82-constraint
+system `UNSAT`.  The result is recorded at
+`scratch/p97-consumer-first/freshthird_pinned_endpoint_two_row_order_probe_result.json`
+with SHA-256
+`0fce193683da6643b3f2a1dd8a80cee10069e418d369f36b5e8bd83fa9e6583f`.
+
+This is one untrusted discovery cut, not a coverage theorem.  The live packet
+fixes only one five-role chain; the remaining three role positions are free,
+the two row centers may alias private support roles of the other row, and the
+eight chain/orientation choices admit 2,688 distinct total orders before
+aliasing.  A proposed all-order run was terminated after its QF_NRA workers
+failed to respect the intended bounded shutdown; it emitted no counts or
+coverage artifact.  No result from that aborted run is admissible.  The
+tracked-core attempt also timed out.  Accordingly the immediate live bridge
+remains source-level fan/Q synchronization (or a new bounded, replayable
+ordered-core family with complete alias/order coverage).  This checkpoint
+closes no load-bearing `sorry`.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

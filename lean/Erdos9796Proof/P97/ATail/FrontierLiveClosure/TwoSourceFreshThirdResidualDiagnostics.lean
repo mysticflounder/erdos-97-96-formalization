@@ -61,19 +61,19 @@ private def diagnosticInCap
     (point : FreshThirdPinnedEndpointOutsideSeedPointRole) (cap : Fin 3) : Bool :=
   let rank := diagnosticRank point
   decide
-    ((rank = 3 ∧ cap = 0) ∨
+    (((rank = 3 ∨ rank = 4 ∨ rank = 5) ∧ cap = 0) ∨
       (rank = 1 ∧ cap = 1) ∨
       (16 ≤ rank ∧ rank < 20 ∧ cap = 1) ∨
       (rank = 2 ∧ cap = 2) ∨
       ((rank = 12 ∨ rank = 13) ∧ cap = 2) ∨
-      (rank ≠ 1 ∧ rank ≠ 2 ∧ rank ≠ 3 ∧
+      (rank ≠ 1 ∧ rank ≠ 2 ∧ rank ≠ 3 ∧ rank ≠ 4 ∧ rank ≠ 5 ∧
         ¬ (16 ≤ rank ∧ rank < 20) ∧ rank ≠ 12 ∧ rank ≠ 13 ∧ cap = 1))
 
 private def diagnosticInCapInterior
     (point : FreshThirdPinnedEndpointOutsideSeedPointRole) (cap : Fin 3) : Bool :=
   let rank := diagnosticRank point
   decide
-    ((rank = 3 ∧ cap = 0) ∨
+    (((rank = 3 ∨ rank = 4 ∨ rank = 5) ∧ cap = 0) ∨
       (rank = 1 ∧ cap = 1) ∨
       (16 ≤ rank ∧ rank < 20 ∧ cap = 1))
 
@@ -219,6 +219,8 @@ theorem diagnosticConfiguration_sourceTheory :
             (hall 1)
         exact (by decide : (0 : Fin 4) ≠ 1) (e.injective h01)
       source_center_first_cap := by decide
+      canonical_sources_first_cap := by decide
+      source_fresh_overlap_two := by decide
       fresh_cap_ne_first := by decide
       fresh_center_cap := by decide
       endpoints_outside_first := by decide
