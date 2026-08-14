@@ -1,0 +1,377 @@
+{
+  "wave": "freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement",
+  "source_clause": "15 inequalities signedArea2(oppApex1, p_i, p_j) < 0 for every i<j",
+  "input_indices": [
+    20,
+    21,
+    59,
+    70,
+    136,
+    138,
+    139,
+    144,
+    157,
+    165,
+    166,
+    176
+  ],
+  "input_count": 12,
+  "area_constraint_count": 15,
+  "outcomes": [
+    {
+      "index": 20,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.266,
+      "cvc5_seconds": 5.224,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_020.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 21,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.143,
+      "cvc5_seconds": 5.246,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_021.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 59,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.052,
+      "cvc5_seconds": 5.327,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_059.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 70,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "unsat",
+      "cvc5": "unsat",
+      "z3_seconds": 0.119,
+      "cvc5_seconds": 3.873,
+      "z3_stderr": "",
+      "cvc5_stderr": " a stricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_070.smt2:1.2: To suppress this warning in the future use (set-logic ALL).",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 136,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.79,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_136.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 138,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.202,
+      "cvc5_seconds": 5.045,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_138.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 139,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 4,
+        "br": 3
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.505,
+      "cvc5_seconds": 5.019,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_139.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 144,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.107,
+      "cvc5_seconds": 5.136,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_144.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 157,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.131,
+      "cvc5_seconds": 5.198,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_157.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 165,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.233,
+      "cvc5_seconds": 5.018,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_165.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 166,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.607,
+      "cvc5_seconds": 5.031,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_166.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 176,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "unsat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.245,
+      "cvc5_seconds": 5.049,
+      "z3_stderr": "",
+      "cvc5_stderr": ") better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/sat_alias_176.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    }
+  ],
+  "controls": [
+    {
+      "control": "known_sat_planar_polar",
+      "solver": "z3",
+      "result": "sat",
+      "seconds": 0.039,
+      "stderr": ""
+    },
+    {
+      "control": "known_sat_planar_polar",
+      "solver": "cvc5",
+      "result": "sat",
+      "seconds": 0.028,
+      "stderr": " for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/control_known_sat_planar_polar.smt2:1.2: To suppress this warning in the future use (set-logic ALL)."
+    },
+    {
+      "control": "bad_polar_area",
+      "solver": "z3",
+      "result": "unsat",
+      "seconds": 0.045,
+      "stderr": ""
+    },
+    {
+      "control": "bad_polar_area",
+      "solver": "cvc5",
+      "result": "unsat",
+      "seconds": 0.037,
+      "stderr": "er logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement/artifacts/control_bad_polar_area.smt2:1.2: To suppress this warning in the future use (set-logic ALL)."
+    }
+  ],
+  "classification": "targeted CEGAR refinement only; no expansion to prior UNKNOWN aliases"
+}

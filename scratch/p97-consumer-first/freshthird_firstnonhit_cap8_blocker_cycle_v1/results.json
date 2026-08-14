@@ -1,0 +1,5395 @@
+{
+  "wave": "freshthird_firstnonhit_cap8_blocker_cycle_v1",
+  "scope": "cap-card=8, common-radius, sameBlocker; six general planar strict-convex vertices; source-compatible aliases only",
+  "finite_gate": {
+    "pairings_up_to_reversal": 48,
+    "survivors": 198,
+    "rule": "same-cap equidistant center strictly between own pair; q in retained pair union; centers pairwise distinct",
+    "omitted": [
+      "ambient carrier beyond six cap vertices",
+      "all K4 rows",
+      "global cyclic order outside cap",
+      "finite-to-universal lift"
+    ]
+  },
+  "outcomes": [
+    {
+      "index": 0,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          4,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.023,
+      "cvc5_seconds": 5.019,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_000.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 1,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          4,
+          5
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_001.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 2,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_002.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 3,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.026,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_003.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 4,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_004.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 5,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_005.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 6,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_006.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 7,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_007.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 8,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_008.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 9,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.019,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_009.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 10,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_010.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 11,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_011.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 12,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_012.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 13,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.017,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_013.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 14,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          3,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_014.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 15,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_015.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 16,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.021,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_016.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 17,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_017.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 18,
+      "alias": {
+        "P": [
+          0,
+          2
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.023,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_018.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 19,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.023,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_019.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 20,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.988,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_020.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 21,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.662,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_021.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 22,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_022.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 23,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_023.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 24,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_024.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 25,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_025.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 26,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.019,
+      "cvc5_seconds": 5.006,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_026.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 27,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_027.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 28,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_028.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 29,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.018,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_029.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 30,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_030.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 31,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_031.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 32,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_032.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 33,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_033.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 34,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_034.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 35,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_035.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 36,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_036.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 37,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_037.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 38,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_038.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 39,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_039.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 40,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_040.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 41,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.019,
+      "cvc5_seconds": 5.02,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_041.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 42,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          1,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_042.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 43,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          1,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_043.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 44,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          1,
+          5
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_044.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 45,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          1,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.006,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_045.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 46,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          1,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.017,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_046.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 47,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_047.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 48,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 6.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_048.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 49,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.685,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_049.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 50,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 6.682,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_050.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 51,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.021,
+      "cvc5_seconds": 6.662,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_051.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 52,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 6.672,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_052.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 53,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 6.68,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_053.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 54,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.022,
+      "cvc5_seconds": 6.673,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_054.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 55,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.022,
+      "cvc5_seconds": 6.666,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_055.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 56,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 6.662,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_056.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 57,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 6.672,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_057.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 58,
+      "alias": {
+        "P": [
+          0,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 6.675,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_058.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 59,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 2.011,
+      "cvc5_seconds": 5.222,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_059.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 60,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.018,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_060.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 61,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_061.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 62,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_062.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 63,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_063.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 64,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.021,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_064.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 65,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_065.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 66,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_066.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 67,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.02,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_067.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 68,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_068.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 69,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_069.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 70,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.117,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_070.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 71,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_071.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 72,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_072.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 73,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_073.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 74,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_074.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 75,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_075.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 76,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_076.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 77,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_077.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 78,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_078.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 79,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.005,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_079.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 80,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_080.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 81,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_081.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 82,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_082.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 83,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_083.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 84,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_084.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 85,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_085.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 86,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          1,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_086.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 87,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_087.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 88,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_088.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 89,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.006,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_089.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 90,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_090.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 91,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_091.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 92,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_092.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 93,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 2,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_093.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 94,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 2,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_094.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 95,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_095.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 96,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_096.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 97,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_097.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 98,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_098.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 99,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_099.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 100,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_100.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 101,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          1,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_101.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 102,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_102.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 103,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_103.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 104,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_104.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 105,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_105.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 106,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_106.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 107,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_107.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 108,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_108.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 109,
+      "alias": {
+        "P": [
+          0,
+          4
+        ],
+        "R": [
+          3,
+          5
+        ],
+        "C": [
+          1,
+          2
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_109.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 110,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_110.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 111,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_111.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 112,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_112.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 113,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.017,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_113.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 114,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_114.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 115,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_115.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 116,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_116.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 117,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_117.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 118,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_118.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 119,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          3
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.014,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_119.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 120,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_120.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 121,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_121.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 122,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_122.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 123,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_123.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 124,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_124.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 125,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 4,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_125.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 126,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.019,
+      "cvc5_seconds": 5.006,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_126.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 127,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_127.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 128,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_128.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 129,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 4,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_129.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 130,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.016,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_130.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 131,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_131.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 132,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.024,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_132.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 133,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.005,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_133.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 134,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_134.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 135,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 1,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_135.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 136,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.494,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_136.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 137,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_137.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 138,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 4,
+        "br": 2
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 1.184,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_138.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 139,
+      "alias": {
+        "P": [
+          0,
+          5
+        ],
+        "R": [
+          1,
+          4
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 4,
+        "br": 3
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.758,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_139.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 140,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          4,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.005,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_140.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 141,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          4,
+          5
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_141.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 142,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_142.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 143,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_143.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 144,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 0.325,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_144.smt2:1.2: To suppress this warning for (likely) better performance.\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 145,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_145.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 146,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_146.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 147,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          4
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_147.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 148,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_148.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 149,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.007,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_149.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 150,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.018,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_150.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 151,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_151.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 152,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_152.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 153,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_153.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 154,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_154.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 155,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_155.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 156,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.037,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_156.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 157,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 1.99,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_157.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 158,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          0,
+          5
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_158.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 159,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          4
+        ],
+        "C": [
+          0,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_159.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 160,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_160.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 161,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_161.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 162,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.008,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_162.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 163,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_163.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 164,
+      "alias": {
+        "P": [
+          1,
+          3
+        ],
+        "R": [
+          2,
+          5
+        ],
+        "C": [
+          0,
+          4
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.011,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_164.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 165,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 2.962,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_165.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 166,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 1.759,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_166.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 167,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 2,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.045,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_167.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 168,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_168.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 169,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          2
+        ],
+        "C": [
+          3,
+          5
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.013,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_169.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 170,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_170.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 171,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_171.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 172,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_172.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 173,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_173.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 174,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 3,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_174.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 175,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_175.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 176,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "sat",
+      "cvc5": "timeout",
+      "z3_seconds": 1.034,
+      "cvc5_seconds": 5.007,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_176.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": true
+    },
+    {
+      "index": 177,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          3
+        ],
+        "C": [
+          2,
+          5
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.01,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_177.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 178,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_178.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 179,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_179.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 180,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_180.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 181,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_181.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 182,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.013,
+      "cvc5_seconds": 5.012,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_182.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 183,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 0,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.009,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_183.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 184,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_184.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 185,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_185.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 186,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.006,
+      "cvc5_seconds": 5.011,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_186.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 187,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 1,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_187.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 188,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_188.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 189,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.02,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_189.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 190,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.008,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_190.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 191,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 4,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.015,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_191.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 192,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.01,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_192.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 193,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 3
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_193.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 194,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 2,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.015,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_194.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 195,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 1
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.019,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_195.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 196,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 2
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.016,
+      "cvc5_seconds": 5.009,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_196.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    },
+    {
+      "index": 197,
+      "alias": {
+        "P": [
+          1,
+          4
+        ],
+        "R": [
+          0,
+          5
+        ],
+        "C": [
+          2,
+          3
+        ],
+        "q": 5,
+        "bp": 3,
+        "br": 4
+      },
+      "z3": "timeout",
+      "cvc5": "timeout",
+      "z3_seconds": 5.012,
+      "cvc5_seconds": 5.014,
+      "z3_stderr": "",
+      "cvc5_stderr": "ricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/survivor_197.smt2:1.2: To suppress this warning in the future use (set-logic ALL).\ncvc5 interrupted by timeout.",
+      "z3_exact_rational_model": false
+    }
+  ],
+  "controls": [
+    {
+      "control": "known_sat_geometry",
+      "solver": "z3",
+      "result": "sat",
+      "seconds": 0.012,
+      "stderr": "",
+      "z3_exact_rational_model": true
+    },
+    {
+      "control": "known_sat_geometry",
+      "solver": "cvc5",
+      "result": "sat",
+      "seconds": 0.078,
+      "stderr": "er setting a stricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/control_known_sat_geometry.smt2:1.2: To suppress this warning in the future use (set-logic ALL)."
+    },
+    {
+      "control": "bad_orientation",
+      "solver": "z3",
+      "result": "unsat",
+      "seconds": 0.008,
+      "stderr": ""
+    },
+    {
+      "control": "bad_orientation",
+      "solver": "cvc5",
+      "result": "unsat",
+      "seconds": 0.01,
+      "stderr": "sider setting a stricter logic for (likely) better performance.\n/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/artifacts/control_bad_orientation.smt2:1.2: To suppress this warning in the future use (set-logic ALL)."
+    }
+  ],
+  "classification": "diagnostic only; no universal producer or Lean closure"
+}

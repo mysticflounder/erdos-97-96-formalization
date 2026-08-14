@@ -1,0 +1,9 @@
+{
+  "wave": "freshthird_firstnonhit_cap8_blocker_cycle_v1/polar_order_refinement",
+  "input_count": 12,
+  "area_constraint_count": 15,
+  "solver_workers": 12,
+  "timeout_ms": 5000,
+  "solvers": ["z3 4.16.0", "cvc5 1.3.3"],
+  "classification": "targeted refinement; stopped without expansion"
+}

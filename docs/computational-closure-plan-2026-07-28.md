@@ -10503,6 +10503,64 @@ close the live leaf; promotion requires either the three-point fan overlap or a
 new source-clean consumer of the weaker overlap together with the retained
 endpoint order and cap data.
 
+#### 13.24.1.32 Exact cap-eight alias cycle and polar-order checkpoint (2026-08-14)
+
+The exact canonical-cap-eight subcase now has a source-clean finite normal
+form.  The strict canonical cap has six points and is exactly the disjoint
+union of the two retained pairs and the two canonical sources.  The retained
+blocker centers lie in that six-point set outside their own retained pairs;
+the common FreshThird blocker center lies in the retained four-point union;
+and the three blocker centers are distinct.  Finite alias counting therefore
+forces a two-cycle at the pair level or one of the two orientations of a
+three-cycle.  The scratch declarations in
+`lean/scratch/freshthird-firstnonhit-cap-eight/CapInteriorSix.lean` also retain
+the exact canonical-cap traces of the three selected rows: the two retained
+rows meet the cap in their own retained pair, while the common FreshThird row
+meets it in the two canonical sources.  These declarations pass Lean 4.27 and
+their axiom audits contain only `propext`, `Classical.choice`, and `Quot.sound`.
+
+This exact incidence packet is not itself a contradiction.  In a two-cycle,
+the aliases provide own-row membership where the existing blocker-cycle
+consumer requires the reverse cross-row membership.  The packet supplies no
+joint-deletion structure, nonalternating boundary relation, or ordinal
+comparison accepted by an existing clean terminal.  The missing information
+is therefore metric/boundary synchronization, not another finite alias split.
+
+The bounded artifacts under
+`scratch/p97-consumer-first/freshthird_firstnonhit_cap8_blocker_cycle_v1/`
+first tested the complete six-point rational-direction chart, modulo
+translation, rotation, positive scaling, and the antipodal ray excluded by
+convex independence.  The source-entitled model has three positive pair
+radii, all twenty strict increasing-triple orientation constraints, and the
+exact equal-distance equations for every alias.  Of 198 alias cases, Z3 found
+12 exact-rational `SAT` witnesses, all independently replayed; cvc5 timed out
+on those 12, and the other 186 cases timed out in both solvers.  No base case
+was `UNSAT`.  An earlier cocircular/unit-circle encoding was stronger than the
+Lean ingress and is explicitly retracted.
+
+The source-clean packet in
+`lean/scratch/freshthird-firstnonhit-cap-eight/PolarOrderPacket.lean` then
+added the fifteen apex-relative strict-area inequalities supplied by one
+shared direct-or-mirror boundary indexing.  A single authorized refinement
+replayed only the 12 previous Z3 witnesses:
+
+- one case was `UNSAT` in both Z3 and cvc5;
+- nine were Z3 `UNSAT` with cvc5 timeout;
+- two timed out in both solvers; and
+- no `SAT` witness survived the bounded replay.
+
+The positive and malformed controls behaved as expected.  This does not prove
+the cap-eight subcase: eleven replayed cases lack a dual-solver conclusion and
+the 186 earlier unknown aliases were deliberately not expanded.  The mandatory
+wave-only theorem mine found no new general theorem beyond the already proved
+polar-order packet.  Accordingly this lane stops here.  No larger cap-eight
+alias matrix or timeout extension is authorized without a new source-proved
+clause or a formal finite-to-universal landing contract.  The live FirstNonHit
+requirement remains the cardinality-independent synchronization of three
+`Q`-row points at one distinct actual blocker row, or a direct clean geometric
+contradiction.  This checkpoint closes no FirstNonHit branch and no
+load-bearing `sorry`.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

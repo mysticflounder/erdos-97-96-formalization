@@ -1,0 +1,16 @@
+{
+  "artifacts/control_bad_polar_area.smt2": "60d9e1744d4e17db4f75146e045a2aa5c6493cceb2afac5f16f68854a0a84a6f",
+  "artifacts/control_known_sat_planar_polar.smt2": "f3f65d5620821f21325f1351eec384bc39a0642058ea1cc9bfed440ab6f661d7",
+  "artifacts/sat_alias_020.smt2": "8ce6d29f3421940a49c9e329bd4bee18fd551d5f7c2147f33f5dc03550bc46a3",
+  "artifacts/sat_alias_021.smt2": "fe8430225b25b7f6e5afe7a1e7251e73761f162327b022982d0118b8bcae3817",
+  "artifacts/sat_alias_059.smt2": "25151e9f362cf8acb26b6ab94d4e621127c7b4a3f06d3e03988d8e9283ca9b1f",
+  "artifacts/sat_alias_070.smt2": "bb4f1aebeb2a6564a81211840162a7fedcacf0fab62ea4a98728cb406c9fbe12",
+  "artifacts/sat_alias_136.smt2": "fc71aa8615cf41bccc9f395c10ed59397e90e1d81fea8e26d9b13abcd5898e19",
+  "artifacts/sat_alias_138.smt2": "0934e8e113cf98bc4b2e7e0acf4276eb69537e6c0ca0aa6fe999150610aed452",
+  "artifacts/sat_alias_139.smt2": "39370540b00dd91f62d2d9b90224991ef2e7467525f7542248a70f93af6e553f",
+  "artifacts/sat_alias_144.smt2": "20f9973c517ed337b98daff308e37fd3f707bdcc03878a81e9dbb438c8b87d04",
+  "artifacts/sat_alias_157.smt2": "d7eb5a8e382149ef50f859e78e50ef49765b94b7bd8ff7aedc1338020c382c4d",
+  "artifacts/sat_alias_165.smt2": "23110e9108babb569cad5a84c2a1433ef3942bb4aca73d8901c83778d01982c3",
+  "artifacts/sat_alias_166.smt2": "20039e48b2be6258a46bafc97ef715e14b141ddf9b6004f5a3e1301656d6b7de",
+  "artifacts/sat_alias_176.smt2": "333df25ef2fef52bedbaae17c4f9ed111c7e9f6585a88f512149de2fe0ba13fd"
+}
