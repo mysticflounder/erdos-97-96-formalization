@@ -2,7 +2,7 @@
 
 Date: 2026-08-13
 
-Status: read-only audit report; no instruction changes are implemented here.
+Status: COMPLETE — every finding has a recorded disposition as of 2026-08-13.
 
 ## Scope
 
@@ -59,14 +59,14 @@ places where dated facts are presented as standing policy.
 | I-02 | — | WITHDRAWN 2026-08-13 | standing commit/push language is explicit authorization |
 | I-03 | — | WITHDRAWN / MOOT 2026-08-13 | native Codex memories were disabled; nthdegree is authoritative |
 | I-04 | High | FALSE — RESOLVED 2026-08-13 | global wait rules assumed unsupported Codex behavior |
-| I-05 | Medium | DUPLICATION | repository `AGENTS.md` and `CLAUDE.md` are identical |
-| I-06 | Medium | CONFLICT / DUPLICATION | `rg`-first and semantic-search-first rules lack an explicit division |
-| I-07 | Medium | DUPLICATION | memory, search, and proof-skill policies recur across layers |
-| I-08 | Medium | MISLEADING | overlapping evidence-label systems have no stated relationship |
-| I-09 | Medium | MISLEADING | dated theorem-bank census is embedded as standing instruction |
-| I-10 | Medium | MISLEADING | hardest-first, no-pivot, and solver absolutes are overbroad |
-| I-11 | Low | QUALITY | empty heading, grammar error, broken reference, and undefined cleanup |
-| I-12 | Low | CONFLICT | instruction discovery differs between governance skills |
+| I-05 | — | WITHDRAWN / ALREADY SATISFIED 2026-08-13 | `AGENTS.md` is already a symlink shim to canonical `CLAUDE.md` |
+| I-06 | Medium | CONFLICT / DUPLICATION — CLOSED 2026-08-13 | existing precedence supplies the search-tool division; no change requested |
+| I-07 | Medium | DUPLICATION — CLOSED 2026-08-13 | cross-layer reinforcement was reviewed and retained |
+| I-08 | Medium | MISLEADING — RESOLVED 2026-08-13 | overlapping evidence-label systems have no stated relationship |
+| I-09 | Medium | MISLEADING — RESOLVED 2026-08-13 | dated theorem-bank census is embedded as standing instruction |
+| I-10 | Medium | MISLEADING — RESOLVED 2026-08-13 | hardest-first, no-pivot, and solver absolutes are overbroad |
+| I-11 | Low | QUALITY — RESOLVED 2026-08-13 | empty heading, grammar error, broken reference, and undefined cleanup |
+| I-12 | Low | CONFLICT — RESOLVED 2026-08-13 | instruction discovery differs between governance skills |
 
 ## Detailed findings
 
@@ -222,6 +222,10 @@ host-specific differences.
 **Validation:** add a small deterministic check that either verifies identity for a
 generated mirror or verifies that the shim points to the canonical file.
 
+**Resolution (2026-08-13):** finding withdrawn as inaccurate. `AGENTS.md` is a
+symlink compatibility shim to canonical `CLAUDE.md`, introduced by commit
+`bbd142ae`; there are not two independently maintained repository policy files.
+
 ### I-06 — source search and semantic search rules need an explicit boundary
 
 **Classification:** CONFLICT / DUPLICATION.
@@ -246,6 +250,12 @@ cases, but the intended division is scattered and easy to miss.
 equivalent to X," "where is declaration Y defined," and "which files mention exact
 hash Z."
 
+**Resolution (2026-08-13):** reviewed and closed without a policy change. The
+applicable precedence already routes indexed semantic theorem/document discovery to
+nthdegree, Lean symbol and reference navigation to Lean tooling, and exact text,
+file, provenance, and unindexed searches to `rg`. The residual repetition is
+accepted.
+
 ### I-07 — memory, search, and proof governance are repeated across layers
 
 **Classification:** DUPLICATION.
@@ -269,6 +279,11 @@ Repeated material includes:
 
 **Validation:** for each surviving rule, identify one authoritative home and at
 most one short pointer from another layer.
+
+**Resolution (2026-08-13):** reviewed and closed without consolidation. The
+remaining cross-layer repetition is retained as intentional reinforcement, while
+the local `AGENTS.md` symlink ensures that this repository has only one physical
+policy file.
 
 ### I-08 — evidence labels overlap without a declared model
 
@@ -478,24 +493,13 @@ Use four layers with distinct responsibilities:
    changing theorem counts, frontier state, and historical evidence in dated
    reports or active plans.
 
-Repository `CLAUDE.md` should be a compatibility shim rather than a second policy
-copy unless a host requires identical full contents and an automated parity check
-enforces that requirement.
+Repository `AGENTS.md` is already a compatibility symlink to canonical
+`CLAUDE.md`, so no second local policy copy is maintained.
 
-## Issue-by-issue review order
+## Completion
 
-The recommended discussion order is:
-
-1. I-01: fix the false Lean corpus-scoping command;
-2. I-04: make waiting and build completion platform-adaptive;
-3. I-05 and I-07: choose canonical files and remove duplication;
-4. I-06: establish the nthdegree/LSP/`rg` routing rule;
-5. I-08: adopt the two-axis evidence vocabulary;
-6. I-09: move snapshot facts out of standing policy;
-7. I-10: qualify the workflow absolutes; and
-8. I-11 and I-12: perform the editorial and discovery cleanup.
-
-Each issue should be agreed before its edit is made. After all edits, perform a
-fresh static audit of the resulting instruction chain and validate command examples
-against the active host. Lean builds are neither necessary nor appropriate for
-these policy-only changes.
+All twelve findings have a recorded disposition. I-06 and I-07 were closed after
+review without further policy changes; all accepted corrections were implemented
+and validated against the applicable host or repository surface. This completes
+the audit. Any future consolidation is ordinary policy maintenance rather than
+unfinished work from this report.
