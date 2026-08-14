@@ -272,10 +272,9 @@ production wave:
 - `scripts/test-p97-cegar-wave-framework.sh` is the single one-process,
   thread-capped gate for these framework modules.
 
-The shared CLI and registry-driven wave discovery are now implemented. Still
-pending are switching a production Exact17 wave from its legacy entrypoint to
-that shared runtime, the first data-only native wave, and the later shim
-retirement pass.
+The shared CLI and registry-driven wave discovery are now implemented. Child38
+also has the compatibility lifecycle route described below. Still pending are
+the first data-only native wave and the later shim retirement pass.
 Quarantine execution remains last and requires a separately reviewed exact
 inventory and plan digest after those migration gates pass.
 
@@ -300,6 +299,29 @@ receipts under
 This closes the frozen offline parity fixture only. The legacy runtime has not
 been retired, the shared runtime has not produced a replacement production
 wave, and no cleanup target is authorized by these receipts.
+
+### Exact17 Child38 compatibility lifecycle checkpoint — 2026-08-14
+
+The shared CLI now owns the closed `exact17-child38` lifecycle profile and its
+`validate-local`, `live-identity`, `start`, `reconcile`, and `finalize`
+commands. This is an operational routing migration, not a native-engine
+rewrite: it delegates to the existing hardened Child38 lifecycle so intent,
+prepared-job, confirmed-state, final-result, model, solver-log, lock, and
+response-loss reconciliation semantics remain unchanged. The route is
+sequential, one-worker, and has no local fallback.
+
+Fake-current lifecycle tests cover a complete start plus SAT/model-replay
+finalization and a lost prepare response followed by explicit reconciliation.
+The latter confirms exactly one submission and one confirmation; it never
+resubmits the job.
+
+The shared cleanup-status command is report-only and currently returns
+`RETAIN`. No file is moved or deleted. Child38's compatibility implementation,
+Child39's frozen shadow and successor inputs, and Child32's base lifecycle and
+historical evidence remain protected. Native shared lifecycle support, a fresh
+native campaign with semantic validation and successor admission, a rollback
+drill, and a zero-caller rescan are required before the compatibility shim can
+become a quarantine candidate.
 
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 

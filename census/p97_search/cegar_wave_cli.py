@@ -9,6 +9,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
+import census.p97_search.cegar_exact17_lifecycle as exact17_lifecycle
 from census.p97_search.cegar_wave_registry import (
     WaveRegistryError,
     check_registered_output,
@@ -88,10 +89,58 @@ def _parser() -> argparse.ArgumentParser:
     check.add_argument("control")
     check.add_argument("output")
     check.add_argument("--package-root", required=True)
+
+    for name in (
+        "lifecycle-plan",
+        "lifecycle-validate-local",
+        "lifecycle-live-identity",
+        "lifecycle-start",
+        "lifecycle-finalize",
+        "lifecycle-cleanup-status",
+    ):
+        command = commands.add_parser(name)
+        command.add_argument("--profile", required=True)
+
+    reconcile = commands.add_parser("lifecycle-reconcile")
+    reconcile.add_argument("--profile", required=True)
+    reconcile.add_argument("--job-id", required=True)
     return parser
 
 
+def _run_lifecycle(args: argparse.Namespace) -> dict[str, Any]:
+    profile = exact17_lifecycle.require_profile(args.profile)
+    if args.command == "lifecycle-plan":
+        payload = exact17_lifecycle.lifecycle_plan(profile.profile_id)
+    elif args.command == "lifecycle-cleanup-status":
+        payload = exact17_lifecycle.cleanup_eligibility(profile.profile_id)
+    elif args.command == "lifecycle-validate-local":
+        payload = exact17_lifecycle.validate_local(profile.profile_id)
+    else:
+        client = exact17_lifecycle.new_client(profile.profile_id)
+        if args.command == "lifecycle-live-identity":
+            payload = exact17_lifecycle.live_identity(client, profile.profile_id)
+        elif args.command == "lifecycle-start":
+            payload = exact17_lifecycle.start(client, profile.profile_id)
+        elif args.command == "lifecycle-reconcile":
+            payload = exact17_lifecycle.reconcile(
+                client, args.job_id, profile.profile_id
+            )
+        elif args.command == "lifecycle-finalize":
+            payload = exact17_lifecycle.finalize(client, profile.profile_id)
+        else:
+            raise WaveRegistryError("unsupported lifecycle command")
+    return {
+        "schema": CLI_SCHEMA,
+        "command": args.command,
+        "status": "PASS",
+        "profile": profile.profile_id,
+        "lifecycle": payload,
+    }
+
+
 def _run(args: argparse.Namespace) -> dict[str, Any]:
+    if args.command.startswith("lifecycle-"):
+        return _run_lifecycle(args)
     if args.command in {"status", "validate-output"}:
         output = _absolute_path(args.output, "output")
         envelope = validate_registered_output(output)
@@ -163,6 +212,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         payload = _run(args)
     except (
+        exact17_lifecycle.ConfirmConflictError,
+        exact17_lifecycle.Exact17LifecycleError,
+        exact17_lifecycle.UnprovisionedError,
+        exact17_lifecycle.UnreconciledPrepareError,
         ExactFileCaptureError,
         OSError,
         StaticCnfEngineError,

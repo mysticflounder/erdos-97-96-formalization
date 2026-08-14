@@ -262,3 +262,134 @@ def test_unexpected_and_process_control_exceptions_propagate(
     monkeypatch.setattr(cli, "validate_registered_output", explode)
     with pytest.raises(type(error)):
         cli.main(["validate-output", str(output)])
+
+
+@pytest.mark.parametrize(
+    ("command", "status"),
+    [
+        ("lifecycle-plan", "LEGACY_COMPATIBLE_PIQD_LIFECYCLE"),
+        ("lifecycle-cleanup-status", "RETAIN"),
+    ],
+)
+def test_lifecycle_reports_are_transport_free(
+    command: str,
+    status: str,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        cli.exact17_lifecycle,
+        "new_client",
+        lambda *args, **kwargs: pytest.fail("transport was reached"),
+    )
+    assert cli.main([command, "--profile", "exact17-child38"]) == 0
+    payload = _json_stdout(capsys)
+    assert payload["profile"] == "exact17-child38"
+    lifecycle = payload["lifecycle"]
+    assert isinstance(lifecycle, dict)
+    assert status in lifecycle.values()
+
+
+def test_lifecycle_local_validation_is_transport_free(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        cli.exact17_lifecycle,
+        "new_client",
+        lambda *args, **kwargs: pytest.fail("transport was reached"),
+    )
+    monkeypatch.setattr(
+        cli.exact17_lifecycle,
+        "validate_local",
+        lambda profile: {"profile": profile, "validated": True},
+    )
+    assert cli.main(["lifecycle-validate-local", "--profile", "exact17-child38"]) == 0
+    payload = _json_stdout(capsys)
+    assert payload["lifecycle"] == {
+        "profile": "exact17-child38",
+        "validated": True,
+    }
+
+
+def test_lifecycle_start_constructs_one_client_and_delegates(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = object()
+    calls: list[tuple[object, str]] = []
+    monkeypatch.setattr(cli.exact17_lifecycle, "new_client", lambda profile: client)
+
+    def start(received: object, profile: str) -> dict[str, object]:
+        calls.append((received, profile))
+        return {"phase": "confirmed"}
+
+    monkeypatch.setattr(cli.exact17_lifecycle, "start", start)
+    assert cli.main(["lifecycle-start", "--profile", "exact17-child38"]) == 0
+    assert calls == [(client, "exact17-child38")]
+    assert _json_stdout(capsys)["lifecycle"] == {"phase": "confirmed"}
+
+
+def test_lifecycle_reconcile_forwards_the_exact_job_id(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    client = object()
+    calls: list[tuple[object, str, str]] = []
+    monkeypatch.setattr(cli.exact17_lifecycle, "new_client", lambda profile: client)
+
+    def reconcile(received: object, job_id: str, profile: str) -> dict[str, object]:
+        calls.append((received, job_id, profile))
+        return {"phase": "confirmed"}
+
+    monkeypatch.setattr(cli.exact17_lifecycle, "reconcile", reconcile)
+    assert (
+        cli.main(
+            [
+                "lifecycle-reconcile",
+                "--profile",
+                "exact17-child38",
+                "--job-id",
+                "job-child38",
+            ]
+        )
+        == 0
+    )
+    assert calls == [(client, "job-child38", "exact17-child38")]
+    assert _json_stdout(capsys)["status"] == "PASS"
+
+
+def test_lifecycle_invalid_profile_fails_before_client_construction(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        cli.exact17_lifecycle,
+        "new_client",
+        lambda *args, **kwargs: pytest.fail("client construction was reached"),
+    )
+    assert cli.main(["lifecycle-start", "--profile", "exact17-child39"]) == 2
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert "exact builtin string" in captured.err
+
+
+def test_lifecycle_known_unprovisioned_error_is_reported(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def unprovisioned(profile: str) -> dict[str, object]:
+        raise cli.exact17_lifecycle.UnprovisionedError("missing frozen input")
+
+    monkeypatch.setattr(cli.exact17_lifecycle, "validate_local", unprovisioned)
+    assert cli.main(["lifecycle-validate-local", "--profile", "exact17-child38"]) == 2
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert "missing frozen input" in captured.err
+
+
+@pytest.mark.parametrize("error", [RuntimeError("boom"), KeyboardInterrupt()])
+def test_lifecycle_unexpected_and_process_control_exceptions_propagate(
+    error: BaseException, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def explode(profile: str) -> dict[str, object]:
+        raise error
+
+    monkeypatch.setattr(cli.exact17_lifecycle, "validate_local", explode)
+    with pytest.raises(type(error)):
+        cli.main(["lifecycle-validate-local", "--profile", "exact17-child38"])
