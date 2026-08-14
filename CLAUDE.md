@@ -39,13 +39,9 @@ only that wave's new solver data for general theorems. Search the Lean corpus
 again only if that mine produces a concrete new candidate or the reuse-search
 key materially changes.
 
-The sibling census has already identified:
-
-- 96 general-n U5 class-level incidence incompatibility families, supported by
-  88 metric-point and 112 scalar-algebra kernels;
-- 18 unimported U1 source-unit contradiction consumers for ordinals
-  `2, 12, 40, 47, 88, 136, 169, 206`; and
-- `Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction`.
+For the dated sibling-bank census and its trust/reachability qualifications, see
+`docs/general-n-certificate-bank-mining-2026-07-09.md`. Treat its counts as a
+snapshot and verify candidate statements, imports, and trust state before reuse.
 
 ## Communication with parallel agents
 You can send messages to parallel agents via the erdos-97-96-formalization nthdegree convo. (`nthdegree convo`)

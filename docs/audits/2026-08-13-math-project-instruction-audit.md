@@ -345,6 +345,11 @@ consumers."
 **Validation:** ensure every changing numeric claim has a dated evidence source and
 is not phrased as current without a freshness check.
 
+**Resolution (2026-08-13):** accepted. The changing census counts and named
+obstruction were removed from standing project instructions. `AGENTS.md` now
+points to the dated mining report, labels its counts as a snapshot, and requires
+fresh statement, import, and trust checks before reuse.
+
 ### I-10 — several universal workflow rules are too broad
 
 **Classification:** MISLEADING.
