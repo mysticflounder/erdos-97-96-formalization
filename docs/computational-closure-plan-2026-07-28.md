@@ -11069,3 +11069,41 @@ authorized action is authenticated terminal handling. Terminal `SAT` repeats
 exact replay and wave-only theorem mining; terminal `UNSAT` requires independent
 certificate replay, Lean banking, and composition through the exact-17
 source-realization and landing contracts.
+
+### 13.28.12 Child-41 source-valid cancellation bank — 2026-08-13
+
+Child40 terminated authenticated `SAT` at epoch one as PIQD job
+`3d2779d0-4962-417d-b62a-a482b20e2772` after 592.423 seconds. Its retrieved
+308-variable assignment independently replayed all 5,847,584 clauses of root
+`555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
+It remains an abstract source-normal-form survivor, not a Euclidean
+counterexample.
+
+The mandatory wave-only mine exhaustively found 586 records in each cyclic
+orientation, 210 distinct supports, and 84 subset-minimal supports. Every
+selected support is an instance of the already proved, cardinality-independent
+`CancellationOccurrence` family. The 84 occurrences therefore produce a
+336-clause Lean-owned suffix, split across twelve shards. The coordinator proves
+the complete suffix evaluator, the 5,847,920-clause extended evaluator, the
+`SourceRealization` bridge, and the conditional terminal adapter.
+
+Child41 is the byte-identical Child40 prefix followed by those 336 clauses. It
+has 308 variables, 5,847,920 clauses, 291,654,272 bytes, and SHA-256
+`fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24`.
+The ordered suffix, immutable export receipt, and recursive ingress manifest
+have SHA-256 values
+`7699ee0e5dc4a3d9627b69c5246ec6ec0041450e00a562d60147dca607fc3bfa`,
+`f6895b0856c04532e251ab357da610825263c7baa805d708fcc2cf5dc6d4bb9a`,
+and `a82887fa8029dd3241eff659d8419f904dba724abcad8b45902dba9a4817ca7d`.
+The publication and recursive ingress validators pass and the motivating
+Child40 model is rejected by every selected occurrence's designated clause.
+
+Before submitting Child41, the shared PIQD runner was hardened so an `UNSAT`
+terminal result must retrieve the submitted-session clause map and proof,
+reconstruct the exact kept CNF, and independently replay the compacted LRAT.
+The certificate proves only the authenticated augmented CNF; the separately
+proved source evaluators justify every learned clause. Ruff, 284 focused
+adversarial tests, the live Child41 PIQD static gate, the targeted exporter
+build, and the axiom audit all pass. No Child41 job may be submitted until this
+checkpoint is published. Exact 17 and the cap-nine production `sorry` remain
+open.

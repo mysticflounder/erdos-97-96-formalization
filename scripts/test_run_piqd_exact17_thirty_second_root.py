@@ -47,6 +47,20 @@ class FakeClient:
         self.log_mode = "valid"
         self.log_bytes = b"c SATISFIABLE\nv 1 2 3 0\n"
         self.log_calls = 0
+        self.kept_cnf = root
+        self.proof_bytes = b"1 0\n"
+        self.kept_hash = hashlib.sha256(self.kept_cnf).hexdigest()
+        self.proof_hash = hashlib.sha256(self.proof_bytes).hexdigest()
+        self.clause_map_payload = {
+            "version": runner.CLAUSE_MAP_VERSION,
+            "submitted_sha256": hashlib.sha256(root).hexdigest(),
+            "submitted_clauses": spec.clauses,
+            "kept_sha256": self.kept_hash,
+            "kept_clauses": spec.clauses,
+            "exceptions": [],
+            "expansion_rule": runner.CLAUSE_MAP_EXPANSION_RULE,
+            "boundary": runner.CLAUSE_MAP_BOUNDARY,
+        }
 
     def version(self) -> dict[str, Any]:
         return {
@@ -164,8 +178,8 @@ class FakeClient:
                 if result == "UNSAT":
                     payload.update(
                         {
-                            "proof_blob_hash": "a" * 64,
-                            "kept_cnf_blob_hash": "b" * 64,
+                            "proof_blob_hash": self.proof_hash,
+                            "kept_cnf_blob_hash": self.kept_hash,
                             "proof_format": "compacted_lrat",
                             "model_blob_hash": None,
                         }
@@ -186,8 +200,19 @@ class FakeClient:
     def retrieve_blob(
         self, _job_id: str, blob_hash: str, destination: Path
     ) -> None:
-        assert blob_hash == self.spec.manifest_sha256
-        destination.write_bytes(self.stored_manifest)
+        if blob_hash == self.spec.manifest_sha256:
+            destination.write_bytes(self.stored_manifest)
+        elif blob_hash == self.kept_hash:
+            destination.write_bytes(self.kept_cnf)
+        else:
+            raise AssertionError(f"unexpected blob {blob_hash}")
+
+    def retrieve_proof(self, _job_id: str, destination: Path) -> dict[str, Any]:
+        destination.write_bytes(self.proof_bytes)
+        return {"bytes": len(self.proof_bytes), "sha256": self.proof_hash}
+
+    def clause_map(self, _job_id: str) -> dict[str, Any]:
+        return self.clause_map_payload
 
     def confirm(self, job_id: str) -> dict[str, Any]:
         self.confirm_calls += 1
@@ -567,15 +592,25 @@ def test_child33_sat_rejects_nonnull_proof_shape(tmp_path: Path) -> None:
 
 
 def test_child33_unsat_requires_compacted_lrat_and_never_model_checks(
-    tmp_path: Path,
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    monkeypatch.setattr(
+        runner,
+        "_run_independent_lean_lrat_replay",
+        lambda kept, proof, spec: {"status": "PASS"},
+    )
     paths, spec, root = _child33_fixture(tmp_path)
     client = FakeClient(root, spec)
     client.terminal_result = "UNSAT"
     runner.start(client, paths, spec, ingress_validator=_validated)
     client.phase = "completed"
     report = runner.finalize(client, paths, spec, ingress_validator=_validated)
-    assert report["proof_replay_complete"] is False
+    assert report["proof_replay_complete"] is True
+    assert report["unsat_certificate"]["job_id"] == "job-child32"
+    assert report["unsat_certificate"]["root_sha256"] == spec.root_sha256
+    assert report["unsat_certificate"]["manifest_sha256"] == spec.manifest_sha256
+    assert report["unsat_certificate"]["kept_cnf"]["sha256"] == client.kept_hash
+    assert report["unsat_certificate"]["proof"]["sha256"] == client.proof_hash
     assert client.model_check_calls == 0
     assert not paths.model.exists()
 
@@ -595,6 +630,104 @@ def test_child33_unsat_requires_compacted_lrat_and_never_model_checks(
     with pytest.raises(ValueError, match="proof format"):
         runner.finalize(client, paths, spec, ingress_validator=_validated)
     assert client.model_check_calls == 0
+
+
+@pytest.mark.parametrize(
+    ("mutation", "error"),
+    [
+        ("version", "clause-map version"),
+        ("submitted_hash", "crossed submitted CNF"),
+        ("submitted_count", "submitted clause count"),
+        ("kept_hash", "crossed kept CNF"),
+        ("kept_count", "kept clause count"),
+        ("expansion", "expansion rule"),
+        ("boundary", "certificate boundary"),
+        ("exception", "exception"),
+    ],
+)
+def test_child33_unsat_clause_map_is_fail_closed(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    mutation: str,
+    error: str,
+) -> None:
+    monkeypatch.setattr(
+        runner,
+        "_run_independent_lean_lrat_replay",
+        lambda kept, proof, spec: {"status": "PASS"},
+    )
+    paths, spec, root = _child33_fixture(tmp_path / mutation)
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    if mutation == "version":
+        client.clause_map_payload["version"] = "piqd-clause-map/v0"
+    elif mutation == "submitted_hash":
+        client.clause_map_payload["submitted_sha256"] = "0" * 64
+    elif mutation == "submitted_count":
+        client.clause_map_payload["submitted_clauses"] = spec.clauses - 1
+    elif mutation == "kept_hash":
+        client.clause_map_payload["kept_sha256"] = "0" * 64
+    elif mutation == "kept_count":
+        client.clause_map_payload["kept_clauses"] = spec.clauses - 1
+    elif mutation == "expansion":
+        client.clause_map_payload["expansion_rule"] = "keep everything"
+    elif mutation == "boundary":
+        client.clause_map_payload["boundary"] = "UNSAT proves the source"
+    elif mutation == "exception":
+        client.clause_map_payload["exceptions"] = [
+            {
+                "submitted_id": 1,
+                "kind": "dropped_tautology",
+                "submitted_sha256": runner._clause_sha256([1]),
+            }
+        ]
+    else:  # pragma: no cover - parametrization is exhaustive
+        raise AssertionError(mutation)
+    with pytest.raises(ValueError, match=error):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+def test_child33_unsat_rejects_proof_hash_drift(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        runner,
+        "_run_independent_lean_lrat_replay",
+        lambda kept, proof, spec: {"status": "PASS"},
+    )
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    client.proof_hash = "0" * 64
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    with pytest.raises(ValueError, match="proof hash drifted"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+
+
+def test_child33_unsat_reconstructs_kept_cnf_independently(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        runner,
+        "_run_independent_lean_lrat_replay",
+        lambda kept, proof, spec: {"status": "PASS"},
+    )
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    client.kept_cnf = b"p cnf 3 2\n1 0\n1 2 0\n"
+    client.kept_hash = hashlib.sha256(client.kept_cnf).hexdigest()
+    client.clause_map_payload["kept_sha256"] = client.kept_hash
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    with pytest.raises(ValueError, match="differs from independently reconstructed"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
 
 
 @pytest.mark.parametrize("replacement", [0, 2, True, 1.0, "1", None])

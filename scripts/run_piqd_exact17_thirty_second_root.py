@@ -50,6 +50,21 @@ TIMEOUT_S = 3600
 MARCH_TIMEOUT_S = 900
 HARDENED_ARTIFACT_NAMESPACES = frozenset({"child33", "child34"})
 
+CLAUSE_MAP_VERSION = "piqd-clause-map/v1"
+CLAUSE_MAP_EXPANSION_RULE = (
+    "Walk submitted ids 1..=submitted_clauses in order, keeping a running count "
+    "of dropped_tautology exceptions already seen. A submitted id listed as "
+    "dropped_tautology has certificate id null; every other submitted id n has "
+    "certificate id n minus the number of dropped_tautology exceptions with a "
+    "smaller submitted_id. A deduped_literals entry keeps a certificate id under "
+    "that rule; only its content changed. Clauses not listed are unchanged in "
+    "both id and content."
+)
+CLAUSE_MAP_BOUNDARY = (
+    "LRAT proves the final strengthened CNF unsatisfiable. It does not by itself "
+    "prove that CEGAR-added clauses follow from the original encoding."
+)
+
 
 @dataclass(frozen=True)
 class RunnerPaths:
@@ -163,6 +178,10 @@ class PiqdClient(Protocol):
     def model_check(self, job_id: str) -> dict[str, Any]: ...
 
     def retrieve_log(self, job_id: str, destination: Path) -> dict[str, Any]: ...
+
+    def retrieve_proof(self, job_id: str, destination: Path) -> dict[str, Any]: ...
+
+    def clause_map(self, job_id: str) -> dict[str, Any]: ...
 
 
 def _strict_json_text(text: str) -> dict[str, Any]:
@@ -309,6 +328,65 @@ class SubprocessPiqdClient:
         # intentionally propagated: terminal evidence must fail closed.
         with urllib.request.urlopen(request, timeout=900) as response:
             return _strict_json_text(response.read().decode("utf-8"))
+
+    def retrieve_proof(self, job_id: str, destination: Path) -> dict[str, Any]:
+        base = os.environ.get("PIQD_URL", "http://127.0.0.1:7272").rstrip("/")
+        request = urllib.request.Request(
+            f"{base}/jobs/{urllib.parse.quote(job_id, safe='')}/proof",
+            method="GET",
+        )
+        fd = _dev_fd_number(destination)
+        with urllib.request.urlopen(request, timeout=900) as response:
+            _require(
+                response.headers.get_content_type() == "text/plain",
+                "PIQD proof response is not text/plain",
+            )
+            length_text = response.headers.get("Content-Length")
+            _require(length_text is not None, "PIQD proof omitted Content-Length")
+            try:
+                declared_bytes = int(length_text)
+            except ValueError as error:
+                raise ValueError("PIQD proof Content-Length is malformed") from error
+            _require(declared_bytes > 0, "PIQD proof is empty")
+            declared_sha256 = response.headers.get("X-Proof-Blob-Hash")
+            _require(
+                isinstance(declared_sha256, str)
+                and re.fullmatch(r"[0-9a-f]{64}", declared_sha256) is not None,
+                "PIQD proof omitted a valid X-Proof-Blob-Hash",
+            )
+            digest = hashlib.sha256()
+            written = 0
+            if fd is None:
+                with _write_descriptor(destination) as descriptor:
+                    while chunk := response.read(1024 * 1024):
+                        written += len(chunk)
+                        _require(written <= declared_bytes, "PIQD proof exceeded Content-Length")
+                        digest.update(chunk)
+                        _write_all(descriptor, chunk)
+            else:
+                while chunk := response.read(1024 * 1024):
+                    written += len(chunk)
+                    _require(written <= declared_bytes, "PIQD proof exceeded Content-Length")
+                    digest.update(chunk)
+                    _write_all(fd, chunk)
+            _require(written == declared_bytes, "PIQD proof retrieval was truncated")
+            _require(digest.hexdigest() == declared_sha256, "PIQD proof hash drifted")
+            return {"bytes": declared_bytes, "sha256": declared_sha256}
+
+    def clause_map(self, job_id: str) -> dict[str, Any]:
+        base = os.environ.get("PIQD_URL", "http://127.0.0.1:7272").rstrip("/")
+        request = urllib.request.Request(
+            f"{base}/jobs/{urllib.parse.quote(job_id, safe='')}/clause-map",
+            method="GET",
+        )
+        with urllib.request.urlopen(request, timeout=900) as response:
+            _require(
+                response.headers.get_content_type() == "application/json",
+                "PIQD clause-map response is not application/json",
+            )
+            body = response.read(16 * 1024 * 1024 + 1)
+            _require(len(body) <= 16 * 1024 * 1024, "PIQD clause map exceeded 16 MiB")
+            return _strict_json_text(body.decode("utf-8"))
 
     def retrieve_log(self, job_id: str, destination: Path) -> dict[str, Any]:
         return _retrieve_complete_log(job_id, destination)
@@ -573,6 +651,238 @@ class HeldSnapshot:
             chunks.append(chunk)
             offset += len(chunk)
         return b"".join(chunks)
+
+
+def _snapshot_lines(snapshot: HeldSnapshot):
+    """Yield exact LF-terminated lines without loading a multi-GB CNF."""
+    buffer = b""
+    offset = 0
+    while offset < snapshot.size:
+        chunk = os.pread(
+            snapshot.descriptor,
+            min(1024 * 1024, snapshot.size - offset),
+            offset,
+        )
+        if not chunk:
+            raise ValueError("held snapshot truncated while parsing")
+        offset += len(chunk)
+        buffer += chunk
+        while True:
+            newline = buffer.find(b"\n")
+            if newline < 0:
+                break
+            yield buffer[: newline + 1]
+            buffer = buffer[newline + 1 :]
+    if buffer:
+        raise ValueError("DIMACS snapshot has an unterminated final line")
+
+
+def _parse_dimacs_clause(line: bytes, variables: int) -> list[int]:
+    _require(line.endswith(b"\n"), "DIMACS clause is not LF-terminated")
+    try:
+        tokens = line[:-1].decode("ascii").split()
+        literals = [int(token) for token in tokens]
+    except (UnicodeDecodeError, ValueError) as error:
+        raise ValueError("DIMACS clause is not canonical ASCII integers") from error
+    _require(bool(literals) and literals[-1] == 0, "DIMACS clause is malformed")
+    literals = literals[:-1]
+    for literal in literals:
+        _require(literal != 0 and abs(literal) <= variables, "DIMACS literal is out of range")
+    return literals
+
+
+def _normalize_clause(literals: list[int]) -> tuple[str, list[int]]:
+    seen: set[int] = set()
+    normalized: list[int] = []
+    for literal in literals:
+        if -literal in seen:
+            return "dropped_tautology", []
+        if literal not in seen:
+            seen.add(literal)
+            normalized.append(literal)
+    return "deduped_literals" if normalized != literals else "unchanged", normalized
+
+
+def _clause_sha256(literals: list[int]) -> str:
+    body = " ".join(str(literal) for literal in literals) + " 0"
+    return hashlib.sha256(body.encode("ascii")).hexdigest()
+
+
+def _canonical_json_sha256(payload: dict[str, Any]) -> str:
+    encoded = json.dumps(
+        payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _validate_clause_map(
+    clause_map: dict[str, Any],
+    submitted: HeldSnapshot,
+    kept: HeldSnapshot,
+    spec: RunnerSpec,
+    kept_sha256: str,
+) -> dict[str, Any]:
+    """Validate and independently reconstruct PIQD's detautologized CNF."""
+    _require(
+        set(clause_map)
+        == {
+            "version",
+            "submitted_sha256",
+            "submitted_clauses",
+            "kept_sha256",
+            "kept_clauses",
+            "exceptions",
+            "expansion_rule",
+            "boundary",
+        },
+        "PIQD clause-map schema drifted",
+    )
+    _require(clause_map["version"] == CLAUSE_MAP_VERSION, "PIQD clause-map version drifted")
+    _require(clause_map["submitted_sha256"] == submitted.sha256, "clause-map crossed submitted CNF")
+    _require(
+        type(clause_map["submitted_clauses"]) is int
+        and clause_map["submitted_clauses"] == spec.clauses,
+        "clause-map submitted clause count drifted",
+    )
+    _require(clause_map["kept_sha256"] == kept_sha256 == kept.sha256, "clause-map crossed kept CNF")
+    _require(type(clause_map["kept_clauses"]) is int, "clause-map kept clause count is malformed")
+    _require(clause_map["expansion_rule"] == CLAUSE_MAP_EXPANSION_RULE, "clause-map expansion rule drifted")
+    _require(clause_map["boundary"] == CLAUSE_MAP_BOUNDARY, "clause-map certificate boundary drifted")
+    exceptions = clause_map["exceptions"]
+    _require(isinstance(exceptions, list), "clause-map exceptions are not a list")
+    by_id: dict[int, dict[str, Any]] = {}
+    previous_id = 0
+    for exception in exceptions:
+        _require(isinstance(exception, dict), "clause-map exception is not an object")
+        _require(
+            set(exception) in (
+                {"submitted_id", "kind", "submitted_sha256"},
+                {
+                    "submitted_id",
+                    "kind",
+                    "submitted_sha256",
+                    "normalized_sha256",
+                    "normalized_literals",
+                },
+            ),
+            "clause-map exception schema drifted",
+        )
+        submitted_id = exception.get("submitted_id")
+        _require(
+            type(submitted_id) is int
+            and 1 <= submitted_id <= spec.clauses
+            and submitted_id > previous_id,
+            "clause-map exception ids are not ordered and unique",
+        )
+        previous_id = submitted_id
+        _require(submitted_id not in by_id, "clause-map exception ids are duplicated")
+        _require(exception.get("kind") in {"dropped_tautology", "deduped_literals"}, "clause-map kind drifted")
+        _require(
+            isinstance(exception.get("submitted_sha256"), str)
+            and re.fullmatch(r"[0-9a-f]{64}", exception["submitted_sha256"]),
+            "clause-map submitted clause hash is malformed",
+        )
+        if exception["kind"] == "dropped_tautology":
+            _require(set(exception) == {"submitted_id", "kind", "submitted_sha256"}, "dropped exception has normalized data")
+        else:
+            _require(
+                isinstance(exception.get("normalized_sha256"), str)
+                and re.fullmatch(r"[0-9a-f]{64}", exception["normalized_sha256"]),
+                "deduped exception normalized hash is malformed",
+            )
+            normalized_literals = exception.get("normalized_literals")
+            _require(
+                isinstance(normalized_literals, list)
+                and all(type(literal) is int for literal in normalized_literals),
+                "deduped exception normalized literals are malformed",
+            )
+            _require(
+                all(
+                    literal != 0 and abs(literal) <= spec.variables
+                    for literal in normalized_literals
+                )
+                and len(normalized_literals) == len(set(normalized_literals))
+                and all(
+                    -literal not in normalized_literals for literal in normalized_literals
+                ),
+                "deduped exception normalized literals are out of range",
+            )
+        by_id[submitted_id] = exception
+
+    submitted_lines = _snapshot_lines(submitted)
+    try:
+        header = next(submitted_lines)
+    except StopIteration as error:
+        raise ValueError("submitted CNF is empty") from error
+    _require(header == f"p cnf {spec.variables} {spec.clauses}\n".encode(), "submitted CNF header drifted")
+    kept_count = 0
+    for submitted_id in range(1, spec.clauses + 1):
+        try:
+            line = next(submitted_lines)
+        except StopIteration as error:
+            raise ValueError("submitted CNF ended before its declared clause count") from error
+        literals = _parse_dimacs_clause(line, spec.variables)
+        kind, normalized = _normalize_clause(literals)
+        exception = by_id.get(submitted_id)
+        submitted_hash = _clause_sha256(literals)
+        if kind == "dropped_tautology":
+            _require(exception is not None and exception["kind"] == kind, "tautology exception is missing")
+            _require(exception["submitted_sha256"] == submitted_hash, "tautology submitted hash drifted")
+            continue
+        if kind == "deduped_literals":
+            _require(exception is not None and exception["kind"] == kind, "dedup exception is missing")
+            _require(exception["submitted_sha256"] == submitted_hash, "dedup submitted hash drifted")
+            _require(exception["normalized_literals"] == normalized, "dedup normalized literals drifted")
+            _require(exception["normalized_sha256"] == _clause_sha256(normalized), "dedup normalized hash drifted")
+        else:
+            _require(exception is None, "unchanged clause was listed as an exception")
+        kept_count += 1
+    _require(kept_count == clause_map["kept_clauses"], "clause-map kept clause count drifted")
+    expected_header = f"p cnf {spec.variables} {kept_count}\n".encode("ascii")
+    _require(
+        os.pread(kept.descriptor, len(expected_header), 0) == expected_header,
+        "kept CNF header drifted",
+    )
+
+    # Reconstruct the kept file in a second pass, comparing every byte against
+    # the independently retrieved artifact.  This deliberately does not trust
+    # PIQD's map to supply the retained clause text.
+    kept_offset = len(expected_header)
+    observed_submitted_lines = _snapshot_lines(submitted)
+    _require(next(observed_submitted_lines) == header, "submitted CNF changed between passes")
+    for submitted_id in range(1, spec.clauses + 1):
+        line = next(observed_submitted_lines)
+        literals = _parse_dimacs_clause(line, spec.variables)
+        kind, normalized = _normalize_clause(literals)
+        if kind == "dropped_tautology":
+            continue
+        reconstructed = (" ".join(str(literal) for literal in normalized) + " 0\n").encode("ascii")
+        _require(
+            kept_offset + len(reconstructed) <= kept.size,
+            "kept CNF is shorter than reconstructed bytes",
+        )
+        _require(
+            os.pread(kept.descriptor, len(reconstructed), kept_offset) == reconstructed,
+            "kept CNF differs from independently reconstructed bytes",
+        )
+        kept_offset += len(reconstructed)
+    try:
+        next(observed_submitted_lines)
+    except StopIteration:
+        pass
+    else:
+        raise ValueError("submitted CNF has more clauses than declared")
+    _require(kept_offset == kept.size, "kept CNF has trailing bytes")
+    return {
+        "schema": CLAUSE_MAP_VERSION,
+        "sha256": _canonical_json_sha256(clause_map),
+        "submitted_sha256": submitted.sha256,
+        "submitted_clauses": spec.clauses,
+        "kept_sha256": kept_sha256,
+        "kept_clauses": kept_count,
+        "exceptions": len(exceptions),
+        "boundary": CLAUSE_MAP_BOUNDARY,
+    }
 
 
 @contextmanager
@@ -1373,6 +1683,147 @@ def _retrieved_snapshot(
 
 
 @contextmanager
+def _retrieved_proof_snapshot(
+    client: PiqdClient,
+    job_id: str,
+    directory: Path,
+    *,
+    expected_sha256: str,
+):
+    """Hold the exact proof blob and reject transport/content mismatches."""
+    with _anonymous_file(directory) as (descriptor, path):
+        reported = client.retrieve_proof(job_id, path)
+        _require(
+            set(reported) == {"bytes", "sha256"},
+            "PIQD proof retrieval receipt schema drifted",
+        )
+        _require(
+            type(reported["bytes"]) is int and reported["bytes"] > 0,
+            "PIQD proof retrieval byte count is malformed",
+        )
+        _require(
+            isinstance(reported["sha256"], str)
+            and re.fullmatch(r"[0-9a-f]{64}", reported["sha256"]) is not None,
+            "PIQD proof retrieval hash is malformed",
+        )
+        os.fsync(descriptor)
+        size = os.fstat(descriptor).st_size
+        _require(size == reported["bytes"], "PIQD proof declared length drifted")
+        digest = _sha256_descriptor(descriptor, size)
+        _require(digest == reported["sha256"] == expected_sha256, "PIQD proof hash drifted")
+        proof = HeldSnapshot(descriptor=descriptor, path=path, sha256=digest, size=size)
+        offset = 0
+        while offset < proof.size:
+            chunk = os.pread(proof.descriptor, min(1024 * 1024, proof.size - offset), offset)
+            _require(bool(chunk), "proof snapshot truncated during content validation")
+            try:
+                chunk.decode("ascii")
+            except UnicodeDecodeError as error:
+                raise ValueError("PIQD proof is not ASCII compacted LRAT") from error
+            _require(b"\x00" not in chunk, "PIQD proof contains NUL bytes")
+            offset += len(chunk)
+        yield proof
+
+
+def _run_independent_lean_lrat_replay(
+    kept: HeldSnapshot, proof: HeldSnapshot, spec: RunnerSpec
+) -> dict[str, Any]:
+    """Run the repository's independent Lean ``verifyCert_correct`` checker."""
+    try:
+        from census.p97_search.phase3_piqd_oracle import PreparedJob
+        from census.p97_search.phase3_piqd_replay import (
+            LeanLratReplayer,
+            LratReplayError,
+            validate_replay_result,
+        )
+    except ImportError as error:
+        raise ValueError(f"independent Lean LRAT replay is unavailable: {error}") from error
+    try:
+        cnf = kept.read_bytes()
+        header = cnf.splitlines()[0].decode("ascii")
+        fields = header.split()
+        _require(
+            len(fields) == 4 and fields[:2] == ["p", "cnf"]
+            and fields[2] == str(spec.variables),
+            "reconstructed kept CNF header is malformed",
+        )
+        kept_clauses = int(fields[3])
+        job = PreparedJob(
+            job_id="reconstructed-kept-cnf",
+            backend=spec.ingress.backend,
+            solver_profile=spec.ingress.solver_profile,
+            cnf_blob_hash=kept.sha256,
+            identity_hash="0" * 64,
+            num_vars=spec.variables,
+            num_clauses=kept_clauses,
+            existing=False,
+        )
+        wave_manifest = {
+            "schema": "p97-cegar-wave/v1",
+            "wave_id": "exact17-piqd-kept-cnf-replay",
+            "iteration": 0,
+            "parent_checkpoint_sha256": None,
+            "source": {
+                "live_leaf": "piqd-terminal-certificate",
+                "ingress_hypotheses_sha256": "0" * 64,
+                "finite_schema": "exact17",
+                "cardinality_scope": "reconstructed-kept-cnf",
+                "source_theorem": "independent-replay-only",
+            },
+            "encoding": {
+                "cnf_sha256": kept.sha256,
+                "variable_map_sha256": "0" * 64,
+                "producer_manifest_sha256": str(spec.manifest_sha256),
+                "num_variables": spec.variables,
+                "num_clauses": kept_clauses,
+                "query_polarity": "UNSAT_MEANS_OBSTRUCTION",
+            },
+            "execution": {
+                "backend": spec.ingress.backend,
+                "solver_profile": spec.ingress.solver_profile,
+                "shard_id": 0,
+                "shard_count": 1,
+                "order_sha256": "0" * 64,
+                "seed": 0,
+            },
+            "promotion": {
+                "evidence_classification": "LOCAL_CERTIFICATE",
+                "producer_theorem": None,
+                "lift_theorem": None,
+                "consumer_theorem": None,
+            },
+        }
+        replay = LeanLratReplayer(
+            lean_root=ROOT,
+            work_dir=ROOT / "scratch/exact17-lean-to-sat/piqd-child41-lrat-replay",
+            timeout_s=900,
+        ).replay(
+            job=job,
+            wave_manifest=wave_manifest,
+            cnf=cnf,
+            proof=proof.read_bytes(),
+            proof_sha256=proof.sha256,
+        )
+        validate_replay_result(
+            result=replay,
+            job=job,
+            wave_manifest=wave_manifest,
+            cnf=cnf,
+            proof=proof.read_bytes(),
+            proof_sha256=proof.sha256,
+        )
+        _require(replay.verified, "independent Lean LRAT replay rejected the certificate")
+        return {
+            "status": "PASS",
+            "schema": "p97-piqd-lean-lrat-replay/v1",
+            "receipt_sha256": hashlib.sha256(replay.receipt).hexdigest(),
+            "checker_source_sha256": hashlib.sha256(replay.checker_source).hexdigest(),
+        }
+    except (LratReplayError, OSError, TypeError, ValueError, UnicodeDecodeError) as error:
+        raise ValueError(f"independent Lean LRAT replay failed: {error}") from error
+
+
+@contextmanager
 def _remote_inputs(
     client: PiqdClient,
     job_id: str,
@@ -2006,13 +2457,61 @@ def finalize(
                             }
                         )
                     elif result == "UNSAT":
+                        proof_hash = status.get("proof_blob_hash")
+                        kept_hash = status.get("kept_cnf_blob_hash")
+                        _require(
+                            isinstance(proof_hash, str)
+                            and re.fullmatch(r"[0-9a-f]{64}", proof_hash) is not None,
+                            "UNSAT status proof hash is malformed",
+                        )
+                        _require(
+                            isinstance(kept_hash, str)
+                            and re.fullmatch(r"[0-9a-f]{64}", kept_hash) is not None,
+                            "UNSAT status kept-CNF hash is malformed",
+                        )
+                        with _retrieved_snapshot(
+                            paths.final.parent,
+                            lambda destination: client.retrieve_blob(
+                                job_id, kept_hash, destination
+                            ),
+                            expected_sha256=kept_hash,
+                        ) as kept_cnf, _retrieved_proof_snapshot(
+                            client,
+                            job_id,
+                            paths.final.parent,
+                            expected_sha256=proof_hash,
+                        ) as proof:
+                            clause_map = client.clause_map(job_id)
+                            map_receipt = _validate_clause_map(
+                                clause_map,
+                                remote_cnf,
+                                kept_cnf,
+                                spec,
+                                kept_hash,
+                            )
+                            replay = _run_independent_lean_lrat_replay(kept_cnf, proof, spec)
                         report.update(
                             {
-                                "proof_replay_complete": False,
-                                "next_gate": (
-                                    "retrieve_clause_map_and_proof_then_"
-                                    "independently_replay"
-                                ),
+                                "proof_replay_complete": True,
+                                "unsat_certificate": {
+                                    "job_id": job_id,
+                                    "root_sha256": remote_cnf.sha256,
+                                    "manifest_sha256": remote_manifest.sha256,
+                                    "kept_cnf": {
+                                        "bytes": kept_cnf.size,
+                                        "sha256": kept_cnf.sha256,
+                                        "clauses": map_receipt["kept_clauses"],
+                                    },
+                                    "proof": {
+                                        "bytes": proof.size,
+                                        "sha256": proof.sha256,
+                                        "format": "compacted_lrat",
+                                    },
+                                    "clause_map": map_receipt,
+                                    "replay": replay,
+                                    "boundary": CLAUSE_MAP_BOUNDARY,
+                                },
+                                "next_gate": "source_validity_boundary_review",
                             }
                         )
                     _publish_snapshot(solver_log, paths.solver_log)

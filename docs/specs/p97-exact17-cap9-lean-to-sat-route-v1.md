@@ -849,3 +849,30 @@ a new-wave-only theorem mine before any successor. `UNSAT` requires independent
 certificate replay and Lean composition through the existing exact-cover,
 source-realization, and landing contracts. Exact 17 and the cap-nine production
 `sorry` remain open.
+
+## Forty-first Lean-owned child checkpoint — 2026-08-13
+
+Child40 terminated authenticated `SAT` at epoch one. Independent replay checked
+all 5,847,584 clauses of the exact Child40 root. The exhaustive new-wave mine
+found 84 subset-minimal instances of the existing source-valid
+`CancellationOccurrence` family. Their two cyclic orientations yield a
+336-clause Lean-owned suffix; twelve shards and a coordinator prove the suffix,
+the extended evaluator, the `SourceRealization` bridge, and the conditional
+terminal adapter.
+
+The immutable Child41 root has 308 variables, 5,847,920 clauses, 291,654,272
+bytes, and SHA-256
+`fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24`.
+Its recursive export and ingress validators pass. The shared runner now enforces
+the stricter terminal contract: PIQD `UNSAT` custody must include the
+submitted-session clause map and proof; the runner reconstructs the exact kept
+CNF and independently replays the compacted LRAT. This does not replace source
+validity: Lean separately proves that every learned clause is true for every
+`SourceRealization`. Ruff, 284 focused adversarial tests, the live Child41 PIQD
+static gate, the targeted exporter build, and the axiom audit pass.
+
+No Child41 PIQD job exists at this checkpoint. Publish the validated source and
+runner first, then submit exactly one authenticated job. A terminal `SAT` again
+requires full model replay and a new-wave-only theorem mine. A terminal `UNSAT`
+requires certificate replay and composition through the exact-cover and
+source-realization landing contracts. Exact 17 remains open.
