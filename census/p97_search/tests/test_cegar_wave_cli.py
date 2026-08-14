@@ -7,12 +7,22 @@ from types import SimpleNamespace
 import pytest
 
 import census.p97_search.cegar_wave_cli as cli
+from census.p97_search.tests.test_cegar_wave_registry import (
+    _fixture_data_only_control,
+)
 from census.p97_search.tests.test_phase3_cegar_wave_engine import _fixture_control
 
 
 def _control_file(tmp_path: Path) -> tuple[Path, Path]:
     control, package_root, _, _ = _fixture_control(tmp_path)
     path = tmp_path / "control.json"
+    path.write_bytes(control.canonical_bytes)
+    return path, package_root
+
+
+def _data_only_control_file(tmp_path: Path) -> tuple[Path, Path]:
+    control, package_root, _receipt = _fixture_data_only_control(tmp_path)
+    path = tmp_path / "data-only-control.json"
     path.write_bytes(control.canonical_bytes)
     return path, package_root
 
@@ -130,6 +140,59 @@ def test_validate_ingress_is_transport_free(
     payload = _json_stdout(capsys)
     assert payload["status"] == "PASS"
     assert payload["ingress"]["num_clauses"] == 2
+
+
+def test_data_only_cli_plans_and_validates_but_cannot_run(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    control_path, package_root = _data_only_control_file(tmp_path)
+    output = tmp_path / "result.json"
+    journal = tmp_path / "journal"
+
+    assert (
+        cli.main(["plan", str(control_path), "--package-root", str(package_root)]) == 0
+    )
+    plan = _json_stdout(capsys)
+    assert plan["execution"]["plan"]["steps"][-1] == "stop-without-execution"
+
+    assert (
+        cli.main(
+            [
+                "validate-ingress",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+            ]
+        )
+        == 0
+    )
+    ingress = _json_stdout(capsys)["ingress"]
+    retained = {row["role"]: row for row in ingress["semantic_artifacts"]}[
+        "daemon_build_receipt"
+    ]
+    assert retained["link_count"] == 3
+    assert retained["custody"] == "RETAINED_LEGACY_HARDLINK_REFERENCE"
+
+    assert (
+        cli.main(
+            [
+                "run",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(output),
+                "--journal-root",
+                str(journal),
+            ]
+        )
+        == 2
+    )
+    captured = capsys.readouterr()
+    error = json.loads(captured.err)
+    assert error["error"] == "registered data-only wave cannot execute"
+    assert not output.exists()
+    assert not journal.exists()
 
 
 def test_run_delegates_once_and_never_exposes_proof_path(

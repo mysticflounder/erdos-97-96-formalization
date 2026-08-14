@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
@@ -21,6 +22,8 @@ from census.p97_search.phase3_cegar_wave_control import (
     ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
     ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
     CONTROL_SCHEMA_V3,
+    CONTROL_SCHEMA_V4,
+    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
     AssumptionCnfBinding,
     load_wave_control,
 )
@@ -32,6 +35,23 @@ from census.p97_search.tests.test_phase3_cegar_wave_engine import (
     _fixture_v2_control,
     _make_v2_engine,
 )
+
+
+def _fixture_data_only_control(tmp_path: Path) -> tuple[object, Path, Path]:
+    control, package_root, _cnf, _producer, _profile = _fixture_v2_control(tmp_path)
+    references = dict(control.semantic_artifacts)
+    receipt = package_root / references["daemon_build_receipt"].path
+    os.link(receipt, receipt.with_name("daemon-build-receipt-link-1.json"))
+    os.link(receipt, receipt.with_name("daemon-build-receipt-link-2.json"))
+    value = deepcopy(control.value)
+    value.update(
+        {
+            "schema": CONTROL_SCHEMA_V4,
+            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+            "retained_hardlink_counts": {"daemon_build_receipt": 3},
+        }
+    )
+    return load_wave_control(canonical_json_bytes(value)), package_root, receipt
 
 
 def test_v1_snapshot_bytes_and_aliases_remain_unchanged() -> None:
@@ -272,6 +292,109 @@ def test_ingress_and_plan_bind_the_exact_static_package(tmp_path: Path) -> None:
     assert plan["plan"]["proof_path"] is None
     assert plan["plan"]["workers"] == 1
     assert plan["plan"]["sequential"] is True
+
+
+def test_data_only_ingress_authenticates_closed_retained_hardlink_policy(
+    tmp_path: Path,
+) -> None:
+    control, package_root, receipt = _fixture_data_only_control(tmp_path)
+
+    registration = registry.resolve_execution_registration(control)
+    assert registration is registry.STATIC_CNF_DATA_ONLY_V1
+    assert registration.capabilities == ("plan", "status", "validate-ingress")
+    ingress = registry.validate_registered_ingress(control, package_root)
+    rows = {row["role"]: row for row in ingress["semantic_artifacts"]}
+    assert rows["daemon_build_receipt"] == {
+        "role": "daemon_build_receipt",
+        "sha256": dict(control.semantic_artifacts)["daemon_build_receipt"].sha256,
+        "bytes": receipt.stat().st_size,
+        "link_count": 3,
+        "custody": "RETAINED_LEGACY_HARDLINK_REFERENCE",
+    }
+    assert rows["child_cnf"]["link_count"] == 1
+    assert rows["child_cnf"]["custody"] == "EXCLUSIVE_SINGLE_LINK"
+    assert registry.plan_execution(control, package_root)["plan"]["steps"] == [
+        "authenticate-control",
+        "authenticate-static-package",
+        "authenticate-retained-legacy-references",
+        "stop-without-execution",
+    ]
+
+
+def test_data_only_ingress_defaults_every_role_to_single_link(tmp_path: Path) -> None:
+    control, package_root, _cnf, _producer, _profile = _fixture_v2_control(tmp_path)
+    value = deepcopy(control.value)
+    value.update(
+        {
+            "schema": CONTROL_SCHEMA_V4,
+            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+            "retained_hardlink_counts": {},
+        }
+    )
+    data_only = load_wave_control(canonical_json_bytes(value))
+
+    ingress = registry.validate_registered_ingress(data_only, package_root)
+    assert all(
+        row["link_count"] == 1 and row["custody"] == "EXCLUSIVE_SINGLE_LINK"
+        for row in ingress["semantic_artifacts"]
+    )
+
+
+def test_data_only_registration_refuses_every_execution_output_path(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    control, package_root, _receipt = _fixture_data_only_control(tmp_path)
+
+    monkeypatch.setattr(
+        registry,
+        "StaticCnfWaveEngine",
+        lambda **_kwargs: (_ for _ in ()).throw(AssertionError("engine constructed")),
+    )
+    with pytest.raises(registry.WaveRegistryError, match="cannot execute"):
+        registry.execute_registered_wave(
+            control,
+            package_root,
+            output_path=tmp_path / "output.json",
+            base_url="http://127.0.0.1:7272",
+            journal_root=tmp_path / "journal",
+        )
+    with pytest.raises(registry.WaveRegistryError, match="no execution output"):
+        registry.validate_registered_output(
+            control, package_root, tmp_path / "output.json"
+        )
+    assert not (tmp_path / "output.json").exists()
+    assert not (tmp_path / "journal").exists()
+
+
+def test_data_only_hardlink_policy_is_role_and_count_closed(tmp_path: Path) -> None:
+    control, package_root, receipt = _fixture_data_only_control(tmp_path)
+
+    receipt.with_name("daemon-build-receipt-link-2.json").unlink()
+    with pytest.raises(registry.WaveControlError, match="link count is crossed"):
+        registry.validate_registered_ingress(control, package_root)
+
+    value = deepcopy(control.value)
+    value["retained_hardlink_counts"] = {"export_receipt": 3}
+    with pytest.raises(registry.WaveControlError, match="closed legacy policy"):
+        load_wave_control(canonical_json_bytes(value))
+
+    value["retained_hardlink_counts"] = {"daemon_build_receipt": 4}
+    with pytest.raises(registry.WaveControlError, match="closed legacy policy"):
+        load_wave_control(canonical_json_bytes(value))
+
+    assert receipt.stat().st_nlink == 2
+
+
+def test_data_only_policy_does_not_spill_to_other_semantic_roles(
+    tmp_path: Path,
+) -> None:
+    control, package_root, _receipt = _fixture_data_only_control(tmp_path)
+    export = package_root / dict(control.semantic_artifacts)["export_receipt"].path
+    os.link(export, export.with_name("export-receipt-link-1.json"))
+    os.link(export, export.with_name("export-receipt-link-2.json"))
+
+    with pytest.raises(registry.WaveControlError, match="capture failed"):
+        registry.validate_registered_ingress(control, package_root)
 
 
 def test_ingress_rejects_nonabsolute_and_path_subclass_before_dispatch(

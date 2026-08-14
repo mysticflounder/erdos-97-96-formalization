@@ -1,9 +1,19 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
-from census.p97_search.cegar_wave_semantic_profiles import parse_profile_bytes
+import pytest
 
+from census.p97_search.cegar_wave_registry import validate_registered_ingress
+from census.p97_search.cegar_wave_semantic_profiles import parse_profile_bytes
+from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_bytes
+from census.p97_search.phase3_cegar_wave_control import load_wave_control
+from census.p97_search.phase3_piqd_static_solver_runner import (
+    authenticate_static_manifests,
+)
+
+REPO_ROOT = Path(__file__).parents[3]
 PROFILE_PATH = (
     Path(__file__).parents[1]
     / "waves"
@@ -11,6 +21,56 @@ PROFILE_PATH = (
     / "child40"
     / "semantic-profile.json"
 )
+PACKAGE_ROOT = PROFILE_PATH.parent
+CONTROL_PATH = PACKAGE_ROOT / "control.json"
+
+EXPECTED_ARTIFACTS = {
+    "child_cnf": (
+        "scratch/exact17-lean-to-sat/exact17-thirty-fortieth-root-thirty-ninth-model-refinements.cnf",
+        291_633_186,
+        "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034",
+    ),
+    "daemon_build_receipt": (
+        "scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+        6_895,
+        "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9",
+    ),
+    "export_receipt": (
+        "scratch/exact17-lean-to-sat/child40-export-receipt.json",
+        2_870,
+        "28229868ae4aa0906411bad45efbe2b5cdc947d0bead388432aad80847db2516",
+    ),
+    "ingress_manifest": (
+        "scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-ninth-model-refinements-core1.json",
+        4_127,
+        "df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8",
+    ),
+    "lean_export": (
+        "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyNinthModelRefinementsExport.lean",
+        1_082,
+        "e5634ee294b4ae348cf553ee186777d48a2e32ff2407ab1caa83547c08c0a632",
+    ),
+    "lean_root": (
+        "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyNinthModelRefinements.lean",
+        7_017,
+        "76f993c6335f39e913f187be26118307025c58feb22e47f5e8284518625f107e",
+    ),
+    "model": (
+        "scratch/exact17-lean-to-sat/piqd-child39-core1-custody-model.json",
+        4_168,
+        "66afb43a0b6f9d686a800239c616d006f0fed5c7d681bf6d2b5cd22dd8a501e1",
+    ),
+    "parent_cnf": (
+        "scratch/exact17-lean-to-sat/exact17-thirty-ninth-root-thirty-eighth-model-refinements.cnf",
+        291_625_610,
+        "989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a",
+    ),
+    "parent_manifest": (
+        "scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-eighth-model-refinements-core1.json",
+        4_049,
+        "275a61b6febdc1ca5104ebe932919c24e2226f794e68b22caf02ffcbb076c83d",
+    ),
+}
 
 
 def test_child40_declarative_profile_is_canonical_and_retained() -> None:
@@ -45,4 +105,99 @@ def test_child40_declarative_profile_is_canonical_and_retained() -> None:
         "model",
         "parent_cnf",
         "parent_manifest",
+    ]
+
+
+def test_child40_native_package_is_canonical_and_source_bound() -> None:
+    package = {
+        name: (PACKAGE_ROOT / name).read_bytes()
+        for name in (
+            "control.json",
+            "producer-manifest.json",
+            "variable-map.json",
+            "wave-manifest.json",
+        )
+    }
+    for raw in package.values():
+        assert canonical_json_bytes(json.loads(raw)) == raw
+
+    control = load_wave_control(package["control.json"])
+    producer = json.loads(package["producer-manifest.json"])
+    source = producer["source_manifest"]
+    authenticate_static_manifests(
+        source_manifest=canonical_json_bytes(source),
+        producer_manifest=package["producer-manifest.json"],
+    )
+    source_path = REPO_ROOT / source["source_path"]
+    assert sha256_bytes(source_path.read_bytes()) == source["source_sha256"]
+
+    named_variables = {
+        **{
+            f"hit:center={center}:point={point}": 1 + 17 * center + point
+            for center in range(17)
+            for point in range(17)
+        },
+        **{f"nextCenter:center={center}": 290 + center for center in range(17)},
+        **{f"namedOrder:order={order}": 307 + order for order in range(2)},
+    }
+    expected_map = {
+        "coverage": "COMPLETE_1_TO_NUM_VARIABLES",
+        "entries": [
+            {
+                "id": variable_id,
+                "kind": "named",
+                "name": name,
+                "used_in_cnf": True,
+            }
+            for name, variable_id in sorted(
+                named_variables.items(), key=lambda item: item[1]
+            )
+        ],
+        "num_variables": 308,
+        "schema": "p97-piqd-frontier-total-variable-map/v1",
+    }
+    assert canonical_json_bytes(expected_map) == package["variable-map.json"]
+
+    assert control.cnf.sha256 == EXPECTED_ARTIFACTS["child_cnf"][2]
+    assert {
+        role: (reference.path, reference.max_bytes, reference.sha256)
+        for role, reference in control.semantic_artifacts
+    } == EXPECTED_ARTIFACTS
+
+
+def test_child40_native_package_replays_registered_ingress_offline() -> None:
+    control = load_wave_control(CONTROL_PATH.read_bytes())
+    missing = [
+        reference.path
+        for _, reference in control.semantic_artifacts
+        if not (REPO_ROOT / reference.path).is_file()
+    ]
+    if missing:
+        pytest.skip(f"retained Child40 artifact is absent: {missing[0]}")
+
+    ingress = validate_registered_ingress(control, REPO_ROOT)
+
+    assert ingress["cnf_sha256"] == EXPECTED_ARTIFACTS["child_cnf"][2]
+    assert ingress["num_variables"] == 308
+    assert ingress["num_clauses"] == 5_847_584
+    assert ingress["semantic_profile"]["metadata"] == {
+        "schema": "p97-static-cnf-semantic-profile/v1",
+        "profile_id": "exact17-child40",
+        "validator": "exact17-child40",
+        "classification": {"mode": "offline", "scope": "finite"},
+        "cleanup": {"cleanup_eligible": False, "lifecycle": "RETAIN"},
+    }
+    assert ingress["semantic_artifacts"] == [
+        {
+            "role": role,
+            "sha256": sha256,
+            "bytes": size,
+            "link_count": 3 if role == "daemon_build_receipt" else 1,
+            "custody": (
+                "RETAINED_LEGACY_HARDLINK_REFERENCE"
+                if role == "daemon_build_receipt"
+                else "EXCLUSIVE_SINGLE_LINK"
+            ),
+        }
+        for role, (_path, size, sha256) in sorted(EXPECTED_ARTIFACTS.items())
     ]

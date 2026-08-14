@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+import census.p97_search.phase3_cegar_wave_control as wave_control
 import census.p97_search.phase3_cegar_wave_engine as engine
 from census.p97_search.phase3_cegar_wave import (
     LOCAL_CERTIFICATE,
@@ -211,6 +212,18 @@ def _fixture_v2_control(
     }
     control_raw = canonical_json_bytes(value)
     return load_wave_control(control_raw), package_root, cnf, producer_raw, profile
+
+
+def test_v2_binding_reuses_identical_cnf_semantic_artifact(tmp_path: Path) -> None:
+    control, package_root, _cnf, _producer, _profile = _fixture_v2_control(tmp_path)
+    value = deepcopy(control.value)
+    value["package"]["cnf"] = value["semantic_artifacts"]["child_cnf"]
+    shared_control = load_wave_control(canonical_json_bytes(value))
+
+    binding = wave_control.bind_static_cnf(shared_control, package_root)
+    child_capture = dict(binding.semantic_artifacts)["child_cnf"]
+
+    assert child_capture.data is binding.cnf
 
 
 class _FakePiqd:

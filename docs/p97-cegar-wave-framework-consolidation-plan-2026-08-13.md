@@ -275,8 +275,9 @@ production wave:
   thread-capped gate for these framework modules.
 
 The shared CLI and registry-driven wave discovery are now implemented. Child38
-also has the compatibility lifecycle route described below. Still pending are
-the first data-only native wave and the later shim retirement pass.
+also has the compatibility lifecycle route described below. The first
+data-only native wave is now registered as described below; the first native
+execution and the later shim retirement pass remain pending.
 Quarantine execution remains last and requires a separately reviewed exact
 inventory and plan digest after those migration gates pass.
 
@@ -304,6 +305,38 @@ execution, does not promote a wave, and does not authorize cleanup. The full
 framework gate is green at 179 passed with Ruff clean; that result validates
 the shared contracts and offline fixtures, not a new mathematical or runtime
 claim.
+
+### Child40 native data-only registration — 2026-08-14
+
+Child40 is now represented by four data records under
+`census/p97_search/waves/exact17/child40/`: a complete 308-entry variable map,
+canonical producer and wave manifests, and a closed v4 control. No new
+Child40-specific Python runner, exporter, validator, or shell gate was added.
+The registered `v3-data-only` adapter can plan and authenticate ingress, but it
+does not advertise execution, output validation, or checking and rejects a run
+before engine construction or filesystem publication.
+
+The retained daemon-build receipt is a historical three-link file. The v4
+control models that exact fact as a closed role-specific legacy-reference
+policy: only `daemon_build_receipt` may have link count three, and its held
+no-follow capture still binds stable device, inode, size, bytes, digest, path
+chain, and link count. Every executable v1/v2 registration and every other
+artifact role continues to require link count one. This exception authenticates
+retained evidence; it does not grant execution custody or permission to copy,
+rewrite, unlink, quarantine, or delete the receipt.
+New data-only packages use an empty retained-hardlink policy and therefore keep
+single-link custody for every role.
+
+The native records reproduce the reviewed Child40 formula at 308 variables and
+5,847,584 clauses, bind all nine semantic artifact roles, and independently
+reconstruct the complete hit/next-center/named-order variable map. This remains
+offline data-only evidence: no PIQD session, solver run, publication, theorem
+promotion, or cleanup occurred. Legacy Child40 entrypoints and artifacts remain
+required for comparison, rollback, and the later zero-caller cleanup gate. The
+full shared framework gate passed 289 tests with one environment-dependent
+fixture skip, Ruff lint clean, and all 23 scoped files format-clean. The
+canonical v4 control SHA-256 is
+`43eabb1c79f9d26720569450ddb5b5a3224e91bcc7d75c953c80f96e0a690c83`.
 
 Cleanup remains the final, separately approved operation: first generate a
 dry-run plan from the externally authenticated inventory and exact trusted
@@ -582,8 +615,9 @@ separate review under the exact plan digest.
 
 Treat Child40 as the first native-profile fixture after the Child38/Child39
 shadow gate, not as permission to rewrite or remove its legacy implementation.
-This is a data-only migration profile and does not retrofit active Child41 or
-advance the first native execution until the Phase 4 exit gate passes.
+Its data-only registration is now present and authenticated; it does not
+retrofit active Child41 or advance the first native execution until the Phase 4
+exit gate passes.
 The profile is pinned to the Child39 parent (308 variables, 5,847,388 clauses,
 and parent SHA-256
 `989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`), the

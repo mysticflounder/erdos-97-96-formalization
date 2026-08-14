@@ -51,6 +51,7 @@ from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
 CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
 CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
 CONTROL_SCHEMA_V3 = "p97-cegar-wave-control/v3"
+CONTROL_SCHEMA_V4 = "p97-cegar-wave-control/v4"
 CONTROL_SCHEMA = CONTROL_SCHEMA_V1
 INVENTORY_SCHEMA = "p97-cegar-wave-entrypoint-inventory/v1"
 CLEANUP_PLAN_SCHEMA = "p97-cegar-wave-cleanup-plan/v1"
@@ -66,11 +67,19 @@ STATIC_CNF_EXECUTION_CAPABILITIES = (
     "validate-output",
 )
 STATIC_CNF_V2_REGISTRY_REVISION = "2026-08-14.1"
+STATIC_CNF_DATA_ONLY_EXECUTION_MODE = "offline-static-cnf-ingress"
+STATIC_CNF_DATA_ONLY_EXECUTION_CAPABILITIES = (
+    "plan",
+    "status",
+    "validate-ingress",
+)
+STATIC_CNF_DATA_ONLY_REGISTRY_REVISION = "2026-08-14.1-data-only"
 
 STATIC_CNF = "STATIC_CNF"
 STATIC_CNF_PIQD_ADAPTER = "static-cnf-piqd"
 STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1 = "v1"
 STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2 = "v2"
+STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY = "v3-data-only"
 STATIC_CNF_PIQD_ADAPTER_SCHEMA = STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
 STATIC_CNF_SEMANTIC_VALIDATOR_V1 = "p97-static-cnf-semantic-replay/v1"
 STATIC_CNF_SEMANTIC_VALIDATOR_V2 = PROFILE_SCHEMA
@@ -138,8 +147,10 @@ _CONTROL_KEYS_V2 = _CONTROL_KEYS_V1 | {
     "semantic_artifacts",
 }
 _CONTROL_KEYS_V3 = _CONTROL_KEYS_V1 | {"campaign"}
+_CONTROL_KEYS_V4 = _CONTROL_KEYS_V2 | {"retained_hardlink_counts"}
 _REF_KEYS = frozenset({"path", "sha256", "max_bytes"})
 _PACKAGE_KEYS = frozenset({"cnf", "producer_manifest", "variable_map"})
+_RETAINED_LEGACY_HARDLINK_COUNTS = {"daemon_build_receipt": 3}
 _POLICY_KEYS = frozenset(
     {
         "max_prepare_attempts",
@@ -258,6 +269,7 @@ class WaveControl:
     canonical_bytes: bytes
     semantic_profile: ArtifactReference | None = None
     semantic_artifacts: tuple[tuple[str, ArtifactReference], ...] = ()
+    retained_hardlink_counts: tuple[tuple[str, int], ...] = ()
     campaign: ArtifactReference | None = None
 
 
@@ -305,6 +317,18 @@ STATIC_REGISTRY = MappingProxyType(
                 wave_kind=STATIC_CNF,
                 adapter_id=STATIC_CNF_PIQD_ADAPTER,
                 schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+            )
+        ),
+        (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+        ): (
+            AdapterRegistration(
+                wave_kind=STATIC_CNF,
+                adapter_id=STATIC_CNF_PIQD_ADAPTER,
+                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
                 semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V2,
             )
         ),
@@ -451,6 +475,33 @@ def _semantic_artifact_references(
     return tuple(rows)
 
 
+def _retained_hardlink_counts(value: Any) -> tuple[tuple[str, int], ...]:
+    if type(value) is not dict:
+        raise WaveControlError(
+            "wave control.retained_hardlink_counts must be an exact object"
+        )
+    rows: list[tuple[str, int]] = []
+    for role, count in value.items():
+        if type(role) is not str or not role or not role.isascii():
+            raise WaveControlError(
+                "wave control.retained_hardlink_counts roles must be nonempty ASCII strings"
+            )
+        if type(count) is not int or count < 2:
+            raise WaveControlError(
+                f"wave control.retained_hardlink_counts.{role} must be a builtin int >= 2"
+            )
+        rows.append((role, count))
+    if [role for role, _ in rows] != sorted(role for role, _ in rows):
+        raise WaveControlError(
+            "wave control.retained_hardlink_counts roles must be canonically sorted"
+        )
+    if rows and dict(rows) != _RETAINED_LEGACY_HARDLINK_COUNTS:
+        raise WaveControlError(
+            "wave control.retained_hardlink_counts is not the closed legacy policy"
+        )
+    return tuple(rows)
+
+
 def _policy(value: Any) -> DriverPolicy:
     if type(value) is not dict:
         raise WaveControlError("driver_policy must be an exact object")
@@ -501,6 +552,8 @@ def load_wave_control(raw: bytes) -> WaveControl:
         _exact_keys(value, _CONTROL_KEYS_V2, "wave control")
     elif schema == CONTROL_SCHEMA_V3:
         _exact_keys(value, _CONTROL_KEYS_V3, "wave control")
+    elif schema == CONTROL_SCHEMA_V4:
+        _exact_keys(value, _CONTROL_KEYS_V4, "wave control")
     else:
         raise WaveControlError("wave control.schema is not registered")
     key = (
@@ -527,6 +580,11 @@ def load_wave_control(raw: bytes) -> WaveControl:
             ASSUMPTION_CNF_PIQD_ADAPTER,
             ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
         ): CONTROL_SCHEMA_V3,
+        (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+        ): CONTROL_SCHEMA_V4,
     }[key]
     if schema != expected_control_schema:
         raise WaveControlError("wave control schema is crossed with its adapter")
@@ -567,12 +625,17 @@ def load_wave_control(raw: bytes) -> WaveControl:
                 "wave control.semantic_profile",
                 maximum_bytes=MAX_SEMANTIC_PROFILE_BYTES,
             )
-            if schema == CONTROL_SCHEMA_V2
+            if schema in {CONTROL_SCHEMA_V2, CONTROL_SCHEMA_V4}
             else None
         ),
         semantic_artifacts=(
             _semantic_artifact_references(value["semantic_artifacts"])
-            if schema == CONTROL_SCHEMA_V2
+            if schema in {CONTROL_SCHEMA_V2, CONTROL_SCHEMA_V4}
+            else ()
+        ),
+        retained_hardlink_counts=(
+            _retained_hardlink_counts(value["retained_hardlink_counts"])
+            if schema == CONTROL_SCHEMA_V4
             else ()
         ),
         campaign=(
@@ -587,18 +650,26 @@ def load_wave_control(raw: bytes) -> WaveControl:
     )
 
 
-def _capture(root: Path, reference: ArtifactReference, label: str) -> bytes:
+def _capture(
+    root: Path,
+    reference: ArtifactReference,
+    label: str,
+    *,
+    expected_link_count: int = 1,
+) -> bytes:
     try:
         captured = capture_exact_regular_file(
             root / reference.path,
             max_bytes=reference.max_bytes,
             require_nonempty=True,
-            require_single_link=True,
+            require_single_link=expected_link_count == 1,
             keep_bytes=True,
             label=label,
         )
     except ExactFileCaptureError as error:
         raise WaveControlError(f"{label} capture failed") from error
+    if captured.link_count != expected_link_count:
+        raise WaveControlError(f"{label} link count is crossed")
     if captured.sha256 != reference.sha256 or captured.data is None:
         raise WaveControlError(f"{label} digest is crossed")
     return captured.data
@@ -755,17 +826,46 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         )
     except SemanticProfileError as error:
         raise WaveControlError("semantic profile validation failed") from error
-    semantic_artifacts = tuple(
-        (
-            role,
-            CapturedBytes(
-                _capture(package_root, reference, f"semantic artifact {role}"),
-                path=package_root / reference.path,
-                sha256=reference.sha256,
-            ),
+    semantic_artifact_rows: list[tuple[str, CapturedBytes]] = []
+    retained_hardlink_counts = dict(control.retained_hardlink_counts)
+    semantic_roles = {role for role, _ in control.semantic_artifacts}
+    if not set(retained_hardlink_counts) <= semantic_roles:
+        raise WaveControlError(
+            "retained hardlink policy names an absent semantic artifact"
         )
-        for role, reference in control.semantic_artifacts
-    )
+    for role, reference in control.semantic_artifacts:
+        expected_link_count = retained_hardlink_counts.get(role, 1)
+        if (
+            reference.path == control.cnf.path
+            and reference.sha256 == control.cnf.sha256
+        ):
+            if role in retained_hardlink_counts:
+                raise WaveControlError(
+                    "retained hardlink policy cannot weaken package CNF custody"
+                )
+            if len(cnf) > reference.max_bytes:
+                raise WaveControlError(
+                    f"semantic artifact {role} exceeds its byte bound"
+                )
+            artifact_bytes = cnf
+        else:
+            artifact_bytes = _capture(
+                package_root,
+                reference,
+                f"semantic artifact {role}",
+                expected_link_count=expected_link_count,
+            )
+        semantic_artifact_rows.append(
+            (
+                role,
+                CapturedBytes(
+                    artifact_bytes,
+                    path=package_root / reference.path,
+                    sha256=reference.sha256,
+                ),
+            )
+        )
+    semantic_artifacts = tuple(semantic_artifact_rows)
     encoding = manifest["encoding"]
     if encoding["cnf_sha256"] != control.cnf.sha256:
         raise WaveControlError("wave manifest CNF digest is crossed")
@@ -780,11 +880,18 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         producer,
         variable_map,
     )
-    if control.registration.schema_version == STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2:
+    if control.registration.schema_version in {
+        STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+        STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+    }:
         if semantic_profile is None:
-            raise WaveControlError("v2 static-CNF control lacks a semantic profile")
+            raise WaveControlError(
+                "profiled static-CNF control lacks a semantic profile"
+            )
         if not semantic_artifacts:
-            raise WaveControlError("v2 static-CNF control lacks semantic artifacts")
+            raise WaveControlError(
+                "profiled static-CNF control lacks semantic artifacts"
+            )
         expected_profile_control = {
             "domain_kind": STATIC_CNF,
             "query_polarity": encoding["query_polarity"],

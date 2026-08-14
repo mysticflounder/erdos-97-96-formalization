@@ -39,11 +39,15 @@ from census.p97_search.phase3_cegar_wave_control import (
     ASSUMPTION_CNF_V1_REGISTRY_REVISION,
     EXECUTION_REGISTRY_SCHEMA,
     STATIC_CNF,
+    STATIC_CNF_DATA_ONLY_EXECUTION_CAPABILITIES,
+    STATIC_CNF_DATA_ONLY_EXECUTION_MODE,
+    STATIC_CNF_DATA_ONLY_REGISTRY_REVISION,
     STATIC_CNF_EXECUTION_CAPABILITIES,
     STATIC_CNF_EXECUTION_MODE,
     STATIC_CNF_PIQD_ADAPTER,
     STATIC_CNF_PIQD_ADAPTER_SCHEMA,
     STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
     STATIC_CNF_SEMANTIC_VALIDATOR,
     STATIC_CNF_SEMANTIC_VALIDATOR_V2,
     STATIC_CNF_V2_REGISTRY_REVISION,
@@ -66,10 +70,12 @@ REGISTRY_SCHEMA = EXECUTION_REGISTRY_SCHEMA
 REGISTRY_REVISION = "2026-08-13.1"
 REGISTRY_REVISION_V1 = REGISTRY_REVISION
 REGISTRY_REVISION_V2 = STATIC_CNF_V2_REGISTRY_REVISION
+REGISTRY_REVISION_DATA_ONLY = STATIC_CNF_DATA_ONLY_REGISTRY_REVISION
 REGISTRY_REVISION_ASSUMPTION_V1 = ASSUMPTION_CNF_V1_REGISTRY_REVISION
 STATIC_CNF_PIQD_ADAPTER_V2 = STATIC_CNF_PIQD_ADAPTER
 STATIC_CNF_ENGINE_SCHEMA_V2 = ENGINE_SCHEMA_V2
 STATIC_CNF_SEMANTIC_PROFILE = STATIC_CNF_SEMANTIC_VALIDATOR_V2
+STATIC_CNF_DATA_ONLY_ENGINE_SCHEMA = "p97-cegar-wave-data-only/v1"
 
 PLAN = "plan"
 RUN = "run"
@@ -149,6 +155,21 @@ STATIC_CNF_EXECUTION_V2 = ExecutionRegistration(
     permits_terminal_proof=False,
 )
 
+STATIC_CNF_DATA_ONLY_V1 = ExecutionRegistration(
+    wave_kind=STATIC_CNF,
+    adapter_id=STATIC_CNF_PIQD_ADAPTER_V2,
+    adapter_schema=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
+    registry_revision=REGISTRY_REVISION_DATA_ONLY,
+    engine_schema=STATIC_CNF_DATA_ONLY_ENGINE_SCHEMA,
+    semantic_validator=STATIC_CNF_SEMANTIC_PROFILE,
+    execution_mode=STATIC_CNF_DATA_ONLY_EXECUTION_MODE,
+    capabilities=STATIC_CNF_DATA_ONLY_EXECUTION_CAPABILITIES,
+    permits_campaign=False,
+    permits_export=False,
+    permits_diagnostic_mining=False,
+    permits_terminal_proof=False,
+)
+
 ASSUMPTION_CNF_EXECUTION_V1 = ExecutionRegistration(
     wave_kind=ASSUMPTION_CNF,
     adapter_id=ASSUMPTION_CNF_PIQD_ADAPTER,
@@ -187,6 +208,11 @@ EXECUTION_REGISTRY_ALL = MappingProxyType(
             ASSUMPTION_CNF_EXECUTION_V1.adapter_id,
             ASSUMPTION_CNF_EXECUTION_V1.adapter_schema,
         ): ASSUMPTION_CNF_EXECUTION_V1,
+        (
+            STATIC_CNF_DATA_ONLY_V1.wave_kind,
+            STATIC_CNF_DATA_ONLY_V1.adapter_id,
+            STATIC_CNF_DATA_ONLY_V1.adapter_schema,
+        ): STATIC_CNF_DATA_ONLY_V1,
     }
 )
 
@@ -279,6 +305,13 @@ def plan_execution(control: WaveControl, package_root: Path) -> dict[str, Any]:
     registration = resolve_execution_registration(control)
     steps = (
         [
+            "authenticate-control",
+            "authenticate-static-package",
+            "authenticate-retained-legacy-references",
+            "stop-without-execution",
+        ]
+        if registration is STATIC_CNF_DATA_ONLY_V1
+        else [
             "authenticate-control",
             "authenticate-streaming-parent-and-campaign",
             "open-one-fresh-piqd-session",
@@ -380,6 +413,20 @@ def validate_registered_ingress(
                 ],
             }
         )
+        if registration is STATIC_CNF_DATA_ONLY_V1:
+            retained = dict(control.retained_hardlink_counts)
+            ingress["semantic_artifacts"] = [
+                {
+                    **row,
+                    "link_count": retained.get(row["role"], 1),
+                    "custody": (
+                        "RETAINED_LEGACY_HARDLINK_REFERENCE"
+                        if row["role"] in retained
+                        else "EXCLUSIVE_SINGLE_LINK"
+                    ),
+                }
+                for row in ingress["semantic_artifacts"]
+            ]
     return ingress
 
 
@@ -401,6 +448,8 @@ def execute_registered_wave(
     """Execute exactly the adapter selected by the closed registration."""
 
     registration = resolve_execution_registration(control)
+    if RUN not in registration.capabilities:
+        raise WaveRegistryError("registered data-only wave cannot execute")
     if registration is ASSUMPTION_CNF_EXECUTION_V1:
         if journal_root is not None or timeout_s is not None or sleep is not None:
             raise WaveRegistryError(
@@ -478,6 +527,8 @@ def validate_registered_output(
 
     validated = _validated_control(control)
     registration = resolve_execution_registration(validated)
+    if VALIDATE_OUTPUT not in registration.capabilities:
+        raise WaveRegistryError("registered data-only wave has no execution output")
     if registration is ASSUMPTION_CNF_EXECUTION_V1:
         try:
             envelope = validate_assumption_cnf_engine_output(
@@ -577,10 +628,13 @@ __all__ = [
     "PLAN",
     "REGISTRY_REVISION",
     "REGISTRY_REVISION_ASSUMPTION_V1",
+    "REGISTRY_REVISION_DATA_ONLY",
     "REGISTRY_REVISION_V1",
     "REGISTRY_REVISION_V2",
     "REGISTRY_SCHEMA",
     "RUN",
+    "STATIC_CNF_DATA_ONLY_ENGINE_SCHEMA",
+    "STATIC_CNF_DATA_ONLY_V1",
     "STATIC_CNF_ENGINE_SCHEMA_V2",
     "STATIC_CNF_EXECUTION",
     "STATIC_CNF_EXECUTION_V1",
