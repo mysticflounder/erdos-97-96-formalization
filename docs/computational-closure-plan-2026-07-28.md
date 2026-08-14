@@ -11006,6 +11006,43 @@ generic fiber-image theorem, direct two-field consumer, and indexed replay
 consumer each have exactly the standard axiom set `propext`,
 `Classical.choice`, and `Quot.sound`.
 
+The exact-three boundary has now also been exported into the existing
+packet-independent finite configuration.  The new
+`FreshThirdQFiberThreeFiniteBoundaryConstraint` chooses the unique nonfiber
+slot among the four exact `Q`-row slots, proves that it is one of the two
+fresh-remainder slots rather than a named `Q` source, and records two
+conditional, source-proved laws.  If a nonboundary slot aliases an indexed fan
+source, that fan source's canonical blocker center equals the common `Q`
+center; if the boundary slot aliases a fan source, its blocker center differs
+from the common `Q` center.  The companion production theorems also retain the
+one-way omission-successor data and the exact pinned-center/fresh-remainder
+dichotomy.  The theorem
+`FreshThirdQFiberThreeFiniteBoundaryConstraint.ofView` derives the finite laws
+from the actual blocker fiber, and
+`FreshThirdQFiberThreeBoundary.false_of_finiteQueryContract` is the intrinsic
+arbitrary-cardinality replay bridge.  No ambient carrier bound or exact-`n`
+reduction appears in either declaration.
+
+The replay contract now includes the generic geometric laws for every visible
+selected-row pair, not merely for the `Q`/fan pair named by the terminal:
+distinct-center rows overlap in at most two points, and every two shared points
+are separated by the two centers in cyclic boundary order.  Both finite
+constraints are proved from the actual `SelectedFourClass` rows by
+`FreshThirdVisibleRowGeometryConstraint.ofView` and
+`FreshThirdVisibleRowSharedPairSeparationConstraint.ofView`.  They are therefore
+source clauses available to every later CEGAR wave, not learned assumptions.
+
+This extra fidelity is not itself the missing producer.  The compiler-checked
+diagnostic configuration still satisfies the complete finite source theory,
+both generic visible-row geometry constraints, and the exact-three boundary
+constraint: its fan and `Q` rows are disjoint, so the conditional
+blocker-center laws hold vacuously.  The theorem
+`FreshThirdQFiberThreeFiniteQueryContract.not_of_currentSourceTheory` makes the
+stop rule kernel-visible.  Therefore a solver run over only the newly extended
+vocabulary cannot soundly terminate in universal `UNSAT`; it first needs a
+carrier-wide theorem forcing positive fan/`Q` incidence or routing the
+disjoint case into an already proved terminal.
+
 This landing deliberately does not assert that the three fan indices exist.
 The current exact-three incidence projection permits the pinned fan row to be
 disjoint from the `Q` row, and the source/fresh two-row geometry does not repair

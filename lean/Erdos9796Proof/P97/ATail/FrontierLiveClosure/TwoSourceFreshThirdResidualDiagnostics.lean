@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeSynchronization
 
 /-!
 # Exact diagnostics for the FreshThird pinned-endpoint finite source theory
@@ -276,6 +276,44 @@ theorem diagnostic_blocker_fresh_slots_separated (i j k : Fin 4) :
       (freshThirdPinnedEndpointOutsideSeedRowSlot .fresh k) := by
   fin_cases i <;> fin_cases j <;> fin_cases k <;> decide
 
+/-- The source-derived exact-three fiber partition still admits the current
+disjoint fan/`Q` diagnostic model.  All conditional blocker-center clauses are
+vacuous because no fan source aliases a `Q`-row slot.
+
+This is a machine-checked stop rule: adding only the exact-three partition to
+the finite query cannot yield a sound universal UNSAT result. -/
+theorem diagnosticConfiguration_qFiberThreeBoundaryConstraint :
+    FreshThirdQFiberThreeFiniteBoundaryConstraint diagnosticConfiguration := by
+  refine ⟨2, Or.inl rfl, ?_, ?_⟩
+  · intro fanIndex freshSlot _ hsame
+    exfalso
+    exact diagnostic_fan_fresh_slots_separated fanIndex freshSlot <| by
+      simpa [freshThirdQFiberThreeFreshSlot,
+        freshThirdPinnedEndpointOutsideSeedRowSlot] using hsame
+  · intro fanIndex hsame
+    exfalso
+    exact diagnostic_fan_fresh_slots_separated fanIndex 2 <| by
+      simpa [freshThirdQFiberThreeFreshSlot,
+        freshThirdPinnedEndpointOutsideSeedRowSlot] using hsame
+
+/-- The diagnostic model also satisfies the exact two-circle overlap bound
+for every pair of visible rows.  In particular, the strengthened query still
+has a model for a geometric reason visible at the finite level, not because
+that generic row law was omitted. -/
+theorem diagnosticConfiguration_visibleRowGeometryConstraint :
+    FreshThirdVisibleRowGeometryConstraint diagnosticConfiguration := by
+  intro left right
+  fin_cases left <;> fin_cases right <;> decide
+
+/-- The same diagnostic model satisfies every source-derived shared-pair
+cyclic-separation clause among the visible rows. -/
+theorem diagnosticConfiguration_visibleRowSharedPairSeparationConstraint :
+    FreshThirdVisibleRowSharedPairSeparationConstraint
+      diagnosticConfiguration := by
+  intro left right i j
+  fin_cases left <;> fin_cases right <;>
+    fin_cases i <;> fin_cases j <;> decide
+
 /-- Exact cap profile of the boundary row in the diagnostic model.
 
 Every boundary-row point avoids the first cap, while the four slots split
@@ -308,6 +346,20 @@ theorem FreshThirdPinnedEndpointOutsideSeedFiniteQueryContract.not_of_currentSou
   exact Contract.reject
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_sourceTheory
+
+/-- Even after adding the exact source-derived three-fiber partition, the
+intrinsic finite theory has an explicit model.  A terminating CEGAR query must
+therefore add a new carrier-wide source theorem, not merely encode the
+partition more faithfully. -/
+theorem FreshThirdQFiberThreeFiniteQueryContract.not_of_currentSourceTheory :
+    ¬ FreshThirdQFiberThreeFiniteQueryContract := by
+  intro Contract
+  exact Contract.reject
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_sourceTheory
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_visibleRowGeometryConstraint
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_visibleRowSharedPairSeparationConstraint
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_qFiberThreeBoundaryConstraint
 
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure
