@@ -2046,6 +2046,40 @@ the general producer and the concrete v24 family is a production
 routing decision reserved for the lane owner and user; neither route
 is authorized as a solver wave by this audit.
 
+The routing decision is resolved (user, 2026-08-14): the lane pursues
+the label-general source-proved membership producer for the dominant
+anonymous shape, with the concrete v24 dominant-core lemmas banked in
+parallel as an oracle and fallback.  The bounded feasibility probe is
+complete with verdict FEASIBLE, and its load-bearing source citations
+were independently re-verified against the live tree
+(`Census554.ConvexFivePointCore.Core` is label-parametric;
+`SourceOrderPositiveNogood.refutes` already supplies
+`FrozenForcedSecondCapOrder`; `CommonFiveOrientationAt` reduces to
+`CyclicTripleAt`, which uses only `<` comparisons and therefore
+transfers along order-preserving relabelings).  The route decomposes
+into six obligations: O1 canonical 48-order data mirroring
+`source_boundary_orders()` in `exact12_v14_ordered_coverage.py` plus a
+decidable all-order orientation predicate; O2 the single new
+mathematical obligation and first missing antecedent, a bridge lemma
+showing every position satisfying the frozen direct-or-mirror boundary
+order together with the forced second-cap order agrees in relative
+label order with one of the 48 canonical maps, so the decidable
+predicate discharges `CommonFiveOrientationAt`; O3 the quantified role
+data with distinctness and center-support side conditions; O4 the
+general producer, assembled exactly like the three existing common-five
+producers; O5 the generated CNF binding module under the approved
+`Lean.trustCompiler` `native_decide` policy; O6 the Python family bank
+whose role enumeration reuses the same 48-order construction.  The
+orbit figures are EMPIRICAL (validated against three Lean-proven
+families and one negative oracle, not kernel-checked): 15,588
+unordered admissible role tuples over 2,585 distinct CNF row
+definitions, versus 623 concrete patterns accumulated across fifteen
+banks.  A conditional sub-orbit of 12,570 block-separated tuples is
+provable without O2 but excludes the v23 dominant core, so the full O2
+route is the production target.  No successor formula, canary, or
+solver wave is authorized until the general family is proved, banked,
+and pinned.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
