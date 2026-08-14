@@ -1973,6 +1973,30 @@ only: it does not change the frozen variable map, clauses, hashes, or accepted
 models.  The assembled full-prefix consumer remains to be validated before
 any PIQD launch.
 
+Exact-12 v23 canary checkpoint (2026-08-14): the full-prefix terminal
+consumer validated by targeted `lake-build`, and after the adoption and
+pin-reauthentication commit `fc0b0f5d`, the rebased immutable v9
+arm-plus-aggregate exact-SHA gate passed in a detached worktree at that
+commit (frozen-identity reconstruction plus fail-closed job/artifact
+binding, 2 passed in 1,613 s).  Exactly one immutable cell-6 v23 canary
+was then launched from the same detached worktree via PIQD; the daemon
+`/version` SHA-256
+`f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089`
+was recorded at submission and is not treated as certification.  Job
+`4646f2d9ce7ce5d23ed681e2536473beecc27ab02e5cb873a8b47ba32769a63c`
+returned `SAT_WITNESS_REPLAYED` under the v11 run schema and is
+classified `STRUCTURALLY_UNRESOLVED`; the survivor records 29,046
+positive variables and a 12-literal cube, preserved with its PIQD
+journal at `scratch/arm-static-cell6-v23-live-fc0b0f5d-20260814/`.
+The v23-refined formula therefore still admits a cell-6 model.  There
+is no terminal UNSAT, no all-cell coverage, no universal lift, and no
+closed live `sorry`.  The mandatory all-order theorem-mining stop is in
+force: the only authorized next steps are the versioned v22+ outcome
+validator and the all-order mine over exactly this run's data, and the
+mine result must not seed a successor formula without its own
+source-proved membership family.  No successor formula, twelve-cell
+run, or new wave is authorized by this result.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
