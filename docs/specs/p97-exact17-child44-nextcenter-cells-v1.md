@@ -74,6 +74,44 @@ static handoff that materializes the exact parent-plus-unit CNF, a fresh
 proof-producing solve, independent proof replay, and a named Lean cell theorem.
 `UNKNOWN` leaves the cell open and must retain the conflict-limit receipt.
 
+## Public SAT replay seam
+
+The maintained callback is
+`census.p97_search.exact17_source_model_replay.replay_child44_assumption_sat`.
+Its closed interface accepts only an exact native absolute parent path, a
+builtin total 308-literal tuple, one reviewed cell identifier and singleton
+assumption, and the fixed Child44 parent SHA-256.  It accepts no callbacks,
+alternate variable maps, solver fallbacks, PIQD access, or publication path.
+
+The callback streams and evaluates all 5,848,820 clauses without loading the
+291 MB root into memory.  It then inverts the Lean atom map and independently
+checks every `SourceModel` field.  Its Kalmanson stage constructs all 4,760
+strict atoms modulo the selected-row equality closure.  In-process Z3 may
+propose rational data, but is not an authority: the standalone
+`verify_exact17_kalmanson_proposal` function imports and calls no solver.  It
+replays a feasible witness using exact `Fraction` arithmetic, or clears and
+checks nonnegative Farkas weights before calling
+`producer_bank.certify_weighted_kalmanson_cancellation`.
+The standalone verifier establishes only this exact metric classification for
+its structurally checked decoded object; production source custody still
+requires the combined callback.  `KALMANSON_FEASIBLE` likewise means only that
+the quotient-distance variables satisfy the Kalmanson system.  It makes no
+triangle, EDM, coordinate, or Euclidean-realizability claim.
+
+An end-to-end replay of the canonical Child44 `next-center-15` fixture passed
+all parent clauses and source predicates.  It returned
+`LINEARLY_INFEASIBLE` with two positive terms.  The source-model SHA-256 is
+`60f04afd571ffc7de346c14f4c243bbdcc16dc78bea864994763943355439588`, the
+complete Kalmanson-system SHA-256 is
+`6d77cb8563c76af4445d3da73d6892ee44c24b898b931211852200dd29236c77`, the
+exact weighted-evidence SHA-256 is
+`61187759cbf51ddae1371e9e8755ce5cb27de42cf426ef24f7daa6cc867c9c6f`, and the
+closed replay-result SHA-256 is
+`d995b8cb5b8b3599c3f2902fea6a546c207e07da7f5f7dcf63a766543a15f10d`.
+These hashes authenticate the replay implementation's current output; they do
+not close a cell or authorize a learned clause without the shared campaign's
+separate source-clause admission step.
+
 ## Coverage and terminal composition
 
 The source theorem candidate `legalNextCenterLabels` is the explicit
