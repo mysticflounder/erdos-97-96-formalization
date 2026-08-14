@@ -121,8 +121,19 @@ row equalities and emits four guarded clauses (two named orders times two
 orientations).  Its source-assignment theorem extends the authenticated
 Child44 root from 5,848,820 to 5,848,824 clauses.  A direct Boolean replay
 confirms that the order-one/forward clause rejects the authenticated Child44
-assignment.  This is a source-valid model refinement, not a cell verdict: the
-extended root still requires export, custody validation, and a fresh solve.
+assignment.  This is a source-valid model refinement, not a cell verdict.  The
+Lean-owned extended root has now been exported and published through the
+ledger-last Child45 custody path.  It has 308 variables and 5,848,824 clauses,
+SHA-256
+`3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2`,
+and preserves all 5,848,820 Child44 body clauses byte-for-byte after the
+required DIMACS header-count rewrite.  Streaming validation records suffix
+clause 1 as already parent-subsumed and suffix clause 3 as the nonredundant
+clause that rejects the authenticated Child44 model.  The immutable export
+receipt is `scratch/exact17-lean-to-sat/child45-export-receipt.json`, SHA-256
+`fd12b39d26f9fbe82f9e06edad9d7183b3af5b9b4c8cad1fa7ae2fa3f032e8a3`.
+The next gate is a fresh authenticated static PIQD child rooted at these exact
+bytes, followed by the ordered thirteen-cell assumption campaign.
 
 ## Coverage and terminal composition
 
