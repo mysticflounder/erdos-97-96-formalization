@@ -46,15 +46,35 @@ terminal certificates.
 
 ## Pipeline state
 
-- `scripts/prepare_exact12_next_row_arm_terminal_rup_source.py` is written
-  and untested: fail-closed validation of a terminal arm cell, staging,
-  original-proof `drat-trim` precheck, fresh `cadical --plain` rerun, dense
-  pure-RUP normalization, `p97-pure-rup-source-v1` manifest, receipt schema
-  `p97_rigid221_exact12_next_row_arm_terminal_rup_source.v1`.
-- Tests are not yet written.  Probe artifacts live in the session scratchpad
-  and in untracked probe paths `lean/Erdos9796Proof/P97/Scratch/
-  NextRowArmCell52Probe/` and `lean/data/`; both probe paths must be removed
-  when production placement lands under
+- `scripts/prepare_exact12_next_row_arm_terminal_rup_source.py` is done:
+  fail-closed validation of a terminal arm cell, staging, original-proof
+  `drat-trim` precheck, fresh `cadical --plain` rerun, dense pure-RUP
+  normalization, `p97-pure-rup-source-v1` manifest, receipt schema
+  `p97_rigid221_exact12_next_row_arm_terminal_rup_source.v1`.  The job
+  binding uses the producer's pretty-printed JSON hash (`_json_bytes`,
+  indent 2) and also rechecks the `job_id` self-hash.
+- `scripts/test_prepare_exact12_next_row_arm_terminal_rup_source.py` passes
+  (8 tests): the class fixture reruns the real producer on arm cell 52; the
+  happy path runs the full postprocessor with real CaDiCaL and drat-trim;
+  the fail-closed tests prove tampered inputs (status, artifact bytes,
+  self-consistent CNF+job rehash, clause delta) are rejected before any
+  checker runs and that nothing is published on failure.
+- All four cells published pure-RUP sources under
+  `scratch/rigid221-sourceheavy-anchor/
+  exact12-next-row-arm-terminal-rup-sources-20260813/cell-{52,58,65,71}/`
+  (7 additions each over the 369326-clause base; receipts record drift in
+  exactly the two known pinned sources).
+- Production placement follows the audited Unique4 precedent
+  (`.../CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay/`):
+  emit with the generic `CompactWindowedRupReplay` namespace and module
+  prefix, then a per-package `ingress.py` verifies the emitted manifest
+  digest, rewrites imports to the deep production prefix, renames the
+  namespace, and installs modules plus `data/` inside the package root, so
+  payload include paths stay `../../data/...`.
+- Probe artifacts live in the session scratchpad and in untracked probe
+  paths `lean/Erdos9796Proof/P97/Scratch/NextRowArmCell52Probe/` and
+  `lean/data/`; both probe paths must be removed when production placement
+  lands under
   `.../FrontierLiveClosure/ExactTwelveRigid221NextRowArmTerminal/Generated/`.
 
 ## Remaining steps
