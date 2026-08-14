@@ -21,6 +21,7 @@ from typing import Any
 SCHEMA = "p97-piqd-incremental-discovery-v1"
 FRONTIER_SCHEMA = "p97-piqd-clause-frontier-v1"
 RESULT_DIGEST_VERSION = "piqd-solve-result/v1"
+SOLVE_REQUEST_DIGEST_VERSION = "piqd-solve-request/v1"
 DEFAULT_PROJECT = "erdos-97-96-formalization"
 MAX_CAPTURE_BYTES = 64 * 1024 * 1024
 HEX64 = frozenset("0123456789abcdef")
@@ -176,6 +177,29 @@ def _result_digest(
     digest.update(_literal_bytes(core))
     digest.update(b"\nmodel=")
     digest.update(_literal_bytes(model))
+    return digest.hexdigest()
+
+
+def _solve_request_digest(
+    *,
+    base_clauses: int,
+    base_bytes: int,
+    base_sha256: str,
+    assumptions: Sequence[int],
+    conflict_limit: int | None,
+    timeout_ms: int | None,
+) -> str:
+    digest = hashlib.sha256()
+    digest.update(SOLVE_REQUEST_DIGEST_VERSION.encode("ascii"))
+    digest.update(f"\nbase={base_clauses}:{base_bytes}:{base_sha256}".encode("ascii"))
+    digest.update(
+        (
+            f"\nlimit={'' if conflict_limit is None else conflict_limit}"
+            f"\ntimeout={'' if timeout_ms is None else timeout_ms}"
+            "\nmodel=true\nassumptions="
+        ).encode("ascii")
+    )
+    digest.update(_literal_bytes(assumptions))
     return digest.hexdigest()
 
 
@@ -463,6 +487,40 @@ def _check_clause(
     return tuple(result)
 
 
+def _canonical_assumptions(
+    value: Any,
+    variable_count: int,
+    *,
+    label: str,
+    container_type: type[tuple[Any, ...] | list[Any]],
+) -> tuple[int, ...]:
+    if type(value) is not container_type:
+        raise PiqdIncrementalDiscoveryError(
+            f"{label} must be a builtin {container_type.__name__}"
+        )
+    assumptions: list[int] = []
+    for literal in value:
+        if type(literal) is not int or literal == 0:
+            raise PiqdIncrementalDiscoveryError(
+                f"{label} must contain only non-zero builtin integer literals"
+            )
+        if abs(literal) > variable_count:
+            raise PiqdIncrementalDiscoveryError(
+                f"{label} literal {literal} exceeds the current variable universe"
+            )
+        assumptions.append(literal)
+    canonical = tuple(
+        sorted(set(assumptions), key=lambda literal: (abs(literal), literal))
+    )
+    if tuple(assumptions) != canonical:
+        raise PiqdIncrementalDiscoveryError(
+            f"{label} is not in canonical daemon literal order"
+        )
+    if any(-literal in canonical for literal in canonical):
+        raise PiqdIncrementalDiscoveryError(f"{label} is contradictory")
+    return canonical
+
+
 @dataclass(frozen=True)
 class DiscoveryDescriptor:
     """Immutable root for a producer's session custody contract."""
@@ -612,6 +670,8 @@ RECEIPT_OPTIONAL = {
     "batch_position",
     "batch_size",
     "batch_request_sha256",
+    "request_id",
+    "request_sha256",
 }
 RESPONSE_KEYS = {
     "status",
@@ -629,7 +689,7 @@ SAT_CONTRACT_CURRENT_V1 = "current-sat-v1"
 
 
 class PiqdIncrementalDiscoveryRunner:
-    """A durable, assumption-free PIQD session discovery runner."""
+    """A durable PIQD session discovery runner, assumption-free by default."""
 
     def __init__(
         self,
@@ -640,7 +700,8 @@ class PiqdIncrementalDiscoveryRunner:
         transport: Transport | None = None,
         session_id: str | None = None,
         custody_root: Path | None = None,
-        sat_contract_version: str = SAT_CONTRACT_LEGACY_V1,
+        sat_contract_version: str = SAT_CONTRACT_CURRENT_V1,
+        permit_assumptions: bool = False,
     ) -> None:
         self.base_url = _string(base_url, label="base_url", nonempty=True).rstrip("/")
         if type(sat_contract_version) is not str or sat_contract_version not in {
@@ -651,6 +712,11 @@ class PiqdIncrementalDiscoveryRunner:
                 "sat_contract_version is not a supported exact version"
             )
         self._sat_contract_version = sat_contract_version
+        if type(permit_assumptions) is not bool:
+            raise PiqdIncrementalDiscoveryError(
+                "permit_assumptions must be a builtin boolean"
+            )
+        self._permit_assumptions = permit_assumptions
         self.descriptor = descriptor
         if transport is None:
             from census.p97_search.phase3_piqd_oracle import _stdlib_transport
@@ -670,6 +736,7 @@ class PiqdIncrementalDiscoveryRunner:
         self._journal_sequence = -1
         self._journal_tail: str | None = None
         self._journal_solves: list[Mapping[str, Any]] = []
+        self._pending_request: Mapping[str, Any] | None = None
         self._solver_sha256: str | None = None
         self._solver_signature: str | None = None
         self._close_attempted = False
@@ -935,6 +1002,12 @@ class PiqdIncrementalDiscoveryRunner:
                 )
             if self._solve_count:
                 latest = self._journal_solves[-1]
+                latest_assumptions = _canonical_assumptions(
+                    latest["receipt"].get("assumptions", []),
+                    self._variable_count,
+                    label="latest receipt assumptions",
+                    container_type=list,
+                )
                 expected_terminal_unsat = (
                     latest["receipt"].get("core") == []
                     if latest["status"] == "UNSAT"
@@ -943,7 +1016,8 @@ class PiqdIncrementalDiscoveryRunner:
                 if (
                     payload["last_status"] != latest["status"]
                     or payload["last_solve_index"] != latest["solve_index"]
-                    or payload["last_assumption_free"] is not True
+                    or payload["last_assumption_free"]
+                    is not (not bool(latest_assumptions))
                     or payload["last_terminal_unsat"] != expected_terminal_unsat
                 ):
                     raise PiqdIncrementalDiscoveryError(
@@ -1066,6 +1140,19 @@ class PiqdIncrementalDiscoveryRunner:
             required |= {"seed_blob_hash", "seed_sha256"}
         elif kind == "append":
             required |= {"clauses", "prior_frontier_sha256"}
+        elif kind == "solve_request":
+            required |= {
+                "solve_index",
+                "base_clauses",
+                "base_bytes",
+                "base_sha256",
+                "assumptions",
+                "timeout_ms",
+                "conflict_limit",
+                "include_model",
+                "request_id",
+                "request_sha256",
+            }
         elif kind == "solve":
             required |= {
                 "solve_index",
@@ -1077,6 +1164,8 @@ class PiqdIncrementalDiscoveryRunner:
                 "closure_claim",
                 "learned_state",
             }
+            if "assumptions" in payload:
+                required.add("assumptions")
         elif kind == "revive":
             pass
         else:
@@ -1141,6 +1230,7 @@ class PiqdIncrementalDiscoveryRunner:
         self._journal_sequence = -1
         self._journal_tail = None
         self._journal_solves = []
+        self._pending_request = None
         for index, line in enumerate(data.splitlines(keepends=True)):
             if not line.endswith(b"\n"):
                 raise PiqdIncrementalDiscoveryError(
@@ -1201,6 +1291,10 @@ class PiqdIncrementalDiscoveryRunner:
                         "local open event frontier is invalid"
                     )
             elif kind == "append":
+                if self._pending_request is not None:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local journal appends across a pending solve request"
+                    )
                 _require_keys(
                     value,
                     {
@@ -1251,7 +1345,7 @@ class PiqdIncrementalDiscoveryRunner:
                     raise PiqdIncrementalDiscoveryError(
                         "local append event frontier is invalid"
                     )
-            elif kind == "solve":
+            elif kind == "solve_request":
                 _require_keys(
                     value,
                     {
@@ -1263,17 +1357,133 @@ class PiqdIncrementalDiscoveryRunner:
                         "session_id",
                         "producer_job_id",
                         "descriptor_root",
-                        "status",
                         "solve_index",
-                        "result_sha256",
-                        "receipt",
-                        "model",
+                        "base_clauses",
+                        "base_bytes",
+                        "base_sha256",
+                        "assumptions",
+                        "timeout_ms",
+                        "conflict_limit",
+                        "include_model",
+                        "request_id",
+                        "request_sha256",
                         "frontier_count",
                         "frontier_sha256",
                         "learned_state",
-                        "proof_verified",
-                        "closure_claim",
                     },
+                    label="local solve request event",
+                )
+                if self._pending_request is not None:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local journal has overlapping solve requests"
+                    )
+                if self._sat_contract_version != SAT_CONTRACT_CURRENT_V1:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local solve request requires the current SAT contract"
+                    )
+                assumptions = _canonical_assumptions(
+                    value["assumptions"],
+                    self._variable_count,
+                    label="local solve request assumptions",
+                    container_type=list,
+                )
+                self._check_assumptions_enabled(assumptions)
+                request_id = _uuid(
+                    value["request_id"], label="local solve request request_id"
+                )
+                request_sha256 = _hex64(
+                    value["request_sha256"],
+                    label="local solve request request_sha256",
+                )
+                _integer(
+                    value["solve_index"],
+                    label="local solve request solve_index",
+                    minimum=1,
+                )
+                _integer(
+                    value["base_clauses"],
+                    label="local solve request base_clauses",
+                    minimum=1,
+                )
+                _integer(
+                    value["base_bytes"],
+                    label="local solve request base_bytes",
+                    minimum=1,
+                )
+                _hex64(
+                    value["base_sha256"],
+                    label="local solve request base_sha256",
+                )
+                timeout_ms = value["timeout_ms"]
+                if timeout_ms is not None:
+                    _integer(
+                        timeout_ms,
+                        label="local solve request timeout_ms",
+                        minimum=0,
+                    )
+                conflict_limit = value["conflict_limit"]
+                if conflict_limit is not None:
+                    _integer(
+                        conflict_limit,
+                        label="local solve request conflict_limit",
+                        minimum=1,
+                    )
+                if value["include_model"] is not True:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local solve request must include the model"
+                    )
+                local_journal = _journal_bytes(self._clauses)
+                local_journal_sha256 = _sha256(local_journal)
+                if (
+                    value["solve_index"] != len(self._journal_solves) + 1
+                    or value["base_clauses"] != self.frontier_count
+                    or value["base_bytes"] != len(local_journal)
+                    or value["base_sha256"] != local_journal_sha256
+                    or value["frontier_count"] != self.frontier_count
+                    or value["frontier_sha256"] != self.frontier_sha256
+                ):
+                    raise PiqdIncrementalDiscoveryError(
+                        "local solve request is bound to another frontier"
+                    )
+                expected_request_sha256 = _solve_request_digest(
+                    base_clauses=self.frontier_count,
+                    base_bytes=len(local_journal),
+                    base_sha256=local_journal_sha256,
+                    assumptions=assumptions,
+                    conflict_limit=conflict_limit,
+                    timeout_ms=timeout_ms,
+                )
+                if request_sha256 != expected_request_sha256:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local solve request digest is invalid"
+                    )
+                self._pending_request = value
+            elif kind == "solve":
+                solve_keys = {
+                    "schema",
+                    "sequence",
+                    "prior_event_sha256",
+                    "event_sha256",
+                    "event",
+                    "session_id",
+                    "producer_job_id",
+                    "descriptor_root",
+                    "status",
+                    "solve_index",
+                    "result_sha256",
+                    "receipt",
+                    "model",
+                    "frontier_count",
+                    "frontier_sha256",
+                    "learned_state",
+                    "proof_verified",
+                    "closure_claim",
+                }
+                if "assumptions" in value:
+                    solve_keys.add("assumptions")
+                _require_keys(
+                    value,
+                    solve_keys,
                     label="local solve event",
                 )
                 if (
@@ -1289,12 +1499,33 @@ class PiqdIncrementalDiscoveryRunner:
                     raise PiqdIncrementalDiscoveryError(
                         "local solve sequence is not dense"
                     )
+                assumptions = _canonical_assumptions(
+                    value.get("assumptions", []),
+                    self._variable_count,
+                    label="local solve assumptions",
+                    container_type=list,
+                )
+                if bool(assumptions) != ("assumptions" in value):
+                    raise PiqdIncrementalDiscoveryError(
+                        "local solve event assumptions field is not exact"
+                    )
+                self._check_assumptions_enabled(assumptions)
+                pending = self._pending_request
+                request_id = None if pending is None else pending["request_id"]
+                request_sha256 = None if pending is None else pending["request_sha256"]
+                if assumptions and request_id is None:
+                    raise PiqdIncrementalDiscoveryError(
+                        "local assumption solve has no authenticated request identity"
+                    )
                 self._validate_receipt(
                     value["receipt"],
                     value["status"],
                     value["receipt"].get("timeout_ms"),
                     value["receipt"].get("conflict_limit"),
                     value["model"],
+                    assumptions=assumptions,
+                    request_id=request_id,
+                    request_sha256=request_sha256,
                     expected_index=value["solve_index"],
                     expected_hash=value["result_sha256"],
                     check_base=False,
@@ -1307,7 +1538,35 @@ class PiqdIncrementalDiscoveryRunner:
                     raise PiqdIncrementalDiscoveryError(
                         "local solve model is malformed"
                     )
+                if value["status"] == "SAT" and assumptions:
+                    model = value["model"]
+                    if (
+                        type(model) is not list
+                        or any(
+                            type(literal) is not int or literal == 0
+                            for literal in model
+                        )
+                        or len(model) != self._variable_count
+                        or {abs(literal) for literal in model}
+                        != set(range(1, self._variable_count + 1))
+                    ):
+                        raise PiqdIncrementalDiscoveryError(
+                            "local SAT solve model is not total"
+                        )
+                    model_values = set(model)
+                    if any(
+                        not any(literal in model_values for literal in clause)
+                        for clause in self._clauses
+                    ):
+                        raise PiqdIncrementalDiscoveryError(
+                            "local SAT solve model fails formula replay"
+                        )
+                    if any(literal not in model_values for literal in assumptions):
+                        raise PiqdIncrementalDiscoveryError(
+                            "local SAT solve model fails assumption replay"
+                        )
                 self._journal_solves.append(value)
+                self._pending_request = None
             elif kind == "revive":
                 _require_keys(
                     value,
@@ -1342,11 +1601,11 @@ class PiqdIncrementalDiscoveryRunner:
         self._solve_count = len(self._journal_solves)
 
     def _revive(self) -> None:
+        pending_at_start = self._pending_request
         session = self._json(
             "GET", f"/sessions/{self._session_id}", expected_status=200
         )
         self._check_session_descriptor(session, reconcile=True, status_get=True)
-        self._reconcile_remote_frontier()
         payload = self._json(
             "GET", f"/sessions/{self._session_id}/receipts", expected_status=200
         )
@@ -1379,15 +1638,44 @@ class PiqdIncrementalDiscoveryRunner:
             raise PiqdIncrementalDiscoveryError(
                 "remote receipt list lost a locally authenticated solve"
             )
+        remote_suffix = remote_receipts[self._solve_count :]
+        if pending_at_start is not None:
+            if len(remote_suffix) > 1:
+                raise PiqdIncrementalDiscoveryError(
+                    "pending solve revival permits at most one remote receipt"
+                )
+            if remote_suffix:
+                pending_receipt = remote_suffix[0]
+                if not isinstance(pending_receipt, dict) or any(
+                    pending_receipt.get(key) != pending_at_start[key]
+                    for key in ("request_id", "request_sha256")
+                ):
+                    raise PiqdIncrementalDiscoveryError(
+                        "pending solve revival receipt has another request identity"
+                    )
+            self._verify_remote_frontier()
+        else:
+            self._reconcile_remote_frontier()
         for local, remote in zip(
             self._journal_solves, remote_receipts[: self._solve_count], strict=True
         ):
+            local_assumptions = _canonical_assumptions(
+                local["receipt"]["assumptions"],
+                self._variable_count,
+                label="local receipt assumptions",
+                container_type=list,
+            )
+            local_request_id = local["receipt"].get("request_id")
+            local_request_sha256 = local["receipt"].get("request_sha256")
             self._validate_receipt(
                 remote,
                 local["status"],
                 local["receipt"].get("timeout_ms"),
                 local["receipt"].get("conflict_limit"),
                 local["model"],
+                assumptions=local_assumptions,
+                request_id=local_request_id,
+                request_sha256=local_request_sha256,
                 expected_index=local["solve_index"],
                 expected_hash=local["result_sha256"],
                 check_base=False,
@@ -1396,7 +1684,7 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     "remote receipt differs from local authenticated receipt"
                 )
-        for remote in remote_receipts[self._solve_count :]:
+        for remote in remote_suffix:
             if not isinstance(remote, dict):
                 raise PiqdIncrementalDiscoveryError(
                     "remote receipt reconciliation found a malformed receipt"
@@ -1417,6 +1705,25 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     "remote receipt solve indices are not dense"
                 )
+            remote_assumptions = _canonical_assumptions(
+                remote.get("assumptions"),
+                self._variable_count,
+                label="remote receipt assumptions",
+                container_type=list,
+            )
+            self._check_assumptions_enabled(remote_assumptions)
+            remote_has_request_identity = bool(
+                {"request_id", "request_sha256"} & set(remote)
+            )
+            pending = self._pending_request
+            if remote_has_request_identity and pending is None:
+                raise PiqdIncrementalDiscoveryError(
+                    "remote solve receipt has no authenticated pending request"
+                )
+            remote_request_id = None if pending is None else pending["request_id"]
+            remote_request_sha256 = (
+                None if pending is None else pending["request_sha256"]
+            )
             if status == "SAT":
                 if (
                     session["last_status"] != "SAT"
@@ -1465,6 +1772,10 @@ class PiqdIncrementalDiscoveryRunner:
                     raise PiqdIncrementalDiscoveryError(
                         "remote SAT model recovery fails local formula replay"
                     )
+                if any(literal not in values for literal in remote_assumptions):
+                    raise PiqdIncrementalDiscoveryError(
+                        "remote SAT model recovery fails assumption replay"
+                    )
             else:
                 model = None
             self._validate_receipt(
@@ -1473,6 +1784,9 @@ class PiqdIncrementalDiscoveryRunner:
                 remote.get("timeout_ms"),
                 remote.get("conflict_limit"),
                 model,
+                assumptions=remote_assumptions,
+                request_id=remote_request_id,
+                request_sha256=remote_request_sha256,
                 expected_index=expected_index,
                 expected_hash=remote.get("result_sha256"),
             )
@@ -1490,24 +1804,26 @@ class PiqdIncrementalDiscoveryRunner:
                     "model": model,
                 }
             )
-            self._append_local(
-                {
-                    "event": "solve",
-                    "session_id": self._session_id,
-                    "producer_job_id": self.descriptor.producer_job_id,
-                    "descriptor_root": self.descriptor.descriptor_root,
-                    "status": status,
-                    "solve_index": expected_index,
-                    "result_sha256": remote["result_sha256"],
-                    "receipt": remote,
-                    "model": model,
-                    "frontier_count": self.frontier_count,
-                    "frontier_sha256": self.frontier_sha256,
-                    "learned_state": "not_claimed",
-                    "proof_verified": False,
-                    "closure_claim": False,
-                }
-            )
+            solve_event: dict[str, Any] = {
+                "event": "solve",
+                "session_id": self._session_id,
+                "producer_job_id": self.descriptor.producer_job_id,
+                "descriptor_root": self.descriptor.descriptor_root,
+                "status": status,
+                "solve_index": expected_index,
+                "result_sha256": remote["result_sha256"],
+                "receipt": remote,
+                "model": model,
+                "frontier_count": self.frontier_count,
+                "frontier_sha256": self.frontier_sha256,
+                "learned_state": "not_claimed",
+                "proof_verified": False,
+                "closure_claim": False,
+            }
+            if remote_assumptions:
+                solve_event["assumptions"] = list(remote_assumptions)
+            self._append_local(solve_event)
+            self._pending_request = None
         self._check_session_descriptor(session, status_get=True)
         self._append_local(
             {
@@ -1522,6 +1838,10 @@ class PiqdIncrementalDiscoveryRunner:
         )
 
     def append_clauses(self, clauses: Sequence[Sequence[int]]) -> int:
+        if self._pending_request is not None:
+            raise PiqdIncrementalDiscoveryError(
+                "cannot append clauses while a solve request is pending"
+            )
         additions = [_check_clause(clause, self._variable_count) for clause in clauses]
         if not additions:
             return 0
@@ -1623,6 +1943,18 @@ class PiqdIncrementalDiscoveryRunner:
         )
         return len(additions)
 
+    def _check_assumptions_enabled(self, assumptions: tuple[int, ...]) -> None:
+        if not assumptions:
+            return
+        if self._sat_contract_version != SAT_CONTRACT_CURRENT_V1:
+            raise PiqdIncrementalDiscoveryError(
+                "nonempty assumptions require the current SAT contract"
+            )
+        if not self._permit_assumptions:
+            raise PiqdIncrementalDiscoveryError(
+                "nonempty assumptions require permit_assumptions=True"
+            )
+
     def _validate_receipt(
         self,
         receipt: Any,
@@ -1631,6 +1963,9 @@ class PiqdIncrementalDiscoveryRunner:
         conflict_limit: int | None,
         model: Any,
         *,
+        assumptions: tuple[int, ...] = (),
+        request_id: str | None = None,
+        request_sha256: str | None = None,
         expected_index: int,
         expected_hash: str,
         check_base: bool = True,
@@ -1662,8 +1997,17 @@ class PiqdIncrementalDiscoveryRunner:
             or receipt["status"] != status
         ):
             raise PiqdIncrementalDiscoveryError("PIQD receipt solve identity mismatch")
-        if receipt["assumptions"] != [] or type(receipt["assumptions"]) is not list:
-            raise PiqdIncrementalDiscoveryError("PIQD receipt is not assumption-free")
+        receipt_assumptions = _canonical_assumptions(
+            receipt["assumptions"],
+            self._variable_count,
+            label="receipt.assumptions",
+            container_type=list,
+        )
+        self._check_assumptions_enabled(receipt_assumptions)
+        if receipt_assumptions != assumptions:
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD receipt assumptions disagree with the solve request"
+            )
         _boolean(receipt["model_recorded"], label="receipt.model_recorded")
         _integer(receipt["at"], label="receipt.at")
         _hex64(receipt["result_sha256"], label="receipt.result_sha256")
@@ -1708,6 +2052,55 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     f"receipt {key} disagrees with solve request"
                 )
+        request_fields = {"request_id", "request_sha256"}
+        if bool(request_fields & set(receipt)) and not request_fields <= set(receipt):
+            raise PiqdIncrementalDiscoveryError(
+                "PIQD receipt has a partial request identity pair"
+            )
+        if (request_id is None) != (request_sha256 is None):
+            raise PiqdIncrementalDiscoveryError(
+                "expected solve request identity is partial"
+            )
+        if request_id is None:
+            if request_fields & set(receipt):
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD receipt unexpectedly records a request identity"
+                )
+            if assumptions:
+                raise PiqdIncrementalDiscoveryError(
+                    "nonempty assumptions have no solve request identity"
+                )
+        else:
+            expected_request_id = _uuid(request_id, label="expected request_id")
+            expected_request_sha256 = _hex64(
+                request_sha256, label="expected request_sha256"
+            )
+            if request_fields - set(receipt):
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD receipt lacks the solve request identity"
+                )
+            receipt_request_id = _uuid(
+                receipt["request_id"], label="receipt.request_id"
+            )
+            receipt_request_sha256 = _hex64(
+                receipt["request_sha256"], label="receipt.request_sha256"
+            )
+            recomputed_request_sha256 = _solve_request_digest(
+                base_clauses=receipt["base_clauses"],
+                base_bytes=receipt["base_bytes"],
+                base_sha256=receipt["base_sha256"],
+                assumptions=receipt_assumptions,
+                conflict_limit=conflict_limit,
+                timeout_ms=timeout_ms,
+            )
+            if (
+                receipt_request_id != expected_request_id
+                or receipt_request_sha256 != expected_request_sha256
+                or recomputed_request_sha256 != expected_request_sha256
+            ):
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD receipt solve request identity mismatch"
+                )
         if self._sat_contract_version == SAT_CONTRACT_LEGACY_V1:
             expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
             if expected_deadline is None:
@@ -1740,7 +2133,14 @@ class PiqdIncrementalDiscoveryRunner:
         ):
             raise PiqdIncrementalDiscoveryError("receipt core is malformed")
         if core is not None:
-            _check_clause(core, self._seed_variables)
+            core_assumptions = _canonical_assumptions(
+                core,
+                self._variable_count,
+                label="receipt.core",
+                container_type=list,
+            )
+        else:
+            core_assumptions = None
         if status == "SAT":
             if (
                 receipt["model_recorded"] is not True
@@ -1756,16 +2156,18 @@ class PiqdIncrementalDiscoveryRunner:
         elif status == "UNSAT":
             if (
                 receipt["model_recorded"] is not False
-                or type(core) is not list
-                or core != []
+                or core_assumptions is None
+                or not set(core_assumptions) <= set(assumptions)
                 or interrupted is not None
                 or model is not None
             ):
                 raise PiqdIncrementalDiscoveryError(
-                    "UNSAT receipt is not assumption-free terminal UNSAT"
+                    "UNSAT receipt core is not a source-derived assumption subset"
+                    if assumptions
+                    else "UNSAT receipt is not assumption-free terminal UNSAT"
                 )
             digest_model = None
-            digest_core = core
+            digest_core = core_assumptions
         else:
             if (
                 receipt["model_recorded"] is not False
@@ -1786,7 +2188,12 @@ class PiqdIncrementalDiscoveryRunner:
             )
 
     def solve(
-        self, *, timeout_ms: int | None = None, conflict_limit: int | None = None
+        self,
+        *,
+        timeout_ms: int | None = None,
+        conflict_limit: int | None = None,
+        assumptions: tuple[int, ...] = (),
+        request_id: str | None = None,
     ) -> DiscoveryResult:
         if timeout_ms is not None and (type(timeout_ms) is not int or timeout_ms < 0):
             raise PiqdIncrementalDiscoveryError(
@@ -1797,6 +2204,27 @@ class PiqdIncrementalDiscoveryRunner:
         ):
             raise PiqdIncrementalDiscoveryError(
                 "conflict_limit must be a positive builtin int"
+            )
+        checked_assumptions = _canonical_assumptions(
+            assumptions,
+            self._variable_count,
+            label="assumptions",
+            container_type=tuple,
+        )
+        self._check_assumptions_enabled(checked_assumptions)
+        if request_id is not None:
+            if self._sat_contract_version != SAT_CONTRACT_CURRENT_V1:
+                raise PiqdIncrementalDiscoveryError(
+                    "request_id requires the current SAT contract"
+                )
+            request_id = _uuid(request_id, label="request_id")
+        if checked_assumptions and request_id is None:
+            raise PiqdIncrementalDiscoveryError(
+                "nonempty assumptions require a canonical request_id"
+            )
+        if self._pending_request is not None and request_id is None:
+            raise PiqdIncrementalDiscoveryError(
+                "an authenticated solve request is pending reconciliation"
             )
         used = {abs(lit) for clause in self._clauses for lit in clause}
         if not any(not clause for clause in self._clauses) and used != set(
@@ -1809,17 +2237,72 @@ class PiqdIncrementalDiscoveryRunner:
             "GET", f"/sessions/{self._session_id}", expected_status=200
         )
         self._check_session_descriptor(session_before, reconcile=True, status_get=True)
-        request: dict[str, Any] = {"assumptions": [], "include_model": True}
+        request: dict[str, Any] = {
+            "assumptions": list(checked_assumptions),
+            "include_model": True,
+        }
         if timeout_ms is not None:
             request["timeout_ms"] = timeout_ms
         if conflict_limit is not None:
             request["conflict_limit"] = conflict_limit
-        response = self._json(
-            "POST",
-            f"/sessions/{self._session_id}/solve",
-            request,
-            expected_status=200,
-        )
+        request_sha256: str | None = None
+        if request_id is not None:
+            request["request_id"] = request_id
+            local_journal = _journal_bytes(self._clauses)
+            local_journal_sha256 = _sha256(local_journal)
+            request_sha256 = _solve_request_digest(
+                base_clauses=self.frontier_count,
+                base_bytes=len(local_journal),
+                base_sha256=local_journal_sha256,
+                assumptions=checked_assumptions,
+                conflict_limit=conflict_limit,
+                timeout_ms=timeout_ms,
+            )
+            request_event: dict[str, Any] = {
+                "event": "solve_request",
+                "session_id": self._session_id,
+                "producer_job_id": self.descriptor.producer_job_id,
+                "descriptor_root": self.descriptor.descriptor_root,
+                "solve_index": self._solve_count + 1,
+                "base_clauses": self.frontier_count,
+                "base_bytes": len(local_journal),
+                "base_sha256": local_journal_sha256,
+                "assumptions": list(checked_assumptions),
+                "timeout_ms": timeout_ms,
+                "conflict_limit": conflict_limit,
+                "include_model": True,
+                "request_id": request_id,
+                "request_sha256": request_sha256,
+                "frontier_count": self.frontier_count,
+                "frontier_sha256": self.frontier_sha256,
+                "learned_state": "not_claimed",
+            }
+            if self._pending_request is None:
+                self._append_local(request_event)
+                self._pending_request = request_event
+            elif any(
+                self._pending_request.get(key) != value
+                for key, value in request_event.items()
+            ):
+                raise PiqdIncrementalDiscoveryError(
+                    "solve retry differs from the authenticated pending request"
+                )
+        try:
+            response = self._json(
+                "POST",
+                f"/sessions/{self._session_id}/solve",
+                request,
+                expected_status=200,
+            )
+        except OSError:
+            if request_id is None:
+                raise
+            response = self._json(
+                "POST",
+                f"/sessions/{self._session_id}/solve",
+                request,
+                expected_status=200,
+            )
         response_keys = RESPONSE_KEYS
         response_required = {
             "status",
@@ -1843,12 +2326,11 @@ class PiqdIncrementalDiscoveryRunner:
         index = _integer(response["solve_index"], label="solve_index", minimum=1)
         result_hash = _hex64(response["result_sha256"], label="result_sha256")
         if self._sat_contract_version == SAT_CONTRACT_CURRENT_V1:
-            if (
-                type(response["replayed"]) is not bool
-                or response["replayed"] is not False
+            if type(response["replayed"]) is not bool or (
+                response["replayed"] and request_id is None
             ):
                 raise PiqdIncrementalDiscoveryError(
-                    "current SAT solve response replayed must be builtin false"
+                    "current SAT solve response replayed is not request-bound"
                 )
         else:
             expected_deadline = None if timeout_ms is None else timeout_ms + 30_000
@@ -1885,14 +2367,15 @@ class PiqdIncrementalDiscoveryRunner:
             or len(set(model)) != len(model)
         ):
             raise PiqdIncrementalDiscoveryError("solve model is malformed")
-        if core is not None and (
-            type(core) is not list
-            or any(type(lit) is not int or lit == 0 for lit in core)
-            or len(set(core)) != len(core)
-        ):
-            raise PiqdIncrementalDiscoveryError("solve core is malformed")
         if core is not None:
-            _check_clause(core, self._variable_count)
+            core_assumptions = _canonical_assumptions(
+                core,
+                self._variable_count,
+                label="solve.core",
+                container_type=list,
+            )
+        else:
+            core_assumptions = None
         if status == "SAT":
             if (
                 model is None
@@ -1914,18 +2397,24 @@ class PiqdIncrementalDiscoveryRunner:
                 raise PiqdIncrementalDiscoveryError(
                     "PIQD SAT model fails local formula replay"
                 )
+            if any(literal not in values for literal in checked_assumptions):
+                raise PiqdIncrementalDiscoveryError(
+                    "PIQD SAT model fails assumption replay"
+                )
             assignment = tuple(model)
         elif status == "UNSAT":
             if (
                 model is not None
                 or interrupted is not None
-                or type(core) is not list
+                or core_assumptions is None
                 or type(terminal) is not bool
-                or core != []
-                or terminal is not True
+                or not set(core_assumptions) <= set(checked_assumptions)
+                or terminal is not (not bool(core_assumptions))
             ):
                 raise PiqdIncrementalDiscoveryError(
-                    "UNSAT terminal fields are not assumption-free terminal UNSAT"
+                    "UNSAT fields are not a source-derived assumption result"
+                    if checked_assumptions
+                    else "UNSAT terminal fields are not assumption-free terminal UNSAT"
                 )
             assignment = ()
         else:
@@ -1966,6 +2455,9 @@ class PiqdIncrementalDiscoveryRunner:
             timeout_ms,
             conflict_limit,
             model,
+            assumptions=checked_assumptions,
+            request_id=request_id,
+            request_sha256=request_sha256,
             expected_index=index,
             expected_hash=result_hash,
         )
@@ -1979,24 +2471,26 @@ class PiqdIncrementalDiscoveryRunner:
                 "model": model,
             }
         )
-        self._append_local(
-            {
-                "event": "solve",
-                "session_id": self._session_id,
-                "producer_job_id": self.descriptor.producer_job_id,
-                "descriptor_root": self.descriptor.descriptor_root,
-                "status": status,
-                "solve_index": index,
-                "result_sha256": result_hash,
-                "receipt": receipt,
-                "model": model,
-                "frontier_count": self.frontier_count,
-                "frontier_sha256": self.frontier_sha256,
-                "learned_state": "not_claimed",
-                "proof_verified": False,
-                "closure_claim": False,
-            }
-        )
+        solve_event: dict[str, Any] = {
+            "event": "solve",
+            "session_id": self._session_id,
+            "producer_job_id": self.descriptor.producer_job_id,
+            "descriptor_root": self.descriptor.descriptor_root,
+            "status": status,
+            "solve_index": index,
+            "result_sha256": result_hash,
+            "receipt": receipt,
+            "model": model,
+            "frontier_count": self.frontier_count,
+            "frontier_sha256": self.frontier_sha256,
+            "learned_state": "not_claimed",
+            "proof_verified": False,
+            "closure_claim": False,
+        }
+        if checked_assumptions:
+            solve_event["assumptions"] = list(checked_assumptions)
+        self._append_local(solve_event)
+        self._pending_request = None
         session_after = self._json(
             "GET", f"/sessions/{self._session_id}", expected_status=200
         )
@@ -2056,6 +2550,11 @@ class PiqdIncrementalDiscoveryRunner:
     def _close_session_once(self) -> None:
         if self._closed:
             return
+        if self._pending_request is not None:
+            raise PiqdIncrementalDiscoveryError(
+                "cannot close PIQD session while a request-bound solve is pending "
+                "reconciliation"
+            )
 
         if self._close_uncertain:
             try:

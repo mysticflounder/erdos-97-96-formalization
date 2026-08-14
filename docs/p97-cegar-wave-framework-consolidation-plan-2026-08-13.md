@@ -113,7 +113,8 @@ a time:
 | Kind | Shared implementation boundary | Allowed conclusion |
 |---|---|---|
 | `STATIC_CNF` | raw-DIMACS PIQD driver | replayed SAT or discovery UNSAT |
-| `INCREMENTAL_CNF` | incremental PIQD session adapter | replayed SAT or discovery UNSAT |
+| `ASSUMPTION_CNF` | one-session sequential PIQD assumptions over one authenticated parent | replayed SAT or discovery UNSAT |
+| `INCREMENTAL_CNF` | later append-capable incremental PIQD session adapter | replayed SAT or discovery UNSAT |
 | `SMT_ONESHOT` | future generic authenticated single-solver SMT boundary; existing FreshThird remains specialized until then | exact-replayed SAT or diagnostic UNSAT/UNKNOWN |
 | `TERMINAL_PROOF` | local terminal-proof runner and publisher, separate from PIQD proof replay | certified local UNSAT only after proof replay |
 | `EXTERNAL_PROCESS` | authenticated process-custody adapter such as Singular | process outcome only |
@@ -358,6 +359,34 @@ historical evidence remain protected. Native shared lifecycle support, a fresh
 native campaign with semantic validation and successor admission, a rollback
 drill, and a zero-caller rescan are required before the compatibility shim can
 become a quarantine candidate.
+
+### Current-SAT assumption-session prerequisite — 2026-08-14
+
+The maintained incremental discovery runner now exposes an opt-in, closed
+assumption-solve contract for the future `ASSUMPTION_CNF` engine. The public
+runner defaults to the current Rust SAT response schema; historical legacy
+shapes are selected only by explicit frozen/test callers. Nonempty assumption
+solves require canonical signed literals, explicit opt-in, and a canonical
+request UUID. Before transport, the runner durably records the exact base
+identity, assumptions, resource limits, UUID, and independently recomputed
+`piqd-solve-request/v1` digest.
+
+An uncertain transport failure retries only the identical request. A durable
+pending request survives restart with either zero remote receipts (the request
+did not reach the daemon) or one exactly matching receipt (the response was
+lost); larger or crossed suffixes fail before local custody mutation. While a
+request remains unresolved, append and close issue no remote mutation. SAT
+models replay against the current frontier and assumptions; UNSAT cores must be
+canonical subsets, and an empty core is observational terminal discovery only;
+UNKNOWN is inconclusive. None of these paths produces proof, theorem, Lean, or
+cleanup entitlement.
+
+The prerequisite is intentionally not the large-parent campaign engine. Its
+byte-backed descriptor still materializes ordinary seeds, so the 291 MB
+Child44 parent must use the separate streaming `ASSUMPTION_CNF` adapter before
+production admission. The focused current/legacy/restart matrix passes 188
+tests, including independent adversarial review; no live daemon or solver was
+used for this checkpoint.
 
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 

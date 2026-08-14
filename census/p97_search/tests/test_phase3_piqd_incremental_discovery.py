@@ -18,11 +18,18 @@ PRODUCER = b'{"producer":"fake"}'
 SOURCE = b'{"source":"test"}'
 SESSION = "11111111-1111-4111-8111-111111111111"
 JOB_ID = "22222222-2222-4222-8222-222222222222"
+REQUEST_ID = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
 NO_SOLVER_STATS = object()
 NO_REPLAYED = object()
 NO_APPEND_REPLAYED = object()
 NO_APPEND_ROOT = object()
 NO_TIMEOUT_OVERRIDE = object()
+NO_ASSUMPTIONS_OVERRIDE = object()
+NO_CORE_OVERRIDE = object()
+NO_TERMINAL_OVERRIDE = object()
+NO_LAST_ASSUMPTION_FREE_OVERRIDE = object()
+NO_REQUEST_ID_OVERRIDE = object()
+NO_REQUEST_SHA256_OVERRIDE = object()
 
 
 def solver_stats() -> dict[str, int]:
@@ -84,6 +91,17 @@ class FakeSessionTransport:
         append_response_extra: bool = False,
         response_timeout_override: Any = NO_TIMEOUT_OVERRIDE,
         receipt_timeout_override: Any = None,
+        receipt_assumptions_override: Any = NO_ASSUMPTIONS_OVERRIDE,
+        receipt_core_override: Any = NO_CORE_OVERRIDE,
+        terminal_unsat_override: Any = NO_TERMINAL_OVERRIDE,
+        last_assumption_free_override: Any = NO_LAST_ASSUMPTION_FREE_OVERRIDE,
+        solve_response_loss: bool = False,
+        solve_response_losses: int = 0,
+        solve_http_status: int | None = None,
+        receipt_request_id_override: Any = NO_REQUEST_ID_OVERRIDE,
+        receipt_request_sha256_override: Any = NO_REQUEST_SHA256_OVERRIDE,
+        omit_receipt_request_id: bool = False,
+        omit_receipt_request_sha256: bool = False,
     ) -> None:
         self.calls: list[tuple[str, str, bytes | None]] = []
         self.job_id = job_id
@@ -92,6 +110,7 @@ class FakeSessionTransport:
         self.clauses = [(1, 2)]
         self.variable_count = 2
         self.receipts: list[dict[str, Any]] = []
+        self.solve_assumptions: list[list[int]] = []
         self.model = model if model is not None else [1, -2]
         self.status = status
         self.core = core
@@ -123,9 +142,23 @@ class FakeSessionTransport:
         self.append_response_extra = append_response_extra
         self.response_timeout_override = response_timeout_override
         self.receipt_timeout_override = receipt_timeout_override
+        self.receipt_assumptions_override = receipt_assumptions_override
+        self.receipt_core_override = receipt_core_override
+        self.terminal_unsat_override = terminal_unsat_override
+        self.last_assumption_free_override = last_assumption_free_override
+        self.receipt_request_id_override = receipt_request_id_override
+        self.receipt_request_sha256_override = receipt_request_sha256_override
+        self.omit_receipt_request_id = omit_receipt_request_id
+        self.omit_receipt_request_sha256 = omit_receipt_request_sha256
         self.solver_stats_methods = frozenset(solver_stats_methods)
         self._append_lost = False
         self._solve_receipts_lost = False
+        self._solve_response_losses_remaining = max(
+            solve_response_losses, 1 if solve_response_loss else 0
+        )
+        self.solve_http_status = solve_http_status
+        self.solver_runs = 0
+        self.request_records: dict[str, dict[str, Any]] = {}
         self.close_calls = 0
         self.model_get_calls = 0
         self.closed = False
@@ -134,6 +167,13 @@ class FakeSessionTransport:
 
     def _session(self, *, method: str) -> dict[str, Any]:
         latest = self.receipts[-1] if self.receipts else None
+        latest_assumptions = (
+            self.solve_assumptions[-1]
+            if self.solve_assumptions
+            else latest.get("assumptions", [])
+            if latest
+            else []
+        )
         last_status = (
             self.last_status_override
             if self.last_status_override is not None
@@ -158,7 +198,14 @@ class FakeSessionTransport:
             "last_status": last_status,
             "declared_num_vars": 2,
             "last_solve_index": latest["solve_index"] if latest else None,
-            "last_assumption_free": True if latest else None,
+            "last_assumption_free": (
+                self.last_assumption_free_override
+                if self.last_assumption_free_override
+                is not NO_LAST_ASSUMPTION_FREE_OVERRIDE
+                else not bool(latest_assumptions)
+            )
+            if latest
+            else None,
             "last_terminal_unsat": (
                 latest.get("core") == [] if last_status == "UNSAT" else None
             )
@@ -178,6 +225,12 @@ class FakeSessionTransport:
 
     def _journal(self) -> bytes:
         return incremental._journal_bytes(self.clauses)
+
+    def _solve_response(self, response: dict[str, Any]) -> incremental.HttpResponse:
+        if self._solve_response_losses_remaining:
+            self._solve_response_losses_remaining -= 1
+            raise OSError("simulated solve response loss after commit")
+        return _response(200, response)
 
     def __call__(
         self, method: str, url: str, body: bytes | None, _headers: dict[str, str]
@@ -277,8 +330,34 @@ class FakeSessionTransport:
                 return _response(503, {"error": "response lost after commit"})
             return response
         if method == "POST" and path == f"sessions/{SESSION}/solve":
-            assert payload["assumptions"] == [] and payload["include_model"] is True
+            assert type(payload["assumptions"]) is list
+            assert payload["include_model"] is True
+            assumptions = list(payload["assumptions"])
+            request_id = payload.get("request_id")
+            request_sha256 = incremental._solve_request_digest(
+                base_clauses=len(self.clauses),
+                base_bytes=len(self._journal()),
+                base_sha256=hashlib.sha256(self._journal()).hexdigest(),
+                assumptions=assumptions,
+                conflict_limit=payload.get("conflict_limit"),
+                timeout_ms=payload.get("timeout_ms"),
+            )
+            if self.solve_http_status is not None:
+                return _response(self.solve_http_status, {"error": "definite failure"})
+            if request_id is not None and request_id in self.request_records:
+                recorded = self.request_records[request_id]
+                if recorded["request_sha256"] != request_sha256:
+                    return _response(409, {"error": "request identity conflict"})
+                response = dict(recorded["response"])
+                response["solve_ms"] = 0
+                response["replayed"] = (
+                    True
+                    if self.response_replayed is NO_REPLAYED
+                    else self.response_replayed
+                )
+                return self._solve_response(response)
             index = len(self.receipts) + 1
+            self.solver_runs += 1
             model = list(self.model) if self.status == "SAT" else None
             core = (
                 list(self.core)
@@ -287,7 +366,15 @@ class FakeSessionTransport:
             )
             if self.status == "UNKNOWN" and self.core is not None:
                 core = list(self.core)
-            terminal = (core == []) if self.status == "UNSAT" else None
+            terminal = (
+                (
+                    self.terminal_unsat_override
+                    if self.terminal_unsat_override is not NO_TERMINAL_OVERRIDE
+                    else (core == [])
+                )
+                if self.status == "UNSAT"
+                else None
+            )
             result_hash = incremental._result_digest(
                 self.status, self.interrupted_by, core, model
             )
@@ -298,7 +385,11 @@ class FakeSessionTransport:
                 "base_clauses": len(self.clauses),
                 "base_bytes": len(self._journal()),
                 "base_sha256": hashlib.sha256(self._journal()).hexdigest(),
-                "assumptions": [],
+                "assumptions": (
+                    list(assumptions)
+                    if self.receipt_assumptions_override is NO_ASSUMPTIONS_OVERRIDE
+                    else self.receipt_assumptions_override
+                ),
                 "status": self.status,
                 "model_recorded": model is not None,
                 "result_sha256": result_hash,
@@ -325,7 +416,26 @@ class FakeSessionTransport:
             if self.interrupted_by is not None:
                 receipt["interrupted_by"] = self.interrupted_by
             if core is not None:
-                receipt["core"] = core
+                receipt["core"] = (
+                    list(core)
+                    if self.receipt_core_override is NO_CORE_OVERRIDE
+                    else self.receipt_core_override
+                )
+            if request_id is not None:
+                if not self.omit_receipt_request_id:
+                    receipt["request_id"] = (
+                        request_id
+                        if self.receipt_request_id_override is NO_REQUEST_ID_OVERRIDE
+                        else self.receipt_request_id_override
+                    )
+                if not self.omit_receipt_request_sha256:
+                    receipt["request_sha256"] = (
+                        request_sha256
+                        if self.receipt_request_sha256_override
+                        is NO_REQUEST_SHA256_OVERRIDE
+                        else self.receipt_request_sha256_override
+                    )
+            self.solve_assumptions.append(assumptions)
             self.receipts.append(receipt)
             response: dict[str, Any] = {
                 "status": self.status,
@@ -333,7 +443,13 @@ class FakeSessionTransport:
                 "solve_index": index,
                 "result_sha256": result_hash,
             }
-            if self.response_replayed is not NO_REPLAYED:
+            if request_id is not None:
+                response["replayed"] = (
+                    False
+                    if self.response_replayed is NO_REPLAYED
+                    else self.response_replayed
+                )
+            elif self.response_replayed is not NO_REPLAYED:
                 response["replayed"] = self.response_replayed
             if payload.get("timeout_ms") is not None:
                 if self.response_timeout_override is not NO_TIMEOUT_OVERRIDE:
@@ -355,7 +471,12 @@ class FakeSessionTransport:
                 response["terminal_unsat"] = terminal
             if self.interrupted_by is not None:
                 response["interrupted_by"] = self.interrupted_by
-            return _response(200, response)
+            if request_id is not None:
+                self.request_records[request_id] = {
+                    "request_sha256": request_sha256,
+                    "response": dict(response),
+                }
+            return self._solve_response(response)
         if method == "GET" and path == f"sessions/{SESSION}/receipts":
             if (
                 self.solve_receipts_loss
@@ -396,6 +517,7 @@ def runner(
     name: str = "receipts.jsonl",
     **kwargs: Any,
 ) -> incremental.PiqdIncrementalDiscoveryRunner:
+    kwargs.setdefault("sat_contract_version", incremental.SAT_CONTRACT_LEGACY_V1)
     return incremental.PiqdIncrementalDiscoveryRunner(
         "http://piqd.test",
         descriptor(),
@@ -591,6 +713,35 @@ def test_current_sat_contract_accepts_builtin_false_without_effective_deadline(
     assert active.solve(timeout_ms=25).status == status
 
 
+def test_public_runner_default_accepts_current_rust_sat_shape(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = incremental.PiqdIncrementalDiscoveryRunner(
+        "http://piqd.test",
+        descriptor(),
+        receipt_path=tmp_path / "public-current.jsonl",
+        transport=transport,
+    )
+    assert active.solve(timeout_ms=25).status == "SAT"
+
+
+def test_public_runner_default_rejects_legacy_only_sat_shape(tmp_path: Path) -> None:
+    active = incremental.PiqdIncrementalDiscoveryRunner(
+        "http://piqd.test",
+        descriptor(),
+        receipt_path=tmp_path / "public-reject-legacy.jsonl",
+        transport=FakeSessionTransport(),
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="inexact schema",
+    ):
+        active.solve()
+
+
 @pytest.mark.parametrize("response_timeout", [None, 24, 25, True, 25.0, -1])
 def test_current_sat_contract_forbids_response_timeout(
     tmp_path: Path, response_timeout: Any
@@ -706,6 +857,704 @@ def test_current_sat_contract_rejects_timeout_subclass_before_transport(
     with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="timeout_ms"):
         active.solve(timeout_ms=_IntSubclass(25))
     assert transport.calls == calls_before
+
+
+def assumption_runner(
+    tmp_path: Path,
+    transport: FakeSessionTransport,
+    *,
+    name: str = "assumption-receipts.jsonl",
+    permit_assumptions: bool = True,
+) -> incremental.PiqdIncrementalDiscoveryRunner:
+    return runner(
+        tmp_path,
+        transport,
+        name=name,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+        permit_assumptions=permit_assumptions,
+    )
+
+
+@pytest.mark.parametrize(
+    ("status", "assumptions", "core", "model", "expected_assignment"),
+    [
+        ("SAT", (1, -2), None, [1, -2], (1, -2)),
+        ("UNSAT", (-1, 2), [-1], None, ()),
+        ("UNSAT", (-1, 2), [], None, ()),
+        ("UNKNOWN", (1,), None, None, ()),
+    ],
+)
+def test_current_opt_in_assumptions_accept_exact_sat_unsat_unknown_shapes(
+    tmp_path: Path,
+    status: str,
+    assumptions: tuple[int, ...],
+    core: list[int] | None,
+    model: list[int] | None,
+    expected_assignment: tuple[int, ...],
+) -> None:
+    transport = FakeSessionTransport(
+        status=status,
+        core=core,
+        model=model,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    result = active.solve(
+        assumptions=assumptions,
+        conflict_limit=3000,
+        request_id=REQUEST_ID,
+    )
+    assert result.status == status
+    assert result.assignment == expected_assignment
+    assert result.receipt["assumptions"] == list(assumptions)
+    solve_call = next(
+        json.loads(body)
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/solve"
+    )
+    assert solve_call["assumptions"] == list(assumptions)
+    events = [
+        json.loads(line) for line in active.receipt_path.read_bytes().splitlines()
+    ]
+    solve_event = events[-1]
+    assert solve_event["assumptions"] == list(assumptions)
+    assert solve_event["receipt"]["assumptions"] == list(assumptions)
+    assert solve_event["proof_verified"] is False
+    assert solve_event["closure_claim"] is False
+
+
+def test_default_and_legacy_runners_reject_nonempty_assumptions_before_solve(
+    tmp_path: Path,
+) -> None:
+    current_transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    current = assumption_runner(
+        tmp_path,
+        current_transport,
+        name="default-reject.jsonl",
+        permit_assumptions=False,
+    )
+    current_calls = list(current_transport.calls)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="permit_assumptions",
+    ):
+        current.solve(assumptions=(1,))
+    assert current_transport.calls == current_calls
+
+    legacy_transport = FakeSessionTransport()
+    legacy = runner(
+        tmp_path,
+        legacy_transport,
+        name="legacy-reject.jsonl",
+        permit_assumptions=True,
+    )
+    legacy_calls = list(legacy_transport.calls)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="current SAT contract",
+    ):
+        legacy.solve(assumptions=(1,))
+    assert legacy_transport.calls == legacy_calls
+
+
+@pytest.mark.parametrize(
+    "assumptions",
+    [
+        [1],
+        (True,),
+        (0,),
+        (3,),
+        (2, 1),
+        (1, 1),
+        (-1, 1),
+    ],
+)
+def test_assumptions_reject_non_tuple_inexact_range_order_and_contradiction(
+    tmp_path: Path, assumptions: Any
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    calls_before = list(transport.calls)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="assumptions"):
+        active.solve(assumptions=assumptions, request_id=REQUEST_ID)
+    assert transport.calls == calls_before
+
+
+@pytest.mark.parametrize("permit_assumptions", [1, 0, None, "true"])
+def test_permit_assumptions_requires_exact_builtin_bool(
+    tmp_path: Path, permit_assumptions: Any
+) -> None:
+    transport = FakeSessionTransport()
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="permit_assumptions",
+    ):
+        runner(
+            tmp_path,
+            transport,
+            permit_assumptions=permit_assumptions,
+        )
+    assert transport.calls == []
+
+
+def test_assumption_sat_total_model_must_replay_every_assumption(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        model=[1, -2],
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="assumption replay",
+    ):
+        active.solve(assumptions=(2,), request_id=REQUEST_ID)
+
+
+@pytest.mark.parametrize(
+    "transport",
+    [
+        FakeSessionTransport(
+            status="UNSAT",
+            core=[1],
+            terminal_unsat_override=False,
+            response_replayed=False,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            status="UNSAT",
+            core=[2, -1],
+            response_replayed=False,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            status="UNSAT",
+            core=[-1],
+            terminal_unsat_override=True,
+            response_replayed=False,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+        FakeSessionTransport(
+            status="UNSAT",
+            core=[],
+            terminal_unsat_override=False,
+            response_replayed=False,
+            omit_response_effective_deadline=True,
+            omit_receipt_effective_deadline=True,
+        ),
+    ],
+)
+def test_assumption_unsat_rejects_foreign_noncanonical_or_crossed_terminal_core(
+    tmp_path: Path, transport: FakeSessionTransport
+) -> None:
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="core|UNSAT"):
+        active.solve(assumptions=(-1, 2), request_id=REQUEST_ID)
+
+
+@pytest.mark.parametrize(
+    "receipt_assumptions",
+    [None, "1", [True], [0], [3], [2, 1], [-1, 1], [-1]],
+)
+def test_assumption_receipt_must_exactly_echo_canonical_request(
+    tmp_path: Path, receipt_assumptions: Any
+) -> None:
+    transport = FakeSessionTransport(
+        receipt_assumptions_override=receipt_assumptions,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="receipt.assumptions|receipt assumptions",
+    ):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+
+
+def test_assumption_receipt_core_cannot_diverge_from_response_core(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        status="UNSAT",
+        core=[-1],
+        receipt_core_override=[2],
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="digest|receipt",
+    ):
+        active.solve(assumptions=(-1, 2), request_id=REQUEST_ID)
+
+
+def test_assumption_session_last_assumption_free_is_cross_bound(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        last_assumption_free_override=True,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="last-solve state",
+    ):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+
+
+def test_assumption_revival_repairs_committed_receipt_without_resolving(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        solve_receipts_loss=True,
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="503"):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+    solve_posts = sum(
+        method == "POST" and path == f"sessions/{SESSION}/solve"
+        for method, path, _ in transport.calls
+    )
+    revived = runner(
+        tmp_path,
+        transport,
+        name="assumption-receipts.jsonl",
+        session_id=SESSION,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+        permit_assumptions=True,
+    )
+    assert revived.solve_count == 1
+    assert revived._journal_solves[-1]["receipt"]["assumptions"] == [1]
+    assert revived._journal_solves[-1]["receipt"]["request_id"] == REQUEST_ID
+    assert transport.solver_runs == 1
+    assert (
+        sum(
+            method == "POST" and path == f"sessions/{SESSION}/solve"
+            for method, path, _ in transport.calls
+        )
+        == solve_posts
+    )
+
+
+def test_assumption_local_journal_field_cannot_diverge_from_receipt(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    active.solve(assumptions=(1,), request_id=REQUEST_ID)
+    events = [
+        json.loads(line) for line in active.receipt_path.read_bytes().splitlines()
+    ]
+    solve_event = events[-1]
+    solve_event["assumptions"] = [-1]
+    unsigned = dict(solve_event)
+    unsigned.pop("event_sha256")
+    solve_event["event_sha256"] = hashlib.sha256(
+        json.dumps(unsigned, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    active.receipt_path.write_bytes(
+        b"\n".join(
+            json.dumps(event, sort_keys=True, separators=(",", ":")).encode()
+            for event in [*events[:-1], solve_event]
+        )
+        + b"\n"
+    )
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="receipt assumptions",
+    ):
+        runner(
+            tmp_path,
+            transport,
+            name="assumption-receipts.jsonl",
+            session_id=SESSION,
+            sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+            permit_assumptions=True,
+        )
+
+
+def test_empty_assumption_default_preserves_request_and_journal_shape(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    active.solve()
+    solve_call = next(
+        json.loads(body)
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/solve"
+    )
+    assert solve_call["assumptions"] == []
+    assert "request_id" not in solve_call
+    solve_event = json.loads(active.receipt_path.read_bytes().splitlines()[-1])
+    assert "assumptions" not in solve_event
+    assert "request_id" not in solve_event["receipt"]
+    assert "request_sha256" not in solve_event["receipt"]
+
+
+def test_callable_stays_assumption_free_when_opt_in_is_enabled(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    cnf_path = tmp_path / "callable.cnf"
+    cnf_path.write_bytes(SEED)
+    cnf_path.chmod(0o600)
+    assert active(cnf_path, 1, None).status == "SAT"
+    solve_call = next(
+        json.loads(body)
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/solve"
+    )
+    assert solve_call["assumptions"] == []
+
+
+def test_solve_request_digest_matches_independent_rust_vector() -> None:
+    assert (
+        incremental._solve_request_digest(
+            base_clauses=1,
+            base_bytes=6,
+            base_sha256="f33e4ee3af37194d557c0d8d3f2d801aa383e27bb0a40b3a4cc76ca9ffeaca97",
+            assumptions=(1, -2),
+            conflict_limit=3000,
+            timeout_ms=None,
+        )
+        == "cfe374919e5c02edf5d8def1d11b34015671307c7f5b5bc0ae83619ffcbece6c"
+    )
+
+
+def test_nonempty_assumptions_require_request_id_before_transport(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    calls_before = list(transport.calls)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="request_id",
+    ):
+        active.solve(assumptions=(1,))
+    assert transport.calls == calls_before
+
+
+@pytest.mark.parametrize(
+    "request_id",
+    [True, 1, "", "33333333333343338333333333333333", REQUEST_ID.upper()],
+)
+def test_request_id_requires_exact_canonical_uuid_before_solve_transport(
+    tmp_path: Path, request_id: Any
+) -> None:
+    transport = FakeSessionTransport(
+        response_replayed=False,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    calls_before = list(transport.calls)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="request_id"):
+        active.solve(assumptions=(1,), request_id=request_id)
+    assert transport.calls == calls_before
+
+
+def test_request_id_requires_current_contract_even_without_assumptions(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport()
+    active = runner(tmp_path, transport)
+    calls_before = list(transport.calls)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="current SAT contract",
+    ):
+        active.solve(request_id=REQUEST_ID)
+    assert transport.calls == calls_before
+
+
+def test_request_id_recovers_committed_response_loss_at_most_once(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        solve_response_loss=True,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    result = active.solve(
+        assumptions=(1,),
+        conflict_limit=3000,
+        request_id=REQUEST_ID,
+    )
+    solve_bodies = [
+        body
+        for method, path, body in transport.calls
+        if method == "POST" and path == f"sessions/{SESSION}/solve"
+    ]
+    assert len(solve_bodies) == 2
+    assert solve_bodies[0] == solve_bodies[1]
+    assert transport.solver_runs == 1
+    assert len(transport.receipts) == 1
+    assert result.receipt["request_id"] == REQUEST_ID
+    assert result.receipt["request_sha256"] == incremental._solve_request_digest(
+        base_clauses=1,
+        base_bytes=6,
+        base_sha256=hashlib.sha256(transport._journal()).hexdigest(),
+        assumptions=(1,),
+        conflict_limit=3000,
+        timeout_ms=None,
+    )
+
+
+def test_request_id_does_not_retry_definite_http_failure(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(solve_http_status=503)
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="HTTP 503",
+    ):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+    assert (
+        sum(
+            method == "POST" and path == f"sessions/{SESSION}/solve"
+            for method, path, _ in transport.calls
+        )
+        == 1
+    )
+    assert transport.solver_runs == 0
+    assert transport.receipts == []
+    assert active._pending_request is not None
+    assert active._pending_request["request_id"] == REQUEST_ID
+
+
+def test_revival_retains_uncommitted_pending_request_for_same_id_retry(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(solve_http_status=503)
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="HTTP 503",
+    ):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+    pending = dict(active._pending_request or {})
+    assert transport.receipts == []
+    assert transport.solver_runs == 0
+
+    revived = runner(
+        tmp_path,
+        transport,
+        name="assumption-receipts.jsonl",
+        session_id=SESSION,
+        sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+        permit_assumptions=True,
+    )
+    assert revived._pending_request is not None
+    assert all(
+        revived._pending_request.get(key) == value for key, value in pending.items()
+    )
+    assert transport.receipts == []
+    transport.solve_http_status = None
+
+    result = revived.solve(assumptions=(1,), request_id=REQUEST_ID)
+    assert result.status == "SAT"
+    assert result.receipt["request_id"] == REQUEST_ID
+    assert transport.solver_runs == 1
+    assert len(transport.receipts) == 1
+    assert revived._pending_request is None
+    revived.close()
+    assert transport.close_calls == 1
+
+
+def test_pending_request_blocks_close_and_same_id_remains_recoverable(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        solve_response_losses=2,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(OSError, match="response loss"):
+        active.solve(
+            assumptions=(1,),
+            conflict_limit=3000,
+            request_id=REQUEST_ID,
+        )
+    pending = dict(active._pending_request or {})
+    assert pending["request_id"] == REQUEST_ID
+    assert transport.solver_runs == 1
+    assert len(transport.receipts) == 1
+    assert (
+        sum(
+            method == "POST" and path == f"sessions/{SESSION}/solve"
+            for method, path, _ in transport.calls
+        )
+        == 2
+    )
+
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="pending reconciliation",
+    ):
+        active.close()
+    assert transport.close_calls == 0
+    assert active._pending_request == pending
+
+    result = active.solve(
+        assumptions=(1,),
+        conflict_limit=3000,
+        request_id=REQUEST_ID,
+    )
+    assert result.status == "SAT"
+    assert result.receipt["request_id"] == REQUEST_ID
+    assert transport.solver_runs == 1
+    assert len(transport.receipts) == 1
+    assert active._pending_request is None
+    active.close()
+    assert transport.close_calls == 1
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"omit_receipt_request_id": True},
+        {"omit_receipt_request_sha256": True},
+        {"receipt_request_id_override": "44444444-4444-4444-8444-444444444444"},
+        {"receipt_request_id_override": REQUEST_ID.upper()},
+        {"receipt_request_sha256_override": "0" * 64},
+        {"receipt_request_sha256_override": True},
+    ],
+)
+def test_request_receipt_rejects_missing_wrong_or_crossed_identity(
+    tmp_path: Path, kwargs: dict[str, Any]
+) -> None:
+    transport = FakeSessionTransport(
+        **kwargs,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="request|identity|UUID|hex",
+    ):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+
+
+def test_revival_rejects_foreign_request_receipt_instead_of_adopting_it(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        solve_receipts_loss=True,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="503"):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+    transport.receipts[0]["request_id"] = "44444444-4444-4444-8444-444444444444"
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="request identity",
+    ):
+        runner(
+            tmp_path,
+            transport,
+            name="assumption-receipts.jsonl",
+            session_id=SESSION,
+            sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+            permit_assumptions=True,
+        )
+    assert transport.solver_runs == 1
+
+
+def test_revival_rejects_receipt_after_pending_match_before_local_mutation(
+    tmp_path: Path,
+) -> None:
+    transport = FakeSessionTransport(
+        solve_receipts_loss=True,
+        omit_response_effective_deadline=True,
+        omit_receipt_effective_deadline=True,
+    )
+    active = assumption_runner(tmp_path, transport)
+    with pytest.raises(incremental.PiqdIncrementalDiscoveryError, match="503"):
+        active.solve(assumptions=(1,), request_id=REQUEST_ID)
+
+    journal_path = tmp_path / "assumption-receipts.jsonl"
+    journal_before = journal_path.read_bytes()
+    foreign = dict(transport.receipts[0])
+    foreign["solve_index"] = 2
+    foreign.pop("request_id")
+    foreign.pop("request_sha256")
+    transport.receipts.append(foreign)
+
+    with pytest.raises(
+        incremental.PiqdIncrementalDiscoveryError,
+        match="at most one remote receipt",
+    ):
+        runner(
+            tmp_path,
+            transport,
+            name="assumption-receipts.jsonl",
+            session_id=SESSION,
+            sat_contract_version=incremental.SAT_CONTRACT_CURRENT_V1,
+            permit_assumptions=True,
+        )
+    assert journal_path.read_bytes() == journal_before
+    assert transport.model_get_calls == 0
+    assert transport.solver_runs == 1
+
+
+def test_default_assumption_free_response_loss_is_not_retried(tmp_path: Path) -> None:
+    transport = FakeSessionTransport(solve_response_loss=True)
+    active = runner(tmp_path, transport)
+    with pytest.raises(OSError, match="response loss"):
+        active.solve()
+    assert transport.solver_runs == 1
+    assert (
+        sum(
+            method == "POST" and path == f"sessions/{SESSION}/solve"
+            for method, path, _ in transport.calls
+        )
+        == 1
+    )
+    assert "request_id" not in transport.receipts[0]
+    assert "request_sha256" not in transport.receipts[0]
 
 
 def test_session_solver_binary_cannot_drift_during_custody(tmp_path: Path) -> None:
@@ -1068,6 +1917,7 @@ def test_empty_clause_unsat_and_malformed_terminals_fail_closed(tmp_path: Path) 
         empty_descriptor,
         receipt_path=tmp_path / "empty.jsonl",
         transport=transport,
+        sat_contract_version=incremental.SAT_CONTRACT_LEGACY_V1,
     )
     assert active.solve().status == "UNSAT"
     bad = FakeSessionTransport(status="UNKNOWN", interrupted_by=None)
