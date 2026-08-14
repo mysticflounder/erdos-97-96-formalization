@@ -478,6 +478,53 @@ def _reconstruct_runner_manifest(
     return manifest
 
 
+def _normalize_result_assignment(
+    assignment: Any, *, serialized: bool = False
+) -> dict[str, bool]:
+    if type(assignment) is not dict:
+        raise StaticCnfEngineError("runner assignment must be a dict")
+    normalized: dict[str, bool] = {}
+    for key, value in assignment.items():
+        if type(value) is not bool:
+            raise StaticCnfEngineError("runner assignment has invalid field types")
+        if serialized:
+            if (
+                type(key) is not str
+                or not key
+                or any(character < "0" or character > "9" for character in key)
+                or key[0] == "0"
+            ):
+                raise StaticCnfEngineError(
+                    "serialized assignment has invalid variable key"
+                )
+            normalized_key = key
+        else:
+            if type(key) is not int or key <= 0:
+                raise StaticCnfEngineError("runner assignment has invalid variable key")
+            normalized_key = str(key)
+        if normalized_key in normalized:
+            raise StaticCnfEngineError("runner assignment has colliding variable keys")
+        normalized[normalized_key] = value
+    return dict(sorted(normalized.items()))
+
+
+def _validate_serialized_result(value: Any) -> None:
+    if type(value) is not dict or set(value) != {
+        "classification",
+        "verdict",
+        "assignment",
+        "returncode",
+    }:
+        raise StaticCnfEngineError("engine result schema mismatch")
+    if (
+        type(value["classification"]) is not str
+        or type(value["verdict"]) is not str
+        or type(value["returncode"]) is not int
+    ):
+        raise StaticCnfEngineError("engine result has invalid scalar fields")
+    _normalize_result_assignment(value["assignment"], serialized=True)
+
+
 def _result_type_check(result: StaticSolverResult) -> None:
     if type(result) is not StaticSolverResult:
         raise StaticCnfEngineError("runner returned the wrong result type")
@@ -485,11 +532,7 @@ def _result_type_check(result: StaticSolverResult) -> None:
         raise StaticCnfEngineError("runner result has invalid verdict/returncode")
     if type(result.stdout) is not str or type(result.stderr) is not str:
         raise StaticCnfEngineError("runner result has invalid output fields")
-    if type(result.assignment) is not dict:
-        raise StaticCnfEngineError("runner assignment must be a dict")
-    for key, value in result.assignment.items():
-        if type(key) is not int or type(value) is not bool:
-            raise StaticCnfEngineError("runner assignment has invalid field types")
+    _normalize_result_assignment(result.assignment)
 
 
 def _classification(result: StaticSolverResult, receipt: Mapping[str, Any]) -> str:
@@ -755,7 +798,7 @@ def _unsigned_envelope(
         "result": {
             "classification": classification,
             "verdict": result.verdict,
-            "assignment": result.assignment,
+            "assignment": _normalize_result_assignment(result.assignment),
             "returncode": result.returncode,
         },
         "receipt": dict(receipt),
@@ -1064,6 +1107,7 @@ def _validate_static_cnf_engine_output(
         or receipt.get("schema") != RECEIPT_SCHEMA
     ):
         raise StaticCnfEngineError("receipt schema/key mismatch")
+    _validate_serialized_result(envelope.get("result"))
     package = envelope.get("package")
     if type(package) is not dict or "cnf_sha256" not in package:
         raise StaticCnfEngineError("engine package CNF binding is missing")

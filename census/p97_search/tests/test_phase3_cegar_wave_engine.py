@@ -582,6 +582,23 @@ def test_result_type_rejects_subclass_and_non_boolean_assignment() -> None:
         engine._result_type_check(ChildResult("SAT", {1: True}, 10))
     with pytest.raises(engine.StaticCnfEngineError, match="invalid field types"):
         engine._result_type_check(StaticSolverResult("SAT", {1: 1}, 10))
+    with pytest.raises(engine.StaticCnfEngineError, match="variable key"):
+        engine._result_type_check(StaticSolverResult("SAT", {0: True}, 10))
+    with pytest.raises(engine.StaticCnfEngineError, match="variable key"):
+        engine._result_type_check(StaticSolverResult("SAT", {-1: True}, 10))
+    with pytest.raises(engine.StaticCnfEngineError, match="variable key"):
+        engine._result_type_check(StaticSolverResult("SAT", {"1": True}, 10))
+
+
+def test_result_assignment_normalizes_numeric_keys_for_canonical_output() -> None:
+    result = StaticSolverResult("SAT", {10: True, 2: False}, 10)
+    engine._result_type_check(result)
+    normalized = engine._normalize_result_assignment(result.assignment)
+    assert list(normalized) == ["10", "2"]
+    raw = canonical_json_bytes({"assignment": normalized}) + b"\n"
+    assert engine._strict_json(raw, label="normalized assignment") == {
+        "assignment": normalized
+    }
 
 
 def test_offline_validator_rejects_tampered_or_crossed_envelope(tmp_path: Path) -> None:
@@ -669,6 +686,48 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert accepted.envelope == before
     assert checked == before
     assert api.calls
+
+
+def test_run_normalizes_multi_digit_assignment_keys_and_replays_canonically(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, api, _factories = _make_engine(tmp_path, monkeypatch, "SAT")
+
+    def factory(**kwargs):
+        kwargs.pop("transport", None)
+        runner = make_static_piqd_solver_runner(
+            **kwargs, transport=api, sleep=lambda _seconds: None
+        )
+
+        def invoke(cnf_path: Path, timeout_s: int, proof_path: None):
+            result = runner(cnf_path, timeout_s, proof_path)
+            return StaticSolverResult(
+                result.verdict,
+                {10: True, 2: False},
+                result.returncode,
+                result.stdout,
+                result.stderr,
+            )
+
+        return invoke
+
+    monkeypatch.setattr(engine, "make_static_piqd_solver_runner", factory)
+    accepted = wave_engine.run(timeout_s=7, proof_path=None)
+
+    assert list(accepted.envelope["result"]["assignment"]) == ["10", "2"]
+    assert output.read_bytes() == canonical_json_bytes(accepted.envelope) + b"\n"
+    assert engine.validate_static_cnf_engine_output(output) == accepted.envelope
+
+
+def test_result_assignment_rejects_crossed_keys_and_noncanonical_serialized_keys() -> (
+    None
+):
+    with pytest.raises(engine.StaticCnfEngineError, match="variable key"):
+        engine._normalize_result_assignment({1: True, "1": False})
+    with pytest.raises(engine.StaticCnfEngineError, match="variable key"):
+        engine._normalize_result_assignment({0: True})
+    with pytest.raises(engine.StaticCnfEngineError, match="serialized assignment"):
+        engine._normalize_result_assignment({"01": True}, serialized=True)
 
 
 def test_v1_envelope_shape_is_frozen_and_rejects_reserved_profile(
