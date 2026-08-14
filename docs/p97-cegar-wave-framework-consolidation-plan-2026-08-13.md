@@ -234,10 +234,21 @@ Consolidation is acceptable only if it preserves all of these boundaries:
 
 ## Migration plan
 
-### Phase 0: freeze and inventory
+### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 
+The first implementation tranche is a dry run for cleanup plan generation only.
+It may read, classify, hash, and compare artifacts, but it must not instantiate
+the consolidated executor, run a wave, mutate a campaign directory, quarantine
+or remove source, or delete anything. Its durable output is a canonical,
+content-addressed plan and its supporting inventory evidence.
+
+- Start from an externally authenticated inventory SHA-256 and an exact trusted
+  entrypoint allowlist. Record both values, and their authentication evidence,
+  in the plan; a locally recomputed hash without external authentication is not
+  sufficient.
 - Generate a machine-readable index of every active wave script, its callers,
-  data dependencies, output schemas, and historical receipts.
+  references, writers, data dependencies, output schemas, receipts, artifacts,
+  replacements, archives, rollback evidence, and historical replay evidence.
 - For every legacy caller, record exact script and dependency identities,
   argv, environment, working directory, owner, output schema, and receipt-reader
   behavior. Add an executable replay smoke before changing or removing it.
@@ -246,6 +257,24 @@ Consolidation is acceptable only if it preserves all of these boundaries:
 - Do not delete or rewrite anything while an entry is `UNCLASSIFIED`.
 - Pin the current Child34--Child41 artifacts and all external callers before
   changing their launch paths.
+- Cleanup targets in this tranche may be exact, hash-pinned entries for
+  approved compatibility-shim entrypoints on the trusted allowlist only. A
+  glob, directory, generated path, historical script, receipt, artifact, or
+  unlisted executable is not a target.
+- Protect the complete evidence closure: all callers, references, receipts,
+  artifacts, replacements, archive and rollback material, and replay evidence
+  remain retained and are never cleanup targets. A candidate is eligible for a
+  later executor only after the authenticated inventory and a fresh rescan show
+  zero references and zero writers, the semantic shadow check is `PASS`, an
+  immutable archive is present, and rollback has been verified.
+- The plan records the exact target set, protected set, evidence identities,
+  rollback window, and canonical plan digest. There is no automatic deletion.
+- Any later cleanup executor is a separate reviewed change and must be invoked
+  with this exact plan digest; it may not silently consume a newer or inferred
+  plan. If cleanup is eventually approved, quarantine and retain an immutable
+  archive before source removal, keep the protected evidence through the
+  rollback window, and rescan the authenticated inventory after every removal
+  to reverify zero references and zero writers.
 
 Exit gate: no active or externally invoked script is unclassified.
 
@@ -338,6 +367,12 @@ longer production entrypoints, with all historical artifacts still replayable.
 - Remove a shim only after its machine-readable caller manifest, executable
   compatibility replay, repository/external-user audit, and historical replay
   suite are all green.
+- Treat source cleanup as a separately reviewed executor operation over an exact
+  approved plan digest, never as an automatic consequence of retirement. Before
+  source removal, quarantine the source and retain an immutable archive for the
+  full rollback window; after any eventual removal, rescan the externally
+  authenticated inventory and verify zero references and zero writers. The
+  archive, rollback material, and replay evidence remain protected afterward.
 - Add a CI budget: a new file matching per-wave exporter/runner/validator naming
   patterns fails unless the change also registers a new semantic boundary and
   records why data was insufficient.
