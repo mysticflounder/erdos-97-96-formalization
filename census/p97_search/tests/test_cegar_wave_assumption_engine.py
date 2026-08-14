@@ -295,9 +295,10 @@ def _make_engine(
         factories.append(kwargs)
         return fake
 
-    def replay(profile, *, parent_cnf_path, assignment, cell):
+    def replay(profile, *, parent_cnf_path, source_parent_cnf_path, assignment, cell):
         assert profile is binding.campaign
         assert parent_cnf_path == binding.parent_path
+        assert source_parent_cnf_path is None
         assert assignment == tuple(range(1, 309))
         if replay_error:
             raise RuntimeError("semantic replay failed")
@@ -445,6 +446,30 @@ def test_final_parent_recapture_rejects_post_solve_identity_change(
     assert calls == 2
     assert fake.close_calls == 1
     assert not output.exists()
+
+
+def test_recapture_parent_rejects_source_parent_identity_change(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _control, binding = _fixture(tmp_path)
+    source_path = (tmp_path / "package" / "source-parent.cnf").resolve()
+    source_identity = replace(binding.parent_identity, source_ino=13)
+    binding = replace(
+        binding,
+        source_parent_path=source_path,
+        source_parent_identity=source_identity,
+    )
+
+    def recapture(path: Path) -> CnfStreamIdentity:
+        if path == binding.parent_path:
+            return binding.parent_identity
+        if path == source_path:
+            return replace(source_identity, source_ino=14)
+        raise AssertionError(f"unexpected CNF path: {path}")
+
+    monkeypatch.setattr(engine, "stream_parent_identity", recapture)
+    with pytest.raises(AssumptionCnfEngineError, match="source-parent.*changed"):
+        engine._recapture_parent(binding)
 
 
 @pytest.mark.parametrize("failure", ["replay", "close", "solve", "session"])
@@ -692,3 +717,28 @@ def test_inspect_rejects_rehashed_noncanonical_unsat_core(
     _rewrite(output, envelope)
     with pytest.raises(AssumptionCnfEngineError, match="canonical assumption subset"):
         inspect_assumption_cnf_engine_output(output)
+
+
+def test_recapture_fails_closed_when_source_parent_disappears(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    _control, binding = _fixture(tmp_path)
+    crossed = replace(
+        binding,
+        source_parent_path=(tmp_path / "package" / "source-parent.cnf").resolve(),
+        source_parent_identity=binding.parent_identity,
+    )
+    calls = 0
+
+    def recapture(_path: Path) -> CnfStreamIdentity:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            return binding.parent_identity
+        raise OSError("source parent is missing or symlinked")
+
+    monkeypatch.setattr(engine, "stream_parent_identity", recapture)
+    with pytest.raises(
+        AssumptionCnfEngineError, match="source-parent CNF recapture failed"
+    ):
+        engine._recapture_parent(crossed)

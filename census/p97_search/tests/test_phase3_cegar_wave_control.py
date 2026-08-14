@@ -9,6 +9,9 @@ from pathlib import Path
 import pytest
 
 import census.p97_search.phase3_cegar_wave_control as wave_control
+from census.p97_search.cegar_wave_assumption_profiles import (
+    parse_assumption_campaign_profile,
+)
 from census.p97_search.phase3_cegar_wave import (
     LOCAL_CERTIFICATE,
     SAT_MEANS_COUNTEREXAMPLE,
@@ -431,6 +434,145 @@ def test_assumption_binding_streams_parent_and_cross_binds_profile(
     assert binding.parent_path == tmp_path / "package/parent.cnf"
     assert binding.producer_manifest == b"{}"
     assert binding.variable_map == variable_map
+
+
+def test_assumption_binding_captures_authenticated_source_parent(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    campaign_bytes = (
+        Path(__file__).parents[1] / "exact17_child44_nextcenter_cells_v1.json"
+    ).read_bytes()
+    campaign = parse_assumption_campaign_profile(campaign_bytes)
+    source_path = "package/source-parent.cnf"
+    campaign = replace(
+        campaign,
+        source_parent_path=source_path,
+        source_parent_sha256=campaign.parent_sha256,
+        source_parent_variables=campaign.variables,
+        source_parent_clauses=campaign.clauses,
+        source_parent_byte_count=campaign.parent_byte_count,
+    )
+    monkeypatch.setattr(
+        wave_control,
+        "parse_assumption_campaign_profile",
+        lambda _raw: campaign,
+    )
+
+    # Reuse the complete control/package fixture above and make both streamed
+    # identities exact matches for the synthetic source-parent metadata.
+    campaign_sha = sha256_bytes(campaign_bytes)
+    parent_sha = campaign.parent_sha256
+    producer_sha = "152570011046aee180b6d385f731fa13911dc9800bfc393dc87ad386cd031048"
+    variable_map = canonical_json_bytes({"profile": "child44-reviewed-map"})
+    manifest = {
+        "schema": "p97-cegar-wave/v1",
+        "wave_id": "exact17-child44-source-parent-fixture",
+        "iteration": 44,
+        "parent_checkpoint_sha256": parent_sha,
+        "source": {
+            "live_leaf": "Problem97.fixture",
+            "ingress_hypotheses_sha256": sha256_bytes(b"fixture"),
+            "finite_schema": "p97-exact17-child44-nextcenter-cells/v1",
+            "cardinality_scope": "thirteen source-total next-center cells",
+            "source_theorem": "Problem97.fixture.SourceModel",
+        },
+        "encoding": {
+            "cnf_sha256": parent_sha,
+            "variable_map_sha256": sha256_bytes(variable_map),
+            "producer_manifest_sha256": producer_sha,
+            "num_variables": campaign.variables,
+            "num_clauses": campaign.clauses,
+            "query_polarity": SAT_MEANS_COUNTEREXAMPLE,
+        },
+        "execution": {
+            "backend": "cadical",
+            "solver_profile": "piqd-satworker-cadical-3.0.0",
+            "shard_id": 0,
+            "shard_count": 1,
+            "order_sha256": campaign_sha,
+            "seed": 0,
+        },
+        "promotion": {
+            "evidence_classification": LOCAL_CERTIFICATE,
+            "producer_theorem": None,
+            "lift_theorem": None,
+            "consumer_theorem": None,
+        },
+    }
+    manifest_bytes = canonical_json_bytes(manifest)
+    identity = CnfStreamIdentity(
+        parent_sha,
+        campaign.parent_byte_count,
+        campaign.variables,
+        campaign.clauses,
+        campaign.variables,
+        "0" * 64,
+        campaign.parent_byte_count,
+        True,
+        1,
+        2,
+        ((3, 4),),
+    )
+    payloads = {
+        "wave manifest": manifest_bytes,
+        "producer manifest": b"{}",
+        "variable map": variable_map,
+        "campaign profile": campaign_bytes,
+    }
+    monkeypatch.setattr(
+        wave_control,
+        "_capture",
+        lambda _root, _reference, label: payloads[label],
+    )
+    monkeypatch.setattr(wave_control, "stream_parent_identity", lambda _path: identity)
+    control_value = {
+        "schema": CONTROL_SCHEMA_V3,
+        "wave_kind": ASSUMPTION_CNF,
+        "adapter_id": ASSUMPTION_CNF_PIQD_ADAPTER,
+        "adapter_schema": ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+        "wave_manifest": {
+            "path": "package/wave.json",
+            "sha256": wave_manifest_sha256(manifest),
+            "max_bytes": 1 << 20,
+        },
+        "package": {
+            "cnf": {
+                "path": "package/parent.cnf",
+                "sha256": parent_sha,
+                "max_bytes": 512 << 20,
+            },
+            "producer_manifest": {
+                "path": "package/producer.json",
+                "sha256": producer_sha,
+                "max_bytes": 1 << 20,
+            },
+            "variable_map": {
+                "path": "package/variable-map.json",
+                "sha256": sha256_bytes(variable_map),
+                "max_bytes": 1 << 20,
+            },
+        },
+        "driver_policy": DriverPolicy(requested_core_limit=1).as_dict(),
+        "semantic_validator": ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+        "campaign": {
+            "path": "package/campaign.json",
+            "sha256": campaign_sha,
+            "max_bytes": 1 << 20,
+        },
+    }
+    loaded_control = load_wave_control(canonical_json_bytes(control_value))
+    binding = bind_assumption_cnf(loaded_control, tmp_path)
+    assert binding.source_parent_path == tmp_path / source_path
+    assert binding.source_parent_identity is identity
+
+    crossed_identity = replace(identity, sha256="a" * 64)
+    monkeypatch.setattr(
+        wave_control,
+        "stream_parent_identity",
+        lambda path: identity if path.name == "parent.cnf" else crossed_identity,
+    )
+    with pytest.raises(WaveControlError, match="source-parent identity is crossed"):
+        bind_assumption_cnf(loaded_control, tmp_path)
 
 
 @pytest.mark.parametrize(

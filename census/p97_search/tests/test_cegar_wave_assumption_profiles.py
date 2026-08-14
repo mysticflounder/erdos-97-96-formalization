@@ -11,6 +11,8 @@ from census.p97_search import cegar_wave_assumption_profiles as profiles
 from census.p97_search.cegar_wave_assumption_profiles import (
     CHILD44_PROFILE_ID,
     CHILD44_SCHEMA,
+    CHILD45_PROFILE_ID,
+    CHILD45_SCHEMA,
     AssumptionProfileError,
     assumption_campaign_metadata,
     parse_assumption_campaign_profile,
@@ -35,6 +37,31 @@ def _encoded(payload: dict[str, object]) -> bytes:
 
 def _profile():
     return parse_assumption_campaign_profile(_raw())
+
+
+def _child45_payload() -> dict[str, object]:
+    payload = _payload()
+    payload["schema"] = CHILD45_SCHEMA
+    payload["parent"] = {
+        **payload["parent"],
+        "job_id": "8726dcec-978e-4fdc-8ca0-c33d14197c81",
+        "root_sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+        "producer_manifest_sha256": "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a",
+        "clauses": 5_848_824,
+        "bytes": 291_704_992,
+    }
+    payload["source_parent"] = {
+        "path": "scratch/exact17-lean-to-sat/exact17-forty-fourth-root-forty-third-model-refinements.cnf",
+        "sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+        "variables": 308,
+        "clauses": 5_848_820,
+        "bytes": 291_704_790,
+    }
+    return payload
+
+
+def _profile45():
+    return parse_assumption_campaign_profile(_encoded(_child45_payload()))
 
 
 @dataclass(frozen=True)
@@ -64,6 +91,26 @@ class _Replay:
     result_sha256: str
 
 
+@dataclass(frozen=True)
+class _Replay45:
+    schema: str
+    cell_id: str
+    assumptions: tuple[int, ...]
+    parent_sha256: str
+    parent_bytes: int
+    parent_variables: int
+    parent_clauses: int
+    root_sha256: str
+    root_bytes: int
+    root_variables: int
+    root_clauses: int
+    suffix_sha256: str
+    assignment_sha256: str
+    source_model: _Source
+    kalmanson: _Evidence
+    result_sha256: str
+
+
 def _fake_result(profile, cell, assignment):
     return _Replay(
         schema="p97-exact17-child44-assumption-sat-replay/v1",
@@ -73,6 +120,29 @@ def _fake_result(profile, cell, assignment):
         parent_bytes=profile.parent_byte_count,
         parent_variables=profile.variables,
         parent_clauses=profile.clauses,
+        assignment_sha256=hashlib.sha256(b"assignment").hexdigest(),
+        source_model=_Source(rows=((1, 2, 3, 4),), next_center=cell.next_center),
+        kalmanson=_Evidence(
+            status="LINEARLY_INFEASIBLE", exact_evidence=b'{"ok":true}'
+        ),
+        result_sha256=hashlib.sha256(b"result").hexdigest(),
+    )
+
+
+def _fake_result45(profile, cell, assignment):
+    return _Replay45(
+        schema="p97-exact17-child45-assumption-sat-replay/v1",
+        cell_id=cell.id,
+        assumptions=cell.assumptions,
+        parent_sha256=profile.source_parent_sha256,
+        parent_bytes=profile.source_parent_byte_count,
+        parent_variables=profile.source_parent_variables,
+        parent_clauses=profile.source_parent_clauses,
+        root_sha256=profile.parent_sha256,
+        root_bytes=profile.parent_byte_count,
+        root_variables=profile.variables,
+        root_clauses=profile.clauses,
+        suffix_sha256="7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590",
         assignment_sha256=hashlib.sha256(b"assignment").hexdigest(),
         source_model=_Source(rows=((1, 2, 3, 4),), next_center=cell.next_center),
         kalmanson=_Evidence(
@@ -105,6 +175,61 @@ def test_parses_reviewed_profile_and_binds_exact_raw_digest() -> None:
         15,
         16,
     )
+
+
+def test_parses_child45_profile_and_binds_source_parent() -> None:
+    profile = _profile45()
+    assert profile.schema == CHILD45_SCHEMA
+    assert profile.profile_id == CHILD45_PROFILE_ID
+    assert profile.parent_sha256 == (
+        "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2"
+    )
+    assert profile.clauses == 5_848_824
+    assert profile.parent_byte_count == 291_704_992
+    assert profile.source_parent_path == (
+        "scratch/exact17-lean-to-sat/"
+        "exact17-forty-fourth-root-forty-third-model-refinements.cnf"
+    )
+    assert profile.source_parent_sha256 == (
+        "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9"
+    )
+    assert tuple(cell.next_center for cell in profile.cells) == (
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        12,
+        13,
+        14,
+        15,
+        16,
+    )
+
+
+def test_child45_metadata_includes_exact_source_parent() -> None:
+    metadata = assumption_campaign_metadata(_profile45())
+    assert metadata["source_parent"] == {
+        "path": "scratch/exact17-lean-to-sat/exact17-forty-fourth-root-forty-third-model-refinements.cnf",
+        "sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+        "variables": 308,
+        "clauses": 5_848_820,
+        "bytes": 291_704_790,
+    }
+
+
+def test_child45_source_parent_reference_is_required_and_normalized() -> None:
+    missing = _child45_payload()
+    del missing["source_parent"]
+    with pytest.raises(AssumptionProfileError, match="source_parent is required"):
+        parse_assumption_campaign_profile(_encoded(missing))
+    crossed = _child45_payload()
+    crossed["source_parent"]["path"] = "../parent.cnf"
+    with pytest.raises(AssumptionProfileError, match="normalized repo-relative"):
+        parse_assumption_campaign_profile(_encoded(crossed))
 
 
 def test_optional_canary_is_not_required_or_retained() -> None:
@@ -239,6 +364,99 @@ def test_replay_uses_exact_public_callback_arguments_and_serializes(
     }
     digest = envelope.pop("serialization_sha256")
     assert digest == hashlib.sha256(profiles.canonical_json_bytes(envelope)).hexdigest()
+
+
+def test_child45_replay_uses_source_parent_and_root_arguments(
+    monkeypatch, tmp_path: Path
+) -> None:
+    profile = _profile45()
+    cell = profile.cells[0]
+    assignment = tuple(range(1, 309))
+    root = (tmp_path / "child45.cnf").resolve()
+    source_parent = (tmp_path / "child44.cnf").resolve()
+    observed = {}
+
+    def fake(**kwargs):
+        observed.update(kwargs)
+        return _fake_result45(profile, cell, assignment)
+
+    monkeypatch.setitem(profiles._REPLAY_REGISTRY, "child45", fake)
+    envelope = replay_sat(
+        profile,
+        parent_cnf_path=root,
+        source_parent_cnf_path=source_parent,
+        assignment=assignment,
+        cell=cell,
+    )
+    assert observed == {
+        "parent_cnf_path": source_parent,
+        "child_cnf_path": root,
+        "assignment": assignment,
+        "cell_id": "next-center-00",
+        "assumptions": (290,),
+        "expected_parent_sha256": profile.source_parent_sha256,
+        "expected_child_sha256": profile.parent_sha256,
+    }
+    assert envelope["result"]["schema"] == (
+        "p97-exact17-child45-assumption-sat-replay/v1"
+    )
+    assert envelope["result"]["root_sha256"] == profile.parent_sha256
+
+
+def test_child45_replay_requires_source_parent_and_rejects_crossed_results(
+    monkeypatch, tmp_path: Path
+) -> None:
+    profile = _profile45()
+    cell = profile.cells[0]
+    assignment = tuple(range(1, 309))
+    root = (tmp_path / "child45.cnf").resolve()
+    called = False
+
+    def fake(**_kwargs):
+        nonlocal called
+        called = True
+        return _fake_result45(profile, cell, assignment)
+
+    monkeypatch.setitem(profiles._REPLAY_REGISTRY, "child45", fake)
+    with pytest.raises(AssumptionProfileError, match="requires a source parent"):
+        replay_sat(profile, parent_cnf_path=root, assignment=assignment, cell=cell)
+    assert not called
+
+    crossed = replace(_fake_result45(profile, cell, assignment), root_sha256="0" * 64)
+    monkeypatch.setitem(profiles._REPLAY_REGISTRY, "child45", lambda **_kwargs: crossed)
+    with pytest.raises(AssumptionProfileError, match="result crossed"):
+        replay_sat(
+            profile,
+            parent_cnf_path=root,
+            source_parent_cnf_path=(tmp_path / "child44.cnf").resolve(),
+            assignment=assignment,
+            cell=cell,
+        )
+
+
+def test_child44_rejects_source_parent_and_cross_schema_callback(
+    monkeypatch, tmp_path: Path
+) -> None:
+    profile = _profile()
+    cell = profile.cells[0]
+    assignment = tuple(range(1, 309))
+    root = (tmp_path / "parent.cnf").resolve()
+    with pytest.raises(AssumptionProfileError, match="rejects a source parent"):
+        replay_sat(
+            profile,
+            parent_cnf_path=root,
+            source_parent_cnf_path=(tmp_path / "source.cnf").resolve(),
+            assignment=assignment,
+            cell=cell,
+        )
+
+    monkeypatch.setitem(
+        profiles._REPLAY_REGISTRY,
+        "child44",
+        lambda **_kwargs: _fake_result45(_profile45(), cell, assignment),
+    )
+    with pytest.raises(AssumptionProfileError, match="result crossed"):
+        replay_sat(profile, parent_cnf_path=root, assignment=assignment, cell=cell)
 
 
 def test_replay_rejects_crossed_cell_before_callback(

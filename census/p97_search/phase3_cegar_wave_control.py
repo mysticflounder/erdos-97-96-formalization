@@ -300,6 +300,8 @@ class AssumptionCnfBinding:
     variable_map: bytes
     campaign: AssumptionCampaignProfile
     campaign_bytes: bytes
+    source_parent_path: Path | None = None
+    source_parent_identity: CnfStreamIdentity | None = None
 
 
 STATIC_REGISTRY = MappingProxyType(
@@ -998,6 +1000,15 @@ def bind_assumption_cnf(
     except AssumptionCampaignError as error:
         raise WaveControlError("assumption parent capture failed") from error
 
+    source_parent_path = None
+    source_parent = None
+    if campaign.source_parent_path is not None:
+        source_parent_path = package_root / campaign.source_parent_path
+        try:
+            source_parent = stream_parent_identity(source_parent_path)
+        except AssumptionCampaignError as error:
+            raise WaveControlError("assumption source-parent capture failed") from error
+
     encoding = manifest["encoding"]
     if (
         encoding["cnf_sha256"] != control.cnf.sha256
@@ -1030,6 +1041,25 @@ def bind_assumption_cnf(
         )
     ):
         raise WaveControlError("assumption parent/profile identity is crossed")
+    if source_parent is not None and (
+        campaign.source_parent_sha256 is None
+        or campaign.source_parent_variables is None
+        or campaign.source_parent_clauses is None
+        or campaign.source_parent_byte_count is None
+        or (
+            source_parent.sha256,
+            source_parent.num_bytes,
+            source_parent.num_vars,
+            source_parent.num_clauses,
+        )
+        != (
+            campaign.source_parent_sha256,
+            campaign.source_parent_byte_count,
+            campaign.source_parent_variables,
+            campaign.source_parent_clauses,
+        )
+    ):
+        raise WaveControlError("assumption source-parent identity is crossed")
     if campaign.raw_sha256 != control.campaign.sha256:
         raise WaveControlError("assumption campaign digest is crossed")
 
@@ -1043,6 +1073,8 @@ def bind_assumption_cnf(
         variable_map=variable_map,
         campaign=campaign,
         campaign_bytes=campaign_bytes,
+        source_parent_path=source_parent_path,
+        source_parent_identity=source_parent,
     )
 
 

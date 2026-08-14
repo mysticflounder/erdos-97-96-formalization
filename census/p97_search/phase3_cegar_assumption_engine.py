@@ -454,6 +454,17 @@ def _recapture_parent(binding: AssumptionCnfBinding) -> None:
         raise AssumptionCnfEngineError("parent CNF recapture failed") from exc
     if observed != binding.parent_identity:
         _fail("parent CNF identity changed during the campaign")
+    if binding.source_parent_path is not None:
+        if binding.source_parent_identity is None:
+            _fail("source-parent custody identity is missing")
+        try:
+            observed_source = stream_parent_identity(binding.source_parent_path)
+        except Exception as exc:
+            raise AssumptionCnfEngineError(
+                "source-parent CNF recapture failed"
+            ) from exc
+        if observed_source != binding.source_parent_identity:
+            _fail("source-parent CNF identity changed during the campaign")
 
 
 def _close_with_reconciliation(session: Any) -> None:
@@ -827,6 +838,7 @@ class AssumptionCnfWaveEngine:
                     semantic = replay_sat(
                         binding.campaign,
                         parent_cnf_path=binding.parent_path,
+                        source_parent_cnf_path=binding.source_parent_path,
                         assignment=result.assignment,
                         cell=cell,
                     )

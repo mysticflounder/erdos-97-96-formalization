@@ -691,7 +691,7 @@ def test_v2_check_cross_binds_semantic_profile_and_artifact_inventory(
         registry.check_registered_output(control, package_root, output)
 
 
-def test_v2_authenticated_validator_rejects_rehashed_package_and_artifact_crossing(
+def test_v2_validators_reject_rehashed_package_and_artifact_crossing(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     wave_engine, output, _api, _factories, _profile = _make_v2_engine(
@@ -699,22 +699,24 @@ def test_v2_authenticated_validator_rejects_rehashed_package_and_artifact_crossi
     )
     envelope = wave_engine.run(timeout_s=7, proof_path=None).envelope
 
-    variants = []
     crossed_package = deepcopy(envelope)
     crossed_package["package"]["cnf_sha256"] = "0" * 64
-    variants.append(crossed_package)
     crossed_artifact = deepcopy(envelope)
     crossed_artifact["semantic_artifacts"][0]["sha256"] = "1" * 64
-    variants.append(crossed_artifact)
 
-    for crossed in variants:
+    for crossed in (crossed_package, crossed_artifact):
         unsigned = {
             key: value for key, value in crossed.items() if key != "envelope_sha256"
         }
         crossed["envelope_sha256"] = sha256_json(unsigned)
-        output.write_bytes(canonical_json_bytes(crossed) + b"\n")
-        assert registry.inspect_registered_output_structure(output) == crossed
-        with pytest.raises(registry.WaveRegistryError, match="crossed"):
-            registry.validate_registered_output(
-                wave_engine.control, wave_engine.package_root, output
-            )
+
+    output.write_bytes(canonical_json_bytes(crossed_package) + b"\n")
+    with pytest.raises(registry.WaveRegistryError, match="registered engine schema"):
+        registry.inspect_registered_output_structure(output)
+
+    output.write_bytes(canonical_json_bytes(crossed_artifact) + b"\n")
+    assert registry.inspect_registered_output_structure(output) == crossed_artifact
+    with pytest.raises(registry.WaveRegistryError, match="crossed"):
+        registry.validate_registered_output(
+            wave_engine.control, wave_engine.package_root, output
+        )
