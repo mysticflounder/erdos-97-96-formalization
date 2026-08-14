@@ -2019,6 +2019,33 @@ core's positive-membership family; only after that family is proved,
 banked, and pinned may a successor formula be compiled.  No successor
 formula, canary, or wave is authorized by this mine.
 
+The first cross-wave general-theorem-mining audit of this lane is
+complete (EMPIRICAL, diagnostic only; artifacts and sweep code in
+`scratch/rigid221-sourceheavy-anchor/cross-wave-audit-20260814/`).  It
+swept all 91 preserved SAT witnesses (21 canary, 2 live, 68 wave; the
+68 wave witnesses collapse to 24 distinct solver models because
+contiguous cells received byte-identical models), re-derived 3,488
+unique order-independent common-five cores, and grouped them into 323
+role structures.  Three findings matter.  First, the 19 installed
+membership banks' 623 concrete patterns collapse to six anonymous
+shapes, and fifteen of the nineteen banks carry a single shape —
+exactly the anonymous shape of the v23 dominant core.  Second, that
+shape recurs in 88 of the 90 other witnesses (44 of 46 distinct
+cubes): each wave has banked a new concrete-label slice of one
+invariant structure, and each refined formula has re-satisfied the
+same structure in a fresh label range.  Third, 321 of the 323 role
+structures have no bank contact at all, almost all wave-only and
+outside cell 6.  The strategic consequence, stated as an empirical
+observation and not a theorem: a label-general source-proved
+membership producer for the dominant anonymous shape
+`(c,{b,x,y}) (x,{a,b}) (y,{a,b})` would subsume the pattern content of
+fifteen banks and remove the structure the cell-6 refinement sequence
+keeps rediscovering, whereas banking the concrete `a=1` v24 family
+would continue the one-label-slice-per-wave pattern.  Choosing between
+the general producer and the concrete v24 family is a production
+routing decision reserved for the lane owner and user; neither route
+is authorized as a solver wave by this audit.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
