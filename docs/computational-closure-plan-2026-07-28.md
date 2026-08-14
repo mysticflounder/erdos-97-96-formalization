@@ -10972,6 +10972,52 @@ remains source-level fan/Q synchronization (or a new bounded, replayable
 ordered-core family with complete alias/order coverage).  This checkpoint
 closes no load-bearing `sorry`.
 
+#### 13.24.1.34 Exact-three Q-fiber synchronization landing (2026-08-14)
+
+A comparison with the earlier complete six-point campaign prevents the new
+single-order cut from becoming another open-ended local-order search.  The
+two-row-only abstraction was already exhausted: 40 source-admissible anchored
+orders split into twelve proved kernel exclusions and 28 exact rational
+strict-convex survivors, and the subsequent cap-interval projection excluded
+zero of those 40 words.  The live eight-role order has additional labels, but
+it does not add a theorem forcing the private supports into the one forbidden
+word found in §13.24.1.33.  Therefore no raw 2,688-order rerun is authorized.
+Any successor order campaign must begin with a new source theorem that removes
+one of the rational survivor families or with a complete, bounded replay
+contract for genuinely stronger carrier-wide data.
+
+The exact-three `Q`-fiber arm now has a production Lean landing in
+`FreshThirdQFiberThreeSynchronization`.  If the actual blocker fiber of
+`Q.source₁` has cardinality three, its point image is exactly the four-point
+`Q` support with the boundary source erased.  The remaining contradiction
+requires precisely two positive synchronization facts:
+
+1. the unique nonfiber boundary source belongs to the pinned fan row; and
+2. at least two points of the three-point fiber image belong to the pinned fan
+   row.
+
+The module exposes both fields separately and packages an intrinsic finite
+certificate over three `Fin 4` fan indices.  Replaying such a certificate
+produces three actual common points between the `Q` row and the pinned fan row,
+then closes through
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_qRow_overlap_card_ge_three`.
+The ambient carrier is not enumerated.  The targeted build passes, and the
+generic fiber-image theorem, direct two-field consumer, and indexed replay
+consumer each have exactly the standard axiom set `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+This landing deliberately does not assert that the three fan indices exist.
+The current exact-three incidence projection permits the pinned fan row to be
+disjoint from the `Q` row, and the source/fresh two-row geometry does not repair
+that gap.  The next producer target is consequently carrier-wide: combine the
+exact `Q`-fiber boundary with the source-faithful deletion fan, endpoint/cap
+split, global minimality, and no-`(m,4,4)` information to prove either the
+three-index synchronization certificate or an existing geometric/cross-
+deletion terminal.  A finite query may search for those indices only after all
+of those source-proved alternatives are represented; cap labels or raw cyclic
+orders alone are insufficient.  This checkpoint sharpens the CEGAR predicate
+and consumer but closes no load-bearing `sorry`.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an

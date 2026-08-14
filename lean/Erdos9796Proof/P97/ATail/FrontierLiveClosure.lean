@@ -16,6 +16,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdTwoRowSixPointIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeSynchronization
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFirstFiberCollision
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceClosure
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceRetainedMinimalCore
