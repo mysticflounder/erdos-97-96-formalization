@@ -963,9 +963,14 @@ Child44 was subsequently submitted exactly once as immutable PIQD job
 manifest above, with identity SHA-256
 `97825c01cb69aed6c8eceaa6e32ff7ebc0c328dfebe4406ee7dcc204f35c82a2`.
 The job terminated `SAT` at epoch one after 1,687.851 seconds.  This is not a
-Euclidean counterexample; canonical finalization, independent model replay, and
-the mandatory Child44-only theorem mine remain required before the result is a
-completed checkpoint.
+Euclidean counterexample.  Canonical finalization and an independent replay
+both pass for all 5,848,820 clauses.  The custody-final SHA-256 is
+`b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa`, the
+custody-model file SHA-256 is
+`2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a`, and the
+canonical assignment SHA-256 is
+`5436c27196fd618ed7641c940fb56cfb7ee20a4e0f2c777c171da8e7c45af819`.
+The decoded selectors are next center `15` and named order `1`.
 
 The shared lifecycle runner now descriptor-binds every local root, manifest,
 and custody record with no-follow opens, pre/post `fstat` checks, exact byte
@@ -978,27 +983,28 @@ created a PIQD job or accepted a solver result. The focused adversarial suite
 now passes 322 tests, and the repaired live export, ingress, and static gates
 all pass.
 
-The mandatory cross-wave meta-analysis covers Child33 through Child44 and has
+The mandatory cross-wave meta-analysis covers Child33 through Child43 and has
 full normalized source-valid mines for Child39 through Child43. Across those
-five fully mined waves it found 358 source-valid occurrences, all belonging to
-the same two-Kalmanson cancellation family. Child44 is promotion-only, not a
-new SAT assignment. The newest cumulative CNF retains learned clauses but does
-not retain prior assignments, diagnostic hits, normalized support identities,
-frequencies, or failed theorem candidates, so cross-wave analysis was useful
-but should not be repeated until a new SAT wave or recovered missing artifacts
-add information.
+five waves it found 358 source-valid occurrences, all belonging to the same
+two-Kalmanson cancellation family.  The separate Child44-only mine found 99
+additional paired, source-checked occurrences of that same family, representing
+396 clauses if banked, and excluded ten diagnostic records without a
+`SourceRealization` bridge.  It found no new theorem family.  The newest
+cumulative CNF retains learned clauses but does not retain prior assignments,
+diagnostic hits, normalized support identities, frequencies, or failed theorem
+candidates, so the serial theorem-mine route is now retired.
 
-Exact 17 and the cap-nine production `sorry` remain open. Child44 is the only
-authorized serial successor at this checkpoint. Terminal `UNSAT` requires
-independent certificate replay and Lean composition through the exact-cover
-and source-realization landing contracts.
+Exact 17 and the cap-nine production `sorry` remain open.  No Child45 is
+authorized.  The source-total thirteen-cell campaign below is the production
+successor.
 
 Child44 is also the hard gate for the serial model-blocking strategy. The five
 fully mined waves Child39--Child43 contain 358 source-valid occurrences, all in
 the same two-Kalmanson cancellation family, and 110 of Child44's 228 suffix
-clauses are already parent-subsumed. Therefore a terminal Child44 `SAT` still
-requires independent model replay and a Child44-only theorem mine, but it does
-not authorize an automatic Child45.
+clauses are already parent-subsumed.  Child44 then terminated `SAT`; its
+independent replay and wave-only mine completed with 99 more occurrences of the
+same family and no new theorem schema.  This closes the serial strategy gate
+and does not authorize an automatic Child45.
 
 The earlier proposal to instantiate a complete finite orbit of the generic
 cancellation schema is not executable as stated.  A checked cancellation

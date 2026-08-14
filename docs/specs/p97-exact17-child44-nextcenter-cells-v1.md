@@ -22,6 +22,25 @@ pairwise negative clauses, and the four old-center exclusions `-298` through
 adversarial suite is
 `scripts/test_validate_exact17_child44_nextcenter_cells.py`.
 
+## Canonical Child44 fixture
+
+Canonical finalization and a separate Child44-only replayer both checked all
+5,848,820 parent clauses.  The custody-final SHA-256 is
+`b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa`, the
+custody-model file SHA-256 is
+`2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a`, and the
+canonical assignment/model-check SHA-256 is
+`5436c27196fd618ed7641c940fb56cfb7ee20a4e0f2c777c171da8e7c45af819`.
+The model selects next center `15` and named order `1`, so
+`next-center-15` is the positive production canary.
+
+The mandatory wave-only theorem mine found 99 paired source-checked
+two-Kalmanson cancellation occurrences, or 396 clauses if banked.  All belong
+to the existing generic family; ten other diagnostic records lack a
+`SourceRealization` bridge.  Thus this SAT model is already certified
+Kalmanson-infeasible, but it produced no new theorem family and does not
+authorize Child45.
+
 ## Framework boundary
 
 The shared CEGAR wave engine is currently `STATIC_CNF` only.  This lane must not
@@ -78,5 +97,5 @@ subcell used to qualify plumbing, not one of the thirteen production cells.  It
 showed that short serial wall-clock sweeps are not useful and that session
 canonicalization must be authenticated explicitly.  The first framework canary
 should instead use the manifest's deterministic conflict budget across a small
-parallel subset, including cell `next-center-00`, whose parent Child44 model is
+parallel subset, including cell `next-center-15`, whose parent Child44 model is
 the known positive fixture after canonical model replay completes.

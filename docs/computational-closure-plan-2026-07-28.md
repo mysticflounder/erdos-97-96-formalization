@@ -11183,8 +11183,12 @@ been submitted exactly once as PIQD job
 `17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9`.
 It terminated `SAT` at epoch one after 1,687.851 seconds.  Child44 is the final
 serial model-blocking probe; this result does not authorize an automatic
-Child45.  Canonical finalization, independent model replay, and the mandatory
-Child44-only theorem mine remain open at this checkpoint.
+Child45.  Canonical finalization and independent replay pass for all 5,848,820
+clauses.  The decoded model selects next center `15` and named order `1`.
+The Child44-only mine found 99 paired source-checked occurrences, representing
+396 clauses, all in the existing two-Kalmanson family; ten diagnostic records
+were excluded for lack of a `SourceRealization` bridge.  No new theorem family
+was found, so the serial route is retired.
 
 The post-Child44 route is a source-total split by `SourceModel.nextCenter`.
 There are thirteen legal next-center values after excluding the four old row
