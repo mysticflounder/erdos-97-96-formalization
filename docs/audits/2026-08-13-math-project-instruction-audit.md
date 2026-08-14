@@ -58,7 +58,7 @@ places where dated facts are presented as standing policy.
 | I-01 | High | FALSE — RESOLVED 2026-08-13 | `--current-project` does not scope `--lean` to this repository |
 | I-02 | — | WITHDRAWN 2026-08-13 | standing commit/push language is explicit authorization |
 | I-03 | — | WITHDRAWN / MOOT 2026-08-13 | native Codex memories were disabled; nthdegree is authoritative |
-| I-04 | High | FALSE / CONFLICT | terminal wait rules assume unsupported Codex behavior |
+| I-04 | High | FALSE — RESOLVED 2026-08-13 | global wait rules assumed unsupported Codex behavior |
 | I-05 | Medium | DUPLICATION | repository `AGENTS.md` and `CLAUDE.md` are identical |
 | I-06 | Medium | CONFLICT / DUPLICATION | `rg`-first and semantic-search-first rules lack an explicit division |
 | I-07 | Medium | DUPLICATION | memory, search, and proof-skill policies recur across layers |
@@ -159,13 +159,15 @@ No project-policy edit is required for I-03. The broad phrase "supersedes defaul
 memory guidance" can still be simplified during the I-07 deduplication pass, but
 it no longer creates an operational conflict in the active configuration.
 
-### I-04 — waiting and background-build rules do not match current Codex tools
+### I-04 — global waiting rules assumed unsupported Codex behavior
 
-**Classification:** FALSE / CONFLICT.
+**Classification:** FALSE — RESOLVED 2026-08-13.
 **Severity:** High.
 
-The injected waiting rule requests `yield_time_ms = 600000` for background
-terminals. In the current Codex tool contract:
+This finding concerns global/session policy, not this repository's `AGENTS.md` or
+`CLAUDE.md`. The durable global source, `/Users/adam/.codex/AGENTS.md`, requested
+`yield_time_ms = 600000` for background terminals. In the current Codex tool
+contract:
 
 - `exec_command` accepts a maximum initial yield of 30,000 ms;
 - an ongoing command returns a terminal session ID;
@@ -173,23 +175,35 @@ terminals. In the current Codex tool contract:
 - `wait_agent(timeout_ms = 600000)` is valid for subagents, but it is a different
   mechanism.
 
-The installed `lean-usage` skill additionally assumes that the build harness will
-deliver an automatic completion notice and says never to wait on a running build.
-That is not guaranteed by the current Codex terminal surface; completion normally
-has to be collected through the returned session ID.
+The canonical `lean-usage` skill additionally assumed that every build harness
+would deliver an automatic completion notice. That is not guaranteed by the
+current Codex terminal surface; completion may have to be collected through the
+returned session ID. This is not a conflict between the underlying policies:
+avoiding busy polling and following a build through completion are compatible.
+The false statements were the platform-specific mechanism and duration.
 
 **Recommended correction:** split platform-independent policy from platform
 adapters:
 
 ```text
 Do not busy-poll. For subagents, use the platform's blocking agent wait. For
-terminal sessions, use the longest supported blocking wait on the returned session
-ID. If the host supplies an automatic completion event, rely on it; otherwise
-collect completion through the host's session-wait operation.
+terminal sessions, use only durations supported by the active tool schema and
+collect completion through the host's session-wait operation when a session ID is
+returned. If the host supplies an automatic completion event, rely on it;
+otherwise collect the result explicitly. For nthdegree conversations, use the
+built-in `nthdegree convo wait [--timeout 300] [--interval 5]` command rather than
+repeated `poll`, `latest`, or `read` checks.
 ```
 
 **Validation:** check the active tool schema for both agent and terminal waits and
 ensure every documented duration is within the declared maximum.
+
+**Resolution (2026-08-13):** made the global terminal rule platform-adaptive,
+preserved the valid ten-minute subagent wait, and documented nthdegree's blocking
+conversation waiter. Updated the canonical `lean-usage` skill so automatic build
+completion notices are conditional on host support and terminal sessions are
+otherwise collected through the host's blocking session-wait operation. No local
+project instruction file was changed for this finding.
 
 ### I-05 — repository instruction files are exact duplicates
 
