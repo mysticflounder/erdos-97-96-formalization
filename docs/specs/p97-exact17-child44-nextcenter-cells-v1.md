@@ -12,6 +12,16 @@ one deterministic conflict limit, and thirteen signed assumption cells.  Cell
 The legal centers are `0` through `7` and `12` through `16`.  The four omitted
 centers are exactly the old row centers `8`, `9`, `10`, and `11`.
 
+The read-only validator is
+`scripts/validate_exact17_child44_nextcenter_cells.py`.  It authenticates the
+manifest, producer manifest, and all 291,704,790 bytes of the Child44 root.  It
+also checks that the root's clauses involving only variables `290` through
+`306` are exactly the one seventeen-way positive choice clause, all 136
+pairwise negative clauses, and the four old-center exclusions `-298` through
+`-301`: 141 clauses with no missing, extra, or duplicate clause.  The focused
+adversarial suite is
+`scripts/test_validate_exact17_child44_nextcenter_cells.py`.
+
 ## Framework boundary
 
 The shared CEGAR wave engine is currently `STATIC_CNF` only.  This lane must not
