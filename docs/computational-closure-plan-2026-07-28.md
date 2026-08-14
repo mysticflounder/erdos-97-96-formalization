@@ -10398,6 +10398,111 @@ source theorem that closes one of that packet's row-valued outcomes is an
 equally valid successor.  Raw W4, cap-only, incidence-only, and fixed-cardinality
 projections remain diagnostic rather than closure campaigns.
 
+#### 13.24.1.29 Exact pinned-row deletion semantics and repaired finite survivor (2026-08-14)
+
+The nonrobust pinned-center arm now has an exact arbitrary-cardinality
+deletion semantics.  The generic theorems
+`selectedFourClass_survives_erase_iff_not_mem_of_not_fullyDeletionRobust`
+and `selectedFourClass_survives_erase_iff_robust_or_not_mem` identify survival
+of a selected four-class after deleting one carrier point with the disjunction
+between full deletion robustness and nonincidence of that point.  For an
+`IndexedSourceFaithfulSelectedFourFan`, the source-membership hypotheses reduce
+this further: every indexed fan-source deletion survives exactly when the
+pinned center is fully deletion robust, and in the nonrobust arm all four such
+deletions are blocked.
+
+The finite query projection now carries that same exact law rather than a
+one-way approximation.  The query packet exposes corresponding consumer
+lemmas: at a nonrobust pinned center, deletion survival is equivalent to
+nonincidence, while each actual fan source supplies a blocked deletion and a
+row incidence.  The normalized source status also records that a nonrobust
+center is distinct from all three rich apices; robustness attached to an apex
+arm is used only after the corresponding center equality is known.
+
+The diagnostic configuration was repaired to satisfy this stronger source
+theory.  It is an exact finite model of the encoded source theory;
+no source-level synchronization theorem is present.  A previous diagnostic assertion that
+the boundary row avoided both adjacent caps was false and has been replaced by
+the exact profile: all four boundary slots avoid the first cap, two lie in the
+row cap, two lie outside it, and two lie in the fresh cap.  Thus the current
+vocabulary already exposes fresh-cap boundary witnesses.  What it does not
+source-prove is a synchronization of those witnesses with the indexed fan
+sources, blocker rows, or a cyclic order strong enough for an existing metric
+consumer.
+
+Consequently no CEGAR or terminal-UNSAT campaign is authorized on the current
+finite vocabulary, and no exact-cardinality result is being promoted to this
+arbitrary-cardinality leaf.  The generic deletion theorem, indexed fan adapter,
+and production `TwoSourceFreshThirdResidual` target have a focused green
+governed build.  The explicit finite survivor is isolated one-way in
+`TwoSourceFreshThirdResidualDiagnostics`; the production module does not import
+that diagnostic module.  The former 42 separate `native_decide` checks were
+replaced by direct rank-congruence, finite-case, and kernel `decide` proofs.
+The isolated diagnostic target now completes its governed build in 13 seconds,
+and both `diagnosticConfiguration_sourceTheory` and
+`FreshThirdPinnedEndpointOutsideSeedFiniteQueryContract.not_of_currentSourceTheory`
+audit to exactly `[propext, Classical.choice, Quot.sound]`, with no suspicious
+source patterns.  This remains diagnostic evidence, not closure evidence.
+
+The previously omitted load-bearing finite-map producer
+`fourth_fiber_or_larger_known_fiber_of_four_omissions` is committed at
+`991132e6`.  It is consumed by the four-omission FreshThird ingress and has the
+same standard-three axiom footprint; it is a multiplicity alternative, not a
+contradiction or a replacement for the missing row synchronizer.
+
+This is a source-interface reduction only.  The theorem
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual` still contains its
+original `sorry`, remains off the current published kernel spine, and no
+FreshThird branch is closed.  The remaining planned producer must synchronize one of the
+boundary/fresh-cap witnesses with an actual pinned fan or blocker row (or
+provide an equivalent source-owned cyclic-order relation).  Until then, no
+finite replay or downstream contradiction consumer closes this leaf.
+
+The required one-time theorem-bank reuse preflight was run against repository
+revision `62abdcfc4a73e50ae666eaf2c309d4d424c8cd4e` plus the current exact-deletion
+worktree.  The frozen weakest diagnostic synchronizer is the off-endpoint
+statement that the first `Q` selected four-row has nonempty intersection with
+either the pinned fan row or one indexed blocker row.  The existing
+packet-level contradiction consumer
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_qRow_overlap_card_ge_three`
+requires three common points with the pinned fan row.  It uses only the
+source-proved inequality between the pinned center and the first `Q`-row
+center, so it applies in every normalized fan arm; the former
+center-blocker-specific declaration remains as a compatibility wrapper.
+The nonrobust arm also has a source-level conditional contradiction consumer:
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.false_of_nonrobust_qRow_blocked_deletions`
+derives `False` from any three points of the first `Q` row whose individual
+deletions all block K4 at the pinned center.  It is backed by the generic
+cardinality-independent theorem
+`card_le_inter_selectedFourClass_of_blocked_deletions`.
+
+This individual-deletion contract must not be conflated with the separate D44
+depletion packet under investigation in the rich-apex equality lane.  There a
+whole set `V` is deleted at once and each memberwise restoration preserves K4;
+that collective blocking statement supplies none of the individual blocked
+deletions required here.  Its `V.card ≥ 3` consequence therefore remains a
+CEGAR clause or a row-identification antecedent, not a fan-overlap producer.
+
+The indexed candidate
+`exists_distinct_outsideCap_escape_or_crossDeletion` is proved under its stated
+hypotheses; it preserves the actual outside fan pair and yields blocker escape
+or one cross-deletion survival.  It has no `Q`-row parameter and supplies
+neither overlap contract.  Likewise,
+`freshThird_pinnedEndpointRow_escape_or_offEndpoint` produces the stated
+boundary-escape and source-faithful-fan packet; its conclusion does not assert
+positive `Q`-row/fan incidence.  The
+three-point theorem above is a consumer of the missing overlap, not a producer.
+No noncircular theorem-bank declaration supplies the first common point.
+
+The first missing antecedent is therefore exact: a source theorem relating the
+fresh `Q` row to the pinned fan or one of its canonical blocker rows.  Adding
+that overlap directly to the finite source theory, deriving it from the finite
+query rejection contract, or using the open residual itself would be circular.
+A merely nonempty overlap would eliminate the current diagnostic but would not
+close the live leaf; promotion requires either the three-point fan overlap or a
+new source-clean consumer of the weaker overlap together with the retained
+endpoint order and cap data.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
