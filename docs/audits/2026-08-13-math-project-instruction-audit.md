@@ -47,7 +47,7 @@ promotion review. Those rules are mutually compatible.
 
 The main weakness is operational layering. The same policies are repeated in the
 global session wrapper, the parent `AGENTS.md`, two identical repository files,
-and installed skills. This has produced three material conflicts, two false
+and installed skills. This has produced two material conflicts, two false
 Codex-specific operational instructions, one false command example, and several
 places where dated facts are presented as standing policy.
 
@@ -57,7 +57,7 @@ places where dated facts are presented as standing policy.
 |---|---|---|---|
 | I-01 | High | FALSE — RESOLVED 2026-08-13 | `--current-project` does not scope `--lean` to this repository |
 | I-02 | — | WITHDRAWN 2026-08-13 | standing commit/push language is explicit authorization |
-| I-03 | High | CONFLICT | two incompatible persistent-memory authorities are mandated |
+| I-03 | — | WITHDRAWN / MOOT 2026-08-13 | native Codex memories were disabled; nthdegree is authoritative |
 | I-04 | High | FALSE / CONFLICT | terminal wait rules assume unsupported Codex behavior |
 | I-05 | Medium | DUPLICATION | repository `AGENTS.md` and `CLAUDE.md` are identical |
 | I-06 | Medium | CONFLICT / DUPLICATION | `rg`-first and semantic-search-first rules lack an explicit division |
@@ -138,36 +138,26 @@ require every durable checkpoint to be committed and pushed automatically, and
 exclude unrelated changes, other contributors' work, destructive history
 rewrites, force-pushes, and cross-repository Git operations.
 
-### I-03 — persistent-memory authority is contradictory
+### I-03 — native Codex memory overlap is disabled
 
-**Classification:** CONFLICT.
-**Severity:** High.
+**Classification:** WITHDRAWN / MOOT 2026-08-13.
+**Severity:** Not applicable.
 
-The injected project guidance says to use nthdegree for all persistent memory and
-states that this supersedes default memory guidance. It also requires immediate
-`nthdegree store` calls for corrections, decisions, costly facts, and references.
+The original finding overstated the conflict. The project's standing nthdegree
+instruction is explicit user authorization, not an inferred exception to a
+write gate. A practical overlap remained while Codex native memories and
+nthdegree were both active, but coexistence did not by itself make either policy
+false.
 
-The global Codex memory policy requires use of the Codex memory folder when
-relevant and forbids memory updates unless the user explicitly requests one; even
-then, updates must be written as extension notes rather than directly to the
-memory registry. These are incompatible persistence mechanisms and write gates.
+**Resolution:** the user disabled Codex native memories and designated nthdegree
+as the sole active persistent-memory system for this workflow. A targeted review
+of the disabled native-memory summaries migrated nine durable gaps to nthdegree;
+items already represented there, repository-recorded facts, transient proof and
+build state, and stale preferences were not duplicated.
 
-The current precedence hierarchy tells Codex to follow the global developer rule,
-but that only resolves execution; it does not make the project instruction true.
-
-**Recommended correction:** choose and document an environment-specific authority.
-If both mechanisms must remain supported, say explicitly:
-
-```text
-Use the persistent-memory mechanism authorized by the active host. On hosts where
-nthdegree is authoritative, follow the store triggers below. On hosts with a
-higher-level memory-write gate, do not bypass that gate; use nthdegree only for
-read-only project recall and documentation search unless writes are authorized.
-```
-
-**Validation:** confirm that a correction from the user, an ordinary completed
-task, and an explicit "remember this" request each map to exactly one permitted
-write path in every supported host.
+No project-policy edit is required for I-03. The broad phrase "supersedes default
+memory guidance" can still be simplified during the I-07 deduplication pass, but
+it no longer creates an operational conflict in the active configuration.
 
 ### I-04 — waiting and background-build rules do not match current Codex tools
 
@@ -450,14 +440,13 @@ enforces that requirement.
 The recommended discussion order is:
 
 1. I-01: fix the false Lean corpus-scoping command;
-2. I-03: choose the memory authority by host;
-3. I-04: make waiting and build completion platform-adaptive;
-4. I-05 and I-07: choose canonical files and remove duplication;
-5. I-06: establish the nthdegree/LSP/`rg` routing rule;
-6. I-08: adopt the two-axis evidence vocabulary;
-7. I-09: move snapshot facts out of standing policy;
-8. I-10: qualify the workflow absolutes; and
-9. I-11 and I-12: perform the editorial and discovery cleanup.
+2. I-04: make waiting and build completion platform-adaptive;
+3. I-05 and I-07: choose canonical files and remove duplication;
+4. I-06: establish the nthdegree/LSP/`rg` routing rule;
+5. I-08: adopt the two-axis evidence vocabulary;
+6. I-09: move snapshot facts out of standing policy;
+7. I-10: qualify the workflow absolutes; and
+8. I-11 and I-12: perform the editorial and discovery cleanup.
 
 Each issue should be agreed before its edit is made. After all edits, perform a
 fresh static audit of the resulting instruction chain and validate command examples
