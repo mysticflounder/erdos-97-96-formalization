@@ -50,6 +50,138 @@ def _write(root: Path, relative: str, raw: bytes) -> dict[str, object]:
     return {"path": relative, "sha256": sha256_bytes(raw), "max_bytes": 1 << 20}
 
 
+def _custody_inventory_fixture(
+    tmp_path: Path,
+    payloads: dict[str, bytes],
+) -> tuple[Path, int, dict[str, object], bytes]:
+    attempt = tmp_path / "attempt"
+    artifacts = attempt / "attempt.jsonl.artifacts"
+    artifacts.mkdir(parents=True)
+    (attempt / "attempt.jsonl").write_bytes(b"journal\n")
+    (attempt / "attempt.jsonl.lock").write_bytes(b"")
+    seal_raw = b"seal"
+    (attempt / "attempt.jsonl.seal.json").write_bytes(seal_raw)
+    rows: list[dict[str, object]] = []
+    for digest, payload in payloads.items():
+        path = artifacts / digest
+        path.write_bytes(payload)
+        info = path.stat()
+        rows.append(
+            {
+                "sha256": digest,
+                "size": info.st_size,
+                "device": info.st_dev,
+                "inode": info.st_ino,
+            }
+        )
+    journal = (attempt / "attempt.jsonl").stat()
+    lock = (attempt / "attempt.jsonl.lock").stat()
+    inventory = {
+        "journal_sha256": sha256_bytes(b"journal\n"),
+        "journal_size": journal.st_size,
+        "journal_device": journal.st_dev,
+        "journal_inode": journal.st_ino,
+        "lock_device": lock.st_dev,
+        "lock_inode": lock.st_ino,
+        "driver_seal_sha256": sha256_bytes(seal_raw),
+        "artifacts": rows,
+    }
+    attempt_fd = os.open(attempt, engine._DIRECTORY_FLAGS)
+    return attempt, attempt_fd, inventory, seal_raw
+
+
+def _verify_inventory_fixture(
+    tmp_path: Path,
+    payloads: dict[str, bytes],
+    *,
+    expected_cnf_sha256: str,
+    max_cnf_bytes: int,
+) -> None:
+    attempt, attempt_fd, inventory, seal_raw = _custody_inventory_fixture(
+        tmp_path, payloads
+    )
+    try:
+        engine._verify_custody_inventory(
+            attempt,
+            attempt_fd,
+            inventory,
+            seal_raw=seal_raw,
+            expected_cnf_sha256=expected_cnf_sha256,
+            max_cnf_bytes=max_cnf_bytes,
+        )
+    finally:
+        os.close(attempt_fd)
+
+
+def test_custody_inventory_allows_authenticated_large_cnf_within_registered_cap(
+    tmp_path: Path,
+) -> None:
+    payload = b"c" * ((64 << 20) + 1)
+    digest = sha256_bytes(payload)
+    _verify_inventory_fixture(
+        tmp_path,
+        {digest: payload},
+        expected_cnf_sha256=digest,
+        max_cnf_bytes=len(payload),
+    )
+
+
+def test_custody_inventory_keeps_64mib_bound_for_non_cnf_artifacts(
+    tmp_path: Path,
+) -> None:
+    cnf = b"cnf"
+    oversized = b"x" * ((64 << 20) + 1)
+    cnf_digest = sha256_bytes(cnf)
+    oversized_digest = sha256_bytes(oversized)
+    with pytest.raises(engine.StaticCnfEngineError, match="byte bound"):
+        _verify_inventory_fixture(
+            tmp_path,
+            {oversized_digest: oversized, cnf_digest: cnf},
+            expected_cnf_sha256=cnf_digest,
+            max_cnf_bytes=512 << 20,
+        )
+
+
+@pytest.mark.parametrize("crossed", [False, True], ids=["missing", "crossed"])
+def test_custody_inventory_requires_exactly_one_authenticated_cnf(
+    tmp_path: Path, crossed: bool
+) -> None:
+    payload = b"not-the-cnf"
+    actual_digest = sha256_bytes(payload)
+    expected_digest = sha256_bytes(b"expected-cnf")
+    attempt, attempt_fd, inventory, seal_raw = _custody_inventory_fixture(
+        tmp_path, {actual_digest: payload}
+    )
+    if crossed:
+        inventory["artifacts"][0]["sha256"] = expected_digest
+    try:
+        with pytest.raises(engine.StaticCnfEngineError, match="exactly once|exact"):
+            engine._verify_custody_inventory(
+                attempt,
+                attempt_fd,
+                inventory,
+                seal_raw=seal_raw,
+                expected_cnf_sha256=expected_digest,
+                max_cnf_bytes=512 << 20,
+            )
+    finally:
+        os.close(attempt_fd)
+
+
+def test_custody_inventory_rejects_authenticated_cnf_over_registered_cap(
+    tmp_path: Path,
+) -> None:
+    payload = b"cnf-too-large"
+    digest = sha256_bytes(payload)
+    with pytest.raises(engine.StaticCnfEngineError, match="byte bound"):
+        _verify_inventory_fixture(
+            tmp_path,
+            {digest: payload},
+            expected_cnf_sha256=digest,
+            max_cnf_bytes=len(payload) - 1,
+        )
+
+
 def _fixture_control(tmp_path: Path) -> tuple[object, Path, bytes, bytes]:
     cnf = b"c fixture\np cnf 3 2\n1 -2 0\n2 3 0\n"
     variable_map = canonical_json_bytes({"1": "x", "2": "y", "3": "z"})

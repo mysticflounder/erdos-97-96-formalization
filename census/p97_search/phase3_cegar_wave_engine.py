@@ -34,6 +34,7 @@ from census.p97_search.phase3_cegar_wave import (
 )
 from census.p97_search.phase3_cegar_wave_control import (
     EXECUTION_REGISTRY_SCHEMA,
+    MAX_STATIC_CNF_BYTES,
     STATIC_CNF,
     STATIC_CNF_EXECUTION_CAPABILITIES,
     STATIC_CNF_EXECUTION_MODE,
@@ -714,6 +715,8 @@ def _receipt_bundle(
             attempt_fd,
             custody["inventory"],
             seal_raw=seal_raw,
+            expected_cnf_sha256=sha256_bytes(binding.cnf),
+            max_cnf_bytes=binding.control.cnf.max_bytes,
         )
         return custody, seal, custody["inventory"], records
     finally:
@@ -1061,6 +1064,13 @@ def _validate_static_cnf_engine_output(
         or receipt.get("schema") != RECEIPT_SCHEMA
     ):
         raise StaticCnfEngineError("receipt schema/key mismatch")
+    package = envelope.get("package")
+    if type(package) is not dict or "cnf_sha256" not in package:
+        raise StaticCnfEngineError("engine package CNF binding is missing")
+    expected_cnf_sha256 = package["cnf_sha256"]
+    _sha256_text(expected_cnf_sha256, label="package.cnf_sha256")
+    if expected_cnf_sha256 != receipt.get("cnf_sha256"):
+        raise StaticCnfEngineError("engine package CNF binding is crossed")
     if engine_schema == ENGINE_SCHEMA_V1:
         expected_keys = _ENGINE_ENVELOPE_KEYS_V1
         if "execution_registry" in envelope:
@@ -1242,6 +1252,8 @@ def _validate_static_cnf_engine_output(
             attempt_fd,
             custody["inventory"],
             seal_raw=seal_raw,
+            expected_cnf_sha256=expected_cnf_sha256,
+            max_cnf_bytes=MAX_STATIC_CNF_BYTES,
         )
         if seal["wave_manifest_sha256"] != execution_manifest_sha256:
             raise StaticCnfEngineError("wave manifest crossing")
@@ -1265,7 +1277,17 @@ def _verify_custody_inventory(
     inventory: Mapping[str, Any],
     *,
     seal_raw: bytes | None,
+    expected_cnf_sha256: str,
+    max_cnf_bytes: int,
 ) -> None:
+    if (
+        type(expected_cnf_sha256) is not str
+        or len(expected_cnf_sha256) != 64
+        or any(character not in "0123456789abcdef" for character in expected_cnf_sha256)
+        or type(max_cnf_bytes) is not int
+        or max_cnf_bytes <= 0
+    ):
+        raise StaticCnfEngineError("authenticated CNF bound is invalid")
     if type(inventory) is not dict or set(inventory) != {
         "journal_sha256",
         "journal_size",
@@ -1351,11 +1373,23 @@ def _verify_custody_inventory(
             expected_names.add(artifact_name)
         if expected_names != artifact_names or len(expected_names) != len(artifacts):
             raise StaticCnfEngineError("artifact inventory is not exact")
+        cnf_artifacts = [
+            item for item in artifacts if item["sha256"] == expected_cnf_sha256
+        ]
+        if len(cnf_artifacts) != 1:
+            raise StaticCnfEngineError(
+                "authenticated CNF artifact must be present exactly once"
+            )
         for item in artifacts:
+            maximum = (
+                max_cnf_bytes if item["sha256"] == expected_cnf_sha256 else 64 << 20
+            )
+            if item["size"] > maximum:
+                raise StaticCnfEngineError("archived artifact exceeds its byte bound")
             payload, identity = _capture_at(
                 artifact_fd,
                 item["sha256"],
-                maximum=64 << 20,
+                maximum=maximum,
                 label="archived artifact",
             )
             if (item["sha256"], item["size"], item["device"], item["inode"]) != (
