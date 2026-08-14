@@ -395,7 +395,7 @@ def _validate_entries(
     if not isinstance(entries, list) or len(entries) != len(records):
         raise TerminalBankGenerationError("terminal-bank entry count drifted")
     try:
-        _, bound_jobs, _ = terminal._exact12_source_modules(repo_root)
+        _, bound_jobs, _, _, _ = terminal._exact12_source_modules(repo_root)
         instance = bound_jobs.materialize_cell(summary["cell_index"]).instance
     except Exception as exc:
         raise TerminalBankGenerationError(

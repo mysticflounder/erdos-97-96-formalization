@@ -473,7 +473,7 @@ def _terminal_bank_manifest(entries: Sequence[Mapping[str, Any]]) -> dict[str, A
     return {**body, "manifest_sha256": _canonical_json_sha256(body)}
 
 
-def _exact12_source_modules(repo_root: Path) -> tuple[Any, Any, Any]:
+def _exact12_source_modules(repo_root: Path) -> tuple[Any, Any, Any, Any, Any]:
     """Load the canonical exact-12 builders from the selected source tree."""
 
     repo_root = repo_root.resolve()
@@ -482,25 +482,27 @@ def _exact12_source_modules(repo_root: Path) -> tuple[Any, Any, Any]:
         sys.path.insert(0, root_text)
     try:
         from census.card_head import exact12_v14_bound_jobs as bound_jobs
+        from census.card_head import exact12_v14_journal_migrate as journal_migrate
         from census.card_head import exact12_v14_schedule as schedule
+        from census.card_head import exact12_v14_source_order_bank as source_order_bank
         from census.card_head import exact12_v14_structural_cegar as structural
     except ImportError as exc:
         raise TerminalRupSourceError(
             "cannot load the canonical exact-12 source modules"
         ) from exc
-    for module in (schedule, bound_jobs, structural):
+    for module in (schedule, bound_jobs, structural, source_order_bank, journal_migrate):
         module_file = getattr(module, "__file__", None)
         if module_file is None or not Path(module_file).resolve().is_relative_to(repo_root):
             raise TerminalRupSourceError(
                 "canonical exact-12 module was loaded outside the selected repository"
             )
-    return schedule, bound_jobs, structural
+    return schedule, bound_jobs, structural, source_order_bank, journal_migrate
 
 
 def _canonical_materialization(repo_root: Path, job: Mapping[str, Any]) -> Any:
     """Rebuild and validate the bound job without trusting run metadata."""
 
-    schedule, bound_jobs, _ = _exact12_source_modules(repo_root)
+    schedule, bound_jobs, _, _, _ = _exact12_source_modules(repo_root)
     try:
         manifest = schedule.build_manifest(repo_root.resolve())
         return bound_jobs.instantiate_validated_bound_job(
@@ -519,17 +521,56 @@ def _semantic_replay_structural_journal(
     *,
     summary: Mapping[str, Any],
 ) -> frozenset[tuple[int, ...]]:
-    """Derive and install every journal cut through the detector replay."""
+    """Derive and install every journal cut from an immutable source snapshot.
 
-    _, _, structural = _exact12_source_modules(repo_root)
+    The replay never reopens repository paths: every detector and Lean source
+    named by the authenticated contract is read exactly once into memory,
+    verified against the summary manifest, recompiled into the source-order
+    bank from only those bytes, and reattested after the replay completes.
+    """
+
+    _, _, structural, source_order_bank, journal_migrate = _exact12_source_modules(
+        repo_root
+    )
+    detector_manifest = summary.get("detector_contract_manifest")
+    if not isinstance(detector_manifest, list) or not detector_manifest:
+        raise TerminalRupSourceError(
+            "structural summary omitted its detector contract manifest"
+        )
+    try:
+        live_bank = source_order_bank.build_source_order_bank(repo_root, instance)
+        snapshot_manifest = journal_migrate._merge_source_manifests(
+            detector_manifest,
+            live_bank["detector_manifest"],
+            live_bank["lean_source_manifest"],
+        )
+        authenticated_sources = journal_migrate._authenticated_source_bytes(
+            repo_root, snapshot_manifest
+        )
+        snapshot_bank = (
+            source_order_bank.build_source_order_bank_from_authenticated_sources(
+                instance, authenticated_sources
+            )
+        )
+    except TerminalRupSourceError:
+        raise
+    except (KeyError, OSError, TypeError, ValueError) as exc:
+        raise TerminalRupSourceError(
+            "cannot snapshot the authenticated semantic replay sources"
+        ) from exc
+    if _canonical_json_sha256(snapshot_bank) != _canonical_json_sha256(live_bank):
+        raise TerminalRupSourceError(
+            "source-order bank snapshot drifted from the live rebuild"
+        )
     try:
         count, terminal_record, replayed = structural.replay_journal(
-            repo_root,
+            None,
             instance,
             journal_path,
             job_sha256=summary["job_sha256"],
             detector_contract_sha256=summary["detector_contract_sha256"],
             cell_index=summary["cell_index"],
+            source_order_bank=snapshot_bank,
         )
     except (KeyError, OSError, TypeError, ValueError) as exc:
         raise TerminalRupSourceError(
@@ -542,6 +583,12 @@ def _semantic_replay_structural_journal(
         raise TerminalRupSourceError(
             "semantic journal replay record count or chain head drifted"
         )
+    try:
+        journal_migrate._authenticated_source_bytes(repo_root, snapshot_manifest)
+    except (KeyError, OSError, TypeError, ValueError) as exc:
+        raise TerminalRupSourceError(
+            "authenticated replay sources drifted during semantic replay"
+        ) from exc
     return replayed
 
 

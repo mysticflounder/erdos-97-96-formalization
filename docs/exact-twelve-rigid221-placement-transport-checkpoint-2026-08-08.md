@@ -591,6 +591,27 @@ throughout replay.  This does not invalidate retained nonterminal journals or
 prevent a fresh search wave; it blocks only terminal publication through the
 current postprocessor.
 
+Resolution (2026-08-13): the postprocessor semantic replay no longer opens
+repository paths.  In both replay rounds it now builds the proof-backed
+source-order bank twice — once from the live tree and once from an immutable
+in-memory snapshot of every source named by the authenticated detector
+contract and the frozen bank source manifests — requires canonical equality,
+and passes the snapshot bank with an explicitly absent repository root into
+`replay_journal`, so any replay code path that attempts a live source read
+fails closed.  The snapshot bytes are verified against the authenticated
+manifests immediately before each replay and reattested after it completes,
+so a concurrent source edit during either replay round aborts publication
+instead of silently changing replay semantics.  Two regression tests cover
+the no-repository replay wiring and the mid-replay drift abort.  Remaining
+trust boundary, stated exactly: the exact-12 Python modules are still imported
+once from the live tree, with byte attestation covering only the files the
+detector contract names; the schedule and bound-job materialization is
+validated at time of use by the authenticated job's exact DIMACS digest; and
+a same-UID process that mutates and exactly restores a source inside one
+attestation window remains outside this defense, as already conceded for the
+journal migrator.  This resolves the promotion blocker recorded above.  It
+produces no terminal artifact by itself.
+
 The next production target is therefore:
 
 1. land the three new checked source-order predicates, their exact Python
@@ -603,11 +624,11 @@ The next production target is therefore:
 4. inspect iteration-limit tails only for recurring generalized predicates
    with a source-level Lean entitlement, rather than mining exact-assignment
    blockers;
-5. if a cell reaches `UNSAT_DRAT_VERIFIED`, first require the terminal
-   postprocessor TOCTOU hardening, then run the standalone bank materializer
-   and generate the exact compact-RUP and DIMACS equality inputs required to
-   obtain a checked `DimacsUnsatisfiable` theorem for that exact full terminal
-   formula;
+5. if a cell reaches `UNSAT_DRAT_VERIFIED`, run the standalone bank
+   materializer and generate the exact compact-RUP and DIMACS equality inputs
+   required to obtain a checked `DimacsUnsatisfiable` theorem for that exact
+   full terminal formula (the previously prerequisite terminal postprocessor
+   TOCTOU hardening landed 2026-08-13; see the resolution paragraph above);
 6. extend successful terminal production to every required cell in the frozen
    648-coordinate schedule;
 7. choose the scalable all-cell serialization/equality form—generated per-cell

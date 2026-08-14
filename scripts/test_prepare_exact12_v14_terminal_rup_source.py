@@ -622,9 +622,13 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.repo_root = Path(subject.__file__).resolve().parents[1]
-        cls.schedule, cls.bound_jobs, cls.structural = subject._exact12_source_modules(
-            cls.repo_root
-        )
+        (
+            cls.schedule,
+            cls.bound_jobs,
+            cls.structural,
+            cls.source_order_bank,
+            cls.journal_migrate,
+        ) = subject._exact12_source_modules(cls.repo_root)
         manifest = cls.schedule.build_manifest(cls.repo_root)
         cls.job = cls.bound_jobs.build_bound_job(manifest, cls.repo_root, 0)
 
@@ -945,6 +949,69 @@ class PrepareExact12TerminalRupSourceIntegrationTest(unittest.TestCase):
                     workdir, root / "source", command_runner=runner
                 )
             self.assertEqual(runner.calls, 0)
+
+    def test_real_semantic_replay_never_reopens_repository_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, formula, _ = self._write_real_workdir(root, structural=True)
+            runner = DynamicFakeDratTrim()
+            output = root / "source"
+            real_replay_journal = self.structural.replay_journal
+            observed: list[tuple[object, object]] = []
+
+            def observing_replay_journal(repo_root, instance, journal_path, **kwargs):
+                observed.append((repo_root, kwargs.get("source_order_bank")))
+                return real_replay_journal(
+                    repo_root, instance, journal_path, **kwargs
+                )
+
+            with mock.patch.object(
+                self.structural, "replay_journal", side_effect=observing_replay_journal
+            ):
+                receipt = subject.prepare_terminal_rup_source(
+                    workdir, output, command_runner=runner
+                )
+            self.assertEqual(len(observed), 2)
+            for observed_root, observed_bank in observed:
+                self.assertIsNone(observed_root)
+                self.assertIsNotNone(observed_bank)
+            self.assertEqual(runner.calls, 1)
+            self.assertIsNotNone(receipt["terminal_record_sha256"])
+            self.assertEqual((output / "terminal.cnf").read_bytes(), formula)
+
+    def test_real_replay_source_drift_during_replay_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            workdir, _, _ = self._write_real_workdir(root, structural=True)
+            runner = DynamicFakeDratTrim()
+            real_source_bytes = self.journal_migrate._authenticated_source_bytes
+            calls = {"count": 0}
+
+            def drifting_source_bytes(repo_root, manifest):
+                calls["count"] += 1
+                if calls["count"] == 2:
+                    raise self.journal_migrate.JournalMigrationError(
+                        "authenticated source changed during replay: simulated"
+                    )
+                return real_source_bytes(repo_root, manifest)
+
+            with (
+                mock.patch.object(
+                    self.journal_migrate,
+                    "_authenticated_source_bytes",
+                    side_effect=drifting_source_bytes,
+                ),
+                self.assertRaisesRegex(
+                    subject.TerminalRupSourceError,
+                    "drifted during semantic replay",
+                ),
+            ):
+                subject.prepare_terminal_rup_source(
+                    workdir, root / "source", command_runner=runner
+                )
+            self.assertEqual(calls["count"], 2)
+            self.assertEqual(runner.calls, 0)
+            self.assertFalse((root / "source").exists())
 
     def test_real_structural_rejects_alternate_dimacs_rendering_before_checker(
         self,
