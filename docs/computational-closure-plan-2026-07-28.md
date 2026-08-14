@@ -1997,6 +1997,28 @@ mine result must not seed a successor formula without its own
 source-proved membership family.  No successor formula, twelve-cell
 run, or new wave is authorized by this result.
 
+The mandatory all-order theorem mine over exactly this run's data is
+complete.  The v23-frozen outcome validator
+(`exact12_next_row_arm_static_v23_validator.py`, committed `c693c39a`
+with its full adversarial test suite) authenticated the preserved
+workdir, and the v4 all-order miner replayed the survivor across all 48
+source orders.  Every order is covered by the
+`convex-five-point-common-orientation` rule (24 forward, 24 reverse).
+Seven order-independent common-five cores replay across all 48
+orientations; the coverage certificate uses one dominant core
+`a=1, b=7, c=6, x=9, y=11` for all 48 orders, structurally new against
+every banked family because it involves center 1.  Its positive
+memberships are: center 6 requires {7, 9, 11}; centers 9 and 11 each
+require {1, 7}.  The mining summary and diagnostic certificate (SHA-256
+`c43578c83acc086bdbb32db086a26e479ad1f1c5f29424326d76a8062d1d6550`)
+are preserved in the canary workdir.  The certificate has no generated
+Lean nogood: this is an authenticated finite diagnostic, not a
+proof-backed cut, coverage, or closure.  The next admissible production
+step on this lane is a source-clean Lean producer for the dominant
+core's positive-membership family; only after that family is proved,
+banked, and pinned may a successor formula be compiled.  No successor
+formula, canary, or wave is authorized by this mine.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
