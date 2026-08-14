@@ -1329,6 +1329,9 @@ theorem exists_repeatedBlockerCap_pair_outcome
   · exact Or.inr (Or.inr (Or.inr (Or.inl hzwSurvives)))
   · exact Or.inr (Or.inr (Or.inr (Or.inr hwzSurvives)))
 
+set_option maxHeartbeats 5000000 in
+-- The explicit orientation split is kernel-checked but exceeds the default
+-- heartbeat budget while elaborating all 2^6 branches.
 /-- A four-vertex directed graph with at least two outgoing non-edges at
 every vertex contains a mutually missing pair.  Keeping this closed finite
 kernel separate makes the geometric lift below independent of a hand-written
@@ -1339,7 +1342,56 @@ private theorem finFour_exists_mutualFalse_of_row_card_le_two :
       (∀ i, (Finset.univ.filter fun j ↦ contains i j).card ≤ 2) →
       ∃ i j : Fin 4,
         i ≠ j ∧ contains i j = false ∧ contains j i = false := by
-  native_decide
+  intro contains hself hbound
+  have hno_two (i j k : Fin 4) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
+      ¬ (contains i j = true ∧ contains i k = true) := by
+    intro h
+    have hsub : ({i, j, k} : Finset (Fin 4)) ⊆
+        Finset.univ.filter (fun x ↦ contains i x = true) := by
+      intro x hx
+      have hx' : x = i ∨ x = j ∨ x = k := by
+        simpa only [Finset.mem_insert, Finset.mem_singleton] using hx
+      rcases hx' with hxi | hxj | hxk
+      · subst x
+        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+        exact hself i
+      · subst x
+        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+        exact h.1
+      · subst x
+        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+        exact h.2
+    have hcard : ({i, j, k} : Finset (Fin 4)).card ≤ 2 :=
+      (Finset.card_le_card hsub).trans (hbound i)
+    have hthree : ({i, j, k} : Finset (Fin 4)).card = 3 := by
+      simp [hij, hik, hjk]
+    omega
+  by_contra h
+  have hpair (i j : Fin 4) (hij : i ≠ j) :
+      contains i j = true ∨ contains j i = true := by
+    by_contra hp
+    push_neg at hp
+    exact h ⟨i, j, hij, Bool.eq_false_of_not_eq_true hp.1,
+      Bool.eq_false_of_not_eq_true hp.2⟩
+  have h012 := hno_two 0 1 2 (by decide) (by decide) (by decide)
+  have h013 := hno_two 0 1 3 (by decide) (by decide) (by decide)
+  have h023 := hno_two 0 2 3 (by decide) (by decide) (by decide)
+  have h102 := hno_two 1 0 2 (by decide) (by decide) (by decide)
+  have h103 := hno_two 1 0 3 (by decide) (by decide) (by decide)
+  have h123 := hno_two 1 2 3 (by decide) (by decide) (by decide)
+  have h201 := hno_two 2 0 1 (by decide) (by decide) (by decide)
+  have h203 := hno_two 2 0 3 (by decide) (by decide) (by decide)
+  have h213 := hno_two 2 1 3 (by decide) (by decide) (by decide)
+  have h301 := hno_two 3 0 1 (by decide) (by decide) (by decide)
+  have h302 := hno_two 3 0 2 (by decide) (by decide) (by decide)
+  have h312 := hno_two 3 1 2 (by decide) (by decide) (by decide)
+  rcases hpair 0 1 (by decide) with h01 | h10 <;>
+    rcases hpair 0 2 (by decide) with h02 | h20 <;>
+    rcases hpair 0 3 (by decide) with h03 | h30 <;>
+    rcases hpair 1 2 (by decide) with h12 | h21 <;>
+    rcases hpair 1 3 (by decide) with h13 | h31 <;>
+    rcases hpair 2 3 (by decide) with h23 | h32 <;>
+    aesop
 
 /-- If none of the four sources in a source-faithful deletion fan uses the
 row center itself as its canonical blocker, two sources mutually omit one
