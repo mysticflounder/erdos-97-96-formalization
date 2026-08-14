@@ -140,8 +140,21 @@ clause 1 as already parent-subsumed and suffix clause 3 as the nonredundant
 clause that rejects the authenticated Child44 model.  The immutable export
 receipt is `scratch/exact17-lean-to-sat/child45-export-receipt.json`, SHA-256
 `fd12b39d26f9fbe82f9e06edad9d7183b3af5b9b4c8cad1fa7ae2fa3f032e8a3`.
-The next gate is a fresh authenticated static PIQD child rooted at these exact
-bytes, followed by the ordered thirteen-cell assumption campaign.
+That static gate is now complete.  Immutable PIQD job
+`8726dcec-978e-4fdc-8ca0-c33d14197c81` returned one authenticated total `SAT`
+assignment for these exact Child45 bytes.  The canonical recovered output
+envelope has SHA-256
+`8c5f1b07fa911fdfc770ae3ee9be5001a264b064f9d8c9b1cdd290dc05da2253`;
+independent replay accepts all 5,848,824 clauses and the source semantics.
+
+The model is exactly Kalmanson-infeasible.  Its weight-one certificate uses
+`innerOuter (0,1,4,8)` and `adjacentSides (0,4,5,13)` in selected-order
+coordinates.  The checked occurrence, four guarded clauses, source-assignment
+bridge, extended-CNF evaluator, and conditional terminal adapter are banked in
+`BlockerVExactSeventeenFortyFifthModelRefinements.lean`.  They extend Child45
+to 5,848,828 clauses, but no serial Child46 submission is authorized from that
+fact alone.  The next production gate is the ordered thirteen-cell assumption
+campaign on the authenticated Child45 root.
 
 ## Coverage and terminal composition
 
@@ -169,3 +182,18 @@ canonicalization must be authenticated explicitly.  The first framework canary
 should instead use the manifest's deterministic conflict budget across a small
 parallel subset, including cell `next-center-15`, which is the canonical
 Child44 positive fixture.
+
+## Bounded-strategy stop rule
+
+The thirteen cells are the final bounded test of the current Kalmanson-only
+refinement strategy.  Every `SAT` cell still receives complete source replay
+and exact Kalmanson analysis.  If all accepted `SAT` cells are
+Kalmanson-infeasible, their source-valid certificates may be banked together
+in one successor and the cells rerun once.  The campaign must not revert to a
+serial one-model/one-child loop.
+
+If any accepted cell is Kalmanson-feasible, or if a cell remains `SAT` after
+that single batched refinement, the next consumer must use a stronger
+Euclidean realizability condition (initially EDM/Schoenberg or Ptolemy/centered
+Gram constraints) or a uniform source-level producer.  Additional
+Kalmanson-only children are then out of scope for this campaign.
