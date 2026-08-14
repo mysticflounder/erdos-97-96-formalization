@@ -100,3 +100,13 @@ survivor, descriptor, receipt, custody, journal, solver, model, and result
 cross-bindings. Supplying `--repo-root` additionally rehashes current source
 files and therefore exposes provenance drift; it does not silently replace the
 preserved manifest.
+
+The v23-frozen sibling validator
+(`exact12_next_row_arm_static_v23_validator.py`) validates one v11 arm-static
+canary outcome against the frozen v23 identities (prefix 45,489 variables and
+646,103 clauses, post-arm 646,970 clauses, final 647,051 clauses), the v2
+discovery descriptor, the nineteen-family bank inventory, and the two frozen
+v11 promotion fields (`lean_ingress_theorem`, `terminal_promotion_status`).
+Its adversarial test suite carries over every v22 symlink, hardlink, tamper,
+and custody case. Its result is a finite diagnostic and supports no coverage
+or closure claim.
