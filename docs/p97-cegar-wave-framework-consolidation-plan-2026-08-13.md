@@ -348,6 +348,47 @@ evidence through the rollback window, and rescan the authenticated inventory
 before any separately reviewed source removal or purge. No automatic deletion
 is permitted.
 
+### Child45 native data-only registration — 2026-08-14
+
+Child45 now uses the same declarative boundary as Child40. Four canonical data
+records under `census/p97_search/waves/exact17/child45/` bind its closed
+semantic profile, static producer, wave manifest, and v4 data-only control. The
+package reuses Child40's complete 308-entry variable map by exact path, byte
+count, and SHA-256; it does not duplicate that map and adds no Child45-specific
+Python runner, exporter, validator script, or shell gate.
+
+The closed `exact17-child45` validator authenticates exactly seven retained
+single-link artifacts totaling 583,428,488 bytes: the 5,848,820-clause Child44
+parent, the 5,848,824-clause Child45 child, the authenticated Child44 SAT model
+and final custody record, the immutable Child45 export receipt, and the exact
+Lean root/export sources. Its immutable source authority pins the complete
+profile plus all seven artifact digests. Offline replay independently checks
+the byte-identical parent prefix, ordered four-clause suffix SHA-256
+`7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590`,
+parent-subsumed suffix index 1, model-rejected suffix index 3, total parent SAT
+replay, one-core/process completion custody, receipt/Lean paths and hashes, and
+all final cross-bindings.
+
+The canonical profile, producer, wave, and control SHA-256 values are
+`596c27ccfa4fcc0156fc8aec10a38294e07e70f16c33129e7e16af0788ed37cf`,
+`f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a`,
+`b6348262596549529f8b506d0c235586409b88beecb622216f66f31a37061a26`,
+and `0ab189b9dc6a7b43be7fab12deb34682d9f0b40e9f014bbeb92c25d7a52c7fe1`.
+The v4 control has an empty retained-hardlink exception map and resolves only
+the shared data-only capabilities `plan`, `status`, and `validate-ingress`.
+It cannot run or validate an execution output.
+
+This checkpoint authenticates preserved finite evidence only. It does not open
+a PIQD session, run a solver, promote a theorem, or authorize cleanup. The next
+step is a separately reviewed executable v2 control through the existing
+generic CLI, followed by one static child run; no parallel per-wave wrapper is
+permitted. The final shared gate passed 315 tests with one environment-dependent
+retained-artifact skip, Ruff lint clean, all 23 scoped files format-clean, and
+an independent adversarial audit PASS. Cleanup stays last: retain both data
+packages and legacy evidence until exact zero-caller/zero-writer inventory,
+immutable archive, rollback, and move-only quarantine gates pass under a
+separately reviewed plan digest.
+
 ### Exact17 frozen shadow checkpoint — 2026-08-14
 
 The hardened comparator was run offline against the preserved Child38 and

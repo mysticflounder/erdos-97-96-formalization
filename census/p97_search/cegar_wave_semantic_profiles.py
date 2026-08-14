@@ -3,7 +3,7 @@
 The profile is a small, canonical control record.  It describes a finite,
 offline check and selects a validator from a closed registry; it never names a
 Python import or a callable.  Validators consume captured bytes, so they do
-not reopen legacy paths or invoke the Child40 exporter/runner.
+not reopen legacy paths or invoke a wave-specific exporter/runner.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from .phase3_cegar_wave import canonical_json_bytes
 
 PROFILE_SCHEMA = "p97-static-cnf-semantic-profile/v1"
 EXACT17_CHILD40 = "exact17-child40"
+EXACT17_CHILD45 = "exact17-child45"
 FINITE_SCOPE = "finite"
 OFFLINE_MODE = "offline"
 RETAIN = "RETAIN"
@@ -47,13 +48,20 @@ _CLEANUP_KEYS = frozenset({"cleanup_eligible", "lifecycle"})
 _METADATA_KEYS = frozenset(
     {"schema", "profile_id", "validator", "classification", "cleanup"}
 )
-_PROFILE_IDS = frozenset({"exact17-child40"})
+_PROFILE_VALIDATORS = {
+    EXACT17_CHILD40: EXACT17_CHILD40,
+    EXACT17_CHILD45: EXACT17_CHILD45,
+}
+_PROFILE_IDS = frozenset(_PROFILE_VALIDATORS)
 _CONTRACT_KEYS = frozenset(
     {"parent", "child", "model", "ordered_suffix_sha256", "schemas", "artifact_roles"}
 )
 _DIMACS_KEYS = frozenset({"sha256", "variables", "clauses"})
 _MODEL_KEYS = frozenset({"sha256", "job_id"})
-_SCHEMA_KEYS = frozenset({"model", "receipt", "ingress"})
+_SCHEMA_KEYS = {
+    EXACT17_CHILD40: frozenset({"model", "receipt", "ingress"}),
+    EXACT17_CHILD45: frozenset({"model", "receipt", "final", "validation"}),
+}
 _REQUIRED_CHILD40_ARTIFACTS = frozenset(
     {
         "parent_cnf",
@@ -67,6 +75,85 @@ _REQUIRED_CHILD40_ARTIFACTS = frozenset(
         "lean_export",
     }
 )
+_REQUIRED_CHILD45_ARTIFACTS = frozenset(
+    {
+        "parent_cnf",
+        "child_cnf",
+        "model",
+        "final",
+        "export_receipt",
+        "lean_root",
+        "lean_export",
+    }
+)
+
+
+@dataclass(frozen=True)
+class _Child45Authority:
+    profile_bytes: bytes
+    artifact_sha256: tuple[tuple[str, str], ...]
+
+
+# Child45 is a source-authoritative closed profile.  The full profile and every
+# retained artifact digest are pinned here, rather than allowing a caller to
+# re-hash another seven-file packet under the same validator name.  Tests may
+# replace this private record with a small internally consistent fixture.
+_EXACT17_CHILD45_AUTHORITY_VALUE: dict[str, Any] = {
+    "profile": {
+        "schema": PROFILE_SCHEMA,
+        "profile_id": EXACT17_CHILD45,
+        "validator": EXACT17_CHILD45,
+        "classification": {"scope": FINITE_SCOPE, "mode": OFFLINE_MODE},
+        "control": {
+            "domain_kind": "STATIC_CNF",
+            "query_polarity": "SAT_MEANS_COUNTEREXAMPLE",
+            "cnf_sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+            "variables": 308,
+            "clauses": 5_848_824,
+        },
+        "cleanup": {"cleanup_eligible": False, "lifecycle": RETAIN},
+        "contract": {
+            "parent": {
+                "sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+                "variables": 308,
+                "clauses": 5_848_820,
+            },
+            "child": {
+                "sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+                "variables": 308,
+                "clauses": 5_848_824,
+            },
+            "model": {
+                "sha256": "2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a",
+                "job_id": "f717c352-2456-412a-ae45-d910f47d3e94",
+            },
+            "ordered_suffix_sha256": "7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590",
+            "schemas": {
+                "model": "p97-exact17-child44-piqd-model/v3",
+                "receipt": "p97-exact17-child45-immutable-export-receipt/v1",
+                "final": "p97-exact17-child44-piqd-final/v2",
+                "validation": "p97-exact17-child45-export-validation/v1",
+            },
+            "artifact_roles": sorted(_REQUIRED_CHILD45_ARTIFACTS),
+        },
+    },
+    "artifacts": {
+        "parent_cnf": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+        "child_cnf": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+        "model": "2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a",
+        "final": "b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa",
+        "export_receipt": "fd12b39d26f9fbe82f9e06edad9d7183b3af5b9b4c8cad1fa7ae2fa3f032e8a3",
+        "lean_root": "f9238553222414f52c2282ccdda7764506e69aef4eca710263d7bd6930b6d7f2",
+        "lean_export": "d2eb848ccd9ca3138d3bc97c35dee2f51f7546edfefed54104a21bd84b18ba38",
+    },
+}
+_EXACT17_CHILD45_AUTHORITY = _Child45Authority(
+    profile_bytes=canonical_json_bytes(_EXACT17_CHILD45_AUTHORITY_VALUE["profile"]),
+    artifact_sha256=tuple(
+        sorted(_EXACT17_CHILD45_AUTHORITY_VALUE["artifacts"].items())
+    ),
+)
+del _EXACT17_CHILD45_AUTHORITY_VALUE
 
 
 class SemanticProfileError(ValueError):
@@ -165,7 +252,7 @@ def validate_profile_payload(payload: Mapping[str, Any]) -> SemanticProfile:
     if profile_id not in _PROFILE_IDS:
         _fail(f"unknown semantic profile id: {profile_id}")
     validator = _string(profile["validator"], "profile.validator")
-    if validator != EXACT17_CHILD40:
+    if validator != _PROFILE_VALIDATORS[profile_id]:
         _fail(f"unknown semantic-profile validator: {validator}")
 
     classification = _exact_keys(
@@ -201,7 +288,9 @@ def validate_profile_payload(payload: Mapping[str, Any]) -> SemanticProfile:
     _sha(model["sha256"], "contract.model.sha256")
     _string(model["job_id"], "contract.model.job_id")
     _sha(contract["ordered_suffix_sha256"], "contract.ordered_suffix_sha256")
-    schemas = _exact_keys(contract["schemas"], _SCHEMA_KEYS, "contract.schemas")
+    schemas = _exact_keys(
+        contract["schemas"], _SCHEMA_KEYS[validator], "contract.schemas"
+    )
     for key, value in schemas.items():
         _string(value, f"contract.schemas.{key}")
     roles = contract["artifact_roles"]
@@ -211,19 +300,24 @@ def validate_profile_payload(payload: Mapping[str, Any]) -> SemanticProfile:
         or any(type(role) is not str for role in roles)
     ):
         _fail("contract.artifact_roles must be a nonempty string list")
-    if len(set(roles)) != len(roles) or set(roles) != _REQUIRED_CHILD40_ARTIFACTS:
-        _fail("Child40 artifact role inventory is not the exact authenticated set")
+    required_artifacts = (
+        _REQUIRED_CHILD40_ARTIFACTS
+        if validator == EXACT17_CHILD40
+        else _REQUIRED_CHILD45_ARTIFACTS
+    )
+    if len(set(roles)) != len(roles) or set(roles) != required_artifacts:
+        _fail("artifact role inventory is not the exact authenticated set")
     if (
         parent["variables"] != child["variables"]
         or child["clauses"] < parent["clauses"]
     ):
-        _fail("Child40 dimensions are inconsistent")
+        _fail("profile dimensions are inconsistent")
     if (
         control["cnf_sha256"] != child["sha256"]
         or control["variables"] != child["variables"]
         or control["clauses"] != child["clauses"]
     ):
-        _fail("control is not bound to the Child40 CNF")
+        _fail("control is not bound to the profile CNF")
     return SemanticProfile(dict(profile))
 
 
@@ -236,7 +330,7 @@ def validate_profile_metadata(metadata: Mapping[str, Any]) -> dict[str, Any]:
     profile_id = _string(value["profile_id"], "profile metadata.profile_id")
     if profile_id not in _PROFILE_IDS:
         _fail(f"unknown semantic profile id: {profile_id}")
-    if value["validator"] != EXACT17_CHILD40:
+    if value["validator"] != _PROFILE_VALIDATORS[profile_id]:
         _fail("profile metadata validator drifted")
     classification = _exact_keys(
         value["classification"], _CLASSIFICATION_KEYS, "profile metadata classification"
@@ -336,6 +430,14 @@ def _path_record(
 ) -> None:
     if type(value) is not dict or set(value) != {"path", "sha256"}:
         _fail(f"{label} is not an exact path/hash record")
+    path = value["path"]
+    if (
+        type(path) is not str
+        or not path
+        or not os.path.isabs(path)
+        or os.path.normpath(path) != path
+    ):
+        _fail(f"{label} path must be an absolute normalized builtin string")
     if capture.path is not None and value["path"] != str(capture.path):
         _fail(f"{label} path crossed the captured artifact")
     if value["sha256"] != (digest or capture.digest):
@@ -346,13 +448,18 @@ def _dimacs(data: bytes, label: str) -> tuple[bytes, list[bytes], int, int]:
     lines = data.splitlines(keepends=True)
     if not lines or not lines[0].endswith(b"\n"):
         _fail(f"{label} has no bounded DIMACS header")
-    fields = lines[0][:-1].decode("ascii", "strict").split()
+    try:
+        fields = lines[0][:-1].decode("ascii", "strict").split()
+    except UnicodeDecodeError:
+        _fail(f"{label} has a non-ASCII DIMACS header")
     if len(fields) != 4 or fields[:2] != ["p", "cnf"]:
         _fail(f"{label} has a malformed DIMACS header")
     try:
         variables, clauses = int(fields[2]), int(fields[3])
     except ValueError:
         _fail(f"{label} has non-integer dimensions")
+    if lines[0] != f"p cnf {variables} {clauses}\n".encode("ascii"):
+        _fail(f"{label} has a noncanonical DIMACS header")
     if variables <= 0 or clauses <= 0 or len(lines[1:]) != clauses:
         _fail(f"{label} clause count drifted")
     for line in lines[1:]:
@@ -365,6 +472,12 @@ def _dimacs(data: bytes, label: str) -> tuple[bytes, list[bytes], int, int]:
             _fail(f"{label} has a non-integer literal")
         if any(literal == 0 or abs(literal) > variables for literal in literals):
             _fail(f"{label} has an out-of-range literal")
+        canonical = (
+            ((" ".join(str(literal) for literal in literals) + " ") if literals else "")
+            + "0\n"
+        ).encode("ascii")
+        if line != canonical:
+            _fail(f"{label} has a noncanonical DIMACS clause")
     return lines[0], lines[1:], variables, clauses
 
 
@@ -589,7 +702,346 @@ def _validate_child40(
     }
 
 
-_VALIDATORS = {EXACT17_CHILD40: _validate_child40}
+def _clause_literals(line: bytes, label: str) -> tuple[int, ...]:
+    try:
+        values = tuple(int(token) for token in line[:-1].split())
+    except ValueError:
+        _fail(f"{label} has a non-integer literal")
+    if not values or values[-1] != 0:
+        _fail(f"{label} has a malformed terminator")
+    return values[:-1]
+
+
+def _total_assignment(
+    value: object, variables: int, label: str
+) -> tuple[list[int], dict[int, bool]]:
+    if (
+        type(value) is not list
+        or len(value) != variables
+        or any(
+            type(literal) is not int or literal == 0 or abs(literal) > variables
+            for literal in value
+        )
+        or {abs(literal) for literal in value} != set(range(1, variables + 1))
+    ):
+        _fail(f"{label} is not a total signed assignment")
+    return value, {abs(literal): literal > 0 for literal in value}
+
+
+def _validate_child45(
+    profile: SemanticProfile,
+    artifacts: Mapping[str, CapturedBytes | bytes | CaptureLike],
+) -> dict[str, Any]:
+    if type(artifacts) is not dict:
+        _fail("captured artifacts must be an exact builtin dict")
+    authority = _EXACT17_CHILD45_AUTHORITY
+    if type(authority) is not _Child45Authority:
+        _fail("Child45 validator authority is malformed")
+    if canonical_json_bytes(profile.payload) != authority.profile_bytes:
+        _fail("Child45 profile crossed the source-authoritative identity")
+    contract = profile.payload["contract"]
+    roles = set(contract["artifact_roles"])
+    if set(artifacts) != roles:
+        _fail("captured artifact inventory crossed the profile")
+    captured = {role: _captured(value, role) for role, value in artifacts.items()}
+    if any(capture.path is None for capture in captured.values()):
+        _fail("Child45 retained artifacts require exact captured paths")
+    expected_digests = dict(authority.artifact_sha256)
+    if (
+        type(expected_digests) is not dict
+        or set(expected_digests) != roles
+        or any(
+            capture.digest != expected_digests[role]
+            for role, capture in captured.items()
+        )
+    ):
+        _fail("Child45 retained artifact crossed the source-authoritative identity")
+
+    _parent_header, parent_lines, parent_vars, parent_clauses = _dimacs(
+        captured["parent_cnf"].data, "Child44 parent CNF"
+    )
+    _child_header, child_lines, child_vars, child_clauses = _dimacs(
+        captured["child_cnf"].data, "Child45 child CNF"
+    )
+    parent = contract["parent"]
+    child = contract["child"]
+    if (parent_vars, parent_clauses) != (parent["variables"], parent["clauses"]):
+        _fail("Child44 parent dimensions crossed profile")
+    if (child_vars, child_clauses) != (child["variables"], child["clauses"]):
+        _fail("Child45 child dimensions crossed profile")
+    if parent_lines != child_lines[:parent_clauses]:
+        _fail("Child45 does not preserve the exact Child44 parent prefix")
+    suffix = child_lines[parent_clauses:]
+    if (
+        not suffix
+        or len(set(suffix)) != len(suffix)
+        or hashlib.sha256(b"".join(suffix)).hexdigest()
+        != contract["ordered_suffix_sha256"]
+    ):
+        _fail("Child45 ordered suffix crossed profile")
+
+    model = _json_capture(captured["model"], "Child44 model")
+    if set(model) != {
+        "schema",
+        "job_id",
+        "cnf_sha256",
+        "manifest_sha256",
+        "completion_identity_hash",
+        "model",
+        "replay",
+    }:
+        _fail("Child44 model schema drifted")
+    model_contract = contract["model"]
+    if (
+        model["schema"] != contract["schemas"]["model"]
+        or model["job_id"] != model_contract["job_id"]
+        or model["cnf_sha256"] != parent["sha256"]
+        or captured["model"].digest != model_contract["sha256"]
+        or model["replay"] != {"clauses_checked": parent_clauses, "satisfies_all": True}
+    ):
+        _fail("Child44 model identity/replay drifted")
+    nested_model = model["model"]
+    if type(nested_model) is not dict or set(nested_model) != {
+        "assignment",
+        "backend",
+        "job_id",
+        "num_assigned",
+        "result",
+        "solver_profile",
+    }:
+        _fail("Child44 model result schema drifted")
+    if (
+        nested_model["backend"] != "cadical"
+        or nested_model["job_id"] != model_contract["job_id"]
+        or nested_model["num_assigned"] != parent_vars
+        or nested_model["result"] != "SAT"
+        or nested_model["solver_profile"] != "sat"
+    ):
+        _fail("Child44 model result drifted")
+    _assignment, truth = _total_assignment(
+        nested_model["assignment"], parent_vars, "Child44 model assignment"
+    )
+    for line in parent_lines:
+        literals = _clause_literals(line, "Child44 parent clause")
+        if not any(truth[abs(literal)] == (literal > 0) for literal in literals):
+            _fail("Child44 model does not satisfy the parent CNF")
+
+    final = _json_capture(captured["final"], "Child44 final custody")
+    if set(final) != {
+        "schema",
+        "job_id",
+        "result",
+        "model_sha256",
+        "next_gate",
+        "binding",
+        "model_replay",
+        "completion_status",
+        "stored_final",
+        "daemon",
+        "deciding_daemon_sha256",
+        "model_check",
+        "solver",
+        "solver_log",
+    }:
+        _fail("Child44 final custody schema drifted")
+    if (
+        final["schema"] != contract["schemas"]["final"]
+        or final["job_id"] != model_contract["job_id"]
+        or final["result"] != "SAT"
+        or final["model_sha256"] != model_contract["sha256"]
+        or final["next_gate"] != "mandatory_general_theorem_search"
+        or final["model_replay"]
+        != {"clauses_checked": parent_clauses, "satisfies_all": True}
+    ):
+        _fail("Child44 final custody identity drifted")
+    binding = final["binding"]
+    if type(binding) is not dict or set(binding) != {
+        "backend",
+        "cnf_sha256",
+        "identity_hash",
+        "manifest_sha256",
+        "march_timeout_s",
+        "project",
+        "requested_core_limit",
+        "solver_profile",
+        "timeout_s",
+    }:
+        _fail("Child44 final binding schema drifted")
+    if (
+        binding["backend"] != "cadical"
+        or binding["cnf_sha256"] != parent["sha256"]
+        or type(binding["requested_core_limit"]) is not int
+        or binding["requested_core_limit"] != 1
+        or binding["solver_profile"] != "sat"
+    ):
+        _fail("Child44 final parent binding drifted")
+    _sha(binding["identity_hash"], "Child44 final binding identity")
+    _sha(binding["manifest_sha256"], "Child44 final binding manifest")
+    completion = final["completion_status"]
+    if (
+        type(completion) is not dict
+        or completion.get("id") != model_contract["job_id"]
+        or completion.get("status") != "completed"
+        or completion.get("result") != "SAT"
+        or completion.get("backend") != "cadical"
+        or completion.get("cnf_blob_hash") != parent["sha256"]
+        or completion.get("producer_manifest_hash") != binding["manifest_sha256"]
+        or completion.get("producer_manifest_blob_hash") != binding["manifest_sha256"]
+        or completion.get("identity_hash") != binding["identity_hash"]
+        or completion.get("solver_profile") != "sat"
+        or type(completion.get("requested_core_limit")) is not int
+        or completion.get("requested_core_limit") != 1
+        or type(completion.get("attested_solver_processes")) is not int
+        or completion.get("attested_solver_processes") != 1
+        or completion.get("attestation_basis") != "SINGLE_PROCESS_NO_PARALLEL_FLAG"
+    ):
+        _fail("Child44 final completion custody drifted")
+    stored = final["stored_final"]
+    stored_producer = stored.get("producer_manifest") if type(stored) is dict else None
+    if (
+        type(stored) is not dict
+        or set(stored) != {"cnf", "producer_manifest"}
+        or stored["cnf"]
+        != {"bytes": len(captured["parent_cnf"].data), "sha256": parent["sha256"]}
+        or type(stored_producer) is not dict
+        or set(stored_producer) != {"bytes", "sha256"}
+        or type(stored_producer["bytes"]) is not int
+        or stored_producer["bytes"] <= 0
+        or stored_producer["sha256"] != binding["manifest_sha256"]
+    ):
+        _fail("Child44 final stored custody drifted")
+    if (
+        model["manifest_sha256"] != binding["manifest_sha256"]
+        or model["completion_identity_hash"] != binding["identity_hash"]
+    ):
+        _fail("Child44 model/final custody crossed")
+
+    suffix_literals = [
+        _clause_literals(line, "Child45 suffix clause") for line in suffix
+    ]
+    suffix_sets = [frozenset(clause) for clause in suffix_literals]
+    parent_subsumed: set[int] = set()
+    for line in parent_lines:
+        parent_set = frozenset(_clause_literals(line, "Child44 parent clause"))
+        for index, suffix_set in enumerate(suffix_sets, 1):
+            if parent_set <= suffix_set:
+                parent_subsumed.add(index)
+    rejected = [
+        index
+        for index, clause in enumerate(suffix_literals, 1)
+        if not any(truth[abs(literal)] == (literal > 0) for literal in clause)
+    ]
+    if set(rejected) & parent_subsumed:
+        _fail("Child45 authenticated model cut is parent-subsumed")
+
+    receipt = _json_capture(captured["export_receipt"], "Child45 export receipt")
+    if set(receipt) != {
+        "schema",
+        "status",
+        "publication_state",
+        "parent",
+        "model",
+        "final",
+        "lean",
+        "child",
+        "validation",
+        "immutability",
+    }:
+        _fail("Child45 export receipt schema drifted")
+    if (
+        receipt["schema"] != contract["schemas"]["receipt"]
+        or receipt["status"] != PASS
+        or receipt["publication_state"] != "PROVISIONED"
+        or receipt["immutability"] != "exclusive-hard-link-and-ledger-last-receipt/v2"
+    ):
+        _fail("Child45 export receipt status/policy drifted")
+    expected_parent = {
+        "path": str(captured["parent_cnf"].path),
+        "sha256": parent["sha256"],
+        "bytes": len(captured["parent_cnf"].data),
+        "clauses": parent_clauses,
+    }
+    expected_child = {
+        "path": str(captured["child_cnf"].path),
+        "sha256": child["sha256"],
+        "bytes": len(captured["child_cnf"].data),
+        "variables": child_vars,
+        "clauses": child_clauses,
+    }
+    expected_final = {
+        "path": str(captured["final"].path),
+        "sha256": captured["final"].digest,
+        "job_id": model_contract["job_id"],
+        "result": "SAT",
+    }
+    if receipt["parent"] != expected_parent or receipt["child"] != expected_child:
+        _fail("Child45 receipt DIMACS identity drifted")
+    _path_record(receipt["model"], captured["model"], "Child45 receipt model")
+    if receipt["final"] != expected_final:
+        _fail("Child45 receipt final identity drifted")
+    lean = receipt["lean"]
+    if type(lean) is not dict or set(lean) != {"root", "export"}:
+        _fail("Child45 Lean receipt shape drifted")
+    _path_record(lean["root"], captured["lean_root"], "Child45 Lean root")
+    _path_record(lean["export"], captured["lean_export"], "Child45 Lean export")
+    expected_validation = {
+        "schema": contract["schemas"]["validation"],
+        "status": PASS,
+        "parent_sha256": parent["sha256"],
+        "child_sha256": child["sha256"],
+        "parent_bytes": len(captured["parent_cnf"].data),
+        "child_bytes": len(captured["child_cnf"].data),
+        "variables": child_vars,
+        "parent_clauses": parent_clauses,
+        "new_clauses": len(suffix),
+        "child_clauses": child_clauses,
+        "ordered_suffix_sha256": contract["ordered_suffix_sha256"],
+        "parent_subsumed_suffix_indices": sorted(parent_subsumed),
+        "authenticated_model_rejected_suffix_indices": rejected,
+        "final": expected_final,
+    }
+    receipt_validation = receipt["validation"]
+    if type(receipt_validation) is not dict or set(receipt_validation) != set(
+        expected_validation
+    ):
+        _fail("Child45 receipt validation schema drifted")
+    for field in (
+        "parent_bytes",
+        "child_bytes",
+        "variables",
+        "parent_clauses",
+        "new_clauses",
+        "child_clauses",
+    ):
+        if type(receipt_validation[field]) is not int:
+            _fail(f"Child45 receipt validation {field} must be a builtin int")
+    for field in (
+        "parent_subsumed_suffix_indices",
+        "authenticated_model_rejected_suffix_indices",
+    ):
+        indices = receipt_validation[field]
+        if type(indices) is not list or any(
+            type(index) is not int for index in indices
+        ):
+            _fail(f"Child45 receipt validation {field} must be builtin ints")
+    if receipt_validation != expected_validation:
+        _fail("Child45 receipt validation drifted")
+    return {
+        "status": PASS,
+        "schema": PROFILE_SCHEMA,
+        "validator": profile.validator,
+        "classification": profile.payload["classification"],
+        "cleanup": profile.payload["cleanup"],
+        "cnf_sha256": child["sha256"],
+        "variables": child_vars,
+        "clauses": child_clauses,
+    }
+
+
+_VALIDATORS = {
+    EXACT17_CHILD40: _validate_child40,
+    EXACT17_CHILD45: _validate_child45,
+}
 
 
 def validate_semantic_profile(
@@ -617,6 +1069,7 @@ def validate_semantic_profile(
 
 __all__ = [
     "EXACT17_CHILD40",
+    "EXACT17_CHILD45",
     "FINITE_SCOPE",
     "OFFLINE_MODE",
     "PROFILE_SCHEMA",
