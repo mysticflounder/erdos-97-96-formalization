@@ -838,11 +838,14 @@ with no-overwrite semantics and a ledger-last receipt. It has 308 variables,
 `555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
 The recursively validated immutable ingress manifest has SHA-256
 `df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8`.
-Ruff, five focused adversarial tests, and the live PIQD identity check pass.
-Custody artifacts and a Child40 PIQD job are absent at this checkpoint.
+Ruff, six focused adversarial tests, and the live PIQD identity check pass. The
+sixth test proves that a concurrent losing exporter cannot unlink the winner's
+published root. Exactly one Child40 PIQD job,
+`3d2779d0-4962-417d-b62a-a482b20e2772`, is confirmed and running at epoch 1
+against these pinned bytes.
 
-Next submit exactly one pinned Child40 job. `SAT` requires full replay and a
-new-wave-only theorem mine before any successor. `UNSAT` requires independent
+Next handle the authenticated terminal result. `SAT` requires full replay and
+a new-wave-only theorem mine before any successor. `UNSAT` requires independent
 certificate replay and Lean composition through the existing exact-cover,
-source-realization, and landing contracts. Exact 17 and the cap-nine
-production `sorry` remain open.
+source-realization, and landing contracts. Exact 17 and the cap-nine production
+`sorry` remain open.

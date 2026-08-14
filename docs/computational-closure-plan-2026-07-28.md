@@ -11058,11 +11058,14 @@ ledger-last receipt. It has 308 variables, 291,633,186 bytes, and SHA-256
 `555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
 Its recursively validated immutable ingress manifest has SHA-256
 `df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8`.
-Ruff, all five focused adversarial publication tests, and the live PIQD daemon
-identity check pass. No Child40 PIQD job exists at this checkpoint.
+Ruff, all six focused adversarial publication tests, and the live PIQD daemon
+identity check pass. Cleanup after a lost concurrent publication race is
+ownership-specific and cannot remove the winning root. Exactly one Child40
+PIQD job, `3d2779d0-4962-417d-b62a-a482b20e2772`, is confirmed and running at
+epoch 1 against these pinned bytes.
 
 This checkpoint does not close exact 17 or a production `sorry`. The next
-authorized action is exactly one runner-mediated Child40 submission. Terminal `SAT`
-repeats exact replay and wave-only theorem mining; terminal `UNSAT` requires
-independent certificate replay, Lean banking, and composition through the
-exact-17 source-realization and landing contracts.
+authorized action is authenticated terminal handling. Terminal `SAT` repeats
+exact replay and wave-only theorem mining; terminal `UNSAT` requires independent
+certificate replay, Lean banking, and composition through the exact-17
+source-realization and landing contracts.

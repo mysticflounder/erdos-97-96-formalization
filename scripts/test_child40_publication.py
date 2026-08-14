@@ -71,3 +71,48 @@ def test_stale_child32_artifacts_are_irrelevant_to_child40_start(tmp_path: Path)
 
     with pytest.raises(AssertionError, match="PIQD contact"):
         runner.start(NoContact(), paths=paths, ingress_validator=lambda *_args, **_kwargs: {"status": "PASS"})
+
+
+def test_losing_concurrent_export_preserves_winner_root(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    child = tmp_path / "child40.cnf"
+    receipt = tmp_path / "child40-receipt.json"
+    paths = exporter.ExportPaths(
+        Path(export_validation.PARENT_PATH),
+        Path(export_validation.MODEL_PATH),
+        Path(export_validation.LEAN_ROOT_PATH),
+        Path(export_validation.LEAN_EXPORT_PATH),
+        child,
+        receipt,
+    )
+
+    expected_hashes = {
+        paths.parent: export_validation.PARENT_SHA256,
+        paths.model: export_validation.MODEL_SHA256,
+        paths.lean_root: export_validation.LEAN_ROOT_SHA256,
+        paths.lean_export: export_validation.LEAN_EXPORT_SHA256,
+    }
+
+    def fake_sha256(path: Path) -> str:
+        return expected_hashes.get(path, export_validation.CHILD_SHA256)
+
+    def fake_lean(_source: Path, output: Path) -> None:
+        output.write_bytes(b"losing candidate\n")
+
+    real_link = exporter.os.link
+
+    def racing_link(source: Path, destination: Path, *, follow_symlinks: bool = True) -> None:
+        if destination == child:
+            child.write_bytes(b"winner root\n")
+            raise FileExistsError(destination)
+        real_link(source, destination, follow_symlinks=follow_symlinks)
+
+    monkeypatch.setattr(exporter, "sha256_file", fake_sha256)
+    monkeypatch.setattr(exporter, "validate_export", lambda *_args, **_kwargs: {"status": "PASS"})
+    monkeypatch.setattr(exporter, "_run_lean", fake_lean)
+    monkeypatch.setattr(exporter.os, "link", racing_link)
+
+    with pytest.raises(FileExistsError):
+        exporter.export_child40(paths)
+
+    assert child.read_bytes() == b"winner root\n"
+    assert not receipt.exists()

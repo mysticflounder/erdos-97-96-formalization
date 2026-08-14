@@ -84,6 +84,7 @@ def export_child40(paths: ExportPaths = PRODUCTION_PATHS, *, spec: ExportSpec = 
     fd, name = tempfile.mkstemp(prefix=f".{paths.child.name}.", suffix=".candidate", dir=paths.child.parent)
     os.close(fd)
     candidate = Path(name)
+    published_child = False
     try:
         candidate.unlink()
         _run_lean(paths.lean_export, candidate)
@@ -94,12 +95,13 @@ def export_child40(paths: ExportPaths = PRODUCTION_PATHS, *, spec: ExportSpec = 
         published = ExportSpec(child_sha256=child_sha256, child_bytes=child_bytes, publication_state="PROVISIONED", lean_root_sha256=spec.lean_root_sha256, lean_export_sha256=spec.lean_export_sha256)
         validation = validate_export(paths.parent, candidate, paths.model, spec=published)
         os.link(candidate, paths.child, follow_symlinks=False)
+        published_child = True
         _fsync_dir(paths.child.parent)
         receipt = {"schema": "p97-exact17-child40-immutable-export-receipt/v1", "status": "PASS", "publication_state": "PROVISIONED", "parent": {"path": str(paths.parent.resolve()), "sha256": PARENT_SHA256}, "model": {"path": str(paths.model.resolve()), "sha256": published.model_sha256}, "lean": {"root": {"path": str(paths.lean_root.resolve()), "sha256": published.lean_root_sha256}, "export": {"path": str(paths.lean_export.resolve()), "sha256": published.lean_export_sha256}}, "child": {"path": str(paths.child.resolve()), "sha256": child_sha256, "bytes": child_bytes, "variables": published.variables, "clauses": published.child_clauses}, "validation": validation, "immutability": "exclusive-hard-link-and-ledger-last-receipt/v2"}
         _publish_json_ledger_last(paths.receipt, receipt)
         return receipt
     except BaseException:
-        if paths.child.exists() and not paths.receipt.exists():
+        if published_child and paths.child.exists() and not paths.receipt.exists():
             paths.child.unlink()
         raise
     finally:
