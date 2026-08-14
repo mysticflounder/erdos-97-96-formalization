@@ -18,6 +18,7 @@ python_files=(
   census/p97_search/phase3_cegar_wave_control.py
   census/p97_search/phase3_cegar_wave_engine.py
   census/p97_search/phase3_cegar_cleanup.py
+  census/p97_search/cegar_wave_semantic_profiles.py
   census/p97_search/cegar_exact17_lifecycle.py
   census/p97_search/cegar_exact17_shadow.py
   census/p97_search/cegar_wave_registry.py
@@ -26,6 +27,8 @@ python_files=(
   census/p97_search/tests/test_phase3_cegar_wave_control.py
   census/p97_search/tests/test_phase3_cegar_wave_engine.py
   census/p97_search/tests/test_phase3_cegar_cleanup.py
+  census/p97_search/tests/test_cegar_wave_semantic_profiles.py
+  census/p97_search/tests/test_exact17_child40_semantic_profile_data.py
   census/p97_search/tests/test_cegar_exact17_lifecycle.py
   census/p97_search/tests/test_cegar_exact17_shadow.py
   census/p97_search/tests/test_cegar_wave_registry.py
@@ -39,6 +42,7 @@ format_files=(
   census/p97_search/phase3_cegar_wave_control.py
   census/p97_search/phase3_cegar_wave_engine.py
   census/p97_search/phase3_cegar_cleanup.py
+  census/p97_search/cegar_wave_semantic_profiles.py
   census/p97_search/cegar_exact17_lifecycle.py
   census/p97_search/cegar_exact17_shadow.py
   census/p97_search/cegar_wave_registry.py
@@ -46,6 +50,8 @@ format_files=(
   census/p97_search/tests/test_phase3_cegar_wave_control.py
   census/p97_search/tests/test_phase3_cegar_wave_engine.py
   census/p97_search/tests/test_phase3_cegar_cleanup.py
+  census/p97_search/tests/test_cegar_wave_semantic_profiles.py
+  census/p97_search/tests/test_exact17_child40_semantic_profile_data.py
   census/p97_search/tests/test_cegar_exact17_lifecycle.py
   census/p97_search/tests/test_cegar_exact17_shadow.py
   census/p97_search/tests/test_cegar_wave_registry.py
@@ -57,6 +63,8 @@ format_files=(
   census/p97_search/tests/test_phase3_cegar_wave_control.py \
   census/p97_search/tests/test_phase3_cegar_wave_engine.py \
   census/p97_search/tests/test_phase3_cegar_cleanup.py \
+  census/p97_search/tests/test_cegar_wave_semantic_profiles.py \
+  census/p97_search/tests/test_exact17_child40_semantic_profile_data.py \
   census/p97_search/tests/test_cegar_exact17_lifecycle.py \
   census/p97_search/tests/test_cegar_exact17_shadow.py \
   census/p97_search/tests/test_cegar_wave_registry.py \

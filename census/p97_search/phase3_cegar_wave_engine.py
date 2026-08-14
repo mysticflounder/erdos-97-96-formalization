@@ -16,6 +16,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from census.p97_search.cegar_wave_semantic_profiles import (
+    SemanticProfileError,
+    validate_profile_metadata,
+)
 from census.p97_search.phase3_cegar_runtime import capture_exact_regular_file
 from census.p97_search.phase3_cegar_wave import (
     DISCOVERY_UNSAT,
@@ -29,10 +33,16 @@ from census.p97_search.phase3_cegar_wave import (
     wave_manifest_sha256,
 )
 from census.p97_search.phase3_cegar_wave_control import (
+    EXECUTION_REGISTRY_SCHEMA,
     STATIC_CNF,
+    STATIC_CNF_EXECUTION_CAPABILITIES,
+    STATIC_CNF_EXECUTION_MODE,
     STATIC_CNF_PIQD_ADAPTER,
-    STATIC_CNF_PIQD_ADAPTER_SCHEMA,
-    STATIC_CNF_SEMANTIC_VALIDATOR,
+    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1,
+    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+    STATIC_CNF_SEMANTIC_VALIDATOR_V1,
+    STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+    STATIC_CNF_V2_REGISTRY_REVISION,
     StaticCnfBinding,
     WaveControl,
     bind_static_cnf,
@@ -50,7 +60,11 @@ _DIRECTORY_FLAGS = (
     os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_CLOEXEC", 0) | os.O_NOFOLLOW
 )
 
-ENGINE_SCHEMA = "p97-cegar-static-cnf-engine/v1"
+ENGINE_SCHEMA_V1 = "p97-cegar-static-cnf-engine/v1"
+ENGINE_SCHEMA_V2 = "p97-cegar-static-cnf-engine/v2"
+ENGINE_SCHEMA = ENGINE_SCHEMA_V1
+STATIC_CNF_PIQD_ADAPTER_SCHEMA = STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
+STATIC_CNF_SEMANTIC_VALIDATOR = STATIC_CNF_SEMANTIC_VALIDATOR_V1
 SAT_OBSERVED = "SAT_OBSERVED"
 UNSAT_OBSERVED_DISCOVERY_ONLY = "UNSAT_OBSERVED_DISCOVERY_ONLY"
 INDETERMINATE = "INDETERMINATE"
@@ -118,6 +132,32 @@ _CLAIMS = frozenset(
     }
 )
 _EXECUTION_REGISTRY_KEYS = frozenset({"schema", "registry_revision", "registration"})
+_ENGINE_ENVELOPE_KEYS_V1 = frozenset(
+    {
+        "schema",
+        "wave_kind",
+        "adapter",
+        "control",
+        "wave_manifest",
+        "package",
+        "resource_policy",
+        "result",
+        "receipt",
+        "custody_seal",
+        "driver_seal",
+        "journal",
+        "attempt_entries",
+        "attempt_inventory",
+        "claims",
+        "envelope_sha256",
+    }
+)
+_ENGINE_ENVELOPE_KEYS_V2 = _ENGINE_ENVELOPE_KEYS_V1 | {
+    "execution_manifest",
+    "semantic_profile",
+    "semantic_artifacts",
+    "execution_registry",
+}
 _EXECUTION_REGISTRATION_KEYS = frozenset(
     {
         "wave_kind",
@@ -165,8 +205,17 @@ class StaticCnfEngineError(RuntimeError):
     """The fixed boundary could not publish a self-consistent result."""
 
 
-def _validate_execution_registration(value: Any) -> dict[str, Any] | None:
+def _validate_execution_registration(
+    value: Any,
+    *,
+    adapter_schema: str,
+    engine_schema: str,
+    semantic_validator: str,
+    required: bool,
+) -> dict[str, Any] | None:
     if value is None:
+        if required:
+            raise StaticCnfEngineError("execution registry is required")
         return None
     if type(value) is not dict or set(value) != _EXECUTION_REGISTRY_KEYS:
         raise StaticCnfEngineError("execution registry has an inexact schema")
@@ -218,11 +267,18 @@ def _validate_execution_registration(value: Any) -> dict[str, Any] | None:
         registration["registry_revision"] != revision
         or registration["wave_kind"] != STATIC_CNF
         or registration["adapter_id"] != STATIC_CNF_PIQD_ADAPTER
-        or registration["adapter_schema"] != STATIC_CNF_PIQD_ADAPTER_SCHEMA
-        or registration["engine_schema"] != ENGINE_SCHEMA
-        or registration["semantic_validator"] != STATIC_CNF_SEMANTIC_VALIDATOR
+        or registration["adapter_schema"] != adapter_schema
+        or registration["engine_schema"] != engine_schema
+        or registration["semantic_validator"] != semantic_validator
     ):
         raise StaticCnfEngineError("execution registration is crossed")
+    if engine_schema == ENGINE_SCHEMA_V2 and (
+        schema != EXECUTION_REGISTRY_SCHEMA
+        or revision != STATIC_CNF_V2_REGISTRY_REVISION
+        or registration["execution_mode"] != STATIC_CNF_EXECUTION_MODE
+        or registration["capabilities"] != list(STATIC_CNF_EXECUTION_CAPABILITIES)
+    ):
+        raise StaticCnfEngineError("v2 execution registration is not code-defined")
     return json.loads(canonical_json_bytes(value))
 
 
@@ -242,6 +298,33 @@ def _strict_json(raw: bytes, *, label: str) -> Any:
     if canonical_json_bytes(value) + b"\n" != raw:
         raise StaticCnfEngineError(f"{label} is not canonical JSON")
     return value
+
+
+def _sha256_text(value: Any, *, label: str) -> str:
+    if (
+        type(value) is not str
+        or len(value) != 64
+        or any(character not in "0123456789abcdef" for character in value)
+    ):
+        raise StaticCnfEngineError(f"{label} must be lowercase 64-hex")
+    return value
+
+
+def _validate_manifest_binding(value: Any, *, label: str) -> dict[str, Any]:
+    if type(value) is not dict or set(value) != {"sha256", "manifest"}:
+        raise StaticCnfEngineError(f"{label} has an inexact schema")
+    manifest = value.get("manifest")
+    if type(manifest) is not dict:
+        raise StaticCnfEngineError(f"{label}.manifest must be an exact object")
+    try:
+        validate_wave_manifest(manifest)
+    except ValueError as error:
+        raise StaticCnfEngineError(f"{label}.manifest is invalid") from error
+    if _sha256_text(
+        value.get("sha256"), label=f"{label}.sha256"
+    ) != wave_manifest_sha256(manifest):
+        raise StaticCnfEngineError(f"{label} hash is crossed")
+    return manifest
 
 
 def _unique_object(pairs: list[tuple[str, Any]], label: str) -> dict[str, Any]:
@@ -648,19 +731,18 @@ def _unsigned_envelope(
     records: list[dict[str, Any]],
     classification: str,
     execution_registration: Mapping[str, Any] | None,
+    *,
+    engine_schema: str,
+    adapter_schema: str,
 ) -> dict[str, Any]:
     envelope = {
-        "schema": ENGINE_SCHEMA,
+        "schema": engine_schema,
         "wave_kind": STATIC_CNF,
         "adapter": {
             "id": STATIC_CNF_PIQD_ADAPTER,
-            "schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA,
+            "schema": adapter_schema,
         },
         "control": {"sha256": sha256_bytes(binding.control.canonical_bytes)},
-        "wave_manifest": {
-            "sha256": wave_manifest_sha256(manifest),
-            "manifest": dict(manifest),
-        },
         "package": {
             "cnf_sha256": sha256_bytes(binding.cnf),
             "producer_manifest_sha256": sha256_bytes(binding.producer_manifest),
@@ -685,6 +767,50 @@ def _unsigned_envelope(
         "attempt_inventory": dict(inventory),
         "claims": {name: False for name in _CLAIMS},
     }
+    execution_manifest = {
+        "sha256": wave_manifest_sha256(manifest),
+        "manifest": dict(manifest),
+    }
+    if engine_schema == ENGINE_SCHEMA_V1:
+        envelope["wave_manifest"] = execution_manifest
+    else:
+        if (
+            binding.semantic_profile is None
+            or binding.semantic_profile_bytes is None
+            or binding.semantic_validation is None
+        ):
+            raise StaticCnfEngineError("v2 binding lacks semantic validation")
+        profile = binding.semantic_profile.payload
+        envelope.update(
+            {
+                "wave_manifest": {
+                    "sha256": wave_manifest_sha256(binding.wave_manifest),
+                    "manifest": dict(binding.wave_manifest),
+                },
+                "execution_manifest": execution_manifest,
+                "semantic_profile": {
+                    "sha256": sha256_bytes(binding.semantic_profile_bytes),
+                    "metadata": {
+                        key: profile[key]
+                        for key in (
+                            "schema",
+                            "profile_id",
+                            "validator",
+                            "classification",
+                            "cleanup",
+                        )
+                    },
+                },
+                "semantic_artifacts": [
+                    {
+                        "role": role,
+                        "sha256": capture.digest,
+                        "bytes": len(capture.data),
+                    }
+                    for role, capture in binding.semantic_artifacts
+                ],
+            }
+        )
     if execution_registration is not None:
         envelope["execution_registry"] = dict(execution_registration)
     return envelope
@@ -719,11 +845,31 @@ class StaticCnfWaveEngine:
             raise StaticCnfEngineError(
                 "engine requires a native bound control and package root"
             )
-        if (
+        if not package_root.is_absolute():
+            raise StaticCnfEngineError("package_root must be absolute")
+        registration_key = (
             control.registration.wave_kind,
             control.registration.adapter_id,
             control.registration.schema_version,
-        ) != (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA):
+            control.registration.semantic_validator,
+        )
+        if registration_key == (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1,
+            STATIC_CNF_SEMANTIC_VALIDATOR_V1,
+        ):
+            engine_schema = ENGINE_SCHEMA_V1
+            registry_required = False
+        elif registration_key == (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+            STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+        ):
+            engine_schema = ENGINE_SCHEMA_V2
+            registry_required = True
+        else:
             raise StaticCnfEngineError(
                 "adapter is not in the closed STATIC_CNF registry"
             )
@@ -749,8 +895,15 @@ class StaticCnfWaveEngine:
             journal_root,
         )
         self.transport, self.sleep = transport, sleep
+        self.engine_schema = engine_schema
+        self.adapter_schema = control.registration.schema_version
+        self.semantic_validator = control.registration.semantic_validator
         self.execution_registration = _validate_execution_registration(
-            execution_registration
+            execution_registration,
+            adapter_schema=self.adapter_schema,
+            engine_schema=self.engine_schema,
+            semantic_validator=self.semantic_validator,
+            required=registry_required,
         )
 
     def run(
@@ -822,6 +975,8 @@ class StaticCnfWaveEngine:
                 records,
                 classification,
                 self.execution_registration,
+                engine_schema=self.engine_schema,
+                adapter_schema=self.adapter_schema,
             )
             envelope = {**unsigned, "envelope_sha256": sha256_json(unsigned)}
             output_identity = _write_once_at(
@@ -873,8 +1028,22 @@ def _validate_static_cnf_engine_output(
             expected_identity=expected_output_identity,
         )
     envelope = _strict_json(raw, label="engine envelope")
-    if type(envelope) is not dict or envelope.get("schema") != ENGINE_SCHEMA:
+    if type(envelope) is not dict or envelope.get("schema") not in {
+        ENGINE_SCHEMA_V1,
+        ENGINE_SCHEMA_V2,
+    }:
         raise StaticCnfEngineError("invalid engine envelope schema")
+    engine_schema = envelope["schema"]
+    adapter_schema = (
+        STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
+        if engine_schema == ENGINE_SCHEMA_V1
+        else STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2
+    )
+    semantic_validator = (
+        STATIC_CNF_SEMANTIC_VALIDATOR_V1
+        if engine_schema == ENGINE_SCHEMA_V1
+        else STATIC_CNF_SEMANTIC_VALIDATOR_V2
+    )
     claimed = envelope.get("envelope_sha256")
     unsigned = {
         key: value for key, value in envelope.items() if key != "envelope_sha256"
@@ -885,11 +1054,78 @@ def _validate_static_cnf_engine_output(
         name: False for name in _CLAIMS
     }:
         raise StaticCnfEngineError("engine envelope has unsafe claims or wave kind")
-    if "execution_registry" in unsigned:
-        _validate_execution_registration(unsigned["execution_registry"])
-    receipt = envelope["receipt"]
-    if set(receipt) != _RECEIPT_KEYS or receipt.get("schema") != RECEIPT_SCHEMA:
+    receipt = envelope.get("receipt")
+    if (
+        type(receipt) is not dict
+        or set(receipt) != _RECEIPT_KEYS
+        or receipt.get("schema") != RECEIPT_SCHEMA
+    ):
         raise StaticCnfEngineError("receipt schema/key mismatch")
+    if engine_schema == ENGINE_SCHEMA_V1:
+        expected_keys = _ENGINE_ENVELOPE_KEYS_V1
+        if "execution_registry" in envelope:
+            expected_keys = expected_keys | {"execution_registry"}
+    else:
+        expected_keys = _ENGINE_ENVELOPE_KEYS_V2
+    if set(envelope) != expected_keys:
+        raise StaticCnfEngineError("engine envelope has an inexact schema")
+    adapter = envelope.get("adapter")
+    if adapter != {"id": STATIC_CNF_PIQD_ADAPTER, "schema": adapter_schema}:
+        raise StaticCnfEngineError("engine adapter binding is crossed")
+    _validate_execution_registration(
+        envelope.get("execution_registry"),
+        adapter_schema=adapter_schema,
+        engine_schema=engine_schema,
+        semantic_validator=semantic_validator,
+        required=engine_schema == ENGINE_SCHEMA_V2,
+    )
+    _validate_manifest_binding(envelope.get("wave_manifest"), label="wave_manifest")
+    execution_manifest = (
+        _validate_manifest_binding(
+            envelope.get("execution_manifest"), label="execution_manifest"
+        )
+        if engine_schema == ENGINE_SCHEMA_V2
+        else envelope["wave_manifest"]["manifest"]
+    )
+    execution_manifest_sha256 = (
+        envelope["execution_manifest"]["sha256"]
+        if engine_schema == ENGINE_SCHEMA_V2
+        else envelope["wave_manifest"]["sha256"]
+    )
+    if engine_schema == ENGINE_SCHEMA_V2:
+        profile = envelope.get("semantic_profile")
+        if type(profile) is not dict or set(profile) != {"sha256", "metadata"}:
+            raise StaticCnfEngineError("semantic profile has an inexact schema")
+        _sha256_text(profile.get("sha256"), label="semantic_profile.sha256")
+        try:
+            validate_profile_metadata(profile.get("metadata"))
+        except SemanticProfileError as error:
+            raise StaticCnfEngineError(
+                "semantic profile metadata is invalid"
+            ) from error
+        artifacts = envelope.get("semantic_artifacts")
+        if type(artifacts) is not list or not artifacts:
+            raise StaticCnfEngineError("semantic artifact inventory is invalid")
+        roles: list[str] = []
+        for item in artifacts:
+            if type(item) is not dict or set(item) != {"role", "sha256", "bytes"}:
+                raise StaticCnfEngineError("semantic artifact has an inexact schema")
+            role = item.get("role")
+            byte_count = item.get("bytes")
+            if (
+                type(role) is not str
+                or not role
+                or not role.isascii()
+                or type(byte_count) is not int
+                or byte_count < 0
+            ):
+                raise StaticCnfEngineError("semantic artifact fields are invalid")
+            _sha256_text(item.get("sha256"), label=f"semantic_artifacts.{role}")
+            roles.append(role)
+        if roles != sorted(set(roles)):
+            raise StaticCnfEngineError(
+                "semantic artifact roles must be sorted and duplicate-free"
+            )
     if type(receipt.get("attempt")) is not int or receipt["attempt"] < 0:
         raise StaticCnfEngineError("receipt attempt must be a nonnegative builtin int")
     attempt_dir = _safe_path(receipt["attempt_directory"], label="attempt_directory")
@@ -984,7 +1220,7 @@ def _validate_static_cnf_engine_output(
         ]
         validate_attempt_journal(
             records,
-            manifest=envelope["wave_manifest"]["manifest"],
+            manifest=execution_manifest,
             expected_record_count=seal["record_count"],
             expected_terminal_sha256=seal["terminal_attempt_sha256"],
         )
@@ -1007,7 +1243,7 @@ def _validate_static_cnf_engine_output(
             custody["inventory"],
             seal_raw=seal_raw,
         )
-        if seal["wave_manifest_sha256"] != envelope["wave_manifest"]["sha256"]:
+        if seal["wave_manifest_sha256"] != execution_manifest_sha256:
             raise StaticCnfEngineError("wave manifest crossing")
         if held_parent_fd is not None:
             _verify_visible_directory(
@@ -1157,6 +1393,8 @@ validate_static_cnf_engine_envelope = validate_static_cnf_engine_output
 
 __all__ = [
     "ENGINE_SCHEMA",
+    "ENGINE_SCHEMA_V1",
+    "ENGINE_SCHEMA_V2",
     "INDETERMINATE",
     "SAT_OBSERVED",
     "UNSAT_OBSERVED_DISCOVERY_ONLY",

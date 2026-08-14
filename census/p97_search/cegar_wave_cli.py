@@ -12,8 +12,8 @@ from typing import Any
 import census.p97_search.cegar_exact17_lifecycle as exact17_lifecycle
 from census.p97_search.cegar_wave_registry import (
     WaveRegistryError,
-    check_registered_output,
     execute_registered_wave,
+    inspect_registered_output_structure,
     plan_execution,
     validate_registered_ingress,
     validate_registered_output,
@@ -83,7 +83,9 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--timeout-s", type=int)
 
     validate_output = commands.add_parser("validate-output")
+    validate_output.add_argument("control")
     validate_output.add_argument("output")
+    validate_output.add_argument("--package-root", required=True)
 
     check = commands.add_parser("check")
     check.add_argument("control")
@@ -141,28 +143,28 @@ def _run_lifecycle(args: argparse.Namespace) -> dict[str, Any]:
 def _run(args: argparse.Namespace) -> dict[str, Any]:
     if args.command.startswith("lifecycle-"):
         return _run_lifecycle(args)
-    if args.command in {"status", "validate-output"}:
+    if args.command == "status":
         output = _absolute_path(args.output, "output")
-        envelope = validate_registered_output(output)
+        envelope = inspect_registered_output_structure(output)
         return {
             "schema": CLI_SCHEMA,
             "command": args.command,
-            "status": "PASS",
+            "status": "OBSERVED",
             "classification": envelope["result"]["classification"],
             "envelope_sha256": envelope["envelope_sha256"],
             "output": str(output),
-            "custody_status": "OFFLINE_VALIDATED",
+            "custody_status": "STRUCTURAL_ONLY",
         }
 
     control_path = _absolute_path(args.control, "control")
     control = _load_control(control_path)
-    if args.command == "check":
+    if args.command in {"check", "validate-output"}:
         package_root = _absolute_path(args.package_root, "package_root")
         output = _absolute_path(args.output, "output")
-        envelope = check_registered_output(control, package_root, output)
+        envelope = validate_registered_output(control, package_root, output)
         return {
             "schema": CLI_SCHEMA,
-            "command": "check",
+            "command": args.command,
             "status": "PASS",
             "classification": envelope["result"]["classification"],
             "envelope_sha256": envelope["envelope_sha256"],

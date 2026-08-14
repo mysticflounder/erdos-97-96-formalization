@@ -30,22 +30,22 @@ def _validated_output() -> dict[str, object]:
     }
 
 
-def test_status_reports_validated_published_output(
+def test_status_reports_structural_observation_only(
     tmp_path: Path,
     capsys: pytest.CaptureFixture[str],
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     output = tmp_path / "result.json"
     monkeypatch.setattr(
-        cli, "validate_registered_output", lambda path: _validated_output()
+        cli, "inspect_registered_output_structure", lambda path: _validated_output()
     )
 
     assert cli.main(["status", str(output)]) == 0
     status = _json_stdout(capsys)
     assert status["schema"] == cli.CLI_SCHEMA
-    assert status["status"] == "PASS"
+    assert status["status"] == "OBSERVED"
     assert status["classification"] == "UNSAT_OBSERVED_DISCOVERY_ONLY"
-    assert status["custody_status"] == "OFFLINE_VALIDATED"
+    assert status["custody_status"] == "STRUCTURAL_ONLY"
 
 
 def test_plan_reports_registered_execution(
@@ -139,17 +139,13 @@ def test_run_delegates_once_and_never_exposes_proof_path(
     assert "proof_path" not in kwargs
 
 
-def test_validate_output_branches_before_control_or_transport(
+def test_validate_output_cross_binds_control_without_transport(
     tmp_path: Path,
     capsys: pytest.CaptureFixture[str],
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    control_path, package_root = _control_file(tmp_path)
     output = tmp_path / "result.json"
-    monkeypatch.setattr(
-        cli,
-        "_load_control",
-        lambda path: pytest.fail("control load was reached"),
-    )
     monkeypatch.setattr(
         cli,
         "execute_registered_wave",
@@ -158,10 +154,21 @@ def test_validate_output_branches_before_control_or_transport(
     monkeypatch.setattr(
         cli,
         "validate_registered_output",
-        lambda path: _validated_output(),
+        lambda control, root, path: _validated_output(),
     )
 
-    assert cli.main(["validate-output", str(output)]) == 0
+    assert (
+        cli.main(
+            [
+                "validate-output",
+                str(control_path),
+                str(output),
+                "--package-root",
+                str(package_root),
+            ]
+        )
+        == 0
+    )
     payload = _json_stdout(capsys)
     assert payload["status"] == "PASS"
     assert payload["classification"] == "UNSAT_OBSERVED_DISCOVERY_ONLY"
@@ -180,7 +187,7 @@ def test_check_cross_binds_control_package_and_output_without_transport(
         seen.append((control, root, path))
         return _validated_output()
 
-    monkeypatch.setattr(cli, "check_registered_output", fake_check)
+    monkeypatch.setattr(cli, "validate_registered_output", fake_check)
     monkeypatch.setattr(
         cli,
         "execute_registered_wave",
@@ -254,14 +261,23 @@ def test_unexpected_and_process_control_exceptions_propagate(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
+    control_path, package_root = _control_file(tmp_path)
     output = tmp_path / "result.json"
 
-    def explode(path: Path) -> dict[str, object]:
+    def explode(control: object, root: Path, path: Path) -> dict[str, object]:
         raise error
 
     monkeypatch.setattr(cli, "validate_registered_output", explode)
     with pytest.raises(type(error)):
-        cli.main(["validate-output", str(output)])
+        cli.main(
+            [
+                "validate-output",
+                str(control_path),
+                str(output),
+                "--package-root",
+                str(package_root),
+            ]
+        )
 
 
 @pytest.mark.parametrize(

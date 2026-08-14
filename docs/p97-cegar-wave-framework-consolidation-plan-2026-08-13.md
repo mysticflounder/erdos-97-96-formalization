@@ -167,11 +167,12 @@ Commands:
 - `export SPEC OUT`: materialize a package only for a registered exporter;
 - `run SPEC OUT`: execute exactly one wave or resume its append-only journal;
 - `validate-ingress SPEC`: validate an externally produced package;
-- `validate-output OUT`: perform a zero-network, zero-solver replay;
+- `validate-output SPEC OUT --package-root ROOT`: perform a zero-network,
+  zero-solver replay cross-bound to the authenticated control and package;
 - `mine-diagnostic OUT`: run the wave's allowlisted candidate miner without
   implying theorem promotion;
-- `status OUT`: report custody and mathematical classification without
-  upgrading either; and
+- `status OUT`: inspect envelope/custody self-consistency only, returning
+  `STRUCTURAL_ONLY`/`OBSERVED` rather than an authenticated pass; and
 - `check SPEC OUT`: run the complete offline validation gate.
 
 Campaign admission remains an explicit campaign-specific adapter or the
@@ -277,6 +278,41 @@ also has the compatibility lifecycle route described below. Still pending are
 the first data-only native wave and the later shim retirement pass.
 Quarantine execution remains last and requires a separately reviewed exact
 inventory and plan digest after those migration gates pass.
+
+### v2 closed-registry and Child40 replay checkpoint — 2026-08-14
+
+The v1 control and execution identities remain frozen: the v1 registry
+snapshot, aliases, and receipt-envelope fields are byte-compatible and are not
+reinterpreted as v2. Any v2 execution must select the closed, code-defined v2
+registry entry; there is no fallback to an unregistered adapter or to the v1
+semantic boundary. The v2 contract keeps the authenticated input manifest
+separate from the execution manifest/envelope, and separately binds the
+semantic profile and its declared artifacts. These records are joined by exact
+digests, not by an import path, inferred filename, or wave-specific launcher.
+
+The production Child40 semantic profile at
+`census/p97_search/waves/exact17/child40/semantic-profile.json` now passes
+offline replay of nine authenticated artifacts totaling 583,289,004 bytes:
+308 variables, 5,847,584 clauses, and child CNF SHA-256
+`555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
+The replay log is retained at
+`scratch/cegar-wave-v2/child40-production-profile.log`.
+
+This is semantic-profile replay evidence only. It is not a new PIQD
+execution, does not promote a wave, and does not authorize cleanup. The full
+framework gate is green at 179 passed with Ruff clean; that result validates
+the shared contracts and offline fixtures, not a new mathematical or runtime
+claim.
+
+Cleanup remains the final, separately approved operation: first generate a
+dry-run plan from the externally authenticated inventory and exact trusted
+allowlist; then require standalone engine validation, semantic/artifact
+comparison, zero references and writers, immutable archive, verified rollback,
+and separate review of the exact plan digest; only then may a move-only
+quarantine produce its immutable receipt. Retain the quarantine and protected
+evidence through the rollback window, and rescan the authenticated inventory
+before any separately reviewed source removal or purge. No automatic deletion
+is permitted.
 
 ### Exact17 frozen shadow checkpoint — 2026-08-14
 
@@ -467,6 +503,42 @@ separate review under the exact plan digest.
   key, leave every prior row/blob/receipt byte-unchanged, and prove historical
   offline replay still succeeds.
 
+#### First native Exact17 profile: Child40
+
+Treat Child40 as the first native-profile fixture after the Child38/Child39
+shadow gate, not as permission to rewrite or remove its legacy implementation.
+This is a data-only migration profile and does not retrofit active Child41 or
+advance the first native execution until the Phase 4 exit gate passes.
+The profile is pinned to the Child39 parent (308 variables, 5,847,388 clauses,
+and parent SHA-256
+`989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a`), the
+196-clause Child40 suffix (ordered SHA-256
+`e34111b179caf00ed0e04c3f28d17fd670d7a2291a9761a09f0d6984bdf19be5`), and
+the resulting 5,847,584-clause child identity. The generic `STATIC_CNF`
+profile must reproduce the legacy Child40 exporter, ingress, and runner
+semantics side by side, including the child CNF and export receipt, manifest
+and model bindings, publication classification, and the exact Child40 custody
+set: intent, prepared, live-state, final, model, solver log, and runner lock.
+
+Until that comparison and an offline replay pass are complete, retain
+`scripts/export_exact17_thirty_fortieth_root.py`,
+`scripts/validate_exact17_thirty_ninth_model_refinements_{export,ingress}.py`,
+`scripts/run_piqd_exact17_thirty_fortieth_root.py`, their publication tests,
+and every Child40 CNF, model, manifest, receipt, and custody artifact. The
+runner may become a thin compatibility shim only after the authenticated
+caller/writer rescan is zero, the native and legacy semantic receipts agree,
+the historical replay suite remains green, and the rollback drill succeeds;
+the retained exporters and validators remain replay/authentication oracles.
+
+Child40 is eligible for a later reviewed quarantine plan only when its exact
+shim path and source digest are on the trusted allowlist, all protected
+callers, references, receipts, artifacts, replacements, archive, rollback,
+and replay evidence are recorded, an immutable archive and rollback pointer
+exist, and the exact plan digest is separately approved. Quarantine is
+move-only during the rollback window: there is no automatic deletion or purge,
+and any eventual source removal requires a fresh authenticated inventory
+rescan proving zero references and zero writers.
+
 Exit gate: one native wave completes export, PIQD discovery, semantic replay,
 publication, offline check, and successor admission without a new per-wave
 Python file.
@@ -495,12 +567,13 @@ longer production entrypoints, with all historical artifacts still replayable.
 - Remove a shim only after its machine-readable caller manifest, executable
   compatibility replay, repository/external-user audit, and historical replay
   suite are all green.
-- Treat source cleanup as a separately reviewed executor operation over an exact
-  approved plan digest, never as an automatic consequence of retirement. Before
-  source removal, quarantine the source and retain an immutable archive for the
-  full rollback window; after any eventual removal, rescan the externally
-  authenticated inventory and verify zero references and zero writers. The
-  archive, rollback material, and replay evidence remain protected afterward.
+- Apply the Phase 0 cleanup contract: only a separately reviewed exact plan
+  digest may authorize move-only quarantine; retirement alone never authorizes
+  execution. Before source removal, quarantine the source and retain an
+  immutable archive for the full rollback window; after any eventual removal,
+  rescan the externally authenticated inventory and verify zero references and
+  zero writers. The archive, rollback material, and replay evidence remain
+  protected afterward.
 - Add a CI budget: a new file matching per-wave exporter/runner/validator naming
   patterns fails unless the change also registers a new semantic boundary and
   records why data was insufficient.

@@ -235,6 +235,45 @@ def test_static_registry_is_closed_and_binds_exact_package(tmp_path: Path) -> No
     assert registration.permits_terminal_proof is False
 
 
+def test_bind_static_cnf_rejects_relative_package_root(tmp_path: Path) -> None:
+    raw, _ = _package(tmp_path)
+    with pytest.raises(WaveControlError, match="must be absolute"):
+        bind_static_cnf(load_wave_control(raw), Path("relative-package"))
+
+
+def test_v1_control_and_package_bytes_are_frozen_and_profile_is_reserved(
+    tmp_path: Path,
+) -> None:
+    raw, _ = _package(tmp_path)
+
+    # This fixture is deliberately a byte-level v1 compatibility anchor.  A
+    # profile belongs to a versioned control branch, never to this v1 record.
+    assert len(raw) == 992
+    assert sha256_bytes(raw) == (
+        "cd84ec74993b7a8210f6e350073493fc9d44a72784f2ac76bf8093ac9bec5ecd"
+    )
+    value = json.loads(raw)
+    assert set(value) == {
+        "schema",
+        "wave_kind",
+        "adapter_id",
+        "adapter_schema",
+        "wave_manifest",
+        "package",
+        "driver_policy",
+        "semantic_validator",
+    }
+    assert set(value["package"]) == {"cnf", "producer_manifest", "variable_map"}
+
+    profiled = deepcopy(value)
+    profiled["semantic_profile"] = {
+        "schema": "p97-static-cnf-semantic-profile/v1",
+        "sha256": "0" * 64,
+    }
+    with pytest.raises(WaveControlError):
+        load_wave_control(canonical_json_bytes(profiled))
+
+
 @pytest.mark.parametrize(
     ("field", "value"),
     [

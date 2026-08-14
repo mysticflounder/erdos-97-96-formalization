@@ -18,6 +18,14 @@ from pathlib import Path, PurePosixPath
 from types import MappingProxyType
 from typing import Any
 
+from census.p97_search.cegar_wave_semantic_profiles import (
+    PROFILE_SCHEMA,
+    CapturedBytes,
+    SemanticProfile,
+    SemanticProfileError,
+    parse_profile_bytes,
+    validate_semantic_profile,
+)
 from census.p97_search.phase3_cegar_runtime import (
     ExactFileCaptureError,
     capture_exact_regular_file,
@@ -30,14 +38,32 @@ from census.p97_search.phase3_cegar_wave import (
 )
 from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
 
-CONTROL_SCHEMA = "p97-cegar-wave-control/v1"
+CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
+CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
+CONTROL_SCHEMA = CONTROL_SCHEMA_V1
 INVENTORY_SCHEMA = "p97-cegar-wave-entrypoint-inventory/v1"
 CLEANUP_PLAN_SCHEMA = "p97-cegar-wave-cleanup-plan/v1"
 
+EXECUTION_REGISTRY_SCHEMA = "p97-cegar-execution-registry/v1"
+STATIC_CNF_EXECUTION_MODE = "one-shot-static-cnf"
+STATIC_CNF_EXECUTION_CAPABILITIES = (
+    "check",
+    "plan",
+    "run",
+    "status",
+    "validate-ingress",
+    "validate-output",
+)
+STATIC_CNF_V2_REGISTRY_REVISION = "2026-08-14.1"
+
 STATIC_CNF = "STATIC_CNF"
 STATIC_CNF_PIQD_ADAPTER = "static-cnf-piqd"
-STATIC_CNF_PIQD_ADAPTER_SCHEMA = "v1"
-STATIC_CNF_SEMANTIC_VALIDATOR = "p97-static-cnf-semantic-replay/v1"
+STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1 = "v1"
+STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2 = "v2"
+STATIC_CNF_PIQD_ADAPTER_SCHEMA = STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
+STATIC_CNF_SEMANTIC_VALIDATOR_V1 = "p97-static-cnf-semantic-replay/v1"
+STATIC_CNF_SEMANTIC_VALIDATOR_V2 = PROFILE_SCHEMA
+STATIC_CNF_SEMANTIC_VALIDATOR = STATIC_CNF_SEMANTIC_VALIDATOR_V1
 
 ACTIVE = "ACTIVE"
 FROZEN_REPRODUCTION = "FROZEN_REPRODUCTION"
@@ -70,10 +96,12 @@ MAX_WAVE_MANIFEST_BYTES = 1 << 20
 MAX_STATIC_CNF_BYTES = 512 << 20
 MAX_PRODUCER_MANIFEST_BYTES = 8 << 20
 MAX_VARIABLE_MAP_BYTES = 64 << 20
+MAX_SEMANTIC_PROFILE_BYTES = 1 << 20
+MAX_SEMANTIC_ARTIFACT_BYTES = 512 << 20
 
 _NATIVE_PATH_TYPE = type(Path())
 _HEX = frozenset("0123456789abcdef")
-_CONTROL_KEYS = frozenset(
+_CONTROL_KEYS_V1 = frozenset(
     {
         "schema",
         "wave_kind",
@@ -85,6 +113,10 @@ _CONTROL_KEYS = frozenset(
         "semantic_validator",
     }
 )
+_CONTROL_KEYS_V2 = _CONTROL_KEYS_V1 | {
+    "semantic_profile",
+    "semantic_artifacts",
+}
 _REF_KEYS = frozenset({"path", "sha256", "max_bytes"})
 _PACKAGE_KEYS = frozenset({"cnf", "producer_manifest", "variable_map"})
 _POLICY_KEYS = frozenset(
@@ -203,6 +235,8 @@ class WaveControl:
     policy: DriverPolicy
     registration: AdapterRegistration
     canonical_bytes: bytes
+    semantic_profile: ArtifactReference | None = None
+    semantic_artifacts: tuple[tuple[str, ArtifactReference], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -213,18 +247,30 @@ class StaticCnfBinding:
     cnf: bytes
     producer_manifest: bytes
     variable_map: bytes
+    semantic_profile: SemanticProfile | None = None
+    semantic_profile_bytes: bytes | None = None
+    semantic_artifacts: tuple[tuple[str, CapturedBytes], ...] = ()
+    semantic_validation: dict[str, Any] | None = None
 
 
 STATIC_REGISTRY = MappingProxyType(
     {
-        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA): (
+        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1): (
             AdapterRegistration(
                 wave_kind=STATIC_CNF,
                 adapter_id=STATIC_CNF_PIQD_ADAPTER,
-                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA,
-                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR,
+                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1,
+                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V1,
             )
-        )
+        ),
+        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2): (
+            AdapterRegistration(
+                wave_kind=STATIC_CNF,
+                adapter_id=STATIC_CNF_PIQD_ADAPTER,
+                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+            )
+        ),
     }
 )
 
@@ -325,6 +371,36 @@ def _reference(value: Any, label: str, *, maximum_bytes: int) -> ArtifactReferen
     )
 
 
+def _semantic_artifact_references(
+    value: Any,
+) -> tuple[tuple[str, ArtifactReference], ...]:
+    if type(value) is not dict or not value:
+        raise WaveControlError(
+            "wave control.semantic_artifacts must be a nonempty exact object"
+        )
+    rows: list[tuple[str, ArtifactReference]] = []
+    for role, reference in value.items():
+        if type(role) is not str or not role or not role.isascii():
+            raise WaveControlError(
+                "wave control.semantic_artifacts roles must be nonempty ASCII strings"
+            )
+        rows.append(
+            (
+                role,
+                _reference(
+                    reference,
+                    f"wave control.semantic_artifacts.{role}",
+                    maximum_bytes=MAX_SEMANTIC_ARTIFACT_BYTES,
+                ),
+            )
+        )
+    if [role for role, _ in rows] != sorted(role for role, _ in rows):
+        raise WaveControlError(
+            "wave control.semantic_artifacts roles must be canonically sorted"
+        )
+    return tuple(rows)
+
+
 def _policy(value: Any) -> DriverPolicy:
     if type(value) is not dict:
         raise WaveControlError("driver_policy must be an exact object")
@@ -368,9 +444,13 @@ def load_wave_control(raw: bytes) -> WaveControl:
     """Parse one canonical control record against the closed adapter registry."""
 
     value = _strict_json(raw, label="wave control", max_bytes=MAX_CONTROL_BYTES)
-    _exact_keys(value, _CONTROL_KEYS, "wave control")
-    if value["schema"] != CONTROL_SCHEMA:
-        raise WaveControlError(f"wave control.schema must be {CONTROL_SCHEMA!r}")
+    schema = value.get("schema")
+    if schema == CONTROL_SCHEMA_V1:
+        _exact_keys(value, _CONTROL_KEYS_V1, "wave control")
+    elif schema == CONTROL_SCHEMA_V2:
+        _exact_keys(value, _CONTROL_KEYS_V2, "wave control")
+    else:
+        raise WaveControlError("wave control.schema is not registered")
     key = (
         _string(value["wave_kind"], "wave control.wave_kind"),
         _string(value["adapter_id"], "wave control.adapter_id"),
@@ -410,6 +490,20 @@ def load_wave_control(raw: bytes) -> WaveControl:
         policy=_policy(value["driver_policy"]),
         registration=registration,
         canonical_bytes=raw,
+        semantic_profile=(
+            _reference(
+                value["semantic_profile"],
+                "wave control.semantic_profile",
+                maximum_bytes=MAX_SEMANTIC_PROFILE_BYTES,
+            )
+            if schema == CONTROL_SCHEMA_V2
+            else None
+        ),
+        semantic_artifacts=(
+            _semantic_artifact_references(value["semantic_artifacts"])
+            if schema == CONTROL_SCHEMA_V2
+            else ()
+        ),
     )
 
 
@@ -510,7 +604,10 @@ def _validate_static_cnf_semantics(
     producer: bytes,
     variable_map: bytes,
 ) -> None:
-    if registration.semantic_validator != STATIC_CNF_SEMANTIC_VALIDATOR:
+    if registration.semantic_validator not in {
+        STATIC_CNF_SEMANTIC_VALIDATOR_V1,
+        STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+    }:
         raise WaveControlError("registered semantic validator is not executable")
     num_variables, num_clauses = _strict_dimacs_counts(cnf)
     encoding = manifest["encoding"]
@@ -538,6 +635,8 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         raise WaveControlError("control must be an exact WaveControl")
     if type(package_root) is not _NATIVE_PATH_TYPE:
         raise WaveControlError("package_root must be an exact native Path")
+    if not package_root.is_absolute():
+        raise WaveControlError("package_root must be absolute")
     if type(control.canonical_bytes) is not bytes:
         raise WaveControlError("control canonical bytes must be exact builtin bytes")
     validated_control = load_wave_control(control.canonical_bytes)
@@ -561,6 +660,30 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
     cnf = _capture(package_root, control.cnf, "CNF")
     producer = _capture(package_root, control.producer_manifest, "producer manifest")
     variable_map = _capture(package_root, control.variable_map, "variable map")
+    semantic_profile_bytes = (
+        _capture(package_root, control.semantic_profile, "semantic profile")
+        if control.semantic_profile is not None
+        else None
+    )
+    try:
+        semantic_profile = (
+            parse_profile_bytes(semantic_profile_bytes)
+            if semantic_profile_bytes is not None
+            else None
+        )
+    except SemanticProfileError as error:
+        raise WaveControlError("semantic profile validation failed") from error
+    semantic_artifacts = tuple(
+        (
+            role,
+            CapturedBytes(
+                _capture(package_root, reference, f"semantic artifact {role}"),
+                path=package_root / reference.path,
+                sha256=reference.sha256,
+            ),
+        )
+        for role, reference in control.semantic_artifacts
+    )
     encoding = manifest["encoding"]
     if encoding["cnf_sha256"] != control.cnf.sha256:
         raise WaveControlError("wave manifest CNF digest is crossed")
@@ -575,6 +698,34 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         producer,
         variable_map,
     )
+    if control.registration.schema_version == STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2:
+        if semantic_profile is None:
+            raise WaveControlError("v2 static-CNF control lacks a semantic profile")
+        if not semantic_artifacts:
+            raise WaveControlError("v2 static-CNF control lacks semantic artifacts")
+        expected_profile_control = {
+            "domain_kind": STATIC_CNF,
+            "query_polarity": encoding["query_polarity"],
+            "cnf_sha256": control.cnf.sha256,
+            "variables": encoding["num_variables"],
+            "clauses": encoding["num_clauses"],
+        }
+        if semantic_profile.control != expected_profile_control:
+            raise WaveControlError("semantic profile is crossed with the static CNF")
+        try:
+            semantic_validation = validate_semantic_profile(
+                semantic_profile,
+                dict(semantic_artifacts),
+                control=expected_profile_control,
+            )
+        except SemanticProfileError as error:
+            raise WaveControlError("semantic artifact validation failed") from error
+    elif semantic_profile is not None or semantic_artifacts:
+        raise WaveControlError(
+            "v1 static-CNF control cannot carry semantic profile artifacts"
+        )
+    else:
+        semantic_validation = None
     return StaticCnfBinding(
         control=control,
         wave_manifest=manifest,
@@ -582,6 +733,10 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         cnf=cnf,
         producer_manifest=producer,
         variable_map=variable_map,
+        semantic_profile=semantic_profile,
+        semantic_profile_bytes=semantic_profile_bytes,
+        semantic_artifacts=semantic_artifacts,
+        semantic_validation=semantic_validation,
     )
 
 

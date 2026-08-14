@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+from copy import deepcopy
 from pathlib import Path
 
 import pytest
@@ -17,10 +18,17 @@ from census.p97_search.phase3_cegar_wave import (
 )
 from census.p97_search.phase3_cegar_wave_control import (
     CONTROL_SCHEMA,
+    CONTROL_SCHEMA_V2,
+    EXECUTION_REGISTRY_SCHEMA,
     STATIC_CNF,
+    STATIC_CNF_EXECUTION_CAPABILITIES,
+    STATIC_CNF_EXECUTION_MODE,
     STATIC_CNF_PIQD_ADAPTER,
     STATIC_CNF_PIQD_ADAPTER_SCHEMA,
+    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
     STATIC_CNF_SEMANTIC_VALIDATOR,
+    STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+    STATIC_CNF_V2_REGISTRY_REVISION,
     load_wave_control,
 )
 from census.p97_search.phase3_piqd_driver import DriverPolicy
@@ -140,6 +148,69 @@ def _fixture_control(tmp_path: Path) -> tuple[object, Path, bytes, bytes]:
     }
     control_raw = canonical_json_bytes(control)
     return load_wave_control(control_raw), tmp_path, cnf, producer_raw
+
+
+def _fixture_v2_control(
+    tmp_path: Path,
+) -> tuple[object, Path, bytes, bytes, dict[str, object]]:
+    """Build a v2 control from the checked semantic-profile test fixture."""
+    from census.p97_search.tests.test_cegar_wave_semantic_profiles import _fixture
+
+    semantic_root = tmp_path / "semantic"
+    semantic_root.mkdir(parents=True)
+    profile_raw, captures, profile = _fixture(semantic_root)
+    profile_path = semantic_root / "profile.json"
+    profile_path.write_bytes(profile_raw)
+
+    control, package_root, _old_cnf, _old_producer = _fixture_control(tmp_path)
+    package = package_root / "package"
+    cnf = captures["child_cnf"].data
+    assert cnf is not None
+    (package / "input.cnf").write_bytes(cnf)
+    producer = json.loads((package / "producer.json").read_bytes())
+    producer["query_polarity"] = profile["control"]["query_polarity"]
+    producer_raw = canonical_json_bytes(producer)
+    (package / "producer.json").write_bytes(producer_raw)
+    manifest = json.loads((package / "wave.json").read_bytes())
+    manifest["encoding"].update(
+        {
+            "cnf_sha256": sha256_bytes(cnf),
+            "producer_manifest_sha256": sha256_bytes(producer_raw),
+            "num_clauses": profile["control"]["clauses"],
+            "query_polarity": profile["control"]["query_polarity"],
+        }
+    )
+    manifest_raw = canonical_json_bytes(manifest)
+    (package / "wave.json").write_bytes(manifest_raw)
+
+    def reference(path: Path, raw: bytes, maximum: int = 1 << 20) -> dict[str, object]:
+        return {
+            "path": os.path.relpath(path, package_root),
+            "sha256": sha256_bytes(raw),
+            "max_bytes": maximum,
+        }
+
+    value = deepcopy(control.value)
+    value.update(
+        {
+            "schema": CONTROL_SCHEMA_V2,
+            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+            "semantic_validator": STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+            "wave_manifest": reference(package / "wave.json", manifest_raw),
+            "semantic_profile": reference(profile_path, profile_raw),
+            "semantic_artifacts": {
+                role: reference(captured.path, captured.data)
+                for role, captured in sorted(captures.items())
+            },
+        }
+    )
+    value["package"] = {
+        "cnf": reference(package / "input.cnf", cnf, 512 << 20),
+        "producer_manifest": reference(package / "producer.json", producer_raw),
+        "variable_map": value["package"]["variable_map"],
+    }
+    control_raw = canonical_json_bytes(value)
+    return load_wave_control(control_raw), package_root, cnf, producer_raw, profile
 
 
 class _FakePiqd:
@@ -273,6 +344,66 @@ def _make_engine(
     )
 
 
+def _v2_registration() -> dict[str, object]:
+    return {
+        "schema": EXECUTION_REGISTRY_SCHEMA,
+        "registry_revision": STATIC_CNF_V2_REGISTRY_REVISION,
+        "registration": {
+            "wave_kind": STATIC_CNF,
+            "adapter_id": STATIC_CNF_PIQD_ADAPTER,
+            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+            "registry_revision": STATIC_CNF_V2_REGISTRY_REVISION,
+            "engine_schema": "p97-cegar-static-cnf-engine/v2",
+            "semantic_validator": STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+            "execution_mode": STATIC_CNF_EXECUTION_MODE,
+            "capabilities": list(STATIC_CNF_EXECUTION_CAPABILITIES),
+            "permits_campaign": False,
+            "permits_export": False,
+            "permits_diagnostic_mining": False,
+            "permits_terminal_proof": False,
+        },
+    }
+
+
+def _make_v2_engine(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    verdict: str,
+):
+    control, package_root, cnf, producer, profile = _fixture_v2_control(tmp_path)
+    journal_root = tmp_path / "journals"
+    journal_root.mkdir()
+    output_parent = tmp_path / "published"
+    output_parent.mkdir()
+    output = output_parent / "engine-v2.json"
+    api = _FakePiqd(cnf, producer, verdict)
+    calls: list[object] = []
+    execution_registration = _v2_registration()
+
+    def factory(**kwargs):
+        calls.append(kwargs)
+        kwargs.pop("transport", None)
+        return make_static_piqd_solver_runner(
+            **kwargs, transport=api, sleep=lambda _seconds: None
+        )
+
+    monkeypatch.setattr(engine, "make_static_piqd_solver_runner", factory)
+    return (
+        engine.StaticCnfWaveEngine(
+            control=control,
+            package_root=package_root,
+            output_path=output,
+            base_url="http://piqd.fixture",
+            journal_root=journal_root,
+            execution_registration=execution_registration,
+        ),
+        output,
+        api,
+        calls,
+        profile,
+    )
+
+
 def test_result_type_and_closed_classification() -> None:
     sat = StaticSolverResult("SAT", {1: True}, 10)
     engine._result_type_check(sat)
@@ -393,6 +524,199 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert accepted.envelope == before
     assert checked == before
     assert api.calls
+
+
+def test_v1_envelope_shape_is_frozen_and_rejects_reserved_profile(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories = _make_engine(tmp_path, monkeypatch, "SAT")
+    accepted = wave_engine.run(timeout_s=7, proof_path=None)
+    envelope = accepted.envelope
+
+    assert set(envelope) == {
+        "schema",
+        "wave_kind",
+        "adapter",
+        "control",
+        "wave_manifest",
+        "package",
+        "resource_policy",
+        "result",
+        "receipt",
+        "custody_seal",
+        "driver_seal",
+        "journal",
+        "attempt_entries",
+        "attempt_inventory",
+        "claims",
+        "envelope_sha256",
+    }
+    assert envelope["schema"] == engine.ENGINE_SCHEMA
+    assert "semantic_profile" not in envelope
+    assert output.read_bytes() == canonical_json_bytes(envelope) + b"\n"
+
+    for field, value in (
+        (
+            "semantic_profile",
+            {"schema": "p97-static-cnf-semantic-profile/v1", "sha256": "0" * 64},
+        ),
+        ("semantic_artifacts", []),
+        ("execution_manifest", {}),
+    ):
+        profiled = deepcopy(envelope)
+        profiled[field] = value
+        unsigned = {
+            key: value for key, value in profiled.items() if key != "envelope_sha256"
+        }
+        profiled["envelope_sha256"] = sha256_json(unsigned)
+        output.write_bytes(canonical_json_bytes(profiled) + b"\n")
+        with pytest.raises(engine.StaticCnfEngineError):
+            engine.validate_static_cnf_engine_output(output)
+
+
+def test_v2_run_binds_input_and_execution_manifests_and_semantic_inventory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, api, factories, profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    accepted = wave_engine.run(timeout_s=7, proof_path=None)
+    envelope = accepted.envelope
+
+    assert envelope["schema"] == "p97-cegar-static-cnf-engine/v2"
+    bound_manifest = json.loads(
+        (wave_engine.package_root / wave_engine.control.manifest.path).read_bytes()
+    )
+    assert envelope["wave_manifest"] == {
+        "sha256": wave_engine.control.manifest.sha256,
+        "manifest": bound_manifest,
+    }
+    execution = envelope["execution_manifest"]
+    assert execution["manifest"] != bound_manifest
+    assert execution["sha256"] == wave_manifest_sha256(execution["manifest"])
+
+    expected_profile_metadata = {
+        key: profile[key]
+        for key in ("schema", "profile_id", "validator", "classification", "cleanup")
+    }
+    assert envelope["semantic_profile"] == {
+        "sha256": sha256_bytes(canonical_json_bytes(profile)),
+        "metadata": expected_profile_metadata,
+    }
+    expected_artifacts = [
+        {
+            "role": role,
+            "sha256": reference.sha256,
+            "bytes": len((wave_engine.package_root / reference.path).read_bytes()),
+        }
+        for role, reference in wave_engine.control.semantic_artifacts
+    ]
+    assert envelope["semantic_artifacts"] == expected_artifacts
+    assert len(factories) == 1
+    assert api.calls
+    assert output.read_bytes() == canonical_json_bytes(envelope) + b"\n"
+    assert engine.validate_static_cnf_engine_output(output) == envelope
+
+
+def test_v2_constructor_requires_authenticated_execution_registration(
+    tmp_path: Path,
+) -> None:
+    control, package_root, _cnf, _producer, _profile = _fixture_v2_control(tmp_path)
+    with pytest.raises(engine.StaticCnfEngineError, match="registry is required"):
+        engine.StaticCnfWaveEngine(
+            control=control,
+            package_root=package_root,
+            output_path=tmp_path / "result.json",
+            base_url="http://piqd.fixture",
+            journal_root=tmp_path / "journals",
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("schema", "p97-cegar-execution-registry/v2"),
+        ("registry_revision", "2026-08-14.2"),
+        ("execution_mode", "one-shot"),
+        ("capabilities", ["check", "run"]),
+    ],
+)
+def test_v2_constructor_requires_exact_code_defined_registration(
+    field: str, value: object, tmp_path: Path
+) -> None:
+    control, package_root, _cnf, _producer, _profile = _fixture_v2_control(tmp_path)
+    registration = _v2_registration()
+    inner = registration["registration"]
+    assert type(inner) is dict
+    if field in {"schema", "registry_revision"}:
+        registration[field] = value
+        if field == "registry_revision":
+            inner[field] = value
+    else:
+        inner[field] = value
+    with pytest.raises(engine.StaticCnfEngineError, match="code-defined"):
+        engine.StaticCnfWaveEngine(
+            control=control,
+            package_root=package_root,
+            output_path=tmp_path / "result.json",
+            base_url="http://piqd.fixture",
+            journal_root=tmp_path / "journals",
+            execution_registration=registration,
+        )
+
+
+def test_v2_offline_validator_rejects_manifest_and_semantic_crossings(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "UNKNOWN"
+    )
+    envelope = wave_engine.run(timeout_s=7, proof_path=None).envelope
+
+    def write_tampered(value: dict[str, object]) -> None:
+        unsigned = {
+            key: item for key, item in value.items() if key != "envelope_sha256"
+        }
+        value["envelope_sha256"] = sha256_json(unsigned)
+        output.write_bytes(canonical_json_bytes(value) + b"\n")
+
+    missing_execution = deepcopy(envelope)
+    del missing_execution["execution_manifest"]
+    write_tampered(missing_execution)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+    extra_execution = deepcopy(envelope)
+    extra_execution["execution_manifest"]["extra"] = False
+    write_tampered(extra_execution)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+    crossed_execution = deepcopy(envelope)
+    crossed_execution["execution_manifest"]["sha256"] = envelope["wave_manifest"][
+        "sha256"
+    ]
+    write_tampered(crossed_execution)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+    missing_metadata = deepcopy(envelope)
+    del missing_metadata["semantic_profile"]["metadata"]
+    write_tampered(missing_metadata)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+    extra_metadata = deepcopy(envelope)
+    extra_metadata["semantic_profile"]["metadata"]["extra"] = False
+    write_tampered(extra_metadata)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+    crossed_metadata = deepcopy(envelope)
+    crossed_metadata["semantic_profile"]["metadata"]["profile_id"] = "crossed"
+    write_tampered(crossed_metadata)
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
 
 
 def test_registered_run_seals_and_validates_execution_identity(
@@ -648,6 +972,14 @@ def test_exact_native_paths_and_baseexception_cleanup(
         engine.StaticCnfWaveEngine(
             control=control,
             package_root=HostilePath(package_root),
+            output_path=parent / "engine.json",
+            base_url="http://fixture",
+            journal_root=journal_root,
+        )
+    with pytest.raises(engine.StaticCnfEngineError, match="must be absolute"):
+        engine.StaticCnfWaveEngine(
+            control=control,
+            package_root=Path("relative-package"),
             output_path=parent / "engine.json",
             base_url="http://fixture",
             journal_root=journal_root,
