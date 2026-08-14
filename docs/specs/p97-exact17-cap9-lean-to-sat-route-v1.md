@@ -832,15 +832,16 @@ terminal adapter. The targeted exporter build and axiom audit pass with no
 
 The Child40 exporter and fail-closed validators pin the immutable Child39
 prefix, exactly 196 Lean-owned suffix clauses, the current Lean sources, and a
-5,847,584-clause result. A temporary Lean-rendered export passed exact
-validation with 308 variables, 291,633,186 bytes, and SHA-256
-`555d1d2f63183cccf3549d4bedf9dd39817666c0f026ca1d390251c8e7c69034`.
-Ruff and five focused adversarial tests pass. The temporary file was removed;
-the production root, export receipt, ingress manifest, custody artifacts, and
-PIQD job are intentionally absent at this checkpoint.
+5,847,584-clause result. The production Lean-rendered root was published once
+with no-overwrite semantics and a ledger-last receipt. It has 308 variables,
+291,633,186 bytes, and SHA-256
+`555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
+The recursively validated immutable ingress manifest has SHA-256
+`df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8`.
+Ruff, five focused adversarial tests, and the live PIQD identity check pass.
+Custody artifacts and a Child40 PIQD job are absent at this checkpoint.
 
-Next publish once with no-overwrite semantics, recursively validate ingress,
-and submit exactly one pinned Child40 job. `SAT` requires full replay and a
+Next submit exactly one pinned Child40 job. `SAT` requires full replay and a
 new-wave-only theorem mine before any successor. `UNSAT` requires independent
 certificate replay and Lean composition through the existing exact-cover,
 source-realization, and landing contracts. Exact 17 and the cap-nine

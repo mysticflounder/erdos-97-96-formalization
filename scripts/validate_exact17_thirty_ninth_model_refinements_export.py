@@ -33,8 +33,8 @@ SPEC_SCHEMA = "p97-exact17-child40-export-spec/v1"
 
 LEAN_ROOT_SHA256 = "76f993c6335f39e913f187be26118307025c58feb22e47f5e8284518625f107e"
 LEAN_EXPORT_SHA256 = "e5634ee294b4ae348cf553ee186777d48a2e32ff2407ab1caa83547c08c0a632"
-CHILD_SHA256: str | None = None
-CHILD_BYTES: int | None = None
+CHILD_SHA256: str | None = "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034"
+CHILD_BYTES: int | None = 291_633_186
 EXPECTED_MODEL_CUT_SUFFIX_INDICES = (7, 23, 39, 47, 67, 75, 79, 83, 87, 95, 99, 103, 107, 115, 119, 123, 127, 131, 135, 139, 143, 147, 151, 155, 159, 163, 167, 171, 175, 179, 183, 187, 191, 195)
 
 # This byte order is copied from the authoritative Lean exporter output.
@@ -251,7 +251,7 @@ class ExportSpec:
     child_sha256: str | None = CHILD_SHA256
     child_bytes: int | None = CHILD_BYTES
     model_sha256: str = MODEL_SHA256
-    publication_state: str = "UNPROVISIONED"
+    publication_state: str = "PROVISIONED"
     schema: str = SPEC_SCHEMA
     lean_root_path: str = LEAN_ROOT_PATH
     lean_export_path: str = LEAN_EXPORT_PATH

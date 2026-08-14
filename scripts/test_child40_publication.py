@@ -28,23 +28,19 @@ def test_child39_parent_and_child40_boundary_are_pinned() -> None:
     assert runner.PRODUCTION_RUNNER_SPEC.project == "erdos-97-96-exact17-child40"
 
 
-def test_child39_custody_model_authenticates_without_provisioning() -> None:
+def test_child39_custody_model_authenticates() -> None:
     assignment = export_validation.authenticated_model(Path(export_validation.MODEL_PATH))
     assert len(assignment) == export_validation.VARIABLES
     assert assignment[1] in {True, False}
 
 
-def test_export_ingress_and_runner_are_bound_without_external_work() -> None:
-    assert not export_validation.PRODUCTION_SPEC.provisioned
+def test_export_ingress_and_runner_are_bound() -> None:
+    assert export_validation.PRODUCTION_SPEC.provisioned
     export_validation.validate_spec(export_validation.PRODUCTION_SPEC, require_source_pins=True)
-    assert not ingress.PRODUCTION_INGRESS_SPEC.provisioned
-    assert not runner.PRODUCTION_RUNNER_SPEC.provisioned
-    with pytest.raises(export_validation.UnprovisionedError):
-        exporter.export_child40()
-    with pytest.raises(ingress.UnprovisionedError):
-        ingress.emit_ingress()
-    with pytest.raises(runner.UnprovisionedError):
-        runner.validate_local()
+    assert ingress.PRODUCTION_INGRESS_SPEC.provisioned
+    assert runner.PRODUCTION_RUNNER_SPEC.provisioned
+    assert ingress.validate_ingress()["manifest_sha256"] == ingress.MANIFEST_SHA256
+    assert runner.validate_local()["status"] == "PASS"
 
 
 def test_child40_paths_are_new_and_do_not_alias_child39_root() -> None:
@@ -73,5 +69,5 @@ def test_stale_child32_artifacts_are_irrelevant_to_child40_start(tmp_path: Path)
         def version(self) -> None:
             raise AssertionError("PIQD contact must not be made by this test")
 
-    with pytest.raises(runner.UnprovisionedError):
+    with pytest.raises(AssertionError, match="PIQD contact"):
         runner.start(NoContact(), paths=paths, ingress_validator=lambda *_args, **_kwargs: {"status": "PASS"})

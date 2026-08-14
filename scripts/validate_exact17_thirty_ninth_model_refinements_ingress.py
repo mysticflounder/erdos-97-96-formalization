@@ -25,7 +25,7 @@ SCHEMA = "p97-exact17-thirty-ninth-model-refinements-piqd-ingress/v1"
 RECEIPT_SCHEMA = "p97-exact17-child40-immutable-export-receipt/v1"
 PARENT_MANIFEST = ROOT / "scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-eighth-model-refinements-core1.json"
 MANIFEST = ROOT / "scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-ninth-model-refinements-core1.json"
-MANIFEST_SHA256: str | None = None
+MANIFEST_SHA256: str | None = "df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8"
 DAEMON_RECEIPT = ROOT / "scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt"
 
 
