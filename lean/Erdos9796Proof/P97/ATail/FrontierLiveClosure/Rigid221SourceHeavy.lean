@@ -11438,6 +11438,8 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       (hboundaryImage : Finset.univ.image boundary = D.A)
       (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
       (labelIndex : Label → Fin 17)
+      (hlabelIndex : labelIndex =
+        ATailBlockerVExactSeventeenSourceNormalForm.expectedLabelIndex orientation order)
       (hposition : PositionEmbedding orientation order labelIndex)
       (huPoint : boundary (labelIndex 6) = P.u.1)
       (hxuPoint : boundary (labelIndex 7) = packet.xu)
@@ -11620,9 +11622,9 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
           C).card ≤ 1 := by
       rw [hnextSupport]
       simpa only [Hlate, c, C] using hnextRowPhysicalHits
-    exact exists_sourceRealization_of_geometricExactCover Hlate pattern order
+    exact exists_sourceRealization_of_geometricExactCover Hlate D.convex pattern order
       orientation boundary hboundaryInjective hboundaryImage hboundaryCcw
-      labelIndex hposition rowSupport holdRows cap hcapPullback holdCapGeom
+      labelIndex hlabelIndex hposition rowSupport holdRows cap hcapPullback holdCapGeom
       hexactCover'.1 hexactCover'.2 nextCenter hnextCenter C
       hphysicalPullback hnextPhysicalGeom
   have closeForward
@@ -11703,7 +11705,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       change (position order label).val < B.m
       omega
     exact close .forward order boundary hboundaryInjective hboundaryImage
-      hboundaryCcw labelIndex hposition
+      hboundaryCcw labelIndex rfl hposition
       ((pointAt 6 iu huPos).trans hiu) ((pointAt 7 ixu hxuPos).trans hixu)
       ((pointAt 8 iv hvPos).trans hiv) ((pointAt 9 ixv hxvPos).trans hixv)
       ((pointAt 10 id hdeletedPos).trans hid) ((pointAt 11 ic hcPos).trans hic)
@@ -11799,7 +11801,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
         omega
       exact (pointAt label t hsum) ▸ B.points_mem_cap t
     exact close .reverse order boundary hboundaryInjective hboundaryImage
-      hboundaryCcw labelIndex hposition
+      hboundaryCcw labelIndex rfl hposition
       ((pointAt 6 iu huPos).trans hiu) ((pointAt 7 ixu hxuPos).trans hixu)
       ((pointAt 8 iv hvPos).trans hiv) ((pointAt 9 ixv hxvPos).trans hixv)
       ((pointAt 10 id hdeletedPos).trans hid) ((pointAt 11 ic hcPos).trans hic)
