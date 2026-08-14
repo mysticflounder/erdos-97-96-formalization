@@ -350,12 +350,13 @@ is permitted.
 
 ### Child45 native data-only registration — 2026-08-14
 
-Child45 now uses the same declarative boundary as Child40. Four canonical data
-records under `census/p97_search/waves/exact17/child45/` bind its closed
-semantic profile, static producer, wave manifest, and v4 data-only control. The
-package reuses Child40's complete 308-entry variable map by exact path, byte
-count, and SHA-256; it does not duplicate that map and adds no Child45-specific
-Python runner, exporter, validator script, or shell gate.
+Child45 now uses the same declarative boundary as Child40. Four canonical
+data-only records under `census/p97_search/waves/exact17/child45/` bind its
+closed semantic profile, static producer, wave manifest, and v4 data-only
+control. A fifth canonical record selects the existing generic executable-v2
+registration. The package reuses Child40's complete 308-entry variable map by
+exact path, byte count, and SHA-256; it does not duplicate that map and adds no
+Child45-specific Python runner, exporter, validator script, or shell gate.
 
 The closed `exact17-child45` validator authenticates exactly seven retained
 single-link artifacts totaling 583,428,488 bytes: the 5,848,820-clause Child44
@@ -374,20 +375,44 @@ The canonical profile, producer, wave, and control SHA-256 values are
 `f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a`,
 `b6348262596549529f8b506d0c235586409b88beecb622216f66f31a37061a26`,
 and `0ab189b9dc6a7b43be7fab12deb34682d9f0b40e9f014bbeb92c25d7a52c7fe1`.
+The separately authenticated executable-v2 control SHA-256 is
+`70e2bfb569a16a47e102ccd8cd9aca1e74a4f7b95154060a66d9a601d5564657`.
 The v4 control has an empty retained-hardlink exception map and resolves only
 the shared data-only capabilities `plan`, `status`, and `validate-ingress`.
 It cannot run or validate an execution output.
 
 This checkpoint authenticates preserved finite evidence only. It does not open
-a PIQD session, run a solver, promote a theorem, or authorize cleanup. The next
-step is a separately reviewed executable v2 control through the existing
-generic CLI, followed by one static child run; no parallel per-wave wrapper is
-permitted. The final shared gate passed 315 tests with one environment-dependent
-retained-artifact skip, Ruff lint clean, all 23 scoped files format-clean, and
-an independent adversarial audit PASS. Cleanup stays last: retain both data
+a PIQD session, run a solver, promote a theorem, or authorize cleanup. The
+separately reviewed executable-v2 control is recorded below; the next step is
+one static child run through the existing generic CLI, with no parallel
+per-wave wrapper. The final shared gate passed 315 tests with one
+environment-dependent retained-artifact skip, Ruff lint clean, all 23 scoped
+files format-clean, and an independent adversarial audit PASS. Cleanup stays
+last: retain both data
 packages and legacy evidence until exact zero-caller/zero-writer inventory,
 immutable archive, rollback, and move-only quarantine gates pass under a
 separately reviewed plan digest.
+
+### Child45 generic executable-v2 control — 2026-08-14
+
+`execution-control-v2.json` is the exact canonical projection of the reviewed
+v4 data-only record: its control schema is `p97-cegar-wave-control/v2`, its
+adapter schema is `v2`, and the data-only `retained_hardlink_counts` field is
+absent. Every manifest, package, policy, semantic-profile, semantic-artifact,
+path, size, and digest field remains byte-for-byte equal. The closed registry
+therefore supplies only the shared `check`, `plan`, `run`, `status`,
+`validate-ingress`, and `validate-output` capabilities.
+
+No new Child45 runner, launcher, validator, or shell script is involved. The
+only production entrypoint is
+`python -m census.p97_search.cegar_wave_cli`, which dispatches the generic v2
+static engine with literal `proof_path=None`, one worker/core, create-once
+output, retained journal custody, and standalone offline validation. The
+control has passed canonical derivation, closed-registration, and complete
+production ingress replay. It has not yet opened a PIQD job or run a solver.
+That live step requires a clean immutable checkpoint, an idle maintained
+daemon, fresh output/journal custody paths, and a separate immediate preflight.
+Cleanup remains last and unauthorized.
 
 ### Exact17 frozen shadow checkpoint — 2026-08-14
 

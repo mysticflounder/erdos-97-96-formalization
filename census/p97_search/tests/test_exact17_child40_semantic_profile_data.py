@@ -27,7 +27,7 @@ PROFILE_PATH = (
 PACKAGE_ROOT = PROFILE_PATH.parent
 CONTROL_PATH = PACKAGE_ROOT / "control.json"
 CHILD45_PACKAGE_ROOT = Path(__file__).parents[1] / "waves" / "exact17" / "child45"
-CHILD45_CONTROL_PATH = CHILD45_PACKAGE_ROOT / "control.json"
+CHILD45_EXECUTION_CONTROL_PATH = CHILD45_PACKAGE_ROOT / "execution-control-v2.json"
 
 EXPECTED_ARTIFACTS = {
     "child_cnf": (
@@ -251,6 +251,7 @@ def test_child45_declarative_package_is_canonical_and_source_bound() -> None:
         name: (CHILD45_PACKAGE_ROOT / name).read_bytes()
         for name in (
             "control.json",
+            "execution-control-v2.json",
             "producer-manifest.json",
             "semantic-profile.json",
             "wave-manifest.json",
@@ -293,6 +294,32 @@ def test_child45_declarative_package_is_canonical_and_source_bound() -> None:
         for role, reference in control.semantic_artifacts
     } == EXPECTED_CHILD45_ARTIFACTS
 
+    expected_execution_control = json.loads(package["control.json"])
+    expected_execution_control["schema"] = "p97-cegar-wave-control/v2"
+    expected_execution_control["adapter_schema"] = "v2"
+    del expected_execution_control["retained_hardlink_counts"]
+    assert (
+        canonical_json_bytes(expected_execution_control)
+        == package["execution-control-v2.json"]
+    )
+    assert sha256_bytes(package["execution-control-v2.json"]) == (
+        "70e2bfb569a16a47e102ccd8cd9aca1e74a4f7b95154060a66d9a601d5564657"
+    )
+    execution_control = load_wave_control(package["execution-control-v2.json"])
+    execution_registration = resolve_execution_registration(execution_control)
+    assert execution_control.retained_hardlink_counts == ()
+    assert execution_registration.adapter_schema == "v2"
+    assert execution_registration.capabilities == (
+        "check",
+        "plan",
+        "run",
+        "status",
+        "validate-ingress",
+        "validate-output",
+    )
+    assert execution_registration.permits_campaign is False
+    assert execution_registration.permits_terminal_proof is False
+
     producer = json.loads(package["producer-manifest.json"])
     source = producer["source_manifest"]
     authenticate_static_manifests(
@@ -310,7 +337,7 @@ def test_child45_declarative_package_is_canonical_and_source_bound() -> None:
 
 
 def test_child45_native_package_replays_registered_ingress_offline() -> None:
-    control = load_wave_control(CHILD45_CONTROL_PATH.read_bytes())
+    control = load_wave_control(CHILD45_EXECUTION_CONTROL_PATH.read_bytes())
     missing = [
         reference.path
         for _, reference in control.semantic_artifacts
@@ -336,8 +363,6 @@ def test_child45_native_package_replays_registered_ingress_offline() -> None:
             "role": role,
             "sha256": sha256,
             "bytes": size,
-            "link_count": 1,
-            "custody": "EXCLUSIVE_SINGLE_LINK",
         }
         for role, (_path, size, sha256) in sorted(EXPECTED_CHILD45_ARTIFACTS.items())
     ]
