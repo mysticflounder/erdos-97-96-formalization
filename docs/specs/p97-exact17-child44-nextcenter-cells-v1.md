@@ -76,18 +76,26 @@ proof-producing solve, independent proof replay, and a named Lean cell theorem.
 
 ## Public SAT replay seam
 
-The maintained callback is
-`census.p97_search.exact17_source_model_replay.replay_child44_assumption_sat`.
-Its closed interface accepts only an exact native absolute parent path, a
-builtin total 308-literal tuple, one reviewed cell identifier and singleton
-assumption, and the fixed Child44 parent SHA-256.  It accepts no callbacks,
-alternate variable maps, solver fallbacks, PIQD access, or publication path.
+The production callback for the extended root is
+`census.p97_search.exact17_source_model_replay.replay_child45_assumption_sat`.
+Its closed interface accepts exact native absolute Child44-parent and
+Child45-root paths, a builtin total 308-literal tuple, one reviewed cell
+identifier and singleton assumption, and both fixed root SHA-256 values.  It
+accepts no callbacks, alternate variable maps, solver fallbacks, PIQD access,
+or publication path.  The earlier `replay_child44_assumption_sat` remains a
+regression seam for the authenticated Child44 fixture; it is not the callback
+for new Child45 cell results.
 
-The callback streams and evaluates all 5,848,820 clauses without loading the
-291 MB root into memory.  It then inverts the Lean atom map and independently
-checks every `SourceModel` field.  Its Kalmanson stage constructs all 4,760
-strict atoms modulo the selected-row equality closure.  In-process Z3 may
-propose rational data, but is not an authority: the standalone
+Before evaluating an assignment, the Child45 callback streams the Child44 and
+Child45 files in lockstep: their canonical headers must differ only by the
+four-clause count, all 5,848,820 parent body lines must be byte-identical, and
+the ordered four-clause suffix must equal the Lean-owned source-valid suffix.
+It authenticates both complete hashes and rejects symlinked, changed, extra,
+or noncanonical inputs.  It then streams and evaluates all 5,848,824 Child45
+clauses without loading the 291 MB root into memory, inverts the Lean atom map,
+and independently checks every `SourceModel` field.  Its Kalmanson stage
+constructs all 4,760 strict atoms modulo the selected-row equality closure.
+In-process Z3 may propose rational data, but is not an authority: the standalone
 `verify_exact17_kalmanson_proposal` function imports and calls no solver.  It
 replays a feasible witness using exact `Fraction` arithmetic, or clears and
 checks nonnegative Farkas weights before calling

@@ -212,6 +212,175 @@ def test_tiny_streaming_dimacs_replay_checks_custody_and_clauses(tmp_path: Path)
         replay._stream_dimacs_replay(long_line, truth, long_contract)
 
 
+def test_child45_suffix_contract_is_exact_and_ordered(tmp_path: Path) -> None:
+    path = tmp_path / "child45-tiny.cnf"
+    contents = b"p cnf 308 2\n1 0\n-2 0\n"
+    path.write_bytes(contents)
+    assignment = tuple(variable if variable != 2 else -variable for variable in range(1, 309))
+    truth = replay._parse_assignment(assignment)
+    contract = replay._RootContract(
+        sha256=hashlib.sha256(contents).hexdigest(),
+        variables=308,
+        clauses=2,
+        byte_count=len(contents),
+        suffix_start=0,
+        expected_suffix=((1,), (-2,)),
+    )
+    root = replay._stream_dimacs_replay(path, truth, contract)
+    assert root.clauses == 2
+    with pytest.raises(replay.Child44ReplayError, match="suffix clauses"):
+        replay._stream_dimacs_replay(
+            path,
+            truth,
+            dataclasses.replace(contract, expected_suffix=((1,), (-3,))),
+        )
+    counted_contents = b"p cnf 308 2\n1 0\n-2 0\n3 0\n"
+    path.write_bytes(counted_contents)
+    with pytest.raises(replay.Child44ReplayError, match="clause count"):
+        replay._stream_dimacs_replay(
+            path,
+            truth,
+            dataclasses.replace(
+                contract,
+                sha256=hashlib.sha256(counted_contents).hexdigest(),
+                byte_count=len(counted_contents),
+                expected_suffix=((1,), (-2,), (3,)),
+            ),
+        )
+
+
+def test_child45_parent_relation_streams_normalized_headers_and_rejects_mutations(
+    tmp_path: Path,
+) -> None:
+    parent_body = b"1 0\n2 -3 0\n"
+    suffix = (b"-4 0\n", b"5 -6 0\n", b"-7 0\n", b"8 9 0\n")
+    parent_contents = b"p cnf 308 2\n" + parent_body
+    child_contents = b"p cnf 308 6\n" + parent_body + b"".join(suffix)
+    parent_path = tmp_path / "parent.cnf"
+    child_path = tmp_path / "child.cnf"
+    parent_path.write_bytes(parent_contents)
+    child_path.write_bytes(child_contents)
+    parent_contract = replay._RootContract(
+        sha256=hashlib.sha256(parent_contents).hexdigest(),
+        variables=308,
+        clauses=2,
+        byte_count=len(parent_contents),
+    )
+    child_contract = replay._RootContract(
+        sha256=hashlib.sha256(child_contents).hexdigest(),
+        variables=308,
+        clauses=6,
+        byte_count=len(child_contents),
+        suffix_start=2,
+        expected_suffix=((-4,), (5, -6), (-7,), (8, 9)),
+    )
+    relation = replay._stream_child45_parent_relation(
+        parent_path,
+        child_path,
+        parent_contract,
+        child_contract,
+    )
+    assert relation.parent == replay._RootReplay(
+        parent_contract.sha256, 308, 2, len(parent_contents)
+    )
+    assert relation.child == replay._RootReplay(
+        child_contract.sha256, 308, 6, len(child_contents)
+    )
+
+    child_path.write_bytes(b"p cnf 308 6\n1 0\n2 -4 0\n" + b"".join(suffix))
+    with pytest.raises(replay.Child45ReplayError, match="body differs"):
+        replay._stream_child45_parent_relation(
+            parent_path, child_path, parent_contract, child_contract
+        )
+    child_path.write_bytes(b"p cnf 307 6\n" + parent_body + b"".join(suffix))
+    with pytest.raises(replay.Child45ReplayError, match="header differs"):
+        replay._stream_child45_parent_relation(
+            parent_path, child_path, parent_contract, child_contract
+        )
+    child_path.write_bytes(child_contents)
+    with pytest.raises(replay.Child45ReplayError, match="parent SHA-256"):
+        replay._stream_child45_parent_relation(
+            parent_path,
+            child_path,
+            dataclasses.replace(parent_contract, sha256="0" * 64),
+            child_contract,
+        )
+    link = tmp_path / "child-link.cnf"
+    link.symlink_to(child_path)
+    with pytest.raises(replay.Child45ReplayError, match="symlink"):
+        replay._stream_child45_parent_relation(
+            parent_path, link, parent_contract, child_contract
+        )
+
+
+def test_child45_root_contract_rejects_child44_and_child44_rejects_child45(
+    tmp_path: Path,
+) -> None:
+    wrong_root = tmp_path / "wrong-child45-root.cnf"
+    wrong_root.write_bytes(b"p cnf 308 6\n")
+    assignment = _assignment()
+    with pytest.raises(replay.Child45ReplayError, match="parent header"):
+        replay.replay_child45_assumption_sat(
+            parent_cnf_path=wrong_root,
+            child_cnf_path=wrong_root,
+            assignment=assignment,
+            cell_id="next-center-15",
+            assumptions=(305,),
+            expected_parent_sha256=replay.CHILD44_PARENT_SHA256,
+            expected_child_sha256=replay.CHILD45_ROOT_SHA256,
+        )
+    with pytest.raises(replay.Child44ReplayError, match="Child44 root"):
+        replay.replay_child44_assumption_sat(
+            parent_cnf_path=wrong_root,
+            assignment=assignment,
+            cell_id="next-center-15",
+            assumptions=(305,),
+            expected_parent_sha256=replay.CHILD45_ROOT_SHA256,
+        )
+
+
+def test_child45_replay_rejects_malformed_assignment_and_hash_before_opening_path(
+    tmp_path: Path,
+) -> None:
+    missing = tmp_path / "missing-child45.cnf"
+    with pytest.raises(replay.Child45ReplayError, match="Child45 SHA-256"):
+        replay.replay_child45_assumption_sat(
+            parent_cnf_path=missing,
+            child_cnf_path=missing,
+            assignment=(1,),
+            cell_id="next-center-15",
+            assumptions=(305,),
+            expected_parent_sha256=replay.CHILD44_PARENT_SHA256,
+            expected_child_sha256="0" * 64,
+        )
+    with pytest.raises(replay.Child45ReplayError, match="308-literal tuple"):
+        replay.replay_child45_assumption_sat(
+            parent_cnf_path=missing,
+            child_cnf_path=missing,
+            assignment=(1,),
+            cell_id="next-center-15",
+            assumptions=(305,),
+            expected_parent_sha256=replay.CHILD44_PARENT_SHA256,
+            expected_child_sha256=replay.CHILD45_ROOT_SHA256,
+        )
+
+
+def test_child45_dimensions_suffix_and_assumption_bindings_are_closed() -> None:
+    assert replay.CHILD45_ROOT_SHA256 == (
+        "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2"
+    )
+    assert replay.CHILD45_ROOT_BYTE_COUNT == 291_704_992
+    assert replay.CHILD45_ROOT_CLAUSE_COUNT == 5_848_824
+    assert replay.CHILD45_NEW_CLAUSE_COUNT == 4
+    assert replay._sha256(
+        b"".join((" ".join(map(str, clause)) + " 0\n").encode("ascii") for clause in replay.CHILD45_SOURCE_VALID_SUFFIX)
+    ) == replay.CHILD45_SUFFIX_SHA256
+    truth = replay._parse_assignment(_assignment())
+    assert replay._require_cell("next-center-15", (305,), truth) == 15
+    with pytest.raises(replay.Child44ReplayError, match="cell assumptions"):
+        replay._require_cell("next-center-15", (-305,), truth)
+
+
 def test_offline_kalmanson_verifier_accepts_feasible_witness_and_mutations(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

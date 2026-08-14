@@ -2,12 +2,13 @@
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
 
-"""Exact replay of one Child44 assumption-cell SAT assignment.
+"""Exact replay of one Child44 or Child45 assumption-cell SAT assignment.
 
 This module is the maintained inverse of the 308-atom Lean encoding in
-``BlockerVExactSeventeenSourceCnf``.  The sole production entry point accepts
-captured data only: it never contacts PIQD, launches a SAT solver, publishes
-an artifact, or falls back to a legacy decoder.
+``BlockerVExactSeventeenSourceCnf``.  The production entry points accept
+captured data only: they never contact PIQD, launch a SAT solver, publish an
+artifact, or fall back to a legacy decoder.  Child45 has its own closed root
+contract and source-valid suffix check.
 
 The Kalmanson search is proposal-only.  A proposed feasible point is replayed
 with ``Fraction`` against every one of the 4,760 strict inequalities.  A
@@ -40,6 +41,21 @@ PARENT_CLAUSE_COUNT: Final = 5_848_820
 PARENT_BYTE_COUNT: Final = 291_704_790
 CHILD44_PARENT_SHA256: Final = (
     "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9"
+)
+CHILD45_ROOT_SHA256: Final = (
+    "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2"
+)
+CHILD45_ROOT_BYTE_COUNT: Final = 291_704_992
+CHILD45_ROOT_CLAUSE_COUNT: Final = 5_848_824
+CHILD45_NEW_CLAUSE_COUNT: Final = 4
+CHILD45_SUFFIX_SHA256: Final = (
+    "7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590"
+)
+CHILD45_SOURCE_VALID_SUFFIX: Final = (
+    (-307, -10, -3, -143, -141, -154, -156, -44, -39, -52, -58),
+    (-307, -242, -241, -31, -28, -66, -54, -38, -45, -168, -167),
+    (-308, -13, -3, -143, -141, -205, -207, -47, -39, -52, -58),
+    (-308, -242, -241, -31, -28, -66, -54, -38, -45, -219, -218),
 )
 
 ORDERS: Final = (
@@ -85,6 +101,10 @@ class Child44ReplayError(ValueError):
 
 class Child44ReplayInconclusive(Child44ReplayError):
     """The untrusted proposal search produced no exactly replayable outcome."""
+
+
+class Child45ReplayError(Child44ReplayError):
+    """A Child45 custody, suffix, assignment, or exact-replay gate failed."""
 
 
 @dataclass(frozen=True)
@@ -176,11 +196,37 @@ class Child44SatReplay:
 
 
 @dataclass(frozen=True)
+class Child45SatReplay:
+    """Frozen result accepted by the isolated Child45 semantic profile."""
+
+    schema: Literal["p97-exact17-child45-assumption-sat-replay/v1"]
+    cell_id: str
+    assumptions: tuple[int, ...]
+    parent_sha256: str
+    parent_bytes: int
+    parent_variables: int
+    parent_clauses: int
+    root_sha256: str
+    root_bytes: int
+    root_variables: int
+    root_clauses: int
+    suffix_sha256: str
+    assignment_sha256: str
+    source_model: DecodedSourceModel
+    source_predicates: tuple[str, ...]
+    replay_sha256: str
+    kalmanson: KalmansonClassification
+    result_sha256: str
+
+
+@dataclass(frozen=True)
 class _RootContract:
     sha256: str
     variables: int
     clauses: int
     byte_count: int
+    suffix_start: int | None = None
+    expected_suffix: tuple[tuple[int, ...], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -189,6 +235,12 @@ class _RootReplay:
     variables: int
     clauses: int
     byte_count: int
+
+
+@dataclass(frozen=True)
+class _Child45RootRelation:
+    parent: _RootReplay
+    child: _RootReplay
 
 
 @dataclass(frozen=True)
@@ -435,6 +487,8 @@ def _stream_dimacs_replay(
     byte_count = 0
     header: tuple[int, int] | None = None
     clause_count = 0
+    suffix_clauses: list[tuple[int, ...]] = []
+    current_clause: list[int] = []
     pending = False
     clause_satisfied = False
     with path.open("rb") as stream:
@@ -473,17 +527,21 @@ def _stream_dimacs_replay(
                     raise Child44ReplayError("parent CNF contains a noninteger token") from error
                 if literal == 0:
                     clause_count += 1
+                    if contract.suffix_start is not None and clause_count > contract.suffix_start:
+                        suffix_clauses.append(tuple(current_clause))
                     if not clause_satisfied:
                         raise Child44ReplayError(
                             f"assignment falsifies parent CNF clause {clause_count}"
                         )
                     pending = False
                     clause_satisfied = False
+                    current_clause = []
                     continue
                 variable = abs(literal)
                 if variable > contract.variables:
                     raise Child44ReplayError("parent CNF literal exceeds the variable bound")
                 pending = True
+                current_clause.append(literal)
                 clause_satisfied = clause_satisfied or (
                     truth[variable] == (literal > 0)
                 )
@@ -507,7 +565,133 @@ def _stream_dimacs_replay(
         raise Child44ReplayError("parent CNF byte count differs from the exact contract")
     if actual_sha256 != contract.sha256:
         raise Child44ReplayError("parent CNF SHA-256 differs from the exact contract")
+    if contract.suffix_start is not None and tuple(suffix_clauses) != contract.expected_suffix:
+        raise Child44ReplayError("Child45 source-valid suffix clauses differ from the exact contract")
     return _RootReplay(actual_sha256, header[0], clause_count, byte_count)
+
+
+def _read_relation_line(stream: Any, label: str) -> bytes:
+    raw_line = stream.readline(_MAX_DIMACS_LINE_BYTES + 1)
+    if not raw_line:
+        raise Child45ReplayError(f"{label} ends before the authenticated clause body")
+    if len(raw_line) > _MAX_DIMACS_LINE_BYTES:
+        raise Child45ReplayError(f"{label} line exceeds the bounded replay limit")
+    if not raw_line.endswith(b"\n"):
+        raise Child45ReplayError(f"{label} contains an unterminated clause line")
+    fields = raw_line[:-1].strip().split()
+    if not fields or fields[-1] != b"0":
+        raise Child45ReplayError(f"{label} contains a non-canonical clause line")
+    return raw_line
+
+
+def _stream_child45_parent_relation(
+    parent_path: Path,
+    child_path: Path,
+    parent_contract: _RootContract,
+    child_contract: _RootContract,
+) -> _Child45RootRelation:
+    """Authenticate a Child45 file as the exact parent plus four suffix lines."""
+
+    try:
+        _require_absolute_native_path(parent_path)
+        _require_absolute_native_path(child_path)
+    except Child44ReplayError as error:
+        raise Child45ReplayError(str(error)) from error
+    parent_before = parent_path.lstat()
+    child_before = child_path.lstat()
+    if stat.S_ISLNK(parent_before.st_mode) or not stat.S_ISREG(parent_before.st_mode):
+        raise Child45ReplayError("Child44 parent CNF must be a nonsymlink regular file")
+    if stat.S_ISLNK(child_before.st_mode) or not stat.S_ISREG(child_before.st_mode):
+        raise Child45ReplayError("Child45 root CNF must be a nonsymlink regular file")
+    expected_suffix = tuple(
+        (" ".join(map(str, clause)) + " 0\n").encode("ascii")
+        for clause in child_contract.expected_suffix
+    )
+    expected_parent_header = (
+        f"p cnf {parent_contract.variables} {parent_contract.clauses}\n"
+    ).encode("ascii")
+    expected_child_header = (
+        f"p cnf {child_contract.variables} {child_contract.clauses}\n"
+    ).encode("ascii")
+    if parent_contract.variables != child_contract.variables:
+        raise Child45ReplayError("Child44/Child45 headers differ in variables")
+    if child_contract.clauses != parent_contract.clauses + len(expected_suffix):
+        raise Child45ReplayError("Child44/Child45 clause counts are not a four-clause extension")
+    parent_digest = hashlib.sha256()
+    child_digest = hashlib.sha256()
+    parent_bytes = 0
+    child_bytes = 0
+    with parent_path.open("rb") as parent_stream, child_path.open("rb") as child_stream:
+        parent_opened = os.fstat(parent_stream.fileno())
+        child_opened = os.fstat(child_stream.fileno())
+        if (parent_opened.st_dev, parent_opened.st_ino) != (
+            parent_before.st_dev,
+            parent_before.st_ino,
+        ):
+            raise Child45ReplayError("Child44 parent identity changed before open")
+        if (child_opened.st_dev, child_opened.st_ino) != (
+            child_before.st_dev,
+            child_before.st_ino,
+        ):
+            raise Child45ReplayError("Child45 root identity changed before open")
+        parent_header = parent_stream.readline(_MAX_DIMACS_LINE_BYTES + 1)
+        child_header = child_stream.readline(_MAX_DIMACS_LINE_BYTES + 1)
+        if parent_header != expected_parent_header:
+            raise Child45ReplayError("Child44 parent header differs from the exact contract")
+        if child_header != expected_child_header:
+            raise Child45ReplayError("Child45 root header differs from the exact contract")
+        parent_digest.update(parent_header)
+        child_digest.update(child_header)
+        parent_bytes += len(parent_header)
+        child_bytes += len(child_header)
+        for _ in range(parent_contract.clauses):
+            parent_line = _read_relation_line(parent_stream, "Child44 parent")
+            child_line = _read_relation_line(child_stream, "Child45 root")
+            if parent_line != child_line:
+                raise Child45ReplayError("Child45 root body differs from the authenticated Child44 parent")
+            parent_digest.update(parent_line)
+            child_digest.update(child_line)
+            parent_bytes += len(parent_line)
+            child_bytes += len(child_line)
+        if parent_stream.readline(1):
+            raise Child45ReplayError("Child44 parent has extra body bytes after its exact clause count")
+        for expected_line in expected_suffix:
+            child_line = _read_relation_line(child_stream, "Child45 root")
+            if child_line != expected_line:
+                raise Child45ReplayError("Child45 source-valid suffix differs from the exact contract")
+            child_digest.update(child_line)
+            child_bytes += len(child_line)
+        if child_stream.readline(1):
+            raise Child45ReplayError("Child45 root has extra body bytes after its exact suffix")
+        parent_after_open = os.fstat(parent_stream.fileno())
+        child_after_open = os.fstat(child_stream.fileno())
+    parent_after = parent_path.lstat()
+    child_after = child_path.lstat()
+    if (
+        (parent_before.st_dev, parent_before.st_ino, parent_before.st_size, parent_before.st_mtime_ns)
+        != (parent_after_open.st_dev, parent_after_open.st_ino, parent_after_open.st_size, parent_after_open.st_mtime_ns)
+        or (parent_before.st_dev, parent_before.st_ino, parent_before.st_size, parent_before.st_mtime_ns)
+        != (parent_after.st_dev, parent_after.st_ino, parent_after.st_size, parent_after.st_mtime_ns)
+        or (child_before.st_dev, child_before.st_ino, child_before.st_size, child_before.st_mtime_ns)
+        != (child_after_open.st_dev, child_after_open.st_ino, child_after_open.st_size, child_after_open.st_mtime_ns)
+        or (child_before.st_dev, child_before.st_ino, child_before.st_size, child_before.st_mtime_ns)
+        != (child_after.st_dev, child_after.st_ino, child_after.st_size, child_after.st_mtime_ns)
+    ):
+        raise Child45ReplayError("Child44 parent or Child45 root changed during relation replay")
+    parent_sha256 = parent_digest.hexdigest()
+    child_sha256 = child_digest.hexdigest()
+    if parent_sha256 != parent_contract.sha256:
+        raise Child45ReplayError("Child44 parent SHA-256 differs from the exact contract")
+    if child_sha256 != child_contract.sha256:
+        raise Child45ReplayError("Child45 root SHA-256 differs from the exact contract")
+    if parent_bytes != parent_contract.byte_count or parent_before.st_size != parent_contract.byte_count:
+        raise Child45ReplayError("Child44 parent byte count differs from the exact contract")
+    if child_bytes != child_contract.byte_count or child_before.st_size != child_contract.byte_count:
+        raise Child45ReplayError("Child45 root byte count differs from the exact contract")
+    return _Child45RootRelation(
+        parent=_RootReplay(parent_sha256, parent_contract.variables, parent_contract.clauses, parent_bytes),
+        child=_RootReplay(child_sha256, child_contract.variables, child_contract.clauses, child_bytes),
+    )
 
 
 def _kalmanson_edges(
@@ -1048,11 +1232,142 @@ def replay_child44_assumption_sat(
     )
 
 
+def replay_child45_assumption_sat(
+    *,
+    parent_cnf_path: Path,
+    child_cnf_path: Path,
+    assignment: tuple[int, ...],
+    cell_id: str,
+    assumptions: tuple[int, ...],
+    expected_parent_sha256: str,
+    expected_child_sha256: str,
+) -> Child45SatReplay:
+    """Replay one authenticated Child45 assumption-cell SAT assignment.
+
+    Child45 is deliberately a separate closed root contract.  Its full raw
+    5,848,824-clause file is streamed in lockstep with the authenticated
+    5,848,820-clause Child44 parent, including the four source-valid suffix
+    clauses, before the shared source-model and exact Kalmanson stages run.
+    """
+
+    if type(expected_parent_sha256) is not str or expected_parent_sha256 != CHILD44_PARENT_SHA256:
+        raise Child45ReplayError("expected Child44 parent SHA-256 is not the reviewed root")
+    if type(expected_child_sha256) is not str or expected_child_sha256 != CHILD45_ROOT_SHA256:
+        raise Child45ReplayError("expected Child45 SHA-256 is not the reviewed Child45 root")
+    if (
+        len(CHILD45_SOURCE_VALID_SUFFIX) != CHILD45_NEW_CLAUSE_COUNT
+        or CHILD45_ROOT_CLAUSE_COUNT - PARENT_CLAUSE_COUNT != CHILD45_NEW_CLAUSE_COUNT
+    ):
+        raise Child45ReplayError("Child45 source-valid suffix cardinality is not four")
+    try:
+        truth = _parse_assignment(assignment)
+        expected_next_center = _require_cell(cell_id, assumptions, truth)
+        source = _decode_source_model(truth, expected_next_center)
+        relation = _stream_child45_parent_relation(
+            parent_cnf_path,
+            child_cnf_path,
+            _RootContract(
+                sha256=expected_parent_sha256,
+                variables=VARIABLE_COUNT,
+                clauses=PARENT_CLAUSE_COUNT,
+                byte_count=PARENT_BYTE_COUNT,
+            ),
+            _RootContract(
+                sha256=expected_child_sha256,
+                variables=VARIABLE_COUNT,
+                clauses=CHILD45_ROOT_CLAUSE_COUNT,
+                byte_count=CHILD45_ROOT_BYTE_COUNT,
+                suffix_start=PARENT_CLAUSE_COUNT,
+                expected_suffix=CHILD45_SOURCE_VALID_SUFFIX,
+            ),
+        )
+        root = _stream_dimacs_replay(
+            child_cnf_path,
+            truth,
+            _RootContract(
+                sha256=expected_child_sha256,
+                variables=VARIABLE_COUNT,
+                clauses=CHILD45_ROOT_CLAUSE_COUNT,
+                byte_count=CHILD45_ROOT_BYTE_COUNT,
+                suffix_start=PARENT_CLAUSE_COUNT,
+                expected_suffix=CHILD45_SOURCE_VALID_SUFFIX,
+            ),
+        )
+        if root != relation.child:
+            raise Child45ReplayError("Child45 root changed between relation and assignment replay")
+        kalmanson = _classify_kalmanson(source)
+        if kalmanson.atom_count != 4_760:
+            raise Child45ReplayError("Child45 replay did not cover all 4,760 Kalmanson atoms")
+    except Child44ReplayError as error:
+        raise Child45ReplayError(str(error)) from error
+    assignment_sha256 = _sha256(" ".join(map(str, assignment)).encode("ascii"))
+    replay_payload = {
+        "assignment_sha256": assignment_sha256,
+        "assumptions": list(assumptions),
+        "cell_id": cell_id,
+        "parent": {
+            "bytes": relation.parent.byte_count,
+            "clauses": relation.parent.clauses,
+            "sha256": relation.parent.sha256,
+            "variables": relation.parent.variables,
+        },
+        "root": {
+            "bytes": root.byte_count,
+            "clauses": root.clauses,
+            "sha256": root.sha256,
+            "variables": root.variables,
+        },
+        "source_model_sha256": source.digest,
+        "source_predicates": list(_SOURCE_PREDICATES),
+        "suffix_sha256": CHILD45_SUFFIX_SHA256,
+    }
+    replay_sha256 = _sha256(_canonical_bytes(replay_payload))
+    result_payload = {
+        "schema": "p97-exact17-child45-assumption-sat-replay/v1",
+        **replay_payload,
+        "replay_sha256": replay_sha256,
+        "kalmanson": {
+            "status": kalmanson.status,
+            "system_sha256": kalmanson.system_sha256,
+            "exact_evidence_sha256": kalmanson.exact_evidence_sha256,
+            "refinement_disposition": kalmanson.refinement_disposition,
+        },
+    }
+    return Child45SatReplay(
+        schema="p97-exact17-child45-assumption-sat-replay/v1",
+        cell_id=cell_id,
+        assumptions=assumptions,
+        parent_sha256=relation.parent.sha256,
+        parent_bytes=relation.parent.byte_count,
+        parent_variables=relation.parent.variables,
+        parent_clauses=relation.parent.clauses,
+        root_sha256=root.sha256,
+        root_bytes=root.byte_count,
+        root_variables=root.variables,
+        root_clauses=root.clauses,
+        suffix_sha256=CHILD45_SUFFIX_SHA256,
+        assignment_sha256=assignment_sha256,
+        source_model=source,
+        source_predicates=_SOURCE_PREDICATES,
+        replay_sha256=replay_sha256,
+        kalmanson=kalmanson,
+        result_sha256=_sha256(_canonical_bytes(result_payload)),
+    )
+
+
 __all__ = [
     "CHILD44_PARENT_SHA256",
+    "CHILD45_NEW_CLAUSE_COUNT",
+    "CHILD45_ROOT_BYTE_COUNT",
+    "CHILD45_ROOT_CLAUSE_COUNT",
+    "CHILD45_ROOT_SHA256",
+    "CHILD45_SOURCE_VALID_SUFFIX",
+    "CHILD45_SUFFIX_SHA256",
     "Child44ReplayError",
     "Child44ReplayInconclusive",
     "Child44SatReplay",
+    "Child45ReplayError",
+    "Child45SatReplay",
     "DecodedSourceModel",
     "KalmansonClassification",
     "KalmansonFeasibleProposal",
@@ -1061,5 +1376,6 @@ __all__ = [
     "ProposalProvenance",
     "WeightedTerm",
     "replay_child44_assumption_sat",
+    "replay_child45_assumption_sat",
     "verify_exact17_kalmanson_proposal",
 ]
