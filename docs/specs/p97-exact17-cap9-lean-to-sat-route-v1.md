@@ -2,27 +2,26 @@
 
 Date: 2026-08-11
 
-Status: active production route. Gates A, B, and D are implemented.  Ten
-Lean-owned successor roots after the checked C--G root have been authenticated,
-solved, and independently replayed `SAT`.  The 384 MiB PIQD build is installed,
-but the live daemon still needs Adam's restart before the next disposable
-canary and immutable-root submission.  The earlier exact-scale capacity
-preflight passed.  The ninth root returned
-`SAT` as immutable PIQD job `090c5be4-e747-40a3-ad96-baba17d9aace`; its total
-308-variable model independently satisfies all 5,846,076 clauses.  The
-mandatory exact-record theorem search completed with six bank hits and no
-unreplayed proposal.  Its new generic two-Kalmanson cancellation record is now
-banked with a source-realization bridge and a four-clause Lean-generated orbit.
-The resulting tenth root, SHA-256 `7def1009...`, returned `SAT` as PIQD job
-`d03a17f2-1c7c-434c-a0eb-0c1e3a2aaab6`; exact replay passed and the mandatory
-scan found only another instance of the same checked generic-cancellation
-theorem.  Its second four-clause orbit is now banked in Lean.  The resulting
-5,846,084-clause eleventh root has SHA-256 `6ab37b78...`; recursive validation
-and fail-closed ingress pass, but it has not been submitted.
-PIQD terminal-certificate
-custody and the final aggregate Lean landing remain open.  The existing Python/PIQD
-exact-17 artifacts remain authenticated finite experiments, but they are not
-the source of truth for this route.
+Status: active production route. Gates A, B, and D are implemented. Twenty
+Lean-owned successor roots through child 20 have been authenticated, solved,
+and independently replayed `SAT`; each refinement was banked in Lean before
+the next child was generated. Child 21 is the validated 308-variable,
+5,846,200-clause root with SHA-256
+`bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720`.
+Immutable PIQD job
+`b676c3ab-2084-4ed4-b0b2-94a6aa1dafda` reported `SAT`, but two simultaneous
+solver processes wrote separate 308-literal assignments into one job log. The
+model endpoint correctly rejects that permanently damaged log on the repaired
+daemon. The response and derived artifacts remain quarantined; no theorem
+mining or successor root is authorized from them. A byte-identical fresh rerun
+is confirmed as job `f3053110-f26e-4166-83f0-b8db5a04651e` under recovery
+manifest SHA-256
+`dc92856c15ca520ecec614ca47e4b56a83888143244ff20160d5b52847e9ec08`
+and repaired daemon SHA-256
+`82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396`.
+It is not authenticated until terminal retrieval supplies exactly one complete,
+duplicate-free assignment and all 5,846,200 clauses replay. PIQD
+terminal-certificate custody and the final aggregate Lean landing remain open.
 
 ## Checked implementation checkpoint — 2026-08-11
 
@@ -74,17 +73,15 @@ byte-identical 209,692-clause base prefix, and all ten schema/order families
 against an independent generator.  The report is
 `scratch/exact17-lean-to-sat/extended-cdefg-validation.json`.
 
-Gates A, B, and D are therefore complete for this finite route.  Gate C has
-authenticated and replayed the root and nine Lean-owned successors, all
-`SAT`; the ninth successor is immutable PIQD job
-`090c5be4-e747-40a3-ad96-baba17d9aace`.  Its mandatory theorem search found a
-checked generic two-Kalmanson cancellation instance plus five already banked
-small metric obstructions.  The generic cancellation theorem, its complete
-four-clause orbit, and its realization-to-satisfaction bridge are checked; the
-corresponding tenth child is now solving under PIQD.  Gate E remains open: expose a
-terminal checked result in Lean as `extendedCnf_unsat`, then use the banked
-landing contract with the exact-cover extractor in the unchanged production
-leaf.
+Gates A, B, and D are therefore complete for this finite route. Gate C has
+authenticated and replayed twenty Lean-owned `SAT` successors through child
+20. Child 21 passed Lean export and independent ingress validation, but its
+PIQD model response is rejected because it concatenates two solver runs. Gate
+C is paused at the strict single-run-model gate while PIQD repairs the reader;
+the finalizer additionally requires a duplicate-free total assignment and
+replay of all 5,846,200 clauses. Gate E remains open: expose a terminal checked
+result in Lean as `extendedCnf_unsat`, then use the banked landing contract
+with the exact-cover extractor in the unchanged production leaf.
 
 ## Target and claim boundary
 
@@ -410,8 +407,9 @@ to three nonredundant source-backed motif families: two-center bisector order,
 convex-five order, and generic two-Kalmanson cancellation. Their complete
 12-clause orbit is banked in Lean with `SourceRealization` bridges, and the
 twenty-first root has passed both independent export validation and recursive
-ingress. A
-terminal `UNSAT` result must preserve the
+ingress. Its concatenated PIQD model response is rejected, so the immediate
+goal is a provenance-clean single-run terminal response for that immutable
+job. A terminal `UNSAT` result must preserve the
 submitted-to-certificate clause map, pass independent proof replay, be banked
 as `extendedCnf_unsat`, and compose with the exact-cover extractor and the
 existing source landing contract.  The frozen Wave63 Python route is not an
@@ -542,10 +540,69 @@ manifest SHA-256
 `6ffd148a57458b23929dc933eeb2b35607f860c790b8cda347090311105cbe22`
 and live PIQD daemon SHA-256
 `fa66c08a9f341bb03ce1c39d32737f6b5bb91efe31d6a55f86f903caf207383c`.
-The checkpoint is ready for immutable PIQD submission. Exact 17 remains open
-until this or a later authenticated child is proved `UNSAT`, its certificate is
-independently replayed and banked, and the resulting theorem is composed into
-the on-spine cap-nine leaf.
+The root was submitted as immutable PIQD job
+`b676c3ab-2084-4ed4-b0b2-94a6aa1dafda`. PIQD reported `SAT`, but the model
+endpoint exposed 616 literals for this 308-variable formula. The corrected
+root-cause audit found two simultaneous CaDiCaL processes writing two complete
+assignments into the same job log; this was not append-across-restart behavior.
+That output is rejected, even though the two blocks happen to agree, because
+caller-side normalization would not establish single-run provenance.
+The derived artifacts are quarantined as
+`piqd-twenty-first-root-rejected-concatenated-{final,model}.json`.
+
+The damaged endpoint is therefore **not authenticated** and no theorem mining
+or successor root is authorized from it. PIQD commit `c262aa5` now fails closed
+on a duplicate variable or header overrun. Fresh rerun job
+`f3053110-f26e-4166-83f0-b8db5a04651e` changes only the producer-manifest bytes;
+the CNF remains byte-identical. Its runner additionally requires one live
+daemon, exactly one occurrence of every variable `1,\ldots,308`, no duplicate
+or out-of-range variable, the matching assigned count, and a total replay
+satisfying all 5,846,200 clauses. Exact 17 remains open until that fresh job is
+authenticated and the Lean-first refinement loop resumes, or this exact root
+is proved `UNSAT`, its certificate is independently replayed and banked, and
+the resulting theorem is composed into the on-spine cap-nine leaf.
+
+## Twenty-second Lean-owned child checkpoint — 2026-08-12
+
+The fresh rerun of the byte-identical twenty-first root is terminal
+authenticated `SAT` as immutable PIQD job
+`f3053110-f26e-4166-83f0-b8db5a04651e`. The returned model contains exactly
+one assignment for every variable `1,\ldots,308`, and the runner replayed all
+5,846,200 submitted clauses. The accepted final report has SHA-256
+`337398fba1249449e691c1c425e8a3dec1ec84a4df03cb7e83c039546e8af0db`;
+the accepted model has SHA-256
+`bb1617d726a80cec5d2e6985e2a5c6c0f095073122001bd94f611d512ca334dc`.
+The quarantined two-run model remains inadmissible and contributes no clauses.
+
+The mandatory theorem-bank scan found five source-backed records and no
+unreplayed proposal. Equality closure and orbit minimization compress those
+records to two occurrence supports: a forward/reverse two-center bisector
+motif and a forward/reverse convex-five motif. The apparent cancellation and
+perpendicular-bisector records are already consequences of those same hit
+sets, so they do not justify separate clauses. The two source-clean families,
+their eight-clause suffix, the source-evaluation theorem, and the conditional
+terminal adapter are banked in
+`BlockerVExactSeventeenTwentyFirstModelRefinements.lean`. Its targeted build
+and axiom audit are green: there is no `sorryAx`, while the finite evaluation
+uses the accepted `native_decide` trust boundary.
+
+The independently regenerated twenty-second root has 308 variables and
+5,846,208 clauses, is 291,573,930 bytes, and has SHA-256
+`dc44614e28c907d5c61b29e58cc6f6188e52a2504e119efa37157a81a56f7edb`.
+Its parent prefix is byte-identical, its suffix contains exactly eight clauses,
+and the validator confirms that both occurrence families reject the motivating
+model and that all five theorem-bank records are covered. Recursive ingress
+passed with manifest SHA-256
+`e66141fa9b832ef37b5b99d45c531929c82d77d465747c7488929e360cb77693`
+under repaired PIQD daemon SHA-256
+`82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396`.
+
+Exactly one successor was confirmed: PIQD job
+`37efce1a-3d6f-4b97-abf5-a7faec6d087b`. Exact 17 remains open. Terminal `SAT`
+requires complete model replay and the next mandatory general-theorem search;
+terminal `UNSAT` still requires certificate retrieval, independent replay,
+Lean banking, and composition into the cap-nine source leaf before any proof
+closure is claimed.
 
 ## Thirty-second Lean-owned child checkpoint — 2026-08-12
 
@@ -876,3 +933,68 @@ runner first, then submit exactly one authenticated job. A terminal `SAT` again
 requires full model replay and a new-wave-only theorem mine. A terminal `UNSAT`
 requires certificate replay and composition through the exact-cover and
 source-realization landing contracts. Exact 17 remains open.
+
+## Child41--Child44 refinement progression — 2026-08-14
+
+Child41, Child42, and Child43 each terminated authenticated `SAT` at epoch one,
+and each retrieved assignment independently replayed every clause of its exact
+submitted root. Their PIQD job identifiers are, respectively,
+`038ded12-0e98-4c93-b666-2ca2ac06da5e`,
+`283f5c21-de62-4318-8a11-bcb4632a5f76`, and
+`9a1a3903-6ba3-4f41-8e74-0d11ee8ba7eb`. The corresponding wave-only mines
+found 133, 35, and 57 source-valid supports. Every support is an instance of
+the already-banked cardinality-independent two-Kalmanson cancellation family;
+none constitutes a new theorem family or a Euclidean counterexample.
+
+The Child43 root has 308 variables, 5,848,592 clauses, and SHA-256
+`dbfbd84473cfe86a0e596322c0c0af8a077fc830ab5a9976c5efa7ea80a96c76`.
+The 57 Child43 supports expand through both cyclic orientations to an exact
+228-clause Lean-owned Child44 suffix. The bank proves every suffix clause for
+every `SourceRealization`, the source and extended-CNF evaluators, and the
+conditional terminal adapter. The provisioned Child44 candidate has 5,848,820
+clauses, 291,704,790 bytes, and expected SHA-256
+`17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9`.
+The direct Lean rendering, exclusive hard-link publication, ledger-last
+receipt, recursive ingress validation, and live static gate have all passed.
+The immutable ingress manifest has SHA-256
+`152570011046aee180b6d385f731fa13911dc9800bfc393dc87ad386cd031048`.
+No Child44 PIQD job exists at this checkpoint.
+
+The shared lifecycle runner now descriptor-binds every local root, manifest,
+and custody record with no-follow opens, pre/post `fstat` checks, exact byte
+hashes, duplicate-key-rejecting JSON, and immutable-record digest binding. The
+pre-submission validation found and repaired two fail-closed integration bugs:
+the live exporter originally chose a macOS temporary path behind the `/var`
+symlink despite the no-follow policy, and the Child44 ingress path adapter did
+not expose the nested export path expected by the shared runner. Neither bug
+created a PIQD job or accepted a solver result. The focused adversarial suite
+now passes 322 tests, and the repaired live export, ingress, and static gates
+all pass.
+
+The mandatory cross-wave meta-analysis covers Child33 through Child44 and has
+full normalized source-valid mines for Child39 through Child43. Across those
+five fully mined waves it found 358 source-valid occurrences, all belonging to
+the same two-Kalmanson cancellation family. Child44 is promotion-only, not a
+new SAT assignment. The newest cumulative CNF retains learned clauses but does
+not retain prior assignments, diagnostic hits, normalized support identities,
+frequencies, or failed theorem candidates, so cross-wave analysis was useful
+but should not be repeated until a new SAT wave or recovered missing artifacts
+add information.
+
+Exact 17 and the cap-nine production `sorry` remain open. After this requested
+checkpoint, the only authorized next solver action is exactly one authenticated
+Child44 submission. Terminal `UNSAT` requires independent certificate replay
+and Lean composition through the exact-cover and source-realization landing
+contracts.
+
+Child44 is also the hard gate for the serial model-blocking strategy. The five
+fully mined waves Child39--Child43 contain 358 source-valid occurrences, all in
+the same two-Kalmanson cancellation family, and 110 of Child44's 228 suffix
+clauses are already parent-subsumed. Therefore a terminal Child44 `SAT` still
+requires independent model replay and a Child44-only theorem mine, but it does
+not authorize an automatic Child45. The next production test must instead
+instantiate the complete finite orbit of the already-proved cancellation
+schema. `UNSAT` of that saturated root can close exact 17 through the existing
+certificate route. `SAT` retires this theorem family as a complete exact-17
+route and requires a genuinely new global metric or realizability producer;
+another assignment-specific suffix from the same family is not progress.

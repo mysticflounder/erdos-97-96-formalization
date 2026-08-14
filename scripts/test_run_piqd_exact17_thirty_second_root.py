@@ -632,6 +632,25 @@ def test_child33_unsat_requires_compacted_lrat_and_never_model_checks(
     assert client.model_check_calls == 0
 
 
+@pytest.mark.parametrize("replacement", ["missing", None, True, 1.0, "123456789"])
+def test_child33_unsat_requires_exact_completed_at(
+    tmp_path: Path, replacement: Any
+) -> None:
+    paths, spec, root = _child33_fixture(tmp_path)
+    client = FakeClient(root, spec)
+    client.terminal_result = "UNSAT"
+    runner.start(client, paths, spec, ingress_validator=_validated)
+    client.phase = "completed"
+    if replacement == "missing":
+        client.attestation_missing.add("completed_at")
+    else:
+        client.attestation_overrides["completed_at"] = replacement
+    with pytest.raises(ValueError, match="UNSAT status omitted exact completed_at"):
+        runner.finalize(client, paths, spec, ingress_validator=_validated)
+    assert not paths.final.exists()
+    assert not paths.model.exists()
+
+
 @pytest.mark.parametrize(
     ("mutation", "error"),
     [
@@ -1268,7 +1287,7 @@ def test_child33_reconciliation_records_exact_legacy_identity_migration(
     assert prepared["binding"] == runner._expected_binding(spec)
     assert prepared["intent_binding_migration"] == (
         runner._expected_intent_binding_migration(
-            spec, runner.sha256_file(paths.intent), "job-child32"
+            spec, hashlib.sha256(paths.intent.read_bytes()).hexdigest(), "job-child32"
         )
     )
     assert client.submit_calls == 1 and client.confirm_calls == 1
