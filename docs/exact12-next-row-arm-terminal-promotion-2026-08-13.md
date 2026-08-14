@@ -1,8 +1,9 @@
-# Exact-12 next-row arm terminal promotion (2026-08-13, in progress)
+# Exact-12 next-row arm terminal promotion (2026-08-13, complete)
 
 Owner: Terminal Custodian session.  Convo claims #6232/#6237; Twelvefold
-Refiner cleared ownership in #6235.  Status: implementation in progress;
-nothing below is a promoted certificate yet.
+Refiner cleared ownership in #6235; ColdStore scratch exclusions in #6254.
+Status: COMPLETE.  The four cells are kernel-checked finite
+`DimacsUnsatisfiable` facts; see "Result" below.
 
 ## Goal
 
@@ -77,12 +78,49 @@ terminal certificates.
   lands under
   `.../FrontierLiveClosure/ExactTwelveRigid221NextRowArmTerminal/Generated/`.
 
-## Remaining steps
+## Result (2026-08-13)
 
-1. Tests for the postprocessor; Ruff; run on all four cells.
-2. Materialize and emit the four replay packages into the production
-   `Generated/` placement (payload `data/` stays inside each package root).
-3. Write the four endpoint modules, build, and audit axiom closures
-   (`Lean.ofReduceBool` expected from window checks; no `sorryAx`).
-4. Update this doc and the closure plan direct-wave section, remove probe
-   paths, commit each checkpoint, and post the convo completion.
+All steps are complete.
+
+1. Postprocessor and 8-test suite committed (`30474f27`); Ruff clean; all
+   four cells published authenticated pure-RUP sources under
+   `scratch/rigid221-sourceheavy-anchor/
+   exact12-next-row-arm-terminal-rup-sources-20260813/cell-{52,58,65,71}/`
+   (7 additions each over the 369326-clause base; fresh `cadical --plain`
+   exit 20; drift confined to the two known pinned sources).
+2. Checkpointed (`--second-shard-first-addition 369330`), windowed, and
+   compact packages emitted per cell under
+   `.../exact12-next-row-arm-terminal-replay-20260813/cell-NN/{checkpointed,
+   windowed,compact}` with the generic `CompactWindowedRupReplay` namespace;
+   package digests: cell 52 `f51b9204…`, cell 58 `33627b5d…`, cell 65
+   `bd3340fb…`, cell 71 `1f943e3e…` (full digests in each committed
+   `ingress.py`).
+3. Production installation follows the Unique4 precedent: per-package
+   `ingress.py` under `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/
+   ExactTwelveRigid221NextRowArmTerminal/Generated/Cell00NN/` verifies the
+   emitted manifest digest, rewrites imports to the deep module prefix,
+   renames the namespace to `ExactTwelveRigid221NextRowArmCell00NNReplay`,
+   and installs 8 Lean modules plus `data/` (2 formulas, 2 actions) inside
+   the package root.
+4. Endpoint modules `.../ExactTwelveRigid221NextRowArmTerminal/Cell00NN.lean`
+   prove
+   `Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.
+   NextRowArmTerminal.cell00NN_dimacsUnsatisfiable :
+   DimacsUnsatisfiable (signedClausesOfFormula (formulaOfCompact (n := 42731)
+   Checkpoint.C0000.text))` via
+   `TerminalRupIngress.dimacsUnsatisfiable_of_formula rfl
+   <ns>.startUnsatisfiable`.  `lake build` is green for all four; axiom
+   closure for each endpoint is exactly `propext, Classical.choice,
+   Quot.sound, Lean.ofReduceBool, Lean.trustCompiler` with no `sorryAx`.
+5. Probe paths `lean/Erdos9796Proof/P97/Scratch/NextRowArmCell52Probe/` and
+   `lean/data/` are removed.  The closure plan direct-wave section records
+   the promotion.
+
+Scope: these are the same four tautological finite facts the closure plan
+describes — direct consequences of the compiled physical-cycle row.  The
+promotion validates the terminal ingress pipeline end to end and adds no
+aggregate coverage, universal producer, terminal bank, or leaf closure.
+
+The scratch provenance dirs named above and the wave dir must stay excluded
+from cleanup while the committed `ingress.py` files reference them
+(ColdStore ack #6254).

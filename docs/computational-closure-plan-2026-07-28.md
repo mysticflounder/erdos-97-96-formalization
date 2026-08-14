@@ -1298,6 +1298,25 @@ particular, the source six-arm disjunction still has a SAT witness in at least
 one other arm for every placement, so this wave neither proves aggregate
 six-arm coverage nor closes the exact-12 child.
 
+2026-08-13 terminal promotion of those four finite cells is complete.  Each
+cell was revalidated fail-closed against a current-source rematerialization
+(byte-identical CNF; drift confined to two pinned job sources, recorded in
+the receipt), reproved with a fresh `cadical --plain` rerun (the wave proofs
+hold 395 RAT lemmas in core and cannot enter the pure-RUP ingress), and
+normalized to a dense pure-RUP source by
+`scripts/prepare_exact12_next_row_arm_terminal_rup_source.py`.  The compact
+windowed replay packages are installed under
+`lean/.../FrontierLiveClosure/ExactTwelveRigid221NextRowArmTerminal/Generated/
+Cell00{52,58,65,71}/` with per-package `ingress.py` provenance, and the four
+endpoint theorems
+`NextRowArmTerminal.cell00{52,58,65,71}_dimacsUnsatisfiable` each prove
+`DimacsUnsatisfiable` of the exact serialized cell CNF with axiom closure
+`propext, Classical.choice, Quot.sound, Lean.ofReduceBool,
+Lean.trustCompiler` and no `sorryAx`.  These remain the same four
+tautological finite facts described above: the promotion validates the
+terminal ingress pipeline and adds no aggregate coverage, universal
+producer, or leaf closure.
+
 The then-mandatory gate was theorem mining over the 68 authenticated SAT
 witnesses.  First test the existing exact-false metric and source-order banks
 against those witnesses and record recurring replayed certificate families.
