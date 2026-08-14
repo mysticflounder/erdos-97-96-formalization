@@ -15,8 +15,28 @@ from pathlib import Path
 from types import MappingProxyType
 from typing import Any
 
+from census.p97_search.cegar_wave_assumption_profiles import (
+    assumption_campaign_metadata,
+)
+from census.p97_search.phase3_cegar_assumption_engine import (
+    ENGINE_SCHEMA as ASSUMPTION_CNF_ENGINE_SCHEMA,
+)
+from census.p97_search.phase3_cegar_assumption_engine import (
+    AssumptionCnfEngineError,
+    AssumptionCnfEngineResult,
+    AssumptionCnfWaveEngine,
+    inspect_assumption_cnf_engine_output,
+    validate_assumption_cnf_engine_output,
+)
 from census.p97_search.phase3_cegar_wave import sha256_bytes, wave_manifest_sha256
 from census.p97_search.phase3_cegar_wave_control import (
+    ASSUMPTION_CNF,
+    ASSUMPTION_CNF_EXECUTION_CAPABILITIES,
+    ASSUMPTION_CNF_EXECUTION_MODE,
+    ASSUMPTION_CNF_PIQD_ADAPTER,
+    ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+    ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+    ASSUMPTION_CNF_V1_REGISTRY_REVISION,
     EXECUTION_REGISTRY_SCHEMA,
     STATIC_CNF,
     STATIC_CNF_EXECUTION_CAPABILITIES,
@@ -29,12 +49,14 @@ from census.p97_search.phase3_cegar_wave_control import (
     STATIC_CNF_V2_REGISTRY_REVISION,
     WaveControl,
     WaveControlError,
+    bind_assumption_cnf,
     bind_static_cnf,
     load_wave_control,
 )
 from census.p97_search.phase3_cegar_wave_engine import (
     ENGINE_SCHEMA,
     ENGINE_SCHEMA_V2,
+    StaticCnfEngineError,
     StaticCnfEngineResult,
     StaticCnfWaveEngine,
     validate_static_cnf_engine_output,
@@ -44,6 +66,7 @@ REGISTRY_SCHEMA = EXECUTION_REGISTRY_SCHEMA
 REGISTRY_REVISION = "2026-08-13.1"
 REGISTRY_REVISION_V1 = REGISTRY_REVISION
 REGISTRY_REVISION_V2 = STATIC_CNF_V2_REGISTRY_REVISION
+REGISTRY_REVISION_ASSUMPTION_V1 = ASSUMPTION_CNF_V1_REGISTRY_REVISION
 STATIC_CNF_PIQD_ADAPTER_V2 = STATIC_CNF_PIQD_ADAPTER
 STATIC_CNF_ENGINE_SCHEMA_V2 = ENGINE_SCHEMA_V2
 STATIC_CNF_SEMANTIC_PROFILE = STATIC_CNF_SEMANTIC_VALIDATOR_V2
@@ -126,6 +149,21 @@ STATIC_CNF_EXECUTION_V2 = ExecutionRegistration(
     permits_terminal_proof=False,
 )
 
+ASSUMPTION_CNF_EXECUTION_V1 = ExecutionRegistration(
+    wave_kind=ASSUMPTION_CNF,
+    adapter_id=ASSUMPTION_CNF_PIQD_ADAPTER,
+    adapter_schema=ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+    registry_revision=REGISTRY_REVISION_ASSUMPTION_V1,
+    engine_schema=ASSUMPTION_CNF_ENGINE_SCHEMA,
+    semantic_validator=ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+    execution_mode=ASSUMPTION_CNF_EXECUTION_MODE,
+    capabilities=ASSUMPTION_CNF_EXECUTION_CAPABILITIES,
+    permits_campaign=True,
+    permits_export=False,
+    permits_diagnostic_mining=True,
+    permits_terminal_proof=False,
+)
+
 EXECUTION_REGISTRY = MappingProxyType(
     {
         (
@@ -144,6 +182,11 @@ EXECUTION_REGISTRY_ALL = MappingProxyType(
             STATIC_CNF_EXECUTION_V2.adapter_id,
             STATIC_CNF_EXECUTION_V2.adapter_schema,
         ): STATIC_CNF_EXECUTION_V2,
+        (
+            ASSUMPTION_CNF_EXECUTION_V1.wave_kind,
+            ASSUMPTION_CNF_EXECUTION_V1.adapter_id,
+            ASSUMPTION_CNF_EXECUTION_V1.adapter_schema,
+        ): ASSUMPTION_CNF_EXECUTION_V1,
     }
 )
 
@@ -233,16 +276,31 @@ def plan_execution(control: WaveControl, package_root: Path) -> dict[str, Any]:
     """Validate ingress and return the exact deterministic execution plan."""
 
     ingress = validate_registered_ingress(control, package_root)
+    registration = resolve_execution_registration(control)
+    steps = (
+        [
+            "authenticate-control",
+            "authenticate-streaming-parent-and-campaign",
+            "open-one-fresh-piqd-session",
+            "solve-closed-assumption-cells-sequentially",
+            "replay-sat-source-semantics",
+            "validate-receipts-and-session-custody",
+            "close-once",
+            "publish-create-once-envelope",
+        ]
+        if registration is ASSUMPTION_CNF_EXECUTION_V1
+        else [
+            "authenticate-control",
+            "authenticate-static-package",
+            "run-one-piqd-discovery",
+            "validate-receipt-and-custody",
+            "publish-create-once-envelope",
+        ]
+    )
     return {
         **describe_execution(control),
         "plan": {
-            "steps": [
-                "authenticate-control",
-                "authenticate-static-package",
-                "run-one-piqd-discovery",
-                "validate-receipt-and-custody",
-                "publish-create-once-envelope",
-            ],
+            "steps": steps,
             "proof_path": None,
             "workers": 1,
             "sequential": True,
@@ -258,7 +316,31 @@ def validate_registered_ingress(
 
     if type(package_root) is not _NATIVE_PATH_TYPE or not package_root.is_absolute():
         raise WaveRegistryError("package_root must be an absolute native Path")
-    resolve_execution_registration(control)
+    registration = resolve_execution_registration(control)
+    if registration is ASSUMPTION_CNF_EXECUTION_V1:
+        binding = bind_assumption_cnf(control, package_root)
+        parent = binding.parent_identity
+        return {
+            "wave_manifest_sha256": wave_manifest_sha256(binding.wave_manifest),
+            "parent": {
+                "path": str(binding.parent_path),
+                "sha256": parent.sha256,
+                "bytes": parent.num_bytes,
+                "variables": parent.num_vars,
+                "clauses": parent.num_clauses,
+                "max_var": parent.max_var,
+                "journal_sha256": parent.journal_sha256,
+                "journal_bytes": parent.journal_bytes,
+                "all_variables_used": parent.all_variables_used,
+                "source_dev": parent.source_dev,
+                "source_ino": parent.source_ino,
+                "path_chain": [list(item) for item in parent.path_chain],
+            },
+            "producer_manifest_sha256": sha256_bytes(binding.producer_manifest),
+            "variable_map_sha256": sha256_bytes(binding.variable_map),
+            "campaign_sha256": sha256_bytes(binding.campaign_bytes),
+            "campaign": assumption_campaign_metadata(binding.campaign),
+        }
     binding = bind_static_cnf(control, package_root)
     encoding = binding.wave_manifest["encoding"]
     ingress = {
@@ -307,14 +389,46 @@ def execute_registered_wave(
     *,
     output_path: Path,
     base_url: str,
-    journal_root: Path,
+    journal_root: Path | None = None,
     timeout_s: int | None = None,
     transport: Any = None,
     sleep: Callable[[float], None] | None = None,
-) -> StaticCnfEngineResult:
-    """Execute the exact registered static-CNF adapter once."""
+    solver_signature: str | None = None,
+    export_digest: Any = None,
+    job_blob_digest: Any = None,
+    session_factory: Callable[..., Any] | None = None,
+) -> StaticCnfEngineResult | AssumptionCnfEngineResult:
+    """Execute exactly the adapter selected by the closed registration."""
 
     registration = resolve_execution_registration(control)
+    if registration is ASSUMPTION_CNF_EXECUTION_V1:
+        if journal_root is not None or timeout_s is not None or sleep is not None:
+            raise WaveRegistryError(
+                "ASSUMPTION_CNF rejects static-runner journal/timeout arguments"
+            )
+        if type(solver_signature) is not str or not solver_signature:
+            raise WaveRegistryError(
+                "ASSUMPTION_CNF requires a nonempty builtin solver_signature"
+            )
+        engine = AssumptionCnfWaveEngine(
+            control=control,
+            package_root=package_root,
+            output_path=output_path,
+            base_url=base_url,
+            solver_signature=solver_signature,
+            transport=transport,
+            export_digest=export_digest,
+            job_blob_digest=job_blob_digest,
+            session_factory=session_factory,
+            execution_registration=_registration_envelope(registration),
+        )
+        return engine.run()
+    if solver_signature is not None or any(
+        value is not None for value in (export_digest, job_blob_digest, session_factory)
+    ):
+        raise WaveRegistryError("STATIC_CNF rejects assumption-runner arguments")
+    if journal_root is None:
+        raise WaveRegistryError("STATIC_CNF requires journal_root")
     engine = StaticCnfWaveEngine(
         control=control,
         package_root=package_root,
@@ -333,16 +447,26 @@ def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
 
     if type(path) is not _NATIVE_PATH_TYPE or not path.is_absolute():
         raise WaveRegistryError("output path must be an absolute native Path")
-    envelope = validate_static_cnf_engine_output(path)
+    try:
+        envelope = validate_static_cnf_engine_output(path)
+        registration_key = "execution_registry"
+    except StaticCnfEngineError:
+        try:
+            envelope = inspect_assumption_cnf_engine_output(path)
+            registration_key = "execution_registration"
+        except AssumptionCnfEngineError as assumption_error:
+            raise WaveRegistryError(
+                "output matches no registered engine schema"
+            ) from assumption_error
     try:
         registration = resolve_execution_registration_envelope(
-            envelope["execution_registry"]
+            envelope[registration_key]
         )
     except (KeyError, TypeError) as error:
         raise WaveRegistryError(
             "output execution registration is absent or crossed"
         ) from error
-    if envelope["execution_registry"] != _registration_envelope(registration):
+    if envelope[registration_key] != _registration_envelope(registration):
         raise WaveRegistryError("output execution registration is absent or crossed")
     return envelope
 
@@ -353,6 +477,19 @@ def validate_registered_output(
     """Cross-bind a registered output to its control and static package offline."""
 
     validated = _validated_control(control)
+    registration = resolve_execution_registration(validated)
+    if registration is ASSUMPTION_CNF_EXECUTION_V1:
+        try:
+            envelope = validate_assumption_cnf_engine_output(
+                validated, package_root, path
+            )
+        except AssumptionCnfEngineError as error:
+            raise WaveRegistryError(
+                "assumption output failed registered validation"
+            ) from error
+        if envelope["execution_registration"] != _registration_envelope(registration):
+            raise WaveRegistryError("output registration is crossed with its control")
+        return envelope
     ingress = validate_registered_ingress(validated, package_root)
     envelope = inspect_registered_output_structure(path)
     registration = resolve_execution_registration_envelope(
@@ -432,12 +569,14 @@ def registry_snapshot() -> dict[str, Any]:
 
 
 __all__ = [
+    "ASSUMPTION_CNF_EXECUTION_V1",
     "CHECK",
     "EXECUTION_REGISTRY",
     "EXECUTION_REGISTRY_ALL",
     "EXECUTION_REGISTRY_V1",
     "PLAN",
     "REGISTRY_REVISION",
+    "REGISTRY_REVISION_ASSUMPTION_V1",
     "REGISTRY_REVISION_V1",
     "REGISTRY_REVISION_V2",
     "REGISTRY_SCHEMA",

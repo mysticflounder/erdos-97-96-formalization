@@ -2,7 +2,7 @@
 
 Date: 2026-08-13
 
-Status: proposed implementation plan. This document changes neither solver
+Status: implementation in progress. This document changes neither solver
 semantics nor theorem status.
 
 ## Decision
@@ -106,9 +106,9 @@ a fixed registry.
 
 ### 2. Fixed executor registry
 
-The first implementation supports only `STATIC_CNF`. Later implementations may
-add the following deliberately separate execution kinds, one trust boundary at
-a time:
+The shared implementation now supports `STATIC_CNF` and the closed
+`ASSUMPTION_CNF` profile described below. Later implementations may add the
+remaining deliberately separate execution kinds, one trust boundary at a time:
 
 | Kind | Shared implementation boundary | Allowed conclusion |
 |---|---|---|
@@ -381,12 +381,58 @@ canonical subsets, and an empty core is observational terminal discovery only;
 UNKNOWN is inconclusive. None of these paths produces proof, theorem, Lean, or
 cleanup entitlement.
 
-The prerequisite is intentionally not the large-parent campaign engine. Its
-byte-backed descriptor still materializes ordinary seeds, so the 291 MB
-Child44 parent must use the separate streaming `ASSUMPTION_CNF` adapter before
-production admission. The focused current/legacy/restart matrix passes 188
-tests, including independent adversarial review; no live daemon or solver was
-used for this checkpoint.
+The prerequisite alone is intentionally not the large-parent campaign engine.
+Its byte-backed descriptor still materializes ordinary seeds, so the 291 MB
+Child44 parent is handled by the streaming adapter in the next checkpoint. The
+focused current/legacy/restart matrix passes 188 tests, including independent
+adversarial review; no live daemon or solver was used for this checkpoint.
+
+### Streaming `ASSUMPTION_CNF` engine checkpoint — 2026-08-14
+
+The v3 control and closed registry now add exactly one assumption campaign:
+the reviewed Exact17 Child44 next-center profile. The profile authenticates one
+308-variable, 5,848,820-clause, 291,704,790-byte parent; thirteen canonical
+next-center cells; the exact CaDiCaL identity and deterministic resource
+limits; and the sole registered source-semantic SAT replay. Manifests select
+this reviewed identifier, never a Python import string or caller-supplied
+callback.
+
+`phase3_piqd_assumption_campaign.py` streams the parent through componentwise
+no-follow, unique-regular-file custody without retaining its clauses or full
+bytes. It authenticates the completed producer job, job-scoped blob, exported
+session journal, current solver identity, request digest, durable receipt, and
+post-solve session state. Every nonempty solve has a deterministic UUID and an
+identical-request recovery route. A pending request blocks a different solve,
+append, and close until `retry_pending()` resolves it; close response loss is
+reconciled without a second DELETE. The engine re-captures the full streamed
+parent identity after the final solve both before close and again immediately
+before publication, and rejects byte-identical inode or ancestor replacement.
+Live and offline UNSAT cores must both be canonical ordered,
+noncontradictory assumption subsets.
+
+`phase3_cegar_assumption_engine.py` opens one fresh sequential session, visits
+the exact thirteen cells, replays every SAT assignment through the registered
+Child44 source decoder, records nonempty-core UNSAT as discovery only, treats
+UNKNOWN as inconclusive, and stops the suffix as `NOT_RUN` after an empty-core
+parent-terminal discovery. It closes once before create-once publication. The
+offline validator rebinds the current control, streamed parent identity,
+campaign, producer, variable map, session receipts, request IDs, solver
+descriptor, semantic-result digests, and canonical envelope without network or
+solver access.
+
+The common registry and CLI dispatch by the exact registration. Static-only
+arguments are rejected by assumption runs, assumption-only solver identity is
+rejected by static runs, and `status`/`validate-output` understand both frozen
+static and assumption envelopes. The v1 static registry snapshot remains
+byte-identical. Fake/adversarial tests cover the streaming adapter, profile,
+engine, registry, and CLI; a live Child44 campaign has not been run in this
+checkpoint.
+
+All proof, theorem, Lean, closure, source-entitlement, universal-lift, and
+cleanup claims remain false. An empty assumption core is still observational
+UNSAT discovery, not a checked terminal proof. Cleanup remains the last,
+separately reviewed move-only quarantine phase; this checkpoint does not move,
+delete, or authorize retirement of any legacy wave file.
 
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 

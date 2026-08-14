@@ -30,6 +30,13 @@ def _validated_output() -> dict[str, object]:
     }
 
 
+def _assumption_validated_output() -> dict[str, object]:
+    return {
+        "summary": {"classification": "CELLS_UNSAT_DISCOVERY_ONLY"},
+        "envelope_sha256": "c" * 64,
+    }
+
+
 def test_status_reports_structural_observation_only(
     tmp_path: Path,
     capsys: pytest.CaptureFixture[str],
@@ -46,6 +53,41 @@ def test_status_reports_structural_observation_only(
     assert status["status"] == "OBSERVED"
     assert status["classification"] == "UNSAT_OBSERVED_DISCOVERY_ONLY"
     assert status["custody_status"] == "STRUCTURAL_ONLY"
+
+
+def test_status_and_validation_accept_assumption_engine_summary(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    output = tmp_path / "assumption-result.json"
+    monkeypatch.setattr(
+        cli,
+        "inspect_registered_output_structure",
+        lambda path: _assumption_validated_output(),
+    )
+    assert cli.main(["status", str(output)]) == 0
+    assert _json_stdout(capsys)["classification"] == "CELLS_UNSAT_DISCOVERY_ONLY"
+
+    control_path, package_root = _control_file(tmp_path)
+    monkeypatch.setattr(
+        cli,
+        "validate_registered_output",
+        lambda *args: _assumption_validated_output(),
+    )
+    assert (
+        cli.main(
+            [
+                "validate-output",
+                str(control_path),
+                str(output),
+                "--package-root",
+                str(package_root),
+            ]
+        )
+        == 0
+    )
+    assert _json_stdout(capsys)["classification"] == "CELLS_UNSAT_DISCOVERY_ONLY"
 
 
 def test_plan_reports_registered_execution(
@@ -137,6 +179,50 @@ def test_run_delegates_once_and_never_exposes_proof_path(
         "timeout_s": 17,
     }
     assert "proof_path" not in kwargs
+
+
+def test_run_forwards_only_assumption_specific_solver_signature(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    output = tmp_path / "assumption-result.json"
+    seen: list[dict[str, object]] = []
+
+    def fake_execute(*args: object, **kwargs: object) -> object:
+        seen.append(kwargs)
+        return SimpleNamespace(
+            classification="INCONCLUSIVE",
+            envelope={"envelope_sha256": "d" * 64},
+            output_path=output,
+        )
+
+    monkeypatch.setattr(cli, "execute_registered_wave", fake_execute)
+    assert (
+        cli.main(
+            [
+                "run",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(output),
+                "--solver-signature",
+                "cadical-current",
+            ]
+        )
+        == 0
+    )
+    assert _json_stdout(capsys)["output"] == str(output)
+    assert seen == [
+        {
+            "output_path": output,
+            "base_url": "http://127.0.0.1:7272",
+            "timeout_s": None,
+            "solver_signature": "cadical-current",
+        }
+    ]
 
 
 def test_validate_output_cross_binds_control_without_transport(

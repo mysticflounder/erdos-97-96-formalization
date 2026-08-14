@@ -18,6 +18,9 @@ from census.p97_search.cegar_wave_registry import (
     validate_registered_ingress,
     validate_registered_output,
 )
+from census.p97_search.phase3_cegar_assumption_engine import (
+    AssumptionCnfEngineError,
+)
 from census.p97_search.phase3_cegar_runtime import (
     ExactFileCaptureError,
     capture_exact_regular_file,
@@ -78,9 +81,10 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("control")
     run.add_argument("--package-root", required=True)
     run.add_argument("--output", required=True)
-    run.add_argument("--journal-root", required=True)
+    run.add_argument("--journal-root")
     run.add_argument("--server", default="http://127.0.0.1:7272")
     run.add_argument("--timeout-s", type=int)
+    run.add_argument("--solver-signature")
 
     validate_output = commands.add_parser("validate-output")
     validate_output.add_argument("control")
@@ -150,7 +154,7 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
             "schema": CLI_SCHEMA,
             "command": args.command,
             "status": "OBSERVED",
-            "classification": envelope["result"]["classification"],
+            "classification": _classification(envelope),
             "envelope_sha256": envelope["envelope_sha256"],
             "output": str(output),
             "custody_status": "STRUCTURAL_ONLY",
@@ -166,7 +170,7 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
             "schema": CLI_SCHEMA,
             "command": args.command,
             "status": "PASS",
-            "classification": envelope["result"]["classification"],
+            "classification": _classification(envelope),
             "envelope_sha256": envelope["envelope_sha256"],
             "output": str(output),
             "custody_status": "OFFLINE_CROSS_BOUND",
@@ -191,22 +195,47 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
         raise WaveRegistryError("unsupported command")
     if args.timeout_s is not None and args.timeout_s <= 0:
         raise WaveRegistryError("timeout_s must be a positive integer")
-    result = execute_registered_wave(
-        control,
-        package_root,
-        output_path=_absolute_path(args.output, "output"),
-        base_url=args.server,
-        journal_root=_absolute_path(args.journal_root, "journal_root"),
-        timeout_s=args.timeout_s,
-    )
+    execution_kwargs: dict[str, Any] = {
+        "output_path": _absolute_path(args.output, "output"),
+        "base_url": args.server,
+        "timeout_s": args.timeout_s,
+    }
+    if args.journal_root is not None:
+        execution_kwargs["journal_root"] = _absolute_path(
+            args.journal_root, "journal_root"
+        )
+    if args.solver_signature is not None:
+        execution_kwargs["solver_signature"] = args.solver_signature
+    result = execute_registered_wave(control, package_root, **execution_kwargs)
     return {
         "schema": CLI_SCHEMA,
         "command": "run",
         "status": "PASS",
         "classification": result.classification,
         "envelope_sha256": result.envelope["envelope_sha256"],
-        "output": str(result.envelope_path),
+        "output": str(_result_path(result)),
     }
+
+
+def _classification(envelope: dict[str, Any]) -> str:
+    if type(envelope) is not dict:
+        raise WaveRegistryError("registered output envelope must be an exact object")
+    result = envelope.get("result")
+    if type(result) is dict and type(result.get("classification")) is str:
+        return result["classification"]
+    summary = envelope.get("summary")
+    if type(summary) is dict and type(summary.get("classification")) is str:
+        return summary["classification"]
+    raise WaveRegistryError("registered output classification is absent")
+
+
+def _result_path(result: object) -> Path:
+    path = getattr(result, "envelope_path", None)
+    if path is None:
+        path = getattr(result, "output_path", None)
+    if type(path) is not _NATIVE_PATH_TYPE or not path.is_absolute():
+        raise WaveRegistryError("registered execution returned an invalid output path")
+    return path
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -219,6 +248,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         exact17_lifecycle.UnprovisionedError,
         exact17_lifecycle.UnreconciledPrepareError,
         ExactFileCaptureError,
+        AssumptionCnfEngineError,
         OSError,
         StaticCnfEngineError,
         WaveControlError,

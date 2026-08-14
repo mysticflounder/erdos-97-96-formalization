@@ -18,6 +18,11 @@ from pathlib import Path, PurePosixPath
 from types import MappingProxyType
 from typing import Any
 
+from census.p97_search.cegar_wave_assumption_profiles import (
+    AssumptionCampaignProfile,
+    AssumptionProfileError,
+    parse_assumption_campaign_profile,
+)
 from census.p97_search.cegar_wave_semantic_profiles import (
     PROFILE_SCHEMA,
     CapturedBytes,
@@ -36,10 +41,16 @@ from census.p97_search.phase3_cegar_wave import (
     validate_wave_manifest,
     wave_manifest_sha256,
 )
+from census.p97_search.phase3_piqd_assumption_campaign import (
+    AssumptionCampaignError,
+    CnfStreamIdentity,
+    stream_parent_identity,
+)
 from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
 
 CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
 CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
+CONTROL_SCHEMA_V3 = "p97-cegar-wave-control/v3"
 CONTROL_SCHEMA = CONTROL_SCHEMA_V1
 INVENTORY_SCHEMA = "p97-cegar-wave-entrypoint-inventory/v1"
 CLEANUP_PLAN_SCHEMA = "p97-cegar-wave-cleanup-plan/v1"
@@ -64,6 +75,14 @@ STATIC_CNF_PIQD_ADAPTER_SCHEMA = STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
 STATIC_CNF_SEMANTIC_VALIDATOR_V1 = "p97-static-cnf-semantic-replay/v1"
 STATIC_CNF_SEMANTIC_VALIDATOR_V2 = PROFILE_SCHEMA
 STATIC_CNF_SEMANTIC_VALIDATOR = STATIC_CNF_SEMANTIC_VALIDATOR_V1
+
+ASSUMPTION_CNF = "ASSUMPTION_CNF"
+ASSUMPTION_CNF_PIQD_ADAPTER = "assumption-cnf-piqd"
+ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1 = "v1"
+ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1 = "p97-assumption-cnf-semantic-replay/v1"
+ASSUMPTION_CNF_EXECUTION_MODE = "one-session-sequential-assumption-cnf"
+ASSUMPTION_CNF_EXECUTION_CAPABILITIES = STATIC_CNF_EXECUTION_CAPABILITIES
+ASSUMPTION_CNF_V1_REGISTRY_REVISION = "2026-08-14.1"
 
 ACTIVE = "ACTIVE"
 FROZEN_REPRODUCTION = "FROZEN_REPRODUCTION"
@@ -98,6 +117,7 @@ MAX_PRODUCER_MANIFEST_BYTES = 8 << 20
 MAX_VARIABLE_MAP_BYTES = 64 << 20
 MAX_SEMANTIC_PROFILE_BYTES = 1 << 20
 MAX_SEMANTIC_ARTIFACT_BYTES = 512 << 20
+MAX_ASSUMPTION_CAMPAIGN_BYTES = 8 << 20
 
 _NATIVE_PATH_TYPE = type(Path())
 _HEX = frozenset("0123456789abcdef")
@@ -117,6 +137,7 @@ _CONTROL_KEYS_V2 = _CONTROL_KEYS_V1 | {
     "semantic_profile",
     "semantic_artifacts",
 }
+_CONTROL_KEYS_V3 = _CONTROL_KEYS_V1 | {"campaign"}
 _REF_KEYS = frozenset({"path", "sha256", "max_bytes"})
 _PACKAGE_KEYS = frozenset({"cnf", "producer_manifest", "variable_map"})
 _POLICY_KEYS = frozenset(
@@ -237,6 +258,7 @@ class WaveControl:
     canonical_bytes: bytes
     semantic_profile: ArtifactReference | None = None
     semantic_artifacts: tuple[tuple[str, ArtifactReference], ...] = ()
+    campaign: ArtifactReference | None = None
 
 
 @dataclass(frozen=True)
@@ -251,6 +273,21 @@ class StaticCnfBinding:
     semantic_profile_bytes: bytes | None = None
     semantic_artifacts: tuple[tuple[str, CapturedBytes], ...] = ()
     semantic_validation: dict[str, Any] | None = None
+
+
+@dataclass(frozen=True)
+class AssumptionCnfBinding:
+    """Streaming parent and closed campaign metadata for one assumption wave."""
+
+    control: WaveControl
+    wave_manifest: dict[str, Any]
+    wave_manifest_bytes: bytes
+    parent_path: Path
+    parent_identity: CnfStreamIdentity
+    producer_manifest: bytes
+    variable_map: bytes
+    campaign: AssumptionCampaignProfile
+    campaign_bytes: bytes
 
 
 STATIC_REGISTRY = MappingProxyType(
@@ -269,6 +306,19 @@ STATIC_REGISTRY = MappingProxyType(
                 adapter_id=STATIC_CNF_PIQD_ADAPTER,
                 schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
                 semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+            )
+        ),
+        (
+            ASSUMPTION_CNF,
+            ASSUMPTION_CNF_PIQD_ADAPTER,
+            ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+        ): (
+            AdapterRegistration(
+                wave_kind=ASSUMPTION_CNF,
+                adapter_id=ASSUMPTION_CNF_PIQD_ADAPTER,
+                schema_version=ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+                semantic_validator=ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+                permits_campaign=True,
             )
         ),
     }
@@ -449,6 +499,8 @@ def load_wave_control(raw: bytes) -> WaveControl:
         _exact_keys(value, _CONTROL_KEYS_V1, "wave control")
     elif schema == CONTROL_SCHEMA_V2:
         _exact_keys(value, _CONTROL_KEYS_V2, "wave control")
+    elif schema == CONTROL_SCHEMA_V3:
+        _exact_keys(value, _CONTROL_KEYS_V3, "wave control")
     else:
         raise WaveControlError("wave control.schema is not registered")
     key = (
@@ -459,6 +511,25 @@ def load_wave_control(raw: bytes) -> WaveControl:
     registration = STATIC_REGISTRY.get(key)
     if registration is None:
         raise WaveControlError("wave control selects an unregistered adapter")
+    expected_control_schema = {
+        (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1,
+        ): CONTROL_SCHEMA_V1,
+        (
+            STATIC_CNF,
+            STATIC_CNF_PIQD_ADAPTER,
+            STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+        ): CONTROL_SCHEMA_V2,
+        (
+            ASSUMPTION_CNF,
+            ASSUMPTION_CNF_PIQD_ADAPTER,
+            ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+        ): CONTROL_SCHEMA_V3,
+    }[key]
+    if schema != expected_control_schema:
+        raise WaveControlError("wave control schema is crossed with its adapter")
     if value["semantic_validator"] != registration.semantic_validator:
         raise WaveControlError("wave control semantic validator is crossed")
     package = value["package"]
@@ -503,6 +574,15 @@ def load_wave_control(raw: bytes) -> WaveControl:
             _semantic_artifact_references(value["semantic_artifacts"])
             if schema == CONTROL_SCHEMA_V2
             else ()
+        ),
+        campaign=(
+            _reference(
+                value["campaign"],
+                "wave control.campaign",
+                maximum_bytes=MAX_ASSUMPTION_CAMPAIGN_BYTES,
+            )
+            if schema == CONTROL_SCHEMA_V3
+            else None
         ),
     )
 
@@ -645,6 +725,8 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
             "control object differs from its canonical validated value"
         )
     control = validated_control
+    if control.registration.wave_kind != STATIC_CNF or control.campaign is not None:
+        raise WaveControlError("static-CNF binding requires a static control")
     manifest_bytes = _capture(package_root, control.manifest, "wave manifest")
     manifest = _strict_json(
         manifest_bytes,
@@ -737,6 +819,123 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
         semantic_profile_bytes=semantic_profile_bytes,
         semantic_artifacts=semantic_artifacts,
         semantic_validation=semantic_validation,
+    )
+
+
+def bind_assumption_cnf(
+    control: WaveControl, package_root: Path
+) -> AssumptionCnfBinding:
+    """Bind one closed assumption campaign without retaining the parent CNF."""
+
+    if type(control) is not WaveControl:
+        raise WaveControlError("control must be an exact WaveControl")
+    if type(package_root) is not _NATIVE_PATH_TYPE or not package_root.is_absolute():
+        raise WaveControlError("package_root must be an absolute native Path")
+    if type(control.canonical_bytes) is not bytes:
+        raise WaveControlError("control canonical bytes must be exact builtin bytes")
+    validated = load_wave_control(control.canonical_bytes)
+    if validated != control:
+        raise WaveControlError(
+            "control object differs from its canonical validated value"
+        )
+    control = validated
+    if (
+        control.registration.wave_kind != ASSUMPTION_CNF
+        or control.registration.adapter_id != ASSUMPTION_CNF_PIQD_ADAPTER
+        or control.registration.schema_version != ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1
+        or control.registration.semantic_validator
+        != ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1
+        or control.campaign is None
+        or control.semantic_profile is not None
+        or control.semantic_artifacts
+    ):
+        raise WaveControlError(
+            "assumption-CNF binding requires the closed v1 campaign control"
+        )
+    if control.policy.requested_core_limit != 1:
+        raise WaveControlError("ASSUMPTION_CNF requires requested_core_limit=1")
+
+    manifest_bytes = _capture(package_root, control.manifest, "wave manifest")
+    manifest = _strict_json(
+        manifest_bytes,
+        label="wave manifest",
+        max_bytes=control.manifest.max_bytes,
+    )
+    try:
+        validate_wave_manifest(manifest)
+    except ValueError as error:
+        raise WaveControlError("wave manifest violates p97-cegar-wave/v1") from error
+    if wave_manifest_sha256(manifest) != control.manifest.sha256:
+        raise WaveControlError("wave manifest object hash is crossed")
+
+    producer = _capture(package_root, control.producer_manifest, "producer manifest")
+    variable_map = _capture(package_root, control.variable_map, "variable map")
+    campaign_bytes = _capture(package_root, control.campaign, "campaign profile")
+    _strict_json(
+        producer,
+        label="producer manifest",
+        max_bytes=MAX_PRODUCER_MANIFEST_BYTES,
+    )
+    _strict_json(
+        variable_map,
+        label="variable map",
+        max_bytes=MAX_VARIABLE_MAP_BYTES,
+    )
+    try:
+        campaign = parse_assumption_campaign_profile(campaign_bytes)
+    except AssumptionProfileError as error:
+        raise WaveControlError("assumption campaign profile failed closed") from error
+    parent_path = package_root / control.cnf.path
+    try:
+        parent = stream_parent_identity(parent_path)
+    except AssumptionCampaignError as error:
+        raise WaveControlError("assumption parent capture failed") from error
+
+    encoding = manifest["encoding"]
+    if (
+        encoding["cnf_sha256"] != control.cnf.sha256
+        or encoding["producer_manifest_sha256"] != control.producer_manifest.sha256
+        or encoding["variable_map_sha256"] != control.variable_map.sha256
+        or encoding["query_polarity"] != "SAT_MEANS_COUNTEREXAMPLE"
+        or manifest["execution"]["backend"] != "cadical"
+        or manifest["execution"]["shard_id"] != 0
+        or manifest["execution"]["shard_count"] != 1
+    ):
+        raise WaveControlError("assumption wave manifest is crossed")
+    if (
+        parent.sha256 != control.cnf.sha256
+        or parent.num_bytes > control.cnf.max_bytes
+        or (parent.num_vars, parent.num_clauses)
+        != (encoding["num_variables"], encoding["num_clauses"])
+        or (
+            parent.sha256,
+            parent.num_bytes,
+            parent.num_vars,
+            parent.num_clauses,
+            campaign.producer_manifest_sha256,
+        )
+        != (
+            campaign.parent_sha256,
+            campaign.parent_byte_count,
+            campaign.variables,
+            campaign.clauses,
+            control.producer_manifest.sha256,
+        )
+    ):
+        raise WaveControlError("assumption parent/profile identity is crossed")
+    if campaign.raw_sha256 != control.campaign.sha256:
+        raise WaveControlError("assumption campaign digest is crossed")
+
+    return AssumptionCnfBinding(
+        control=control,
+        wave_manifest=manifest,
+        wave_manifest_bytes=manifest_bytes,
+        parent_path=parent_path,
+        parent_identity=parent,
+        producer_manifest=producer,
+        variable_map=variable_map,
+        campaign=campaign,
+        campaign_bytes=campaign_bytes,
     )
 
 

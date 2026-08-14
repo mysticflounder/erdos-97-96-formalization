@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
@@ -14,6 +15,17 @@ from census.p97_search.phase3_cegar_wave import (
     sha256_json,
     wave_manifest_sha256,
 )
+from census.p97_search.phase3_cegar_wave_control import (
+    ASSUMPTION_CNF,
+    ASSUMPTION_CNF_PIQD_ADAPTER,
+    ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+    ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+    CONTROL_SCHEMA_V3,
+    AssumptionCnfBinding,
+    load_wave_control,
+)
+from census.p97_search.phase3_piqd_assumption_campaign import CnfStreamIdentity
+from census.p97_search.tests.test_phase3_cegar_wave_control import _package, _write
 from census.p97_search.tests.test_phase3_cegar_wave_engine import (
     _FakePiqd,
     _fixture_control,
@@ -62,6 +74,170 @@ def test_registry_resolves_exact_control_and_has_closed_capabilities(
         "registry_revision": registry.REGISTRY_REVISION,
         "registrations": [registration.as_dict()],
     }
+
+
+def _assumption_control(tmp_path: Path) -> object:
+    raw, _ = _package(tmp_path)
+    value = json.loads(raw)
+    campaign = canonical_json_bytes({"schema": "closed-fixture-campaign/v1"})
+    reference = _write(tmp_path, "package/campaign.json", campaign)
+    value.update(
+        {
+            "schema": CONTROL_SCHEMA_V3,
+            "wave_kind": ASSUMPTION_CNF,
+            "adapter_id": ASSUMPTION_CNF_PIQD_ADAPTER,
+            "adapter_schema": ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
+            "semantic_validator": ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
+            "campaign": {**reference, "max_bytes": 1 << 20},
+        }
+    )
+    return load_wave_control(canonical_json_bytes(value))
+
+
+def test_registry_adds_assumption_campaign_only_to_all_registry(
+    tmp_path: Path,
+) -> None:
+    control = _assumption_control(tmp_path)
+    registration = registry.resolve_execution_registration(control)
+    assert registration is registry.ASSUMPTION_CNF_EXECUTION_V1
+    assert registration.permits_campaign is True
+    assert registration.permits_diagnostic_mining is True
+    assert registration.permits_terminal_proof is False
+    assert registration not in registry.EXECUTION_REGISTRY.values()
+    assert registration in registry.EXECUTION_REGISTRY_ALL.values()
+    assert {
+        "ASSUMPTION_CNF_EXECUTION_V1",
+        "REGISTRY_REVISION_ASSUMPTION_V1",
+    } <= set(registry.__all__)
+
+
+def test_assumption_ingress_plan_and_execution_dispatch_are_closed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    control = _assumption_control(tmp_path)
+    parent = CnfStreamIdentity(
+        "1" * 64,
+        101,
+        308,
+        11,
+        308,
+        "2" * 64,
+        88,
+        True,
+        3,
+        4,
+        ((5, 6),),
+    )
+    binding = AssumptionCnfBinding(
+        control=control,
+        wave_manifest={"schema": "p97-cegar-wave/v1"},
+        wave_manifest_bytes=b"manifest",
+        parent_path=tmp_path / "parent.cnf",
+        parent_identity=parent,
+        producer_manifest=b"producer",
+        variable_map=b"map",
+        campaign=object(),  # type: ignore[arg-type]
+        campaign_bytes=b"campaign",
+    )
+    metadata = {"schema": "closed-assumption-campaign"}
+    monkeypatch.setattr(registry, "bind_assumption_cnf", lambda *_: binding)
+    monkeypatch.setattr(
+        registry, "assumption_campaign_metadata", lambda campaign: metadata
+    )
+    monkeypatch.setattr(registry, "wave_manifest_sha256", lambda manifest: "3" * 64)
+    ingress = registry.validate_registered_ingress(control, tmp_path)
+    assert ingress["parent"] == {
+        "path": str(tmp_path / "parent.cnf"),
+        "sha256": "1" * 64,
+        "bytes": 101,
+        "variables": 308,
+        "clauses": 11,
+        "max_var": 308,
+        "journal_sha256": "2" * 64,
+        "journal_bytes": 88,
+        "all_variables_used": True,
+        "source_dev": 3,
+        "source_ino": 4,
+        "path_chain": [[5, 6]],
+    }
+    assert ingress["campaign"] is metadata
+    plan = registry.plan_execution(control, tmp_path)
+    assert plan["plan"]["steps"][1] == "authenticate-streaming-parent-and-campaign"
+    assert plan["plan"]["workers"] == 1
+    assert plan["plan"]["sequential"] is True
+
+    sentinel = SimpleNamespace(classification="CELLS_UNSAT_DISCOVERY_ONLY")
+    seen: list[tuple[str, object]] = []
+
+    class FakeEngine:
+        def __init__(self, **kwargs: object) -> None:
+            seen.append(("init", kwargs))
+
+        def run(self) -> object:
+            seen.append(("run", None))
+            return sentinel
+
+    monkeypatch.setattr(registry, "AssumptionCnfWaveEngine", FakeEngine)
+    assert (
+        registry.execute_registered_wave(
+            control,
+            tmp_path,
+            output_path=tmp_path / "result.json",
+            base_url="http://127.0.0.1:7272",
+            solver_signature="cadical-current",
+            transport="transport",
+            session_factory=lambda **_: None,
+        )
+        is sentinel
+    )
+    assert seen[-1] == ("run", None)
+    kwargs = seen[0][1]
+    assert isinstance(kwargs, dict)
+    assert kwargs["solver_signature"] == "cadical-current"
+    assert kwargs["execution_registration"] == registry._registration_envelope(
+        registry.ASSUMPTION_CNF_EXECUTION_V1
+    )
+    with pytest.raises(registry.WaveRegistryError, match="journal/timeout"):
+        registry.execute_registered_wave(
+            control,
+            tmp_path,
+            output_path=tmp_path / "other.json",
+            base_url="http://127.0.0.1:7272",
+            solver_signature="cadical-current",
+            journal_root=tmp_path / "journal",
+        )
+
+
+def test_assumption_output_dispatches_to_its_registered_validator(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    control = _assumption_control(tmp_path)
+    output = tmp_path / "result.json"
+    expected = {
+        "execution_registration": registry._registration_envelope(
+            registry.ASSUMPTION_CNF_EXECUTION_V1
+        ),
+        "summary": {"classification": "INCONCLUSIVE"},
+    }
+    monkeypatch.setattr(
+        registry,
+        "validate_static_cnf_engine_output",
+        lambda path: (_ for _ in ()).throw(registry.StaticCnfEngineError("static")),
+    )
+    monkeypatch.setattr(
+        registry, "inspect_assumption_cnf_engine_output", lambda path: expected
+    )
+    assert registry.inspect_registered_output_structure(output) is expected
+
+    calls: list[tuple[object, ...]] = []
+
+    def validate(*args: object) -> dict[str, object]:
+        calls.append(args)
+        return expected
+
+    monkeypatch.setattr(registry, "validate_assumption_cnf_engine_output", validate)
+    assert registry.validate_registered_output(control, tmp_path, output) is expected
+    assert calls == [(control, tmp_path, output)]
 
 
 def test_registry_revalidates_control_and_rejects_nonexact_objects(
