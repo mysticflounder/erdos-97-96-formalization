@@ -415,6 +415,10 @@ provides that operation"; compress tone guidance to one rule plus one example.
 **Validation:** run a Markdown link/heading check and read the condensed policy once
 without relying on implied platform features.
 
+**Resolution (2026-08-13):** accepted. The empty local heading and grammar error
+were fixed; the parent policy now has condensed neutral-tone guidance, a valid
+nthdegree corpus comment, and host-supported agent interruption wording.
+
 ### I-12 — instruction-file discovery rules disagree
 
 **Classification:** CONFLICT.

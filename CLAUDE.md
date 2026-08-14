@@ -1,10 +1,8 @@
 # Agent Instructions
 
-## Erdo
-
 ## Existing P97 Theorem Banks
 
-Several large corpora of prior lean work is available in the
+Several large corpora of prior lean work are available in the
 already-mined theorem-bank registry.
 
 The canonical registry consists of:
