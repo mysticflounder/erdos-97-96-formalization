@@ -387,6 +387,11 @@ instances, differential checks, or structural invariants.
 **Validation:** confirm the rules remain sensible for prose audits, configuration
 work, theorem proving, SAT encoding, and a genuinely open route.
 
+**Resolution (2026-08-13):** accepted. The parent math-project policy now scopes
+risk-first prioritization to proof work, separates reporting an obstruction from
+changing the active goal, and permits the strongest available solver-validation
+oracle when no known-result instance exists.
+
 ### I-11 — editorial and lifecycle defects
 
 **Classification:** QUALITY.
