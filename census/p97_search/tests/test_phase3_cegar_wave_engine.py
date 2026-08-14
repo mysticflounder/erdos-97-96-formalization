@@ -234,7 +234,13 @@ class _FakePiqd:
         raise AssertionError((method, path))
 
 
-def _make_engine(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, verdict: str):
+def _make_engine(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    verdict: str,
+    *,
+    execution_registration: dict[str, object] | None = None,
+):
     control, package_root, cnf, producer = _fixture_control(tmp_path)
     journal_root = tmp_path / "journals"
     journal_root.mkdir()
@@ -259,6 +265,7 @@ def _make_engine(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, verdict: str):
             output_path=output,
             base_url="http://piqd.fixture",
             journal_root=journal_root,
+            execution_registration=execution_registration,
         ),
         output,
         api,
@@ -378,6 +385,7 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert len(factories) == 1
     assert accepted.envelope["envelope_sha256"]
     assert accepted.envelope["claims"] == {name: False for name in engine._CLAIMS}
+    assert "execution_registry" not in accepted.envelope
     assert output.is_file()
     # The public validator must not consume or mutate the returned envelope.
     before = dict(accepted.envelope)
@@ -385,6 +393,51 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert accepted.envelope == before
     assert checked == before
     assert api.calls
+
+
+def test_registered_run_seals_and_validates_execution_identity(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    registration = {
+        "schema": "p97-cegar-wave-execution-registry/v1",
+        "registry_revision": "static-cnf-v1",
+        "registration": {
+            "wave_kind": "STATIC_CNF",
+            "adapter_id": STATIC_CNF_PIQD_ADAPTER,
+            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA,
+            "registry_revision": "static-cnf-v1",
+            "engine_schema": engine.ENGINE_SCHEMA,
+            "semantic_validator": engine.STATIC_CNF_SEMANTIC_VALIDATOR,
+            "execution_mode": "ONE_SHOT",
+            "capabilities": ["STATIC_CNF"],
+            "permits_campaign": False,
+            "permits_export": False,
+            "permits_diagnostic_mining": False,
+            "permits_terminal_proof": False,
+        },
+    }
+    wave_engine, output, _api, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        "SAT",
+        execution_registration=registration,
+    )
+    accepted = wave_engine.run(timeout_s=7, proof_path=None)
+
+    assert accepted.envelope["execution_registry"] == registration
+    assert engine.validate_static_cnf_engine_output(output) == accepted.envelope
+
+    tampered = dict(accepted.envelope)
+    crossed = json.loads(json.dumps(registration))
+    crossed["registration"]["semantic_validator"] = "crossed"
+    tampered["execution_registry"] = crossed
+    unsigned = {
+        key: value for key, value in tampered.items() if key != "envelope_sha256"
+    }
+    tampered["envelope_sha256"] = sha256_json(unsigned)
+    output.write_bytes(canonical_json_bytes(tampered) + b"\n")
+    with pytest.raises(engine.StaticCnfEngineError, match="crossed"):
+        engine.validate_static_cnf_engine_output(output)
 
 
 def test_run_rejects_response_loss_without_retry_or_publication(

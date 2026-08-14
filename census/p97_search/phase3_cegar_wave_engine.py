@@ -32,6 +32,7 @@ from census.p97_search.phase3_cegar_wave_control import (
     STATIC_CNF,
     STATIC_CNF_PIQD_ADAPTER,
     STATIC_CNF_PIQD_ADAPTER_SCHEMA,
+    STATIC_CNF_SEMANTIC_VALIDATOR,
     StaticCnfBinding,
     WaveControl,
     bind_static_cnf,
@@ -116,6 +117,23 @@ _CLAIMS = frozenset(
         "one_core",
     }
 )
+_EXECUTION_REGISTRY_KEYS = frozenset({"schema", "registry_revision", "registration"})
+_EXECUTION_REGISTRATION_KEYS = frozenset(
+    {
+        "wave_kind",
+        "adapter_id",
+        "adapter_schema",
+        "registry_revision",
+        "engine_schema",
+        "semantic_validator",
+        "execution_mode",
+        "capabilities",
+        "permits_campaign",
+        "permits_export",
+        "permits_diagnostic_mining",
+        "permits_terminal_proof",
+    }
+)
 _SEAL_KEYS = frozenset(
     {
         "schema",
@@ -145,6 +163,67 @@ _CUSTODY_KEYS = frozenset(
 
 class StaticCnfEngineError(RuntimeError):
     """The fixed boundary could not publish a self-consistent result."""
+
+
+def _validate_execution_registration(value: Any) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    if type(value) is not dict or set(value) != _EXECUTION_REGISTRY_KEYS:
+        raise StaticCnfEngineError("execution registry has an inexact schema")
+    schema = value.get("schema")
+    revision = value.get("registry_revision")
+    registration = value.get("registration")
+    if (
+        type(schema) is not str
+        or not schema
+        or type(revision) is not str
+        or not revision
+        or type(registration) is not dict
+        or set(registration) != _EXECUTION_REGISTRATION_KEYS
+    ):
+        raise StaticCnfEngineError("execution registry has invalid fields")
+    string_fields = (
+        "wave_kind",
+        "adapter_id",
+        "adapter_schema",
+        "registry_revision",
+        "engine_schema",
+        "semantic_validator",
+        "execution_mode",
+    )
+    if any(
+        type(registration.get(field)) is not str or not registration[field]
+        for field in string_fields
+    ):
+        raise StaticCnfEngineError("execution registration strings are invalid")
+    capabilities = registration.get("capabilities")
+    if (
+        type(capabilities) is not list
+        or not capabilities
+        or any(type(item) is not str or not item for item in capabilities)
+        or capabilities != sorted(set(capabilities))
+    ):
+        raise StaticCnfEngineError("execution capabilities are invalid")
+    boolean_fields = (
+        "permits_campaign",
+        "permits_export",
+        "permits_diagnostic_mining",
+        "permits_terminal_proof",
+    )
+    if any(type(registration.get(field)) is not bool for field in boolean_fields):
+        raise StaticCnfEngineError("execution capability flags are invalid")
+    if any(registration[field] for field in boolean_fields):
+        raise StaticCnfEngineError("execution registration permits unsafe behavior")
+    if (
+        registration["registry_revision"] != revision
+        or registration["wave_kind"] != STATIC_CNF
+        or registration["adapter_id"] != STATIC_CNF_PIQD_ADAPTER
+        or registration["adapter_schema"] != STATIC_CNF_PIQD_ADAPTER_SCHEMA
+        or registration["engine_schema"] != ENGINE_SCHEMA
+        or registration["semantic_validator"] != STATIC_CNF_SEMANTIC_VALIDATOR
+    ):
+        raise StaticCnfEngineError("execution registration is crossed")
+    return json.loads(canonical_json_bytes(value))
 
 
 def _strict_json(raw: bytes, *, label: str) -> Any:
@@ -568,8 +647,9 @@ def _unsigned_envelope(
     inventory: Mapping[str, Any],
     records: list[dict[str, Any]],
     classification: str,
+    execution_registration: Mapping[str, Any] | None,
 ) -> dict[str, Any]:
-    return {
+    envelope = {
         "schema": ENGINE_SCHEMA,
         "wave_kind": STATIC_CNF,
         "adapter": {
@@ -605,6 +685,9 @@ def _unsigned_envelope(
         "attempt_inventory": dict(inventory),
         "claims": {name: False for name in _CLAIMS},
     }
+    if execution_registration is not None:
+        envelope["execution_registry"] = dict(execution_registration)
+    return envelope
 
 
 @dataclass(frozen=True)
@@ -627,6 +710,7 @@ class StaticCnfWaveEngine:
         journal_root: Path,
         transport: Any = None,
         sleep: Callable[[float], None] | None = None,
+        execution_registration: Mapping[str, Any] | None = None,
     ) -> None:
         if (
             type(control) is not WaveControl
@@ -665,6 +749,9 @@ class StaticCnfWaveEngine:
             journal_root,
         )
         self.transport, self.sleep = transport, sleep
+        self.execution_registration = _validate_execution_registration(
+            execution_registration
+        )
 
     def run(
         self, *, timeout_s: int | None = None, proof_path: None = None
@@ -734,6 +821,7 @@ class StaticCnfWaveEngine:
                 inventory,
                 records,
                 classification,
+                self.execution_registration,
             )
             envelope = {**unsigned, "envelope_sha256": sha256_json(unsigned)}
             output_identity = _write_once_at(
@@ -797,6 +885,8 @@ def _validate_static_cnf_engine_output(
         name: False for name in _CLAIMS
     }:
         raise StaticCnfEngineError("engine envelope has unsafe claims or wave kind")
+    if "execution_registry" in unsigned:
+        _validate_execution_registration(unsigned["execution_registry"])
     receipt = envelope["receipt"]
     if set(receipt) != _RECEIPT_KEYS or receipt.get("schema") != RECEIPT_SCHEMA:
         raise StaticCnfEngineError("receipt schema/key mismatch")
