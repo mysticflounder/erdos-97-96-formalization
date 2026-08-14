@@ -217,6 +217,22 @@ def test_assumption_ingress_plan_and_execution_dispatch_are_closed(
     assert kwargs["execution_registration"] == registry._registration_envelope(
         registry.ASSUMPTION_CNF_EXECUTION_V1
     )
+
+    seen.clear()
+    assert (
+        registry.execute_registered_wave(
+            control,
+            tmp_path,
+            output_path=tmp_path / "resume.json",
+            base_url="http://127.0.0.1:7272",
+            solver_signature="cadical-current",
+            resume_session="11111111-1111-4111-8111-111111111111",
+            session_factory=lambda **_: None,
+        )
+        is sentinel
+    )
+    assert seen[0][1]["resume_session"] == "11111111-1111-4111-8111-111111111111"
+
     with pytest.raises(registry.WaveRegistryError, match="journal/timeout"):
         registry.execute_registered_wave(
             control,
@@ -225,6 +241,21 @@ def test_assumption_ingress_plan_and_execution_dispatch_are_closed(
             base_url="http://127.0.0.1:7272",
             solver_signature="cadical-current",
             journal_root=tmp_path / "journal",
+        )
+
+
+def test_static_execution_rejects_resume_session(
+    tmp_path: Path,
+) -> None:
+    control, package_root, _cnf, _producer = _fixture_control(tmp_path)
+    with pytest.raises(registry.WaveRegistryError, match="assumption-runner"):
+        registry.execute_registered_wave(
+            control,
+            package_root,
+            output_path=tmp_path / "result.json",
+            base_url="http://127.0.0.1:7272",
+            journal_root=tmp_path / "journal",
+            resume_session="11111111-1111-4111-8111-111111111111",
         )
 
 

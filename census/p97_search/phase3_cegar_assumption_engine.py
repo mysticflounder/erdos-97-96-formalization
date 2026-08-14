@@ -952,14 +952,13 @@ class AssumptionCnfWaveEngine:
         if primary is None and pending is None:
             try:
                 _recapture_parent(binding)
+                # Recheck immediately before releasing the solver session.  A
+                # crossed parent must fail while an adopted session is still
+                # live; after close there is deliberately no fallible custody
+                # step before create-once publication.
+                _recapture_parent(binding)
             except Exception as exc:  # noqa: BLE001 - custody must fail closed
                 primary = exc
-        if primary is None and pending is None:
-            # Recheck immediately before releasing the solver session.  A
-            # crossed parent must fail while an adopted session is still live;
-            # after close there is deliberately no fallible custody step before
-            # create-once publication.
-            _recapture_parent(binding)
         if (
             pending is None
             and recovery_committed
@@ -970,7 +969,9 @@ class AssumptionCnfWaveEngine:
             except Exception as exc:
                 raise AssumptionCnfEngineError("campaign close failed") from exc
         if primary is not None:
-            raise AssumptionCnfEngineError("assumption campaign aborted") from primary
+            raise AssumptionCnfEngineError(
+                f"assumption campaign aborted: {primary}"
+            ) from primary
         if pending is not None:
             _fail("campaign ended with an unresolved request")
 

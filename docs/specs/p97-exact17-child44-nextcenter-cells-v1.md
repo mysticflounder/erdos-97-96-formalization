@@ -164,6 +164,31 @@ to 5,848,828 clauses, but no serial Child46 submission is authorized from that
 fact alone.  The next production gate is the ordered thirteen-cell assumption
 campaign on the authenticated Child45 root.
 
+The first production attempt reached PIQD session
+`18b0d493-0cb9-4d5a-816b-ee395d8839bb`, but the client inherited a 60-second
+HTTP timeout while the server correctly continued the solve.  The session has
+one durable receipt: cell `next-center-00`, assumption `290`, status `SAT`, and
+solve index 1.  Exact independent replay accepts the complete Child45 root and
+source model, then classifies all 4,760 Kalmanson atoms as
+`LINEARLY_INFEASIBLE`.  The resulting two-term weighted certificate has exact
+evidence SHA-256
+`d6e9ce2b6c84e697878726d9082e30e5e9c4a20c46694aee9ce76e6c040fb65c`.
+This is one classified cell, not cell closure until its certificate is banked.
+
+The generic assumption engine now has a fail-closed same-session recovery
+path.  It authenticates the existing UUID, root, solver, protocol, journal and
+receipt paths; requires the unique receipt to be the deterministic cell-zero
+request; obtains the recorded model only through the server's idempotent replay;
+replays its full source semantics; and then continues exactly cells 1 through
+12 with a transport timeout longer than the solver timeout.  Adopted-session
+failures before successful completion never close the foreign session.  On
+success, both parent custody recaptures and session close occur before the
+create-once output claims `close_observed = true`.  The recovery/registry/CLI
+gate passes 149 focused adversarial tests.  The remaining production work is to
+run and classify the other twelve cells, then bank the complete cell theorem
+batch or pivot at the first Kalmanson-feasible survivor under the bounded stop
+rule below.
+
 ## Coverage and terminal composition
 
 The source theorem candidate `legalNextCenterLabels` is the explicit

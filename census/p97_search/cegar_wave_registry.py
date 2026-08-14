@@ -444,6 +444,7 @@ def execute_registered_wave(
     export_digest: Any = None,
     job_blob_digest: Any = None,
     session_factory: Callable[..., Any] | None = None,
+    resume_session: str | None = None,
 ) -> StaticCnfEngineResult | AssumptionCnfEngineResult:
     """Execute exactly the adapter selected by the closed registration."""
 
@@ -469,11 +470,17 @@ def execute_registered_wave(
             export_digest=export_digest,
             job_blob_digest=job_blob_digest,
             session_factory=session_factory,
+            resume_session=resume_session,
             execution_registration=_registration_envelope(registration),
         )
         return engine.run()
-    if solver_signature is not None or any(
-        value is not None for value in (export_digest, job_blob_digest, session_factory)
+    if (
+        solver_signature is not None
+        or resume_session is not None
+        or any(
+            value is not None
+            for value in (export_digest, job_blob_digest, session_factory)
+        )
     ):
         raise WaveRegistryError("STATIC_CNF rejects assumption-runner arguments")
     if journal_root is None:
