@@ -441,9 +441,10 @@ def test_child45_assumption_package_is_canonical_and_closed() -> None:
     assert wave_manifest_sha256(manifest) == sha256_bytes(manifest_raw)
     assert manifest["wave_id"] == "exact17-child45-nextcenter"
     assert manifest["iteration"] == 45
-    assert manifest["parent_checkpoint_sha256"] == EXPECTED_CHILD45_ARTIFACTS[
-        "child_cnf"
-    ][2]
+    assert (
+        manifest["parent_checkpoint_sha256"]
+        == EXPECTED_CHILD45_ARTIFACTS["child_cnf"][2]
+    )
     assert manifest["source"] == {
         "cardinality_scope": "thirteen source-total next-center cells",
         "finite_schema": "p97-exact17-child45-nextcenter-cells/v1",

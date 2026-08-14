@@ -527,6 +527,41 @@ byte-identical. Fake/adversarial tests cover the streaming adapter, profile,
 engine, registry, and CLI; a live Child44 campaign has not been run in this
 checkpoint.
 
+### Child45 generic assumption-campaign package — 2026-08-14
+
+Child45 is also represented entirely by declarative data consumed by the shared
+`ASSUMPTION_CNF` engine. The three canonical records
+`assumption-campaign.json`, `assumption-wave-manifest.json`, and
+`assumption-control.json` live beside the existing Child45 static package. They
+reuse the existing Child45 producer manifest and Child40 variable map and add
+no wave-specific runner, launcher, validator, or shell script.
+
+The campaign authenticates the completed Child45 static job, the 308-variable,
+5,848,824-clause Child45 root, and the distinct 5,848,820-clause Child44 source
+parent. It contains exactly the thirteen reviewed singleton next-center cells
+0–7 and 12–16, including center 15. The optional historical Child44 plumbing
+canary is intentionally omitted because it is neither a production cell nor an
+authority for this campaign. The wave manifest binds
+`source.ingress_hypotheses_sha256` to the authoritative Lean source root
+`BlockerVExactSeventeenFortyFourthModelRefinements.lean`, not to either CNF or
+the nested producer source manifest.
+
+The canonical campaign, manifest, and control SHA-256 values are
+`845e9a10137267764e07bca6e2d01c1a0b3dff5856e646b569b8c46d51c7d48f`,
+`327c9a558b6828c77a69288780aaec7aec1ee17334267086eaf9fd5a9b4a0af5`,
+and `ba086684a71e8dd3def1f2d10f62271677a9abafd220e420c35fc64c1b427e2b`.
+The generic CLI must pass `plan` and `validate-ingress`, and the shared offline
+validator must accept the closed Child45 replay schema while rejecting crossed
+root, source-parent, suffix, and dimension evidence before any live campaign is
+authorized.
+
+This package is an immutable execution checkpoint, not a result. No assumption
+session or cell solve is implied by its presence. SAT remains admissible only
+after complete source-semantic replay; nonempty-core UNSAT remains finite
+discovery evidence; UNKNOWN remains inconclusive; and empty-core observational
+UNSAT still requires an independently checked terminal proof route before any
+promotion.
+
 All proof, theorem, Lean, closure, source-entitlement, universal-lift, and
 cleanup claims remain false. An empty assumption core is still observational
 UNSAT discovery, not a checked terminal proof. Cleanup remains the last,

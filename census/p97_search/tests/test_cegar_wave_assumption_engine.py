@@ -346,8 +346,7 @@ def _make_engine(
             parent_identity=root_identity,
             campaign=profile,
             source_parent_path=(
-                tmp_path
-                / "scratch/exact17-lean-to-sat/"
+                tmp_path / "scratch/exact17-lean-to-sat/"
                 "exact17-forty-fourth-root-forty-third-model-refinements.cnf"
             ).resolve(),
             source_parent_identity=source_identity,

@@ -1268,7 +1268,8 @@ def validate_assumption_cnf_engine_output(
                 if (
                     type(result) is not dict
                     or set(result) != expected_result_keys
-                    or result_schema not in {
+                    or result_schema
+                    not in {
                         _CHILD44_RESULT_SCHEMA,
                         _CHILD45_RESULT_SCHEMA,
                     }
@@ -1279,14 +1280,12 @@ def validate_assumption_cnf_engine_output(
                 if profile.schema == CHILD45_SCHEMA:
                     if (
                         result_schema != _CHILD45_RESULT_SCHEMA
-                        or result.get("parent_sha256")
-                        != profile.source_parent_sha256
+                        or result.get("parent_sha256") != profile.source_parent_sha256
                         or result.get("parent_bytes")
                         != profile.source_parent_byte_count
                         or result.get("parent_variables")
                         != profile.source_parent_variables
-                        or result.get("parent_clauses")
-                        != profile.source_parent_clauses
+                        or result.get("parent_clauses") != profile.source_parent_clauses
                         or result.get("root_sha256") != profile.parent_sha256
                         or result.get("root_bytes") != profile.parent_byte_count
                         or result.get("root_variables") != profile.variables
