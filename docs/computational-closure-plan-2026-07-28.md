@@ -11107,3 +11107,48 @@ adversarial tests, the live Child41 PIQD static gate, the targeted exporter
 build, and the axiom audit all pass. No Child41 job may be submitted until this
 checkpoint is published. Exact 17 and the cap-nine production `sorry` remain
 open.
+
+### 13.28.13 Child-41 terminal and Child-42 pre-submit checkpoint — 2026-08-13
+
+Child41 terminated authenticated `SAT` as the single confirmed epoch-one PIQD
+job `038ded12-0e98-4c93-b666-2ca2ac06da5e`. The retrieved total assignment,
+whose custody SHA-256 is
+`cf1cb831223700ebc376a50048260fc280a32aed7c91723c262b8a1274b5896a`,
+independently satisfies every clause of the exact 5,847,920-clause root
+`fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24`.
+This is another abstract source-normal-form survivor, not a Euclidean P97
+counterexample.
+
+The mandatory Child41-only mine examined 1,282 producer records, yielding 433
+distinct supports and 133 subset-minimal supports. Every admitted support is an
+instance of the existing cardinality-independent two-Kalmanson theorem family;
+the eleven other diagnostic motif families still lack a valid
+`SourceRealization` bridge. A separate normalized Child33--40 meta-analysis
+reduced 133 historical supports to 130 classes and found no cross-wave
+recurrence beyond the same already-banked family. This validates keeping the
+mandatory wave-local mine while reserving cross-wave synthesis for periodic or
+candidate-triggered audits; the newest CNF contains old clauses, but not the
+historical models and rejected theorem candidates needed for that audit.
+
+The 133 source-valid occurrences are now banked as a Lean-owned 532-clause
+suffix across nineteen shards. The coordinator proves the source evaluator,
+the 5,848,452-clause extended evaluator, the `SourceRealization` bridge, and the
+conditional terminal adapter. The targeted exporter build passes, and the
+public declarations have no `sorryAx`; finite evaluation remains inside the
+accepted `native_decide` trust boundary.
+
+The immutable Child42 root has 308 variables, 5,848,452 clauses, 291,688,780
+bytes, and SHA-256
+`375b7bc42381175119545627ab55c6bacb285fa35e4486f0b11193300620921f`.
+Its export receipt and recursive ingress manifest have SHA-256 values
+`4f4d5500a61a71bc14e1ff7c7b57e6d02cf7ff8d4131ebc0af1508663f5af6c5`
+and
+`8df92c533959f8717b2d897756d5c668e95f6adf9bb7bdca6eb5d8ee7ef758e4`.
+Ruff, seven focused adversarial publication tests, recursive ingress
+validation, and the live PIQD static gate pass. No Child42 job has been
+submitted at this checkpoint. After publication, submit exactly one job: `SAT`
+requires total-model replay and a new-wave-only theorem mine; `UNSAT` requires
+submitted-session clause-map retrieval, independent certificate replay, Lean
+banking, and composition through
+`exists_exactSeventeenSourceRealization_of_exactCover`. Exact 17 and the
+cap-nine production `sorry` remain open.
