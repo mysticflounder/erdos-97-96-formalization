@@ -244,6 +244,142 @@ theorem third_fiber_or_larger_known_fiber_of_three_omissions
               simpa [repaired, hxa, hxb] using hx
             exact homitted₃ x this
 
+/-- If a finite self-map omits four distinct values and already has three
+distinct collision fibers, then either it has a fourth collision fiber or one
+of the three known fibers contains a third source.
+
+The proof redirects one source of the third known fiber to the first omitted
+value, then applies `third_fiber_or_larger_known_fiber_of_three_omissions` to
+the repaired map and the remaining three omitted values. -/
+theorem fourth_fiber_or_larger_known_fiber_of_four_omissions
+    {α : Type*} [Finite α]
+    (f : α → α)
+    {omitted₁ omitted₂ omitted₃ omitted₄ a₁ a₂ b₁ b₂ c₁ c₂ : α}
+    (homitted₁ : ∀ x, f x ≠ omitted₁)
+    (homitted₂ : ∀ x, f x ≠ omitted₂)
+    (homitted₃ : ∀ x, f x ≠ omitted₃)
+    (homitted₄ : ∀ x, f x ≠ omitted₄)
+    (homitted₁₂ : omitted₁ ≠ omitted₂)
+    (homitted₁₃ : omitted₁ ≠ omitted₃)
+    (homitted₁₄ : omitted₁ ≠ omitted₄)
+    (homitted₂₃ : omitted₂ ≠ omitted₃)
+    (homitted₂₄ : omitted₂ ≠ omitted₄)
+    (homitted₃₄ : omitted₃ ≠ omitted₄)
+    (hfa : f a₁ = f a₂)
+    (hfb : f b₁ = f b₂)
+    (hfc : f c₁ = f c₂)
+    (hvaluesAB : f a₁ ≠ f b₁)
+    (hvaluesAC : f a₁ ≠ f c₁)
+    (hvaluesBC : f b₁ ≠ f c₁) :
+    (∃ x y, x ≠ y ∧ f x = f y ∧
+        f x ≠ f a₁ ∧ f x ≠ f b₁ ∧ f x ≠ f c₁) ∨
+      (∃ x, x ≠ a₁ ∧ x ≠ a₂ ∧ f x = f a₁) ∨
+        (∃ x, x ≠ b₁ ∧ x ≠ b₂ ∧ f x = f b₁) ∨
+          ∃ x, x ≠ c₁ ∧ x ≠ c₂ ∧ f x = f c₁ := by
+  classical
+  have hc₂a₁ : c₂ ≠ a₁ := by
+    intro h
+    apply hvaluesAC
+    calc
+      f a₁ = f c₂ := congrArg f h.symm
+      _ = f c₁ := hfc.symm
+  have hc₂a₂ : c₂ ≠ a₂ := by
+    intro h
+    apply hvaluesAC
+    calc
+      f a₁ = f a₂ := hfa
+      _ = f c₂ := congrArg f h.symm
+      _ = f c₁ := hfc.symm
+  have hc₂b₁ : c₂ ≠ b₁ := by
+    intro h
+    apply hvaluesBC
+    calc
+      f b₁ = f c₂ := congrArg f h.symm
+      _ = f c₁ := hfc.symm
+  have hc₂b₂ : c₂ ≠ b₂ := by
+    intro h
+    apply hvaluesBC
+    calc
+      f b₁ = f b₂ := hfb
+      _ = f c₂ := congrArg f h.symm
+      _ = f c₁ := hfc.symm
+  have ha₁c₂ : a₁ ≠ c₂ := Ne.symm hc₂a₁
+  have ha₂c₂ : a₂ ≠ c₂ := Ne.symm hc₂a₂
+  have hb₁c₂ : b₁ ≠ c₂ := Ne.symm hc₂b₁
+  have hb₂c₂ : b₂ ≠ c₂ := Ne.symm hc₂b₂
+  let repaired : α → α := fun x ↦ if x = c₂ then omitted₁ else f x
+  have hrepaired_omitted₂ : ∀ x, repaired x ≠ omitted₂ := by
+    intro x
+    by_cases hx : x = c₂
+    · simpa [repaired, hx] using homitted₁₂
+    · simpa [repaired, hx] using homitted₂ x
+  have hrepaired_omitted₃ : ∀ x, repaired x ≠ omitted₃ := by
+    intro x
+    by_cases hx : x = c₂
+    · simpa [repaired, hx] using homitted₁₃
+    · simpa [repaired, hx] using homitted₃ x
+  have hrepaired_omitted₄ : ∀ x, repaired x ≠ omitted₄ := by
+    intro x
+    by_cases hx : x = c₂
+    · simpa [repaired, hx] using homitted₁₄
+    · simpa [repaired, hx] using homitted₄ x
+  have hra : repaired a₁ = repaired a₂ := by
+    simp [repaired, ha₁c₂, ha₂c₂, hfa]
+  have hrb : repaired b₁ = repaired b₂ := by
+    simp [repaired, hb₁c₂, hb₂c₂, hfb]
+  have hrvalues : repaired a₁ ≠ repaired b₁ := by
+    simpa [repaired, ha₁c₂, hb₁c₂] using hvaluesAB
+  rcases third_fiber_or_larger_known_fiber_of_three_omissions repaired
+      hrepaired_omitted₂ hrepaired_omitted₃ hrepaired_omitted₄
+      homitted₂₃ homitted₂₄ homitted₃₄ hra hrb hrvalues with
+    hnew | hlargerA | hlargerB
+  · rcases hnew with ⟨x, y, hxy, hrxy, hxA, hxB⟩
+    have hxc₂ : x ≠ c₂ := by
+      intro hx
+      subst x
+      by_cases hy : y = c₂
+      · exact hxy hy.symm
+      · have : omitted₁ = f y := by simpa [repaired, hy] using hrxy
+        exact homitted₁ y this.symm
+    have hyc₂ : y ≠ c₂ := by
+      intro hy
+      subst y
+      have : f x = omitted₁ := by simpa [repaired, hxc₂] using hrxy
+      exact homitted₁ x this
+    have hfxy : f x = f y := by
+      simpa [repaired, hxc₂, hyc₂] using hrxy
+    have hxfA : f x ≠ f a₁ := by
+      simpa [repaired, hxc₂, ha₁c₂] using hxA
+    have hxfB : f x ≠ f b₁ := by
+      simpa [repaired, hxc₂, hb₁c₂] using hxB
+    by_cases hxfC : f x = f c₁
+    · right; right; right
+      by_cases hxc₁ : x = c₁
+      · exact ⟨y, by intro hy; exact hxy (hxc₁.trans hy.symm), hyc₂,
+          hfxy.symm.trans hxfC⟩
+      · exact ⟨x, hxc₁, hxc₂, hxfC⟩
+    · exact Or.inl ⟨x, y, hxy, hfxy, hxfA, hxfB, hxfC⟩
+  · right; left
+    rcases hlargerA with ⟨x, hxa₁, hxa₂, hrx⟩
+    have hxc₂ : x ≠ c₂ := by
+      intro hx
+      subst x
+      have : omitted₁ = f a₁ := by
+        simpa [repaired, ha₁c₂] using hrx
+      exact homitted₁ a₁ this.symm
+    exact ⟨x, hxa₁, hxa₂, by
+      simpa [repaired, hxc₂, ha₁c₂] using hrx⟩
+  · right; right; left
+    rcases hlargerB with ⟨x, hxb₁, hxb₂, hrx⟩
+    have hxc₂ : x ≠ c₂ := by
+      intro hx
+      subst x
+      have : omitted₁ = f b₁ := by
+        simpa [repaired, hb₁c₂] using hrx
+      exact homitted₁ b₁ this.symm
+    exact ⟨x, hxb₁, hxb₂, by
+      simpa [repaired, hxc₂, hb₁c₂] using hrx⟩
+
 /-- On the live bi-apex robust endpoint, the retained critical map has either
 two distinct nontrivial blocker fibers or one fiber containing at least three
 distinct sources. -/
