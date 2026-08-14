@@ -112,6 +112,18 @@ These hashes authenticate the replay implementation's current output; they do
 not close a cell or authorize a learned clause without the shared campaign's
 separate source-clause admission step.
 
+That admission step is now banked in
+`BlockerVExactSeventeenFortyFourthModelRefinements.lean`.  The exact replay
+reduces the canonical model to the two weight-one Kalmanson terms
+`innerOuter (0,1,2,11)` and `adjacentSides (0,2,8,12)` in selected-order
+coordinates.  One checked `CancellationOccurrence` records the five required
+row equalities and emits four guarded clauses (two named orders times two
+orientations).  Its source-assignment theorem extends the authenticated
+Child44 root from 5,848,820 to 5,848,824 clauses.  A direct Boolean replay
+confirms that the order-one/forward clause rejects the authenticated Child44
+assignment.  This is a source-valid model refinement, not a cell verdict: the
+extended root still requires export, custody validation, and a fresh solve.
+
 ## Coverage and terminal composition
 
 The source theorem candidate `legalNextCenterLabels` is the explicit
