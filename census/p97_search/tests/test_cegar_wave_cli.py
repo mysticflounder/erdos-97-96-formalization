@@ -7,6 +7,7 @@ from types import SimpleNamespace
 import pytest
 
 import census.p97_search.cegar_wave_cli as cli
+from census.p97_search.phase3_cegar_wave_control import ASSUMPTION_CNF
 from census.p97_search.tests.test_cegar_wave_registry import (
     _fixture_data_only_control,
 )
@@ -252,6 +253,9 @@ def test_run_forwards_only_assumption_specific_solver_signature(
     control_path, package_root = _control_file(tmp_path)
     output = tmp_path / "assumption-result.json"
     seen: list[dict[str, object]] = []
+    assumption_control = SimpleNamespace(
+        registration=SimpleNamespace(wave_kind=ASSUMPTION_CNF)
+    )
 
     def fake_execute(*args: object, **kwargs: object) -> object:
         seen.append(kwargs)
@@ -261,6 +265,7 @@ def test_run_forwards_only_assumption_specific_solver_signature(
             output_path=output,
         )
 
+    monkeypatch.setattr(cli, "_load_control", lambda _path: assumption_control)
     monkeypatch.setattr(cli, "execute_registered_wave", fake_execute)
     assert (
         cli.main(
@@ -273,6 +278,8 @@ def test_run_forwards_only_assumption_specific_solver_signature(
                 str(output),
                 "--solver-signature",
                 "cadical-current",
+                "--existing-session-id",
+                "11111111-1111-4111-8111-111111111111",
             ]
         )
         == 0
@@ -284,8 +291,129 @@ def test_run_forwards_only_assumption_specific_solver_signature(
             "base_url": "http://127.0.0.1:7272",
             "timeout_s": None,
             "solver_signature": "cadical-current",
+            "resume_session": "11111111-1111-4111-8111-111111111111",
         }
     ]
+
+
+def test_run_rejects_existing_session_for_static_control_before_execution(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    monkeypatch.setattr(
+        cli,
+        "execute_registered_wave",
+        lambda *args, **kwargs: pytest.fail("execution was reached"),
+    )
+    assert (
+        cli.main(
+            [
+                "run",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(tmp_path / "result.json"),
+                "--journal-root",
+                str(tmp_path / "journal"),
+                "--existing-session-id",
+                "11111111-1111-4111-8111-111111111111",
+            ]
+        )
+        == 2
+    )
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert "permitted only for ASSUMPTION_CNF run" in captured.err
+
+
+def test_run_rejects_noncanonical_existing_session_before_execution(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    assumption_control = SimpleNamespace(
+        registration=SimpleNamespace(wave_kind=ASSUMPTION_CNF)
+    )
+    monkeypatch.setattr(cli, "_load_control", lambda _path: assumption_control)
+    monkeypatch.setattr(
+        cli,
+        "execute_registered_wave",
+        lambda *args, **kwargs: pytest.fail("execution was reached"),
+    )
+    assert (
+        cli.main(
+            [
+                "run",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(tmp_path / "result.json"),
+                "--solver-signature",
+                "cadical-current",
+                "--existing-session-id",
+                "11111111-1111-4111-8111-11111111111A",
+            ]
+        )
+        == 2
+    )
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert "canonical UUID" in captured.err
+
+
+def test_non_run_command_rejects_existing_session_at_argument_boundary(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    monkeypatch.setattr(
+        cli,
+        "_load_control",
+        lambda _path: pytest.fail("control loading was reached"),
+    )
+    with pytest.raises(SystemExit) as error:
+        cli.main(
+            [
+                "plan",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--existing-session-id",
+                "11111111-1111-4111-8111-111111111111",
+            ]
+        )
+    assert error.value.code == 2
+
+
+def test_public_cli_rejects_legacy_resume_session_alias_before_control_loading(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    monkeypatch.setattr(
+        cli,
+        "_load_control",
+        lambda _path: pytest.fail("control loading was reached"),
+    )
+    with pytest.raises(SystemExit) as error:
+        cli.main(
+            [
+                "run",
+                str(control_path),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(tmp_path / "result.json"),
+                "--resume-session",
+                "11111111-1111-4111-8111-111111111111",
+            ]
+        )
+    assert error.value.code == 2
 
 
 def test_validate_output_cross_binds_control_without_transport(

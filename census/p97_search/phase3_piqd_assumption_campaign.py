@@ -9,6 +9,7 @@ closure evidence.
 from __future__ import annotations
 
 import hashlib
+import math
 import os
 import re
 import stat
@@ -40,6 +41,7 @@ EXECUTION_POLICY = "one-core-sequential-v1"
 MAX_PARENT_BYTES = 512 * 1024 * 1024
 MAX_PARENT_VARIABLES = 1_000_000
 MAX_LINE_BYTES = 8 * 1024 * 1024
+DEFAULT_ASSUMPTION_HTTP_TIMEOUT_SECONDS = 300.0
 I32_MIN = -(2**31)
 I32_MAX = 2**31 - 1
 _NATIVE_PATH_TYPE = type(Path("/"))
@@ -225,6 +227,30 @@ class _PendingRequest:
 
 
 ExportDigest = Callable[[str], CnfStreamIdentity]
+
+
+def _campaign_http_timeout_seconds(
+    spec: AssumptionCampaignSpec, override: float | None
+) -> float:
+    """Return the bounded HTTP budget for campaign requests.
+
+    Solver ``timeout_ms`` is a computation budget, not a socket budget.  The
+    latter therefore includes a small response margin and has a campaign
+    default longer than the generic 60-second transport default.
+    """
+
+    value = DEFAULT_ASSUMPTION_HTTP_TIMEOUT_SECONDS if override is None else override
+    if type(value) not in (int, float) or isinstance(value, bool):
+        raise AssumptionCampaignError(
+            "http_timeout_seconds must be a finite positive number"
+        )
+    if not math.isfinite(value) or value <= 0:
+        raise AssumptionCampaignError(
+            "http_timeout_seconds must be a finite positive number"
+        )
+    if override is None and spec.timeout_ms is not None:
+        value = max(value, spec.timeout_ms / 1000 + 30.0)
+    return float(value)
 
 
 class _CnfScanner:
@@ -470,7 +496,9 @@ def stream_parent_identity(
 
 def _default_export_digest(url: str) -> CnfStreamIdentity:
     request = urllib.request.Request(url, method="GET")
-    with urllib.request.urlopen(request) as response:
+    with urllib.request.urlopen(
+        request, timeout=DEFAULT_ASSUMPTION_HTTP_TIMEOUT_SECONDS
+    ) as response:
         if response.status != 200:
             raise AssumptionCampaignError(
                 f"PIQD session CNF export returned HTTP {response.status}"
@@ -550,13 +578,33 @@ class AssumptionCampaignSession:
         transport: Transport | None = None,
         export_digest: ExportDigest | None = None,
         job_blob_digest: ExportDigest | None = None,
+        existing_session_id: str | None = None,
+        http_timeout_seconds: float | None = None,
     ) -> None:
         self.base_url = _string(base_url, label="base_url", nonempty=True).rstrip("/")
         self.spec = spec
         if transport is None:
-            from census.p97_search.phase3_piqd_oracle import _stdlib_transport
+            from census.p97_search.phase3_piqd_oracle import stdlib_http_transport
 
-            transport = _stdlib_transport
+            timeout_seconds = _campaign_http_timeout_seconds(spec, http_timeout_seconds)
+
+            def campaign_transport(
+                method: str,
+                url: str,
+                body: bytes | None,
+                headers: Mapping[str, str],
+            ) -> HttpResponse:
+                return stdlib_http_transport(
+                    method,
+                    url,
+                    body,
+                    headers,
+                    timeout_seconds=timeout_seconds,
+                )
+
+            transport = campaign_transport
+        elif http_timeout_seconds is not None:
+            _campaign_http_timeout_seconds(spec, http_timeout_seconds)
         self._transport = transport
         self._export_digest = export_digest or _default_export_digest
         self._job_blob_digest = job_blob_digest or _default_export_digest
@@ -572,17 +620,34 @@ class AssumptionCampaignSession:
         self._last_status: str | None = None
         self._last_terminal_unsat: bool | None = None
         self._seen_cells: set[str] = set()
+        self._seen_assumptions: set[tuple[int, ...]] = set()
         self._pending: _PendingRequest | None = None
         self._closed = False
         self._close_attempted = False
         self._request_failed = False
         self._session_id = ""
+        self._journal_path: str | None = None
+        self._receipts_path: str | None = None
+        self._owns_session = existing_session_id is None
         self._verify_producer()
-        self._create()
-        self.export_identity = self._export_digest(
-            f"{self.base_url}/sessions/{self._session_id}/cnf"
-        )
-        self._check_export(self.export_identity)
+        try:
+            if existing_session_id is None:
+                self._create()
+            else:
+                self._adopt(existing_session_id)
+            self.export_identity = self._export_digest(
+                f"{self.base_url}/sessions/{self._session_id}/cnf"
+            )
+            self._check_export(self.export_identity)
+        except BaseException as primary:
+            if self._session_id and self._owns_session:
+                try:
+                    self.close()
+                except BaseException as cleanup:  # noqa: BLE001
+                    primary.add_note(
+                        f"session cleanup failed: {type(cleanup).__name__}: {cleanup}"
+                    )
+            raise
 
     @property
     def session_id(self) -> str:
@@ -719,6 +784,287 @@ class AssumptionCampaignSession:
         )
         self._session_id = _uuid(payload.get("id"), label="session.id")
         self._check_session(payload, expected_state="live")
+        self._journal_path = _string(
+            payload["journal_path"], label="session.journal_path", nonempty=True
+        )
+
+    def _adopt(self, existing_session_id: str) -> None:
+        """Resume a known live session after authenticating its receipt frontier."""
+
+        self._session_id = _uuid(existing_session_id, label="existing_session_id")
+        payload = self._json("GET", f"/sessions/{self._session_id}", None, 200)
+        if _string(payload.get("state"), label="session.state") != "live":
+            raise AssumptionCampaignError("existing session is not live")
+        self._journal_path = _string(
+            payload.get("journal_path"), label="session.journal_path", nonempty=True
+        )
+        solve_count = _integer(payload.get("solves"), label="session.solves", minimum=0)
+        receipts = self._json(
+            "GET", f"/sessions/{self._session_id}/receipts", None, 200
+        )
+        if set(receipts) != {
+            "session_id",
+            "lane",
+            "journal_path",
+            "receipts_path",
+            "count",
+            "receipts",
+        }:
+            raise AssumptionCampaignError("PIQD receipts have an inexact schema")
+        if (
+            _uuid(receipts["session_id"], label="receipts.session_id")
+            != self._session_id
+            or _string(receipts["lane"], label="receipts.lane") != "sat"
+            or type(receipts["receipts"]) is not list
+            or _integer(receipts["count"], label="receipts.count", minimum=0)
+            != solve_count
+            or len(receipts["receipts"]) != solve_count
+        ):
+            raise AssumptionCampaignError(
+                "existing session receipt frontier is not contiguous"
+            )
+        self._check_receipt_paths(receipts)
+        self._solve_count = solve_count
+        for expected_index, raw in enumerate(receipts["receipts"], start=1):
+            self._validate_adopted_receipt(raw, expected_index)
+        if solve_count:
+            last = receipts["receipts"][-1]
+            self._last_status = _string(last["status"], label="receipt.status")
+            core = last.get("core")
+            self._last_terminal_unsat = (
+                not core if self._last_status == "UNSAT" else None
+            )
+        self._check_session(payload)
+
+    def _validate_adopted_receipt(
+        self, raw: Any, expected_index: int, *, record: bool = True
+    ) -> None:
+        if (
+            type(raw) is not dict
+            or not _RECEIPT_REQUIRED <= set(raw)
+            or set(raw) - (_RECEIPT_REQUIRED | _RECEIPT_OPTIONAL)
+            or {"request_id", "request_sha256"} - set(raw)
+        ):
+            raise AssumptionCampaignError("adopted receipt has an inexact schema")
+        assumptions = _canonical_assumptions(
+            raw["assumptions"],
+            self.spec.parent_num_vars,
+            label="receipt.assumptions",
+            container_type=list,
+        )
+        if not assumptions or (record and tuple(assumptions) in self._seen_assumptions):
+            raise AssumptionCampaignError("adopted receipt assumptions are not unique")
+        status = _string(raw["status"], label="receipt.status")
+        if status not in {"SAT", "UNSAT", "UNKNOWN"}:
+            raise AssumptionCampaignError("adopted receipt status is invalid")
+        conflict_limit = _integer(
+            raw.get("conflict_limit"), label="receipt.conflict_limit", minimum=1
+        )
+        if conflict_limit != self.spec.conflict_limit:
+            raise AssumptionCampaignError("adopted receipt conflict limit is crossed")
+        if self.spec.timeout_ms is None:
+            if "timeout_ms" in raw:
+                raise AssumptionCampaignError("adopted receipt records a timeout")
+            timeout_ms = None
+        else:
+            timeout_ms = _integer(
+                raw.get("timeout_ms"), label="receipt.timeout_ms", minimum=0
+            )
+            if timeout_ms != self.spec.timeout_ms:
+                raise AssumptionCampaignError("adopted receipt timeout is crossed")
+        _uuid(raw["request_id"], label="receipt.request_id")
+        request_sha256 = _hex64(raw["request_sha256"], label="receipt.request_sha256")
+        result_sha256 = _hex64(raw["result_sha256"], label="receipt.result_sha256")
+        interrupted = raw.get("interrupted_by")
+        if interrupted is not None:
+            _string(interrupted, label="receipt.interrupted_by", nonempty=True)
+        core = raw.get("core")
+        if core is not None:
+            core = _canonical_assumptions(
+                core,
+                self.spec.parent_num_vars,
+                label="receipt.core",
+                container_type=list,
+            )
+        if status == "SAT" and (core is not None or interrupted is not None):
+            raise AssumptionCampaignError("adopted SAT receipt has terminal fields")
+        if status == "UNSAT" and (core is None or interrupted is not None):
+            raise AssumptionCampaignError("adopted UNSAT receipt is malformed")
+        if status == "UNKNOWN" and core is not None:
+            raise AssumptionCampaignError("adopted UNKNOWN receipt has a core")
+        if (
+            _integer(raw["solve_index"], label="receipt.solve_index", minimum=1)
+            != expected_index
+            or _integer(raw["base_clauses"], label="receipt.base_clauses", minimum=1)
+            != self.parent_identity.num_clauses
+            or _integer(raw["base_bytes"], label="receipt.base_bytes", minimum=1)
+            != self.parent_identity.journal_bytes
+            or _hex64(raw["base_sha256"], label="receipt.base_sha256")
+            != self.parent_identity.journal_sha256
+            or request_sha256
+            != _solve_request_digest(
+                base_clauses=self.parent_identity.num_clauses,
+                base_bytes=self.parent_identity.journal_bytes,
+                base_sha256=self.parent_identity.journal_sha256,
+                assumptions=tuple(assumptions),
+                conflict_limit=conflict_limit,
+                timeout_ms=timeout_ms,
+            )
+        ):
+            raise AssumptionCampaignError("adopted receipt is not source-bound")
+        model_recorded = _boolean(raw["model_recorded"], label="receipt.model_recorded")
+        if model_recorded is not (status == "SAT"):
+            raise AssumptionCampaignError("adopted receipt model flag is invalid")
+        digest_model: Sequence[int] | None = None
+        if (
+            status != "SAT"
+            and _result_digest(status, interrupted, core, digest_model) != result_sha256
+        ):
+            raise AssumptionCampaignError("adopted receipt result digest is invalid")
+        _integer(raw["at"], label="receipt.at")
+        if record:
+            self._seen_assumptions.add(tuple(assumptions))
+
+    def _check_receipt_paths(self, receipts: Mapping[str, Any]) -> None:
+        journal_path = _string(
+            receipts["journal_path"], label="receipts.journal_path", nonempty=True
+        )
+        receipts_path = _string(
+            receipts["receipts_path"], label="receipts.receipts_path", nonempty=True
+        )
+        if self._journal_path is None:
+            self._journal_path = journal_path
+        elif journal_path != self._journal_path:
+            raise AssumptionCampaignError(
+                "PIQD receipt journal path is not session-bound"
+            )
+        expected_receipts_path = os.path.join(
+            os.path.dirname(journal_path), "receipts.jsonl"
+        )
+        if receipts_path != expected_receipts_path:
+            raise AssumptionCampaignError(
+                "PIQD receipt path is not derived from the session journal"
+            )
+        if self._receipts_path is None:
+            self._receipts_path = receipts_path
+        elif receipts_path != self._receipts_path:
+            raise AssumptionCampaignError("PIQD receipt path is not session-bound")
+
+    def recover_first_result(
+        self, cell: AssumptionCell, *, request_id: str
+    ) -> AssumptionCampaignResult:
+        """Recover one adopted SAT receipt by replaying its exact request.
+
+        This deliberately handles only a one-receipt adopted session.  The
+        server's request id makes the POST idempotent, so a successful replay
+        returns the original model without appending another receipt.
+        """
+
+        if self._closed:
+            raise AssumptionCampaignError("campaign session is closed")
+        if self._pending is not None:
+            raise AssumptionCampaignError(
+                "an authenticated solve request is unresolved; use retry_pending()"
+            )
+        checked_cell = cell.checked(self.spec.parent_num_vars)
+        request_id = _uuid(request_id, label="request_id")
+        if self._solve_count != 1:
+            raise AssumptionCampaignError(
+                "first-result recovery requires exactly one adopted solve"
+            )
+        before = self._json("GET", f"/sessions/{self._session_id}", None, 200)
+        self._check_session(before)
+        receipts = self._json(
+            "GET", f"/sessions/{self._session_id}/receipts", None, 200
+        )
+        if set(receipts) != {
+            "session_id",
+            "lane",
+            "journal_path",
+            "receipts_path",
+            "count",
+            "receipts",
+        }:
+            raise AssumptionCampaignError("PIQD receipts have an inexact schema")
+        receipt_list = receipts["receipts"]
+        if (
+            _uuid(receipts["session_id"], label="receipts.session_id")
+            != self._session_id
+            or _string(receipts["lane"], label="receipts.lane") != "sat"
+            or _integer(receipts["count"], label="receipts.count", minimum=0) != 1
+            or type(receipt_list) is not list
+            or len(receipt_list) != 1
+        ):
+            raise AssumptionCampaignError(
+                "first-result recovery requires exactly one receipt"
+            )
+        self._check_receipt_paths(receipts)
+        raw = receipt_list[0]
+        self._validate_adopted_receipt(raw, 1, record=False)
+        if (
+            tuple(raw["assumptions"]) != checked_cell.assumptions
+            or _uuid(raw["request_id"], label="receipt.request_id") != request_id
+            or _string(raw["status"], label="receipt.status") != "SAT"
+            or raw["model_recorded"] is not True
+        ):
+            raise AssumptionCampaignError(
+                "first adopted receipt does not match the requested SAT cell"
+            )
+        request: dict[str, Any] = {
+            "assumptions": list(checked_cell.assumptions),
+            "include_model": True,
+            "conflict_limit": self.spec.conflict_limit,
+            "request_id": request_id,
+        }
+        if self.spec.timeout_ms is not None:
+            request["timeout_ms"] = self.spec.timeout_ms
+        request_sha256 = _solve_request_digest(
+            base_clauses=self.parent_identity.num_clauses,
+            base_bytes=self.parent_identity.journal_bytes,
+            base_sha256=self.parent_identity.journal_sha256,
+            assumptions=checked_cell.assumptions,
+            conflict_limit=self.spec.conflict_limit,
+            timeout_ms=self.spec.timeout_ms,
+        )
+        if (
+            _hex64(raw["request_sha256"], label="receipt.request_sha256")
+            != request_sha256
+        ):
+            raise AssumptionCampaignError("first adopted receipt request is crossed")
+        pending = _PendingRequest(
+            checked_cell, request_id, request_sha256, _json_bytes(request)
+        )
+        prior_count = self._solve_count
+        prior_status = self._last_status
+        prior_terminal_unsat = self._last_terminal_unsat
+        self._solve_count = 0
+        self._last_status = None
+        self._last_terminal_unsat = None
+        self._pending = pending
+        try:
+            response = self._request(
+                "POST", f"/sessions/{self._session_id}/solve", pending.body, 200
+            )
+            parsed = _strict_value(response.body, label="PIQD replay response")
+            if type(parsed) is not dict or parsed.get("replayed") is not True:
+                raise AssumptionCampaignError(
+                    "first-result recovery did not receive a replayed response"
+                )
+            return self._accept_pending_response(response.body)
+        except BaseException:
+            self._solve_count = prior_count
+            self._last_status = prior_status
+            self._last_terminal_unsat = prior_terminal_unsat
+            self._pending = None
+            self._request_failed = True
+            raise
+
+    def recover_first_cell(
+        self, cell: AssumptionCell, *, request_id: str
+    ) -> AssumptionCampaignResult:
+        """Engine-facing name for :meth:`recover_first_result`."""
+
+        return self.recover_first_result(cell, request_id=request_id)
 
     def _check_session(
         self, payload: Mapping[str, Any], *, expected_state: str = "live"
@@ -1048,12 +1394,9 @@ class AssumptionCampaignSession:
             },
             label="PIQD receipts",
         )
+        self._check_receipt_paths(receipts)
         receipt_session_id = _uuid(receipts["session_id"], label="receipts.session_id")
         receipt_lane = _string(receipts["lane"], label="receipts.lane")
-        _string(receipts["journal_path"], label="receipts.journal_path", nonempty=True)
-        _string(
-            receipts["receipts_path"], label="receipts.receipts_path", nonempty=True
-        )
         receipt_count = _integer(receipts["count"], label="receipts.count", minimum=0)
         receipt_list = receipts["receipts"]
         if (
@@ -1093,6 +1436,7 @@ class AssumptionCampaignSession:
             self._request_failed = True
             raise
         self._seen_cells.add(pending.cell.cell_id)
+        self._seen_assumptions.add(pending.cell.assumptions)
         self._pending = None
         self._request_failed = False
         return AssumptionCampaignResult(
@@ -1143,6 +1487,8 @@ class AssumptionCampaignSession:
         checked_cell = cell.checked(self.spec.parent_num_vars)
         if checked_cell.cell_id in self._seen_cells:
             raise AssumptionCampaignError("campaign cell was already solved")
+        if checked_cell.assumptions in self._seen_assumptions:
+            raise AssumptionCampaignError("campaign assumptions were already solved")
         request_id = _uuid(request_id, label="request_id")
         self._capture_bound_parent()
         before = self._json("GET", f"/sessions/{self._session_id}", None, 200)

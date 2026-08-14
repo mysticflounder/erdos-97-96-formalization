@@ -735,7 +735,7 @@ def _strict_json(raw: bytes) -> dict[str, Any]:
 
 
 class AssumptionCnfWaveEngine:
-    """Execute one reviewed campaign in exactly one sequential fresh session."""
+    """Execute one reviewed campaign in one fresh or authenticated live session."""
 
     def __init__(
         self,
@@ -749,6 +749,10 @@ class AssumptionCnfWaveEngine:
         export_digest: Any = None,
         job_blob_digest: Any = None,
         session_factory: SessionFactory | None = None,
+        existing_session_id: str | None = None,
+        # Compatibility bridge for the shared registry.  New callers use
+        # ``existing_session_id``; the registry still names this recovery seam.
+        resume_session: str | None = None,
         execution_registration: Mapping[str, Any],
     ) -> None:
         if type(control) is not WaveControl:
@@ -774,6 +778,13 @@ class AssumptionCnfWaveEngine:
             _fail("base_url must be a nonempty builtin string")
         if type(solver_signature) is not str or not solver_signature:
             _fail("solver_signature must be a nonempty builtin string")
+        if existing_session_id is not None and resume_session is not None:
+            _fail("existing_session_id crossed the registry recovery seam")
+        adopted_session_id = (
+            existing_session_id if existing_session_id is not None else resume_session
+        )
+        if adopted_session_id is not None:
+            _canonical_uuid(adopted_session_id, "existing_session_id")
         self.control = control
         self.package_root = package_root
         self.output_path = output_path
@@ -783,9 +794,22 @@ class AssumptionCnfWaveEngine:
         self.export_digest = export_digest
         self.job_blob_digest = job_blob_digest
         self.session_factory = session_factory or _default_session_factory
+        self.existing_session_id = adopted_session_id
         self.execution_registration = _registration(execution_registration)
 
     def run(self) -> AssumptionCnfEngineResult:
+        adopted_session = self.existing_session_id is not None
+        if self.existing_session_id is not None:
+            try:
+                os.lstat(self.output_path)
+            except FileNotFoundError:
+                pass
+            except OSError as exc:
+                raise AssumptionCnfEngineError(
+                    "cannot inspect resume output path"
+                ) from exc
+            else:
+                _fail("existing-session adoption requires an absent output")
         try:
             binding = bind_assumption_cnf(self.control, self.package_root)
         except Exception as exc:
@@ -808,6 +832,8 @@ class AssumptionCnfWaveEngine:
                 transport=self.transport,
                 export_digest=self.export_digest,
                 job_blob_digest=self.job_blob_digest,
+                existing_session_id=self.existing_session_id,
+                http_timeout_seconds=self.control.policy.solver_timeout_s + 30,
             )
         except Exception as exc:
             raise AssumptionCnfEngineError("campaign session creation failed") from exc
@@ -815,8 +841,16 @@ class AssumptionCnfWaveEngine:
             session_id = _canonical_uuid(
                 getattr(session, "session_id", None), "session_id"
             )
+            if (
+                self.existing_session_id is not None
+                and session_id != self.existing_session_id
+            ):
+                _fail("campaign session identity crossed existing_session_id")
         except Exception as exc:
-            if getattr(session, "pending_request_id", None) is None:
+            if (
+                not adopted_session
+                and getattr(session, "pending_request_id", None) is None
+            ):
                 try:
                     _close_with_reconciliation(session)
                 except Exception as close_exc:
@@ -829,9 +863,47 @@ class AssumptionCnfWaveEngine:
         records: list[dict[str, Any]] = []
         counts = {"SAT": 0, "UNSAT": 0, "UNKNOWN": 0, NOT_RUN: 0}
         terminal = False
+        recovery_committed = not adopted_session
         primary: Exception | None = None
         try:
-            for index, cell in enumerate(binding.campaign.cells, start=1):
+            cells = binding.campaign.cells
+            start_index = 0
+            if self.existing_session_id is not None:
+                if not hasattr(session, "recover_first_result"):
+                    _fail("existing session lacks first-result recovery")
+                first = cells[0]
+                request_id = _request_id(binding, first.id, first.assumptions)
+                result = session.recover_first_result(
+                    AssumptionCell(first.id, first.assumptions),
+                    request_id=request_id,
+                )
+                _check_result(
+                    result,
+                    binding=binding,
+                    session_id=session_id,
+                    cell_id=first.id,
+                    assumptions=first.assumptions,
+                    request_id=request_id,
+                    solve_index=1,
+                )
+                if result.status != "SAT" or result.replayed is not True:
+                    _fail(
+                        "existing session first result is not the exact replayed SAT prefix"
+                    )
+                semantic = None
+                semantic = replay_sat(
+                    binding.campaign,
+                    parent_cnf_path=binding.parent_path,
+                    source_parent_cnf_path=binding.source_parent_path,
+                    assignment=result.assignment,
+                    cell=first,
+                )
+                records.append(_attempted_record(result, semantic))
+                counts[result.status] += 1
+                terminal = result.status == "UNSAT" and result.core == ()
+                recovery_committed = True
+                start_index = 1
+            for index, cell in enumerate(cells[start_index:], start=start_index + 1):
                 if terminal:
                     records.append(
                         {
@@ -882,7 +954,17 @@ class AssumptionCnfWaveEngine:
                 _recapture_parent(binding)
             except Exception as exc:  # noqa: BLE001 - custody must fail closed
                 primary = exc
-        if pending is None:
+        if primary is None and pending is None:
+            # Recheck immediately before releasing the solver session.  A
+            # crossed parent must fail while an adopted session is still live;
+            # after close there is deliberately no fallible custody step before
+            # create-once publication.
+            _recapture_parent(binding)
+        if (
+            pending is None
+            and recovery_committed
+            and (not adopted_session or primary is None)
+        ):
             try:
                 _close_with_reconciliation(session)
             except Exception as exc:
@@ -891,7 +973,6 @@ class AssumptionCnfWaveEngine:
             raise AssumptionCnfEngineError("assumption campaign aborted") from primary
         if pending is not None:
             _fail("campaign ended with an unresolved request")
-        _recapture_parent(binding)
 
         classification = _classification(counts, terminal)
         unsigned = {

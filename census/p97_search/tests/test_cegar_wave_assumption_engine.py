@@ -168,6 +168,7 @@ class FakeSession:
         self.pending_request_id = None
         self.solves: list[tuple[object, str]] = []
         self.close_calls = 0
+        self.recover_calls = 0
 
     def solve(self, cell, *, request_id: str) -> AssumptionCampaignResult:
         if self.solve_error:
@@ -226,6 +227,15 @@ class FakeSession:
         self.close_calls += 1
         if self.close_error:
             raise RuntimeError("close failed")
+
+    def recover_first_result(
+        self, cell, *, request_id: str
+    ) -> AssumptionCampaignResult:
+        self.recover_calls += 1
+        return replace(self.solve(cell, request_id=request_id), replayed=True)
+
+    def recover_first_cell(self, cell, *, request_id: str) -> AssumptionCampaignResult:
+        return self.recover_first_result(cell, request_id=request_id)
 
 
 def _semantic(binding, cell) -> dict[str, Any]:
@@ -309,6 +319,7 @@ def _make_engine(
     solve_error: bool = False,
     replay_error: bool = False,
     child45: bool = False,
+    existing_session_id: str | None = None,
 ):
     control, binding = _fixture(tmp_path)
     if child45:
@@ -397,6 +408,7 @@ def _make_engine(
         export_digest=object(),
         job_blob_digest=object(),
         session_factory=factory,
+        existing_session_id=existing_session_id,
         execution_registration=_registration(),
     )
     return instance, output.resolve(), binding, fake, factories
@@ -413,6 +425,8 @@ def test_sat_campaign_replays_all_cells_and_publishes_once(
     assert len(fake.solves) == 13
     assert fake.close_calls == 1
     assert len(factories) == 1
+    assert factories[0]["existing_session_id"] is None
+    assert fake.recover_calls == 0
     assert factories[0]["spec"].producer_job_status == "completed"
     assert factories[0]["spec"].descriptor_root
     assert stat.S_IMODE(output.stat().st_mode) == 0o600
@@ -428,6 +442,253 @@ def test_sat_campaign_replays_all_cells_and_publishes_once(
         "classification": SAT_SEMANTIC_REPLAYED,
     }
     assert len({record["request_id"] for record in envelope["cells"]}) == 13
+
+
+def test_existing_session_is_passed_once_and_recovers_first_cell_without_fresh_create(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    result = instance.run()
+    assert result.classification == SAT_SEMANTIC_REPLAYED
+    assert len(fake.solves) == 13
+    assert fake.recover_calls == 1
+    assert len(fake.solves) - fake.recover_calls == 12
+    assert fake.close_calls == 1
+    assert len(factories) == 1
+    assert factories[0]["existing_session_id"] == SESSION_ID
+    assert factories[0]["http_timeout_seconds"] == 930
+    assert output.exists()
+    assert inspect_assumption_cnf_engine_output(output)["close_observed"] is True
+
+
+@pytest.mark.parametrize(
+    ("close_error", "expected_calls"),
+    [(RuntimeError("close failed"), 1), (TimeoutError("close timed out"), 2)],
+)
+def test_existing_session_close_failure_prevents_publication(
+    close_error: Exception,
+    expected_calls: int,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    instance, output, _binding, fake, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    close_calls = 0
+
+    def fail_close() -> None:
+        nonlocal close_calls
+        close_calls += 1
+        raise close_error
+
+    fake.close = fail_close
+    with pytest.raises(AssumptionCnfEngineError, match="campaign close failed"):
+        instance.run()
+    assert close_calls == expected_calls
+    assert not output.exists()
+
+
+def test_existing_session_requires_absent_output_before_session_adoption(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    output.write_bytes(b"occupied")
+    with pytest.raises(AssumptionCnfEngineError, match="absent output"):
+        instance.run()
+    assert fake.solves == []
+    assert factories == []
+
+
+def test_existing_session_rejects_zero_receipt_prefix_without_closing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+
+    def reject_zero(*_args, **_kwargs):
+        raise RuntimeError("first-result recovery requires exactly one adopted solve")
+
+    fake.recover_first_result = reject_zero
+    with pytest.raises(AssumptionCnfEngineError, match="campaign aborted"):
+        instance.run()
+    assert len(factories) == 1
+    assert fake.solves == []
+    assert fake.close_calls == 0
+    assert not output.exists()
+
+
+def test_existing_session_rejects_foreign_first_receipt_without_closing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+
+    def recover_foreign(cell, *, request_id: str):
+        fake.recover_calls += 1
+        return replace(
+            fake.solve(cell, request_id=request_id),
+            cell_id="foreign-cell",
+            replayed=True,
+        )
+
+    fake.recover_first_result = recover_foreign
+    with pytest.raises(AssumptionCnfEngineError, match="campaign aborted"):
+        instance.run()
+    assert fake.close_calls == 0
+    assert not output.exists()
+
+
+def test_existing_session_rejects_skipped_first_receipt_without_closing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+
+    def recover_skipped(cell, *, request_id: str):
+        fake.recover_calls += 1
+        result = fake.solve(cell, request_id=request_id)
+        return replace(
+            result,
+            solve_index=2,
+            receipt=replace(result.receipt, solve_index=2),
+            replayed=True,
+        )
+
+    fake.recover_first_result = recover_skipped
+    with pytest.raises(AssumptionCnfEngineError, match="campaign aborted"):
+        instance.run()
+    assert fake.close_calls == 0
+    assert not output.exists()
+
+
+@pytest.mark.parametrize("wrong_stage", ["recovered", "continuation"])
+def test_existing_session_rejects_reordered_campaign_cell_without_closing(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    wrong_stage: str,
+) -> None:
+    instance, output, binding, fake, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    if wrong_stage == "recovered":
+        original = fake.recover_first_result
+
+        def crossed_recovery(cell, *, request_id):
+            return replace(
+                original(cell, request_id=request_id),
+                cell_id=binding.campaign.cells[1].id,
+            )
+
+        fake.recover_first_result = crossed_recovery
+    else:
+        original = fake.solve
+
+        def crossed_continuation(cell, *, request_id):
+            result = original(cell, request_id=request_id)
+            if cell.cell_id == binding.campaign.cells[1].id:
+                return replace(result, cell_id=binding.campaign.cells[2].id)
+            return result
+
+        fake.solve = crossed_continuation
+    with pytest.raises(AssumptionCnfEngineError, match="campaign aborted"):
+        instance.run()
+    assert fake.close_calls == 0
+    assert not output.exists()
+
+
+def test_existing_session_is_closed_before_output_publication_is_attempted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, _factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    monkeypatch.setattr(
+        engine,
+        "_write_once",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            AssumptionCnfEngineError("injected output failure")
+        ),
+    )
+    with pytest.raises(AssumptionCnfEngineError, match="injected output failure"):
+        instance.run()
+    assert fake.close_calls == 1
+    assert not output.exists()
+
+
+@pytest.mark.parametrize(
+    "existing_session_id",
+    [
+        "11111111-1111-4111-8111-11111111111A",
+        "{11111111-1111-4111-8111-111111111111}",
+        "11111111111141118111111111111111",
+        "not-a-uuid",
+    ],
+)
+def test_existing_session_requires_exact_canonical_uuid_before_binding(
+    existing_session_id: str,
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    with pytest.raises(AssumptionCnfEngineError, match="canonical UUID"):
+        AssumptionCnfWaveEngine(
+            control=control,
+            package_root=tmp_path.resolve(),
+            output_path=(tmp_path / "output.json").resolve(),
+            base_url="http://invalid",
+            solver_signature="fixture",
+            existing_session_id=existing_session_id,
+            execution_registration=_registration(),
+        )
+
+
+def test_existing_session_rejects_crossed_factory_identity_before_solving(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    instance, output, _binding, fake, factories = _make_engine(
+        tmp_path,
+        monkeypatch,
+        [("SAT", None)],
+        existing_session_id=SESSION_ID,
+    )
+    fake.session_id = "22222222-2222-4222-8222-222222222222"
+    with pytest.raises(AssumptionCnfEngineError, match="session identity"):
+        instance.run()
+    assert len(factories) == 1
+    assert factories[0]["existing_session_id"] == SESSION_ID
+    assert fake.solves == []
+    assert fake.close_calls == 0
+    assert not output.exists()
 
 
 def test_child45_output_dispatches_and_validates_root_source_parent_contract(

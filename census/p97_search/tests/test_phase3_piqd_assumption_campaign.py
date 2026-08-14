@@ -5,7 +5,7 @@ import json
 import os
 from collections.abc import Callable
 from pathlib import Path
-from typing import Any
+from typing import Any, Self
 
 import pytest
 
@@ -50,6 +50,9 @@ class FakePiqd:
         receipt_conflict_override: Any = None,
         receipt_timeout_override: Any = None,
         receipt_lane_override: Any = None,
+        receipt_journal_override: Any = None,
+        receipt_path_override: Any = None,
+        session_create_override: dict[str, Any] | None = None,
     ) -> None:
         self.parent = parent_identity
         self.status = status
@@ -70,6 +73,9 @@ class FakePiqd:
         self.receipt_conflict_override = receipt_conflict_override
         self.receipt_timeout_override = receipt_timeout_override
         self.receipt_lane_override = receipt_lane_override
+        self.receipt_journal_override = receipt_journal_override
+        self.receipt_path_override = receipt_path_override
+        self.session_create_override = session_create_override
         self.session_solves_override: Any = None
         self.receipt_count_override: Any = None
         self.calls: list[tuple[str, str, bytes | None]] = []
@@ -90,7 +96,7 @@ class FakePiqd:
             "solver_sha256": self.solver_sha256,
             "solver_signature": "fake-cadical --threads=1 --sequential",
             "protocol_version": self.protocol_version,
-            "journal_path": "/var/lib/piqd/fake.journal",
+            "journal_path": "/var/lib/piqd/journal.cnf",
             "created_at": 1,
             "updated_at": 2,
             "clauses": self.parent.num_clauses,
@@ -193,7 +199,10 @@ class FakePiqd:
             assert request["seed_blob_hash"] == self.parent.sha256
             assert request["solver"] == "fake-cadical"
             self.label = request["label"]
-            return _response(201, self._session())
+            session = self._session()
+            if self.session_create_override is not None:
+                session.update(self.session_create_override)
+            return _response(201, session)
         if method == "GET" and path == f"/jobs/{JOB_ID}":
             return _response(
                 200,
@@ -224,8 +233,12 @@ class FakePiqd:
                     "lane": "sat"
                     if self.receipt_lane_override is None
                     else self.receipt_lane_override,
-                    "journal_path": "/var/lib/piqd/fake.journal",
-                    "receipts_path": "/var/lib/piqd/fake.receipts",
+                    "journal_path": "/var/lib/piqd/journal.cnf"
+                    if self.receipt_journal_override is None
+                    else self.receipt_journal_override,
+                    "receipts_path": "/var/lib/piqd/receipts.jsonl"
+                    if self.receipt_path_override is None
+                    else self.receipt_path_override,
                     "count": len(self.receipts)
                     if self.receipt_count_override is None
                     else self.receipt_count_override,
@@ -384,6 +397,234 @@ def test_response_loss_retries_identical_request_once(parent_path: Path) -> None
     assert result.replayed is True
 
 
+def test_adopt_existing_live_session_from_contiguous_receipts(
+    parent_path: Path,
+) -> None:
+    session, fake, _exports = make_session(parent_path)
+    first = session.solve(
+        campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID
+    )
+    calls_before_adoption = len(fake.calls)
+    adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=first.session_id,
+    )
+    assert adopted.session_id == session.session_id
+    assert not any(
+        method == "POST" and path == "/sessions"
+        for method, path, _body in fake.calls[calls_before_adoption:]
+    )
+    with pytest.raises(campaign.AssumptionCampaignError, match="assumptions"):
+        adopted.solve(
+            campaign.AssumptionCell("same-assumptions", (1,)),
+            request_id="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        )
+    continued = adopted.solve(
+        campaign.AssumptionCell("cell-after-adoption", (2,)),
+        request_id="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    )
+    assert continued.solve_index == 2
+
+
+def test_adoption_rejects_crossed_receipt_frontier(parent_path: Path) -> None:
+    session, fake, _exports = make_session(parent_path)
+    session.solve(campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID)
+    fake.receipts[0]["base_sha256"] = "d" * 64
+    with pytest.raises(campaign.AssumptionCampaignError, match="source-bound"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            existing_session_id=session.session_id,
+        )
+
+
+def test_adoption_failure_does_not_close_existing_session(parent_path: Path) -> None:
+    session, fake, _exports = make_session(parent_path)
+    session.solve(campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID)
+    fake.receipts[0]["base_sha256"] = "d" * 64
+    with pytest.raises(campaign.AssumptionCampaignError, match="source-bound"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            existing_session_id=session.session_id,
+        )
+    assert not fake.closed
+    assert not any(method == "DELETE" for method, _path, _body in fake.calls)
+
+
+def test_adoption_binds_authoritative_journal_path(parent_path: Path) -> None:
+    session, fake, _exports = make_session(parent_path)
+    session.solve(campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID)
+    fake.receipt_journal_override = "/crossed/journal"
+    with pytest.raises(campaign.AssumptionCampaignError, match="path"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            existing_session_id=session.session_id,
+        )
+    assert not fake.closed
+    assert not any(method == "DELETE" for method, _path, _body in fake.calls)
+
+
+def test_recovery_binds_adopted_receipts_path(parent_path: Path) -> None:
+    session, fake, _exports = make_session(parent_path)
+    session.solve(campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID)
+    adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=session.session_id,
+    )
+    fake.receipt_path_override = "/crossed/receipts"
+    with pytest.raises(campaign.AssumptionCampaignError, match="path"):
+        adopted.recover_first_cell(
+            campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID
+        )
+    assert not fake.closed
+
+
+def test_adoption_rejects_receipts_path_outside_session_directory(
+    parent_path: Path,
+) -> None:
+    session, fake, _exports = make_session(parent_path)
+    session.solve(campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID)
+    fake.receipt_path_override = "/crossed/receipts.jsonl"
+    with pytest.raises(campaign.AssumptionCampaignError, match="derived"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+            existing_session_id=session.session_id,
+        )
+    assert not fake.closed
+    assert not any(method == "DELETE" for method, _path, _body in fake.calls)
+
+
+def test_recover_first_result_replays_without_second_receipt(parent_path: Path) -> None:
+    session, fake, _exports = make_session(parent_path)
+    first = session.solve(
+        campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID
+    )
+    adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=first.session_id,
+    )
+    recovered = adopted.recover_first_result(
+        campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID
+    )
+    assert recovered.replayed is True
+    assert recovered.solve_index == 1
+    assert recovered.assignment == first.assignment
+    assert len(fake.receipts) == 1
+    assert fake.solver_runs == 1
+
+
+def test_recover_first_result_rejects_wrong_request_or_missing_model(
+    parent_path: Path,
+) -> None:
+    session, fake, _exports = make_session(parent_path)
+    first = session.solve(
+        campaign.AssumptionCell("cell-adopted", (1,)), request_id=REQUEST_ID
+    )
+    adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=first.session_id,
+    )
+    with pytest.raises(campaign.AssumptionCampaignError, match="match"):
+        adopted.recover_first_result(
+            campaign.AssumptionCell("cell-adopted", (1,)),
+            request_id="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        )
+
+    unknown_session, unknown_fake, _exports = make_session(
+        parent_path, fake_changes={"status": "UNKNOWN"}
+    )
+    unknown_first = unknown_session.solve(
+        campaign.AssumptionCell("cell-unknown", (1,)), request_id=REQUEST_ID
+    )
+    unknown_adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=unknown_fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=unknown_first.session_id,
+    )
+    with pytest.raises(campaign.AssumptionCampaignError, match="SAT cell"):
+        unknown_adopted.recover_first_result(
+            campaign.AssumptionCell("cell-unknown", (1,)), request_id=REQUEST_ID
+        )
+
+
+def test_recover_first_result_requires_one_receipt(parent_path: Path) -> None:
+    fresh, fresh_fake, _exports = make_session(parent_path)
+    fresh_adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fresh_fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=fresh.session_id,
+    )
+    with pytest.raises(campaign.AssumptionCampaignError, match="exactly one adopted"):
+        fresh_adopted.recover_first_result(
+            campaign.AssumptionCell("cell-empty", (1,)), request_id=REQUEST_ID
+        )
+
+    first = fresh.solve(
+        campaign.AssumptionCell("cell-one", (1,)), request_id=REQUEST_ID
+    )
+    fresh.solve(
+        campaign.AssumptionCell("cell-two", (2,)),
+        request_id="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    )
+    two_adopted = campaign.AssumptionCampaignSession(
+        "http://fake",
+        make_spec(parent_path),
+        transport=fresh_fake,
+        export_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
+        existing_session_id=first.session_id,
+    )
+    with pytest.raises(campaign.AssumptionCampaignError, match="exactly one adopted"):
+        two_adopted.recover_first_result(
+            campaign.AssumptionCell("cell-one", (1,)), request_id=REQUEST_ID
+        )
+
+
+def test_campaign_http_timeout_is_explicit_and_solver_aware(parent_path: Path) -> None:
+    spec = make_spec(parent_path, timeout_ms=400_000)
+    assert campaign._campaign_http_timeout_seconds(spec, None) == 430.0
+    assert campaign._campaign_http_timeout_seconds(spec, 17.5) == 17.5
+    with pytest.raises(campaign.AssumptionCampaignError, match="http_timeout_seconds"):
+        campaign._campaign_http_timeout_seconds(spec, 0)
+
+
 def test_two_response_losses_recover_publicly_on_exact_third_attempt(
     parent_path: Path,
 ) -> None:
@@ -475,6 +716,137 @@ def test_export_digest_crossing_rejected(parent_path: Path, tmp_path: Path) -> N
             export_digest=lambda _url: campaign.stream_parent_identity(other),
             job_blob_digest=lambda _url: campaign.stream_parent_identity(parent_path),
         )
+    deletes = [
+        call for call in fake.calls if call[:2] == ("DELETE", f"/sessions/{SESSION_ID}")
+    ]
+    assert len(deletes) == 1 and fake.closed
+
+
+def test_default_export_digest_uses_exact_bounded_timeout(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[tuple[Any, float]] = []
+
+    class Response:
+        status = 200
+
+        def __init__(self) -> None:
+            self.sent = False
+
+        def __enter__(self) -> Self:
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+        def read(self, size: int) -> bytes:
+            assert size == 1024 * 1024
+            if self.sent:
+                return b""
+            self.sent = True
+            return PARENT
+
+    def urlopen(request: Any, *, timeout: float) -> Response:
+        calls.append((request, timeout))
+        return Response()
+
+    monkeypatch.setattr(campaign.urllib.request, "urlopen", urlopen)
+    identity = campaign._default_export_digest("http://fake/export")
+
+    assert identity.num_bytes == len(PARENT)
+    assert len(calls) == 1
+    request, timeout = calls[0]
+    assert request.get_method() == "GET"
+    assert timeout == campaign.DEFAULT_ASSUMPTION_HTTP_TIMEOUT_SECONDS
+
+
+def test_constructor_closes_once_after_create_validation_failure(
+    parent_path: Path,
+) -> None:
+    identity = campaign.stream_parent_identity(parent_path)
+    fake = FakePiqd(identity, session_create_override={"label": "crossed"})
+
+    with pytest.raises(campaign.AssumptionCampaignError, match="descriptor-bound"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: identity,
+            job_blob_digest=lambda _url: identity,
+        )
+
+    deletes = [
+        call for call in fake.calls if call[:2] == ("DELETE", f"/sessions/{SESSION_ID}")
+    ]
+    assert len(deletes) == 1 and fake.closed
+
+
+def test_constructor_closes_once_after_keyboard_interrupt_during_export(
+    parent_path: Path,
+) -> None:
+    identity = campaign.stream_parent_identity(parent_path)
+    fake = FakePiqd(identity)
+
+    def interrupt(_url: str) -> campaign.CnfStreamIdentity:
+        raise KeyboardInterrupt()
+
+    with pytest.raises(KeyboardInterrupt):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=interrupt,
+            job_blob_digest=lambda _url: identity,
+        )
+
+    deletes = [
+        call for call in fake.calls if call[:2] == ("DELETE", f"/sessions/{SESSION_ID}")
+    ]
+    assert len(deletes) == 1 and fake.closed
+
+
+def test_constructor_preserves_primary_when_cleanup_fails(
+    parent_path: Path,
+) -> None:
+    identity = campaign.stream_parent_identity(parent_path)
+    fake = FakePiqd(identity, close_response_loss=True)
+
+    def fail_export(_url: str) -> campaign.CnfStreamIdentity:
+        raise ValueError("primary export failure")
+
+    with pytest.raises(ValueError, match="primary export failure") as caught:
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=fail_export,
+            job_blob_digest=lambda _url: identity,
+        )
+
+    assert any("session cleanup failed" in note for note in caught.value.__notes__)
+    deletes = [
+        call for call in fake.calls if call[:2] == ("DELETE", f"/sessions/{SESSION_ID}")
+    ]
+    assert len(deletes) == 1 and fake.closed
+
+
+def test_constructor_precreate_failure_does_not_close(parent_path: Path) -> None:
+    identity = campaign.stream_parent_identity(parent_path)
+    fake = FakePiqd(identity, producer_status="crossed")
+
+    with pytest.raises(campaign.AssumptionCampaignError, match="producer job"):
+        campaign.AssumptionCampaignSession(
+            "http://fake",
+            make_spec(parent_path),
+            transport=fake,
+            export_digest=lambda _url: identity,
+            job_blob_digest=lambda _url: identity,
+        )
+
+    assert not any(
+        method == "POST" and path == "/sessions" for method, path, _ in fake.calls
+    )
+    assert not any(method == "DELETE" for method, _path, _body in fake.calls)
 
 
 def test_source_mutation_and_append_refuse(parent_path: Path) -> None:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import uuid
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
@@ -26,6 +27,7 @@ from census.p97_search.phase3_cegar_runtime import (
     capture_exact_regular_file,
 )
 from census.p97_search.phase3_cegar_wave_control import (
+    ASSUMPTION_CNF,
     MAX_CONTROL_BYTES,
     WaveControl,
     WaveControlError,
@@ -44,6 +46,18 @@ def _absolute_path(raw: str, label: str) -> Path:
     if type(path) is not _NATIVE_PATH_TYPE or not path.is_absolute():
         raise WaveRegistryError(f"{label} must be an absolute native path")
     return path
+
+
+def _canonical_existing_session_id(raw: object) -> str:
+    if type(raw) is not str:
+        raise WaveRegistryError("existing_session_id must be a canonical UUID")
+    try:
+        parsed = uuid.UUID(raw)
+    except (ValueError, AttributeError) as exc:
+        raise WaveRegistryError("existing_session_id must be a canonical UUID") from exc
+    if str(parsed) != raw or parsed.variant != uuid.RFC_4122:
+        raise WaveRegistryError("existing_session_id must be a canonical UUID")
+    return raw
 
 
 def _load_control(path: Path) -> WaveControl:
@@ -85,6 +99,7 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--server", default="http://127.0.0.1:7272")
     run.add_argument("--timeout-s", type=int)
     run.add_argument("--solver-signature")
+    run.add_argument("--existing-session-id")
 
     validate_output = commands.add_parser("validate-output")
     validate_output.add_argument("control")
@@ -193,6 +208,13 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
         }
     if args.command != "run":
         raise WaveRegistryError("unsupported command")
+    existing_session_id = None
+    if args.existing_session_id is not None:
+        if control.registration.wave_kind != ASSUMPTION_CNF:
+            raise WaveRegistryError(
+                "--existing-session-id is permitted only for ASSUMPTION_CNF run"
+            )
+        existing_session_id = _canonical_existing_session_id(args.existing_session_id)
     if args.timeout_s is not None and args.timeout_s <= 0:
         raise WaveRegistryError("timeout_s must be a positive integer")
     execution_kwargs: dict[str, Any] = {
@@ -206,6 +228,10 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
         )
     if args.solver_signature is not None:
         execution_kwargs["solver_signature"] = args.solver_signature
+    if existing_session_id is not None:
+        # The registry currently retains the historical internal keyword.  The
+        # generic public CLI and engine expose only ``existing_session_id``.
+        execution_kwargs["resume_session"] = existing_session_id
     result = execute_registered_wave(control, package_root, **execution_kwargs)
     return {
         "schema": CLI_SCHEMA,
