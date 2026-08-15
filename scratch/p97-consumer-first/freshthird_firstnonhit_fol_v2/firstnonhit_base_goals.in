@@ -1,0 +1,4 @@
+% Prover9 goal wrapper; pass after firstnonhit_base.in with -f.
+formulas(goals).
+  $false.
+end_of_list.

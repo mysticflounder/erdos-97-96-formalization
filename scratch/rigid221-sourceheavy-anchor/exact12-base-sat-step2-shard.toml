@@ -1,0 +1,14 @@
+[policy]
+max_bytes = 7000
+allow_overflow = false
+mode = "ProofBlock"
+helper_module_prefix = "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step02Parts"
+helper_stem_template = "Part_{n}"
+zero_pad = 2
+coordinator_module_path = "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_02"
+coordinator_file_path = "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSatShards/Step_02.lean"
+
+[adapter]
+kind = "regex"
+block_start_regex = "^(def|theorem)\\s+\\w+"
+drop_import_regex = "^Erdos9796Proof\\.P97\\.ATail\\.FrontierLiveClosure\\.ExactTwelveRigid221SafeBaseSatShards\\.Step02Parts\\."

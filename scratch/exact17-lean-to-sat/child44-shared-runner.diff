@@ -1,0 +1,622 @@
+diff --git a/scripts/run_piqd_exact17_thirty_second_root.py b/scripts/run_piqd_exact17_thirty_second_root.py
+index eec90f21..3f387cf2 100644
+--- a/scripts/run_piqd_exact17_thirty_second_root.py
++++ b/scripts/run_piqd_exact17_thirty_second_root.py
+@@ -19,7 +19,6 @@ import re
+ import secrets
+ import stat
+ import subprocess
+-import tempfile
+ import urllib.error
+ import urllib.parse
+ import urllib.request
+@@ -31,8 +30,6 @@ from typing import Any, Protocol
+ 
+ from validate_exact17_thirty_first_model_refinements_export import (
+     UnprovisionedError,
+-    sha256_file,
+-    strict_json_read,
+ )
+ from validate_exact17_thirty_first_model_refinements_ingress import (
+     PRODUCTION_INGRESS_PATHS,
+@@ -885,14 +882,186 @@ def _validate_clause_map(
+     }
+ 
+ 
++def _open_directory_nofollow(path: Path, *, create: bool) -> int:
++    """Open a directory through descriptor-relative, no-symlink traversal."""
++    absolute = Path(os.path.abspath(path))
++    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
++    descriptor = os.open(os.path.sep, flags)
++    try:
++        for component in absolute.parts[1:]:
++            if create:
++                try:
++                    os.mkdir(component, 0o700, dir_fd=descriptor)
++                except FileExistsError:
++                    pass
++            next_descriptor = os.open(component, flags, dir_fd=descriptor)
++            os.close(descriptor)
++            descriptor = next_descriptor
++        _require(stat.S_ISDIR(os.fstat(descriptor).st_mode), f"not a directory: {path}")
++        return descriptor
++    except BaseException:
++        os.close(descriptor)
++        raise
++
++
++def _open_regular_nofollow(path: Path) -> int:
++    directory = _open_directory_nofollow(path.parent, create=False)
++    try:
++        descriptor = os.open(
++            path.name,
++            os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0),
++            dir_fd=directory,
++        )
++    finally:
++        os.close(directory)
++    try:
++        _require(stat.S_ISREG(os.fstat(descriptor).st_mode), f"not a regular file: {path}")
++    except BaseException:
++        os.close(descriptor)
++        raise
++    return descriptor
++
++
++def _path_entry_exists_nofollow(path: Path) -> bool:
++    """Test for a directory entry without following it or any ancestor symlink."""
++    try:
++        directory = _open_directory_nofollow(path.parent, create=False)
++    except FileNotFoundError:
++        return False
++    try:
++        try:
++            os.stat(path.name, dir_fd=directory, follow_symlinks=False)
++        except FileNotFoundError:
++            return False
++        return True
++    finally:
++        os.close(directory)
++
++
++def _strict_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
++    result: dict[str, Any] = {}
++    for key, value in pairs:
++        if key in result:
++            raise ValueError(f"duplicate JSON key: {key}")
++        result[key] = value
++    return result
++
++
++def _read_json_record_nofollow(path: Path) -> tuple[dict[str, Any], str]:
++    """Read and hash one lifecycle record from the same no-follow descriptor."""
++    descriptor = _open_regular_nofollow(path)
++    try:
++        before = os.fstat(descriptor)
++        size = before.st_size
++        chunks: list[bytes] = []
++        offset = 0
++        while offset < size:
++            chunk = os.pread(descriptor, min(1024 * 1024, size - offset), offset)
++            if not chunk:
++                raise ValueError(f"lifecycle record truncated while reading: {path}")
++            chunks.append(chunk)
++            offset += len(chunk)
++        after = os.fstat(descriptor)
++        _require(
++            (
++                before.st_dev,
++                before.st_ino,
++                before.st_size,
++                before.st_mtime_ns,
++                before.st_ctime_ns,
++            )
++            == (
++                after.st_dev,
++                after.st_ino,
++                after.st_size,
++                after.st_mtime_ns,
++                after.st_ctime_ns,
++            ),
++            f"lifecycle record changed while reading: {path}",
++        )
++    finally:
++        os.close(descriptor)
++    rendered = b"".join(chunks)
++    value = json.loads(rendered.decode("utf-8"), object_pairs_hook=_strict_json_object)
++    if not isinstance(value, dict):
++        raise TypeError(f"expected JSON object: {path}")
++    return value, hashlib.sha256(rendered).hexdigest()
++
++
++def _attest_regular_nofollow(
++    path: Path,
++    *,
++    expected_sha256: str,
++    expected_bytes: int | None = None,
++    expected_prefix: bytes | None = None,
++) -> dict[str, Any]:
++    """Hash and inspect one immutable input through a single held descriptor."""
++    descriptor = _open_regular_nofollow(path)
++    try:
++        before = os.fstat(descriptor)
++        digest = hashlib.sha256()
++        prefix = b""
++        offset = 0
++        while offset < before.st_size:
++            chunk = os.pread(
++                descriptor,
++                min(1024 * 1024, before.st_size - offset),
++                offset,
++            )
++            if not chunk:
++                raise ValueError(f"regular file truncated while attesting: {path}")
++            digest.update(chunk)
++            if expected_prefix is not None and len(prefix) < len(expected_prefix):
++                prefix += chunk[: len(expected_prefix) - len(prefix)]
++            offset += len(chunk)
++        after = os.fstat(descriptor)
++        _require(
++            (
++                before.st_dev,
++                before.st_ino,
++                before.st_size,
++                before.st_mtime_ns,
++                before.st_ctime_ns,
++            )
++            == (
++                after.st_dev,
++                after.st_ino,
++                after.st_size,
++                after.st_mtime_ns,
++                after.st_ctime_ns,
++            ),
++            f"regular file changed while attesting: {path}",
++        )
++    finally:
++        os.close(descriptor)
++    actual_sha256 = digest.hexdigest()
++    _require(actual_sha256 == expected_sha256, f"regular file SHA-256 drifted: {path}")
++    if expected_bytes is not None:
++        _require(before.st_size == expected_bytes, f"regular file byte count drifted: {path}")
++    if expected_prefix is not None:
++        _require(prefix == expected_prefix, f"regular file prefix drifted: {path}")
++    return {"sha256": actual_sha256, "bytes": before.st_size}
++
++
+ @contextmanager
+ def _anonymous_file(directory: Path):
+-    directory.mkdir(parents=True, exist_ok=True)
+-    descriptor, temporary_name = tempfile.mkstemp(
+-        dir=directory, prefix=".child32-held-", suffix=".tmp"
+-    )
+-    os.fchmod(descriptor, 0o600)
+-    os.unlink(temporary_name)
++    directory_descriptor = _open_directory_nofollow(directory, create=True)
++    temporary_name = f".child32-held-{secrets.token_hex(12)}.tmp"
++    try:
++        descriptor = os.open(
++            temporary_name,
++            os.O_CREAT | os.O_EXCL | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0),
++            0o600,
++            dir_fd=directory_descriptor,
++        )
++        try:
++            os.fchmod(descriptor, 0o600)
++            os.unlink(temporary_name, dir_fd=directory_descriptor)
++        except BaseException:
++            os.close(descriptor)
++            raise
++    finally:
++        os.close(directory_descriptor)
+     try:
+         yield descriptor, Path(f"/dev/fd/{descriptor}")
+     finally:
+@@ -908,8 +1077,7 @@ def _held_snapshot(
+     expected_bytes: int | None = None,
+     expected_header: bytes | None = None,
+ ):
+-    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+-    source_descriptor = os.open(source, flags)
++    source_descriptor = _open_regular_nofollow(source)
+     try:
+         source_stat = os.fstat(source_descriptor)
+         _require(stat.S_ISREG(source_stat.st_mode), f"not a regular file: {source}")
+@@ -941,41 +1109,60 @@ def _held_snapshot(
+         os.close(source_descriptor)
+ 
+ 
+-def _immutable_json(path: Path, payload: dict[str, Any]) -> None:
++def _immutable_json(path: Path, payload: dict[str, Any]) -> str:
+     """Atomically publish one private JSON record without overwriting."""
+-    path.parent.mkdir(parents=True, exist_ok=True)
++    directory = _open_directory_nofollow(path.parent, create=True)
+     rendered = (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode()
+-    descriptor, temporary_name = tempfile.mkstemp(
+-        dir=path.parent, prefix=f".{path.name}.", suffix=".tmp"
+-    )
+-    temporary = Path(temporary_name)
++    temporary_name = f".{path.name}.{secrets.token_hex(12)}.tmp"
++    try:
++        descriptor = os.open(
++            temporary_name,
++            os.O_CREAT | os.O_EXCL | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0),
++            0o600,
++            dir_fd=directory,
++        )
++    except BaseException:
++        os.close(directory)
++        raise
+     try:
+         os.fchmod(descriptor, 0o600)
+         with os.fdopen(descriptor, "wb") as handle:
+             handle.write(rendered)
+             handle.flush()
+             os.fsync(handle.fileno())
+-        os.link(temporary, path)
+-        directory = os.open(path.parent, os.O_RDONLY)
+-        try:
+-            os.fsync(directory)
+-        finally:
+-            os.close(directory)
++        os.link(
++            temporary_name,
++            path.name,
++            src_dir_fd=directory,
++            dst_dir_fd=directory,
++            follow_symlinks=False,
++        )
++        os.fsync(directory)
+     finally:
+-        temporary.unlink(missing_ok=True)
++        try:
++            os.unlink(temporary_name, dir_fd=directory)
++        except FileNotFoundError:
++            pass
++        os.close(directory)
++    return hashlib.sha256(rendered).hexdigest()
+ 
+ 
+ @contextmanager
+ def _transaction_lock(path: Path):
+-    path.parent.mkdir(parents=True, exist_ok=True)
+-    descriptor = os.open(
+-        path,
+-        os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0),
+-        0o600,
+-    )
++    directory = _open_directory_nofollow(path.parent, create=True)
++    try:
++        descriptor = os.open(
++            path.name,
++            os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0),
++            0o600,
++            dir_fd=directory,
++        )
++    except BaseException:
++        os.close(directory)
++        raise
+     try:
+         descriptor_stat = os.fstat(descriptor)
+-        path_stat = os.stat(path, follow_symlinks=False)
++        path_stat = os.stat(path.name, dir_fd=directory, follow_symlinks=False)
+         _require(stat.S_ISREG(descriptor_stat.st_mode), "runner lock is not regular")
+         _require(
+             stat.S_ISREG(path_stat.st_mode)
+@@ -985,7 +1172,7 @@ def _transaction_lock(path: Path):
+         )
+         fcntl.flock(descriptor, fcntl.LOCK_EX)
+         locked_descriptor_stat = os.fstat(descriptor)
+-        locked_path_stat = os.stat(path, follow_symlinks=False)
++        locked_path_stat = os.stat(path.name, dir_fd=directory, follow_symlinks=False)
+         _require(stat.S_ISREG(locked_descriptor_stat.st_mode), "runner lock is not regular")
+         _require(
+             stat.S_ISREG(locked_path_stat.st_mode)
+@@ -998,6 +1185,7 @@ def _transaction_lock(path: Path):
+     finally:
+         fcntl.flock(descriptor, fcntl.LOCK_UN)
+         os.close(descriptor)
++        os.close(directory)
+ 
+ 
+ def expected_identity_hash(spec: RunnerSpec) -> str:
+@@ -1053,28 +1241,24 @@ def validate_local(
+     _require(report.get("status") == "PASS", "child32 ingress is not validated")
+     root = paths.ingress.export.child
+     manifest = paths.ingress.manifest
+-    _require(root.is_file(), "child32 root is missing")
+-    _require(manifest.is_file(), "child32 producer manifest is missing")
+-    _require(sha256_file(root) == spec.root_sha256, "child32 root SHA-256 drifted")
+-    _require(root.stat().st_size == spec.root_bytes, "child32 root byte count drifted")
+-    _require(
+-        sha256_file(manifest) == spec.manifest_sha256,
+-        "child32 producer manifest SHA-256 drifted",
++    root_attestation = _attest_regular_nofollow(
++        root,
++        expected_sha256=spec.root_sha256,
++        expected_bytes=spec.root_bytes,
++        expected_prefix=f"p cnf {spec.variables} {spec.clauses}\n".encode(),
+     )
+-    with root.open("rb") as handle:
+-        header = handle.readline()
+-    _require(
+-        header == f"p cnf {spec.variables} {spec.clauses}\n".encode(),
+-        "child32 root header drifted",
++    manifest_attestation = _attest_regular_nofollow(
++        manifest,
++        expected_sha256=spec.manifest_sha256,
+     )
+     return {
+         "status": "PASS",
+-        "root_sha256": spec.root_sha256,
+-        "root_bytes": spec.root_bytes,
++        "root_sha256": root_attestation["sha256"],
++        "root_bytes": root_attestation["bytes"],
+         "variables": spec.variables,
+         "clauses": spec.clauses,
+-        "manifest_sha256": spec.manifest_sha256,
+-        "manifest_bytes": manifest.stat().st_size,
++        "manifest_sha256": manifest_attestation["sha256"],
++        "manifest_bytes": manifest_attestation["bytes"],
+         "ingress_validation": report,
+     }
+ 
+@@ -1568,6 +1752,10 @@ def _check_hardened_result_shape(
+             f"{lane} SAT status omitted exact completed_at",
+         )
+     elif result == "UNSAT":
++        _require(
++            type(status.get("completed_at")) is int,
++            f"{lane} UNSAT status omitted exact completed_at",
++        )
+         _require(status["model_blob_hash"] is None, f"{lane} UNSAT populated model_blob_hash")
+         for field in ("proof_blob_hash", "kept_cnf_blob_hash"):
+             _require(
+@@ -1892,11 +2080,18 @@ def _retrieved_log_snapshot(
+ 
+ 
+ def _publish_snapshot(snapshot: HeldSnapshot, destination: Path) -> None:
+-    destination.parent.mkdir(parents=True, exist_ok=True)
+-    descriptor, temporary_name = tempfile.mkstemp(
+-        dir=destination.parent, prefix=f".{destination.name}.", suffix=".tmp"
+-    )
+-    temporary = Path(temporary_name)
++    directory = _open_directory_nofollow(destination.parent, create=True)
++    temporary_name = f".{destination.name}.{secrets.token_hex(12)}.tmp"
++    try:
++        descriptor = os.open(
++            temporary_name,
++            os.O_CREAT | os.O_EXCL | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0),
++            0o600,
++            dir_fd=directory,
++        )
++    except BaseException:
++        os.close(directory)
++        raise
+     try:
+         os.fchmod(descriptor, 0o600)
+         offset = 0
+@@ -1913,15 +2108,21 @@ def _publish_snapshot(snapshot: HeldSnapshot, destination: Path) -> None:
+             _sha256_descriptor(descriptor, snapshot.size) == snapshot.sha256,
+             "published snapshot hash drifted before linking",
+         )
+-        os.link(temporary, destination)
+-        directory = os.open(destination.parent, os.O_RDONLY)
+-        try:
+-            os.fsync(directory)
+-        finally:
+-            os.close(directory)
++        os.link(
++            temporary_name,
++            destination.name,
++            src_dir_fd=directory,
++            dst_dir_fd=directory,
++            follow_symlinks=False,
++        )
++        os.fsync(directory)
+     finally:
+         os.close(descriptor)
+-        temporary.unlink(missing_ok=True)
++        try:
++            os.unlink(temporary_name, dir_fd=directory)
++        except FileNotFoundError:
++            pass
++        os.close(directory)
+ 
+ 
+ POST_CONFIRM_STATUSES = frozenset({"confirmed", "running", "completed", "failed"})
+@@ -1936,6 +2137,7 @@ def _finish_prepared(
+     prepared: dict[str, Any],
+     intent: dict[str, Any],
+     intent_sha256: str,
++    prepared_sha256: str,
+     *,
+     stored_current: dict[str, Any] | None = None,
+ ) -> dict[str, Any]:
+@@ -1999,7 +2201,7 @@ def _finish_prepared(
+         "solver": identity["solver"],
+         "binding": _expected_binding(spec),
+         "intent_sha256": intent_sha256,
+-        "prepared_sha256": sha256_file(paths.prepared),
++        "prepared_sha256": prepared_sha256,
+         "prepared_record": prepared,
+         "stored_recovery": stored,
+         "confirmation": confirmation,
+@@ -2018,18 +2220,21 @@ def start(
+ ) -> dict[str, Any]:
+     with _transaction_lock(paths.lock):
+         if (
+-            paths.state.exists()
+-            or paths.final.exists()
+-            or paths.model.exists()
+-            or paths.solver_log.exists()
++            _path_entry_exists_nofollow(paths.state)
++            or _path_entry_exists_nofollow(paths.final)
++            or _path_entry_exists_nofollow(paths.model)
++            or _path_entry_exists_nofollow(paths.solver_log)
+         ):
+             raise FileExistsError("refusing stale child32 confirmed/final artifact reuse")
+         local = validate_local(paths, spec, ingress_validator=ingress_validator)
+         identity = live_identity(client, spec)
+-        if paths.prepared.exists():
+-            _require(paths.intent.is_file(), "prepared custody omitted submission intent")
+-            intent = strict_json_read(paths.intent)
+-            prepared = strict_json_read(paths.prepared)
++        if _path_entry_exists_nofollow(paths.prepared):
++            _require(
++                _path_entry_exists_nofollow(paths.intent),
++                "prepared custody omitted submission intent",
++            )
++            intent, intent_sha256 = _read_json_record_nofollow(paths.intent)
++            prepared, prepared_sha256 = _read_json_record_nofollow(paths.prepared)
+             _check_intent_record(
+                 intent,
+                 spec,
+@@ -2048,10 +2253,11 @@ def start(
+                 identity,
+                 prepared,
+                 intent,
+-                sha256_file(paths.intent),
++                intent_sha256,
++                prepared_sha256,
+             )
+-        if paths.intent.exists():
+-            intent = strict_json_read(paths.intent)
++        if _path_entry_exists_nofollow(paths.intent):
++            intent, _intent_sha256 = _read_json_record_nofollow(paths.intent)
+             _check_intent_record(intent, spec, local, identity)
+             raise UnreconciledPrepareError(
+                 "submission intent exists without an attributable PIQD response; "
+@@ -2072,8 +2278,7 @@ def start(
+                 expected_bytes=local["manifest_bytes"],
+             ) as manifest_snapshot:
+                 intent = _make_intent(spec, local, identity, manifest_snapshot)
+-                _immutable_json(paths.intent, intent)
+-                intent_sha256 = sha256_file(paths.intent)
++                intent_sha256 = _immutable_json(paths.intent, intent)
+                 submit_kwargs: dict[str, Any] = {
+                     "backend": spec.ingress.backend,
+                     "profile": spec.ingress.solver_profile,
+@@ -2123,7 +2328,7 @@ def start(
+                     "prepared_status": prepared_status,
+                     "stored_preconfirm": stored,
+                 }
+-                _immutable_json(paths.prepared, prepared)
++                prepared_sha256 = _immutable_json(paths.prepared, prepared)
+                 return _finish_prepared(
+                     client,
+                     paths,
+@@ -2133,6 +2338,7 @@ def start(
+                     prepared,
+                     intent,
+                     intent_sha256,
++                    prepared_sha256,
+                     stored_current=stored,
+                 )
+ 
+@@ -2150,17 +2356,20 @@ def reconcile_prepared_job(
+     with _transaction_lock(paths.lock):
+         _require(bool(job_id), "reconciliation omitted PIQD job ID")
+         if (
+-            paths.prepared.exists()
+-            or paths.state.exists()
+-            or paths.final.exists()
+-            or paths.model.exists()
+-            or paths.solver_log.exists()
++            _path_entry_exists_nofollow(paths.prepared)
++            or _path_entry_exists_nofollow(paths.state)
++            or _path_entry_exists_nofollow(paths.final)
++            or _path_entry_exists_nofollow(paths.model)
++            or _path_entry_exists_nofollow(paths.solver_log)
+         ):
+             raise FileExistsError("refusing reconciliation over existing child32 custody")
+-        _require(paths.intent.is_file(), "reconciliation requires persisted submission intent")
++        _require(
++            _path_entry_exists_nofollow(paths.intent),
++            "reconciliation requires persisted submission intent",
++        )
+         local = validate_local(paths, spec, ingress_validator=ingress_validator)
+         identity = live_identity(client, spec)
+-        intent = strict_json_read(paths.intent)
++        intent, intent_sha256 = _read_json_record_nofollow(paths.intent)
+         binding_kind = _check_intent_record(
+             intent,
+             spec,
+@@ -2168,7 +2377,6 @@ def reconcile_prepared_job(
+             identity,
+             allow_legacy_timeout_inclusive=allow_legacy_intent_migration,
+         )
+-        intent_sha256 = sha256_file(paths.intent)
+         prepared_status = client.status(job_id)
+         _check_job(prepared_status, job_id, spec, "prepared")
+         _check_optional_protocol_bindings(prepared_status, spec, identity)
+@@ -2229,7 +2437,7 @@ def reconcile_prepared_job(
+             prepared["intent_binding_migration"] = _expected_intent_binding_migration(
+                 spec, intent_sha256, job_id
+             )
+-        _immutable_json(paths.prepared, prepared)
++        prepared_sha256 = _immutable_json(paths.prepared, prepared)
+         return _finish_prepared(
+             client,
+             paths,
+@@ -2239,6 +2447,7 @@ def reconcile_prepared_job(
+             prepared,
+             intent,
+             intent_sha256,
++            prepared_sha256,
+             stored_current=stored,
+         )
+ 
+@@ -2278,18 +2487,22 @@ def finalize(
+     ingress_validator: IngressValidator = validate_ingress,
+ ) -> dict[str, Any]:
+     with _transaction_lock(paths.lock):
+-        if not paths.state.is_file():
++        if not _path_entry_exists_nofollow(paths.state):
+             raise FileNotFoundError("missing confirmed child32 state")
+-        if not paths.prepared.is_file():
++        if not _path_entry_exists_nofollow(paths.prepared):
+             raise FileNotFoundError("missing prepared child32 custody record")
+-        if not paths.intent.is_file():
++        if not _path_entry_exists_nofollow(paths.intent):
+             raise FileNotFoundError("missing child32 submission intent")
+-        if paths.final.exists() or paths.model.exists() or paths.solver_log.exists():
++        if (
++            _path_entry_exists_nofollow(paths.final)
++            or _path_entry_exists_nofollow(paths.model)
++            or _path_entry_exists_nofollow(paths.solver_log)
++        ):
+             raise FileExistsError("refusing stale child32 final/model/log reuse")
+         local = validate_local(paths, spec, ingress_validator=ingress_validator)
+         identity = live_identity(client, spec)
+-        prepared = strict_json_read(paths.prepared)
+-        intent = strict_json_read(paths.intent)
++        prepared, prepared_sha256 = _read_json_record_nofollow(paths.prepared)
++        intent, intent_sha256 = _read_json_record_nofollow(paths.intent)
+         _check_intent_record(
+             intent,
+             spec,
+@@ -2300,12 +2513,10 @@ def finalize(
+                 == "reconciled_after_identity_contract_fix"
+             ),
+         )
+-        intent_sha256 = sha256_file(paths.intent)
+         prepared_job_id = _check_prepared_record(
+             prepared, spec, local, identity, intent, intent_sha256
+         )
+-        prepared_sha256 = sha256_file(paths.prepared)
+-        state = strict_json_read(paths.state)
++        state, _state_sha256 = _read_json_record_nofollow(paths.state)
+         _require(
+             state.get("schema") == _artifact_schema(spec, "state", 3),
+             "confirmed child32 state schema drifted",
+@@ -2516,8 +2727,7 @@ def finalize(
+                         )
+                     _publish_snapshot(solver_log, paths.solver_log)
+                 if model_record is not None:
+-                    _immutable_json(paths.model, model_record)
+-                    report["model_sha256"] = sha256_file(paths.model)
++                    report["model_sha256"] = _immutable_json(paths.model, model_record)
+         _immutable_json(paths.final, report)
+         return report
+ 

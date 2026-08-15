@@ -1,0 +1,11 @@
+% Control: explicit three-blocked-deletion producer.
+formulas(assumptions).
+  car(ta) & car(da) & car(db) & car(dc).
+  da != db & da != dc & db != dc.
+  cen(ta) != cen(qa).
+  mem(qa,da) & mem(qa,db) & mem(qa,dc).
+  blocked(da,cen(ta)) & blocked(db,cen(ta)) & blocked(dc,cen(ta)).
+end_of_list.
+formulas(goals).
+  $false.
+end_of_list.

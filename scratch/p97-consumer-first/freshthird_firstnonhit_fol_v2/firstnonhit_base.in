@@ -1,0 +1,73 @@
+% Cardinality-independent FirstNonHit source-mapped incidence probe.
+% Prover9/Mace4 syntax: u--z-prefixed identifiers are variables.
+% A1 FreshThirdBlockerFiber: BlockerMultiplicityGeometry.lean:70-113.
+% A2 canonical source rows: FrontierLiveClosure/TwoSourceCanonicalSurface.lean:131-158.
+% A3/A4 NonHit and Interaction constructors:
+%     FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:
+%     2068-2090 and 2193-2245.
+% A5 exact-four/blocked-deletion incidence:
+%     FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:
+%     1261-1320, represented by exact4, blocked_mem, and survival polarity.
+
+formulas(assumptions).
+  all u (car(u) -> car(cen(u))).
+  all u (car(u) -> cen(u) != u).
+  all u all v (mem(u,v) -> car(u) & car(v)).
+  all u (car(u) -> mem(u,u)).
+  all u (car(u) -> exists v exists w exists x exists y (
+    mem(u,v) & mem(u,w) & mem(u,x) & mem(u,y) &
+    v != w & v != x & v != y & w != x & w != y & x != y &
+    all z (mem(u,z) -> (z = v | z = w | z = x | z = y)))).
+  all u all v all w (car(u) & car(v) & cen(u) = cen(v) ->
+    (mem(u,w) <-> mem(v,w))).
+  all u all v all w all x all y (
+    car(u) & car(v) & cen(u) != cen(v) &
+    mem(u,w) & mem(v,w) & mem(u,x) & mem(v,x) &
+    mem(u,y) & mem(v,y) -> (w = x | w = y | x = y)).
+  all u all v (car(u) & car(v) & blocked(v,cen(u)) -> mem(u,v)).
+  all u (car(u) -> blocked(u,cen(u))).
+  all u all v all w all x all y (
+    car(u) & car(v) & car(w) & car(x) & car(y) &
+    cen(u) = cen(v) & cen(u) = cen(w) & cen(u) = cen(x) & cen(u) = cen(y) ->
+    (u = v | u = w | u = x | u = y | v = w | v = x | v = y |
+     w = x | w = y | x = y)).
+
+  % Four named retained endpoints, two Q endpoints, two canonical sources,
+  % and the opposite apex.  The source points are fresh from the endpoints.
+  car(pa) & car(pb) & car(ra) & car(rb) & car(qa) & car(qb) &
+    car(ca) & car(cb) & car(oa).
+  pa != pb & ra != rb & pa != ra & pa != rb & pb != ra & pb != rb.
+  qa != qb & ca != cb &
+    qa != pa & qa != pb & qa != ra & qa != rb &
+    qb != pa & qb != pb & qb != ra & qb != rb &
+    ca != pa & ca != pb & ca != ra & ca != rb &
+    cb != pa & cb != pb & cb != ra & cb != rb &
+    ca != oa & cb != oa & pa != oa & pb != oa & ra != oa & rb != oa.
+
+  % FreshThird common blocker and cross-membership (A1).
+  mem(qa,qb) & mem(qb,qa).
+  cen(qa) = cen(qb) & cen(qa) != cen(pa) & cen(qa) != cen(ra).
+  cen(ca) = cen(qa) & cen(cb) = cen(qa).
+  cen(ca) != oa & cen(cb) != oa.
+
+  % The source-clean sameBlocker arms of A3 and A4.  The support equality
+  % is the entire content of those constructors at this abstraction level.
+  all w (mem(ca,w) <-> mem(qa,w)).
+  all w (mem(cb,w) <-> mem(qa,w)).
+
+  % Cross-pair omissions and deletion-survival polarity (A5).
+  (-mem(ca,pa) | -mem(ca,pb)) & (-mem(ca,ra) | -mem(ca,rb)).
+  (-mem(cb,pa) | -mem(cb,pb)) & (-mem(cb,ra) | -mem(cb,rb)).
+  (co = pa | co = pb | co = ra | co = rb) & -mem(ca,co) & -mem(cb,co).
+  all v ((v = pa | v = pb | v = ra | v = rb) ->
+    (-mem(ca,v) <-> -blocked(v,cen(ca)))).
+  all v ((v = pa | v = pb | v = ra | v = rb) ->
+    (-mem(cb,v) <-> -blocked(v,cen(cb)))).
+  -blocked(pa,oa) & -blocked(ra,oa).
+
+  % Negation of the requested producer: no distinct-center row has three
+  % common support points with the Q row.  This is the model-search target.
+  all u all v all w all x all y (
+    cen(u) != cen(qa) & mem(u,w) & mem(qa,w) & mem(u,x) & mem(qa,x) &
+    mem(u,y) & mem(qa,y) -> (w = x | w = y | x = y)).
+end_of_list.

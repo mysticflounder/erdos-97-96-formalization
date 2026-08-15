@@ -1,0 +1,63 @@
+diff --git a/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md b/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
+--- a/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
++++ b/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
+@@ -483,2 +483,32 @@ proof or explicitly accepted finite certificate checker.  Gates A, B, and D
+ are now checked; green PIQD jobs, checked SAT models, finite theorem-bank hits,
+ and an `UNSAT` result for any other CNF are not closure.
++
++## Twentieth Lean-owned child checkpoint — 2026-08-11
++
++The nineteenth authenticated root returned `SAT` as immutable PIQD job
++`46fc3c88-007a-48bb-bf66-b3000e20f7d1`, and all 5,846,164 clauses were replayed
++against the returned model. The mandatory theorem search found seven exact
++hits with no unexplained record. Minimization reduced them to six
++nonredundant source-clean occurrence families: five-row circle order, two
++distinct bisector motifs, convex-five, generic Kalmanson cancellation, and
++duplicate-center. The apparent perpendicular-bisector occurrence needs no
++separate clause because the duplicate-center clause subsumes it.
++
++Those six families, their 24-clause finite suffix, the source-evaluation
++theorem, and the conditional terminal adapter are banked in
++`BlockerVExactSeventeenNineteenthModelRefinements.lean`. Targeted Lean
++checking and the axiom audit are green: the relevant declarations contain no
++`sorryAx` and use only the accepted `native_decide` trust boundary. The
++exporter and two independent validators prove byte-identical parent ingress,
++regenerate all 24 new clauses, and verify that every orbit rejects the
++nineteenth model.
++
++The resulting twentieth root has 308 variables and 5,846,188 clauses, is
++291,573,096 bytes, and has SHA-256
++`e719b8c17edf85e089d859fbc1ab8aaa43d8a6e9514f32eb4a76842a665dd3ce`.
++It is currently running as immutable PIQD job
++`51cdf518-1150-47f5-ac2f-94a98159eb82`. Exact 17 remains open. A `SAT`
++result requires complete replay and another mandatory general-theorem search
++before any successor; an `UNSAT` result requires independent certificate
++replay, banking the child theorem, and composition into the cap-nine source
++leaf before it counts as closure.
+diff --git a/docs/computational-closure-plan-2026-07-28.md b/docs/computational-closure-plan-2026-07-28.md
+--- a/docs/computational-closure-plan-2026-07-28.md
++++ b/docs/computational-closure-plan-2026-07-28.md
+@@ -8709,3 +8709,23 @@ until Lean supplies the complete finite orbit for that exact cancellation
+ instance and a `SourceRealization` bridge from the cap-nine source packet.  The
+ active route is therefore that orbit and bridge, followed by one authenticated
+ PIQD successor only if the resulting Lean-owned child is still satisfiable.
++
++### 13.28.1 Twentieth-root production checkpoint — 2026-08-11
++
++The exact-17 cap-nine route has advanced through an authenticated nineteenth
++`SAT` root. Complete model replay and the required theorem-bank scan produced
++six nonredundant, source-clean motif families. Lean now banks their occurrence
++bridges, a 24-clause suffix, the extended-CNF source evaluator, and a
++conditional terminal adapter in
++`BlockerVExactSeventeenNineteenthModelRefinements.lean`; the targeted build and
++axiom audit show no `sorryAx` (with the accepted `native_decide` trust boundary).
++The exporter and independent ingress validators passed.
++
++The authorized twentieth root is SHA-256
++`e719b8c17edf85e089d859fbc1ab8aaa43d8a6e9514f32eb4a76842a665dd3ce`,
++with 308 variables and 5,846,188 clauses. Immutable PIQD job
++`51cdf518-1150-47f5-ac2f-94a98159eb82` is running. This remains a finite
++exact-17 cap-nine campaign, not full P97 closure. The next admissible step is
++determined by the authenticated terminal result: replay and mine another
++`SAT` model, or independently replay an `UNSAT` certificate and compose its
++banked theorem into the exact-17 source leaf.
