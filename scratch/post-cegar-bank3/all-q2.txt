@@ -1,0 +1,6 @@
+The docs say an actual blocker fiber is bounded by 4: every actual-blocker fiber has **at most four source vertices**.  
+
+In the “five-center deletion boundary” scenario, there can be five named centers among the remaining rows, but the deleted point’s actual blocker is a **sixth, distinct, blocked center**, so it does not count as an additional surviving blocker center. So the actual blocker fiber itself is still ≤4.
+  handles: TXYFYC 6N2CP4 1A7N7Z  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show YE2SQ1 --lean, nthdegree docs show TXYFYC --lean, nthdegree docs show 1A7N7Z --lean, nthdegree docs show 6N2CP4 --lean, nthdegree docs show EPK? --lean
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
