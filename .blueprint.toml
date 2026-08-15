@@ -35,6 +35,11 @@ approved = ["Lean.trustCompiler"]
 # sorry is caught by the source scan and by `#print axioms` on the target; the
 # target axiom closure is unaffected.
 skip = [
+  # Standalone DIMACS exporters deliberately declare the executable entrypoint
+  # `main`.  They are artifact generators, never proof-spine imports, and two
+  # such modules cannot be imported into one mining batch because their root
+  # entrypoints collide.  Their imported proof modules remain mined normally.
+  "*.ATail.*Export",
   "*.EndpointCertificate.*",
   "*.SurplusCertificate.*",
   "*.EndpointCertificate.RowZeros.Direct.*",
