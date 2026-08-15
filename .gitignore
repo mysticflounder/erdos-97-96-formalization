@@ -448,3 +448,85 @@ docs/live-blueprint.md.tmp
 
 # One-shot cleanup inventories are local diagnostics.
 /scratch/worktree-cleanup-*/
+
+# Per-lane ownership checkpoints are local coordination state.  Their schema is
+# enforced by scripts/check_worktree_hygiene.py before staging/publication.
+/.codex/worktree-checkpoints/
+
+# Remaining replay payloads in the four mixed historical lanes. Curated
+# source/reports plus manifests, receipts, summaries, and checksums are now
+# committed; these residual files are regenerated solver state.
+/scratch/rigid221-sourceheavy-anchor/**/*.json
+/scratch/rigid221-sourceheavy-anchor/**/*.jsonl
+/scratch/rigid221-sourceheavy-anchor/**/*.exit
+/scratch/rigid221-sourceheavy-anchor/**/*.txt
+/scratch/rigid221-sourceheavy-anchor/**/attempt.jsonl.artifacts/
+/scratch/rigid221-sourceheavy-anchor/exact-sha-worktrees/
+/scratch/rigid221-sourceheavy-anchor/exact12-*-source/
+/scratch/p97-consumer-first/**/*.json
+/scratch/p97-consumer-first/**/*.jsonl
+/scratch/p97-consumer-first/**/*.txt
+/scratch/p97-consumer-first/**/*.smt2
+/scratch/p97-consumer-first/**/*.ms
+/scratch/p97-consumer-first/**/source-nonclean/
+/scratch/rigid221-blockerv-exact17-20260806/**/*.json
+/scratch/rigid221-blockerv-exact17-20260806/**/*.jsonl
+/scratch/rigid221-blockerv-exact17-20260806/**/*.txt
+/scratch/exact17-lean-to-sat/**/*.json
+/scratch/exact17-lean-to-sat/**/*.txt
+
+# Default policy for regenerated scratch payloads. Authored source and Markdown
+# remain visible; named custody/audit JSON records are explicitly re-exposed.
+/scratch/**/*.json
+/scratch/**/*.jsonl
+/scratch/**/*.smt2
+/scratch/**/*.ms
+/scratch/**/*.txt
+/scratch/**/*.exit
+/scratch/**/attempt.jsonl.artifacts/
+/scratch/**/lean-check-current/
+!/scratch/**/*summary*.json
+!/scratch/**/*manifest*.json
+!/scratch/**/*report*.json
+!/scratch/**/*audit*.json
+!/scratch/**/*ledger*.json
+!/scratch/**/*receipt*.json
+!/scratch/**/*validation*.json
+!/scratch/**/*provenance*.json
+!/scratch/**/*contract*.json
+!/scratch/**/*metadata*.json
+!/scratch/**/*inventory*.json
+!/scratch/**/*certificate*.json
+!/scratch/**/*coverage*.json
+!/scratch/**/*source-map*.json
+!/scratch/**/*source_map*.json
+!/scratch/**/*result*.json
+
+# Stale unvalidated Exact12 PIQD fixture pair; reauthenticate before force-adding.
+/census/p97_search/phase3_piqd_structural_seed.py
+/census/p97_search/tests/test_phase3_piqd_structural_seed.py
+
+# Oversized/replayable certificate payloads and one-shot custody diagnostics.
+/scratch/atail-force/unique-row-producer/*_certificate.json
+/scratch/**/attempts.jsonl.artifacts/
+/scratch/**/*.headers
+/scratch/remaining-solvers-checkpoint.*
+/scratch/freshthird-common-deletion-consumers.rg
+/scratch/firstnonhit_blocked_deletion_bank_at
+/scratch/cegar-status.*
+/scratch/n11-v7-tail-manifest-extract.json
+
+# Generic scratch runtime state. Cache/work trees are disposable by contract;
+# source, manifests, reports, certificates, and other durable files elsewhere
+# in scratch remain visible. Do not generalize this to runs/, out/, artifacts/,
+# or logs/: this repository retains durable evidence under those names.
+/scratch/**/cache/
+/scratch/**/.work/
+
+# Nested Lean scratch process spill. Keep Lean, Markdown, Python, and JSON
+# source/evidence visible while ignoring transient command output at any depth.
+/lean/scratch/**/*.out
+/lean/scratch/**/*.time
+/lean/scratch/**/*.stderr
+/lean/scratch/**/*.stdout
+/lean/scratch/**/*.lock
