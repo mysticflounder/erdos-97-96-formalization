@@ -220,6 +220,47 @@ private theorem capInteriorByIndex_card_add_two
       U1OppositeCapLowerBounds.interior3] using
       U1OppositeCapLowerBounds.interior3_card_add_two S.partition
 
+/-- A shell selected by a minimal deletion core is the complete ambient
+radius class at the core center, not merely a four-point subset of it. -/
+theorem MinimalDeletionCore.shellAt_selectedClass_eq
+    {A U : Finset ℝ²} {center : ℝ²}
+    (K : MinimalDeletionCore A U center)
+    (s : {x : ℝ² // x ∈ U}) :
+    SelectedClass A center
+        (K.shellAt s).toCriticalFourShell.radius =
+      (K.shellAt s).toCriticalFourShell.support := by
+  simpa only [SelectedClass] using
+    (K.shellAt s).toCriticalFourShell.support_eq.symm
+
+/-- Every shell in a minimal deletion core centered at an indexed Moser
+opposite vertex contributes at least two points to the corresponding strict
+cap interior. -/
+theorem MinimalDeletionCore.shellAt_capInteriorByIndex_card_ge_two
+    {U : Finset ℝ²} {center : ℝ²}
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    (K : MinimalDeletionCore D.A U center)
+    (k : Fin 3)
+    (hcenterEq : S.oppositeVertexByIndex k = center)
+    (s : {x : ℝ² // x ∈ U}) :
+    2 ≤
+      ((K.shellAt s).toCriticalFourShell.support ∩
+        S.capInteriorByIndex k).card := by
+  have hclassEq :
+      SelectedClass D.A (S.oppositeVertexByIndex k)
+          (K.shellAt s).toCriticalFourShell.radius =
+        (K.shellAt s).toCriticalFourShell.support := by
+    rw [hcenterEq]
+    exact K.shellAt_selectedClass_eq s
+  have hcard :
+      4 ≤
+        (SelectedClass D.A (S.oppositeVertexByIndex k)
+          (K.shellAt s).toCriticalFourShell.radius).card := by
+    rw [hclassEq, (K.shellAt s).toCriticalFourShell.support_card]
+  have htwo :=
+    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
+      (K.shellAt s).toCriticalFourShell.radius_pos hcard
+  simpa only [hclassEq] using htwo
+
 /-- Any two members of a minimal deletion core centered at an indexed Moser
 opposite vertex force four distinct points into the strict interior of the
 opposite cap, hence at least six points in the closed cap. -/
@@ -233,40 +274,14 @@ theorem MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources
     6 ≤ (S.capByIndex k).card := by
   classical
   let I := S.capInteriorByIndex k
-  have hsClassEq :
-      SelectedClass D.A (S.oppositeVertexByIndex k)
-          (K.shellAt s).toCriticalFourShell.radius =
-        (K.shellAt s).toCriticalFourShell.support := by
-    rw [hcenterEq]
-    simpa only [SelectedClass] using
-      (K.shellAt s).toCriticalFourShell.support_eq.symm
-  have htClassEq :
-      SelectedClass D.A (S.oppositeVertexByIndex k)
-          (K.shellAt t).toCriticalFourShell.radius =
-        (K.shellAt t).toCriticalFourShell.support := by
-    rw [hcenterEq]
-    simpa only [SelectedClass] using
-      (K.shellAt t).toCriticalFourShell.support_eq.symm
-  have hsCard :
-      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex k)
-        (K.shellAt s).toCriticalFourShell.radius).card := by
-    rw [hsClassEq, (K.shellAt s).toCriticalFourShell.support_card]
-  have htCard :
-      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex k)
-        (K.shellAt t).toCriticalFourShell.radius).card := by
-    rw [htClassEq, (K.shellAt t).toCriticalFourShell.support_card]
-  have hsTwo0 :=
-    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
-      (K.shellAt s).toCriticalFourShell.radius_pos hsCard
-  have htTwo0 :=
-    S.selectedClass_capInteriorByIndex_card_ge_two D.convex k
-      (K.shellAt t).toCriticalFourShell.radius_pos htCard
   have hsTwo :
       2 ≤ ((K.shellAt s).toCriticalFourShell.support ∩ I).card := by
-    simpa only [I, hsClassEq] using hsTwo0
+    simpa only [I] using
+      K.shellAt_capInteriorByIndex_card_ge_two D S k hcenterEq s
   have htTwo :
       2 ≤ ((K.shellAt t).toCriticalFourShell.support ∩ I).card := by
-    simpa only [I, htClassEq] using htTwo0
+    simpa only [I] using
+      K.shellAt_capInteriorByIndex_card_ge_two D S k hcenterEq t
   have hdisjointI :
       Disjoint
         ((K.shellAt s).toCriticalFourShell.support ∩ I)
