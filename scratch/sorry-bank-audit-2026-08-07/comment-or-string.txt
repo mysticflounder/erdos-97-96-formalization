@@ -1,0 +1,75 @@
+lean/Erdos9796Proof.lean:10:build checks the entire proof down to the remaining `sorry` obligations.
+comparator/Challenge.lean:12:`sorry` stubs. A reviewer reads THIS file — not the repository — to see exactly
+comparator/Challenge.lean:28:`Solution.lean` (which imports the project) discharges each `sorry` below with
+comparator/Challenge.lean:437:The results below are equally sorry-free, but their proofs run the exact-ten
+lean/Erdos9796Proof/P96/UpstreamBridge.lean:31:This file is sorry-free, and so is the whole conditional chain
+lean/Erdos9796Proof/P96/UpstreamBridge.lean:35:with `Problem97.UniversalProblem97` and therefore inherit its `sorry`:
+comparator/Solution.lean:13:Discharges every `sorry` stub in `Challenge.lean` by importing the project
+comparator/Solution.lean:455:the split exists and why `Problem97.FiniteN11Closure` — sorry-free since
+lean/Erdos9796Proof/P97/MEC/ArcAngle.lean:181:lines of straight-line algebra, no new axioms, no sorry. The cosine step needs
+lean/scratch/e-package-bank/EPackageBank.lean:6:Kernel-checked, `sorry`-free bank theorems for the structural derivations
+lean/scratch/e-package-bank/EPackageBank.lean:33:The E1 `sorry` is untouched and no leaf progress is claimed.
+lean/scratch/e-package-bank/FidelityCheck.lean:10:E1-indexed bank theorem and then discharges the goal with `sorry` — the point is
+lean/scratch/e-package-bank/FidelityCheck.lean:16:deliberately contains one `sorry`, which is NOT an obligation and is NOT wired
+lean/scratch/e-package-bank/FidelityCheck.lean:17:to any publish target.  `EPackageBank.lean` is the `sorry`-free artifact.
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:49:exact-seven branch; the spine `sorry` is unchanged until closure assembles.
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:23:## What this file proves (composition core — axiom-clean, no `sorry`)
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:44:by W8 (`N8b`), W10 adj-L, W10 adj-R, and W10 N8h; they are now discharged with no `sorry`.
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:299:discharged here with no `sorry`. -/
+lean/Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:667:Everything above is axiom-clean and `sorry`-free.  For a *fully shell-internal* call
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:6495:sign-block* spine, now BUILT and compiling sorry-free in this file:
+lean/Erdos9796Proof/P97/Dumitrescu/Lc3.lean:51:introduce sorry".
+lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvature.lean:49:`sorry`.
+lean/Erdos9796Proof/P97/Census554/FiniteRowAlgebraicCollisions.lean:22:theorems are `sorry`-free but retain Lean's native compiler trust boundary.
+lean/scratch/d-package-bank/D1GlobalSurvival.lean:9:Kernel-checked, `sorry`-free follow-up to `DPackageBank.lean` for the live D1
+lean/scratch/d-package-bank/DPackageBank.lean:6:Kernel-checked, `sorry`-free bank theorems for the structural derivations
+lean/scratch/c-package-bank/CPackageBank.lean:7:Kernel-checked, `sorry`-free bank theorems for the derivations claimed in
+lean/scratch/c-package-bank/FidelityCheck.lean:9:bank theorem of its leaf and then discharges the goal with `sorry` — the point
+lean/scratch/c-package-bank/FidelityCheck.lean:15:`sorry`.  `CPackageBank.lean` is the `sorry`-free artifact.
+lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean:384:them, and it is proved without invoking the (still `sorry`-backed) leaf. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateLedgerClosure.lean:18:`sorry` on its own.
+lean/scratch/b-family-bank/B2Arm3.lean:8:Kernel-checked, `sorry`-free follow-up to `BFamilyBank.lean`.  The round-1
+lean/scratch/b-family-bank/BFamilyBank.lean:7:Kernel-checked, `sorry`-free bank theorems for the derivations claimed in
+lean/scratch/md-blocker-closed-bank/MDBlockerClosed.lean:13:Kernel-checked, `sorry`-free general-`V` bank for the multi-deletion failure
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean:13702:physical-radius `sorry` by two on-spine leaves.  The common-deletion leaf also
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean:14215:one local `sorry` into two strictly narrower on-spine `sorry`s; it is an
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean:692:available.  It is deliberately not a load-bearing `sorry` or a publish target.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:53:    the downstream coordinator is sorry-free. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Coordinator.lean:80:introduces no additional `sorry`. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/IndexedSource/IndexedSourceValuation.lean:38:statement, replays no UNSAT certificate, and closes no production `sorry`.
+lean/Erdos9796Proof/P97/OangleBridge.lean:39:No proofs in this file rely on `sorry`, opaque `axiom`s, or vacuous
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:31:**Scope.**  No new `axiom`, no `native_decide`/`decide` cert.  The W2 sorry is
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1526:**`hsign` now decomposed (no sorry here).**  The frame-reduced goal
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2598:   that the boundary order cannot see.  L1 is now CLOSED (no sorry): two verified
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2611:   `subshapeB_clash` (below; Heron + perp-bisector + non-obtuse parabola bound, no sorry).
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2660:  -- `r²·t² < signedArea2(v₁,v₂,v₃)²` with no sorry (Heron + perp-bisector +
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:2697:  -- REDUCTION (verified, no sorry below it): with `v₂` at origin all of
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:323:(no bodies, no `sorry`).  They are not declared as theorems or
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:44:LIVE-T1 and LIVE-T3 are source-sorry-free but still depend transitively on
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2446:  sorry
+attic/U2OppCap2Escape.lean:47:`surplusEscape_pinnedFamily_sep_false`.  These are the only two `sorry` leaves
+scratch/b1-blocker-collision-window-20260805.lean:59:    the downstream coordinator is sorry-free. -/
+scratch/live-bank-match/routeBTail_HEAD.lean:27:The remaining `sorry` is the current U1.2 spine leaf: it marks the
+scratch/atail-arm2/SI1CardFiveCollisionResidual.lean:20:## What is PROVEN here (sorry-free, `Card5CollisionExtract`)
+scratch/atail-arm2/SI1CardFiveCollisionResidual.lean:23:into one explicit record via the already-landed 0-sorry lemmas of
+scratch/atail-arm2/SI1CardFiveCollisionResidual.lean:41:The only 0-sorry closing engine for a co-radial outside pair is
+scratch/atail-arm2/SI1CardFiveCollisionResidual.lean:163:(`Card5CollisionExtract P`, sorry-free above) is available but does NOT close
+scratch/p1b-fidelity-audit/candidate.lean:27:The remaining `sorry` is the current U1.2 spine leaf: it marks the
+scratch/p1b-fidelity-audit/baseline.lean:27:The remaining `sorry` is the current U1.2 spine leaf: it marks the
+scratch/atail-arm1/UniqueArmReduction.lean:9:The two `sorry`s are the genuine remaining obligations (deliberately left
+scratch/atail-arm1/UniqueArmReduction.lean:91:which is left OPEN (the two `sorry`s). Both residuals lack the opposite-cap
+scratch/atail-arm1/UniqueArmReduction.lean:121:-- Axiom hygiene check for the two PROVEN facts (should be sorry-free):
+scratch/ExactFourRigid221SourceNeUTerminal.lean:132:/-- A sorry-free packet for the complete clean physical source-ne-`u`
+scratch/ExactFourRigid221ExceptionalArm.lean:108:/-- The sorry-free named part of the rigid physical five-class.  This omits
+scratch/atail-force/stage1_separated_pair_classifier_boundary.lean:25:No axiom, `sorry`, `admit`, or `native_decide` is introduced.
+scratch/atail-force/dangerous_blocker_collapse.lean:13:critical-shell system.  This scratch file introduces no axiom and no `sorry`.
+scratch/atail-force/outside_source_cap_multiplicity.lean:10:axiom and no `sorry`.
+scratch/atail-force/unique4-exact-two-source-bridge/IndexedSource/IndexedSourceValuation.lean:38:statement, replays no UNSAT certificate, and closes no production `sorry`.
+scratch/atail-force/same_cap_second_center.lean:8:proposed ATAIL producer.  It introduces no new axiom and no `sorry`.
+scratch/atail-force/stage1_common_cap_confinement_boundary.lean:24:The module introduces no axiom, `sorry`, `admit`, or `native_decide`.
+scratch/atail-force/urow_cap_multiplicity_proof_attempt.lean:9:axiom and no `sorry`.
+scratch/atail-force/unique4-p4-certificate-closure/P4CertificateLedgerClosure.lean:18:`sorry` on its own.
+scratch/atail-force/stage1_minimal_deletion_core.lean:27:No axiom, `sorry`, `admit`, or `native_decide` is introduced.  This file is
+scratch/atail-force/source-faithful-spine-bypass/Round134SourceFaithfulSpineBypass.lean:11:leaf without entering any of the eight current local sorry branches.
+scratch/atail-force/source-faithful-spine-bypass/Round134SourceFaithfulSpineBypass.lean:225:the already banked sorry-free consumer. -/
+scratch/atail-force/stage1_three_dangerous_equidistant_sink.lean:23:No axiom, `sorry`, `admit`, or `native_decide` is introduced.

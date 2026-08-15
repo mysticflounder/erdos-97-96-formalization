@@ -1,0 +1,46 @@
+2f99e274|2026-08-07T21:28:09-07:00|Bank exact-17 cap reductions and isolate cap-nine frontier
+9cddbaee|2026-08-07T21:20:58-07:00|Replay exact-12 ordered v4 cuts in Lean
+2106a964|2026-08-07T10:23:42-07:00|Bank exact-17 Kalmanson schema G
+37771f43|2026-08-07T09:57:30-07:00|Bank Rigid221 selected-row Kalmanson schemas
+9548724d|2026-08-07T05:43:10-07:00|close exact-16 BlockerV residual
+18018288|2026-08-07T01:32:03-07:00|close exact-15 Rigid221 BlockerV residual
+0921623f|2026-08-06T19:06:21-07:00|Bank exact-15 BlockerV coverage ingress
+375a963d|2026-08-06T17:24:44-07:00|bank exact-fifteen BlockerV four-row obstruction
+95cac9ed|2026-08-06T16:42:28-07:00|p97: expose the B1 global transport producer
+08fd9460|2026-08-06T12:18:52-07:00|p97: narrow deleted-row residual to card fifteen
+175edac2|2026-08-06T10:05:50-07:00|p97: narrow Rigid221 deleted blocker arm
+52e1e775|2026-08-05T23:37:43-07:00|docs: correct closure evidence claims
+383981f7|2026-08-05T21:59:29-07:00|E1 paired arm: both grid critical shells named
+826e3e76|2026-08-05T21:47:23-07:00|E1 paired arm: both grid classes named, escapees separated
+3b71763e|2026-08-05T21:28:40-07:00|E1 paired arm: grid leaf narrowed by class census and cap placement
+5f2461ab|2026-08-05T20:52:25-07:00|E1 paired arm: checked source-return normal form splits the leaf
+e6502275|2026-08-05T20:43:02-07:00|Rigid221 large-cap: generic equilateral class-triple kernel
+32719ca9|2026-08-05T20:33:01-07:00|Rigid221 large-cap: blocker-identity split replaces the placement split
+eaf91531|2026-08-05T20:27:28-07:00|Retained collision: name the same-cap closing-core constructor
+8316f3d2|2026-08-05T20:27:28-07:00|FreshThird: pair the triple-shell escape with a source-faithful cover
+5451f3df|2026-08-05T20:27:11-07:00|B1 live: pin canonical-blocker multiplicity and package the global contract
+b0157a17|2026-08-05T20:20:51-07:00|Rigid221 large-cap: rebase row trace bounds on the mined bank lemma
+dd359d8c|2026-08-05T19:56:43-07:00|Rigid221 large-cap: xu-row class trace pinned to {xu, deleted}
+2b053d5a|2026-08-05T19:46:29-07:00|Rigid221 large-cap: trace bound hoisted to all four placement leaves
+5c186d53|2026-08-05T19:39:50-07:00|Rigid221 large-cap: class trace bound for the off-class-blocker leaf
+16cc1dd3|2026-08-05T18:48:36-07:00|Rigid221 large-cap: opposite-adjacent leaf closed to off-class-blocker residual
+97c249de|2026-08-05T18:31:15-07:00|Rigid221 large-cap: cap-placement split of the pentagon leaf
+811a42e5|2026-08-05T17:39:18-07:00|Rigid221 large-cap: class-cardinality split closes fiveCycle to pentagon
+605c09cb|2026-08-05T17:18:05-07:00|Rigid221 large-cap: deleted-row casing closes both leaves to five-cycle
+560dfec2|2026-08-05T16:58:47-07:00|Rigid221 large-cap: incidence split supersedes placement split
+b2f1270d|2026-08-05T16:18:43-07:00|Checkpoint Codex fiber shard + omit repair (build durability)
+58506743|2026-08-05T15:58:31-07:00|Rigid221 large-cap leaf: checked placement split into three leaves
+0ca00bc7|2026-08-05T15:53:50-07:00|Track new scratch probes/reports and curated artifacts; ignore ephemeral session dumps
+9feb86f6|2026-08-05T11:57:53-07:00|Shard FrontierLiveClosure into 15 modules + umbrella
+d68f1c9d|2026-08-05T11:50:28-07:00|Fix rcases Nonempty destructuring in FreshThird coordinator
+f9550ea9|2026-08-05T11:47:27-07:00|Fix producer signatures: omit unused section variables
+f3fa0c2d|2026-08-05T11:42:02-07:00|Fix non-compiling checkpoint state in FrontierLiveClosure
+adcb9a4d|2026-08-05T11:18:19-07:00|checkpoint frontier closure integration
+ab6f416e|2026-08-04T14:57:13-07:00|Commit Lean source and scratch proofs
+084e69b6|2026-08-03T09:44:29-07:00|Wire mixed FreshThird cap-index branches
+4c5971d2|2026-08-03T05:24:50-07:00|Authenticate selected-row seed escape
+cf2507c6|2026-08-03T05:02:29-07:00|Preserve FreshThird residual interactions
+69379505|2026-08-03T04:03:33-07:00|Bank exact-six shared-blocker seed
+25271543|2026-08-03T03:22:37-07:00|Checkpoint P97 frontier producers and CEGAR tooling
+a21c822d|2026-08-03T01:36:09-07:00|Add retained endpoint collision localization
+b6bd172e|2026-08-03T00:06:40-07:00|Add five-role endpoint Kalmanson consumers

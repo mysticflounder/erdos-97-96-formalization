@@ -1,0 +1,42 @@
+COMMIT 9cddbaee 2026-08-07T21:20:58-07:00 Replay exact-12 ordered v4 cuts in Lean
+
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BoundaryOrderIngress.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221ConcreteRowsBridge.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221Ingress.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedCoreConsumer.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedCoverageCuts.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedResidualCoverageCuts.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedThreeRowCuts.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedUniversalThreeRowCuts.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221RetainedSecondCapOrder.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SameBoundaryOrderIngress.lean
+COMMIT 9548724d 2026-08-07T05:43:10-07:00 close exact-16 BlockerV residual
+
+lean/Erdos9796Proof/P97/ATail/BlockerVExactSixteenFourRowCoverage.lean
+lean/Erdos9796Proof/P97/ATail/KalmansonFourEqualitySchemas.lean
+COMMIT 375a963d 2026-08-06T17:24:44-07:00 bank exact-fifteen BlockerV four-row obstruction
+
+lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean
+COMMIT 5f2461ab 2026-08-05T20:52:25-07:00 E1 paired arm: checked source-return normal form splits the leaf
+
+lean/Erdos9796Proof/P97/ATail/PairedCommonDeletionNormalForm.lean
+COMMIT 0ca00bc7 2026-08-05T15:53:50-07:00 Track new scratch probes/reports and curated artifacts; ignore ephemeral session dumps
+
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean
+COMMIT 9feb86f6 2026-08-05T11:57:53-07:00 Shard FrontierLiveClosure into 15 modules + umbrella
+
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Coordinator.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean

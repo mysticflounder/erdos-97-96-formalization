@@ -1,0 +1,96 @@
+participants in #erdos-97-96-formalization:
+  Alternation Cartographer  019fb4e0-ef17-7d32-9b54-d02a4d98bd16  — building exact-11 v7 semantic valuation kernel
+  CapBitAuditor  019fc3ff-b1c7-76e0-8160-3aa8f9d8dd7a  — auditing P3 Class-A Boolean cap/order seam read-only
+  CapGrowthCartographer  019fd6c2-eea9-7d22-ae31-b0de16cf4485  — auditing ExactFourRobustCapGrowth arms for rigid221 anchor
+  CapPairSieve  019fd6a3-750b-73b3-9c68-d64d7c0ef125  — cap-pair theorem-bank audit complete; reporting findings
+  ClauseCacheSculptor  019fbce5-9acd-7913-bbf2-e2f823f30c88  — Completed S2O0 computed-facts cache split; focused builds pass, downstream ClauseBank rebuild 8.22s; exact axiom closure audited.
+  Codex  019fbe09-bce6-76f3-9dc5-7334d82aa1b4  — (idle)
+  Codex  019fd367-aa35-7be0-8b4b-997f3c6372fd  — (idle)
+  Codex  019fd9c6-6160-7693-a505-ad59a40038ae  — (idle)
+  Codex  019fdf5f-fab3-7430-8963-376e873b4319  — (idle)
+  Comparator Gate  281ec28c-723e-49c0-bb6d-1a22552c5d26  — exact-11 comparator native-tier gate; fixed the WitnessPacketInterface import cycle, running the gate
+  E1 fresh-third refactor  019fb8d1-0f20-7531-8f6d-b07589d0963e  — Read-only import-safe consumer and provenance-adapter audit for strengthened fresh-third residual; avoiding the residual section claimed by Frontier Ledger.
+  E1Cartographer  019fbed2-50b7-71a1-8067-eeb54d16935b  — P10B full-cascade canary confirmed 4/4 duplicate-center structural traces; no synthetic portfolio diversity. Pivoting to source-faithful B1 ingress audit and helper-lemma target.
+  EndpointCartographer  019fd632-a4bc-7ab1-a545-9d71d1ba48fa  — auditing TriApexEndpointRetainedOmission leaves consumer-first
+  Exact12Auditor  019fd75b-1de2-7b23-b218-cf1cb5411610  — completed independent exact-12 pentagon off-class audit; report written under scratch/rigid221-sourceheavy-anchor
+  ExactFive Bank Scout  019fd355-47d2-72a1-90bf-b177d5173a2c  — (idle)
+  FiberCartographer  019fd6c2-ee28-7032-a526-9abeac205693  — auditing B1 fiber-card consumption of fixed-center deletion fan
+  FiveCycleAuditor  019fd7b3-d865-7b42-993f-ee467020b2a2  — completed five-survivor counting audit; report written
+  FourSurvivorSieve  019fd7b3-d904-7f22-9d71-80977dd7ae49  — auditing rigid221 four-survivor theorem-bank consumers
+  FreshThird 2+2 Probe  019fdb9e-23b6-7f00-ad4b-d843f07640b1  — (idle)
+  FreshThird correction runner  019fde2f-12cd-73b2-824d-09357b0921d4  — FreshThird source-fidelity correction round finished; artifact scratch/p97-consumer-first/freshthird_source_fidelity_correction_round.results.txt; structural SAT, metric UNKNOWN timeout, no closure.
+  FreshThirdBatchedAudit  019fde7d-52fd-7a12-96d8-d2a5a32426ce  — (idle)
+  Frontier Ledger  019fabe9-1cc3-7723-9ed8-eba91088d112  — FreshThird source producer: derive three named shell equalities or FreshThirdSharedLatePairPacket from the source-faithful fan
+  FrontierLedger  019f91c7-fd64-7de3-b5b0-bb943c100ccd  — CLAIMED: Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion — production proof and directly supporting F3c/positive-incidence bridge only
+  G3-Windowwright  019fb564-df90-7b23-bacc-1d7f4f68ea9e  — building provenance-safe G3 windowed replay adapter and layered compiler
+  LeafHarbor  019fd700-d48f-7170-aa7b-5c8279142d44  — consumer-first triage of unclaimed FrontierLiveClosure False leaves
+  MetricPentagon  019fd6ef-3486-7661-9b7e-08cb242593ad  — auditing exact-card-12 pentagon-off-class metric feasibility in isolated scratch directory
+  OverlapCartographer  019fbf68-0b83-7113-a28e-4fa813731a51  — auditing positive cross-row overlap route for retained-omission tri-apex core
+  PairedGridCartographer  a29c9c59-0ea8-4483-b5dc-7f34eb372d4b  — E1 paired arm: grid leaf. Landed richClass_mem + PairedGridCapPlacement census (kernel-clean). Testing local realizability.
+  PentagonAuditor  019fd6a3-7586-7d12-b19e-c6c4e857cc2e  — adversarial Route A API and combinatorics audit
+  PentagonCartographer  019fd6d1-7e48-7173-b45c-32bfecde5263  — auditing U5 banks against the pentagon off-class blocker probe
+  PentagonCartographer  019fd6e1-e453-72b2-a5da-42a596f019a6  — completed n=12 pentagon off-class incidence countermodel
+  PentagonFiberAuditor  019fd727-da81-7043-b161-8ef3e976a054  — auditing five-blocker injectivity consumers for active anchor
+  PentagonSentinel  019fd747-db42-7623-904c-0e74dbbd93a4  — wrapping up exact12 source-entitled survivor audit
+  PentagonSkeptic  019fd691-4e4a-76f0-b6ed-0eaee3eff440  — auditing pentagon-off-class fan and finite countermodels
+  PentagonalGauge  019fd65c-abfb-76e3-9f6b-ab1f296f31b7  — auditing exactFourRigid221 second-opposite-large local geometry
+  Power-Mask Auditor  019fcf25-0f65-79c2-93a0-de39c87985d7  — read-only endpoint A=J full-circle power-mask audit
+  Rank-Four Cartographer  019fab71-5259-7cd2-972e-a29d5b4a014b  — Rigid221 BlockerV off-class: testing global blocker-cycle plus Kalmanson/full-cap ingress after exact local model and finite incidence SAT no-go
+  Rigid221Cartographer  019fd68e-6e1a-7da3-b44a-a9d129fa69e5  — completed read-only Rigid221Placement consumer audit: minimalCore and sourceEqU contracts do not close
+  RigidIngressAuditor  019fd5ee-b820-7851-a083-9668a96f9297  — read-only Rigid221 exact-four theorem ingress audit
+  RigidLattice  019fd34e-d17f-7f42-a787-ab58b71dc469  — Rigid221 lattice audit complete; report posted
+  SaturationCartographer  019fa9db-dc67-7cf1-89ca-33ef7dd4600e  — auditing finite blocker-map saturation in first-fiber five-center terminal
+  Schema8Probe  019fd996-5be9-7c30-afda-b8a0cae2040e  — (idle)
+  ShellCompass  019fa37b-4b74-7ed3-9cd9-b109dd44c83f  — hard cap>=8 branch of sourceExactCollisionRows theorem
+  TableCartographer  019fac28-bd7a-71f3-9a41-a6882eb5906c  — auditing FR Theorem 3, Lemma 2, and Table 2 SAT predicate
+  TwelveOrTriple  019fd787-5f14-7c43-afdf-cc865a29a800  — Audit complete: scratch/PentagonOffClassExactTwelveOrThreeCenterSplit.lean checks source-clean; exact12/secondOpposite OR three-center common-deletion; no imported contradiction consumer without extra collision/orientation data.
+  Twelvefold Refiner  019fd280-f8ac-73f0-bf88-ccfcab717bb3  — Formalizing source-clean exact-12 Rigid221 placement/signature transport for the pentagon-off-class anchor
+  TwoLevelMetric  019fdd62-b608-7bc3-8410-9da39941f818  — two-level CEGAR complete; reporting SAT survivor and preserving scratch artifacts
+  Verdict Scribe  019fdb6f-61eb-7c62-b036-c3af70c84437  — completed exact-12 source-faithful runner; focused and card_head tests green
+  a08717_global_bank  019fde0e-856a-7982-aa45-7400906cbbbe  — (idle)
+  b-col-admission  019fac28-71d1-7461-8d7a-94a4fb92eb7c  — b-col-admission: universal R-P2-A subsumption documented; k=3,5 controls pass; finished
+  case-split-forge  019fd991-82a3-7263-893e-3af353476e0d  — wiring exact-six and Rigid221 adapters into live consumers
+  census-bridgewright  019f401b-020c-75c0-974d-e97983de214d  — reconciling ATAIL coverage round 2 and closure-plan handoff
+  cert-lift  ef5c70d5-15a1-4cbe-a738-61dfc42290ee  — certificate-bank lift lane: T2 (endpoint RowZeros -> GeneratorRule) + L1/L2 (DFS shard reduction). Editing EndpointCertificate/**, SurplusCertificate/RowZeros/**, scripts/endpoint-certificate*. NOT touching FrontierLiveClosure/Census554/census/comparator.
+  codex-encoder-audit  019fd315-4a2e-7d13-b4b9-ef0fb7e37513  — (idle)
+  codex-worker  019fdf13-bfef-7190-8c33-21c04602fb7e  — (idle)
+  decagon-algebra  019fb0c5-f8be-7ec3-bdf5-614395dd0e34  — exact algebra audit of projected-static-v2 survivor record 0
+  deletion_fan_encoding  019fdd96-ec73-7210-a255-ceb17e63463f  — (idle)
+  endpoint-pilot-audit  019fd3ab-ac3e-7ea1-b51d-d11c478b4fd4  — (idle)
+  escape-tracer  019fd29b-144d-7a40-86b9-d4d021f94661  — tracing escape theorem branches to existing packets
+  exactfive-surface  019fd355-39d1-7de0-b412-eed18ca79c83  — D-E exact-five audit complete
+  flc-sharding-plan  f3cf6135-c259-423e-ad13-a6a67722b70d  — Rigid221 pentagon: exact-oracle mining done (both on-class leaves SAT at n=6); anchored on pentagonOffClassBlocker; next split priced at 27->29, not landed
+  freshThird-weighted-audit  019fdef8-e1b1-7633-b109-ed4226418baf  — (idle)
+  freshThird_nonrobust_bridge  019fdf22-cc09-7a93-8a7b-eb47d3d07a06  — (idle)
+  freshthird-audit  019fde38-8ceb-7e71-8733-20ee0d4ede96  — (idle)
+  freshthird-audit  019fdede-8e55-7a41-a8ae-12f24948a2f6  — Auditing cross-deletion survivor extraction to erased SelectedFourClass rows and import-reachable consumers; no CEGAR.
+  freshthird-bank-pass  019fdf1d-d46f-7e21-8116-cc8274d1d21e  — (idle)
+  freshthird-cross-bank  019fdf09-0de7-7731-8fcf-8d9d24c10961  — (idle)
+  freshthird-cross-row-cegar  019fdefd-79d8-7d12-a2ba-2e0a40199580  — (idle)
+  freshthird-post-cegar-bank  019fdd5b-f77f-7fa3-98c0-0104536b2916  — (idle)
+  freshthird-round1-bank  019fdcf3-be1c-7492-939f-22ccee5084fe  — (idle)
+  freshthird-twolevel-bank  019fdd6f-a2b2-7043-b20a-90cfbfd6ad42  — (idle)
+  freshthird_anchor_route  019fdc75-00c6-7352-a9cb-4badc1ffb831  — (idle)
+  freshthird_chained_round_bank  019fde28-b446-7973-b120-c08f3fbf6cdc  — (idle)
+  freshthird_core_bank_audit  019fde47-c676-7171-9a46-d979bb354cbf  — (idle)
+  freshthird_cross_metric_core  019fdf0e-11cc-7e81-a3ae-85796d8ad099  — (idle)
+  freshthird_endpoint_core_semantics  019fdee2-e7fa-7651-80be-67dbf4999528  — (idle)
+  freshthird_five_assertion_core_bank  019fde4d-6a6f-77d1-8177-81174981a606  — (idle)
+  freshthird_four_row_bank  019fdea0-ace1-7800-8a89-1392a58d2df7  — (idle)
+  freshthird_lazy_audit  019fde5d-c06e-7f71-8c53-0008825a1b12  — (idle)
+  freshthird_lazy_exact_replay_bank  019fde40-ca70-7e60-823e-cf917c14a07f  — (idle)
+  freshthird_lazy_unsat_bank  019fde3d-c6ee-7a63-8aff-38d140d3af6c  — (idle)
+  freshthird_linear_relaxation_bank  019fde85-8bd9-7452-96b3-4109912b9bc2  — (idle)
+  freshthird_named_pair_audit  019fde55-56bc-7d80-909e-de37efc8a3c6  — (idle)
+  freshthird_named_pair_round_bank  019fde57-9834-7c21-9c8c-c801ea7ecee0  — (idle)
+  freshthird_named_rows_bank  019fde50-7f20-7081-b933-5f9e303e0ee6  — (idle)
+  freshthird_row_origin_audit  019fdf5a-ef56-7053-a15d-ce963884165f  — (idle)
+  freshthird_source_fidelity_bank  019fde33-dc09-7163-bcc7-2351ebe71907  — (idle)
+  positive_cross_producer  019fbfd9-f8a5-7c31-877a-617fe5d32a23  — Final Q/R/G theorem-bank audit completed; preparing source-entitled constraint/consumer map.
+  results-auditor  ce70e928-e038-4718-8e3c-333f92b595ea  — read-only audit of past-day computational results; asking about unrecorded Phase-3 infeasibility results
+  rigid221-collapse  5dfab928-f645-438d-8e17-30fae9784b75  — Standing down from census/p97_search/ + scratch/p97-search-lane/ - handed off to ExactSkeletonPilot per Adam. Posted full status (#2462).
+  scratch-inventory  5539d84a-b9ca-42d8-bf6a-93f1fa107ff3  — scratch+prod off-spine inventory; classifying the 25 ATail orphans and promotion candidates
+  shell-gap-cartographer  019fd9c6-61dd-7412-afeb-1b9ff2df0e29  — auditing production first-fiber row theorem reachability into FreshThird
+  spine-audit-fable  4f0e81c1-efc5-4ace-b64d-ff29860c68a6  — B1 refactor: decoupling RemovableVertexAxiom/Continuation.lean from PinnedSurplusBank (audit docs/audits/2026-08-06-spine-refactor-audit.md)
+  spine-auditor  019f9cb4-686f-7ad0-b105-244065bfe682  — closing exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows; deriving global cap>=8 contradiction and writing Lean
+  worktree-hygiene-sweep  60a3b70e-e255-41e7-b8f4-03a7b11a0e4d  — (idle)
