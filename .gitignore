@@ -409,3 +409,18 @@ docs/live-blueprint.md.tmp
 /scratch/*-piqd*/
 /scratch/arm-static-*-live-*/
 /scratch/projected-v3-production-*-live-*/
+
+# Exact-17 solver process byproducts. Curated manifests, theorem banks,
+# source, and audit reports in these trees remain visible and versionable.
+/scratch/rigid221-blockerv-exact17-20260806/**/*.status
+/scratch/rigid221-blockerv-exact17-20260806/**/*.sol
+/scratch/rigid221-blockerv-exact17-20260806/**/*.exit
+/scratch/rigid221-blockerv-exact17-20260806/**/*.model
+/scratch/rigid221-blockerv-exact17-20260806/**/*.dimacs
+/scratch/rigid221-blockerv-exact17-20260806/**/journal.jsonl
+/scratch/exact17-lean-to-sat/**/*.status
+/scratch/exact17-lean-to-sat/**/*.sol
+/scratch/exact17-lean-to-sat/**/*.exit
+/scratch/exact17-lean-to-sat/**/*.model
+/scratch/exact17-lean-to-sat/**/*.dimacs
+/scratch/exact17-lean-to-sat/**/journal.jsonl
