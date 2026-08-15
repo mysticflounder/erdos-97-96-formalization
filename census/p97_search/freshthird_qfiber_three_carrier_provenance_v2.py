@@ -449,16 +449,18 @@ def verify_snapshot(
         python_paths=python_paths,
         support_paths=support_paths,
     )
-    if (
-        actual.get("content_aggregate_sha256")
-        != expected.get("content_aggregate_sha256")
-        or actual.get("external_imports") != expected.get("external_imports")
-        or actual.get("inputs") != expected.get("inputs")
-    ):
+    # The snapshot records more than source bytes: it also binds the repository
+    # HEAD, tracked/untracked state, blob identities, and the exact row metadata
+    # used to decide which non-clean files must be archived.  Comparing only the
+    # content digest would let a stale snapshot cross a commit or status change
+    # whenever the transitive input bytes happened to remain identical.
+    if actual != expected:
         raise _fail(
             "source snapshot drifted: "
-            f"expected {expected.get('content_aggregate_sha256')}, "
-            f"actual {actual.get('content_aggregate_sha256')}"
+            f"expected HEAD {expected.get('repo_head')} / "
+            f"aggregate {expected.get('aggregate_sha256')}, "
+            f"actual HEAD {actual.get('repo_head')} / "
+            f"aggregate {actual.get('aggregate_sha256')}"
         )
     return actual
 

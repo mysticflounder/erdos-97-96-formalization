@@ -28,7 +28,11 @@ from census.p97_search.freshthird_qfiber_three_carrier_cap_alternation_replay_v1
 from census.p97_search.freshthird_qfiber_three_carrier_cnf_v1 import (
     FreshThirdCarrierCnfEncoding,
     FreshThirdCarrierCnfError,
+    SemanticReplay,
     _canonical_json,
+)
+from census.p97_search.freshthird_qfiber_three_carrier_provenance_v2 import (
+    SCHEMA as SOURCE_SNAPSHOT_SCHEMA,
 )
 from census.p97_search.freshthird_qfiber_three_carrier_provenance_v2 import (
     archive_nonclean_snapshot_rows,
@@ -191,6 +195,373 @@ def _artifact_inventory(out_dir: Path) -> list[dict[str, object]]:
     return rows
 
 
+def _record_clause(record: Mapping[str, object], *, boundary_index: int) -> tuple[int, ...]:
+    value = record.get("clause")
+    if not (
+        type(value) is list
+        and value
+        and all(type(lit) is int and lit != 0 for lit in value)
+    ):
+        raise StructuralCegarError(
+            f"cell {boundary_index} has a malformed certificate clause"
+        )
+    return tuple(value)
+
+
+def _validate_terminal_cell_history(
+    cell: Path,
+    *,
+    boundary_index: int,
+    expected_status: object,
+    max_cuts: int,
+    timeout_seconds: int,
+) -> None:
+    """Reconstruct every CNF and replay every admitted certificate in a cell."""
+
+    result_paths = sorted(cell.glob("step-*.result.json"))
+    if not result_paths:
+        raise StructuralCegarError(f"cell {boundary_index} has no result")
+    expected_result_names = [
+        f"step-{iteration:03d}.result.json" for iteration in range(len(result_paths))
+    ]
+    if [path.name for path in result_paths] != expected_result_names:
+        raise StructuralCegarError(
+            f"cell {boundary_index} result history is not contiguous"
+        )
+
+    encoding = FreshThirdCarrierCnfEncoding(boundary_index)
+    variable_map_bytes = _canonical_json(encoding.variable_map())
+    prior_records: list[dict[str, object]] = []
+    for iteration, result_path in enumerate(result_paths):
+        try:
+            payload = result_path.read_bytes()
+            result = json.loads(payload)
+        except (OSError, json.JSONDecodeError) as exc:
+            raise StructuralCegarError(
+                f"cell {boundary_index} result {iteration} is unreadable"
+            ) from exc
+        if _canonical_json(result) != payload:
+            raise StructuralCegarError(
+                f"cell {boundary_index} result {iteration} is not canonical"
+            )
+        if not (
+            type(result) is dict
+            and result.get("schema") == SCHEMA
+            and result.get("boundary_index") == boundary_index
+            and result.get("iteration") == iteration
+        ):
+            raise StructuralCegarError(
+                f"cell {boundary_index} result {iteration} metadata mismatch"
+            )
+
+        artifact_bytes: dict[str, bytes] = {}
+        artifact_suffixes = {
+            "cnf_path": "cnf",
+            "variable_map_path": "var-map.json",
+            "stdout_path": "stdout",
+            "stderr_path": "stderr",
+        }
+        for path_key, hash_key in (
+            ("cnf_path", "cnf_sha256"),
+            ("variable_map_path", "variable_map_sha256"),
+            ("stdout_path", "stdout_sha256"),
+            ("stderr_path", "stderr_sha256"),
+        ):
+            relative = result.get(path_key)
+            expected_hash = result.get(hash_key)
+            expected_name = f"step-{iteration:03d}.{artifact_suffixes[path_key]}"
+            if type(relative) is not str or relative != expected_name:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} malformed artifact path: {path_key}"
+                )
+            artifact = cell / relative
+            if not artifact.is_file():
+                raise StructuralCegarError(
+                    f"cell {boundary_index} missing artifact: {relative}"
+                )
+            data = artifact.read_bytes()
+            if _sha256(data) != expected_hash:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} artifact hash mismatch: {relative}"
+                )
+            artifact_bytes[path_key] = data
+
+        prior_clauses = tuple(
+            _record_clause(record, boundary_index=boundary_index)
+            for record in prior_records
+        )
+        if artifact_bytes["cnf_path"] != encoding.cnf_bytes(prior_clauses):
+            raise StructuralCegarError(
+                f"cell {boundary_index} CNF reconstruction mismatch at step {iteration}"
+            )
+        if artifact_bytes["variable_map_path"] != variable_map_bytes:
+            raise StructuralCegarError(
+                f"cell {boundary_index} variable map mismatch at step {iteration}"
+            )
+        if result.get("encoding_manifest") != encoding.encoding_manifest():
+            raise StructuralCegarError(
+                f"cell {boundary_index} encoding manifest mismatch at step {iteration}"
+            )
+        solver_status = _solver_status(result.get("solver_returncode"))
+        if result.get("solver_status") != solver_status:
+            raise StructuralCegarError(
+                f"cell {boundary_index} solver status mismatch at step {iteration}"
+            )
+
+        is_terminal = iteration == len(result_paths) - 1
+        signature: Mapping[str, object] | None = None
+        assignment: dict[int, bool] | None = None
+        semantic_replay: SemanticReplay | None = None
+        model_replay_failed = False
+        if solver_status == "SAT":
+            try:
+                assignment = _parse_cadical_model(
+                    artifact_bytes["stdout_path"], encoding.num_vars
+                )
+                encoding.validate(assignment)
+                for cut_index, clause in enumerate(prior_clauses):
+                    if not any(assignment[abs(lit)] == (lit > 0) for lit in clause):
+                        raise StructuralCegarError(
+                            f"model falsifies prior cut {cut_index}"
+                        )
+                computed_signature = encoding.model_signature(assignment)
+            except (FreshThirdCarrierCnfError, StructuralCegarError, ValueError):
+                model_replay_failed = True
+            if model_replay_failed:
+                if not (
+                    is_terminal
+                    and result.get("status") == "STUCK_NO_ADMISSIBLE_CUT"
+                    and result.get("admitted_cut") is None
+                    and type(result.get("reason")) is str
+                    and result["reason"].startswith(
+                        "model decode/validation/replay setup rejected:"
+                    )
+                ):
+                    raise StructuralCegarError(
+                        f"cell {boundary_index} model replay failed at step {iteration}"
+                    )
+            elif result.get("model_signature") != computed_signature:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} model signature mismatch at step {iteration}"
+                )
+            elif result.get("model_signature_sha256") != _sha256(
+                _canonical_json(computed_signature)
+            ):
+                raise StructuralCegarError(
+                    f"cell {boundary_index} model signature hash mismatch at step {iteration}"
+                )
+            else:
+                signature = computed_signature
+                semantic_replay = encoding.semantic_replay(
+                    assignment, timeout_ms=timeout_seconds * 1000
+                )
+                expected_semantic_replay = {
+                    "accepted": semantic_replay.accepted,
+                    "detail": semantic_replay.detail,
+                }
+                if result.get("semantic_replay") != expected_semantic_replay:
+                    raise StructuralCegarError(
+                        f"cell {boundary_index} semantic replay mismatch at step {iteration}"
+                    )
+
+        cuts = result.get("cuts")
+        if not (type(cuts) is list and all(type(record) is dict for record in cuts)):
+            raise StructuralCegarError(
+                f"cell {boundary_index} cut history is malformed at step {iteration}"
+            )
+        admitted = result.get("admitted_cut")
+        if admitted is not None:
+            if not (
+                type(admitted) is dict
+                and cuts == [*prior_records, admitted]
+                and solver_status == "SAT"
+                and signature is not None
+                and assignment is not None
+                and semantic_replay is not None
+                and not semantic_replay.accepted
+            ):
+                raise StructuralCegarError(
+                    f"cell {boundary_index} admitted-cut history mismatch at step {iteration}"
+                )
+            parent_record = prior_records[-1] if prior_records else None
+            try:
+                replayed = replay_repository_cap_alternation_certificate(
+                    admitted,
+                    signature,
+                    variable_map_bytes,
+                    encoding,
+                    parent_record=parent_record,
+                )
+            except CapAlternationCertificateError as exc:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} certificate replay failed at step {iteration}: {exc}"
+                ) from exc
+            clause = _record_clause(admitted, boundary_index=boundary_index)
+            if replayed.clause != clause or any(
+                assignment[abs(lit)] == (lit > 0) for lit in clause
+            ):
+                raise StructuralCegarError(
+                    f"cell {boundary_index} admitted cut is not the rejected-model cut"
+                )
+            prior_records.append(admitted)
+        elif cuts != prior_records:
+            raise StructuralCegarError(
+                f"cell {boundary_index} cut history changed without admission"
+            )
+
+        if not is_terminal and (
+            result.get("status") != "UNKNOWN" or admitted is None
+        ):
+            raise StructuralCegarError(
+                f"cell {boundary_index} has a nonterminal result without a cut"
+            )
+        if is_terminal and admitted is not None:
+            raise StructuralCegarError(
+                f"cell {boundary_index} terminal result contains an admitted cut"
+            )
+        if is_terminal and result.get("status") != expected_status:
+            raise StructuralCegarError(
+                f"cell {boundary_index} terminal result metadata mismatch"
+            )
+        if (
+            is_terminal
+            and expected_status == "COVERAGE_UNSAT_DISCOVERY"
+            and solver_status != "UNSAT"
+        ):
+            raise StructuralCegarError(
+                f"cell {boundary_index} discovery-UNSAT status mismatch"
+            )
+        if is_terminal and expected_status == "UNKNOWN" and solver_status != "UNKNOWN":
+            raise StructuralCegarError(
+                f"cell {boundary_index} UNKNOWN status mismatch"
+            )
+        if (
+            is_terminal
+            and expected_status == "SAT_ABSTRACTION"
+            and (semantic_replay is None or not semantic_replay.accepted)
+        ):
+            raise StructuralCegarError(
+                f"cell {boundary_index} SAT_ABSTRACTION replay mismatch"
+            )
+        if is_terminal and expected_status == "BUDGET":
+            if not (
+                iteration == max_cuts
+                and len(prior_records) == max_cuts
+                and signature is not None
+                and assignment is not None
+            ):
+                raise StructuralCegarError(
+                    f"cell {boundary_index} malformed budget terminal"
+                )
+            if semantic_replay is None or semantic_replay.accepted:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} budget terminal replay mismatch"
+                )
+            admitted = _admit_cut(
+                encoding,
+                assignment,
+                signature,
+                prior_clauses,
+                prior_records,
+                variable_map_bytes,
+            )
+            if admitted is None:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} budget terminal has no next valid cut"
+                )
+        if (
+            is_terminal
+            and expected_status == "STUCK_NO_ADMISSIBLE_CUT"
+            and not model_replay_failed
+        ):
+            if semantic_replay is None or semantic_replay.accepted:
+                raise StructuralCegarError(
+                    f"cell {boundary_index} stuck terminal replay mismatch"
+                )
+            try:
+                admitted = _admit_cut(
+                    encoding,
+                    assignment,
+                    signature,
+                    prior_clauses,
+                    prior_records,
+                    variable_map_bytes,
+                )
+            except StructuralCegarError as exc:
+                if result.get("reason") != str(exc):
+                    raise StructuralCegarError(
+                        f"cell {boundary_index} stuck-terminal reason mismatch"
+                    ) from exc
+            else:
+                if admitted is not None:
+                    raise StructuralCegarError(
+                        f"cell {boundary_index} stuck terminal has an admissible cut"
+                    )
+
+
+def _validate_source_archive(
+    out_dir: Path,
+    manifest: Mapping[str, object],
+    source_snapshot: Mapping[str, object],
+) -> None:
+    archive = manifest.get("source_archive")
+    rows = source_snapshot.get("rows")
+    if type(archive) is not dict or type(rows) is not list:
+        raise StructuralCegarError("terminal source archive metadata is malformed")
+    expected_archived: list[dict[str, object]] = []
+    for row in rows:
+        if type(row) is not dict:
+            raise StructuralCegarError("terminal source snapshot row is malformed")
+        status = row.get("porcelain_status")
+        path = row.get("path")
+        expected_sha = row.get("sha256")
+        if not all(type(value) is str for value in (status, path, expected_sha)):
+            raise StructuralCegarError("terminal source snapshot identity is malformed")
+        if not status:
+            continue
+        relative = Path(path)
+        if relative.is_absolute() or ".." in relative.parts or relative.as_posix() != path:
+            raise StructuralCegarError("terminal source archive path is unsafe")
+        artifact = out_dir / "source-nonclean" / relative
+        if not artifact.is_file() or _sha256(artifact.read_bytes()) != expected_sha:
+            raise StructuralCegarError(
+                f"terminal source archive hash mismatch: {path}"
+            )
+        expected_archived.append(
+            {
+                "path": path,
+                "sha256": expected_sha,
+                "porcelain_status": status,
+            }
+        )
+    expected_archive = {
+        "schema": f"{SOURCE_SNAPSHOT_SCHEMA}/nonclean-archive/v1",
+        "source_aggregate_sha256": source_snapshot.get("aggregate_sha256"),
+        "archived": expected_archived,
+    }
+    archive_root = out_dir / "source-nonclean"
+    archive_manifest_path = archive_root / "manifest.json"
+    expected_paths = sorted(
+        ["manifest.json", *(str(row["path"]) for row in expected_archived)]
+    )
+    actual_paths: list[str] = []
+    if not archive_root.is_dir():
+        raise StructuralCegarError("terminal source archive directory is missing")
+    for artifact in sorted(archive_root.rglob("*")):
+        if artifact.is_dir():
+            continue
+        if artifact.is_symlink() or not artifact.is_file():
+            raise StructuralCegarError("terminal source archive has an unsafe artifact")
+        actual_paths.append(artifact.relative_to(archive_root).as_posix())
+    if (
+        archive != expected_archive
+        or actual_paths != expected_paths
+        or not archive_manifest_path.is_file()
+        or archive_manifest_path.read_bytes() != _canonical_json(expected_archive)
+    ):
+        raise StructuralCegarError("terminal source archive manifest mismatch")
+
+
 def _validate_terminal_manifest(
     out_dir: Path,
     manifest: Mapping[str, object],
@@ -199,8 +570,12 @@ def _validate_terminal_manifest(
     max_cuts: int,
     timeout_seconds: int,
     solver_identity: Mapping[str, object],
-    require_source_custody: bool,
 ) -> None:
+    manifest_path = out_dir / "manifest.json"
+    if not manifest_path.is_file() or manifest_path.read_bytes() != _canonical_json(
+        manifest
+    ):
+        raise StructuralCegarError("terminal manifest is not canonical")
     producer = Path(__file__).resolve()
     required = {
         "schema": SCHEMA,
@@ -216,10 +591,16 @@ def _validate_terminal_manifest(
         "solver": dict(solver_identity),
         "producer": str(producer),
         "producer_sha256": _sha256(producer.read_bytes()),
+        "source_snapshot_preflight_verified": True,
+        "source_snapshot_postflight_verified": True,
+        "source_snapshot_postflight": {
+            "repo_head": source_snapshot.get("repo_head"),
+            "aggregate_sha256": source_snapshot.get("aggregate_sha256"),
+            "content_aggregate_sha256": source_snapshot.get(
+                "content_aggregate_sha256"
+            ),
+        },
     }
-    if require_source_custody:
-        required["source_snapshot_preflight_verified"] = True
-        required["source_snapshot_postflight_verified"] = True
     for key, value in required.items():
         if manifest.get(key) != value:
             raise StructuralCegarError(f"terminal manifest mismatch: {key}")
@@ -234,51 +615,15 @@ def _validate_terminal_manifest(
         raise StructuralCegarError("terminal aggregate status mismatch")
     if manifest.get("artifact_inventory") != _artifact_inventory(out_dir):
         raise StructuralCegarError("terminal artifact inventory mismatch")
+    _validate_source_archive(out_dir, manifest, source_snapshot)
     for boundary_index in range(CELL_COUNT):
-        cell = out_dir / f"cell-{boundary_index}"
-        result_paths = sorted(cell.glob("step-*.result.json"))
-        if not result_paths:
-            raise StructuralCegarError(f"cell {boundary_index} has no result")
-        try:
-            payload = result_paths[-1].read_bytes()
-            result = json.loads(payload)
-        except (OSError, json.JSONDecodeError) as exc:
-            raise StructuralCegarError(
-                f"cell {boundary_index} terminal result is unreadable"
-            ) from exc
-        if _canonical_json(result) != payload:
-            raise StructuralCegarError(
-                f"cell {boundary_index} terminal result is not canonical"
-            )
-        if not (
-            type(result) is dict
-            and result.get("schema") == SCHEMA
-            and result.get("boundary_index") == boundary_index
-            and result.get("status") == statuses[str(boundary_index)]
-        ):
-            raise StructuralCegarError(
-                f"cell {boundary_index} terminal result metadata mismatch"
-            )
-        for path_key, hash_key in (
-            ("cnf_path", "cnf_sha256"),
-            ("variable_map_path", "variable_map_sha256"),
-            ("stdout_path", "stdout_sha256"),
-            ("stderr_path", "stderr_sha256"),
-        ):
-            relative = result.get(path_key)
-            expected_hash = result.get(hash_key)
-            if type(relative) is not str or Path(relative).name != relative:
-                raise StructuralCegarError(
-                    f"cell {boundary_index} malformed artifact path: {path_key}"
-                )
-            artifact = cell / relative
-            if (
-                not artifact.is_file()
-                or _sha256(artifact.read_bytes()) != expected_hash
-            ):
-                raise StructuralCegarError(
-                    f"cell {boundary_index} artifact hash mismatch: {relative}"
-                )
+        _validate_terminal_cell_history(
+            out_dir / f"cell-{boundary_index}",
+            boundary_index=boundary_index,
+            expected_status=statuses[str(boundary_index)],
+            max_cuts=max_cuts,
+            timeout_seconds=timeout_seconds,
+        )
 
 
 def _admit_cut(
@@ -488,8 +833,8 @@ def run_wave(
         raise StructuralCegarError("max_cuts must be in 1..12")
     if timeout_seconds != SOLVER_TIMEOUT_SECONDS:
         raise StructuralCegarError("timeout_seconds is fixed at 30")
-    if solver_runner is None and repo_root is None:
-        raise StructuralCegarError("real solver runs require repo_root source custody")
+    if repo_root is None:
+        raise StructuralCegarError("all wave runs require repo_root source custody")
     solver_identity = (
         _cadical_identity(cadical)
         if solver_runner is None
@@ -500,13 +845,12 @@ def run_wave(
         }
     )
     solver_binary = str(solver_identity.get("resolved_path", cadical))
-    if repo_root is not None:
-        try:
-            verify_snapshot(repo_root, source_snapshot)
-        except Exception as exc:
-            raise StructuralCegarError(
-                f"preflight source snapshot verification failed: {exc}"
-            ) from exc
+    try:
+        verify_snapshot(repo_root, source_snapshot)
+    except Exception as exc:
+        raise StructuralCegarError(
+            f"preflight source snapshot verification failed: {exc}"
+        ) from exc
     if (
         out_dir.exists()
         and any(out_dir.iterdir())
@@ -530,7 +874,6 @@ def run_wave(
                 max_cuts=max_cuts,
                 timeout_seconds=timeout_seconds,
                 solver_identity=solver_identity,
-                require_source_custody=repo_root is not None,
             )
             return existing
         if type(existing) is dict and existing.get("run_state") == "RUNNING":
@@ -552,14 +895,13 @@ def run_wave(
         "producer_sha256": _sha256(producer.read_bytes()),
         "statuses": {},
     }
-    if repo_root is not None:
-        manifest["source_snapshot_preflight_verified"] = True
-        try:
-            manifest["source_archive"] = archive_nonclean_snapshot_rows(
-                repo_root, source_snapshot, out_dir / "source-nonclean"
-            )
-        except Exception as exc:
-            raise StructuralCegarError(f"source archive failed: {exc}") from exc
+    manifest["source_snapshot_preflight_verified"] = True
+    try:
+        manifest["source_archive"] = archive_nonclean_snapshot_rows(
+            repo_root, source_snapshot, out_dir / "source-nonclean"
+        )
+    except Exception as exc:
+        raise StructuralCegarError(f"source archive failed: {exc}") from exc
     _write_json(existing_manifest_path, manifest)
     runner = _run_solver if solver_runner is None else solver_runner
     results: dict[str, object] = {}
@@ -578,19 +920,18 @@ def run_wave(
             for key, value in results.items()
         }
         _write_json(existing_manifest_path, manifest)
-    if repo_root is not None:
-        try:
-            postflight = verify_snapshot(repo_root, source_snapshot)
-        except Exception as exc:
-            raise StructuralCegarError(
-                f"postflight source snapshot verification failed: {exc}"
-            ) from exc
-        manifest["source_snapshot_postflight_verified"] = True
-        manifest["source_snapshot_postflight"] = {
-            "repo_head": postflight["repo_head"],
-            "aggregate_sha256": postflight["aggregate_sha256"],
-            "content_aggregate_sha256": postflight["content_aggregate_sha256"],
-        }
+    try:
+        postflight = verify_snapshot(repo_root, source_snapshot)
+    except Exception as exc:
+        raise StructuralCegarError(
+            f"postflight source snapshot verification failed: {exc}"
+        ) from exc
+    manifest["source_snapshot_postflight_verified"] = True
+    manifest["source_snapshot_postflight"] = {
+        "repo_head": postflight["repo_head"],
+        "aggregate_sha256": postflight["aggregate_sha256"],
+        "content_aggregate_sha256": postflight["content_aggregate_sha256"],
+    }
     manifest["run_state"] = "TERMINAL"
     manifest["terminal"] = True
     manifest["statuses"] = {

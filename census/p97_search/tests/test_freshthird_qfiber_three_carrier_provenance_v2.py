@@ -130,3 +130,19 @@ def test_snapshot_verification_and_nonclean_archive(tmp_path: Path) -> None:
         }
     ]
     assert (archive / "query.py").read_text() == "QUERY = 2\n"
+
+
+def test_snapshot_verification_rejects_stale_head_with_identical_inputs(
+    tmp_path: Path,
+) -> None:
+    repo = _repo(tmp_path)
+    expected = _snapshot(repo)
+    (repo / "README.md").write_text("unrelated commit\n")
+    _git(repo, "add", "README.md")
+    _git(repo, "commit", "-qm", "unrelated")
+
+    actual = _snapshot(repo)
+    assert actual["content_aggregate_sha256"] == expected["content_aggregate_sha256"]
+    assert actual["repo_head"] != expected["repo_head"]
+    with pytest.raises(SourceSnapshotError, match="source snapshot drifted"):
+        verify_snapshot(repo, expected)
