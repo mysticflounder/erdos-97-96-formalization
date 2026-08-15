@@ -1,0 +1,29 @@
+{
+  "status": "SAT_LOCAL_METRIC_CORE",
+  "physical_center": "h",
+  "physical_radius_squared": "1",
+  "physical_class": ["u", "xu", "deleted", "v", "xv"],
+  "points": {
+    "u": ["3/5", "4/5"],
+    "xu": ["3/5", "-4/5"],
+    "deleted": ["15/17", "8/17"],
+    "v": ["15/17", "-8/17"],
+    "xv": ["1", "0"],
+    "c": ["6/5", "3/5"],
+    "a": ["1", "6/5"],
+    "b": ["17/25", "24/25"],
+    "e": ["9/5", "-2/5"],
+    "f": ["1/5", "2/5"],
+    "g": ["-1", "2"],
+    "h": ["0", "0"]
+  },
+  "selected_shells": {
+    "row_u_center_xv": ["u", "xu", "e", "f"],
+    "row_xv_center_c": ["u", "xv", "a", "b"]
+  },
+  "carrier_bisectors": {
+    "u_xu": ["xv", "h"],
+    "u_xv": ["c", "h"]
+  },
+  "oriented_local_cap_chain": ["u", "c", "xv", "xu"]
+}
