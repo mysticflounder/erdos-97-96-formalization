@@ -402,3 +402,10 @@ docs/live-blueprint.md.tmp
 /scratch/u3-mixed-olean-overlay/
 /scratch/exact17-child46-production-8205802e/
 /scratch/sidecar-sourcefaithful-common-missing-20260807-a7f3c1/
+
+# PIQD and source-frozen production directories are local execution custody.
+# Durable specifications, validators, and curated reports belong outside the
+# timestamped run directory and remain visible to Git.
+/scratch/*-piqd*/
+/scratch/arm-static-*-live-*/
+/scratch/projected-v3-production-*-live-*/
