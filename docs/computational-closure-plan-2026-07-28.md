@@ -11032,10 +11032,20 @@ constraints are proved from the actual `SelectedFourClass` rows by
 `FreshThirdVisibleRowSharedPairSeparationConstraint.ofView`.  They are therefore
 source clauses available to every later CEGAR wave, not learned assumptions.
 
-This extra fidelity is not itself the missing producer.  The compiler-checked
+The same replay contract now includes both visible five-point Euclidean
+obstruction families from `FreshThirdPinnedEndpointFivePointCuts`.  The
+production theorem `FreshThirdVisibleFivePointConstraint.ofView` derives the
+two universal finite-role cuts from actual packet rows.  Its companion Boolean
+checker is propositionally equivalent to the source statement.  The diagnostic
+is discharged by small finite row-pair and common-point lemmas using ordinary
+`decide`; no `native_decide` remains.  The arbitrary-carrier replay theorem
+itself remains an ordinary Lean proof.
+
+This extra fidelity is not itself the missing producer.  The kernel-checked
 diagnostic configuration still satisfies the complete finite source theory,
-both generic visible-row geometry constraints, and the exact-three boundary
-constraint: its fan and `Q` rows are disjoint, so the conditional
+both generic visible-row geometry constraints, both visible five-point cuts,
+and the exact-three boundary constraint: its fan and `Q` rows are disjoint, so
+the conditional
 blocker-center laws hold vacuously.  The theorem
 `FreshThirdQFiberThreeFiniteQueryContract.not_of_currentSourceTheory` makes the
 stop rule kernel-visible.  Therefore a solver run over only the newly extended

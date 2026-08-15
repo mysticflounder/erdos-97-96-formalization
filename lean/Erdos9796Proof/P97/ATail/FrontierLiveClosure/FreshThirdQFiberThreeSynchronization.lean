@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdPinnedEndpointFivePointCuts
 
 /-!
 # FreshThird exact-three Q-fiber synchronization
@@ -529,6 +529,95 @@ def FreshThirdVisibleRowSharedPairSeparationConstraint
         (freshThirdPinnedEndpointOutsideSeedRowCenter right)
         (freshThirdPinnedEndpointOutsideSeedRowSlot left j))
 
+/-- The two five-point Euclidean row obstructions, stated entirely in the
+intrinsic finite vocabulary. -/
+def FreshThirdVisibleFivePointConstraint
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) : Prop :=
+  let A := Config.assignment
+  (∀ (a d e : FreshThirdPinnedEndpointOutsideSeedPointRole)
+      (bRow cRow : FreshThirdPinnedEndpointOutsideSeedRowRole),
+    A.Before a (freshThirdPinnedEndpointOutsideSeedRowCenter bRow) →
+    A.Before (freshThirdPinnedEndpointOutsideSeedRowCenter bRow)
+      (freshThirdPinnedEndpointOutsideSeedRowCenter cRow) →
+    A.Before (freshThirdPinnedEndpointOutsideSeedRowCenter cRow) d →
+    A.Before d e →
+    A.Incident a bRow → A.Incident e bRow →
+    A.Incident a cRow →
+    A.Incident (freshThirdPinnedEndpointOutsideSeedRowCenter bRow) cRow →
+    A.Incident d cRow → False) ∧
+  (∀ (a b c : FreshThirdPinnedEndpointOutsideSeedPointRole)
+      (dRow eRow : FreshThirdPinnedEndpointOutsideSeedRowRole),
+    A.Before a b → A.Before b c →
+    A.Before c (freshThirdPinnedEndpointOutsideSeedRowCenter dRow) →
+    A.Before (freshThirdPinnedEndpointOutsideSeedRowCenter dRow)
+      (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) →
+    A.Incident a dRow → A.Incident c dRow →
+    A.Incident (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) dRow →
+    A.Incident a eRow → A.Incident b eRow → False)
+
+/-- Computable Boolean form of the first visible five-point obstruction. -/
+def freshThirdVisibleFivePointBcForbidden
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (a d e : FreshThirdPinnedEndpointOutsideSeedPointRole)
+    (bRow cRow : FreshThirdPinnedEndpointOutsideSeedRowRole) : Bool :=
+  A.before a (freshThirdPinnedEndpointOutsideSeedRowCenter bRow) &&
+  A.before (freshThirdPinnedEndpointOutsideSeedRowCenter bRow)
+    (freshThirdPinnedEndpointOutsideSeedRowCenter cRow) &&
+  A.before (freshThirdPinnedEndpointOutsideSeedRowCenter cRow) d &&
+  A.before d e &&
+  A.incident a bRow && A.incident e bRow &&
+  A.incident a cRow &&
+  A.incident (freshThirdPinnedEndpointOutsideSeedRowCenter bRow) cRow &&
+  A.incident d cRow
+
+/-- Computable Boolean form of the second visible five-point obstruction. -/
+def freshThirdVisibleFivePointDeForbidden
+    (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
+    (a b c : FreshThirdPinnedEndpointOutsideSeedPointRole)
+    (dRow eRow : FreshThirdPinnedEndpointOutsideSeedRowRole) : Bool :=
+  A.before a b && A.before b c &&
+  A.before c (freshThirdPinnedEndpointOutsideSeedRowCenter dRow) &&
+  A.before (freshThirdPinnedEndpointOutsideSeedRowCenter dRow)
+    (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) &&
+  A.incident a dRow && A.incident c dRow &&
+  A.incident (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) dRow &&
+  A.incident a eRow && A.incident b eRow
+
+/-- Finite checker proposition equivalent to the visible five-point law.
+Each quantified body is one Boolean equality, avoiding deep decidability
+search through a long implication chain. -/
+def FreshThirdVisibleFivePointConstraintCheck
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) : Prop :=
+  (∀ (a d e : FreshThirdPinnedEndpointOutsideSeedPointRole)
+      (bRow cRow : FreshThirdPinnedEndpointOutsideSeedRowRole),
+    freshThirdVisibleFivePointBcForbidden Config.assignment a d e bRow cRow = false) ∧
+  (∀ (a b c : FreshThirdPinnedEndpointOutsideSeedPointRole)
+      (dRow eRow : FreshThirdPinnedEndpointOutsideSeedRowRole),
+    freshThirdVisibleFivePointDeForbidden Config.assignment a b c dRow eRow = false)
+
+section ComputableFivePointCheck
+
+attribute [-instance] Classical.propDecidable
+
+instance freshThirdVisibleFivePointConstraintCheckDecidable
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) :
+    Decidable (FreshThirdVisibleFivePointConstraintCheck Config) := by
+  unfold FreshThirdVisibleFivePointConstraintCheck
+  exact instDecidableAnd
+
+end ComputableFivePointCheck
+
+theorem freshThirdVisibleFivePointConstraint_iff_check
+    (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) :
+    FreshThirdVisibleFivePointConstraint Config ↔
+      FreshThirdVisibleFivePointConstraintCheck Config := by
+  simp [FreshThirdVisibleFivePointConstraint,
+    FreshThirdVisibleFivePointConstraintCheck,
+    freshThirdVisibleFivePointBcForbidden,
+    freshThirdVisibleFivePointDeForbidden,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Before,
+    FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.Incident]
+
 /-- Every exact packet view satisfies the visible-row two-circle overlap
 law.  The proof uses the actual selected four-classes, not a Boolean axiom. -/
 theorem FreshThirdVisibleRowGeometryConstraint.ofView
@@ -653,6 +742,63 @@ theorem FreshThirdVisibleRowSharedPairSeparationConstraint.ofView
     FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition,
     SurplusCOMPGBank.btw, leftCenter, rightCenter, firstPoint, secondPoint] using
       hseparated
+
+/-- Source replay for both visible five-point forbidden patterns. -/
+theorem FreshThirdVisibleFivePointConstraint.ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    (View : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet) :
+    FreshThirdVisibleFivePointConstraint
+      (FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView P Pρ View) := by
+  constructor
+  · intro a d e bRow cRow hab hbc hcd hde haB heB haC hbC hdC
+    exact FreshThirdPinnedEndpointOutsideSeedFiniteView.false_of_fivePoint_bcRowPattern
+      (P := P) (Pρ := Pρ) View
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hab)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hbc)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hcd)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hde)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 haB)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 heB)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 haC)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hbC)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hdC)
+  · intro a b c dRow eRow hab hbc hcd hde haD hcD heD haE hbE
+    exact FreshThirdPinnedEndpointOutsideSeedFiniteView.false_of_fivePoint_deRowPattern
+      (P := P) (Pρ := Pρ) View
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hab)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hbc)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hcd)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hde)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 haD)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hcD)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 heD)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 haE)
+      ((FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hbE)
 
 /-- Transport the source-level exact-three boundary into the existing
 packet-independent finite vocabulary.
@@ -792,6 +938,7 @@ structure FreshThirdQFiberThreeFiniteQueryContract : Prop where
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config →
     FreshThirdVisibleRowGeometryConstraint Config →
     FreshThirdVisibleRowSharedPairSeparationConstraint Config →
+    FreshThirdVisibleFivePointConstraint Config →
     FreshThirdQFiberThreeFiniteBoundaryConstraint Config → False
 
 /-- Replay an exact-three finite-query certificate on an arbitrary-cardinality
@@ -817,6 +964,8 @@ theorem FreshThirdQFiberThreeBoundary.false_of_finiteQueryContract
     (FreshThirdVisibleRowGeometryConstraint.ofView
       (P := P) (Pρ := Pρ) View)
     (FreshThirdVisibleRowSharedPairSeparationConstraint.ofView
+      (P := P) (Pρ := Pρ) View)
+    (FreshThirdVisibleFivePointConstraint.ofView
       (P := P) (Pρ := Pρ) View)
     (FreshThirdQFiberThreeFiniteBoundaryConstraint.ofView
       (P := P) (Pρ := Pρ) Q Boundary View)

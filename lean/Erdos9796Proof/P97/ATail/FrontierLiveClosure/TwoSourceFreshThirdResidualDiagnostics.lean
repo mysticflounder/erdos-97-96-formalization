@@ -314,6 +314,60 @@ theorem diagnosticConfiguration_visibleRowSharedPairSeparationConstraint :
   fin_cases left <;> fin_cases right <;>
     fin_cases i <;> fin_cases j <;> decide
 
+private theorem diagnostic_bc_row_pair :
+    ∀ bRow cRow : FreshThirdPinnedEndpointOutsideSeedRowRole,
+      diagnosticAssignment.Before
+        (freshThirdPinnedEndpointOutsideSeedRowCenter bRow)
+        (freshThirdPinnedEndpointOutsideSeedRowCenter cRow) →
+      diagnosticAssignment.Incident
+        (freshThirdPinnedEndpointOutsideSeedRowCenter bRow) cRow →
+      bRow = .boundary ∧ cRow = .source := by
+  decide
+
+private theorem diagnostic_no_boundary_point_before_boundary_center :
+    ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
+      diagnosticAssignment.Before a .boundaryCenter →
+      diagnosticAssignment.Incident a .boundary → False := by
+  decide
+
+private theorem diagnostic_de_row_pair :
+    ∀ dRow eRow : FreshThirdPinnedEndpointOutsideSeedRowRole,
+      diagnosticAssignment.Before
+        (freshThirdPinnedEndpointOutsideSeedRowCenter dRow)
+        (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) →
+      diagnosticAssignment.Incident
+        (freshThirdPinnedEndpointOutsideSeedRowCenter eRow) dRow →
+      (dRow = .fresh ∧ eRow = .boundary) ∨
+        (dRow = .source ∧ eRow = .fan) := by
+  decide
+
+private theorem diagnostic_no_fresh_boundary_common_point :
+    ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
+      diagnosticAssignment.Incident a .fresh →
+      diagnosticAssignment.Incident a .boundary → False := by
+  decide
+
+private theorem diagnostic_no_source_fan_common_point :
+    ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
+      diagnosticAssignment.Incident a .source →
+      diagnosticAssignment.Incident a .fan → False := by
+  decide
+
+/-- The diagnostic model also avoids both visible five-point forbidden
+patterns. -/
+theorem diagnosticConfiguration_visibleFivePointConstraint :
+    FreshThirdVisibleFivePointConstraint diagnosticConfiguration := by
+  constructor
+  · intro a _d _e bRow cRow haB hBC _hCd _hde haBRow _heBRow _haC hBcenterC _hdC
+    rcases diagnostic_bc_row_pair bRow cRow hBC hBcenterC with ⟨rfl, rfl⟩
+    exact diagnostic_no_boundary_point_before_boundary_center a haB haBRow
+  · intro a _b _c dRow eRow _hab _hbc _hcD hDE haD _hcDRow hEcenterD haE _hbE
+    rcases diagnostic_de_row_pair dRow eRow hDE hEcenterD with hpair | hpair
+    · rcases hpair with ⟨rfl, rfl⟩
+      exact diagnostic_no_fresh_boundary_common_point a haD haE
+    · rcases hpair with ⟨rfl, rfl⟩
+      exact diagnostic_no_source_fan_common_point a haD haE
+
 /-- Exact cap profile of the boundary row in the diagnostic model.
 
 Every boundary-row point avoids the first cap, while the four slots split
@@ -359,6 +413,7 @@ theorem FreshThirdQFiberThreeFiniteQueryContract.not_of_currentSourceTheory :
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_sourceTheory
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_visibleRowGeometryConstraint
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_visibleRowSharedPairSeparationConstraint
+    FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_visibleFivePointConstraint
     FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.diagnosticConfiguration_qFiberThreeBoundaryConstraint
 
 end TwoSourceExactCollisionRowsTerminal
