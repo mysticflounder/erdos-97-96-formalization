@@ -296,6 +296,47 @@ def test_manifest_binds_complete_source_schema_and_theorems() -> None:
     assert CONSTRAINT_GROUPS[-1] == "source_complete_finite_theory"
 
 
+def test_canonical_readback_realizes_every_row_radius_constraint() -> None:
+    class ReadbackProbe(FreshThirdCarrierSourceCompleteCnfEncoding):
+        def validate(self, assignment) -> None:
+            return None
+
+        def _canonical_classes(self, assignment):
+            classes = {role: i for i, role in enumerate(ROLES)}
+            classes["blockerCenter0"] = classes["pinnedCenter"]
+            return classes
+
+        def _order_values(self, assignment, point_classes):
+            return dict(point_classes)
+
+        def _canonical_radius_classes(self, assignment):
+            return {role: i % 5 for i, role in enumerate(ROLES)}
+
+        def _cap_witnesses(self, assignment):
+            return {
+                "first": 0,
+                "fresh": 1,
+                "row": 2,
+                "boundary": 0,
+                "blocker": [0, 0, 0, 0],
+                "boundary_fan": [0, 0, 0, 0],
+            }
+
+    encoding = ReadbackProbe(0)
+    assignment = {var: False for var in range(1, encoding.num_vars + 1)}
+    signature = encoding.model_signature(assignment)
+    radius = signature["radius_classes"]
+
+    assert len(set(radius["sourceCenter"])) == 1
+    assert radius["blockerCenter0"] == radius["pinnedCenter"]
+    blocker_slots = ROWS["blocker0"][1]
+    for slot in blocker_slots[1:]:
+        assert (
+            -encoding.same("blockerCenter0", "pinnedCenter"),
+            encoding.radius_equal(blocker_slots[0], slot),
+        ) in encoding.clauses
+
+
 def test_result_metadata_is_fail_closed_for_source_groups() -> None:
     encoding = FreshThirdCarrierSourceCompleteCnfEncoding(2)
     result = _result_stub(encoding)
