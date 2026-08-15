@@ -670,6 +670,7 @@ def _counterfactual_result(
     if predicate_name not in predicates:
         raise StaticRunnerError(f"unknown counterfactual predicate: {predicate_name}")
     polarity = "true" if required_value else "false"
+    provenance = packet.provenance_binding(context)
     probe_dir = cell_dir / "counterfactuals" / predicate_name / polarity
     predicate = predicates[predicate_name]
     solver.add(predicate if required_value else z3.Not(predicate))
@@ -703,6 +704,7 @@ def _counterfactual_result(
         "query_size": len(query_payload),
         "source_snapshot_sha256": source_snapshot["snapshot_sha256"],
         "encoding_manifest_sha256": encoding_manifest_sha256,
+        "provenance_binding": provenance,
         "solver": dict(solver_identity),
         "false_claims": packet.FALSE_CLAIMS,
     }
@@ -722,6 +724,7 @@ def _cell_result(
     interaction = str(cell["interaction"])
     origin = str(cell["origin"])
     solver, context = packet.build_packet(nonhit, interaction, origin)
+    provenance = packet.provenance_binding(context)
     query_payload = _query_bytes(solver)
     cell_dir = artifacts / f"cell-{cell['cell_id']}"
     query_sha256 = _atomic_write(cell_dir / "query.smt2", query_payload)
@@ -779,6 +782,7 @@ def _cell_result(
         "query_size": len(query_payload),
         "source_snapshot_sha256": source_snapshot["snapshot_sha256"],
         "encoding_manifest_sha256": encoding_manifest_sha256,
+        "provenance_binding": provenance,
         "solver": dict(solver_identity),
         "false_claims": packet.FALSE_CLAIMS,
         "counterfactuals": counterfactuals,
@@ -1333,6 +1337,10 @@ def _run_wave_locked(
 def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, object]:
     """Execute one wave, or authenticate its completed zero-solver reentry."""
     output_dir = Path(output_dir)
+    if not allow_test_output and not packet.PRODUCTION_LAUNCH_ENABLED:
+        raise StaticRunnerError(
+            "named-role packet is conservative preflight only; production disabled"
+        )
     with _wave_lock(output_dir, allow_test_output):
         if allow_test_output:
             return _run_wave_locked(output_dir, allow_test_output=True)
@@ -1467,6 +1475,7 @@ def _validate_counterfactual_result(
             "query_size",
             "source_snapshot_sha256",
             "encoding_manifest_sha256",
+            "provenance_binding",
             "solver",
             "false_claims",
             "result_sha256",
@@ -1493,6 +1502,8 @@ def _validate_counterfactual_result(
     solver, context = packet.build_packet(
         str(cell["nonhit"]), str(cell["interaction"]), str(cell["origin"])
     )
+    if result.get("provenance_binding") != packet.provenance_binding(context):
+        raise StaticRunnerError("counterfactual provenance binding mismatch")
     predicates = packet.synchronization_predicates(context)
     if predicate_name not in predicates:
         raise StaticRunnerError("counterfactual predicate is not in the packet panel")
@@ -1792,6 +1803,7 @@ def validate_run(output_dir: Path) -> dict[str, object]:
                 "query_size",
                 "source_snapshot_sha256",
                 "encoding_manifest_sha256",
+                "provenance_binding",
                 "solver",
                 "false_claims",
                 "counterfactuals",
@@ -1822,9 +1834,11 @@ def validate_run(output_dir: Path) -> dict[str, object]:
             raise StaticRunnerError("cell solver identity mismatch")
         if result.get("false_claims") != packet.FALSE_CLAIMS:
             raise StaticRunnerError("cell false-claim boundary mismatch")
-        solver, _context = packet.build_packet(
+        solver, context = packet.build_packet(
             str(cell["nonhit"]), str(cell["interaction"]), str(cell["origin"])
         )
+        if result.get("provenance_binding") != packet.provenance_binding(context):
+            raise StaticRunnerError("cell provenance binding mismatch")
         query_payload = _query_bytes(solver)
         query_path = cell_dir / "query.smt2"
         if query_path.is_symlink() or not query_path.is_file():

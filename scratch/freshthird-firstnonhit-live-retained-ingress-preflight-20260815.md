@@ -134,6 +134,14 @@ indexing files.  The active z3py loader module and the actual ctypes-loaded
 bundled `libz3` are both byte-bound.  Directory closure is exact—including
 empty directories—and every newly created ancestor is parent-fsynced.
 
+Each of the 24 cells also carries an ordered provenance binding: a hash of the
+clause-key/source rows, a hash of the emitted SMT assertion stream, and a hash
+of their exact row-by-row pairing.  The same binding appears in the encoding
+manifest, every base/probe result (including UNSAT results), and every SAT
+signature, and fresh replay recomputes it before solving.  These source labels
+remain explanatory provenance rather than a Lean proof; `source_entitlement`,
+coverage, theorem, Lean, universal, and terminal-UNSAT claims stay false.
+
 One arbitrary SAT signature per cell is only observed-model data.  The bounded
 wave therefore asks both `P` and `¬P` for exactly five retained-row
 synchronization predicates:
@@ -156,7 +164,21 @@ between `K` and that row.
 
 ## Immediate implementation target
 
-Build a new live-retained encoder/validator.  Reuse the authenticated static
-runner and low-level exact-row/congruence machinery from the exact-three v4
-lane, but do not inherit its role table, common-radius packet, equal-center
-row, boundary fan, or exact-three pinned-fan assumptions.
+The named-role encoder/validator is now preserved only as a conservative finite
+preflight and predicate miner.  **Do not launch it as the source-total
+production wave.**  Its anonymous carrier points, universal radii, and the
+internal witnesses of `MinimalDeletionCore` are deliberately relaxed, despite
+the explicit source-owned boundary atoms and named consequences above.
+
+The next production design must instead use one of two complete ingress
+contracts:
+
+1. a source-entitled exact finite-cardinality carrier whose encoding includes
+   every point, radius class, deletion-core witness, and constructor field; or
+2. a quantified/unbounded carrier theory that retains the universal-radii and
+   existential-core semantics directly.
+
+Any bounded exact-cardinality version must state its Lean cardinality ingress
+before solver work begins.  Until such an ingress exists, this packet may
+suggest producer predicates but may not be described as source-total,
+coverage-complete, terminal, or promotion-ready.

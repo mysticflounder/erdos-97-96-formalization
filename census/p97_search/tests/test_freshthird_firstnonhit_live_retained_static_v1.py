@@ -80,6 +80,27 @@ def test_plan_has_explicit_unique_2x4x3_cells() -> None:
     assert all(isinstance(cell, dict) for cell in plan)
 
 
+def test_one_cell_and_all_probes_bind_ordered_provenance(tmp_path: Path) -> None:
+    artifacts = tmp_path / "artifacts"
+    artifacts.mkdir()
+    cell = runner.plan_wave()[0]
+    result = runner._cell_result(
+        cell,
+        artifacts,
+        {"snapshot_sha256": "a" * 64},
+        "b" * 64,
+        {"solver": "controlled"},
+    )
+
+    assert result["provenance_binding"] == result["signature"]["provenance_binding"]
+    assert result["provenance_binding"]["schema"] == runner.packet.PROVENANCE_SCHEMA
+    probe_results = sorted(artifacts.rglob("counterfactuals/*/*/result.json"))
+    assert len(probe_results) == 5 * 2
+    for path in probe_results:
+        probe = _json(path)
+        assert probe["provenance_binding"] == result["provenance_binding"]
+
+
 def test_full_run_has_sat_cells_canonical_manifests_and_validates(
     completed_run: tuple[Path, dict[str, object]],
 ) -> None:
@@ -102,6 +123,14 @@ def test_full_run_has_sat_cells_canonical_manifests_and_validates(
         for result in results
     } == EXPECTED_CELLS
     assert all(isinstance(result["signature"], dict) for result in results)
+    assert all(
+        result["provenance_binding"] == result["signature"]["provenance_binding"]
+        for result in results
+    )
+    assert all(
+        result["provenance_binding"]["schema"] == runner.packet.PROVENANCE_SCHEMA
+        for result in (*results, *probe_results)
+    )
     assert {result["status"] for result in probe_results} <= {
         "SAT_ABSTRACTION",
         "UNSAT_RELAXATION",
@@ -546,6 +575,14 @@ def test_production_snapshot_requires_clean_pushed_inputs(
         runner._validate_production_snapshot(snapshot)
 
 
+def test_named_role_packet_production_is_disabled(tmp_path: Path) -> None:
+    output = tmp_path / "disabled-production"
+
+    with pytest.raises(runner.StaticRunnerError, match="production disabled"):
+        runner.run_wave(output)
+    assert not output.exists()
+
+
 def test_production_receipt_blocks_a_second_output(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -554,6 +591,7 @@ def test_production_receipt_blocks_a_second_output(
     second_output = production_root / "second"
     calls: list[Path] = []
     monkeypatch.setattr(runner, "DEFAULT_RUN_PARENT", production_root)
+    monkeypatch.setattr(runner.packet, "PRODUCTION_LAUNCH_ENABLED", True)
 
     def fake_run(output: Path, allow_test_output: bool = False) -> dict[str, object]:
         assert allow_test_output is False

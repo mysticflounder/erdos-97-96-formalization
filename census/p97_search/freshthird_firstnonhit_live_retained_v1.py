@@ -21,7 +21,9 @@ import z3
 
 SCHEMA = "p97-freshthird-firstnonhit-live-retained/v1"
 RESULT_SCHEMA = "p97-freshthird-firstnonhit-live-retained-result/v1"
+PROVENANCE_SCHEMA = "p97-freshthird-firstnonhit-live-retained-provenance/v1"
 SOLVER_TIMEOUT_MS = 30_000
+PRODUCTION_LAUNCH_ENABLED = False
 
 NONHIT_BRANCHES = ("sameBlocker", "sourceRowOmission")
 INTERACTION_BRANCHES = (
@@ -61,6 +63,7 @@ COUNTERFACTUAL_CONTRACT = (
 
 FALSE_CLAIMS = {
     "source_entitlement": False,
+    "source_total": False,
     "constructor_realization": False,
     "coverage": False,
     "theorem": False,
@@ -210,6 +213,7 @@ def manifest() -> dict[str, object]:
             len(NONHIT_BRANCHES) * len(INTERACTION_BRANCHES) * len(ORIGIN_BRANCHES)
         ),
         "solver_timeout_ms": SOLVER_TIMEOUT_MS,
+        "production_launch_enabled": PRODUCTION_LAUNCH_ENABLED,
         "roles": list(ROLES),
         "rows": {
             name: {"center": center, "support": list(support)}
@@ -217,6 +221,8 @@ def manifest() -> dict[str, object]:
         },
         "source_theorems": list(SOURCE_THEOREMS),
         "source_files": source_hashes,
+        "provenance_schema": PROVENANCE_SCHEMA,
+        "cell_provenance": _manifest_cell_provenance(),
         "false_claims": FALSE_CLAIMS,
         "synchronization_predicates": list(SYNCHRONIZATION_PREDICATES),
         "counterfactual_contract": COUNTERFACTUAL_CONTRACT,
@@ -862,6 +868,54 @@ class LiveRetainedPacket:
         self._emit_global_row()
 
 
+def provenance_binding(packet: LiveRetainedPacket) -> dict[str, object]:
+    """Bind emitted clauses to their exact ordered source-provenance rows."""
+    assertions = packet.solver.assertions()
+    clause_count = len(packet.provenance)
+    if len(assertions) < clause_count:
+        raise LiveRetainedEncodingError("solver lost an emitted provenance clause")
+    provenance_rows = [dict(row) for row in packet.provenance]
+    clause_rows = [assertions[index].sexpr() for index in range(clause_count)]
+    bound_rows = [
+        {
+            "key": provenance["key"],
+            "source": provenance["source"],
+            "assertion": assertion,
+        }
+        for provenance, assertion in zip(provenance_rows, clause_rows, strict=True)
+    ]
+    value: dict[str, object] = {
+        "schema": PROVENANCE_SCHEMA,
+        "clause_count": clause_count,
+        "provenance_sha256": hashlib.sha256(
+            _canonical_json(provenance_rows)
+        ).hexdigest(),
+        "clause_stream_sha256": hashlib.sha256(
+            _canonical_json(clause_rows)
+        ).hexdigest(),
+        "bound_stream_sha256": hashlib.sha256(_canonical_json(bound_rows)).hexdigest(),
+    }
+    value["binding_sha256"] = hashlib.sha256(_canonical_json(value)).hexdigest()
+    return value
+
+
+def _manifest_cell_provenance() -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for nonhit, interaction, origin in itertools.product(
+        NONHIT_BRANCHES, INTERACTION_BRANCHES, ORIGIN_BRANCHES
+    ):
+        packet = LiveRetainedPacket(nonhit, interaction, origin)
+        rows.append(
+            {
+                "nonhit": nonhit,
+                "interaction": interaction,
+                "origin": origin,
+                "binding": provenance_binding(packet),
+            }
+        )
+    return rows
+
+
 def synchronization_predicates(
     packet: LiveRetainedPacket,
 ) -> dict[str, z3.BoolRef]:
@@ -1033,13 +1087,14 @@ def _rank(model: z3.ModelRef, packet: LiveRetainedPacket, role: str) -> int:
 
 def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, object]:
     """Independently replay the named finite invariants of a SAT assignment."""
+    provenance_value = provenance_binding(packet)
     assertions = packet.solver.assertions()
     if len(assertions) < len(packet.provenance):
         raise LiveRetainedEncodingError("solver lost an emitted provenance clause")
-    for provenance, assertion in zip(packet.provenance, assertions, strict=False):
+    for provenance_row, assertion in zip(packet.provenance, assertions, strict=False):
         if not _truth(model, assertion):
             raise LiveRetainedEncodingError(
-                f"emitted clause is false in model: {provenance['key']}"
+                f"emitted clause is false in model: {provenance_row['key']}"
             )
     ranks = {role: _rank(model, packet, role) for role in ROLES}
     radius_labels = {
@@ -1268,7 +1323,8 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         "candidate_q_overlap": q_overlap,
         "retained_choices": retained_choices,
         "abstract_assignment": abstract_assignment,
-        "clause_count": len(packet.provenance),
+        "clause_count": provenance_value["clause_count"],
+        "provenance_binding": provenance_value,
         "false_claims": FALSE_CLAIMS,
     }
     signature["signature_sha256"] = hashlib.sha256(
@@ -1314,6 +1370,8 @@ def replay_signature(
     if set(assignment) != expected_assignment_fields:
         raise LiveRetainedEncodingError("abstract_assignment fields are malformed")
     solver, packet = build_packet(nonhit, interaction, origin)
+    if signature.get("provenance_binding") != provenance_binding(packet):
+        raise LiveRetainedEncodingError("signature provenance binding mismatch")
     if (required_predicate is None) != (required_value is None):
         raise LiveRetainedEncodingError("predicate replay requires a name and value")
     if required_predicate is not None:

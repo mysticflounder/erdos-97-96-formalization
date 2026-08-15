@@ -68,6 +68,10 @@ def test_every_live_constructor_cell_is_sat_and_model_is_valid() -> None:
         assert report["candidate_origin_overlap"] <= 2
         assert report["candidate_origin_outside"] >= 2
         assert report["candidate_q_overlap"] <= 2
+        binding = report["provenance_binding"]
+        assert binding["schema"] == packet.PROVENANCE_SCHEMA
+        assert binding["clause_count"] == report["clause_count"]
+        assert len(binding["binding_sha256"]) == 64
         assignment = report["abstract_assignment"]
         assert assignment["first_cap_multi_radius_retained"] is True
         assert all(assignment["minimal_core_nonempty"].values())
@@ -112,6 +116,13 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
     assert claims
     assert all(value is False for value in claims.values())
     assert manifest["solver_timeout_ms"] == packet.SOLVER_TIMEOUT_MS
+    assert manifest["production_launch_enabled"] is False
+    assert manifest["provenance_schema"] == packet.PROVENANCE_SCHEMA
+    assert len(manifest["cell_provenance"]) == 24
+    assert {
+        (row["nonhit"], row["interaction"], row["origin"])
+        for row in manifest["cell_provenance"]
+    } == set(_cells())
     assert {
         (
             "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
@@ -161,6 +172,11 @@ def test_full_abstract_signature_replays_and_tampering_fails_closed() -> None:
     tampered = copy.deepcopy(signature)
     tampered["abstract_assignment"]["minimal_core_nonempty"]["first"] = False
     with pytest.raises(packet.LiveRetainedEncodingError):
+        packet.replay_signature(tampered)
+
+    tampered = copy.deepcopy(signature)
+    tampered["provenance_binding"]["bound_stream_sha256"] = "0" * 64
+    with pytest.raises(packet.LiveRetainedEncodingError, match="provenance"):
         packet.replay_signature(tampered)
 
 
