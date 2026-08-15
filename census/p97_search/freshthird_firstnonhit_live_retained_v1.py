@@ -78,6 +78,16 @@ FIRST_SUPPORT = ("firstSource", "a1", "a2", "a3")
 SECOND_SUPPORT = ("secondSource", "b1", "b2", "b3")
 Q_SUPPORT = ("q0", "q1", "q2", "q3")
 CANDIDATE_SUPPORT = ("g0", "g1", "g2", "g3")
+CAP_EIGHT = (
+    "p0",
+    "p1",
+    "r0",
+    "r1",
+    "firstSource",
+    "secondSource",
+    "capExtra0",
+    "capExtra1",
+)
 
 ROWS: dict[str, tuple[str, tuple[str, ...]]] = {
     "P": ("pBlockerCenter", P_SUPPORT),
@@ -97,6 +107,8 @@ ROLES = tuple(
             *CENTERS,
             "otherOppCenter",
             "surplusApex",
+            "capExtra0",
+            "capExtra1",
             *(point for _center, support in ROWS.values() for point in support),
         )
     )
@@ -325,6 +337,18 @@ class LiveRetainedPacket:
             self.cap_card_ge_eight,
             "TwoCapSourceThirdCanonicalRowSurface.cap_card_ge_eight",
         )
+        for left, right in itertools.combinations(CAP_EIGHT, 2):
+            self.add(
+                f"surface.cap_eight.distinct.{left}.{right}",
+                z3.Not(self.same(left, right)),
+                "cap_card_ge_eight with six named strict-cap points",
+            )
+        for role in CAP_EIGHT:
+            self.add(
+                f"surface.cap_eight.member.{role}",
+                self.in_cap[role, 0],
+                "TwoCapSourceThirdCanonicalRowSurface.cap_card_ge_eight",
+            )
         self.add(
             "surface.named_blockers_ne",
             z3.Not(self.same("pBlockerCenter", "rhoBlockerCenter")),
@@ -683,6 +707,10 @@ def _rank(model: z3.ModelRef, packet: LiveRetainedPacket, role: str) -> int:
 def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, object]:
     """Independently replay the named finite invariants of a SAT assignment."""
     ranks = {role: _rank(model, packet, role) for role in ROLES}
+    if len({ranks[role] for role in CAP_EIGHT}) != 8:
+        raise LiveRetainedEncodingError("cap-eight witnesses are not distinct")
+    if any(not _truth(model, packet.in_cap[role, 0]) for role in CAP_EIGHT):
+        raise LiveRetainedEncodingError("cap-eight witness misses the first cap")
     for name, (center, support) in ROWS.items():
         support_ranks = {ranks[role] for role in support}
         if len(support_ranks) != 4:

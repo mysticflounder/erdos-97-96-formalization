@@ -388,6 +388,22 @@ def _validate_source_archive(
     rows = archive.get("archived")
     if not isinstance(rows, list):
         raise StaticRunnerError("source archive rows must be a list")
+    expected_archived: dict[str, str] = {}
+    snapshot_rows = source_snapshot.get("files")
+    if not isinstance(snapshot_rows, list):
+        raise StaticRunnerError("source snapshot files must be a list")
+    for snapshot_row in snapshot_rows:
+        if not isinstance(snapshot_row, Mapping):
+            raise StaticRunnerError("source snapshot row must be an object")
+        relative = snapshot_row.get("path")
+        if not isinstance(relative, str):
+            raise StaticRunnerError("source snapshot path is malformed")
+        if snapshot_row.get("clean") is not True:
+            source_digest = snapshot_row.get("sha256")
+            if not isinstance(source_digest, str):
+                raise StaticRunnerError("source snapshot digest is malformed")
+            expected_archived[relative] = source_digest
+    actual_archived: set[str] = set()
     for row in rows:
         if not isinstance(row, Mapping):
             raise StaticRunnerError("source archive row must be an object")
@@ -396,11 +412,23 @@ def _validate_source_archive(
         size = row.get("size")
         if not isinstance(relative, str) or not isinstance(digest, str):
             raise StaticRunnerError("source archive row is malformed")
+        source_relative = row.get("path")
+        if not isinstance(source_relative, str):
+            raise StaticRunnerError("source archive source path is malformed")
+        if source_relative in actual_archived:
+            raise StaticRunnerError(f"duplicate source archive path: {source_relative}")
+        actual_archived.add(source_relative)
+        if digest != expected_archived.get(source_relative):
+            raise StaticRunnerError(
+                f"source archive digest is not snapshot-bound: {source_relative}"
+            )
         path = artifacts / relative
         if path.is_symlink() or not path.is_file():
             raise StaticRunnerError(f"source archive path is invalid: {relative}")
         if _sha256_file(path) != digest or path.stat().st_size != size:
             raise StaticRunnerError(f"source archive bytes mismatch: {relative}")
+    if actual_archived != set(expected_archived):
+        raise StaticRunnerError("source archive is not complete for nonclean sources")
 
 
 def _validate_inventory(artifacts: Path, rows: object) -> None:
