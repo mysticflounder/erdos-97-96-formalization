@@ -11406,6 +11406,34 @@ resulting exact survivor/core to identify the first additional positive
 synchronization.  The v5 result remains `source_total = false`; it is neither
 a P97 counterexample nor a universal or Lean closure.
 
+The full common-payload v6 successor is also terminal.  It preserves the exact
+v5 prefix and adds 69 variables plus 45,972 clauses, for 93,280 variables and
+606,898 clauses with CNF SHA-256
+`a520b6195e0337b629224835c51aa8a4e6b57088d898a32cc7318e71b0a6e403`.
+The delta includes two independent one-hot selectors for `G.surface`, exact
+coverage of all thirty fields of `FirstNonHitFiniteCommonRadiusPayload`, and no
+canonical-`C` selector in any payload clause.  Independent replay verifies the
+complete SAT assignment and every emitted clause.
+
+This model escapes through the retained branch: `retained = true` and the
+common-payload guard is false.  Consequently 45,970 guarded payload clauses are
+vacuous, and only the two guard-equivalence clauses are active.  The wave-only
+mine therefore produced no theorem candidate and licensed no general theorem
+search.  It also showed that another retained run is redundant.  The exact
+next branch-faithful query is the already-separated common-radius leaf, in a
+fresh namespace, with the two unit clauses
+`hingress/common_radius_payload = true` (DIMACS literal `93212`) and
+`hingress/retained = false` (DIMACS literal `-90537`).  Guarding only the first
+unit is insufficient because the finite hingress encoding is intentionally
+at-least-one.
+
+The immutable v6 SAT evidence is replayed by a separately authenticated
+zero-process verifier; the launch runner remains byte-identical to its recorded
+source hash.  This custody repair changes no solver output.  A fresh
+common-only query remains `source_total = false` and can only diagnose the
+common-radius leaf; it cannot by itself close FirstNonHit or provide a
+finite-to-universal lift.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
