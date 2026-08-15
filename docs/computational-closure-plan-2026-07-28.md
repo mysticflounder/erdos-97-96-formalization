@@ -11081,6 +11081,28 @@ existing geometric/cross-deletion terminal.  Cap labels, raw cyclic orders,
 or the old first-order fan projection alone are insufficient.  This checkpoint
 sharpens the source ingress and consumer but closes no load-bearing `sorry`.
 
+The first carrier-query implementation is now Lean-owned.  The new
+`FreshThirdQFiberThreeCarrierFiniteQuery` module joins the old pinned
+vocabulary to the actual four-slot `Q` row, the unique boundary blocker's row,
+and the complete second-order deletion fan on that row.  Its combined Boolean
+assignment keeps equality, incidence, cap, boundary-order, metric, deletion,
+and nonrobustness atoms over the shared finite role set.  Nonboundary `Q`
+blockers are normalized to the already named `freshCenter` and `Q` row by the
+source theorem; the unique distinct blocker and genuinely new rows remain
+explicit.
+
+`FreshThirdQFiberThreeCarrierFiniteSourceTheory` proves the complete finite
+theory from every arbitrary-cardinality packet and exact-three boundary.  It
+retains the old pinned source theory through an explicit propositional bridge,
+adds exact `Q`-row coverage, fresh-remainder and named-source aliases, blocked
+deletions, cap witnesses, overlap-at-most-two clauses, and every second-order
+fan packet, and exposes the packet-independent `QueryContract` replay adapter.
+No pinned-fan/`Q` synchronization is assumed.  The next computational target
+is now exact: encode this complete source theory, enumerate the remaining
+disjoint survivors, and mine the first uniform row/cap/cross-deletion clause
+that is both absent from the current theory and provable at source.  This
+implementation checkpoint still closes no load-bearing `sorry`.
+
 #### 13.24.1.35 FirstNonHit seven-row theorem and repaired execution contract (2026-08-14)
 
 The FirstNonHit exact-three incidence survivor supplied one fixed thirteen-row

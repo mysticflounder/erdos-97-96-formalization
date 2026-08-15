@@ -1,0 +1,525 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeCarrierFiniteQuery
+
+/-!
+# Source theory for the FreshThird exact-three carrier query
+
+This module compiles the actual `Q`-row carrier fan and the boundary row's
+second-order fan into finite Boolean clauses.  Nonboundary `Q` blockers are
+normalized to the already named `freshCenter` and `q` row using the exact
+source theorem; the unique boundary blocker and every genuinely new
+second-order row remain explicit.
+-/
+
+namespace Problem97
+namespace ATailFrontierLiveClosure
+namespace TwoSourceExactCollisionRowsTerminal
+
+open scoped EuclideanGeometry
+open ATailBlockerMultiplicityGeometry
+open ATailCriticalPairFrontier
+open ATailDeletionRobustness
+open ATailMinimalUniqueFourCover
+open ATailOrientedPhysicalApexIngress
+open ATailRetainedStrictInteriorPairSelector
+open ATailSurvivalCover
+open Census554.GeneralCarrierBridge
+
+namespace FreshThirdQFiberThreeCarrierFiniteView
+
+section
+
+variable
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+
+/-- Turn an exact geometric overlap bound into the finite no-three-slots
+predicate used by the carrier query. -/
+private theorem noThreeSourcesInRow_of_overlap_card_le_two
+    {center₁ center₂ : ℝ²}
+    {Row₁ : SelectedFourClass D.A center₁}
+    (Fan : IndexedSourceFaithfulSelectedFourFan D S H Row₁)
+    (Row₂ : SelectedFourClass D.A center₂)
+    (hoverlap : (Row₁.support ∩ Row₂.support).card ≤ 2) :
+    ∀ e : Fin 3 ↪ Fin 4,
+      ¬ ∀ k : Fin 3, (Fan.source (e k)).1 ∈ Row₂.support := by
+  intro e hall
+  let chosen : Finset ℝ² :=
+    Finset.univ.image (fun k : Fin 3 ↦ (Fan.source (e k)).1)
+  have hinjective :
+      Function.Injective (fun k : Fin 3 ↦ (Fan.source (e k)).1) := by
+    intro i j hij
+    apply e.injective
+    apply Fan.source_injective
+    exact Subtype.ext hij
+  have hcard : chosen.card = 3 := by
+    simp [chosen, Finset.card_image_of_injective _ hinjective]
+  have hsubset : chosen ⊆ Row₁.support ∩ Row₂.support := by
+    intro x hx
+    rcases Finset.mem_image.mp hx with ⟨k, _, rfl⟩
+    exact Finset.mem_inter.mpr ⟨Fan.source_mem_support (e k), hall k⟩
+  have hle := Finset.card_le_card hsubset
+  rw [hcard] at hle
+  omega
+
+/-- Complete source-proved finite theory contributed by the carrier fans.
+
+This extends, rather than replaces, the pinned finite source theory.  It
+retains every cross-vocabulary alias but asserts no pinned-fan/`Q`
+synchronization. -/
+structure SourceTheory
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
+    (boundaryIndex : Fin 4) : Prop where
+  qSourcesDistinct : ∀ i j : Fin 4,
+    A.Same (.inr (.qSource i)) (.inr (.qSource j)) ↔ i = j
+  qRowExact : ∀ point,
+    A.Incident point (.inr .q) ↔
+      ∃ i : Fin 4, A.Same point (.inr (.qSource i))
+  boundaryFreshRemainder : ∃ i : Fin 2,
+    A.Same (.inr (.qSource boundaryIndex)) (.inl (.freshRemainder i))
+  namedQSources :
+    (∃ i : Fin 4,
+      A.Same (.inr (.qSource i)) (.inl .freshSourceOne)) ∧
+    (∃ i : Fin 4,
+      A.Same (.inr (.qSource i)) (.inl .freshSourceTwo))
+  boundaryCenterNeQCenter :
+    ¬ A.Same (.inr .boundaryBlockerCenter) (.inl .freshCenter)
+  nonboundaryDeletionBlocked : ∀ i : Fin 4, i ≠ boundaryIndex →
+    ¬ A.HasFourAfterDeleting
+      (.inr (.qSource i)) (.inl .freshCenter)
+  boundaryPacket :
+    (∃ cap : Fin 3,
+      A.InCapInterior (.inr .boundaryBlockerCenter) cap) ∧
+    ¬ A.HasFourAfterDeleting
+      (.inr (.qSource boundaryIndex)) (.inr .boundaryBlockerCenter) ∧
+    A.NoThreeSourcesInRow
+      (fun i ↦ .inr (.qSource i)) (.inr .boundaryBlocker)
+  boundaryRowExact : ∀ point,
+    A.Incident point (.inr .boundaryBlocker) ↔
+      ∃ i : Fin 4, A.Same point (.inr (.boundaryRowSource i))
+  boundarySourceInBoundaryRow : ∃ i : Fin 4,
+    A.Same (.inr (.boundaryRowSource i))
+      (.inr (.qSource boundaryIndex))
+  boundaryFanRowsExact : ∀ i point,
+    A.Incident point (.inr (.boundaryFanBlocker i)) ↔
+      ∃ j : Fin 4,
+        A.Same point (.inr (.boundaryFanBlockerRowSource i j))
+  boundaryFanPackets : ∀ i : Fin 4,
+    ∃ cap : Fin 3,
+      A.InCapInterior (.inr (.boundaryFanBlockerCenter i)) cap ∧
+      ¬ A.HasFourAfterDeleting
+        (.inr (.boundaryRowSource i))
+        (.inr (.boundaryFanBlockerCenter i)) ∧
+      ((A.Same (.inr (.boundaryFanBlockerCenter i))
+            (.inr .boundaryBlockerCenter) ∧
+          A.Nonrobust (.inr .boundaryBlockerCenter) ∧
+          (∀ point,
+            A.Incident point (.inr (.boundaryFanBlocker i)) ↔
+              A.Incident point (.inr .boundaryBlocker))) ∨
+        (¬ A.Same (.inr (.boundaryFanBlockerCenter i))
+            (.inr .boundaryBlockerCenter) ∧
+          A.NoThreeSourcesInRow
+            (fun j ↦ .inr (.boundaryRowSource j))
+            (.inr (.boundaryFanBlocker i))))
+
+/-- Packet-independent complete finite configuration for the exact-three
+carrier query. -/
+structure Configuration where
+  assignment : FreshThirdQFiberThreeCarrierFiniteAssignment
+  pinned : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
+  boundaryIndex : Fin 4
+deriving DecidableEq
+
+namespace Configuration
+
+/-- Evaluate a complete configuration on one exact combined view. -/
+noncomputable def ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    Configuration where
+  assignment := FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View
+  pinned := FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView
+    P Pρ View.pinned
+  boundaryIndex := View.carrier.boundaryIndex
+
+end Configuration
+
+/-- Semantic bridge identifying the inherited part of the combined Boolean
+vocabulary with the already certified pinned assignment.  Keeping this bridge
+propositional avoids depending on which `Decidable` instance computed an
+extensionally equal Boolean atom. -/
+structure PinnedBridge
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
+    (Pinned : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment) : Prop where
+  same : ∀ left right, A.Same (.inl left) (.inl right) ↔ Pinned.Same left right
+  incident : ∀ point row,
+    A.Incident (.inl point) (.inl row) ↔ Pinned.Incident point row
+  inCap : ∀ point cap, A.InCap (.inl point) cap ↔ Pinned.InCap point cap
+  inCapInterior : ∀ point cap,
+    A.InCapInterior (.inl point) cap ↔ Pinned.InCapInterior point cap
+  before : ∀ left right,
+    A.Before (.inl left) (.inl right) ↔ Pinned.Before left right
+  sameDistanceFrom : ∀ center left right,
+    A.SameDistanceFrom (.inl center) (.inl left) (.inl right) ↔
+      Pinned.SameDistanceFrom center left right
+  hasFourAfterDeleting : ∀ deleted atCenter,
+    A.HasFourAfterDeleting (.inl deleted) (.inl atCenter) ↔
+      Pinned.HasFourAfterDeleting deleted atCenter
+  nonrobust : ∀ center,
+    A.Nonrobust (.inl center) ↔ Pinned.Nonrobust center
+
+/-- Full query ingress: the complete old pinned theory, the new carrier-fan
+clauses, and their shared-role bridge. -/
+structure CompleteSourceTheory (Config : Configuration) : Prop where
+  pinned : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config.pinned
+  carrier : SourceTheory Config.assignment Config.boundaryIndex
+  bridge : PinnedBridge Config.assignment Config.pinned.assignment
+
+attribute [local instance] Classical.propDecidable
+
+/-- Every exact combined view satisfies the carrier-fan finite theory. -/
+theorem sourceTheory_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    SourceTheory
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View)
+      View.carrier.boundaryIndex := by
+  let A := FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View
+  refine {
+    qSourcesDistinct := ?_
+    qRowExact := ?_
+    boundaryFreshRemainder := ?_
+    namedQSources := ?_
+    boundaryCenterNeQCenter := ?_
+    nonboundaryDeletionBlocked := ?_
+    boundaryPacket := ?_
+    boundaryRowExact := ?_
+    boundarySourceInBoundaryRow := ?_
+    boundaryFanRowsExact := ?_
+    boundaryFanPackets := ?_ }
+  · intro i j
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+    constructor
+    · intro hij
+      exact View.carrier.qFan.source_injective (Subtype.ext hij)
+    · rintro rfl
+      rfl
+  · intro role
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+    constructor
+    · intro hrole
+      let i : Fin 4 := View.carrier.qFan.index
+        ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role, hrole⟩
+      refine ⟨i, ?_⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      exact congrArg Subtype.val
+        (View.carrier.qFan.source_index_support
+          ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role,
+            FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+              P Pρ View role⟩ hrole) |>.symm
+    · rintro ⟨i, hi⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hi
+      rw [hi]
+      exact View.carrier.qFan.source_mem_support i
+  · rcases View.exists_boundary_freshRemainder_alias
+      (P := P) (Pρ := Pρ) with ⟨i, hi⟩
+    exact ⟨i,
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 hi⟩
+  · constructor
+    · let i : Fin 4 := View.carrier.qFan.index
+        ⟨Q.source₁.1,
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.q_mem_support⟩
+      refine ⟨i, ?_⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      simp only [FreshThirdQFiberThreeCarrierFiniteView.point,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]
+      exact congrArg Subtype.val
+        (View.carrier.qFan.source_index_support Q.source₁
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.q_mem_support)
+    · let i : Fin 4 := View.carrier.qFan.index
+        ⟨Q.source₂.1, Q.source₂_mem_source₁_shell⟩
+      refine ⟨i, ?_⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      simp only [FreshThirdQFiberThreeCarrierFiniteView.point,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]
+      exact congrArg Subtype.val
+        (View.carrier.qFan.source_index_support Q.source₂
+          Q.source₂_mem_source₁_shell)
+  · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+    intro hsame
+    apply Boundary.centers_ne
+    calc
+      H.centerAt Boundary.source.1 Boundary.source.2 =
+          View.carrier.qFan.blockerCenter View.carrier.boundaryIndex :=
+        (View.carrier.boundary_blockerCenter_eq
+          (P := P) (Pρ := Pρ)).symm
+      _ = H.centerAt Q.source₁.1 Q.source₁.2 := by
+        simpa [FreshThirdQFiberThreeCarrierFiniteView.point,
+          FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hsame
+  · intro i hi
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+    rcases View.carrier.nonboundary_deletionPacket
+        (P := P) (Pρ := Pρ) hi with ⟨_, hcenter, _, hblocked, _, _⟩
+    rw [hcenter] at hblocked
+    simpa [FreshThirdQFiberThreeCarrierFiniteView.point,
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hblocked
+  · rcases View.carrier.boundary_deletionPacket
+      (P := P) (Pρ := Pρ) with ⟨cap, hcap, hblocked, hoverlap⟩
+    refine ⟨⟨cap, ?_⟩, ?_, ?_⟩
+    · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+      exact hcap
+    · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+      simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hblocked
+    · intro e hall
+      apply noThreeSourcesInRow_of_overlap_card_le_two
+        View.carrier.qFan View.carrier.boundaryBlockerRow hoverlap e
+      intro k
+      exact
+        (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).1 (hall k)
+  · intro role
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+    constructor
+    · intro hrole
+      let i : Fin 4 := View.carrier.boundaryBlockerRowFan.index
+        ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role, hrole⟩
+      refine ⟨i, ?_⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      exact congrArg Subtype.val
+        (View.carrier.boundaryBlockerRowFan.source_index_support
+          ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role,
+            FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+              P Pρ View role⟩ hrole) |>.symm
+    · rintro ⟨i, hi⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hi
+      rw [hi]
+      exact View.carrier.boundaryBlockerRowFan.source_mem_support i
+  · rcases View.exists_boundaryRow_source_alias
+      (P := P) (Pρ := Pρ) with ⟨i, hi⟩
+    exact ⟨i,
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 hi⟩
+  · intro i role
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+    constructor
+    · intro hrole
+      let j : Fin 4 := View.boundaryFanBlockerRowIndex i
+        ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role, hrole⟩
+      refine ⟨j, ?_⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      simp [FreshThirdQFiberThreeCarrierFiniteView.point, j]
+    · rintro ⟨j, hj⟩
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hj
+      rw [hj]
+      exact (View.boundaryFanBlockerRowIndex i).symm j |>.2
+  · intro i
+    rcases View.carrier.boundaryBlockerRowFan.deletionPacket i with
+      ⟨cap, hcap, hblocked, hsame | hdistinct⟩
+    · refine ⟨cap, ?_, ?_, Or.inl ⟨?_, ?_, ?_⟩⟩
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+        exact hcap
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+        simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hblocked
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+        exact hsame.1.symm
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff]
+        exact hsame.2.2
+      · intro role
+        simp only [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport,
+          FreshThirdQFiberThreeCarrierFiniteView.rowSupport]
+        exact Iff.of_eq (congrArg (fun support : Finset ℝ² ↦
+          FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View role ∈ support)
+            hsame.2.1.symm)
+    · refine ⟨cap, ?_, ?_, Or.inr ⟨?_, ?_⟩⟩
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+        exact hcap
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+        simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hblocked
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+        exact hdistinct.1.symm
+      · intro e hall
+        apply noThreeSourcesInRow_of_overlap_card_le_two
+          View.carrier.boundaryBlockerRowFan
+          ((View.carrier.boundaryBlockerRowFan.blockerRow i
+            ).toCriticalFourShell.toSelectedFourClass)
+          hdistinct.2 e
+        intro k
+        exact
+          (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+            (P := P) (Pρ := Pρ) View _ _).1 (hall k)
+
+/-- The complete combined query has an arbitrary-cardinality ingress from
+every exact live packet and exact-three boundary witness. -/
+theorem completeSourceTheory_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    CompleteSourceTheory (Configuration.ofView P Pρ View) := by
+  refine ⟨?_, sourceTheory_ofView P Pρ View, ?_⟩
+  · exact FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.ofView
+      (P := P) (Pρ := Pρ) View.pinned
+  · refine {
+      same := ?_
+      incident := ?_
+      inCap := ?_
+      inCapInterior := ?_
+      before := ?_
+      sameDistanceFrom := ?_
+      hasFourAfterDeleting := ?_
+      nonrobust := ?_ }
+    · intro left right
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff]
+      rfl
+    · intro point row
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff]
+      rfl
+    · intro point cap
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCap_ofView_iff]
+      rfl
+    · intro point cap
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff]
+      rfl
+    · intro left right
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.before_ofView_iff]
+      rfl
+    · intro centerRole left right
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.sameDistanceFrom_ofView_iff]
+      rfl
+    · intro deleted atCenter
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+      rfl
+    · intro centerRole
+      simp only [Configuration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff,
+        FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.nonrobust_ofView_iff]
+      rfl
+
+/-- Packet-independent replay contract for the complete carrier query. -/
+structure QueryContract : Prop where
+  reject : ∀ Config : Configuration, CompleteSourceTheory Config → False
+
+/-- A replayed complete carrier-query certificate rejects the actual
+arbitrary-cardinality packet in the exact-three branch. -/
+theorem FreshThirdQFiberThreeBoundary.false_of_carrierFiniteQueryContract
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (G : TriApexAllLargeContext D S)
+    (Boundary : FreshThirdQFiberThreeBoundary P Pρ Q)
+    (Pinned : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (Contract : QueryContract) : False := by
+  let View := FreshThirdQFiberThreeCarrierFiniteView.ofPacketBoundary
+    P Pρ Packet G Boundary Pinned
+  exact Contract.reject (Configuration.ofView P Pρ View)
+    (completeSourceTheory_ofView P Pρ View)
+
+end
+
+end FreshThirdQFiberThreeCarrierFiniteView
+
+/-- Public name for the complete carrier-query replay contract. -/
+abbrev FreshThirdQFiberThreeCarrierQueryContract :=
+  FreshThirdQFiberThreeCarrierFiniteView.QueryContract
+
+section
+
+variable
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+
+/-- Public exact-three replay adapter for the complete carrier query. -/
+theorem FreshThirdQFiberThreeBoundary.false_of_carrierFiniteQueryContract
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    (Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap)
+    (G : TriApexAllLargeContext D S)
+    (Boundary : FreshThirdQFiberThreeBoundary P Pρ Q)
+    (Pinned : FreshThirdPinnedEndpointOutsideSeedFiniteView P Pρ Packet)
+    (Contract : FreshThirdQFiberThreeCarrierQueryContract) : False :=
+  FreshThirdQFiberThreeCarrierFiniteView.FreshThirdQFiberThreeBoundary.false_of_carrierFiniteQueryContract
+    P Pρ Packet G Boundary Pinned Contract
+
+end
+
+end TwoSourceExactCollisionRowsTerminal
+end ATailFrontierLiveClosure
+end Problem97
