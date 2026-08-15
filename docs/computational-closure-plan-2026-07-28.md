@@ -11053,17 +11053,33 @@ vocabulary cannot soundly terminate in universal `UNSAT`; it first needs a
 carrier-wide theorem forcing positive fan/`Q` incidence or routing the
 disjoint case into an already proved terminal.
 
+The carrier-wide producer audit found no hidden theorem supplying those
+incidences.  The global K4 and source-faithful fan producers return anonymous
+selected rows; global card-minimal deletion returns only a collective blocking
+set; and no-`(m,4,4)` has already been consumed into cap-size and apex-richness
+data.  None identifies the boundary source or two `Q`-fiber points with the
+pinned fan.  Those facts must not be inferred from the existing APIs.
+
+The omitted source data is now exported separately in
+`FreshThirdQFiberThreeCarrierFan`.  Its carrier-fan view indexes the actual
+four-point `Q` row, identifies the unique nonfiber boundary index, normalizes
+that index into the distinct-blocker deletion packet, and normalizes every
+other index into the common-`Q`-center packet.  It also constructs the complete
+source-faithful deletion fan on the boundary source's own blocker row.  All
+construction and normalization theorems are arbitrary-cardinality and audit
+to the standard `propext`, `Classical.choice`, and `Quot.sound` set.  They add no
+fan/`Q` synchronization assumption.
+
 This landing deliberately does not assert that the three fan indices exist.
 The current exact-three incidence projection permits the pinned fan row to be
 disjoint from the `Q` row, and the source/fresh two-row geometry does not repair
-that gap.  The next producer target is consequently carrier-wide: combine the
-exact `Q`-fiber boundary with the source-faithful deletion fan, endpoint/cap
-split, global minimality, and no-`(m,4,4)` information to prove either the
-three-index synchronization certificate or an existing geometric/cross-
-deletion terminal.  A finite query may search for those indices only after all
-of those source-proved alternatives are represented; cap labels or raw cyclic
-orders alone are insufficient.  This checkpoint sharpens the CEGAR predicate
-and consumer but closes no load-bearing `sorry`.
+that gap.  The next exact target is to add the new `Q`-row and boundary-row fan
+data to the intrinsic finite query, then mine the resulting disjoint survivors
+for one uniform cap/order, cross-deletion, or row-pattern theorem.  The landing
+consumer remains either the three-index synchronization certificate or an
+existing geometric/cross-deletion terminal.  Cap labels, raw cyclic orders,
+or the old first-order fan projection alone are insufficient.  This checkpoint
+sharpens the source ingress and consumer but closes no load-bearing `sorry`.
 
 #### 13.24.1.35 FirstNonHit seven-row theorem and repaired execution contract (2026-08-14)
 
