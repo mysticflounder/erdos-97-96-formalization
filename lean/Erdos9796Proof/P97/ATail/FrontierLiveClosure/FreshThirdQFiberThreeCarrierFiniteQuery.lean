@@ -703,6 +703,24 @@ structure FreshThirdQFiberThreeCarrierFiniteRowTheory
         (freshThirdQFiberThreeCarrierRowCenter targetRow) →
       A.NoThreeSourcesInRow
         (freshThirdQFiberThreeCarrierRowSlot sourceRow) targetRow
+  row_cap_no_three : ∀ row cap,
+    A.InCap (freshThirdQFiberThreeCarrierRowCenter row) cap →
+      ∀ e : Fin 3 ↪ Fin 4,
+        ¬ ∀ k : Fin 3,
+          A.InCap (freshThirdQFiberThreeCarrierRowSlot row (e k)) cap
+  row_outside_cap_no_two : ∀ sourceRow targetRow cap,
+    A.InCap (freshThirdQFiberThreeCarrierRowCenter sourceRow) cap →
+      A.InCap (freshThirdQFiberThreeCarrierRowCenter targetRow) cap →
+      ¬ A.Same
+          (freshThirdQFiberThreeCarrierRowCenter sourceRow)
+          (freshThirdQFiberThreeCarrierRowCenter targetRow) →
+        ∀ e : Fin 2 ↪ Fin 4,
+          ¬ ∀ k : Fin 2,
+            A.Incident
+                (freshThirdQFiberThreeCarrierRowSlot sourceRow (e k))
+                targetRow ∧
+              ¬ A.InCap
+                (freshThirdQFiberThreeCarrierRowSlot sourceRow (e k)) cap
 
 namespace FreshThirdQFiberThreeCarrierFiniteRowTheory
 
@@ -796,6 +814,8 @@ theorem ofView
     row_slots_same_distance := ?_
     deletion_survives_iff_robust_or_not_incident := ?_
     row_no_three_of_centers_ne := ?_
+    row_cap_no_three := ?_
+    row_outside_cap_no_two := ?_
   }
   · intro point
     exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
@@ -894,6 +914,128 @@ theorem ofView
     exact
       (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
         (P := P) (Pρ := Pρ) View _ _).2 hcenterEq
+  · intro row cap hcenter e hall
+    have hcenter' :=
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hcenter
+    have hoverlap :=
+      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+        S D.convex cap
+        (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View row)
+        hcenter'
+    let slotPoint : Fin 4 → ℝ² := fun i ↦
+      FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+        (freshThirdQFiberThreeCarrierRowSlot row i)
+    have hslotInjective : Function.Injective slotPoint := by
+      have hcardImage :
+          (Finset.univ.image slotPoint).card =
+            (Finset.univ : Finset (Fin 4)).card := by
+        rw [← FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image
+          (P := P) (Pρ := Pρ) View row]
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport_card_eq_four
+          (P := P) (Pρ := Pρ) View row]
+        simp
+      have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+        Finset.card_image_iff.mp hcardImage
+      intro i j hij
+      exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hij
+    let chosen : Finset ℝ² :=
+      Finset.univ.image (fun k : Fin 3 ↦ slotPoint (e k))
+    have hchosenInjective :
+        Function.Injective (fun k : Fin 3 ↦ slotPoint (e k)) :=
+      hslotInjective.comp e.injective
+    have hcard : chosen.card = 3 := by
+      simp [chosen, Finset.card_image_of_injective _ hchosenInjective]
+    have hsubset :
+        chosen ⊆
+          (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View row).support ∩
+            S.capByIndex cap := by
+      intro point hpoint
+      rcases Finset.mem_image.mp hpoint with ⟨k, _, rfl⟩
+      apply Finset.mem_inter.mpr
+      constructor
+      · rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport,
+          FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+        exact Finset.mem_image.mpr ⟨e k, Finset.mem_univ _, rfl⟩
+      · exact
+          (FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff
+            (P := P) (Pρ := Pρ) View _ _).1 (hall k)
+    have hle := Finset.card_le_card hsubset
+    rw [hcard] at hle
+    omega
+  · intro sourceRow targetRow cap hsourceCap htargetCap hcenters e hall
+    have hsourceCap' :=
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hsourceCap
+    have htargetCap' :=
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 htargetCap
+    have hcenters' :
+        FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+            (freshThirdQFiberThreeCarrierRowCenter sourceRow) ≠
+          FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+            (freshThirdQFiberThreeCarrierRowCenter targetRow) := by
+      intro hcenterEq
+      apply hcenters
+      exact
+        (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).2 hcenterEq
+    have hoverlap := selectedFourClass_outside_overlap_card_le_one
+      S cap hsourceCap' htargetCap' hcenters'
+      (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View sourceRow)
+      (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View targetRow)
+    let slotPoint : Fin 4 → ℝ² := fun i ↦
+      FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+        (freshThirdQFiberThreeCarrierRowSlot sourceRow i)
+    have hslotInjective : Function.Injective slotPoint := by
+      have hcardImage :
+          (Finset.univ.image slotPoint).card =
+            (Finset.univ : Finset (Fin 4)).card := by
+        rw [← FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image
+          (P := P) (Pρ := Pρ) View sourceRow]
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport_card_eq_four
+          (P := P) (Pρ := Pρ) View sourceRow]
+        simp
+      have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+        Finset.card_image_iff.mp hcardImage
+      intro i j hij
+      exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hij
+    let chosen : Finset ℝ² :=
+      Finset.univ.image (fun k : Fin 2 ↦ slotPoint (e k))
+    have hchosenInjective :
+        Function.Injective (fun k : Fin 2 ↦ slotPoint (e k)) :=
+      hslotInjective.comp e.injective
+    have hcard : chosen.card = 2 := by
+      simp [chosen, Finset.card_image_of_injective _ hchosenInjective]
+    have hsubset :
+        chosen ⊆
+          (((FreshThirdQFiberThreeCarrierFiniteView.rowClass
+              P Pρ View sourceRow).support \ S.capByIndex cap) ∩
+            ((FreshThirdQFiberThreeCarrierFiniteView.rowClass
+              P Pρ View targetRow).support \ S.capByIndex cap)) := by
+      intro point hpoint
+      rcases Finset.mem_image.mp hpoint with ⟨k, _, rfl⟩
+      have houtside : slotPoint (e k) ∉ S.capByIndex cap := by
+        intro hmem
+        exact (hall k).2
+          ((FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff
+            (P := P) (Pρ := Pρ) View _ _).2 hmem)
+      apply Finset.mem_inter.mpr
+      constructor
+      · apply Finset.mem_sdiff.mpr
+        refine ⟨?_, houtside⟩
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport,
+          FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+        exact Finset.mem_image.mpr ⟨e k, Finset.mem_univ _, rfl⟩
+      · apply Finset.mem_sdiff.mpr
+        refine ⟨?_, houtside⟩
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport]
+        exact
+          (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+            (P := P) (Pρ := Pρ) View _ _).1 (hall k).1
+    have hle := Finset.card_le_card hsubset
+    rw [hcard] at hle
+    omega
 
 end FreshThirdQFiberThreeCarrierFiniteRowTheory
 

@@ -29,6 +29,10 @@ four values of the intrinsic `boundaryIndex : Fin 4`.
 - every failed named deletion implies source-proved nonrobustness;
 - every pair of named selected rows at distinct centers has overlap at most
   two, by the source-level two-circle theorem;
+- a named selected row contains at most two points of any indexed cap
+  containing its center;
+- two named rows with distinct centers in one indexed cap share at most one
+  support point outside that cap;
 - all row-support and overlap counts are computed through `Same` classes.
 
 The Q row is explicitly identified with the inherited fresh row. The Q row,
@@ -74,7 +78,9 @@ survivor and exposed missing source ingress. They are discovery history, not
 evidence for the strengthened contract. The current clean wave is
 `wave-boundary-fan-normalized-0001`; it includes complete row deletion
 semantics, all named two-circle overlap cuts, and the collective second-order
-fan normalization. Its theorem-mining target is a distinct-center blocked
-triple of Q-row points, or the smallest cap/order statement preventing the
-remaining repeated-cap/mutual-cross graph. No learned clause is admitted until
-its source producer and Lean consumer are named.
+fan normalization. It remains satisfiable only through a same-cap pair with
+reciprocal cross-deletion survival. The next wave adds the source-proved
+center-cap row bound and the outside-pair uniqueness theorem to determine
+whether that residual already violates ordered-cap geometry or needs a new
+descent producer. No learned clause is admitted until its source producer and
+Lean consumer are named.

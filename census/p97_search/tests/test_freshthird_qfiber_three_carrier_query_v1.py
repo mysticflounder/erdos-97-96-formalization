@@ -154,6 +154,33 @@ def test_boundary_fan_collective_normalization_is_not_optional() -> None:
     assert query.solver.check() == z3.unsat
 
 
+def test_named_row_has_at_most_two_points_in_its_center_cap() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    query.solver.add(query.cap("boundaryFanBlockerCenter0", 0))
+    for source in (
+        "boundaryFanBlockerRowSource0_0",
+        "boundaryFanBlockerRowSource0_1",
+        "boundaryFanBlockerRowSource0_2",
+    ):
+        query.solver.add(query.cap(source, 0))
+    assert query.solver.check() == z3.unsat
+
+
+def test_same_cap_distinct_center_rows_share_at_most_one_outside_point() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    query.solver.add(
+        query.cap("pinnedCenter", 0),
+        query.cap("boundaryBlockerCenter", 0),
+        z3.Not(query.same("pinnedCenter", "boundaryBlockerCenter")),
+    )
+    for source in ("fanSource0", "fanSource1"):
+        query.solver.add(
+            query.incident(source, "boundaryBlocker"),
+            z3.Not(query.cap(source, 0)),
+        )
+    assert query.solver.check() == z3.unsat
+
+
 def test_sat_result_replays_and_digest_tamper_fails() -> None:
     result = solve_cell(0, timeout_ms=30_000)
     assert result["status"] == "SAT_ABSTRACTION"

@@ -291,6 +291,21 @@ def _row_cap_count(
     return z3.Sum(*terms)
 
 
+def _row_outside_overlap_count(
+    q: CarrierQuery, left: str, right: str, cap: z3.ArithRef | int
+) -> z3.ArithRef:
+    return z3.Sum(
+        *(
+            z3.If(
+                z3.And(q.incident(slot, right), z3.Not(q.cap(slot, cap))),
+                1,
+                0,
+            )
+            for slot in ROWS[left][1]
+        )
+    )
+
+
 def _outside_seed(q: CarrierQuery, role: str) -> z3.BoolRef:
     return z3.And(*(z3.Not(q.same(role, seed)) for seed in SEED))
 
@@ -408,6 +423,28 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
                 _row_overlap_count(q, left, right) <= 2,
             )
         )
+    for row, (_origin, _slots, center) in ROWS.items():
+        for cap in range(3):
+            row_constraints.append(
+                z3.Implies(
+                    q.cap(center, cap),
+                    _row_cap_count(q, row, cap, inside=True) <= 2,
+                )
+            )
+    for left, right in itertools.combinations(ROWS, 2):
+        left_center = ROWS[left][2]
+        right_center = ROWS[right][2]
+        for cap in range(3):
+            row_constraints.append(
+                z3.Implies(
+                    z3.And(
+                        q.cap(left_center, cap),
+                        q.cap(right_center, cap),
+                        z3.Not(q.same(left_center, right_center)),
+                    ),
+                    _row_outside_overlap_count(q, left, right, cap) <= 1,
+                )
+            )
     b.add_group("complete_exact_row_theory", row_constraints)
 
     # Full finite relational semantics inherited from the exact view.

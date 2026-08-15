@@ -70,6 +70,8 @@ def _boundary_fan_normalized_witnesses(
     signature: dict[str, Any], classes: dict[str, int]
 ) -> dict[str, object]:
     interiors = signature["in_cap_interior"]
+    caps = signature["in_cap"]
+    order = signature["order"]
     base_center = "boundaryBlockerCenter"
     center_indices = [
         i
@@ -101,6 +103,26 @@ def _boundary_fan_normalized_witnesses(
                             "same_center": same_center,
                             "j_survives_at_i": survives_ji,
                             "i_survives_at_j": survives_ij,
+                            "source_caps": {
+                                "i": caps[si],
+                                "j": caps[sj],
+                            },
+                            "row_cap_counts": {
+                                "i": [
+                                    sum(caps[slot][candidate] for slot in ROWS[f"boundaryFanBlocker{i}"][1])
+                                    for candidate in range(3)
+                                ],
+                                "j": [
+                                    sum(caps[slot][candidate] for slot in ROWS[f"boundaryFanBlocker{j}"][1])
+                                    for candidate in range(3)
+                                ],
+                            },
+                            "boundary_order": {
+                                "center_i": order[ci],
+                                "center_j": order[cj],
+                                "source_i": order[si],
+                                "source_j": order[sj],
+                            },
                         }
                     )
             if not same_center and survives_ji and survives_ij:
