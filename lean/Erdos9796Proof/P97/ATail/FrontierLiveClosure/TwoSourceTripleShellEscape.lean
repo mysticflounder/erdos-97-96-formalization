@@ -253,6 +253,92 @@ theorem exists_freshThird_selectedRow_escape_tripleShellSeed_originCases
   · exact Or.inr (Or.inl hPρ)
   · exact Or.inr (Or.inr hsource)
 
+/-- Each center-origin arm of the carrier-wide third-row producer carries a
+sharp two-circle incidence bound.  Because the new row is centered at a point
+of its origin shell, rather than at that shell's center, the two rows meet in
+at most two points; hence at least two points of the new four-row lie outside
+the origin shell.
+
+This is the source-level predicate intended for refinement search: it adds a
+genuine global row and exact incidence information without identifying the
+anonymous escaping point with any favorable named endpoint. -/
+theorem exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCases
+    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (source : CriticalShellSystem.CarrierVertex D.A) :
+    ∃ center : ℝ²,
+      ∃ K : SelectedFourClass D.A center,
+        ∃ z : ℝ²,
+          z ∈ K.support ∧
+            z ∉ freshThirdCriticalTripleShellSeed P Pρ source ∧
+            ((center ∈
+                  (H.selectedAt P.source₁
+                    P.source₁_mem_A).toCriticalFourShell.support ∧
+                (K.support ∩
+                    (H.selectedAt P.source₁
+                      P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 ∧
+                2 ≤
+                  (K.support \
+                    (H.selectedAt P.source₁
+                      P.source₁_mem_A).toCriticalFourShell.support).card) ∨
+              (center ∈
+                  (H.selectedAt Pρ.source₁
+                    Pρ.source₁_mem_A).toCriticalFourShell.support ∧
+                (K.support ∩
+                    (H.selectedAt Pρ.source₁
+                      Pρ.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 ∧
+                2 ≤
+                  (K.support \
+                    (H.selectedAt Pρ.source₁
+                      Pρ.source₁_mem_A).toCriticalFourShell.support).card) ∨
+              (center ∈
+                  (H.selectedAt source.1
+                    source.2).toCriticalFourShell.support ∧
+                (K.support ∩
+                    (H.selectedAt source.1
+                      source.2).toCriticalFourShell.support).card ≤ 2 ∧
+                2 ≤
+                  (K.support \
+                    (H.selectedAt source.1
+                      source.2).toCriticalFourShell.support).card)) := by
+  rcases
+      exists_freshThird_selectedRow_escape_tripleShellSeed_originCases
+        (P := P) (Pρ := Pρ) hlarge source with
+    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+  refine ⟨center, K, z, hzK, hzOutside, ?_⟩
+  have originIncidence
+      {rowCenter : ℝ²}
+      (K₀ : SelectedFourClass D.A rowCenter)
+      (hcenterSupport : center ∈ K₀.support) :
+      (K.support ∩ K₀.support).card ≤ 2 ∧
+        2 ≤ (K.support \ K₀.support).card := by
+    have hcentersNe : center ≠ rowCenter := by
+      intro hcenterEq
+      exact K₀.center_not_mem (hcenterEq ▸ hcenterSupport)
+    have hinter : (K.support ∩ K₀.support).card ≤ 2 :=
+      SelectedFourClass.inter_card_le_two K K₀ hcentersNe
+    have hdecomp :=
+      Finset.card_sdiff_add_card_inter K.support K₀.support
+    have houtside : 2 ≤ (K.support \ K₀.support).card := by
+      rw [K.support_card] at hdecomp
+      omega
+    exact ⟨hinter, houtside⟩
+  rcases hcenter with hP | hPρ | hsource
+  · have hinc :=
+      originIncidence
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass hP
+    exact Or.inl ⟨hP, hinc.1, hinc.2⟩
+  · have hinc :=
+      originIncidence
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.toSelectedFourClass hPρ
+    exact Or.inr (Or.inl ⟨hPρ, hinc.1, hinc.2⟩)
+  · have hinc :=
+      originIncidence
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.toSelectedFourClass hsource
+    exact Or.inr (Or.inr ⟨hsource, hinc.1, hinc.2⟩)
+
 end
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure
