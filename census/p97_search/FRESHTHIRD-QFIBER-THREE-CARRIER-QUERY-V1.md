@@ -20,7 +20,9 @@ four values of the intrinsic `boundaryIndex : Fin 4`.
   class at that center;
 - cap membership and cap interior remain separate finite predicates, with
   source-proved interior inclusion and cross-cap exclusion;
-- boundary order is a strict total order on `Same` classes;
+- boundary order is a strict total order on `Same` classes; its integer
+  witness is canonically compressed to a dense permutation because only the
+  induced `Before` relation is semantic;
 - the restriction of each indexed cap to the named roles is one cyclic
   interval in that boundary order; equivalently, four increasing roles cannot
   alternate in/out/in/out in either parity;
@@ -85,8 +87,10 @@ cells remain SAT. Their cap-membership words have 10--26 cyclic transitions,
 however, so those models violate source cap contiguity. The current
 `wave-cap-cyclic-interval-0001` adds the Lean-proved `NoAlternatingCap` law.
 All four cells return fail-closed `UNKNOWN` after 180 seconds: no surviving
-model and no UNSAT claim were produced. The immediate action is a bounded
-backend/solver portfolio on the identical source hash, followed by migration
-of this layer to the structural CEGAR/CaDiCaL path if monolithic SMT remains
-inconclusive. No learned clause is admitted until its source producer and Lean
-consumer are named.
+model and no UNSAT claim were produced. QF_UFLIA Z3 and cvc5 independently
+time out on cell zero at 240 seconds. A final source-neutral symmetry reduction
+compresses the represented boundary ranks to a dense permutation; its clean
+four-cell wave is also `UNKNOWN` after 180 seconds. Monolithic SMT is therefore
+retired for this layer. The next implementation target is the structural
+CEGAR/CaDiCaL migration on the identical source contract. No learned clause is
+admitted until its source producer and Lean consumer are named.

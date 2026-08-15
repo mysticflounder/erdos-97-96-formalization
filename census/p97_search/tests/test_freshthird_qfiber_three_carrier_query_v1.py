@@ -40,6 +40,7 @@ def test_schema_is_intrinsic_and_source_hashed() -> None:
     assert "robust-or-outside-row" in manifest["row_deletion_semantics"]
     assert "at most two" in manifest["row_intersection_semantics"]
     assert "cyclic interval" in manifest["cap_order_semantics"]
+    assert "dense canonical" in manifest["order_encoding"]
     hashes = manifest["source_files"]
     assert any(path.endswith(QUERY_LEAN.name) for path in hashes)
     assert any(path.endswith(SOURCE_THEORY_LEAN.name) for path in hashes)

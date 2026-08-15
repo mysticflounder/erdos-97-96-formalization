@@ -506,7 +506,7 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
         relational.extend(
             (
                 b.v.order(q.point(role)) >= 0,
-                b.v.order(q.point(role)) < len(ROLES),
+                b.v.order(q.point(role)) <= b.v.max_class[-1],
                 z3.Or(*(q.cap(role, cap) for cap in range(3))),
             )
         )
@@ -995,6 +995,9 @@ def source_manifest() -> dict[str, object]:
         ),
         "cap_order_semantics": (
             "each indexed cap restricts to one cyclic interval on named roles"
+        ),
+        "order_encoding": (
+            "dense canonical rank permutation of represented Same classes"
         ),
         "row_origins": {
             row: {"origin": origin, "slots": list(slots), "center": center}
