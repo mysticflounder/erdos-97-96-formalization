@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeBoundary
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeSynchronization
 
 /-!
@@ -50,46 +51,6 @@ variable
     {Fρ : CriticalPairFrontier D S ρ H}
     {Rρ : FrontierCommonDeletionParentResidual Fρ}
     (Pρ : RetainedInteriorBlockerCollision Rρ)
-
-/-- The selected four-row at the common `Q` blocker center. -/
-abbrev freshThirdQFiberThreeSelectedRow
-    (Q : FreshThirdBlockerFiber P Pρ) :
-    SelectedFourClass D.A (H.centerAt Q.source₁.1 Q.source₁.2) :=
-  (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.toSelectedFourClass
-
-/-- Source-proved intrinsic indexing of the exact `Q` row, retaining its full
-source-faithful deletion fan and the index of the unique nonfiber source. -/
-structure FreshThirdQFiberThreeCarrierFanView
-    (G : TriApexAllLargeContext D S)
-    (Q : FreshThirdBlockerFiber P Pρ)
-    (Boundary : FreshThirdQFiberThreeBoundary P Pρ Q) where
-  qFan : IndexedSourceFaithfulSelectedFourFan D S H
-    (freshThirdQFiberThreeSelectedRow P Pρ Q)
-  boundaryIndex : Fin 4
-  boundary_eq : qFan.source boundaryIndex = Boundary.source
-
-/-- Construct the carrier-fan view from the actual exact-three boundary.  The
-only finite choice is an indexing of the already exact four-point `Q` row. -/
-noncomputable def FreshThirdQFiberThreeCarrierFanView.ofBoundary
-    (G : TriApexAllLargeContext D S)
-    (Q : FreshThirdBlockerFiber P Pρ)
-    (Boundary : FreshThirdQFiberThreeBoundary P Pρ Q) :
-    FreshThirdQFiberThreeCarrierFanView P Pρ G Q Boundary := by
-  let qRow := freshThirdQFiberThreeSelectedRow P Pρ Q
-  have hcenter : H.centerAt Q.source₁.1 Q.source₁.2 ∈ D.A :=
-    (Finset.mem_erase.mp
-      (H.selectedAt Q.source₁.1
-        Q.source₁.2).toCriticalFourShell.center_mem).2
-  let qFan : IndexedSourceFaithfulSelectedFourFan D S H qRow :=
-    IndexedSourceFaithfulSelectedFourFan.ofSourceFaithfulFan
-      hcenter qRow
-        (sourceFaithfulDeletionFan_of_triApexAllLargeContext G qRow)
-  have hsource : Boundary.source.1 ∈ qRow.support := by
-    exact Boundary.source_mem
-  let boundaryIndex : Fin 4 := qFan.index ⟨Boundary.source.1, hsource⟩
-  refine ⟨qFan, boundaryIndex, ?_⟩
-  simpa only [boundaryIndex] using
-    qFan.source_index_support Boundary.source hsource
 
 namespace FreshThirdQFiberThreeCarrierFanView
 

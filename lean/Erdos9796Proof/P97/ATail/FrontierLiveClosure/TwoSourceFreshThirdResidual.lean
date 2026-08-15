@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdPinnedFanPacket
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdQFiberThreeBoundary
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceTripleShellEscape
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdRetainedProducer
 import Erdos9796Proof.P97.ATail.FirstApexInteriorPairGeometry
@@ -5867,39 +5868,6 @@ theorem qFiber_card_ge_three_of_thirdSource
         Q.sources_ne, hx₁.symm, hx₂.symm⟩
   have hthree' : 3 ≤ fiber.card := by omega
   simpa [fiber] using hthree'
-
-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
-  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- The exact-three arm of the `Q` blocker boundary.  Besides recording the
-fiber cardinality, it retains the source-clean distinct-center row and the two
-deletion successors forced by the missing fourth source. -/
-structure FreshThirdQFiberThreeBoundary
-    (Q : FreshThirdBlockerFiber P Pρ) where
-  card_eq :
-    (ATailSurvivalCover.actualBlockerFiber H Q.source₁).card = 3
-  source : CriticalShellSystem.CarrierVertex D.A
-  source_mem :
-    source.1 ∈
-      (H.selectedAt Q.source₁.1
-        Q.source₁.2).toCriticalFourShell.support
-  centers_ne :
-    H.centerAt source.1 source.2 ≠
-      H.centerAt Q.source₁.1 Q.source₁.2
-  two_le_difference :
-    2 ≤
-      ((H.selectedAt Q.source₁.1
-          Q.source₁.2).toCriticalFourShell.support \
-        (H.selectedAt source.1
-          source.2).toCriticalFourShell.support).card
-  deletion_successors :
-    ∀ w ∈
-        (H.selectedAt Q.source₁.1
-            Q.source₁.2).toCriticalFourShell.support \
-          (H.selectedAt source.1
-            source.2).toCriticalFourShell.support,
-      w ≠ source.1 ∧
-        HasNEquidistantPointsAt 4 (D.A.erase w)
-          (H.centerAt source.1 source.2)
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
