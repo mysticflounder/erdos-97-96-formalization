@@ -11372,6 +11372,40 @@ cardinality-independent producer.  The v4 receipt remains `source_total =
 false`, so this checkpoint is not FirstNonHit closure, not a source-total UNSAT
 result, and not a finite-to-universal promotion.
 
+The authorized overlap-v5 successor is now terminal.  It adds 136 exact
+same-blocker auxiliaries, 4,624 clauses defining blocker equality versus row
+equality, and all 92,480 distinct-blocker three-overlap exclusions.  The
+authenticated query has 93,211 variables and 560,926 clauses, with CNF
+SHA-256
+`d863b87e923c8df36c88ecd7d6fa3e5db820fd1f231526f9c7845353dac75ce9`.
+CaDiCaL returned `SAT`; the complete model satisfies every emitted clause and
+the independent semantic replay.  Zero-call terminal re-entry also passes.
+In the new model every distinct-blocker row intersection has cardinality at
+most one, so the generic two-circle overlap family is strictly insufficient.
+
+The survivor chooses `sourceRowOmission` for both named interactions and the
+`common_payload_free` ingress arm.  The latter name is a real abstraction
+boundary: the current finite assignment has enough generic carrier relations,
+but the CNF has no independent selectors for the two sources of the
+common-radius witness `G.surface` and emits none of the thirty fields in
+`FirstNonHitCommonRadiusFinitePayload`.  This is an intentional sound
+relaxation, not a model of the Lean common-radius landing theorem.  The next
+material finite checkpoint, if used, must add two independent one-hot
+`G.surface` selectors and guard the complete common payload without identifying
+`G.surface` with the live canonical surface `C`; a direct pairwise encoding at
+`n = 17` is estimated to add 34 variables and about 45,902 clauses.  A
+retained-only, blocker-fiber-only, overlap-only, or payload-free replay remains
+forbidden.
+
+The mandatory post-wave mine used only the new overlap-v5 assignment and
+found no new cardinality-independent theorem candidate.  Consequently no
+fresh general theorem-bank search is licensed by this wave.  The live proof
+frontier is now the independent common-radius payload: either prove its
+source-clean impossibility directly, or encode it completely and use the
+resulting exact survivor/core to identify the first additional positive
+synchronization.  The v5 result remains `source_total = false`; it is neither
+a P97 counterexample nor a universal or Lean closure.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
