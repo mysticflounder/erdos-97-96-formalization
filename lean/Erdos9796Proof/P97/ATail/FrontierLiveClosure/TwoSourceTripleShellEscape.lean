@@ -339,6 +339,69 @@ theorem exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCase
           source.2).toCriticalFourShell.toSelectedFourClass hsource
     exact Or.inr (Or.inr ⟨hsource, hinc.1, hinc.2⟩)
 
+/-- Every row supplied by the triple-shell escape has overlap at most two with
+the `Q` row.  If its center is distinct this is the two-circle bound; if the
+centers coincide, the escaping point forces distinct radii and hence disjoint
+supports. -/
+theorem exists_q_tripleShellEscape_qRow_overlap_card_le_two
+    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (Q : FreshThirdBlockerFiber P Pρ) :
+    ∃ center : ℝ²,
+      ∃ K : SelectedFourClass D.A center,
+        ∃ z : ℝ²,
+          z ∈ K.support ∧
+            z ∉ freshThirdCriticalTripleShellSeed P Pρ Q.source₁ ∧
+            (K.support ∩
+              (H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.support).card ≤ 2 := by
+  rcases
+      exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCases
+        (P := P) (Pρ := Pρ) hlarge Q.source₁ with
+    ⟨center, K, z, hzK, hzOutside, _⟩
+  refine ⟨center, K, z, hzK, hzOutside, ?_⟩
+  let KQ :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell
+  by_cases hcenters : center = H.centerAt Q.source₁.1 Q.source₁.2
+  · have hzNotQ : z ∉ KQ.support := by
+      intro hzQ
+      exact hzOutside (Finset.mem_union_right _ hzQ)
+    have hradii : K.radius ≠ KQ.radius := by
+      intro hradii
+      apply hzNotQ
+      have hzClass :
+          z ∈ SelectedClass D.A
+            (H.centerAt Q.source₁.1 Q.source₁.2) KQ.radius := by
+        rw [mem_selectedClass]
+        refine ⟨K.support_subset_A hzK, ?_⟩
+        calc
+          dist (H.centerAt Q.source₁.1 Q.source₁.2) z =
+              dist center z := by rw [hcenters]
+          _ = K.radius := K.support_eq_radius z hzK
+          _ = KQ.radius := hradii
+      have hclassEq :
+          SelectedClass D.A
+              (H.centerAt Q.source₁.1 Q.source₁.2) KQ.radius =
+            KQ.support := by
+        simpa only [SelectedClass] using KQ.support_eq.symm
+      rwa [hclassEq] at hzClass
+    have hinterEmpty : K.support ∩ KQ.support = ∅ := by
+      apply Finset.disjoint_iff_inter_eq_empty.mp
+      rw [Finset.disjoint_left]
+      intro w hwK hwQ
+      apply hradii
+      calc
+        K.radius = dist center w := (K.support_eq_radius w hwK).symm
+        _ = dist (H.centerAt Q.source₁.1 Q.source₁.2) w := by rw [hcenters]
+        _ = KQ.radius := KQ.support_eq_radius w hwQ
+    rw [show
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support = KQ.support by rfl]
+    rw [hinterEmpty]
+    simp
+  · simpa [KQ] using
+      SelectedFourClass.inter_card_le_two K KQ.toSelectedFourClass hcenters
+
 end
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure

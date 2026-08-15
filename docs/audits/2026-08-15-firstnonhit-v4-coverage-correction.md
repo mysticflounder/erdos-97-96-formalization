@@ -84,6 +84,16 @@ smaller positive synchronization packet placing the boundary source and two
 fiber-image points in one pinned fan row. Promoting another terminal without
 that producer would leave an equivalent or stronger open leaf.
 
+## Live-retained discovery anti-landing
+
+The live-retained discovery encoder requires a source-clean anti-landing for
+its global escape row. The upstream theorem
+`exists_q_tripleShellEscape_qRow_overlap_card_le_two` now supplies that fact:
+for every live `Q` fiber, the escaped selected four-class meets the `Q` row in
+at most two points. The escape row therefore cannot itself witness a
+three-or-more-point `Q` overlap. This is an input restriction only; it neither
+closes the FirstNonHit leaf nor reduces the kernel proof frontier.
+
 ## Next proof boundary
 
 No further local carrier wave is authorized from this result. The active proof
