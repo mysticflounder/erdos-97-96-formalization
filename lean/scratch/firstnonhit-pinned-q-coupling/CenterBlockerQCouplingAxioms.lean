@@ -1,0 +1,4 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdPinnedCenterBlockerSeparatedOutcome.false_of_qRow_overlap_card_ge_three

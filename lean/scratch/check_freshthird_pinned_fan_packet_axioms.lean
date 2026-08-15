@@ -1,0 +1,10 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FreshThirdPinnedFanPacket
+
+/-! Transitive axiom audit for the intrinsic FreshThird pinned-fan ingress. -/
+
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedSourceFaithfulSelectedFourFan.source_injective
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedSourceFaithfulSelectedFourFan.support_eq_source_image
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedSourceFaithfulSelectedFourFan.deletionPacket
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedSourceFaithfulSelectedFourFan.ofSourceFaithfulFan
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedPinnedEndpointOutsideSeedFan.nonempty_ofEndpointSplit
+#print axioms Problem97.ATailFrontierLiveClosure.IndexedPinnedEndpointOutsideSeedFan.ofEndpointSplit
