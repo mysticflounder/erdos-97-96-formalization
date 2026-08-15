@@ -1,0 +1,3 @@
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
+
+Checked adapter from the live surface to the acyclic ingress consumer.
