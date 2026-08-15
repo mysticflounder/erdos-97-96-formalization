@@ -1,0 +1,33 @@
+{
+  "cycle_length_profiles": {
+    "2": 6,
+    "5": 91,
+    "6": 4
+  },
+  "distinct_fiber_signatures": 3,
+  "fan_distinct_blocker_counts": {
+    "3": 9,
+    "4": 92
+  },
+  "fan_feeding_saturated_fiber_count": 0,
+  "fan_feeding_saturated_fiber_witnesses": [],
+  "forbidden_fan_blocker_hits": 0,
+  "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-source-role-deletion-v5-xu-q/journal.jsonl",
+  "max_fiber_size_counts": {
+    "2": 3,
+    "3": 98
+  },
+  "membership_failures": [],
+  "reciprocal_pair_counts": {
+    "0": 95,
+    "1": 6
+  },
+  "saturated_fibers": [],
+  "saturated_model_count": 0,
+  "saturated_support_failures": [],
+  "saturated_without_full_fan_feeding_count": 0,
+  "schema": "p97_pentagon_offclass_source_model_mining.v2",
+  "scope": "empirical SAT-model statistics; not a producer or proof",
+  "source_models": 101,
+  "source_models_with_cube": 101
+}

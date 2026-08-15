@@ -1,0 +1,1145 @@
+{
+  "all_five_records": 0,
+  "bit_order": [
+    "d_in_BO",
+    "O_in_Kc",
+    "u_in_Kc",
+    "O_in_Kxv",
+    "d_in_Kxv"
+  ],
+  "blocker_counts": {
+    "0": 47,
+    "1": 0,
+    "10": 7,
+    "11": 12,
+    "2": 315,
+    "3": 13,
+    "4": 37,
+    "5": 44,
+    "6": 20,
+    "7": 0,
+    "8": 0,
+    "9": 5
+  },
+  "first_example_by_mask": {
+    "00000": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        3,
+        5,
+        7,
+        8
+      ],
+      "Kxv": [
+        3,
+        6,
+        8,
+        10
+      ],
+      "c_actual_blocker": 4,
+      "iteration": 11495,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 145,
+      "stage": "equality-duplicate-center"
+    },
+    "00001": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        7,
+        8,
+        10
+      ],
+      "Kxv": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "c_actual_blocker": 5,
+      "iteration": 11604,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 254,
+      "stage": "equality-duplicate-center"
+    },
+    "00010": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        4,
+        5,
+        7
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 10,
+      "iteration": 11586,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 236,
+      "stage": "equality-duplicate-center"
+    },
+    "00011": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        2,
+        7,
+        10
+      ],
+      "Kxv": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "c_actual_blocker": 3,
+      "iteration": 11504,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 154,
+      "stage": "equality-duplicate-center"
+    },
+    "00100": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        4,
+        6,
+        7,
+        11
+      ],
+      "Kxv": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "c_actual_blocker": 5,
+      "iteration": 11553,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 203,
+      "stage": "equality-duplicate-center"
+    },
+    "00101": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        3,
+        6,
+        7
+      ],
+      "Kxv": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "c_actual_blocker": 5,
+      "iteration": 11762,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 412,
+      "stage": "equality-duplicate-center"
+    },
+    "00110": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        5,
+        6,
+        7,
+        11
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 10,
+      "iteration": 11585,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 235,
+      "stage": "equality-duplicate-center"
+    },
+    "01000": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        2,
+        5,
+        7
+      ],
+      "Kxv": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "c_actual_blocker": 11,
+      "iteration": 11513,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 163,
+      "stage": "equality-duplicate-center"
+    },
+    "01001": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "Kxv": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "c_actual_blocker": 4,
+      "iteration": 11462,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 112,
+      "stage": "equality-duplicate-center"
+    },
+    "01010": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 4,
+      "iteration": 11556,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 206,
+      "stage": "equality-six-point-five-circle-collision-a"
+    },
+    "01011": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        1,
+        7,
+        8
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 11,
+      "iteration": 11731,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 381,
+      "stage": "equality-duplicate-center"
+    },
+    "01100": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        6,
+        7,
+        10
+      ],
+      "Kxv": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "c_actual_blocker": 5,
+      "iteration": 11575,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 225,
+      "stage": "equality-duplicate-center"
+    },
+    "01101": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        1,
+        6,
+        7
+      ],
+      "Kxv": [
+        4,
+        5,
+        6,
+        8
+      ],
+      "c_actual_blocker": 5,
+      "iteration": 11538,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 188,
+      "stage": "equality-duplicate-center"
+    },
+    "01110": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        6,
+        7,
+        10
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 3,
+      "iteration": 11635,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 285,
+      "stage": "equality-duplicate-center"
+    },
+    "10000": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "Kxv": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "c_actual_blocker": 0,
+      "iteration": 11351,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 1,
+      "stage": "equality-duplicate-center"
+    },
+    "10001": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        7,
+        8,
+        10
+      ],
+      "Kxv": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "c_actual_blocker": 6,
+      "iteration": 11389,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 39,
+      "stage": "equality-duplicate-center"
+    },
+    "10010": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 0,
+      "iteration": 11352,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 2,
+      "stage": "equality-duplicate-center"
+    },
+    "10011": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        0,
+        7,
+        8,
+        10
+      ],
+      "Kxv": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "c_actual_blocker": 6,
+      "iteration": 11377,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 27,
+      "stage": "equality-duplicate-center"
+    },
+    "11000": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        7,
+        10,
+        11
+      ],
+      "Kxv": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "c_actual_blocker": 2,
+      "iteration": 11363,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 13,
+      "stage": "equality-duplicate-center"
+    },
+    "11001": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        3,
+        7,
+        10
+      ],
+      "Kxv": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "c_actual_blocker": 6,
+      "iteration": 11473,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 123,
+      "stage": "equality-duplicate-center"
+    },
+    "11010": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        7,
+        10,
+        11
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 2,
+      "iteration": 11365,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 15,
+      "stage": "equality-duplicate-center"
+    },
+    "11011": {
+      "BO": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "Kc": [
+        1,
+        5,
+        7,
+        10
+      ],
+      "Kxv": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "c_actual_blocker": 6,
+      "iteration": 11576,
+      "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+      "line": 226,
+      "stage": "equality-duplicate-center"
+    }
+  },
+  "general_tetrahedron_orientation_audit": {
+    "by_role_orientation": {
+      "Kx=BO,Ky=Kc,Kb=Kxv": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "1": 8,
+          "2": 112,
+          "3": 313,
+          "4": 63,
+          "5": 4
+        },
+        "missing_fact_counts": {
+          "common_point": 423,
+          "x_in_Bb": 318,
+          "x_in_By": 143,
+          "y_in_Bb": 441,
+          "y_in_Bx": 118
+        },
+        "missing_pattern_counts": {
+          "common_point": 4,
+          "common_point+x_in_Bb": 4,
+          "common_point+x_in_Bb+x_in_By": 1,
+          "common_point+x_in_Bb+x_in_By+y_in_Bb": 32,
+          "common_point+x_in_Bb+x_in_By+y_in_Bb+y_in_Bx": 4,
+          "common_point+x_in_Bb+x_in_By+y_in_Bx": 3,
+          "common_point+x_in_Bb+y_in_Bb": 211,
+          "common_point+x_in_Bb+y_in_Bb+y_in_Bx": 16,
+          "common_point+x_in_Bb+y_in_Bx": 14,
+          "common_point+x_in_By+y_in_Bb": 37,
+          "common_point+x_in_By+y_in_Bb+y_in_Bx": 6,
+          "common_point+x_in_By+y_in_Bx": 5,
+          "common_point+y_in_Bb": 82,
+          "common_point+y_in_Bb+y_in_Bx": 4,
+          "x_in_Bb+x_in_By": 9,
+          "x_in_Bb+x_in_By+y_in_Bb+y_in_Bx": 6,
+          "x_in_Bb+x_in_By+y_in_Bx": 10,
+          "x_in_Bb+y_in_Bb+y_in_Bx": 5,
+          "x_in_Bb+y_in_Bx": 3,
+          "x_in_By": 2,
+          "x_in_By+y_in_Bb+y_in_Bx": 26,
+          "x_in_By+y_in_Bx": 2,
+          "y_in_Bb+y_in_Bx": 12,
+          "y_in_Bx": 2
+        }
+      },
+      "Kx=BO,Ky=Kxv,Kb=Kc": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "1": 2,
+          "2": 23,
+          "3": 159,
+          "4": 280,
+          "5": 36
+        },
+        "missing_fact_counts": {
+          "b_in_By": 441,
+          "common_point": 423,
+          "x_in_Bb": 143,
+          "x_in_By": 318,
+          "y_in_Bx": 500
+        },
+        "missing_pattern_counts": {
+          "b_in_By+common_point+x_in_Bb+x_in_By+y_in_Bx": 36,
+          "b_in_By+common_point+x_in_Bb+y_in_Bx": 43,
+          "b_in_By+common_point+x_in_By+y_in_Bx": 227,
+          "b_in_By+common_point+y_in_Bx": 86,
+          "b_in_By+x_in_Bb+x_in_By+y_in_Bx": 6,
+          "b_in_By+x_in_Bb+y_in_Bx": 26,
+          "b_in_By+x_in_By+y_in_Bx": 5,
+          "b_in_By+y_in_Bx": 12,
+          "common_point+x_in_Bb+x_in_By+y_in_Bx": 4,
+          "common_point+x_in_Bb+y_in_Bx": 5,
+          "common_point+x_in_By+y_in_Bx": 18,
+          "common_point+y_in_Bx": 4,
+          "x_in_Bb+x_in_By+y_in_Bx": 19,
+          "x_in_Bb+y_in_Bx": 4,
+          "x_in_By+y_in_Bx": 3,
+          "y_in_Bx": 2
+        }
+      },
+      "Kx=Kc,Ky=BO,Kb=Kxv": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "2": 8,
+          "3": 112,
+          "4": 313,
+          "5": 63,
+          "6": 4
+        },
+        "missing_fact_counts": {
+          "b_in_By": 500,
+          "common_point": 423,
+          "x_in_Bb": 441,
+          "x_in_By": 118,
+          "y_in_Bb": 318,
+          "y_in_Bx": 143
+        },
+        "missing_pattern_counts": {
+          "b_in_By+common_point": 4,
+          "b_in_By+common_point+x_in_Bb": 82,
+          "b_in_By+common_point+x_in_Bb+x_in_By": 4,
+          "b_in_By+common_point+x_in_Bb+x_in_By+y_in_Bb": 16,
+          "b_in_By+common_point+x_in_Bb+x_in_By+y_in_Bb+y_in_Bx": 4,
+          "b_in_By+common_point+x_in_Bb+x_in_By+y_in_Bx": 6,
+          "b_in_By+common_point+x_in_Bb+y_in_Bb": 211,
+          "b_in_By+common_point+x_in_Bb+y_in_Bb+y_in_Bx": 32,
+          "b_in_By+common_point+x_in_Bb+y_in_Bx": 37,
+          "b_in_By+common_point+x_in_By+y_in_Bb": 14,
+          "b_in_By+common_point+x_in_By+y_in_Bb+y_in_Bx": 3,
+          "b_in_By+common_point+x_in_By+y_in_Bx": 5,
+          "b_in_By+common_point+y_in_Bb": 4,
+          "b_in_By+common_point+y_in_Bb+y_in_Bx": 1,
+          "b_in_By+x_in_Bb+x_in_By": 12,
+          "b_in_By+x_in_Bb+x_in_By+y_in_Bb": 5,
+          "b_in_By+x_in_Bb+x_in_By+y_in_Bb+y_in_Bx": 6,
+          "b_in_By+x_in_Bb+x_in_By+y_in_Bx": 26,
+          "b_in_By+x_in_By": 2,
+          "b_in_By+x_in_By+y_in_Bb": 3,
+          "b_in_By+x_in_By+y_in_Bb+y_in_Bx": 10,
+          "b_in_By+x_in_By+y_in_Bx": 2,
+          "b_in_By+y_in_Bb+y_in_Bx": 9,
+          "b_in_By+y_in_Bx": 2
+        }
+      },
+      "Kx=Kc,Ky=Kxv,Kb=BO": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "1": 2,
+          "2": 17,
+          "3": 180,
+          "4": 281,
+          "5": 20
+        },
+        "missing_fact_counts": {
+          "b_in_By": 318,
+          "common_point": 423,
+          "x_in_Bb": 118,
+          "x_in_By": 441,
+          "y_in_Bb": 500
+        },
+        "missing_pattern_counts": {
+          "b_in_By+common_point+x_in_Bb+x_in_By+y_in_Bb": 20,
+          "b_in_By+common_point+x_in_Bb+y_in_Bb": 17,
+          "b_in_By+common_point+x_in_By+y_in_Bb": 243,
+          "b_in_By+common_point+y_in_Bb": 5,
+          "b_in_By+x_in_Bb+x_in_By+y_in_Bb": 11,
+          "b_in_By+x_in_Bb+y_in_Bb": 13,
+          "b_in_By+y_in_Bb": 9,
+          "common_point+x_in_Bb+x_in_By+y_in_Bb": 10,
+          "common_point+x_in_Bb+y_in_Bb": 5,
+          "common_point+x_in_By+y_in_Bb": 119,
+          "common_point+y_in_Bb": 4,
+          "x_in_Bb+x_in_By+y_in_Bb": 38,
+          "x_in_Bb+y_in_Bb": 4,
+          "y_in_Bb": 2
+        }
+      },
+      "Kx=Kxv,Ky=BO,Kb=Kc": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "2": 102,
+          "3": 301,
+          "4": 90,
+          "5": 7
+        },
+        "missing_fact_counts": {
+          "b_in_By": 118,
+          "common_point": 423,
+          "x_in_By": 500,
+          "y_in_Bb": 143,
+          "y_in_Bx": 318
+        },
+        "missing_pattern_counts": {
+          "b_in_By+common_point+x_in_By": 4,
+          "b_in_By+common_point+x_in_By+y_in_Bb": 11,
+          "b_in_By+common_point+x_in_By+y_in_Bb+y_in_Bx": 7,
+          "b_in_By+common_point+x_in_By+y_in_Bx": 30,
+          "b_in_By+x_in_By": 14,
+          "b_in_By+x_in_By+y_in_Bb": 28,
+          "b_in_By+x_in_By+y_in_Bb+y_in_Bx": 16,
+          "b_in_By+x_in_By+y_in_Bx": 8,
+          "common_point+x_in_By": 86,
+          "common_point+x_in_By+y_in_Bb": 37,
+          "common_point+x_in_By+y_in_Bb+y_in_Bx": 33,
+          "common_point+x_in_By+y_in_Bx": 215,
+          "x_in_By+y_in_Bb": 2,
+          "x_in_By+y_in_Bb+y_in_Bx": 9
+        }
+      },
+      "Kx=Kxv,Ky=Kc,Kb=BO": {
+        "common_point_counts": {
+          "6": 41,
+          "8": 36
+        },
+        "minimum_deficit_counts": {
+          "2": 24,
+          "3": 337,
+          "4": 129,
+          "5": 10
+        },
+        "missing_fact_counts": {
+          "b_in_By": 143,
+          "common_point": 423,
+          "x_in_Bb": 500,
+          "y_in_Bb": 118,
+          "y_in_Bx": 441
+        },
+        "missing_pattern_counts": {
+          "b_in_By+common_point+x_in_Bb": 1,
+          "b_in_By+common_point+x_in_Bb+y_in_Bb": 8,
+          "b_in_By+common_point+x_in_Bb+y_in_Bb+y_in_Bx": 10,
+          "b_in_By+common_point+x_in_Bb+y_in_Bx": 69,
+          "b_in_By+x_in_Bb": 11,
+          "b_in_By+x_in_Bb+y_in_Bb": 12,
+          "b_in_By+x_in_Bb+y_in_Bb+y_in_Bx": 32,
+          "common_point+x_in_Bb": 8,
+          "common_point+x_in_Bb+y_in_Bb": 14,
+          "common_point+x_in_Bb+y_in_Bb+y_in_Bx": 20,
+          "common_point+x_in_Bb+y_in_Bx": 293,
+          "x_in_Bb+y_in_Bb": 5,
+          "x_in_Bb+y_in_Bb+y_in_Bx": 17
+        }
+      }
+    },
+    "exact_match_records": 0,
+    "first_example_by_minimum_deficit": {
+      "1": {
+        "best_orientation": {
+          "common_points": [
+            8
+          ],
+          "deficit": 1,
+          "facts": {
+            "b_in_By": true,
+            "common_point": true,
+            "x_in_Bb": true,
+            "x_in_By": false,
+            "y_in_Bb": true,
+            "y_in_Bx": true
+          },
+          "missing": [
+            "x_in_By"
+          ],
+          "roles": {
+            "Kb": "Kxv",
+            "Kx": "BO",
+            "Ky": "Kc"
+          }
+        },
+        "iteration": 11377,
+        "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+        "line": 27,
+        "stage": "equality-duplicate-center"
+      },
+      "2": {
+        "best_orientation": {
+          "common_points": [],
+          "deficit": 2,
+          "facts": {
+            "b_in_By": true,
+            "common_point": false,
+            "x_in_Bb": true,
+            "x_in_By": true,
+            "y_in_Bb": false,
+            "y_in_Bx": true
+          },
+          "missing": [
+            "common_point",
+            "y_in_Bb"
+          ],
+          "roles": {
+            "Kb": "Kxv",
+            "Kx": "BO",
+            "Ky": "Kc"
+          }
+        },
+        "iteration": 11365,
+        "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+        "line": 15,
+        "stage": "equality-duplicate-center"
+      },
+      "3": {
+        "best_orientation": {
+          "common_points": [],
+          "deficit": 3,
+          "facts": {
+            "b_in_By": true,
+            "common_point": false,
+            "x_in_Bb": true,
+            "x_in_By": false,
+            "y_in_Bb": false,
+            "y_in_Bx": true
+          },
+          "missing": [
+            "common_point",
+            "x_in_By",
+            "y_in_Bb"
+          ],
+          "roles": {
+            "Kb": "Kxv",
+            "Kx": "BO",
+            "Ky": "Kc"
+          }
+        },
+        "iteration": 11352,
+        "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+        "line": 2,
+        "stage": "equality-duplicate-center"
+      },
+      "4": {
+        "best_orientation": {
+          "common_points": [],
+          "deficit": 4,
+          "facts": {
+            "b_in_By": true,
+            "common_point": false,
+            "x_in_Bb": false,
+            "x_in_By": false,
+            "y_in_Bb": false,
+            "y_in_Bx": true
+          },
+          "missing": [
+            "common_point",
+            "x_in_Bb",
+            "x_in_By",
+            "y_in_Bb"
+          ],
+          "roles": {
+            "Kb": "Kxv",
+            "Kx": "BO",
+            "Ky": "Kc"
+          }
+        },
+        "iteration": 11351,
+        "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+        "line": 1,
+        "stage": "equality-duplicate-center"
+      },
+      "5": {
+        "best_orientation": {
+          "common_points": [],
+          "deficit": 5,
+          "facts": {
+            "b_in_By": true,
+            "common_point": false,
+            "x_in_Bb": false,
+            "x_in_By": false,
+            "y_in_Bb": false,
+            "y_in_Bx": false
+          },
+          "missing": [
+            "common_point",
+            "x_in_Bb",
+            "x_in_By",
+            "y_in_Bb",
+            "y_in_Bx"
+          ],
+          "roles": {
+            "Kb": "Kxv",
+            "Kx": "BO",
+            "Ky": "Kc"
+          }
+        },
+        "iteration": 11558,
+        "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-common-v7-u-q-mask-census-500/journal.jsonl",
+        "line": 208,
+        "stage": "equality-duplicate-center"
+      }
+    },
+    "minimum_deficit_counts": {
+      "1": 8,
+      "2": 112,
+      "3": 313,
+      "4": 63,
+      "5": 4
+    },
+    "missing_fact_counts_in_first_best_orientation": {
+      "common_point": 423,
+      "x_in_Bb": 318,
+      "x_in_By": 143,
+      "y_in_Bb": 441,
+      "y_in_Bx": 118
+    }
+  },
+  "mask_counts": {
+    "00000": 7,
+    "00001": 4,
+    "00010": 18,
+    "00011": 7,
+    "00100": 3,
+    "00101": 9,
+    "00110": 14,
+    "01000": 19,
+    "01001": 16,
+    "01010": 4,
+    "01011": 2,
+    "01100": 2,
+    "01101": 1,
+    "01110": 12,
+    "10000": 32,
+    "10001": 10,
+    "10010": 37,
+    "10011": 2,
+    "11000": 211,
+    "11001": 4,
+    "11010": 82,
+    "11011": 4
+  },
+  "missing_counts": {
+    "O_in_Kc": 143,
+    "O_in_Kxv": 318,
+    "d_in_BO": 118,
+    "d_in_Kxv": 441,
+    "u_in_Kc": 459
+  },
+  "records": 500,
+  "row_membership_counts": {
+    "BO": {
+      "0": 500,
+      "1": 0,
+      "10": 0,
+      "11": 0,
+      "2": 500,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 500,
+      "7": 0,
+      "8": 500,
+      "9": 0
+    },
+    "Kc": {
+      "0": 52,
+      "1": 357,
+      "10": 388,
+      "11": 347,
+      "2": 25,
+      "3": 110,
+      "4": 61,
+      "5": 83,
+      "6": 41,
+      "7": 500,
+      "8": 36,
+      "9": 0
+    },
+    "Kxv": {
+      "0": 0,
+      "1": 182,
+      "10": 119,
+      "11": 136,
+      "2": 0,
+      "3": 167,
+      "4": 267,
+      "5": 129,
+      "6": 500,
+      "7": 0,
+      "8": 500,
+      "9": 0
+    }
+  },
+  "schema": "p97_common_v7_tetrahedron_incidence_mask_census.v1",
+  "stage_counts_by_mask": {
+    "00000": {
+      "equality-duplicate-center": 7
+    },
+    "00001": {
+      "equality-duplicate-center": 4
+    },
+    "00010": {
+      "equality-duplicate-center": 18
+    },
+    "00011": {
+      "equality-duplicate-center": 7
+    },
+    "00100": {
+      "equality-duplicate-center": 3
+    },
+    "00101": {
+      "equality-duplicate-center": 9
+    },
+    "00110": {
+      "equality-duplicate-center": 14
+    },
+    "01000": {
+      "equality-duplicate-center": 19
+    },
+    "01001": {
+      "equality-duplicate-center": 16
+    },
+    "01010": {
+      "equality-duplicate-center": 2,
+      "equality-six-point-five-circle-collision-a": 2
+    },
+    "01011": {
+      "equality-duplicate-center": 2
+    },
+    "01100": {
+      "equality-duplicate-center": 2
+    },
+    "01101": {
+      "equality-duplicate-center": 1
+    },
+    "01110": {
+      "equality-duplicate-center": 12
+    },
+    "10000": {
+      "equality-duplicate-center": 28,
+      "equality-perpendicular-bisector-convex": 4
+    },
+    "10001": {
+      "equality-duplicate-center": 10
+    },
+    "10010": {
+      "equality-duplicate-center": 31,
+      "equality-perpendicular-bisector-convex": 3,
+      "equality-surplus-source-collision": 1,
+      "equality-three-triad-collision": 1,
+      "ordered-cap-cover": 1
+    },
+    "10011": {
+      "equality-duplicate-center": 2
+    },
+    "11000": {
+      "equality-duplicate-center": 118,
+      "equality-equal-k4": 1,
+      "equality-equilateral-bisector-collision": 32,
+      "equality-perpendicular-bisector-convex": 41,
+      "equality-three-triad-collision": 4,
+      "ordered-cap-cover": 15
+    },
+    "11001": {
+      "equality-duplicate-center": 4
+    },
+    "11010": {
+      "equality-duplicate-center": 52,
+      "equality-equilateral-bisector-collision": 9,
+      "equality-perpendicular-bisector-convex": 17,
+      "equality-seven-point-five-circle-collision": 1,
+      "equality-three-triad-collision": 1,
+      "ordered-cap-cover": 2
+    },
+    "11011": {
+      "equality-duplicate-center": 3,
+      "equality-three-triad-collision": 1
+    }
+  },
+  "status": "PASS",
+  "true_counts": {
+    "O_in_Kc": 357,
+    "O_in_Kxv": 182,
+    "d_in_BO": 382,
+    "d_in_Kxv": 59,
+    "u_in_Kc": 41
+  }
+}

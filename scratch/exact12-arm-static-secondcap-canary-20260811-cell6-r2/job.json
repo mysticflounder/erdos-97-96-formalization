@@ -1,0 +1,538 @@
+{
+  "adjacent_apex_cross_block_membership_family_bank": {
+    "family_id": "adjacent-apex-cross-block-b345-c1011-y6789.v1",
+    "lean_terminal_ingress_ready": false,
+    "schema": "p97_rigid221_exact12_adjacent_apex_cross_block_membership_family_bank.v1",
+    "sha256": "2593df57348dd56c85103204c0927b7dc69eb24dc9e2d4b50c048f2f2f2101a6"
+  },
+  "arm_cell_index": 6,
+  "arm_suffix": {
+    "n_clauses": 867,
+    "post_arm_dimacs_sha256": "49cce02a343b01b1959e5ae71cc8ad9736650a2cde8ff33d3965a477ab2b8d00",
+    "schema": "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1",
+    "sha256": "9a334acd48e984cc8cac9527043cf978e042b84209a8039cf2ed41b205f97231"
+  },
+  "candidate_profile": [
+    5,
+    6,
+    4
+  ],
+  "candidate_schema": "p97_rigid221_exact12_source_safe_candidate.v1",
+  "cnf": {
+    "bytes": 13034725,
+    "clauses": 638183,
+    "sha256": "844941ffca98247cc410185bac2a727189fe7e4af0a3ce06da4cd25fc8453aab",
+    "variables": 45000
+  },
+  "compiler_manifest": {
+    "base_compiler_manifest": {
+      "blocker_variables": [
+        {
+          "center": 2,
+          "source": 0,
+          "variable": 42601
+        },
+        {
+          "center": 3,
+          "source": 0,
+          "variable": 42602
+        },
+        {
+          "center": 4,
+          "source": 0,
+          "variable": 42603
+        },
+        {
+          "center": 5,
+          "source": 0,
+          "variable": 42604
+        },
+        {
+          "center": 6,
+          "source": 0,
+          "variable": 42605
+        },
+        {
+          "center": 7,
+          "source": 0,
+          "variable": 42606
+        },
+        {
+          "center": 8,
+          "source": 0,
+          "variable": 42607
+        },
+        {
+          "center": 9,
+          "source": 0,
+          "variable": 42608
+        },
+        {
+          "center": 10,
+          "source": 0,
+          "variable": 42609
+        },
+        {
+          "center": 11,
+          "source": 0,
+          "variable": 42610
+        },
+        {
+          "center": 0,
+          "source": 3,
+          "variable": 42621
+        },
+        {
+          "center": 2,
+          "source": 3,
+          "variable": 42622
+        },
+        {
+          "center": 4,
+          "source": 3,
+          "variable": 42623
+        },
+        {
+          "center": 5,
+          "source": 3,
+          "variable": 42624
+        },
+        {
+          "center": 6,
+          "source": 3,
+          "variable": 42625
+        },
+        {
+          "center": 7,
+          "source": 3,
+          "variable": 42626
+        },
+        {
+          "center": 8,
+          "source": 3,
+          "variable": 42627
+        },
+        {
+          "center": 9,
+          "source": 3,
+          "variable": 42628
+        },
+        {
+          "center": 10,
+          "source": 3,
+          "variable": 42629
+        },
+        {
+          "center": 11,
+          "source": 3,
+          "variable": 42630
+        },
+        {
+          "center": 0,
+          "source": 6,
+          "variable": 42561
+        },
+        {
+          "center": 2,
+          "source": 6,
+          "variable": 42562
+        },
+        {
+          "center": 3,
+          "source": 6,
+          "variable": 42563
+        },
+        {
+          "center": 4,
+          "source": 6,
+          "variable": 42564
+        },
+        {
+          "center": 5,
+          "source": 6,
+          "variable": 42565
+        },
+        {
+          "center": 7,
+          "source": 6,
+          "variable": 42566
+        },
+        {
+          "center": 8,
+          "source": 6,
+          "variable": 42567
+        },
+        {
+          "center": 9,
+          "source": 6,
+          "variable": 42568
+        },
+        {
+          "center": 10,
+          "source": 6,
+          "variable": 42569
+        },
+        {
+          "center": 11,
+          "source": 6,
+          "variable": 42570
+        },
+        {
+          "center": 0,
+          "source": 8,
+          "variable": 42641
+        },
+        {
+          "center": 2,
+          "source": 8,
+          "variable": 42642
+        },
+        {
+          "center": 3,
+          "source": 8,
+          "variable": 42643
+        },
+        {
+          "center": 4,
+          "source": 8,
+          "variable": 42644
+        },
+        {
+          "center": 5,
+          "source": 8,
+          "variable": 42645
+        },
+        {
+          "center": 6,
+          "source": 8,
+          "variable": 42646
+        },
+        {
+          "center": 7,
+          "source": 8,
+          "variable": 42647
+        },
+        {
+          "center": 9,
+          "source": 8,
+          "variable": 42648
+        },
+        {
+          "center": 10,
+          "source": 8,
+          "variable": 42649
+        },
+        {
+          "center": 11,
+          "source": 8,
+          "variable": 42650
+        },
+        {
+          "center": 0,
+          "source": 9,
+          "variable": 42581
+        },
+        {
+          "center": 2,
+          "source": 9,
+          "variable": 42582
+        },
+        {
+          "center": 3,
+          "source": 9,
+          "variable": 42583
+        },
+        {
+          "center": 4,
+          "source": 9,
+          "variable": 42584
+        },
+        {
+          "center": 5,
+          "source": 9,
+          "variable": 42585
+        },
+        {
+          "center": 6,
+          "source": 9,
+          "variable": 42586
+        },
+        {
+          "center": 7,
+          "source": 9,
+          "variable": 42587
+        },
+        {
+          "center": 8,
+          "source": 9,
+          "variable": 42588
+        },
+        {
+          "center": 10,
+          "source": 9,
+          "variable": 42589
+        },
+        {
+          "center": 11,
+          "source": 9,
+          "variable": 42590
+        }
+      ],
+      "cell": {
+        "joint_deletion": 0,
+        "placement_index": 1,
+        "v": 3
+      },
+      "counts": {
+        "added_clauses": 384,
+        "added_variables": 170,
+        "base_clauses": 368075,
+        "base_variables": 42560,
+        "final_clauses": 368459,
+        "final_variables": 42730
+      },
+      "distinguished_d_variables": [
+        {
+          "center": 0,
+          "variable": 42711
+        },
+        {
+          "center": 2,
+          "variable": 42712
+        },
+        {
+          "center": 3,
+          "variable": 42713
+        },
+        {
+          "center": 4,
+          "variable": 42714
+        },
+        {
+          "center": 5,
+          "variable": 42715
+        },
+        {
+          "center": 6,
+          "variable": 42716
+        },
+        {
+          "center": 8,
+          "variable": 42717
+        },
+        {
+          "center": 9,
+          "variable": 42718
+        },
+        {
+          "center": 10,
+          "variable": 42719
+        },
+        {
+          "center": 11,
+          "variable": 42720
+        }
+      ],
+      "edges": [
+        {
+          "edge": [
+            6,
+            9
+          ],
+          "source": 6
+        },
+        {
+          "edge": [
+            0,
+            9
+          ],
+          "source": 9
+        },
+        {
+          "edge": [
+            0,
+            3
+          ],
+          "source": 0
+        },
+        {
+          "edge": [
+            3,
+            8
+          ],
+          "source": 3
+        },
+        {
+          "edge": [
+            6,
+            8
+          ],
+          "source": 8
+        }
+      ],
+      "hashes": {
+        "blocker_variable_map_sha256": "d92a4bc62cb5ee6d7ae8946871d783637daa413d7d0f71a4ca74cdc57debe8e7",
+        "clause_delta_sha256": "c8342d28d6f3dcdf7c5ea3e2b62b0552d44badd90912177bee733ea69279e4ff",
+        "distinguished_d_variable_map_sha256": "309cc6716a13ab0b6d57a297ee096bd3f835f6107e6c8d4dc121b6c1f9577e68"
+      },
+      "lean_ingress_theorem": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.exists_source_normalized_nextRowOnlyHitJob",
+      "physical": [
+        0,
+        3,
+        6,
+        8,
+        9
+      ],
+      "row_at_o": [
+        0,
+        3,
+        6,
+        8
+      ],
+      "schema": "p97_rigid221_exact12_next_row_only_hit_compiler.v2",
+      "scope": "one finite next-row-only-hit successor cell relative to the frozen source-safe candidate CNF; no terminal, replay, aggregate coverage, or Lean-closure claim",
+      "semantic_status": "FINITE_SOURCE_PREDICATE_COMPILER"
+    },
+    "cell": {
+      "arm": "u_q",
+      "joint_deletion": 0,
+      "placement_index": 1,
+      "v": 3
+    },
+    "counts": {
+      "added_clauses": 1251,
+      "base_clauses": 368075,
+      "base_variables": 42560,
+      "final_clauses": 369326,
+      "final_variables": 42730,
+      "named_deletion_added_clauses": 867
+    },
+    "hashes": {
+      "clause_delta_sha256": "a111c49280a1e50dbc613f4bd9da85caf822306a5e84517d68359b2048a82f53",
+      "named_deletion_clause_delta_sha256": "618c49e81c6d19a15d04a7f62c75cc38e424338795c94505eba420d5e0dcd08c"
+    },
+    "lean_ingress_theorem": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.exists_source_normalized_nextRowNamedDeletionJob",
+    "schema": "p97_rigid221_exact12_next_row_named_deletion_arm_compiler.v1",
+    "scope": "one finite placement by named-deletion-arm refinement of the next-row-only-hit successor schema; no terminal, aggregate coverage, universal lift, or Lean-closure claim",
+    "semantic_status": "FINITE_SOURCE_PREDICATE_COMPILER"
+  },
+  "job_id": "b993687b40c33cc6c64ab90350974af50676986d1cc8833a0535f5c939d8c24f",
+  "positive_membership_bank": {
+    "cut_id": "three-triad-cell1-after-block-spanning-family.v1",
+    "schema": "p97_rigid221_exact12_three_triad_membership_bank.v1",
+    "sha256": "0454871cc94cacc1f5104767da2f5f88c417afc7c61690223e88583e7decab25"
+  },
+  "promotion": {
+    "lean_terminal_ingress_ready": false,
+    "status_on_verified_unsat": "UNSAT_DRAT_VERIFIED_AWAITING_ARM_STATIC_LEAN_INGRESS"
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_job.v1",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "second_cap_apex_surplus_membership_family_bank": {
+    "family_id": "second-cap-monotone-triple-apex2-surplus345.v1",
+    "lean_terminal_ingress_ready": false,
+    "schema": "p97_rigid221_exact12_second_cap_apex_surplus_membership_family_bank.v1",
+    "sha256": "c2360f0c75eb551aeb325400e2138663f323ada26dbec22901a5768819886392"
+  },
+  "source_order_bank": {
+    "installation": {
+      "bank_sha256": "01a8f035e784fb3ca0469f9a96dcdbb225de24c87257e7df5fa32e5b1a0ab8c4",
+      "base_cnf_sha256": "49cce02a343b01b1959e5ae71cc8ad9736650a2cde8ff33d3965a477ab2b8d00",
+      "base_n_clauses": 638103,
+      "base_n_variables": 45000,
+      "final_cnf_sha256": "844941ffca98247cc410185bac2a727189fe7e4af0a3ce06da4cd25fc8453aab",
+      "final_n_clauses": 638183,
+      "final_n_variables": 45000,
+      "installation_sha256": "81ae45f923de7c8d21eaf5015073db276028ccf45c13edde718465bef0f5a2c8",
+      "schema": "p97_rigid221_exact12_source_order_positive_bank_installation.v2",
+      "suffix_n_clauses": 80,
+      "suffix_sha256": "9a4acc52b205b8ca20ced2519742468f4eec64841d6adc97f046a46c0fa30585"
+    },
+    "n_clauses": 80,
+    "schema": "p97_rigid221_exact12_source_order_positive_bank.v3",
+    "sha256": "01a8f035e784fb3ca0469f9a96dcdbb225de24c87257e7df5fa32e5b1a0ab8c4"
+  },
+  "sources": [
+    {
+      "bytes": 13088,
+      "path": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py",
+      "sha256": "6d4ee0c9631ad5846ce302eb37e79d9d71302701c6f372e7e9e2cff38df26f4b"
+    },
+    {
+      "bytes": 15448,
+      "path": "census/card_head/exact12_next_row_arm_cell_run.py",
+      "sha256": "adab26919e5cb2b841051cf32b5a7bf23819a0ef26ccffd47a24384d048795e8"
+    },
+    {
+      "bytes": 30496,
+      "path": "census/card_head/exact12_next_row_arm_static_canary.py",
+      "sha256": "456ffa9a35f219b61f241dca145b275d797daa1c6a77bf94596b6ac847fc91a9"
+    },
+    {
+      "bytes": 64150,
+      "path": "census/card_head/exact12_next_row_static_cegar.py",
+      "sha256": "61343abae920bb3c864fc2bfc8f2e53e72ac177664c05bf0b242ec5fbd26cb51"
+    },
+    {
+      "bytes": 11090,
+      "path": "census/card_head/exact12_next_row_static_convex.py",
+      "sha256": "c4c5adf3efb5c141f0ab00452316a11ff232961d2dd736fd4ae49b98cd271e2f"
+    },
+    {
+      "bytes": 25487,
+      "path": "census/card_head/exact12_next_row_valuation.py",
+      "sha256": "af5ecc98b54708c4219a1c6fc8d29c9aab0bf4309ca3254a0f26b75d1d3a6018"
+    },
+    {
+      "bytes": 13386,
+      "path": "census/card_head/exact12_second_cap_apex_surplus_membership_family_bank.py",
+      "sha256": "598f92ddb13fb1092be9964a9ec43efd2dcd5a94b081583610e8f8e3368cbd67"
+    },
+    {
+      "bytes": 12764,
+      "path": "census/card_head/exact12_surplus_apex_pair_membership_family_bank.py",
+      "sha256": "f6c684a30f34e8666caf97a23f580c1a2c3e8b72cdee9e483ea09b6233b72642"
+    },
+    {
+      "bytes": 21252,
+      "path": "census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "d420833d3af3d9615128a46bad92a2fa28e45e32b73779632b0710f498a182c3"
+    },
+    {
+      "bytes": 18616,
+      "path": "census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "fe711a4334fada02ad2505ab828fdffad460265e25653ab47de9a4f754c6a884"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 6905,
+      "path": "census/card_head/source_faithful_candidate_surface.py",
+      "sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f"
+    },
+    {
+      "bytes": 16017,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NextRowJobSemantics.lean",
+      "sha256": "7abacffbfd8ca8bbd5fb204f48150a4517a314e7ae995b83d1276aab42b5a026"
+    },
+    {
+      "bytes": 9983,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NextRowNamedDeletionJobCnf.lean",
+      "sha256": "9813a3daf498c8d7633f32dfede0263fc05b8ab1b00384edc58cac2fb9af6295"
+    },
+    {
+      "bytes": 3566,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticNamedDeletionParentIngress.lean",
+      "sha256": "74d63fdcb8cfc119197d12c4d5504d9bb9c703b909a10e9feb7ef866a5582367"
+    }
+  ],
+  "surplus_apex_pair_membership_family_bank": {
+    "family_id": "surplus-apex-pair-a345-c1011-y6789.v1",
+    "lean_terminal_ingress_ready": false,
+    "schema": "p97_rigid221_exact12_surplus_apex_pair_membership_family_bank.v1",
+    "sha256": "6e950eca1e657016e2db146c2bd00e5f215d5a613af2247ece6e53b382d60891"
+  }
+}

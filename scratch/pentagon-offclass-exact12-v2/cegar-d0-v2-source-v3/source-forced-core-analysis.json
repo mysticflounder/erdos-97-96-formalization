@@ -1,0 +1,17 @@
+{
+  "all_order_records": [],
+  "greedy_core_size_counts": {},
+  "greedy_core_source_sets": {},
+  "journal": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-source-v3/journal.jsonl",
+  "models_covering_all_orders": 0,
+  "models_with_forced_core": 0,
+  "records": [],
+  "schema": "p97-pentagon-offclass-source-forced-core-mining-v1",
+  "scope": "theorem-discovery only; no promoted clause and no Lean closure",
+  "source_forced_order_coverage_counts": {
+    "0": 300
+  },
+  "source_forced_order_stage_counts": {},
+  "source_models": 300,
+  "stage_counts": {}
+}

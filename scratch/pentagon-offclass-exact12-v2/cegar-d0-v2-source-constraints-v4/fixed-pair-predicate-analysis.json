@@ -1,0 +1,49 @@
+{
+  "collision_counts": {
+    "deleted_blocker_not_physical_apex": 1250,
+    "xu_blocker_not_physical_apex": 1250,
+    "xu_deleted_blockers_distinct": 1250
+  },
+  "first_iteration_by_mask": {
+    "00000": 10013,
+    "00001": 10000,
+    "00100": 10003,
+    "00101": 10021,
+    "01000": 10515,
+    "01100": 10001,
+    "01101": 10031
+  },
+  "five_predicate_mask_counts": {
+    "00000": 72,
+    "00001": 3,
+    "00100": 943,
+    "00101": 149,
+    "01000": 2,
+    "01100": 60,
+    "01101": 21
+  },
+  "journal": "scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-source-constraints-v4/journal.jsonl",
+  "predicate_counts": {
+    "center_deleted_in_Kxu": 1173,
+    "center_xu_in_Kdeleted": 173,
+    "physical_apex_in_Kxu": 83
+  },
+  "predicate_order": [
+    "center_xu_in_physical_after_u",
+    "physical_apex_in_Kxu",
+    "center_deleted_in_Kxu",
+    "physical_apex_in_Kdeleted",
+    "center_xu_in_Kdeleted"
+  ],
+  "records": 1250,
+  "roles": {
+    "deleted": 0,
+    "other_physical_point": 2,
+    "physical_apex": 1,
+    "u": 6,
+    "xu": 9,
+    "xv": 8
+  },
+  "schema": "p97_pentagon_offclass_exact12_fixed_pair_predicate_mining.v1",
+  "scope": "empirical SAT survivor statistics; not a source producer or proof"
+}

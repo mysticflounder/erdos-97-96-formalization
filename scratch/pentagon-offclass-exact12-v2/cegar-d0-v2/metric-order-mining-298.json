@@ -1,0 +1,4530 @@
+{
+  "counts": {
+    "formalized_core": {
+      "NONE": 12,
+      "equality-convex-five-point-reverse": 12
+    },
+    "metric_decisive_stage": {
+      "None": 4,
+      "equality-convex-five-point-reverse": 12,
+      "full-convex": 8
+    },
+    "metric_status": {
+      "UNKNOWN": 4,
+      "UNSAT": 20
+    },
+    "shared_pair_violation_orders": 24
+  },
+  "order_count": 24,
+  "orders": [
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-00",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": null,
+      "metric_diagnostic": null,
+      "metric_status": "UNKNOWN",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-01",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        5,
+        4,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-02",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        5,
+        4,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-03",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        4,
+        3,
+        5,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-04",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        4,
+        3,
+        5,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-05",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        4,
+        5,
+        3,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-06",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        4,
+        5,
+        3,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-07",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        5,
+        3,
+        4,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-08",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        5,
+        3,
+        4,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-09",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        5,
+        4,
+        3,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-10",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": null,
+      "metric_diagnostic": null,
+      "metric_status": "UNKNOWN",
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        5,
+        4,
+        3,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-11",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-12",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": null,
+      "metric_diagnostic": null,
+      "metric_status": "UNKNOWN",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-13",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        3,
+        5,
+        4,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-14",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        3,
+        5,
+        4,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-15",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        4,
+        3,
+        5,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-16",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        4,
+        3,
+        5,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-17",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        4,
+        5,
+        3,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-18",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        4,
+        5,
+        3,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-19",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        5,
+        3,
+        4,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-20",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": "full-convex",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        5,
+        3,
+        4,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-21",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": {
+        "core": {
+          "a": 6,
+          "b": 11,
+          "c": 0,
+          "x": 5,
+          "y": 8
+        },
+        "stage": "equality-convex-five-point-reverse"
+      },
+      "metric_decisive_stage": "equality-convex-five-point-reverse",
+      "metric_diagnostic": null,
+      "metric_status": "UNSAT",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        5,
+        4,
+        3,
+        2,
+        6,
+        7,
+        8,
+        9
+      ],
+      "order_id": "order-22",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            4,
+            7
+          ],
+          "common_pair": [
+            1,
+            8
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "formalized_core": null,
+      "metric_decisive_stage": null,
+      "metric_diagnostic": null,
+      "metric_status": "UNKNOWN",
+      "order": [
+        0,
+        11,
+        10,
+        1,
+        5,
+        4,
+        3,
+        2,
+        9,
+        8,
+        7,
+        6
+      ],
+      "order_id": "order-23",
+      "shared_pair_violations": [
+        {
+          "centers": [
+            0,
+            2
+          ],
+          "common_pair": [
+            5,
+            11
+          ]
+        },
+        {
+          "centers": [
+            0,
+            6
+          ],
+          "common_pair": [
+            4,
+            5
+          ]
+        },
+        {
+          "centers": [
+            0,
+            7
+          ],
+          "common_pair": [
+            4,
+            8
+          ]
+        },
+        {
+          "centers": [
+            1,
+            3
+          ],
+          "common_pair": [
+            0,
+            9
+          ]
+        },
+        {
+          "centers": [
+            1,
+            4
+          ],
+          "common_pair": [
+            2,
+            8
+          ]
+        },
+        {
+          "centers": [
+            2,
+            6
+          ],
+          "common_pair": [
+            5,
+            10
+          ]
+        },
+        {
+          "centers": [
+            2,
+            8
+          ],
+          "common_pair": [
+            10,
+            11
+          ]
+        },
+        {
+          "centers": [
+            3,
+            4
+          ],
+          "common_pair": [
+            1,
+            7
+          ]
+        },
+        {
+          "centers": [
+            3,
+            5
+          ],
+          "common_pair": [
+            0,
+            1
+          ]
+        },
+        {
+          "centers": [
+            5,
+            7
+          ],
+          "common_pair": [
+            1,
+            6
+          ]
+        },
+        {
+          "centers": [
+            5,
+            8
+          ],
+          "common_pair": [
+            6,
+            11
+          ]
+        },
+        {
+          "centers": [
+            6,
+            9
+          ],
+          "common_pair": [
+            3,
+            5
+          ]
+        },
+        {
+          "centers": [
+            6,
+            10
+          ],
+          "common_pair": [
+            3,
+            4
+          ]
+        },
+        {
+          "centers": [
+            6,
+            11
+          ],
+          "common_pair": [
+            3,
+            10
+          ]
+        },
+        {
+          "centers": [
+            7,
+            10
+          ],
+          "common_pair": [
+            1,
+            4
+          ]
+        },
+        {
+          "centers": [
+            8,
+            11
+          ],
+          "common_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "centers": [
+            9,
+            10
+          ],
+          "common_pair": [
+            2,
+            3
+          ]
+        },
+        {
+          "centers": [
+            10,
+            11
+          ],
+          "common_pair": [
+            1,
+            3
+          ]
+        }
+      ]
+    }
+  ],
+  "row_count": 12,
+  "scope": "theorem-discovery probe over one incidence SAT survivor; not exhaustive, not a Euclidean witness, and not Lean closure",
+  "source_assignment_sha256": null,
+  "source_iteration": 298,
+  "unordered_metric": {
+    "reason": "canceled",
+    "status": "UNKNOWN",
+    "system_id": "pentagon-offclass-exact12-incidence-survivor"
+  }
+}
