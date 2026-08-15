@@ -24,12 +24,13 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ApexFirst
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221AllOrderCommonFiveMembershipFamilyCnf
 
 /-!
 # Full exact-twelve positive-membership prefix consumer
 
 This module gives one source-valued Boolean assignment to every authenticated
-positive-membership variable from 44,876 through 45,489 and proves that the
+positive-membership variable from 44,876 through 47,136 and proves that the
 assignment satisfies each generated implication or else the corresponding
 source theorem refutes a blocking clause.  The construction deliberately
 supports layers compiled against older prefixes: local and global valuations
@@ -87,7 +88,8 @@ def globalRequirementAt (v : Nat) : RowChoice Label :=
                                   else if v ≤ 45337 then ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf.requirementAt v
                                     else if v ≤ 45357 then ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt v
                                       else if v ≤ 45369 then FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt v
-                                        else SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.requirementAt v
+                                        else if v ≤ 45489 then SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.requirementAt v
+                                          else AllOrderCommonFiveMembershipFamilyCnf.requirementAt v
 
 /-- One source-valued assignment for the complete generated membership prefix. -/
 def globalMembershipAssign (base : Nat → Bool) (row : RowPattern Label) :
@@ -153,6 +155,9 @@ private def firstOppositePairSurplusSecondOppositeCommonFiveLayerDimacs : List (
 
 private def secondOppositeTripleSurplusFirstOppositeThreeTriadLayerDimacs : List (List Int) :=
   SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.implicationDimacs ++ SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.blockingClauses
+
+private def allOrderCommonFiveLayerDimacs : List (List Int) :=
+  AllOrderCommonFiveMembershipFamilyCnf.implicationDimacs ++ AllOrderCommonFiveMembershipFamilyCnf.blockingClauses
 
 private def staticThreeTriadLayerDimacs : List (List Int) :=
   StaticCell1AfterFamilyThreeTriadMembershipCnf.implicationDimacs ++
@@ -406,6 +411,16 @@ private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_clause_requir
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+private theorem allOrderCommonFive_clause_requirements :
+    ∀ clause ∈ allOrderCommonFiveLayerDimacs, ∀ literal ∈ clause,
+      45489 < literal.natAbs →
+        AllOrderCommonFiveMembershipFamilyCnf.requirementAt literal.natAbs =
+          globalRequirementAt literal.natAbs := by
+  native_decide +revert
+
+set_option maxHeartbeats 0 in
+set_option maxRecDepth 100000 in
+set_option linter.style.nativeDecide false in
 private theorem staticThreeTriad_clause_requirements :
     ∀ clause ∈ staticThreeTriadLayerDimacs, ∀ literal ∈ clause,
       44897 < literal.natAbs →
@@ -490,6 +505,15 @@ set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
 private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_reused_requirements :
     ∀ definition ∈ SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.reusedDefinitions,
+      44875 < definition.varIndex ∧
+        globalRequirementAt definition.varIndex = definition.requirement := by
+  native_decide +revert
+
+set_option maxHeartbeats 0 in
+set_option maxRecDepth 100000 in
+set_option linter.style.nativeDecide false in
+private theorem allOrderCommonFive_reused_requirements :
+    ∀ definition ∈ AllOrderCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
         globalRequirementAt definition.varIndex = definition.requirement := by
   native_decide +revert
@@ -1252,6 +1276,45 @@ private theorem secondOppositeTripleSurplusFirstOppositeThreeTriadLayer_sat
             SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.requirementAt (by omega)
               (secondOppositeTripleSurplusFirstOppositeThreeTriad_clause_requirements clause hclause)))
 
+private theorem allOrderCommonFiveLayer_sat
+    {row : RowPattern Label} {pointOf : Label → ℝ²}
+    (base : Nat → Bool)
+    (hrow : FrozenSafeCubeOK row)
+    (hglobalBase : ∀ v, v ≤ SafeCoverCnf.baseNumVars →
+      globalMembershipAssign base row v =
+        SafeCoverCnf.finalAssign (coverIndex row) v)
+    (hreal : Realizes row pointOf)
+    (order : FrozenBoundaryOrder pointOf)
+    (hforced : FrozenForcedSecondCapOrder order.position)
+    (hconv : ConvexIndep (Finset.univ.image pointOf)) :
+    ∀ clause ∈ allOrderCommonFiveLayerDimacs,
+      evalClauseD (globalMembershipAssign base row) clause = true := by
+  simpa [allOrderCommonFiveLayerDimacs] using
+    (layerDimacs_sat
+      (σ := globalMembershipAssign base row)
+      (localAssign := positiveMembershipAssign (globalMembershipAssign base row)
+        45489 row AllOrderCommonFiveMembershipFamilyCnf.requirementAt)
+      (implicationDimacs := AllOrderCommonFiveMembershipFamilyCnf.implicationDimacs)
+      (blockingClauses := AllOrderCommonFiveMembershipFamilyCnf.blockingClauses)
+      (entries := AllOrderCommonFiveMembershipFamilyCnf.entries)
+      (clauseOf := fun entry =>
+        positiveMembershipBlockingClause entry.definitions)
+      (by rfl)
+      (fun clause hclause =>
+        AllOrderCommonFiveMembershipFamilyCnf.implicationDimacs_sat hrow
+          (globalMembershipAssign base row) hglobalBase hclause)
+      (fun entry hentry hfalse =>
+        AllOrderCommonFiveMembershipFamilyCnf.false_of_blockingClause_false
+          (globalMembershipAssign base row) hreal order hforced hconv
+        (globalAssignment_satisfies_reused base row
+          AllOrderCommonFiveMembershipFamilyCnf.reusedDefinitions allOrderCommonFive_reused_requirements)
+          entry hentry hfalse)
+      (fun clause hclause =>
+        evalClauseD_positiveMembershipAssign_over_global_agrees_on
+          base 44875 45489 row globalRequirementAt
+            AllOrderCommonFiveMembershipFamilyCnf.requirementAt (by omega)
+              (allOrderCommonFive_clause_requirements clause hclause)))
+
 private theorem staticThreeTriadLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1295,7 +1358,7 @@ private theorem staticThreeTriadLayer_sat
               (by omega)
                 (staticThreeTriad_clause_requirements clause hclause)))
 
-/-- Exact generated positive-membership clause order used by the frozen v23
+/-- Exact generated positive-membership clause order used by the frozen v24
 canary, before its named-deletion arm and source-order bank. -/
 def fullMembershipPrefixDimacs : List (List Int) :=
   blockSpanningLayerDimacs ++
@@ -1318,7 +1381,8 @@ def fullMembershipPrefixDimacs : List (List Int) :=
     apexFirstOppositeSharedPairSurplusCommonFiveLayerDimacs ++
     reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayerDimacs ++
     firstOppositePairSurplusSecondOppositeCommonFiveLayerDimacs ++
-    secondOppositeTripleSurplusFirstOppositeThreeTriadLayerDimacs
+    secondOppositeTripleSurplusFirstOppositeThreeTriadLayerDimacs ++
+    allOrderCommonFiveLayerDimacs
 
 set_option maxRecDepth 100000 in
 private theorem fullMembershipPrefix_sat
@@ -1377,7 +1441,9 @@ private theorem fullMembershipPrefix_sat
   · exact reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayer_sat base hrow hglobalBase hreal order hforced hconv clause hclause
   rcases List.mem_append.mp hclause with hclause | hclause
   · exact firstOppositePairSurplusSecondOppositeCommonFiveLayer_sat base hrow hglobalBase hreal order hforced hconv clause hclause
-  exact secondOppositeTripleSurplusFirstOppositeThreeTriadLayer_sat base hrow hglobalBase hreal order hforced hconv clause hclause
+  rcases List.mem_append.mp hclause with hclause | hclause
+  · exact secondOppositeTripleSurplusFirstOppositeThreeTriadLayer_sat base hrow hglobalBase hreal order hforced hconv clause hclause
+  exact allOrderCommonFiveLayer_sat base hrow hglobalBase hreal order hforced hconv clause hclause
 
 /-- Exact one-arm terminal formula: frozen parent, all authenticated membership
 layers, named-deletion arm suffix, then proof-carrying source-order cuts. -/

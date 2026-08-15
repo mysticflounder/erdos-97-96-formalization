@@ -2180,6 +2180,36 @@ compares both sides literal by literal, and the refrozen bank hash
 covers the module's bytes.  The chain itself is unchanged: no canary,
 validator, or successor-formula edit is part of this checkpoint.
 
+Exact-12 v24 chain-adoption checkpoint (2026-08-15): the twentieth
+membership bank is chained into the arm static canary (user
+authorized).  Two preliminaries: after the fc0b0f5d refreeze, commits
+`72aa5acc` and `29a3e6bb` modified `MinimalDeletionCore.lean`, which
+lies in the pinned source closure of banks 10 through 20, so sixteen
+parent/own bank-hash pins across ten module files were reauthenticated
+in one pass; every CNF identity pin of banks 1 through 19 is
+unchanged, so the reauthentication alters hashes only, not clauses.
+The v24 canary then installs the twentieth bank after the nineteenth
+at arm cell 6 and pins the twenty-bank prefix at 47,136 variables /
+676,147 clauses
+(`f6109195cea858ae0e0a179a9ccd4118118bb3e786d1169e40a94e399435166b`),
+the post-arm formula at 677,014 clauses (`d5e2d4e0...`), and the
+final formula with the 81 source-order cuts at 677,095 clauses
+(`695f71b45a7157132e3eb61e0d4bf4c553c2d3655cbf421de8130a516611d8be`);
+the 867-clause named-deletion arm suffix and the source-order bank
+(`cedf4162...`) are byte-identical to v23.  The run and job schemas
+advance to `..._run.v12` / `..._job.v12` and the PIQD project to
+`p97-exact12-next-row-arm-static-cell6-v12-r1`.  A zero-drift census
+rerun of the full twenty-install chain against the corrected pins
+reports zero corrections and reproduces all three identities, and two
+independent canary materializations are byte-stable.  The hand-written
+terminal consumer gains its twenty-second layer: the dispatcher routes
+variables above 45,489 to the all-order family, the layer satisfaction
+theorem composes through the generic layer lemma, and the full-prefix
+clause list appends the new layer; the targeted `lake-build` and the
+focused canary, PIQD-adapter, and bank tests are green.  No canary
+launch, PIQD run, v24 outcome validator, or solver wave is authorized
+by this checkpoint.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
