@@ -15,8 +15,10 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     FALSE_CLAIMS,
     OLD_ROLES,
     QUERY_LEAN,
+    RESULT_SCHEMA,
     ROLES,
     ROWS,
+    SCHEMA,
     SOURCE_THEORY_LEAN,
     _Builder,
     _canonical_json,
@@ -27,6 +29,44 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     solve_cell,
     source_manifest,
 )
+
+EXPECTED_GROUPS = [
+    "same_equivalence_canonical",
+    "complete_exact_row_theory",
+    "complete_relational_theory",
+    "cap_cyclic_interval_theory",
+    "cap_skolem_ranges",
+    "pinned_source_theory",
+    "carrier_source_theory",
+]
+
+
+def _structurally_complete_result() -> dict[str, object]:
+    builder = _Builder(0, timeout_ms=5_000)
+    query = builder.q()
+    assert query.solver.check() == z3.sat
+    signature = model_signature(query, query.solver.model())
+    return {
+        "schema": RESULT_SCHEMA,
+        "query_schema": SCHEMA,
+        "status": "SAT_ABSTRACTION",
+        "boundary_index": 0,
+        "source_manifest_sha256": hashlib.sha256(
+            _canonical_json(source_manifest())
+        ).hexdigest(),
+        "constraint_groups": EXPECTED_GROUPS,
+        "claims": FALSE_CLAIMS,
+        "model_signature": signature,
+        "model_signature_sha256": hashlib.sha256(
+            _canonical_json(signature)
+        ).hexdigest(),
+    }
+
+
+def _refresh_signature_digest(result: dict[str, object]) -> None:
+    result["model_signature_sha256"] = hashlib.sha256(
+        _canonical_json(result["model_signature"])
+    ).hexdigest()
 
 
 def test_schema_is_intrinsic_and_source_hashed() -> None:
@@ -242,13 +282,79 @@ def test_full_solver_verdict_is_fail_closed_and_digest_tamper_fails() -> None:
 
     tampered = {
         "schema": "p97-freshthird-qfiber-three-carrier-result/v1",
+        "query_schema": SCHEMA,
         "status": "SAT_ABSTRACTION",
         "boundary_index": 0,
         "source_manifest_sha256": hashlib.sha256(
             _canonical_json(source_manifest())
         ).hexdigest(),
+        "constraint_groups": EXPECTED_GROUPS,
+        "claims": FALSE_CLAIMS,
         "model_signature": {},
         "model_signature_sha256": "0" * 64,
     }
     with pytest.raises(ValueError, match="model signature hash mismatch"):
         replay_sat_result(copy.deepcopy(tampered), timeout_ms=50)
+
+
+@pytest.mark.parametrize(
+    ("field", "expected_error"),
+    (
+        ("point_classes", "point classes key mismatch"),
+        ("in_cap", "cap membership key mismatch"),
+        ("in_cap_interior", "cap interior key mismatch"),
+        ("order", "order key mismatch"),
+        ("nonrobust", "nonrobust key mismatch"),
+        ("radius_classes", "radius center key mismatch"),
+        ("has_four_after_deleting", "deletion center key mismatch"),
+    ),
+)
+def test_replay_rejects_incomplete_mapping_key_sets(
+    field: str, expected_error: str
+) -> None:
+    result = _structurally_complete_result()
+    signature = result["model_signature"]
+    assert isinstance(signature, dict)
+    mapping = signature[field]
+    assert isinstance(mapping, dict)
+    mapping.pop(next(iter(mapping)))
+    _refresh_signature_digest(result)
+    with pytest.raises(ValueError, match=expected_error):
+        replay_sat_result(result, timeout_ms=5_000)
+
+
+def test_replay_rejects_extra_signature_and_cap_witness_keys() -> None:
+    result = _structurally_complete_result()
+    signature = result["model_signature"]
+    assert isinstance(signature, dict)
+    signature["unexpected"] = {}
+    _refresh_signature_digest(result)
+    with pytest.raises(ValueError, match="model signature key mismatch"):
+        replay_sat_result(result, timeout_ms=5_000)
+
+    result = _structurally_complete_result()
+    signature = result["model_signature"]
+    assert isinstance(signature, dict)
+    cap_witnesses = signature["cap_witnesses"]
+    assert isinstance(cap_witnesses, dict)
+    cap_witnesses["unexpected"] = 0
+    _refresh_signature_digest(result)
+    with pytest.raises(ValueError, match="cap witness key mismatch"):
+        replay_sat_result(result, timeout_ms=5_000)
+
+
+@pytest.mark.parametrize(
+    ("field", "bad_value", "expected_error"),
+    (
+        ("query_schema", "wrong", "query schema mismatch"),
+        ("constraint_groups", [], "constraint groups mismatch"),
+        ("claims", {}, "claims mismatch"),
+    ),
+)
+def test_replay_rejects_contract_metadata_drift(
+    field: str, bad_value: object, expected_error: str
+) -> None:
+    result = _structurally_complete_result()
+    result[field] = bad_value
+    with pytest.raises(ValueError, match=expected_error):
+        replay_sat_result(result, timeout_ms=5_000)

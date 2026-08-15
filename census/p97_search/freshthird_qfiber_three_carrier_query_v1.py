@@ -138,6 +138,30 @@ assert len(ROLES) == 67
 assert len(set(ROLES)) == len(ROLES)
 assert len(ROWS) == 14
 
+RADIUS_CENTERS = tuple(dict.fromkeys(center for _origin, _slots, center in ROWS.values()))
+DELETION_CENTERS = (
+    "pinnedCenter",
+    *BLOCKER_CENTERS,
+    "freshCenter",
+    "boundaryBlockerCenter",
+    *BOUNDARY_FAN_BLOCKER_CENTERS,
+)
+MODEL_SIGNATURE_KEYS = frozenset(
+    {
+        "point_classes",
+        "cap_witnesses",
+        "in_cap",
+        "in_cap_interior",
+        "order",
+        "radius_classes",
+        "has_four_after_deleting",
+        "nonrobust",
+    }
+)
+CAP_WITNESS_KEYS = frozenset(
+    {"first", "fresh", "row", "boundary", "blocker", "boundary_fan"}
+)
+
 
 def _sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
@@ -825,31 +849,12 @@ def model_signature(query: CarrierQuery, model: z3.ModelRef) -> dict[str, object
         for role in ROLES
     }
     order = {role: _int(model, v.order(query.point(role))) for role in ROLES}
-    radius_centers = tuple(
-        dict.fromkeys(
-            (
-                *(center for _origin, _slots, center in ROWS.values()),
-                "pinnedCenter",
-                *BLOCKER_CENTERS,
-                "freshCenter",
-                "boundaryBlockerCenter",
-                *BOUNDARY_FAN_BLOCKER_CENTERS,
-            )
-        )
-    )
-    deletion_centers = (
-        "pinnedCenter",
-        *BLOCKER_CENTERS,
-        "freshCenter",
-        "boundaryBlockerCenter",
-        *BOUNDARY_FAN_BLOCKER_CENTERS,
-    )
     radius: dict[str, list[int]] = {}
     has_four: dict[str, list[bool]] = {}
-    for center in radius_centers:
+    for center in RADIUS_CENTERS:
         raw = [_int(model, v.radius_class(query.point(center), query.point(role))) for role in ROLES]
         radius[center] = _normalize_classes(raw)
-    for center in deletion_centers:
+    for center in DELETION_CENTERS:
         has_four[center] = [_bool(model, query.has4(role, center)) for role in ROLES]
     return {
         "point_classes": point_classes,
@@ -880,8 +885,12 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
 
     if result.get("schema") != RESULT_SCHEMA:
         raise ValueError("result schema mismatch")
+    if result.get("query_schema") != SCHEMA:
+        raise ValueError("query schema mismatch")
     if result.get("status") != "SAT_ABSTRACTION":
         raise ValueError("only SAT_ABSTRACTION results have model replay")
+    if result.get("claims") != FALSE_CLAIMS:
+        raise ValueError("claims mismatch")
     boundary_index = result.get("boundary_index")
     if type(boundary_index) is not int or boundary_index not in range(4):
         raise ValueError("invalid boundary index")
@@ -894,8 +903,12 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
     expected_signature = hashlib.sha256(_canonical_json(signature)).hexdigest()
     if result.get("model_signature_sha256") != expected_signature:
         raise ValueError("model signature hash mismatch")
+    if set(signature) != MODEL_SIGNATURE_KEYS:
+        raise ValueError("model signature key mismatch")
 
     query = build_query(boundary_index, timeout_ms=timeout_ms)
+    if result.get("constraint_groups") != list(query.groups):
+        raise ValueError("constraint groups mismatch")
     v = query.variables
     point_classes = signature.get("point_classes")
     cap_witnesses = signature.get("cap_witnesses")
@@ -908,6 +921,22 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
     mappings = (point_classes, cap_witnesses, in_cap, interiors, order, radius, has_four, nonrobust)
     if any(type(item) is not dict for item in mappings):
         raise ValueError("malformed model signature")
+    expected_roles = set(ROLES)
+    for name, mapping in (
+        ("point classes", point_classes),
+        ("cap membership", in_cap),
+        ("cap interior", interiors),
+        ("order", order),
+        ("nonrobust", nonrobust),
+    ):
+        if set(mapping) != expected_roles:
+            raise ValueError(f"{name} key mismatch")
+    if set(cap_witnesses) != CAP_WITNESS_KEYS:
+        raise ValueError("cap witness key mismatch")
+    if set(radius) != set(RADIUS_CENTERS):
+        raise ValueError("radius center key mismatch")
+    if set(has_four) != set(DELETION_CENTERS):
+        raise ValueError("deletion center key mismatch")
 
     for role in ROLES:
         value = point_classes.get(role)
@@ -953,8 +982,9 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
         for variable, value in zip(variables, values, strict=True):
             query.solver.add(variable == value)
 
-    for center, values in radius.items():
-        if center not in ROLES or not (
+    for center in RADIUS_CENTERS:
+        values = radius[center]
+        if not (
             type(values) is list
             and len(values) == len(ROLES)
             and all(type(item) is int for item in values)
@@ -962,8 +992,9 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
             raise ValueError(f"malformed radius readback: {center}")
         for role, value in zip(ROLES, values, strict=True):
             query.solver.add(v.radius_class(query.point(center), query.point(role)) == value)
-    for center, values in has_four.items():
-        if center not in ROLES or not (
+    for center in DELETION_CENTERS:
+        values = has_four[center]
+        if not (
             type(values) is list
             and len(values) == len(ROLES)
             and all(type(item) is bool for item in values)

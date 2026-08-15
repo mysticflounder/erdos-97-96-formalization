@@ -68,6 +68,15 @@ Each group is tracked in Z3 for coarse UNSAT-core provenance. The manifest
 records exact SHA-256 hashes of the Python producer and the three Lean source
 modules, all row origins, role and row counts, and explicit false claims.
 
+SAT replay is fail-closed on the complete signature shape. It requires the
+exact query schema, constraint-group list, false-claim map, top-level signature
+keys, all 67 role keys, every row-radius center, every deletion center, and the
+complete cap-witness key set. Missing and extra keys are rejected before the
+fresh solver replay. The query-level direct-source manifest does not replace a
+wave launch snapshot: a durable structural wave must additionally pin the
+repository revision and the aggregate hash of the local transitive Lean import
+closure, including every dirty or untracked dependency.
+
 ## Verdict contract
 
 - `SAT_ABSTRACTION` is theorem-mining data only.
