@@ -1,0 +1,168 @@
+from __future__ import annotations
+
+import json
+import os
+import shutil
+import sys
+from itertools import product
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+import census.p97_search.freshthird_firstnonhit_live_retained_static_v1 as runner
+
+NONHIT_BRANCHES = ("sameBlocker", "sourceRowOmission")
+INTERACTION_BRANCHES = (
+    "sameBlocker",
+    "sourceRowOmission",
+    "distinctBlockersDifferentCaps",
+    "sameCapWithInternalFiberSource",
+)
+ORIGIN_BRANCHES = ("P", "P_rho", "first")
+EXPECTED_CELLS = set(product(NONHIT_BRANCHES, INTERACTION_BRANCHES, ORIGIN_BRANCHES))
+
+
+def _canonical_json(value: object) -> bytes:
+    return (
+        json.dumps(
+            value, ensure_ascii=True, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")
+        + b"\n"
+    )
+
+
+def _json(path: Path) -> object:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _result_paths(output: Path) -> list[Path]:
+    return sorted(
+        path
+        for path in output.rglob("result.json")
+        if path.is_file() and not path.is_symlink()
+    )
+
+
+def _manifest_paths(output: Path) -> list[Path]:
+    return sorted(
+        path
+        for path in output.rglob("*.json")
+        if path.is_file()
+        and not path.is_symlink()
+        and ("manifest" in path.name or "inventory" in path.name)
+    )
+
+
+@pytest.fixture(scope="module")
+def completed_run(
+    tmp_path_factory: pytest.TempPathFactory,
+) -> tuple[Path, dict[str, object]]:
+    output = tmp_path_factory.mktemp("freshthird-live-retained-static") / "run"
+    summary = runner.run_wave(output, allow_test_output=True)
+    return output, summary
+
+
+def test_plan_has_explicit_unique_2x4x3_cells() -> None:
+    plan = runner.plan_wave()
+
+    assert isinstance(plan, list)
+    assert len(plan) == 24
+    cells = {(cell["nonhit"], cell["interaction"], cell["origin"]) for cell in plan}
+    assert len(cells) == 24
+    assert cells == EXPECTED_CELLS
+    assert all(isinstance(cell, dict) for cell in plan)
+
+
+def test_full_run_has_sat_cells_canonical_manifests_and_validates(
+    completed_run: tuple[Path, dict[str, object]],
+) -> None:
+    output, summary = completed_run
+    results = [_json(path) for path in _result_paths(output)]
+    manifests = [_json(path) for path in _manifest_paths(output)]
+
+    assert summary["schema"] == runner.RUN_SCHEMA
+    assert len(results) == 24
+    assert {result["status"] for result in results} == {"SAT_ABSTRACTION"}
+    assert {
+        (
+            result["cell"]["nonhit"],
+            result["cell"]["interaction"],
+            result["cell"]["origin"],
+        )
+        for result in results
+    } == EXPECTED_CELLS
+    assert all(isinstance(result["signature"], dict) for result in results)
+
+    assert manifests
+    assert any(
+        isinstance(manifest, dict)
+        and ("artifact_inventory" in manifest or "artifacts" in manifest)
+        for manifest in manifests
+    )
+    for path in _manifest_paths(output):
+        assert path.read_bytes() == _canonical_json(_json(path)), path
+
+    validated = runner.validate_run(output)
+    assert validated["schema"] == runner.RUN_SCHEMA
+
+
+def _copy_run(source: Path, tmp_path: Path, name: str) -> Path:
+    destination = tmp_path / name
+    shutil.copytree(source, destination)
+    return destination
+
+
+def test_rerun_to_same_path_rejects(
+    completed_run: tuple[Path, dict[str, object]],
+) -> None:
+    output, _ = completed_run
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.run_wave(output, allow_test_output=True)
+
+
+def test_result_signature_tampering_fails_validation(
+    completed_run: tuple[Path, dict[str, object]], tmp_path: Path
+) -> None:
+    output = _copy_run(completed_run[0], tmp_path, "tampered-signature")
+    result_path = _result_paths(output)[0]
+    result = _json(result_path)
+    assert isinstance(result, dict)
+    signature = result["signature"]
+    assert isinstance(signature, dict)
+    signature["origin"] = "tampered"
+    result_path.write_bytes(_canonical_json(result))
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.validate_run(output)
+
+
+def test_smt2_tampering_fails_validation(
+    completed_run: tuple[Path, dict[str, object]], tmp_path: Path
+) -> None:
+    output = _copy_run(completed_run[0], tmp_path, "tampered-smt2")
+    smt2_paths = sorted(output.rglob("*.smt2"))
+    assert smt2_paths
+    smt2_paths[0].write_bytes(smt2_paths[0].read_bytes() + b"\n; tampered\n")
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.validate_run(output)
+
+
+def test_symlink_output_root_is_rejected(
+    tmp_path: Path,
+) -> None:
+    if not hasattr(os, "symlink"):
+        pytest.skip("symlinks are unavailable on this platform")
+
+    target = tmp_path / "target"
+    target.mkdir()
+    output = tmp_path / "output-link"
+    output.symlink_to(target, target_is_directory=True)
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.run_wave(output, allow_test_output=True)
