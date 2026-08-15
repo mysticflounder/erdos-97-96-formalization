@@ -1,0 +1,10 @@
+../scratch/post-cegar-bank3/AxiomCheck.lean:3:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+'Problem97.ATailThirdCenterCommonPair.selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSurvivalCover.actualBlockerFiber_card_le_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+../scratch/post-cegar-bank3/AxiomCheck.lean:8:14: error(lean.unknownIdentifier): Unknown constant `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.SixSurvivorExactRowsBoundary.physicalRows_inter_retainedPairs_card_le_one`
