@@ -386,6 +386,22 @@ docs/live-blueprint.md.tmp
 /scratch/exact12-overlay-20260810/
 /scratch/exact17-lean-to-sat/lean-overlay-full/
 
+# Exact12 runtime streams.  Job/survivor/summary JSON, receipts, seals, banks,
+# descriptors, and models remain visible and must be reviewed as evidence.
+/scratch/exact12-cell1-*-canary-*/journal.jsonl
+/scratch/exact12-next-row-static-v*-canary.*/journal.jsonl
+/scratch/exact12-next-row-static-entry*-root.*/run/journal.jsonl
+/scratch/exact12-tagged-v3-smoke-cell0-*/journal.jsonl
+/scratch/**/attempt.jsonl
+/scratch/**/attempt.jsonl.artifacts/
+/scratch/**/piqd-attempt-*.jsonl
+/scratch/**/piqd-attempt-*.jsonl.artifacts/
+
+# One-shot Exact12 command/search captures, not authenticated evidence.
+/scratch/arm-static-validator-v21-live.json
+/scratch/exact12-tagged-v3-smoke-cell0-20260808-1602.stdout.json
+/scratch/exact12-plan-search-20260811.json
+
 # Local agent/runtime configuration and root-level diagnostic spill files.
 /.claude/settings.json
 /exact12-v13-xu-w-*.log
