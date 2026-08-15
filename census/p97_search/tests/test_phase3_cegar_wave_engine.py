@@ -549,6 +549,35 @@ def _make_v2_engine(
     )
 
 
+def _rewrite_serialized_result(
+    output: Path,
+    *,
+    assignment: dict[str, bool] | None = None,
+    verdict: str | None = None,
+    classification: str | None = None,
+) -> None:
+    envelope = json.loads(output.read_bytes())
+    result = envelope["result"]
+    if assignment is not None:
+        result["assignment"] = assignment
+    if verdict is not None:
+        result["verdict"] = verdict
+    if classification is not None:
+        result["classification"] = classification
+    envelope["envelope_sha256"] = sha256_json(
+        {key: value for key, value in envelope.items() if key != "envelope_sha256"}
+    )
+    output.write_bytes(canonical_json_bytes(envelope) + b"\n")
+
+
+def _duplicate_serialized_assignment_key(output: Path) -> None:
+    raw = output.read_bytes()
+    marker = b'"assignment":{"1":true,"2":true,"3":true}'
+    replacement = b'"assignment":{"1":true,"1":false,"2":true,"3":true}'
+    assert marker in raw
+    output.write_bytes(raw.replace(marker, replacement, 1))
+
+
 def test_result_type_and_closed_classification() -> None:
     sat = StaticSolverResult("SAT", {1: True}, 10)
     engine._result_type_check(sat)
@@ -686,6 +715,115 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert accepted.envelope == before
     assert checked == before
     assert api.calls
+
+
+def test_output_rejects_result_verdict_and_classification_crossed_with_receipt(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    wave_engine.run(proof_path=None)
+    _rewrite_serialized_result(
+        output,
+        verdict="UNSAT",
+        classification=engine.UNSAT_OBSERVED_DISCOVERY_ONLY,
+    )
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+def test_output_rejects_incomplete_sat_model(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    wave_engine.run(proof_path=None)
+    _rewrite_serialized_result(output, assignment={})
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+@pytest.mark.parametrize(
+    "assignment",
+    [
+        {"1": True, "2": True, "4": True},
+    ],
+)
+def test_output_rejects_out_of_range_sat_model_key(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    assignment: dict[str, bool],
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    wave_engine.run(proof_path=None)
+    _rewrite_serialized_result(output, assignment=assignment)
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+def test_output_rejects_duplicate_serialized_sat_model_key(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    wave_engine.run(proof_path=None)
+    _duplicate_serialized_assignment_key(output)
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+def test_output_rejects_total_cnf_violating_sat_model(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    wave_engine.run(proof_path=None)
+    _rewrite_serialized_result(
+        output,
+        assignment={"1": False, "2": True, "3": True},
+    )
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+def test_output_rejects_unsat_result_with_assignment(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "UNSAT"
+    )
+    accepted = wave_engine.run(proof_path=None)
+    assert accepted.classification == engine.UNSAT_OBSERVED_DISCOVERY_ONLY
+    _rewrite_serialized_result(output, assignment={"1": True})
+
+    with pytest.raises(engine.StaticCnfEngineError):
+        engine.validate_static_cnf_engine_output(output)
+
+
+def test_output_accepts_valid_total_sat_model(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    accepted = wave_engine.run(proof_path=None)
+    checked = engine.validate_static_cnf_engine_output(output)
+
+    assert accepted.classification == engine.SAT_OBSERVED
+    assert checked["result"]["assignment"] == {
+        "1": True,
+        "2": True,
+        "3": True,
+    }
 
 
 def test_run_normalizes_multi_digit_assignment_keys_and_replays_canonically(
