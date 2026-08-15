@@ -23,6 +23,17 @@ export NUMEXPR_NUM_THREADS=1
 FILES=(
   census/global_confinement/piqd_singular_backend.py
   census/global_confinement/tests/test_piqd_singular_backend.py
+  census/global_confinement/equality_ideal_probe.py
+  census/global_confinement/tests/test_equality_ideal_probe.py
+  census/p97_search/structural_screen.py
+  census/p97_search/tests/test_structural_screen.py
+)
+# The migrated caller files participate in the lint gate. Their formatter
+# drift predates this onboarding correction, so keep format checking scoped to
+# the backend-owned files until that separately owned drift is normalized.
+FORMAT_FILES=(
+  census/global_confinement/piqd_singular_backend.py
+  census/global_confinement/tests/test_piqd_singular_backend.py
 )
 CAP_SECONDS=120
 
@@ -31,6 +42,8 @@ run_capped() {
 }
 
 run_capped uv run --with pytest pytest -q \
-  census/global_confinement/tests/test_piqd_singular_backend.py
-run_capped uv run --with ruff ruff check "${FILES[@]}"
-run_capped uv run --with ruff ruff format --check "${FILES[@]}"
+  census/global_confinement/tests/test_piqd_singular_backend.py \
+  census/global_confinement/tests/test_equality_ideal_probe.py \
+  census/p97_search/tests/test_structural_screen.py
+run_capped uv run --with ruff ruff check --ignore EXE001 "${FILES[@]}"
+run_capped uv run --with ruff ruff format --check "${FORMAT_FILES[@]}"

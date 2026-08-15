@@ -15,7 +15,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_RUNNER = ROOT / "scripts" / "run_piqd_exact17_nineteenth_root.py"
-BASE_RUNNER_SHA256 = "fb66bb45f99186e007581022c2364c117acd70f4b75f6953762b526a50c8cc4f"
+BASE_RUNNER_SHA256 = "9e98714678c441ed1334b9c5deabe9bfe47aeb370cb407c5527647205007ac84"
 
 
 def load_runner() -> dict[str, Any]:
@@ -27,7 +27,7 @@ def load_runner() -> dict[str, Any]:
             f"expected {BASE_RUNNER_SHA256}, got {actual_hash}"
         )
     source = source_bytes.decode("utf-8")
-    if source.count("nineteenth") != 4:
+    if source.count("nineteenth") != 5:
         raise RuntimeError("unexpected nineteenth-root specialization surface")
     source = source.replace("nineteenth", "twentieth")
     namespace: dict[str, Any] = {
@@ -52,7 +52,7 @@ def main() -> None:
             "INGRESS_MANIFEST": scratch
             / "piqd-ingress-manifest-nineteenth-model-refinements.json",
             "INGRESS_REPORT": scratch
-            / "piqd-ingress-nineteenth-model-refinements-validation.json",
+            / "exact17-twentieth-root-nineteenth-model-refinements-validation.json",
             "VARIABLES": 308,
             "CLAUSES": 5_846_188,
             "BYTES": 291_573_096,

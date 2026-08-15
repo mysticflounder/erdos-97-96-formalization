@@ -45,21 +45,31 @@ def _fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     return paths, spec, child_bytes
 
 
-def test_production_is_fail_closed() -> None:
+def test_production_is_fully_provisioned() -> None:
     assert validator.PRODUCTION_SPEC.provisioned
     assert validator.PRODUCTION_SPEC.child_sha256 == (
         "ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819"
     )
     assert validator.PRODUCTION_SPEC.child_bytes == 291_620_980
-    assert not ingress.PRODUCTION_INGRESS_SPEC.provisioned
-    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_sha256 is None
-    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_source_commit is None
-    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_build_receipt_sha256 is None
-    assert ingress.PRODUCTION_INGRESS_SPEC.solver_sha256 is None
-    with pytest.raises(ingress.UnprovisionedError):
-        ingress.validate_ingress()
-    with pytest.raises(runner.UnprovisionedError):
-        runner.expected_identity_hash()
+    assert ingress.PRODUCTION_INGRESS_SPEC.provisioned
+    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_sha256 == (
+        "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089"
+    )
+    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_source_commit == (
+        "acefb4aba14765d45e38ac4193373f0aa210f22d"
+    )
+    assert ingress.PRODUCTION_INGRESS_SPEC.daemon_build_receipt_sha256 == (
+        "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    )
+    assert ingress.PRODUCTION_INGRESS_SPEC.solver_sha256 == (
+        "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965"
+    )
+    assert runner.PRODUCTION_RUNNER_SPEC.provisioned
+    assert runner.PRODUCTION_RUNNER_SPEC.manifest_sha256 == (
+        "01a53c3772486002cbb7a54fb1db24a21027c38bd9670ab2814eb26fe3ef62a2"
+    )
+    assert runner.PRODUCTION_RUNNER_SPEC.root_sha256 == validator.PRODUCTION_SPEC.child_sha256
+    assert len(runner.expected_identity_hash()) == 64
 
 
 def test_exact_prefix_and_eight_clause_suffix(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -84,6 +94,21 @@ def test_lifecycle_namespace_is_direct_child34(
     binding = runner._base._expected_binding(lifecycle)
     assert binding["timeout_s"] == lifecycle.timeout_s
     assert binding["march_timeout_s"] == lifecycle.march_timeout_s
+
+
+def test_child34_cli_start_dispatches_to_custody_runner(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    client = object()
+    monkeypatch.setattr(runner, "SubprocessPiqdClient", lambda: client)
+    monkeypatch.setattr(
+        runner,
+        "start",
+        lambda actual: {"status": "prepared", "same_client": actual is client},
+    )
+    monkeypatch.setattr(runner.sys, "argv", ["runner", "start"])
+    assert runner.main() == 0
+    assert '"same_client": true' in capsys.readouterr().out
 
 
 def test_child34_terminal_shape_is_hardened() -> None:

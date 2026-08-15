@@ -65,13 +65,13 @@ PRODUCTION_INGRESS_PATHS = IngressPaths(
 PRODUCTION_INGRESS_SPEC = IngressSpec(
     export=PRODUCTION_SPEC,
     parent_manifest_sha256="1f802e69fc382ba262cb54a9b21bee3b62b4c53cf6cbfaff837181cd9444fcfd",
-    daemon_sha256=None,
-    daemon_source_commit=None,
-    daemon_build_receipt_sha256=None,
-    daemon_protocol_version=None,
-    solver_name=None,
-    solver_sha256=None,
-    solver_signature=None,
+    daemon_sha256="f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    daemon_source_commit="acefb4aba14765d45e38ac4193373f0aa210f22d",
+    daemon_build_receipt_sha256="6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9",
+    daemon_protocol_version=1,
+    solver_name="piqd-satworker-cadical-3.0.0",
+    solver_sha256="0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    solver_signature="cadical-3.0.0",
 )
 
 

@@ -14,7 +14,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_RUNNER = ROOT / "scripts" / "run_piqd_exact17_tenth_root.py"
-BASE_RUNNER_SHA256 = "0602512c3b1bf62c8f29bf9a9ce5c174995d7a5d22d9adee661274737e7d8b3e"
+BASE_RUNNER_SHA256 = "87e3fed2ca1dd7ea2f2fe437d237513290e3236852c1f03ca55596bf3762354b"
 
 
 def load_runner() -> dict[str, Any]:
@@ -55,7 +55,7 @@ def main() -> None:
             "INGRESS_MANIFEST": scratch
             / "piqd-ingress-manifest-second-generic-cancellation.json",
             "INGRESS_REPORT": scratch
-            / "piqd-ingress-second-generic-cancellation-validation.json",
+            / "extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-second-validation.json",
             "VARIABLES": 308,
             "CLAUSES": 5_846_084,
             "BYTES": 291_568_228,

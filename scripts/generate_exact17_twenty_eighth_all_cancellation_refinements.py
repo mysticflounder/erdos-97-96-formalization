@@ -15,7 +15,7 @@ import argparse
 import hashlib
 import json
 import sys
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -59,6 +59,165 @@ def path_hits(record: dict[str, Any]) -> frozenset[Hit]:
     return frozenset(hits)
 
 
+def referenced_row_choices(record: dict[str, Any]) -> list[dict[str, Any]]:
+    """Project a producer core to the rows actually used by its paths.
+
+    The producer keeps the complete source-row bank in ``row_choices`` so its
+    record is independently replayable.  Lean's occurrence checker instead
+    expects the positive choices to cover exactly the primitive row steps.
+    One choice per center, with the union of that center's path incidences, is
+    the smallest such list and preserves every path witness.
+    """
+    supports: dict[int, set[int]] = {}
+    for path in record_core(record)["paths"]:
+        for step in path["steps"]:
+            if step["kind"] != "row":
+                continue
+            center = int(step["center"])
+            supports.setdefault(center, set()).update(
+                (int(step["first"]), int(step["second"]))
+            )
+    if not supports:
+        raise ValueError("cancellation core has no referenced row choices")
+    return [
+        {"center": center, "support": sorted(points)}
+        for center, points in sorted(supports.items())
+    ]
+
+
+def _choices_cover_hits(
+    choices: Any, hits: frozenset[Hit]
+) -> bool:
+    if not isinstance(choices, list) or not choices:
+        return False
+    for choice in choices:
+        if not isinstance(choice, dict):
+            return False
+        center = choice.get("center")
+        support = choice.get("support")
+        if (
+            type(center) is not int
+            or not isinstance(support, list)
+            or not support
+            or any(type(point) is not int for point in support)
+            or len(set(support)) != len(support)
+            or any((center, point) not in hits for point in support)
+        ):
+            return False
+    return True
+
+
+def _paths_supported_by_choices(core: dict[str, Any]) -> bool:
+    choices = core.get("row_choices")
+    if not isinstance(choices, list):
+        return False
+    for path in core.get("paths", []):
+        for step in path.get("steps", []):
+            if step.get("kind") != "row":
+                continue
+            if not any(
+                choice.get("center") == step.get("center")
+                and step.get("first") in choice.get("support", [])
+                and step.get("second") in choice.get("support", [])
+                for choice in choices
+                if isinstance(choice, dict)
+            ):
+                return False
+    return True
+
+
+def lean_occurrence_check(
+    hits: frozenset[Hit],
+    forward: dict[str, Any],
+    reverse: dict[str, Any],
+    *,
+    rows: Sequence[producer_bank.MetricRow] | None = None,
+    forward_order: Iterable[int] | None = None,
+    reverse_order: Iterable[int] | None = None,
+) -> bool:
+    """Mirror ``CancellationOccurrence.check`` before emitting Lean.
+
+    With source rows and orders this additionally replays both projected
+    cores through the exact producer checker, covering quads, permutations,
+    primitive paths, and positive source-row membership.  Without them the
+    executable incidence/path portion of Lean's check is still mirrored,
+    which is useful for adversarial unit tests.
+    """
+    try:
+        forward_core = record_core(forward)
+        reverse_core = record_core(reverse)
+        reverse_hits = reflected(hits)
+        if path_hits(forward) != hits or path_hits(reverse) != reverse_hits:
+            return False
+        if not _choices_cover_hits(forward_core.get("row_choices"), hits):
+            return False
+        if not _choices_cover_hits(
+            reverse_core.get("row_choices"), reverse_hits
+        ):
+            return False
+        if not _paths_supported_by_choices(forward_core):
+            return False
+        if not _paths_supported_by_choices(reverse_core):
+            return False
+        if rows is not None or forward_order is not None or reverse_order is not None:
+            if rows is None or forward_order is None or reverse_order is None:
+                return False
+            forward_replay = producer_bank.certify_two_kalmanson_cancellation(
+                rows, N, normalize_order(forward_order), forward_core
+            )
+            reverse_replay = producer_bank.certify_two_kalmanson_cancellation(
+                rows, N, normalize_order(reverse_order), reverse_core
+            )
+            if (
+                forward_replay["core"] != forward_core
+                or reverse_replay["core"] != reverse_core
+            ):
+                return False
+        return True
+    except (AttributeError, KeyError, TypeError, ValueError):
+        return False
+
+
+def project_record_for_lean(
+    record: dict[str, Any],
+    hits: frozenset[Hit],
+    order: Iterable[int],
+    rows: Sequence[producer_bank.MetricRow],
+) -> dict[str, Any]:
+    """Return a separately replayed, path-minimal Lean certificate.
+
+    ``record`` remains the full producer record.  The returned record carries
+    a provenance block naming that source record and the deterministic
+    path-row projection, while its projected core is replayed against the
+    complete source rows under the authenticated order.
+    """
+    if path_hits(record) != hits:
+        raise ValueError("cannot project a record with a different path support")
+    source_core = record_core(record)
+    projected_core = dict(source_core)
+    projected_core["row_choices"] = referenced_row_choices(record)
+    selected_order = normalize_order(order)
+    replayed = producer_bank.certify_two_kalmanson_cancellation(
+        rows, N, selected_order, projected_core
+    )
+    if path_hits(replayed) != hits:
+        raise ValueError("projected certificate changed its path support")
+    projected = dict(replayed)
+    projected["projection"] = {
+        "schema": "path-row-choice-subset/v1",
+        "source_record_sha256": hashlib.sha256(
+            record_key(record).encode("utf-8")
+        ).hexdigest(),
+        "source_row_choice_count": len(source_core.get("row_choices", [])),
+        "projected_row_choice_count": len(
+            projected["core"].get("row_choices", [])
+        ),
+        "path_hits": [list(hit) for hit in sorted(hits)],
+        "order": list(selected_order),
+    }
+    return projected
+
+
 def rows_from_hits(hits: Iterable[Hit]) -> list[producer_bank.MetricRow]:
     supports: dict[int, set[int]] = {}
     for center, point in hits:
@@ -73,11 +232,50 @@ def record_key(record: dict[str, Any]) -> str:
     return json.dumps(record, sort_keys=True, separators=(",", ":"))
 
 
-def choose_exact_support_record(hits: frozenset[Hit]) -> dict[str, Any]:
-    records = producer_bank.enumerate_two_kalmanson_cancellations(
-        rows_from_hits(hits), N, tuple(range(N)), max_cores=100_000
-    )
-    exact = [record for record in records if path_hits(record) == hits]
+def normalize_order(order: Iterable[int] | None = None) -> tuple[int, ...]:
+    """Return a validated producer order, retaining the legacy default."""
+    selected = tuple(range(N)) if order is None else tuple(order)
+    if len(selected) != N or tuple(sorted(selected)) != tuple(range(N)):
+        raise ValueError(f"invalid named order: {selected!r}")
+    return selected
+
+
+def choose_exact_support_record(
+    hits: frozenset[Hit],
+    order: Iterable[int] | None = None,
+    *,
+    records: Iterable[dict[str, Any]] | None = None,
+    rows: Sequence[producer_bank.MetricRow] | None = None,
+) -> dict[str, Any]:
+    """Choose a certificate and replay it under the exact same order.
+
+    ``None`` preserves the historical canonical-order callers.  Production
+    child generators must pass the authenticated order explicitly and select
+    from the records enumerated from the complete source-row bank.  Rebuilding
+    rows from a projected hit support loses the positive four-point context
+    required by the producer and is therefore only a legacy fallback.
+    """
+    selected_order = normalize_order(order)
+    if records is None:
+        selected_rows = rows_from_hits(hits)
+        candidate_records = producer_bank.enumerate_two_kalmanson_cancellations(
+            selected_rows, N, selected_order, max_cores=100_000
+        )
+    else:
+        if rows is None:
+            raise ValueError("record-bank selection requires complete source rows")
+        selected_rows = rows
+        candidate_records = tuple(records)
+    exact = []
+    for record in candidate_records:
+        if path_hits(record) != hits:
+            continue
+        replayed = producer_bank.certify_two_kalmanson_cancellation(
+            selected_rows, N, selected_order, record["core"]
+        )
+        if replayed != record:
+            raise ValueError("producer replay drifted under the selected order")
+        exact.append(record)
     if not exact:
         raise ValueError(f"no exact-support cancellation for {sorted(hits)!r}")
     return min(exact, key=record_key)
@@ -423,9 +621,9 @@ def main() -> int:
     entries = []
     lean_entries = []
     for hits in minimal:
-        forward = choose_exact_support_record(hits)
+        forward = choose_exact_support_record(hits, ORDERS[0])
         reverse_hits = reflected(hits)
-        reverse = choose_exact_support_record(reverse_hits)
+        reverse = choose_exact_support_record(reverse_hits, ORDERS[0])
         if path_hits(forward) != hits or path_hits(reverse) != reverse_hits:
             raise AssertionError("chosen certificate does not consume the exact support")
         entries.append(

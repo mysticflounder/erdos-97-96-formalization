@@ -15,7 +15,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_RUNNER = ROOT / "scripts" / "run_piqd_exact17_ninth_root.py"
-BASE_RUNNER_SHA256 = "bc46f036d4d31e066f140a9c653fbfa61fa5f45d003f8aec071fabaf49eb90bc"
+BASE_RUNNER_SHA256 = "223956a6062ea0c313c3eb333ca759423304cd2a0277b6b7e055e1c66acf9c74"
 
 
 def load_runner() -> dict[str, Any]:
@@ -53,7 +53,7 @@ def main() -> None:
             "equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-"
             "generic-cancellation.json"
         ),
-        "INGRESS_REPORT": scratch / "piqd-ingress-generic-cancellation-validation.json",
+        "INGRESS_REPORT": scratch / "extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-validation.json",
         "VARIABLES": 308,
         "CLAUSES": 5_846_080,
         "BYTES": 291_568_096,

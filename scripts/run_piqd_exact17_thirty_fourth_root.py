@@ -1,9 +1,7 @@
 """Fail-closed child34 PIQD adapter.
 
 Lifecycle operations reuse the audited child32 implementation.  This module
-only binds the authenticated child34 ingress and custody paths.  The immutable
-export is provisioned, while PIQD production remains UNPROVISIONED until a
-fresh post-fix daemon receipt and solver identity are admitted.
+binds the authenticated child34 ingress, PIQD identities, and custody paths.
 """
 
 from __future__ import annotations
@@ -87,7 +85,14 @@ PRODUCTION_RUNNER_PATHS = RunnerPaths(
     solver_log=ROOT / "scratch/exact17-lean-to-sat/piqd-child34-core1-custody-solver.log",
     lock=ROOT / "scratch/exact17-lean-to-sat/piqd-child34-core1-custody-runner.lock",
 )
-PRODUCTION_RUNNER_SPEC = RunnerSpec(ingress=PRODUCTION_INGRESS_SPEC, manifest_sha256=None, root_sha256=None, root_bytes=None, variables=308, clauses=5_847_256)
+PRODUCTION_RUNNER_SPEC = RunnerSpec(
+    ingress=PRODUCTION_INGRESS_SPEC,
+    manifest_sha256="01a53c3772486002cbb7a54fb1db24a21027c38bd9670ab2814eb26fe3ef62a2",
+    root_sha256="ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819",
+    root_bytes=291_620_980,
+    variables=308,
+    clauses=5_847_256,
+)
 
 
 def _require_provisioned(spec: RunnerSpec) -> None:
@@ -123,6 +128,11 @@ def validate_local(paths: RunnerPaths = PRODUCTION_RUNNER_PATHS, spec: RunnerSpe
     return _base.validate_local(_base.RunnerPaths(paths.ingress, paths.intent, paths.prepared, paths.state, paths.final, paths.model, paths.solver_log, paths.lock), _lifecycle_spec(spec), ingress_validator=ingress_validator)
 
 
+def live_identity(client: PiqdClient, spec: RunnerSpec = PRODUCTION_RUNNER_SPEC) -> dict[str, Any]:
+    _require_provisioned(spec)
+    return _base.live_identity(client, _lifecycle_spec(spec))
+
+
 def start(client: PiqdClient, paths: RunnerPaths = PRODUCTION_RUNNER_PATHS, spec: RunnerSpec = PRODUCTION_RUNNER_SPEC, *, ingress_validator=validate_ingress) -> dict[str, Any]:
     _require_provisioned(spec)
     p = _base.RunnerPaths(paths.ingress, paths.intent, paths.prepared, paths.state, paths.final, paths.model, paths.solver_log, paths.lock)
@@ -147,13 +157,22 @@ def finalize(client: PiqdClient, paths: RunnerPaths = PRODUCTION_RUNNER_PATHS, s
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("validate", "start", "finalize"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=("static-check", "start", "reconcile", "finalize"))
+    parser.add_argument("--job-id")
     args = parser.parse_args()
-    if args.command == "validate":
-        print(json.dumps(validate_local(), indent=2, sort_keys=True))
-        return 0
-    _require_provisioned(PRODUCTION_RUNNER_SPEC)
+    client = SubprocessPiqdClient()
+    if args.command == "static-check":
+        payload = {"root": validate_local(), "identity": live_identity(client)}
+    elif args.command == "start":
+        payload = start(client)
+    elif args.command == "reconcile":
+        if not args.job_id:
+            parser.error("reconcile requires --job-id")
+        payload = reconcile_prepared_job(client, args.job_id)
+    else:
+        payload = finalize(client)
+    print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
 
 

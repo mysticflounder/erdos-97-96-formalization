@@ -48,19 +48,30 @@ SOLVER_SHA256 = "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b96
 SOLVER_SIGNATURE = "cadical-3.0.0"
 SOLVER_PROFILE = "sat"
 CONFIRMATION_RE = re.compile(r"CONFIRMATION CODE:\s*([0-9]+)")
+RUN_LABEL_RE = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("static-check", help="validate both local CNF artifacts")
-    for command in ("start", "finalize"):
-        child = subparsers.add_parser(command)
-        child.add_argument(
-            "--expected-daemon-sha256",
-            required=True,
-            help="SHA-256 of the newly installed PIQD daemon binary",
-        )
+    start_parser = subparsers.add_parser("start")
+    start_parser.add_argument(
+        "--expected-daemon-sha256",
+        required=True,
+        help="SHA-256 of the newly installed PIQD daemon binary",
+    )
+    start_parser.add_argument(
+        "--run-label",
+        required=True,
+        help="audited disposable-run discriminator; it grants no proof entitlement",
+    )
+    finalize_parser = subparsers.add_parser("finalize")
+    finalize_parser.add_argument(
+        "--expected-daemon-sha256",
+        required=True,
+        help="SHA-256 of the newly installed PIQD daemon binary",
+    )
     return parser.parse_args()
 
 
@@ -327,9 +338,13 @@ def run_session_gate(job_id: str, expected_journal: dict[str, Any]) -> dict[str,
         require(closed.get("state") == "closed", "PIQD session did not close cleanly")
 
 
-def start(expected_daemon_sha256: str) -> None:
+def start(expected_daemon_sha256: str, run_label: str) -> None:
     require(not STATE.exists(), f"refusing to replace existing live state: {STATE}")
     require(not FINAL_REPORT.exists(), f"preflight already finalized: {FINAL_REPORT}")
+    require(
+        RUN_LABEL_RE.fullmatch(run_label) is not None,
+        "run label must match [a-z0-9][a-z0-9._-]{0,63}",
+    )
     timings: dict[str, float] = {}
     started = monotonic()
     local = static_check()
@@ -342,7 +357,8 @@ def start(expected_daemon_sha256: str) -> None:
         "canary": local["canary"],
         "expected_daemon_sha256": expected_daemon_sha256.lower(),
         "proof_root": local["proof_root"],
-        "purpose": "qualify PIQD custody and SAT handoff before exact-17 ninth-root submission",
+        "purpose": "qualify PIQD custody and SAT handoff before an exact-17 immutable-root submission",
+        "run_label": run_label,
         "runner_path": str(Path(__file__).resolve()),
         "runner_sha256": sha256_file(Path(__file__)),
         "solver_name": SOLVER_NAME,
@@ -484,7 +500,7 @@ def main() -> None:
     if args.command == "static-check":
         print(json.dumps(static_check(), sort_keys=True))
     elif args.command == "start":
-        start(args.expected_daemon_sha256)
+        start(args.expected_daemon_sha256, args.run_label)
     else:
         finalize(args.expected_daemon_sha256)
 

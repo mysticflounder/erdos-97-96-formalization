@@ -99,7 +99,7 @@ def assignment_map(model_path: Path) -> dict[int, bool]:
         raise ValueError("model assignment must contain exactly 308 signed literals")
     result: dict[int, bool] = {}
     for expected_var, literal in enumerate(signed, start=1):
-        if not isinstance(literal, int) or abs(literal) != expected_var:
+        if type(literal) is not int or abs(literal) != expected_var:
             raise ValueError(f"malformed model literal at variable {expected_var}")
         result[expected_var] = literal > 0
     return result
