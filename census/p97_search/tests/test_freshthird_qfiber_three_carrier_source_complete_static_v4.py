@@ -126,34 +126,7 @@ def custody(
             raise runner.SourceCompleteStaticError("test source drift")
         return snapshot
 
-    def archive_snapshot(repo_root, expected, destination):
-        assert expected == snapshot
-        destination.mkdir(parents=True, exist_ok=False)
-        archived = []
-        for row in snapshot["rows"]:
-            if not row["porcelain_status"]:
-                continue
-            data = (repo / row["path"]).read_bytes()
-            archive_path = destination / row["path"]
-            archive_path.parent.mkdir(parents=True, exist_ok=True)
-            archive_path.write_bytes(data)
-            archived.append(
-                {
-                    "path": row["path"],
-                    "sha256": row["sha256"],
-                    "porcelain_status": row["porcelain_status"],
-                }
-            )
-        manifest = {
-            "schema": f"{runner.SOURCE_SNAPSHOT_SCHEMA}/nonclean-archive/v1",
-            "source_aggregate_sha256": snapshot["aggregate_sha256"],
-            "archived": archived,
-        }
-        (destination / "manifest.json").write_bytes(runner._canonical_json(manifest))
-        return manifest
-
     monkeypatch.setattr(runner, "verify_snapshot", verify_snapshot)
-    monkeypatch.setattr(runner, "archive_nonclean_snapshot_rows", archive_snapshot)
     monkeypatch.setattr(
         runner, "FreshThirdCarrierSourceCompleteCnfEncoding", _FakeEncoding
     )
@@ -743,6 +716,56 @@ def test_nonclean_snapshot_rows_are_archived_and_revalidated(custody) -> None:
         / "source-nonclean"
         / runner.PHASE_INGRESS_PATH
     ).is_file()
+
+
+def test_nonclean_archive_reentry_accepts_producer_bytes_and_rejects_whitespace(
+    custody,
+) -> None:
+    repo, snapshot, receipt = custody
+    snapshot["rows"][0]["porcelain_status"] = "?? " + runner.PHASE_INGRESS_PATH
+    output = _out(repo, "nonclean-archive-reentry")
+    first = runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=_sat_solver([]),
+        repo_root=repo,
+    )
+    archive_path = output / "artifacts" / "source-nonclean" / "manifest.json"
+    archive = first["source_archive"]
+    assert archive_path.read_bytes() == runner._canonical_source_archive_manifest(
+        archive
+    )
+    assert archive_path.read_bytes() != runner._canonical_json(archive)
+
+    calls = 0
+
+    def forbidden_solver(*_args):
+        nonlocal calls
+        calls += 1
+        raise AssertionError("terminal re-entry called the solver")
+
+    assert runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=forbidden_solver,
+        repo_root=repo,
+    ) == first
+    assert calls == 0
+
+    archive_path.write_bytes(archive_path.read_bytes() + b"\n")
+    with pytest.raises(
+        runner.SourceCompleteStaticError, match="terminal artifact inventory mismatch"
+    ):
+        runner.run_wave(
+            output,
+            source_snapshot=snapshot,
+            phase_ingress_receipt=receipt,
+            solver_runner=forbidden_solver,
+            repo_root=repo,
+        )
+    assert calls == 0
 
 
 def test_terminal_reentry_rejects_symlinked_directory_artifacts(custody) -> None:

@@ -36,6 +36,9 @@ from census.p97_search.freshthird_qfiber_three_carrier_provenance_v2 import (
 from census.p97_search.freshthird_qfiber_three_carrier_provenance_v2 import (
     SCHEMA as SOURCE_SNAPSHOT_SCHEMA,
 )
+from census.p97_search.freshthird_qfiber_three_carrier_provenance_v2 import (
+    _canonical as _canonical_source_archive_manifest,
+)
 from census.p97_search.freshthird_qfiber_three_carrier_source_complete_v4 import (
     SCHEMA as ENCODING_SCHEMA,
 )
@@ -888,8 +891,8 @@ def _validate_source_archive(
     if type(archive) is not dict:
         raise SourceCompleteStaticError("terminal manifest omits source archive")
     archive_path = artifacts_dir / "source-nonclean" / "manifest.json"
-    if not archive_path.is_file() or archive_path.read_bytes() != _canonical_json(
-        archive
+    if not archive_path.is_file() or archive_path.read_bytes() != (
+        _canonical_source_archive_manifest(archive)
     ):
         raise SourceCompleteStaticError("source archive manifest drifted")
     if archive.get("schema") != f"{SOURCE_SNAPSHOT_SCHEMA}/nonclean-archive/v1":
