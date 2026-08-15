@@ -6,7 +6,19 @@
 - Captured repository head: `08a67857db73617eed99a0d58801caff84b7a1c0`
 - Captured source aggregate: `a3604c1617da60a242069806c7730edf027671151552e261b6b76cdeadc830c7`
 - Result: four `SAT_ABSTRACTION` cells, all accepted by source-complete replay.
-- Claim boundary: finite discovery evidence only. This run proves neither a universal theorem nor a Lean leaf.
+- Claim boundary: finite discovery evidence for the downstream exact-three
+  pinned-endpoint packet only. This run proves neither a universal theorem nor
+  a Lean leaf.
+
+This projection is **not source-total for the live theorem
+`false_of_freshThird_firstNonHit`**. Its typed ingress assumes a
+`CommonRadiusTwoCapSourceThirdCanonicalRowSurface` and
+`Packet.exactRow : FreshThirdEqualCenterExactFourRow ... C.surface Q`, whereas
+the live theorem supplies `FreshThirdCapSourceNonHit` at `C.firstSource` and
+only an existential common-radius witness not tied to that `C`. The four
+accepted models falsify the omitted raw NonHit clause. All conclusions below
+are therefore packet-relative and must not be advertised as evidence about
+the full live anchor.
 
 An independent audit matched all 27 inventory rows, evaluated all 778,674 CNF
 clauses in each complete 12,104-variable model, and replayed all four result
@@ -31,20 +43,20 @@ Thus the source-complete local theory does not force the existing three-point
 overlap terminal. The models all evade it through the same positive-incidence
 gap.
 
-## Concrete candidate and consumer
+## Packet-relative candidate and consumer
 
-Candidate producer (CONJECTURED):
+Candidate producer inside the downstream exact-three packet (CONJECTURED):
 
 > Under the full FreshThird exact-three source packet, the boundary Q-source
 > belongs to the pinned fan row, and at least two distinct points from the
 > actual Q blocker-fiber image belong to that row.
 
-Immediate consumer:
+Immediate packet consumer:
 
 - `FreshThirdQFiberThreeBoundary.false_of_pinnedFan_source_and_twoFiberPoints`
   in `FreshThirdQFiberThreeSynchronization.lean`.
 
-First missing antecedent:
+First missing packet antecedent:
 
 - positive boundary-source/pinned-fan incidence. The current source theory
   deliberately does not assert any positive Q-row-slot/pinned-fan incidence.
@@ -65,12 +77,14 @@ synchronization adapter, and the blocker-fiber cardinality helper. It found no
 source theorem supplying the missing positive incidence. Re-run theorem-bank
 search only if a later wave produces a materially different candidate.
 
-## Next mathematical target
+## Stop rule for the live anchor
 
-Do not add another local finite field merely to exclude these four models.
-Derive the positive incidence from carrier-wide information (global selected
-row transport, cap order, minimality, or a metric synchronization theorem),
-or prove that one of those global mechanisms yields a different
-distinct-center row with three-point Q overlap. Until such a source producer
-exists, further source-complete local SAT waves are expected to reproduce this
-same survivor family.
+Do not use this packet-relative mine to choose the next theorem for
+`false_of_freshThird_firstNonHit`. The live anchor must first be split and
+audited using its actual `FreshThirdCapSourceNonHit` data and the independent
+existential common-radius ingress. Only a source theorem connecting one of
+those live arms to the exact-three packet would make the synchronization
+candidate relevant to the anchor. Within the downstream packet itself, do not
+add another local finite field merely to exclude these four models: the stable
+one-intersection family already shows that a genuinely global metric or
+incidence theorem is required there.
