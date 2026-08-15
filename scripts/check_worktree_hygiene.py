@@ -33,6 +33,7 @@ P97_RUN_SCHEMAS = frozenset(
         "p97-freshthird-firstnonhit-cap-endpoint-v3/run/v1",
         "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
         "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+        "p97-freshthird-firstnonhit-common-payload-v6/run/v1",
     }
 )
 PUBLICATION_LIMIT_BYTES = 100 * 1024 * 1024
@@ -129,6 +130,7 @@ _P97_SCHEMA_LANES = {
     "p97-freshthird-firstnonhit-cap-endpoint-v3/run/v1": "firstnonhit-cap-endpoint-v3",
     "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1": "firstnonhit-all-large-caps-v4",
     "p97-freshthird-firstnonhit-overlap-v5/run/v1": "firstnonhit-overlap-v5",
+    "p97-freshthird-firstnonhit-common-payload-v6/run/v1": "firstnonhit-common-payload-v6",
 }
 _P97_MANIFEST_KEYS = {
     schema: {
@@ -170,6 +172,13 @@ for _schema in (
 _P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-overlap-v5/run/v1"].update(
     {"lean_ingress", "production_path"}
 )
+_P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-common-payload-v6/run/v1"].update(
+    {"lean_ingress", "production_path"}
+)
+for _schema in ("p97-freshthird-firstnonhit-common-payload-v6/run/v1",):
+    _P97_MANIFEST_KEYS[_schema].update(
+        {"predecessor_model_control", "cross_check_effective"}
+    )
 _P97_RECEIPT_KEYS = {
     schema: {
         "all_emitted_hard_clauses_source_mapped",
@@ -190,6 +199,7 @@ _P97_RECEIPT_KEYS = {
 for _schema in (
     "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
     "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+    "p97-freshthird-firstnonhit-common-payload-v6/run/v1",
 ):
     _P97_RECEIPT_KEYS[_schema].update(
         {"cross_check_effective", "cross_check_requested"}

@@ -172,6 +172,7 @@ def _card_head_run(repo: Path, run_id: str = "compat-1") -> str:
 
 
 P97_LANES = {schema: _CHECKER._P97_SCHEMA_LANES[schema] for schema in P97_RUN_SCHEMAS}
+P97_V6_SCHEMA = "p97-freshthird-firstnonhit-common-payload-v6/run/v1"
 
 
 def _p97_self_hash(value: dict[str, Any], field: str) -> str:
@@ -239,12 +240,19 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
             "cap-endpoint-v3/run/v1",
             "all-large-caps-v4/run/v1",
             "overlap-v5/run/v1",
+            "common-payload-v6/run/v1",
         )
     ):
         manifest["predecessor_model_control"] = {}
-    if schema.endswith(("all-large-caps-v4/run/v1", "overlap-v5/run/v1")):
+    if schema.endswith(
+        (
+            "all-large-caps-v4/run/v1",
+            "overlap-v5/run/v1",
+            "common-payload-v6/run/v1",
+        )
+    ):
         manifest["cross_check_effective"] = False
-    if schema.endswith("overlap-v5/run/v1"):
+    if schema.endswith(("overlap-v5/run/v1", "common-payload-v6/run/v1")):
         manifest["lean_ingress"] = {}
         manifest["production_path"] = {}
     manifest["run_manifest_sha256"] = _p97_self_hash(manifest, "run_manifest_sha256")
@@ -274,7 +282,13 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
         "theorem_bank_search_run": False,
         "terminal_receipt_sha256": "",
     }
-    if schema.endswith(("all-large-caps-v4/run/v1", "overlap-v5/run/v1")):
+    if schema.endswith(
+        (
+            "all-large-caps-v4/run/v1",
+            "overlap-v5/run/v1",
+            "common-payload-v6/run/v1",
+        )
+    ):
         receipt["cross_check_requested"] = False
         receipt["cross_check_effective"] = False
     receipt["terminal_receipt_sha256"] = _p97_self_hash(
@@ -618,7 +632,7 @@ def test_p97_checkpoint_owner_and_base_cannot_be_rewritten_with_rehashed_binding
     tmp_path: Path, mutate: Any
 ) -> None:
     repo = _repo(tmp_path)
-    root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    root, lane = _p97_run(repo, P97_V6_SCHEMA)
     _rewrite_p97_checkpoint(repo, root, mutate)
 
     report = inspect_worktree(repo, lane=lane)
@@ -680,7 +694,7 @@ def test_p97_run_compatibility_rejects_tampering_and_unlisted_members(
     tmp_path: Path, tamper: str
 ) -> None:
     repo = _repo(tmp_path)
-    root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    root, lane = _p97_run(repo, P97_V6_SCHEMA)
     run_root = repo / root
     if tamper == "manifest":
         manifest_path = run_root / "run-manifest.json"
