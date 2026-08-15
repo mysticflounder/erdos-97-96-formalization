@@ -475,37 +475,6 @@ docs/live-blueprint.md.tmp
 /scratch/exact17-lean-to-sat/**/*.json
 /scratch/exact17-lean-to-sat/**/*.txt
 
-# Default policy for regenerated scratch payloads. Authored source and Markdown
-# remain visible; named custody/audit JSON records are explicitly re-exposed.
-/scratch/**/*.json
-/scratch/**/*.jsonl
-/scratch/**/*.smt2
-/scratch/**/*.ms
-/scratch/**/*.txt
-/scratch/**/*.exit
-/scratch/**/attempt.jsonl.artifacts/
-/scratch/**/lean-check-current/
-!/scratch/**/*summary*.json
-!/scratch/**/*manifest*.json
-!/scratch/**/*report*.json
-!/scratch/**/*audit*.json
-!/scratch/**/*ledger*.json
-!/scratch/**/*receipt*.json
-!/scratch/**/*validation*.json
-!/scratch/**/*provenance*.json
-!/scratch/**/*contract*.json
-!/scratch/**/*metadata*.json
-!/scratch/**/*inventory*.json
-!/scratch/**/*certificate*.json
-!/scratch/**/*coverage*.json
-!/scratch/**/*source-map*.json
-!/scratch/**/*source_map*.json
-!/scratch/**/*result*.json
-
-# Stale unvalidated Exact12 PIQD fixture pair; reauthenticate before force-adding.
-/census/p97_search/phase3_piqd_structural_seed.py
-/census/p97_search/tests/test_phase3_piqd_structural_seed.py
-
 # Oversized/replayable certificate payloads and one-shot custody diagnostics.
 /scratch/atail-force/unique-row-producer/*_certificate.json
 /scratch/**/attempts.jsonl.artifacts/

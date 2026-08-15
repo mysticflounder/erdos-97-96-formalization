@@ -695,6 +695,33 @@ purge API. Source removal, rollback-window expiry, and any future reviewed
 purge remain separate operations, with an inventory rescan required after each
 eventual removal.
 
+#### Worktree publication gate
+
+Every new or migrated wave must declare its write boundary before execution in
+`.codex/worktree-checkpoints/<lane-id>.json` using
+`worktree-lane-checkpoint/v1`.  The checkpoint binds the base revision, owner,
+exact source/test/doc paths, exact durable evidence, and fixed generated roots.
+Runtime trees use `scratch/runs/<lane-id>/<run-id>/` or the governed card-head
+equivalent; no wave may emit logs, solver streams, caches, or intermediate
+proof files beside production source.
+
+`scripts/check_worktree_hygiene.py` is the shared read-only gate.  Its report
+mode classifies owned, durable, generated, foreign, unmerged, oversized, and
+unclassified paths without mutating the worktree.  Its staged check is required
+before publication and fails on undeclared owner paths, foreign staged work,
+unmerged index entries, path replacement, symlink/hardlink custody, generated
+inventory drift, or a staged blob at or above the publication limit.  A passing
+lane check authorizes only that lane's exact-path commit; it never authorizes a
+directory-wide stage, cleanup, or deletion.
+
+The generated-root manifest distinguishes disposable runtime payloads from
+retained evidence.  Durable evidence is promoted explicitly and remains
+visible to Git; reproducible runtime state is kept under the generated root or
+a narrowly ignored cache/work subtree.  Cleanup remains a separately reviewed,
+move-only quarantine operation with fresh reference and writer scans.  This
+gate prevents script consolidation from merely replacing thousands of Python
+entrypoints with thousands of anonymous unowned artifacts.
+
 Exit gate: no active or externally invoked script is unclassified.
 
 ### Phase 1: schema and registry
