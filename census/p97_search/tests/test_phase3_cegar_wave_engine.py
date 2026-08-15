@@ -645,7 +645,7 @@ def test_offline_validator_rejects_tampered_or_crossed_envelope(tmp_path: Path) 
         + b"\n"
     )
     with pytest.raises(engine.StaticCnfEngineError, match="receipt schema"):
-        engine.validate_static_cnf_engine_output(path)
+        engine.inspect_static_cnf_engine_output_structure(path)
     crossed = dict(envelope)
     crossed["wave_kind"] = "CAMPAIGN"
     path.write_bytes(
@@ -653,7 +653,15 @@ def test_offline_validator_rejects_tampered_or_crossed_envelope(tmp_path: Path) 
         + b"\n"
     )
     with pytest.raises(engine.StaticCnfEngineError, match="unsafe claims"):
-        engine.validate_static_cnf_engine_output(path)
+        engine.inspect_static_cnf_engine_output_structure(path)
+
+
+def test_standalone_static_cnf_acceptance_is_fail_closed(tmp_path: Path) -> None:
+    with pytest.raises(
+        engine.StaticCnfEngineError,
+        match="standalone STATIC_CNF acceptance is disabled",
+    ):
+        engine.validate_static_cnf_engine_output(tmp_path / "unregistered.json")
 
 
 def test_transport_and_baseexception_are_not_retried() -> None:
@@ -711,7 +719,7 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
     assert output.is_file()
     # The public validator must not consume or mutate the returned envelope.
     before = dict(accepted.envelope)
-    checked = engine.validate_static_cnf_engine_output(output)
+    checked = engine.inspect_static_cnf_engine_output_structure(output)
     assert accepted.envelope == before
     assert checked == before
     assert api.calls
@@ -731,10 +739,12 @@ def test_output_rejects_result_verdict_and_classification_crossed_with_receipt(
     )
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
-def test_output_rejects_incomplete_sat_model(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_output_rejects_incomplete_sat_model(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     wave_engine, output, _api, _factories, _profile = _make_v2_engine(
         tmp_path, monkeypatch, "SAT"
     )
@@ -742,7 +752,7 @@ def test_output_rejects_incomplete_sat_model(tmp_path: Path, monkeypatch: pytest
     _rewrite_serialized_result(output, assignment={})
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 @pytest.mark.parametrize(
@@ -763,7 +773,7 @@ def test_output_rejects_out_of_range_sat_model_key(
     _rewrite_serialized_result(output, assignment=assignment)
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_output_rejects_duplicate_serialized_sat_model_key(
@@ -776,7 +786,7 @@ def test_output_rejects_duplicate_serialized_sat_model_key(
     _duplicate_serialized_assignment_key(output)
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_output_rejects_total_cnf_violating_sat_model(
@@ -792,7 +802,23 @@ def test_output_rejects_total_cnf_violating_sat_model(
     )
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
+
+
+def test_output_rejects_different_valid_sat_model(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories = _make_engine(tmp_path, monkeypatch, "SAT")
+    wave_engine.run(proof_path=None)
+    # This satisfies the fixture CNF (1 ∨ ¬2) ∧ (2 ∨ 3), but is not the
+    # archived PIQD model (1, 2, 3).
+    _rewrite_serialized_result(
+        output,
+        assignment={"1": True, "2": False, "3": True},
+    )
+
+    with pytest.raises(engine.StaticCnfEngineError, match="model response"):
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_output_rejects_unsat_result_with_assignment(
@@ -806,7 +832,7 @@ def test_output_rejects_unsat_result_with_assignment(
     _rewrite_serialized_result(output, assignment={"1": True})
 
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_output_accepts_valid_total_sat_model(
@@ -816,7 +842,7 @@ def test_output_accepts_valid_total_sat_model(
         tmp_path, monkeypatch, "SAT"
     )
     accepted = wave_engine.run(proof_path=None)
-    checked = engine.validate_static_cnf_engine_output(output)
+    checked = engine.inspect_static_cnf_engine_output_structure(output)
 
     assert accepted.classification == engine.SAT_OBSERVED
     assert checked["result"]["assignment"] == {
@@ -826,7 +852,33 @@ def test_output_accepts_valid_total_sat_model(
     }
 
 
-def test_run_normalizes_multi_digit_assignment_keys_and_replays_canonically(
+def test_custody_inventory_rejects_missing_expected_model_response(
+    tmp_path: Path,
+) -> None:
+    cnf = b"p cnf 1 1\n1 0\n"
+    cnf_sha256 = sha256_bytes(cnf)
+    attempt, attempt_fd, inventory, seal_raw = _custody_inventory_fixture(
+        tmp_path, {cnf_sha256: cnf}
+    )
+    try:
+        with pytest.raises(
+            engine.StaticCnfEngineError,
+            match="authenticated model-response artifact disappeared",
+        ):
+            engine._verify_custody_inventory(
+                attempt,
+                attempt_fd,
+                inventory,
+                seal_raw=seal_raw,
+                expected_cnf_sha256=cnf_sha256,
+                expected_model_sha256="a" * 64,
+                max_cnf_bytes=len(cnf),
+            )
+    finally:
+        os.close(attempt_fd)
+
+
+def test_run_rejects_non_total_multi_digit_assignment_before_publication(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     wave_engine, output, api, _factories = _make_engine(tmp_path, monkeypatch, "SAT")
@@ -850,11 +902,9 @@ def test_run_normalizes_multi_digit_assignment_keys_and_replays_canonically(
         return invoke
 
     monkeypatch.setattr(engine, "make_static_piqd_solver_runner", factory)
-    accepted = wave_engine.run(timeout_s=7, proof_path=None)
-
-    assert list(accepted.envelope["result"]["assignment"]) == ["10", "2"]
-    assert output.read_bytes() == canonical_json_bytes(accepted.envelope) + b"\n"
-    assert engine.validate_static_cnf_engine_output(output) == accepted.envelope
+    with pytest.raises(engine.StaticCnfEngineError, match="not total"):
+        wave_engine.run(timeout_s=7, proof_path=None)
+    assert not output.exists()
 
 
 def test_result_assignment_rejects_crossed_keys_and_noncanonical_serialized_keys() -> (
@@ -913,7 +963,7 @@ def test_v1_envelope_shape_is_frozen_and_rejects_reserved_profile(
         profiled["envelope_sha256"] = sha256_json(unsigned)
         output.write_bytes(canonical_json_bytes(profiled) + b"\n")
         with pytest.raises(engine.StaticCnfEngineError):
-            engine.validate_static_cnf_engine_output(output)
+            engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_v2_run_binds_input_and_execution_manifests_and_semantic_inventory(
@@ -957,7 +1007,7 @@ def test_v2_run_binds_input_and_execution_manifests_and_semantic_inventory(
     assert len(factories) == 1
     assert api.calls
     assert output.read_bytes() == canonical_json_bytes(envelope) + b"\n"
-    assert engine.validate_static_cnf_engine_output(output) == envelope
+    assert engine.inspect_static_cnf_engine_output_structure(output) == envelope
 
 
 def test_v2_constructor_requires_authenticated_execution_registration(
@@ -1026,13 +1076,13 @@ def test_v2_offline_validator_rejects_manifest_and_semantic_crossings(
     del missing_execution["execution_manifest"]
     write_tampered(missing_execution)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
     extra_execution = deepcopy(envelope)
     extra_execution["execution_manifest"]["extra"] = False
     write_tampered(extra_execution)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
     crossed_execution = deepcopy(envelope)
     crossed_execution["execution_manifest"]["sha256"] = envelope["wave_manifest"][
@@ -1040,25 +1090,25 @@ def test_v2_offline_validator_rejects_manifest_and_semantic_crossings(
     ]
     write_tampered(crossed_execution)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
     missing_metadata = deepcopy(envelope)
     del missing_metadata["semantic_profile"]["metadata"]
     write_tampered(missing_metadata)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
     extra_metadata = deepcopy(envelope)
     extra_metadata["semantic_profile"]["metadata"]["extra"] = False
     write_tampered(extra_metadata)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
     crossed_metadata = deepcopy(envelope)
     crossed_metadata["semantic_profile"]["metadata"]["profile_id"] = "crossed"
     write_tampered(crossed_metadata)
     with pytest.raises(engine.StaticCnfEngineError):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_registered_run_seals_and_validates_execution_identity(
@@ -1091,7 +1141,9 @@ def test_registered_run_seals_and_validates_execution_identity(
     accepted = wave_engine.run(timeout_s=7, proof_path=None)
 
     assert accepted.envelope["execution_registry"] == registration
-    assert engine.validate_static_cnf_engine_output(output) == accepted.envelope
+    assert (
+        engine.inspect_static_cnf_engine_output_structure(output) == accepted.envelope
+    )
 
     tampered = dict(accepted.envelope)
     crossed = json.loads(json.dumps(registration))
@@ -1103,7 +1155,7 @@ def test_registered_run_seals_and_validates_execution_identity(
     tampered["envelope_sha256"] = sha256_json(unsigned)
     output.write_bytes(canonical_json_bytes(tampered) + b"\n")
     with pytest.raises(engine.StaticCnfEngineError, match="crossed"):
-        engine.validate_static_cnf_engine_output(output)
+        engine.inspect_static_cnf_engine_output_structure(output)
 
 
 def test_run_rejects_response_loss_without_retry_or_publication(

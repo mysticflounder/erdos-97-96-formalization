@@ -12114,3 +12114,25 @@ mining; `UNSAT` must be retrieved and independently replayed, then composed
 through `exists_exactSeventeenSourceRealization_of_exactCover`.  Exact 17 and
 the cap-nine production `sorry` remain open until that terminal composition is
 kernel-checked.
+
+The FortySixth checkpoint is now ready for that one successor.  The Lean-owned
+Child46 root has 308 variables, 5,848,864 clauses, 291,706,884 bytes, and
+SHA-256
+`106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2`.
+Its exclusive publication receipt has SHA-256
+`64cc2822aa751f066f9177abd417e538be50524dd820ea250048f64a37de9ae3`.
+The registered `exact17-child46` semantic profile binds the exact parent and
+child DIMACS bytes, strict thirteen-cell replay receipt, terminal envelope,
+nine-support occurrence ledger, Lean source bridge, and publication receipt.
+The generic CLI `plan` and `validate-ingress` gates pass against all eight
+retained artifacts.  The wave manifest also binds its immediate parent root,
+and the control permits enough polling time to outlive the one-hour solver
+timeout.  The shared static-output validator now also binds verdict,
+classification, and return code to the immutable runner receipt; requires a
+total SAT assignment; binds that assignment to the archived raw PIQD model
+response; and independently replays it against the authenticated CNF bytes.
+Standalone engine inspection is structural-only and cannot accept a result:
+the old standalone validation entry point now fails closed, while registered
+execution and `validate-output` rebind the control, package, semantic profile,
+and retained artifacts before reporting acceptance.
+No Child46 PIQD job has yet been submitted at this checkpoint.

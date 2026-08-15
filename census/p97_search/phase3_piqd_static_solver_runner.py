@@ -1492,6 +1492,9 @@ class _RecordingClient:
     def checked_model(self, job: PreparedJob, *, cnf: bytes) -> CheckedModel:
         self._same_job(job)
         checked = self.client.checked_model(job, cnf=cnf)
+        artifact = self.journal.store_artifact(checked.response_body)
+        if artifact != checked.response_sha256:
+            raise PiqdOracleError("raw model-response archive hash changed")
         self.checked = checked
         return checked
 

@@ -1,0 +1,187 @@
+{
+  "child": {
+    "bytes": 291706884,
+    "clauses": 5848864,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-child46-forty-sixth-model-refinements.cnf",
+    "sha256": "106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-ledger-last-receipt/v2",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySixthModelRefinementsExport.lean",
+      "sha256": "d0e9b23007b7c8051eb4f46c95d0b5d28563a523d10b3d916d795310d78d8a81"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySixthModelRefinements.lean",
+      "sha256": "b8d285ac9b85821ac7634103d9fa8fe9588747c0a57659a28e6e1dee4a9ae127"
+    }
+  },
+  "occurrence_ledger": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-child45-wave-mine/child45-wave-occurrence-ledger.json",
+    "sha256": "93f8ea5b5e50ff43788bb556521a2d0e320178d045fed2c00868fd5a2d683006"
+  },
+  "parent": {
+    "bytes": 291705130,
+    "clauses": 5848828,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-forty-sixth-root-forty-fifth-model-refinements.cnf",
+    "sha256": "e74795bf5dcf5748e9872bf37f115c8d6237d0f3b0332d065a711bcbfc8aabe5",
+    "variables": 308
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child46-immutable-export-receipt/v1",
+  "status": "PASS",
+  "strict_replay_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-child45-wave-mine/strict-validate-replay-production.json",
+    "sha256": "4aad001c679627fa2797cbe4f207c3ff574dfa363f00cab223a5e73bee7f6160"
+  },
+  "terminal_envelope": {
+    "embedded_sha256": "bc388ef9ccc39508f4be786131f04a0139a9bdd3c494933a7d886ad97e6cc85f",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/cegar-wave-v2/exact17-child45-nextcenter-assumption-output.json",
+    "sha256": "28786f4898730b6776b0ce656eb16fbf74d25beed54e269a97fcf333dd3f2ee4"
+  },
+  "validation": {
+    "authenticated_model_cut_suffix_indices": [
+      1,
+      5,
+      9,
+      13,
+      17,
+      21,
+      25,
+      29,
+      33
+    ],
+    "cell_model_rejections": [
+      {
+        "cell_id": "next-center-00",
+        "rejected_suffix_indices": [
+          1
+        ],
+        "representative_cell": "next-center-00",
+        "required_rejected_suffix_index": 1
+      },
+      {
+        "cell_id": "next-center-01",
+        "rejected_suffix_indices": [
+          5
+        ],
+        "representative_cell": "next-center-01",
+        "required_rejected_suffix_index": 5
+      },
+      {
+        "cell_id": "next-center-02",
+        "rejected_suffix_indices": [
+          5,
+          9
+        ],
+        "representative_cell": "next-center-02",
+        "required_rejected_suffix_index": 9
+      },
+      {
+        "cell_id": "next-center-03",
+        "rejected_suffix_indices": [
+          13
+        ],
+        "representative_cell": "next-center-03",
+        "required_rejected_suffix_index": 13
+      },
+      {
+        "cell_id": "next-center-04",
+        "rejected_suffix_indices": [
+          17
+        ],
+        "representative_cell": "next-center-04",
+        "required_rejected_suffix_index": 17
+      },
+      {
+        "cell_id": "next-center-05",
+        "rejected_suffix_indices": [
+          21
+        ],
+        "representative_cell": "next-center-05",
+        "required_rejected_suffix_index": 21
+      },
+      {
+        "cell_id": "next-center-06",
+        "rejected_suffix_indices": [
+          25
+        ],
+        "representative_cell": "next-center-06",
+        "required_rejected_suffix_index": 25
+      },
+      {
+        "cell_id": "next-center-07",
+        "rejected_suffix_indices": [
+          25
+        ],
+        "representative_cell": "next-center-06",
+        "required_rejected_suffix_index": 25
+      },
+      {
+        "cell_id": "next-center-12",
+        "rejected_suffix_indices": [
+          25
+        ],
+        "representative_cell": "next-center-06",
+        "required_rejected_suffix_index": 25
+      },
+      {
+        "cell_id": "next-center-13",
+        "rejected_suffix_indices": [
+          29,
+          33
+        ],
+        "representative_cell": "next-center-13",
+        "required_rejected_suffix_index": 29
+      },
+      {
+        "cell_id": "next-center-14",
+        "rejected_suffix_indices": [
+          29,
+          33
+        ],
+        "representative_cell": "next-center-13",
+        "required_rejected_suffix_index": 29
+      },
+      {
+        "cell_id": "next-center-15",
+        "rejected_suffix_indices": [
+          29,
+          33
+        ],
+        "representative_cell": "next-center-13",
+        "required_rejected_suffix_index": 29
+      },
+      {
+        "cell_id": "next-center-16",
+        "rejected_suffix_indices": [
+          33
+        ],
+        "representative_cell": "next-center-16",
+        "required_rejected_suffix_index": 33
+      }
+    ],
+    "child_bytes": 291706884,
+    "child_clauses": 5848864,
+    "child_sha256": "106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2",
+    "new_clauses": 36,
+    "ordered_suffix_sha256": "05b1b92d77d56be54fee3ccc0c09cb66b31453dffb2b97dc3f99bbda37eb47ea",
+    "parent_bytes": 291705130,
+    "parent_clauses": 5848828,
+    "parent_sha256": "e74795bf5dcf5748e9872bf37f115c8d6237d0f3b0332d065a711bcbfc8aabe5",
+    "parent_subsumed_suffix_indices": [
+      8,
+      10,
+      12,
+      18,
+      24,
+      30,
+      32,
+      35
+    ],
+    "schema": "p97-exact17-forty-sixth-export-validation/v1",
+    "status": "PASS",
+    "variables": 308
+  }
+}

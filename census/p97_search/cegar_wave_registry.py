@@ -64,7 +64,7 @@ from census.p97_search.phase3_cegar_wave_engine import (
     StaticCnfEngineError,
     StaticCnfEngineResult,
     StaticCnfWaveEngine,
-    validate_static_cnf_engine_output,
+    inspect_static_cnf_engine_output_structure,
 )
 
 REGISTRY_SCHEMA = EXECUTION_REGISTRY_SCHEMA
@@ -496,7 +496,13 @@ def execute_registered_wave(
         sleep=sleep,
         execution_registration=_registration_envelope(registration),
     )
-    return engine.run(timeout_s=timeout_s, proof_path=None)
+    result = engine.run(timeout_s=timeout_s, proof_path=None)
+    accepted = validate_registered_output(control, package_root, result.envelope_path)
+    return StaticCnfEngineResult(
+        result.classification,
+        result.envelope_path,
+        accepted,
+    )
 
 
 def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
@@ -505,7 +511,7 @@ def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
     if type(path) is not _NATIVE_PATH_TYPE or not path.is_absolute():
         raise WaveRegistryError("output path must be an absolute native Path")
     try:
-        envelope = validate_static_cnf_engine_output(path)
+        envelope = inspect_static_cnf_engine_output_structure(path)
         registration_key = "execution_registry"
     except StaticCnfEngineError:
         try:
@@ -624,7 +630,9 @@ def validate_registered_replay(
             validated, package_root, path
         )
     except AssumptionCnfEngineError as error:
-        raise WaveRegistryError("assumption output failed strict replay validation") from error
+        raise WaveRegistryError(
+            "assumption output failed strict replay validation"
+        ) from error
     if envelope["execution_registration"] != _registration_envelope(registration):
         raise WaveRegistryError("output registration is crossed with its control")
     return envelope

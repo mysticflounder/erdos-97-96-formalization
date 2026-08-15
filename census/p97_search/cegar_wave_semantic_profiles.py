@@ -22,6 +22,7 @@ from .phase3_cegar_wave import canonical_json_bytes
 PROFILE_SCHEMA = "p97-static-cnf-semantic-profile/v1"
 EXACT17_CHILD40 = "exact17-child40"
 EXACT17_CHILD45 = "exact17-child45"
+EXACT17_CHILD46 = "exact17-child46"
 FINITE_SCOPE = "finite"
 OFFLINE_MODE = "offline"
 RETAIN = "RETAIN"
@@ -51,16 +52,51 @@ _METADATA_KEYS = frozenset(
 _PROFILE_VALIDATORS = {
     EXACT17_CHILD40: EXACT17_CHILD40,
     EXACT17_CHILD45: EXACT17_CHILD45,
+    EXACT17_CHILD46: EXACT17_CHILD46,
 }
 _PROFILE_IDS = frozenset(_PROFILE_VALIDATORS)
-_CONTRACT_KEYS = frozenset(
+_LEGACY_CONTRACT_KEYS = frozenset(
     {"parent", "child", "model", "ordered_suffix_sha256", "schemas", "artifact_roles"}
+)
+_CHILD46_CONTRACT_KEYS = frozenset(
+    {
+        "parent",
+        "child",
+        "evidence",
+        "ordered_suffix_sha256",
+        "schemas",
+        "artifact_roles",
+    }
+)
+_CHILD46_EVIDENCE_KEYS = frozenset(
+    {
+        "strict_replay_receipt_sha256",
+        "terminal_envelope_sha256",
+        "terminal_envelope_embedded_sha256",
+        "occurrence_ledger_sha256",
+        "export_receipt_sha256",
+        "cell_count",
+        "full_certificate_count",
+        "support_count",
+        "new_clause_count",
+        "parent_subsumed_suffix_indices",
+        "authenticated_model_cut_suffix_indices",
+    }
 )
 _DIMACS_KEYS = frozenset({"sha256", "variables", "clauses"})
 _MODEL_KEYS = frozenset({"sha256", "job_id"})
 _SCHEMA_KEYS = {
     EXACT17_CHILD40: frozenset({"model", "receipt", "ingress"}),
     EXACT17_CHILD45: frozenset({"model", "receipt", "final", "validation"}),
+    EXACT17_CHILD46: frozenset(
+        {
+            "strict_replay_receipt",
+            "terminal_envelope",
+            "occurrence_ledger",
+            "export_receipt",
+            "validation",
+        }
+    ),
 }
 _REQUIRED_CHILD40_ARTIFACTS = frozenset(
     {
@@ -81,6 +117,18 @@ _REQUIRED_CHILD45_ARTIFACTS = frozenset(
         "child_cnf",
         "model",
         "final",
+        "export_receipt",
+        "lean_root",
+        "lean_export",
+    }
+)
+_REQUIRED_CHILD46_ARTIFACTS = frozenset(
+    {
+        "parent_cnf",
+        "child_cnf",
+        "strict_replay_receipt",
+        "terminal_envelope",
+        "occurrence_ledger",
         "export_receipt",
         "lean_root",
         "lean_export",
@@ -154,6 +202,91 @@ _EXACT17_CHILD45_AUTHORITY = _Child45Authority(
     ),
 )
 del _EXACT17_CHILD45_AUTHORITY_VALUE
+
+
+@dataclass(frozen=True)
+class _Child46Authority:
+    profile_bytes: bytes
+    artifact_sha256: tuple[tuple[str, str], ...]
+
+
+_EXACT17_CHILD46_AUTHORITY_VALUE: dict[str, Any] = {
+    "profile": {
+        "schema": PROFILE_SCHEMA,
+        "profile_id": EXACT17_CHILD46,
+        "validator": EXACT17_CHILD46,
+        "classification": {"scope": FINITE_SCOPE, "mode": OFFLINE_MODE},
+        "control": {
+            "domain_kind": "STATIC_CNF",
+            "query_polarity": "SAT_MEANS_COUNTEREXAMPLE",
+            "cnf_sha256": "106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2",
+            "variables": 308,
+            "clauses": 5_848_864,
+        },
+        "cleanup": {"cleanup_eligible": False, "lifecycle": RETAIN},
+        "contract": {
+            "parent": {
+                "sha256": "e74795bf5dcf5748e9872bf37f115c8d6237d0f3b0332d065a711bcbfc8aabe5",
+                "variables": 308,
+                "clauses": 5_848_828,
+            },
+            "child": {
+                "sha256": "106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2",
+                "variables": 308,
+                "clauses": 5_848_864,
+            },
+            "evidence": {
+                "strict_replay_receipt_sha256": "4aad001c679627fa2797cbe4f207c3ff574dfa363f00cab223a5e73bee7f6160",
+                "terminal_envelope_sha256": "28786f4898730b6776b0ce656eb16fbf74d25beed54e269a97fcf333dd3f2ee4",
+                "terminal_envelope_embedded_sha256": "bc388ef9ccc39508f4be786131f04a0139a9bdd3c494933a7d886ad97e6cc85f",
+                "occurrence_ledger_sha256": "93f8ea5b5e50ff43788bb556521a2d0e320178d045fed2c00868fd5a2d683006",
+                "export_receipt_sha256": "64cc2822aa751f066f9177abd417e538be50524dd820ea250048f64a37de9ae3",
+                "cell_count": 13,
+                "full_certificate_count": 11,
+                "support_count": 9,
+                "new_clause_count": 36,
+                "parent_subsumed_suffix_indices": [8, 10, 12, 18, 24, 30, 32, 35],
+                "authenticated_model_cut_suffix_indices": [
+                    1,
+                    5,
+                    9,
+                    13,
+                    17,
+                    21,
+                    25,
+                    29,
+                    33,
+                ],
+            },
+            "ordered_suffix_sha256": "05b1b92d77d56be54fee3ccc0c09cb66b31453dffb2b97dc3f99bbda37eb47ea",
+            "schemas": {
+                "strict_replay_receipt": "p97-cegar-wave-cli/v1",
+                "terminal_envelope": "p97-cegar-assumption-cnf-engine/v1",
+                "occurrence_ledger": "p97-exact17-child45-wave-weighted-kalmanson-ledger/v1",
+                "export_receipt": "p97-exact17-child46-immutable-export-receipt/v1",
+                "validation": "p97-exact17-forty-sixth-export-validation/v1",
+            },
+            "artifact_roles": sorted(_REQUIRED_CHILD46_ARTIFACTS),
+        },
+    },
+    "artifacts": {
+        "parent_cnf": "e74795bf5dcf5748e9872bf37f115c8d6237d0f3b0332d065a711bcbfc8aabe5",
+        "child_cnf": "106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2",
+        "strict_replay_receipt": "4aad001c679627fa2797cbe4f207c3ff574dfa363f00cab223a5e73bee7f6160",
+        "terminal_envelope": "28786f4898730b6776b0ce656eb16fbf74d25beed54e269a97fcf333dd3f2ee4",
+        "occurrence_ledger": "93f8ea5b5e50ff43788bb556521a2d0e320178d045fed2c00868fd5a2d683006",
+        "export_receipt": "64cc2822aa751f066f9177abd417e538be50524dd820ea250048f64a37de9ae3",
+        "lean_root": "b8d285ac9b85821ac7634103d9fa8fe9588747c0a57659a28e6e1dee4a9ae127",
+        "lean_export": "d0e9b23007b7c8051eb4f46c95d0b5d28563a523d10b3d916d795310d78d8a81",
+    },
+}
+_EXACT17_CHILD46_AUTHORITY = _Child46Authority(
+    profile_bytes=canonical_json_bytes(_EXACT17_CHILD46_AUTHORITY_VALUE["profile"]),
+    artifact_sha256=tuple(
+        sorted(_EXACT17_CHILD46_AUTHORITY_VALUE["artifacts"].items())
+    ),
+)
+del _EXACT17_CHILD46_AUTHORITY_VALUE
 
 
 class SemanticProfileError(ValueError):
@@ -277,16 +410,62 @@ def validate_profile_payload(payload: Mapping[str, Any]) -> SemanticProfile:
     if cleanup != {"cleanup_eligible": False, "lifecycle": RETAIN}:
         _fail("semantic profiles must remain RETAIN and cleanup-ineligible")
 
-    contract = _exact_keys(profile["contract"], _CONTRACT_KEYS, "contract")
+    contract_keys = (
+        _CHILD46_CONTRACT_KEYS
+        if validator == EXACT17_CHILD46
+        else _LEGACY_CONTRACT_KEYS
+    )
+    contract = _exact_keys(profile["contract"], contract_keys, "contract")
     parent = _exact_keys(contract["parent"], _DIMACS_KEYS, "contract.parent")
     child = _exact_keys(contract["child"], _DIMACS_KEYS, "contract.child")
-    model = _exact_keys(contract["model"], _MODEL_KEYS, "contract.model")
     for label, row in (("parent", parent), ("child", child)):
         _sha(row["sha256"], f"contract.{label}.sha256")
         _count(row["variables"], f"contract.{label}.variables")
         _count(row["clauses"], f"contract.{label}.clauses")
-    _sha(model["sha256"], "contract.model.sha256")
-    _string(model["job_id"], "contract.model.job_id")
+    if validator == EXACT17_CHILD46:
+        evidence = _exact_keys(
+            contract["evidence"], _CHILD46_EVIDENCE_KEYS, "contract.evidence"
+        )
+        for field in (
+            "strict_replay_receipt_sha256",
+            "terminal_envelope_sha256",
+            "terminal_envelope_embedded_sha256",
+            "occurrence_ledger_sha256",
+            "export_receipt_sha256",
+        ):
+            _sha(evidence[field], f"contract.evidence.{field}")
+        for field in (
+            "cell_count",
+            "full_certificate_count",
+            "support_count",
+            "new_clause_count",
+        ):
+            if _count(evidence[field], f"contract.evidence.{field}") == 0:
+                _fail(f"contract.evidence.{field} must be positive")
+        index_fields = (
+            "parent_subsumed_suffix_indices",
+            "authenticated_model_cut_suffix_indices",
+        )
+        parsed_indices: dict[str, list[int]] = {}
+        for field in index_fields:
+            indices = evidence[field]
+            if (
+                type(indices) is not list
+                or any(type(index) is not int for index in indices)
+                or indices != sorted(set(indices))
+                or any(
+                    index <= 0 or index > evidence["new_clause_count"]
+                    for index in indices
+                )
+            ):
+                _fail(f"contract.evidence.{field} must be sorted unique suffix indices")
+            parsed_indices[field] = indices
+        if set(parsed_indices[index_fields[0]]) & set(parsed_indices[index_fields[1]]):
+            _fail("parent-subsumed and authenticated-model cuts must be disjoint")
+    else:
+        model = _exact_keys(contract["model"], _MODEL_KEYS, "contract.model")
+        _sha(model["sha256"], "contract.model.sha256")
+        _string(model["job_id"], "contract.model.job_id")
     _sha(contract["ordered_suffix_sha256"], "contract.ordered_suffix_sha256")
     schemas = _exact_keys(
         contract["schemas"], _SCHEMA_KEYS[validator], "contract.schemas"
@@ -300,11 +479,11 @@ def validate_profile_payload(payload: Mapping[str, Any]) -> SemanticProfile:
         or any(type(role) is not str for role in roles)
     ):
         _fail("contract.artifact_roles must be a nonempty string list")
-    required_artifacts = (
-        _REQUIRED_CHILD40_ARTIFACTS
-        if validator == EXACT17_CHILD40
-        else _REQUIRED_CHILD45_ARTIFACTS
-    )
+    required_artifacts = {
+        EXACT17_CHILD40: _REQUIRED_CHILD40_ARTIFACTS,
+        EXACT17_CHILD45: _REQUIRED_CHILD45_ARTIFACTS,
+        EXACT17_CHILD46: _REQUIRED_CHILD46_ARTIFACTS,
+    }[validator]
     if len(set(roles)) != len(roles) or set(roles) != required_artifacts:
         _fail("artifact role inventory is not the exact authenticated set")
     if (
@@ -411,7 +590,8 @@ def _json_capture(capture: CapturedBytes, label: str) -> dict[str, Any]:
         ).encode("utf-8")
         + b"\n"
     )
-    if capture.data not in {canonical_json_bytes(value), legacy_pretty}:
+    canonical = canonical_json_bytes(value)
+    if capture.data not in {canonical, canonical + b"\n", legacy_pretty}:
         _fail(f"{label} is not an accepted canonical JSON serialization")
     return value
 
@@ -1038,9 +1218,348 @@ def _validate_child45(
     }
 
 
+def _validate_child46(
+    profile: SemanticProfile,
+    artifacts: Mapping[str, CapturedBytes | bytes | CaptureLike],
+) -> dict[str, Any]:
+    """Validate the authenticated Child45 mine and Lean-owned Child46 root."""
+
+    if type(artifacts) is not dict:
+        _fail("captured artifacts must be an exact builtin dict")
+    authority = _EXACT17_CHILD46_AUTHORITY
+    if type(authority) is not _Child46Authority:
+        _fail("Child46 validator authority is malformed")
+    if canonical_json_bytes(profile.payload) != authority.profile_bytes:
+        _fail("Child46 profile crossed the source-authoritative identity")
+    contract = profile.payload["contract"]
+    evidence = contract["evidence"]
+    roles = set(contract["artifact_roles"])
+    if set(artifacts) != roles:
+        _fail("captured artifact inventory crossed the profile")
+    captured = {role: _captured(value, role) for role, value in artifacts.items()}
+    if any(capture.path is None for capture in captured.values()):
+        _fail("Child46 retained artifacts require exact captured paths")
+    expected_digests = dict(authority.artifact_sha256)
+    if (
+        type(expected_digests) is not dict
+        or set(expected_digests) != roles
+        or any(
+            capture.digest != expected_digests[role]
+            for role, capture in captured.items()
+        )
+    ):
+        _fail("Child46 retained artifact crossed the source-authoritative identity")
+
+    _parent_header, parent_lines, parent_vars, parent_clauses = _dimacs(
+        captured["parent_cnf"].data, "Child45 parent CNF"
+    )
+    _child_header, child_lines, child_vars, child_clauses = _dimacs(
+        captured["child_cnf"].data, "Child46 child CNF"
+    )
+    parent = contract["parent"]
+    child = contract["child"]
+    if (parent_vars, parent_clauses) != (parent["variables"], parent["clauses"]):
+        _fail("Child45 parent dimensions crossed profile")
+    if (child_vars, child_clauses) != (child["variables"], child["clauses"]):
+        _fail("Child46 child dimensions crossed profile")
+    if parent_lines != child_lines[:parent_clauses]:
+        _fail("Child46 does not preserve the exact Child45 parent prefix")
+    suffix = child_lines[parent_clauses:]
+    if (
+        len(suffix) != evidence["new_clause_count"]
+        or len(set(suffix)) != len(suffix)
+        or hashlib.sha256(b"".join(suffix)).hexdigest()
+        != contract["ordered_suffix_sha256"]
+    ):
+        _fail("Child46 ordered suffix crossed profile")
+
+    strict = _json_capture(
+        captured["strict_replay_receipt"], "Child45 strict replay receipt"
+    )
+    if set(strict) != {
+        "schema",
+        "status",
+        "command",
+        "classification",
+        "custody_status",
+        "envelope_sha256",
+        "output",
+    }:
+        _fail("Child45 strict replay receipt schema drifted")
+    if (
+        strict["schema"] != contract["schemas"]["strict_replay_receipt"]
+        or strict["status"] != PASS
+        or strict["command"] != "validate-replay"
+        or strict["classification"] != "SAT_SEMANTIC_REPLAYED"
+        or strict["custody_status"] != "OFFLINE_CROSS_BOUND"
+        or strict["envelope_sha256"] != evidence["terminal_envelope_embedded_sha256"]
+        or strict["output"] != str(captured["terminal_envelope"].path)
+    ):
+        _fail("Child45 strict replay receipt identity drifted")
+
+    envelope = _json_capture(captured["terminal_envelope"], "Child45 terminal envelope")
+    expected_envelope_keys = {
+        "schema",
+        "session_id",
+        "wave_kind",
+        "adapter",
+        "execution_registration",
+        "control",
+        "package",
+        "wave_manifest",
+        "campaign",
+        "parent",
+        "runtime_solver",
+        "cells",
+        "summary",
+        "claims",
+        "close_observed",
+        "envelope_sha256",
+    }
+    if set(envelope) != expected_envelope_keys:
+        _fail("Child45 terminal envelope schema drifted")
+    expected_summary = {
+        "attempted": evidence["cell_count"],
+        "classification": "SAT_SEMANTIC_REPLAYED",
+        "not_run": 0,
+        "sat": evidence["cell_count"],
+        "total_cells": evidence["cell_count"],
+        "unknown": 0,
+        "unsat": 0,
+    }
+    cells = envelope["cells"]
+    expected_cell_ids = [
+        *(f"next-center-{index:02d}" for index in range(8)),
+        *(f"next-center-{index:02d}" for index in range(12, 17)),
+    ]
+    if (
+        envelope["schema"] != contract["schemas"]["terminal_envelope"]
+        or envelope["wave_kind"] != "ASSUMPTION_CNF"
+        or envelope["envelope_sha256"] != evidence["terminal_envelope_embedded_sha256"]
+        or envelope["summary"] != expected_summary
+        or type(cells) is not list
+        or len(cells) != evidence["cell_count"]
+        or [cell.get("cell_id") for cell in cells] != expected_cell_ids
+        or any(
+            type(cell) is not dict
+            or cell.get("status") != "SAT"
+            or cell.get("state") != "ATTEMPTED"
+            or cell.get("source_replayed") is not True
+            or cell.get("closure_claim") is not False
+            or cell.get("proof_verified") is not False
+            or cell.get("discovery_scope") != "sat-witness-replayed"
+            or type(cell.get("semantic_replay")) is not dict
+            or cell["semantic_replay"]
+            .get("result", {})
+            .get("kalmanson", {})
+            .get("status")
+            != "LINEARLY_INFEASIBLE"
+            for cell in cells
+        )
+    ):
+        _fail("Child45 terminal replay census drifted")
+
+    ledger = _json_capture(captured["occurrence_ledger"], "Child45 occurrence ledger")
+    required_ledger_keys = {
+        "schema",
+        "status",
+        "input",
+        "receipt",
+        "terminal_envelope",
+        "producer_manifest_sha256",
+        "profile_sha256",
+        "child44_source_parent",
+        "child45_root",
+        "predecessor",
+        "predecessor_export",
+        "cell_provenance",
+        "full_certificate_records",
+        "support_dedup",
+        "inherited_support_census",
+        "audit",
+        "new_root",
+    }
+    if set(ledger) != required_ledger_keys:
+        _fail("Child45 occurrence ledger schema drifted")
+    audit = ledger["audit"]
+    new_root = ledger["new_root"]
+    if (
+        ledger["schema"] != contract["schemas"]["occurrence_ledger"]
+        or ledger["status"] != "AUTHENTICATED_PROMOTABLE"
+        or type(audit) is not dict
+        or audit.get("full_unique_count") != evidence["full_certificate_count"]
+        or audit.get("support_unique_count") != evidence["support_count"]
+        or audit.get("non_subsumed") is not True
+        or type(new_root) is not dict
+        or new_root.get("parent_clauses") != parent_clauses
+        or new_root.get("new_clauses") != len(suffix)
+        or new_root.get("clauses") != child_clauses
+        or type(ledger["cell_provenance"]) is not list
+        or len(ledger["cell_provenance"]) != evidence["cell_count"]
+        or type(ledger["full_certificate_records"]) is not list
+        or len(ledger["full_certificate_records"]) != evidence["full_certificate_count"]
+        or ledger.get("receipt", {}).get("sha256")
+        != evidence["strict_replay_receipt_sha256"]
+        or ledger.get("terminal_envelope", {}).get("sha256")
+        != evidence["terminal_envelope_sha256"]
+        or ledger.get("terminal_envelope", {}).get("embedded_sha256")
+        != evidence["terminal_envelope_embedded_sha256"]
+        or ledger.get("predecessor_export", {}).get("sha256") != parent["sha256"]
+    ):
+        _fail("Child45 occurrence ledger identity/census drifted")
+
+    receipt = _json_capture(captured["export_receipt"], "Child46 export receipt")
+    if set(receipt) != {
+        "schema",
+        "status",
+        "publication_state",
+        "parent",
+        "strict_replay_receipt",
+        "terminal_envelope",
+        "occurrence_ledger",
+        "lean",
+        "child",
+        "validation",
+        "immutability",
+    }:
+        _fail("Child46 export receipt schema drifted")
+    if (
+        receipt["schema"] != contract["schemas"]["export_receipt"]
+        or receipt["status"] != PASS
+        or receipt["publication_state"] != "PROVISIONED"
+        or receipt["immutability"] != "exclusive-hard-link-and-ledger-last-receipt/v2"
+    ):
+        _fail("Child46 export receipt status/policy drifted")
+    expected_parent = {
+        "path": str(captured["parent_cnf"].path),
+        "sha256": parent["sha256"],
+        "bytes": len(captured["parent_cnf"].data),
+        "variables": parent_vars,
+        "clauses": parent_clauses,
+    }
+    expected_child = {
+        "path": str(captured["child_cnf"].path),
+        "sha256": child["sha256"],
+        "bytes": len(captured["child_cnf"].data),
+        "variables": child_vars,
+        "clauses": child_clauses,
+    }
+    if receipt["parent"] != expected_parent or receipt["child"] != expected_child:
+        _fail("Child46 receipt DIMACS identity drifted")
+    _path_record(
+        receipt["strict_replay_receipt"],
+        captured["strict_replay_receipt"],
+        "Child46 receipt strict replay",
+    )
+    _path_record(
+        receipt["occurrence_ledger"],
+        captured["occurrence_ledger"],
+        "Child46 receipt occurrence ledger",
+    )
+    terminal_record = receipt["terminal_envelope"]
+    if (
+        type(terminal_record) is not dict
+        or set(terminal_record) != {"path", "sha256", "embedded_sha256"}
+        or terminal_record["path"] != str(captured["terminal_envelope"].path)
+        or terminal_record["sha256"] != captured["terminal_envelope"].digest
+        or terminal_record["embedded_sha256"]
+        != evidence["terminal_envelope_embedded_sha256"]
+    ):
+        _fail("Child46 receipt terminal envelope crossed captured evidence")
+    lean = receipt["lean"]
+    if type(lean) is not dict or set(lean) != {"root", "export"}:
+        _fail("Child46 Lean receipt shape drifted")
+    _path_record(lean["root"], captured["lean_root"], "Child46 Lean root")
+    _path_record(lean["export"], captured["lean_export"], "Child46 Lean export")
+
+    validation = receipt["validation"]
+    validation_keys = {
+        "schema",
+        "status",
+        "parent_sha256",
+        "child_sha256",
+        "parent_bytes",
+        "child_bytes",
+        "variables",
+        "parent_clauses",
+        "new_clauses",
+        "child_clauses",
+        "ordered_suffix_sha256",
+        "parent_subsumed_suffix_indices",
+        "authenticated_model_cut_suffix_indices",
+        "cell_model_rejections",
+    }
+    if type(validation) is not dict or set(validation) != validation_keys:
+        _fail("Child46 receipt validation schema drifted")
+    if (
+        validation["schema"] != contract["schemas"]["validation"]
+        or validation["status"] != PASS
+        or validation["parent_sha256"] != parent["sha256"]
+        or validation["child_sha256"] != child["sha256"]
+        or validation["parent_bytes"] != len(captured["parent_cnf"].data)
+        or validation["child_bytes"] != len(captured["child_cnf"].data)
+        or validation["variables"] != child_vars
+        or validation["parent_clauses"] != parent_clauses
+        or validation["new_clauses"] != len(suffix)
+        or validation["child_clauses"] != child_clauses
+        or validation["ordered_suffix_sha256"] != contract["ordered_suffix_sha256"]
+        or validation["parent_subsumed_suffix_indices"]
+        != evidence["parent_subsumed_suffix_indices"]
+        or validation["authenticated_model_cut_suffix_indices"]
+        != evidence["authenticated_model_cut_suffix_indices"]
+    ):
+        _fail("Child46 receipt validation identity drifted")
+    cell_rejections = validation["cell_model_rejections"]
+    if (
+        type(cell_rejections) is not list
+        or len(cell_rejections) != evidence["cell_count"]
+        or [row.get("cell_id") for row in cell_rejections] != expected_cell_ids
+        or any(
+            type(row) is not dict
+            or set(row)
+            != {
+                "cell_id",
+                "rejected_suffix_indices",
+                "representative_cell",
+                "required_rejected_suffix_index",
+            }
+            or type(row["rejected_suffix_indices"]) is not list
+            or row["required_rejected_suffix_index"]
+            not in row["rejected_suffix_indices"]
+            or row["required_rejected_suffix_index"]
+            not in evidence["authenticated_model_cut_suffix_indices"]
+            for row in cell_rejections
+        )
+    ):
+        _fail("Child46 authenticated model-cut census drifted")
+
+    lean_root = captured["lean_root"].data
+    lean_export = captured["lean_export"].data
+    if (
+        b"sourceAssign_extendedFortySixthModelRefinementsCnf" not in lean_root
+        or b"false_of_sourceRealization_of_extendedFortySixthModelRefinementsCnf_unsat"
+        not in lean_root
+        or b"sorry" in lean_root
+        or b"extendedFortySixthModelRefinementsDimacsString" not in lean_export
+        or b"sorry" in lean_export
+    ):
+        _fail("Child46 Lean source bridge/export drifted")
+    return {
+        "status": PASS,
+        "schema": PROFILE_SCHEMA,
+        "validator": profile.validator,
+        "classification": profile.payload["classification"],
+        "cleanup": profile.payload["cleanup"],
+        "cnf_sha256": child["sha256"],
+        "variables": child_vars,
+        "clauses": child_clauses,
+    }
+
+
 _VALIDATORS = {
     EXACT17_CHILD40: _validate_child40,
     EXACT17_CHILD45: _validate_child45,
+    EXACT17_CHILD46: _validate_child46,
 }
 
 
@@ -1070,6 +1589,7 @@ def validate_semantic_profile(
 __all__ = [
     "EXACT17_CHILD40",
     "EXACT17_CHILD45",
+    "EXACT17_CHILD46",
     "FINITE_SCOPE",
     "OFFLINE_MODE",
     "PROFILE_SCHEMA",

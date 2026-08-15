@@ -272,7 +272,7 @@ def test_assumption_output_dispatches_to_its_registered_validator(
     }
     monkeypatch.setattr(
         registry,
-        "validate_static_cnf_engine_output",
+        "inspect_static_cnf_engine_output_structure",
         lambda path: (_ for _ in ()).throw(registry.StaticCnfEngineError("static")),
     )
     monkeypatch.setattr(
@@ -451,7 +451,11 @@ def test_execute_uses_registered_engine_once_with_literal_no_proof(
     control, package_root, _, _ = _fixture_control(tmp_path)
     output = tmp_path / "result.json"
     journal = tmp_path / "journal"
-    sentinel = SimpleNamespace(classification="SAT_OBSERVED")
+    sentinel = SimpleNamespace(
+        classification="SAT_OBSERVED",
+        envelope_path=output,
+        envelope={"engine": "self-checked"},
+    )
     sleeper = lambda _: None
     seen: list[tuple[str, object]] = []
 
@@ -464,6 +468,13 @@ def test_execute_uses_registered_engine_once_with_literal_no_proof(
             return sentinel
 
     monkeypatch.setattr(registry, "StaticCnfWaveEngine", FakeEngine)
+    validated: list[tuple[object, ...]] = []
+
+    def validate_registered(*args: object) -> dict[str, object]:
+        validated.append(args)
+        return {"validated": True}
+
+    monkeypatch.setattr(registry, "validate_registered_output", validate_registered)
     result = registry.execute_registered_wave(
         control,
         package_root,
@@ -475,7 +486,10 @@ def test_execute_uses_registered_engine_once_with_literal_no_proof(
         sleep=sleeper,
     )
 
-    assert result is sentinel
+    assert result.classification == sentinel.classification
+    assert result.envelope_path == output
+    assert result.envelope == {"validated": True}
+    assert validated == [(control, package_root, output)]
     assert seen[0][0] == "init"
     assert seen[0][1] == {
         "control": control,
@@ -506,7 +520,7 @@ def test_offline_output_validation_requires_absolute_native_path(
         },
     }
     monkeypatch.setattr(
-        registry, "validate_static_cnf_engine_output", lambda path: expected
+        registry, "inspect_static_cnf_engine_output_structure", lambda path: expected
     )
     output = tmp_path / "result.json"
     assert registry.inspect_registered_output_structure(output) is expected
@@ -526,7 +540,7 @@ def test_offline_output_validation_selects_v2_from_authenticated_envelope(
         },
     }
     monkeypatch.setattr(
-        registry, "validate_static_cnf_engine_output", lambda path: observed
+        registry, "inspect_static_cnf_engine_output_structure", lambda path: observed
     )
 
     assert (
@@ -564,7 +578,7 @@ def test_registered_output_rejects_absent_or_crossed_registration(
     output = tmp_path / "result.json"
     observed: dict[str, object] = {"schema": "validated"}
     monkeypatch.setattr(
-        registry, "validate_static_cnf_engine_output", lambda path: observed
+        registry, "inspect_static_cnf_engine_output_structure", lambda path: observed
     )
 
     with pytest.raises(registry.WaveRegistryError, match="absent or crossed"):
@@ -610,7 +624,7 @@ def test_check_cross_binds_control_package_and_registered_output(
     }
     observed = deepcopy(expected)
     monkeypatch.setattr(
-        registry, "validate_static_cnf_engine_output", lambda path: observed
+        registry, "inspect_static_cnf_engine_output_structure", lambda path: observed
     )
     output = tmp_path / "result.json"
 
@@ -702,7 +716,7 @@ def test_v2_check_cross_binds_semantic_profile_and_artifact_inventory(
         },
     }
     monkeypatch.setattr(
-        registry, "validate_static_cnf_engine_output", lambda path: observed
+        registry, "inspect_static_cnf_engine_output_structure", lambda path: observed
     )
     output = tmp_path / "result.json"
 

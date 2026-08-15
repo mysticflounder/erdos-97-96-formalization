@@ -2,8 +2,9 @@
 
 This module is intentionally a small wrapper around the already-authenticated
 static PIQD runner.  It has no adapter/plugin dispatch and never treats an
-UNSAT observation as a proof.  The validator is transport-free and reopens
-every published file through no-follow descriptors before accepting it.
+UNSAT observation as a proof.  Its structural inspector is transport-free and
+reopens every published file through no-follow descriptors.  Package identity
+is accepted only by ``cegar_wave_registry.validate_registered_output``.
 """
 
 from __future__ import annotations
@@ -49,6 +50,7 @@ from census.p97_search.phase3_cegar_wave_control import (
     bind_static_cnf,
 )
 from census.p97_search.phase3_piqd_driver import SEAL_SCHEMA
+from census.p97_search.phase3_piqd_oracle import PiqdOracleError, scan_dimacs
 from census.p97_search.phase3_piqd_static_solver_runner import (
     CUSTODY_SEAL_SCHEMA,
     RECEIPT_SCHEMA,
@@ -508,7 +510,13 @@ def _normalize_result_assignment(
     return dict(sorted(normalized.items()))
 
 
-def _validate_serialized_result(value: Any) -> None:
+def _validate_serialized_result(
+    value: Any,
+    *,
+    receipt: Mapping[str, Any],
+    cnf: bytes,
+    model_response: bytes | None,
+) -> None:
     if type(value) is not dict or set(value) != {
         "classification",
         "verdict",
@@ -522,7 +530,104 @@ def _validate_serialized_result(value: Any) -> None:
         or type(value["returncode"]) is not int
     ):
         raise StaticCnfEngineError("engine result has invalid scalar fields")
-    _normalize_result_assignment(value["assignment"], serialized=True)
+    assignment = _normalize_result_assignment(value["assignment"], serialized=True)
+    if (
+        type(receipt.get("adapter_verdict")) is not str
+        or type(receipt.get("adapter_returncode")) is not int
+        or type(receipt.get("outcome")) is not str
+        or type(receipt.get("num_variables")) is not int
+        or receipt["num_variables"] < 0
+        or type(receipt.get("num_clauses")) is not int
+        or receipt["num_clauses"] < 0
+    ):
+        raise StaticCnfEngineError("receipt result fields are invalid")
+    if value["verdict"] != receipt["adapter_verdict"]:
+        raise StaticCnfEngineError("engine result verdict crosses its receipt")
+    if value["returncode"] != receipt["adapter_returncode"]:
+        raise StaticCnfEngineError("engine result returncode crosses its receipt")
+
+    verdict = value["verdict"]
+    outcome = receipt["outcome"]
+    if verdict == "SAT" and outcome == STRUCTURAL_SAT:
+        expected_classification = SAT_OBSERVED
+    elif verdict == "UNSAT" and outcome == DISCOVERY_UNSAT:
+        expected_classification = UNSAT_OBSERVED_DISCOVERY_ONLY
+    elif verdict == "UNKNOWN":
+        expected_classification = INDETERMINATE
+    else:
+        raise StaticCnfEngineError("engine result verdict/outcome pair is invalid")
+    expected_returncode = {"SAT": 10, "UNSAT": 20, "UNKNOWN": 1}[verdict]
+    if value["returncode"] != expected_returncode:
+        raise StaticCnfEngineError(
+            "engine result returncode is invalid for its verdict"
+        )
+    if value["classification"] != expected_classification:
+        raise StaticCnfEngineError("engine result classification crosses its receipt")
+
+    try:
+        dimensions = scan_dimacs(cnf)
+    except PiqdOracleError as exc:
+        raise StaticCnfEngineError("authenticated CNF is invalid") from exc
+    expected_dimensions = (receipt["num_variables"], receipt["num_clauses"])
+    if dimensions != expected_dimensions:
+        raise StaticCnfEngineError("receipt dimensions cross the authenticated CNF")
+
+    if verdict != "SAT":
+        if assignment:
+            raise StaticCnfEngineError("non-SAT engine result carries an assignment")
+        return
+
+    variable_count = receipt["num_variables"]
+    expected_keys = {str(variable) for variable in range(1, variable_count + 1)}
+    if set(assignment) != expected_keys:
+        raise StaticCnfEngineError("SAT engine result assignment is not total")
+    _sha256_text(
+        receipt.get("model_response_sha256"), label="receipt.model_response_sha256"
+    )
+    if model_response is None:
+        raise StaticCnfEngineError("SAT result lacks its archived model response")
+    try:
+        model_payload = json.loads(
+            model_response.decode("utf-8"),
+            parse_constant=lambda value: (_ for _ in ()).throw(
+                ValueError(f"non-finite JSON constant {value}")
+            ),
+            object_pairs_hook=lambda pairs: _unique_object(
+                pairs, "archived model response"
+            ),
+        )
+    except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        raise StaticCnfEngineError("archived model response is invalid JSON") from exc
+    if type(model_payload) is not dict or set(model_payload) != {
+        "job_id",
+        "result",
+        "num_assigned",
+        "assignment",
+    }:
+        raise StaticCnfEngineError("archived model response schema mismatch")
+    signed_assignment = model_payload["assignment"]
+    if (
+        type(receipt.get("job_id")) is not str
+        or model_payload["job_id"] != receipt["job_id"]
+        or model_payload["result"] != "SAT"
+        or type(model_payload["num_assigned"]) is not int
+        or model_payload["num_assigned"] != variable_count
+        or type(signed_assignment) is not list
+        or len(signed_assignment) != variable_count
+        or any(type(literal) is not int for literal in signed_assignment)
+    ):
+        raise StaticCnfEngineError("archived model response fields are invalid")
+    model_assignment = {str(abs(literal)): literal > 0 for literal in signed_assignment}
+    if model_assignment != assignment:
+        raise StaticCnfEngineError("engine assignment crosses its model response")
+    try:
+        replay_dimensions = scan_dimacs(cnf, signed_assignment)
+    except PiqdOracleError as exc:
+        raise StaticCnfEngineError(
+            "SAT engine result does not satisfy the authenticated CNF"
+        ) from exc
+    if replay_dimensions != expected_dimensions:
+        raise StaticCnfEngineError("SAT replay dimensions changed")
 
 
 def _result_type_check(result: StaticSolverResult) -> None:
@@ -653,7 +758,13 @@ def _receipt_bundle(
     receipt: dict[str, Any],
     manifest: dict[str, Any],
     expected_source_sha256: str,
-) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], list[dict[str, Any]]]:
+) -> tuple[
+    dict[str, Any],
+    dict[str, Any],
+    dict[str, Any],
+    list[dict[str, Any]],
+    bytes | None,
+]:
     """Authenticate receipt, custody, seal, journal, and exact attempt files."""
     if set(receipt) != _RECEIPT_KEYS or receipt.get("schema") != RECEIPT_SCHEMA:
         raise StaticCnfEngineError("runner receipt schema/key mismatch")
@@ -753,15 +864,16 @@ def _receipt_bundle(
         )
         if sha256_bytes(journal_raw) != seal["journal_sha256"]:
             raise StaticCnfEngineError("journal hash mismatch")
-        _verify_custody_inventory(
+        _authenticated_cnf, model_response = _verify_custody_inventory(
             attempt_dir,
             attempt_fd,
             custody["inventory"],
             seal_raw=seal_raw,
             expected_cnf_sha256=sha256_bytes(binding.cnf),
+            expected_model_sha256=receipt.get("model_response_sha256"),
             max_cnf_bytes=binding.control.cnf.max_bytes,
         )
-        return custody, seal, custody["inventory"], records
+        return custody, seal, custody["inventory"], records, model_response
     finally:
         os.close(attempt_fd)
 
@@ -1003,13 +1115,24 @@ class StaticCnfWaveEngine:
             manifest = _reconstruct_runner_manifest(
                 binding, attempt=receipt.get("attempt")
             )
-            custody, seal, inventory, records = _receipt_bundle(
+            custody, seal, inventory, records, model_response = _receipt_bundle(
                 binding=binding,
                 receipt=receipt,
                 manifest=manifest,
                 expected_source_sha256=sha256_bytes(source_manifest),
             )
             classification = _classification(result, receipt)
+            _validate_serialized_result(
+                {
+                    "classification": classification,
+                    "verdict": result.verdict,
+                    "assignment": _normalize_result_assignment(result.assignment),
+                    "returncode": result.returncode,
+                },
+                receipt=receipt,
+                cnf=binding.cnf,
+                model_response=model_response,
+            )
             unsigned = _unsigned_envelope(
                 binding,
                 manifest,
@@ -1107,7 +1230,6 @@ def _validate_static_cnf_engine_output(
         or receipt.get("schema") != RECEIPT_SCHEMA
     ):
         raise StaticCnfEngineError("receipt schema/key mismatch")
-    _validate_serialized_result(envelope.get("result"))
     package = envelope.get("package")
     if type(package) is not dict or "cnf_sha256" not in package:
         raise StaticCnfEngineError("engine package CNF binding is missing")
@@ -1291,13 +1413,20 @@ def _validate_static_cnf_engine_output(
             )
         if envelope.get("attempt_inventory") != custody["inventory"]:
             raise StaticCnfEngineError("engine custody inventory binding mismatch")
-        _verify_custody_inventory(
+        authenticated_cnf, model_response = _verify_custody_inventory(
             attempt_dir,
             attempt_fd,
             custody["inventory"],
             seal_raw=seal_raw,
             expected_cnf_sha256=expected_cnf_sha256,
+            expected_model_sha256=receipt.get("model_response_sha256"),
             max_cnf_bytes=MAX_STATIC_CNF_BYTES,
+        )
+        _validate_serialized_result(
+            envelope.get("result"),
+            receipt=receipt,
+            cnf=authenticated_cnf,
+            model_response=model_response,
         )
         if seal["wave_manifest_sha256"] != execution_manifest_sha256:
             raise StaticCnfEngineError("wave manifest crossing")
@@ -1323,7 +1452,8 @@ def _verify_custody_inventory(
     seal_raw: bytes | None,
     expected_cnf_sha256: str,
     max_cnf_bytes: int,
-) -> None:
+    expected_model_sha256: str | None = None,
+) -> tuple[bytes, bytes | None]:
     if (
         type(expected_cnf_sha256) is not str
         or len(expected_cnf_sha256) != 64
@@ -1332,6 +1462,8 @@ def _verify_custody_inventory(
         or max_cnf_bytes <= 0
     ):
         raise StaticCnfEngineError("authenticated CNF bound is invalid")
+    if expected_model_sha256 is not None:
+        _sha256_text(expected_model_sha256, label="expected_model_sha256")
     if type(inventory) is not dict or set(inventory) != {
         "journal_sha256",
         "journal_size",
@@ -1393,6 +1525,8 @@ def _verify_custody_inventory(
         if type(artifacts) is not list:
             raise StaticCnfEngineError("artifact inventory is not exact")
         expected_names: set[str] = set()
+        authenticated_cnf: bytes | None = None
+        authenticated_model: bytes | None = None
         for item in artifacts:
             if type(item) is not dict or set(item) != {
                 "sha256",
@@ -1443,6 +1577,10 @@ def _verify_custody_inventory(
                 identity[1],
             ):
                 raise StaticCnfEngineError("archived artifact tampering")
+            if item["sha256"] == expected_cnf_sha256:
+                authenticated_cnf = payload
+            if item["sha256"] == expected_model_sha256:
+                authenticated_model = payload
         artifact_info = os.fstat(artifact_fd)
         try:
             visible_artifact = os.stat(
@@ -1460,11 +1598,25 @@ def _verify_custody_inventory(
     finally:
         os.close(artifact_fd)
     _verify_visible_directory(attempt_dir, attempt_fd, label="attempt directory")
+    if authenticated_cnf is None:
+        raise StaticCnfEngineError("authenticated CNF artifact disappeared")
+    if expected_model_sha256 is not None and authenticated_model is None:
+        raise StaticCnfEngineError("authenticated model-response artifact disappeared")
+    return authenticated_cnf, authenticated_model
+
+
+def inspect_static_cnf_engine_output_structure(path: Path) -> dict[str, Any]:
+    """Inspect envelope/custody integrity without accepting package identity."""
+    return _validate_static_cnf_engine_output(path)
 
 
 def validate_static_cnf_engine_output(path: Path) -> dict[str, Any]:
-    """Validate an engine envelope and all bound custody files offline."""
-    return _validate_static_cnf_engine_output(path)
+    """Reject standalone acceptance; use the registered package validator."""
+    del path
+    raise StaticCnfEngineError(
+        "standalone STATIC_CNF acceptance is disabled; "
+        "use cegar_wave_registry.validate_registered_output"
+    )
 
 
 validate_static_cnf_engine_envelope = validate_static_cnf_engine_output
@@ -1479,6 +1631,7 @@ __all__ = [
     "StaticCnfEngineError",
     "StaticCnfEngineResult",
     "StaticCnfWaveEngine",
+    "inspect_static_cnf_engine_output_structure",
     "validate_static_cnf_engine_envelope",
     "validate_static_cnf_engine_output",
 ]
