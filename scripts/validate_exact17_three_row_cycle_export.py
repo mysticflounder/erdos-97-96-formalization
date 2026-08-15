@@ -12,9 +12,10 @@ import hashlib
 import itertools
 import os
 import stat
+from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import BinaryIO, Iterator
+from typing import BinaryIO
 
 ROOT = Path(__file__).resolve().parents[1]
 PARENT_PATH = ROOT / "scratch/exact17-lean-to-sat/exact17-child46-forty-sixth-model-refinements.cnf"
@@ -102,7 +103,12 @@ def expected_suffix_lines() -> Iterator[bytes]:
         for order in range(2):
             for reverse in (False, True):
                 for cut in range(17):
-                    for offsets in itertools.combinations(range(1, 17), 5):
+                    # Lean's `List.sublistsLen` preserves each sublist's item
+                    # order but emits the fixed-length sublists in reverse
+                    # lexicographic combination order.
+                    for offsets in reversed(
+                        tuple(itertools.combinations(range(1, 17), 5))
+                    ):
                         placed = tuple(
                             _placed(order, reverse, cut, offset)
                             for offset in (0, *offsets)
