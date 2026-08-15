@@ -11322,7 +11322,7 @@ for `false_of_freshThird_firstNonHit` and must not be counted as progress on
 this anchor unless an explicit acyclic source bridge is later proved.  This
 checkpoint closes no load-bearing `sorry`.
 
-#### 13.24.1.36 Guarded FirstNonHit ingress split and redundant-wave gate (2026-08-15)
+#### 13.24.1.36 Guarded FirstNonHit ingress split and material overlap delta (2026-08-15)
 
 The live FirstNonHit residual is now split source-faithfully at its actual
 acyclic ingress.  `false_of_freshThird_firstNonHit_alignedRetained` receives
@@ -11361,12 +11361,16 @@ The clean finite landing for the desired producer is now explicit:
 `FirstNonHitSourceTotalFiniteAssignment.false_of_row_overlap_card_ge_three`
 turns distinct indexed blockers plus a three-point indexed-row overlap into
 `False` by transporting the overlap to the actual selected shells and applying
-the two-circle bound.  It does not assert that such a row exists.  The next
-material theorem must therefore add positive global synchronization incidence
-that the survivor lacks, or prove one branch directly false.  No new solver
-wave is authorized until a newly proved source adapter adds such a constraint.
-This checkpoint is not FirstNonHit closure, not a source-total UNSAT result,
-and not a finite-to-universal promotion.
+the two-circle bound.  Exact readback of the authenticated v4 assignment found
+that this newly proved source clause is material: source pairs `(7, 15)` and
+`(8, 15)` have distinct blocker values `(0, 2)` but their indexed rows meet in
+the three points `{7, 8, 15}`.  Thus the terminal cuts that model in two
+placements.  Exactly one guarded successor wave adding the complete generic
+distinct-blocker overlap-at-most-two family is authorized.  Its outcome must
+be independently replayed and only its new wave data may be mined for a
+cardinality-independent producer.  The v4 receipt remains `source_total =
+false`, so this checkpoint is not FirstNonHit closure, not a source-total UNSAT
+result, and not a finite-to-universal promotion.
 
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
