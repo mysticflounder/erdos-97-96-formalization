@@ -133,3 +133,43 @@ incidence information, not from the existing rich-class cardinalities or any
 banked theorem found here.  Until such a producer is supplied, the proposed
 other-cap double-hit route is a **CONJECTURED bridge with a NEGATIVE bank
 audit**, not a closure path.
+
+## Focused endpoint/shared-blocker bridge audit (2026-08-04)
+
+The endpoint-fresh shared-blocker packet was checked against the remaining
+adjacent-cap consumers.  The exact six-point seed and the universal escaping
+selected-row producer are source-clean, but they do not provide either a
+second hit in a distinct rich cap or the cap placement needed by the existing
+ordered-placement consumer.
+
+The smallest direct consumer contract is recorded by the scratch Lean probe
+`scratch/e_bridge_contract_probe.lean`.  It compiles against the current olean
+tree and proves, from the existing
+`endpointFresh_sharedBlocker_pair_alternates` theorem, that a same-side
+boundary witness for both `Q.C` and `Q.J` is impossible:
+
+```lean
+btw O A C → ¬ btw O A J
+```
+
+The probe takes carrier membership `hoA : S.oppApex1 ∈ D.A` explicitly; the
+corresponding proof is private inside `FrontierLiveClosure`, so this is a
+contract check rather than a proposed public theorem.  No spine declaration
+was changed and no new `sorry` was added.
+
+The independent scratch theorem
+`lean/scratch/SameSideBoundaryProbe.lean` makes the obstruction explicit:
+adding the proposed same-side equivalence to the terminal hypotheses closes
+by contradiction.  Thus a same-side `BoundaryIndexing` witness is not a
+missing producer; it is a false target in this shared-blocker branch.
+
+The other source-clean consumer,
+`false_of_endpointFreshCrossHit_of_orderedPlacement`, instead requires the
+full ordered placement `O < A < X < J < C < K`.  Neither that placement nor a
+distinct-cap two-hit antecedent follows from the seed escape, full-shell
+intersection, or adjacent-cap singleton facts.  The viable producer contract
+must therefore be genuinely stronger and nonalternating: prove the full
+ordered packet (which would itself contradict the shared-blocker alternation),
+or derive a different escape/cross-hit configuration consumed by an existing
+terminal.  A broader CEGAR run would be testing an under-specified ingress and
+is not justified until such a source-level producer is available.

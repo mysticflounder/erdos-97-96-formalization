@@ -1,0 +1,15 @@
+{
+  "assertion_counts": [
+    53910
+  ],
+  "candidate_count": 4913,
+  "case_count": 16,
+  "finite_equivalence": {
+    "checks": 64,
+    "status": "PASS"
+  },
+  "polarity_canary": "UNSAT",
+  "schema_version": 10,
+  "solver_check_called_for_cases": false,
+  "status": "PASS"
+}

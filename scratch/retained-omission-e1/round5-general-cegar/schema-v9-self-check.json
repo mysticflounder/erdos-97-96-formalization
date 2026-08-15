@@ -1,0 +1,28 @@
+{
+  "assertion_counts": {
+    "q1-outside/arm1/canonical-survives": 48998,
+    "q1-outside/arm1/other-survives": 48998,
+    "q1-outside/arm2/canonical-survives": 48998,
+    "q1-outside/arm2/other-survives": 48998,
+    "q1-outside/arm3/canonical-survives": 48998,
+    "q1-outside/arm3/other-survives": 48998,
+    "q1-outside/arm4/canonical-survives": 48998,
+    "q1-outside/arm4/other-survives": 48998,
+    "q2-outside/arm1/canonical-survives": 48998,
+    "q2-outside/arm1/other-survives": 48998,
+    "q2-outside/arm2/canonical-survives": 48998,
+    "q2-outside/arm2/other-survives": 48998,
+    "q2-outside/arm3/canonical-survives": 48998,
+    "q2-outside/arm3/other-survives": 48998,
+    "q2-outside/arm4/canonical-survives": 48998,
+    "q2-outside/arm4/other-survives": 48998
+  },
+  "base_smoke": {
+    "status": "unknown"
+  },
+  "canary": "UNSAT",
+  "candidate_count": 4913,
+  "case_count": 16,
+  "schema_version": 9,
+  "status": "PASS"
+}

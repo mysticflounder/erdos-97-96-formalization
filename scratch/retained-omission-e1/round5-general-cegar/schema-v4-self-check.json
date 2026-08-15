@@ -1,0 +1,94 @@
+{
+  "lean_ingress": [
+    "deletion_survives_iff_exists_selectedFourClass_avoiding",
+    "freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow",
+    "freshThird_canonicalDifferentCap_orderSelectedEndpointDeletionOutcome",
+    "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned",
+    "freshThird_acyclic_canonical_consumerPacket"
+  ],
+  "order_cases_by_selected_endpoint": {
+    "q1": [
+      "q1-outside/arm-2",
+      "q1-outside/arm-4",
+      "q2-outside/arm-1",
+      "q2-outside/arm-3"
+    ],
+    "q2": [
+      "q1-outside/arm-1",
+      "q1-outside/arm-3",
+      "q2-outside/arm-2",
+      "q2-outside/arm-4"
+    ]
+  },
+  "order_contract": "the source-proved Lean order arm is an external case index; the probe derives its selected endpoint and deliberately leaves cyclic order otherwise unencoded",
+  "producer_query": "negated-good is exactly the row-valued complement of the two named deletion obstructions; SAT artifacts extract an exact four-point avoiding support, while UNSAT in every one of the eight indexed cases means the bounded relaxed packet forces the Kalmanson-closing obstruction pair",
+  "production_case_matrix": [
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 1,
+      "order_arm": 1,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 2,
+      "order_arm": 2,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 3,
+      "order_arm": 3,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 4,
+      "order_arm": 4,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 1,
+      "order_arm": 1,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 2,
+      "order_arm": 2,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 3,
+      "order_arm": 3,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 4,
+      "order_arm": 4,
+      "selected_endpoint": "q2"
+    }
+  ],
+  "run_required": true,
+  "sat_followups": [
+    "canonical-survives",
+    "other-survives"
+  ],
+  "schema_version": 4,
+  "status": "PASS",
+  "valid_slots": {
+    "equalCrossRowCenters": [
+      0,
+      1
+    ],
+    "firstNonHit": [
+      1
+    ],
+    "secondNonHit": [
+      0
+    ]
+  }
+}

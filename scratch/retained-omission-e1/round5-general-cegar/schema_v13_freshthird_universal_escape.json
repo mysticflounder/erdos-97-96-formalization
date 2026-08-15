@@ -1,0 +1,21 @@
+{
+  "schema_version": 13,
+  "target": "exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy",
+  "inherits": "schema_v11.json",
+  "encoding": {
+    "row_quantifier": "Z3 ForAll over 17 row-membership booleans per candidate center",
+    "candidate_row_count": 2380,
+    "canonical_blocker": "n17.row_center[z]",
+    "canonical_support": "n17.source_row[z,*]",
+    "deletion_robustness_negation": "Or_s(row_center[s] = center), backed by critical_no_K4_after_source_deletion",
+    "branch_A": "same blocker, exact support, critical deletion witness",
+    "branch_B": "distinct blocker, support intersection cardinality <= 2"
+  },
+  "finite_only_assumptions": [
+    "n=17 carrier labels",
+    "finite abstract radius relation E",
+    "finite positive-shell inventory from Schema 11",
+    "source-level critical deletion clauses"
+  ],
+  "trust_boundary": "bounded external Z3 evidence only; no Euclidean realization, universal lift, or Lean closure"
+}

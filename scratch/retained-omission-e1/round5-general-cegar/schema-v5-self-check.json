@@ -1,0 +1,100 @@
+{
+  "lean_ingress": [
+    "deletion_survives_iff_exists_selectedFourClass_avoiding",
+    "freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow",
+    "freshThird_canonicalDifferentCap_orderSelectedEndpointDeletionOutcome",
+    "freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow",
+    "freshThirdEqualCenterExactFourRow_of_hits",
+    "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned",
+    "freshThird_acyclic_canonical_consumerPacket"
+  ],
+  "order_cases_by_selected_endpoint": {
+    "q1": [
+      "q1-outside/arm-2",
+      "q1-outside/arm-4",
+      "q2-outside/arm-1",
+      "q2-outside/arm-3"
+    ],
+    "q2": [
+      "q1-outside/arm-1",
+      "q1-outside/arm-3",
+      "q2-outside/arm-2",
+      "q2-outside/arm-4"
+    ]
+  },
+  "order_contract": "the source-proved Lean order arm is an external case index; the probe derives its selected endpoint and deliberately leaves cyclic order otherwise unencoded",
+  "producer_query": "Lean already forces the row-valued complement. Production runs use canonical-survives and other-survives under the live dual scope to classify exact supports and full radius classes; negated-good remains only the union control",
+  "production_case_matrix": [
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 1,
+      "order_arm": 1,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 2,
+      "order_arm": 2,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 3,
+      "order_arm": 3,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q1-outside",
+      "lean_disjunct": 4,
+      "order_arm": 4,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 1,
+      "order_arm": 1,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 2,
+      "order_arm": 2,
+      "selected_endpoint": "q2"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 3,
+      "order_arm": 3,
+      "selected_endpoint": "q1"
+    },
+    {
+      "endpoint_mapping": "q2-outside",
+      "lean_disjunct": 4,
+      "order_arm": 4,
+      "selected_endpoint": "q2"
+    }
+  ],
+  "run_required": true,
+  "sat_followups": [
+    "canonical-survives",
+    "other-survives"
+  ],
+  "schema_version": 5,
+  "status": "PASS",
+  "surface_scopes": [
+    "generic-single",
+    "live-equal-common-dual"
+  ],
+  "valid_slots": {
+    "equalCrossRowCenters": [
+      0,
+      1
+    ],
+    "firstNonHit": [
+      1
+    ],
+    "secondNonHit": [
+      0
+    ]
+  }
+}

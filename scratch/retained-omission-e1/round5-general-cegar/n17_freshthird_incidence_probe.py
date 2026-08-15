@@ -93,12 +93,13 @@ class FreshThirdN17:
         self.q1_cap = z3.Int("Q1_cap")
         self.q2_cap = z3.Int("Q2_cap")
         self.interaction = {
-            (source, tag): z3.Bool(f"interaction_{source}_{tag}")
-            for source in (IDX["q1"], IDX["q2"]) for tag in self.TAGS
+            (slot, tag): z3.Bool(f"interaction_C{slot + 1}_{tag}")
+            for slot in (0, 1) for tag in self.TAGS
         }
         self.residual = {tag: z3.Bool(f"residual_{tag}") for tag in self.RESIDUALS}
-        self.cross_hit = {source: z3.Bool(f"cross_hit_{source}")
-                          for source in (IDX["q1"], IDX["q2"])}
+        self.cross_hit = {
+            slot: z3.Bool(f"cross_hit_C{slot + 1}") for slot in (0, 1)
+        }
         # C.firstSource/C.secondSource are independent selectors; they are
         # deliberately not identified with Q.source1/Q.source2.
         self.c_source_is = {
@@ -167,6 +168,15 @@ class FreshThirdN17:
                 self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(yz), xz))
                 self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(xz), yz))
                 self.add("radius_partition", z3.Or(z3.Not(xz), z3.Not(yz), xy))
+            # T.no_center_covers_all_apices: no positive-radius class at one
+            # carrier center contains all three Moser apices.
+            self.add(
+                "no_center_covers_all_apices",
+                z3.Not(z3.And(
+                    self.E(c, IDX["a1"], IDX["a2"]),
+                    self.E(c, IDX["a1"], IDX["a3"]),
+                )),
+            )
 
     def _encode_global_rows_and_blockers(self) -> None:
         for c in ALL:
@@ -273,9 +283,14 @@ class FreshThirdN17:
                                self.c_cap[slot] == self.row_cap[s]))
         self.same_blocker(IDX["p1"], IDX["p2"], "p_blocker_collision")
         self.same_blocker(IDX["r1"], IDX["r2"], "r_blocker_collision")
-        self.add("collision_blockers_distinct", z3.Or(*(
-            z3.Or(z3.Not(self.b[IDX["p1"], c]), z3.Not(self.b[IDX["r1"], c])) for c in ALL
-        )))
+        # The two localized common-deletion packets identify the other
+        # collision source as a fresh point omitted from the selected row.
+        self.add("retained_source_mutual_omission", z3.Not(self.source_row[IDX["p1"], IDX["r1"]]))
+        self.add("retained_source_mutual_omission", z3.Not(self.source_row[IDX["r1"], IDX["p1"]]))
+        self.add(
+            "collision_blockers_distinct",
+            self.row_center[IDX["p1"]] != self.row_center[IDX["r1"]],
+        )
 
         exactly(self.solver, self.q1_is.values(), 1)
         exactly(self.solver, self.q2_is.values(), 1)
@@ -309,9 +324,14 @@ class FreshThirdN17:
                 guard = self.c_source_is[slot, source]
                 self.add("C_source_row_card", z3.Or(z3.Not(guard), z3.PbEq([(self.source_row[source, p], 1) for p in ALL], 4)))
                 # The source-row center is distinct from both retained
-                # blockers and both named robust apices.
-                for other in (IDX["p1"], IDX["r1"], IDX["a1"], IDX["a3"]):
+                # blockers ...
+                for other in (IDX["p1"], IDX["r1"]):
                     self.add("C_center_inequalities", z3.Or(z3.Not(guard), self.row_center[source] != self.row_center[other]))
+                # ... and from the two apex points themselves.  These are
+                # point inequalities, not inequalities with the blockers of
+                # the apex vertices.
+                for apex in (IDX["a1"], IDX["a3"]):
+                    self.add("C_center_inequalities", z3.Or(z3.Not(guard), self.row_center[source] != apex))
             # CrossPairDeletionView survival is represented explicitly as a
             # named predicate, equivalent to omission of at least one pair
             # endpoint from the selected source row.
@@ -323,20 +343,19 @@ class FreshThirdN17:
             self.add("C_cross_pair_deletion_R", self.c_survives[slot, "R"])
             self.add("C_center_range", z3.And(self.c_center[slot] >= 0, self.c_center[slot] < N + 4))
 
-    def _guarded_interaction(self, source: int, tag: str):
-        return self.interaction[source, tag]
+    def _guarded_interaction(self, slot: int, tag: str):
+        return self.interaction[slot, tag]
 
     def _encode_interactions(self) -> None:
-        q1, q2 = IDX["q1"], IDX["q2"]
-        for slot, source in enumerate((q1, q2)):
-            exactly(self.solver, (self.interaction[source, tag] for tag in self.TAGS), 1)
-            same = self._guarded_interaction(source, "sameBlocker")
-            omission = self._guarded_interaction(source, "sourceRowOmission")
-            distinct = self._guarded_interaction(source, "distinctBlockersDifferentCaps")
-            same_cap = self._guarded_interaction(source, "sameCapWithInternalFiberSource")
+        for slot in (0, 1):
+            exactly(self.solver, (self.interaction[slot, tag] for tag in self.TAGS), 1)
+            same = self._guarded_interaction(slot, "sameBlocker")
+            omission = self._guarded_interaction(slot, "sourceRowOmission")
+            distinct = self._guarded_interaction(slot, "distinctBlockersDifferentCaps")
+            same_cap = self._guarded_interaction(slot, "sameCapWithInternalFiberSource")
             q1_in = z3.Or(*(z3.And(self.q1_is[s], self.c_source_row[slot, s]) for s in ALL))
             q2_in = z3.Or(*(z3.And(self.q2_is[s], self.c_source_row[slot, s]) for s in ALL))
-            cross_hit = self.cross_hit[source]
+            cross_hit = self.cross_hit[slot]
             self.add("cross_hit_definition", cross_hit == z3.And(self.c_center[slot] != self.q1_center, q1_in, q2_in))
             self.add("sameBlocker_guard", z3.Or(z3.Not(same), self.c_center[slot] == self.q1_center))
             for p in ALL:
@@ -346,6 +365,14 @@ class FreshThirdN17:
             # Expand the symbolic cap lookup into three finite cases.
             q1_in_cap = z3.Or(*(z3.And(self.c_cap[slot] == i, self.q1_is[s], self.cap[i, s]) for i in range(3) for s in ALL))
             q2_in_cap = z3.Or(*(z3.And(self.c_cap[slot] == i, self.q2_is[s], self.cap[i, s]) for i in range(3) for s in ALL))
+            source_center_in_cap_interior = z3.Or(*(
+                z3.And(self.c_cap[slot] == i, self.c_center[slot] == p, self.cap_interior[i, p])
+                for i in range(3) for p in ALL
+            ))
+            fresh_center_in_cap_interior = z3.Or(*(
+                z3.And(self.q1_cap == i, self.q1_center == p, self.cap_interior[i, p])
+                for i in range(3) for p in ALL
+            ))
             self.add("same_cap_guard", z3.Or(z3.Not(same_cap), self.c_cap[slot] == self.q1_cap))
             self.add("same_cap_internal_source", z3.Or(z3.Not(same_cap), q1_in_cap, q2_in_cap))
             self.add("omission_deleted_selector", z3.Or(z3.Not(omission), z3.PbEq([(term, 1) for term in self.deleted[slot].values()], 1)))
@@ -360,23 +387,26 @@ class FreshThirdN17:
                 z3.And(self.deleted[slot]["Q1"], self.deletion_survives[slot, "Q1"]) ,
                        z3.And(self.deleted[slot]["Q2"], self.deletion_survives[slot, "Q2"])))
             for tag in ("distinctBlockersDifferentCaps", "sameCapWithInternalFiberSource"):
-                guard = self.interaction[source, tag]
-                self.add("positive_cross_row_membership", z3.Or(z3.Not(guard), q1_in, q2_in))
+                guard = self.interaction[slot, tag]
+                # Both geometric constructors carry a genuine cross-row hit,
+                # including both Q-source memberships and unequal centers.
+                self.add("positive_cross_row_hit", z3.Or(z3.Not(guard), cross_hit))
+                self.add("source_center_mem_cap_interior", z3.Or(z3.Not(guard), source_center_in_cap_interior))
+                self.add("fresh_center_mem_cap_interior", z3.Or(z3.Not(guard), fresh_center_in_cap_interior))
                 for p in ALL:
                     q_endpoint = z3.Or(self.q1_is[p], self.q2_is[p])
                     self.add("positive_overlap_exact", z3.Or(z3.Not(guard), z3.Not(self.c_source_row[slot, p]), z3.Not(self.q1_row[p]), q_endpoint))
             self.add("interaction_nonhit_exclusion", z3.Or(z3.Not(same), z3.Not(omission), z3.Not(cross_hit)))
 
     def _encode_residual(self) -> None:
-        q1, q2 = IDX["q1"], IDX["q2"]
         exactly(self.solver, self.residual.values(), 1)
         first_nonhit, second_nonhit, equal_centers = (self.residual[x] for x in self.RESIDUALS)
-        self.add("residual_first_nonhit", z3.Or(z3.Not(first_nonhit), z3.Or(self.interaction[q1, "sameBlocker"], self.interaction[q1, "sourceRowOmission"])))
-        self.add("residual_second_nonhit", z3.Or(z3.Not(second_nonhit), z3.Or(self.interaction[q2, "sameBlocker"], self.interaction[q2, "sourceRowOmission"])))
+        self.add("residual_first_nonhit", z3.Or(z3.Not(first_nonhit), z3.Or(self.interaction[0, "sameBlocker"], self.interaction[0, "sourceRowOmission"])))
+        self.add("residual_second_nonhit", z3.Or(z3.Not(second_nonhit), z3.Or(self.interaction[1, "sameBlocker"], self.interaction[1, "sourceRowOmission"])))
         # The equal-center constructor is a positive packet: both C-source
         # rows must be genuine cross-row hits, and their centers must agree.
-        self.add("residual_equal_centers", z3.Or(z3.Not(equal_centers), self.cross_hit[q1]))
-        self.add("residual_equal_centers", z3.Or(z3.Not(equal_centers), self.cross_hit[q2]))
+        self.add("residual_equal_centers", z3.Or(z3.Not(equal_centers), self.cross_hit[0]))
+        self.add("residual_equal_centers", z3.Or(z3.Not(equal_centers), self.cross_hit[1]))
         self.add("residual_equal_centers", z3.Or(z3.Not(equal_centers), self.c_center[0] == self.c_center[1]))
 
     def _between(self, left: int, right: int, point: int):
