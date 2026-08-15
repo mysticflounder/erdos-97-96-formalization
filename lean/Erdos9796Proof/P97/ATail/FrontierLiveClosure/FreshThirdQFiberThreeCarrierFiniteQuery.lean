@@ -75,6 +75,43 @@ abbrev FreshThirdQFiberThreeCarrierRowRole :=
   Sum FreshThirdPinnedEndpointOutsideSeedRowRole
     FreshThirdQFiberThreeCarrierExtraRowRole
 
+/-- The four exact support slots attached to every row in the combined
+carrier query. -/
+def freshThirdQFiberThreeCarrierRowSlot :
+    FreshThirdQFiberThreeCarrierRowRole → Fin 4 →
+      FreshThirdQFiberThreeCarrierPointRole
+  | .inl row, i =>
+      .inl (freshThirdPinnedEndpointOutsideSeedRowSlot row i)
+  | .inr .q, i => .inr (.qSource i)
+  | .inr .boundaryBlocker, i => .inr (.boundaryRowSource i)
+  | .inr (.boundaryFanBlocker row), i =>
+      .inr (.boundaryFanBlockerRowSource row i)
+
+/-- The actual selected-row center attached to every combined row role. -/
+def freshThirdQFiberThreeCarrierRowCenter :
+    FreshThirdQFiberThreeCarrierRowRole →
+      FreshThirdQFiberThreeCarrierPointRole
+  | .inl row =>
+      .inl (freshThirdPinnedEndpointOutsideSeedRowCenter row)
+  | .inr .q => .inl .freshCenter
+  | .inr .boundaryBlocker => .inr .boundaryBlockerCenter
+  | .inr (.boundaryFanBlocker row) =>
+      .inr (.boundaryFanBlockerCenter row)
+
+private theorem carrier_finset_eq_univ_image_equiv
+    {α : Type} [DecidableEq α] (support : Finset α)
+    (index : support ≃ Fin 4) :
+    support = Finset.univ.image (fun i : Fin 4 ↦ (index.symm i).1) := by
+  ext x
+  constructor
+  · intro hx
+    refine Finset.mem_image.mpr
+      ⟨index ⟨x, hx⟩, Finset.mem_univ _, ?_⟩
+    simp
+  · intro hx
+    rcases Finset.mem_image.mp hx with ⟨i, _, rfl⟩
+    exact (index.symm i).2
+
 /-- Intrinsic finite view combining the pinned packet with the two
 source-faithful carrier fans.
 
@@ -229,6 +266,87 @@ theorem rowSupport_card_eq_four
     | boundaryFanBlocker i =>
         exact (View.carrier.boundaryBlockerRowFan.blockerRow i
           ).toCriticalFourShell.support_card
+
+/-- The exact selected four-class represented by a combined row role. -/
+noncomputable def rowClass
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    (row : FreshThirdQFiberThreeCarrierRowRole) →
+      SelectedFourClass D.A
+        (point P Pρ View (freshThirdQFiberThreeCarrierRowCenter row))
+  | .inl row =>
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass
+        P Pρ View.pinned row
+  | .inr .q => freshThirdQFiberThreeSelectedRow P Pρ Q
+  | .inr .boundaryBlocker => View.carrier.boundaryBlockerRow
+  | .inr (.boundaryFanBlocker i) =>
+      (View.carrier.boundaryBlockerRowFan.blockerRow i
+        ).toCriticalFourShell.toSelectedFourClass
+
+/-- Every combined row is exactly the image of its four declared slots. -/
+theorem rowSupport_eq_slot_image
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary)
+    (row : FreshThirdQFiberThreeCarrierRowRole) :
+    rowSupport P Pρ View row =
+      Finset.univ.image (fun i : Fin 4 ↦
+        point P Pρ View (freshThirdQFiberThreeCarrierRowSlot row i)) := by
+  classical
+  rcases row with row | row
+  · simpa [rowSupport, freshThirdQFiberThreeCarrierRowSlot, point] using
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport_eq_slot_image
+        P Pρ View.pinned row
+  · cases row with
+    | q =>
+        simpa [rowSupport, freshThirdQFiberThreeCarrierRowSlot, point] using
+          View.carrier.qFan.support_eq_source_image
+    | boundaryBlocker =>
+        simpa [rowSupport, freshThirdQFiberThreeCarrierRowSlot, point] using
+          View.carrier.boundaryBlockerRowFan.support_eq_source_image
+    | boundaryFanBlocker i =>
+        simpa [rowSupport, freshThirdQFiberThreeCarrierRowSlot, point] using
+          (carrier_finset_eq_univ_image_equiv
+            (support :=
+              (View.carrier.boundaryBlockerRowFan.blockerRow i
+                ).toCriticalFourShell.support)
+            (index := View.boundaryFanBlockerRowIndex i))
+
+@[simp] theorem rowClass_support_eq_rowSupport
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary)
+    (row : FreshThirdQFiberThreeCarrierRowRole) :
+    (rowClass P Pρ View row).support = rowSupport P Pρ View row := by
+  rcases row with row | row
+  · exact FreshThirdPinnedEndpointOutsideSeedFiniteView.rowClass_support_eq_rowSupport
+      P Pρ View.pinned row
+  · cases row <;> rfl
 
 /-- The unique nonfiber `Q`-row source aliases one of the two old fresh-
 remainder roles.  This is the first source-clean bridge between the old and
@@ -548,6 +666,138 @@ noncomputable def ofView
   simp [Nonrobust, ofView]
 
 end FreshThirdQFiberThreeCarrierFiniteAssignment
+
+/-- Equality and exact-row semantics over the complete old/new carrier
+vocabulary.  In particular, the newly introduced Q and second-order fan rows
+cannot collapse support slots or contain their positive-radius centers. -/
+structure FreshThirdQFiberThreeCarrierFiniteRowTheory
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop where
+  same_refl : ∀ point, A.Same point point
+  same_symm : ∀ {left right}, A.Same left right → A.Same right left
+  same_trans : ∀ {left middle right},
+    A.Same left middle → A.Same middle right → A.Same left right
+  slot_same_iff_eq : ∀ row i j,
+    A.Same
+        (freshThirdQFiberThreeCarrierRowSlot row i)
+        (freshThirdQFiberThreeCarrierRowSlot row j) ↔
+      i = j
+  incident_iff_slot : ∀ point row,
+    A.Incident point row ↔
+      ∃ i : Fin 4,
+        A.Same point (freshThirdQFiberThreeCarrierRowSlot row i)
+  row_center_not_incident : ∀ row,
+    ¬ A.Incident (freshThirdQFiberThreeCarrierRowCenter row) row
+  row_slots_same_distance : ∀ row i j,
+    A.SameDistanceFrom
+      (freshThirdQFiberThreeCarrierRowCenter row)
+      (freshThirdQFiberThreeCarrierRowSlot row i)
+      (freshThirdQFiberThreeCarrierRowSlot row j)
+
+namespace FreshThirdQFiberThreeCarrierFiniteRowTheory
+
+/-- Every exact carrier view satisfies the complete row theory. -/
+theorem ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    FreshThirdQFiberThreeCarrierFiniteRowTheory
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View) := by
+  classical
+  let A := FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View
+  refine {
+    same_refl := ?_
+    same_symm := ?_
+    same_trans := ?_
+    slot_same_iff_eq := ?_
+    incident_iff_slot := ?_
+    row_center_not_incident := ?_
+    row_slots_same_distance := ?_
+  }
+  · intro point
+    exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ) View point point).2 rfl
+  · intro left right h
+    exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ) View right left).2
+        ((FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View left right).1 h).symm
+  · intro left middle right hleft hright
+    exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ) View left right).2
+        (((FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View left middle).1 hleft).trans
+        ((FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View middle right).1 hright))
+  · intro row i j
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    let slotPoint : Fin 4 → ℝ² := fun k ↦
+      FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+        (freshThirdQFiberThreeCarrierRowSlot row k)
+    have hcardImage :
+        (Finset.univ.image slotPoint).card =
+          (Finset.univ : Finset (Fin 4)).card := by
+      rw [← FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image
+        (P := P) (Pρ := Pρ) View row]
+      rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport_card_eq_four
+        (P := P) (Pρ := Pρ) View row]
+      simp
+    have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+      Finset.card_image_iff.mp hcardImage
+    constructor
+    · exact fun h ↦ hinj (Finset.mem_univ i) (Finset.mem_univ j) h
+    · rintro rfl
+      rfl
+  · intro point row
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+    simp only [Finset.mem_image, Finset.mem_univ, true_and]
+    constructor
+    · rintro ⟨i, hpoint⟩
+      exact ⟨i,
+        (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).2 hpoint.symm⟩
+    · rintro ⟨i, hsame⟩
+      exact ⟨i,
+        ((FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).1 hsame).symm⟩
+  · intro row hincident
+    have hmem :=
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).1 hincident
+    rw [← FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport
+      (P := P) (Pρ := Pρ) View row] at hmem
+    exact (FreshThirdQFiberThreeCarrierFiniteView.rowClass
+      P Pρ View row).center_not_mem hmem
+  · intro row i j
+    apply
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _ _).2
+    let K := FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View row
+    have hi :
+        FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+            (freshThirdQFiberThreeCarrierRowSlot row i) ∈ K.support := by
+      rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport,
+        FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+      exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩
+    have hj :
+        FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+            (freshThirdQFiberThreeCarrierRowSlot row j) ∈ K.support := by
+      rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport,
+        FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+      exact Finset.mem_image.mpr ⟨j, Finset.mem_univ j, rfl⟩
+    exact (K.support_eq_radius _ hi).trans (K.support_eq_radius _ hj).symm
+
+end FreshThirdQFiberThreeCarrierFiniteRowTheory
 
 end
 

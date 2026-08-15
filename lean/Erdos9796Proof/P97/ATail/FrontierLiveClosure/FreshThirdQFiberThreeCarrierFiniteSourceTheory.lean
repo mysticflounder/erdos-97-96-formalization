@@ -86,6 +86,8 @@ structure SourceTheory
   qRowExact : ∀ point,
     A.Incident point (.inr .q) ↔
       ∃ i : Fin 4, A.Same point (.inr (.qSource i))
+  qRowEqPinnedFresh : ∀ point,
+    A.Incident point (.inr .q) ↔ A.Incident point (.inl .fresh)
   boundaryFreshRemainder : ∃ i : Fin 2,
     A.Same (.inr (.qSource boundaryIndex)) (.inl (.freshRemainder i))
   namedQSources :
@@ -226,6 +228,7 @@ structure CompleteSourceTheory (Config : Configuration) : Prop where
   carrier : SourceTheory Config.assignment Config.boundaryIndex
   bridge : PinnedBridge Config.assignment Config.pinned.assignment
   relational : RelationalTheory Config.assignment
+  rowTheory : FreshThirdQFiberThreeCarrierFiniteRowTheory Config.assignment
 
 attribute [local instance] Classical.propDecidable
 
@@ -249,6 +252,7 @@ theorem sourceTheory_ofView
   refine {
     qSourcesDistinct := ?_
     qRowExact := ?_
+    qRowEqPinnedFresh := ?_
     boundaryFreshRemainder := ?_
     namedQSources := ?_
     boundaryCenterNeQCenter := ?_
@@ -282,6 +286,10 @@ theorem sourceTheory_ofView
       rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hi
       rw [hi]
       exact View.carrier.qFan.source_mem_support i
+  · intro role
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+    rfl
   · rcases View.exists_boundary_freshRemainder_alias
       (P := P) (Pρ := Pρ) with ⟨i, hi⟩
     exact ⟨i,
@@ -520,7 +528,12 @@ theorem completeSourceTheory_ofView
     {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
     (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
     CompleteSourceTheory (Configuration.ofView P Pρ View) := by
-  refine ⟨?_, sourceTheory_ofView P Pρ View, ?_, relationalTheory_ofView P Pρ View⟩
+  refine {
+    pinned := ?_
+    carrier := sourceTheory_ofView P Pρ View
+    bridge := ?_
+    relational := relationalTheory_ofView P Pρ View
+    rowTheory := FreshThirdQFiberThreeCarrierFiniteRowTheory.ofView P Pρ View }
   · exact FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.ofView
       (P := P) (Pρ := Pρ) View.pinned
   · refine {
