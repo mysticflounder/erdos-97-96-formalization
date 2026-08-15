@@ -138,6 +138,19 @@ structure FirstNonHitFiniteAllLargeCaps
   secondOppCap_card_ge_six :
     6 ≤ (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex2).card
 
+namespace FirstNonHitFiniteAllLargeCaps
+
+/-- Every fixed finite cap index has at least six source representatives. -/
+theorem cap_card_ge_six
+    (h : FirstNonHitFiniteAllLargeCaps P Pρ C Q A) (cap : Fin 3) :
+    6 ≤ (firstNonHitFiniteCapIndices P Pρ C Q A cap).card := by
+  rcases triApexAllLargeContext_index_cases S cap with rfl | rfl | rfl
+  · exact h.firstOppCap_card_ge_six
+  · exact h.secondOppCap_card_ge_six
+  · exact h.surplusCap_card_ge_six
+
+end FirstNonHitFiniteAllLargeCaps
+
 /-- Pull the live all-large-caps residual back to the complete finite carrier. -/
 theorem firstNonHitFiniteAllLargeCaps_of_source
     {B : FrontierBiApexRobustResidual R}
