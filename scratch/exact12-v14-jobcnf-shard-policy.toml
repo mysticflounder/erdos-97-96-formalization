@@ -1,0 +1,13 @@
+[policy]
+max_bytes = 12_000
+allow_overflow = false
+mode = "ProofBlock"
+helper_module_prefix = "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard"
+helper_stem_template = "Step_{n}"
+zero_pad = 2
+coordinator_module_path = "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnf"
+coordinator_file_path = "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnf.lean"
+
+[adapter]
+kind = "regex"
+block_start_regex = '^(?:private )?(def|theorem|lemma|abbrev|structure)\s+\w+'

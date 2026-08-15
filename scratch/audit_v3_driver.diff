@@ -1,0 +1,404 @@
+diff --git a/census/p97_search/phase3_structural_cegar_projected_static_v3.py b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+index d092c02e..102366d3 100644
+--- a/census/p97_search/phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+@@ -32,10 +32,11 @@ import os
+ import sys
+ import tempfile
+ import time
+ from collections import Counter, defaultdict
+ from collections.abc import Iterator, Mapping, Sequence
++from dataclasses import dataclass
+ from pathlib import Path
+ from typing import Any
+ 
+ import sympy as sp
+ 
+@@ -573,14 +574,108 @@ SHARD_TERMINAL_STATUSES = (
+ 
+ SolverRunner = cegar_runtime.SolverBackend
+ CheckerRunner = cegar_runtime.CheckerRunner
+ 
+ 
++@dataclass(frozen=True)
++class _StaticPiqdCallerConfig:
++    base_url: str
++    journal_root: Path
++    source_manifest: Path
++    producer_manifest: Path
++
++
+ class StructuralCegarError(RuntimeError):
+     """An encoding, certificate, solver, resume, or artifact failure."""
+ 
+ 
++def _static_piqd_caller_config(
++    args: argparse.Namespace,
++) -> _StaticPiqdCallerConfig | None:
++    inputs = (
++        args.piqd_base_url,
++        args.piqd_journal_root,
++        args.piqd_source_manifest,
++        args.piqd_producer_manifest,
++    )
++    if any(value is not None for value in inputs) and not all(
++        value is not None for value in inputs
++    ):
++        raise StructuralCegarError(
++            "--piqd-base-url, --piqd-journal-root, --piqd-source-manifest, "
++            "and --piqd-producer-manifest must be provided together"
++        )
++    if not any(value is not None for value in inputs):
++        return None
++    if args.persistent_discovery:
++        raise StructuralCegarError(
++            "PIQD discovery cannot be combined with --persistent-discovery"
++        )
++    if args.parallel_mode != "sequential":
++        raise StructuralCegarError(
++            "PIQD discovery currently requires --parallel-mode sequential"
++        )
++    if args.workers != 1:
++        raise StructuralCegarError(
++            "PIQD discovery currently requires --workers 1"
++        )
++    return _StaticPiqdCallerConfig(
++        base_url=args.piqd_base_url,
++        journal_root=args.piqd_journal_root,
++        source_manifest=args.piqd_source_manifest,
++        producer_manifest=args.piqd_producer_manifest,
++    )
++
++
++def _split_static_piqd_solver_runner(
++    piqd_discovery_runner: SolverRunner,
++    *,
++    local_proof_runner: SolverRunner = sat.run_cadical,
++) -> SolverRunner:
++    def run(
++        cnf_path: Path, timeout_s: int, proof_path: Path | None
++    ) -> Any:
++        if proof_path is None:
++            # UNKNOWN and exceptions deliberately propagate to run_driver's
++            # fail-closed handling; local CaDiCaL is not a discovery fallback.
++            return piqd_discovery_runner(cnf_path, timeout_s, None)
++        return local_proof_runner(cnf_path, timeout_s, proof_path)
++
++    return run
++
++
++def _make_static_piqd_solver_runner(
++    *,
++    base_url: str,
++    journal_root: Path,
++    source_manifest: bytes,
++    producer_manifest: bytes,
++) -> SolverRunner:
++    static_piqd_solver_runner = importlib.import_module(
++        "census.p97_search.phase3_piqd_static_solver_runner"
++    )
++    return static_piqd_solver_runner.make_static_piqd_solver_runner(
++        base_url=base_url,
++        journal_root=journal_root,
++        source_manifest=source_manifest,
++        producer_manifest=producer_manifest,
++    )
++
++
++def _solver_runner_from_cli_args(args: argparse.Namespace) -> SolverRunner:
++    config = _static_piqd_caller_config(args)
++    if config is None:
++        return sat.run_cadical
++    piqd_discovery_runner = _make_static_piqd_solver_runner(
++        base_url=config.base_url,
++        journal_root=config.journal_root,
++        source_manifest=config.source_manifest.read_bytes(),
++        producer_manifest=config.producer_manifest.read_bytes(),
++    )
++    return _split_static_piqd_solver_runner(piqd_discovery_runner)
++
++
+ def _manifest_schema(encoding: Any) -> str:
+     return PROJECTED_STATIC_SCHEMA if encoding.projected_static else SCHEMA
+ 
+ 
+ def _learned_schema(encoding: Any) -> str:
+@@ -1181,10 +1276,21 @@ def _strict_json(path: Path) -> dict[str, Any]:
+     if not isinstance(value, dict):
+         raise StructuralCegarError(f"{path}: expected object")
+     return value
+ 
+ 
++def _load_ingress_contract(path: Path) -> dict[str, Any]:
++    contract = _strict_json(path)
++    try:
++        productivity.validate_ingress_contract(contract)
++    except productivity.ProductivityError as exc:
++        raise StructuralCegarError(
++            f"{path}: invalid productivity ingress contract: {exc}"
++        ) from exc
++    return contract
++
++
+ def _object_without_duplicate_keys(
+     pairs: list[tuple[str, Any]],
+ ) -> dict[str, Any]:
+     value: dict[str, Any] = {}
+     for key, item in pairs:
+@@ -5222,10 +5328,11 @@ def _base_configuration(
+     shard_local_simplification: bool = False,
+     shard_depth: int | None = None,
+     shard_index: int | None = None,
+     persistent_discovery: bool = False,
+     productivity_telemetry: bool = False,
++    ingress_contract: Mapping[str, Any] | None = None,
+ ) -> dict[str, Any]:
+     cube_variables = (
+         []
+         if parallel_mode == "sequential"
+         else [
+@@ -5412,10 +5519,15 @@ def _base_configuration(
+                 "classification, clause admission, witness validation, or "
+                 "terminal proof publication"
+             ),
+             "promotion": "PARKED-SPEC until a replayable finite or kernel consumer",
+         },
++        **(
++            {}
++            if ingress_contract is None
++            else {"productivity_ingress_contract": dict(ingress_contract)}
++        ),
+         "shard_local_simplification": {
+             "enabled": shard_local_simplification,
+             "schema": SHARD_LOCAL_SIMPLIFICATION_SCHEMA,
+             "scope": (
+                 "fixed top-level shard literals only; source CNF is simplified "
+@@ -8522,10 +8634,11 @@ def _commit_sat_classification(
+     learned_ledger: cegar_runtime.LearnedRunLedger | None = None,
+     survivor_ledger: cegar_runtime.JsonlRunLedger | None = None,
+     productivity_path: Path | None = None,
+     productivity_ledger: productivity.ProductivityLedger | None = None,
+     productivity_records: list[dict[str, Any]] | None = None,
++    ingress_contract: Mapping[str, Any] | None = None,
+ ) -> dict[str, Any]:
+     if (productivity_ledger is None) != (productivity_path is None):
+         raise StructuralCegarError(
+             "productivity path and ledger must be enabled together"
+         )
+@@ -8574,10 +8687,11 @@ def _commit_sat_classification(
+                 "kind": "source-assignment",
+                 "count": 1,
+                 "scope": "exact lower bound; no extrapolation",
+             },
+             previous_record_sha256=productivity_ledger.terminal_record_sha256,
++            ingress_contract=ingress_contract,
+         )
+         serialized = _append_record(productivity_path, diagnostic_record)
+         try:
+             productivity_ledger.observe_durable_append(
+                 diagnostic_record, serialized
+@@ -9202,10 +9316,11 @@ def run_driver(
+     manifest_audit_every: int | None = None,
+     compiled_loader_cache: bool = False,
+     shard_local_simplification: bool = False,
+     persistent_discovery: bool = False,
+     productivity_telemetry: bool = False,
++    ingress_contract: Mapping[str, Any] | None = None,
+     incremental_solver_factory: Any | None = None,
+     resume: bool = False,
+     max_new_raw: int | None = None,
+     solver_runner: SolverRunner = sat.run_cadical,
+     checker_runner: CheckerRunner = sat.run_drat_trim,
+@@ -9241,10 +9356,21 @@ def run_driver(
+         )
+     if type(persistent_discovery) is not bool:
+         raise StructuralCegarError("persistent_discovery must be a bool")
+     if type(productivity_telemetry) is not bool:
+         raise StructuralCegarError("productivity_telemetry must be a bool")
++    if ingress_contract is not None:
++        if not productivity_telemetry:
++            raise StructuralCegarError(
++                "ingress_contract requires productivity_telemetry=True"
++            )
++        try:
++            productivity.validate_ingress_contract(ingress_contract)
++        except productivity.ProductivityError as exc:
++            raise StructuralCegarError(
++                f"invalid ingress_contract: {exc}"
++            ) from exc
+     if incremental_solver_factory is not None and not persistent_discovery:
+         raise StructuralCegarError(
+             "incremental_solver_factory requires persistent_discovery=True"
+         )
+     if persistent_discovery and parallel_mode != "sequential":
+@@ -9463,10 +9589,11 @@ def run_driver(
+         shard_local_simplification=shard_local_simplification,
+         shard_depth=shard_depth,
+         shard_index=shard_index,
+         persistent_discovery=persistent_discovery,
+         productivity_telemetry=productivity_telemetry,
++        ingress_contract=ingress_contract,
+     )
+     shard_literals = (
+         ()
+         if shard_depth is None or shard_index is None
+         else tuple(
+@@ -10284,10 +10411,11 @@ def run_driver(
+                                     if productivity_telemetry
+                                     else None
+                                 ),
+                                 productivity_ledger=productivity_ledger,
+                                 productivity_records=productivity_records,
++                                ingress_contract=ingress_contract,
+                             )
+                             classification = str(committed["classification"])
+                             committed_record_sha256 = str(
+                                 committed["record_sha256"]
+                             )
+@@ -10504,10 +10632,11 @@ def run_driver(
+                     productivity_path=(
+                         productivity_path if productivity_telemetry else None
+                     ),
+                     productivity_ledger=productivity_ledger,
+                     productivity_records=productivity_records,
++                    ingress_contract=ingress_contract,
+                 )
+                 observe_classification_delta(learned_before, survivors_before)
+                 dynamic_delta, raw_delta = _committed_classification_delta(
+                     learned,
+                     survivors,
+@@ -10747,10 +10876,17 @@ def verify_shard_coverage(
+             simplification_config.get("enabled")
+         ) is not bool:
+             raise StructuralCegarError(
+                 f"{manifest_path}: invalid shard-local simplification configuration"
+             )
++        ingress_contract = configuration.get("productivity_ingress_contract")
++        if ingress_contract is not None and not isinstance(
++            ingress_contract, Mapping
++        ):
++            raise StructuralCegarError(
++                f"{manifest_path}: productivity ingress contract is not an object"
++            )
+         replay_manifest = run_driver(
+             directory,
+             timeout_s=int(configuration["timeout_seconds"]),
+             learned_core_limit=int(
+                 configuration["dynamic_learned_core_limit"]
+@@ -10782,10 +10918,11 @@ def verify_shard_coverage(
+             three_rhombus_prefix_source_sha256=(
+                 None
+                 if prefix_config is None
+                 else prefix_config["source_prefix_sha256"]
+             ),
++            ingress_contract=ingress_contract,
+             resume=True,
+         )
+         if replay_manifest != manifest:
+             raise StructuralCegarError(
+                 f"{manifest_path}: replayed manifest mismatch"
+@@ -10981,18 +11118,39 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+         help=(
+             "use the opt-in persistent IPASIR CaDiCaL discovery adapter; "
+             "set P97_CADICAL_IPASIR_LIB to a shared library"
+         ),
+     )
++    piqd_group = parser.add_argument_group("PIQD static discovery")
++    piqd_group.add_argument("--piqd-base-url")
++    piqd_group.add_argument("--piqd-journal-root", type=Path)
++    piqd_group.add_argument(
++        "--piqd-source-manifest",
++        type=Path,
++        help="path to the exact canonical PIQD source-manifest bytes",
++    )
++    piqd_group.add_argument(
++        "--piqd-producer-manifest",
++        type=Path,
++        help="path to the exact canonical PIQD producer-manifest bytes",
++    )
+     parser.add_argument(
+         "--productivity-telemetry",
+         action="store_true",
+         help=(
+             "append authenticated detector-boundary productivity records; "
+             "diagnostic only and inert with respect to classification"
+         ),
+     )
++    parser.add_argument(
++        "--ingress-contract",
++        type=Path,
++        help=(
++            "JSON productivity ingress contract to bind into this run; "
++            "requires --productivity-telemetry"
++        ),
++    )
+     parser.add_argument(
+         "--projected-static-v3",
+         action="store_true",
+         help=(
+             "opt in to blocker projection, static DUAL2, and the n=10 "
+@@ -11023,16 +11181,22 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
+         "--three-rhombus-prefix-source-sha256",
+         help="required SHA-256 pin of the authenticated source-journal prefix",
+     )
+     parser.add_argument("--max-new-raw", type=int)
+     args = parser.parse_args(argv)
++    try:
++        _static_piqd_caller_config(args)
++    except StructuralCegarError as exc:
++        parser.error(str(exc))
+     if args.learned_core_limit < 1000:
+         parser.error("--learned-core-limit must be at least 1000")
+     if (args.shard_depth is None) != (args.shard_index is None):
+         parser.error("--shard-depth and --shard-index must be provided together")
+     if args.verify_shards is not None and args.shard_depth is not None:
+         parser.error("--verify-shards cannot be combined with shard run options")
++    if args.verify_shards is not None and args.ingress_contract is not None:
++        parser.error("--ingress-contract cannot be combined with --verify-shards")
+     prefix_inputs = (
+         args.three_rhombus_prefix_bank,
+         args.three_rhombus_prefix_root_sha256,
+         args.three_rhombus_prefix_source_sha256,
+     )
+@@ -11061,10 +11225,18 @@ def main() -> int:
+     args = _parse_args()
+     if args.verify_shards is not None:
+         coverage = verify_shard_coverage(args.verify_shards)
+         print(json.dumps(coverage, indent=2, sort_keys=True))
+         return 0
++    ingress_contract = None
++    if args.ingress_contract is not None:
++        if not args.productivity_telemetry:
++            raise StructuralCegarError(
++                "--ingress-contract requires --productivity-telemetry"
++            )
++        ingress_contract = _load_ingress_contract(args.ingress_contract)
++    solver_runner = _solver_runner_from_cli_args(args)
+     manifest = run_driver(
+         args.out,
+         timeout_s=args.timeout,
+         learned_core_limit=args.learned_core_limit,
+         survivor_limit=args.survivor_limit,
+@@ -11089,20 +11261,22 @@ def main() -> int:
+         projected_static_v3=args.projected_static_v3,
+         compiled_loader_cache=args.compiled_loader_cache,
+         shard_local_simplification=args.shard_local_simplification,
+         persistent_discovery=args.persistent_discovery,
+         productivity_telemetry=args.productivity_telemetry,
++        ingress_contract=ingress_contract,
+         three_rhombus_prefix_bank=args.three_rhombus_prefix_bank,
+         three_rhombus_prefix_cache=args.three_rhombus_prefix_cache,
+         three_rhombus_prefix_root_sha256=(
+             args.three_rhombus_prefix_root_sha256
+         ),
+         three_rhombus_prefix_source_sha256=(
+             args.three_rhombus_prefix_source_sha256
+         ),
+         resume=args.resume,
+         max_new_raw=args.max_new_raw,
++        solver_runner=solver_runner,
+     )
+     print(json.dumps(manifest, indent=2, sort_keys=True))
+     return 0 if manifest["status"] != "UNKNOWN" else 2
+ 
+ 

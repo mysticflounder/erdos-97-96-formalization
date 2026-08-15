@@ -1,0 +1,101 @@
+{
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnf.lean",
+  "policy": {
+    "max_bytes": 12000,
+    "mode": "ProofBlock",
+    "helper_module_prefix": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard",
+    "coordinator_module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnf"
+  },
+  "helpers": [
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_01",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_01.lean",
+      "size_bytes": 12998,
+      "checksum": "7efff7b86870609a2ec51be2eee4699c64118c57a2295bdb8015599f3bf711ab",
+      "block_count": 30,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_02",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_02.lean",
+      "size_bytes": 12360,
+      "checksum": "a7a82bd2c43e8ed97b64ad293bbac9a7c2ca46c687b54be93aa6c7da14c6edbe",
+      "block_count": 13,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_03",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_03.lean",
+      "size_bytes": 12341,
+      "checksum": "59a939e5bab4b4b04f95248d5c5882890af972948db3cb3db73586f8e8cd24d8",
+      "block_count": 4,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_04",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_04.lean",
+      "size_bytes": 13022,
+      "checksum": "c425b2b47280dac10ab798eaed760825322594d5e73bd468742bfd4376d2d6cd",
+      "block_count": 16,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_05",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_05.lean",
+      "size_bytes": 12540,
+      "checksum": "72800d7ea86421e20eea24a64c2d6019c2d660f7609ad475cbc6ccd1d1358646",
+      "block_count": 17,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_06",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_06.lean",
+      "size_bytes": 12700,
+      "checksum": "8a98bdebf7d48cf51b64d2d0c51843925e19a524cc1afb4d06083e9be2084593",
+      "block_count": 7,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_07",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_07.lean",
+      "size_bytes": 10145,
+      "checksum": "44ad0d6fb8448745f3a3b31a02228554d78ca53c600ec2d44847c0935dff5459",
+      "block_count": 11,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_08",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_08.lean",
+      "size_bytes": 13000,
+      "checksum": "5ef852bdc226586b42d91ee4e929ce21c5d5e31b76cb8f77c5b746eb86eb3f56",
+      "block_count": 15,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_09",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnfShard/Step_09.lean",
+      "size_bytes": 8546,
+      "checksum": "69c02a95700aacf422f71903b2a7f0ce28ebecce6a885558fccaca7ac11991ed",
+      "block_count": 8,
+      "helper_imports": []
+    }
+  ],
+  "coordinator": {
+    "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnf",
+    "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14JobCnf.lean",
+    "size_bytes": 1963,
+    "checksum": "dc4a392151229cec9a8056a5db9601cdfbd17a8759adc2e76b4330c970f7c795",
+    "block_count": 0,
+    "helper_imports": [
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_01",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_02",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_03",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_04",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_05",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_06",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_07",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_08",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221V14JobCnfShard.Step_09"
+    ]
+  }
+}

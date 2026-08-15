@@ -1,0 +1,181 @@
+{
+  "contract": "eager exact source-order-bank installation over static duplicate-center, equilateral-bisector, and perpendicular-bisector equality closure plus the complete cell-1 authenticated 24-role block-spanning membership family and source-proved ThreeTriad supplemental cut; a post-SAT source-order hit is an invariant failure and all other structural stages fail closed",
+  "sha256": "890d11dd6dd6ae6599b9cc39c33befef766a9d1b4cbd1112a341401dd0239391",
+  "sources": [
+    {
+      "bytes": 64150,
+      "path": "census/card_head/exact12_next_row_static_cegar.py",
+      "sha256": "61343abae920bb3c864fc2bfc8f2e53e72ac177664c05bf0b242ec5fbd26cb51"
+    },
+    {
+      "bytes": 13113,
+      "path": "census/card_head/exact12_next_row_static_equality.py",
+      "sha256": "571b4d1776b6be31e8f769790a6dc41337c18955f04111e3dfc6b8b2aa571574"
+    },
+    {
+      "bytes": 7568,
+      "path": "census/card_head/exact12_next_row_static_geometry.py",
+      "sha256": "3e689ef89982fe25891511ca2974ccf23734762794353b345576909d7c2bbb93"
+    },
+    {
+      "bytes": 9424,
+      "path": "census/card_head/exact12_next_row_static_convex.py",
+      "sha256": "013786e6378f132feab1c5cbb6f9b62523a79c4a2ef86d63164d9005782bddb0"
+    },
+    {
+      "bytes": 18385,
+      "path": "census/card_head/exact12_next_row_valuation.py",
+      "sha256": "2b7e411a277ca1805302353233903148fb8bac8922f404e7e6fa6cfc38c56a18"
+    },
+    {
+      "bytes": 8924,
+      "path": "census/card_head/exact12_positive_membership_cnf.py",
+      "sha256": "59c9eac1532e7a86451468e003720f01392cad9cf46765a2a266f2bceefdaec4"
+    },
+    {
+      "bytes": 11079,
+      "path": "census/card_head/exact12_block_spanning_membership_family_bank.py",
+      "sha256": "5f5470b9fe5481d004d63f5611d7502a045989c0be0880a9cf740e59f4291fda"
+    },
+    {
+      "bytes": 15204,
+      "path": "census/card_head/exact12_three_triad_membership_bank.py",
+      "sha256": "2ac2aa50aae37abd9d1386f7919625531249245e7127b5fa310b5ff03a6936a3"
+    },
+    {
+      "bytes": 20032,
+      "path": "census/card_head/exact12_positive_membership_source_order_bank.py",
+      "sha256": "1f8a866cb3b955f471d090ee266fdbd79dad0dd2ff55736bb5dc67c9572e17d5"
+    },
+    {
+      "bytes": 21252,
+      "path": "census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "d420833d3af3d9615128a46bad92a2fa28e45e32b73779632b0710f498a182c3"
+    },
+    {
+      "bytes": 208145,
+      "path": "census/card_head/exact12_v14_ordered_coverage.py",
+      "sha256": "e8cd46df88f3053b16abc64f8cf6c51614be0d3bfe0a9bdf44c4227a4dd0ca74"
+    },
+    {
+      "bytes": 17825,
+      "path": "census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "84ec9d79beefe6368a4b7c7b714458e65d52033ed6438f23bcf9584066b32f42"
+    },
+    {
+      "bytes": 6905,
+      "path": "census/card_head/source_faithful_candidate_surface.py",
+      "sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 49774,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "3b5258a71f97ed6cac88613ef4943b133351d687c636d8b04a33d9fb7cca2839"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    },
+    {
+      "bytes": 6499,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NextRowTerminalBankConsumer.lean",
+      "sha256": "1951a8e4dec3a6030da713c92fb1d7ff603f5b2e07d4a2a636b7a15cdb17110b"
+    },
+    {
+      "bytes": 3429,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericEquilateralBisectorNogoodCertificate.lean",
+      "sha256": "6e5e630d06ab3ce1933dead605dadb3daf063bd01ca7c30a75a5ee7c38f61714"
+    },
+    {
+      "bytes": 2757,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericPerpBisectorNogoodCertificate.lean",
+      "sha256": "e555bd6513c7fcdc54d9334957ba78f7c3da4a9b0a77d0f5f87e095d305fe21a"
+    },
+    {
+      "bytes": 42287,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean",
+      "sha256": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d"
+    },
+    {
+      "bytes": 6885,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SourceOrderTerminalBankConsumer.lean",
+      "sha256": "74d8689d33b912e85f71714d33eed843b58c4fdbd59251b934c3adb8832f0250"
+    },
+    {
+      "bytes": 6337,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BlockSpanningCommonFiveCertificate.lean",
+      "sha256": "0f718f35f11336f0c77e3367f7524a85924c13a09a09eb8bffb3f99a899d8fe1"
+    },
+    {
+      "bytes": 13288,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BlockSpanningMembershipFamilyCnf.lean",
+      "sha256": "10107454e5060dca5af500b685bd862c5a1e3ac898cbbd4420d01390cd6a77e5"
+    },
+    {
+      "bytes": 6381,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BlockSpanningMembershipFamilyTerminalConsumer.lean",
+      "sha256": "456d8cb351e21cc1029e5eea323f38554bff930781474c5e7374b7531d324804"
+    },
+    {
+      "bytes": 6337,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BlockSpanningCommonFiveCertificate.lean",
+      "sha256": "0f718f35f11336f0c77e3367f7524a85924c13a09a09eb8bffb3f99a899d8fe1"
+    },
+    {
+      "bytes": 2570,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticCell1ThirdBlockSpanningPositiveCut.lean",
+      "sha256": "f79c27c0f1e4ba7eb891f5ea8b7041bdb7cb71a87716d0faf6ac313683a6a248"
+    },
+    {
+      "bytes": 13661,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PositiveMembershipCnfBridge.lean",
+      "sha256": "b09558c27f71bd3eef6d79ed771438066bedb7cdea759b00e49050e08f912987"
+    },
+    {
+      "bytes": 6924,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticCell1ThirdBlockSpanningMembershipCnf.lean",
+      "sha256": "8e4648fb0a6802f79663fd9b63a752eb619d41bd342dc409b17b64d0938868fe"
+    },
+    {
+      "bytes": 2186,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticConvexSourceOrderConsumer.lean",
+      "sha256": "8d4e9dbb13b713afe06395557f18298325a49e08b2495ee4a395d9ccf1015431"
+    },
+    {
+      "bytes": 5081,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticTerminalConsumer.lean",
+      "sha256": "e751631815e83f996870affcc2a0246fda5fc0cb39347dbc0d551653f0936444"
+    },
+    {
+      "bytes": 6808,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticPositiveMembershipTerminalConsumer.lean",
+      "sha256": "7c3322bc24a65e5bff687e5fecddf69b07034b107ee93360421840bfc8392002"
+    },
+    {
+      "bytes": 15758,
+      "path": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "sha256": "be6fd1fb7fa204966ed21bcb9ad4af783d2176d94e5f53b6a8ca23b7a668d187"
+    },
+    {
+      "bytes": 8957,
+      "path": "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean",
+      "sha256": "9832635e985bd8b265aedb549bec60a39f76106ab871d691350a6f9ec9546eae"
+    }
+  ]
+}

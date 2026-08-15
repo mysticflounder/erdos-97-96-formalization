@@ -1,0 +1,157 @@
+{
+  "results": [
+    {
+      "clauses": 325924,
+      "drat_verified": true,
+      "meaning": "the v4 predicate is implied by the inherited row bank",
+      "name": "second-cap-pair-violation",
+      "status": "UNSAT_VIOLATION",
+      "variables": 39733,
+      "violation": {
+        "bad_choice_count": 245,
+        "predicate_negated": "K_xv \u2229 secondCap = {u,xv}"
+      }
+    },
+    {
+      "blocker_fibers": {
+        "11": [
+          7
+        ],
+        "4": [
+          2,
+          5,
+          11
+        ],
+        "5": [
+          10
+        ],
+        "6": [
+          3,
+          4,
+          9
+        ],
+        "7": [
+          8
+        ],
+        "8": [
+          1,
+          6
+        ],
+        "9": [
+          0
+        ]
+      },
+      "blockers": {
+        "0": 9,
+        "1": 8,
+        "10": 5,
+        "11": 4,
+        "2": 4,
+        "3": 6,
+        "4": 6,
+        "5": 4,
+        "6": 8,
+        "7": 11,
+        "8": 7,
+        "9": 6
+      },
+      "clauses": 327529,
+      "cube": {
+        "0": [
+          4,
+          5,
+          9,
+          11
+        ],
+        "1": [
+          0,
+          2,
+          8,
+          9
+        ],
+        "10": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "11": [
+          7,
+          8,
+          9,
+          10
+        ],
+        "2": [
+          3,
+          9,
+          10,
+          11
+        ],
+        "3": [
+          2,
+          5,
+          6,
+          10
+        ],
+        "4": [
+          2,
+          5,
+          8,
+          11
+        ],
+        "5": [
+          0,
+          6,
+          7,
+          10
+        ],
+        "6": [
+          0,
+          3,
+          4,
+          9
+        ],
+        "7": [
+          3,
+          6,
+          8,
+          11
+        ],
+        "8": [
+          1,
+          5,
+          6,
+          9
+        ],
+        "9": [
+          0,
+          2,
+          4,
+          10
+        ]
+      },
+      "meaning": "the v4 predicate is not implied by the inherited row bank",
+      "name": "next-row-triple-violation",
+      "status": "SAT_VIOLATION_EXISTS",
+      "variables": 40268,
+      "violation": {
+        "bad_conditional_choice_count": 535,
+        "predicate_negated": "|K_centerAt(c) \u2229 {u,xu,xv}| <= 1"
+      }
+    },
+    {
+      "clauses": 479328,
+      "drat_verified": true,
+      "meaning": "the v4 predicate is implied by the inherited row bank",
+      "name": "two-offcenter-fan-violation",
+      "status": "UNSAT_VIOLATION",
+      "variables": 39733,
+      "violation": {
+        "forbidden_witness_count": 153405,
+        "predicate_negated": "two sources in secondCap \\ K_xv have distinct blockers avoiding c and O"
+      }
+    }
+  ],
+  "schema": "p97_pentagon_offclass_exact12_v4_constraint_novelty.v1",
+  "scope": "finite implication against the inherited 10k certified row bank"
+}

@@ -1,0 +1,74 @@
+{
+  "clauses": 328875,
+  "inherited_records": 11351,
+  "learned_clauses": 11361,
+  "new_iterations_this_invocation": 10,
+  "schema": "p97_pentagon_offclass_exact12_dichotomy_arm_cegar.v6",
+  "scope": "one encoded exact-12 source-role/deletion/dichotomy arm with finite incidence and metric/order consequences only; not a kernel proof and not universal-cardinality closure",
+  "solver_backend": "fresh-cadical-subprocess",
+  "source_ingress": {
+    "added_clauses": 780,
+    "admissions": [
+      {
+        "frozen_adapter": "b(xv)=C and theorem opp2 is frozen cap index 1",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_card_twelve_exact_cap_profile",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_secondCap_commonDeletionFan",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_exact_physical_cycle_traces"
+        ],
+        "predicate": "K_xv \u2229 secondCap = {u,xv}"
+      },
+      {
+        "frozen_adapter": "conditional on each b(c,a); K_c is row a",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_nextRow_strictTriple_card_le_one"
+        ],
+        "predicate": "|K_centerAt(c) \u2229 {u,xu,xv}| <= 1"
+      }
+    ],
+    "branch": {
+      "added_clauses": 801,
+      "deletion_label": 10,
+      "deletion_role": "q",
+      "first_apex_label": 2,
+      "frozen_adapter": "theorem opp1 is frozen cap index 2 with interior {q,w}={10,11}; source role is one of physical labels {u,xv,xu}; outside-fibre means its actual blocker is not the frozen first apex",
+      "kernel_status": "Python source-to-CNF adapter not kernel checked",
+      "lean_theorems": [
+        "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+        "Problem97.cross_deletion_survives_iff_not_mem_selected_support"
+      ],
+      "outside_first_apex_fiber_clause": [
+        -39565
+      ],
+      "schema": "p97_pentagon_offclass_exact12_source_role_deletion_cegar.v5.branch_ingress.v1",
+      "semantic_class": "Class C: source-proved branch constraints added",
+      "source_label": 6,
+      "source_radius": "physical",
+      "source_role": "u",
+      "surviving_deletion_clauses": 800,
+      "target_theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius"
+    },
+    "dichotomy_arm": {
+      "added_clauses": 10,
+      "arm": "next_row_only_hit",
+      "arm_clauses": 10,
+      "dichotomy_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit",
+      "kernel_status": "Lean dichotomy producer checked; Python source-to-CNF adapter not kernel checked",
+      "predicate": "xu in selectedAt(centerAt(c)).support",
+      "producer_consequence": "the next row hits {u,xu,xv} exactly at xu",
+      "producer_consequence_encoding": "complete: xu hit encoded here; u/xv omissions encoded by the inherited v4 strict-triple clauses",
+      "producer_consequence_fully_encoded": true,
+      "schema": "p97_pentagon_offclass_exact12_dichotomy_arm_cegar.v6.arm_ingress.v1",
+      "semantic_class": "Class C: checked exact-12 dichotomy arm",
+      "target_theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius"
+    },
+    "kernel_status": "Lean producers checked; Python source-to-CNF adapter not kernel checked",
+    "next_row_strict_triple_clauses": 535,
+    "schema": "p97_pentagon_offclass_exact12_dichotomy_arm_cegar.v6.combined_ingress.v1",
+    "second_cap_pair_clauses": 245,
+    "semantic_class": "Class C: source-proved clauses added"
+  },
+  "status": "ITERATION_LIMIT",
+  "v6_records_total": 10,
+  "variables": 39733
+}

@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {
+      "clauses": 315923,
+      "d": 0,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "variables": 39733
+    }
+  ],
+  "placements_tested": 1,
+  "placements_total": 42,
+  "schema": "p97_pentagon_offclass_exact12_v2.run.v1",
+  "scope": "SAT/UNSAT only for the encoded finite incidence consequences; not Euclidean realizability and not Lean closure",
+  "status": "SAT"
+}

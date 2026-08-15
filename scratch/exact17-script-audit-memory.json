@@ -1,0 +1,211 @@
+[
+  {
+    "memory": {
+      "id": "01KZVG4YSPXBBYBCEVXJ917V2E",
+      "content": "Exact17 theorem-bank miner bug found 2026-08-12: scripts/mine_exact17_cdefg_model_bank.py incorrectly treated named_order [1] as cyclic reversal of order0. Actual NamedOrder 1 only swaps raw labels 9 and 12 at canonical positions 5 and 6; Orientation is a separate symmetry. The independent child24 export validator caught this because the claimed bisector orbit did not cut the motivating child24 model. Fix scans with ORDERS[NamedOrder], then normalize reverse-oriented raw-label hits separately. Previously generated generic Lean clauses remain source-clean/sound, but any model-hit provenance from the old miner on named_order1 must be rescanned before relying on it.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-12T17:26:02.652355Z",
+      "updated_at": "2026-08-12T17:26:02.652355Z",
+      "accessed_at": "2026-08-13T00:29:02.799450Z",
+      "access_count": 8,
+      "expires_at": null
+    },
+    "score": 1.9672131147540985
+  },
+  {
+    "memory": {
+      "id": "01KZSTT5RSV2HQEX6HQKCHE258",
+      "content": "Exact17 child 19 PIQD job 46fc3c88-007a-48bb-bf66-b3000e20f7d1 on authenticated Lean-owned root 534ae4fb643f76f5cdf7cecdd6ee984fb41da3dc76da202e082075d3d82c3db2 terminated SAT on 2026-08-11. Independent replay checked all 5,846,164 clauses. Mandatory theorem-bank scan found 7 exact source-backed hits and 0 unreplayed proposals: five-row circle-intersection order; forward/reverse four-point two-circle bisector; convex-five; two-Kalmanson cancellation; duplicate-center; perpendicular-bisector-convex. Exact17 remains open; next is minimize and bank missing SourceRealization occurrence orbits before child 20.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-12T01:53:54.771547Z",
+      "updated_at": "2026-08-12T01:53:54.771547Z",
+      "accessed_at": "2026-08-13T00:06:49.276078Z",
+      "access_count": 70,
+      "expires_at": null
+    },
+    "score": 1.9201228878648233
+  },
+  {
+    "memory": {
+      "id": "01KYWVF821SJB75AK5MSH58AW4",
+      "content": "The 2026-07-31 motif audit found no dedicated skew-Bollobas, angular-midpoint, or Miquel/Clifford/bundle miner. On the 100-row and 162-row survivor banks, the natural singleton-center/support skew-pair orientation produced 0 hits in both directions; support-sharing graphs were connected but only combinatorial (cycle rank 12-13), and metric rows are exact=false, so angular/Miquel conclusions remain unsound prefilters. A hash-pinned read-only post-miner is being added under scratch; it must label these results exploratory and not theorem closure.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-31T19:47:26.763450Z",
+      "updated_at": "2026-07-31T19:47:26.763450Z",
+      "accessed_at": "2026-08-12T18:19:43.324475Z",
+      "access_count": 28,
+      "expires_at": null
+    },
+    "score": 1.5851775604734946
+  },
+  {
+    "memory": {
+      "id": "01KZR7ASVZC3P8WVM4FSAP2C6R",
+      "content": "The exact-17 scripts/mine_exact17_cdefg_model_bank.py theorem-bank scan is long-running and has no lockfile; exec wrappers can yield while the process remains active, so check the returned session/process before retrying. On 2026-08-11 an accidental duplicate was stopped, leaving the original scan PID 49188/49189 active.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-11T10:54:13.723020Z",
+      "updated_at": "2026-08-11T10:54:13.723020Z",
+      "accessed_at": "2026-08-13T00:29:02.800193Z",
+      "access_count": 8,
+      "expires_at": null
+    },
+    "score": 1.4774774774774777
+  },
+  {
+    "memory": {
+      "id": "01KZVG54JSTBBRYG5NDQP50MDV",
+      "content": "Exact17 child24 semantic audit found a theorem-bank miner bug: named_order=1 was incorrectly interpreted as cyclic reversal of order0. In Lean, NamedOrder 1 only swaps raw labels 9 and 12 at canonical positions 5/6; cyclic reversal is the separate Orientation parameter. The independent child24 export validator correctly caught the mismatch because the claimed bisector orbit did not cut the motivating model. I have patched the miner to select the actual NamedOrder table and am rebanking child24 from a clean rescan. Do not rely on old named_order1 model-hit provenance from this miner without rescanning. Previously emitted general Lean clauses remain source-clean/sound; the affected claim is that they were the occurrences seen in those models. Child25 was never provisioned.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "erdos-97-96-formalization"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-12T17:26:08.612812Z",
+      "updated_at": "2026-08-12T17:26:08.612812Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.967741935483871
+  },
+  {
+    "memory": {
+      "id": "01KZ1T2NJN7TBKZW3WW1S544EW",
+      "content": "2026-08-02 FreshThird latest global theorem-bank audit: V17-V21 remain exact-n=15 finite experiments; N17 encoder inventory found no artifact combining variable n>=17/general n, cap>=8 same-cap sources, endpoint exclusion, and exact support/deletion. All three theorem-bank registries have zero FreshThird/normalized-residual/twoCapSources matches; indexed Lean search only current declarations/unrelated consumers. Report at scratch/retained-omission-e1/round5-general-cegar/LATEST-GLOBAL-BANK-AUDIT.md.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T17:59:18.223955Z",
+      "updated_at": "2026-08-02T17:59:18.223955Z",
+      "accessed_at": "2026-08-12T23:03:32.222202Z",
+      "access_count": 75,
+      "expires_at": null
+    },
+    "score": 0.9523809523809523
+  },
+  {
+    "memory": {
+      "id": "01KZ19SN5X6Y9R3564EWKH8SEJ",
+      "content": "Post-v15/v16 theorem-bank audit: all 10 authenticated corrected-v16 UNSAT assignment cores for fresh_DDD_k0_d2_f1 reduce to the existing general-n Census554.EqualityCore ExactOffCircleCore / EdgeClosure.sound pattern. The 4368 v15 nonapex K4 superadditivity clauses are not needed for these equality-only derivations, though solver-level redundancy was not tested. This is GO for bank reuse but NO-GO for closure: the missing Lean bridge is a producer/finite cover deriving an exact-off-circle row-membership pattern from live R/Q/G; canary3 ended UNKNOWN/canceled after 10 blockers, and the exact-n15 lane still lacks a universal reduction. Report: scratch/retained-omission-e1/round5-general-cegar/V15-GLOBAL-THEOREM-BANK.md",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T13:14:45.682009Z",
+      "updated_at": "2026-08-02T13:14:45.682009Z",
+      "accessed_at": "2026-08-12T19:37:12.862652Z",
+      "access_count": 117,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KZMQY09JSHMHPDEHQ08VT119",
+      "content": "Exact17 PIQD wave-two boundary is banked and pushed at 2b0b2435. The mandatory post-wave general-theorem search found 8 distinct cardinality-independent unit-weight Kalmanson cancellation instances, all accepted by the existing kernel-clean generic Lean consumer and absent from 24,256 historical supports. Their dihedral expansion proposed 272 clauses; full novelty/subsumption checking left 226 novel clauses, admitted to PIQD for a 4,258,975-clause normalized root (SHA e41f2fdfa3b05b3f7dc3a66260344ecd277758fbefb46180f4bf05f1649a7759). This is reusable theorem-bank contraction, not exact17 coverage, a universal lift, or sorry closure; exact17 remains SAT/open. The lane doc now makes post-wave theorem search + historical dedup + banking a hard gate before any successor wave.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "erdos-97-96-formalization"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-10T02:27:22.356051Z",
+      "updated_at": "2026-08-10T02:27:22.356051Z",
+      "accessed_at": "2026-08-13T00:10:06.421463Z",
+      "access_count": 3,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KZND9XVTX7XJ9KEPQPRJQPA7",
+      "content": "Exact12 five-omission checkpoint: fresh fixed-code deleted-0 run reached 202 authenticated cuts (201 duplicate-center + 1 equilateral-bisector), status ITERATION_LIMIT, no terminal UNSAT or sorry closure. The 202-cut heterogeneous Lean bank now elaborates green and carries per-cut kernel-checked equality to each authenticated journal clause plus concrete FrozenSafeCandidateAt encodability and an aggregate bank_encodable theorem. Mandatory post-wave theorem-bank audit found no shortcut and corrected the live split count to four residual leaves; duplicate/bisector consumers still need a new source-to-positive-path/coverage producer. Normal targeted lake-build remains blocked by the unrelated ExactTwelveRigid221V14JobCnf memory failure, so validation used direct scoped elaboration after the smallest dependency compile. Independent audit also found fail-open truthiness in direct_row_equality_replay; hardening that next. Finite typed-cut ingress only.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "erdos-97-96-formalization"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-10T08:40:53.240732Z",
+      "updated_at": "2026-08-10T08:40:53.240732Z",
+      "accessed_at": "2026-08-11T13:55:03.467043Z",
+      "access_count": 2,
+      "expires_at": null
+    },
+    "score": 0.9230769230769231
+  },
+  {
+    "memory": {
+      "id": "01KZ0RXM7CW55EQA874N69HBQ2",
+      "content": "Exact characteristic-zero G3 certificate found in scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/localized-g3-product-square-certificate-exact-v1.singexpr. With x=bu-bs, y=br-bv, and P=x*y*bv*bw, it contains exact rational D1..D6 satisfying D1*e2+D2*e5+D3*e7+D4*e8+D5*e9+D6*q1=P^2. A fresh Singular process using verify-localized-g3-product-square-exact.sing reported INDEPENDENT_SQUARE_IDENTITY=1 and RESIDUAL_TERMS=0. Certificate has 3353 multiplier terms, 2882551 bytes, SHA256 36d337d0235e2a5d00c03a1a6ea433b1f3a8d58222c160a1b545a834e3bae64a.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-08-02T08:19:49.916847Z",
+      "updated_at": "2026-08-02T08:19:49.916847Z",
+      "accessed_at": "2026-08-02T15:58:32.888778Z",
+      "access_count": 3,
+      "expires_at": null
+    },
+    "score": 0.9230769230769231
+  }
+]

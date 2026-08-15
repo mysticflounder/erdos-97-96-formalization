@@ -1,0 +1,442 @@
+{
+  "aggregate": {
+    "common_deletion:base": {
+      "SAT": 6
+    },
+    "common_deletion:deleted_blocker_in_xu_row:negative": {
+      "SAT": 6
+    },
+    "common_deletion:deleted_blocker_in_xu_row:positive": {
+      "SAT": 6
+    },
+    "common_deletion:physical_apex_in_deleted_row:negative": {
+      "SAT": 6
+    },
+    "common_deletion:physical_apex_in_deleted_row:positive": {
+      "UNSAT": 6
+    },
+    "common_deletion:physical_apex_in_xu_row:negative": {
+      "SAT": 6
+    },
+    "common_deletion:physical_apex_in_xu_row:positive": {
+      "SAT": 6
+    },
+    "common_deletion:xu_blocker_in_deleted_row:negative": {
+      "SAT": 6
+    },
+    "common_deletion:xu_blocker_in_deleted_row:positive": {
+      "SAT": 6
+    },
+    "common_deletion:xu_blocker_in_physical_row_after_u_deletion:negative": {
+      "SAT": 6
+    },
+    "common_deletion:xu_blocker_in_physical_row_after_u_deletion:positive": {
+      "UNSAT": 6
+    },
+    "next_row_only_hit:base": {
+      "SAT": 6
+    },
+    "next_row_only_hit:deleted_blocker_in_xu_row:negative": {
+      "SAT": 6
+    },
+    "next_row_only_hit:deleted_blocker_in_xu_row:positive": {
+      "SAT": 6
+    },
+    "next_row_only_hit:physical_apex_in_deleted_row:negative": {
+      "SAT": 6
+    },
+    "next_row_only_hit:physical_apex_in_deleted_row:positive": {
+      "UNSAT": 6
+    },
+    "next_row_only_hit:physical_apex_in_xu_row:negative": {
+      "SAT": 6
+    },
+    "next_row_only_hit:physical_apex_in_xu_row:positive": {
+      "SAT": 6
+    },
+    "next_row_only_hit:xu_blocker_in_deleted_row:negative": {
+      "SAT": 6
+    },
+    "next_row_only_hit:xu_blocker_in_deleted_row:positive": {
+      "SAT": 6
+    },
+    "next_row_only_hit:xu_blocker_in_physical_row_after_u_deletion:negative": {
+      "SAT": 6
+    },
+    "next_row_only_hit:xu_blocker_in_physical_row_after_u_deletion:positive": {
+      "UNSAT": 6
+    }
+  },
+  "checked_consumer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_false_of_tetrahedron_incidences",
+  "contract_self_test": {
+    "known_direct_collision": "UNSAT",
+    "known_sat": "SAT"
+  },
+  "placements": 1,
+  "queries": 132,
+  "rows": [
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "u",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "u",
+      "v": 2
+    },
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "u",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "u",
+      "v": 2
+    },
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xv",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xv",
+      "v": 2
+    },
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xv",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xv",
+      "v": 2
+    },
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xu",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "q",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xu",
+      "v": 2
+    },
+    {
+      "arm": "common_deletion",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xu",
+      "v": 2
+    },
+    {
+      "arm": "next_row_only_hit",
+      "base_status": "SAT",
+      "deleted": 0,
+      "deletion_role": "w",
+      "predicate_status": {
+        "deleted_blocker_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "physical_apex_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        },
+        "physical_apex_in_xu_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_deleted_row": {
+          "negative": "SAT",
+          "positive": "SAT"
+        },
+        "xu_blocker_in_physical_row_after_u_deletion": {
+          "negative": "SAT",
+          "positive": "UNSAT"
+        }
+      },
+      "source_role": "xu",
+      "v": 2
+    }
+  ],
+  "schema": "p97_pentagon_exact12_dichotomy_tetrahedron_predicate_audit.v1",
+  "scope": "finite necessary-condition theorem mining only; no Euclidean realizability, certificate replay, or Lean closure",
+  "target_theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius"
+}

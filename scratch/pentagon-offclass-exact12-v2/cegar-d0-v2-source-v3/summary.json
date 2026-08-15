@@ -1,0 +1,29 @@
+{
+  "bootstrap_records": 5000,
+  "clauses": 325923,
+  "learned_clauses": 10000,
+  "new_iterations": 5000,
+  "scope": "encoded exact-12 source-sensitive abstraction only",
+  "solver_backend": "persistent-cadical-ipasir",
+  "source_interface": {
+    "added_clauses": 0,
+    "added_variables": 0,
+    "blocker_variables": 121,
+    "clauses": 315923,
+    "decoded_source_fields": [
+      "blockers",
+      "blocker_fibers"
+    ],
+    "fan_sources": [
+      0,
+      2,
+      7,
+      9
+    ],
+    "learned_clause_scope": "row literals only",
+    "saturated_fiber_obstruction": "PARKED-SPEC: no Lean contradiction producer",
+    "variables": 39733
+  },
+  "status": "ITERATION_LIMIT",
+  "variables": 39733
+}

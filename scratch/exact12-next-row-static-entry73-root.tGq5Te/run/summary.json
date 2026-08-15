@@ -1,0 +1,58 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 7828,
+      "path": "detector_contract.json",
+      "sha256": "a9e0f50aa8e1ea0c9058fcbf14a3635decf94eb53caf4613ae61456c1babbf26"
+    },
+    "discovery_cnf": {
+      "bytes": 12996431,
+      "path": "discovery.cnf",
+      "sha256": "91bb17d7201e638239cb7f327cf7b989e95447047361e4484498451247eb90a2"
+    },
+    "job": {
+      "bytes": 20119,
+      "path": "job.json",
+      "sha256": "d14ae651b0a210acc49432fd31dee274fc9120b5507a0fe8362f913d9a589287"
+    },
+    "journal": {
+      "bytes": 0,
+      "path": "journal.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 1,
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "UNKNOWN",
+  "error": null,
+  "job_id": "a8b4354d3a40e2776313e3506e654cba89fc12eb36be64d9d68e74453522d60f",
+  "journal_replayed": true,
+  "last_replay": {
+    "added_constraints": false,
+    "candidate": false,
+    "canonical_static_extension": false,
+    "exact_cnf": false
+  },
+  "lean_terminal_ingress_ready": true,
+  "max_iterations": 1,
+  "positive_membership_bank_sha256": "4d86bde62433d9b2cc2408b66f8313f8456f25cd37a05df8e9b53f6249c3178d",
+  "positive_membership_family_id": "block-spanning-a6789-xc345-distinct.v1",
+  "reconstructed_cnf_sha256": "91bb17d7201e638239cb7f327cf7b989e95447047361e4484498451247eb90a2",
+  "records": 0,
+  "schema": "p97_rigid221_exact12_next_row_static_convex_cegar_run.v8",
+  "scope": "one finite exact-12 next-row cell with the authenticated 24-role membership family and source-proved ThreeTriad supplement; terminal Lean ingress is ready, but the terminal DRAT has not been converted into a Lean DimacsUnsatisfiable theorem; no aggregate coverage, universal lift, or live closure",
+  "stage_counts": {
+    "source-order-positive-coverage": 0
+  },
+  "status": "UNKNOWN",
+  "terminal_cnf_sha256": null,
+  "terminal_promotion_status": "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": null,
+  "terminal_verdict": null,
+  "three_triad_membership_cut_id": "three-triad-cell1-after-block-spanning-family.v1",
+  "timeout_seconds": 1
+}

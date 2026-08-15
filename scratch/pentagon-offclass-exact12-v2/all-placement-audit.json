@@ -1,0 +1,771 @@
+{
+  "all_sat_placements_are_exact_endpoints": false,
+  "placements": [
+    {
+      "both_are_endpoints": true,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": true,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    }
+  ],
+  "placements_total": 42,
+  "sat_placements": [
+    {
+      "both_are_endpoints": true,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 0,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": true,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 2,
+      "deleted_is_endpoint": true,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 3,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 4,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 5,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 10,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 11,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 0,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 2,
+      "v_is_endpoint": true
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 3,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 4,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 5,
+      "v_is_endpoint": false
+    },
+    {
+      "both_are_endpoints": false,
+      "deleted": 11,
+      "deleted_is_endpoint": false,
+      "returncode": 10,
+      "status": "SAT",
+      "v": 10,
+      "v_is_endpoint": false
+    }
+  ],
+  "schema": "p97_pentagon_offclass_exact12_all_placement_audit.v1",
+  "scope": "diagnostic only; no proof artifacts",
+  "status_counts": {
+    "SAT": 42,
+    "UNKNOWN": 0,
+    "UNSAT": 0
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "iterations": 5000,
+  "learned_clauses": 5000,
+  "status": "ITERATION_LIMIT"
+}

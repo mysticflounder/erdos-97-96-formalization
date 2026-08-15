@@ -1,0 +1,4989 @@
+diff --git a/census/card_head/frontier_lane_piqd.py b/census/card_head/frontier_lane_piqd.py
+new file mode 100644
+index 00000000..1655a0e2
+--- /dev/null
++++ b/census/card_head/frontier_lane_piqd.py
+@@ -0,0 +1,357 @@
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++# Author: Adam McKenna
++
++"""Certified PIQD integration for the finite/local DE, DR, and E callers.
++
++This module deliberately does not register B or C.  Each call of the returned
++``PiqdPerQueryCertifiedSolver`` captures the current lane sources, builds one
++authenticated package for the exact effective DIMACS bytes, creates one fresh
++transport attempt, and creates one fresh independent Lean LRAT replayer.
++"""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import uuid
++from collections.abc import Callable, Mapping
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Any, Protocol
++
++from census.card_head.piqd_certified_solver import (
++    PiqdCertifiedSolver,
++    PiqdPerQueryCertifiedSolver,
++)
++from census.card_head.piqd_frontier_package import (
++    BuildAllocation,
++    BuildPhase,
++    BuildQuery,
++    FrontierLaneProfile,
++    FrontierPackageLimits,
++    build_complete_variable_map,
++    build_frontier_authenticated_package,
++    build_phase_ledger,
++    capture_source_file,
++)
++from census.card_head.sat_encoding import CadicalResult
++from census.p97_search.phase3_cegar_wave import UNSAT_MEANS_OBSTRUCTION
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    make_current_piqd_packet_transport,
++)
++from census.p97_search.phase3_piqd_replay import LeanLratReplayer
++
++DEFAULT_PIQD_BASE_URL = "http://127.0.0.1:7272"
++PIQD_BACKEND = "piqd"
++LEGACY_LOCAL_BACKEND = "legacy-local"
++SUPPORTED_BACKENDS = (PIQD_BACKEND, LEGACY_LOCAL_BACKEND)
++
++_REPO_ROOT = Path(__file__).resolve().parents[2]
++
++
++class FrontierSolver(Protocol):
++    def __call__(
++        self,
++        instance: Any,
++        cnf_path: Path,
++        *,
++        extra_clauses: Any = (),
++        timeout_seconds: int = 30,
++        nice: int = 10,
++        proof_path: Path | None = None,
++    ) -> CadicalResult: ...
++
++
++@dataclass(frozen=True, slots=True)
++class _LaneSource:
++    lane: str
++    encoding_path: str
++    spec_path: str
++    live_leaf: str
++    finite_schema: str
++    cardinality_scope: str
++    source_theorem: str
++
++
++_LANES: dict[str, _LaneSource] = {
++    "DE": _LaneSource(
++        lane="DE",
++        encoding_path="census/frontier-packages/de_core/encoding.py",
++        spec_path="census/frontier-packages/D-E-ENCODING-SPEC.md",
++        live_leaf="D3-D4-named-local-diagnostic",
++        finite_schema="named-local-propositional-projection",
++        cardinality_scope="open-carrier-symbolic-lower-bounds",
++        source_theorem="NONE: finite/local D3-D4 residual projection only",
++    ),
++    "DR": _LaneSource(
++        lane="DR",
++        encoding_path="census/frontier-packages/dr_core/encoding.py",
++        spec_path="census/frontier-packages/D-R-ENCODING-SPEC.md",
++        live_leaf="D1-D2-named-local-incidence-shadow",
++        finite_schema="named-local-incidence-shadow",
++        cardinality_scope="open-carrier-non-enumerative",
++        source_theorem="NONE: finite/local D1-D2 incidence projection only",
++    ),
++    "E": _LaneSource(
++        lane="E",
++        encoding_path="census/frontier-packages/e_core/encoding.py",
++        spec_path="census/frontier-packages/E-ENCODING-SPEC.md",
++        live_leaf="E-triapex-directed-omission",
++        finite_schema="named-local-layer-1-projection",
++        cardinality_scope="symbolic-cardinality-abstraction",
++        source_theorem="NONE: finite/local E layer-1 projection only",
++    ),
++}
++
++
++def add_solver_arguments(parser: argparse.ArgumentParser) -> None:
++    """Add the closed backend choice shared by the owned frontier callers."""
++
++    parser.add_argument(
++        "--solver-backend",
++        choices=SUPPORTED_BACKENDS,
++        default=PIQD_BACKEND,
++        help="certified PIQD by default; raw local DRAT only when explicitly selected",
++    )
++    parser.add_argument("--piqd-base-url", default=DEFAULT_PIQD_BASE_URL)
++    parser.add_argument("--piqd-max-polls", type=int, default=300)
++    parser.add_argument("--piqd-poll-interval", type=float, default=2.0)
++    parser.add_argument("--lean-replay-timeout", type=int, default=300)
++    parser.add_argument(
++        "--workers",
++        type=int,
++        choices=(1,),
++        default=1,
++        help="frontier certificate custody is intentionally sequential",
++    )
++
++
++def _named_variables(encoder: Any) -> dict[str, int]:
++    names = getattr(encoder, "names", None)
++    if type(names) is not dict:
++        raise ValueError("frontier encoder must expose an exact names dictionary")
++    return dict(names)
++
++
++def _source_snapshots(source: _LaneSource) -> tuple[Any, ...]:
++    snapshots = (
++        capture_source_file(_REPO_ROOT, source.encoding_path),
++        capture_source_file(_REPO_ROOT, source.spec_path),
++    )
++    return tuple(sorted(snapshots, key=lambda snapshot: snapshot.logical_path))
++
++
++def _query_records(
++    *, lane: str, cnf: bytes, named_variables: dict[str, int]
++) -> tuple[bytes, bytes, FrontierLaneProfile]:
++    digest = hashlib.sha256(cnf).hexdigest()
++    query_id = f"{lane.lower()}:{digest}"
++    query = BuildQuery.from_cnf(query_id, cnf)
++    variable_map = build_complete_variable_map(cnf, named_variables)
++    ledger = build_phase_ledger(
++        (
++            BuildPhase(
++                phase_name="encoder-allocation",
++                allocations=(
++                    BuildAllocation(
++                        first_id=1,
++                        last_id=query.num_variables,
++                        purpose=f"{lane.lower()}-encoder-variables",
++                    ),
++                ),
++                allocator_num_variables=query.num_variables,
++            ),
++            BuildPhase(
++                phase_name="effective-query",
++                allocations=(),
++                allocator_num_variables=query.num_variables,
++                query=query,
++            ),
++        ),
++        query_id,
++    )
++    source = _LANES[lane]
++    profile = FrontierLaneProfile(
++        lane=lane,
++        query_id=query_id,
++        wave_id=f"frontier:{query_id}",
++        live_leaf=source.live_leaf,
++        finite_schema=source.finite_schema,
++        cardinality_scope=source.cardinality_scope,
++        source_theorem=source.source_theorem,
++        query_polarity=UNSAT_MEANS_OBSTRUCTION,
++    )
++    return variable_map, ledger, profile
++
++
++def make_query_factory(
++    *,
++    lane: str,
++    encoder: Any,
++    artifact_root: Path,
++    base_url: str = DEFAULT_PIQD_BASE_URL,
++    max_polls: int = 300,
++    poll_interval_s: float = 2.0,
++    replay_timeout_s: int = 300,
++    package_limits: FrontierPackageLimits | None = None,
++    packet_transport_builder: Callable[..., Any] = make_current_piqd_packet_transport,
++    replayer_builder: Callable[..., Any] = LeanLratReplayer,
++) -> Callable[[bytes, Path], PiqdCertifiedSolver]:
++    """Build the exact per-query construction seam used by the shared solver."""
++
++    if lane not in _LANES:
++        raise ValueError("certified frontier integration supports only DE, DR, and E")
++    if not isinstance(artifact_root, Path):
++        raise TypeError("artifact_root must be a pathlib.Path")
++    if type(base_url) is not str or not base_url:
++        raise ValueError("base_url must be a nonempty string")
++    named_variables = _named_variables(encoder)
++    source = _LANES[lane]
++
++    def query_factory(cnf: bytes, cnf_path: Path) -> PiqdCertifiedSolver:
++        variable_map, ledger, profile = _query_records(
++            lane=lane, cnf=cnf, named_variables=named_variables
++        )
++        package_kwargs: dict[str, Any] = {
++            "cnf": cnf,
++            "variable_map_bytes": variable_map,
++            "source_snapshots": _source_snapshots(source),
++            "build_phase_ledger_bytes": ledger,
++            "lane_profile": profile,
++        }
++        if package_limits is not None:
++            package_kwargs["limits"] = package_limits
++        package = build_frontier_authenticated_package(**package_kwargs)
++
++        attempts_parent = artifact_root / "piqd-attempts"
++        attempts_parent.mkdir(parents=True, exist_ok=True)
++        attempt_root = attempts_parent / (
++            f"{cnf_path.stem}-{hashlib.sha256(cnf).hexdigest()[:16]}-{uuid.uuid4().hex}"
++        )
++        transport = packet_transport_builder(
++            package.snapshot,
++            output_root=attempt_root,
++            base_url=base_url,
++            max_polls=max_polls,
++            poll_interval_s=poll_interval_s,
++            fetch_certified_kept_blob=True,
++        )
++        replayer = replayer_builder(
++            lean_root=_REPO_ROOT,
++            work_dir=attempt_root / "lean-replay",
++            timeout_s=replay_timeout_s,
++        )
++        return PiqdCertifiedSolver(package.snapshot, transport, replayer)
++
++    return query_factory
++
++
++def make_solver(
++    *,
++    lane: str,
++    encoder: Any,
++    artifact_root: Path,
++    base_url: str = DEFAULT_PIQD_BASE_URL,
++    max_polls: int = 300,
++    poll_interval_s: float = 2.0,
++    replay_timeout_s: int = 300,
++) -> PiqdPerQueryCertifiedSolver:
++    """Return the required shared certified per-effective-query solver."""
++
++    query_factory = make_query_factory(
++        lane=lane,
++        encoder=encoder,
++        artifact_root=artifact_root,
++        base_url=base_url,
++        max_polls=max_polls,
++        poll_interval_s=poll_interval_s,
++        replay_timeout_s=replay_timeout_s,
++    )
++    return PiqdPerQueryCertifiedSolver(query_factory)
++
++
++def solver_from_args(
++    *,
++    args: argparse.Namespace,
++    lane: str,
++    encoder: Any,
++    artifact_root: Path,
++    legacy_solver: FrontierSolver,
++) -> FrontierSolver:
++    """Select PIQD or the explicitly requested legacy-local callable.
++
++    There is intentionally no exception handler and no fallback path.
++    """
++
++    if args.workers != 1:
++        raise ValueError("frontier solver execution requires exactly one worker")
++    if args.solver_backend == LEGACY_LOCAL_BACKEND:
++        return legacy_solver
++    if args.solver_backend != PIQD_BACKEND:
++        raise ValueError("unknown frontier solver backend")
++    return make_solver(
++        lane=lane,
++        encoder=encoder,
++        artifact_root=artifact_root,
++        base_url=args.piqd_base_url,
++        max_polls=args.piqd_max_polls,
++        poll_interval_s=args.piqd_poll_interval,
++        replay_timeout_s=args.lean_replay_timeout,
++    )
++
++
++def proof_manifest_fields(
++    *,
++    backend: str,
++    requested_proof_path: Path,
++    result: CadicalResult,
++    relative_to: Path,
++) -> Mapping[str, Any]:
++    """Describe proof custody without relabeling PIQD LRAT as raw DRAT."""
++
++    fields: dict[str, Any] = {
++        "solver_backend": backend,
++        "proof_format": None,
++        "proof_file": None,
++        "requested_proof_file": str(requested_proof_path.relative_to(relative_to)),
++    }
++    if result.verdict != "UNSAT":
++        return fields
++    if backend == LEGACY_LOCAL_BACKEND:
++        fields.update(
++            proof_format="DRAT",
++            proof_file=str(requested_proof_path.relative_to(relative_to)),
++        )
++        return fields
++    if backend != PIQD_BACKEND:
++        raise ValueError("unknown frontier solver backend")
++    paths = {
++        "proof_file": requested_proof_path.with_suffix(".lrat"),
++        "kept_cnf_file": requested_proof_path.with_suffix(".kept.cnf"),
++        "proof_clause_map_file": requested_proof_path.with_suffix(".clause-map.json"),
++        "lean_replay_source_file": requested_proof_path.with_suffix(".replay.lean"),
++        "lean_replay_receipt_file": requested_proof_path.with_suffix(".replay.json"),
++        "certified_receipt_file": requested_proof_path.with_suffix(
++            ".piqd-certified.json"
++        ),
++    }
++    fields["proof_format"] = "LRAT"
++    fields.update(
++        {name: str(path.relative_to(relative_to)) for name, path in paths.items()}
++    )
++    return fields
++
++
++__all__ = [
++    "DEFAULT_PIQD_BASE_URL",
++    "LEGACY_LOCAL_BACKEND",
++    "PIQD_BACKEND",
++    "SUPPORTED_BACKENDS",
++    "FrontierSolver",
++    "add_solver_arguments",
++    "make_query_factory",
++    "make_solver",
++    "proof_manifest_fields",
++    "solver_from_args",
++]
+diff --git a/census/card_head/piqd_certified_solver.py b/census/card_head/piqd_certified_solver.py
+new file mode 100644
+index 00000000..579f8020
+--- /dev/null
++++ b/census/card_head/piqd_certified_solver.py
+@@ -0,0 +1,585 @@
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++# Author: Adam McKenna
++
++"""Certified PIQD solver seam for finite CardHead frontier callers.
++
++The legacy CardHead PIQD adapter is intentionally observational for UNSAT.
++This module is the explicit promotion boundary: it rebinds every daemon
++artifact to the authenticated package, independently reconstructs PIQD's kept
++CNF, and requires a verified local Lean LRAT replay before returning certified
++UNSAT.
++"""
++
++from __future__ import annotations
++
++import os
++from collections.abc import Callable, Collection, Mapping, Sequence
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Any
++
++from census.card_head.sat_encoding import CadicalResult, CoverInstance, EncodingError
++from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_bytes
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    CERTIFICATE_KIND,
++    REQUEST_SCHEMA,
++    AuthenticatedPackageSnapshot,
++    CardHeadPiqdAdapterError,
++    CardHeadPiqdPacket,
++    CardHeadPiqdRequest,
++    PacketTransport,
++    _capture_existing,
++    _digest,
++    _exact_keys,
++    _json,
++    _open_directory_nofollow,
++    _validate_job,
++    _validate_lrat,
++    _write_create_once,
++)
++from census.p97_search.phase3_piqd_clause_map import (
++    ClauseMapContractError,
++    consume_clause_map,
++)
++from census.p97_search.phase3_piqd_driver import DriverResult
++from census.p97_search.phase3_piqd_oracle import PiqdOracleError, scan_dimacs
++from census.p97_search.phase3_piqd_replay import (
++    LeanLratReplayer,
++    LratReplayError,
++    LratReplayResult,
++    validate_replay_result,
++)
++
++CERTIFIED_RECEIPT_SCHEMA = "p97-piqd-certified-frontier-solver/v1"
++EXPECTED_PROJECT = "erdos-97-96-formalization"
++_MODEL_KEYS = frozenset({"job_id", "result", "num_assigned", "assignment"})
++
++
++class PiqdCertifiedSolverError(EncodingError):
++    """Certified PIQD evidence is absent, inconsistent, or unsafe to custody."""
++
++
++def _raise_certified(exc: Exception) -> PiqdCertifiedSolverError:
++    return PiqdCertifiedSolverError(str(exc))
++
++
++def _strict_status(
++    packet: CardHeadPiqdPacket,
++    request: CardHeadPiqdRequest,
++    package: AuthenticatedPackageSnapshot,
++) -> Mapping[str, Any]:
++    status = _json(
++        packet.status_response,
++        "certified status response",
++        canonical=False,
++        limits=package.limits,
++    )
++    if status.get("backend") == "march_cu":
++        raise PiqdCertifiedSolverError(
++            "march_cu cannot enter the certified seam because it has no kept CNF"
++        )
++    if canonical_json_bytes(status) != packet.status_canonical_receipt:
++        raise PiqdCertifiedSolverError("status canonical receipt mismatch")
++    expected = {
++        "id": packet.job.job_id,
++        "backend": "cadical",
++        "project": EXPECTED_PROJECT,
++        "identity_hash": packet.job.identity_hash,
++        "cnf_blob_hash": package.cnf_sha256,
++        "producer_manifest_hash": package.producer_manifest_sha256,
++    }
++    for field, wanted in expected.items():
++        if status.get(field) != wanted or type(status.get(field)) is not str:
++            raise PiqdCertifiedSolverError(f"status {field} binding mismatch")
++    if status.get("status") not in {"completed", "failed"}:
++        raise PiqdCertifiedSolverError("status is not terminal")
++    if status.get("result") != packet.result:
++        raise PiqdCertifiedSolverError("status and packet result mismatch")
++    if packet.result in {"SAT", "UNSAT"} and status["status"] != "completed":
++        raise PiqdCertifiedSolverError("solver result lacks completed status")
++    if request.backend != "cadical":
++        raise PiqdCertifiedSolverError("certified solver requires CaDiCaL")
++    return status
++
++
++def _validate_packet(
++    packet: CardHeadPiqdPacket,
++    request: CardHeadPiqdRequest,
++    package: AuthenticatedPackageSnapshot,
++) -> Mapping[str, Any]:
++    if type(packet) is not CardHeadPiqdPacket:
++        raise PiqdCertifiedSolverError("transport returned wrong packet type")
++    if packet.job.backend == "march_cu":
++        raise PiqdCertifiedSolverError(
++            "march_cu jobs cannot enter the CaDiCaL certified seam"
++        )
++    try:
++        _validate_job(packet.job, request)
++    except CardHeadPiqdAdapterError as exc:
++        raise _raise_certified(exc) from exc
++    if type(packet.driver_result) is not DriverResult:
++        raise PiqdCertifiedSolverError("packet driver result has wrong concrete type")
++    if (
++        packet.driver_result.job_id != packet.job.job_id
++        or packet.terminal_record_sha256 != packet.driver_result.terminal_record_sha256
++    ):
++        raise PiqdCertifiedSolverError("packet/driver terminal binding mismatch")
++    try:
++        _digest(packet.terminal_record_sha256, "terminal record digest")
++        _digest(packet.journal_sha256, "journal digest")
++        _digest(packet.seal_sha256, "journal seal digest")
++    except CardHeadPiqdAdapterError as exc:
++        raise _raise_certified(exc) from exc
++    return _strict_status(packet, request, package)
++
++
++def _custody_paths(proof_path: Path) -> Mapping[str, Path]:
++    if not isinstance(proof_path, Path):
++        raise PiqdCertifiedSolverError("proof_path must be a native Path value")
++    return {
++        "proof": proof_path.with_suffix(".lrat"),
++        "kept_cnf": proof_path.with_suffix(".kept.cnf"),
++        "clause_map": proof_path.with_suffix(".clause-map.json"),
++        "checker": proof_path.with_suffix(".replay.lean"),
++        "replay": proof_path.with_suffix(".replay.json"),
++        "receipt": proof_path.with_suffix(".piqd-certified.json"),
++    }
++
++
++def _require_create_once_targets(paths: Mapping[str, Path]) -> None:
++    values = tuple(paths.values())
++    if len(set(values)) != len(values):
++        raise PiqdCertifiedSolverError("certified custody paths collide")
++    parents = {path.parent for path in values}
++    if len(parents) != 1:
++        raise PiqdCertifiedSolverError("certified custody must share one directory")
++    parent = next(iter(parents))
++    try:
++        directory = _open_directory_nofollow(parent)
++    except CardHeadPiqdAdapterError as exc:
++        raise _raise_certified(exc) from exc
++    try:
++        for path in values:
++            try:
++                os.stat(path.name, dir_fd=directory, follow_symlinks=False)
++            except FileNotFoundError:
++                continue
++            except OSError as exc:
++                raise PiqdCertifiedSolverError(
++                    f"cannot inspect custody target: {path.name}"
++                ) from exc
++            raise PiqdCertifiedSolverError(
++                f"certified custody target already exists: {path.name}"
++            )
++    finally:
++        os.close(directory)
++
++
++def _write_custody(paths: Mapping[str, Path], payloads: Mapping[str, bytes]) -> None:
++    _require_create_once_targets(paths)
++    for label in ("proof", "kept_cnf", "clause_map", "checker", "replay", "receipt"):
++        try:
++            _write_create_once(paths[label], payloads[label])
++        except CardHeadPiqdAdapterError as exc:
++            raise _raise_certified(exc) from exc
++
++
++def _effective_dimacs(
++    instance: CoverInstance, extra_clauses: Sequence[Collection[int]]
++) -> bytes:
++    try:
++        return instance.dimacs(extra_clauses).encode("ascii")
++    except (AttributeError, UnicodeEncodeError, ValueError, TypeError) as exc:
++        raise PiqdCertifiedSolverError(
++            "instance cannot emit exact ASCII DIMACS"
++        ) from exc
++
++
++def _install_or_capture_cnf(path: Path, cnf: bytes) -> None:
++    try:
++        _write_create_once(path, cnf)
++    except CardHeadPiqdAdapterError as exc:
++        if not str(exc).startswith("artifact already exists:"):
++            raise _raise_certified(exc) from exc
++        try:
++            _capture_existing(path, cnf)
++        except CardHeadPiqdAdapterError as capture_exc:
++            raise _raise_certified(capture_exc) from capture_exc
++
++
++@dataclass(frozen=True, slots=True)
++class PiqdCertifiedSolver:
++    """Frozen, ``solve_cadical``-compatible certified PIQD runner.
++
++    ``transport`` must not fall back to a local solver.  A fake replayer may be
++    injected to test rejection paths, but only the exact concrete
++    :class:`LeanLratReplayer` can promote an UNSAT result.
++    """
++
++    package: AuthenticatedPackageSnapshot
++    transport: PacketTransport
++    replayer: LeanLratReplayer
++
++    def __post_init__(self) -> None:
++        if type(self.package) is not AuthenticatedPackageSnapshot:
++            raise PiqdCertifiedSolverError(
++                "certified solver requires an authenticated package snapshot"
++            )
++        if not callable(self.transport):
++            raise PiqdCertifiedSolverError("certified transport must be callable")
++        if not callable(getattr(self.replayer, "replay", None)):
++            raise PiqdCertifiedSolverError("certified replayer must expose replay")
++
++    def _request(
++        self, timeout_seconds: int, nice: int, proof_requested: bool
++    ) -> CardHeadPiqdRequest:
++        execution = self.package.wave_manifest["execution"]
++        return CardHeadPiqdRequest(
++            REQUEST_SCHEMA,
++            self.package.wave_manifest_sha256,
++            self.package.package_identity,
++            self.package.cnf_sha256,
++            self.package.producer_manifest_sha256,
++            self.package.num_vars,
++            self.package.num_clauses,
++            execution["backend"],
++            execution["solver_profile"],
++            timeout_seconds,
++            nice,
++            proof_requested,
++        )
++
++    def __call__(
++        self,
++        instance: CoverInstance,
++        cnf_path: Path,
++        *,
++        extra_clauses: Sequence[Collection[int]] = (),
++        timeout_seconds: int = 30,
++        nice: int = 10,
++        proof_path: Path | None = None,
++    ) -> CadicalResult:
++        if type(timeout_seconds) is not int or timeout_seconds <= 0:
++            raise PiqdCertifiedSolverError(
++                "timeout_seconds must be positive builtin int"
++            )
++        if type(nice) is not int or not 1 <= nice <= 19:
++            raise PiqdCertifiedSolverError("nice must be builtin int in 1..19")
++        if not isinstance(cnf_path, Path) or (
++            proof_path is not None and not isinstance(proof_path, Path)
++        ):
++            raise PiqdCertifiedSolverError("artifact paths must be Path values")
++        cnf = _effective_dimacs(instance, extra_clauses)
++        if cnf != self.package.cnf:
++            raise PiqdCertifiedSolverError(
++                "solver CNF differs from authenticated package"
++            )
++        _install_or_capture_cnf(cnf_path, cnf)
++        request = self._request(timeout_seconds, nice, proof_path is not None)
++        try:
++            packet = self.transport(request)
++        except Exception as exc:
++            if isinstance(exc, (KeyboardInterrupt, SystemExit)):
++                raise
++            raise PiqdCertifiedSolverError(f"PIQD transport failed: {exc}") from exc
++        status = _validate_packet(packet, request, self.package)
++        if packet.result == "SAT":
++            return self._sat_result(instance, packet)
++        if packet.result == "UNSAT":
++            return self._unsat_result(packet, status, proof_path)
++        if any(
++            value is not None
++            for value in (
++                packet.model_response,
++                packet.model_canonical_receipt,
++                packet.model_response_journal_sha256,
++                packet.clause_map_response,
++                packet.certificate_kind,
++                packet.certificate,
++                packet.lean_response,
++                packet.proof_blob_hash,
++                packet.kept_cnf_blob_hash,
++                packet.kept_cnf_blob,
++            )
++        ):
++            raise PiqdCertifiedSolverError("non-result packet carries artifacts")
++        return CadicalResult(
++            "UNKNOWN",
++            None,
++            None,
++            False,
++            "PIQD non-promotable terminal result; no fallback attempted",
++            None,
++        )
++
++    def _sat_result(
++        self, instance: CoverInstance, packet: CardHeadPiqdPacket
++    ) -> CadicalResult:
++        if (
++            type(packet.model_response) is not bytes
++            or type(packet.model_canonical_receipt) is not bytes
++        ):
++            raise PiqdCertifiedSolverError("SAT packet lacks exact model evidence")
++        if any(
++            value is not None
++            for value in (
++                packet.clause_map_response,
++                packet.certificate_kind,
++                packet.certificate,
++                packet.lean_response,
++                packet.proof_blob_hash,
++                packet.kept_cnf_blob_hash,
++                packet.kept_cnf_blob,
++            )
++        ):
++            raise PiqdCertifiedSolverError("SAT packet carries UNSAT artifacts")
++        model = _json(
++            packet.model_response,
++            "certified model response",
++            canonical=False,
++            limits=self.package.limits,
++        )
++        try:
++            _exact_keys(model, _MODEL_KEYS, "model response")
++        except CardHeadPiqdAdapterError as exc:
++            raise _raise_certified(exc) from exc
++        if canonical_json_bytes(model) != packet.model_canonical_receipt:
++            raise PiqdCertifiedSolverError("model canonical receipt mismatch")
++        if packet.model_response_journal_sha256 != sha256_bytes(packet.model_response):
++            raise PiqdCertifiedSolverError("model bytes disagree with journal hash")
++        if model["job_id"] != packet.job.job_id or model["result"] != "SAT":
++            raise PiqdCertifiedSolverError("model job/result mismatch")
++        assignment = model["assignment"]
++        count = model["num_assigned"]
++        if (
++            type(assignment) is not list
++            or type(count) is not int
++            or count != len(assignment)
++            or count != packet.job.num_vars
++            or any(type(literal) is not int for literal in assignment)
++        ):
++            raise PiqdCertifiedSolverError("SAT model is not a total assignment")
++        try:
++            scan_dimacs(self.package.cnf, assignment=assignment)
++            positive = frozenset(literal for literal in assignment if literal > 0)
++            cube = instance.decode_model(positive)
++        except (EncodingError, PiqdOracleError, TypeError, ValueError) as exc:
++            raise PiqdCertifiedSolverError(f"SAT replay/decode failed: {exc}") from exc
++        return CadicalResult(
++            "SAT",
++            cube,
++            10,
++            False,
++            "PIQD SAT; total model replayed against exact CNF and decoder",
++            positive,
++        )
++
++    def _unsat_result(
++        self,
++        packet: CardHeadPiqdPacket,
++        status: Mapping[str, Any],
++        proof_path: Path | None,
++    ) -> CadicalResult:
++        if proof_path is None:
++            raise PiqdCertifiedSolverError(
++                "certified UNSAT requires a proof_path for local custody"
++            )
++        if (
++            packet.model_response is not None
++            or packet.certificate_kind != CERTIFICATE_KIND
++        ):
++            raise PiqdCertifiedSolverError("UNSAT packet artifact kinds mismatch")
++        proof = packet.certificate
++        clause_map_raw = packet.clause_map_response
++        kept_hash = packet.kept_cnf_blob_hash
++        kept_cnf = packet.kept_cnf_blob
++        proof_hash = packet.proof_blob_hash
++        if not all(type(value) is bytes for value in (proof, clause_map_raw, kept_cnf)):
++            raise PiqdCertifiedSolverError(
++                "UNSAT packet lacks exact proof/map/kept-CNF bytes"
++            )
++        assert proof is not None and clause_map_raw is not None and kept_cnf is not None
++        try:
++            kept_hash = _digest(kept_hash, "packet kept CNF hash")
++            proof_hash = _digest(proof_hash, "packet proof header hash")
++            _validate_lrat(proof, max_bytes=self.package.limits.proof_bytes)
++        except CardHeadPiqdAdapterError as exc:
++            raise _raise_certified(exc) from exc
++        if status.get("kept_cnf_blob_hash") != kept_hash:
++            raise PiqdCertifiedSolverError("status/packet kept CNF hash mismatch")
++        if sha256_bytes(kept_cnf) != kept_hash:
++            raise PiqdCertifiedSolverError("kept CNF bytes hash mismatch")
++        if sha256_bytes(proof) != proof_hash:
++            raise PiqdCertifiedSolverError("compact LRAT header/hash mismatch")
++        try:
++            clause_map = consume_clause_map(
++                clause_map_raw, self.package.cnf, packet.job
++            )
++        except ClauseMapContractError as exc:
++            raise PiqdCertifiedSolverError(
++                f"clause-map validation failed: {exc}"
++            ) from exc
++        if (
++            clause_map.kept_sha256 != kept_hash
++            or clause_map.canonical_kept_cnf != kept_cnf
++        ):
++            raise PiqdCertifiedSolverError(
++                "clause-map canonical kept CNF disagrees with fetched blob"
++            )
++        try:
++            replay = self.replayer.replay(
++                job=packet.job,
++                wave_manifest=self.package.wave_manifest,
++                cnf=self.package.cnf,
++                proof=proof,
++                proof_sha256=proof_hash,
++            )
++            if type(replay) is not LratReplayResult:
++                raise LratReplayError("replayer returned wrong concrete result type")
++            validate_replay_result(
++                result=replay,
++                job=packet.job,
++                wave_manifest=self.package.wave_manifest,
++                cnf=self.package.cnf,
++                proof=proof,
++                proof_sha256=proof_hash,
++            )
++        except (LratReplayError, OSError, TypeError, ValueError) as exc:
++            raise PiqdCertifiedSolverError(f"local Lean replay failed: {exc}") from exc
++        if not replay.verified:
++            raise PiqdCertifiedSolverError("local Lean replay rejected compact LRAT")
++        if type(self.replayer) is not LeanLratReplayer:
++            raise PiqdCertifiedSolverError(
++                "only the concrete Lean LRAT replayer may certify UNSAT"
++            )
++
++        paths = _custody_paths(proof_path)
++        unsigned_receipt = {
++            "schema": CERTIFIED_RECEIPT_SCHEMA,
++            "classification": "FINITE_LOCAL_CERTIFICATE",
++            "job": {
++                "id": packet.job.job_id,
++                "backend": packet.job.backend,
++                "solver_profile": packet.job.solver_profile,
++                "identity_hash": packet.job.identity_hash,
++            },
++            "bindings": {
++                "submitted_cnf_sha256": self.package.cnf_sha256,
++                "producer_manifest_sha256": self.package.producer_manifest_sha256,
++                "kept_cnf_sha256": kept_hash,
++                "compact_lrat_sha256": proof_hash,
++                "clause_map_response_sha256": clause_map.response_sha256,
++                "status_response_sha256": sha256_bytes(packet.status_response),
++                "journal_sha256": packet.journal_sha256,
++                "journal_seal_sha256": packet.seal_sha256,
++            },
++            "custody": {
++                "requested_proof_path": str(proof_path),
++                "compact_lrat_path": str(paths["proof"]),
++                "kept_cnf_path": str(paths["kept_cnf"]),
++                "clause_map_path": str(paths["clause_map"]),
++                "checker_source_path": str(paths["checker"]),
++                "replay_receipt_path": str(paths["replay"]),
++            },
++            "replay": {
++                "verified": True,
++                "checker_source_sha256": sha256_bytes(replay.checker_source),
++                "receipt_sha256": sha256_bytes(replay.receipt),
++                "concrete_replayer": True,
++            },
++            "proof_verified": True,
++            "source_entitlement_established": False,
++            "source_coverage_established": False,
++            "universal_result_established": False,
++            "lean_theorem_closure_established": False,
++        }
++        unsigned_bytes = canonical_json_bytes(unsigned_receipt)
++        receipt = dict(unsigned_receipt)
++        receipt["receipt_sha256"] = sha256_bytes(unsigned_bytes)
++        receipt_bytes = canonical_json_bytes(receipt)
++        payloads = {
++            "proof": proof,
++            "kept_cnf": kept_cnf,
++            "clause_map": clause_map_raw,
++            "checker": replay.checker_source,
++            "replay": replay.receipt,
++            "receipt": receipt_bytes,
++        }
++        _write_custody(paths, payloads)
++        return CadicalResult(
++            "UNSAT",
++            None,
++            20,
++            True,
++            "PIQD UNSAT; exact artifacts bound and locally replayed in Lean",
++            None,
++        )
++
++
++CertifiedQueryFactory = Callable[[bytes, Path], PiqdCertifiedSolver]
++
++
++@dataclass(frozen=True, slots=True)
++class PiqdPerQueryCertifiedSolver:
++    """Route each effective DIMACS query through its own exact package.
++
++    Frontier lanes may reuse this callable across discovery and residual
++    queries.  ``query_factory`` must mint a fresh authenticated package,
++    transport, and (for production) concrete replay boundary for the exact
++    bytes passed to it.  The returned fixed solver is checked again before any
++    transport call.
++    """
++
++    query_factory: CertifiedQueryFactory
++
++    def __post_init__(self) -> None:
++        if not callable(self.query_factory):
++            raise PiqdCertifiedSolverError("query_factory must be callable")
++
++    def __call__(
++        self,
++        instance: CoverInstance,
++        cnf_path: Path,
++        *,
++        extra_clauses: Sequence[Collection[int]] = (),
++        timeout_seconds: int = 30,
++        nice: int = 10,
++        proof_path: Path | None = None,
++    ) -> CadicalResult:
++        if not isinstance(cnf_path, Path):
++            raise PiqdCertifiedSolverError("cnf_path must be a native Path value")
++        cnf = _effective_dimacs(instance, extra_clauses)
++        try:
++            solver = self.query_factory(cnf, cnf_path)
++        except Exception as exc:
++            if isinstance(exc, (KeyboardInterrupt, SystemExit)):
++                raise
++            raise PiqdCertifiedSolverError(
++                f"per-query certified solver construction failed: {exc}"
++            ) from exc
++        if type(solver) is not PiqdCertifiedSolver:
++            raise PiqdCertifiedSolverError(
++                "query_factory returned wrong concrete solver type"
++            )
++        if solver.package.cnf != cnf:
++            raise PiqdCertifiedSolverError(
++                "per-query package CNF differs from effective DIMACS"
++            )
++        return solver(
++            instance,
++            cnf_path,
++            extra_clauses=extra_clauses,
++            timeout_seconds=timeout_seconds,
++            nice=nice,
++            proof_path=proof_path,
++        )
++
++
++__all__ = [
++    "CERTIFIED_RECEIPT_SCHEMA",
++    "CertifiedQueryFactory",
++    "PiqdCertifiedSolver",
++    "PiqdCertifiedSolverError",
++    "PiqdPerQueryCertifiedSolver",
++]
+diff --git a/census/card_head/piqd_frontier_bc.py b/census/card_head/piqd_frontier_bc.py
+new file mode 100644
+index 00000000..807cd8b3
+--- /dev/null
++++ b/census/card_head/piqd_frontier_bc.py
+@@ -0,0 +1,330 @@
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++# Author: Adam McKenna
++
++"""Certified PIQD integration for the finite/local B- and C-core callers.
++
++Every invocation materializes one authenticated package from the exact
++effective DIMACS bytes.  The module contains no local-solver fallback: callers
++must select ``legacy-local`` explicitly before this seam is bypassed.
++"""
++
++from __future__ import annotations
++
++import hashlib
++import uuid
++from collections.abc import Callable
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Any
++
++from census.card_head.frontier_lane_piqd import (
++    DEFAULT_PIQD_BASE_URL,
++    LEGACY_LOCAL_BACKEND,
++    PIQD_BACKEND,
++    FrontierSolver,
++)
++from census.card_head.piqd_certified_solver import (
++    PiqdCertifiedSolver,
++    PiqdPerQueryCertifiedSolver,
++)
++from census.card_head.piqd_frontier_package import (
++    BuildAllocation,
++    BuildPhase,
++    BuildQuery,
++    FrontierLaneProfile,
++    FrontierPackageLimits,
++    build_complete_variable_map,
++    build_frontier_authenticated_package,
++    build_phase_ledger,
++    capture_source_file,
++)
++from census.p97_search.phase3_cegar_wave import UNSAT_MEANS_OBSTRUCTION
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    make_current_piqd_packet_transport,
++)
++from census.p97_search.phase3_piqd_replay import LeanLratReplayer
++
++_REPO_ROOT = Path(__file__).resolve().parents[2]
++
++B_RUN_SOURCES = (
++    "census/frontier-packages/b_core/encoding.py",
++    "census/frontier-packages/b_core/run.py",
++    "census/frontier-packages/b_core/producer_contract.json",
++    "census/frontier-packages/B-ENCODING-SPEC.md",
++    "lean/scratch/b-family-bank/B2Arm3.lean",
++)
++B_SMOKE_SOURCES = (
++    "census/frontier-packages/b_core/encoding.py",
++    "census/frontier-packages/b_core/smoke.py",
++    "census/frontier-packages/B-ENCODING-SPEC.md",
++    "lean/scratch/b-family-bank/B2Arm3.lean",
++)
++C_RUN_SOURCES = (
++    "census/frontier-packages/c_core/encoding.py",
++    "census/frontier-packages/c_core/run.py",
++    "census/frontier-packages/C-CORE-ENCODING-SPEC.md",
++    "census/frontier-packages/A-CORE-ENCODING-SPEC.md",
++    "docs/solve-prompts/2026-07-27-physical-apex-boundary.md",
++    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
++    "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean",
++)
++C_SMOKE_SOURCES = (
++    "census/frontier-packages/c_core/encoding.py",
++    "census/frontier-packages/c_core/smoke.py",
++    "census/frontier-packages/C-CORE-ENCODING-SPEC.md",
++    "census/frontier-packages/A-CORE-ENCODING-SPEC.md",
++    "docs/solve-prompts/2026-07-27-physical-apex-boundary.md",
++    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
++    "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean",
++)
++
++
++@dataclass(frozen=True, slots=True)
++class AllocationPhase:
++    """One chronological, cumulative encoder allocation watermark."""
++
++    phase_name: str
++    last_id: int
++    purpose: str
++
++    def __post_init__(self) -> None:
++        if type(self.phase_name) is not str or not self.phase_name:
++            raise ValueError("allocation phase_name must be nonempty text")
++        if type(self.last_id) is not int or self.last_id <= 0:
++            raise ValueError("allocation last_id must be a positive builtin int")
++        if type(self.purpose) is not str or not self.purpose:
++            raise ValueError("allocation purpose must be nonempty text")
++
++
++@dataclass(frozen=True, slots=True)
++class BcCallerPackageProfile:
++    """Finite/local caller metadata and exact source/allocation custody."""
++
++    lane: str
++    source_paths: tuple[str, ...]
++    allocation_phases: tuple[AllocationPhase, ...]
++    live_leaf: str
++    finite_schema: str
++    cardinality_scope: str
++    source_theorem: str
++
++    def __post_init__(self) -> None:
++        if self.lane not in {"B", "C"}:
++            raise ValueError("B/C caller profile lane must be B or C")
++        if (
++            type(self.source_paths) is not tuple
++            or not self.source_paths
++            or any(type(path) is not str or not path for path in self.source_paths)
++            or len(set(self.source_paths)) != len(self.source_paths)
++        ):
++            raise ValueError("source_paths must be a unique nonempty tuple")
++        if (
++            type(self.allocation_phases) is not tuple
++            or not self.allocation_phases
++            or any(
++                type(phase) is not AllocationPhase for phase in self.allocation_phases
++            )
++        ):
++            raise ValueError(
++                "allocation_phases must contain exact AllocationPhase values"
++            )
++        previous = 0
++        names: set[str] = set()
++        for phase in self.allocation_phases:
++            if phase.phase_name in names or phase.last_id <= previous:
++                raise ValueError(
++                    "allocation phases must be unique and strictly increasing"
++                )
++            names.add(phase.phase_name)
++            previous = phase.last_id
++        for field in (
++            self.live_leaf,
++            self.finite_schema,
++            self.cardinality_scope,
++            self.source_theorem,
++        ):
++            if type(field) is not str or not field:
++                raise ValueError("caller profile metadata must be nonempty text")
++
++
++def _named_variables(encoder: Any) -> dict[str, int]:
++    names = getattr(encoder, "names", None)
++    if type(names) is not dict:
++        raise ValueError("frontier encoder must expose an exact names dictionary")
++    return dict(names)
++
++
++def _source_snapshots(paths: tuple[str, ...]) -> tuple[Any, ...]:
++    return tuple(capture_source_file(_REPO_ROOT, path) for path in paths)
++
++
++def _query_records(
++    *, cnf: bytes, profile: BcCallerPackageProfile, named_variables: dict[str, int]
++) -> tuple[bytes, bytes, FrontierLaneProfile]:
++    digest = hashlib.sha256(cnf).hexdigest()
++    query_id = f"{profile.lane.lower()}:{digest}"
++    query = BuildQuery.from_cnf(query_id, cnf)
++    if profile.allocation_phases[-1].last_id != query.num_variables:
++        raise ValueError(
++            "final allocation watermark differs from effective DIMACS header"
++        )
++
++    phases: list[BuildPhase] = []
++    first_id = 1
++    for allocation in profile.allocation_phases:
++        phases.append(
++            BuildPhase(
++                phase_name=allocation.phase_name,
++                allocations=(
++                    BuildAllocation(first_id, allocation.last_id, allocation.purpose),
++                ),
++                allocator_num_variables=allocation.last_id,
++            )
++        )
++        first_id = allocation.last_id + 1
++    phases.append(
++        BuildPhase(
++            phase_name="effective query materialization",
++            allocations=(),
++            allocator_num_variables=query.num_variables,
++            query=query,
++        )
++    )
++    ledger = build_phase_ledger(tuple(phases), query_id)
++    variable_map = build_complete_variable_map(cnf, named_variables)
++    lane_profile = FrontierLaneProfile(
++        lane=profile.lane,
++        query_id=query_id,
++        wave_id=f"frontier:{query_id}",
++        live_leaf=profile.live_leaf,
++        finite_schema=profile.finite_schema,
++        cardinality_scope=profile.cardinality_scope,
++        source_theorem=profile.source_theorem,
++        query_polarity=UNSAT_MEANS_OBSTRUCTION,
++    )
++    return variable_map, ledger, lane_profile
++
++
++def make_query_factory(
++    *,
++    encoder: Any,
++    profile: BcCallerPackageProfile,
++    artifact_root: Path,
++    base_url: str = DEFAULT_PIQD_BASE_URL,
++    max_polls: int = 300,
++    poll_interval_s: float = 2.0,
++    replay_timeout_s: int = 300,
++    package_limits: FrontierPackageLimits | None = None,
++    packet_transport_builder: Callable[..., Any] = make_current_piqd_packet_transport,
++    replayer_builder: Callable[..., Any] = LeanLratReplayer,
++) -> Callable[[bytes, Path], PiqdCertifiedSolver]:
++    """Construct a fresh exact package, transport, and replayer per query."""
++
++    if not isinstance(artifact_root, Path):
++        raise TypeError("artifact_root must be a pathlib.Path")
++    if type(base_url) is not str or not base_url:
++        raise ValueError("base_url must be a nonempty string")
++    named_variables = _named_variables(encoder)
++
++    def query_factory(cnf: bytes, cnf_path: Path) -> PiqdCertifiedSolver:
++        variable_map, ledger, lane_profile = _query_records(
++            cnf=cnf, profile=profile, named_variables=named_variables
++        )
++        package_kwargs: dict[str, Any] = {
++            "cnf": cnf,
++            "variable_map_bytes": variable_map,
++            "source_snapshots": _source_snapshots(profile.source_paths),
++            "build_phase_ledger_bytes": ledger,
++            "lane_profile": lane_profile,
++        }
++        if package_limits is not None:
++            package_kwargs["limits"] = package_limits
++        package = build_frontier_authenticated_package(**package_kwargs)
++
++        attempts_parent = artifact_root / "piqd-attempts"
++        attempts_parent.mkdir(parents=True, exist_ok=True)
++        attempt_root = attempts_parent / (
++            f"{cnf_path.stem}-{hashlib.sha256(cnf).hexdigest()[:16]}-{uuid.uuid4().hex}"
++        )
++        transport = packet_transport_builder(
++            package.snapshot,
++            output_root=attempt_root,
++            base_url=base_url,
++            max_polls=max_polls,
++            poll_interval_s=poll_interval_s,
++            fetch_certified_kept_blob=True,
++        )
++        replayer = replayer_builder(
++            lean_root=_REPO_ROOT,
++            work_dir=attempt_root / "lean-replay",
++            timeout_s=replay_timeout_s,
++        )
++        return PiqdCertifiedSolver(package.snapshot, transport, replayer)
++
++    return query_factory
++
++
++def make_solver(
++    *,
++    encoder: Any,
++    profile: BcCallerPackageProfile,
++    artifact_root: Path,
++    base_url: str = DEFAULT_PIQD_BASE_URL,
++    max_polls: int = 300,
++    poll_interval_s: float = 2.0,
++    replay_timeout_s: int = 300,
++) -> PiqdPerQueryCertifiedSolver:
++    """Return the shared certified per-effective-query solver."""
++
++    return PiqdPerQueryCertifiedSolver(
++        make_query_factory(
++            encoder=encoder,
++            profile=profile,
++            artifact_root=artifact_root,
++            base_url=base_url,
++            max_polls=max_polls,
++            poll_interval_s=poll_interval_s,
++            replay_timeout_s=replay_timeout_s,
++        )
++    )
++
++
++def solver_from_args(
++    *,
++    args: Any,
++    encoder: Any,
++    profile: BcCallerPackageProfile,
++    artifact_root: Path,
++    legacy_solver: FrontierSolver,
++) -> FrontierSolver:
++    """Select certified PIQD or explicit legacy-local, with no fallback."""
++
++    if args.workers != 1:
++        raise ValueError("frontier solver execution requires exactly one worker")
++    if args.solver_backend == LEGACY_LOCAL_BACKEND:
++        return legacy_solver
++    if args.solver_backend != PIQD_BACKEND:
++        raise ValueError("unknown frontier solver backend")
++    return make_solver(
++        encoder=encoder,
++        profile=profile,
++        artifact_root=artifact_root,
++        base_url=args.piqd_base_url,
++        max_polls=args.piqd_max_polls,
++        poll_interval_s=args.piqd_poll_interval,
++        replay_timeout_s=args.lean_replay_timeout,
++    )
++
++
++__all__ = [
++    "B_RUN_SOURCES",
++    "B_SMOKE_SOURCES",
++    "C_RUN_SOURCES",
++    "C_SMOKE_SOURCES",
++    "AllocationPhase",
++    "BcCallerPackageProfile",
++    "make_query_factory",
++    "make_solver",
++    "solver_from_args",
++]
+diff --git a/census/card_head/piqd_frontier_package.py b/census/card_head/piqd_frontier_package.py
+new file mode 100644
+index 00000000..73a5c004
+--- /dev/null
++++ b/census/card_head/piqd_frontier_package.py
+@@ -0,0 +1,1117 @@
++"""Authenticated, lane-neutral package boundary for P97 frontier queries.
++
++This module owns custody metadata only.  Lane wrappers must materialize the
++exact effective DIMACS for one query before calling the builder; no frontier
++lane is imported here and no solver is invoked here.
++"""
++
++from __future__ import annotations
++
++import json
++import math
++import os
++import re
++import stat
++from dataclasses import dataclass, field
++from pathlib import Path
++from typing import Any
++
++from census.p97_search.phase3_cegar_wave import (
++    LOCAL_CERTIFICATE,
++    SAT_MEANS_COUNTEREXAMPLE,
++    UNSAT_MEANS_OBSTRUCTION,
++    canonical_json_bytes,
++    sha256_bytes,
++)
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    DEFAULT_LIMITS,
++    AuthenticatedPackageSnapshot,
++    EndpointLimits,
++)
++from census.p97_search.phase3_piqd_oracle import PiqdOracleError, scan_dimacs
++
++FRONTIER_PACKAGE_SCHEMA = "p97-piqd-frontier-production-package/v1"
++FRONTIER_PROFILE_SCHEMA = "p97-piqd-frontier-lane-profile/v1"
++VARIABLE_MAP_SCHEMA = "p97-piqd-frontier-total-variable-map/v1"
++SOURCE_MANIFEST_SCHEMA = "p97-piqd-frontier-source-manifest/v1"
++BUILD_PHASE_LEDGER_SCHEMA = "p97-piqd-frontier-build-phase-ledger/v1"
++
++_LANES = frozenset({"B", "C", "DE", "DR", "E"})
++_POLARITIES = frozenset({SAT_MEANS_COUNTEREXAMPLE, UNSAT_MEANS_OBSTRUCTION})
++_SAFE_LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/+-]{0,255}\Z")
++_HEX = frozenset("0123456789abcdef")
++_CLOSED_CLAIMS = {
++    "certificate_source_link_authenticated": False,
++    "lean_replay_executed": False,
++    "theorem_promotion_allowed": False,
++    "source_entitlement_established": False,
++    "theorem_coverage_established": False,
++    "universal_lift_established": False,
++    "lean_closure_established": False,
++}
++
++
++class FrontierPackageError(ValueError):
++    """A frontier package input failed its closed boundary."""
++
++
++def _positive_int(value: object, source: str) -> int:
++    if type(value) is not int or value <= 0:
++        raise FrontierPackageError(f"{source} must be a positive builtin int")
++    return value
++
++
++def _nonnegative_int(value: object, source: str) -> int:
++    if type(value) is not int or value < 0:
++        raise FrontierPackageError(f"{source} must be a nonnegative builtin int")
++    return value
++
++
++def _label(value: object, source: str) -> str:
++    if type(value) is not str or _SAFE_LABEL.fullmatch(value) is None:
++        raise FrontierPackageError(f"{source} is not a safe nonempty label")
++    return value
++
++
++def _text(value: object, source: str, *, maximum: int = 4096) -> str:
++    if (
++        type(value) is not str
++        or not value
++        or len(value.encode("utf-8")) > maximum
++        or any(ord(char) < 32 for char in value)
++    ):
++        raise FrontierPackageError(f"{source} must be bounded nonempty text")
++    return value
++
++
++def _digest(value: object, source: str) -> str:
++    if type(value) is not str or len(value) != 64 or any(c not in _HEX for c in value):
++        raise FrontierPackageError(f"{source} must be a lowercase SHA-256")
++    return value
++
++
++def _exact_keys(value: dict[str, Any], expected: frozenset[str], source: str) -> None:
++    actual = frozenset(value)
++    if actual != expected:
++        raise FrontierPackageError(
++            f"{source} keys mismatch: missing={sorted(expected - actual)}, "
++            f"extra={sorted(actual - expected)}"
++        )
++
++
++def _strict_json(raw: bytes, source: str, limits: EndpointLimits) -> dict[str, Any]:
++    if type(raw) is not bytes or len(raw) > limits.json_bytes:
++        raise FrontierPackageError(f"{source} bytes are invalid or oversized")
++
++    def reject_constant(token: str) -> None:
++        raise ValueError(f"non-finite JSON number: {token}")
++
++    def pairs(items: list[tuple[str, Any]]) -> dict[str, Any]:
++        result: dict[str, Any] = {}
++        for key, value in items:
++            if key in result:
++                raise ValueError(f"duplicate JSON key: {key}")
++            result[key] = value
++        return result
++
++    try:
++        value = json.loads(
++            raw.decode("utf-8"),
++            object_pairs_hook=pairs,
++            parse_constant=reject_constant,
++        )
++    except (
++        UnicodeDecodeError,
++        json.JSONDecodeError,
++        ValueError,
++        RecursionError,
++    ) as exc:
++        raise FrontierPackageError(f"{source} is not strict JSON") from exc
++    if type(value) is not dict:
++        raise FrontierPackageError(f"{source} must contain one JSON object")
++    nodes = 0
++    pending: list[tuple[object, int]] = [(value, 1)]
++    while pending:
++        current, depth = pending.pop()
++        nodes += 1
++        if nodes > limits.json_nodes:
++            raise FrontierPackageError(f"{source} exceeds JSON node limit")
++        if depth > limits.json_depth:
++            raise FrontierPackageError(f"{source} exceeds JSON depth limit")
++        if type(current) is dict:
++            pending.extend((child, depth + 1) for child in current.values())
++        elif type(current) is list:
++            pending.extend((child, depth + 1) for child in current)
++        elif type(current) is float and not math.isfinite(current):
++            raise FrontierPackageError(f"{source} contains a non-finite number")
++    if canonical_json_bytes(value) != raw:
++        raise FrontierPackageError(f"{source} must be canonical JSON")
++    return value
++
++
++@dataclass(frozen=True, slots=True)
++class FrontierPackageLimits:
++    """Bounds for package construction and path-backed source custody."""
++
++    endpoint_limits: EndpointLimits = field(default=DEFAULT_LIMITS, repr=False)
++    source_file_bytes: int = 8 * 1024 * 1024
++    source_total_bytes: int = 64 * 1024 * 1024
++    source_files: int = 256
++
++    def __post_init__(self) -> None:
++        if type(self.endpoint_limits) is not EndpointLimits:
++            raise FrontierPackageError("endpoint_limits must be exactly EndpointLimits")
++        _positive_int(self.source_file_bytes, "source_file_bytes")
++        _positive_int(self.source_total_bytes, "source_total_bytes")
++        _positive_int(self.source_files, "source_files")
++
++
++DEFAULT_FRONTIER_LIMITS = FrontierPackageLimits()
++
++
++@dataclass(frozen=True, slots=True)
++class FileIdentity:
++    device: int
++    inode: int
++    mode: int
++    uid: int
++    gid: int
++    link_count: int
++    size: int
++    mtime_ns: int
++    ctime_ns: int
++
++    def __post_init__(self) -> None:
++        for name in self.__dataclass_fields__:
++            _nonnegative_int(getattr(self, name), f"file_identity.{name}")
++        if self.link_count != 1:
++            raise FrontierPackageError("source file must have exactly one link")
++        if not stat.S_ISREG(self.mode):
++            raise FrontierPackageError("source file must be regular")
++
++
++@dataclass(frozen=True, slots=True)
++class MemorySourceSnapshot:
++    """Exact caller-supplied source bytes, distinct from filesystem capture."""
++
++    logical_path: str
++    content: bytes
++
++    def __post_init__(self) -> None:
++        _logical_path(self.logical_path)
++        if type(self.content) is not bytes:
++            raise FrontierPackageError("memory source content must be exact bytes")
++
++
++@dataclass(frozen=True, slots=True)
++class PathSourceSnapshot:
++    """Exact source bytes captured through a no-follow filesystem walk."""
++
++    logical_path: str
++    capture_root: str
++    relative_path: str
++    content: bytes
++    identity: FileIdentity
++
++    def __post_init__(self) -> None:
++        _logical_path(self.logical_path)
++        _relative_path(self.relative_path)
++        if (
++            type(self.capture_root) is not str
++            or not Path(self.capture_root).is_absolute()
++        ):
++            raise FrontierPackageError("capture_root must be an absolute string path")
++        if type(self.content) is not bytes:
++            raise FrontierPackageError("path source content must be exact bytes")
++        if type(self.identity) is not FileIdentity:
++            raise FrontierPackageError(
++                "path source identity must be exactly FileIdentity"
++            )
++
++
++SourceSnapshot = MemorySourceSnapshot | PathSourceSnapshot
++
++
++def _logical_path(value: object) -> str:
++    if type(value) is not str or not value or "\\" in value or "\x00" in value:
++        raise FrontierPackageError("logical_path must be a safe relative POSIX path")
++    if len(value.encode("utf-8")) > 512:
++        raise FrontierPackageError("logical_path is oversized")
++    parts = value.split("/")
++    if any(part in {"", ".", ".."} for part in parts) or value.startswith("/"):
++        raise FrontierPackageError("logical_path must be a safe relative POSIX path")
++    return value
++
++
++def _relative_path(value: object) -> str:
++    if (
++        type(value) is not str
++        or not value
++        or "\x00" in value
++        or "\\" in value
++        or any(part in {"", ".", ".."} for part in value.split("/"))
++    ):
++        raise FrontierPackageError("relative_path must be a safe relative path")
++    path = Path(value)
++    if path.is_absolute():
++        raise FrontierPackageError("relative_path must be a safe relative path")
++    return value
++
++
++def snapshot_source_bytes(
++    logical_path: str,
++    content: bytes,
++    *,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> MemorySourceSnapshot:
++    """Close exact in-memory source bytes under the source bounds."""
++
++    if type(limits) is not FrontierPackageLimits:
++        raise FrontierPackageError("limits must be exactly FrontierPackageLimits")
++    snapshot = MemorySourceSnapshot(logical_path=logical_path, content=content)
++    if len(content) > limits.source_file_bytes:
++        raise FrontierPackageError("memory source exceeds source_file_bytes")
++    return snapshot
++
++
++def _identity(info: os.stat_result) -> FileIdentity:
++    return FileIdentity(
++        device=info.st_dev,
++        inode=info.st_ino,
++        mode=info.st_mode,
++        uid=info.st_uid,
++        gid=info.st_gid,
++        link_count=info.st_nlink,
++        size=info.st_size,
++        mtime_ns=info.st_mtime_ns,
++        ctime_ns=info.st_ctime_ns,
++    )
++
++
++def _open_root(root: Path) -> int:
++    if not root.is_absolute() or any(part == ".." for part in root.parts):
++        raise FrontierPackageError("capture root must be absolute without '..'")
++    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC | os.O_NOFOLLOW
++    fd = os.open("/", flags)
++    try:
++        for part in root.parts[1:]:
++            if part in {"", ".", ".."}:
++                raise FrontierPackageError("capture root contains an unsafe component")
++            next_fd = os.open(part, flags, dir_fd=fd)
++            os.close(fd)
++            fd = next_fd
++        return fd
++    except BaseException:
++        os.close(fd)
++        raise
++
++
++def _read_source_once(
++    root: Path, relative_path: str, maximum: int
++) -> tuple[bytes, FileIdentity]:
++    components = Path(relative_path).parts
++    directory_fd = _open_root(root)
++    file_fd: int | None = None
++    try:
++        directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_CLOEXEC | os.O_NOFOLLOW
++        for component in components[:-1]:
++            next_fd = os.open(component, directory_flags, dir_fd=directory_fd)
++            os.close(directory_fd)
++            directory_fd = next_fd
++        file_fd = os.open(
++            components[-1],
++            os.O_RDONLY | os.O_CLOEXEC | os.O_NOFOLLOW,
++            dir_fd=directory_fd,
++        )
++        before = _identity(os.fstat(file_fd))
++        if before.size > maximum:
++            raise FrontierPackageError("source file exceeds source_file_bytes")
++        chunks: list[bytes] = []
++        remaining = before.size
++        while remaining:
++            chunk = os.read(file_fd, min(remaining, 1024 * 1024))
++            if not chunk:
++                raise FrontierPackageError("source file shortened during capture")
++            chunks.append(chunk)
++            remaining -= len(chunk)
++        if os.read(file_fd, 1):
++            raise FrontierPackageError("source file grew during capture")
++        after = _identity(os.fstat(file_fd))
++        if before != after:
++            raise FrontierPackageError("source identity changed during capture")
++        return b"".join(chunks), before
++    except (OSError, FrontierPackageError) as exc:
++        if isinstance(exc, FrontierPackageError):
++            raise
++        raise FrontierPackageError("source path capture failed closed") from exc
++    finally:
++        if file_fd is not None:
++            os.close(file_fd)
++        os.close(directory_fd)
++
++
++def capture_source_file(
++    root: Path,
++    relative_path: str,
++    *,
++    logical_path: str | None = None,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> PathSourceSnapshot:
++    """Capture and immediately identity/hash recheck one no-follow regular file."""
++
++    if not isinstance(root, Path):
++        raise FrontierPackageError("root must be a pathlib.Path")
++    if type(limits) is not FrontierPackageLimits:
++        raise FrontierPackageError("limits must be exactly FrontierPackageLimits")
++    _relative_path(relative_path)
++    logical = relative_path if logical_path is None else logical_path
++    _logical_path(logical)
++    try:
++        first_bytes, first_identity = _read_source_once(
++            root, relative_path, limits.source_file_bytes
++        )
++        second_bytes, second_identity = _read_source_once(
++            root, relative_path, limits.source_file_bytes
++        )
++    except OSError as exc:
++        raise FrontierPackageError("source path capture failed closed") from exc
++    if first_identity != second_identity or first_bytes != second_bytes:
++        raise FrontierPackageError("source changed across capture recheck")
++    if sha256_bytes(first_bytes) != sha256_bytes(second_bytes):
++        raise FrontierPackageError("source hash changed across capture recheck")
++    return PathSourceSnapshot(
++        logical_path=logical,
++        capture_root=str(root),
++        relative_path=relative_path,
++        content=first_bytes,
++        identity=first_identity,
++    )
++
++
++def _dimacs(cnf: bytes, limits: EndpointLimits) -> tuple[int, int, frozenset[int]]:
++    if type(cnf) is not bytes or len(cnf) > limits.cnf_bytes:
++        raise FrontierPackageError("CNF bytes are invalid or oversized")
++    try:
++        num_vars, num_clauses = scan_dimacs(cnf)
++    except (ValueError, PiqdOracleError) as exc:
++        raise FrontierPackageError(str(exc)) from exc
++    if num_vars <= 0:
++        raise FrontierPackageError("frontier CNF must declare at least one variable")
++    used: set[int] = set()
++    for raw_line in cnf.splitlines():
++        line = raw_line.decode("ascii").strip()
++        if not line or line.startswith(("c", "p")):
++            continue
++        used.update(abs(int(token)) for token in line.split() if int(token) != 0)
++    return num_vars, num_clauses, frozenset(used)
++
++
++def build_complete_variable_map(
++    cnf: bytes,
++    named_variables: dict[str, int],
++    *,
++    limits: EndpointLimits = DEFAULT_LIMITS,
++) -> bytes:
++    """Build a canonical map covering every DIMACS ID, including auxiliaries."""
++
++    if type(limits) is not EndpointLimits:
++        raise FrontierPackageError("limits must be exactly EndpointLimits")
++    if type(named_variables) is not dict:
++        raise FrontierPackageError("named_variables must be an exact builtin dict")
++    num_vars, _, used = _dimacs(cnf, limits)
++    by_id: dict[int, str] = {}
++    for name, variable_id in named_variables.items():
++        _text(name, "variable name", maximum=512)
++        if type(variable_id) is not int or not 1 <= variable_id <= num_vars:
++            raise FrontierPackageError(
++                "variable IDs must be builtin ints in DIMACS range"
++            )
++        if variable_id in by_id:
++            raise FrontierPackageError("named variable IDs must be unique")
++        by_id[variable_id] = name
++    entries = []
++    for variable_id in range(1, num_vars + 1):
++        name = by_id.get(variable_id)
++        entries.append(
++            {
++                "id": variable_id,
++                "kind": "named" if name is not None else "anonymous_auxiliary",
++                "name": name
++                if name is not None
++                else f"anonymous_auxiliary:{variable_id}",
++                "used_in_cnf": variable_id in used,
++            }
++        )
++    result = canonical_json_bytes(
++        {
++            "coverage": "COMPLETE_1_TO_NUM_VARIABLES",
++            "entries": entries,
++            "num_variables": num_vars,
++            "schema": VARIABLE_MAP_SCHEMA,
++        }
++    )
++    _validate_variable_map(result, cnf, limits)
++    return result
++
++
++def _validate_variable_map(
++    raw: bytes, cnf: bytes, limits: EndpointLimits
++) -> tuple[int, int]:
++    value = _strict_json(raw, "variable map", limits)
++    _exact_keys(
++        value,
++        frozenset({"schema", "coverage", "num_variables", "entries"}),
++        "variable map",
++    )
++    if (
++        value["schema"] != VARIABLE_MAP_SCHEMA
++        or value["coverage"] != "COMPLETE_1_TO_NUM_VARIABLES"
++    ):
++        raise FrontierPackageError("variable map schema or coverage is invalid")
++    num_vars, num_clauses, used = _dimacs(cnf, limits)
++    if type(value["num_variables"]) is not int or value["num_variables"] != num_vars:
++        raise FrontierPackageError("variable map DIMACS dimension mismatch")
++    entries = value["entries"]
++    if type(entries) is not list or len(entries) != num_vars:
++        raise FrontierPackageError(
++            "variable map must contain exactly num_variables entries"
++        )
++    seen_names: set[str] = set()
++    for expected_id, entry in enumerate(entries, start=1):
++        if type(entry) is not dict:
++            raise FrontierPackageError("variable map entries must be exact objects")
++        _exact_keys(
++            entry, frozenset({"id", "kind", "name", "used_in_cnf"}), "variable entry"
++        )
++        if type(entry["id"]) is not int or entry["id"] != expected_id:
++            raise FrontierPackageError(
++                "variable map IDs must be exactly 1..num_variables"
++            )
++        name = _text(entry["name"], "variable name", maximum=512)
++        if name in seen_names:
++            raise FrontierPackageError("variable names must be unique")
++        seen_names.add(name)
++        if type(entry["kind"]) is not str or entry["kind"] not in {
++            "named",
++            "anonymous_auxiliary",
++        }:
++            raise FrontierPackageError("variable kind is invalid")
++        if (
++            entry["kind"] == "anonymous_auxiliary"
++            and name != f"anonymous_auxiliary:{expected_id}"
++        ):
++            raise FrontierPackageError("anonymous auxiliary name is not deterministic")
++        if type(entry["used_in_cnf"]) is not bool or entry["used_in_cnf"] != (
++            expected_id in used
++        ):
++            raise FrontierPackageError("variable used_in_cnf flag drifted")
++    return num_vars, num_clauses
++
++
++@dataclass(frozen=True, slots=True)
++class BuildAllocation:
++    first_id: int
++    last_id: int
++    purpose: str
++
++    def __post_init__(self) -> None:
++        _positive_int(self.first_id, "allocation.first_id")
++        _positive_int(self.last_id, "allocation.last_id")
++        if self.last_id < self.first_id:
++            raise FrontierPackageError("allocation last_id precedes first_id")
++        _text(self.purpose, "allocation purpose", maximum=512)
++
++
++@dataclass(frozen=True, slots=True)
++class BuildQuery:
++    query_id: str
++    cnf_sha256: str
++    num_variables: int
++    num_clauses: int
++
++    def __post_init__(self) -> None:
++        _label(self.query_id, "query_id")
++        _digest(self.cnf_sha256, "query cnf_sha256")
++        _positive_int(self.num_variables, "query num_variables")
++        _nonnegative_int(self.num_clauses, "query num_clauses")
++
++    @classmethod
++    def from_cnf(
++        cls, query_id: str, cnf: bytes, *, limits: EndpointLimits = DEFAULT_LIMITS
++    ) -> BuildQuery:
++        num_vars, num_clauses, _ = _dimacs(cnf, limits)
++        return cls(query_id, sha256_bytes(cnf), num_vars, num_clauses)
++
++
++@dataclass(frozen=True, slots=True)
++class BuildPhase:
++    phase_name: str
++    allocations: tuple[BuildAllocation, ...]
++    allocator_num_variables: int
++    query: BuildQuery | None = None
++
++    def __post_init__(self) -> None:
++        _text(self.phase_name, "phase_name", maximum=512)
++        if type(self.allocations) is not tuple or any(
++            type(item) is not BuildAllocation for item in self.allocations
++        ):
++            raise FrontierPackageError(
++                "allocations must be an exact tuple of BuildAllocation"
++            )
++        _positive_int(self.allocator_num_variables, "allocator_num_variables")
++        if self.query is not None and type(self.query) is not BuildQuery:
++            raise FrontierPackageError("query must be exactly BuildQuery or None")
++        if not self.allocations and self.query is None:
++            raise FrontierPackageError(
++                "build phase must allocate variables or close a query"
++            )
++
++
++def build_phase_ledger(phases: tuple[BuildPhase, ...], target_query: str) -> bytes:
++    """Build an exact chronological allocation/query ledger for one query."""
++
++    if (
++        type(phases) is not tuple
++        or not phases
++        or any(type(item) is not BuildPhase for item in phases)
++    ):
++        raise FrontierPackageError(
++            "phases must be a nonempty exact tuple of BuildPhase"
++        )
++    _label(target_query, "target_query")
++    watermark = 0
++    phase_names: set[str] = set()
++    query_names: set[str] = set()
++    encoded = []
++    for index, phase in enumerate(phases):
++        if phase.phase_name in phase_names:
++            raise FrontierPackageError("phase names must be unique")
++        phase_names.add(phase.phase_name)
++        allocations = []
++        for allocation in phase.allocations:
++            if allocation.first_id != watermark + 1:
++                raise FrontierPackageError("allocation ledger has a gap or overlap")
++            watermark = allocation.last_id
++            allocations.append(
++                {
++                    "first_id": allocation.first_id,
++                    "last_id": allocation.last_id,
++                    "purpose": allocation.purpose,
++                }
++            )
++        if phase.allocator_num_variables != watermark:
++            raise FrontierPackageError("allocator watermark drifted from allocations")
++        query_value = None
++        if phase.query is not None:
++            if phase.query.query_id in query_names:
++                raise FrontierPackageError("query IDs must be unique")
++            query_names.add(phase.query.query_id)
++            if phase.query.num_variables != watermark:
++                raise FrontierPackageError(
++                    "query header does not match allocator watermark"
++                )
++            query_value = {
++                "cnf_sha256": phase.query.cnf_sha256,
++                "num_clauses": phase.query.num_clauses,
++                "num_variables": phase.query.num_variables,
++                "query_id": phase.query.query_id,
++            }
++        encoded.append(
++            {
++                "allocations": allocations,
++                "allocator_num_variables": phase.allocator_num_variables,
++                "phase_index": index,
++                "phase_name": phase.phase_name,
++                "query": query_value,
++            }
++        )
++    if phases[-1].query is None or phases[-1].query.query_id != target_query:
++        raise FrontierPackageError("target_query must be the final ledger query")
++    return canonical_json_bytes(
++        {
++            "phases": encoded,
++            "schema": BUILD_PHASE_LEDGER_SCHEMA,
++            "target_query": target_query,
++        }
++    )
++
++
++_LEDGER_KEYS = frozenset({"schema", "target_query", "phases"})
++_PHASE_KEYS = frozenset(
++    {"phase_index", "phase_name", "allocations", "allocator_num_variables", "query"}
++)
++_ALLOCATION_KEYS = frozenset({"first_id", "last_id", "purpose"})
++_QUERY_KEYS = frozenset({"query_id", "cnf_sha256", "num_variables", "num_clauses"})
++
++
++def _validate_ledger(
++    raw: bytes, cnf: bytes, limits: EndpointLimits
++) -> tuple[str, int, int]:
++    value = _strict_json(raw, "build phase ledger", limits)
++    _exact_keys(value, _LEDGER_KEYS, "build phase ledger")
++    if value["schema"] != BUILD_PHASE_LEDGER_SCHEMA:
++        raise FrontierPackageError("build phase ledger schema is invalid")
++    target = _label(value["target_query"], "target_query")
++    phases_value = value["phases"]
++    if type(phases_value) is not list or not phases_value:
++        raise FrontierPackageError("build phase ledger phases must be a nonempty list")
++    phases: list[BuildPhase] = []
++    for index, item in enumerate(phases_value):
++        if type(item) is not dict:
++            raise FrontierPackageError("build phase must be an exact object")
++        _exact_keys(item, _PHASE_KEYS, "build phase")
++        if type(item["phase_index"]) is not int or item["phase_index"] != index:
++            raise FrontierPackageError(
++                "build phase indices must be consecutive builtin ints"
++            )
++        allocations_value = item["allocations"]
++        if type(allocations_value) is not list:
++            raise FrontierPackageError("allocations must be an exact list")
++        allocations: list[BuildAllocation] = []
++        for allocation in allocations_value:
++            if type(allocation) is not dict:
++                raise FrontierPackageError("allocation must be an exact object")
++            _exact_keys(allocation, _ALLOCATION_KEYS, "allocation")
++            allocations.append(
++                BuildAllocation(
++                    allocation["first_id"], allocation["last_id"], allocation["purpose"]
++                )
++            )
++        query_value = item["query"]
++        query = None
++        if query_value is not None:
++            if type(query_value) is not dict:
++                raise FrontierPackageError("query must be an exact object or null")
++            _exact_keys(query_value, _QUERY_KEYS, "query")
++            query = BuildQuery(
++                query_value["query_id"],
++                query_value["cnf_sha256"],
++                query_value["num_variables"],
++                query_value["num_clauses"],
++            )
++        phases.append(
++            BuildPhase(
++                item["phase_name"],
++                tuple(allocations),
++                item["allocator_num_variables"],
++                query,
++            )
++        )
++    if build_phase_ledger(tuple(phases), target) != raw:
++        raise FrontierPackageError("build phase ledger failed canonical replay")
++    num_vars, num_clauses, _ = _dimacs(cnf, limits)
++    final = phases[-1]
++    assert final.query is not None
++    if (
++        final.query.cnf_sha256 != sha256_bytes(cnf)
++        or final.query.num_variables != num_vars
++        or final.query.num_clauses != num_clauses
++    ):
++        raise FrontierPackageError(
++            "target query does not authenticate exact package CNF"
++        )
++    return target, num_vars, num_clauses
++
++
++@dataclass(frozen=True, slots=True)
++class FrontierLaneProfile:
++    lane: str
++    query_id: str
++    wave_id: str
++    live_leaf: str
++    finite_schema: str
++    cardinality_scope: str
++    source_theorem: str
++    query_polarity: str
++
++    def __post_init__(self) -> None:
++        if type(self.lane) is not str or self.lane not in _LANES:
++            raise FrontierPackageError("lane must be one of B/C/DE/DR/E")
++        for name in ("query_id", "wave_id"):
++            _label(getattr(self, name), name)
++        for name in (
++            "live_leaf",
++            "finite_schema",
++            "cardinality_scope",
++            "source_theorem",
++        ):
++            _text(getattr(self, name), name)
++        if (
++            type(self.query_polarity) is not str
++            or self.query_polarity not in _POLARITIES
++        ):
++            raise FrontierPackageError("query_polarity is invalid")
++
++
++def _profile_bytes(profile: FrontierLaneProfile) -> bytes:
++    return canonical_json_bytes(
++        {
++            "claims": _CLOSED_CLAIMS,
++            "evidence_classification": LOCAL_CERTIFICATE,
++            "cardinality_scope": profile.cardinality_scope,
++            "finite_schema": profile.finite_schema,
++            "lane": profile.lane,
++            "live_leaf": profile.live_leaf,
++            "query_id": profile.query_id,
++            "query_polarity": profile.query_polarity,
++            "schema": FRONTIER_PROFILE_SCHEMA,
++            "semantic_status": "FINITE_LOCAL",
++            "source_theorem": profile.source_theorem,
++            "wave_id": profile.wave_id,
++        }
++    )
++
++
++@dataclass(frozen=True, slots=True)
++class FrontierAuthenticatedPackage:
++    """Exact frontier custody bytes plus the existing authenticated snapshot."""
++
++    cnf: bytes
++    variable_map_bytes: bytes
++    source_manifest_bytes: bytes
++    source_snapshots: tuple[SourceSnapshot, ...]
++    build_phase_ledger_bytes: bytes
++    lane_profile_bytes: bytes
++    producer_manifest_bytes: bytes
++    wave_manifest_bytes: bytes
++    limits: FrontierPackageLimits = field(repr=False)
++    snapshot: AuthenticatedPackageSnapshot
++
++    def __post_init__(self) -> None:
++        _validate_constructed_package(self)
++
++
++def _source_manifest(
++    snapshots: tuple[SourceSnapshot, ...], limits: FrontierPackageLimits
++) -> bytes:
++    if type(snapshots) is not tuple or not snapshots:
++        raise FrontierPackageError("source_snapshots must be a nonempty exact tuple")
++    if len(snapshots) > limits.source_files:
++        raise FrontierPackageError("source snapshot count exceeds source_files")
++    entries = []
++    total = 0
++    previous = ""
++    for snapshot in snapshots:
++        if type(snapshot) not in {MemorySourceSnapshot, PathSourceSnapshot}:
++            raise FrontierPackageError("source snapshot has a non-closed type")
++        if snapshot.logical_path <= previous:
++            raise FrontierPackageError(
++                "source snapshots must be uniquely sorted by logical_path"
++            )
++        previous = snapshot.logical_path
++        if len(snapshot.content) > limits.source_file_bytes:
++            raise FrontierPackageError("source snapshot exceeds source_file_bytes")
++        total += len(snapshot.content)
++        if total > limits.source_total_bytes:
++            raise FrontierPackageError("source snapshots exceed source_total_bytes")
++        identity_value = None
++        capture_root = None
++        relative_path = None
++        kind = "memory"
++        if type(snapshot) is PathSourceSnapshot:
++            kind = "path"
++            capture_root = snapshot.capture_root
++            relative_path = snapshot.relative_path
++            try:
++                current_bytes, current_identity = _read_source_once(
++                    Path(snapshot.capture_root),
++                    snapshot.relative_path,
++                    limits.source_file_bytes,
++                )
++            except OSError as exc:
++                raise FrontierPackageError(
++                    "path source package recheck failed"
++                ) from exc
++            if (
++                current_identity != snapshot.identity
++                or current_bytes != snapshot.content
++            ):
++                raise FrontierPackageError("path source drifted after capture")
++            identity_value = {
++                name: getattr(snapshot.identity, name)
++                for name in snapshot.identity.__dataclass_fields__
++            }
++        entries.append(
++            {
++                "byte_count": len(snapshot.content),
++                "capture_kind": kind,
++                "capture_root": capture_root,
++                "file_identity": identity_value,
++                "logical_path": snapshot.logical_path,
++                "relative_path": relative_path,
++                "sha256": sha256_bytes(snapshot.content),
++            }
++        )
++    return canonical_json_bytes(
++        {
++            "entries": entries,
++            "schema": SOURCE_MANIFEST_SCHEMA,
++            "source_count": len(entries),
++            "total_bytes": total,
++        }
++    )
++
++
++_PROFILE_KEYS = frozenset(
++    {
++        "schema",
++        "lane",
++        "query_id",
++        "wave_id",
++        "query_polarity",
++        "live_leaf",
++        "finite_schema",
++        "cardinality_scope",
++        "source_theorem",
++        "semantic_status",
++        "evidence_classification",
++        "claims",
++    }
++)
++
++
++def _validate_profile_bytes(raw: bytes, limits: EndpointLimits) -> dict[str, Any]:
++    value = _strict_json(raw, "lane profile", limits)
++    _exact_keys(value, _PROFILE_KEYS, "lane profile")
++    if value["schema"] != FRONTIER_PROFILE_SCHEMA:
++        raise FrontierPackageError("lane profile schema is invalid")
++    if type(value["lane"]) is not str or value["lane"] not in _LANES:
++        raise FrontierPackageError("lane profile lane is invalid")
++    _label(value["query_id"], "lane profile query_id")
++    _label(value["wave_id"], "lane profile wave_id")
++    for name in ("live_leaf", "finite_schema", "cardinality_scope", "source_theorem"):
++        _text(value[name], f"lane profile {name}")
++    if (
++        type(value["query_polarity"]) is not str
++        or value["query_polarity"] not in _POLARITIES
++    ):
++        raise FrontierPackageError("lane profile query polarity is invalid")
++    if (
++        value["semantic_status"] != "FINITE_LOCAL"
++        or value["evidence_classification"] != LOCAL_CERTIFICATE
++        or value["claims"] != _CLOSED_CLAIMS
++    ):
++        raise FrontierPackageError("lane profile claims are not closed finite evidence")
++    return value
++
++
++def _validate_constructed_package(package: FrontierAuthenticatedPackage) -> None:
++    for name in (
++        "cnf",
++        "variable_map_bytes",
++        "source_manifest_bytes",
++        "build_phase_ledger_bytes",
++        "lane_profile_bytes",
++        "producer_manifest_bytes",
++        "wave_manifest_bytes",
++    ):
++        if type(getattr(package, name)) is not bytes:
++            raise FrontierPackageError(f"{name} must be exact bytes")
++    if type(package.snapshot) is not AuthenticatedPackageSnapshot:
++        raise FrontierPackageError(
++            "snapshot must be exactly AuthenticatedPackageSnapshot"
++        )
++    if type(package.limits) is not FrontierPackageLimits:
++        raise FrontierPackageError("limits must be exactly FrontierPackageLimits")
++    if package.snapshot.limits is not package.limits.endpoint_limits:
++        raise FrontierPackageError("snapshot limits differ from package limits")
++    if (
++        package.snapshot.cnf != package.cnf
++        or package.snapshot.producer_manifest != package.producer_manifest_bytes
++        or package.snapshot.wave_manifest_bytes != package.wave_manifest_bytes
++    ):
++        raise FrontierPackageError("package fields differ from authenticated snapshot")
++    num_vars, num_clauses = _validate_variable_map(
++        package.variable_map_bytes, package.cnf, package.snapshot.limits
++    )
++    target, ledger_vars, ledger_clauses = _validate_ledger(
++        package.build_phase_ledger_bytes, package.cnf, package.snapshot.limits
++    )
++    profile = _validate_profile_bytes(
++        package.lane_profile_bytes, package.snapshot.limits
++    )
++    if profile["query_id"] != target:
++        raise FrontierPackageError("lane profile query differs from ledger target")
++    if (ledger_vars, ledger_clauses) != (num_vars, num_clauses):
++        raise FrontierPackageError("constructed package dimensions drifted")
++    if type(package.source_snapshots) is not tuple or not package.source_snapshots:
++        raise FrontierPackageError("source_snapshots must be a nonempty exact tuple")
++    if any(
++        type(snapshot) not in {MemorySourceSnapshot, PathSourceSnapshot}
++        for snapshot in package.source_snapshots
++    ):
++        raise FrontierPackageError("source snapshot has a non-closed type")
++    if (
++        _source_manifest(package.source_snapshots, package.limits)
++        != package.source_manifest_bytes
++    ):
++        raise FrontierPackageError(
++            "source manifest differs from exact source snapshots"
++        )
++    producer = _strict_json(
++        package.producer_manifest_bytes, "producer manifest", package.snapshot.limits
++    )
++    expected_producer = {
++        "build_phase_ledger_sha256": sha256_bytes(package.build_phase_ledger_bytes),
++        "claims": _CLOSED_CLAIMS,
++        "cnf_sha256": sha256_bytes(package.cnf),
++        "evidence_classification": LOCAL_CERTIFICATE,
++        "lane_profile_sha256": sha256_bytes(package.lane_profile_bytes),
++        "num_clauses": num_clauses,
++        "num_variables": num_vars,
++        "schema": FRONTIER_PACKAGE_SCHEMA,
++        "semantic_status": "FINITE_LOCAL",
++        "source_manifest_sha256": sha256_bytes(package.source_manifest_bytes),
++        "variable_map_sha256": sha256_bytes(package.variable_map_bytes),
++    }
++    if producer != expected_producer:
++        raise FrontierPackageError(
++            "producer manifest is not the exact frontier binding"
++        )
++    wave = package.snapshot.wave_manifest
++    if (
++        wave["wave_id"] != profile["wave_id"]
++        or wave["encoding"]["query_polarity"] != profile["query_polarity"]
++        or wave["encoding"]["variable_map_sha256"]
++        != sha256_bytes(package.variable_map_bytes)
++        or wave["execution"]["order_sha256"]
++        != sha256_bytes(package.build_phase_ledger_bytes)
++        or wave["source"]["ingress_hypotheses_sha256"]
++        != sha256_bytes(package.source_manifest_bytes)
++        or wave["source"]["live_leaf"] != profile["live_leaf"]
++        or wave["source"]["finite_schema"] != profile["finite_schema"]
++        or wave["source"]["cardinality_scope"] != profile["cardinality_scope"]
++        or wave["source"]["source_theorem"] != profile["source_theorem"]
++    ):
++        raise FrontierPackageError(
++            "wave manifest differs from frontier custody records"
++        )
++
++
++def build_frontier_authenticated_package(
++    *,
++    cnf: bytes,
++    variable_map_bytes: bytes,
++    source_snapshots: tuple[SourceSnapshot, ...],
++    build_phase_ledger_bytes: bytes,
++    lane_profile: FrontierLaneProfile,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> FrontierAuthenticatedPackage:
++    """Build one authenticated package for one exact materialized query CNF."""
++
++    if type(limits) is not FrontierPackageLimits:
++        raise FrontierPackageError("limits must be exactly FrontierPackageLimits")
++    if type(lane_profile) is not FrontierLaneProfile:
++        raise FrontierPackageError("lane_profile must be exactly FrontierLaneProfile")
++    num_vars, num_clauses = _validate_variable_map(
++        variable_map_bytes, cnf, limits.endpoint_limits
++    )
++    target_query, ledger_vars, ledger_clauses = _validate_ledger(
++        build_phase_ledger_bytes, cnf, limits.endpoint_limits
++    )
++    if target_query != lane_profile.query_id:
++        raise FrontierPackageError("lane profile query_id differs from ledger target")
++    if (ledger_vars, ledger_clauses) != (num_vars, num_clauses):
++        raise FrontierPackageError("package dimensions drifted across custody records")
++    manifest_bytes = _source_manifest(source_snapshots, limits)
++    profile_bytes = _profile_bytes(lane_profile)
++    producer = canonical_json_bytes(
++        {
++            "build_phase_ledger_sha256": sha256_bytes(build_phase_ledger_bytes),
++            "claims": _CLOSED_CLAIMS,
++            "cnf_sha256": sha256_bytes(cnf),
++            "evidence_classification": LOCAL_CERTIFICATE,
++            "lane_profile_sha256": sha256_bytes(profile_bytes),
++            "num_clauses": num_clauses,
++            "num_variables": num_vars,
++            "schema": FRONTIER_PACKAGE_SCHEMA,
++            "semantic_status": "FINITE_LOCAL",
++            "source_manifest_sha256": sha256_bytes(manifest_bytes),
++            "variable_map_sha256": sha256_bytes(variable_map_bytes),
++        }
++    )
++    wave = canonical_json_bytes(
++        {
++            "encoding": {
++                "cnf_sha256": sha256_bytes(cnf),
++                "num_clauses": num_clauses,
++                "num_variables": num_vars,
++                "producer_manifest_sha256": sha256_bytes(producer),
++                "query_polarity": lane_profile.query_polarity,
++                "variable_map_sha256": sha256_bytes(variable_map_bytes),
++            },
++            "execution": {
++                "backend": "cadical",
++                "order_sha256": sha256_bytes(build_phase_ledger_bytes),
++                "seed": 97,
++                "shard_count": 1,
++                "shard_id": 0,
++                "solver_profile": "sat",
++            },
++            "iteration": 0,
++            "parent_checkpoint_sha256": None,
++            "promotion": {
++                "consumer_theorem": None,
++                "evidence_classification": LOCAL_CERTIFICATE,
++                "lift_theorem": None,
++                "producer_theorem": None,
++            },
++            "schema": "p97-cegar-wave/v1",
++            "source": {
++                "cardinality_scope": lane_profile.cardinality_scope,
++                "finite_schema": lane_profile.finite_schema,
++                "ingress_hypotheses_sha256": sha256_bytes(manifest_bytes),
++                "live_leaf": lane_profile.live_leaf,
++                "source_theorem": lane_profile.source_theorem,
++            },
++            "wave_id": lane_profile.wave_id,
++        }
++    )
++    try:
++        snapshot = AuthenticatedPackageSnapshot(
++            cnf=cnf,
++            producer_manifest=producer,
++            wave_manifest_bytes=wave,
++            limits=limits.endpoint_limits,
++        )
++    except ValueError as exc:
++        raise FrontierPackageError(
++            "existing authenticated snapshot rejected package"
++        ) from exc
++    return FrontierAuthenticatedPackage(
++        cnf=cnf,
++        variable_map_bytes=variable_map_bytes,
++        source_manifest_bytes=manifest_bytes,
++        source_snapshots=source_snapshots,
++        build_phase_ledger_bytes=build_phase_ledger_bytes,
++        lane_profile_bytes=profile_bytes,
++        producer_manifest_bytes=producer,
++        wave_manifest_bytes=wave,
++        limits=limits,
++        snapshot=snapshot,
++    )
++
++
++__all__ = [
++    "BUILD_PHASE_LEDGER_SCHEMA",
++    "DEFAULT_FRONTIER_LIMITS",
++    "FRONTIER_PACKAGE_SCHEMA",
++    "FRONTIER_PROFILE_SCHEMA",
++    "SOURCE_MANIFEST_SCHEMA",
++    "VARIABLE_MAP_SCHEMA",
++    "BuildAllocation",
++    "BuildPhase",
++    "BuildQuery",
++    "FileIdentity",
++    "FrontierAuthenticatedPackage",
++    "FrontierLaneProfile",
++    "FrontierPackageError",
++    "FrontierPackageLimits",
++    "MemorySourceSnapshot",
++    "PathSourceSnapshot",
++    "build_complete_variable_map",
++    "build_frontier_authenticated_package",
++    "build_phase_ledger",
++    "capture_source_file",
++    "snapshot_source_bytes",
++]
+diff --git a/census/card_head/tests/test_frontier_derde_piqd_callers.py b/census/card_head/tests/test_frontier_derde_piqd_callers.py
+new file mode 100644
+index 00000000..944d5df1
+--- /dev/null
++++ b/census/card_head/tests/test_frontier_derde_piqd_callers.py
+@@ -0,0 +1,434 @@
++from __future__ import annotations
++
++import argparse
++import importlib.util
++import json
++import sys
++from pathlib import Path
++from types import ModuleType, SimpleNamespace
++from typing import Any
++
++import pytest
++
++from census.card_head import frontier_lane_piqd as lane_piqd
++from census.card_head.piqd_certified_solver import (
++    PiqdCertifiedSolver,
++    PiqdPerQueryCertifiedSolver,
++)
++from census.card_head.piqd_frontier_package import FrontierAuthenticatedPackage
++from census.card_head.sat_encoding import CadicalResult
++
++REPO_ROOT = Path(__file__).resolve().parents[3]
++FRONTIER_ROOT = REPO_ROOT / "census" / "frontier-packages"
++
++
++def _load_frontier_module(lane: str, script: str) -> ModuleType:
++    """Load a standalone frontier script without cross-lane `encoding` reuse."""
++
++    module_path = FRONTIER_ROOT / f"{lane}_core" / f"{script}.py"
++    module_name = f"_test_frontier_{lane}_{script}_{id(module_path)}"
++    spec = importlib.util.spec_from_file_location(module_name, module_path)
++    assert spec is not None and spec.loader is not None
++    module = importlib.util.module_from_spec(spec)
++    old_encoding = sys.modules.pop("encoding", None)
++    old_path = list(sys.path)
++    sys.modules[module_name] = module
++    try:
++        spec.loader.exec_module(module)
++    finally:
++        sys.path[:] = old_path
++        sys.modules.pop("encoding", None)
++        if old_encoding is not None:
++            sys.modules["encoding"] = old_encoding
++    return module
++
++
++def _result(verdict: str, *, verified: bool = False) -> CadicalResult:
++    cube: dict[Any, Any] | None = {} if verdict == "SAT" else None
++    return CadicalResult(verdict, cube, 10, verified, "fake-only result", None)
++
++
++class _RecordingSolver:
++    def __init__(self, verdict: str = "SAT", *, verified: bool = False) -> None:
++        self.verdict = verdict
++        self.verified = verified
++        self.calls: list[tuple[Path, Path | None]] = []
++        self.active = 0
++        self.max_active = 0
++
++    def __call__(
++        self,
++        _instance: Any,
++        cnf_path: Path,
++        *,
++        extra_clauses: Any = (),
++        timeout_seconds: int = 30,
++        nice: int = 10,
++        proof_path: Path | None = None,
++    ) -> CadicalResult:
++        del extra_clauses, timeout_seconds, nice
++        self.active += 1
++        self.max_active = max(self.max_active, self.active)
++        try:
++            cnf_path.parent.mkdir(parents=True, exist_ok=True)
++            cnf_path.write_bytes(b"p cnf 1 1\n1 0\n")
++            self.calls.append((cnf_path, proof_path))
++            return _result(self.verdict, verified=self.verified)
++        finally:
++            self.active -= 1
++
++
++def test_backend_is_piqd_by_default_legacy_is_explicit_and_workers_are_closed(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    parser = argparse.ArgumentParser()
++    lane_piqd.add_solver_arguments(parser)
++    default_args = parser.parse_args([])
++    assert default_args.solver_backend == "piqd"
++    assert default_args.workers == 1
++    with pytest.raises(SystemExit):
++        parser.parse_args(["--workers", "2"])
++
++    sentinel = _RecordingSolver()
++    legacy_args = parser.parse_args(["--solver-backend", "legacy-local"])
++    monkeypatch.setattr(
++        lane_piqd,
++        "make_solver",
++        lambda **_kwargs: pytest.fail("legacy-local must not construct PIQD"),
++    )
++    assert (
++        lane_piqd.solver_from_args(
++            args=legacy_args,
++            lane="E",
++            encoder=SimpleNamespace(names={"x": 1}),
++            artifact_root=tmp_path,
++            legacy_solver=sentinel,
++        )
++        is sentinel
++    )
++
++
++def test_default_construction_failure_has_no_legacy_fallback(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    parser = argparse.ArgumentParser()
++    lane_piqd.add_solver_arguments(parser)
++    args = parser.parse_args([])
++
++    def fail(**_kwargs: Any) -> Any:
++        raise RuntimeError("synthetic PIQD construction failure")
++
++    monkeypatch.setattr(lane_piqd, "make_solver", fail)
++    with pytest.raises(RuntimeError, match="synthetic PIQD construction failure"):
++        lane_piqd.solver_from_args(
++            args=args,
++            lane="DE",
++            encoder=SimpleNamespace(names={"x": 1}),
++            artifact_root=tmp_path,
++            legacy_solver=_RecordingSolver(),
++        )
++
++
++def test_shared_solver_is_exact_per_query_type(tmp_path: Path) -> None:
++    solver = lane_piqd.make_solver(
++        lane="DR",
++        encoder=SimpleNamespace(names={"x": 1}),
++        artifact_root=tmp_path,
++    )
++    assert type(solver) is PiqdPerQueryCertifiedSolver
++
++
++def test_each_effective_dimacs_gets_fresh_package_transport_and_replayer(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    packages: list[FrontierAuthenticatedPackage] = []
++    transports: list[tuple[object, Path]] = []
++    replayers: list[object] = []
++    real_builder = lane_piqd.build_frontier_authenticated_package
++
++    def record_package(**kwargs: Any) -> FrontierAuthenticatedPackage:
++        package = real_builder(**kwargs)
++        packages.append(package)
++        return package
++
++    def fake_transport(package: object, *, output_root: Path, **_kwargs: Any) -> Any:
++        transports.append((package, output_root))
++
++        def transport(_request: object) -> object:
++            raise AssertionError("factory construction must not contact PIQD")
++
++        return transport
++
++    class FakeReplayer:
++        def __init__(self, **_kwargs: Any) -> None:
++            replayers.append(self)
++
++        def replay(self, **_kwargs: Any) -> object:
++            raise AssertionError("factory construction must not run Lean")
++
++    monkeypatch.setattr(
++        lane_piqd, "build_frontier_authenticated_package", record_package
++    )
++    factory = lane_piqd.make_query_factory(
++        lane="E",
++        encoder=SimpleNamespace(names={"x(1)=yes": 1}),
++        artifact_root=tmp_path,
++        packet_transport_builder=fake_transport,
++        replayer_builder=FakeReplayer,
++    )
++    first_cnf = b"p cnf 1 1\n1 0\n"
++    second_cnf = b"p cnf 1 1\n-1 0\n"
++    first = factory(first_cnf, tmp_path / "query.cnf")
++    second = factory(second_cnf, tmp_path / "query.cnf")
++
++    assert type(first) is type(second) is PiqdCertifiedSolver
++    assert len(packages) == len(transports) == len(replayers) == 2
++    assert packages[0] is not packages[1]
++    assert first.package is packages[0].snapshot
++    assert second.package is packages[1].snapshot
++    assert first.package.cnf == first_cnf
++    assert second.package.cnf == second_cnf
++    assert transports[0][0] is first.package
++    assert transports[1][0] is second.package
++    assert transports[0][1] != transports[1][1]
++    assert first.replayer is not second.replayer
++    variable_map = json.loads(packages[0].variable_map_bytes)
++    assert variable_map["entries"][0]["name"] == "x(1)=yes"
++    assert [snapshot.relative_path for snapshot in packages[0].source_snapshots] == [
++        "census/frontier-packages/E-ENCODING-SPEC.md",
++        "census/frontier-packages/e_core/encoding.py",
++    ]
++
++
++@pytest.mark.parametrize(
++    ("directory", "lane", "encoder_name", "spec_name"),
++    [
++        ("de", "DE", "DEEncoder", "D-E-ENCODING-SPEC.md"),
++        ("dr", "DR", "DREncoder", "D-R-ENCODING-SPEC.md"),
++        ("e", "E", "EEncoder", "E-ENCODING-SPEC.md"),
++    ],
++)
++def test_real_lane_encoders_build_closed_finite_local_packages(
++    directory: str,
++    lane: str,
++    encoder_name: str,
++    spec_name: str,
++    monkeypatch: pytest.MonkeyPatch,
++    tmp_path: Path,
++) -> None:
++    encoding = _load_frontier_module(directory, "encoding")
++    encoder = getattr(encoding, encoder_name)()
++    packages: list[FrontierAuthenticatedPackage] = []
++    real_builder = lane_piqd.build_frontier_authenticated_package
++
++    def record_package(**kwargs: Any) -> FrontierAuthenticatedPackage:
++        package = real_builder(**kwargs)
++        packages.append(package)
++        return package
++
++    def fake_transport(_package: object, **_kwargs: Any) -> Any:
++        return lambda _request: pytest.fail("package-only test contacted PIQD")
++
++    class FakeReplayer:
++        def __init__(self, **_kwargs: Any) -> None:
++            pass
++
++        def replay(self, **_kwargs: Any) -> object:
++            raise AssertionError("package-only test ran Lean")
++
++    monkeypatch.setattr(
++        lane_piqd, "build_frontier_authenticated_package", record_package
++    )
++    factory = lane_piqd.make_query_factory(
++        lane=lane,
++        encoder=encoder,
++        artifact_root=tmp_path / lane.lower(),
++        packet_transport_builder=fake_transport,
++        replayer_builder=FakeReplayer,
++    )
++    num_variables = encoder.cnf.n_variables
++    cnf = f"p cnf {num_variables} 1\n1 0\n".encode("ascii")
++    factory(cnf, tmp_path / f"{lane.lower()}.cnf")
++
++    assert len(packages) == 1
++    profile = json.loads(packages[0].lane_profile_bytes)
++    assert profile["lane"] == lane
++    assert profile["semantic_status"] == "FINITE_LOCAL"
++    assert profile["evidence_classification"] == "LOCAL_CERTIFICATE"
++    assert profile["source_theorem"].startswith("NONE:")
++    assert set(profile["claims"].values()) == {False}
++    assert [snapshot.relative_path for snapshot in packages[0].source_snapshots] == [
++        f"census/frontier-packages/{spec_name}",
++        f"census/frontier-packages/{directory}_core/encoding.py",
++    ]
++
++
++def test_piqd_manifest_uses_lrat_custody_and_never_touches_requested_drat(
++    tmp_path: Path,
++) -> None:
++    e_run = _load_frontier_module("e", "run")
++    e_run.OUT_DIR = tmp_path / "out"
++    e_run.OUT_DIR.mkdir(parents=True)
++    encoder = e_run.enc.EEncoder()
++    requested = e_run.OUT_DIR / "base.drat"
++    requested.write_bytes(b"preexisting sentinel")
++
++    class FakePiqd(_RecordingSolver):
++        def __call__(
++            self, *args: Any, proof_path: Path | None = None, **kwargs: Any
++        ) -> CadicalResult:
++            result = super().__call__(*args, proof_path=proof_path, **kwargs)
++            assert proof_path is not None
++            for suffix in (
++                ".lrat",
++                ".kept.cnf",
++                ".clause-map.json",
++                ".replay.lean",
++                ".replay.json",
++                ".piqd-certified.json",
++            ):
++                proof_path.with_suffix(suffix).write_bytes(suffix.encode("ascii"))
++            return result
++
++    solver = FakePiqd("UNSAT", verified=True)
++    record = e_run.run_one(
++        encoder,
++        "base",
++        list(encoder.base_clauses),
++        [],
++        1,
++        solver=solver,
++        backend="piqd",
++    )
++    assert requested.read_bytes() == b"preexisting sentinel"
++    assert record["proof_format"] == "LRAT"
++    assert record["proof_file"].endswith("base.lrat")
++    assert record["kept_cnf_file"].endswith("base.kept.cnf")
++    assert record["proof_clause_map_file"].endswith("base.clause-map.json")
++    assert record["lean_replay_source_file"].endswith("base.replay.lean")
++    assert record["lean_replay_receipt_file"].endswith("base.replay.json")
++    assert record["certified_receipt_file"].endswith("base.piqd-certified.json")
++    assert record["requested_proof_file"].endswith("base.drat")
++
++
++def test_legacy_local_manifest_is_raw_drat_only(tmp_path: Path) -> None:
++    proof_path = tmp_path / "legacy.drat"
++    proof_path.write_bytes(b"raw DRAT")
++    fields = lane_piqd.proof_manifest_fields(
++        backend="legacy-local",
++        requested_proof_path=proof_path,
++        result=_result("UNSAT", verified=True),
++        relative_to=tmp_path,
++    )
++    assert fields == {
++        "solver_backend": "legacy-local",
++        "proof_format": "DRAT",
++        "proof_file": "legacy.drat",
++        "requested_proof_file": "legacy.drat",
++    }
++
++
++def test_de_official_runs_are_sequential_in_one_worker(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    de_run = _load_frontier_module("de", "run")
++    de_run.OUT_DIR = tmp_path / "out"
++    solver = _RecordingSolver("SAT")
++    monkeypatch.setattr(de_run, "solver_from_args", lambda **_kwargs: solver)
++    monkeypatch.setattr(sys, "argv", ["de-run"])
++    assert de_run.main() == 0
++    assert solver.max_active == 1
++    assert [path.stem for path, _proof in solver.calls] == list(
++        de_run.enc.DEEncoder.RUNS
++    )
++    assert all(proof is not None for _path, proof in solver.calls)
++
++
++@pytest.mark.parametrize("verdict", ["UNKNOWN", "TIMEOUT", "UNSAT"])
++def test_e_run_rejects_inconclusive_or_unverified_unsat(
++    verdict: str, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    e_run = _load_frontier_module("e", "run")
++    e_run.OUT_DIR = tmp_path / "out"
++    solver = _RecordingSolver(verdict, verified=False)
++    monkeypatch.setattr(e_run, "solver_from_args", lambda **_kwargs: solver)
++    monkeypatch.setattr(sys, "argv", ["e-run"])
++    assert e_run.main() == 1
++
++
++def test_e_expected_unsat_probes_require_proof_verification(tmp_path: Path) -> None:
++    e_smoke = _load_frontier_module("e", "smoke")
++    e_smoke.OUT_DIR = tmp_path / "out" / "smoke"
++    e_smoke.OUT_DIR.mkdir(parents=True)
++    result = e_smoke.gate_probes(
++        e_smoke.enc.EEncoder(),
++        1,
++        _RecordingSolver("UNSAT", verified=False),
++        "piqd",
++    )
++    assert result["pass"] is False
++    assert len(result["probes"]) == 5
++    assert all(probe["pass"] is False for probe in result["probes"])
++
++
++def test_de_and_dr_existing_unsat_proof_gates_remain_closed(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    de_smoke = _load_frontier_module("de", "smoke")
++    de_smoke.OUT_DIR = tmp_path / "de" / "smoke"
++    solver = _RecordingSolver()
++
++    def fixture_solver(
++        *args: Any, proof_path: Path | None = None, **kwargs: Any
++    ) -> CadicalResult:
++        verdict = "UNSAT" if proof_path is not None else "SAT"
++        solver.verdict = verdict
++        solver.verified = False
++        return solver(*args, proof_path=proof_path, **kwargs)
++
++    monkeypatch.setattr(de_smoke, "solver_from_args", lambda **_kwargs: fixture_solver)
++    monkeypatch.setattr(sys, "argv", ["de-smoke"])
++    assert de_smoke.main() == 1
++
++    dr_smoke = _load_frontier_module("dr", "smoke")
++    dr_smoke.OUT_DIR = tmp_path / "dr" / "smoke"
++    dr_smoke.OUT_DIR.mkdir(parents=True)
++    encoder = dr_smoke.enc.DREncoder()
++    negative = dr_smoke.solve_probe(
++        encoder,
++        "unverified",
++        "dr-common",
++        [(encoder.delta_q,), (encoder.delta_w,)],
++        "UNSAT",
++        1,
++        solver=_RecordingSolver("UNSAT", verified=False),
++        backend="piqd",
++    )
++    assert negative["pass"] is False
++
++
++def test_dr_role_swap_gate_does_not_invoke_solver(
++    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
++) -> None:
++    dr_smoke = _load_frontier_module("dr", "smoke")
++    dr_smoke.OUT_DIR = tmp_path / "out" / "smoke"
++
++    class ExpectedSolver(_RecordingSolver):
++        def __call__(
++            self, *args: Any, proof_path: Path | None = None, **kwargs: Any
++        ) -> CadicalResult:
++            self.verdict = "UNSAT" if proof_path is not None else "SAT"
++            self.verified = proof_path is not None
++            return super().__call__(*args, proof_path=proof_path, **kwargs)
++
++    solver = ExpectedSolver()
++    monkeypatch.setattr(dr_smoke, "solver_from_args", lambda **_kwargs: solver)
++    monkeypatch.setattr(sys, "argv", ["dr-smoke"])
++    assert dr_smoke.main() == 0
++    report = json.loads((dr_smoke.OUT_DIR / "smoke_report.json").read_text())
++    direct = [
++        gate for gate in report["gates"] if gate["gate"] == "direct-double-role-swap"
++    ]
++    assert len(direct) == 1 and direct[0]["pass"] is True
++    assert len(report["gates"]) == 30
++    assert len(solver.calls) == 29
+diff --git a/census/card_head/tests/test_piqd_certified_solver.py b/census/card_head/tests/test_piqd_certified_solver.py
+new file mode 100644
+index 00000000..c44bc43e
+--- /dev/null
++++ b/census/card_head/tests/test_piqd_certified_solver.py
+@@ -0,0 +1,605 @@
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++# Author: Adam McKenna
++
++from __future__ import annotations
++
++from dataclasses import replace
++from pathlib import Path
++from typing import Any
++
++import pytest
++
++from census.card_head.piqd_certified_solver import (
++    PiqdCertifiedSolver,
++    PiqdCertifiedSolverError,
++    PiqdPerQueryCertifiedSolver,
++)
++from census.card_head.sat_encoding import EncodingError
++from census.p97_search.phase3_cegar_wave import (
++    LOCAL_CERTIFICATE,
++    canonical_json_bytes,
++    sha256_bytes,
++    wave_manifest_sha256,
++)
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    CERTIFICATE_KIND,
++    AuthenticatedPackageSnapshot,
++    CardHeadPiqdPacket,
++    CardHeadPiqdRequest,
++)
++from census.p97_search.phase3_piqd_clause_map import (
++    CERTIFICATE_BOUNDARY,
++    CLAUSE_MAP_VERSION,
++    EXPANSION_RULE,
++)
++from census.p97_search.phase3_piqd_driver import (
++    DISCOVERY_UNSAT,
++    ERROR,
++    STRUCTURAL_SAT,
++    DriverResult,
++)
++from census.p97_search.phase3_piqd_oracle import PreparedJob, raw_dimacs_identity
++from census.p97_search.phase3_piqd_replay import (
++    NORMALIZATION_SCHEMA,
++    REPLAY_SCHEMA,
++    LeanLratReplayer,
++    LratReplayResult,
++    canonical_kept_dimacs,
++    lean_checker_source,
++)
++
++PRODUCER = canonical_json_bytes(
++    {"schema": "certified-test-producer/v1", "semantic_status": "FINITE_LOCAL"}
++)
++VALID_LRAT = b"3 0 1 2 0\n"
++
++
++def _digest(character: str) -> str:
++    return character * 64
++
++
++def _wave(cnf: bytes, *, profile: str) -> bytes:
++    header = cnf.splitlines()[0].split()
++    return canonical_json_bytes(
++        {
++            "schema": "p97-cegar-wave/v1",
++            "wave_id": f"certified-{profile}-fixture",
++            "iteration": 0,
++            "parent_checkpoint_sha256": None,
++            "source": {
++                "live_leaf": "Problem97.certifiedFixture",
++                "ingress_hypotheses_sha256": _digest("1"),
++                "finite_schema": "certified-fixture/v1",
++                "cardinality_scope": "one finite fixture",
++                "source_theorem": "Problem97.certifiedFixtureSource",
++            },
++            "encoding": {
++                "cnf_sha256": sha256_bytes(cnf),
++                "variable_map_sha256": _digest("2"),
++                "producer_manifest_sha256": sha256_bytes(PRODUCER),
++                "num_variables": int(header[2]),
++                "num_clauses": int(header[3]),
++                "query_polarity": "UNSAT_MEANS_OBSTRUCTION",
++            },
++            "execution": {
++                "backend": "cadical",
++                "solver_profile": profile,
++                "shard_id": 0,
++                "shard_count": 1,
++                "order_sha256": _digest("3"),
++                "seed": 97,
++            },
++            "promotion": {
++                "evidence_classification": LOCAL_CERTIFICATE,
++                "producer_theorem": None,
++                "lift_theorem": None,
++                "consumer_theorem": None,
++            },
++        }
++    )
++
++
++class FixtureInstance:
++    def __init__(self, cnf: bytes, *, decoded: object = None) -> None:
++        self._cnf = cnf
++        self.decoded = {0: [0]} if decoded is None else decoded
++        self.decode_calls: list[frozenset[int]] = []
++
++    def dimacs(self, _extra_clauses: object = ()) -> str:
++        return self._cnf.decode("ascii")
++
++    def decode_model(self, positive: frozenset[int]) -> object:
++        self.decode_calls.append(positive)
++        if isinstance(self.decoded, Exception):
++            raise self.decoded
++        return self.decoded
++
++
++class MultiQueryInstance(FixtureInstance):
++    def dimacs(self, extra_clauses: object = ()) -> str:
++        clauses = [(1,)] + [tuple(clause) for clause in extra_clauses]  # type: ignore[union-attr]
++        body = "".join(
++            " ".join(str(item) for item in clause) + " 0\n" for clause in clauses
++        )
++        return f"p cnf 1 {len(clauses)}\n{body}"
++
++
++class UnusedReplayer:
++    def replay(self, **_kwargs: object) -> LratReplayResult:
++        raise AssertionError("SAT/UNKNOWN must not invoke the LRAT replayer")
++
++
++def _package(cnf: bytes, *, profile: str) -> AuthenticatedPackageSnapshot:
++    return AuthenticatedPackageSnapshot(cnf, PRODUCER, _wave(cnf, profile=profile))
++
++
++def _job(package: AuthenticatedPackageSnapshot) -> PreparedJob:
++    profile = package.wave_manifest["execution"]["solver_profile"]
++    identity = raw_dimacs_identity(
++        backend="cadical",
++        solver_profile=profile,
++        cnf_sha256=package.cnf_sha256,
++        producer_manifest_sha256=package.producer_manifest_sha256,
++        requested_core_limit=1,
++    )
++    return PreparedJob(
++        "job-certified",
++        "cadical",
++        profile,
++        package.cnf_sha256,
++        identity,
++        package.num_vars,
++        package.num_clauses,
++        False,
++        1,
++    )
++
++
++def _map_bytes(cnf: bytes) -> bytes:
++    kept = canonical_kept_dimacs(cnf)
++    clauses = int(cnf.splitlines()[0].split()[3])
++    kept_clauses = int(kept.splitlines()[0].split()[3])
++    return canonical_json_bytes(
++        {
++            "version": CLAUSE_MAP_VERSION,
++            "submitted_sha256": sha256_bytes(cnf),
++            "submitted_clauses": clauses,
++            "kept_sha256": sha256_bytes(kept),
++            "kept_clauses": kept_clauses,
++            "exceptions": [],
++            "expansion_rule": EXPANSION_RULE,
++            "boundary": CERTIFICATE_BOUNDARY,
++        }
++    )
++
++
++def _status(
++    package: AuthenticatedPackageSnapshot,
++    job: PreparedJob,
++    result: str,
++    *,
++    kept_hash: str | None = None,
++) -> bytes:
++    value: dict[str, Any] = {
++        "id": job.job_id,
++        "status": "failed" if result == "UNKNOWN" else "completed",
++        "result": result,
++        "backend": job.backend,
++        "project": "erdos-97-96-formalization",
++        "identity_hash": job.identity_hash,
++        "cnf_blob_hash": package.cnf_sha256,
++        "producer_manifest_hash": package.producer_manifest_sha256,
++    }
++    if kept_hash is not None:
++        value["kept_cnf_blob_hash"] = kept_hash
++    return canonical_json_bytes(value)
++
++
++def _base_packet(
++    package: AuthenticatedPackageSnapshot,
++    result: str,
++) -> CardHeadPiqdPacket:
++    job = _job(package)
++    status = _status(package, job, result)
++    outcome = {"SAT": STRUCTURAL_SAT, "UNSAT": DISCOVERY_UNSAT}.get(result, ERROR)
++    driver = DriverResult(job.job_id, outcome, _digest("4"), 1, _digest("5"))
++    return CardHeadPiqdPacket(
++        job=job,
++        driver_result=driver,
++        terminal_record_sha256=driver.terminal_record_sha256,
++        journal_sha256=_digest("6"),
++        seal_sha256=driver.seal_sha256,
++        status_response=status,
++        status_canonical_receipt=status,
++        state="failed" if result == "UNKNOWN" else "completed",
++        result=result,
++    )
++
++
++def _unsat_packet(package: AuthenticatedPackageSnapshot) -> CardHeadPiqdPacket:
++    packet = _base_packet(package, "UNSAT")
++    kept = canonical_kept_dimacs(package.cnf)
++    kept_hash = sha256_bytes(kept)
++    status = _status(package, packet.job, "UNSAT", kept_hash=kept_hash)
++    return replace(
++        packet,
++        status_response=status,
++        status_canonical_receipt=status,
++        clause_map_response=_map_bytes(package.cnf),
++        certificate_kind=CERTIFICATE_KIND,
++        certificate=VALID_LRAT,
++        proof_blob_hash=sha256_bytes(VALID_LRAT),
++        kept_cnf_blob_hash=kept_hash,
++        kept_cnf_blob=kept,
++    )
++
++
++def _sat_packet(
++    package: AuthenticatedPackageSnapshot, assignment: list[object]
++) -> CardHeadPiqdPacket:
++    packet = _base_packet(package, "SAT")
++    model = canonical_json_bytes(
++        {
++            "job_id": packet.job.job_id,
++            "result": "SAT",
++            "num_assigned": len(assignment),
++            "assignment": assignment,
++        }
++    )
++    return replace(
++        packet,
++        model_response=model,
++        model_canonical_receipt=model,
++        model_response_journal_sha256=sha256_bytes(model),
++    )
++
++
++def _replay_result(
++    package: AuthenticatedPackageSnapshot,
++    packet: CardHeadPiqdPacket,
++    *,
++    verified: bool = True,
++) -> LratReplayResult:
++    proof = packet.certificate
++    assert proof is not None
++    kept = canonical_kept_dimacs(package.cnf)
++    checker = lean_checker_source(kept_cnf=kept, proof=proof)
++    receipt = canonical_json_bytes(
++        {
++            "schema": REPLAY_SCHEMA,
++            "normalization": {
++                "schema": NORMALIZATION_SCHEMA,
++                "submitted_cnf_sha256": package.cnf_sha256,
++                "canonical_kept_cnf_sha256": sha256_bytes(kept),
++                "submitted_bytes_equal_kept_bytes": package.cnf == kept,
++            },
++            "job": {
++                "id": packet.job.job_id,
++                "backend": packet.job.backend,
++                "solver_profile": packet.job.solver_profile,
++                "identity_hash": packet.job.identity_hash,
++                "cnf_blob_hash": packet.job.cnf_blob_hash,
++            },
++            "wave_manifest_sha256": wave_manifest_sha256(package.wave_manifest),
++            "proof_sha256": sha256_bytes(proof),
++            "checker_source_sha256": sha256_bytes(checker),
++            "checker": {"kind": "injected-test-double"},
++            "execution": {
++                "returncode": 0 if verified else 1,
++                "error": None if verified else "rejected",
++            },
++            "verified": verified,
++        }
++    )
++    return LratReplayResult(verified, checker, receipt)
++
++
++def _invoke(
++    tmp_path: Path,
++    package: AuthenticatedPackageSnapshot,
++    instance: FixtureInstance,
++    packet: CardHeadPiqdPacket,
++    replayer: object,
++    *,
++    proof: bool,
++):
++    cnf_path = tmp_path / "solver.cnf"
++    cnf_path.write_bytes(package.cnf)
++    calls: list[CardHeadPiqdRequest] = []
++
++    def transport(request: CardHeadPiqdRequest) -> CardHeadPiqdPacket:
++        calls.append(request)
++        return packet
++
++    solver = PiqdCertifiedSolver(package, transport, replayer)  # type: ignore[arg-type]
++    result = solver(
++        instance, cnf_path, proof_path=tmp_path / "solver.drat" if proof else None
++    )
++    return result, calls
++
++
++def test_certified_sat_requires_total_exact_replay_and_decoder(tmp_path: Path) -> None:
++    package = _package(b"p cnf 1 1\n1 0\n", profile="sat")
++    instance = FixtureInstance(package.cnf, decoded={0: [1]})
++    packet = _sat_packet(package, [1])
++
++    result, calls = _invoke(
++        tmp_path, package, instance, packet, UnusedReplayer(), proof=False
++    )
++
++    assert result.verdict == "SAT"
++    assert result.proof_verified is False
++    assert result.cube == {0: [1]}
++    assert result.positive_variables == frozenset({1})
++    assert instance.decode_calls == [frozenset({1})]
++    assert len(calls) == 1
++
++
++def test_per_query_solver_mints_an_exact_package_for_each_effective_dimacs(
++    tmp_path: Path,
++) -> None:
++    instance = MultiQueryInstance(b"", decoded={0: [1]})
++    built: list[tuple[bytes, Path]] = []
++
++    def query_factory(cnf: bytes, cnf_path: Path) -> PiqdCertifiedSolver:
++        built.append((cnf, cnf_path))
++        package = _package(cnf, profile="sat")
++        packet = _sat_packet(package, [1])
++        return PiqdCertifiedSolver(
++            package,
++            lambda _request: packet,
++            UnusedReplayer(),  # type: ignore[arg-type]
++        )
++
++    solver = PiqdPerQueryCertifiedSolver(query_factory)
++    first_path = tmp_path / "B.cnf"
++    second_path = tmp_path / "DE.cnf"
++    first = solver(instance, first_path)
++    second = solver(instance, second_path, extra_clauses=((1,),))
++
++    assert first.verdict == second.verdict == "SAT"
++    assert len(built) == 2
++    assert built[0][0] != built[1][0]
++    assert built[0][1] == first_path
++    assert built[1][1] == second_path
++    assert first_path.read_bytes() == built[0][0]
++    assert second_path.read_bytes() == built[1][0]
++
++
++def test_per_query_solver_rejects_crossed_package_before_transport(
++    tmp_path: Path,
++) -> None:
++    instance = MultiQueryInstance(b"")
++    base = instance.dimacs().encode("ascii")
++    package = _package(base, profile="sat")
++    transport_called = False
++
++    def transport(_request: CardHeadPiqdRequest) -> CardHeadPiqdPacket:
++        nonlocal transport_called
++        transport_called = True
++        return _sat_packet(package, [1])
++
++    solver = PiqdPerQueryCertifiedSolver(
++        lambda _cnf, _path: PiqdCertifiedSolver(
++            package,
++            transport,
++            UnusedReplayer(),  # type: ignore[arg-type]
++        )
++    )
++    with pytest.raises(PiqdCertifiedSolverError, match="effective DIMACS"):
++        solver(instance, tmp_path / "crossed.cnf", extra_clauses=((1,),))
++    assert transport_called is False
++    assert not (tmp_path / "crossed.cnf").exists()
++
++
++@pytest.mark.parametrize("assignment", [[], [True], [-1], [1, -1]])
++def test_certified_sat_rejects_partial_typed_or_false_models(
++    tmp_path: Path, assignment: list[object]
++) -> None:
++    package = _package(b"p cnf 1 1\n1 0\n", profile="sat")
++    packet = _sat_packet(package, assignment)
++    instance = FixtureInstance(package.cnf)
++
++    with pytest.raises(PiqdCertifiedSolverError, match="total|replay/decode"):
++        _invoke(tmp_path, package, instance, packet, UnusedReplayer(), proof=False)
++    assert instance.decode_calls == []
++
++
++def test_certified_sat_decoder_failure_is_closed(tmp_path: Path) -> None:
++    package = _package(b"p cnf 1 1\n1 0\n", profile="sat")
++    instance = FixtureInstance(package.cnf, decoded=EncodingError("bad decoder"))
++
++    with pytest.raises(PiqdCertifiedSolverError, match="decode"):
++        _invoke(
++            tmp_path,
++            package,
++            instance,
++            _sat_packet(package, [1]),
++            UnusedReplayer(),
++            proof=False,
++        )
++
++
++def test_certified_unsat_replays_and_custodies_lrat_without_drat(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    package = _package(b"p cnf 1 2\n1 0\n-1 0\n", profile="unsat")
++    packet = _unsat_packet(package)
++    replay = _replay_result(package, packet)
++    concrete = LeanLratReplayer(lean_root=tmp_path, work_dir=tmp_path)
++    monkeypatch.setattr(LeanLratReplayer, "replay", lambda self, **_kwargs: replay)
++
++    result, _calls = _invoke(
++        tmp_path,
++        package,
++        FixtureInstance(package.cnf),
++        packet,
++        concrete,
++        proof=True,
++    )
++
++    assert result.verdict == "UNSAT"
++    assert result.proof_verified is True
++    assert not (tmp_path / "solver.drat").exists()
++    assert (tmp_path / "solver.lrat").read_bytes() == VALID_LRAT
++    assert (tmp_path / "solver.kept.cnf").read_bytes() == canonical_kept_dimacs(
++        package.cnf
++    )
++    receipt = (tmp_path / "solver.piqd-certified.json").read_bytes()
++    assert b'"proof_verified":true' in receipt
++
++
++@pytest.mark.parametrize(
++    ("mutation", "message"),
++    [
++        ("identity", "identity_hash"),
++        ("cnf", "cnf_blob_hash"),
++        ("producer", "producer_manifest_hash"),
++        ("kept_hash", "kept CNF"),
++        ("kept_bytes", "kept CNF bytes"),
++        ("map", "clause-map"),
++        ("proof", "LRAT header/hash"),
++        ("replay_receipt", "replay"),
++    ],
++)
++def test_certified_unsat_rejects_crossed_bindings(
++    tmp_path: Path,
++    monkeypatch: pytest.MonkeyPatch,
++    mutation: str,
++    message: str,
++) -> None:
++    package = _package(b"p cnf 1 2\n1 0\n-1 0\n", profile="unsat")
++    packet = _unsat_packet(package)
++    replay = _replay_result(package, packet)
++    status = __import__("json").loads(packet.status_response)
++    if mutation in {"identity", "cnf", "producer"}:
++        field = {
++            "identity": "identity_hash",
++            "cnf": "cnf_blob_hash",
++            "producer": "producer_manifest_hash",
++        }[mutation]
++        status[field] = _digest("a")
++        raw = canonical_json_bytes(status)
++        packet = replace(packet, status_response=raw, status_canonical_receipt=raw)
++    elif mutation == "kept_hash":
++        packet = replace(packet, kept_cnf_blob_hash=_digest("a"))
++    elif mutation == "kept_bytes":
++        packet = replace(packet, kept_cnf_blob=b"p cnf 1 1\n1 0\n")
++    elif mutation == "map":
++        mapped = __import__("json").loads(packet.clause_map_response)
++        mapped["kept_sha256"] = _digest("a")
++        packet = replace(packet, clause_map_response=canonical_json_bytes(mapped))
++    elif mutation == "proof":
++        packet = replace(packet, proof_blob_hash=_digest("a"))
++    elif mutation == "replay_receipt":
++        value = __import__("json").loads(replay.receipt)
++        value["proof_sha256"] = _digest("a")
++        replay = replace(replay, receipt=canonical_json_bytes(value))
++    concrete = LeanLratReplayer(lean_root=tmp_path, work_dir=tmp_path)
++    monkeypatch.setattr(LeanLratReplayer, "replay", lambda self, **_kwargs: replay)
++
++    with pytest.raises(PiqdCertifiedSolverError, match=message):
++        _invoke(
++            tmp_path,
++            package,
++            FixtureInstance(package.cnf),
++            packet,
++            concrete,
++            proof=True,
++        )
++    assert not (tmp_path / "solver.lrat").exists()
++
++
++def test_fake_verified_replayer_cannot_promote_unsat(tmp_path: Path) -> None:
++    package = _package(b"p cnf 1 2\n1 0\n-1 0\n", profile="unsat")
++    packet = _unsat_packet(package)
++
++    class FakeReplayer:
++        def replay(self, **_kwargs: object) -> LratReplayResult:
++            return _replay_result(package, packet)
++
++    with pytest.raises(PiqdCertifiedSolverError, match="concrete Lean"):
++        _invoke(
++            tmp_path,
++            package,
++            FixtureInstance(package.cnf),
++            packet,
++            FakeReplayer(),
++            proof=True,
++        )
++
++
++def test_structural_receipt_is_create_once_and_preflighted(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    package = _package(b"p cnf 1 2\n1 0\n-1 0\n", profile="unsat")
++    packet = _unsat_packet(package)
++    replay = _replay_result(package, packet)
++    concrete = LeanLratReplayer(lean_root=tmp_path, work_dir=tmp_path)
++    monkeypatch.setattr(LeanLratReplayer, "replay", lambda self, **_kwargs: replay)
++    (tmp_path / "solver.piqd-certified.json").write_bytes(b"crossed")
++
++    with pytest.raises(PiqdCertifiedSolverError, match="already exists"):
++        _invoke(
++            tmp_path,
++            package,
++            FixtureInstance(package.cnf),
++            packet,
++            concrete,
++            proof=True,
++        )
++    assert not (tmp_path / "solver.lrat").exists()
++    assert (tmp_path / "solver.piqd-certified.json").read_bytes() == b"crossed"
++
++
++def test_unknown_and_transport_errors_fail_closed_without_fallback(
++    tmp_path: Path,
++) -> None:
++    package = _package(b"p cnf 1 1\n1 0\n", profile="sat")
++    instance = FixtureInstance(package.cnf)
++    unknown = _base_packet(package, "UNKNOWN")
++
++    result, calls = _invoke(
++        tmp_path, package, instance, unknown, UnusedReplayer(), proof=False
++    )
++    assert result.verdict == "UNKNOWN"
++    assert result.proof_verified is False
++    assert "no fallback" in result.stdout_tail
++    assert len(calls) == 1
++    assert instance.decode_calls == []
++
++    failing_path = tmp_path / "transport" / "solver.cnf"
++    failing_path.parent.mkdir()
++    failing_path.write_bytes(package.cnf)
++    transport_calls = 0
++
++    def failing_transport(_request: CardHeadPiqdRequest) -> CardHeadPiqdPacket:
++        nonlocal transport_calls
++        transport_calls += 1
++        raise RuntimeError("offline")
++
++    solver = PiqdCertifiedSolver(
++        package,
++        failing_transport,
++        UnusedReplayer(),  # type: ignore[arg-type]
++    )
++    with pytest.raises(PiqdCertifiedSolverError, match="transport failed"):
++        solver(instance, failing_path)
++    assert transport_calls == 1
++
++
++def test_march_cu_job_is_explicitly_outside_certified_seam(tmp_path: Path) -> None:
++    package = _package(b"p cnf 1 1\n1 0\n", profile="sat")
++    packet = _sat_packet(package, [1])
++    packet = replace(packet, job=replace(packet.job, backend="march_cu"))
++
++    with pytest.raises(PiqdCertifiedSolverError, match="march_cu jobs"):
++        _invoke(
++            tmp_path,
++            package,
++            FixtureInstance(package.cnf),
++            packet,
++            UnusedReplayer(),
++            proof=False,
++        )
+diff --git a/census/card_head/tests/test_piqd_frontier_bc.py b/census/card_head/tests/test_piqd_frontier_bc.py
+new file mode 100644
+index 00000000..55257cfb
+--- /dev/null
++++ b/census/card_head/tests/test_piqd_frontier_bc.py
+@@ -0,0 +1,204 @@
++from __future__ import annotations
++
++import argparse
++import json
++from pathlib import Path
++from types import SimpleNamespace
++from typing import Any
++
++import pytest
++
++from census.card_head.frontier_lane_piqd import (
++    LEGACY_LOCAL_BACKEND,
++    PIQD_BACKEND,
++    add_solver_arguments,
++    proof_manifest_fields,
++)
++from census.card_head.piqd_certified_solver import (
++    PiqdCertifiedSolver,
++    PiqdPerQueryCertifiedSolver,
++)
++from census.card_head.piqd_frontier_bc import (
++    AllocationPhase,
++    BcCallerPackageProfile,
++    make_query_factory,
++    make_solver,
++    solver_from_args,
++)
++from census.card_head.sat_encoding import CadicalResult
++
++_THIS_SOURCE = "census/card_head/tests/test_piqd_frontier_bc.py"
++
++
++class _NeverTransport:
++    def __call__(self, request: Any) -> Any:
++        raise AssertionError("unit test must not contact PIQD")
++
++
++class _NeverReplayer:
++    def __init__(self, **kwargs: Any) -> None:
++        self.kwargs = kwargs
++
++    def replay(self, **kwargs: Any) -> Any:
++        raise AssertionError("unit test must not invoke Lean")
++
++
++def _profile() -> BcCallerPackageProfile:
++    return BcCallerPackageProfile(
++        lane="C",
++        source_paths=(_THIS_SOURCE,),
++        allocation_phases=(
++            AllocationPhase("base allocation", 2, "base variables"),
++            AllocationPhase("DEL3 allocation", 3, "one auxiliary variable"),
++            AllocationPhase("C2 allocation", 4, "one fresh-P variable"),
++        ),
++        live_leaf="finite-local-test-leaf",
++        finite_schema="finite-local-test-schema",
++        cardinality_scope="four propositional variables only",
++        source_theorem="NONE: unit-test package has no theorem entitlement",
++    )
++
++
++def test_query_factory_builds_fresh_exact_packages_with_full_custody(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    from census.card_head import piqd_frontier_bc as module
++
++    cnf = b"p cnf 4 2\n1 0\n-4 0\n"
++    encoder = SimpleNamespace(names={"base.x": 1, "c2.P": 4})
++    packages: list[Any] = []
++    outputs: list[Path] = []
++    real_builder = module.build_frontier_authenticated_package
++
++    def capture_package(**kwargs: Any) -> Any:
++        package = real_builder(**kwargs)
++        packages.append(package)
++        return package
++
++    def fake_transport_builder(snapshot: Any, **kwargs: Any) -> _NeverTransport:
++        outputs.append(kwargs["output_root"])
++        assert kwargs["fetch_certified_kept_blob"] is True
++        return _NeverTransport()
++
++    monkeypatch.setattr(module, "build_frontier_authenticated_package", capture_package)
++    factory = make_query_factory(
++        encoder=encoder,
++        profile=_profile(),
++        artifact_root=tmp_path,
++        base_url="http://piqd.invalid",
++        packet_transport_builder=fake_transport_builder,
++        replayer_builder=_NeverReplayer,
++    )
++
++    first = factory(cnf, tmp_path / "query.cnf")
++    second = factory(cnf, tmp_path / "query.cnf")
++
++    assert type(first) is PiqdCertifiedSolver
++    assert type(second) is PiqdCertifiedSolver
++    assert len(packages) == 2
++    assert packages[0] is not packages[1]
++    assert packages[0].cnf == cnf == packages[1].cnf
++    assert len(outputs) == 2 and outputs[0] != outputs[1]
++    assert all(path.parent == tmp_path / "piqd-attempts" for path in outputs)
++
++    variable_map = json.loads(packages[0].variable_map_bytes)
++    assert variable_map["coverage"] == "COMPLETE_1_TO_NUM_VARIABLES"
++    assert [entry["id"] for entry in variable_map["entries"]] == [1, 2, 3, 4]
++    assert variable_map["entries"][2] == {
++        "id": 3,
++        "kind": "anonymous_auxiliary",
++        "name": "anonymous_auxiliary:3",
++        "used_in_cnf": False,
++    }
++
++    ledger = json.loads(packages[0].build_phase_ledger_bytes)
++    assert [phase["allocator_num_variables"] for phase in ledger["phases"]] == [
++        2,
++        3,
++        4,
++        4,
++    ]
++    assert ledger["phases"][-1]["query"]["cnf_sha256"]
++    lane_profile = json.loads(packages[0].lane_profile_bytes)
++    assert lane_profile["source_theorem"].startswith("NONE:")
++    assert lane_profile["claims"]["source_entitlement_established"] is False
++    source_manifest = json.loads(packages[0].source_manifest_bytes)
++    assert source_manifest["entries"][0]["logical_path"] == _THIS_SOURCE
++
++
++def test_make_solver_uses_shared_per_query_seam(tmp_path: Path) -> None:
++    encoder = SimpleNamespace(names={"x": 1, "y": 2, "aux": 3, "p": 4})
++    solver = make_solver(encoder=encoder, profile=_profile(), artifact_root=tmp_path)
++    assert type(solver) is PiqdPerQueryCertifiedSolver
++
++
++def test_backend_default_and_explicit_legacy_have_no_fallback(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    from census.card_head import piqd_frontier_bc as module
++
++    parser = argparse.ArgumentParser()
++    add_solver_arguments(parser)
++    defaults = parser.parse_args([])
++    assert defaults.solver_backend == PIQD_BACKEND
++    assert defaults.workers == 1
++
++    sentinel = object()
++    legacy = SimpleNamespace(
++        workers=1,
++        solver_backend=LEGACY_LOCAL_BACKEND,
++        piqd_base_url="http://piqd.invalid",
++        piqd_max_polls=1,
++        piqd_poll_interval=0.0,
++        lean_replay_timeout=1,
++    )
++    assert (
++        solver_from_args(
++            args=legacy,
++            encoder=SimpleNamespace(names={}),
++            profile=_profile(),
++            artifact_root=tmp_path,
++            legacy_solver=sentinel,  # type: ignore[arg-type]
++        )
++        is sentinel
++    )
++
++    piqd_sentinel = object()
++    monkeypatch.setattr(module, "make_solver", lambda **kwargs: piqd_sentinel)
++    piqd = SimpleNamespace(**{**vars(legacy), "solver_backend": PIQD_BACKEND})
++    assert (
++        solver_from_args(
++            args=piqd,
++            encoder=SimpleNamespace(names={}),
++            profile=_profile(),
++            artifact_root=tmp_path,
++            legacy_solver=sentinel,  # type: ignore[arg-type]
++        )
++        is piqd_sentinel
++    )
++
++
++def test_piqd_custody_fields_leave_requested_drat_untouched(tmp_path: Path) -> None:
++    requested = tmp_path / "gate.drat"
++    requested.write_bytes(b"pre-existing legacy DRAT\n")
++    result = CadicalResult("UNSAT", None, 20, True, "certified", None)
++
++    fields = proof_manifest_fields(
++        backend=PIQD_BACKEND,
++        requested_proof_path=requested,
++        result=result,
++        relative_to=tmp_path,
++    )
++
++    assert requested.read_bytes() == b"pre-existing legacy DRAT\n"
++    assert fields == {
++        "solver_backend": "piqd",
++        "proof_format": "LRAT",
++        "proof_file": "gate.lrat",
++        "requested_proof_file": "gate.drat",
++        "kept_cnf_file": "gate.kept.cnf",
++        "proof_clause_map_file": "gate.clause-map.json",
++        "lean_replay_source_file": "gate.replay.lean",
++        "lean_replay_receipt_file": "gate.replay.json",
++        "certified_receipt_file": "gate.piqd-certified.json",
++    }
+diff --git a/census/card_head/tests/test_piqd_frontier_package.py b/census/card_head/tests/test_piqd_frontier_package.py
+new file mode 100644
+index 00000000..c708fd31
+--- /dev/null
++++ b/census/card_head/tests/test_piqd_frontier_package.py
+@@ -0,0 +1,526 @@
++from __future__ import annotations
++
++import json
++import os
++from dataclasses import replace
++from pathlib import Path
++
++import pytest
++
++from census.card_head.piqd_certified_solver import PiqdCertifiedSolver
++from census.card_head.piqd_frontier_package import (
++    BUILD_PHASE_LEDGER_SCHEMA,
++    FRONTIER_PACKAGE_SCHEMA,
++    FRONTIER_PROFILE_SCHEMA,
++    SOURCE_MANIFEST_SCHEMA,
++    VARIABLE_MAP_SCHEMA,
++    BuildAllocation,
++    BuildPhase,
++    BuildQuery,
++    FrontierAuthenticatedPackage,
++    FrontierLaneProfile,
++    FrontierPackageError,
++    FrontierPackageLimits,
++    PathSourceSnapshot,
++    build_complete_variable_map,
++    build_frontier_authenticated_package,
++    build_phase_ledger,
++    capture_source_file,
++    snapshot_source_bytes,
++)
++from census.p97_search.phase3_cegar_wave import canonical_json_bytes, sha256_bytes
++from census.p97_search.phase3_piqd_card_head_adapter import (
++    AuthenticatedPackageSnapshot,
++    EndpointLimits,
++)
++
++CNF = b"p cnf 4 2\n1 -2 0\n4 0\n"
++
++
++def _json(raw: bytes) -> dict[str, object]:
++    value = json.loads(raw)
++    assert type(value) is dict
++    return value
++
++
++def _profile(*, lane: str = "B", query_id: str = "B.base") -> FrontierLaneProfile:
++    return FrontierLaneProfile(
++        lane=lane,
++        query_id=query_id,
++        wave_id=f"frontier-{str(lane).lower()}-{query_id.replace('.', '-')}",
++        live_leaf="Problem97.Frontier.liveLeaf",
++        finite_schema="p97-frontier-finite-fixture/v1",
++        cardinality_scope="one exact finite diagnostic query only",
++        source_theorem="NONE: finite evidence only",
++        query_polarity="UNSAT_MEANS_OBSTRUCTION",
++    )
++
++
++def _ledger(cnf: bytes = CNF, *, query_id: str = "B.base") -> bytes:
++    num_vars = BuildQuery.from_cnf(query_id, cnf).num_variables
++    return build_phase_ledger(
++        (
++            BuildPhase(
++                "base",
++                (BuildAllocation(1, num_vars, "base named and auxiliary variables"),),
++                num_vars,
++                BuildQuery.from_cnf(query_id, cnf),
++            ),
++        ),
++        query_id,
++    )
++
++
++def _package(
++    *,
++    cnf: bytes = CNF,
++    variable_map: bytes | None = None,
++    ledger: bytes | None = None,
++    profile: FrontierLaneProfile | None = None,
++    sources: tuple = (),
++    limits: FrontierPackageLimits | None = None,
++) -> FrontierAuthenticatedPackage:
++    query_id = "B.base" if profile is None else profile.query_id
++    profile = _profile(query_id=query_id) if profile is None else profile
++    if variable_map is None:
++        variable_map = build_complete_variable_map(cnf, {"eq(a,b)": 1, "row(q,w)": 2})
++    if ledger is None:
++        ledger = _ledger(cnf, query_id=query_id)
++    if not sources:
++        sources = (
++            snapshot_source_bytes("contracts/producer.json", b"{}\n"),
++            snapshot_source_bytes("lean/Frontier.lean", b"theorem fixture := True\n"),
++        )
++    kwargs = {}
++    if limits is not None:
++        kwargs["limits"] = limits
++    return build_frontier_authenticated_package(
++        cnf=cnf,
++        variable_map_bytes=variable_map,
++        source_snapshots=sources,
++        build_phase_ledger_bytes=ledger,
++        lane_profile=profile,
++        **kwargs,
++    )
++
++
++def _tamper(raw: bytes, mutate) -> bytes:
++    value = json.loads(raw)
++    mutate(value)
++    return canonical_json_bytes(value)
++
++
++def test_builds_existing_authenticated_snapshot_and_retains_exact_inputs() -> None:
++    variable_map = build_complete_variable_map(CNF, {"eq(a,b)": 1, "row(q,w)": 2})
++    ledger = _ledger()
++    sources = (
++        snapshot_source_bytes("a", b"alpha"),
++        snapshot_source_bytes("b", b"beta"),
++    )
++    package = _package(variable_map=variable_map, ledger=ledger, sources=sources)
++
++    assert type(package) is FrontierAuthenticatedPackage
++    assert type(package.snapshot) is AuthenticatedPackageSnapshot
++    assert package.snapshot.cnf is package.cnf is CNF
++    assert package.snapshot.producer_manifest is package.producer_manifest_bytes
++    assert package.snapshot.wave_manifest_bytes is package.wave_manifest_bytes
++    assert package.variable_map_bytes is variable_map
++    assert package.build_phase_ledger_bytes is ledger
++    assert package.source_snapshots is sources
++
++    producer = _json(package.producer_manifest_bytes)
++    assert producer["schema"] == FRONTIER_PACKAGE_SCHEMA
++    assert producer["variable_map_sha256"] == sha256_bytes(variable_map)
++    assert producer["source_manifest_sha256"] == sha256_bytes(
++        package.source_manifest_bytes
++    )
++    assert producer["build_phase_ledger_sha256"] == sha256_bytes(ledger)
++    assert producer["semantic_status"] == "FINITE_LOCAL"
++    assert producer["evidence_classification"] == "LOCAL_CERTIFICATE"
++    assert set(producer["claims"].values()) == {False}
++
++
++def test_generated_wave_is_closed_cadical_sat_single_shard() -> None:
++    package = _package()
++    wave = _json(package.wave_manifest_bytes)
++    assert wave["schema"] == "p97-cegar-wave/v1"
++    assert wave["execution"] == {
++        "backend": "cadical",
++        "order_sha256": sha256_bytes(package.build_phase_ledger_bytes),
++        "seed": 97,
++        "shard_count": 1,
++        "shard_id": 0,
++        "solver_profile": "sat",
++    }
++    assert wave["promotion"] == {
++        "consumer_theorem": None,
++        "evidence_classification": "LOCAL_CERTIFICATE",
++        "lift_theorem": None,
++        "producer_theorem": None,
++    }
++    assert wave["encoding"]["query_polarity"] == "UNSAT_MEANS_OBSTRUCTION"
++    assert wave["source"]["ingress_hypotheses_sha256"] == sha256_bytes(
++        package.source_manifest_bytes
++    )
++
++
++def test_existing_fixed_certified_solver_accepts_package_snapshot_with_fakes() -> None:
++    class FakeReplayer:
++        def replay(self, **_kwargs):
++            raise AssertionError("fake replayer must not run during construction")
++
++    def fake_transport(_request):
++        raise AssertionError("fake transport must not run during construction")
++
++    package = _package()
++    solver = PiqdCertifiedSolver(package.snapshot, fake_transport, FakeReplayer())
++    assert solver.package is package.snapshot
++
++
++def test_result_record_cannot_be_reconstructed_with_drifted_custody_fields() -> None:
++    package = _package()
++    with pytest.raises(FrontierPackageError, match="authenticated snapshot"):
++        replace(package, cnf=b"p cnf 4 1\n1 0\n")
++    with pytest.raises(FrontierPackageError, match="exact source snapshots"):
++        replace(package, source_manifest_bytes=package.source_manifest_bytes + b"\n")
++    with pytest.raises(FrontierPackageError, match="frontier binding"):
++        replace(
++            package,
++            lane_profile_bytes=_tamper(
++                package.lane_profile_bytes, lambda value: value.update(lane="C")
++            ),
++        )
++
++
++def test_profile_is_canonical_closed_finite_local_record() -> None:
++    profile = _profile(lane="DE", query_id="DE.core")
++    package = _package(profile=profile)
++    value = _json(package.lane_profile_bytes)
++    assert canonical_json_bytes(value) == package.lane_profile_bytes
++    assert value["schema"] == FRONTIER_PROFILE_SCHEMA
++    assert value["lane"] == "DE"
++    assert value["live_leaf"] == profile.live_leaf
++    assert value["finite_schema"] == profile.finite_schema
++    assert value["cardinality_scope"] == profile.cardinality_scope
++    assert value["source_theorem"] == profile.source_theorem
++    assert value["semantic_status"] == "FINITE_LOCAL"
++    assert value["evidence_classification"] == "LOCAL_CERTIFICATE"
++    assert set(value["claims"].values()) == {False}
++
++
++@pytest.mark.parametrize("lane", ["B", "C", "DE", "DR", "E"])
++def test_closed_lane_set_accepts_all_frontier_lanes(lane: str) -> None:
++    profile = _profile(lane=lane, query_id=f"{lane}.query")
++    assert _package(profile=profile).snapshot.cnf == CNF
++
++
++@pytest.mark.parametrize("lane", ["A", "F", "b", True, 1])
++def test_closed_lane_set_rejects_other_or_nonexact_values(lane: object) -> None:
++    with pytest.raises(FrontierPackageError, match="lane"):
++        _profile(lane=lane)  # type: ignore[arg-type]
++
++
++def test_variable_map_covers_declared_unused_anonymous_auxiliary() -> None:
++    value = _json(build_complete_variable_map(CNF, {"eq(a,b)": 1, "row(q,w)": 2}))
++    assert value["schema"] == VARIABLE_MAP_SCHEMA
++    assert value["coverage"] == "COMPLETE_1_TO_NUM_VARIABLES"
++    assert [entry["id"] for entry in value["entries"]] == [1, 2, 3, 4]
++    assert value["entries"][2] == {
++        "id": 3,
++        "kind": "anonymous_auxiliary",
++        "name": "anonymous_auxiliary:3",
++        "used_in_cnf": False,
++    }
++    assert value["entries"][3]["used_in_cnf"] is True
++
++
++@pytest.mark.parametrize(
++    ("mutation", "message"),
++    [
++        (lambda value: value["entries"].pop(1), "exactly num_variables"),
++        (lambda value: value["entries"][1].update(id=1), "exactly 1..num_variables"),
++        (lambda value: value["entries"][0].update(id=True), "exactly 1..num_variables"),
++        (lambda value: value["entries"][2].update(name="aux-3"), "not deterministic"),
++        (lambda value: value["entries"][2].update(used_in_cnf=True), "flag drifted"),
++        (
++            lambda value: value["entries"][1].update(name="eq(a,b)"),
++            "names must be unique",
++        ),
++        (lambda value: value["entries"][1].update(kind=[]), "kind is invalid"),
++    ],
++)
++def test_variable_map_adversarial_drift_fails_closed(mutation, message: str) -> None:
++    raw = build_complete_variable_map(CNF, {"eq(a,b)": 1, "row(q,w)": 2})
++    with pytest.raises(FrontierPackageError, match=message):
++        _package(variable_map=_tamper(raw, mutation))
++
++
++def test_variable_map_rejects_noncanonical_and_duplicate_json_keys() -> None:
++    raw = build_complete_variable_map(CNF, {})
++    with pytest.raises(FrontierPackageError, match="canonical"):
++        _package(variable_map=raw + b"\n")
++    duplicate = raw.replace(b'{"coverage":', b'{"schema":"duplicate","coverage":', 1)
++    with pytest.raises(FrontierPackageError, match="strict JSON"):
++        _package(variable_map=duplicate)
++
++
++def test_named_map_rejects_duplicate_bool_and_int_subclass_ids() -> None:
++    class FancyInt(int):
++        pass
++
++    with pytest.raises(FrontierPackageError, match="unique"):
++        build_complete_variable_map(CNF, {"a": 1, "b": 1})
++    with pytest.raises(FrontierPackageError, match="builtin ints"):
++        build_complete_variable_map(CNF, {"a": True})
++    with pytest.raises(FrontierPackageError, match="builtin ints"):
++        build_complete_variable_map(CNF, {"a": FancyInt(1)})
++    with pytest.raises(FrontierPackageError, match="names must be unique"):
++        build_complete_variable_map(CNF, {"anonymous_auxiliary:2": 1})
++
++
++def test_c_ledger_tracks_del3_then_c1_then_c2_p_and_unused_del3_ids() -> None:
++    base = b"p cnf 2 1\n1 0\n"
++    c1 = b"p cnf 4 2\n1 0\n3 -4 0\n"
++    c2 = b"p cnf 6 2\n1 0\n5 -6 0\n"
++    phases = (
++        BuildPhase(
++            "base",
++            (BuildAllocation(1, 2, "base"),),
++            2,
++            BuildQuery.from_cnf("C.base", base),
++        ),
++        BuildPhase(
++            "DEL3 auxiliary allocation", (BuildAllocation(3, 4, "DEL3 Sinz"),), 4
++        ),
++        BuildPhase("C1", (), 4, BuildQuery.from_cnf("C.C1", c1)),
++        BuildPhase(
++            "C2 P interval/final dimensions",
++            (BuildAllocation(5, 6, "C2 P interval"),),
++            6,
++            BuildQuery.from_cnf("C.C2", c2),
++        ),
++    )
++    ledger = build_phase_ledger(phases, "C.C2")
++    variable_map = build_complete_variable_map(c2, {"base(1)": 1, "P(a)": 5})
++    package = _package(
++        cnf=c2,
++        variable_map=variable_map,
++        ledger=ledger,
++        profile=_profile(lane="C", query_id="C.C2"),
++    )
++    ledger_value = _json(package.build_phase_ledger_bytes)
++    assert ledger_value["schema"] == BUILD_PHASE_LEDGER_SCHEMA
++    assert [phase["allocator_num_variables"] for phase in ledger_value["phases"]] == [
++        2,
++        4,
++        4,
++        6,
++    ]
++    entries = _json(variable_map)["entries"]
++    assert entries[2]["used_in_cnf"] is False
++    assert entries[3]["used_in_cnf"] is False
++
++
++@pytest.mark.parametrize(
++    ("phases", "message"),
++    [
++        (
++            (
++                BuildPhase(
++                    "base",
++                    (BuildAllocation(2, 4, "gap"),),
++                    4,
++                    BuildQuery.from_cnf("B.base", CNF),
++                ),
++            ),
++            "gap or overlap",
++        ),
++        (
++            (
++                BuildPhase(
++                    "base",
++                    (BuildAllocation(1, 4, "base"),),
++                    3,
++                    BuildQuery.from_cnf("B.base", CNF),
++                ),
++            ),
++            "watermark drifted",
++        ),
++    ],
++)
++def test_ledger_allocation_drift_fails_closed(phases, message: str) -> None:
++    with pytest.raises(FrontierPackageError, match=message):
++        build_phase_ledger(phases, "B.base")
++
++
++def test_ledger_requires_target_as_final_query_and_exact_cnf() -> None:
++    with pytest.raises(FrontierPackageError, match="final ledger query"):
++        build_phase_ledger(
++            (
++                BuildPhase(
++                    "base",
++                    (BuildAllocation(1, 4, "base"),),
++                    4,
++                    BuildQuery.from_cnf("B.other", CNF),
++                ),
++            ),
++            "B.base",
++        )
++    wrong = b"p cnf 4 1\n2 0\n"
++    with pytest.raises(FrontierPackageError, match="exact package CNF"):
++        _package(ledger=_ledger(wrong))
++
++
++def test_ledger_rejects_bool_index_and_noncanonical_bytes() -> None:
++    ledger = _ledger()
++    tampered = _tamper(
++        ledger, lambda value: value["phases"][0].update(phase_index=True)
++    )
++    with pytest.raises(FrontierPackageError, match="builtin ints"):
++        _package(ledger=tampered)
++    with pytest.raises(FrontierPackageError, match="canonical"):
++        _package(ledger=ledger + b"\n")
++
++
++def test_query_scoped_packages_bind_different_effective_cnf_bytes() -> None:
++    base = b"p cnf 2 1\n1 0\n"
++    extended = b"p cnf 2 2\n1 0\n-2 0\n"
++    base_package = _package(
++        cnf=base,
++        variable_map=build_complete_variable_map(base, {"x": 1}),
++        ledger=_ledger(base),
++    )
++    extended_package = _package(
++        cnf=extended,
++        variable_map=build_complete_variable_map(extended, {"x": 1}),
++        ledger=_ledger(extended),
++    )
++    assert base_package.snapshot.cnf == base
++    assert extended_package.snapshot.cnf == extended
++    assert (
++        base_package.snapshot.package_identity
++        != extended_package.snapshot.package_identity
++    )
++
++
++def test_memory_source_manifest_is_exact_bounded_and_sorted() -> None:
++    sources = (
++        snapshot_source_bytes("a", b"alpha"),
++        snapshot_source_bytes("z", b"zeta"),
++    )
++    package = _package(sources=sources)
++    manifest = _json(package.source_manifest_bytes)
++    assert manifest["schema"] == SOURCE_MANIFEST_SCHEMA
++    assert manifest["source_count"] == 2
++    assert manifest["total_bytes"] == 9
++    assert manifest["entries"][0]["capture_kind"] == "memory"
++    assert manifest["entries"][0]["sha256"] == sha256_bytes(b"alpha")
++    with pytest.raises(FrontierPackageError, match="uniquely sorted"):
++        _package(sources=tuple(reversed(sources)))
++
++
++def test_memory_source_limits_and_closed_container_types() -> None:
++    limits = FrontierPackageLimits(
++        endpoint_limits=EndpointLimits(),
++        source_file_bytes=3,
++        source_total_bytes=4,
++        source_files=1,
++    )
++    with pytest.raises(FrontierPackageError, match="source_file_bytes"):
++        snapshot_source_bytes("a", b"four", limits=limits)
++    one = snapshot_source_bytes("a", b"abc", limits=limits)
++    with pytest.raises(FrontierPackageError, match="nonempty exact tuple"):
++        build_frontier_authenticated_package(
++            cnf=CNF,
++            variable_map_bytes=build_complete_variable_map(CNF, {}),
++            source_snapshots=[one],  # type: ignore[arg-type]
++            build_phase_ledger_bytes=_ledger(),
++            lane_profile=_profile(),
++            limits=limits,
++        )
++
++
++def test_path_capture_rechecks_regular_nlink1_file_and_records_identity(
++    tmp_path: Path,
++) -> None:
++    root = tmp_path / "root"
++    (root / "nested").mkdir(parents=True)
++    source = root / "nested" / "source.txt"
++    source.write_bytes(b"stable source")
++    snapshot = capture_source_file(
++        root, "nested/source.txt", logical_path="src/source.txt"
++    )
++    assert type(snapshot) is PathSourceSnapshot
++    package = _package(sources=(snapshot,))
++    entry = _json(package.source_manifest_bytes)["entries"][0]
++    assert entry["capture_kind"] == "path"
++    assert entry["file_identity"]["link_count"] == 1
++    assert entry["sha256"] == sha256_bytes(b"stable source")
++
++
++def test_path_snapshot_fails_if_source_drifts_before_package_build(
++    tmp_path: Path,
++) -> None:
++    root = tmp_path / "root"
++    root.mkdir()
++    source = root / "source.txt"
++    source.write_bytes(b"first")
++    snapshot = capture_source_file(root, "source.txt")
++    source.write_bytes(b"second")
++    with pytest.raises(FrontierPackageError, match="drifted after capture"):
++        _package(sources=(snapshot,))
++
++
++def test_path_capture_rejects_symlink_component_and_file(tmp_path: Path) -> None:
++    root = tmp_path / "root"
++    actual = root / "actual"
++    actual.mkdir(parents=True)
++    (actual / "source.txt").write_bytes(b"source")
++    (root / "linked-dir").symlink_to(actual, target_is_directory=True)
++    (root / "linked-file").symlink_to(actual / "source.txt")
++    with pytest.raises(FrontierPackageError, match="failed closed"):
++        capture_source_file(root, "linked-dir/source.txt")
++    with pytest.raises(FrontierPackageError, match="failed closed"):
++        capture_source_file(root, "linked-file")
++
++
++def test_path_capture_rejects_hard_link(tmp_path: Path) -> None:
++    root = tmp_path / "root"
++    root.mkdir()
++    source = root / "source.txt"
++    source.write_bytes(b"source")
++    os.link(source, root / "second-link.txt")
++    with pytest.raises(FrontierPackageError, match="exactly one link"):
++        capture_source_file(root, "source.txt")
++
++
++def test_path_capture_rejects_oversized_and_unsafe_paths(tmp_path: Path) -> None:
++    root = tmp_path / "root"
++    root.mkdir()
++    (root / "source.txt").write_bytes(b"1234")
++    limits = FrontierPackageLimits(source_file_bytes=3)
++    with pytest.raises(FrontierPackageError, match="source_file_bytes"):
++        capture_source_file(root, "source.txt", limits=limits)
++    with pytest.raises(FrontierPackageError, match="safe relative"):
++        capture_source_file(root, "../source.txt")
++    with pytest.raises(FrontierPackageError, match="safe relative"):
++        capture_source_file(root, "nested//source.txt")
++    with pytest.raises(FrontierPackageError, match="safe relative"):
++        capture_source_file(root, "nested\\source.txt")
++    with pytest.raises(FrontierPackageError, match="must be absolute"):
++        capture_source_file(Path("relative"), "source.txt")
++
++
++def test_profile_query_must_match_ledger_target() -> None:
++    with pytest.raises(FrontierPackageError, match="differs from ledger target"):
++        _package(profile=_profile(query_id="B.other"), ledger=_ledger())
++
++
++def test_limits_reject_bool_and_endpoint_subclass() -> None:
++    class CustomLimits(EndpointLimits):
++        pass
++
++    with pytest.raises(FrontierPackageError, match="positive builtin int"):
++        FrontierPackageLimits(source_files=True)  # type: ignore[arg-type]
++    with pytest.raises(FrontierPackageError, match="exactly EndpointLimits"):
++        FrontierPackageLimits(endpoint_limits=CustomLimits())
+diff --git a/census/frontier-packages/DERDE-PIQD-CERTIFIED-CALLER-SPEC.md b/census/frontier-packages/DERDE-PIQD-CERTIFIED-CALLER-SPEC.md
+new file mode 100644
+index 00000000..a109b290
+--- /dev/null
++++ b/census/frontier-packages/DERDE-PIQD-CERTIFIED-CALLER-SPEC.md
+@@ -0,0 +1,70 @@
++# DE/DR/E certified PIQD caller contract
++
++## Scope
++
++This contract covers only the named-local DE, DR, and E frontier projections.
++Every result remains `FINITE_LOCAL` / `LOCAL_CERTIFICATE` evidence.  Neither a
++SAT witness nor a certified UNSAT result promotes a theorem or closes a
++universal carrier claim.
++
++## Backend selection and execution
++
++- `piqd` is the default backend.
++- `legacy-local` is available only through the explicit
++  `--solver-backend legacy-local` option.
++- A PIQD construction, transport, or replay failure is terminal for that
++  caller invocation.  It never falls back to the local solver.
++- `--workers` accepts only `1`.  Official runs and smoke probes are submitted
++  sequentially in their existing deterministic order.
++- DR's `direct-double-role-swap` check remains a direct, non-solver gate.
++
++## Exact query package
++
++For every effective DIMACS query, including every smoke probe with extra
++clauses, the caller creates exactly one fresh `FrontierAuthenticatedPackage`.
++It contains:
++
++- the exact effective DIMACS bytes;
++- a complete variable map made from the selected encoder's exact name-to-id
++  dictionary;
++- exact path snapshots of that lane's `encoding.py` and encoding spec;
++- a build ledger whose terminal query authenticates the same DIMACS bytes; and
++- a closed DE, DR, or E finite/local lane profile.
++
++The package is used to create one fresh transport attempt and one fresh
++`LeanLratReplayer`.  The shared public solve callable is
++`PiqdPerQueryCertifiedSolver(query_factory)`.
++
++## Proof custody
++
++The caller continues to pass a requested path ending in `.drat` for interface
++compatibility.  Backend artifacts are not relabeled:
++
++| Backend | Requested `.drat` | Proof manifest | Additional custody |
++| --- | --- | --- | --- |
++| `piqd` | must remain untouched | `proof_format: LRAT`, `.lrat` proof | kept CNF, proof clause map, Lean replay source, replay receipt, certified receipt |
++| `legacy-local` | raw local proof destination | `proof_format: DRAT`, `.drat` proof | none claimed by this caller contract |
++
++Certified PIQD UNSAT is accepted only after the existing exact packet checks
++and local Lean LRAT replay return `proof_verified: true`.
++
++## Gate and exit semantics
++
++- The existing DE and DR smoke UNSAT gates still require
++  `proof_verified: true`.
++- Each E smoke probe expected to be UNSAT passes only when its verdict is
++  `UNSAT` and `proof_verified` is true.
++- E official runs exit successfully only when every run is SAT or verified
++  UNSAT.  `UNKNOWN`, `TIMEOUT`, and unverified UNSAT are inconclusive and make
++  the process exit nonzero.
++
++## Focused fake-only test
++
++Run:
++
++```bash
++bash census/frontier-packages/test-derde-piqd-callers.sh
++```
++
++The script caps common native thread pools and runs one pytest process.  Its
++fakes do not contact a daemon, invoke a SAT solver, or run Lean.
+diff --git a/census/frontier-packages/test-derde-piqd-callers.sh b/census/frontier-packages/test-derde-piqd-callers.sh
+new file mode 100755
+index 00000000..87f412b2
+--- /dev/null
++++ b/census/frontier-packages/test-derde-piqd-callers.sh
+@@ -0,0 +1,16 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
++cd "${repo_root}"
++
++export UV_CACHE_DIR="${repo_root}/.uv-cache"
++export UV_THREADPOOL_SIZE=1
++export OMP_NUM_THREADS=1
++export OPENBLAS_NUM_THREADS=1
++export MKL_NUM_THREADS=1
++export NUMEXPR_NUM_THREADS=1
++export VECLIB_MAXIMUM_THREADS=1
++export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
++
++exec uv run pytest -q census/card_head/tests/test_frontier_derde_piqd_callers.py
+diff --git a/docs/specs/p97-piqd-certified-frontier-solver-v1.md b/docs/specs/p97-piqd-certified-frontier-solver-v1.md
+new file mode 100644
+index 00000000..0153cd5b
+--- /dev/null
++++ b/docs/specs/p97-piqd-certified-frontier-solver-v1.md
+@@ -0,0 +1,139 @@
++# P97 PIQD certified frontier solver v1
++
++Status: implemented as **P97 ADAPTER DEBT**, not as proof closure.  The
++proof-blueprint anchor `019fdf9c` remains open and off-spine.  This seam can
++produce a verified finite local `CadicalResult`; it establishes neither source
++entitlement, frontier coverage, a universal lift, nor a Lean theorem.
++
++The implementation is `census/card_head/piqd_certified_solver.py`.  It is an
++explicit certified alternative to the observational
++`CardHeadPiqdAdapter`.  Selecting neither `PiqdCertifiedSolver` nor
++`PiqdPerQueryCertifiedSolver` preserves the prior SAT/UNKNOWN behavior and the
++prior non-promotable UNSAT handoff.
++
++## Public construction contract
++
++One fixed effective CNF uses:
++
++```python
++package = AuthenticatedPackageSnapshot(
++    cnf=exact_effective_dimacs,
++    producer_manifest=canonical_producer_manifest,
++    wave_manifest_bytes=canonical_wave_manifest,
++)
++packet_transport = make_current_piqd_packet_transport(
++    package,
++    output_root=fresh_attempt_journal_root,
++    base_url=piqd_base_url,
++)
++solver = PiqdCertifiedSolver(package, packet_transport, concrete_replayer)
++result = solver(instance, cnf_path, extra_clauses=..., proof_path=...)
++```
++
++`output_root.parent` must already exist as a real no-follow directory and
++`output_root` must not exist.  The public transport constructor validates its
++configuration and creates/owns that root once with mode 0700.  It defaults to
++the standard HTTP transport and to fetching the certified kept-CNF blob.
++Injected transports are an explicit test/integration boundary, not a local
++solver fallback.
++
++A fixed `PiqdCertifiedSolver` accepts only calls whose complete
++`instance.dimacs(extra_clauses)` bytes equal `package.cnf`.  Multi-query B, C,
++DE, DR, and E lanes therefore use one solve-compatible dispatcher:
++
++```python
++def query_factory(cnf: bytes, cnf_path: Path) -> PiqdCertifiedSolver:
++    package = build_profile_package_for_exact_cnf(cnf)
++    transport = make_current_piqd_packet_transport(
++        package,
++        output_root=fresh_attempt_root_for(cnf_path),
++        base_url=piqd_base_url,
++    )
++    return PiqdCertifiedSolver(package, transport, concrete_replayer)
++
++solver = PiqdPerQueryCertifiedSolver(query_factory)
++```
++
++The dispatcher computes the effective DIMACS before invoking the factory,
++requires the exact concrete fixed solver type, and rechecks byte equality with
++its returned package before transport.  Package derivation is intentionally a
++profile-owned production function: the generic trust seam does not infer or
++weaken producer/wave semantics.
++
++## Current PIQD ingress
++
++The only certified kept-CNF byte route is the bounded, job-reference-bound
++`GET /jobs/{safe_job_id}/blobs/{lowercase_64_hex_sha256}`.  It requires HTTP
++200, exactly one `Content-Type: application/octet-stream`, and the configured
++CNF byte limit.  Extra path components, unsafe job identifiers, wrong digest
++shape/case, response type, status, content type, or size fail closed.  The
++returned bytes are SHA-256 checked locally even though PIQD binds the route to
++the job reference.
++
++The maintained PIQD contract was confirmed in nthdegree conversation
++`#erdos-97-96-formalization`, message `#5616`:
++
++- `kept_cnf_blob_hash` is deliberately null for `march_cu`; the certified seam
++  rejects a `march_cu` prepared job or status explicitly and does not report a
++  missing CaDiCaL binding;
++- CaDiCaL mints the kept CNF, and the clause-map route already requires its
++  hash and checks the recomputed kept CNF;
++- status exposes `identity_hash`, optional `cnf_blob_hash`,
++  `producer_manifest_hash`, and `kept_cnf_blob_hash`, but no solver-profile or
++  proof-hash field; and
++- the proof hash exists only in `X-Proof-Blob-Hash` on the proof response.
++
++The certified seam does not invent absent status fields.  For CaDiCaL UNSAT it
++requires exact status bindings for job ID, backend, project, raw identity,
++submitted CNF hash, producer-manifest hash, kept-CNF hash, terminal state, and
++result.  It also binds the concrete prepared job and sealed driver terminal
++record.
++
++## Result gates
++
++SAT requires a canonical exact model receipt, job/result binding, the sealed
++journal model hash, and a total assignment of every DIMACS variable exactly
++once.  The assignment is replayed against the exact effective CNF and passed
++through `instance.decode_model`.  Partial, duplicate, typed, out-of-range,
++false, or undecodable models fail closed.
++
++UNKNOWN, failed status, transport loss, malformed responses, and internal
++errors never invoke a local solver and never fall back.  UNKNOWN carries no
++model or proof artifacts and returns `proof_verified=False`.
++
++UNSAT requires all of the following:
++
++1. an exact CaDiCaL job and status identity/CNF/producer/kept binding;
++2. fetched kept-CNF bytes whose local SHA-256 equals the status/packet hash;
++3. `consume_clause_map` success, with both its canonical kept bytes and kept
++   hash equal to the fetched blob;
++4. syntactically bounded compact LRAT bytes whose SHA-256 equals the exact
++   `X-Proof-Blob-Hash` value; and
++5. a concrete local `LeanLratReplayer` result accepted by
++   `validate_replay_result` and marked verified.
++
++A fake or merely shape-compatible replayer cannot set
++`CadicalResult.proof_verified=True`.  No live Lean execution is part of the
++unit tests; the concrete replayer call is injected there with an exact replay
++receipt.
++
++## Custody and claim boundary
++
++The caller's requested proof path is a legacy compatibility argument only.
++Compact LRAT is never written there when it has a `.drat` suffix.  Certified
++custody derives create-once siblings:
++
++- `.lrat` compact proof;
++- `.kept.cnf` fetched canonical kept CNF;
++- `.clause-map.json` exact response;
++- `.replay.lean` local checker source;
++- `.replay.json` replay receipt; and
++- `.piqd-certified.json` structural binding receipt.
++
++All targets share one existing no-follow parent, are preflighted as absent,
++and are installed with `O_EXCL|O_NOFOLLOW`, bounded readback, file and directory
++fsync.  An existing receipt or any crossed target aborts before publication.
++The structural receipt binds the package, job, status, journal, kept CNF,
++clause map, compact LRAT, checker, and replay hashes while recording every
++non-established global claim as false.
++
+diff --git a/docs/specs/p97-piqd-frontier-bc-core-callers-v1.md b/docs/specs/p97-piqd-frontier-bc-core-callers-v1.md
+new file mode 100644
+index 00000000..cd6fe25d
+--- /dev/null
++++ b/docs/specs/p97-piqd-frontier-bc-core-callers-v1.md
+@@ -0,0 +1,68 @@
++# P97 PIQD frontier B/C-core callers v1
++
++Status: implemented finite/local caller contract. This specification governs
++only the B- and C-core Python callers under `census/frontier-packages/`; it does
++not promote a Lean theorem or establish a universal P97 result.
++
++## Solver selection and execution
++
++All four callers (`b_core/run.py`, `b_core/smoke.py`, `c_core/run.py`, and
++`c_core/smoke.py`) default to `--solver-backend piqd`. The only local-solver
++route is the explicit `--solver-backend legacy-local` choice. There is no
++automatic PIQD-to-local fallback. `--workers` accepts only `1`, and every gate
++is submitted sequentially.
++
++Each solver invocation authenticates a fresh package from the exact effective
++DIMACS passed to that invocation. Thus caller-supplied extra clauses, the
++DIMACS variable header, and unused-but-allocated auxiliary IDs are covered by
++the package. The wrapper continues to return `CadicalResult`; the callers keep
++their existing `RunInstance`, extra-clause, model-decoding, and SAT-cube paths.
++
++## Finite/local package custody
++
++The package captures the caller, encoder, encoding specification, and the
++minimal existing finite-frontier sources named by the caller profile. A B run
++also captures its producer contract. C packages capture the A-core dependency,
++physical-apex boundary specification, and the two finite-frontier Lean source
++files referenced by the live leaves. These snapshots establish source custody,
++not source entitlement: a profile whose query has no theorem entitlement says
++so explicitly.
++
++The build ledger is chronological. B records its allocation watermark before
++the query. C records the applicable prefix of base, DEL3 auxiliary, and C2
++fresh-P/final-dimension allocations. The final query-materialization phase
++binds the exact DIMACS hash and header. A complete variable map covers every ID
++from `1` through the DIMACS header, including declared-but-unused DEL3 IDs.
++
++The lane profile binds lane, unique query ID, wave ID, live leaf, finite schema,
++cardinality scope, source theorem or explicit lack of entitlement, UNSAT query
++polarity, and the closed finite/local claim.
++
++## Proof artifacts and gates
++
++Under PIQD, a requested `*.drat` path is a compatibility input only and is not
++created, overwritten, or hashed as proof output. An UNSAT record instead binds
++the fetched LRAT proof, kept CNF, proof clause map, generated Lean replay
++source, replay receipt, and certified PIQD receipt. `proof_verified` is true
++only after the concrete `LeanLratReplayer` succeeds.
++
++Expected-UNSAT gates fail unless both the verdict is `UNSAT` and
++`proof_verified is True`:
++
++- B smoke: the full third-bisector obstruction;
++- B run: every B1 normal-form self-test;
++- C smoke: the source-unit clash, DEL3 clash, C6.9 exclusions, and all named
++  UNSAT probes;
++- C run: C1 and C2. The process succeeds only when the base is SAT and both C1
++  and C2 are verified UNSAT.
++
++SAT gates do not require a proof certificate. No gate result by itself upgrades
++the finite/local schema, source theorem, or Lean proof status.
++
++## Offline verification
++
++Run `scripts/test-p97-piqd-bc-core.sh`. It caps numerical and Rayon thread
++counts at one, disables third-party pytest plugin autoload, uses one pytest
++process, compiles the four caller modules, and runs only fake transport/replayer
++tests plus Ruff checks. It does not contact a PIQD daemon or invoke a SAT
++solver, Lean, Git, or a publication workflow.
+diff --git a/docs/specs/p97-piqd-frontier-production-package-v1.md b/docs/specs/p97-piqd-frontier-production-package-v1.md
+new file mode 100644
+index 00000000..b06981fe
+--- /dev/null
++++ b/docs/specs/p97-piqd-frontier-production-package-v1.md
+@@ -0,0 +1,280 @@
++# P97 PIQD frontier production package v1
++
++Status: frozen finite-evidence custody boundary for frontier lanes B, C, DE, DR,
++and E. This boundary does not promote a theorem and does not establish a PIQD
++product result.
++
++## Purpose and composition
++
++`census.card_head.piqd_frontier_package` constructs one authenticated package
++for one already-materialized effective DIMACS query. It imports no frontier
++lane and invokes no daemon, solver, proof checker, Lean process, or Git process.
++The caller supplies all lane metadata and exact CNF bytes.
++
++The supported multi-query composition is the existing
++`PiqdPerQueryCertifiedSolver(query_factory)` seam. For every
++`solve_cadical(instance, extra_clauses=...)` call, that seam materializes
++`instance.dimacs(extra_clauses).encode("ascii")` and calls:
++
++```python
++query_factory(cnf: bytes, cnf_path: Path) -> PiqdCertifiedSolver
++```
++
++The factory constructs a fresh `FrontierAuthenticatedPackage` from that exact
++`cnf`, then constructs the fixed certified solver from `package.snapshot`, the
++packet transport, and the replayer. `PiqdPerQueryCertifiedSolver` independently
++requires `solver.package.cnf == cnf` before any transport. A base query, C1
++query, C2 query, or any other different effective CNF therefore has a distinct
++authenticated package identity; reusing a package for changed extra clauses is
++invalid.
++
++## Frozen public Python API
++
++The module exports these constants:
++
++- `FRONTIER_PACKAGE_SCHEMA = "p97-piqd-frontier-production-package/v1"`
++- `FRONTIER_PROFILE_SCHEMA = "p97-piqd-frontier-lane-profile/v1"`
++- `VARIABLE_MAP_SCHEMA = "p97-piqd-frontier-total-variable-map/v1"`
++- `SOURCE_MANIFEST_SCHEMA = "p97-piqd-frontier-source-manifest/v1"`
++- `BUILD_PHASE_LEDGER_SCHEMA = "p97-piqd-frontier-build-phase-ledger/v1"`
++- `DEFAULT_FRONTIER_LIMITS`
++
++It exports these frozen, slotted records:
++
++```python
++FrontierPackageLimits(
++    endpoint_limits: EndpointLimits = DEFAULT_LIMITS,
++    source_file_bytes: int = 8 * 1024 * 1024,
++    source_total_bytes: int = 64 * 1024 * 1024,
++    source_files: int = 256,
++)
++
++FileIdentity(
++    device: int,
++    inode: int,
++    mode: int,
++    uid: int,
++    gid: int,
++    link_count: int,
++    size: int,
++    mtime_ns: int,
++    ctime_ns: int,
++)
++
++MemorySourceSnapshot(logical_path: str, content: bytes)
++
++PathSourceSnapshot(
++    logical_path: str,
++    capture_root: str,
++    relative_path: str,
++    content: bytes,
++    identity: FileIdentity,
++)
++
++BuildAllocation(first_id: int, last_id: int, purpose: str)
++
++BuildQuery(
++    query_id: str,
++    cnf_sha256: str,
++    num_variables: int,
++    num_clauses: int,
++)
++
++BuildPhase(
++    phase_name: str,
++    allocations: tuple[BuildAllocation, ...],
++    allocator_num_variables: int,
++    query: BuildQuery | None = None,
++)
++
++FrontierLaneProfile(
++    lane: str,
++    query_id: str,
++    wave_id: str,
++    live_leaf: str,
++    finite_schema: str,
++    cardinality_scope: str,
++    source_theorem: str,
++    query_polarity: str,
++)
++
++FrontierAuthenticatedPackage(
++    cnf: bytes,
++    variable_map_bytes: bytes,
++    source_manifest_bytes: bytes,
++    source_snapshots: tuple[MemorySourceSnapshot | PathSourceSnapshot, ...],
++    build_phase_ledger_bytes: bytes,
++    lane_profile_bytes: bytes,
++    producer_manifest_bytes: bytes,
++    wave_manifest_bytes: bytes,
++    limits: FrontierPackageLimits,
++    snapshot: AuthenticatedPackageSnapshot,
++)
++```
++
++`FrontierAuthenticatedPackage` is returned by the builder rather than directly
++constructed by callers. Its `snapshot` is the existing
++`census.p97_search.phase3_piqd_card_head_adapter.AuthenticatedPackageSnapshot`;
++this module neither duplicates nor replaces that validator.
++
++It exports these functions and error:
++
++```python
++FrontierPackageError
++
++snapshot_source_bytes(
++    logical_path: str,
++    content: bytes,
++    *,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> MemorySourceSnapshot
++
++capture_source_file(
++    root: Path,
++    relative_path: str,
++    *,
++    logical_path: str | None = None,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> PathSourceSnapshot
++
++build_complete_variable_map(
++    cnf: bytes,
++    named_variables: dict[str, int],
++    *,
++    limits: EndpointLimits = DEFAULT_LIMITS,
++) -> bytes
++
++BuildQuery.from_cnf(
++    query_id: str,
++    cnf: bytes,
++    *,
++    limits: EndpointLimits = DEFAULT_LIMITS,
++) -> BuildQuery
++
++build_phase_ledger(
++    phases: tuple[BuildPhase, ...],
++    target_query: str,
++) -> bytes
++
++build_frontier_authenticated_package(
++    *,
++    cnf: bytes,
++    variable_map_bytes: bytes,
++    source_snapshots: tuple[MemorySourceSnapshot | PathSourceSnapshot, ...],
++    build_phase_ledger_bytes: bytes,
++    lane_profile: FrontierLaneProfile,
++    limits: FrontierPackageLimits = DEFAULT_FRONTIER_LIMITS,
++) -> FrontierAuthenticatedPackage
++```
++
++No transport, result record, legacy-local mode, replayer, or test fake is part
++of this package module. Those belong to the existing certified solver seam and
++the lane caller. This separation prevents the custody builder from importing a
++frontier lane or selecting an execution mode.
++
++## Total DIMACS variable map
++
++The map is canonical JSON with schema
++`p97-piqd-frontier-total-variable-map/v1`, coverage marker
++`COMPLETE_1_TO_NUM_VARIABLES`, the exact DIMACS `num_variables`, and exactly one
++entry for every ID in the ordered range `1..num_variables`.
++
++Each entry contains exactly `id`, `kind`, `name`, and `used_in_cnf`. Named IDs
++use `kind = "named"`. Every ID absent from the caller's exact builtin
++`dict[str, int]` becomes:
++
++```json
++{"id":17,"kind":"anonymous_auxiliary","name":"anonymous_auxiliary:17","used_in_cnf":false}
++```
++
++The suffix is the decimal ID, so anonymous auxiliary naming is deterministic.
++Declared but unused variables remain represented with `used_in_cnf = false`.
++The validator reparses the exact CNF and rejects a missing, repeated, reordered,
++out-of-range, Boolean, integer-subclass, or otherwise drifted ID; duplicate
++names; a non-deterministic anonymous name; or an incorrect use flag. Thus an
++encoder map that omits anonymous Sinz variables is not package-complete until
++this helper fills those IDs.
++
++## Build-phase ledger
++
++The ledger is canonical JSON with a general ordered phase list. Allocation
++intervals must form a single gap-free, overlap-free sequence beginning at ID 1.
++Every phase records the exact allocator high-water mark after its allocations.
++A query record authenticates its query ID, CNF SHA-256, variables, and clauses;
++its DIMACS variable count must equal that phase's allocator high-water mark.
++The final phase must close `target_query`, and package construction requires
++that final record to match the supplied CNF byte-for-byte by digest and exactly
++by dimensions.
++
++The C lane can represent its necessary chronology as:
++
++```python
++(
++    BuildPhase("base", (BuildAllocation(1, base_n, "base"),), base_n,
++               BuildQuery.from_cnf("C.base", base_cnf)),
++    BuildPhase("DEL3 auxiliary allocation",
++               (BuildAllocation(base_n + 1, del3_n, "DEL3 Sinz"),), del3_n),
++    BuildPhase("C1", (), del3_n, BuildQuery.from_cnf("C.C1", c1_cnf)),
++    BuildPhase("C2 P interval/final dimensions",
++               (BuildAllocation(del3_n + 1, final_n, "C2 P interval"),), final_n,
++               BuildQuery.from_cnf("C.C2", c2_cnf)),
++)
++```
++
++The C2 map still covers the DEL3 interval even if no C2 clause mentions those
++IDs. Its entries then carry `used_in_cnf = false`. A package for an earlier
++query uses the chronological ledger prefix ending at that query, not a future
++allocation record.
++
++## Source custody
++
++In-memory and filesystem custody have separate entry points and concrete
++snapshot types. Caller-supplied in-memory content must be exact builtin bytes.
++Source snapshots must be an exact nonempty tuple, uniquely sorted by
++`logical_path`; mixed snapshot kinds are allowed. The generated canonical
++manifest records exact byte counts and SHA-256 identities, and the package
++retains both its manifest bytes and the source snapshots containing their exact
++content bytes.
++
++Filesystem capture requires an absolute root and a safe relative path. It opens
++the root and every path component with no-follow directory descriptors, then
++opens the final component no-follow. The final file must be regular, have
++exactly one link, and fit the per-file bound. Capture compares `fstat` before
++and after the bounded read, then reopens and rereads the file to compare exact
++identity, bytes, and hash. Package construction performs another live identity
++and byte recheck. Symlinks, hard links, non-regular files, path traversal,
++oversize input, and post-capture drift fail closed.
++
++Default source bounds are 8 MiB per file, 64 MiB total, and 256 files. JSON and
++CNF bounds are inherited from `EndpointLimits`: canonical JSON is at most 8
++MiB, depth 32, and 1,000,000 nodes; CNF is at most 512 MiB. All bounds are
++positive exact builtin integers, not Booleans or subclasses.
++
++## Producer and wave claims
++
++The canonical producer binds the exact SHA-256 identities of the CNF, complete
++variable map, source manifest, build ledger, and lane profile, plus the exact
++DIMACS dimensions. Because the existing snapshot authenticates the CNF,
++producer, and wave, these custody records are transitively bound to the
++snapshot identity.
++
++The generated `p97-cegar-wave/v1` record always has backend `cadical`, solver
++profile `sat`, shard `0/1`, iteration 0, ledger digest as the order identity,
++and the caller-supplied valid query polarity. Its promotion record is exactly
++`LOCAL_CERTIFICATE` with all theorem fields null. The producer and lane profile
++say `semantic_status = "FINITE_LOCAL"`; all theorem-promotion, entitlement,
++coverage, universal-lift, Lean-closure, source-link, and replay claims are
++false. A successful package or finite solver result is evidence custody only,
++not universal proof closure.
++
++## Verification
++
++The fake-only test entry point is:
++
++```bash
++./scripts/test-p97-piqd-frontier-package.sh
++```
++
++It caps common native thread pools at one, disables pytest plugin autoload,
++runs Ruff, and runs only the frontier package tests in one pytest process. It
++does not contact PIQD, invoke a SAT solver, run Lean, or use Git.
+diff --git a/scripts/test-p97-piqd-bc-core.sh b/scripts/test-p97-piqd-bc-core.sh
+new file mode 100755
+index 00000000..6be33129
+--- /dev/null
++++ b/scripts/test-p97-piqd-bc-core.sh
+@@ -0,0 +1,29 @@
++#!/usr/bin/env bash
++
++set -euo pipefail
++
++ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++cd "$ROOT"
++
++export UV_CACHE_DIR="$ROOT/.uv-cache"
++export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
++export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
++export OMP_NUM_THREADS=1
++export OPENBLAS_NUM_THREADS=1
++export MKL_NUM_THREADS=1
++export NUMEXPR_NUM_THREADS=1
++export VECLIB_MAXIMUM_THREADS=1
++export RAYON_NUM_THREADS=1
++
++PYTHON_FILES=(
++  census/card_head/piqd_frontier_bc.py
++  census/card_head/tests/test_piqd_frontier_bc.py
++  census/frontier-packages/b_core/run.py
++  census/frontier-packages/b_core/smoke.py
++  census/frontier-packages/c_core/run.py
++  census/frontier-packages/c_core/smoke.py
++)
++
++uv run python -m py_compile "${PYTHON_FILES[@]}"
++uv run pytest -q census/card_head/tests/test_piqd_frontier_bc.py
++uv run --with ruff ruff check --select I,RUF022 "${PYTHON_FILES[@]}"
+diff --git a/scripts/test-p97-piqd-certified-frontier-all.sh b/scripts/test-p97-piqd-certified-frontier-all.sh
+new file mode 100755
+index 00000000..ae499bed
+--- /dev/null
++++ b/scripts/test-p97-piqd-certified-frontier-all.sh
+@@ -0,0 +1,69 @@
++#!/usr/bin/env bash
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++
++set -euo pipefail
++
++ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++cd "$ROOT"
++
++export UV_CACHE_DIR="$ROOT/.uv-cache"
++export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
++export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
++export PYTHONHASHSEED=0
++export UV_THREADPOOL_SIZE=1
++export OMP_NUM_THREADS=1
++export OPENBLAS_NUM_THREADS=1
++export MKL_NUM_THREADS=1
++export NUMEXPR_NUM_THREADS=1
++export VECLIB_MAXIMUM_THREADS=1
++export BLIS_NUM_THREADS=1
++export RAYON_NUM_THREADS=1
++
++TEST_FILES=(
++  census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
++  census/card_head/tests/test_piqd_certified_solver.py
++  census/card_head/tests/test_piqd_frontier_package.py
++  census/card_head/tests/test_piqd_frontier_bc.py
++  census/card_head/tests/test_frontier_derde_piqd_callers.py
++)
++
++OWNED_PYTHON_FILES=(
++  census/p97_search/phase3_piqd_card_head_adapter.py
++  census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
++  census/card_head/piqd_certified_solver.py
++  census/card_head/tests/test_piqd_certified_solver.py
++  census/card_head/piqd_frontier_package.py
++  census/card_head/tests/test_piqd_frontier_package.py
++  census/card_head/frontier_lane_piqd.py
++  census/card_head/piqd_frontier_bc.py
++  census/card_head/tests/test_piqd_frontier_bc.py
++  census/card_head/tests/test_frontier_derde_piqd_callers.py
++)
++
++CALLER_FILES=(
++  census/frontier-packages/b_core/run.py
++  census/frontier-packages/b_core/smoke.py
++  census/frontier-packages/c_core/run.py
++  census/frontier-packages/c_core/smoke.py
++  census/frontier-packages/de_core/run.py
++  census/frontier-packages/de_core/smoke.py
++  census/frontier-packages/dr_core/run.py
++  census/frontier-packages/dr_core/smoke.py
++  census/frontier-packages/e_core/run.py
++  census/frontier-packages/e_core/smoke.py
++)
++
++# One pytest process and no xdist: the frontier checkpoint is intentionally
++# single-worker even though every production query also receives a fresh job.
++uv run --with pytest pytest -q "${TEST_FILES[@]}"
++uv run python -m py_compile "${CALLER_FILES[@]}"
++uv run --with ruff ruff check "${OWNED_PYTHON_FILES[@]}"
++uv run --with ruff ruff format --check "${OWNED_PYTHON_FILES[@]}"
++uv run --with ruff ruff check --select I,RUF022 "${CALLER_FILES[@]}"
++
++bash -n \
++  scripts/test-p97-piqd-certified-frontier.sh \
++  scripts/test-p97-piqd-frontier-package.sh \
++  scripts/test-p97-piqd-bc-core.sh \
++  census/frontier-packages/test-derde-piqd-callers.sh
+diff --git a/scripts/test-p97-piqd-certified-frontier.sh b/scripts/test-p97-piqd-certified-frontier.sh
+new file mode 100755
+index 00000000..949fe4cf
+--- /dev/null
++++ b/scripts/test-p97-piqd-certified-frontier.sh
+@@ -0,0 +1,34 @@
++#!/usr/bin/env bash
++# Copyright (c) 2026 Adam McKenna
++# SPDX-License-Identifier: MIT
++# Author: Adam McKenna
++
++set -euo pipefail
++
++ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++cd "$ROOT"
++
++export UV_CACHE_DIR="$ROOT/.uv-cache"
++export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
++export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
++export OMP_NUM_THREADS=1
++export OPENBLAS_NUM_THREADS=1
++export MKL_NUM_THREADS=1
++export NUMEXPR_NUM_THREADS=1
++export VECLIB_MAXIMUM_THREADS=1
++export RAYON_NUM_THREADS=1
++
++PYTHON_FILES=(
++  census/p97_search/phase3_piqd_card_head_adapter.py
++  census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
++  census/card_head/piqd_certified_solver.py
++  census/card_head/tests/test_piqd_certified_solver.py
++)
++
++# No xdist: exactly one pytest process and one worker.
++uv run --with pytest pytest -q \
++  census/p97_search/tests/test_phase3_piqd_card_head_adapter.py \
++  census/card_head/tests/test_piqd_certified_solver.py
++
++uv run --with ruff ruff check "${PYTHON_FILES[@]}"
++uv run --with ruff ruff format --check "${PYTHON_FILES[@]}"
+diff --git a/scripts/test-p97-piqd-frontier-package.sh b/scripts/test-p97-piqd-frontier-package.sh
+new file mode 100755
+index 00000000..648a4f76
+--- /dev/null
++++ b/scripts/test-p97-piqd-frontier-package.sh
+@@ -0,0 +1,24 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++cd "$ROOT"
++
++export UV_CACHE_DIR="$ROOT/.uv-cache"
++export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
++export OMP_NUM_THREADS=1
++export OPENBLAS_NUM_THREADS=1
++export MKL_NUM_THREADS=1
++export VECLIB_MAXIMUM_THREADS=1
++export NUMEXPR_NUM_THREADS=1
++export RAYON_NUM_THREADS=1
++export PYTHONHASHSEED=0
++export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
++
++uv run ruff check \
++  census/card_head/piqd_frontier_package.py \
++  census/card_head/tests/test_piqd_frontier_package.py
++uv run ruff format --check \
++  census/card_head/piqd_frontier_package.py \
++  census/card_head/tests/test_piqd_frontier_package.py
++uv run pytest -q census/card_head/tests/test_piqd_frontier_package.py

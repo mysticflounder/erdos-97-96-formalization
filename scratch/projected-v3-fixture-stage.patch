@@ -1,0 +1,56 @@
+diff --git a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+--- a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+@@ -24,11 +24,13 @@ prefix_cache = importlib.import_module(
+     "census.p97_search.phase3_prefix_bank_cache"
+ )
+ 
+-PROJECTED_SURVIVORS = (
++PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE = (
+     v3.ROOT
+-    / "scratch/p97-distinct-distance-lane"
+-    / "phase3_projected_static_v2_shell_exact_depth5_v1e_20260729"
+-    / "shard-04/survivors.jsonl"
++    / "census/p97_search/tests/fixtures"
++    / "projected_static_v3_first_validated_semantic_assignment.json"
++)
++PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE_SHA256 = (
++    "77675e43a4868866d51551d592c4d5d01f3493a1d03f41a322d855bb3cb18b02"
+ )
+ 
+ POSITIVES = frozenset(
+@@ -215,15 +217,26 @@ def _build_authenticated_prefix_fixture(
+ 
+ 
+ def _first_projected_survivor_assignment() -> dict[int, bool]:
++    fixture = PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE
++    raw = fixture.read_bytes()
++    assert hashlib.sha256(raw).hexdigest() == (
++        PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE_SHA256
++    ), "projected-static-v3 semantic assignment fixture hash mismatch"
++    semantic = json.loads(raw)
++    assert isinstance(semantic, dict), (
++        "projected-static-v3 semantic assignment fixture must be an object"
++    )
++    assert raw == prefix_bank.canonical_bytes(semantic) + b"\n", (
++        "projected-static-v3 semantic assignment fixture is not canonical JSON"
++    )
+     encoding = v3._phase3_encoding(projected_static_v3=True)
+-    for line in PROJECTED_SURVIVORS.read_text().splitlines():
+-        record = json.loads(line)
+-        assignment = encoding.assignment_from_record(record)
+-        obj = encoding.decode(assignment)
+-        encoding.validate(obj, assignment)
+-        if v3._combined_detection(encoding, v3._metric_rows(obj)) is None:
+-            return assignment
+-    raise AssertionError("fixture has no projected-static-v3 survivor")
++    assignment = encoding.assignment_from_record({"semantic_assignment": semantic})
++    obj = encoding.decode(assignment)
++    encoding.validate(obj, assignment)
++    assert v3._combined_detection(encoding, v3._metric_rows(obj)) is None, (
++        "projected-static-v3 semantic assignment fixture is not a survivor"
++    )
++    return assignment
+ 
+ 
+ def _sat_runner(assignment: dict[int, bool]):

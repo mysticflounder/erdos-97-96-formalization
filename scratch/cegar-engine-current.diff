@@ -1,0 +1,868 @@
+diff --git a/census/p97_search/cegar_wave_registry.py b/census/p97_search/cegar_wave_registry.py
+index 55ad6a28..479a6386 100644
+--- a/census/p97_search/cegar_wave_registry.py
++++ b/census/p97_search/cegar_wave_registry.py
+@@ -34,7 +34,13 @@ from census.p97_search.phase3_cegar_wave_engine import (
+ 
+ REGISTRY_SCHEMA = "p97-cegar-execution-registry/v1"
+ REGISTRY_REVISION = "2026-08-13.1"
++REGISTRY_REVISION_V1 = REGISTRY_REVISION
++REGISTRY_REVISION_V2 = "2026-08-14.1"
+ STATIC_CNF_EXECUTION_MODE = "one-shot-static-cnf"
++STATIC_CNF_PIQD_ADAPTER_V2 = STATIC_CNF_PIQD_ADAPTER
++STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2 = "v2"
++STATIC_CNF_ENGINE_SCHEMA_V2 = "p97-cegar-static-cnf-engine/v2"
++STATIC_CNF_SEMANTIC_PROFILE = "p97-static-cnf-semantic-profile/v1"
+ 
+ PLAN = "plan"
+ RUN = "run"
+@@ -97,6 +103,22 @@ STATIC_CNF_EXECUTION = ExecutionRegistration(
+     permits_diagnostic_mining=False,
+     permits_terminal_proof=False,
+ )
++STATIC_CNF_EXECUTION_V1 = STATIC_CNF_EXECUTION
++
++STATIC_CNF_EXECUTION_V2 = ExecutionRegistration(
++    wave_kind=STATIC_CNF,
++    adapter_id=STATIC_CNF_PIQD_ADAPTER_V2,
++    adapter_schema=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
++    registry_revision=REGISTRY_REVISION_V2,
++    engine_schema=STATIC_CNF_ENGINE_SCHEMA_V2,
++    semantic_validator=STATIC_CNF_SEMANTIC_PROFILE,
++    execution_mode=STATIC_CNF_EXECUTION_MODE,
++    capabilities=_CAPABILITIES,
++    permits_campaign=False,
++    permits_export=False,
++    permits_diagnostic_mining=False,
++    permits_terminal_proof=False,
++)
+ 
+ EXECUTION_REGISTRY = MappingProxyType(
+     {
+@@ -107,6 +129,17 @@ EXECUTION_REGISTRY = MappingProxyType(
+         ): STATIC_CNF_EXECUTION
+     }
+ )
++EXECUTION_REGISTRY_V1 = EXECUTION_REGISTRY
++EXECUTION_REGISTRY_ALL = MappingProxyType(
++    {
++        **EXECUTION_REGISTRY,
++        (
++            STATIC_CNF_EXECUTION_V2.wave_kind,
++            STATIC_CNF_EXECUTION_V2.adapter_id,
++            STATIC_CNF_EXECUTION_V2.adapter_schema,
++        ): STATIC_CNF_EXECUTION_V2,
++    }
++)
+ 
+ 
+ def _validated_control(control: WaveControl) -> WaveControl:
+@@ -130,7 +163,7 @@ def resolve_execution_registration(control: WaveControl) -> ExecutionRegistratio
+         validated.registration.adapter_id,
+         validated.registration.schema_version,
+     )
+-    registration = EXECUTION_REGISTRY.get(key)
++    registration = EXECUTION_REGISTRY_ALL.get(key)
+     if registration is None:
+         raise WaveRegistryError("control selects no registered execution")
+     if registration.semantic_validator != validated.registration.semantic_validator:
+@@ -144,12 +177,39 @@ def resolve_execution_registration(control: WaveControl) -> ExecutionRegistratio
+     return registration
+ 
+ 
++def resolve_execution_registration_envelope(
++    envelope: dict[str, Any],
++) -> ExecutionRegistration:
++    """Resolve and authenticate a registration carried by an output envelope."""
++
++    if type(envelope) is not dict:
++        raise WaveRegistryError("output execution registration must be an exact object")
++    if set(envelope) != {"schema", "registry_revision", "registration"}:
++        raise WaveRegistryError("output execution registration has an inexact schema")
++    if envelope["schema"] != REGISTRY_SCHEMA:
++        raise WaveRegistryError("output execution registration schema is crossed")
++    revision = envelope["registry_revision"]
++    value = envelope["registration"]
++    if type(revision) is not str or type(value) is not dict:
++        raise WaveRegistryError("output execution registration has invalid fields")
++    key_fields = ("wave_kind", "adapter_id", "adapter_schema")
++    if any(type(value.get(field)) is not str for field in key_fields):
++        raise WaveRegistryError("output execution registration has invalid fields")
++    key = tuple(value[field] for field in key_fields)
++    registration = EXECUTION_REGISTRY_ALL.get(key)
++    if registration is None:
++        raise WaveRegistryError("output selects no registered execution")
++    if revision != registration.registry_revision or value != registration.as_dict():
++        raise WaveRegistryError("output execution registration is absent or crossed")
++    return registration
++
++
+ def _registration_envelope(
+     registration: ExecutionRegistration = STATIC_CNF_EXECUTION,
+ ) -> dict[str, Any]:
+     return {
+         "schema": REGISTRY_SCHEMA,
+-        "registry_revision": REGISTRY_REVISION,
++        "registry_revision": registration.registry_revision,
+         "registration": registration.as_dict(),
+     }
+ 
+@@ -238,7 +298,15 @@ def validate_registered_output(path: Path) -> dict[str, Any]:
+     if type(path) is not _NATIVE_PATH_TYPE or not path.is_absolute():
+         raise WaveRegistryError("output path must be an absolute native Path")
+     envelope = validate_static_cnf_engine_output(path)
+-    if envelope.get("execution_registry") != _registration_envelope():
++    try:
++        registration = resolve_execution_registration_envelope(
++            envelope["execution_registry"]
++        )
++    except (KeyError, TypeError) as error:
++        raise WaveRegistryError(
++            "output execution registration is absent or crossed"
++        ) from error
++    if envelope["execution_registry"] != _registration_envelope(registration):
+         raise WaveRegistryError("output execution registration is absent or crossed")
+     return envelope
+ 
+@@ -288,11 +356,21 @@ def registry_snapshot() -> dict[str, Any]:
+ __all__ = [
+     "CHECK",
+     "EXECUTION_REGISTRY",
++    "EXECUTION_REGISTRY_ALL",
++    "EXECUTION_REGISTRY_V1",
+     "PLAN",
+     "REGISTRY_REVISION",
++    "REGISTRY_REVISION_V1",
++    "REGISTRY_REVISION_V2",
+     "REGISTRY_SCHEMA",
+     "RUN",
++    "STATIC_CNF_ENGINE_SCHEMA_V2",
+     "STATIC_CNF_EXECUTION",
++    "STATIC_CNF_EXECUTION_V1",
++    "STATIC_CNF_EXECUTION_V2",
++    "STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2",
++    "STATIC_CNF_PIQD_ADAPTER_V2",
++    "STATIC_CNF_SEMANTIC_PROFILE",
+     "STATUS",
+     "VALIDATE_INGRESS",
+     "VALIDATE_OUTPUT",
+@@ -304,6 +382,7 @@ __all__ = [
+     "plan_execution",
+     "registry_snapshot",
+     "resolve_execution_registration",
++    "resolve_execution_registration_envelope",
+     "validate_registered_ingress",
+     "validate_registered_output",
+ ]
+diff --git a/census/p97_search/phase3_cegar_wave_control.py b/census/p97_search/phase3_cegar_wave_control.py
+index e73c4d62..85d8186c 100644
+--- a/census/p97_search/phase3_cegar_wave_control.py
++++ b/census/p97_search/phase3_cegar_wave_control.py
+@@ -18,6 +18,14 @@ from pathlib import Path, PurePosixPath
+ from types import MappingProxyType
+ from typing import Any
+ 
++from census.p97_search.cegar_wave_semantic_profiles import (
++    PROFILE_SCHEMA,
++    CapturedBytes,
++    SemanticProfile,
++    SemanticProfileError,
++    parse_profile_bytes,
++    validate_semantic_profile,
++)
+ from census.p97_search.phase3_cegar_runtime import (
+     ExactFileCaptureError,
+     capture_exact_regular_file,
+@@ -30,14 +38,20 @@ from census.p97_search.phase3_cegar_wave import (
+ )
+ from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
+ 
+-CONTROL_SCHEMA = "p97-cegar-wave-control/v1"
++CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
++CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
++CONTROL_SCHEMA = CONTROL_SCHEMA_V1
+ INVENTORY_SCHEMA = "p97-cegar-wave-entrypoint-inventory/v1"
+ CLEANUP_PLAN_SCHEMA = "p97-cegar-wave-cleanup-plan/v1"
+ 
+ STATIC_CNF = "STATIC_CNF"
+ STATIC_CNF_PIQD_ADAPTER = "static-cnf-piqd"
+-STATIC_CNF_PIQD_ADAPTER_SCHEMA = "v1"
+-STATIC_CNF_SEMANTIC_VALIDATOR = "p97-static-cnf-semantic-replay/v1"
++STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1 = "v1"
++STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2 = "v2"
++STATIC_CNF_PIQD_ADAPTER_SCHEMA = STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1
++STATIC_CNF_SEMANTIC_VALIDATOR_V1 = "p97-static-cnf-semantic-replay/v1"
++STATIC_CNF_SEMANTIC_VALIDATOR_V2 = PROFILE_SCHEMA
++STATIC_CNF_SEMANTIC_VALIDATOR = STATIC_CNF_SEMANTIC_VALIDATOR_V1
+ 
+ ACTIVE = "ACTIVE"
+ FROZEN_REPRODUCTION = "FROZEN_REPRODUCTION"
+@@ -70,10 +84,12 @@ MAX_WAVE_MANIFEST_BYTES = 1 << 20
+ MAX_STATIC_CNF_BYTES = 512 << 20
+ MAX_PRODUCER_MANIFEST_BYTES = 8 << 20
+ MAX_VARIABLE_MAP_BYTES = 64 << 20
++MAX_SEMANTIC_PROFILE_BYTES = 1 << 20
++MAX_SEMANTIC_ARTIFACT_BYTES = 512 << 20
+ 
+ _NATIVE_PATH_TYPE = type(Path())
+ _HEX = frozenset("0123456789abcdef")
+-_CONTROL_KEYS = frozenset(
++_CONTROL_KEYS_V1 = frozenset(
+     {
+         "schema",
+         "wave_kind",
+@@ -85,6 +101,10 @@ _CONTROL_KEYS = frozenset(
+         "semantic_validator",
+     }
+ )
++_CONTROL_KEYS_V2 = _CONTROL_KEYS_V1 | {
++    "semantic_profile",
++    "semantic_artifacts",
++}
+ _REF_KEYS = frozenset({"path", "sha256", "max_bytes"})
+ _PACKAGE_KEYS = frozenset({"cnf", "producer_manifest", "variable_map"})
+ _POLICY_KEYS = frozenset(
+@@ -203,6 +223,8 @@ class WaveControl:
+     policy: DriverPolicy
+     registration: AdapterRegistration
+     canonical_bytes: bytes
++    semantic_profile: ArtifactReference | None = None
++    semantic_artifacts: tuple[tuple[str, ArtifactReference], ...] = ()
+ 
+ 
+ @dataclass(frozen=True)
+@@ -213,16 +235,28 @@ class StaticCnfBinding:
+     cnf: bytes
+     producer_manifest: bytes
+     variable_map: bytes
++    semantic_profile: SemanticProfile | None = None
++    semantic_profile_bytes: bytes | None = None
++    semantic_artifacts: tuple[tuple[str, CapturedBytes], ...] = ()
++    semantic_validation: dict[str, Any] | None = None
+ 
+ 
+ STATIC_REGISTRY = MappingProxyType(
+     {
+-        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA): (
++        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1): (
++            AdapterRegistration(
++                wave_kind=STATIC_CNF,
++                adapter_id=STATIC_CNF_PIQD_ADAPTER,
++                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1,
++                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V1,
++            )
++        ),
++        (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2): (
+             AdapterRegistration(
+                 wave_kind=STATIC_CNF,
+                 adapter_id=STATIC_CNF_PIQD_ADAPTER,
+-                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA,
+-                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR,
++                schema_version=STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
++                semantic_validator=STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+             )
+         )
+     }
+@@ -325,6 +359,36 @@ def _reference(value: Any, label: str, *, maximum_bytes: int) -> ArtifactReferen
+     )
+ 
+ 
++def _semantic_artifact_references(
++    value: Any,
++) -> tuple[tuple[str, ArtifactReference], ...]:
++    if type(value) is not dict or not value:
++        raise WaveControlError(
++            "wave control.semantic_artifacts must be a nonempty exact object"
++        )
++    rows: list[tuple[str, ArtifactReference]] = []
++    for role, reference in value.items():
++        if type(role) is not str or not role or not role.isascii():
++            raise WaveControlError(
++                "wave control.semantic_artifacts roles must be nonempty ASCII strings"
++            )
++        rows.append(
++            (
++                role,
++                _reference(
++                    reference,
++                    f"wave control.semantic_artifacts.{role}",
++                    maximum_bytes=MAX_SEMANTIC_ARTIFACT_BYTES,
++                ),
++            )
++        )
++    if [role for role, _ in rows] != sorted(role for role, _ in rows):
++        raise WaveControlError(
++            "wave control.semantic_artifacts roles must be canonically sorted"
++        )
++    return tuple(rows)
++
++
+ def _policy(value: Any) -> DriverPolicy:
+     if type(value) is not dict:
+         raise WaveControlError("driver_policy must be an exact object")
+@@ -368,9 +432,13 @@ def load_wave_control(raw: bytes) -> WaveControl:
+     """Parse one canonical control record against the closed adapter registry."""
+ 
+     value = _strict_json(raw, label="wave control", max_bytes=MAX_CONTROL_BYTES)
+-    _exact_keys(value, _CONTROL_KEYS, "wave control")
+-    if value["schema"] != CONTROL_SCHEMA:
+-        raise WaveControlError(f"wave control.schema must be {CONTROL_SCHEMA!r}")
++    schema = value.get("schema")
++    if schema == CONTROL_SCHEMA_V1:
++        _exact_keys(value, _CONTROL_KEYS_V1, "wave control")
++    elif schema == CONTROL_SCHEMA_V2:
++        _exact_keys(value, _CONTROL_KEYS_V2, "wave control")
++    else:
++        raise WaveControlError("wave control.schema is not registered")
+     key = (
+         _string(value["wave_kind"], "wave control.wave_kind"),
+         _string(value["adapter_id"], "wave control.adapter_id"),
+@@ -410,6 +478,20 @@ def load_wave_control(raw: bytes) -> WaveControl:
+         policy=_policy(value["driver_policy"]),
+         registration=registration,
+         canonical_bytes=raw,
++        semantic_profile=(
++            _reference(
++                value["semantic_profile"],
++                "wave control.semantic_profile",
++                maximum_bytes=MAX_SEMANTIC_PROFILE_BYTES,
++            )
++            if schema == CONTROL_SCHEMA_V2
++            else None
++        ),
++        semantic_artifacts=(
++            _semantic_artifact_references(value["semantic_artifacts"])
++            if schema == CONTROL_SCHEMA_V2
++            else ()
++        ),
+     )
+ 
+ 
+@@ -510,7 +592,10 @@ def _validate_static_cnf_semantics(
+     producer: bytes,
+     variable_map: bytes,
+ ) -> None:
+-    if registration.semantic_validator != STATIC_CNF_SEMANTIC_VALIDATOR:
++    if registration.semantic_validator not in {
++        STATIC_CNF_SEMANTIC_VALIDATOR_V1,
++        STATIC_CNF_SEMANTIC_VALIDATOR_V2,
++    }:
+         raise WaveControlError("registered semantic validator is not executable")
+     num_variables, num_clauses = _strict_dimacs_counts(cnf)
+     encoding = manifest["encoding"]
+@@ -561,6 +646,29 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
+     cnf = _capture(package_root, control.cnf, "CNF")
+     producer = _capture(package_root, control.producer_manifest, "producer manifest")
+     variable_map = _capture(package_root, control.variable_map, "variable map")
++    semantic_profile_bytes = (
++        _capture(package_root, control.semantic_profile, "semantic profile")
++        if control.semantic_profile is not None
++        else None
++    )
++    try:
++        semantic_profile = (
++            parse_profile_bytes(semantic_profile_bytes)
++            if semantic_profile_bytes is not None
++            else None
++        )
++    except SemanticProfileError as error:
++        raise WaveControlError("semantic profile validation failed") from error
++    semantic_artifacts = tuple(
++        (
++            role,
++            CapturedBytes(
++                _capture(package_root, reference, f"semantic artifact {role}"),
++                sha256=reference.sha256,
++            ),
++        )
++        for role, reference in control.semantic_artifacts
++    )
+     encoding = manifest["encoding"]
+     if encoding["cnf_sha256"] != control.cnf.sha256:
+         raise WaveControlError("wave manifest CNF digest is crossed")
+@@ -575,6 +683,34 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
+         producer,
+         variable_map,
+     )
++    if control.registration.schema_version == STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2:
++        if semantic_profile is None:
++            raise WaveControlError("v2 static-CNF control lacks a semantic profile")
++        if not semantic_artifacts:
++            raise WaveControlError("v2 static-CNF control lacks semantic artifacts")
++        expected_profile_control = {
++            "domain_kind": STATIC_CNF,
++            "query_polarity": encoding["query_polarity"],
++            "cnf_sha256": control.cnf.sha256,
++            "variables": encoding["num_variables"],
++            "clauses": encoding["num_clauses"],
++        }
++        if semantic_profile.control != expected_profile_control:
++            raise WaveControlError("semantic profile is crossed with the static CNF")
++        try:
++            semantic_validation = validate_semantic_profile(
++                semantic_profile,
++                dict(semantic_artifacts),
++                control=expected_profile_control,
++            )
++        except SemanticProfileError as error:
++            raise WaveControlError("semantic artifact validation failed") from error
++    elif semantic_profile is not None or semantic_artifacts:
++        raise WaveControlError(
++            "v1 static-CNF control cannot carry semantic profile artifacts"
++        )
++    else:
++        semantic_validation = None
+     return StaticCnfBinding(
+         control=control,
+         wave_manifest=manifest,
+@@ -582,6 +718,10 @@ def bind_static_cnf(control: WaveControl, package_root: Path) -> StaticCnfBindin
+         cnf=cnf,
+         producer_manifest=producer,
+         variable_map=variable_map,
++        semantic_profile=semantic_profile,
++        semantic_profile_bytes=semantic_profile_bytes,
++        semantic_artifacts=semantic_artifacts,
++        semantic_validation=semantic_validation,
+     )
+ 
+ 
+diff --git a/census/p97_search/phase3_cegar_wave_engine.py b/census/p97_search/phase3_cegar_wave_engine.py
+index 003efd01..9a9fda31 100644
+--- a/census/p97_search/phase3_cegar_wave_engine.py
++++ b/census/p97_search/phase3_cegar_wave_engine.py
+@@ -118,6 +118,26 @@ _CLAIMS = frozenset(
+     }
+ )
+ _EXECUTION_REGISTRY_KEYS = frozenset({"schema", "registry_revision", "registration"})
++_ENGINE_ENVELOPE_KEYS_V1 = frozenset(
++    {
++        "schema",
++        "wave_kind",
++        "adapter",
++        "control",
++        "wave_manifest",
++        "package",
++        "resource_policy",
++        "result",
++        "receipt",
++        "custody_seal",
++        "driver_seal",
++        "journal",
++        "attempt_entries",
++        "attempt_inventory",
++        "claims",
++        "envelope_sha256",
++    }
++)
+ _EXECUTION_REGISTRATION_KEYS = frozenset(
+     {
+         "wave_kind",
+@@ -890,6 +910,11 @@ def _validate_static_cnf_engine_output(
+     receipt = envelope["receipt"]
+     if set(receipt) != _RECEIPT_KEYS or receipt.get("schema") != RECEIPT_SCHEMA:
+         raise StaticCnfEngineError("receipt schema/key mismatch")
++    expected_keys = _ENGINE_ENVELOPE_KEYS_V1
++    if "execution_registry" in envelope:
++        expected_keys = expected_keys | {"execution_registry"}
++    if set(envelope) != expected_keys:
++        raise StaticCnfEngineError("engine envelope has an inexact schema")
+     if type(receipt.get("attempt")) is not int or receipt["attempt"] < 0:
+         raise StaticCnfEngineError("receipt attempt must be a nonnegative builtin int")
+     attempt_dir = _safe_path(receipt["attempt_directory"], label="attempt_directory")
+diff --git a/census/p97_search/tests/test_cegar_wave_registry.py b/census/p97_search/tests/test_cegar_wave_registry.py
+index 7c474354..8cc8af3b 100644
+--- a/census/p97_search/tests/test_cegar_wave_registry.py
++++ b/census/p97_search/tests/test_cegar_wave_registry.py
+@@ -8,10 +8,30 @@ from types import SimpleNamespace
+ import pytest
+ 
+ import census.p97_search.cegar_wave_registry as registry
+-from census.p97_search.phase3_cegar_wave import sha256_bytes, wave_manifest_sha256
++from census.p97_search.phase3_cegar_wave import (
++    canonical_json_bytes,
++    sha256_bytes,
++    wave_manifest_sha256,
++)
+ from census.p97_search.tests.test_phase3_cegar_wave_engine import _fixture_control
+ 
+ 
++def test_v1_snapshot_bytes_and_aliases_remain_unchanged() -> None:
++    assert registry.STATIC_CNF_EXECUTION_V1 is registry.STATIC_CNF_EXECUTION
++    assert registry.REGISTRY_REVISION_V1 == registry.REGISTRY_REVISION
++    assert canonical_json_bytes(registry.registry_snapshot()) == (
++        b'{"registrations":[{"adapter_id":"static-cnf-piqd","adapter_schema":"v1",'
++        b'"capabilities":["check","plan","run","status","validate-ingress",'
++        b'"validate-output"],"engine_schema":"p97-cegar-static-cnf-engine/v1",'
++        b'"execution_mode":"one-shot-static-cnf","permits_campaign":false,'
++        b'"permits_diagnostic_mining":false,"permits_export":false,'
++        b'"permits_terminal_proof":false,"registry_revision":"2026-08-13.1",'
++        b'"semantic_validator":"p97-static-cnf-semantic-replay/v1",'
++        b'"wave_kind":"STATIC_CNF"}],"registry_revision":"2026-08-13.1",'
++        b'"schema":"p97-cegar-execution-registry/v1"}'
++    )
++
++
+ def test_registry_resolves_exact_control_and_has_closed_capabilities(
+     tmp_path: Path,
+ ) -> None:
+@@ -158,6 +178,48 @@ def test_offline_output_validation_requires_absolute_native_path(
+         registry.validate_registered_output(Path("relative"))
+ 
+ 
++def test_offline_output_validation_selects_v2_from_authenticated_envelope(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    observed = {
++        "schema": "validated",
++        "execution_registry": {
++            "schema": registry.REGISTRY_SCHEMA,
++            "registry_revision": registry.REGISTRY_REVISION_V2,
++            "registration": registry.STATIC_CNF_EXECUTION_V2.as_dict(),
++        },
++    }
++    monkeypatch.setattr(
++        registry, "validate_static_cnf_engine_output", lambda path: observed
++    )
++
++    assert registry.validate_registered_output(tmp_path / "result.json") is observed
++    assert registry.resolve_execution_registration_envelope(
++        observed["execution_registry"]
++    ) is registry.STATIC_CNF_EXECUTION_V2
++
++    observed["execution_registry"]["registry_revision"] = registry.REGISTRY_REVISION
++    with pytest.raises(registry.WaveRegistryError, match="absent or crossed"):
++        registry.validate_registered_output(tmp_path / "result.json")
++
++    observed["execution_registry"]["registry_revision"] = registry.REGISTRY_REVISION_V2
++    crossed = deepcopy(observed)
++    crossed["execution_registry"]["registration"]["engine_schema"] = (
++        "p97-cegar-static-cnf-engine/v1"
++    )
++    with pytest.raises(registry.WaveRegistryError, match="absent or crossed"):
++        registry.resolve_execution_registration_envelope(
++            crossed["execution_registry"]
++        )
++
++    malformed = deepcopy(observed)
++    malformed["execution_registry"]["registration"]["adapter_id"] = []
++    with pytest.raises(registry.WaveRegistryError, match="invalid fields"):
++        registry.resolve_execution_registration_envelope(
++            malformed["execution_registry"]
++        )
++
++
+ def test_registered_output_rejects_absent_or_crossed_registration(
+     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+ ) -> None:
+diff --git a/census/p97_search/tests/test_phase3_cegar_wave_engine.py b/census/p97_search/tests/test_phase3_cegar_wave_engine.py
+index 08bae901..b4087371 100644
+--- a/census/p97_search/tests/test_phase3_cegar_wave_engine.py
++++ b/census/p97_search/tests/test_phase3_cegar_wave_engine.py
+@@ -2,6 +2,7 @@ from __future__ import annotations
+ 
+ import json
+ import os
++from copy import deepcopy
+ from pathlib import Path
+ 
+ import pytest
+@@ -17,10 +18,13 @@ from census.p97_search.phase3_cegar_wave import (
+ )
+ from census.p97_search.phase3_cegar_wave_control import (
+     CONTROL_SCHEMA,
++    CONTROL_SCHEMA_V2,
+     STATIC_CNF,
+     STATIC_CNF_PIQD_ADAPTER,
+     STATIC_CNF_PIQD_ADAPTER_SCHEMA,
++    STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
+     STATIC_CNF_SEMANTIC_VALIDATOR,
++    STATIC_CNF_SEMANTIC_VALIDATOR_V2,
+     load_wave_control,
+ )
+ from census.p97_search.phase3_piqd_driver import DriverPolicy
+@@ -142,6 +146,69 @@ def _fixture_control(tmp_path: Path) -> tuple[object, Path, bytes, bytes]:
+     return load_wave_control(control_raw), tmp_path, cnf, producer_raw
+ 
+ 
++def _fixture_v2_control(
++    tmp_path: Path,
++) -> tuple[object, Path, bytes, bytes, dict[str, object]]:
++    """Build a v2 control from the checked semantic-profile test fixture."""
++    from census.p97_search.tests.test_cegar_wave_semantic_profiles import _fixture
++
++    semantic_root = tmp_path / "semantic"
++    semantic_root.mkdir(parents=True)
++    profile_raw, captures, profile = _fixture(semantic_root)
++    profile_path = semantic_root / "profile.json"
++    profile_path.write_bytes(profile_raw)
++
++    control, package_root, _old_cnf, _old_producer = _fixture_control(tmp_path)
++    package = package_root / "package"
++    cnf = captures["child_cnf"].data
++    assert cnf is not None
++    (package / "input.cnf").write_bytes(cnf)
++    producer = json.loads((package / "producer.json").read_bytes())
++    producer["query_polarity"] = profile["control"]["query_polarity"]
++    producer_raw = canonical_json_bytes(producer)
++    (package / "producer.json").write_bytes(producer_raw)
++    manifest = json.loads((package / "wave.json").read_bytes())
++    manifest["encoding"].update(
++        {
++            "cnf_sha256": sha256_bytes(cnf),
++            "producer_manifest_sha256": sha256_bytes(producer_raw),
++            "num_clauses": profile["control"]["clauses"],
++            "query_polarity": profile["control"]["query_polarity"],
++        }
++    )
++    manifest_raw = canonical_json_bytes(manifest)
++    (package / "wave.json").write_bytes(manifest_raw)
++
++    def reference(path: Path, raw: bytes, maximum: int = 1 << 20) -> dict[str, object]:
++        return {
++            "path": os.path.relpath(path, package_root),
++            "sha256": sha256_bytes(raw),
++            "max_bytes": maximum,
++        }
++
++    value = deepcopy(control.value)
++    value.update(
++        {
++            "schema": CONTROL_SCHEMA_V2,
++            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
++            "semantic_validator": STATIC_CNF_SEMANTIC_VALIDATOR_V2,
++            "wave_manifest": reference(package / "wave.json", manifest_raw),
++            "semantic_profile": reference(profile_path, profile_raw),
++            "semantic_artifacts": {
++                role: reference(captured.path, captured.data)
++                for role, captured in sorted(captures.items())
++            },
++        }
++    )
++    value["package"] = {
++        "cnf": reference(package / "input.cnf", cnf, 512 << 20),
++        "producer_manifest": reference(package / "producer.json", producer_raw),
++        "variable_map": value["package"]["variable_map"],
++    }
++    control_raw = canonical_json_bytes(value)
++    return load_wave_control(control_raw), package_root, cnf, producer_raw, profile
++
++
+ class _FakePiqd:
+     """Small current-API transport used only to exercise the engine boundary."""
+ 
+@@ -273,6 +340,62 @@ def _make_engine(
+     )
+ 
+ 
++def _make_v2_engine(
++    tmp_path: Path,
++    monkeypatch: pytest.MonkeyPatch,
++    verdict: str,
++):
++    control, package_root, cnf, producer, profile = _fixture_v2_control(tmp_path)
++    journal_root = tmp_path / "journals"
++    journal_root.mkdir()
++    output_parent = tmp_path / "published"
++    output_parent.mkdir()
++    output = output_parent / "engine-v2.json"
++    api = _FakePiqd(cnf, producer, verdict)
++    calls: list[object] = []
++    execution_registration = {
++        "schema": "p97-cegar-wave-execution-registry/v1",
++        "registry_revision": "2026-08-14.1",
++        "registration": {
++            "wave_kind": STATIC_CNF,
++            "adapter_id": STATIC_CNF_PIQD_ADAPTER,
++            "adapter_schema": STATIC_CNF_PIQD_ADAPTER_SCHEMA_V2,
++            "registry_revision": "2026-08-14.1",
++            "engine_schema": "p97-cegar-static-cnf-engine/v2",
++            "semantic_validator": STATIC_CNF_SEMANTIC_VALIDATOR_V2,
++            "execution_mode": "ONE_SHOT",
++            "capabilities": ["STATIC_CNF"],
++            "permits_campaign": False,
++            "permits_export": False,
++            "permits_diagnostic_mining": False,
++            "permits_terminal_proof": False,
++        },
++    }
++
++    def factory(**kwargs):
++        calls.append(kwargs)
++        kwargs.pop("transport", None)
++        return make_static_piqd_solver_runner(
++            **kwargs, transport=api, sleep=lambda _seconds: None
++        )
++
++    monkeypatch.setattr(engine, "make_static_piqd_solver_runner", factory)
++    return (
++        engine.StaticCnfWaveEngine(
++            control=control,
++            package_root=package_root,
++            output_path=output,
++            base_url="http://piqd.fixture",
++            journal_root=journal_root,
++            execution_registration=execution_registration,
++        ),
++        output,
++        api,
++        calls,
++        profile,
++    )
++
++
+ def test_result_type_and_closed_classification() -> None:
+     sat = StaticSolverResult("SAT", {1: True}, 10)
+     engine._result_type_check(sat)
+@@ -395,6 +518,152 @@ def test_run_uses_one_static_call_and_returns_offline_accepted_envelope(
+     assert api.calls
+ 
+ 
++def test_v1_envelope_shape_is_frozen_and_rejects_reserved_profile(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    wave_engine, output, _api, _factories = _make_engine(tmp_path, monkeypatch, "SAT")
++    accepted = wave_engine.run(timeout_s=7, proof_path=None)
++    envelope = accepted.envelope
++
++    assert set(envelope) == {
++        "schema",
++        "wave_kind",
++        "adapter",
++        "control",
++        "wave_manifest",
++        "package",
++        "resource_policy",
++        "result",
++        "receipt",
++        "custody_seal",
++        "driver_seal",
++        "journal",
++        "attempt_entries",
++        "attempt_inventory",
++        "claims",
++        "envelope_sha256",
++    }
++    assert envelope["schema"] == engine.ENGINE_SCHEMA
++    assert "semantic_profile" not in envelope
++    assert output.read_bytes() == canonical_json_bytes(envelope) + b"\n"
++
++    for field, value in (
++        (
++            "semantic_profile",
++            {"schema": "p97-static-cnf-semantic-profile/v1", "sha256": "0" * 64},
++        ),
++        ("semantic_artifacts", []),
++        ("execution_manifest", {}),
++    ):
++        profiled = deepcopy(envelope)
++        profiled[field] = value
++        unsigned = {
++            key: value for key, value in profiled.items() if key != "envelope_sha256"
++        }
++        profiled["envelope_sha256"] = sha256_json(unsigned)
++        output.write_bytes(canonical_json_bytes(profiled) + b"\n")
++        with pytest.raises(engine.StaticCnfEngineError):
++            engine.validate_static_cnf_engine_output(output)
++
++
++def test_v2_run_binds_input_and_execution_manifests_and_semantic_inventory(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    wave_engine, output, api, factories, profile = _make_v2_engine(
++        tmp_path, monkeypatch, "SAT"
++    )
++    accepted = wave_engine.run(timeout_s=7, proof_path=None)
++    envelope = accepted.envelope
++
++    assert envelope["schema"] == "p97-cegar-static-cnf-engine/v2"
++    bound_manifest = json.loads(
++        (wave_engine.package_root / wave_engine.control.manifest.path).read_bytes()
++    )
++    assert envelope["wave_manifest"] == {
++        "sha256": wave_engine.control.manifest.sha256,
++        "manifest": bound_manifest,
++    }
++    execution = envelope["execution_manifest"]
++    assert execution["manifest"] != bound_manifest
++    assert execution["sha256"] == wave_manifest_sha256(execution["manifest"])
++
++    expected_profile_metadata = {
++        key: profile[key]
++        for key in ("schema", "profile_id", "validator", "classification", "cleanup")
++    }
++    assert envelope["semantic_profile"] == {
++        "sha256": sha256_bytes(canonical_json_bytes(profile)),
++        "metadata": expected_profile_metadata,
++    }
++    expected_artifacts = [
++        {
++            "role": role,
++            "sha256": reference.sha256,
++            "bytes": len((wave_engine.package_root / reference.path).read_bytes()),
++        }
++        for role, reference in wave_engine.control.semantic_artifacts
++    ]
++    assert envelope["semantic_artifacts"] == expected_artifacts
++    assert len(factories) == 1
++    assert api.calls
++    assert output.read_bytes() == canonical_json_bytes(envelope) + b"\n"
++    assert engine.validate_static_cnf_engine_output(output) == envelope
++
++
++def test_v2_offline_validator_rejects_manifest_and_semantic_crossings(
++    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
++) -> None:
++    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
++        tmp_path, monkeypatch, "UNKNOWN"
++    )
++    envelope = wave_engine.run(timeout_s=7, proof_path=None).envelope
++
++    def write_tampered(value: dict[str, object]) -> None:
++        unsigned = {
++            key: item for key, item in value.items() if key != "envelope_sha256"
++        }
++        value["envelope_sha256"] = sha256_json(unsigned)
++        output.write_bytes(canonical_json_bytes(value) + b"\n")
++
++    missing_execution = deepcopy(envelope)
++    del missing_execution["execution_manifest"]
++    write_tampered(missing_execution)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++    extra_execution = deepcopy(envelope)
++    extra_execution["execution_manifest"]["extra"] = False
++    write_tampered(extra_execution)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++    crossed_execution = deepcopy(envelope)
++    crossed_execution["execution_manifest"]["sha256"] = envelope["wave_manifest"][
++        "sha256"
++    ]
++    write_tampered(crossed_execution)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++    missing_metadata = deepcopy(envelope)
++    del missing_metadata["semantic_profile"]["metadata"]
++    write_tampered(missing_metadata)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++    extra_metadata = deepcopy(envelope)
++    extra_metadata["semantic_profile"]["metadata"]["extra"] = False
++    write_tampered(extra_metadata)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++    crossed_metadata = deepcopy(envelope)
++    crossed_metadata["semantic_profile"]["metadata"]["profile_id"] = "crossed"
++    write_tampered(crossed_metadata)
++    with pytest.raises(engine.StaticCnfEngineError):
++        engine.validate_static_cnf_engine_output(output)
++
++
+ def test_registered_run_seals_and_validates_execution_identity(
+     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+ ) -> None:

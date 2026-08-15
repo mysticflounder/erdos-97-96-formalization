@@ -1,0 +1,415 @@
+{
+  "keys": null,
+  "labels": [
+    "p",
+    "q",
+    "u",
+    "a0",
+    "a1",
+    "t1",
+    "t2",
+    "t3"
+  ],
+  "centers": [
+    "u",
+    "a0",
+    "a1",
+    "t1",
+    "t2",
+    "t3"
+  ],
+  "dangerous_circle": [
+    "q",
+    "t1",
+    "t2",
+    "t3"
+  ],
+  "mode_count": 64,
+  "total_models": 1552476,
+  "statuses": [
+    {
+      "modes": "QQQQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 468
+    },
+    {
+      "modes": "QQQQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 7116
+    },
+    {
+      "modes": "QQQQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 7116
+    },
+    {
+      "modes": "QQQQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 46728
+    },
+    {
+      "modes": "QQQSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 7116
+    },
+    {
+      "modes": "QQQSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 46728
+    },
+    {
+      "modes": "QQQSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 46728
+    },
+    {
+      "modes": "QQQSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 72558
+    },
+    {
+      "modes": "QQSQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 4860
+    },
+    {
+      "modes": "QQSQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QQSQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QQSQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QQSSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QQSSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QQSSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QQSSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 16176
+    },
+    {
+      "modes": "QSQQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 4860
+    },
+    {
+      "modes": "QSQQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QSQQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QSQQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QSQSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "QSQSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QSQSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "QSQSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 16176
+    },
+    {
+      "modes": "QSSQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 25692
+    },
+    {
+      "modes": "QSSQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "QSSQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "QSSQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "QSSSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "QSSSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "QSSSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "QSSSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1800
+    },
+    {
+      "modes": "SQQQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 4860
+    },
+    {
+      "modes": "SQQQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "SQQQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "SQQQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "SQQSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 29608
+    },
+    {
+      "modes": "SQQSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "SQQSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 45822
+    },
+    {
+      "modes": "SQQSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 16176
+    },
+    {
+      "modes": "SQSQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 25692
+    },
+    {
+      "modes": "SQSQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SQSQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SQSQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SQSSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SQSSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SQSSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SQSSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1800
+    },
+    {
+      "modes": "SSQQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 25692
+    },
+    {
+      "modes": "SSQQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SSQQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SSQQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SSQSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 34154
+    },
+    {
+      "modes": "SSQSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SSQSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 12184
+    },
+    {
+      "modes": "SSQSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1800
+    },
+    {
+      "modes": "SSSQQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 38946
+    },
+    {
+      "modes": "SSSQQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 10872
+    },
+    {
+      "modes": "SSSQSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 10872
+    },
+    {
+      "modes": "SSSQSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1548
+    },
+    {
+      "modes": "SSSSQQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 10872
+    },
+    {
+      "modes": "SSSSQS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1548
+    },
+    {
+      "modes": "SSSSSQ",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 1548
+    },
+    {
+      "modes": "SSSSSS",
+      "z3": "sat",
+      "cvc5": "sat",
+      "models": 216
+    }
+  ]
+}

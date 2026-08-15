@@ -1,0 +1,9 @@
+diff --git a/docs/specs/p97-piqd-certified-frontier-solver-v1.md b/docs/specs/p97-piqd-certified-frontier-solver-v1.md
+index 0153cd5b..6ab74475 100644
+--- a/docs/specs/p97-piqd-certified-frontier-solver-v1.md
++++ b/docs/specs/p97-piqd-certified-frontier-solver-v1.md
+@@ -136,4 +136,3 @@ fsync.  An existing receipt or any crossed target aborts before publication.
+ The structural receipt binds the package, job, status, journal, kept CNF,
+ clause map, compact LRAT, checker, and replay hashes while recording every
+ non-established global claim as false.
+-

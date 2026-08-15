@@ -1,0 +1,75 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "34238a3454a949e4125887de310a2499c2f135f0040337e767ea762529fbfa7f"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "910d307a2cdead8f2e58a2cade2c971fea4b430e1bd8482e854f40b3a35a72b4"
+    },
+    "discovery_cnf": {
+      "bytes": 13034725,
+      "path": "discovery.cnf",
+      "sha256": "844941ffca98247cc410185bac2a727189fe7e4af0a3ce06da4cd25fc8453aab"
+    },
+    "job": {
+      "bytes": 14708,
+      "path": "job.json",
+      "sha256": "9ffdd7b5ee04d506a4effe0f3940c7b22bfd113ed8819135099dbecab4839f66"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "c05efdb112c60c426736f1c5d7b15c6d73f60f24cd471e3d77e1587c7c425112"
+    },
+    "proof": null,
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "adab44d3fba9a69a6754afdb59b71d03c55ddc635cdf1b7e35660a269504beae"
+    },
+    "source_order_bank": {
+      "bytes": 6289546,
+      "path": "source_order_bank.json",
+      "sha256": "df9397c6506c0f3be11a50f6c92e52a7d8dc7a5f0b9d8ddc51cc730ecb9ce240"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "96d7d897ab32b7d4f64b933bbdc3cc894d8245f24d936b6fd9d696c358f22bc4"
+    },
+    "survivor": {
+      "bytes": 290920,
+      "path": "survivor.json",
+      "sha256": "7b78b9ead377728a30e17c0c0c07636c1308984e9dad394f8d39ede7c44ee0be"
+    },
+    "terminal_cnf": null
+  },
+  "classification": "UNADMITTED_STRUCTURAL_SURVIVOR",
+  "discovery_stdout_tail": "44851 -44852 -44853\nv -44854 44855 -44856 44857 44858 44859 44860 -44861 44862 44863 44864 44865\nv -44866 -44867 -44868 -44869 44870 44871 44872 44873 44874 44875 44876 -44877\nv 44878 -44879 44880 44881 -44882 44883 -44884 44885 44886 44887 -44888 44889\nv -44890 44891 44892 44893 -44894 44895 -44896 44897 -44898 44899 44900 44901\nv 44902 44903 44904 44905 44906 44907 44908 -44909 -44910 -44911 -44912 -44913\nv -44914 44915 44916 44917 -44918 44919 44920 -44921 -44922 44923 44924 -44925\nv 44926 44927 44928 44929 44930 44931 44932 44933 44934 44935 44936 44937\nv 44938 44939 44940 -44941 -44942 -44943 -44944 -44945 -44946 -44947 -44948\nv -44949 -44950 -44951 -44952 -44953 -44954 -44955 -44956 -44957 -44958 -44959\nv -44960 -44961 -44962 -44963 -44964 44965 44966 44967 44968 44969 44970\nv -44971 44972 -44973 -44974 -44975 -44976 -44977 -44978 -44979 -44980 -44981\nv 44982 -44983 -44984 -44985 44986 44987 44988 44989 44990 44991 44992 -44993\nv -44994 44995 -44996 -44997 44998 -44999 -45000 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "b993687b40c33cc6c64ab90350974af50676986d1cc8833a0535f5c939d8c24f",
+  "job_sha256": "9ffdd7b5ee04d506a4effe0f3940c7b22bfd113ed8819135099dbecab4839f66",
+  "lean_terminal_ingress_ready": false,
+  "nice": 5,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v1",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 3600
+}

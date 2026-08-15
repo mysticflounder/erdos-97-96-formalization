@@ -1,0 +1,9 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission
+#check Finset.two_le_card
+#check Finset.card_le_card
+#check Finset.mem_diff
+#check Finset.mem_of_mem_diff
+#check Finset.mem_inter
+#check Finset.mem_erase
+#check Finset.card_pos
+#check Finset.one_le_card

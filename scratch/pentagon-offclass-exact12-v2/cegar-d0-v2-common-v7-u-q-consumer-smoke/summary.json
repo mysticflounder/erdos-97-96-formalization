@@ -1,0 +1,128 @@
+{
+  "clauses": 330161,
+  "inherited_records": 11351,
+  "learned_clauses": 11352,
+  "new_iterations_this_invocation": 1,
+  "schema": "p97_pentagon_offclass_exact12_common_concrete_rows_cegar.v7",
+  "scope": "one encoded exact-12 common-deletion branch with concrete Kxv, Kc, and physical-minus-xu rows; not a kernel proof and not universal-cardinality closure",
+  "solver_backend": "fresh-cadical-subprocess",
+  "source_ingress": {
+    "added_clauses": 780,
+    "admissions": [
+      {
+        "frozen_adapter": "b(xv)=C and theorem opp2 is frozen cap index 1",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_card_twelve_exact_cap_profile",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_secondCap_commonDeletionFan",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_exact_physical_cycle_traces"
+        ],
+        "predicate": "K_xv \u2229 secondCap = {u,xv}"
+      },
+      {
+        "frozen_adapter": "conditional on each b(c,a); K_c is row a",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_nextRow_strictTriple_card_le_one"
+        ],
+        "predicate": "|K_centerAt(c) \u2229 {u,xu,xv}| <= 1"
+      }
+    ],
+    "branch": {
+      "added_clauses": 801,
+      "deletion_label": 10,
+      "deletion_role": "q",
+      "first_apex_label": 2,
+      "frozen_adapter": "theorem opp1 is frozen cap index 2 with interior {q,w}={10,11}; source role is one of physical labels {u,xv,xu}; outside-fibre means its actual blocker is not the frozen first apex",
+      "kernel_status": "Python source-to-CNF adapter not kernel checked",
+      "lean_theorems": [
+        "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+        "Problem97.cross_deletion_survives_iff_not_mem_selected_support"
+      ],
+      "outside_first_apex_fiber_clause": [
+        -39565
+      ],
+      "schema": "p97_pentagon_offclass_exact12_source_role_deletion_cegar.v5.branch_ingress.v1",
+      "semantic_class": "Class C: source-proved branch constraints added",
+      "source_label": 6,
+      "source_radius": "physical",
+      "source_role": "u",
+      "surviving_deletion_clauses": 800,
+      "target_theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius"
+    },
+    "common_concrete_rows": {
+      "added_clause_counts": {
+        "Kc_xu_omission": 765,
+        "Kxv_xu_omission": 90,
+        "blocker_xu_not_C": 1,
+        "blocker_xu_not_blocker_C": 9,
+        "tetrahedron_five_incidence_consumer": 440
+      },
+      "added_clauses": 1305,
+      "arm": "common_deletion",
+      "blocker_avoidance_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_xuCommonArm_blockerAvoidsConcreteCenters",
+      "checked_consumer_encoded_under_frozen_adapter": true,
+      "concrete_rows_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_xuCommonArm_threeConcreteExactRows",
+      "dichotomy_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit",
+      "inherited_constraint_audit": {
+        "Kc_BO_C2_forbidden_conditional_choices": 129,
+        "Kxv_BO_C2_forbidden_choices": 10,
+        "Kxv_Kc_C2_forbidden_conditional_pairs": 40097,
+        "three_row_C4_forbidden_conditional_pairs": 21315
+      },
+      "inherited_constraint_sources": {
+        "Kc_BO_C2": "probe.build_case physical-circle C2 units",
+        "Kxv_BO_C2": "probe.build_case physical-circle C2 units",
+        "Kxv_Kc_C2": "CoverInstance._build_c2",
+        "three_row_deduplicated_C4": "separate global probe.build_case physical-circle pair constraints; not exported by the concrete-row theorem, and the physical circle is counted only once"
+      },
+      "kernel_checked_source_to_cnf": false,
+      "kernel_status": "Lean producer checked; frozen-label Python source-to-CNF adapter not kernel checked",
+      "producer_consequence_encoded_under_frozen_adapter": true,
+      "row_adapter": {
+        "BO": [
+          0,
+          2,
+          6,
+          8
+        ],
+        "BO_identity": "physical five-class circle with xu erased",
+        "Kc": "selected cube row at blocker(C)=centerAt(C)",
+        "Kxv": "selected cube row at fixed center C=centerAt(xv)"
+      },
+      "schema": "p97_pentagon_offclass_exact12_common_concrete_rows_cegar.v7.concrete_row_ingress.v1",
+      "semantic_class": "Class C: checked common-arm concrete rows",
+      "target_theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+      "tetrahedron_consumer_clause_schema": {
+        "clause": "-blocker(C,d) OR -choice(C,Kxv) OR -choice(d,Kc)",
+        "clauses_by_d": {
+          "0": 30,
+          "2": 10,
+          "6": 0,
+          "8": 400
+        },
+        "d_domain": [
+          0,
+          2,
+          6,
+          8
+        ],
+        "positive_incidences": [
+          "d in BO",
+          "oppApex2 in Kc",
+          "u in Kc",
+          "oppApex2 in Kxv",
+          "d in Kxv"
+        ]
+      },
+      "tetrahedron_consumer_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_xuCommonArm_false_of_tetrahedron_incidences",
+      "tetrahedron_kernel_theorem": "Problem97.U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility"
+    },
+    "kernel_status": "Lean producers checked; Python source-to-CNF adapter not kernel checked",
+    "next_row_strict_triple_clauses": 535,
+    "schema": "p97_pentagon_offclass_exact12_common_concrete_rows_cegar.v7.combined_ingress.v1",
+    "second_cap_pair_clauses": 245,
+    "semantic_class": "Class C: source-proved clauses added"
+  },
+  "status": "SMOKE_PASS",
+  "v7_records_total": 1,
+  "variables": 39733
+}

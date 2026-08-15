@@ -1,0 +1,1233 @@
+diff --git a/census/p97_search/phase3_piqd_campaign.py b/census/p97_search/phase3_piqd_campaign.py
+index 058eba12..753cddf1 100644
+--- a/census/p97_search/phase3_piqd_campaign.py
++++ b/census/p97_search/phase3_piqd_campaign.py
+@@ -29,7 +29,8 @@ from census.p97_search.phase3_piqd_exact12_replay import (
+     REPLAY_SCHEMA,
+     Exact12PiqdReplayError,
+     canonical_json_bytes,
+-    replay_exact12_model_snapshot,
++    derive_source_duplicate_center_classifier_snapshot,
++    validate_source_duplicate_center_classifier,
+ )
+ 
+ CAMPAIGN_SCHEMA = "p97-cegar-campaign/v1"
+@@ -39,14 +40,18 @@ RESULT_SCHEMA = "p97-cegar-campaign-result/v1"
+ PACKAGE_IDENTITY_SCHEMA = "p97-phase3-piqd-package-identity/v1"
+ DIAGNOSTIC_STATUS = "DIAGNOSTIC_ONLY_NOT_SOURCE_ENTITLED"
+ CAMPAIGN_SCOPE = (
+-    "bounded finite-local custody and repeated-survivor stop control only; "
+-    "no scheduling, aggregate coverage, source entitlement, universal lift, "
+-    "or Lean theorem closure"
++    "bounded finite-local source-derived custody and repeated-survivor stop "
++    "control only; no scheduling, aggregate coverage, universal lift, or Lean "
++    "theorem closure"
++)
++DIAGNOSTIC_SCOPE = (
++    "self-declared diagnostic classifier only; no source entitlement, campaign "
++    "admission, aggregate coverage, universal lift, or Lean theorem closure"
+ )
+ NO_CLAIMS = {
+     "aggregate_coverage": False,
+-    "source_entitlement": False,
+-    "theorem_closure": False,
++    "universal_lift": False,
++    "lean_theorem_closure": False,
+ }
+ THRESHOLD = 3
+ MAX_IN_FLIGHT = 1
+@@ -649,7 +654,7 @@ def make_classifier(
+     artifact = {
+         "schema": CLASSIFIER_SCHEMA,
+         "status": DIAGNOSTIC_STATUS,
+-        "scope": CAMPAIGN_SCOPE,
++        "scope": DIAGNOSTIC_SCOPE,
+         "model_sha256": _digest(model_sha256, "model_sha256"),
+         "source_bundle_sha256": _digest(source_bundle_sha256, "source_bundle_sha256"),
+         "detector_contract_sha256": _digest(
+@@ -666,7 +671,7 @@ def validate_classifier(value: Mapping[str, Any]) -> None:
+     _exact_keys(value, _CLASSIFIER_KEYS, "classifier")
+     if value["schema"] != CLASSIFIER_SCHEMA or value["status"] != DIAGNOSTIC_STATUS:
+         raise PiqdCampaignError("classifier schema or diagnostic status mismatch")
+-    if value["scope"] != CAMPAIGN_SCOPE:
++    if value["scope"] != DIAGNOSTIC_SCOPE:
+         raise PiqdCampaignError("classifier scope mismatch")
+     for key in (
+         "model_sha256",
+@@ -823,7 +828,7 @@ def _authenticate_cell(
+     if source_job.get("cell_index") != cell["cell_index"]:
+         raise PiqdCampaignError("source-job cell_index changed during admission")
+     try:
+-        fresh = replay_exact12_model_snapshot(
++        fresh, source_classifier = derive_source_duplicate_center_classifier_snapshot(
+             repo_root,
+             source_job_path=Path(inputs["source_job"]),
+             source_job_bytes=package_raw["source-job.json"],
+@@ -831,6 +836,7 @@ def _authenticate_cell(
+             discovery_cnf_bytes=package_raw["discovery.cnf"],
+             model_path=Path(inputs["model"]),
+             model_bytes=model_raw,
++            source_bundle_bytes=bundle_raw,
+             expected_piqd_job_id=piqd_job_id,
+         )
+     except Exact12PiqdReplayError as exc:
+@@ -843,11 +849,17 @@ def _authenticate_cell(
+         )
+ 
+     classifier, classifier_raw = _load_canonical_line(classifier_path, "classifier")
+-    validate_classifier(classifier)
+-    if classifier["model_sha256"] != model_sha256:
+-        raise PiqdCampaignError("classifier model hash mismatch")
+-    if classifier["source_bundle_sha256"] != cell["source_bundle_sha256"]:
+-        raise PiqdCampaignError("classifier source bundle hash mismatch")
++    try:
++        validate_source_duplicate_center_classifier(classifier, repo_root=repo_root)
++    except Exact12PiqdReplayError as exc:
++        raise PiqdCampaignError(f"source classifier validation failed: {exc}") from exc
++    source_classifier_raw = canonical_json_bytes(source_classifier) + b"\n"
++    if source_classifier_raw != classifier_raw:
++        raise PiqdCampaignError(
++            "fresh source-derived classifier differs byte-for-byte from archived "
++            f"classifier: fresh={sha256_bytes(source_classifier_raw)}, "
++            f"archived={sha256_bytes(classifier_raw)}"
++        )
+     unsigned = {
+         "schema": RECORD_SCHEMA,
+         "campaign_sha256": sha256_json(manifest),
+@@ -861,7 +873,7 @@ def _authenticate_cell(
+         "receipt_sha256": sha256_bytes(receipt_raw),
+         "classifier_sha256": sha256_bytes(classifier_raw),
+         "equivalence_key": _equivalence_key(classifier),
+-        "evidence_status": "AUTHENTICATED_STRUCTURAL_SAT_SURVIVOR",
++        "evidence_status": "AUTHENTICATED_SOURCE_DERIVED_DUPLICATE_CENTER_SURVIVOR",
+         "claims": dict(NO_CLAIMS),
+     }
+     return unsigned
+@@ -902,7 +914,10 @@ def _validate_campaign_record(
+     previous = record["previous_record_sha256"]
+     if previous is not None:
+         _digest(previous, f"campaign record {ordinal}.previous_record_sha256")
+-    if record["evidence_status"] != "AUTHENTICATED_STRUCTURAL_SAT_SURVIVOR":
++    if (
++        record["evidence_status"]
++        != "AUTHENTICATED_SOURCE_DERIVED_DUPLICATE_CENTER_SURVIVOR"
++    ):
+         raise PiqdCampaignError("campaign record evidence status mismatch")
+     if record["claims"] != NO_CLAIMS:
+         raise PiqdCampaignError("campaign record claims mismatch")
+diff --git a/census/p97_search/phase3_piqd_exact12_replay.py b/census/p97_search/phase3_piqd_exact12_replay.py
+index 5ea1de8c..67f59403 100644
+--- a/census/p97_search/phase3_piqd_exact12_replay.py
++++ b/census/p97_search/phase3_piqd_exact12_replay.py
+@@ -13,7 +13,8 @@ import json
+ import os
+ import stat
+ import sys
+-from collections.abc import Mapping, Sequence
++from collections.abc import Collection, Mapping, Sequence
++from dataclasses import dataclass
+ from pathlib import Path
+ from typing import Any
+ 
+@@ -24,6 +25,15 @@ from census.card_head.exact12_v14_bound_jobs import (
+ )
+ from census.card_head.exact12_v14_cell_run import cnf_assignment_satisfies
+ from census.card_head.exact12_v14_schedule import build_manifest, json_sha256
++from census.card_head.exact12_v14_structural_cegar import (
++    DETECTOR_CONTRACT,
++    DETECTOR_FILES,
++    Exact12V14StructuralCegarError,
++    _canonical_cube_payload,
++    detect_structural_certificate,
++    learned_clause_for_certificate,
++    validate_structural_certificate,
++)
+ from census.card_head.exact12_v14_valuation import (
+     Exact12V14ValuationError,
+     added_constraints_hold,
+@@ -40,7 +50,54 @@ REPLAY_SCOPE = (
+     "one authenticated finite normalized-v14 cell; source-semantic SAT-model "
+     "replay only; no aggregate coverage, universal lift, or Lean closure"
+ )
++SOURCE_CLASSIFIER_SCHEMA = "p97-cegar-source-derived-duplicate-center/v1"
++SOURCE_CLASSIFIER_STATUS = "FINITE_LOCAL_SOURCE_DERIVED_DUPLICATE_CENTER"
++SOURCE_CLASSIFIER_STAGE = "equality-duplicate-center"
++SOURCE_CLASSIFIER_SCOPE = (
++    "one authenticated finite exact12 source-job/CNF/model snapshot; selected "
++    "positive support and replayed duplicate-center certificate only; no ambient "
++    "fiber completeness, aggregate coverage, universal lift, or Lean theorem closure"
++)
++SOURCE_CLASSIFIER_SEMANTICS = {
++    "certificate_rows_exact_false": True,
++    "certificate_support_is_selected_positive_subset": True,
++    "ambient_fiber_completeness": False,
++}
++SOURCE_CLASSIFIER_CLAIMS = {
++    "aggregate_coverage": False,
++    "universal_lift": False,
++    "lean_theorem_closure": False,
++}
+ _MODEL_KEYS = frozenset({"job_id", "result", "num_assigned", "assignment"})
++_SOURCE_CLASSIFIER_KEYS = frozenset(
++    {
++        "schema",
++        "status",
++        "scope",
++        "model_sha256",
++        "source_job_sha256",
++        "discovery_cnf_sha256",
++        "source_bundle_sha256",
++        "cube",
++        "cube_sha256",
++        "detector_contract",
++        "detector_source_manifest",
++        "detector_contract_sha256",
++        "certificate",
++        "certificate_sha256",
++        "learned_clause",
++        "stage",
++        "row_semantics",
++        "claims",
++    }
++)
++
++
++@dataclass(frozen=True)
++class _Exact12ReplayEvidence:
++    receipt: dict[str, Any]
++    cube: Mapping[int, Collection[int]]
++    instance: Any
+ 
+ 
+ class Exact12PiqdReplayError(ValueError):
+@@ -63,6 +120,20 @@ def _sha256(payload: bytes) -> str:
+     return hashlib.sha256(payload).hexdigest()
+ 
+ 
++def _json_sha256(value: Any) -> str:
++    return _sha256(canonical_json_bytes(value))
++
++
++def _digest(value: Any, label: str) -> str:
++    if (
++        not isinstance(value, str)
++        or len(value) != 64
++        or any(character not in "0123456789abcdef" for character in value)
++    ):
++        raise Exact12PiqdReplayError(f"{label} must be a lowercase SHA-256 digest")
++    return value
++
++
+ def _read_bytes(path: Path, label: str) -> bytes:
+     try:
+         return path.read_bytes()
+@@ -70,6 +141,128 @@ def _read_bytes(path: Path, label: str) -> bytes:
+         raise Exact12PiqdReplayError(f"cannot read {label}: {path}") from exc
+ 
+ 
++def _detector_source_manifest(repo_root: Path) -> list[dict[str, Any]]:
++    """Bind the complete declared detector closure to its current source bytes."""
++
++    manifest: list[dict[str, Any]] = []
++    for relative in DETECTOR_FILES:
++        payload = _read_bytes(Path(repo_root) / relative, f"detector source {relative}")
++        manifest.append(
++            {"path": relative, "bytes": len(payload), "sha256": _sha256(payload)}
++        )
++    return manifest
++
++
++def _detector_contract_sha256(manifest: Sequence[Mapping[str, Any]]) -> str:
++    return _json_sha256(
++        {"detector_contract": DETECTOR_CONTRACT, "source_manifest": list(manifest)}
++    )
++
++
++def _validate_certificate_row_semantics(
++    certificate: Mapping[str, Any], cube: Mapping[str, list[int]]
++) -> None:
++    rows = certificate.get("rows")
++    if not isinstance(rows, list) or not rows:
++        raise Exact12PiqdReplayError("source classifier certificate rows are missing")
++    for row in rows:
++        if not isinstance(row, Mapping) or set(row) != {"center", "support", "exact"}:
++            raise Exact12PiqdReplayError(
++                "source classifier certificate row is malformed"
++            )
++        center = row["center"]
++        support = row["support"]
++        if row["exact"] is not False:
++            raise Exact12PiqdReplayError(
++                "source classifier certificate rows must all have exact=false"
++            )
++        if (
++            isinstance(center, bool)
++            or not isinstance(center, int)
++            or str(center) not in cube
++            or not isinstance(support, list)
++            or any(
++                isinstance(point, bool) or not isinstance(point, int)
++                for point in support
++            )
++            or len(support) != len(set(support))
++        ):
++            raise Exact12PiqdReplayError(
++                "source classifier certificate row is malformed"
++            )
++        if not set(support).issubset(cube[str(center)]):
++            raise Exact12PiqdReplayError(
++                "certificate support is not a subset of selected positive support"
++            )
++
++
++def validate_source_duplicate_center_classifier(
++    value: Mapping[str, Any], *, repo_root: Path
++) -> None:
++    """Strictly validate a source-derived classifier and current source custody."""
++
++    if set(value) != _SOURCE_CLASSIFIER_KEYS:
++        raise Exact12PiqdReplayError("source classifier fields differ from schema")
++    if (
++        value["schema"] != SOURCE_CLASSIFIER_SCHEMA
++        or value["status"] != SOURCE_CLASSIFIER_STATUS
++        or value["scope"] != SOURCE_CLASSIFIER_SCOPE
++        or value["stage"] != SOURCE_CLASSIFIER_STAGE
++        or value["detector_contract"] != DETECTOR_CONTRACT
++        or value["row_semantics"] != SOURCE_CLASSIFIER_SEMANTICS
++        or value["claims"] != SOURCE_CLASSIFIER_CLAIMS
++    ):
++        raise Exact12PiqdReplayError("source classifier contract metadata mismatch")
++    for field in (
++        "model_sha256",
++        "source_job_sha256",
++        "discovery_cnf_sha256",
++        "source_bundle_sha256",
++        "cube_sha256",
++        "detector_contract_sha256",
++        "certificate_sha256",
++    ):
++        _digest(value[field], f"source classifier {field}")
++    try:
++        cube = _canonical_cube_payload(value["cube"], cardinality=12)
++    except (Exact12V14StructuralCegarError, TypeError, ValueError) as exc:
++        raise Exact12PiqdReplayError("source classifier cube is malformed") from exc
++    if value["cube"] != cube or value["cube_sha256"] != _json_sha256(cube):
++        raise Exact12PiqdReplayError(
++            "source classifier canonical cube identity mismatch"
++        )
++    manifest = _detector_source_manifest(repo_root)
++    if value["detector_source_manifest"] != manifest:
++        raise Exact12PiqdReplayError(
++            "source classifier detector source manifest mismatch"
++        )
++    if value["detector_contract_sha256"] != _detector_contract_sha256(manifest):
++        raise Exact12PiqdReplayError(
++            "source classifier detector contract hash mismatch"
++        )
++    certificate = value["certificate"]
++    if not isinstance(certificate, Mapping):
++        raise Exact12PiqdReplayError("source classifier certificate is malformed")
++    if certificate.get("stage") != SOURCE_CLASSIFIER_STAGE:
++        raise Exact12PiqdReplayError("source classifier certificate stage mismatch")
++    if value["certificate_sha256"] != _json_sha256(certificate):
++        raise Exact12PiqdReplayError("source classifier certificate hash mismatch")
++    if not validate_structural_certificate(certificate, n=12):
++        raise Exact12PiqdReplayError("source classifier certificate replay failed")
++    _validate_certificate_row_semantics(certificate, cube)
++    clause = value["learned_clause"]
++    if (
++        not isinstance(clause, list)
++        or not clause
++        or any(
++            isinstance(literal, bool) or not isinstance(literal, int) or literal >= 0
++            for literal in clause
++        )
++        or len(clause) != len(set(clause))
++    ):
++        raise Exact12PiqdReplayError("source classifier learned clause is malformed")
++
++
+ def _strict_json(raw: bytes, *, source: str) -> Mapping[str, Any]:
+     def reject_constant(value: str) -> None:
+         raise ValueError(f"nonstandard JSON constant: {value}")
+@@ -136,7 +329,7 @@ def _assignment(
+     return tuple(assignment)
+ 
+ 
+-def replay_exact12_model_snapshot(
++def _replay_exact12_model_evidence_snapshot(
+     repo_root: Path,
+     *,
+     source_job_path: Path,
+@@ -146,8 +339,8 @@ def replay_exact12_model_snapshot(
+     model_path: Path,
+     model_bytes: bytes,
+     expected_piqd_job_id: str,
+-) -> dict[str, Any]:
+-    """Replay immutable input snapshots and return a canonical finite-cell receipt.
++) -> _Exact12ReplayEvidence:
++    """Replay snapshots once and retain the decoded cube for trusted consumers.
+ 
+     Any failed gate raises :class:`Exact12PiqdReplayError`.  The exception's
+     ``receipt`` contains the failed gate whenever validation got far enough to
+@@ -318,10 +511,14 @@ def replay_exact12_model_snapshot(
+         n_variables=materialized.instance.cnf.n_variables,
+     )
+     _gate(gates, "exact_cnf", exact_cnf)
++    canonical_cube: dict[str, list[int]] | None = None
+     try:
+         cube = materialized.instance.decode_model(positive)
+         candidate = source_faithful_cube_ok(materialized.instance.model, cube)
+-    except (ValueError, TypeError, KeyError) as exc:
++        canonical_cube = _canonical_cube_payload(
++            cube, cardinality=materialized.instance.model.cardinality
++        )
++    except (Exact12V14StructuralCegarError, ValueError, TypeError, KeyError) as exc:
+         cube = None
+         candidate = False
+         _gate(gates, "source_faithful_candidate", False, str(exc))
+@@ -342,10 +539,10 @@ def replay_exact12_model_snapshot(
+ 
+     overall = all(item["ok"] for item in gates.values())
+     receipt["status"] = "ACCEPTED" if overall else "REJECTED"
+-    if cube is not None:
+-        receipt["decoded"] = {"cube_sha256": json_sha256(cube)}
++    if canonical_cube is not None:
++        receipt["decoded"] = {"cube_sha256": _json_sha256(canonical_cube)}
+     if blockers is not None:
+-        receipt["decoded"]["blockers"] = {
++        receipt.setdefault("decoded", {})["blockers"] = {
+             str(source): center for source, center in sorted(blockers.items())
+         }
+     receipt["assignment"] = {
+@@ -357,7 +554,123 @@ def replay_exact12_model_snapshot(
+         error = "one or more source-semantic replay gates failed"
+         receipt["failure"] = error
+         raise Exact12PiqdReplayError(error, receipt=receipt)
+-    return receipt
++    if cube is None:
++        raise Exact12PiqdReplayError("accepted replay is missing its decoded cube")
++    return _Exact12ReplayEvidence(
++        receipt=receipt, cube=cube, instance=materialized.instance
++    )
++
++
++def replay_exact12_model_snapshot(
++    repo_root: Path,
++    *,
++    source_job_path: Path,
++    source_job_bytes: bytes,
++    discovery_cnf_path: Path,
++    discovery_cnf_bytes: bytes,
++    model_path: Path,
++    model_bytes: bytes,
++    expected_piqd_job_id: str,
++) -> dict[str, Any]:
++    """Replay immutable input snapshots and return a canonical finite-cell receipt.
++
++    The paths are identity labels only and are never reopened.  Source-derived
++    consumers use the same internal replay result rather than decoding via a
++    second path read.
++    """
++
++    return _replay_exact12_model_evidence_snapshot(
++        repo_root,
++        source_job_path=source_job_path,
++        source_job_bytes=source_job_bytes,
++        discovery_cnf_path=discovery_cnf_path,
++        discovery_cnf_bytes=discovery_cnf_bytes,
++        model_path=model_path,
++        model_bytes=model_bytes,
++        expected_piqd_job_id=expected_piqd_job_id,
++    ).receipt
++
++
++def derive_source_duplicate_center_classifier_snapshot(
++    repo_root: Path,
++    *,
++    source_job_path: Path,
++    source_job_bytes: bytes,
++    discovery_cnf_path: Path,
++    discovery_cnf_bytes: bytes,
++    model_path: Path,
++    model_bytes: bytes,
++    source_bundle_bytes: bytes,
++    expected_piqd_job_id: str,
++) -> tuple[dict[str, Any], dict[str, Any]]:
++    """Replay once and derive the only classifier admitted by the campaign."""
++
++    if not isinstance(source_bundle_bytes, bytes):
++        raise Exact12PiqdReplayError("source bundle snapshot must be immutable bytes")
++    evidence = _replay_exact12_model_evidence_snapshot(
++        repo_root,
++        source_job_path=source_job_path,
++        source_job_bytes=source_job_bytes,
++        discovery_cnf_path=discovery_cnf_path,
++        discovery_cnf_bytes=discovery_cnf_bytes,
++        model_path=model_path,
++        model_bytes=model_bytes,
++        expected_piqd_job_id=expected_piqd_job_id,
++    )
++    if evidence.instance.model.cardinality != 12:
++        raise Exact12PiqdReplayError("source classifier requires exact cardinality 12")
++    cube = _canonical_cube_payload(evidence.cube, cardinality=12)
++    detector_manifest = _detector_source_manifest(repo_root)
++    try:
++        certificate = detect_structural_certificate(evidence.cube, n=12)
++        if certificate is None:
++            raise Exact12PiqdReplayError(
++                "decoded cube has no replay-valid structural certificate"
++            )
++        if certificate.get("stage") != SOURCE_CLASSIFIER_STAGE:
++            raise Exact12PiqdReplayError(
++                "decoded cube is not classified at equality-duplicate-center"
++            )
++        if not validate_structural_certificate(certificate, n=12):
++            raise Exact12PiqdReplayError(
++                "detected duplicate-center certificate failed independent replay"
++            )
++        _validate_certificate_row_semantics(certificate, cube)
++        learned_clause = learned_clause_for_certificate(evidence.instance, certificate)
++    except Exact12PiqdReplayError:
++        raise
++    except (Exact12V14StructuralCegarError, KeyError, TypeError, ValueError) as exc:
++        raise Exact12PiqdReplayError(
++            f"source-derived structural classification failed: {exc}"
++        ) from exc
++    if _detector_source_manifest(repo_root) != detector_manifest:
++        raise Exact12PiqdReplayError(
++            "detector source changed during source-derived classification"
++        )
++    artifact = {
++        "schema": SOURCE_CLASSIFIER_SCHEMA,
++        "status": SOURCE_CLASSIFIER_STATUS,
++        "scope": SOURCE_CLASSIFIER_SCOPE,
++        "model_sha256": _sha256(model_bytes),
++        "source_job_sha256": _sha256(source_job_bytes),
++        "discovery_cnf_sha256": _sha256(discovery_cnf_bytes),
++        "source_bundle_sha256": _sha256(source_bundle_bytes),
++        "cube": cube,
++        "cube_sha256": _json_sha256(cube),
++        "detector_contract": DETECTOR_CONTRACT,
++        "detector_source_manifest": detector_manifest,
++        "detector_contract_sha256": _detector_contract_sha256(detector_manifest),
++        "certificate": dict(certificate),
++        "certificate_sha256": _json_sha256(certificate),
++        "learned_clause": list(learned_clause),
++        "stage": SOURCE_CLASSIFIER_STAGE,
++        "row_semantics": dict(SOURCE_CLASSIFIER_SEMANTICS),
++        "claims": dict(SOURCE_CLASSIFIER_CLAIMS),
++    }
++    if artifact["cube_sha256"] != evidence.receipt["decoded"]["cube_sha256"]:
++        raise Exact12PiqdReplayError("replay and classifier cube identities diverged")
++    validate_source_duplicate_center_classifier(artifact, repo_root=repo_root)
++    return evidence.receipt, artifact
+ 
+ 
+ def replay_exact12_model(
+@@ -480,15 +793,33 @@ def main(argv: Sequence[str] | None = None) -> int:
+     parser.add_argument("--model", type=Path, required=True)
+     parser.add_argument("--expected-piqd-job-id", required=True)
+     parser.add_argument("--receipt", type=Path)
++    parser.add_argument("--source-bundle", type=Path)
++    parser.add_argument("--classifier", type=Path)
+     args = parser.parse_args(argv)
++    if (args.source_bundle is None) != (args.classifier is None):
++        parser.error("--source-bundle and --classifier must be supplied together")
++    classifier: dict[str, Any] | None = None
+     try:
+-        receipt = replay_exact12_model(
+-            args.repo_root,
+-            args.source_job,
+-            args.discovery_cnf,
+-            args.model,
+-            args.expected_piqd_job_id,
+-        )
++        if args.classifier is None:
++            receipt = replay_exact12_model(
++                args.repo_root,
++                args.source_job,
++                args.discovery_cnf,
++                args.model,
++                args.expected_piqd_job_id,
++            )
++        else:
++            receipt, classifier = derive_source_duplicate_center_classifier_snapshot(
++                args.repo_root,
++                source_job_path=args.source_job,
++                source_job_bytes=_read_bytes(args.source_job, "source job"),
++                discovery_cnf_path=args.discovery_cnf,
++                discovery_cnf_bytes=_read_bytes(args.discovery_cnf, "discovery CNF"),
++                model_path=args.model,
++                model_bytes=_read_bytes(args.model, "piqd model"),
++                source_bundle_bytes=_read_bytes(args.source_bundle, "source bundle"),
++                expected_piqd_job_id=args.expected_piqd_job_id,
++            )
+         code = 0
+     except Exact12PiqdReplayError as exc:
+         receipt = exc.receipt or {
+@@ -503,6 +834,8 @@ def main(argv: Sequence[str] | None = None) -> int:
+         write_receipt(args.receipt, receipt)
+     else:
+         sys.stdout.buffer.write(canonical_json_bytes(receipt) + b"\n")
++    if classifier is not None:
++        write_receipt(args.classifier, classifier)
+     return code
+ 
+ 
+diff --git a/census/p97_search/tests/test_phase3_piqd_campaign.py b/census/p97_search/tests/test_phase3_piqd_campaign.py
+index 4db13811..99977125 100644
+--- a/census/p97_search/tests/test_phase3_piqd_campaign.py
++++ b/census/p97_search/tests/test_phase3_piqd_campaign.py
+@@ -9,6 +9,7 @@ from typing import Any
+ import pytest
+ 
+ from census.p97_search import phase3_piqd_campaign as campaign
++from census.p97_search import phase3_piqd_exact12_replay as exact12_replay
+ from census.p97_search.phase3_piqd_driver import DurableAttemptJournal
+ 
+ 
+@@ -52,6 +53,46 @@ def _accepted_receipt(
+     }
+ 
+ 
++def _source_classifier(
++    *,
++    model_raw: bytes,
++    source_job_raw: bytes,
++    discovery_cnf_raw: bytes,
++    source_bundle_raw: bytes,
++) -> dict[str, Any]:
++    cube = {str(center): [(center + 1) % 12] for center in range(12)}
++    certificate = {
++        "stage": exact12_replay.SOURCE_CLASSIFIER_STAGE,
++        "rows": [{"center": 0, "support": [1], "exact": False}],
++    }
++    manifest = [{"path": "synthetic-detector.py", "bytes": 1, "sha256": "d" * 64}]
++    return {
++        "schema": exact12_replay.SOURCE_CLASSIFIER_SCHEMA,
++        "status": exact12_replay.SOURCE_CLASSIFIER_STATUS,
++        "scope": exact12_replay.SOURCE_CLASSIFIER_SCOPE,
++        "model_sha256": campaign.sha256_bytes(model_raw),
++        "source_job_sha256": campaign.sha256_bytes(source_job_raw),
++        "discovery_cnf_sha256": campaign.sha256_bytes(discovery_cnf_raw),
++        "source_bundle_sha256": campaign.sha256_bytes(source_bundle_raw),
++        "cube": cube,
++        "cube_sha256": campaign.sha256_json(cube),
++        "detector_contract": exact12_replay.DETECTOR_CONTRACT,
++        "detector_source_manifest": manifest,
++        "detector_contract_sha256": campaign.sha256_json(
++            {
++                "detector_contract": exact12_replay.DETECTOR_CONTRACT,
++                "source_manifest": manifest,
++            }
++        ),
++        "certificate": certificate,
++        "certificate_sha256": campaign.sha256_json(certificate),
++        "learned_clause": [-1],
++        "stage": exact12_replay.SOURCE_CLASSIFIER_STAGE,
++        "row_semantics": dict(exact12_replay.SOURCE_CLASSIFIER_SEMANTICS),
++        "claims": dict(exact12_replay.SOURCE_CLASSIFIER_CLAIMS),
++    }
++
++
+ def _make_package(root: Path, ordinal: int) -> tuple[Path, dict[str, Any]]:
+     package = root / f"package-{ordinal}"
+     package.mkdir()
+@@ -222,8 +263,6 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+     receipts: list[Path] = []
+     classifiers: list[Path] = []
+     model_hashes: list[str] = []
+-    source_hash = campaign.sha256_bytes(campaign.canonical_json_bytes({"bundle": 1}))
+-    detector_hash = "d" * 64
+ 
+     for ordinal in range(4):
+         package, wave = _make_package(tmp_path, ordinal)
+@@ -250,12 +289,11 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+         classifier = tmp_path / f"classifier-{ordinal}.json"
+         campaign.write_canonical_json(
+             classifier,
+-            campaign.make_classifier(
+-                model_sha256=model_hash,
+-                source_bundle_sha256=source_hash,
+-                detector_contract_sha256=detector_hash,
+-                certificate_sha256=f"{ordinal + 1:064x}",
+-                stage="equality-duplicate-center",
++            _source_classifier(
++                model_raw=model_path.read_bytes(),
++                source_job_raw=(package / "source-job.json").read_bytes(),
++                discovery_cnf_raw=(package / "discovery.cnf").read_bytes(),
++                source_bundle_raw=(package / "source-bundle.json").read_bytes(),
+             ),
+         )
+         classifiers.append(classifier)
+@@ -265,7 +303,7 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+     campaign.write_canonical_json(manifest_path, manifest)
+     state = tmp_path / "campaign.jsonl"
+ 
+-    def fake_replay(
++    def fake_derive(
+         _repo_root: Path,
+         *,
+         source_job_path: Path,
+@@ -274,8 +312,9 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+         discovery_cnf_bytes: bytes,
+         model_path: Path,
+         model_bytes: bytes,
++        source_bundle_bytes: bytes,
+         expected_piqd_job_id: str,
+-    ) -> dict[str, Any]:
++    ) -> tuple[dict[str, Any], dict[str, Any]]:
+         ordinal = int(expected_piqd_job_id.rsplit("-", 1)[1])
+         receipt = _accepted_receipt(
+             campaign.sha256_bytes(model_bytes),
+@@ -289,9 +328,21 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+         receipt["hashes"]["discovery_cnf_sha256"] = campaign.sha256_bytes(
+             discovery_cnf_bytes
+         )
+-        return receipt
++        return receipt, _source_classifier(
++            model_raw=model_bytes,
++            source_job_raw=source_job_bytes,
++            discovery_cnf_raw=discovery_cnf_bytes,
++            source_bundle_raw=source_bundle_bytes,
++        )
+ 
+-    monkeypatch.setattr(campaign, "replay_exact12_model_snapshot", fake_replay)
++    monkeypatch.setattr(
++        campaign, "derive_source_duplicate_center_classifier_snapshot", fake_derive
++    )
++    monkeypatch.setattr(
++        campaign,
++        "validate_source_duplicate_center_classifier",
++        lambda _classifier, *, repo_root: None,
++    )
+     return {
+         "manifest": manifest_path,
+         "state": state,
+@@ -303,6 +354,7 @@ def fixture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Any]:
+         "receipts": receipts,
+         "classifiers": classifiers,
+         "model_hashes": model_hashes,
++        "fake_derive": fake_derive,
+         "tmp": tmp_path,
+     }
+ 
+@@ -354,7 +406,7 @@ def test_duplicate_is_idempotent_but_divergence_is_rejected(
+     classifier = json.loads(fixture["classifiers"][0].read_text())
+     classifier["stage"] = "different-stage"
+     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
+-    with pytest.raises(campaign.PiqdCampaignError, match="divergent duplicate"):
++    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
+         _admit(fixture, 0)
+ 
+ 
+@@ -369,10 +421,14 @@ def test_receipt_replay_tamper_fails_closed(
+ 
+     receipt["gates"]["exact_cnf"]["ok"] = True
+     campaign.write_canonical_json(fixture["receipts"][0], receipt)
++    classifier = json.loads(fixture["classifiers"][0].read_text())
+     monkeypatch.setattr(
+         campaign,
+-        "replay_exact12_model_snapshot",
+-        lambda *_args, **_kwargs: {**receipt, "scope": "fresh replay changed"},
++        "derive_source_duplicate_center_classifier_snapshot",
++        lambda *_args, **_kwargs: (
++            {**receipt, "scope": "fresh replay changed"},
++            classifier,
++        ),
+     )
+     with pytest.raises(campaign.PiqdCampaignError, match="differs byte-for-byte"):
+         _admit(fixture, 0)
+@@ -382,15 +438,37 @@ def test_classifier_model_and_hash_tamper_fail_closed(fixture: dict[str, Any]) -
+     classifier = json.loads(fixture["classifiers"][0].read_text())
+     classifier["model_sha256"] = "a" * 64
+     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
+-    with pytest.raises(
+-        campaign.PiqdCampaignError, match="classifier model hash mismatch"
+-    ):
++    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
+         _admit(fixture, 0)
+ 
+     classifier["model_sha256"] = fixture["model_hashes"][0]
+     classifier["source_bundle_sha256"] = "b" * 64
+     campaign.write_canonical_json(fixture["classifiers"][0], classifier)
+-    with pytest.raises(campaign.PiqdCampaignError, match="source bundle hash mismatch"):
++    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
++        _admit(fixture, 0)
++
++
++@pytest.mark.parametrize(
++    "tamper", ["missing-detector-manifest", "detector-contract", "certificate"]
++)
++def test_classifier_contract_and_certificate_tamper_fail_closed(
++    fixture: dict[str, Any], tamper: str
++) -> None:
++    classifier = json.loads(fixture["classifiers"][0].read_text())
++    if tamper == "missing-detector-manifest":
++        classifier.pop("detector_source_manifest")
++    elif tamper == "detector-contract":
++        classifier["detector_contract"] = "self-declared-detector"
++    else:
++        classifier["certificate"]["rows"][0]["support"] = [2]
++    campaign.write_canonical_json(fixture["classifiers"][0], classifier)
++    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
++        _admit(fixture, 0)
++
++
++def test_missing_receipt_fails_closed(fixture: dict[str, Any]) -> None:
++    fixture["receipts"][0].unlink()
++    with pytest.raises(campaign.PiqdCampaignError, match="source-semantic receipt"):
+         _admit(fixture, 0)
+ 
+ 
+@@ -413,7 +491,22 @@ def test_manifest_policy_and_classifier_constructor_are_exact() -> None:
+     )
+     assert set(classifier) == campaign._CLASSIFIER_KEYS
+     assert classifier["status"] == campaign.DIAGNOSTIC_STATUS
+-    assert classifier["scope"] == campaign.CAMPAIGN_SCOPE
++    assert classifier["scope"] == campaign.DIAGNOSTIC_SCOPE
++
++
++def test_old_diagnostic_classifier_cannot_pass_source_entitled_gate(
++    fixture: dict[str, Any],
++) -> None:
++    diagnostic = campaign.make_classifier(
++        model_sha256=fixture["model_hashes"][0],
++        source_bundle_sha256="2" * 64,
++        detector_contract_sha256="3" * 64,
++        certificate_sha256="4" * 64,
++        stage="equality-duplicate-center",
++    )
++    campaign.write_canonical_json(fixture["classifiers"][0], diagnostic)
++    with pytest.raises(campaign.PiqdCampaignError, match="source-derived classifier"):
++        _admit(fixture, 0)
+ 
+ 
+ def test_noncanonical_receipt_and_symlink_state_fail_closed(
+@@ -598,6 +691,7 @@ def test_campaign_replay_uses_authenticated_snapshots_without_reopening(
+     fixture: dict[str, Any], monkeypatch: pytest.MonkeyPatch
+ ) -> None:
+     archived = json.loads(fixture["receipts"][0].read_text())
++    archived_classifier = json.loads(fixture["classifiers"][0].read_text())
+     source_path = fixture["packages"][0] / "source-job.json"
+     cnf_path = fixture["packages"][0] / "discovery.cnf"
+     expected_source = source_path.read_bytes()
+@@ -606,17 +700,23 @@ def test_campaign_replay_uses_authenticated_snapshots_without_reopening(
+ 
+     def mutate_paths_after_snapshot(
+         _repo_root: Path, **snapshot: Any
+-    ) -> dict[str, Any]:
++    ) -> tuple[dict[str, Any], dict[str, Any]]:
+         assert snapshot["source_job_bytes"] == expected_source
+         assert snapshot["discovery_cnf_bytes"] == expected_cnf
+         assert campaign.sha256_bytes(snapshot["model_bytes"]) == expected_model_hash
++        assert (
++            snapshot["source_bundle_bytes"]
++            == (fixture["packages"][0] / "source-bundle.json").read_bytes()
++        )
+         source_path.write_bytes(b"{}")
+         cnf_path.write_bytes(b"p cnf 0 0\n")
+         Path(snapshot["model_path"]).write_bytes(b"{}")
+-        return archived
++        return archived, archived_classifier
+ 
+     monkeypatch.setattr(
+-        campaign, "replay_exact12_model_snapshot", mutate_paths_after_snapshot
++        campaign,
++        "derive_source_duplicate_center_classifier_snapshot",
++        mutate_paths_after_snapshot,
+     )
+     assert _admit(fixture, 0)["status"] == "CONTINUE"
+ 
+@@ -675,14 +775,18 @@ def test_concurrent_divergent_duplicate_has_one_winner(
+ 
+     entered = Event()
+     release = Event()
+-    original_replay = campaign.replay_exact12_model_snapshot
++    original_derive = campaign.derive_source_duplicate_center_classifier_snapshot
+ 
+-    def blocking_replay(*args: Any, **kwargs: Any) -> dict[str, Any]:
++    def blocking_derive(
++        *args: Any, **kwargs: Any
++    ) -> tuple[dict[str, Any], dict[str, Any]]:
+         entered.set()
+         assert release.wait(timeout=5)
+-        return original_replay(*args, **kwargs)
++        return original_derive(*args, **kwargs)
+ 
+-    monkeypatch.setattr(campaign, "replay_exact12_model_snapshot", blocking_replay)
++    monkeypatch.setattr(
++        campaign, "derive_source_duplicate_center_classifier_snapshot", blocking_derive
++    )
+     with ThreadPoolExecutor(max_workers=2) as executor:
+         first = executor.submit(_admit, fixture, 0)
+         assert entered.wait(timeout=5)
+@@ -698,6 +802,8 @@ def test_concurrent_divergent_duplicate_has_one_winner(
+         )
+         release.set()
+         assert first.result(timeout=5)["status"] == "CONTINUE"
+-        with pytest.raises(campaign.PiqdCampaignError, match="divergent duplicate"):
++        with pytest.raises(
++            campaign.PiqdCampaignError, match="source-derived classifier"
++        ):
+             second.result(timeout=5)
+     assert len(fixture["state"].read_text().splitlines()) == 1
+diff --git a/census/p97_search/tests/test_phase3_piqd_exact12_replay.py b/census/p97_search/tests/test_phase3_piqd_exact12_replay.py
+index b24969cc..ebb3b06a 100644
+--- a/census/p97_search/tests/test_phase3_piqd_exact12_replay.py
++++ b/census/p97_search/tests/test_phase3_piqd_exact12_replay.py
+@@ -53,12 +53,13 @@ def fixture_paths(tmp_path: Path) -> tuple[Path, Path, Path]:
+ 
+ @pytest.fixture
+ def stub_source(monkeypatch: pytest.MonkeyPatch) -> None:
++    cube = {center: [(center + 1) % 12] for center in range(12)}
+     instance = SimpleNamespace(
+-        model=object(),
++        model=SimpleNamespace(cardinality=12),
+         cnf=SimpleNamespace(n_variables=1, clauses=((1,),)),
+         dimacs=lambda: CNF.decode("ascii"),
+         decode_model=lambda positive: (
+-            {0: [1]}
++            cube
+             if set(positive) == {1}
+             else (_ for _ in ()).throw(ValueError("bad model"))
+         ),
+@@ -80,6 +81,29 @@ def stub_source(monkeypatch: pytest.MonkeyPatch) -> None:
+     )
+ 
+ 
++@pytest.fixture
++def duplicate_center_detector(monkeypatch: pytest.MonkeyPatch) -> dict:
++    certificate = {
++        "stage": replay.SOURCE_CLASSIFIER_STAGE,
++        "rows": [
++            {"center": 0, "support": [1], "exact": False},
++            {"center": 2, "support": [3], "exact": False},
++        ],
++    }
++    monkeypatch.setattr(
++        replay, "detect_structural_certificate", lambda _cube, n: certificate
++    )
++    monkeypatch.setattr(
++        replay, "validate_structural_certificate", lambda _certificate, n: True
++    )
++    monkeypatch.setattr(
++        replay,
++        "learned_clause_for_certificate",
++        lambda _instance, _certificate: (-7, -9),
++    )
++    return certificate
++
++
+ def run_replay(paths: tuple[Path, Path, Path]) -> dict:
+     job, cnf, model = paths
+     return replay.replay_exact12_model(
+@@ -312,3 +336,160 @@ def test_write_receipt_parent_fsync_failure_is_not_success(
+     with pytest.raises(replay.Exact12PiqdReplayError, match="cannot write receipt"):
+         replay.write_receipt(receipt_path, {"ok": True})
+     assert list(tmp_path.glob(".receipt.json.*.tmp")) == []
++
++
++def _derive_classifier(paths: tuple[Path, Path, Path]) -> tuple[dict, dict]:
++    job, cnf, model = paths
++    return replay.derive_source_duplicate_center_classifier_snapshot(
++        REPO_ROOT,
++        source_job_path=job,
++        source_job_bytes=job.read_bytes(),
++        discovery_cnf_path=cnf,
++        discovery_cnf_bytes=cnf.read_bytes(),
++        model_path=model,
++        model_bytes=model.read_bytes(),
++        source_bundle_bytes=b'{"source":"fixture"}\n',
++        expected_piqd_job_id=PIQD_JOB_ID,
++    )
++
++
++def test_source_classifier_is_deterministic_and_uses_one_cube_identity(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++) -> None:
++    receipt_a, classifier_a = _derive_classifier(fixture_paths)
++    receipt_b, classifier_b = _derive_classifier(fixture_paths)
++
++    assert replay.canonical_json_bytes(classifier_a) == replay.canonical_json_bytes(
++        classifier_b
++    )
++    assert receipt_a == receipt_b
++    assert receipt_a["decoded"]["cube_sha256"] == classifier_a["cube_sha256"]
++    int_keyed_cube = {int(key): value for key, value in classifier_a["cube"].items()}
++    assert replay._json_sha256(
++        replay._canonical_cube_payload(int_keyed_cube)
++    ) == replay._json_sha256(classifier_a["cube"])
++    assert classifier_a["row_semantics"]["ambient_fiber_completeness"] is False
++    assert classifier_a["claims"] == replay.SOURCE_CLASSIFIER_CLAIMS
++
++
++def test_source_classifier_snapshot_does_not_reopen_authenticated_inputs(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++) -> None:
++    job, cnf, model = fixture_paths
++    snapshots = (job.read_bytes(), cnf.read_bytes(), model.read_bytes())
++    job.write_bytes(b"changed")
++    cnf.unlink()
++    model.write_bytes(b"changed")
++
++    receipt, classifier = replay.derive_source_duplicate_center_classifier_snapshot(
++        REPO_ROOT,
++        source_job_path=job,
++        source_job_bytes=snapshots[0],
++        discovery_cnf_path=cnf,
++        discovery_cnf_bytes=snapshots[1],
++        model_path=model,
++        model_bytes=snapshots[2],
++        source_bundle_bytes=b"bundle snapshot",
++        expected_piqd_job_id=PIQD_JOB_ID,
++    )
++
++    assert receipt["status"] == "ACCEPTED"
++    assert classifier["model_sha256"] == replay._sha256(snapshots[2])
++
++
++def test_cli_archives_source_derived_classifier(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++    tmp_path: Path,
++) -> None:
++    job, cnf, model = fixture_paths
++    source_bundle = tmp_path / "source-bundle.json"
++    receipt_path = tmp_path / "receipt.json"
++    classifier_path = tmp_path / "classifier.json"
++    source_bundle.write_bytes(b'{"source":"fixture"}\n')
++
++    code = replay.main(
++        [
++            "--repo-root",
++            str(REPO_ROOT),
++            "--source-job",
++            str(job),
++            "--discovery-cnf",
++            str(cnf),
++            "--model",
++            str(model),
++            "--expected-piqd-job-id",
++            PIQD_JOB_ID,
++            "--receipt",
++            str(receipt_path),
++            "--source-bundle",
++            str(source_bundle),
++            "--classifier",
++            str(classifier_path),
++        ]
++    )
++
++    assert code == 0
++    receipt = json.loads(receipt_path.read_bytes())
++    classifier = json.loads(classifier_path.read_bytes())
++    assert classifier["schema"] == replay.SOURCE_CLASSIFIER_SCHEMA
++    assert classifier["cube_sha256"] == receipt["decoded"]["cube_sha256"]
++
++
++def test_source_classifier_rejects_exact_certificate_rows(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++    monkeypatch: pytest.MonkeyPatch,
++) -> None:
++    bad = dict(duplicate_center_detector)
++    bad["rows"] = [
++        {"center": 0, "support": [1], "exact": True},
++        {"center": 2, "support": [3], "exact": False},
++    ]
++    monkeypatch.setattr(replay, "detect_structural_certificate", lambda _cube, n: bad)
++    with pytest.raises(replay.Exact12PiqdReplayError, match="exact=false"):
++        _derive_classifier(fixture_paths)
++
++
++def test_source_classifier_rejects_non_duplicate_stage(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++    monkeypatch: pytest.MonkeyPatch,
++) -> None:
++    bad = dict(duplicate_center_detector)
++    bad["stage"] = "triangle-heavy"
++    monkeypatch.setattr(replay, "detect_structural_certificate", lambda _cube, n: bad)
++    with pytest.raises(replay.Exact12PiqdReplayError, match="not classified"):
++        _derive_classifier(fixture_paths)
++
++
++@pytest.mark.parametrize(
++    "tamper",
++    ["missing-source-manifest", "detector-contract", "certificate", "exact-row"],
++)
++def test_source_classifier_validation_rejects_tampering(
++    fixture_paths: tuple[Path, Path, Path],
++    stub_source: None,
++    duplicate_center_detector: dict,
++    tamper: str,
++) -> None:
++    _receipt, classifier = _derive_classifier(fixture_paths)
++    bad = json.loads(replay.canonical_json_bytes(classifier))
++    if tamper == "missing-source-manifest":
++        bad.pop("detector_source_manifest")
++    elif tamper == "detector-contract":
++        bad["detector_contract"] = "self-declared"
++    elif tamper == "certificate":
++        bad["certificate"]["stage"] = "triangle-heavy"
++    else:
++        bad["certificate"]["rows"][0]["exact"] = True
++        bad["certificate_sha256"] = replay._json_sha256(bad["certificate"])
++    with pytest.raises(replay.Exact12PiqdReplayError):
++        replay.validate_source_duplicate_center_classifier(bad, repo_root=REPO_ROOT)
+diff --git a/docs/specs/p97-cegar-campaign-v1.md b/docs/specs/p97-cegar-campaign-v1.md
+index de462d29..1904fd08 100644
+--- a/docs/specs/p97-cegar-campaign-v1.md
++++ b/docs/specs/p97-cegar-campaign-v1.md
+@@ -1,9 +1,10 @@
+ # P97 bounded CEGAR campaign custody contract v1
+ 
+-Status: implemented partial G2 remedy. This contract supplies durable ordered
+-custody and a repeated-survivor stop/pivot gate. It does **not** schedule piqd
+-jobs, manage aggregate coverage, establish source entitlement, produce a
+-universal lift, or close a Lean theorem.
++Status: implemented finite-local source-entitlement remedy. This contract
++supplies durable ordered custody, source-derived duplicate-center
++classification, and a repeated-survivor stop/pivot gate. It does **not**
++schedule piqd jobs, manage aggregate coverage, establish an ambient-fiber or
++universal result, or close a Lean theorem.
+ 
+ ## Fixed policy
+ 
+@@ -13,7 +14,7 @@ The immutable manifest schema is `p97-cegar-campaign/v1`. It fixes:
+ - `max_in_flight = 1`;
+ - a nonempty predeclared `pivot_id`;
+ - an ordered, dense array of cells with ordinals `0, …, n - 1`; and
+-- explicit false claims for aggregate coverage, source entitlement, and theorem
++- explicit false claims for aggregate coverage, universal lift, and Lean theorem
+   closure.
+ 
+ Each cell binds its `cell_index`, package directory, package identity SHA-256,
+@@ -59,43 +60,57 @@ Admission recomputes the package identity and requires all of the following:
+    model's job ID. All three receipt hashes must be well-formed and equal the
+    already-authenticated source-job, DIMACS, and model byte snapshots. The
+    receipt's cell index must also equal the campaign cell. It calls
+-   `replay_exact12_model_snapshot` afresh with those immutable bytes. The
+-   identity-checked archived path spellings are passed only as receipt labels,
+-   and the snapshot API never reopens them. The fresh canonical bytes must equal
+-   the archived receipt byte for byte. This closes the former validation/replay
+-   path-swap window without copying authenticated bytes through a temporary
+-   pathname.
+-4. A separate canonical `p97-cegar-diagnostic-classifier/v1` artifact binds the
+-   exact model hash, source-bundle hash, detector-contract hash, certificate
+-   hash, and stage. Its status is exactly
+-   `DIAGNOSTIC_ONLY_NOT_SOURCE_ENTITLED`.
+-
+-The classifier is self-declared diagnostic evidence. The controller checks its
+-identities and hashes only: it does not authenticate the detector's semantics,
+-rerun or endorse the classifier, or promote its certificate to source
+-entitlement. Thus identical opaque keys mean only that supplied canonical
+-diagnostic declarations agree on the bound source bundle, detector contract,
+-and stage.
+-
+-The opaque equivalence key is SHA-256 of canonical JSON containing only
++   `derive_source_duplicate_center_classifier_snapshot` afresh with the same
++   immutable source-job, DIMACS, model, and source-bundle bytes. The archived
++   path spellings are receipt labels only; the snapshot API never reopens them.
++   One internal replay retains the decoded cube for classification, so there is
++   no second model decode or input-path read. The fresh receipt bytes must equal
++   the archived receipt byte for byte.
++4. That replay normalizes the complete cube through the structural CEGAR cube
++   canonicalizer. Receipt and classifier use the identical canonical payload
++   and SHA-256, so integer-key and JSON string-key forms cannot acquire distinct
++   cube identities.
++5. The complete declared detector source closure is captured as an ordered
++   path/byte-count/SHA-256 manifest before detection and checked again after
++   detection. The artifact binds the exact detector contract, full manifest,
++   and canonical contract-manifest SHA-256. Missing source or drift fails closed.
++6. The detector runs on the retained cube. Admission accepts only
++   `equality-duplicate-center`, independently replays the complete certificate,
++   requires every certificate row to have `exact=false`, proves each row support
++   is a subset of decoded selected-positive support, and safely compiles the
++   selected-row learned clause.
++7. The resulting canonical
++   `p97-cegar-source-derived-duplicate-center/v1` artifact binds the model,
++   source-job, DIMACS, and source-bundle hashes; full canonical cube and hash;
++   detector contract, full source manifest, and hash; full canonical certificate
++   and hash; learned clause; stage; row semantics; and explicit false claims.
++   The fresh artifact must equal the archived classifier byte for byte. A
++   self-declared hash is never accepted instead of recomputation.
++
++The selected-support subset result does **not** claim that a certificate row is
++the complete ambient metric fiber. The artifact records
++`ambient_fiber_completeness = false`; aggregate coverage, universal lift, and
++Lean theorem closure also remain false.
++
++The authenticated equivalence key is SHA-256 of canonical JSON containing only
+ `source_bundle_sha256`, `detector_contract_sha256`, and `stage`. Certificate and
+ model hashes remain recorded custody identities but intentionally do not split
+-the diagnostic failure family.
++the finite-local source-derived failure family.
+ 
+ ## Stop result
+ 
+-Three adjacent eligible survivors with the same opaque equivalence key emit a
++Three adjacent eligible survivors with the same authenticated equivalence key emit a
+ canonical `PIVOT_REQUIRED` result containing the first and last ordinals, count
+-three, equivalence key, and predeclared pivot ID. The result repeats the
+-no-coverage, no-source-entitlement, and no-theorem-closure labels. One or two
+-survivors emit `CONTINUE`. After `PIVOT_REQUIRED`, further admission fails
+-closed; there is no early-stop overrun.
++three, equivalence key, and predeclared pivot ID. The result repeats the false
++aggregate-coverage, universal-lift, and Lean-theorem-closure claims. One or two
++survivors emit `CONTINUE`. After `PIVOT_REQUIRED`, further admission fails closed;
++there is no early-stop overrun.
+ 
+ ## Durability and restart
+ 
+ The campaign state is canonical JSONL. Every record binds the campaign digest,
+ ordinal, previous-record digest, package/wave/journal/model/replay/classifier
+-identities, opaque equivalence key, and the explicit finite-local claims. A
++identities, authenticated equivalence key, and the explicit finite-local claims. A
+ record digest seals each logical record.
+ 
+ Admission rewrites the complete already-validated prefix plus one record using
+@@ -126,11 +141,15 @@ nonregular files. Canonical JSON construction also rejects nonfinite values.
+ Library entry points:
+ 
+ - `make_campaign_manifest(package_dirs, pivot_id)`;
+-- `make_classifier(...)` and `write_canonical_json(...)`; and
++- `make_classifier(...)`, a compatibility constructor for diagnostic-only
++  artifacts which cannot pass campaign admission, and
++  `write_canonical_json(...)`;
+ - `process_cell(...)`;
+-- `replay_exact12_model(...)`, the compatible path-reading replay API; and
++- `replay_exact12_model(...)`, the compatible path-reading replay API;
+ - `replay_exact12_model_snapshot(...)`, the immutable-byte replay core used by
+-  campaign admission.
++  receipt-only consumers; and
++- `derive_source_duplicate_center_classifier_snapshot(...)`, the immutable-byte
++  replay-and-classify boundary used by campaign admission.
+ 
+ CLI entry points:
+ 
+@@ -138,7 +157,13 @@ CLI entry points:
+ python -m census.p97_search.phase3_piqd_campaign init ...
+ python -m census.p97_search.phase3_piqd_campaign classifier ...
+ python -m census.p97_search.phase3_piqd_campaign admit ...
++python -m census.p97_search.phase3_piqd_exact12_replay \
++  --source-bundle ... --classifier ... --receipt ...
+ ```
+ 
+-`classifier` exists so live-cell diagnostic artifacts are emitted canonically
+-instead of being hand-authored.
++`classifier` remains only for compatibility and emits
++`p97-cegar-diagnostic-classifier/v1` with status
++`DIAGNOSTIC_ONLY_NOT_SOURCE_ENTITLED`. Its output is deliberately inadmissible;
++an admissible classifier must be derived from authenticated source snapshots.
++The exact12 replay command derives and atomically archives that classifier when
++`--source-bundle` and `--classifier` are supplied together.

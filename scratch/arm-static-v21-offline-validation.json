@@ -1,0 +1,29 @@
+{
+  "artifact_count": 24,
+  "certificate_blocker": "CERT-001",
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "dimacs": {
+    "clauses": 645155,
+    "satisfied": 645155,
+    "variables": 45357
+  },
+  "finite_diagnostic_only": true,
+  "inventory_modes": {
+    "600": 19,
+    "644": 27
+  },
+  "lean_ingress": false,
+  "piqd": {
+    "custody_seal_sha256": "22d83539b3e8b2fe3088af769bfd62ddfac1a82039a1fba5affaa9d0abf8c4a4",
+    "descriptor_sha256": "9e861219f615815b1ec5136fdad3e8f78d58c1fb7ce9cede6bf23a609ca098e1",
+    "journal_sha256": "933b906c2922ed68f76baedbc8bf294ff23402b45706b5deaada3d8eebca8622",
+    "model_sha256": "ca3fd907bf0eb2b76f288f5075377e9974fefe2fa6bf151807a4eab0de57482c",
+    "receipt_sha256": "a90c376dbb2780b3f2026132e6ebb906e3a8740846880bc9306d64b472b6d520",
+    "records": 6,
+    "underlying_job_id": "88592318-8532-4d9b-96bc-a43c7b7a9827"
+  },
+  "proof": "absent",
+  "source_verification": "manifest-only",
+  "status": "SAT_WITNESS_REPLAYED",
+  "valid": true
+}

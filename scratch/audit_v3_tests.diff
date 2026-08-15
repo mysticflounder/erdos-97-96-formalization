@@ -1,0 +1,244 @@
+diff --git a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+index 2e2d2248..aa8c3cab 100644
+--- a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+@@ -777,17 +777,25 @@ def test_frozen_v2_driver_and_sat_generator_are_byte_identical() -> None:
+         "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817"
+     )
+ 
+ 
+ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None:
+-    calls: list[tuple[Path, Path | None]] = []
++    discovery_calls: list[tuple[Path, Path | None]] = []
++    local_calls: list[tuple[Path, Path | None]] = []
+ 
+-    def unsat(cnf: Path, _timeout: int, proof: Path | None):
+-        calls.append((cnf, proof))
+-        if proof is not None:
+-            assert cnf.name == "terminal.cnf"
+-            proof.write_bytes(b"0\n")
++    def piqd_discovery(cnf: Path, _timeout: int, proof: Path | None):
++        discovery_calls.append((cnf, proof))
++        assert proof is None
++        return v3.sat.SolverResult(
++            "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
++        )
++
++    def local_proof(cnf: Path, _timeout: int, proof: Path | None):
++        local_calls.append((cnf, proof))
++        assert proof is not None
++        assert cnf.name == "terminal.cnf"
++        proof.write_bytes(b"0\n")
+         return v3.sat.SolverResult(
+             "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
+         )
+ 
+     result = v3.run_driver(
+@@ -796,11 +804,14 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
+         learned_core_limit=2,
+         survivor_limit=2,
+         bootstrap_results=None,
+         algebraic_bootstrap=None,
+         projected_static_v3=True,
+-        solver_runner=unsat,
++        solver_runner=v3._split_static_piqd_solver_runner(
++            piqd_discovery,
++            local_proof_runner=local_proof,
++        ),
+         checker_runner=lambda *_args: v3.sat.CheckerResult(
+             True, 0, "s VERIFIED\n", ""
+         ),
+     )
+ 
+@@ -808,18 +819,81 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
+     assert result["status"] == "STRUCTURAL_UNSAT_VERIFIED"
+     assert result["terminal_drat_verified"] is True
+     assert (out / "terminal.drat").read_bytes() == b"0\n"
+     assert (out / "terminal.drat.check").read_bytes() == b"s VERIFIED\n"
+     assert not (out / ".solver.drat").exists()
+-    assert len(calls) == 2
+-    assert calls[0][1] is None
+-    assert calls[1][1] == out / ".solver.drat"
+-    assert calls[1][0].read_bytes() == (
++    assert discovery_calls == [(out / ".solver.cnf", None)]
++    assert len(local_calls) == 1
++    assert local_calls[0][1] == out / ".solver.drat"
++    assert local_calls[0][0].read_bytes() == (
+         out / "terminal.cnf"
+     ).read_bytes()
+ 
+ 
++def test_static_piqd_split_routes_unknown_without_local_fallback(
++    tmp_path: Path,
++) -> None:
++    calls: list[tuple[str, Path | None]] = []
++    unknown = v3.sat.SolverResult("UNKNOWN", {}, 0, "", "remote unknown")
++
++    def piqd_discovery(
++        _cnf: Path, _timeout: int, proof: Path | None
++    ) -> Any:
++        calls.append(("piqd", proof))
++        return unknown
++
++    def local_proof(
++        _cnf: Path, _timeout: int, proof: Path | None
++    ) -> Any:
++        calls.append(("local", proof))
++        return v3.sat.SolverResult("UNSAT", {}, 20, "", "")
++
++    runner = v3._split_static_piqd_solver_runner(
++        piqd_discovery,
++        local_proof_runner=local_proof,
++    )
++    cnf = tmp_path / "input.cnf"
++    proof = tmp_path / "terminal.drat"
++
++    assert runner(cnf, 5, None) is unknown
++    assert calls == [("piqd", None)]
++    assert runner(cnf, 5, proof).verdict == "UNSAT"
++    assert calls == [("piqd", None), ("local", proof)]
++
++
++def test_static_piqd_unknown_fails_closed_in_run_driver(
++    tmp_path: Path,
++) -> None:
++    discovery_proofs: list[Path | None] = []
++
++    def piqd_discovery(
++        _cnf: Path, _timeout: int, proof: Path | None
++    ) -> Any:
++        discovery_proofs.append(proof)
++        return v3.sat.SolverResult("UNKNOWN", {}, 0, "", "remote unknown")
++
++    result = v3.run_driver(
++        tmp_path / "piqd-unknown",
++        timeout_s=5,
++        learned_core_limit=2,
++        survivor_limit=2,
++        bootstrap_results=None,
++        algebraic_bootstrap=None,
++        projected_static_v3=True,
++        solver_runner=v3._split_static_piqd_solver_runner(
++            piqd_discovery,
++            local_proof_runner=lambda *_args: pytest.fail(
++                "local solver must not be a PIQD discovery fallback"
++            ),
++        ),
++    )
++
++    assert result["status"] == "UNKNOWN"
++    assert result["failure"]["kind"] == "SOLVER_UNKNOWN"
++    assert discovery_proofs == [None]
++
++
+ def test_compiled_loader_cache_round_trips_terminal_resume(
+     tmp_path: Path,
+ ) -> None:
+     solver, checker = _verified_unsat_transcript()
+     out = tmp_path / "compiled-cache"
+@@ -1493,10 +1567,105 @@ def test_prefix_bank_cli_inputs_are_a_required_group(
+     assert args.three_rhombus_prefix_bank == tmp_path / "bank"
+     assert args.three_rhombus_prefix_root_sha256 == "1" * 64
+     assert args.three_rhombus_prefix_source_sha256 == "2" * 64
+ 
+ 
++def _static_piqd_cli_args(tmp_path: Path) -> list[str]:
++    return [
++        "--piqd-base-url",
++        "http://127.0.0.1:7272",
++        "--piqd-journal-root",
++        str(tmp_path / "journal"),
++        "--piqd-source-manifest",
++        str(tmp_path / "source-manifest.json"),
++        "--piqd-producer-manifest",
++        str(tmp_path / "producer-manifest.json"),
++    ]
++
++
++def test_static_piqd_cli_inputs_are_an_all_or_none_group(
++    tmp_path: Path,
++) -> None:
++    complete = _static_piqd_cli_args(tmp_path)
++    for index in range(0, len(complete), 2):
++        incomplete = complete[:index] + complete[index + 2 :]
++        with pytest.raises(SystemExit):
++            v3._parse_args(incomplete)
++
++    args = v3._parse_args(complete)
++    assert args.piqd_base_url == "http://127.0.0.1:7272"
++    assert args.piqd_journal_root == tmp_path / "journal"
++    assert args.piqd_source_manifest == tmp_path / "source-manifest.json"
++    assert args.piqd_producer_manifest == tmp_path / "producer-manifest.json"
++
++
++@pytest.mark.parametrize(
++    "incompatible",
++    [
++        ["--persistent-discovery"],
++        ["--parallel-mode", "cube-batch"],
++        ["--workers", "2"],
++    ],
++)
++def test_static_piqd_cli_rejects_incompatible_discovery_modes(
++    tmp_path: Path,
++    incompatible: list[str],
++) -> None:
++    with pytest.raises(SystemExit):
++        v3._parse_args([*_static_piqd_cli_args(tmp_path), *incompatible])
++
++
++def test_static_piqd_factory_receives_exact_manifest_bytes_and_values(
++    monkeypatch: pytest.MonkeyPatch,
++    tmp_path: Path,
++) -> None:
++    source_bytes = b'{"canonical":"source"}\n'
++    producer_bytes = b'{"canonical":"producer"}\n'
++    (tmp_path / "source-manifest.json").write_bytes(source_bytes)
++    (tmp_path / "producer-manifest.json").write_bytes(producer_bytes)
++    captured: dict[str, Any] = {}
++
++    def discovery_runner(
++        _cnf: Path, _timeout: int, _proof: Path | None
++    ) -> Any:
++        return v3.sat.SolverResult("UNKNOWN", {}, 0, "", "")
++
++    def factory(**kwargs: Any) -> Any:
++        captured.update(kwargs)
++        return discovery_runner
++
++    monkeypatch.setattr(v3, "_make_static_piqd_solver_runner", factory)
++    runner = v3._solver_runner_from_cli_args(
++        v3._parse_args(_static_piqd_cli_args(tmp_path))
++    )
++
++    assert callable(runner)
++    assert captured == {
++        "base_url": "http://127.0.0.1:7272",
++        "journal_root": tmp_path / "journal",
++        "source_manifest": source_bytes,
++        "producer_manifest": producer_bytes,
++    }
++
++
++def test_absent_static_piqd_flags_preserve_local_solver_default() -> None:
++    assert v3._solver_runner_from_cli_args(v3._parse_args([])) is v3.sat.run_cadical
++
++
++def test_ingress_contract_cli_input_is_recorded(
++    tmp_path: Path,
++) -> None:
++    args = v3._parse_args(
++        [
++            "--productivity-telemetry",
++            "--ingress-contract",
++            str(tmp_path / "b1.json"),
++        ]
++    )
++    assert args.ingress_contract == tmp_path / "b1.json"
++
++
+ def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
+     tmp_path: Path,
+ ) -> None:
+     fixture = tmp_path / "fixture"
+     fixture.mkdir()

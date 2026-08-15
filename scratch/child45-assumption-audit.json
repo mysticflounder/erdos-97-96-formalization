@@ -1,0 +1,170 @@
+{
+  "schema": "p97-exact17-child45-nextcenter-cells/v1",
+  "status": "DESIGN_ONLY_NOT_SUBMITTED",
+  "evidence_scope": "source-total exact-17 finite placement partition; no cell verdicts or closure claim",
+  "parent": {
+    "bytes": 291704992,
+    "clauses": 5848824,
+    "job_id": "8726dcec-978e-4fdc-8ca0-c33d14197c81",
+    "producer_manifest_sha256": "f790a9ea3f9100f0d63a61b8cc197d3417eaa9c553d578c1157413690157908a",
+    "root_sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+    "variables": 308
+  },
+  "source_parent": {
+    "bytes": 291704790,
+    "clauses": 5848820,
+    "path": "scratch/exact17-lean-to-sat/exact17-forty-fourth-root-forty-third-model-refinements.cnf",
+    "sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+    "variables": 308
+  },
+  "solver": {
+    "conflict_limit": 3000,
+    "lane": "sat",
+    "name": "piqd-satworker-cadical-3.0.0",
+    "protocol_version": 1,
+    "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "timeout_ms": null
+  },
+  "variable_map": {
+    "named_order_formula": "307 + order",
+    "named_order_is_not_fixed_by_cell": true,
+    "next_center_formula": "290 + center"
+  },
+  "identity_fields": [
+    "schema",
+    "parent.root_sha256",
+    "parent.producer_manifest_sha256",
+    "cell.id",
+    "cell.assumptions",
+    "solver.name",
+    "solver.sha256",
+    "solver.protocol_version",
+    "solver.conflict_limit"
+  ],
+  "coverage": {
+    "coverage_required_before_promotion": true,
+    "excluded_old_centers": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "lean_antecedent": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceModel.nextCenter_not_old",
+    "lean_ingress_candidate": "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.SourceModel.nextCenter_mem_legalNextCenterLabels",
+    "legal_next_centers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      12,
+      13,
+      14,
+      15,
+      16
+    ]
+  },
+  "result_contract": {
+    "kalmanson_feasible": "retire Kalmanson refinement for that model and route to Euclidean EDM/Ptolemy realizability",
+    "linearly_infeasible": "extract and independently replay a minimal positive weighted Kalmanson certificate before any learned clause is admitted",
+    "sat": "complete model replay against the authenticated session journal, signed assumptions, raw parent CNF, and source-semantic decoder; then complete exact Kalmanson replay",
+    "unknown": "cell remains open; receipt must bind deterministic conflict limit and session continuity",
+    "unsat": "discovery only until static handoff materializes parent plus unit clause and an independent proof replay succeeds"
+  },
+  "cells": [
+    {
+      "id": "next-center-00",
+      "next_center": 0,
+      "assumptions": [
+        290
+      ]
+    },
+    {
+      "id": "next-center-01",
+      "next_center": 1,
+      "assumptions": [
+        291
+      ]
+    },
+    {
+      "id": "next-center-02",
+      "next_center": 2,
+      "assumptions": [
+        292
+      ]
+    },
+    {
+      "id": "next-center-03",
+      "next_center": 3,
+      "assumptions": [
+        293
+      ]
+    },
+    {
+      "id": "next-center-04",
+      "next_center": 4,
+      "assumptions": [
+        294
+      ]
+    },
+    {
+      "id": "next-center-05",
+      "next_center": 5,
+      "assumptions": [
+        295
+      ]
+    },
+    {
+      "id": "next-center-06",
+      "next_center": 6,
+      "assumptions": [
+        296
+      ]
+    },
+    {
+      "id": "next-center-07",
+      "next_center": 7,
+      "assumptions": [
+        297
+      ]
+    },
+    {
+      "id": "next-center-12",
+      "next_center": 12,
+      "assumptions": [
+        302
+      ]
+    },
+    {
+      "id": "next-center-13",
+      "next_center": 13,
+      "assumptions": [
+        303
+      ]
+    },
+    {
+      "id": "next-center-14",
+      "next_center": 14,
+      "assumptions": [
+        304
+      ]
+    },
+    {
+      "id": "next-center-15",
+      "next_center": 15,
+      "assumptions": [
+        305
+      ]
+    },
+    {
+      "id": "next-center-16",
+      "next_center": 16,
+      "assumptions": [
+        306
+      ]
+    }
+  ]
+}

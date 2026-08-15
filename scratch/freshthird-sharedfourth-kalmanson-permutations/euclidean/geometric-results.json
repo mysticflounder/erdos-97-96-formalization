@@ -1,0 +1,12 @@
+{
+  "encoding": "QF_NRA with fixed p0=(0,0), p1=(1,0), 24 strict cyclic edge-support inequalities, exact squared-distance row equalities",
+  "cases": {
+    "m012": {"z3_free_search": "sat", "z3_exact_witness": "sat", "cvc5_exact_witness": "sat"},
+    "m210": {"z3_free_search": "sat", "z3_exact_witness": "sat", "cvc5_exact_witness": "sat"}
+  },
+  "exact_fraction_check": {
+    "m012": {"min_cross": "1/4", "min_pairwise_d2": "1", "row_residuals": ["0", "0", "0"]},
+    "m210": {"min_cross": "1/4", "min_pairwise_d2": "5/8", "row_residuals": ["0", "0", "0"]}
+  },
+  "status": "theorem-discovery only; no Euclidean-to-Lean closure"
+}

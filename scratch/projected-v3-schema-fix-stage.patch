@@ -1,0 +1,89 @@
+diff --git a/census/p97_search/phase3_structural_cegar_projected_static_v3.py b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+index 87245bc9..b8a1f20b 100644
+--- a/census/p97_search/phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+@@ -10805,12 +10838,16 @@ def run_driver(
+                 kind="SOLVER_EXCEPTION",
+                 diagnostic=diagnostic,
+                 attempt=attempt,
+                 raw_sat_index=None,
+             )
+             status = "UNKNOWN"
+-            return publish()
++            try:
++                return publish()
++            except Exception as cleanup_exc:
++                exc.add_note(f"terminal cleanup also raised: {cleanup_exc}")
++                raise exc from cleanup_exc
+         log_unsigned: dict[str, Any] = {
+             "schema": LOG_SCHEMA,
+             "attempt": attempt,
+             "cnf_sha256": _sha256_bytes(cnf_bytes),
+             "clause_count": (
+diff --git a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+index 8b0e9f1c..00ca6c6c 100644
+--- a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+@@ -867,11 +867,62 @@ def test_terminal_publication_closes_before_qualification_finalization(
+     assert events == [
+         ("close", None),
+         ("finalize", "STRUCTURAL_UNSAT_VERIFIED"),
+     ]
+ 
+ 
++def test_solver_exception_remains_primary_when_terminal_close_fails(
++    tmp_path: Path,
++) -> None:
++    primary = RuntimeError("primary solve schema failure")
++    cleanup = RuntimeError("secondary close failure")
++    out = tmp_path / "primary-solve-error"
++
++    class FailingBackend:
++        close_calls = 0
++        finalize_calls = 0
++
++        def __call__(self, *_args: Any) -> Any:
++            raise primary
++
++        def close(self) -> None:
++            self.close_calls += 1
++            raise cleanup
++
++        def finalize_qualification(self, _status: str) -> None:
++            self.finalize_calls += 1
++            (out / "qualification-seal.json").write_bytes(b"unsafe\n")
++
++        def manifest_metadata(self) -> dict[str, Any]:
++            return {"proof_verified": False, "closure_claim": False}
++
++    backend = FailingBackend()
++    with pytest.raises(RuntimeError, match="primary solve schema failure") as raised:
++        v3.run_driver(
++            out,
++            timeout_s=5,
++            learned_core_limit=2,
++            survivor_limit=2,
++            bootstrap_results=None,
++            algebraic_bootstrap=None,
++            projected_static_v3=True,
++            solver_runner=backend,
++        )
++
++    assert raised.value is primary
++    assert raised.value.__cause__ is cleanup
++    assert raised.value.__notes__ == [
++        "terminal cleanup also raised: secondary close failure"
++    ]
++    assert backend.close_calls == 1
++    assert backend.finalize_calls == 0
++    assert not (out / "qualification-seal.json").exists()
++    failure = json.loads((out / "failure.json").read_bytes())
++    assert failure["kind"] == "SOLVER_EXCEPTION"
++    assert "primary solve schema failure" in failure["diagnostic"]
++
++
+ def test_static_piqd_split_routes_unknown_without_local_fallback(
+     tmp_path: Path,
+ ) -> None:
+     calls: list[tuple[str, Path | None]] = []
+     unknown = v3.sat.SolverResult("UNKNOWN", {}, 0, "", "remote unknown")

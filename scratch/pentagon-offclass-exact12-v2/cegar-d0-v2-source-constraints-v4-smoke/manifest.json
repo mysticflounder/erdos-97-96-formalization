@@ -1,0 +1,61 @@
+{
+  "budgets": {
+    "max_new_iterations": 100,
+    "solver_timeout_seconds": 60
+  },
+  "case": {
+    "cardinality": 12,
+    "d": 0,
+    "v": 2
+  },
+  "clauses_at_manifest": 326704,
+  "implementation": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/pentagon-offclass-exact12-v2/source_constraint_cegar_v4.py",
+    "sha256": "9d122976dbc34f4f4494ab5dd635642ab6109df73c44495b15357e3b26b35573"
+  },
+  "inherited_journals": [
+    {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/pentagon-offclass-exact12-v2/cegar-d0-v2/journal.jsonl",
+      "sha256": "7713e77ef8fb1b8214d19ba8e0649b528bb42d5b15296baeaf0c066301454bd7"
+    },
+    {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-source-v3/journal.jsonl",
+      "sha256": "0104718dbabee5d430b7f7b7927e6f95696339307aaa0aa916021c0ba55a2f30"
+    }
+  ],
+  "output_namespace": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/pentagon-offclass-exact12-v2/cegar-d0-v2-source-constraints-v4-smoke",
+  "publication": {
+    "bankable": false,
+    "reason": "scratch theorem-mining run; Lean source-to-CNF ingress absent"
+  },
+  "schema": "p97_pentagon_offclass_exact12_source_constraint_cegar.v4.manifest.v1",
+  "scope": "encoded exact-12 finite incidence and metric/order consequences only; not a kernel proof and not universal-cardinality closure",
+  "source_ingress": {
+    "added_clauses": 780,
+    "admissions": [
+      {
+        "frozen_adapter": "b(xv)=C and theorem opp2 is frozen cap index 1",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_card_twelve_exact_cap_profile",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_secondCap_commonDeletionFan",
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_exact_physical_cycle_traces"
+        ],
+        "predicate": "K_xv \u2229 secondCap = {u,xv}"
+      },
+      {
+        "frozen_adapter": "conditional on each b(c,a); K_c is row a",
+        "lean_theorems": [
+          "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_nextRow_strictTriple_card_le_one"
+        ],
+        "predicate": "|K_centerAt(c) \u2229 {u,xu,xv}| <= 1"
+      }
+    ],
+    "kernel_status": "Lean producers checked; Python source-to-CNF adapter not kernel checked",
+    "next_row_strict_triple_clauses": 535,
+    "schema": "p97_pentagon_offclass_exact12_source_constraint_cegar.v4.source_ingress.v1",
+    "second_cap_pair_clauses": 245,
+    "semantic_class": "Class C: source-proved clauses added"
+  },
+  "status": "SMOKE_PASS",
+  "variables": 39733
+}

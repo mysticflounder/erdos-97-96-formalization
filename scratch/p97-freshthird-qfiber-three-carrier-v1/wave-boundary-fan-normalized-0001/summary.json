@@ -1,0 +1,1 @@
+{"claims":{"euclidean":false,"lean":false,"source_entitlement":false,"theorem":false,"universal":false},"query_schema":"p97-freshthird-qfiber-three-carrier-query/v1","schema":"p97-freshthird-qfiber-three-carrier-wave/v1","statuses":{"0":"SAT_ABSTRACTION","1":"SAT_ABSTRACTION","2":"SAT_ABSTRACTION","3":"SAT_ABSTRACTION"},"terminal_unsat_claim":false}

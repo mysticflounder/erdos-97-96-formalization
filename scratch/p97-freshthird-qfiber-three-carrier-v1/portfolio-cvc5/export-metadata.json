@@ -1,0 +1,26 @@
+{
+  "boundary_index": 0,
+  "constraint_group_count": 7,
+  "constraint_groups": [
+    "same_equivalence_canonical",
+    "complete_exact_row_theory",
+    "complete_relational_theory",
+    "cap_cyclic_interval_theory",
+    "cap_skolem_ranges",
+    "pinned_source_theory",
+    "carrier_source_theory"
+  ],
+  "smt2_bytes": 2300137,
+  "source_label_count": 7,
+  "source_labels_enabled": true,
+  "source_labels_in_export": [
+    "source__cap_cyclic_interval_theory",
+    "source__cap_skolem_ranges",
+    "source__carrier_source_theory",
+    "source__complete_exact_row_theory",
+    "source__complete_relational_theory",
+    "source__pinned_source_theory",
+    "source__same_equivalence_canonical"
+  ],
+  "source_module": "census/p97_search/freshthird_qfiber_three_carrier_query_v1.py"
+}

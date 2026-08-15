@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate
+
+open Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate
+
+#print axioms rowsMatch_of_positiveRowsMatch_of_card_eq_four
+#print axioms DuplicateCenterNogood.fourSupported_of_check
+#print axioms not_realizes_of_positiveDuplicateCenterBank

@@ -1,0 +1,23 @@
+diff --git a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+--- a/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py
+@@ -1754,19 +1754,6 @@ def test_local_persistent_cli_path_is_preserved_without_piqd_inputs() -> None:
+     assert v3._solver_runner_from_cli_args(args) is v3.sat.run_cadical
+ 
+ 
+-def test_ingress_contract_cli_input_is_recorded(
+-    tmp_path: Path,
+-) -> None:
+-    args = v3._parse_args(
+-        [
+-            "--productivity-telemetry",
+-            "--ingress-contract",
+-            str(tmp_path / "b1.json"),
+-        ]
+-    )
+-    assert args.ingress_contract == tmp_path / "b1.json"
+-
+-
+ def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
+     tmp_path: Path,
+ ) -> None:

@@ -1,0 +1,422 @@
+diff --git a/census/card_head/exact12_v14_ordered_cut_adapter.py b/census/card_head/exact12_v14_ordered_cut_adapter.py
+index f803777d..62a3e5aa 100644
+--- a/census/card_head/exact12_v14_ordered_cut_adapter.py
++++ b/census/card_head/exact12_v14_ordered_cut_adapter.py
+@@ -14,6 +14,8 @@ dispatcher owns that separate certificate family.
+ from __future__ import annotations
+ 
+ import copy
++import hashlib
++import json
+ from collections.abc import Collection, Mapping
+ from dataclasses import dataclass
+ from pathlib import Path
+@@ -32,6 +34,12 @@ from .sat_encoding import CoverInstance
+ 
+ SOURCE_ORDER_CERTIFICATE_KIND = "source_order_positive_coverage"
+ SOURCE_ORDER_DETECTOR_STAGE = "source-order-positive-coverage"
++SOURCE_ORDER_INSTALLATION_SCHEMA = (
++    "p97_rigid221_exact12_source_order_positive_bank_installation.v2"
++)
++_SOURCE_ORDER_INSTALLATION_ATTRIBUTE = (
++    "_proof_backed_source_order_bank_installation"
++)
+ 
+ 
+ class Exact12V14OrderedCutAdapterError(ValueError):
+@@ -50,6 +58,206 @@ class AdmittedCut:
+     bank_index: int | None = None
+ 
+ 
++@dataclass(frozen=True)
++class _PreparedSourceOrderEntry:
++    bank_index: int
++    certificate_schema: str
++    certificate_payload: bytes
++    learned_clause: tuple[int, ...]
++    required_variables: frozenset[int]
++
++
++_PREPARED_SOURCE_ORDER_BANK_TOKEN = object()
++
++
++@dataclass(frozen=True)
++class PreparedSourceOrderBank:
++    """One fully authenticated bank compiled for one exact SAT instance."""
++
++    _token: object
++    _instance: CoverInstance
++    _snapshot_payload: bytes
++    bank_sha256: str
++    base_n_variables: int
++    base_n_clauses: int
++    base_cnf_sha256: str
++    entries: tuple[_PreparedSourceOrderEntry, ...]
++
++    def snapshot(self) -> dict[str, Any]:
++        """Return a detached strict-JSON copy of the authenticated snapshot."""
++
++        snapshot = json.loads(self._snapshot_payload)
++        if not isinstance(snapshot, dict):  # pragma: no cover - constructor invariant
++            raise Exact12V14OrderedCutAdapterError(
++                "prepared source-order bank snapshot is malformed"
++            )
++        return snapshot
++
++
++def _sha256_json(payload: Any) -> str:
++    return hashlib.sha256(
++        json.dumps(
++            payload,
++            sort_keys=True,
++            separators=(",", ":"),
++            allow_nan=False,
++        ).encode("utf-8")
++    ).hexdigest()
++
++
++def _cnf_sha256(instance: CoverInstance) -> str:
++    return hashlib.sha256(instance.dimacs().encode("ascii")).hexdigest()
++
++
++def _prepared_bank_clauses(
++    prepared: PreparedSourceOrderBank,
++) -> tuple[tuple[int, ...], ...]:
++    if prepared._token is not _PREPARED_SOURCE_ORDER_BANK_TOKEN:
++        raise Exact12V14OrderedCutAdapterError(
++            "prepared source-order bank token is invalid"
++        )
++    clauses = tuple(entry.learned_clause for entry in prepared.entries)
++    if not clauses or len(clauses) != len(set(clauses)):
++        raise Exact12V14OrderedCutAdapterError(
++            "prepared source-order bank clauses are empty or duplicated"
++        )
++    return clauses
++
++
++def install_prepared_source_order_bank(
++    instance: CoverInstance, prepared: PreparedSourceOrderBank
++) -> dict[str, Any]:
++    """Append one authenticated bank exactly once to its prepared SAT instance."""
++
++    if prepared._instance is not instance:
++        raise Exact12V14OrderedCutAdapterError(
++            "prepared source-order bank belongs to a different SAT instance"
++        )
++    if hasattr(instance, _SOURCE_ORDER_INSTALLATION_ATTRIBUTE):
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order bank is already installed"
++        )
++    clauses = _prepared_bank_clauses(prepared)
++    if (
++        instance.cnf.n_variables != prepared.base_n_variables
++        or len(instance.cnf.clauses) != prepared.base_n_clauses
++        or _cnf_sha256(instance) != prepared.base_cnf_sha256
++    ):
++        raise Exact12V14OrderedCutAdapterError(
++            "SAT instance changed after source-order bank preparation"
++        )
++    existing = set(instance.cnf.clauses)
++    if any(clause in existing for clause in clauses):
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order clause already occurs in the base formula"
++        )
++    final_instance = copy.deepcopy(instance)
++    for clause in clauses:
++        final_instance.cnf.add_clause(clause)
++    suffix_sha256 = _sha256_json([list(clause) for clause in clauses])
++    body = {
++        "schema": SOURCE_ORDER_INSTALLATION_SCHEMA,
++        "bank_sha256": prepared.bank_sha256,
++        "base_n_variables": prepared.base_n_variables,
++        "base_n_clauses": prepared.base_n_clauses,
++        "base_cnf_sha256": prepared.base_cnf_sha256,
++        "suffix_n_clauses": len(clauses),
++        "suffix_sha256": suffix_sha256,
++        "final_n_variables": final_instance.cnf.n_variables,
++        "final_n_clauses": len(final_instance.cnf.clauses),
++        "final_cnf_sha256": _cnf_sha256(final_instance),
++    }
++    installation = {**body, "installation_sha256": _sha256_json(body)}
++    original_clauses = instance.cnf.clauses
++    instance.cnf.clauses = list(final_instance.cnf.clauses)
++    setattr(
++        instance,
++        _SOURCE_ORDER_INSTALLATION_ATTRIBUTE,
++        copy.deepcopy(installation),
++    )
++    try:
++        return attest_prepared_source_order_bank_installed(instance, prepared)
++    except Exception:
++        instance.cnf.clauses = original_clauses
++        delattr(instance, _SOURCE_ORDER_INSTALLATION_ATTRIBUTE)
++        raise
++
++
++def attest_prepared_source_order_bank_installed(
++    instance: CoverInstance, prepared: PreparedSourceOrderBank
++) -> dict[str, Any]:
++    """Recheck the exact eager-bank suffix and its pre/post formula hashes."""
++
++    if prepared._instance is not instance:
++        raise Exact12V14OrderedCutAdapterError(
++            "prepared source-order bank belongs to a different SAT instance"
++        )
++    clauses = _prepared_bank_clauses(prepared)
++    installation = getattr(instance, _SOURCE_ORDER_INSTALLATION_ATTRIBUTE, None)
++    expected_fields = {
++        "schema",
++        "bank_sha256",
++        "base_n_variables",
++        "base_n_clauses",
++        "base_cnf_sha256",
++        "suffix_n_clauses",
++        "suffix_sha256",
++        "final_n_variables",
++        "final_n_clauses",
++        "final_cnf_sha256",
++        "installation_sha256",
++    }
++    if not isinstance(installation, Mapping) or set(installation) != expected_fields:
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order bank installation metadata is malformed"
++        )
++    base_n_clauses = installation["base_n_clauses"]
++    suffix_n_clauses = installation["suffix_n_clauses"]
++    final_n_clauses = installation["final_n_clauses"]
++    if (
++        installation["schema"] != SOURCE_ORDER_INSTALLATION_SCHEMA
++        or installation["bank_sha256"] != prepared.bank_sha256
++        or installation["base_n_variables"] != prepared.base_n_variables
++        or installation["base_n_variables"] != instance.cnf.n_variables
++        or isinstance(base_n_clauses, bool)
++        or not isinstance(base_n_clauses, int)
++        or base_n_clauses != prepared.base_n_clauses
++        or isinstance(suffix_n_clauses, bool)
++        or not isinstance(suffix_n_clauses, int)
++        or suffix_n_clauses != len(clauses)
++        or isinstance(final_n_clauses, bool)
++        or not isinstance(final_n_clauses, int)
++        or final_n_clauses != len(instance.cnf.clauses)
++        or installation["final_n_variables"] != instance.cnf.n_variables
++        or base_n_clauses + len(clauses) != len(instance.cnf.clauses)
++    ):
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order bank installation metadata drifted"
++        )
++    prefix = tuple(instance.cnf.clauses[:base_n_clauses])
++    suffix = tuple(instance.cnf.clauses[base_n_clauses:])
++    if suffix != clauses or any(clause in prefix for clause in clauses):
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order bank is not the exact unique CNF suffix"
++        )
++    base_instance = copy.deepcopy(instance)
++    base_instance.cnf.clauses = list(prefix)
++    body = dict(installation)
++    claimed_installation_sha256 = body.pop("installation_sha256")
++    if (
++        installation["base_cnf_sha256"] != prepared.base_cnf_sha256
++        or installation["base_cnf_sha256"] != _cnf_sha256(base_instance)
++        or installation["suffix_sha256"]
++        != _sha256_json([list(clause) for clause in clauses])
++        or installation["final_cnf_sha256"] != _cnf_sha256(instance)
++        or claimed_installation_sha256 != _sha256_json(body)
++    ):
++        raise Exact12V14OrderedCutAdapterError(
++            "proof-backed source-order bank installation hashes drifted"
++        )
++    return copy.deepcopy(dict(installation))
++
++
+ def _cube_payload(
+     cube: Mapping[int | str, Collection[int]], *, cardinality: int = 12
+ ) -> dict[str, list[int]]:
+@@ -95,26 +303,13 @@ def _cube_payload(
+     return payload
+ 
+ 
+-def detect_proof_backed_source_order_cut(
+-    repo_root: Path | None,
+-    instance: CoverInstance,
+-    cube: Mapping[int | str, Collection[int]],
+-    *,
+-    source_order_bank: Mapping[str, Any] | None = None,
+-) -> AdmittedCut | None:
+-    """Admit each recompiled bank cut falsified by the current assignment."""
++def prepare_proof_backed_source_order_bank(
++    instance: CoverInstance, source_order_bank: Mapping[str, Any]
++) -> PreparedSourceOrderBank:
++    """Authenticate and compile one immutable bank for repeated exact matching."""
+ 
+-    payload = _cube_payload(cube, cardinality=instance.model.cardinality)
+     try:
+-        if source_order_bank is None:
+-            if repo_root is None:
+-                raise Exact12V14OrderedCutAdapterError(
+-                    "source-order replay requires a repository or recompiled bank snapshot"
+-                )
+-            source_order_bank = build_source_order_bank(repo_root, instance)
+-        bank: Mapping[str, Any] = snapshot_source_order_bank(
+-            instance, source_order_bank
+-        )
++        bank = snapshot_source_order_bank(instance, source_order_bank)
+     except (Exact12V14OrderedCoverageError, Exact12V14SourceOrderBankError) as exc:
+         raise Exact12V14OrderedCutAdapterError(str(exc)) from exc
+     entries = bank.get("entries")
+@@ -122,20 +317,7 @@ def detect_proof_backed_source_order_cut(
+         raise Exact12V14OrderedCutAdapterError(
+             "proof-backed source-order bank has no entries"
+         )
+-    selected_variables: set[int] = set()
+-    try:
+-        selected_variables = {
+-            instance.choice_variables[
+-                (center, instance.candidate_index(center, payload[str(center)]))
+-            ]
+-            for center in range(instance.model.cardinality)
+-        }
+-    except (KeyError, ValueError) as exc:
+-        raise Exact12V14OrderedCutAdapterError(
+-            "source-order cube is outside the bound model"
+-        ) from exc
+-
+-    normalized_entries: list[tuple[int, Mapping[str, Any]]] = []
++    prepared_entries: list[_PreparedSourceOrderEntry] = []
+     seen_indices: set[int] = set()
+     for entry in entries:
+         if not isinstance(entry, Mapping):
+@@ -153,12 +335,6 @@ def detect_proof_backed_source_order_cut(
+                 "proof-backed source-order bank indices are not unique nonnegative integers"
+             )
+         seen_indices.add(bank_index)
+-        normalized_entries.append((bank_index, entry))
+-
+-    matches: list[
+-        tuple[int, Mapping[str, Any], tuple[int, ...], str, dict[str, Any]]
+-    ] = []
+-    for bank_index, entry in normalized_entries:
+         certificate_kind = entry.get("certificate_kind")
+         certificate = entry.get("certificate")
+         certificate_schema = entry.get("certificate_schema")
+@@ -206,28 +382,95 @@ def detect_proof_backed_source_order_cut(
+             raise Exact12V14OrderedCutAdapterError(
+                 "proof-backed source-order learned clause failed exact recompilation"
+             )
+-        if all(-literal in selected_variables for literal in compiled_clause):
+-            matches.append(
+-                (
+-                    bank_index,
+-                    entry,
+-                    compiled_clause,
+-                    certificate_schema,
+-                    copy.deepcopy(dict(certificate)),
+-                )
++        prepared_entries.append(
++            _PreparedSourceOrderEntry(
++                bank_index=bank_index,
++                certificate_schema=certificate_schema,
++                certificate_payload=json.dumps(
++                    certificate,
++                    sort_keys=True,
++                    separators=(",", ":"),
++                    allow_nan=False,
++                ).encode("utf-8"),
++                learned_clause=compiled_clause,
++                required_variables=frozenset(-literal for literal in compiled_clause),
+             )
+-    if not matches:
+-        return None
+-    bank_index, _entry, compiled_clause, certificate_schema, certificate = min(
+-        matches, key=lambda match: match[0]
++        )
++    snapshot_payload = json.dumps(
++        bank, sort_keys=True, separators=(",", ":"), allow_nan=False
++    ).encode("utf-8")
++    return PreparedSourceOrderBank(
++        _token=_PREPARED_SOURCE_ORDER_BANK_TOKEN,
++        _instance=instance,
++        _snapshot_payload=snapshot_payload,
++        bank_sha256=bank["bank_sha256"],
++        base_n_variables=instance.cnf.n_variables,
++        base_n_clauses=len(instance.cnf.clauses),
++        base_cnf_sha256=_cnf_sha256(instance),
++        entries=tuple(sorted(prepared_entries, key=lambda entry: entry.bank_index)),
+     )
++
++
++def detect_proof_backed_source_order_cut(
++    repo_root: Path | None,
++    instance: CoverInstance,
++    cube: Mapping[int | str, Collection[int]],
++    *,
++    source_order_bank: Mapping[str, Any] | PreparedSourceOrderBank | None = None,
++) -> AdmittedCut | None:
++    """Admit each authenticated bank cut falsified by the current assignment."""
++
++    payload = _cube_payload(cube, cardinality=instance.model.cardinality)
++    if isinstance(source_order_bank, PreparedSourceOrderBank):
++        prepared = source_order_bank
++        if (
++            prepared._token is not _PREPARED_SOURCE_ORDER_BANK_TOKEN
++            or prepared._instance is not instance
++        ):
++            raise Exact12V14OrderedCutAdapterError(
++                "prepared source-order bank belongs to a different SAT instance"
++            )
++    else:
++        if source_order_bank is None:
++            if repo_root is None:
++                raise Exact12V14OrderedCutAdapterError(
++                    "source-order replay requires a repository or recompiled bank snapshot"
++                )
++            source_order_bank = build_source_order_bank(repo_root, instance)
++        prepared = prepare_proof_backed_source_order_bank(instance, source_order_bank)
++    try:
++        selected_variables = {
++            instance.choice_variables[
++                (center, instance.candidate_index(center, payload[str(center)]))
++            ]
++            for center in range(instance.model.cardinality)
++        }
++    except (KeyError, ValueError) as exc:
++        raise Exact12V14OrderedCutAdapterError(
++            "source-order cube is outside the bound model"
++        ) from exc
++    matching = next(
++        (
++            entry
++            for entry in prepared.entries
++            if entry.required_variables <= selected_variables
++        ),
++        None,
++    )
++    if matching is None:
++        return None
++    certificate = json.loads(matching.certificate_payload)
++    if not isinstance(certificate, dict):  # pragma: no cover - constructor invariant
++        raise Exact12V14OrderedCutAdapterError(
++            "prepared source-order certificate is malformed"
++        )
+     return AdmittedCut(
+         certificate_kind=SOURCE_ORDER_CERTIFICATE_KIND,
+-        certificate_schema=certificate_schema,
++        certificate_schema=matching.certificate_schema,
+         detector_stage=SOURCE_ORDER_DETECTOR_STAGE,
+-        certificate=copy.deepcopy(dict(certificate)),
+-        learned_clause=compiled_clause,
+-        bank_index=bank_index,
++        certificate=certificate,
++        learned_clause=matching.learned_clause,
++        bank_index=matching.bank_index,
+     )
+ 
+ 
+@@ -240,7 +483,7 @@ def replay_proof_backed_source_order_cut(
+     detector_stage: str,
+     certificate: Mapping[str, Any],
+     bank_index: int | None = None,
+-    source_order_bank: Mapping[str, Any] | None = None,
++    source_order_bank: Mapping[str, Any] | PreparedSourceOrderBank | None = None,
+ ) -> tuple[int, ...]:
+     """Recompile the bank snapshot and require equality with the recorded cut."""
+ 

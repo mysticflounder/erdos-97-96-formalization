@@ -1,0 +1,1400 @@
+diff --git a/census/frontier-packages/b_core/smoke.py b/census/frontier-packages/b_core/smoke.py
+index e8bf718a..a445df08 100644
+--- a/census/frontier-packages/b_core/smoke.py
++++ b/census/frontier-packages/b_core/smoke.py
+@@ -11,6 +11,18 @@ from typing import Any
+ 
+ import encoding as enc
+ 
++from census.card_head.frontier_lane_piqd import (
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++)
++from census.card_head.piqd_frontier_bc import (
++    B_SMOKE_SOURCES,
++    AllocationPhase,
++    BcCallerPackageProfile,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out"
+ 
+ 
+@@ -73,13 +85,19 @@ class SmokeInstance:
+ 
+ 
+ def run_case(
+-    encoder: SmokeEncoder, name: str, omitted: str | None, timeout_seconds: int
++    encoder: SmokeEncoder,
++    name: str,
++    omitted: str | None,
++    timeout_seconds: int,
++    *,
++    solver: FrontierSolver,
++    backend: str,
+ ) -> dict[str, Any]:
+     clauses = encoder.clauses(omitted)
+     cnf_path = OUT_DIR / f"smoke-{name}.cnf"
+     proof_path = OUT_DIR / f"smoke-{name}.drat"
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         SmokeInstance(encoder, clauses),
+         cnf_path,
+         timeout_seconds=timeout_seconds,
+@@ -111,6 +129,14 @@ def run_case(
+             "SMOKE-bank:apex-at-most-two-bisectors",
+         ],
+     }
++    record.update(
++        proof_manifest_fields(
++            backend=backend,
++            requested_proof_path=proof_path,
++            result=result,
++            relative_to=OUT_DIR.parent,
++        )
++    )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"smoke-{name}.model.json"
+         model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2) + "\n")
+@@ -122,17 +148,58 @@ def run_case(
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = SmokeEncoder()
++    solver = solver_from_args(
++        args=args,
++        encoder=encoder,
++        profile=BcCallerPackageProfile(
++            lane="B",
++            source_paths=B_SMOKE_SOURCES,
++            allocation_phases=(
++                AllocationPhase(
++                    "B smoke atom allocation",
++                    encoder.cnf.n_variables,
++                    "six named third-bisector smoke atoms",
++                ),
++            ),
++            live_leaf=(
++                "Problem97.ATailFrontierLiveClosure."
++                "false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision"
++            ),
++            finite_schema="p97-b-core-third-bisector-smoke.v1",
++            cardinality_scope="six named theorem-bank regression atoms only",
++            source_theorem=(
++                "Problem97.ATailFrontierLiveClosure."
++                "b1_live_false_of_third_bisector_carrier"
++            ),
++        ),
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+     cases = [
+         ("third-bisector", None),
+         ("drop-Bis-t", "Bis(t)"),
+         ("drop-Ne-t-b1", "Ne(t,b1)"),
+         ("drop-Ne-t-a2", "Ne(t,a2)"),
+     ]
+-    records = [run_case(encoder, name, omitted, args.timeout_seconds) for name, omitted in cases]
+-    full_ok = records[0]["verdict"] == "UNSAT" and records[0]["proof_verified"]
++    records = [
++        run_case(
++            encoder,
++            name,
++            omitted,
++            args.timeout_seconds,
++            solver=solver,
++            backend=args.solver_backend,
++        )
++        for name, omitted in cases
++    ]
++    full_ok = (
++        records[0]["verdict"] == "UNSAT"
++        and records[0]["proof_verified"] is True
++    )
+     near_ok = all(
+         r["verdict"] == "SAT" and r.get("omitted_atom_false_in_model") is True
+         for r in records[1:]
+@@ -141,8 +208,8 @@ def main() -> int:
+         "schema": "p97-b-core-third-bisector-smoke.v1",
+         "status": "PASS" if full_ok and near_ok else "FAIL",
+         "note": (
+-            "DRAT applies to the UNSAT full gate. SAT near-misses are checked "
+-            "by CaDiCaL models, including falsity of the omitted atom."
++            "A checked proof applies to the UNSAT full gate. SAT near-misses "
++            "are checked by exact models, including falsity of the omitted atom."
+         ),
+         "cases": records,
+     }
+diff --git a/census/frontier-packages/c_core/run.py b/census/frontier-packages/c_core/run.py
+index 56718f8b..0ba33753 100644
+--- a/census/frontier-packages/c_core/run.py
++++ b/census/frontier-packages/c_core/run.py
+@@ -31,6 +31,18 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++)
++from census.card_head.piqd_frontier_bc import (  # noqa: E402
++    C_RUN_SOURCES,
++    AllocationPhase,
++    BcCallerPackageProfile,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out"
+ 
+ 
+@@ -40,6 +52,9 @@ def run_one(
+     base_clauses: list[tuple[int, ...]],
+     extra_clauses: list[tuple[int, ...]],
+     timeout_seconds: int,
++    *,
++    solver: FrontierSolver,
++    backend: str,
+ ) -> dict[str, Any]:
+     instance = enc.RunInstance(encoder, base_clauses)
+     cnf_path = OUT_DIR / f"{name}.cnf"
+@@ -50,7 +65,7 @@ def run_one(
+         for lit in clause:
+             n_vars = max(n_vars, abs(lit))
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         instance,
+         cnf_path,
+         extra_clauses=extra_clauses,
+@@ -68,6 +83,14 @@ def run_one(
+         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
+         "proof_verified": result.proof_verified,
+     }
++    record.update(
++        proof_manifest_fields(
++            backend=backend,
++            requested_proof_path=proof_path,
++            result=result,
++            relative_to=OUT_DIR.parent,
++        )
++    )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"{name}.model.json"
+         model_path.write_text(
+@@ -85,15 +108,48 @@ def run_one(
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+ 
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.CCoreEncoder()
++    base_n_variables = encoder.cnf.n_variables
++
++    base_profile = BcCallerPackageProfile(
++        lane="C",
++        source_paths=C_RUN_SOURCES,
++        allocation_phases=(
++            AllocationPhase(
++                "C common base allocation",
++                base_n_variables,
++                "C-core common named and cardinality variables",
++            ),
++        ),
++        live_leaf="C-core abstract/common finite-local diagnostic base",
++        finite_schema="p97-c-core-layer1.v1.1-base",
++        cardinality_scope="symbolic cardinality buckets with a conservative n>=25 overflow bucket",
++        source_theorem="NONE: common finite-local projection has no theorem entitlement",
++    )
++    base_solver = solver_from_args(
++        args=args,
++        encoder=encoder,
++        profile=base_profile,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+ 
+     manifest: list[dict[str, Any]] = []
+ 
+     # 1. abstract/common base (physical-branch C6.9 is deliberately absent)
+-    base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
++    base_record = run_one(
++        encoder,
++        "base",
++        list(encoder.base_clauses),
++        [],
++        args.timeout_seconds,
++        solver=base_solver,
++        backend=args.solver_backend,
++    )
+     manifest.append(base_record)
+ 
+     # (DEL3) built here: strictly after 'base' has already been run (so
+@@ -102,19 +158,93 @@ def main() -> int:
+     # in base, NOT in base+C2 -- see encoding.py::build_del3_clauses
+     # docstring.
+     del3_extra = encoder.build_del3_clauses()
++    del3_n_variables = encoder.cnf.n_variables
+ 
+     # 2. base+C1 physical verdict (leaf delta includes C6.9)
+     c1_extra = encoder.leaf_c1_delta_clauses(del3_extra)
++    c1_solver = solver_from_args(
++        args=args,
++        encoder=encoder,
++        profile=BcCallerPackageProfile(
++            lane="C",
++            source_paths=C_RUN_SOURCES,
++            allocation_phases=(
++                base_profile.allocation_phases[0],
++                AllocationPhase(
++                    "C1 DEL3 auxiliary allocation",
++                    del3_n_variables,
++                    "Sinz auxiliaries for the leaf-C1 deletion at-most-two delta",
++                ),
++            ),
++            live_leaf=(
++                "Problem97.ATailFrontierLiveClosure."
++                "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU"
++            ),
++            finite_schema="p97-c-core-layer1.v1.1-C1",
++            cardinality_scope=base_profile.cardinality_scope,
++            source_theorem=(
++                "Problem97.ATailFrontierLiveClosure."
++                "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU"
++            ),
++        ),
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+     c1_record = run_one(
+-        encoder, "base+C1", list(encoder.base_clauses), c1_extra, args.timeout_seconds
++        encoder,
++        "base+C1",
++        list(encoder.base_clauses),
++        c1_extra,
++        args.timeout_seconds,
++        solver=c1_solver,
++        backend=args.solver_backend,
+     )
+     manifest.append(c1_record)
+ 
+     # 3. base+C2 physical verdict (includes C6.9; built last because the
+     # fresh-P extension mutates encoder.cnf past base_clauses)
+     c2_extra = encoder.build_leaf_c2_extension()
++    c2_solver = solver_from_args(
++        args=args,
++        encoder=encoder,
++        profile=BcCallerPackageProfile(
++            lane="C",
++            source_paths=C_RUN_SOURCES,
++            allocation_phases=(
++                base_profile.allocation_phases[0],
++                AllocationPhase(
++                    "C1 DEL3 auxiliary allocation",
++                    del3_n_variables,
++                    "Sinz auxiliaries retained in the allocator namespace",
++                ),
++                AllocationPhase(
++                    "C2 fresh-P extension allocation",
++                    encoder.cnf.n_variables,
++                    "leaf-C2 P, collision, and restoration variables",
++                ),
++            ),
++            live_leaf=(
++                "Problem97.ATailFrontierLiveClosure."
++                "false_of_exactFourMutualOmissionRigid221_nonphysicalCollision"
++            ),
++            finite_schema="p97-c-core-layer1.v1.1-C2",
++            cardinality_scope=base_profile.cardinality_scope,
++            source_theorem=(
++                "Problem97.ATailFrontierLiveClosure."
++                "false_of_exactFourMutualOmissionRigid221_nonphysicalCollision"
++            ),
++        ),
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+     c2_record = run_one(
+-        encoder, "base+C2", list(encoder.base_clauses), c2_extra, args.timeout_seconds
++        encoder,
++        "base+C2",
++        list(encoder.base_clauses),
++        c2_extra,
++        args.timeout_seconds,
++        solver=c2_solver,
++        backend=args.solver_backend,
+     )
+     manifest.append(c2_record)
+ 
+@@ -128,7 +258,14 @@ def main() -> int:
+             f"wall={record['wall_seconds']:.3f}s"
+         )
+     print(f"manifest -> {manifest_path}")
+-    return 0
++    run_ok = (
++        base_record["verdict"] == "SAT"
++        and c1_record["verdict"] == "UNSAT"
++        and c1_record["proof_verified"] is True
++        and c2_record["verdict"] == "UNSAT"
++        and c2_record["proof_verified"] is True
++    )
++    return 0 if run_ok else 1
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/census/frontier-packages/de_core/run.py b/census/frontier-packages/de_core/run.py
+index 81cdbe72..6f74ea1e 100644
+--- a/census/frontier-packages/de_core/run.py
++++ b/census/frontier-packages/de_core/run.py
+@@ -12,16 +12,30 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out"
+ 
+ 
+-def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str, Any]:
++def run_one(
++    encoder: enc.DEEncoder,
++    name: str,
++    timeout_seconds: int,
++    *,
++    solver: FrontierSolver,
++    backend: str,
++) -> dict[str, Any]:
+     clauses = encoder.clauses_for(name)
+     instance = enc.RunInstance(encoder, clauses)
+     cnf_path = OUT_DIR / f"{name}.cnf"
+     proof_path = OUT_DIR / f"{name}.drat"
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         instance,
+         cnf_path,
+         timeout_seconds=timeout_seconds,
+@@ -46,6 +60,14 @@ def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str
+         "clause_map_file": str(clause_map_path.relative_to(OUT_DIR.parent)),
+         "proof_verified": result.proof_verified,
+     }
++    record.update(
++        proof_manifest_fields(
++            backend=backend,
++            requested_proof_path=proof_path,
++            result=result,
++            relative_to=OUT_DIR.parent,
++        )
++    )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"{name}.model.json"
+         model_path.write_text(
+@@ -60,10 +82,27 @@ def run_one(encoder: enc.DEEncoder, name: str, timeout_seconds: int) -> dict[str
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.DEEncoder()
+-    manifest = [run_one(encoder, name, args.timeout_seconds) for name in encoder.RUNS]
++    solver = solver_from_args(
++        args=args,
++        lane="DE",
++        encoder=encoder,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
++    manifest = [
++        run_one(
++            encoder,
++            name,
++            args.timeout_seconds,
++            solver=solver,
++            backend=args.solver_backend,
++        )
++        for name in encoder.RUNS
++    ]
+     (OUT_DIR / "manifest.json").write_text(
+         json.dumps(manifest, sort_keys=True, indent=2), encoding="utf-8"
+     )
+diff --git a/census/frontier-packages/de_core/smoke.py b/census/frontier-packages/de_core/smoke.py
+index afe377b4..7c043397 100644
+--- a/census/frontier-packages/de_core/smoke.py
++++ b/census/frontier-packages/de_core/smoke.py
+@@ -1,4 +1,4 @@
+-"""D4 exactly-two-bisector smoke gate with checked DRAT.
++"""D4 exactly-two-bisector smoke gate with a checked proof.
+ 
+ The positive fixture supplies the banked D4 pair ``a1,b`` and a fresh named
+ carrier probe ``c3`` distinct from both.  Adding ``bis(q,w;c3)`` must be UNSAT
+@@ -19,6 +19,13 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out" / "smoke"
+ 
+ 
+@@ -27,15 +34,18 @@ def solve(
+     name: str,
+     clauses: list[enc.TaggedClause],
+     timeout_seconds: int,
++    solver: FrontierSolver,
++    backend: str,
+     proof: bool = False,
+ ) -> tuple[dict[str, Any], enc.CadicalResult]:
+     instance = enc.RunInstance(encoder, clauses)
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    proof_path = OUT_DIR / f"{name}.drat"
++    result = solver(
+         instance,
+         OUT_DIR / f"{name}.cnf",
+         timeout_seconds=timeout_seconds,
+-        proof_path=(OUT_DIR / f"{name}.drat") if proof else None,
++        proof_path=proof_path if proof else None,
+     )
+     (OUT_DIR / f"{name}.clauses.json").write_text(
+         json.dumps(encoder.clause_map(clauses), sort_keys=True, indent=2),
+@@ -51,15 +61,32 @@ def solve(
+         "proof_verified": result.proof_verified,
+         "wall_seconds": round(time.monotonic() - start, 3),
+     }
++    if proof:
++        record.update(
++            proof_manifest_fields(
++                backend=backend,
++                requested_proof_path=proof_path,
++                result=result,
++                relative_to=OUT_DIR.parents[1],
++            )
++        )
+     return record, result
+ 
+ 
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.DEEncoder()
++    solver = solver_from_args(
++        args=args,
++        lane="DE",
++        encoder=encoder,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+ 
+     # Keep D4, but omit its direct named no-third unit.  The smoke target is
+     # the general convex-carrier line bound, not that residual field.
+@@ -69,7 +96,12 @@ def main() -> int:
+     ]
+     fixture = d4 + encoder.smoke_probe_units()
+     positive, positive_result = solve(
+-        encoder, "d4_two_bisector_positive", fixture, args.timeout_seconds
++        encoder,
++        "d4_two_bisector_positive",
++        fixture,
++        args.timeout_seconds,
++        solver,
++        args.solver_backend,
+     )
+ 
+     third = enc.TaggedClause(
+@@ -80,6 +112,8 @@ def main() -> int:
+         "d4_fresh_third_unsat",
+         fixture + [third],
+         args.timeout_seconds,
++        solver,
++        args.solver_backend,
+         proof=True,
+     )
+ 
+@@ -94,6 +128,8 @@ def main() -> int:
+         "d4_third_without_bisector_geom",
+         no_bis_geom + [third],
+         args.timeout_seconds,
++        solver,
++        args.solver_backend,
+     )
+ 
+     manifest = [positive, negative, dependency]
+diff --git a/census/frontier-packages/dr_core/run.py b/census/frontier-packages/dr_core/run.py
+index d04c621f..e6989ea4 100644
+--- a/census/frontier-packages/dr_core/run.py
++++ b/census/frontier-packages/dr_core/run.py
+@@ -12,16 +12,30 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out"
+ 
+ 
+-def run_one(encoder: enc.DREncoder, name: str, timeout: int) -> dict[str, Any]:
++def run_one(
++    encoder: enc.DREncoder,
++    name: str,
++    timeout: int,
++    *,
++    solver: FrontierSolver,
++    backend: str,
++) -> dict[str, Any]:
+     clauses = encoder.clauses_for(name)
+     instance = enc.RunInstance(encoder, clauses)
+     cnf_path = OUT_DIR / f"{name}.cnf"
+     proof_path = OUT_DIR / f"{name}.drat"
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         instance, cnf_path, timeout_seconds=timeout, proof_path=proof_path
+     )
+     elapsed = time.monotonic() - start
+@@ -35,6 +49,14 @@ def run_one(encoder: enc.DREncoder, name: str, timeout: int) -> dict[str, Any]:
+         "proof_verified": result.proof_verified,
+         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
+     }
++    record.update(
++        proof_manifest_fields(
++            backend=backend,
++            requested_proof_path=proof_path,
++            result=result,
++            relative_to=OUT_DIR.parent,
++        )
++    )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"{name}.model.json"
+         model_path.write_text(
+@@ -48,11 +70,25 @@ def run_one(encoder: enc.DREncoder, name: str, timeout: int) -> dict[str, Any]:
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.DREncoder()
++    solver = solver_from_args(
++        args=args,
++        lane="DR",
++        encoder=encoder,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+     records = [
+-        run_one(encoder, name, args.timeout_seconds)
++        run_one(
++            encoder,
++            name,
++            args.timeout_seconds,
++            solver=solver,
++            backend=args.solver_backend,
++        )
+         for name in ("dr-common", "dr-d1", "dr-d2")
+     ]
+     manifest = {
+diff --git a/census/frontier-packages/dr_core/smoke.py b/census/frontier-packages/dr_core/smoke.py
+index 0a5034e0..eb278484 100644
+--- a/census/frontier-packages/dr_core/smoke.py
++++ b/census/frontier-packages/dr_core/smoke.py
+@@ -1,7 +1,8 @@
+-"""Positive witnesses and DRAT-verified negative probes for D-R."""
++"""Positive witnesses and proof-verified negative probes for D-R."""
+ 
+ from __future__ import annotations
+ 
++import argparse
+ import json
+ import sys
+ import time
+@@ -11,6 +12,13 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out" / "smoke"
+ 
+ 
+@@ -21,12 +29,15 @@ def solve_probe(
+     extra: list[tuple[int, ...]],
+     expected: str,
+     timeout: int = 60,
++    *,
++    solver: FrontierSolver,
++    backend: str,
+ ) -> dict[str, Any]:
+     instance = enc.RunInstance(encoder, encoder.clauses_for(run_name))
+     cnf_path = OUT_DIR / f"{name}.cnf"
+     proof_path = OUT_DIR / f"{name}.drat" if expected == "UNSAT" else None
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         instance, cnf_path, extra_clauses=extra,
+         timeout_seconds=timeout, proof_path=proof_path,
+     )
+@@ -41,6 +52,15 @@ def solve_probe(
+         "proof_verified": result.proof_verified,
+         "wall_seconds": round(time.monotonic() - start, 3),
+     }
++    if proof_path is not None:
++        record.update(
++            proof_manifest_fields(
++                backend=backend,
++                requested_proof_path=proof_path,
++                result=result,
++                relative_to=OUT_DIR.parents[1],
++            )
++        )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"{name}.model.json"
+         model_path.write_text(
+@@ -51,23 +71,51 @@ def solve_probe(
+ 
+ 
+ def main() -> int:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
++    args = parser.parse_args()
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.DREncoder()
++    solver = solver_from_args(
++        args=args,
++        lane="DR",
++        encoder=encoder,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+     gates: list[dict[str, Any]] = []
+ 
++    def run_probe(
++        name: str,
++        run_name: str,
++        extra: list[tuple[int, ...]],
++        expected: str,
++    ) -> dict[str, Any]:
++        return solve_probe(
++            encoder,
++            name,
++            run_name,
++            extra,
++            expected,
++            args.timeout_seconds,
++            solver=solver,
++            backend=args.solver_backend,
++        )
++
+     # Hand-built total assignments: every named atom receives a unit.
+     for run_name in ("dr-common", "dr-d1", "dr-d2"):
+         gates.append(
+-            solve_probe(
+-                encoder, f"positive-{run_name}", run_name,
++            run_probe(
++                f"positive-{run_name}", run_name,
+                 encoder.witness_units(run_name), "SAT",
+             )
+         )
+ 
+     # A concrete legal two-point B1/B2 overlap.
+     gates.append(
+-        solve_probe(
+-            encoder, "positive-overlap-two", "dr-common",
++        run_probe(
++            "positive-overlap-two", "dr-common",
+             encoder.witness_units("dr-common", overlap=2), "SAT",
+         )
+     )
+@@ -76,16 +124,16 @@ def main() -> int:
+     for left in enc.GROUPS["X"]:
+         for right in enc.GROUPS["Y"]:
+             gates.append(
+-                solve_probe(
+-                    encoder, f"negative-disjoint-{left}-{right}", "dr-d1",
++                run_probe(
++                    f"negative-disjoint-{left}-{right}", "dr-d1",
+                     [(encoder.eqv(left, right),)], "UNSAT",
+                 )
+             )
+ 
+     # Three distinct shared witness points violate I-OVERLAP.
+     gates.append(
+-        solve_probe(
+-            encoder, "negative-overlap-three", "dr-common",
++        run_probe(
++            "negative-overlap-three", "dr-common",
+             [
+                 (encoder.eqv(enc.GROUPS["B1"][i], enc.GROUPS["B2"][i]),)
+                 for i in range(3)
+@@ -112,28 +160,28 @@ def main() -> int:
+     })
+     for index, alias in enumerate(enc.SWAP_ALIASES):
+         gates.append(
+-            solve_probe(
+-                encoder, f"negative-swap-alias-{index + 1}", "dr-d2",
++            run_probe(
++                f"negative-swap-alias-{index + 1}", "dr-d2",
+                 [(-encoder.swap[alias],)], "UNSAT",
+             )
+         )
+ 
+     # Selector and deletion one-hot/distinctness probes.
+     gates.append(
+-        solve_probe(
+-            encoder, "negative-qF-wF-same-slot", "dr-common",
++        run_probe(
++            "negative-qF-wF-same-slot", "dr-common",
+             [(encoder.sel[("qF", 0)],), (encoder.sel[("wF", 0)],)], "UNSAT",
+         )
+     )
+     gates.append(
+-        solve_probe(
+-            encoder, "negative-p-pP-same-slot", "dr-common",
++        run_probe(
++            "negative-p-pP-same-slot", "dr-common",
+             [(encoder.sel[("p", 0)],), (encoder.sel[("pP", 0)],)], "UNSAT",
+         )
+     )
+     gates.append(
+-        solve_probe(
+-            encoder, "negative-double-deletion-choice", "dr-common",
++        run_probe(
++            "negative-double-deletion-choice", "dr-common",
+             [(encoder.delta_q,), (encoder.delta_w,)], "UNSAT",
+         )
+     )
+diff --git a/census/frontier-packages/e_core/run.py b/census/frontier-packages/e_core/run.py
+index 32d2beb9..1d9a7fda 100644
+--- a/census/frontier-packages/e_core/run.py
++++ b/census/frontier-packages/e_core/run.py
+@@ -25,6 +25,13 @@ from typing import Any
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import encoding as enc  # noqa: E402
+ 
++from census.card_head.frontier_lane_piqd import (  # noqa: E402
++    FrontierSolver,
++    add_solver_arguments,
++    proof_manifest_fields,
++    solver_from_args,
++)
++
+ OUT_DIR = Path(__file__).resolve().parent / "out"
+ 
+ 
+@@ -34,6 +41,9 @@ def run_one(
+     base_clauses: list[tuple[int, ...]],
+     extra_clauses: list[tuple[int, ...]],
+     timeout_seconds: int,
++    *,
++    solver: FrontierSolver,
++    backend: str,
+ ) -> dict[str, Any]:
+     instance = enc.RunInstance(encoder, base_clauses)
+     cnf_path = OUT_DIR / f"{name}.cnf"
+@@ -44,7 +54,7 @@ def run_one(
+         for lit in clause:
+             n_vars = max(n_vars, abs(lit))
+     start = time.monotonic()
+-    result = enc.solve_cadical(
++    result = solver(
+         instance,
+         cnf_path,
+         extra_clauses=extra_clauses,
+@@ -62,6 +72,14 @@ def run_one(
+         "cnf_file": str(cnf_path.relative_to(OUT_DIR.parent)),
+         "proof_verified": result.proof_verified,
+     }
++    record.update(
++        proof_manifest_fields(
++            backend=backend,
++            requested_proof_path=proof_path,
++            result=result,
++            relative_to=OUT_DIR.parent,
++        )
++    )
+     if result.verdict == "SAT" and result.cube is not None:
+         model_path = OUT_DIR / f"{name}.model.json"
+         model_path.write_text(
+@@ -79,22 +97,44 @@ def run_one(
+ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--timeout-seconds", type=int, default=60)
++    add_solver_arguments(parser)
+     args = parser.parse_args()
+ 
+     OUT_DIR.mkdir(parents=True, exist_ok=True)
+     encoder = enc.EEncoder()
++    solver = solver_from_args(
++        args=args,
++        lane="E",
++        encoder=encoder,
++        artifact_root=OUT_DIR,
++        legacy_solver=enc.solve_cadical,
++    )
+ 
+     manifest: list[dict[str, Any]] = []
+ 
+     # 1. base
+-    base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
++    base_record = run_one(
++        encoder,
++        "base",
++        list(encoder.base_clauses),
++        [],
++        args.timeout_seconds,
++        solver=solver,
++        backend=args.solver_backend,
++    )
+     manifest.append(base_record)
+ 
+     # 2/3. base+dom1, base+dom2 (arm-isolation runs)
+     for arm in ("dom1", "dom2"):
+         extra = encoder.dom_unit_clause(arm)
+         record = run_one(
+-            encoder, f"base+{arm}", list(encoder.base_clauses), extra, args.timeout_seconds
++            encoder,
++            f"base+{arm}",
++            list(encoder.base_clauses),
++            extra,
++            args.timeout_seconds,
++            solver=solver,
++            backend=args.solver_backend,
+         )
+         manifest.append(record)
+ 
+@@ -108,7 +148,11 @@ def main() -> int:
+             f"wall={record['wall_seconds']:.3f}s"
+         )
+     print(f"manifest -> {manifest_path}")
+-    return 0
++    return 0 if all(
++        record["verdict"] in {"SAT", "UNSAT"}
++        and (record["verdict"] != "UNSAT" or record["proof_verified"])
++        for record in manifest
++    ) else 1
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/census/p97_search/phase3_piqd_card_head_adapter.py b/census/p97_search/phase3_piqd_card_head_adapter.py
+index b738b5ff..4607219c 100644
+--- a/census/p97_search/phase3_piqd_card_head_adapter.py
++++ b/census/p97_search/phase3_piqd_card_head_adapter.py
+@@ -9,6 +9,7 @@ the independently fetched proof to the submitted source CNF.
+ from __future__ import annotations
+ 
+ import json
++import math
+ import os
+ import re
+ import stat
+@@ -229,6 +230,10 @@ class AuthenticatedPackageSnapshot:
+     num_clauses: int = field(init=False)
+ 
+     def __post_init__(self) -> None:
++        if type(self.limits) is not EndpointLimits:
++            raise CardHeadPiqdAdapterError(
++                "package limits must be exactly EndpointLimits"
++            )
+         if type(self.cnf) is not bytes or len(self.cnf) > self.limits.cnf_bytes:
+             raise CardHeadPiqdAdapterError("package CNF bytes are invalid or oversized")
+         producer = _json(
+@@ -355,6 +360,9 @@ class CardHeadPiqdPacket:
+     certificate_kind: str | None = None
+     certificate: bytes | None = None
+     lean_response: bytes | None = None
++    proof_blob_hash: str | None = None
++    kept_cnf_blob_hash: str | None = None
++    kept_cnf_blob: bytes | None = None
+ 
+ 
+ @dataclass(frozen=True, slots=True)
+@@ -430,9 +438,13 @@ class BoundedCurrentPiqdHttpTransport:
+             raise PiqdOracleError("current PIQD request escaped configured base URL")
+         parsed = urllib.parse.urlsplit(url)
+         path_query = parsed.path + (f"?{parsed.query}" if parsed.query else "")
++        try:
++            expected_type, limit = self._request_contract(method, path_query)
++        except CardHeadPiqdAdapterError as exc:
++            raise PiqdOracleError(str(exc)) from exc
+         response = self.transport(method, url, body, headers)
+         try:
+-            self._validate(method, path_query, response)
++            self._validate(method, path_query, response, expected_type, limit)
+         except CardHeadPiqdAdapterError as exc:
+             raise PiqdOracleError(str(exc)) from exc
+         self.responses.append((method, path_query, response))
+@@ -441,23 +453,7 @@ class BoundedCurrentPiqdHttpTransport:
+     def get(self, path: str) -> HttpResponse:
+         return self("GET", f"{self.base_url}{path}", None, {})
+ 
+-    def _validate(self, method: str, path: str, response: HttpResponse) -> None:
+-        if (
+-            type(response) is not HttpResponse
+-            or type(response.status) is not int
+-            or type(response.body) is not bytes
+-        ):
+-            raise CardHeadPiqdAdapterError("transport returned malformed HttpResponse")
+-        if type(response.headers) is not dict or any(
+-            type(key) is not str or type(value) is not str
+-            for key, value in response.headers.items()
+-        ):
+-            raise CardHeadPiqdAdapterError(
+-                "transport returned malformed HttpResponse headers"
+-            )
+-        expected_status = 200
+-        expected_type: str
+-        limit: int
++    def _request_contract(self, method: str, path: str) -> tuple[str, int]:
+         if method == "POST" and path == "/jobs/prepare-cnf":
+             expected_type, limit = "application/json", self.limits.json_bytes
+         elif method == "POST" and path.startswith("/jobs/confirm?job_id="):
+@@ -469,10 +465,20 @@ class BoundedCurrentPiqdHttpTransport:
+         elif method == "GET":
+             route = path.partition("?")[0]
+             parts = route.strip("/").split("/")
+-            if len(parts) not in {2, 3} or parts[0] != "jobs":
++            if len(parts) not in {2, 3, 4} or parts[0] != "jobs":
+                 raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
+             _job_id(parts[1], "endpoint job id")
+-            suffix = parts[2] if len(parts) == 3 else "status"
++            if len(parts) == 4:
++                if parts[2] != "blobs":
++                    raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
++                _digest(parts[3], "endpoint blob digest")
++                expected_type, limit = (
++                    "application/octet-stream",
++                    self.limits.cnf_bytes,
++                )
++                suffix = "blob"
++            else:
++                suffix = parts[2] if len(parts) == 3 else "status"
+             if suffix in {"status", "model", "clause-map"}:
+                 expected_type = "application/json"
+                 limit = (
+@@ -504,11 +510,36 @@ class BoundedCurrentPiqdHttpTransport:
+                     "text/plain; charset=utf-8",
+                     self.limits.log_bytes,
+                 )
++            elif suffix == "blob":
++                pass
+             else:
+                 raise CardHeadPiqdAdapterError("unsupported current PIQD GET path")
+         else:
+             raise CardHeadPiqdAdapterError("unsupported current PIQD method/path")
+-        if response.status != expected_status:
++        return expected_type, limit
++
++    def _validate(
++        self,
++        method: str,
++        path: str,
++        response: HttpResponse,
++        expected_type: str,
++        limit: int,
++    ) -> None:
++        if (
++            type(response) is not HttpResponse
++            or type(response.status) is not int
++            or type(response.body) is not bytes
++        ):
++            raise CardHeadPiqdAdapterError("transport returned malformed HttpResponse")
++        if type(response.headers) is not dict or any(
++            type(key) is not str or type(value) is not str
++            for key, value in response.headers.items()
++        ):
++            raise CardHeadPiqdAdapterError(
++                "transport returned malformed HttpResponse headers"
++            )
++        if response.status != 200:
+             raise CardHeadPiqdAdapterError(
+                 f"current PIQD endpoint returned HTTP {response.status}"
+             )
+@@ -891,10 +922,19 @@ class CurrentPiqdPacketAssembler:
+     """Run the shared driver and assemble only current endpoint contracts."""
+ 
+     def __init__(
+-        self, package: AuthenticatedPackageSnapshot, run_factory: RunFactory
++        self,
++        package: AuthenticatedPackageSnapshot,
++        run_factory: RunFactory,
++        *,
++        fetch_certified_kept_blob: bool = False,
+     ) -> None:
++        if type(fetch_certified_kept_blob) is not bool:
++            raise CardHeadPiqdAdapterError(
++                "fetch_certified_kept_blob must be builtin bool"
++            )
+         self.package = package
+         self.run_factory = run_factory
++        self.fetch_certified_kept_blob = fetch_certified_kept_blob
+ 
+     @staticmethod
+     def _get(run: CurrentPiqdRun, path: str) -> HttpResponse:
+@@ -969,12 +1009,28 @@ class CurrentPiqdPacketAssembler:
+             ]
+             if header_values != [sha256_bytes(proof_response.body)]:
+                 raise CardHeadPiqdAdapterError("proof endpoint hash header mismatch")
++            proof_blob_hash = header_values[0]
+             _validate_lrat(
+                 proof_response.body, max_bytes=self.package.limits.proof_bytes
+             )
+             clause_map = self._get(run, f"/jobs/{job.job_id}/clause-map").body
+             lean_path = f"/jobs/{job.job_id}/lean?{urllib.parse.urlencode({'toolchain': LEAN_TOOLCHAIN})}"
+             lean = self._get(run, lean_path).body
++            kept_cnf_blob_hash: str | None = None
++            kept_cnf_blob: bytes | None = None
++            if self.fetch_certified_kept_blob:
++                kept_cnf_blob_hash = _digest(
++                    status.get("kept_cnf_blob_hash"),
++                    "status kept_cnf_blob_hash",
++                )
++                kept_cnf_blob = self._get(
++                    run,
++                    f"/jobs/{job.job_id}/blobs/{kept_cnf_blob_hash}",
++                ).body
++                if sha256_bytes(kept_cnf_blob) != kept_cnf_blob_hash:
++                    raise CardHeadPiqdAdapterError(
++                        "kept CNF blob bytes disagree with status hash"
++                    )
+             return CardHeadPiqdPacket(
+                 job,
+                 driver_result,
+@@ -989,6 +1045,9 @@ class CurrentPiqdPacketAssembler:
+                 certificate_kind=CERTIFICATE_KIND,
+                 certificate=proof_response.body,
+                 lean_response=lean,
++                proof_blob_hash=proof_blob_hash,
++                kept_cnf_blob_hash=kept_cnf_blob_hash,
++                kept_cnf_blob=kept_cnf_blob,
+             )
+         return CardHeadPiqdPacket(
+             job,
+@@ -1573,6 +1632,62 @@ class _ProductionRunFactory:
+         return CurrentPiqdRun(driver, strict_http)
+ 
+ 
++def make_current_piqd_packet_transport(
++    package: AuthenticatedPackageSnapshot,
++    *,
++    output_root: Path,
++    base_url: str,
++    transport: Transport | None = None,
++    max_polls: int = 300,
++    poll_interval_s: float = 2.0,
++    fetch_certified_kept_blob: bool = True,
++) -> CurrentPiqdPacketAssembler:
++    """Create the production packet transport used by certified callers.
++
++    ``output_root`` is an attempt-journal root owned by this transport.  Its
++    parent must already exist as a real, no-follow directory and
++    ``output_root`` itself must not exist; this function creates it once with
++    mode 0700.  This keeps its lifecycle separate from the legacy canary's
++    already-owned output tree.
++    """
++
++    if type(package) is not AuthenticatedPackageSnapshot:
++        raise CardHeadPiqdAdapterError(
++            "production transport requires an authenticated package snapshot"
++        )
++    if not isinstance(output_root, Path):
++        raise CardHeadPiqdAdapterError("output_root must be a native Path value")
++    if type(max_polls) is not int or max_polls <= 0:
++        raise CardHeadPiqdAdapterError("max_polls must be a positive builtin int")
++    if (
++        type(poll_interval_s) not in {int, float}
++        or not math.isfinite(poll_interval_s)
++        or poll_interval_s < 0
++    ):
++        raise CardHeadPiqdAdapterError(
++            "poll_interval_s must be a finite nonnegative builtin number"
++        )
++    if type(fetch_certified_kept_blob) is not bool:
++        raise CardHeadPiqdAdapterError("fetch_certified_kept_blob must be builtin bool")
++    selected_transport = stdlib_http_transport if transport is None else transport
++    # Validate the URL/transport pair before claiming the create-once root.
++    BoundedCurrentPiqdHttpTransport(base_url, selected_transport, limits=package.limits)
++    _mkdir_create_once(output_root)
++    run_factory = _ProductionRunFactory(
++        package,
++        output_root,
++        base_url,
++        selected_transport,
++        max_polls=max_polls,
++        poll_interval_s=float(poll_interval_s),
++    )
++    return CurrentPiqdPacketAssembler(
++        package,
++        run_factory,
++        fetch_certified_kept_blob=fetch_certified_kept_blob,
++    )
++
++
+ def _write_package_snapshot(root: Path, package: SourceFaithfulCanaryPackage) -> None:
+     directory = root / "package"
+     _mkdir_create_once(directory)
+diff --git a/census/p97_search/tests/test_phase3_piqd_card_head_adapter.py b/census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
+index f258c441..5674828a 100644
+--- a/census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
++++ b/census/p97_search/tests/test_phase3_piqd_card_head_adapter.py
+@@ -30,6 +30,7 @@ from census.p97_search.phase3_piqd_card_head_adapter import (
+     CurrentPiqdRun,
+     EndpointLimits,
+     build_source_faithful_canary_package,
++    make_current_piqd_packet_transport,
+     run_production_canary,
+     validate_production_output,
+ )
+@@ -253,6 +254,8 @@ class FakeCurrentApi:
+         self.assignment = assignment
+         self.job_id = job_id
+         self.proof = proof
++        self.kept_cnf = canonical_kept_dimacs(package.cnf)
++        self.kept_cnf_blob_hash = sha256_bytes(self.kept_cnf)
+         self.existing = existing
+         self.map = _map_bytes(package.cnf)
+         self.lean = _lean_bytes(job_id, package.cnf, proof)
+@@ -329,6 +332,10 @@ class FakeCurrentApi:
+                     "requested_core_limit": 1,
+                     "attested_solver_processes": 1,
+                     "attestation_basis": "SINGLE_PROCESS_NO_PARALLEL_FLAG",
++                    "identity_hash": identity,
++                    "cnf_blob_hash": self.package.cnf_sha256,
++                    "producer_manifest_hash": self.package.producer_manifest_sha256,
++                    "kept_cnf_blob_hash": self.kept_cnf_blob_hash,
+                 },
+             )
+         if method == "GET" and path == f"/jobs/{self.job_id}/model":
+@@ -368,6 +375,15 @@ class FakeCurrentApi:
+             )
+         if method == "GET" and path == f"/jobs/{self.job_id}/clause-map":
+             return HttpResponse(200, self.map, {"Content-Type": "application/json"})
++        if (
++            method == "GET"
++            and path == f"/jobs/{self.job_id}/blobs/{self.kept_cnf_blob_hash}"
++        ):
++            return HttpResponse(
++                200,
++                self.kept_cnf,
++                {"Content-Type": "application/octet-stream"},
++            )
+         expected_lean = f"/jobs/{self.job_id}/lean?{urllib.parse.urlencode({'toolchain': LEAN_TOOLCHAIN})}"
+         if method == "GET" and path == expected_lean:
+             return HttpResponse(
+@@ -688,6 +704,21 @@ def test_json_depth_nodes_and_response_size_are_bounded() -> None:
+         core.get("/jobs/job/model")
+ 
+ 
++def test_authenticated_package_rejects_endpoint_limit_subclass(
++    cell_package: AuthenticatedPackageSnapshot,
++) -> None:
++    class CustomLimits(EndpointLimits):
++        pass
++
++    with pytest.raises(CardHeadPiqdAdapterError, match="exactly EndpointLimits"):
++        AuthenticatedPackageSnapshot(
++            cell_package.cnf,
++            cell_package.producer_manifest,
++            cell_package.wave_manifest_bytes,
++            limits=CustomLimits(),
++        )
++
++
+ def test_bounded_transport_rejects_nonexact_headers_before_iteration() -> None:
+     class HostileHeaders(dict[str, str]):
+         def items(self) -> Any:
+@@ -751,6 +782,164 @@ def test_bounded_transport_rejects_duplicate_content_type_headers() -> None:
+     assert core.responses == []
+ 
+ 
++def test_bounded_transport_accepts_only_exact_job_bound_blob_route() -> None:
++    body = b"p cnf 0 0\n"
++    blob_hash = sha256_bytes(body)
++    requested: list[str] = []
++
++    def transport(_method: str, url: str, *_args: object) -> HttpResponse:
++        requested.append(urllib.parse.urlsplit(url).path)
++        return HttpResponse(200, body, {"Content-Type": "application/octet-stream"})
++
++    core = BoundedCurrentPiqdHttpTransport(
++        "http://piqd.invalid",
++        transport,
++    )
++
++    response = core.get(f"/jobs/job/blobs/{blob_hash}")
++    assert response.body == body
++    assert requested == [f"/jobs/job/blobs/{blob_hash}"]
++    for path in (
++        f"/jobs/job/blobs/{blob_hash.upper()}",
++        f"/jobs/job/blobs/{blob_hash}/extra",
++        f"/jobs/job/blob/{blob_hash}",
++    ):
++        with pytest.raises(PiqdOracleError, match="unsupported|digest"):
++            core.get(path)
++    assert requested == [f"/jobs/job/blobs/{blob_hash}"]
++
++
++@pytest.mark.parametrize(
++    ("response", "message"),
++    [
++        (
++            HttpResponse(
++                404, b"p cnf 0 0\n", {"Content-Type": "application/octet-stream"}
++            ),
++            "HTTP 404",
++        ),
++        (
++            HttpResponse(200, b"p cnf 0 0\n", {"Content-Type": "application/json"}),
++            "content-type",
++        ),
++        (
++            HttpResponse(
++                200, b"123456789", {"Content-Type": "application/octet-stream"}
++            ),
++            "exceeds limit",
++        ),
++        (object(), "malformed HttpResponse"),
++    ],
++)
++def test_job_bound_blob_transport_rejects_status_type_and_size(
++    response: object, message: str
++) -> None:
++    limits = EndpointLimits(cnf_bytes=8)
++    core = BoundedCurrentPiqdHttpTransport(
++        "http://piqd.invalid",
++        lambda *_args: response,  # type: ignore[arg-type,return-value]
++        limits=limits,
++    )
++    with pytest.raises(PiqdOracleError, match=message):
++        core.get(f"/jobs/job/blobs/{'0' * 64}")
++    assert core.responses == []
++
++
++def test_certified_packet_tail_is_explicit_and_observational_route_unchanged(
++    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
++) -> None:
++    def assemble(fetch: bool, directory: str):
++        api = FakeCurrentApi(cell_package, result="UNSAT")
++
++        def run_factory(_request: object) -> CurrentPiqdRun:
++            strict = BoundedCurrentPiqdHttpTransport(
++                "http://piqd.invalid", api, limits=cell_package.limits
++            )
++            runner = PiqdCegarDriver(
++                client=PiqdRawDimacsClient("http://piqd.invalid", transport=strict),
++                journal=DurableAttemptJournal(
++                    tmp_path / directory / "attempt.jsonl",
++                    manifest=cell_package.wave_manifest,
++                ),
++                policy=DriverPolicy(
++                    max_prepare_attempts=1,
++                    max_confirm_attempts=1,
++                    max_polls=1,
++                    max_result_attempts=1,
++                    poll_interval_s=0,
++                    requested_core_limit=1,
++                ),
++                sleep=lambda _seconds: None,
++            )
++            return CurrentPiqdRun(runner, strict)
++
++        (tmp_path / directory).mkdir()
++        request = CardHeadPiqdAdapter(cell_package, transport=lambda _r: None)._request(  # type: ignore[arg-type]
++            30, 10, True
++        )
++        packet = CurrentPiqdPacketAssembler(
++            cell_package,
++            run_factory,
++            fetch_certified_kept_blob=fetch,
++        )(request)
++        return packet, api
++
++    observed, observed_api = assemble(False, "observed")
++    assert observed.kept_cnf_blob_hash is None
++    assert observed.kept_cnf_blob is None
++    assert not any("/blobs/" in path for _method, path in observed_api.calls)
++
++    certified, certified_api = assemble(True, "certified")
++    assert certified.kept_cnf_blob_hash == sha256_bytes(certified.kept_cnf_blob)
++    assert any("/blobs/" in path for _method, path in certified_api.calls)
++
++
++def test_public_production_transport_owns_fresh_attempt_root(
++    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
++) -> None:
++    attempt_root = tmp_path / "piqd-attempts"
++    packet_transport = make_current_piqd_packet_transport(
++        cell_package,
++        output_root=attempt_root,
++        base_url="http://piqd.invalid",
++        transport=lambda *_args: HttpResponse(
++            500, b"{}", {"Content-Type": "application/json"}
++        ),
++        max_polls=1,
++        poll_interval_s=0,
++    )
++    assert type(packet_transport) is CurrentPiqdPacketAssembler
++    assert packet_transport.fetch_certified_kept_blob is True
++    assert attempt_root.is_dir()
++    assert not any(attempt_root.iterdir())
++
++    with pytest.raises(CardHeadPiqdAdapterError, match="already exists"):
++        make_current_piqd_packet_transport(
++            cell_package,
++            output_root=attempt_root,
++            base_url="http://piqd.invalid",
++            transport=lambda *_args: HttpResponse(
++                500, b"{}", {"Content-Type": "application/json"}
++            ),
++            max_polls=1,
++            poll_interval_s=0,
++        )
++
++
++def test_public_production_transport_validates_before_creating_root(
++    tmp_path: Path, cell_package: AuthenticatedPackageSnapshot
++) -> None:
++    attempt_root = tmp_path / "must-not-exist"
++    with pytest.raises(CardHeadPiqdAdapterError, match="max_polls"):
++        make_current_piqd_packet_transport(
++            cell_package,
++            output_root=attempt_root,
++            base_url="http://piqd.invalid",
++            max_polls=False,
++        )
++    assert not attempt_root.exists()
++
++
+ def test_cli_fails_closed_on_nonexact_response_headers(
+     tmp_path: Path,
+     monkeypatch: pytest.MonkeyPatch,

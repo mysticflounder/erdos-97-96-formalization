@@ -1,0 +1,120 @@
+{
+  "keys": [
+    "artifacts",
+    "claims",
+    "history",
+    "lane",
+    "outcome",
+    "schema",
+    "search",
+    "status",
+    "wave"
+  ],
+  "schema": "p97-piqd-postwave-theorem-search/v1",
+  "lane": "exact17-rigid221-lazy",
+  "wave": {
+    "label": "exact17-wave62",
+    "ordinal": 62
+  },
+  "artifacts": {
+    "input_root": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave61-five-point-circle-isosceles-witness.cnf",
+      "sha256": "cb1fa32e6b9892aea7f200df4a710884b1d463a0db0f9defa9a1b92e658e31c4"
+    },
+    "model": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-legacy-successor.model.json",
+      "sha256": "a93f9a05017151b8dffdf23f39767f80e5de056bec186be405c8f19d3f23be34"
+    },
+    "solve_receipt": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-legacy-successor.capture.json",
+      "sha256": "b9aeae07b154a2f52d45be0988ffd400644d93db3a927d638093e4193a32baad"
+    },
+    "source_analysis": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-legacy-successor.theorem-gate-report.json",
+      "sha256": "91f6eb8f2a86609ec974d52ff0ec61d96d06ca6b6fbf9374ebf8bfaab41f5aa2"
+    }
+  },
+  "history": {
+    "evidence": [
+      {
+        "artifact": {
+          "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave61-postwave-theorem-search.receipt.json",
+          "sha256": "90245c9d62a59428461b252e2b66f62575371463e05533e58ab70f0ed8600193"
+        },
+        "role": "predecessor-theorem-search-receipt"
+      }
+    ],
+    "first_wave": 1,
+    "last_wave": 62,
+    "mode": "predecessor-receipt"
+  },
+  "outcome": {
+    "kind": "reusable-theorem",
+    "lean_consumer": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+    "refinement_fragment": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-five-point-direct-witness.cnf",
+      "sha256": "78b6e47c665385946efc05a1ad19149fa293b68ca9166e61e2e0b8a26fb05511"
+    },
+    "refinement_receipt": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-five-point-direct-witness.receipt.json",
+      "sha256": "30d0809291a53c02cfa0984d094c1b3c92ed141a8d57f121041ee5d23913c38c"
+    },
+    "source_producer": "scratch/p97-exact17-piqd-wave6-canary-v1/append_five_point_direct_consumer_witness.py",
+    "successor_root": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/postgate-wave62-five-point-direct-witness.cnf",
+      "sha256": "bb2303a1eb9d9a5c52b01e70b01875b7816c034464017215a760560451c7fcb8"
+    }
+  },
+  "search": {
+    "accumulated_history_checked": true,
+    "artifact": {
+      "path": "scratch/p97-exact17-piqd-wave6-canary-v1/wave62-general-theorem-search.txt",
+      "sha256": "7dcf741a4f3b25c34e08ec657fd6de08d63d6083e27f6bd8811959fc6566cb87"
+    },
+    "corpus": "erdos-97-96-formalization-lean",
+    "current_wave_checked": true,
+    "queries": [
+      "five cyclic points direct two selected rows Euclidean contradiction",
+      "six cyclic points sparse two selected rows Euclidean obstruction",
+      "two Kalmanson cancellation selected rows"
+    ],
+    "results_examined": 3,
+    "theorem_banks": [
+      {
+        "path": "certificates/erdos97_legacy_general_n_mining.json",
+        "sha256": "54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444"
+      },
+      {
+        "path": "certificates/erdos97_legacy_general_n_mining.md",
+        "sha256": "3987241b4be66a237810c476af9c9050427549f7e93be6ada22d3da3679d228d"
+      },
+      {
+        "path": "certificates/erdos_general_theorem_p97_mining.json",
+        "sha256": "18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e"
+      },
+      {
+        "path": "certificates/erdos_general_theorem_p97_mining.md",
+        "sha256": "dd851b4993e3742ef1fe5727e27ac293f26eb0ff839b6d2ab07e857aeaed02b1"
+      },
+      {
+        "path": "certificates/p97_rvol_general_n_mining.json",
+        "sha256": "818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8"
+      },
+      {
+        "path": "certificates/p97_rvol_general_n_mining.md",
+        "sha256": "4b6b38f1c8623122267e22fc386fd6afab4d7d393d3ea62a46f10f2424bb0b46"
+      },
+      {
+        "path": "docs/general-n-certificate-bank-mining-2026-07-09.md",
+        "sha256": "7c49141a3e7d082288f9e8c1bd1081a2bbee1e8688ca24526e6f7c9a4859c4bc"
+      }
+    ]
+  },
+  "claims": {
+    "finite_theorem_search": true,
+    "source_backed_refinement": true,
+    "successor_authorized": true,
+    "theorem_closure": false,
+    "universal_closure": false
+  }
+}

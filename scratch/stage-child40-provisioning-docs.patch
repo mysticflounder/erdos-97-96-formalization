@@ -1,0 +1,58 @@
+diff --git a/docs/computational-closure-plan-2026-07-28.md b/docs/computational-closure-plan-2026-07-28.md
+--- a/docs/computational-closure-plan-2026-07-28.md
++++ b/docs/computational-closure-plan-2026-07-28.md
+@@ -11051,17 +11051,17 @@ checks contain no `sorryAx`; finite evaluation uses the accepted
+ `native_decide` boundary.
+ 
+ The strict Child40 publication chain pins the Child39 prefix, the 196-clause
+-suffix, the current Lean sources, and the exact 5,847,584-clause total. A
+-temporary Lean-rendered export passed full validation with 308 variables,
+-291,633,186 bytes, and SHA-256
+-`555d1d2f63183cccf3549d4bedf9dd39817666c0f026ca1d390251c8e7c69034`.
+-Ruff and all five focused adversarial publication tests pass. The temporary
+-root was removed after validation; no production Child40 root, receipt,
+-ingress manifest, or PIQD job exists at this checkpoint.
++suffix, the current Lean sources, and the exact 5,847,584-clause total. The
++production Lean-rendered root was published with no-overwrite semantics and a
++ledger-last receipt. It has 308 variables, 291,633,186 bytes, and SHA-256
++`555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
++Its recursively validated immutable ingress manifest has SHA-256
++`df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8`.
++Ruff, all five focused adversarial publication tests, and the live PIQD daemon
++identity check pass. No Child40 PIQD job exists at this checkpoint.
+ 
+ This checkpoint does not close exact 17 or a production `sorry`. The next
+-authorized action is exclusive publication and recursive ingress validation,
+-followed by exactly one runner-mediated Child40 submission. Terminal `SAT`
++authorized action is exactly one runner-mediated Child40 submission. Terminal `SAT`
+ repeats exact replay and wave-only theorem mining; terminal `UNSAT` requires
+ independent certificate replay, Lean banking, and composition through the
+ exact-17 source-realization and landing contracts.
+diff --git a/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md b/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
+--- a/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
++++ b/docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md
+@@ -832,15 +832,16 @@ terminal adapter. The targeted exporter build and axiom audit pass with no
+ 
+ The Child40 exporter and fail-closed validators pin the immutable Child39
+ prefix, exactly 196 Lean-owned suffix clauses, the current Lean sources, and a
+-5,847,584-clause result. A temporary Lean-rendered export passed exact
+-validation with 308 variables, 291,633,186 bytes, and SHA-256
+-`555d1d2f63183cccf3549d4bedf9dd39817666c0f026ca1d390251c8e7c69034`.
+-Ruff and five focused adversarial tests pass. The temporary file was removed;
+-the production root, export receipt, ingress manifest, custody artifacts, and
+-PIQD job are intentionally absent at this checkpoint.
++5,847,584-clause result. The production Lean-rendered root was published once
++with no-overwrite semantics and a ledger-last receipt. It has 308 variables,
++291,633,186 bytes, and SHA-256
++`555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034`.
++The recursively validated immutable ingress manifest has SHA-256
++`df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8`.
++Ruff, five focused adversarial tests, and the live PIQD identity check pass.
++Custody artifacts and a Child40 PIQD job are absent at this checkpoint.
+ 
+-Next publish once with no-overwrite semantics, recursively validate ingress,
+-and submit exactly one pinned Child40 job. `SAT` requires full replay and a
++Next submit exactly one pinned Child40 job. `SAT` requires full replay and a
+ new-wave-only theorem mine before any successor. `UNSAT` requires independent
+ certificate replay and Lean composition through the existing exact-cover,
+ source-realization, and landing contracts. Exact 17 and the cap-nine

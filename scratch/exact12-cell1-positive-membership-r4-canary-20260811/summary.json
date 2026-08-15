@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 6572,
+      "path": "detector_contract.json",
+      "sha256": "4921edd81879181c3c3d5a8cff8d863cbc9d5f311bf5f4876a28992c52610134"
+    },
+    "discovery_cnf": {
+      "bytes": 12987707,
+      "path": "discovery.cnf",
+      "sha256": "45596e1b2de28a9410f23131ce5cc647f5177915d3ae9595b6acce24e3eddbd8"
+    },
+    "job": {
+      "bytes": 18107,
+      "path": "job.json",
+      "sha256": "6677cc347cb6ad360470aaeae1af4c31b5a4991aa679c3e3dfea6efd4e36205c"
+    },
+    "journal": {
+      "bytes": 0,
+      "path": "journal.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 336154,
+      "path": "survivor.json",
+      "sha256": "330413c8ef8b3ca0046211329ac101ad747a4ca248c89684965c0f28372b37d6"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 1,
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "cdd0c3de0ea9ce16a7ae83e40aebf30b91d7fcc06b21b46bb42962c1bdff50b5",
+  "journal_replayed": true,
+  "last_replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true
+  },
+  "lean_terminal_ingress_ready": true,
+  "max_iterations": 1,
+  "positive_membership_bank_sha256": "3a891b356597598487460d08da936ce93e4c2a6603f3824863f5eefa98007df6",
+  "positive_membership_binding_index": 1,
+  "reconstructed_cnf_sha256": "45596e1b2de28a9410f23131ce5cc647f5177915d3ae9595b6acce24e3eddbd8",
+  "records": 0,
+  "schema": "p97_rigid221_exact12_next_row_static_convex_cegar_run.v5",
+  "scope": "one finite exact-12 next-row cell with an authenticated fixed positive-membership bank; terminal Lean ingress is ready, but the terminal DRAT has not been converted into a Lean DimacsUnsatisfiable theorem; no aggregate coverage, universal lift, or live closure",
+  "stage_counts": {
+    "source-order-positive-coverage": 0
+  },
+  "status": "STRUCTURALLY_UNRESOLVED",
+  "terminal_cnf_sha256": null,
+  "terminal_promotion_status": "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 300
+}

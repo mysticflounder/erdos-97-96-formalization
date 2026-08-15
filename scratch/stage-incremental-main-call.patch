@@ -1,0 +1,10 @@
+diff --git a/census/p97_search/phase3_structural_cegar_projected_static_v3.py b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+--- a/census/p97_search/phase3_structural_cegar_projected_static_v3.py
++++ b/census/p97_search/phase3_structural_cegar_projected_static_v3.py
+@@ -11375,5 +11375,6 @@ def main() -> int:
+         persistent_discovery=args.persistent_discovery,
+         productivity_telemetry=args.productivity_telemetry,
++        piqd_incremental_config=piqd_incremental_config,
+         three_rhombus_prefix_bank=args.three_rhombus_prefix_bank,
+         three_rhombus_prefix_cache=args.three_rhombus_prefix_cache,
+         three_rhombus_prefix_root_sha256=(
