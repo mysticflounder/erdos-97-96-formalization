@@ -1,0 +1,5 @@
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber
+
+Load-bearing first enlarged-fiber residual for the two-source packet.  It
+includes the one-sided-deletion branch that must no longer recurse through the
+global cap-source root.
