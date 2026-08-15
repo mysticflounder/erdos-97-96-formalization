@@ -65,6 +65,37 @@ def firstNonHitFiniteCapIndices
       A.boundary.boundary source ∈ S.capByIndex cap := by
   simp [firstNonHitFiniteCapIndices, A.inCap_iff]
 
+private theorem oppositeVertexByIndex_mem_capByIndex_of_ne_for_projection
+    {i j : Fin 3} (hij : i ≠ j) :
+    S.oppositeVertexByIndex i ∈ S.capByIndex j := by
+  fin_cases i <;> fin_cases j
+  · exact False.elim (hij rfl)
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C2
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C3
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C1
+  · exact False.elim (hij rfl)
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C1
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
+  · exact False.elim (hij rfl)
+
+/-- A named apex role belongs to the finite pullback of every nonopposite closed cap. -/
+theorem roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+    (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
+    (role : FirstNonHitNamedRole) {i j : Fin 3}
+    (hrole : FirstNonHitNamedRole.point P Pρ C Q role =
+      S.oppositeVertexByIndex i)
+    (hij : i ≠ j) :
+    A.roleIndex role ∈ firstNonHitFiniteCapIndices P Pρ C Q A j := by
+  rw [mem_firstNonHitFiniteCapIndices_iff, A.roleIndex_point_eq role, hrole]
+  exact oppositeVertexByIndex_mem_capByIndex_of_ne_for_projection (S := S) hij
+
 /-- Finite cap cardinalities agree exactly with their geometric source caps. -/
 theorem firstNonHitFiniteCapIndices_card_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) (cap : Fin 3) :
@@ -155,6 +186,51 @@ private theorem selectedSupport_eq_of_point_eq
       (H.selectedAt p hp).toCriticalFourShell.support := by
   subst p
   rfl
+
+/-- The six cross-cap memberships of the three named apex roles. -/
+structure FirstNonHitFiniteApexCrossCapMemberships
+    (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) where
+  surplusApex_mem_oppIndex1 :
+    A.roleIndex .surplusApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex1
+  surplusApex_mem_oppIndex2 :
+    A.roleIndex .surplusApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex2
+  firstApex_mem_surplusIdx :
+    A.roleIndex .firstApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.surplusIdx
+  firstApex_mem_oppIndex2 :
+    A.roleIndex .firstApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex2
+  secondApex_mem_surplusIdx :
+    A.roleIndex .secondApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.surplusIdx
+  secondApex_mem_oppIndex1 :
+    A.roleIndex .secondApex ∈
+      firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex1
+
+/-- Project the three geometric apex roles into their two other finite closed caps. -/
+def firstNonHitFiniteApexCrossCapMemberships_of_assignment
+    (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
+    FirstNonHitFiniteApexCrossCapMemberships P Pρ C Q A where
+  surplusApex_mem_oppIndex1 :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .surplusApex rfl S.surplusIdx_ne_oppIndex1
+  surplusApex_mem_oppIndex2 :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .surplusApex rfl S.surplusIdx_ne_oppIndex2
+  firstApex_mem_surplusIdx :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .firstApex rfl S.surplusIdx_ne_oppIndex1.symm
+  firstApex_mem_oppIndex2 :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .firstApex rfl S.oppIndex1_ne_oppIndex2
+  secondApex_mem_surplusIdx :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .secondApex rfl S.surplusIdx_ne_oppIndex2.symm
+  secondApex_mem_oppIndex1 :=
+    roleIndex_mem_firstNonHitFiniteCapIndices_of_oppositeVertex
+      P Pρ C Q A .secondApex rfl S.oppIndex1_ne_oppIndex2.symm
 
 /-- Finite form of the source-entitled independent triple-shell escape row. -/
 structure FirstNonHitFiniteIndependentEscape
@@ -341,6 +417,7 @@ structure FirstNonHitCompleteFiniteSourceTheory
         (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex1).card +
           (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex2).card =
       A.boundary.n + 3
+  apexCrossCapMemberships : FirstNonHitFiniteApexCrossCapMemberships P Pρ C Q A
   namedFacts : FirstNonHitNamedSourceFiniteFacts P Pρ C Q A
   firstInteraction : FirstNonHitFiniteFirstInteraction P Pρ C Q A
   secondInteraction : FirstNonHitFiniteSecondInteraction P Pρ C Q A
@@ -379,6 +456,8 @@ noncomputable def ofSource
   capBlocks := A.finite_capBlocks
   capCard := firstNonHitFiniteCapIndices_card_eq P Pρ C Q A
   capSum := firstNonHitFiniteCapIndices_sum P Pρ C Q A
+  apexCrossCapMemberships :=
+    firstNonHitFiniteApexCrossCapMemberships_of_assignment P Pρ C Q A
   namedFacts := firstNonHitNamedSourceFiniteFacts_of_assignment P Pρ C Q A
   firstInteraction := firstNonHitFiniteFirstInteraction_of_assignment P Pρ C Q A
   secondInteraction := firstNonHitFiniteSecondInteraction_of_assignment P Pρ C Q A
