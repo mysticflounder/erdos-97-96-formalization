@@ -1,0 +1,25 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:582
+theorem false_of_two_selected_middle_rows_shared_endpoint_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (BRow : SelectedFourClass carrier (boundary ib))
+    (CRow : SelectedFourClass carrier (boundary ic))
+    (hia_mem_BRow : boundary ia ∈ BRow.support)
+    (hid_mem_BRow : boundary id ∈ BRow.support)
+    (hia_mem_CRow : boundary ia ∈ CRow.support)
+    (hid_mem_CRow : boundary id ∈ CRow.support) :
+    False := by
+  apply false_of_four_ccw_middle_centers_bisect_endpoint_pair
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hiab hibc hicd
+  · exact
+      (BRow.support_eq_radius _ hia_mem_BRow).trans
+        (BRow.support_eq_radius _ hid_mem_BRow).symm
+  · exact
+      (CRow.support_eq_radius _ hia_mem_CRow).trans
+        (CRow.support_eq_radius _ hid_mem_CRow).symm

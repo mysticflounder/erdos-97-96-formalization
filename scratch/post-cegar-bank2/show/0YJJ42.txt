@@ -1,0 +1,14 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:134
+def EndpointDeletionPairCapSplitSurvivingRow
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (center firstDeleted secondDeleted : ℝ²) : Prop :=
+  (∃ (K : SelectedFourClass A center) (i : Fin 3),
+      firstDeleted ∉ K.support ∧
+        center ∈ S.capByIndex i ∧
+        (K.support ∩ S.capByIndex i).card ≤ 2 ∧
+        2 ≤ (K.support \ S.capByIndex i).card) ∨
+    ∃ (K : SelectedFourClass A center) (i : Fin 3),
+      secondDeleted ∉ K.support ∧
+        center ∈ S.capByIndex i ∧
+        (K.support ∩ S.capByIndex i).card ≤ 2 ∧
+        2 ≤ (K.support \ S.capByIndex i).card

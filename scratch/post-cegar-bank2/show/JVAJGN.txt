@@ -1,0 +1,4 @@
+theorem sourceCenter_ne {D : CounterexampleData}
+
+In the current `RowSlotLabelPacket` surface, source rows are critical
+blocker shells.  Their centers cannot be the corresponding packet labels.

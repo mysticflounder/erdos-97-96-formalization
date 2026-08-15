@@ -1,0 +1,194 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2720
+theorem freshThird_exactSupport_threeRowCyclicSeparations
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hexact : FreshThirdEqualCenterExactFourRow P Pρ C.surface Q)
+    (centers_ne :
+      H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (source₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support)
+    (source₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support)
+    (overlap_eq :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.support =
+        {Q.source₁.1, Q.source₂.1})
+    (B : BoundaryIndexing D.A) (id : Fin B.n)
+    (DRow : SelectedFourClass D.A (B.boundary id))
+    (hrowCenter :
+      B.boundary id = Q.source₁.1 ∨ B.boundary id = Q.source₂.1)
+    (hsupport :
+      DRow.support =
+        {C.surface.firstSource.1, C.surface.secondSource.1} ∪
+          freshThirdCrossRowFreshRemainder P Pρ C.surface Q) :
+    let sourceCenter : CarrierLabel D.A :=
+      ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+        (Finset.mem_erase.mp
+          (H.selectedAt C.surface.firstSource.1
+            C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩
+    let freshCenter : CarrierLabel D.A :=
+      ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+        (Finset.mem_erase.mp
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+    let endpointCenter : CarrierLabel D.A :=
+      ⟨B.boundary id, by
+        have hmem : B.boundary id ∈ Finset.univ.image B.boundary :=
+          Finset.mem_image.mpr ⟨id, Finset.mem_univ _, rfl⟩
+        simpa only [B.boundary_image] using hmem⟩
+    ∃ remainder₁ remainder₂ : CarrierLabel D.A,
+      freshThirdCrossRowFreshRemainder P Pρ C.surface Q =
+          {remainder₁.1, remainder₂.1} ∧
+        remainder₁ ≠ remainder₂ ∧
+        SharedPairCyclicSeparation B sourceCenter freshCenter
+          Q.source₁ Q.source₂ ∧
+        SharedPairCyclicSeparation B sourceCenter endpointCenter
+          C.surface.firstSource C.surface.secondSource ∧
+        SharedPairCyclicSeparation B freshCenter endpointCenter
+          remainder₁ remainder₂ := by
+  classical
+  let Ksource : SelectedFourClass D.A
+      (H.centerAt C.surface.firstSource.1 C.surface.firstSource.2) :=
+    (H.selectedAt C.surface.firstSource.1
+      C.surface.firstSource.2).toSelectedFourClass
+  let Kfresh : SelectedFourClass D.A
+      (H.centerAt Q.source₁.1 Q.source₁.2) :=
+    (H.selectedAt Q.source₁.1 Q.source₁.2).toSelectedFourClass
+  let sourceCenter : CarrierLabel D.A :=
+    ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩
+  let freshCenter : CarrierLabel D.A :=
+    ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+  have hendpointA : B.boundary id ∈ D.A := by
+    have hmem : B.boundary id ∈ Finset.univ.image B.boundary :=
+      Finset.mem_image.mpr ⟨id, Finset.mem_univ _, rfl⟩
+    simpa only [B.boundary_image] using hmem
+  let endpointCenter : CarrierLabel D.A := ⟨B.boundary id, hendpointA⟩
+  change ∃ remainder₁ remainder₂ : CarrierLabel D.A,
+    freshThirdCrossRowFreshRemainder P Pρ C.surface Q =
+        {remainder₁.1, remainder₂.1} ∧
+      remainder₁ ≠ remainder₂ ∧
+      SharedPairCyclicSeparation B sourceCenter freshCenter
+        Q.source₁ Q.source₂ ∧
+      SharedPairCyclicSeparation B sourceCenter endpointCenter
+        C.surface.firstSource C.surface.secondSource ∧
+      SharedPairCyclicSeparation B freshCenter endpointCenter
+        remainder₁ remainder₂
+  have hremainderCard :
+      (freshThirdCrossRowFreshRemainder P Pρ C.surface Q).card = 2 :=
+    freshThirdCrossRowFreshRemainder_card_eq_two
+      P Pρ C.surface Q overlap_eq
+  rcases Finset.card_eq_two.mp hremainderCard with
+    ⟨remainder₁, remainder₂, hremainderNe, hremainderEq⟩
+  have hremainder₁Mem :
+      remainder₁ ∈ freshThirdCrossRowFreshRemainder P Pρ C.surface Q := by
+    rw [hremainderEq]
+    simp
+  have hremainder₂Mem :
+      remainder₂ ∈ freshThirdCrossRowFreshRemainder P Pρ C.surface Q := by
+    rw [hremainderEq]
+    simp
+  have hremainder₁Fresh : remainder₁ ∈ Kfresh.support := by
+    exact (Finset.mem_sdiff.mp hremainder₁Mem).1
+  have hremainder₂Fresh : remainder₂ ∈ Kfresh.support := by
+    exact (Finset.mem_sdiff.mp hremainder₂Mem).1
+  let remainder₁Label : CarrierLabel D.A :=
+    ⟨remainder₁, Kfresh.support_subset_A hremainder₁Fresh⟩
+  let remainder₂Label : CarrierLabel D.A :=
+    ⟨remainder₂, Kfresh.support_subset_A hremainder₂Fresh⟩
+  have hsourceEndpoint : sourceCenter.1 ≠ endpointCenter.1 := by
+    have hendpointMem : endpointCenter.1 ∈ Ksource.support := by
+      rcases hrowCenter with hrowCenter | hrowCenter
+      · simpa [endpointCenter, Ksource, hrowCenter] using source₁_mem
+      · simpa [endpointCenter, Ksource, hrowCenter] using source₂_mem
+    exact (ne_of_mem_of_not_mem hendpointMem Ksource.center_not_mem).symm
+  have hfreshEndpoint : freshCenter.1 ≠ endpointCenter.1 := by
+    have hendpointMem : endpointCenter.1 ∈ Kfresh.support := by
+      rcases hrowCenter with hrowCenter | hrowCenter
+      · simpa [endpointCenter, Kfresh, hrowCenter] using
+          (H.selectedAt Q.source₁.1
+            Q.source₁.2).toCriticalFourShell.q_mem_support
+      · simpa [endpointCenter, Kfresh, hrowCenter] using
+          Q.source₂_mem_source₁_shell
+    exact (ne_of_mem_of_not_mem hendpointMem Kfresh.center_not_mem).symm
+  have hfirstCanonicalSource :
+      C.surface.firstSource.1 ∈ Ksource.support := by
+    change C.surface.firstSource.1 ∈
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.support
+    rw [hexact.first_support_eq]
+    simp
+  have hsecondCanonicalSource :
+      C.surface.secondSource.1 ∈ Ksource.support := by
+    change C.surface.secondSource.1 ∈
+      (H.selectedAt C.surface.firstSource.1
+        C.surface.firstSource.2).toCriticalFourShell.support
+    rw [hexact.first_support_eq]
+    simp
+  have hfirstCanonicalEndpoint :
+      C.surface.firstSource.1 ∈ DRow.support := by
+    rw [hsupport]
+    simp
+  have hsecondCanonicalEndpoint :
+      C.surface.secondSource.1 ∈ DRow.support := by
+    rw [hsupport]
+    simp
+  have hremainder₁Endpoint : remainder₁ ∈ DRow.support := by
+    rw [hsupport]
+    exact Finset.mem_union.mpr (Or.inr hremainder₁Mem)
+  have hremainder₂Endpoint : remainder₂ ∈ DRow.support := by
+    rw [hsupport]
+    exact Finset.mem_union.mpr (Or.inr hremainder₂Mem)
+  have hsourceFreshSeparation :
+      SharedPairCyclicSeparation B sourceCenter freshCenter
+        Q.source₁ Q.source₂ := by
+    simpa [SharedPairCyclicSeparation, sourceCenter, freshCenter] using
+      selectedFourClass_sharedPairCyclicSeparation_atBoundary
+        B sourceCenter.2 freshCenter.2
+        Q.source₁.2 Q.source₂.2 centers_ne
+        (fun h ↦ Q.sources_ne (Subtype.ext h)) Ksource Kfresh
+        source₁_mem source₂_mem
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.q_mem_support
+        Q.source₂_mem_source₁_shell
+  have hsourceEndpointSeparation :
+      SharedPairCyclicSeparation B sourceCenter endpointCenter
+        C.surface.firstSource C.surface.secondSource := by
+    simpa [SharedPairCyclicSeparation, sourceCenter, endpointCenter] using
+      selectedFourClass_sharedPairCyclicSeparation_atBoundary
+        B sourceCenter.2 endpointCenter.2
+        C.surface.firstSource.2 C.surface.secondSource.2
+        hsourceEndpoint C.surface.sources_ne Ksource DRow
+        hfirstCanonicalSource hsecondCanonicalSource
+        hfirstCanonicalEndpoint hsecondCanonicalEndpoint
+  have hfreshEndpointSeparation :
+      SharedPairCyclicSeparation B freshCenter endpointCenter
+        remainder₁Label remainder₂Label := by
+    simpa [SharedPairCyclicSeparation, freshCenter, endpointCenter,
+      remainder₁Label, remainder₂Label] using
+      selectedFourClass_sharedPairCyclicSeparation_atBoundary
+        B freshCenter.2 endpointCenter.2
+        remainder₁Label.2 remainder₂Label.2 hfreshEndpoint
+        hremainderNe Kfresh DRow hremainder₁Fresh hremainder₂Fresh
+        hremainder₁Endpoint hremainder₂Endpoint
+  refine ⟨remainder₁Label, remainder₂Label, ?_, ?_,
+    hsourceFreshSeparation, hsourceEndpointSeparation,
+    hfreshEndpointSeparation⟩
+  · simpa [remainder₁Label, remainder₂Label] using hremainderEq
+  · intro h
+    exact hremainderNe (congrArg Subtype.val h)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

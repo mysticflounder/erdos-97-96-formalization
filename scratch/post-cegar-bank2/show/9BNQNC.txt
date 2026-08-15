@@ -1,0 +1,15 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:631
+theorem cross_deletion_survives_or_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H) :
+    HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A) ∨
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support := by
+  by_cases hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A)
+  · exact Or.inl hsurvives
+  · exact Or.inr
+      (source_mem_critical_support_of_no_qfree
+        (H.selectedAt P.q P.q_mem_A) hsurvives)

@@ -1,0 +1,31 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:81
+theorem exists_selectedFourClass_avoiding_of_deletion_survives
+    {A : Finset ℝ²} {center deleted : ℝ²}
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (A.erase deleted) center) :
+    ∃ K : SelectedFourClass A center, deleted ∉ K.support := by
+  classical
+  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+    ⟨radius, hradius, hfour⟩
+  rcases Finset.exists_subset_card_eq hfour with ⟨support, hsupport, hcard⟩
+  refine ⟨{
+    support := support
+    support_subset_A := ?_
+    support_card := hcard
+    radius := radius
+    radius_pos := hradius
+    support_eq_radius := ?_
+    center_not_mem := ?_ }, ?_⟩
+  · intro z hz
+    exact Finset.mem_of_mem_erase
+      (mem_selectedClass.mp (hsupport hz)).1
+  · intro z hz
+    exact (mem_selectedClass.mp (hsupport hz)).2
+  · intro hcenter
+    have hdist := (mem_selectedClass.mp (hsupport hcenter)).2
+    have hzero : (0 : ℝ) = radius := by simpa using hdist
+    linarith
+  · intro hdeleted
+    have hdeletedErase :=
+      (mem_selectedClass.mp (hsupport hdeleted)).1
+    exact (Finset.mem_erase.mp hdeletedErase).1 rfl

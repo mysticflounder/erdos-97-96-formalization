@@ -1,0 +1,39 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1026
+theorem secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    :
+    dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+        Q.otherOutsidePoint := by
+  intro hsecondEq
+  have hsecondCenterCap :
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∈
+        S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+      Pρ.blocker_mem_capInterior
+  have hfirstCenterCap :
+      H.centerAt P.source₁ P.source₁_mem_A ∈
+        S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+      P.blocker_mem_capInterior
+  have hfirstEq :
+      dist (H.centerAt P.source₁ P.source₁_mem_A) Q.source.1 =
+        dist (H.centerAt P.source₁ P.source₁_mem_A)
+          Q.otherOutsidePoint :=
+    ((H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+      Q.source.1 Q.source_mem_shell).trans
+      ((H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+      Q.otherOutsidePoint Q.otherOutsidePoint_mem_shell).symm
+  exact
+    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+      S S.oppIndex1 hsecondCenterCap hfirstCenterCap hblockersNe
+      Q.source.2 Q.otherOutsidePoint_mem_A
+      Q.otherOutsidePoint_ne_source.symm
+      Q.source_not_mem_firstCap Q.otherOutsidePoint_not_mem_firstCap
+      hsecondEq hfirstEq
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in

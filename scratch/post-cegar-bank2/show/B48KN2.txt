@@ -1,0 +1,4 @@
+theorem rowAt_center_ne_sourcePoint
+
+Source rows in the current critical-shell package are blocker-centered, not
+centered at their packet source labels.

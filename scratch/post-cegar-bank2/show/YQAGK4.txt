@@ -1,0 +1,116 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1373
+theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_freshShell
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (B : BoundaryIndexing D.A) (qOutside qBetween sourceCenter canonicalSource : Fin B.n)
+    (hrow :
+      FreshThirdOrderSelectedEndpointCapSplitSurvivingRow S
+        B.boundary qOutside
+        (B.indexOf
+          ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+            (Finset.mem_erase.mp
+              (H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+        qBetween sourceCenter canonicalSource) :
+    ∃ (id : Fin B.n) (DRow : SelectedFourClass D.A (B.boundary id))
+        (rowCap : Fin 3),
+      (id = qOutside ∨ id = qBetween) ∧
+      B.boundary id ∈ S.capByIndex rowCap ∧
+      (DRow.support ∩ S.capByIndex rowCap).card ≤ 2 ∧
+      2 ≤ (DRow.support \ S.capByIndex rowCap).card ∧
+      B.indexOf
+          ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+            (Finset.mem_erase.mp
+              (H.selectedAt Q.source₁.1
+                Q.source₁.2).toCriticalFourShell.center_mem).2⟩ ≠ id ∧
+        2 ≤
+          (DRow.support \
+            (H.selectedAt Q.source₁.1
+              Q.source₁.2).toCriticalFourShell.support).card := by
+  classical
+  let freshLabel : CarrierLabel D.A :=
+    ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+  let freshIndex : Fin B.n := B.indexOf freshLabel
+  let freshRow : SelectedFourClass D.A freshLabel.1 :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have two_outside
+      {id : Fin B.n} (hindex : freshIndex ≠ id)
+      (DRow : SelectedFourClass D.A (B.boundary id)) :
+      2 ≤ (DRow.support \ freshRow.support).card := by
+    have hcentersNe : B.boundary id ≠ freshLabel.1 := by
+      intro heq
+      apply hindex
+      apply B.boundary_injective
+      calc
+        B.boundary freshIndex = freshLabel.1 := by
+          simpa [freshIndex] using B.point_eq freshLabel
+        _ = B.boundary id := heq.symm
+    have hinter : (DRow.support ∩ freshRow.support).card ≤ 2 :=
+      SelectedFourClass.inter_card_le_two DRow freshRow hcentersNe
+    have hsplit :=
+      Finset.card_sdiff_add_card_inter DRow.support freshRow.support
+    rw [DRow.support_card] at hsplit
+    omega
+  rcases hrow with h | h | h | h
+  · rcases h with ⟨_, hfreshBetween, _, _, hcapRow⟩
+    have hindex : freshIndex ≠ qBetween := by
+      simpa [freshIndex, freshLabel] using ne_of_lt hfreshBetween
+    rcases hcapRow with
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩ |
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩
+    · exact ⟨qBetween, DRow, rowCap, Or.inr rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+    · exact ⟨qBetween, DRow, rowCap, Or.inr rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+  · rcases h with ⟨houtsideFresh, _, _, _, hcapRow⟩
+    have hindex : freshIndex ≠ qOutside := by
+      simpa [freshIndex, freshLabel] using ne_of_gt houtsideFresh
+    rcases hcapRow with
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩ |
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩
+    · exact ⟨qOutside, DRow, rowCap, Or.inl rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+    · exact ⟨qOutside, DRow, rowCap, Or.inl rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+  · rcases h with ⟨_, _, hbetweenFresh, _, hcapRow⟩
+    have hindex : freshIndex ≠ qBetween := by
+      simpa [freshIndex, freshLabel] using ne_of_gt hbetweenFresh
+    rcases hcapRow with
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩ |
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩
+    · exact ⟨qBetween, DRow, rowCap, Or.inr rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+    · exact ⟨qBetween, DRow, rowCap, Or.inr rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+  · rcases h with ⟨_, _, _, hfreshOutside, hcapRow⟩
+    have hindex : freshIndex ≠ qOutside := by
+      simpa [freshIndex, freshLabel] using ne_of_lt hfreshOutside
+    rcases hcapRow with
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩ |
+      ⟨DRow, rowCap, _, hcenterCap, hcapInside, hcapOutside⟩
+    · exact ⟨qOutside, DRow, rowCap, Or.inl rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+    · exact ⟨qOutside, DRow, rowCap, Or.inl rfl,
+        hcenterCap, hcapInside, hcapOutside,
+        by simpa [freshIndex, freshLabel] using hindex,
+        by simpa [freshRow] using two_outside hindex DRow⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

@@ -1,0 +1,43 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:520
+theorem freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow
+    {A : Finset ℝ²} {n : ℕ} (boundary : Fin n → ℝ²)
+    {qOutside freshCenter qBetween sourceCenter canonicalSource : Fin n}
+    (horder : FreshThirdFivePointKalmansonOrder qOutside freshCenter qBetween
+      sourceCenter canonicalSource) :
+    FreshThirdOrderSelectedEndpointDeletionObstructions (A := A) boundary
+        qOutside freshCenter qBetween sourceCenter canonicalSource ∨
+      FreshThirdOrderSelectedEndpointSurvivingRow (A := A) boundary
+        qOutside freshCenter qBetween sourceCenter canonicalSource := by
+  rcases horder with h | h | h | h
+  · rcases endpointDeletionPair_blocked_or_survivingRow
+        (A := A) (center := boundary qBetween)
+        (firstDeleted := boundary canonicalSource)
+        (secondDeleted := boundary qOutside) with hblocked | hrow
+    · exact Or.inl (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hblocked.1, hblocked.2⟩)
+    · exact Or.inr (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hrow⟩)
+  · rcases endpointDeletionPair_blocked_or_survivingRow
+        (A := A) (center := boundary qOutside)
+        (firstDeleted := boundary canonicalSource)
+        (secondDeleted := boundary qBetween) with hblocked | hrow
+    · exact Or.inl (Or.inr (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hblocked.1, hblocked.2⟩))
+    · exact Or.inr (Or.inr (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hrow⟩))
+  · rcases endpointDeletionPair_blocked_or_survivingRow
+        (A := A) (center := boundary qBetween)
+        (firstDeleted := boundary canonicalSource)
+        (secondDeleted := boundary qOutside) with hblocked | hrow
+    · exact Or.inl (Or.inr (Or.inr (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hblocked.1, hblocked.2⟩)))
+    · exact Or.inr (Or.inr (Or.inr (Or.inl
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hrow⟩)))
+  · rcases endpointDeletionPair_blocked_or_survivingRow
+        (A := A) (center := boundary qOutside)
+        (firstDeleted := boundary canonicalSource)
+        (secondDeleted := boundary qBetween) with hblocked | hrow
+    · exact Or.inl (Or.inr (Or.inr (Or.inr
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hblocked.1, hblocked.2⟩)))
+    · exact Or.inr (Or.inr (Or.inr (Or.inr
+        ⟨h.1, h.2.1, h.2.2.1, h.2.2.2, hrow⟩)))

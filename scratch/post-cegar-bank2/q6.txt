@@ -1,0 +1,11 @@
+The strongest matching producers are:
+
+- Endpoint-deletion survivor pairs: `FirstApexSplit` (AWMV94) and `SurvivorPairRelocationPacket.double_erase_or_exact_eight_packet` (8BGPZG).
+- Cap-split survivor rows: `FreshThirdOrderSelectedEndpointCapSplitSurvivingRow` (6V8WNP) and `freshThird_orderSelectedEndpointSurvivingRow_capSplit` (K8YQXK).
+- Fresh shell outside witnesses: `freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_freshShell` (YQAGK4), with generic shell witness construction in `build_shell_adjacentArcWitness` (18HX8G).
+- Canonical-source avoidance: `FreshThirdOrderSelectedEndpointSurvivingRow` (Q6H1TJ) and `freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow` (6Y1SFT).
+- Source-faithful deletion fan: `SourceFaithfulSelectedFourDeletionFan` (0CCHPH) and `sourceFaithfulDeletionFan_of_triApexAllLargeContext` (EA9AW9).
+- Supporting contradiction/closure consumers include `false_of_freshThird_canonicalDifferentCap_of_endpointDeletionObstructions` (9WKZN3), `false_of_freshThird_commonRadius_distinctCaps_survivingRow` (43AXZJ), and `freshThird_orderSelectedEndpointCapSplitSurvivingRow_escape_or_exactSupport` (VDHSFB).
+  handles: AWMV94 8BGPZG 6V8WNP K8YQXK YQAGK4 18HX8G Q6H1TJ 6Y1SFT 0CCHPH EA9AW9 9WKZN3 43AXZJ VDHSFB  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show 6Y1SFT --lean && nthdegree docs show 43AXZJ --lean && nthdegree docs show 0BHVHY --lean && nthdegree…, nthdegree docs search --lean --limit 12 "endpoint deletion pair survivor rows"; nthdegree docs search --lean --limit 12 …, nthdegree docs show AWMV94 --lean; nthdegree docs show 8BGPZG --lean; nthdegree docs show K8YQXK --lean; nthdegree docs …, nthdegree docs search --lean --limit 15 "canonical source avoided selected four row fresh endpoint"; nthdegree docs sear…, nthdegree docs show 9WKZN3 --lean; nthdegree docs show Q6H1TJ --lean; nthdegree docs show YQAGK4 --lean; nthdegree docs …
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

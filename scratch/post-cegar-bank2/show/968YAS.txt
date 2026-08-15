@@ -1,0 +1,47 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781
+theorem cross_deletion_survives_iff_not_mem_selected_support
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A) :
+    HasNEquidistantPointsAt 4 (A.erase w) (H.centerAt q hq) ↔
+      w ∉ (H.selectedAt q hq).toCriticalFourShell.support := by
+  let K := (H.selectedAt q hq).toCriticalFourShell
+  constructor
+  · rintro ⟨rho, hrho, hfour⟩ hwK
+    have hqClass : q ∈ SelectedClass (A.erase w) (H.centerAt q hq) rho := by
+      by_contra hqNot
+      have hdouble :
+          HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+            (H.centerAt q hq) := by
+        refine ⟨rho, hrho, ?_⟩
+        have hsame := selectedClass_erase_card_eq_of_not_mem
+          (A := A.erase w) (x := q) (s := H.centerAt q hq)
+          (d := rho) hqNot
+        simpa [SelectedClass] using hfour.trans_eq hsame.symm
+      exact cumulative_deletion_blocked_at_source_blocker H hq hdouble
+    have hrho : rho = K.radius := by
+      calc
+        rho = dist (H.centerAt q hq) q :=
+          (mem_selectedClass.mp hqClass).2.symm
+        _ = K.radius := K.support_eq_radius q K.q_mem_support
+    have hfourK :
+        4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card := by
+      simpa [hrho] using hfour
+    have hselectedEq :
+        SelectedClass A (H.centerAt q hq) K.radius = K.support := by
+      simpa [SelectedClass] using K.support_eq.symm
+    rw [selectedClass_erase_eq, hselectedEq,
+      Finset.card_erase_of_mem hwK, K.support_card] at hfourK
+    omega
+  · intro hwK
+    refine ⟨K.radius, K.radius_pos, ?_⟩
+    have hselectedEq :
+        SelectedClass A (H.centerAt q hq) K.radius = K.support := by
+      simpa [SelectedClass] using K.support_eq.symm
+    have hcard :
+        (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card = 4 := by
+      rw [selectedClass_erase_eq, hselectedEq,
+        Finset.erase_eq_self.mpr hwK, K.support_card]
+    have hfour :
+        4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card := by
+      omega
+    simpa [SelectedClass] using hfour

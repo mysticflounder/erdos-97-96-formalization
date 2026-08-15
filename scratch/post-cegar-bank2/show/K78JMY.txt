@@ -1,0 +1,84 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:231
+theorem false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hcomplementary :
+      (P.source₁ ∈
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support ∧
+          P.source₂ ∈
+            (H.selectedAt source'.1
+              source'.2).toCriticalFourShell.support) ∨
+        (P.source₂ ∈
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support ∧
+          P.source₁ ∈
+            (H.selectedAt source'.1
+              source'.2).toCriticalFourShell.support))
+    (hcenterFirst :
+      H.centerAt source.1 source.2 ∈
+          S.capByIndex S.oppIndex1 ∨
+        H.centerAt source'.1 source'.2 ∈
+          S.capByIndex S.oppIndex1) :
+    False := by
+  rcases hsource with
+    ⟨_, hsourceInterior, hsourceOutside, _, _, _, _, _, _, _, _⟩
+  rcases hsource' with
+    ⟨_, hsourceInterior', hsourceOutside', _, _, _, _, _, _, _, _⟩
+  have hsourceCap :
+      source.1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsourceInterior
+  have hsourceCap' :
+      source'.1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsourceInterior'
+  have hP₁Cap :
+      P.source₁ ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+      P.source₁_mem_capInterior
+  have hP₂Cap :
+      P.source₂ ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+      P.source₂_mem_capInterior
+  have hP₁NeSource : P.source₁ ≠ source.1 := by
+    intro h
+    apply hsourceOutside
+    exact h ▸ (by simp)
+  have hP₁NeSource' : P.source₁ ≠ source'.1 := by
+    intro h
+    apply hsourceOutside'
+    exact h ▸ (by simp)
+  have hP₂NeSource : P.source₂ ≠ source.1 := by
+    intro h
+    apply hsourceOutside
+    exact h ▸ (by simp)
+  have hP₂NeSource' : P.source₂ ≠ source'.1 := by
+    intro h
+    apply hsourceOutside'
+    exact h ▸ (by simp)
+  rcases hcenterFirst with hcenterFirst | hcenterFirst
+  · rcases hcomplementary with hfirst | hsecond
+    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+        source source' P.source₁ hsourcesNe
+        hP₁NeSource hP₁NeSource' hsourceCap hsourceCap'
+        hP₁Cap hmutual.1 hfirst.1 hcenterFirst
+    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+        source source' P.source₂ hsourcesNe
+        hP₂NeSource hP₂NeSource' hsourceCap hsourceCap'
+        hP₂Cap hmutual.1 hsecond.1 hcenterFirst
+  · rcases hcomplementary with hfirst | hsecond
+    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+        source' source P.source₂ hsourcesNe.symm
+        hP₂NeSource' hP₂NeSource hsourceCap' hsourceCap
+        hP₂Cap hmutual.2 hfirst.2 hcenterFirst
+    · exact false_of_three_firstCap_hits_at_firstCap_blocker
+        source' source P.source₁ hsourcesNe.symm
+        hP₁NeSource' hP₁NeSource hsourceCap' hsourceCap
+        hP₁Cap hmutual.2 hsecond.2 hcenterFirst
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in

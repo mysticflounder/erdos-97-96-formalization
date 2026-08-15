@@ -1,0 +1,25 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:399
+private theorem secondRowOutsidePoint_blocker_ne_first
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    {z : ℝ²}
+    (hzSecondRow :
+      z ∈
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support)
+    (hzOutside : z ∉ S.capByIndex S.oppIndex1)
+    (hzNeSource : z ≠ Q.source.1)
+    (hzNeOther : z ≠ Q.otherOutsidePoint) :
+    H.blockerVertex
+        ⟨z,
+          (H.selectedAt Pρ.source₁
+            Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+              hzSecondRow⟩ ≠
+      H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ := by
+  exact offCapPoint_blocker_ne_first_of_ne_outsidePair
+    (P := P) (Pρ := Pρ) Q
+    ((H.selectedAt Pρ.source₁
+      Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hzSecondRow)
+    hzOutside hzNeSource hzNeOther
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

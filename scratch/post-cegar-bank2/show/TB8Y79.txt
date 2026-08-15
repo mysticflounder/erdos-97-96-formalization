@@ -1,0 +1,7 @@
+theorem record001QTTwoCenteredSourcePlacements_absurd
+
+The direct source-row placement surface behind the minimal record001 q/t1
+two-centered payload is incompatible with blocker-centered `CriticalSourceRows`.
+
+In particular, identifying the live `q` source row with branch-0 placements
+`[f1,p,t1,t2]` already excludes the source label `q` from all four slots.

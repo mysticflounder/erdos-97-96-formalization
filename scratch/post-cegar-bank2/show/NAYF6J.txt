@@ -1,0 +1,8 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:188
+theorem source_mem_blocker_row
+    {A : Finset ℝ²} (F : FaithfulCarrierPattern A)
+    (H : CriticalShellSystem A) (q : CarrierLabel A) :
+    q ∈ rowPattern F (blockerLabel H q.1 q.2) := by
+  apply (mem_rowPattern_iff F (blockerLabel H q.1 q.2) q).mpr
+  rw [blocker_row_support_eq_shell F H q.1 q.2]
+  exact (H.selectedAt q.1 q.2).toCriticalFourShell.q_mem_support

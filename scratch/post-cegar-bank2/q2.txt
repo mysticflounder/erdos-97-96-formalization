@@ -1,0 +1,19 @@
+The main relevant Lean declarations are:
+
+- `EndpointDeletionPairCapSplitSurvivingRow` — packages a surviving endpoint row with cap data: its center is in the named cap, at most two row points are inside, and at least two are outside. [0YJJ42]
+- `FreshThirdOrderSelectedEndpointCapSplitSurvivingRow` — the order-selected version with the same inside/outside cap composition. [6V8WNP]
+- `freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow` — every order either has two deletion obstructions or yields an exact four-row avoiding one deleted endpoint. [ZT0FJS]
+- `exists_selectedFourClass_avoiding_of_deletion_survives` — trims a surviving K4 witness to an exact selected four-row while preserving radius equality and omission of the deleted point. [KMB1VH]
+- `deletion_survives_iff_exists_selectedFourClass_avoiding` — gives the exact equivalence between deletion survival and existence of such an avoiding row. [R52RMM]
+- `freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow` — produces the named avoided endpoint plus cap membership and the two-inside/two-outside consequence. [6Y1SFT]
+- `fiveSurvivorExactRowsBoundary` — trims a surviving K4 to an exact q-free four-point row and records the deleted point’s distinct blocked center. [R8ZR9C]
+
+Consumers preserving the witness under further deletion are:
+
+- `selectedFourClass_survives_erase_of_not_mem` — survival after erasing any point outside the row’s support. [KT23XQ]
+- `selectedFourClass_survives_double_erase_of_not_mem` — survival after erasing two points outside the support. [H9SY4Y]
+
+Downstream residual consumers include `false_of_freshThird_commonRadius_distinctCaps_survivingRow`, which uses the survivor packet and its outside-cap points directly, and `exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction`, which follows from that contradiction interface. [43AXZJ] [WTESRD]
+  handles: 0YJJ42 6V8WNP ZT0FJS KMB1VH R52RMM 6Y1SFT R8ZR9C KT23XQ H9SY4Y 43AXZJ WTESRD  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show ZT0FJS --lean && nthdegree docs show KMB1VH --lean && nthdegree docs show KA39HB --lean && nthdegree…, "nthdegree docs search --lean --limit 12 \"\\\"avoiding one of two deleted points\\\"\"", nthdegree docs search --lean --limit 12 "endpoint deletion surviving row cap split", nthdegree docs search --lean --limit 12 "EndpointDeletionPairCapSplitSurvivingRow", nthdegree docs search --lean --limit 12 "exact four rows avoiding deleted point survivor witness", nthdegree docs show 0YJJ42 --lean, nthdegree docs show R52RMM --lean, nthdegree docs show R8ZR9C --lean, nthdegree docs show ZT0FJS --lean, nthdegree docs show 43AXZJ --lean, nthdegree docs show 6Y1SFT --lean, nthdegree docs search --lean --limit 15 "survivingRow avoided point preserved endpoint", nthdegree docs search --lean --limit 15 "selectedFourClass avoiding deletion survives consumer", nthdegree docs search --lean --limit 15 "EndpointSurvivingRow cap composition at most two outside", nthdegree docs show KT23XQ --lean, nthdegree docs show 6V8WNP --lean, nthdegree docs show WTESRD --lean, nthdegree docs show H9SY4Y --lean, nthdegree docs show C4TZF5 --lean
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

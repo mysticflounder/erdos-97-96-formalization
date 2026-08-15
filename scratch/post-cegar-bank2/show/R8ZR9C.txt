@@ -1,0 +1,85 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean:90
+theorem fiveSurvivorExactRowsBoundary
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    {q : ℝ²} (hq : q ∈ D.A) {c₀ c₁ c₂ c₃ c₄ : ℝ²}
+    (h : FiveCenterDeletionSurvival D q c₀ c₁ c₂ c₃ c₄) :
+    Nonempty (FiveSurvivorExactRowsBoundary D H q hq c₀ c₁ c₂ c₃ c₄) := by
+  rcases h with ⟨h₀, h₁, h₂, h₃, h₄⟩
+  have hskeleton₀ :
+      HasNEquidistantPointsAt 4 (D.skeleton q) c₀ := by
+    simpa [CounterexampleData.skeleton] using h₀
+  have hskeleton₁ :
+      HasNEquidistantPointsAt 4 (D.skeleton q) c₁ := by
+    simpa [CounterexampleData.skeleton] using h₁
+  have hskeleton₂ :
+      HasNEquidistantPointsAt 4 (D.skeleton q) c₂ := by
+    simpa [CounterexampleData.skeleton] using h₂
+  have hskeleton₃ :
+      HasNEquidistantPointsAt 4 (D.skeleton q) c₃ := by
+    simpa [CounterexampleData.skeleton] using h₃
+  have hskeleton₄ :
+      HasNEquidistantPointsAt 4 (D.skeleton q) c₄ := by
+    simpa [CounterexampleData.skeleton] using h₄
+  rcases
+      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+        hskeleton₀ with ⟨B₀, ⟨K₀⟩, hB₀⟩
+  rcases
+      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+        hskeleton₁ with ⟨B₁, ⟨K₁⟩, hB₁⟩
+  rcases
+      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+        hskeleton₂ with ⟨B₂, ⟨K₂⟩, hB₂⟩
+  rcases
+      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+        hskeleton₃ with ⟨B₃, ⟨K₃⟩, hB₃⟩
+  rcases
+      U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton
+        hskeleton₄ with ⟨B₄, ⟨K₄⟩, hB₄⟩
+  have hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase q) (H.centerAt q hq) :=
+    H.no_qfree_at q hq
+  have hne₀ : H.centerAt q hq ≠ c₀ := by
+    intro heq
+    apply hblocked
+    simpa only [heq] using h₀
+  have hne₁ : H.centerAt q hq ≠ c₁ := by
+    intro heq
+    apply hblocked
+    simpa only [heq] using h₁
+  have hne₂ : H.centerAt q hq ≠ c₂ := by
+    intro heq
+    apply hblocked
+    simpa only [heq] using h₂
+  have hne₃ : H.centerAt q hq ≠ c₃ := by
+    intro heq
+    apply hblocked
+    simpa only [heq] using h₃
+  have hne₄ : H.centerAt q hq ≠ c₄ := by
+    intro heq
+    apply hblocked
+    simpa only [heq] using h₄
+  exact ⟨{
+    B₀ := B₀
+    B₁ := B₁
+    B₂ := B₂
+    B₃ := B₃
+    B₄ := B₄
+    K₀ := K₀
+    K₁ := K₁
+    K₂ := K₂
+    K₃ := K₃
+    K₄ := K₄
+    B₀_card := hB₀
+    B₁_card := hB₁
+    B₂_card := hB₂
+    B₃_card := hB₃
+    B₄_card := hB₄
+    actualBlocker_uniqueFour := isUniqueFourCenter_centerAt H q hq
+    actualBlocker_fails := hblocked
+    actualBlocker_ne_deleted := centerAt_ne_source H q hq
+    actualBlocker_ne₀ := hne₀
+    actualBlocker_ne₁ := hne₁
+    actualBlocker_ne₂ := hne₂
+    actualBlocker_ne₃ := hne₃
+    actualBlocker_ne₄ := hne₄
+  }⟩

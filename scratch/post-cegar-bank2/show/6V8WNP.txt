@@ -1,0 +1,22 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:428
+def FreshThirdOrderSelectedEndpointCapSplitSurvivingRow
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {n : ℕ}
+    (boundary : Fin n → ℝ²)
+    (qOutside freshCenter qBetween sourceCenter canonicalSource : Fin n) :
+    Prop :=
+  (qOutside < freshCenter ∧ freshCenter < qBetween ∧
+      qBetween < sourceCenter ∧ sourceCenter < canonicalSource ∧
+      EndpointDeletionPairCapSplitSurvivingRow S (boundary qBetween)
+        (boundary canonicalSource) (boundary qOutside)) ∨
+    (qOutside < freshCenter ∧ freshCenter < qBetween ∧
+      qBetween < canonicalSource ∧ canonicalSource < sourceCenter ∧
+      EndpointDeletionPairCapSplitSurvivingRow S (boundary qOutside)
+        (boundary canonicalSource) (boundary qBetween)) ∨
+    (canonicalSource < sourceCenter ∧ sourceCenter < qBetween ∧
+      qBetween < freshCenter ∧ freshCenter < qOutside ∧
+      EndpointDeletionPairCapSplitSurvivingRow S (boundary qBetween)
+        (boundary canonicalSource) (boundary qOutside)) ∨
+    (sourceCenter < canonicalSource ∧ canonicalSource < qBetween ∧
+      qBetween < freshCenter ∧ freshCenter < qOutside ∧
+      EndpointDeletionPairCapSplitSurvivingRow S (boundary qOutside)
+        (boundary canonicalSource) (boundary qBetween))

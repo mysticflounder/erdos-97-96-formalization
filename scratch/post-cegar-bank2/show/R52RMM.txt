@@ -1,0 +1,9 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:113
+theorem deletion_survives_iff_exists_selectedFourClass_avoiding
+    {A : Finset ℝ²} {center deleted : ℝ²} :
+    HasNEquidistantPointsAt 4 (A.erase deleted) center ↔
+      ∃ K : SelectedFourClass A center, deleted ∉ K.support := by
+  constructor
+  · exact exists_selectedFourClass_avoiding_of_deletion_survives
+  · rintro ⟨K, hdeleted⟩
+    exact selectedFourClass_survives_erase_of_not_mem K hdeleted

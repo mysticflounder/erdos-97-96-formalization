@@ -1,0 +1,35 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:3474
+theorem secondRadiusInterior_blocker_ne_collisionBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    (hρne : ρ ≠ radius)
+    {z : ℝ²} (hzA : z ∈ D.A)
+    (hzρInterior :
+      z ∈ SelectedClass D.A S.oppApex1 ρ ∩
+        S.capInteriorByIndex S.oppIndex1) :
+    H.centerAt z hzA ≠
+      H.centerAt P.source₁ P.source₁_mem_A := by
+  intro hcenters
+  have hsupportEq :
+      (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support =
+        (H.selectedAt z hzA).toCriticalFourShell.support := by
+    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+          P.source₁ P.source₁_mem_A,
+      ← uniqueFourClass_centerAt_eq_selectedAt_support H z hzA,
+      hcenters]
+  have hzBoth :
+      z ∈
+        (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex1 ρ ∩
+            S.capInteriorByIndex S.oppIndex1) := by
+    exact Finset.mem_inter.mpr
+      ⟨hsupportEq.symm ▸
+          (H.selectedAt z hzA).toCriticalFourShell.q_mem_support,
+        hzρInterior⟩
+  rw [secondRadiusInterior_disjoint_collisionShell P hρne] at hzBoth
+  simp at hzBoth

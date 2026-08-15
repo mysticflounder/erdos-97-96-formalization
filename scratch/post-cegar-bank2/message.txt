@@ -1,0 +1,12 @@
+Post-CEGAR theorem-bank pass (FreshThird): the corrected full-fidelity run is diagnostic only: sat_valid_survivor, occupied=20, with 3420 exact-LRA triangle cuts and 9690 Kalmanson cuts; there is no UNSAT core and therefore no sorry closure.
+
+The indexed-bank audit found no direct import-reachable consumer accepting all three required ingredients: (i) endpoint-avoidance witness from EndpointDeletionPairSurvivingRow, (ii) source-faithful deletion fan, and (iii) cap-localized outside-shell row. Existing source pieces are:
+
+* freshThird_orderSelectedEndpointDeletionObstructions_or_survivingRow (TwoSourceFreshThirdFiber.lean:520) and freshThird_canonicalDifferentCap_orderSelectedEndpointDeletionOutcome (:2868), which retain the avoidance witness;
+* freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow (:3041) and freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_freshShell (TwoSourceFreshThirdResidual.lean:1373), which strip it by using `_` in every branch;
+* sourceFaithfulDeletionFan_of_triApexAllLargeContext (TriApexEndpointRetainedOmission.lean:1017), which supplies the complete fan;
+* false_of_freshThird_commonRadius_distinctCaps_survivingRow (TwoSourceFreshThirdResidual.lean:3505), which consumes the cap-split dual packet but not endpoint avoidance;
+* false_of_two_selected_middle_rows_shared_endpoint_pair (CapCrossingKalmanson.lean:582), which needs two rows sharing both endpoints;
+* crossDeletion_survives_of_distinct_sameCap_blockers_outside_pair (TriApexEndpointRetainedOmission.lean:1052), which requires distinct blockers, while FreshThird's Q pair has equal blockers.
+
+Minimal bridge: add a source-clean enriched cap-split survivor packet preserving which endpoint is omitted (for example FreshThirdOrderSelectedEndpointCapSplitSurvivingRowWithAvoidance), then prove a FreshThird-specific fan-to-consumer lift deriving either a second row/shared-pair Kalmanson contradiction or a cross-blocker/cap-count contradiction. Restoring the omitted witness alone is necessary information recovery, not closure.
