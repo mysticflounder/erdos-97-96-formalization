@@ -1,0 +1,4 @@
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual
+
+The remaining universal first-fiber obligation after the acyclic ingress
+has been normalized and its common-radius mutual-incidence arm discharged.
