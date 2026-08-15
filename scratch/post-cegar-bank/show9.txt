@@ -1,0 +1,13 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:153
+theorem FullyDeletionRobustAt.blockerVertex_ne
+    {D : CounterexampleData} {center : ℝ²}
+    (R : FullyDeletionRobustAt D center)
+    (H : CriticalShellSystem D.A)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenterA : center ∈ D.A) :
+    H.blockerVertex source ≠
+      (⟨center, hcenterA⟩ : CriticalShellSystem.CarrierVertex D.A) := by
+  intro h
+  have hval : H.centerAt source.1 source.2 = center :=
+    congrArg Subtype.val h
+  exact R.centerAt_ne H source.1 source.2 hval

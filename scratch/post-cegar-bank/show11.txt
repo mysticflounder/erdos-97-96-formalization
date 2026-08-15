@@ -1,0 +1,123 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:405
+private theorem false_of_twoCapSources_of_blockers_off_firstCap
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsourceCap :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex1)
+    (hsourceCap' :
+      source'.1 ∈ S.capInteriorByIndex S.oppIndex1)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source')
+    (haOff :
+      H.centerAt source.1 source.2 ∉
+        S.capByIndex S.oppIndex1)
+    (hbOff :
+      H.centerAt source'.1 source'.2 ∉
+        S.capByIndex S.oppIndex1) :
+    False := by
+  classical
+  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+    ⟨m, L, Packet, _Hside, Hord, hcap⟩
+  have hsourceImage :
+      source.1 ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 hsourceCap
+  have hsourceImage' :
+      source'.1 ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 hsourceCap'
+  rcases Finset.mem_image.mp hsourceImage with
+    ⟨r, _hrMem, hr⟩
+  rcases Finset.mem_image.mp hsourceImage' with
+    ⟨s, _hsMem, hs⟩
+  have hrsNe : r ≠ s := by
+    intro hrs
+    apply hsourcesNe
+    calc
+      source.1 = L.points r := hr.symm
+      _ = L.points s := by rw [hrs]
+      _ = source'.1 := hs
+  have hab :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt source'.1 source'.2 := by
+    intro hab
+    apply hblockersNe'
+    apply Subtype.ext
+    exact hab
+  have haImageOff :
+      H.centerAt source.1 source.2 ∉
+        Finset.univ.image L.points := by
+    simpa [hcap] using haOff
+  have hbImageOff :
+      H.centerAt source'.1 source'.2 ∉
+        Finset.univ.image L.points := by
+    simpa [hcap] using hbOff
+  have har :
+      H.centerAt source.1 source.2 ≠ L.points r := by
+    intro har
+    exact haImageOff
+      (Finset.mem_image.mpr
+        ⟨r, Finset.mem_univ _, har.symm⟩)
+  have has :
+      H.centerAt source.1 source.2 ≠ L.points s := by
+    intro has
+    exact haImageOff
+      (Finset.mem_image.mpr
+        ⟨s, Finset.mem_univ _, has.symm⟩)
+  have hbr :
+      H.centerAt source'.1 source'.2 ≠ L.points r := by
+    intro hbr
+    exact hbImageOff
+      (Finset.mem_image.mpr
+        ⟨r, Finset.mem_univ _, hbr.symm⟩)
+  have hbs :
+      H.centerAt source'.1 source'.2 ≠ L.points s := by
+    intro hbs
+    exact hbImageOff
+      (Finset.mem_image.mpr
+        ⟨s, Finset.mem_univ _, hbs.symm⟩)
+  have haeq :
+      dist (H.centerAt source.1 source.2) (L.points r) =
+        dist (H.centerAt source.1 source.2) (L.points s) := by
+    rw [hr, hs]
+    exact
+      ((H.selectedAt source.1
+          source.2).toCriticalFourShell.support_eq_radius
+        source.1
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.q_mem_support).trans
+        ((H.selectedAt source.1
+          source.2).toCriticalFourShell.support_eq_radius
+        source'.1 hmutual.1).symm
+  have hbeq :
+      dist (H.centerAt source'.1 source'.2) (L.points r) =
+        dist (H.centerAt source'.1 source'.2) (L.points s) := by
+    rw [hr, hs]
+    exact
+      ((H.selectedAt source'.1
+          source'.2).toCriticalFourShell.support_eq_radius
+        source.1 hmutual.2).trans
+        ((H.selectedAt source'.1
+          source'.2).toCriticalFourShell.support_eq_radius
+        source'.1
+        (H.selectedAt source'.1
+          source'.2).toCriticalFourShell.q_mem_support).symm
+  rcases lt_or_gt_of_ne hrsNe with hrs | hsr
+  · exact false_of_two_offCap_bisectors
+      D.convex Packet.mem_A Hord hrs
+      (H.blockerVertex source).2
+      (H.blockerVertex source').2 hab
+      har has hbr hbs haeq hbeq haImageOff hbImageOff
+  · exact false_of_two_offCap_bisectors
+      D.convex Packet.mem_A Hord hsr
+      (H.blockerVertex source).2
+      (H.blockerVertex source').2 hab
+      has har hbs hbr haeq.symm hbeq.symm
+      haImageOff hbImageOff
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in

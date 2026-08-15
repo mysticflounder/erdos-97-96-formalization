@@ -1,0 +1,9 @@
+nthdegree docs show --source: reading /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/U6ModeBDescent.lean: No such file or directory (os error 2); showing stored chunk
+theorem u6ModeBPacket_exists_repeated_label
+
+**U6b-a3a/b/c on a Mode B packet.**  Any Moser-label assignment `μ` on the
+strict large-cap interior collapses on two distinct interior witnesses of a
+Mode B packet.
+
+This combines the `≥ 4`-interior-witness extraction (`u6ModeBPacket_has_four_interior`)
+with the abstract pigeonhole.  PROVEN.

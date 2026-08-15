@@ -1,0 +1,29 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:1017
+theorem sourceFaithfulDeletionFan_of_triApexAllLargeContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {center : ℝ²} (Row : SelectedFourClass D.A center) :
+    SourceFaithfulSelectedFourDeletionFan D S H Row := by
+  intro w hw
+  have hwA : w ∈ D.A := Row.support_subset_A hw
+  let q : CriticalShellSystem.CarrierVertex D.A := ⟨w, hwA⟩
+  rcases
+      exists_globalK4Row_and_sourceFaithfulCriticalCover_of_triApexAllLargeContext
+        G q with
+    ⟨_, _, _, hblocked, _, _, _, blockerCap, hblockerCap⟩
+  refine ⟨blockerCap, ?_, ?_, ?_⟩
+  · simpa [q] using hblockerCap
+  · simpa [q] using hblocked
+  · by_cases heq : center = H.centerAt w hwA
+    · subst center
+      left
+      refine
+        ⟨rfl, H.selectedFourClass_support_eq_shell w hwA Row, ?_⟩
+      intro hrobust
+      exact H.no_qfree_at w hwA (hrobust.survives w hwA)
+    · right
+      exact
+        ⟨heq,
+          SelectedFourClass.inter_card_le_two Row
+            (H.selectedAt w hwA).toCriticalFourShell.toSelectedFourClass heq⟩

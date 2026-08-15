@@ -1,0 +1,10 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:277
+theorem actual_blocker_ne_of_deletion_survives
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q center : ℝ²} (hq : q ∈ A)
+    (hsurvives : HasNEquidistantPointsAt 4 (A.erase q) center) :
+    H.centerAt q hq ≠ center := by
+  intro hcenter
+  have hblocked := H.no_qfree_at q hq
+  rw [hcenter] at hblocked
+  exact hblocked hsurvives

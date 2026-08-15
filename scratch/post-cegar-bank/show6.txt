@@ -1,0 +1,29 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3125
+theorem freshThird_outsideSeed_blocker_capInterior
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (center : ℝ²) (K : SelectedFourClass D.A center)
+    (z : ℝ²) (hzK : z ∈ K.support)
+    (_hzOutside :
+      z ∉ freshThirdCrossRowTwoShellSeed P Pρ C Q) :
+    ∃ blockerCap : Fin 3,
+      H.centerAt z (K.support_subset_A hzK) ∈
+          S.capInteriorByIndex blockerCap ∧
+        ¬ HasNEquidistantPointsAt 4 (D.A.erase z)
+          (H.centerAt z (K.support_subset_A hzK)) ∧
+        ((center = H.centerAt z (K.support_subset_A hzK) ∧
+            K.support =
+              (H.selectedAt z
+                (K.support_subset_A hzK)).toCriticalFourShell.support ∧
+            ¬ FullyDeletionRobustAt D center) ∨
+          (center ≠ H.centerAt z (K.support_subset_A hzK) ∧
+            (K.support ∩
+              (H.selectedAt z
+                (K.support_subset_A hzK)).toCriticalFourShell.support).card ≤ 2)) := by
+  have G : TriApexAllLargeContext D S :=
+    triApexAllLargeContext_of_residuals (H := H) L N T
+  exact
+    sourceFaithfulDeletionFan_of_triApexAllLargeContext G K z hzK
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

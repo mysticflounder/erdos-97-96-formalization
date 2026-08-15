@@ -1,0 +1,35 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:1052
+theorem crossDeletion_survives_of_distinct_sameCap_blockers_outside_pair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {z w : ℝ²}
+    (hzA : z ∈ D.A) (hwA : w ∈ D.A) (hzw : z ≠ w)
+    (k : Fin 3)
+    (hzCap : H.centerAt z hzA ∈ S.capByIndex k)
+    (hwCap : H.centerAt w hwA ∈ S.capByIndex k)
+    (hcentersNe : H.centerAt z hzA ≠ H.centerAt w hwA)
+    (hzOff : z ∉ S.capByIndex k) (hwOff : w ∉ S.capByIndex k) :
+    HasNEquidistantPointsAt 4 (D.A.erase w) (H.centerAt z hzA) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase z) (H.centerAt w hwA) := by
+  by_contra hblocked
+  push_neg at hblocked
+  have hwInZ :
+      w ∈ (H.selectedAt z hzA).toCriticalFourShell.support :=
+    source_mem_critical_support_of_no_qfree
+      (H.selectedAt z hzA) hblocked.1
+  have hzInW :
+      z ∈ (H.selectedAt w hwA).toCriticalFourShell.support :=
+    source_mem_critical_support_of_no_qfree
+      (H.selectedAt w hwA) hblocked.2
+  have hzEq :
+      dist (H.centerAt z hzA) z = dist (H.centerAt z hzA) w :=
+    ((H.selectedAt z hzA).toCriticalFourShell.support_eq_radius z
+        (H.selectedAt z hzA).toCriticalFourShell.q_mem_support).trans
+      ((H.selectedAt z hzA).toCriticalFourShell.support_eq_radius w hwInZ).symm
+  have hwEq :
+      dist (H.centerAt w hwA) z = dist (H.centerAt w hwA) w :=
+    ((H.selectedAt w hwA).toCriticalFourShell.support_eq_radius z hzInW).trans
+      ((H.selectedAt w hwA).toCriticalFourShell.support_eq_radius w
+        (H.selectedAt w hwA).toCriticalFourShell.q_mem_support).symm
+  exact
+    ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair
+      S k hzCap hwCap hcentersNe hzA hwA hzw hzOff hwOff hzEq hwEq

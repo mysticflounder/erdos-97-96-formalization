@@ -1,0 +1,4 @@
+The theorem is `crossDeletion_survives_of_distinct_sameCap_blockers_outside_pair`: if two distinct source points are outside the same cap and their canonical blockers inside that cap are distinct, then at least one of the two cross-deletions must preserve K4 (a four-point row survivor).
+  handles: SKVQVC  (read with `nthdegree docs show <handle>`)
+searched: cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show SKVQVC --corpus erdos-97-96-forma…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization-lean && nthdegree docs show 968YAS --corpus erdos-97-96-…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show 968YAS --corpus erdos-97-96-forma…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

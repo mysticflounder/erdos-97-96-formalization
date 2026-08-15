@@ -1,0 +1,70 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:1046
+theorem blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hqSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.q) S.oppApex1)
+    (hwSurvivesO :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w) S.oppApex1)
+    (hwq :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (hqw :
+      P.q ∈ (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support) :
+    H.centerAt P.q P.q_mem_A = H.centerAt P.w P.w_mem_A := by
+  classical
+  let cq := H.centerAt P.q P.q_mem_A
+  let cw := H.centerAt P.w P.w_mem_A
+  let o := S.oppApex1
+  have hoA : o ∈ D.A := by
+    simpa [o] using oppApex1_mem_A S
+  have hcqA : cq ∈ D.A := by
+    simpa [cq] using blocker_mem_A H P.q_mem_A
+  have hcwA : cw ∈ D.A := by
+    simpa [cw] using blocker_mem_A H P.w_mem_A
+  have hcq_ne_o : cq ≠ o := by
+    simpa [cq, o] using
+      actual_blocker_ne_of_deletion_survives H P.q_mem_A hqSurvivesO
+  have hcw_ne_o : cw ≠ o := by
+    simpa [cw, o] using
+      actual_blocker_ne_of_deletion_survives H P.w_mem_A hwSurvivesO
+  by_contra hcqcw
+  have hoEq : dist o P.q = dist o P.w := by
+    have hqRadius :=
+      (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.q_mem_marginal).1).2
+    have hwRadius :=
+      (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.w_mem_marginal).1).2
+    simpa [o, dist_comm] using hqRadius.trans hwRadius.symm
+  have hcqEq : dist cq P.q = dist cq P.w := by
+    exact
+      (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+        P.q
+        (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support_eq_radius
+          P.w hwq).symm
+  have hcwEq : dist cw P.q = dist cw P.w := by
+    exact
+      (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support_eq_radius
+        P.q hqw
+      |>.trans
+        ((H.selectedAt P.w P.w_mem_A).toCriticalFourShell.support_eq_radius
+          P.w
+          (H.selectedAt P.w P.w_mem_A).toCriticalFourShell.q_mem_support).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex
+    P.q_mem_A P.w_mem_A P.q_ne_w
+  have hoFilter :
+      o ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  have hcqFilter :
+      cq ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hcqA, hcqEq⟩
+  have hcwFilter :
+      cw ∈ D.A.filter (fun z => dist z P.q = dist z P.w) :=
+    Finset.mem_filter.mpr ⟨hcwA, hcwEq⟩
+  have hthree :
+      2 < (D.A.filter (fun z => dist z P.q = dist z P.w)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨o, hoFilter, cq, hcqFilter, cw, hcwFilter,
+      hcq_ne_o.symm, hcw_ne_o.symm, hcqcw⟩
+  omega

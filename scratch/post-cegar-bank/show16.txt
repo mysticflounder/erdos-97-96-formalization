@@ -1,0 +1,33 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:307
+theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+  classical
+  have hcard :=
+    two_le_card_capInterior_sdiff_collisionSources
+      P Pρ hpairsDisjoint hcap
+  have houtside :
+      ((S.capInteriorByIndex S.oppIndex1) \
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂})).Nonempty := by
+    apply Finset.card_pos.mp
+    omega
+  rcases houtside with ⟨q, hqOutside⟩
+  obtain ⟨source, -, hsource⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust hqOutside
+  exact ⟨source, hsource⟩

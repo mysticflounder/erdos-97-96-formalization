@@ -1,0 +1,153 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:3106
+theorem false_of_freshThird_canonicalDifferentCap_of_endpointDeletionObstructions
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (centers_ne :
+      H.centerAt C.firstSource.1 C.firstSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (source₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support)
+    (source₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support)
+    (sourceCap freshCap : Fin 3)
+    (sourceCenter_mem :
+      H.centerAt C.firstSource.1 C.firstSource.2 ∈
+        S.capInteriorByIndex sourceCap)
+    (freshCenter_mem :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈
+        S.capInteriorByIndex freshCap)
+    (hpacket :
+      sourceCap = S.oppIndex1 ∧ freshCap ≠ S.oppIndex1 ∧
+        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+        Q.source₂.1 ∉ S.capByIndex S.oppIndex1)
+    (firstCanonicalBlocked :
+      ¬ HasNEquidistantPointsAt 4
+          (D.A.erase C.firstSource.1) Q.source₁.1)
+    (firstOtherBlocked :
+      ¬ HasNEquidistantPointsAt 4
+          (D.A.erase Q.source₂.1) Q.source₁.1)
+    (secondCanonicalBlocked :
+      ¬ HasNEquidistantPointsAt 4
+          (D.A.erase C.firstSource.1) Q.source₂.1)
+    (secondOtherBlocked :
+      ¬ HasNEquidistantPointsAt 4
+          (D.A.erase Q.source₁.1) Q.source₂.1) :
+    False := by
+  classical
+  have hcanonicalCap :
+      C.firstSource.1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex _ C.firstSource_data.2.1
+  have hfirst_ne_canonical : Q.source₁.1 ≠ C.firstSource.1 := by
+    intro h
+    exact hpacket.2.2.1 (by simpa [h] using hcanonicalCap)
+  have hsecond_ne_canonical : Q.source₂.1 ≠ C.firstSource.1 := by
+    intro h
+    exact hpacket.2.2.2 (by simpa [h] using hcanonicalCap)
+  have firstEndpointEq :
+      dist Q.source₁.1 Q.source₂.1 =
+        dist Q.source₁.1 C.firstSource.1 :=
+    (endpointCentered_dist_eq_of_two_blocked_deletions
+      D.K4 Q.source₁.2 hfirst_ne_canonical
+      firstCanonicalBlocked firstOtherBlocked).symm
+  have secondEndpointEq :
+      dist Q.source₂.1 Q.source₁.1 =
+        dist Q.source₂.1 C.firstSource.1 :=
+    (endpointCentered_dist_eq_of_two_blocked_deletions
+      D.K4 Q.source₂.2 hsecond_ne_canonical
+      secondCanonicalBlocked secondOtherBlocked).symm
+  rcases freshThird_canonicalDifferentCap_fivePointKalmansonOrder
+      (P := P) (Pρ := Pρ) C Q centers_ne source₁_mem source₂_mem
+      sourceCap freshCap sourceCenter_mem freshCenter_mem hpacket with
+    ⟨B, qOutside, qBetween, hnames, horder⟩
+  let sourceCenter : CarrierLabel D.A :=
+    ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.center_mem).2⟩
+  let canonicalSource : CarrierLabel D.A :=
+    ⟨C.firstSource.1, C.firstSource.2⟩
+  let firstPoint : CarrierLabel D.A := ⟨Q.source₁.1, Q.source₁.2⟩
+  let secondPoint : CarrierLabel D.A := ⟨Q.source₂.1, Q.source₂.2⟩
+  have hsourceFirstRaw :
+      dist sourceCenter.1 canonicalSource.1 =
+        dist sourceCenter.1 firstPoint.1 := by
+    exact
+      ((H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support_eq_radius
+        canonicalSource.1
+        (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.q_mem_support).trans
+      ((H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support_eq_radius
+        firstPoint.1 (by simpa [firstPoint] using source₁_mem)).symm
+  have hsourceSecondRaw :
+      dist sourceCenter.1 canonicalSource.1 =
+        dist sourceCenter.1 secondPoint.1 := by
+    exact
+      ((H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support_eq_radius
+        canonicalSource.1
+        (H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.q_mem_support).trans
+      ((H.selectedAt C.firstSource.1
+          C.firstSource.2).toCriticalFourShell.support_eq_radius
+        secondPoint.1 (by simpa [secondPoint] using source₂_mem)).symm
+  have hsourceFirst :
+      dist (B.boundary (B.indexOf sourceCenter))
+          (B.boundary (B.indexOf canonicalSource)) =
+        dist (B.boundary (B.indexOf sourceCenter))
+          (B.boundary (B.indexOf firstPoint)) := by
+    simpa only [B.point_eq] using hsourceFirstRaw
+  have hsourceSecond :
+      dist (B.boundary (B.indexOf sourceCenter))
+          (B.boundary (B.indexOf canonicalSource)) =
+        dist (B.boundary (B.indexOf sourceCenter))
+          (B.boundary (B.indexOf secondPoint)) := by
+    simpa only [B.point_eq] using hsourceSecondRaw
+  have hfirstEndpoint :
+      dist (B.boundary (B.indexOf firstPoint))
+          (B.boundary (B.indexOf secondPoint)) =
+        dist (B.boundary (B.indexOf firstPoint))
+          (B.boundary (B.indexOf canonicalSource)) := by
+    simpa only [B.point_eq] using firstEndpointEq
+  have hsecondEndpoint :
+      dist (B.boundary (B.indexOf secondPoint))
+          (B.boundary (B.indexOf firstPoint)) =
+        dist (B.boundary (B.indexOf secondPoint))
+          (B.boundary (B.indexOf canonicalSource)) := by
+    simpa only [B.point_eq] using secondEndpointEq
+  rcases hnames with hnames | hnames
+  · rcases hnames with ⟨rfl, rfl⟩
+    apply CapCrossingKalmansonBridge.false_of_freshThird_four_order_arms
+      D.convex B.boundary_injective B.boundary_image B.boundary_ccw
+    rcases horder with h | h | h | h
+    · exact Or.inl ⟨lt_trans h.1 h.2.1, h.2.2.1, h.2.2.2,
+        hsecondEndpoint, hsourceFirst.symm⟩
+    · exact Or.inr (Or.inl
+        ⟨lt_trans h.1 h.2.1, h.2.2.1, h.2.2.2,
+          hfirstEndpoint, hsourceSecond.symm⟩)
+    · exact Or.inr (Or.inr (Or.inl
+        ⟨h.1, h.2.1, lt_trans h.2.2.1 h.2.2.2,
+          hsourceFirst, hsecondEndpoint.symm⟩))
+    · exact Or.inr (Or.inr (Or.inr
+        ⟨h.1, h.2.1, lt_trans h.2.2.1 h.2.2.2,
+          hsourceSecond, hfirstEndpoint.symm⟩))
+  · rcases hnames with ⟨rfl, rfl⟩
+    apply CapCrossingKalmansonBridge.false_of_freshThird_four_order_arms
+      D.convex B.boundary_injective B.boundary_image B.boundary_ccw
+    rcases horder with h | h | h | h
+    · exact Or.inl ⟨lt_trans h.1 h.2.1, h.2.2.1, h.2.2.2,
+        hfirstEndpoint, hsourceSecond.symm⟩
+    · exact Or.inr (Or.inl
+        ⟨lt_trans h.1 h.2.1, h.2.2.1, h.2.2.2,
+          hsecondEndpoint, hsourceFirst.symm⟩)
+    · exact Or.inr (Or.inr (Or.inl
+        ⟨h.1, h.2.1, lt_trans h.2.2.1 h.2.2.2,
+          hsourceSecond, hfirstEndpoint.symm⟩))
+    · exact Or.inr (Or.inr (Or.inr
+        ⟨h.1, h.2.1, lt_trans h.2.2.1 h.2.2.2,
+          hsourceFirst, hsecondEndpoint.symm⟩))

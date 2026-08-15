@@ -1,0 +1,119 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:933
+theorem freshThird_canonicalSource_differentFreshCap_sharedPairCyclicPacket
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (centers_ne :
+      H.centerAt C.firstSource.1 C.firstSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2)
+    (source₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.support)
+    (source₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.support)
+    (sourceCap freshCap : Fin 3)
+    (sourceCenter_mem :
+      H.centerAt C.firstSource.1 C.firstSource.2 ∈
+        S.capInteriorByIndex sourceCap)
+    (freshCenter_mem :
+      H.centerAt Q.source₁.1 Q.source₁.2 ∈
+        S.capInteriorByIndex freshCap)
+    (hpacket :
+      sourceCap = S.oppIndex1 ∧
+        freshCap ≠ S.oppIndex1 ∧
+        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+    ∃ B : BoundaryIndexing D.A,
+      (SurplusCOMPGBank.btw
+          (B.indexOf
+            ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+              (Finset.mem_erase.mp
+                (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+          (B.indexOf
+            ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+              (Finset.mem_erase.mp
+                (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+          (B.indexOf ⟨Q.source₁.1, Q.source₁.2⟩) ↔
+        ¬ SurplusCOMPGBank.btw
+          (B.indexOf
+            ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+              (Finset.mem_erase.mp
+                (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_mem).2⟩)
+          (B.indexOf
+            ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+              (Finset.mem_erase.mp
+                (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.center_mem).2⟩)
+          (B.indexOf ⟨Q.source₂.1, Q.source₂.2⟩)) ∧
+          sourceCap = S.oppIndex1 ∧
+          freshCap ≠ S.oppIndex1 ∧
+          Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+          Q.source₂.1 ∉ S.capByIndex S.oppIndex1 ∧
+          H.centerAt C.firstSource.1 C.firstSource.2 ∈
+            S.capInteriorByIndex sourceCap ∧
+          H.centerAt Q.source₁.1 Q.source₁.2 ∈
+            S.capInteriorByIndex freshCap := by
+  classical
+  let sourceCenter : CarrierLabel D.A :=
+    ⟨H.centerAt C.firstSource.1 C.firstSource.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.center_mem).2⟩
+  let freshCenter : CarrierLabel D.A :=
+    ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+  let firstPoint : CarrierLabel D.A := ⟨Q.source₁.1, Q.source₁.2⟩
+  let secondPoint : CarrierLabel D.A := ⟨Q.source₂.1, Q.source₂.2⟩
+  let Ksource :=
+    (H.selectedAt C.firstSource.1 C.firstSource.2).toCriticalFourShell.toSelectedFourClass
+  let Kfresh :=
+    (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  have hsourceCenter_ne_freshCenter : sourceCenter ≠ freshCenter := by
+    intro h
+    exact centers_ne (congrArg Subtype.val h)
+  have hsourceCenter_val_ne_freshCenter_val :
+      sourceCenter.1 ≠ freshCenter.1 := by
+    simpa [sourceCenter, freshCenter] using centers_ne
+  have hpoints_ne : firstPoint ≠ secondPoint := by
+    intro h
+    apply Q.sources_ne
+    exact Subtype.ext (congrArg Subtype.val h)
+  rcases exists_faithfulCarrierPattern_with_two_classes D.K4
+      sourceCenter.2 freshCenter.2 hsourceCenter_val_ne_freshCenter_val Ksource Kfresh with
+    ⟨F, hFsource, hFfresh⟩
+  let rowAt : (center : CarrierLabel D.A) → SelectedFourClass D.A center.1 :=
+    fun center => F.classAt center.1 center.2
+  have hsource_mem_row :
+      firstPoint.1 ∈ (rowAt sourceCenter).support := by
+    rw [show (rowAt sourceCenter).support = Ksource.support by
+      simpa [rowAt, sourceCenter] using hFsource]
+    exact source₁_mem
+  have hsecond_mem_row :
+      secondPoint.1 ∈ (rowAt sourceCenter).support := by
+    rw [show (rowAt sourceCenter).support = Ksource.support by
+      simpa [rowAt, sourceCenter] using hFsource]
+    exact source₂_mem
+  have hfirst_mem_fresh :
+      firstPoint.1 ∈ (rowAt freshCenter).support := by
+    rw [show (rowAt freshCenter).support = Kfresh.support by
+      simpa [rowAt, freshCenter] using hFfresh]
+    exact (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.q_mem_support
+  have hsecond_mem_fresh :
+      secondPoint.1 ∈ (rowAt freshCenter).support := by
+    rw [show (rowAt freshCenter).support = Kfresh.support by
+      simpa [rowAt, freshCenter] using hFfresh]
+    exact Q.source₂_mem_source₁_shell
+  have hcard : 4 < D.A.card := D.card_gt_four
+  have hncol : ¬ Collinear ℝ (D.A : Set ℝ²) :=
+    D.convex.not_collinear_of_card_ge_three (by omega)
+  rcases exists_boundaryIndexing D.convex hncol with ⟨B⟩
+  have hseparated :=
+    selectedFourClass_shared_pair_separated rowAt B.boundary B.indexOf
+      B.boundary_ccw B.boundary_injective B.index_injective B.point_eq
+      hsourceCenter_ne_freshCenter hpoints_ne
+      hsource_mem_row hsecond_mem_row hfirst_mem_fresh hsecond_mem_fresh
+  exact ⟨B, hseparated, hpacket.1, hpacket.2.1, hpacket.2.2.1,
+    hpacket.2.2.2, sourceCenter_mem, freshCenter_mem⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in

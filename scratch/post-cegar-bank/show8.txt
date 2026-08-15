@@ -1,0 +1,13 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:766
+theorem cumulative_deletion_blocked_at_source_blocker
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q w : ℝ²} (hq : q ∈ A) :
+    ¬ HasNEquidistantPointsAt 4 ((A.erase w).erase q)
+      (H.centerAt q hq) := by
+  intro hdouble
+  apply H.no_qfree_at q hq
+  apply equidistant_mono
+    (T := A.erase q) (p := H.centerAt q hq) _ hdouble
+  intro z hz
+  rcases Finset.mem_erase.mp hz with ⟨hzq, hzAw⟩
+  exact Finset.mem_erase.mpr ⟨hzq, (Finset.mem_erase.mp hzAw).2⟩

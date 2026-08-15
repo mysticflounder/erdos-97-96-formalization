@@ -1,0 +1,13 @@
+The ingested docs support a direct chain of facts:
+
+- For a selected four-point row, `sourceFaithfulDeletionFan_of_triApexAllLargeContext` says the “source-faithful deletion fan” over all four-row points has canonical blockers that are cap-localized and truly block after that source is deleted.
+- That behavior is packaged by `SourceFaithfulSelectedFourDeletionFan` as a finite, proved interface carrying canonical blocker data for the four support points.
+- For two distinct source points outside a common cap, `crossDeletion_survives_of_distinct_sameCap_blockers_outside_pair` shows that if their canonical blockers are distinct and both lie in that cap, at least one cross-deletion still preserves a four-point row.
+- For repeated blocker patterns, `BiApexBlockerMultiplicity` states that with two robust omitted centers in the finite blocker endomap, a repeated blocker fiber forces another repeated blocker value or a third source in that fiber (the repeated-label mechanism).
+- There are explicit non-self-blocking/robustness constraints:
+  - `cumulative_deletion_blocked_at_source_blocker`: once a blocker is already killed by deleting its source, a second deletion cannot restore K4 there.
+  - `FullyDeletionRobustAt.blockerVertex_ne`: full deletion robustness excludes the chosen blocker-self point from the blocker image.
+  - `actual_blocker_ne_of_deletion_survives`: a source whose deletion preserves K4 at a center cannot have that center as its chosen blocker in a critical shell context.
+  handles: EA9AW9 0CCHPH SKVQVC M2DZKK CC0HGR 52RQSF 248N1Q GVTDE2 EYJ3C7 9WKZN3  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs search --lean "selected four point deletion fan canonical blockers cap localized repeated blocker cap lab…, nthdegree docs show --lean EA9AW9, nthdegree docs show --lean SKVQVC, nthdegree docs show --lean 0CCHPH, nthdegree docs show --lean EYJ3C7, nthdegree docs search --lean "SourceFaithfulSelectedFourDeletionFan repeated canonical blocker labels outside cap" --lim…, nthdegree docs search --lean "canonical blocker outside pair shared cap source point self deletion" --limit 10, nthdegree docs show --lean 9WKZN3, nthdegree docs show --lean CC0HGR, nthdegree docs show --lean M2DZKK, nthdegree docs search --lean "self deletion blocked canonical blocker" --limit 10, nthdegree docs show --lean 52RQSF, nthdegree docs show --lean GVTDE2, nthdegree docs show --lean 248N1Q
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

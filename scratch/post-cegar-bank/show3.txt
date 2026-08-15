@@ -1,0 +1,21 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:988
+def SourceFaithfulSelectedFourDeletionFan
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    (H : CriticalShellSystem D.A)
+    {center : ℝ²} (Row : SelectedFourClass D.A center) : Prop :=
+  ∀ (w : ℝ²) (hw : w ∈ Row.support),
+    ∃ blockerCap : Fin 3,
+      H.centerAt w (Row.support_subset_A hw) ∈
+          S.capInteriorByIndex blockerCap ∧
+        ¬ HasNEquidistantPointsAt 4 (D.A.erase w)
+          (H.centerAt w (Row.support_subset_A hw)) ∧
+        ((center = H.centerAt w (Row.support_subset_A hw) ∧
+            Row.support =
+              (H.selectedAt w
+                (Row.support_subset_A hw)).toCriticalFourShell.support ∧
+            ¬ FullyDeletionRobustAt D center) ∨
+          (center ≠ H.centerAt w (Row.support_subset_A hw) ∧
+            (Row.support ∩
+              (H.selectedAt w
+                (Row.support_subset_A hw)).toCriticalFourShell.support).card ≤
+              2))

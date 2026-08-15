@@ -1,0 +1,59 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:61
+theorem blocker_centers_eq_of_mutual_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {x y : ℝ²} (hxA : x ∈ D.A) (hyA : y ∈ D.A) (hxy : x ≠ y)
+    (hxRadius : x ∈ SelectedClass D.A S.oppApex1 radius)
+    (hyRadius : y ∈ SelectedClass D.A S.oppApex1 radius)
+    (hyx : y ∈ (H.selectedAt x hxA).toCriticalFourShell.support)
+    (hxy' : x ∈ (H.selectedAt y hyA).toCriticalFourShell.support) :
+    H.centerAt x hxA = H.centerAt y hyA := by
+  classical
+  let cx := H.centerAt x hxA
+  let cy := H.centerAt y hyA
+  let o := S.oppApex1
+  have hoA : o ∈ D.A := by simpa [o] using oppApex1_mem_A S
+  have hcxA : cx ∈ D.A := by
+    simpa [cx, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex ⟨x, hxA⟩).2
+  have hcyA : cy ∈ D.A := by
+    simpa [cy, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex ⟨y, hyA⟩).2
+  have hcx_ne_o : cx ≠ o := by
+    simpa [cx, o] using R.actualBlocker_ne_firstApex x hxA
+  have hcy_ne_o : cy ≠ o := by
+    simpa [cy, o] using R.actualBlocker_ne_firstApex y hyA
+  by_contra hcxcy
+  have hoEq : dist o x = dist o y :=
+    (mem_selectedClass.mp hxRadius).2.trans
+      (mem_selectedClass.mp hyRadius).2.symm
+  have hcxEq : dist cx x = dist cx y := by
+    exact
+      (H.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+        x (H.selectedAt x hxA).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((H.selectedAt x hxA).toCriticalFourShell.support_eq_radius y hyx).symm
+  have hcyEq : dist cy x = dist cy y := by
+    exact
+      (H.selectedAt y hyA).toCriticalFourShell.support_eq_radius x hxy'
+      |>.trans
+        ((H.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+          y (H.selectedAt y hyA).toCriticalFourShell.q_mem_support).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex hxA hyA hxy
+  have hoFilter :
+      o ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  have hcxFilter :
+      cx ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hcxA, hcxEq⟩
+  have hcyFilter :
+      cy ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hcyA, hcyEq⟩
+  have hthree :
+      2 < (D.A.filter (fun z => dist z x = dist z y)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨o, hoFilter, cx, hcxFilter, cy, hcyFilter,
+      hcx_ne_o.symm, hcy_ne_o.symm, hcxcy⟩
+  omega

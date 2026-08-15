@@ -1,0 +1,13 @@
+The matching documentation suggests two separate layers:
+
+1) For repeated blocker labels in the “large-cap” setting, the relevant theorem is `u6ModeBPacket_exists_repeated_label`: under a strict large-cap interior mode-B setup, two distinct interior witnesses force a Moser-label collapse (the duplicated label guarantee).  
+2) For the pinned-endpoint FreshThird branch, the residual workflow is captured by:
+- `freshThird_pinnedEndpointRow_escape_or_offEndpoint`: splits the remaining case into an off-endpoint alternative or an outside-seed endpoint case that carries full source-faithful blocker dichotomy,
+- `false_of_freshThird_pinnedEndpoint_outsideSeedResidual`: handles the outside-seed pinned-endpoint residual by reducing it to a false obligation after normalization of duplicated dual-cap witnesses,
+- `false_of_freshThird_exactSupport_cyclicTriangle`: the exact-support arm is separately marked impossible,
+- `false_of_freshThird_pinnedEndpoint_globalResidual`: the global residual contract that packages all remaining source-produced pinned-endpoint structure (endpoint order, dual-cap identities, cardinality-independent alternatives) into a single contradiction target.
+
+For cap-incidence transport phrasing, `strict_from_first_of_cgnCapData` is the bridge from CGN cap-order data into pinned endpoint monotonicity, and `SameCapBlockerEdge` describes the same-cap directed blocker edge structure (with spent endpoint side + U1k-b0c radius relation).
+  handles: EYJ3C7 1W6PMP 2VMC52 NB815Z 56Q6H5 SMRYXB 7J7VY0  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show 2VMC52 --lean, nthdegree docs show SMRYXB --lean, nthdegree docs show WFKCPC --lean, nthdegree docs show 56Q6H5 --lean, nthdegree docs show CC0HGR --lean, nthdegree docs search --lean "largest cap FreshThird pinned endpoint residual" --limit 10, nthdegree docs search --lean "cap incidence transport repeated blocker label" --limit 10, nthdegree docs show EYJ3C7 --lean, nthdegree docs show 1W6PMP --lean, nthdegree docs show NB815Z --lean, nthdegree docs show H4MMT8 --lean, nthdegree docs show Z69Z01 --lean, nthdegree docs search --lean "largest cap repeated blocker FreshThird pinned endpoint residual" --limit 10 --kind theore…, nthdegree docs show 7J7VY0 --lean, nthdegree docs show RTSABY --lean
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
