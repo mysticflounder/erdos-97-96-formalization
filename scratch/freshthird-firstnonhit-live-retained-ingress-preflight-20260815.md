@@ -91,6 +91,26 @@ the wave.  Its self-hashes are integrity links rather than signatures, and the
 manifest must keep `promotion_ready`, theorem, Lean, source-entitlement, and
 universal claims false.
 
+One arbitrary SAT signature per cell is only observed-model data.  The bounded
+wave therefore asks both `P` and `¬P` for exactly five retained-row
+synchronization predicates:
+
+1. a P endpoint omitted by both retained rows;
+2. a Pρ endpoint omitted by both retained rows;
+3. equality of the two retained actual-blocker centers;
+4. retained-support overlap at least two;
+5. one retained actual-blocker center lying in the other retained support.
+
+Only a one-sided UNSAT result may be called forced true/false *in the finite
+packet*.  Two SAT polarities are undetermined.  Neither classification is a
+Lean theorem until a source-level producer is proved.
+
+The escaping `K : SelectedFourClass D.A center` is not the canonical actual
+blocker row selected at the carrier point `center`.  The anti-landing theorem
+only bounds `K`'s overlap with Q.  This wave does not represent or mine a
+target-shaped actual row at the escaped center, and assumes no incidence link
+between `K` and that row.
+
 ## Immediate implementation target
 
 Build a new live-retained encoder/validator.  Reuse the authenticated static

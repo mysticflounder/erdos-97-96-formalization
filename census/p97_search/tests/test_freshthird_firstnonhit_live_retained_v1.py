@@ -7,6 +7,7 @@ from itertools import product
 from pathlib import Path
 
 import pytest
+import z3
 from z3 import sat, unsat
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -101,6 +102,13 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
     claims = manifest["false_claims"]
     assert claims
     assert all(value is False for value in claims.values())
+    assert [row["id"] for row in manifest["synchronization_predicates"]] == [
+        "common_p_omission",
+        "common_p_rho_omission",
+        "retained_centers_equal",
+        "retained_support_overlap_ge_two",
+        "retained_cross_center_membership",
+    ]
 
 
 def test_full_abstract_signature_replays_and_tampering_fails_closed() -> None:
@@ -116,6 +124,33 @@ def test_full_abstract_signature_replays_and_tampering_fails_closed() -> None:
     ranks["q1"] = ranks["q0"]
     with pytest.raises(packet.LiveRetainedEncodingError):
         packet.replay_signature(tampered)
+
+
+def test_counterfactual_panel_replays_each_sat_polarity() -> None:
+    solver, context = packet.build_packet(
+        "sourceRowOmission", "distinctBlockersDifferentCaps", "P"
+    )
+    predicates = packet.synchronization_predicates(context)
+
+    for name, predicate in predicates.items():
+        statuses = []
+        for required_value in (True, False):
+            solver.push()
+            solver.add(predicate if required_value else z3.Not(predicate))
+            status = solver.check()
+            statuses.append(status)
+            if status == sat:
+                signature = packet.validate_model(solver.model(), context)
+                assert (
+                    packet.replay_signature(
+                        signature,
+                        required_predicate=name,
+                        required_value=required_value,
+                    )
+                    == signature
+                )
+            solver.pop()
+        assert sat in statuses
 
 
 @pytest.mark.parametrize(

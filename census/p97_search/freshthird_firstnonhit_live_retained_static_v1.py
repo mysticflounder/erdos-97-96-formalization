@@ -3,8 +3,10 @@
 The runner is intentionally discovery-only.  It records all 24 constructor
 and global-row-origin cells, binds the exact source and encoder bytes, stores
 the complete SMT query and abstract assignment, and independently replays
-every SAT assignment.  No result from this module is a Lean theorem or a
-general-cardinality closure certificate.
+every SAT assignment.  It also solves both polarities of a fixed retained-row
+predicate panel; forced/refuted classifications apply only to this finite
+packet.  No result from this module is a Lean theorem or a general-cardinality
+closure certificate.
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ from census.p97_search import freshthird_firstnonhit_live_retained_v1 as packet
 
 RUN_SCHEMA = "p97-freshthird-firstnonhit-live-retained-static-run/v1"
 CELL_SCHEMA = "p97-freshthird-firstnonhit-live-retained-static-cell/v1"
+PROBE_SCHEMA = "p97-freshthird-firstnonhit-live-retained-counterfactual/v1"
 DEFAULT_RUN_PARENT = (
     packet.REPO_ROOT / "scratch/runs/freshthird-firstnonhit-live-retained-v1"
 )
@@ -470,6 +473,118 @@ def _query_bytes(solver: z3.Solver) -> bytes:
     return ("(set-logic QF_LIA)\n" + solver.sexpr() + "\n(check-sat)\n").encode()
 
 
+def _counterfactual_classification(
+    base_status: str, true_status: str, false_status: str
+) -> str:
+    pair = (true_status, false_status)
+    if base_status == "UNSAT_RELAXATION":
+        if pair != ("UNSAT_RELAXATION", "UNSAT_RELAXATION"):
+            raise StaticRunnerError("UNSAT base has a SAT counterfactual")
+        return "BASE_UNSAT"
+    if base_status != "SAT_ABSTRACTION":
+        raise StaticRunnerError(f"unsupported base status: {base_status}")
+    if pair == ("SAT_ABSTRACTION", "SAT_ABSTRACTION"):
+        return "UNDETERMINED_IN_FINITE_PACKET"
+    if pair == ("SAT_ABSTRACTION", "UNSAT_RELAXATION"):
+        return "FORCED_TRUE_IN_FINITE_PACKET"
+    if pair == ("UNSAT_RELAXATION", "SAT_ABSTRACTION"):
+        return "FORCED_FALSE_IN_FINITE_PACKET"
+    raise StaticRunnerError("SAT base has two UNSAT counterfactuals")
+
+
+def _predicate_summary(
+    results: Sequence[Mapping[str, object]],
+) -> list[dict[str, object]]:
+    classifications = (
+        "FORCED_TRUE_IN_FINITE_PACKET",
+        "FORCED_FALSE_IN_FINITE_PACKET",
+        "UNDETERMINED_IN_FINITE_PACKET",
+        "BASE_UNSAT",
+    )
+    counts = {
+        str(row["id"]): {classification: 0 for classification in classifications}
+        for row in packet.SYNCHRONIZATION_PREDICATES
+    }
+    for result in results:
+        rows = result.get("counterfactuals")
+        if not isinstance(rows, list):
+            raise StaticRunnerError("cell counterfactual summary is malformed")
+        for row in rows:
+            if not isinstance(row, Mapping):
+                raise StaticRunnerError("counterfactual summary must be an object")
+            predicate_name = row.get("predicate")
+            classification = row.get("classification")
+            if (
+                not isinstance(predicate_name, str)
+                or predicate_name not in counts
+                or not isinstance(classification, str)
+                or classification not in counts[predicate_name]
+            ):
+                raise StaticRunnerError("counterfactual classification is malformed")
+            counts[predicate_name][classification] += 1
+    return [
+        {"predicate": str(row["id"]), "classifications": counts[str(row["id"])]}
+        for row in packet.SYNCHRONIZATION_PREDICATES
+    ]
+
+
+def _counterfactual_result(
+    cell: Mapping[str, object],
+    predicate_name: str,
+    required_value: bool,
+    cell_dir: Path,
+    source_snapshot: Mapping[str, object],
+    encoding_manifest_sha256: str,
+    solver_identity: Mapping[str, object],
+) -> dict[str, object]:
+    solver, context = packet.build_packet(
+        str(cell["nonhit"]), str(cell["interaction"]), str(cell["origin"])
+    )
+    predicates = packet.synchronization_predicates(context)
+    if predicate_name not in predicates:
+        raise StaticRunnerError(f"unknown counterfactual predicate: {predicate_name}")
+    polarity = "true" if required_value else "false"
+    probe_dir = cell_dir / "counterfactuals" / predicate_name / polarity
+    predicate = predicates[predicate_name]
+    solver.add(predicate if required_value else z3.Not(predicate))
+    query_payload = _query_bytes(solver)
+    query_sha256 = _atomic_write(probe_dir / "query.smt2", query_payload)
+    check = solver.check()
+    if check == z3.sat:
+        signature = packet.validate_model(solver.model(), context)
+        packet.replay_signature(
+            signature,
+            required_predicate=predicate_name,
+            required_value=required_value,
+        )
+        status = "SAT_ABSTRACTION"
+    elif check == z3.unsat:
+        signature = None
+        status = "UNSAT_RELAXATION"
+    else:
+        raise StaticRunnerError(
+            f"counterfactual solver returned nonterminal status: {cell} "
+            f"{predicate_name}={required_value}"
+        )
+    result: dict[str, object] = {
+        "schema": PROBE_SCHEMA,
+        "cell": dict(cell),
+        "predicate": predicate_name,
+        "required_value": required_value,
+        "status": status,
+        "signature": signature,
+        "query_sha256": query_sha256,
+        "query_size": len(query_payload),
+        "source_snapshot_sha256": source_snapshot["snapshot_sha256"],
+        "encoding_manifest_sha256": encoding_manifest_sha256,
+        "solver": dict(solver_identity),
+        "false_claims": packet.FALSE_CLAIMS,
+    }
+    result["result_sha256"] = _sha256_bytes(_canonical_json(result))
+    _atomic_json(probe_dir / "result.json", result)
+    return result
+
+
 def _cell_result(
     cell: Mapping[str, object],
     artifacts: Path,
@@ -494,6 +609,41 @@ def _cell_result(
         status = "UNSAT_RELAXATION"
     else:
         raise StaticRunnerError(f"solver returned nonterminal status for cell {cell}")
+    counterfactuals: list[dict[str, object]] = []
+    for predicate_row in packet.SYNCHRONIZATION_PREDICATES:
+        predicate_name = str(predicate_row["id"])
+        true_result = _counterfactual_result(
+            cell,
+            predicate_name,
+            True,
+            cell_dir,
+            source_snapshot,
+            encoding_manifest_sha256,
+            solver_identity,
+        )
+        false_result = _counterfactual_result(
+            cell,
+            predicate_name,
+            False,
+            cell_dir,
+            source_snapshot,
+            encoding_manifest_sha256,
+            solver_identity,
+        )
+        counterfactuals.append(
+            {
+                "predicate": predicate_name,
+                "classification": _counterfactual_classification(
+                    status,
+                    str(true_result["status"]),
+                    str(false_result["status"]),
+                ),
+                "true_status": true_result["status"],
+                "false_status": false_result["status"],
+                "true_result_sha256": true_result["result_sha256"],
+                "false_result_sha256": false_result["result_sha256"],
+            }
+        )
     result: dict[str, object] = {
         "schema": CELL_SCHEMA,
         "cell": dict(cell),
@@ -505,6 +655,7 @@ def _cell_result(
         "encoding_manifest_sha256": encoding_manifest_sha256,
         "solver": dict(solver_identity),
         "false_claims": packet.FALSE_CLAIMS,
+        "counterfactuals": counterfactuals,
     }
     result["result_sha256"] = _sha256_bytes(_canonical_json(result))
     _atomic_json(cell_dir / "result.json", result)
@@ -574,6 +725,9 @@ def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, obj
             }
             for result in results
         ],
+        "predicate_panel": list(packet.SYNCHRONIZATION_PREDICATES),
+        "predicate_summary": _predicate_summary(results),
+        "counterfactual_contract": packet.COUNTERFACTUAL_CONTRACT,
         "source_snapshot": source_snapshot,
         "postflight_source_snapshot_sha256": post_snapshot["snapshot_sha256"],
         "postflight_source_content_sha256": post_snapshot["source_content_sha256"],
@@ -611,6 +765,103 @@ def _validate_signature_cell(
     for field in ("nonhit", "interaction", "origin"):
         if signature.get(field) != cell.get(field):
             raise StaticRunnerError(f"SAT signature {field} differs from outer cell")
+
+
+def _validate_counterfactual_result(
+    artifacts: Path,
+    cell: Mapping[str, object],
+    predicate_name: str,
+    required_value: bool,
+    source_snapshot: Mapping[str, object],
+    encoding_manifest_sha256: object,
+    solver_identity: Mapping[str, object],
+) -> dict[str, object]:
+    polarity = "true" if required_value else "false"
+    probe_dir = (
+        artifacts
+        / f"cell-{cell['cell_id']}"
+        / "counterfactuals"
+        / predicate_name
+        / polarity
+    )
+    result = _read_canonical_json(probe_dir / "result.json", "counterfactual result")
+    _require_exact_fields(
+        result,
+        {
+            "schema",
+            "cell",
+            "predicate",
+            "required_value",
+            "status",
+            "signature",
+            "query_sha256",
+            "query_size",
+            "source_snapshot_sha256",
+            "encoding_manifest_sha256",
+            "solver",
+            "false_claims",
+            "result_sha256",
+        },
+        "counterfactual result",
+    )
+    _validate_self_hash(result, "result_sha256")
+    if result.get("schema") != PROBE_SCHEMA:
+        raise StaticRunnerError("counterfactual schema mismatch")
+    if result.get("cell") != cell:
+        raise StaticRunnerError("counterfactual cell mismatch")
+    if result.get("predicate") != predicate_name:
+        raise StaticRunnerError("counterfactual predicate mismatch")
+    if result.get("required_value") is not required_value:
+        raise StaticRunnerError("counterfactual polarity mismatch")
+    if result.get("source_snapshot_sha256") != source_snapshot.get("snapshot_sha256"):
+        raise StaticRunnerError("counterfactual source binding mismatch")
+    if result.get("encoding_manifest_sha256") != encoding_manifest_sha256:
+        raise StaticRunnerError("counterfactual encoding binding mismatch")
+    if result.get("solver") != solver_identity:
+        raise StaticRunnerError("counterfactual solver identity mismatch")
+    if result.get("false_claims") != packet.FALSE_CLAIMS:
+        raise StaticRunnerError("counterfactual false-claim boundary mismatch")
+    solver, context = packet.build_packet(
+        str(cell["nonhit"]), str(cell["interaction"]), str(cell["origin"])
+    )
+    predicates = packet.synchronization_predicates(context)
+    if predicate_name not in predicates:
+        raise StaticRunnerError("counterfactual predicate is not in the packet panel")
+    predicate = predicates[predicate_name]
+    solver.add(predicate if required_value else z3.Not(predicate))
+    query_payload = _query_bytes(solver)
+    query_path = probe_dir / "query.smt2"
+    _reject_symlink_ancestors(query_path)
+    if query_path.is_symlink() or not query_path.is_file():
+        raise StaticRunnerError("counterfactual query is invalid")
+    if query_path.read_bytes() != query_payload:
+        raise StaticRunnerError("counterfactual query differs from fresh encoding")
+    if result.get("query_sha256") != _sha256_bytes(query_payload):
+        raise StaticRunnerError("counterfactual query digest mismatch")
+    if result.get("query_size") != len(query_payload):
+        raise StaticRunnerError("counterfactual query size mismatch")
+    check = solver.check()
+    status = result.get("status")
+    if status == "SAT_ABSTRACTION":
+        if check != z3.sat:
+            raise StaticRunnerError("SAT counterfactual does not replay as SAT")
+        signature = result.get("signature")
+        if not isinstance(signature, Mapping):
+            raise StaticRunnerError("SAT counterfactual signature is missing")
+        _validate_signature_cell(signature, cell)
+        packet.replay_signature(
+            signature,
+            required_predicate=predicate_name,
+            required_value=required_value,
+        )
+    elif status == "UNSAT_RELAXATION":
+        if check != z3.unsat:
+            raise StaticRunnerError("UNSAT counterfactual does not replay as UNSAT")
+        if result.get("signature") is not None:
+            raise StaticRunnerError("UNSAT counterfactual unexpectedly has a signature")
+    else:
+        raise StaticRunnerError(f"unsupported counterfactual status: {status}")
+    return result
 
 
 def _validate_source_archive(
@@ -757,6 +1008,9 @@ def validate_run(output_dir: Path) -> dict[str, object]:
             "promotion_ready",
             "cell_plan",
             "cell_results",
+            "predicate_panel",
+            "predicate_summary",
+            "counterfactual_contract",
             "source_snapshot",
             "postflight_source_snapshot_sha256",
             "postflight_source_content_sha256",
@@ -782,6 +1036,10 @@ def validate_run(output_dir: Path) -> dict[str, object]:
         "live retained arm packet only; not full FirstNonHit"
     ):
         raise StaticRunnerError("run scope mismatch")
+    if manifest_value.get("predicate_panel") != list(packet.SYNCHRONIZATION_PREDICATES):
+        raise StaticRunnerError("counterfactual predicate panel mismatch")
+    if manifest_value.get("counterfactual_contract") != packet.COUNTERFACTUAL_CONTRACT:
+        raise StaticRunnerError("counterfactual contract mismatch")
     artifacts = output_dir / "artifacts"
     if artifacts.is_symlink() or not artifacts.is_dir():
         raise StaticRunnerError("artifacts root is invalid")
@@ -825,6 +1083,7 @@ def validate_run(output_dir: Path) -> dict[str, object]:
     if not isinstance(summaries, list) or len(summaries) != len(plan):
         raise StaticRunnerError("cell result summary is malformed")
     replayed_statuses: list[str] = []
+    replayed_cell_results: list[Mapping[str, object]] = []
     for cell, summary in zip(plan, summaries, strict=True):
         if not isinstance(summary, Mapping):
             raise StaticRunnerError("cell summary must be an object")
@@ -848,6 +1107,7 @@ def validate_run(output_dir: Path) -> dict[str, object]:
                 "encoding_manifest_sha256",
                 "solver",
                 "false_claims",
+                "counterfactuals",
                 "result_sha256",
             },
             "cell result",
@@ -908,9 +1168,78 @@ def validate_run(output_dir: Path) -> dict[str, object]:
                 raise StaticRunnerError("UNSAT cell unexpectedly carries a signature")
         else:
             raise StaticRunnerError(f"unsupported cell status: {status}")
+        counterfactuals = result.get("counterfactuals")
+        if not isinstance(counterfactuals, list) or len(counterfactuals) != len(
+            packet.SYNCHRONIZATION_PREDICATES
+        ):
+            raise StaticRunnerError("cell counterfactual summaries are malformed")
+        for predicate_row, counterfactual in zip(
+            packet.SYNCHRONIZATION_PREDICATES,
+            counterfactuals,
+            strict=True,
+        ):
+            if not isinstance(counterfactual, Mapping):
+                raise StaticRunnerError("cell counterfactual summary is malformed")
+            _require_exact_fields(
+                counterfactual,
+                {
+                    "predicate",
+                    "classification",
+                    "true_status",
+                    "false_status",
+                    "true_result_sha256",
+                    "false_result_sha256",
+                },
+                "cell counterfactual summary",
+            )
+            predicate_name = str(predicate_row["id"])
+            if counterfactual.get("predicate") != predicate_name:
+                raise StaticRunnerError("cell counterfactual predicate order mismatch")
+            true_result = _validate_counterfactual_result(
+                artifacts,
+                cell,
+                predicate_name,
+                True,
+                source_snapshot,
+                manifest_value.get("encoding_manifest_sha256"),
+                solver_identity,
+            )
+            false_result = _validate_counterfactual_result(
+                artifacts,
+                cell,
+                predicate_name,
+                False,
+                source_snapshot,
+                manifest_value.get("encoding_manifest_sha256"),
+                solver_identity,
+            )
+            if counterfactual.get("true_status") != true_result.get("status"):
+                raise StaticRunnerError("true counterfactual status mismatch")
+            if counterfactual.get("false_status") != false_result.get("status"):
+                raise StaticRunnerError("false counterfactual status mismatch")
+            if counterfactual.get("true_result_sha256") != true_result.get(
+                "result_sha256"
+            ):
+                raise StaticRunnerError("true counterfactual digest mismatch")
+            if counterfactual.get("false_result_sha256") != false_result.get(
+                "result_sha256"
+            ):
+                raise StaticRunnerError("false counterfactual digest mismatch")
+            expected_classification = _counterfactual_classification(
+                status,
+                str(true_result["status"]),
+                str(false_result["status"]),
+            )
+            if counterfactual.get("classification") != expected_classification:
+                raise StaticRunnerError("counterfactual classification mismatch")
+        replayed_cell_results.append(result)
     expected_aggregate = _aggregate_status(replayed_statuses)
     if manifest_value.get("status") != expected_aggregate:
         raise StaticRunnerError("aggregate status mismatch")
+    if manifest_value.get("predicate_summary") != _predicate_summary(
+        replayed_cell_results
+    ):
+        raise StaticRunnerError("predicate summary mismatch")
     return manifest_value
 
 

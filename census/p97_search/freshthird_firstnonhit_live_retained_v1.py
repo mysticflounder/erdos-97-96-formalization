@@ -31,6 +31,33 @@ INTERACTION_BRANCHES = (
 )
 ORIGIN_BRANCHES = ("P", "P_rho", "Q")
 
+SYNCHRONIZATION_PREDICATES = (
+    {
+        "id": "common_p_omission",
+        "meaning": "one P endpoint is omitted from both retained source rows",
+    },
+    {
+        "id": "common_p_rho_omission",
+        "meaning": "one P-rho endpoint is omitted from both retained source rows",
+    },
+    {
+        "id": "retained_centers_equal",
+        "meaning": "the two retained actual-blocker row centers are equal",
+    },
+    {
+        "id": "retained_support_overlap_ge_two",
+        "meaning": "the two retained actual-blocker supports overlap in at least two points",
+    },
+    {
+        "id": "retained_cross_center_membership",
+        "meaning": "one retained actual-blocker center belongs to the other retained support",
+    },
+)
+COUNTERFACTUAL_CONTRACT = (
+    "forced/refuted means one polarity is UNSAT in this finite packet only; "
+    "base SAT signatures are observed-model data"
+)
+
 FALSE_CLAIMS = {
     "source_entitlement": False,
     "constructor_realization": False,
@@ -167,6 +194,8 @@ def manifest() -> dict[str, object]:
         "source_theorems": list(SOURCE_THEOREMS),
         "source_files": source_hashes,
         "false_claims": FALSE_CLAIMS,
+        "synchronization_predicates": list(SYNCHRONIZATION_PREDICATES),
+        "counterfactual_contract": COUNTERFACTUAL_CONTRACT,
         "abstraction_notes": [
             "SAT assignments are finite abstract valuations, not Lean constructor witnesses",
             "deletion-survival and opposite-blockage atoms remain source-owned opaque predicates",
@@ -727,6 +756,46 @@ class LiveRetainedPacket:
         self._emit_global_row()
 
 
+def synchronization_predicates(
+    packet: LiveRetainedPacket,
+) -> dict[str, z3.BoolRef]:
+    """Return the bounded retained-row predicate panel for P/not-P queries."""
+    common_p = z3.Or(
+        *(
+            z3.And(
+                z3.Not(packet.member(endpoint, "first")),
+                z3.Not(packet.member(endpoint, "second")),
+            )
+            for endpoint in P_RADIUS_SUPPORT[:2]
+        )
+    )
+    common_p_rho = z3.Or(
+        *(
+            z3.And(
+                z3.Not(packet.member(endpoint, "first")),
+                z3.Not(packet.member(endpoint, "second")),
+            )
+            for endpoint in P_RHO_RADIUS_SUPPORT[:2]
+        )
+    )
+    predicates = {
+        "common_p_omission": common_p,
+        "common_p_rho_omission": common_p_rho,
+        "retained_centers_equal": packet.same("firstCenter", "secondCenter"),
+        "retained_support_overlap_ge_two": (
+            packet.row_intersection_count("first", "second") >= 2
+        ),
+        "retained_cross_center_membership": z3.Or(
+            packet.member("firstCenter", "second"),
+            packet.member("secondCenter", "first"),
+        ),
+    }
+    expected = [row["id"] for row in SYNCHRONIZATION_PREDICATES]
+    if list(predicates) != expected:
+        raise LiveRetainedEncodingError("synchronization predicate order drifted")
+    return predicates
+
+
 def build_packet(
     nonhit: str,
     interaction: str,
@@ -897,7 +966,11 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
     return signature
 
 
-def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
+def replay_signature(
+    signature: Mapping[str, object],
+    required_predicate: str | None = None,
+    required_value: bool | None = None,
+) -> dict[str, object]:
     """Rebuild a fresh solver, bind every abstract atom, and replay a model."""
     try:
         nonhit = str(signature["nonhit"])
@@ -909,6 +982,16 @@ def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
     if not isinstance(assignment, Mapping):
         raise LiveRetainedEncodingError("abstract_assignment must be an object")
     solver, packet = build_packet(nonhit, interaction, origin)
+    if (required_predicate is None) != (required_value is None):
+        raise LiveRetainedEncodingError("predicate replay requires a name and value")
+    if required_predicate is not None:
+        predicates = synchronization_predicates(packet)
+        if required_predicate not in predicates:
+            raise LiveRetainedEncodingError(
+                f"unknown synchronization predicate: {required_predicate}"
+            )
+        predicate = predicates[required_predicate]
+        solver.add(predicate if required_value else z3.Not(predicate))
 
     def mapping_field(name: str) -> Mapping[str, object]:
         value = assignment.get(name)

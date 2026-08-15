@@ -42,11 +42,11 @@ def _json(path: Path) -> object:
 
 
 def _result_paths(output: Path) -> list[Path]:
-    return sorted(
-        path
-        for path in output.rglob("result.json")
-        if path.is_file() and not path.is_symlink()
-    )
+    return sorted(output.glob("artifacts/cell-*/result.json"))
+
+
+def _probe_result_paths(output: Path) -> list[Path]:
+    return sorted(output.glob("artifacts/cell-*/counterfactuals/*/*/result.json"))
 
 
 def _manifest_paths(output: Path) -> list[Path]:
@@ -84,10 +84,12 @@ def test_full_run_has_sat_cells_canonical_manifests_and_validates(
 ) -> None:
     output, summary = completed_run
     results = [_json(path) for path in _result_paths(output)]
+    probe_results = [_json(path) for path in _probe_result_paths(output)]
     manifests = [_json(path) for path in _manifest_paths(output)]
 
     assert summary["schema"] == runner.RUN_SCHEMA
     assert len(results) == 24
+    assert len(probe_results) == 24 * 5 * 2
     assert {result["status"] for result in results} == {"SAT_ABSTRACTION"}
     assert {
         (
@@ -98,6 +100,18 @@ def test_full_run_has_sat_cells_canonical_manifests_and_validates(
         for result in results
     } == EXPECTED_CELLS
     assert all(isinstance(result["signature"], dict) for result in results)
+    assert {result["status"] for result in probe_results} <= {
+        "SAT_ABSTRACTION",
+        "UNSAT_RELAXATION",
+    }
+    assert [row["id"] for row in summary["predicate_panel"]] == [
+        "common_p_omission",
+        "common_p_rho_omission",
+        "retained_centers_equal",
+        "retained_support_overlap_ge_two",
+        "retained_cross_center_membership",
+    ]
+    assert len(summary["predicate_summary"]) == 5
 
     assert manifests
     assert any(
@@ -239,6 +253,25 @@ def test_aggregate_status_distinguishes_terminal_and_mixed_results() -> None:
     )
     with pytest.raises(runner.StaticRunnerError):
         runner._aggregate_status(["UNKNOWN"])
+
+
+def test_counterfactual_classification_has_exact_polarity() -> None:
+    assert (
+        runner._counterfactual_classification(
+            "SAT_ABSTRACTION", "SAT_ABSTRACTION", "UNSAT_RELAXATION"
+        )
+        == "FORCED_TRUE_IN_FINITE_PACKET"
+    )
+    assert (
+        runner._counterfactual_classification(
+            "SAT_ABSTRACTION", "UNSAT_RELAXATION", "SAT_ABSTRACTION"
+        )
+        == "FORCED_FALSE_IN_FINITE_PACKET"
+    )
+    with pytest.raises(runner.StaticRunnerError):
+        runner._counterfactual_classification(
+            "SAT_ABSTRACTION", "UNSAT_RELAXATION", "UNSAT_RELAXATION"
+        )
 
 
 def test_signature_must_match_outer_cell(
