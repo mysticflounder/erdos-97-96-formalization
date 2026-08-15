@@ -1,0 +1,851 @@
+  5400	    (hvPoint : boundary (labelIndex 8) = P.v.1)
+  5401	    (hxvPoint : boundary (labelIndex 9) = packet.xv)
+  5402	    (hdeletedPoint :
+  5403	      boundary (labelIndex 10) = P.jointDeletion.deleted.1)
+  5404	    (hcPoint :
+  5405	      boundary (labelIndex 11) =
+  5406	        (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+  5407	          P.jointDeletion.deleted.2)
+  5408	    (hePoint :
+  5409	      boundary (labelIndex 12) =
+  5410	        (lateFirstApexSystem R).centerAt packet.xu Q.hxuA)
+  5411	    (hlongPoint : ∀ point,
+  5412	      BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  5413	        boundary (labelIndex point) ∈ S.capByIndex S.oppIndex2) : False := by
+  5414	  classical
+  5415	  let Hlate := lateFirstApexSystem R
+  5416	  let Ku := (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  5417	  let Kv := (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell
+  5418	  let Kxv := (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+  5419	  let Kdel :=
+  5420	    (Hlate.selectedAt P.jointDeletion.deleted.1
+  5421	      P.jointDeletion.deleted.2).toCriticalFourShell
+  5422	  let c := Hlate.centerAt P.jointDeletion.deleted.1
+  5423	    P.jointDeletion.deleted.2
+  5424	  have hxuInter : packet.xu ∈ Ku.support ∩
+  5425	      SelectedClass D.A S.oppApex2 P.rho := by
+  5426	    simpa only [Ku, Hlate] using (show
+  5427	      packet.xu ∈
+  5428	        ((lateFirstApexSystem R).selectedAt
+  5429	          P.u.1 P.u.2).toCriticalFourShell.support ∩
+  5430	            SelectedClass D.A S.oppApex2 P.rho by
+  5431	      rw [packet.source_row_trace]
+  5432	      simp)
+  5433	  have hxuURow : packet.xu ∈ Ku.support := (Finset.mem_inter.mp hxuInter).1
+  5434	  have hxvInter : packet.xv ∈ Kv.support ∩
+  5435	      SelectedClass D.A S.oppApex2 P.rho := by
+  5436	    simpa only [Kv, Hlate] using (show
+  5437	      packet.xv ∈
+  5438	        ((lateFirstApexSystem R).selectedAt
+  5439	          P.v.1 P.v.2).toCriticalFourShell.support ∩
+  5440	            SelectedClass D.A S.oppApex2 P.rho by
+  5441	      rw [packet.opposite_row_trace]
+  5442	      simp)
+  5443	  have hxvVRow : packet.xv ∈ Kv.support := (Finset.mem_inter.mp hxvInter).1
+  5444	  have hcenterU : Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+  5445	    simpa only [Hlate, P.huSource] using packet.blocker_eq_xv
+  5446	  let rowSupport : Fin 4 → Finset (ℝ²) := fun row =>
+  5447	    match row.1 with
+  5448	    | 0 => Kxv.support
+  5449	    | 1 => Ku.support
+  5450	    | 2 => Kv.support
+  5451	    | _ => Kdel.support
+  5452	  let f : Fin 15 → ℝ² := fun point => boundary (labelIndex point)
+  5453	  let membership : Fin 4 → Fin 15 → Bool := fun row point =>
+  5454	    decide (f point ∈ rowSupport row)
+  5455	  have hlabelInjective : Function.Injective labelIndex :=
+  5456	    BlockerVExactFifteenFourRowCoverage.labelIndex_injective_of_positionEmbedding
+  5457	      orientation order labelIndex hposition
+  5458	  have hfInjective : Function.Injective f :=
+  5459	    hboundaryInjective.comp hlabelInjective
+  5460	  have hrowCovered : ∀ row,
+  5461	      rowSupport row ⊆ Finset.univ.image f := by
+  5462	    intro row
+  5463	    fin_cases row
+  5464	    · simpa only [rowSupport, f, Kxv, Hlate] using hKxvCovered
+  5465	    · simpa only [rowSupport, f, Ku, Hlate] using hKuCovered
+  5466	    · simpa only [rowSupport, f, Kv, Hlate] using hKvCovered
+  5467	    · simpa only [rowSupport, f, Kdel, Hlate] using hKdelCovered
+  5468	  have hrowCard : ∀ row, (rowSupport row).card = 4 := by
+  5469	    intro row
+  5470	    fin_cases row
+  5471	    · exact Kxv.support_card
+  5472	    · exact Ku.support_card
+  5473	    · exact Kv.support_card
+  5474	    · exact Kdel.support_card
+  5475	  have htotal : ∀ row,
+  5476	      (Finset.univ.filter fun point => membership row point).card = 4 := by
+  5477	    intro row
+  5478	    change (Finset.univ.filter fun point =>
+  5479	      decide (f point ∈ rowSupport row)).card = 4
+  5480	    calc
+  5481	      _ = (rowSupport row).card :=
+  5482	        filter_decide_mem_card_eq f hfInjective rfl (hrowCovered row)
+  5483	      _ = 4 := hrowCard row
+  5484	  have hfixed₁ : ∀ row,
+  5485	      membership row
+  5486	        (BlockerVExactFifteenFourRowCoverage.fixedHit₁ row) = true := by
+  5487	    intro row
+  5488	    fin_cases row
+  5489	    · simpa [membership, f, rowSupport,
+  5490	        BlockerVExactFifteenFourRowCoverage.fixedHit₁, huPoint] using
+  5491	        Q.huXvRow
+  5492	    · simpa [membership, f, rowSupport,
+  5493	        BlockerVExactFifteenFourRowCoverage.fixedHit₁, huPoint] using
+  5494	        Ku.q_mem_support
+  5495	    · simpa [membership, f, rowSupport,
+  5496	        BlockerVExactFifteenFourRowCoverage.fixedHit₁, hvPoint] using
+  5497	        Kv.q_mem_support
+  5498	    · simpa [membership, f, rowSupport,
+  5499	        BlockerVExactFifteenFourRowCoverage.fixedHit₁, hvPoint] using
+  5500	        Q.hvDeletedRow
+  5501	  have hfixed₂ : ∀ row,
+  5502	      membership row
+  5503	        (BlockerVExactFifteenFourRowCoverage.fixedHit₂ row) = true := by
+  5504	    intro row
+  5505	    fin_cases row <;>
+  5506	      simp [membership, f, rowSupport,
+  5507	        BlockerVExactFifteenFourRowCoverage.fixedHit₂,
+  5508	        hxuPoint, hxvPoint, hdeletedPoint,
+  5509	        Kxv.q_mem_support, hxuURow, hxvVRow, Kdel.q_mem_support]
+  5510	  have interiorCap {x : ℝ²}
+  5511	      (hx : x ∈ S.capInteriorByIndex S.oppIndex2) :
+  5512	      x ∈ S.capByIndex S.oppIndex2 :=
+  5513	    S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hx
+  5514	  have hrowCap : ∀ row,
+  5515	      (rowSupport row ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
+  5516	    intro row
+  5517	    fin_cases row
+  5518	    · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5519	        S D.convex S.oppIndex2 Kxv.toSelectedFourClass
+  5520	        (by simpa only [Hlate, Q.hblockerEqV] using interiorCap hvInterior)
+  5521	    · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5522	        S D.convex S.oppIndex2 Ku.toSelectedFourClass
+  5523	        (by simpa only [Hlate, hcenterU] using interiorCap hxvInterior)
+  5524	    · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5525	        S D.convex S.oppIndex2 Kv.toSelectedFourClass
+  5526	        (by simpa only [Hlate, hcenterV] using interiorCap hdeletedInterior)
+  5527	    · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5528	        S D.convex S.oppIndex2 Kdel.toSelectedFourClass
+  5529	        (by simpa only [Hlate, c] using interiorCap hcInterior)
+  5530	  have hlong : ∀ row,
+  5531	      (Finset.univ.filter fun point =>
+  5532	        membership row point &&
+  5533	          BlockerVExactFifteenFourRowCoverage.longLabelBool point).card ≤ 2 := by
+  5534	    intro row
+  5535	    exact filter_decide_mem_and_mask_card_le f hfInjective
+  5536	      (rowSupport row) (S.capByIndex S.oppIndex2)
+  5537	      BlockerVExactFifteenFourRowCoverage.longLabelBool hlongPoint
+  5538	      (hrowCap row)
+  5539	  have hshell : ∀ row point₁ point₂,
+  5540	      membership row point₁ = true → membership row point₂ = true →
+  5541	        dist
+  5542	            (boundary (labelIndex
+  5543	              (BlockerVExactFifteenFourRowCoverage.centerLabel row)))
+  5544	            (boundary (labelIndex point₁)) =
+  5545	          dist
+  5546	            (boundary (labelIndex
+  5547	              (BlockerVExactFifteenFourRowCoverage.centerLabel row)))
+  5548	            (boundary (labelIndex point₂)) := by
+  5549	    intro row point₁ point₂ hpoint₁ hpoint₂
+  5550	    have hmem₁ : f point₁ ∈ rowSupport row :=
+  5551	      of_decide_eq_true (by simpa only [membership] using hpoint₁)
+  5552	    have hmem₂ : f point₂ ∈ rowSupport row :=
+  5553	      of_decide_eq_true (by simpa only [membership] using hpoint₂)
+  5554	    fin_cases row
+  5555	    · have hdist := (Kxv.support_eq_radius _ hmem₁).trans
+  5556	        (Kxv.support_eq_radius _ hmem₂).symm
+  5557	      simpa only [f, rowSupport,
+  5558	        BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5559	        hvPoint, Hlate, Q.hblockerEqV] using hdist
+  5560	    · have hdist := (Ku.support_eq_radius _ hmem₁).trans
+  5561	        (Ku.support_eq_radius _ hmem₂).symm
+  5562	      simpa only [f, rowSupport,
+  5563	        BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5564	        hxvPoint, Hlate, hcenterU] using hdist
+  5565	    · have hdist := (Kv.support_eq_radius _ hmem₁).trans
+  5566	        (Kv.support_eq_radius _ hmem₂).symm
+  5567	      simpa only [f, rowSupport,
+  5568	        BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5569	        hdeletedPoint, Hlate, hcenterV] using hdist
+  5570	    · have hdist := (Kdel.support_eq_radius _ hmem₁).trans
+  5571	        (Kdel.support_eq_radius _ hmem₂).symm
+  5572	      simpa only [f, rowSupport,
+  5573	        BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5574	        hcPoint, c, Hlate] using hdist
+  5575	  exact
+  5576	    BlockerVExactFifteenFourRowCoverage.false_of_positionEmbedding_membershipRows
+  5577	      D.convex hboundaryInjective hboundaryImage hboundaryCcw
+  5578	      orientation order labelIndex membership hposition htotal hfixed₁
+  5579	      hfixed₂ hlong hshell
+  5580	
+  5581	/-- Exact-fifteen child of the sole surviving deleted-row `BlockerV` arm.
+  5582	The seven named strict-cap points exhaust the nine-point cap, and the four
+  5583	source rows feed the exhaustive exact-fifteen coverage certificate. -/
+  5584	theorem
+  5585	    false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_fifteen
+  5586	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  5587	    {H : CriticalShellSystem D.A}
+  5588	    {F : CriticalPairFrontier D S radius H}
+  5589	    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  5590	    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+  5591	    {packet :
+  5592	      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+  5593	    (Q : ExactFourRigid221PentagonBlockerVResidual P packet)
+  5594	    (hcenterV :
+  5595	      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 =
+  5596	        P.jointDeletion.deleted.1)
+  5597	    (hcenterDeletedInterior :
+  5598	      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+  5599	          P.jointDeletion.deleted.2 ∈
+  5600	        S.capInteriorByIndex S.oppIndex2)
+  5601	    (hcenterDeletedOffClass :
+  5602	      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+  5603	          P.jointDeletion.deleted.2 ∉
+  5604	        SelectedClass D.A S.oppApex2 P.rho)
+  5605	    (hcard : D.A.card = 15) :
+  5606	    False := by
+  5607	  classical
+  5608	  let Hlate := lateFirstApexSystem R
+  5609	  let Ku := (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  5610	  let Kv := (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell
+  5611	  let Kxv := (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+  5612	  let Kdel :=
+  5613	    (Hlate.selectedAt P.jointDeletion.deleted.1
+  5614	      P.jointDeletion.deleted.2).toCriticalFourShell
+  5615	  let Kxu := (Hlate.selectedAt packet.xu Q.hxuA).toCriticalFourShell
+  5616	  let C := SelectedClass D.A S.oppApex2 P.rho
+  5617	  let I := S.capInteriorByIndex S.oppIndex2
+  5618	  let c :=
+  5619	    Hlate.centerAt P.jointDeletion.deleted.1
+  5620	      P.jointDeletion.deleted.2
+  5621	  let e := Hlate.centerAt packet.xu Q.hxuA
+  5622	  have hprofile :=
+  5623	    exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_exact_fifteen_profile
+  5624	      Q hcenterV hcenterDeletedInterior hcenterDeletedOffClass hcard
+  5625	  have hcapCard : (S.capByIndex S.oppIndex2).card = 9 := by
+  5626	    rw [capByIndex_oppIndex2_eq_oppCap2_sourceHeavy S]
+  5627	    exact hprofile.2.2.1
+  5628	  have hnamed : insert e (insert c C) = I := by
+  5629	    simpa only [blockerVSecondCapNamedSeven, Hlate, e, c, C, I] using hprofile.2.2.2
+  5630	  have hxuInter : packet.xu ∈ Ku.support ∩ C := by
+  5631	    simpa only [Ku, C, Hlate] using (show
+  5632	      packet.xu ∈
+  5633	        ((lateFirstApexSystem R).selectedAt
+  5634	          P.u.1 P.u.2).toCriticalFourShell.support ∩
+  5635	            SelectedClass D.A S.oppApex2 P.rho by
+  5636	      rw [packet.source_row_trace]
+  5637	      simp)
+  5638	  have hxuURow : packet.xu ∈ Ku.support := (Finset.mem_inter.mp hxuInter).1
+  5639	  have hxuClass : packet.xu ∈ C := (Finset.mem_inter.mp hxuInter).2
+  5640	  have hxvInter : packet.xv ∈ Kv.support ∩ C := by
+  5641	    simpa only [C] using (show
+  5642	      packet.xv ∈ Kv.support ∩ SelectedClass D.A S.oppApex2 P.rho by
+  5643	        rw [packet.opposite_row_trace]
+  5644	        simp)
+  5645	  have hxvVRow : packet.xv ∈ Kv.support := (Finset.mem_inter.mp hxvInter).1
+  5646	  have hxvClass : packet.xv ∈ C := (Finset.mem_inter.mp hxvInter).2
+  5647	  have hcenterU : Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+  5648	    simpa only [Hlate, P.huSource] using packet.blocker_eq_xv
+  5649	  have hE : dist packet.xv P.u.1 = dist packet.xv packet.xu := by
+  5650	    rw [← hcenterU]
+  5651	    exact (Ku.support_eq_radius _ Ku.q_mem_support).trans
+  5652	      (Ku.support_eq_radius _ hxuURow).symm
+  5653	  have hD : dist P.v.1 packet.xv = dist P.v.1 P.u.1 := by
+  5654	    rw [← Q.hblockerEqV]
+  5655	    exact (Kxv.support_eq_radius _ Kxv.q_mem_support).trans
+  5656	      (Kxv.support_eq_radius _ Q.huXvRow).symm
+  5657	  have hC :
+  5658	      dist P.jointDeletion.deleted.1 P.v.1 =
+  5659	        dist P.jointDeletion.deleted.1 packet.xv := by
+  5660	    have hraw :=
+  5661	      (Kv.support_eq_radius _ Kv.q_mem_support).trans
+  5662	        (Kv.support_eq_radius _ hxvVRow).symm
+  5663	    simpa only [Hlate, hcenterV] using hraw
+  5664	  have hB : dist e packet.xu = dist e P.jointDeletion.deleted.1 := by
+  5665	    simpa only [e, Kxu] using
+  5666	      (Kxu.support_eq_radius _ Kxu.q_mem_support).trans
+  5667	        (Kxu.support_eq_radius _ Q.hdeletedXuRow).symm
+  5668	  have hA : dist c P.jointDeletion.deleted.1 = dist c P.v.1 := by
+  5669	    simpa only [c, Kdel] using
+  5670	      (Kdel.support_eq_radius _ Kdel.q_mem_support).trans
+  5671	        (Kdel.support_eq_radius _ Q.hvDeletedRow).symm
+  5672	  have hclassInterior : C ⊆ I := by
+  5673	    intro x hx
+  5674	    rw [← hnamed]
+  5675	    simp [hx]
+  5676	  have heInterior : e ∈ I := by rw [← hnamed]; simp
+  5677	  have hcInterior : c ∈ I := by rw [← hnamed]; simp
+  5678	  have huInterior : P.u.1 ∈ I := hclassInterior P.huClass
+  5679	  have hxuInterior : packet.xu ∈ I := hclassInterior hxuClass
+  5680	  have hvInterior : P.v.1 ∈ I := hclassInterior P.hvClass
+  5681	  have hxvInterior : packet.xv ∈ I := hclassInterior hxvClass
+  5682	  have hdeletedInterior : P.jointDeletion.deleted.1 ∈ I :=
+  5683	    hclassInterior P.jointDeletion.deleted_mem_class
+  5684	  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  5685	  have hvNeXv : P.v.1 ≠ packet.xv := packet.xv_ne_v.symm
+  5686	  have huNeV : P.u.1 ≠ P.v.1 := by
+  5687	    intro h
+  5688	    exact P.huNeV (Subtype.ext h)
+  5689	  have huNeXv : P.u.1 ≠ packet.xv := by
+  5690	    intro h
+  5691	    apply Ku.center_not_mem_support
+  5692	    simpa only [hcenterU, ← h] using Ku.q_mem_support
+  5693	  have hxuNeXv : packet.xu ≠ packet.xv := by
+  5694	    intro h
+  5695	    apply Ku.center_not_mem_support
+  5696	    simpa only [hcenterU, ← h] using hxuURow
+  5697	  have hdelNeV : P.jointDeletion.deleted.1 ≠ P.v.1 := by
+  5698	    intro h
+  5699	    apply Kv.center_not_mem_support
+  5700	    simpa only [Hlate, hcenterV, h] using Kv.q_mem_support
+  5701	  have hdelNeXv : P.jointDeletion.deleted.1 ≠ packet.xv := by
+  5702	    intro h
+  5703	    apply Q.hxvNotDeletedRow
+  5704	    simpa only [← h] using Kdel.q_mem_support
+  5705	  have hcNeDeleted : c ≠ P.jointDeletion.deleted.1 := by
+  5706	    simpa only [c, Hlate] using
+  5707	      centerAt_ne_source Hlate P.jointDeletion.deleted.1
+  5708	        P.jointDeletion.deleted.2
+  5709	  have hcNeV : c ≠ P.v.1 := by
+  5710	    intro h
+  5711	    exact hcenterDeletedOffClass (by simpa only [c, Hlate, h] using P.hvClass)
+  5712	  have heNeXu : e ≠ packet.xu := by
+  5713	    simpa only [e] using centerAt_ne_source Hlate packet.xu Q.hxuA
+  5714	  have heNeDeleted : e ≠ P.jointDeletion.deleted.1 := by
+  5715	    intro h
+  5716	    apply Kxu.center_not_mem_support
+  5717	    simpa only [e, h] using Q.hdeletedXuRow
+  5718	  have hdelNeXu : P.jointDeletion.deleted.1 ≠ packet.xu := by
+  5719	    intro h
+  5720	    apply Q.hxuNotDeletedRow
+  5721	    simpa only [← h] using Kdel.q_mem_support
+  5722	  have hcOff : c ∉ C := by
+  5723	    simpa only [c, C, Hlate] using hcenterDeletedOffClass
+  5724	  have hnamedInfo :=
+  5725	    exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_namedSeven
+  5726	      Q hcenterV hcenterDeletedInterior hcenterDeletedOffClass
+  5727	  have hnamedCard : (insert e (insert c C)).card = 7 := by
+  5728	    simpa only [blockerVSecondCapNamedSeven, Hlate, e, c, C] using hnamedInfo.2
+  5729	  have heOff : e ∉ C := by
+  5730	    intro heClass
+  5731	    have heInsert : e ∈ insert c C := Finset.mem_insert_of_mem heClass
+  5732	    have hsmall : (insert e (insert c C)).card = 6 := by
+  5733	      rw [Finset.insert_eq_self.mpr heInsert,
+  5734	        Finset.card_insert_of_notMem hcOff]
+  5735	      have hCcard : C.card = 5 := by
+  5736	        simpa only [C] using P.hclassFive
+  5737	      omega
+  5738	    omega
+  5739	  have heNeXv : e ≠ packet.xv := by
+  5740	    intro h
+  5741	    exact heOff (by simpa only [h] using hxvClass)
+  5742	  rcases S.capByIndex_cgn4g_strictCapBlockData_oriented D.convex S.oppIndex2 with
+  5743	    ⟨B, hBorient⟩
+  5744	  have hm : B.m = 9 := B.cap_card_eq.trans hcapCard
+  5745	  have interiorCap {x : ℝ²} (hx : x ∈ I) : x ∈ S.capByIndex S.oppIndex2 :=
+  5746	    S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hx
+  5747	  rcases B.exists_index_of_mem_cap (interiorCap huInterior) with ⟨iu, hiu⟩
+  5748	  rcases B.exists_index_of_mem_cap (interiorCap hvInterior) with ⟨iv, hiv⟩
+  5749	  rcases B.exists_index_of_mem_cap (interiorCap hcInterior) with ⟨ic, hic⟩
+  5750	  rcases B.exists_index_of_mem_cap (interiorCap hdeletedInterior) with ⟨id, hid⟩
+  5751	  rcases B.exists_index_of_mem_cap (interiorCap hxvInterior) with ⟨ixv, hixv⟩
+  5752	  rcases B.exists_index_of_mem_cap (interiorCap heInterior) with ⟨ie, hie⟩
+  5753	  rcases B.exists_index_of_mem_cap (interiorCap hxuInterior) with ⟨ixu, hixu⟩
+  5754	  have indexBounds {x : ℝ²} (hx : x ∈ I) (i : Fin B.m)
+  5755	      (hi : B.L.points i = x) : 0 < i.val ∧ i.val < B.m - 1 := by
+  5756	    have hfirst : i ≠ CGN.firstIndex B.Packet.hm := by
+  5757	      intro hifirst
+  5758	      have hxEndpoint :
+  5759	          x = (S.triangleByIndex S.oppIndex2).v2 ∨
+  5760	            x = (S.triangleByIndex S.oppIndex2).v3 := by
+  5761	        rcases hBorient with hb | hb
+  5762	        · exact Or.inl (hi.symm.trans (by simpa only [hifirst] using hb.1))
+  5763	        · exact Or.inr (hi.symm.trans (by simpa only [hifirst] using hb.1))
+  5764	      rcases hxEndpoint with hxEndpoint | hxEndpoint
+  5765	      · exact S.capInteriorByIndex_ne_triangleByIndex_v2 hx hxEndpoint
+  5766	      · exact S.capInteriorByIndex_ne_triangleByIndex_v3 hx hxEndpoint
+  5767	    have hlast : i ≠ CGN.lastIndex B.Packet.hm := by
+  5768	      intro hilast
+  5769	      have hxEndpoint :
+  5770	          x = (S.triangleByIndex S.oppIndex2).v2 ∨
+  5771	            x = (S.triangleByIndex S.oppIndex2).v3 := by
+  5772	        rcases hBorient with hb | hb
+  5773	        · exact Or.inr (hi.symm.trans (by simpa only [hilast] using hb.2))
+  5774	        · exact Or.inl (hi.symm.trans (by simpa only [hilast] using hb.2))
+  5775	      rcases hxEndpoint with hxEndpoint | hxEndpoint
+  5776	      · exact S.capInteriorByIndex_ne_triangleByIndex_v2 hx hxEndpoint
+  5777	      · exact S.capInteriorByIndex_ne_triangleByIndex_v3 hx hxEndpoint
+  5778	    have hfirstVal : i.val ≠ 0 := by
+  5779	      intro hi
+  5780	      apply hfirst
+  5781	      apply Fin.ext
+  5782	      simpa only [CGN.firstIndex_val] using hi
+  5783	    have hlastVal : i.val ≠ B.m - 1 := by
+  5784	      intro hi
+  5785	      apply hlast
+  5786	      apply Fin.ext
+  5787	      simpa only [CGN.lastIndex_val] using hi
+  5788	    constructor <;> omega
+  5789	  have hiuBounds := indexBounds huInterior iu hiu
+  5790	  have hivBounds := indexBounds hvInterior iv hiv
+  5791	  have hicBounds := indexBounds hcInterior ic hic
+  5792	  have hidBounds := indexBounds hdeletedInterior id hid
+  5793	  have hixvBounds := indexBounds hxvInterior ixv hixv
+  5794	  have hieBounds := indexBounds heInterior ie hie
+  5795	  have hixuBounds := indexBounds hxuInterior ixu hixu
+  5796	  have between {j r s : Fin B.m} (hjr : B.L.points j ≠ B.L.points r)
+  5797	      (hjs : B.L.points j ≠ B.L.points s)
+  5798	      (hrs : B.L.points r ≠ B.L.points s)
+  5799	      (heq : dist (B.L.points j) (B.L.points r) =
+  5800	        dist (B.L.points j) (B.L.points s)) :
+  5801	      (r < j ∧ j < s) ∨ (s < j ∧ j < r) := by
+  5802	    have hjrIndex : j ≠ r := by
+  5803	      intro h
+  5804	      exact hjr (congrArg B.L.points h)
+  5805	    have hjsIndex : j ≠ s := by
+  5806	      intro h
+  5807	      exact hjs (congrArg B.L.points h)
+  5808	    have hrsIndex : r ≠ s := by
+  5809	      intro h
+  5810	      exact hrs (congrArg B.L.points h)
+  5811	    rcases lt_or_gt_of_ne hrsIndex with hrs | hsr
+  5812	    · exact Or.inl (CGN.index_strictly_between_of_equidistant
+  5813	        B.Packet B.Hside B.Hord hrs hjrIndex hjsIndex heq)
+  5814	    · exact Or.inr (CGN.index_strictly_between_of_equidistant
+  5815	        B.Packet B.Hside B.Hord hsr hjsIndex hjrIndex heq.symm)
+  5816	  have hXv : (iu < ixv ∧ ixv < ixu) ∨ (ixu < ixv ∧ ixv < iu) :=
+  5817	    between (by simpa only [hixv, hiu] using huNeXv.symm)
+  5818	      (by simpa only [hixv, hixu] using hxuNeXv.symm)
+  5819	      (by simpa only [hiu, hixu] using huNeXu)
+  5820	      (by simpa only [hixv, hiu, hixu] using hE)
+  5821	  have hV : (iu < iv ∧ iv < ixv) ∨ (ixv < iv ∧ iv < iu) :=
+  5822	    between (by simpa only [hiv, hiu] using huNeV.symm)
+  5823	      (by simpa only [hiv, hixv] using hvNeXv)
+  5824	      (by simpa only [hiu, hixv] using huNeXv)
+  5825	      (by simpa only [hiv, hiu, hixv] using hD.symm)
+  5826	  have hDel : (iv < id ∧ id < ixv) ∨ (ixv < id ∧ id < iv) :=
+  5827	    between (by simpa only [hid, hiv] using hdelNeV)
+  5828	      (by simpa only [hid, hixv] using hdelNeXv)
+  5829	      (by simpa only [hiv, hixv] using hvNeXv)
+  5830	      (by simpa only [hid, hiv, hixv] using hC)
+  5831	  have hCenter : (iv < ic ∧ ic < id) ∨ (id < ic ∧ ic < iv) :=
+  5832	    between (by simpa only [hic, hiv] using hcNeV)
+  5833	      (by simpa only [hic, hid] using hcNeDeleted)
+  5834	      (by simpa only [hiv, hid] using hdelNeV.symm)
+  5835	      (by simpa only [hic, hiv, hid] using hA.symm)
+  5836	  have hXuCenter : (id < ie ∧ ie < ixu) ∨ (ixu < ie ∧ ie < id) :=
+  5837	    between (by simpa only [hie, hid] using heNeDeleted)
+  5838	      (by simpa only [hie, hixu] using heNeXu)
+  5839	      (by simpa only [hid, hixu] using hdelNeXu)
+  5840	      (by simpa only [hie, hid, hixu] using hB.symm)
+  5841	  have hieNeIxv : ie ≠ ixv := by
+  5842	    intro h
+  5843	    apply heNeXv
+  5844	    calc
+  5845	      e = B.L.points ie := hie.symm
+  5846	      _ = B.L.points ixv := congrArg B.L.points h
+  5847	      _ = packet.xv := hixv
+  5848	  have horders := seven_index_order_classification hm iu iv ic id ixv ie ixu
+  5849	    hiuBounds.1 hiuBounds.2 hivBounds.1 hivBounds.2 hicBounds.1 hicBounds.2
+  5850	    hidBounds.1 hidBounds.2 hixvBounds.1 hixvBounds.2 hieBounds.1 hieBounds.2
+  5851	    hixuBounds.1 hixuBounds.2
+  5852	    hieNeIxv
+  5853	    hXv hV hDel hCenter hXuCenter
+  5854	  let rowSupport : Fin 4 → Finset (ℝ²) := fun row =>
+  5855	    match row.1 with
+  5856	    | 0 => Kxv.support
+  5857	    | 1 => Ku.support
+  5858	    | 2 => Kv.support
+  5859	    | _ => Kdel.support
+  5860	  have close
+  5861	      (orientation : BlockerVExactFifteenFourRowCoverage.Orientation)
+  5862	      (order : Fin 2) (boundary : Fin D.A.card → ℝ²)
+  5863	      (hboundaryInjective : Function.Injective boundary)
+  5864	      (hboundaryImage : Finset.univ.image boundary = D.A)
+  5865	      (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+  5866	      (labelIndex : Fin 15 → Fin D.A.card)
+  5867	      (hposition :
+  5868	        BlockerVExactFifteenFourRowCoverage.PositionEmbedding
+  5869	          orientation order labelIndex)
+  5870	      (huPoint : boundary (labelIndex 6) = P.u.1)
+  5871	      (hxuPoint : boundary (labelIndex 7) = packet.xu)
+  5872	      (hvPoint : boundary (labelIndex 8) = P.v.1)
+  5873	      (hxvPoint : boundary (labelIndex 9) = packet.xv)
+  5874	      (hdeletedPoint :
+  5875	        boundary (labelIndex 10) = P.jointDeletion.deleted.1)
+  5876	      (hcPoint : boundary (labelIndex 11) = c)
+  5877	      (hePoint : boundary (labelIndex 12) = e)
+  5878	      (hlongPoint : ∀ point,
+  5879	        BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  5880	          boundary (labelIndex point) ∈ S.capByIndex S.oppIndex2) : False := by
+  5881	    let f : Fin 15 → ℝ² := fun point => boundary (labelIndex point)
+  5882	    let membership : Fin 4 → Fin 15 → Bool := fun row point =>
+  5883	      decide (f point ∈ rowSupport row)
+  5884	    have hlabelInjective : Function.Injective labelIndex :=
+  5885	      BlockerVExactFifteenFourRowCoverage.labelIndex_injective_of_positionEmbedding
+  5886	        orientation order labelIndex hposition
+  5887	    have hfInjective : Function.Injective f :=
+  5888	      hboundaryInjective.comp hlabelInjective
+  5889	    have hfImageSubset : Finset.univ.image f ⊆ D.A := by
+  5890	      intro x hx
+  5891	      rcases Finset.mem_image.mp hx with ⟨point, _hpoint, rfl⟩
+  5892	      rw [← hboundaryImage]
+  5893	      exact Finset.mem_image.mpr
+  5894	        ⟨labelIndex point, Finset.mem_univ _, rfl⟩
+  5895	    have hfImageCard : (Finset.univ.image f).card = 15 := by
+  5896	      rw [Finset.card_image_of_injective _ hfInjective]
+  5897	      simp
+  5898	    have hfImage : Finset.univ.image f = D.A := by
+  5899	      apply Finset.eq_of_subset_of_card_le hfImageSubset
+  5900	      rw [hfImageCard, hcard]
+  5901	    have hrowSubset : ∀ row, rowSupport row ⊆ D.A := by
+  5902	      intro row
+  5903	      fin_cases row
+  5904	      · exact Kxv.support_subset_A
+  5905	      · exact Ku.support_subset_A
+  5906	      · exact Kv.support_subset_A
+  5907	      · exact Kdel.support_subset_A
+  5908	    have hrowCard : ∀ row, (rowSupport row).card = 4 := by
+  5909	      intro row
+  5910	      fin_cases row
+  5911	      · exact Kxv.support_card
+  5912	      · exact Ku.support_card
+  5913	      · exact Kv.support_card
+  5914	      · exact Kdel.support_card
+  5915	    have htotal : ∀ row,
+  5916	        (Finset.univ.filter fun point => membership row point).card = 4 := by
+  5917	      intro row
+  5918	      change (Finset.univ.filter fun point => decide (f point ∈ rowSupport row)).card = 4
+  5919	      calc
+  5920	        _ = (rowSupport row).card :=
+  5921	          filter_decide_mem_card_eq f hfInjective hfImage (hrowSubset row)
+  5922	        _ = 4 := hrowCard row
+  5923	    have hfixed₁ : ∀ row,
+  5924	        membership row
+  5925	          (BlockerVExactFifteenFourRowCoverage.fixedHit₁ row) = true := by
+  5926	      intro row
+  5927	      fin_cases row
+  5928	      · simpa [membership, f, rowSupport,
+  5929	          BlockerVExactFifteenFourRowCoverage.fixedHit₁, huPoint] using
+  5930	          Q.huXvRow
+  5931	      · simpa [membership, f, rowSupport,
+  5932	          BlockerVExactFifteenFourRowCoverage.fixedHit₁, huPoint] using
+  5933	          Ku.q_mem_support
+  5934	      · simpa [membership, f, rowSupport,
+  5935	          BlockerVExactFifteenFourRowCoverage.fixedHit₁, hvPoint] using
+  5936	          Kv.q_mem_support
+  5937	      · simpa [membership, f, rowSupport,
+  5938	          BlockerVExactFifteenFourRowCoverage.fixedHit₁, hvPoint] using
+  5939	          Q.hvDeletedRow
+  5940	    have hfixed₂ : ∀ row,
+  5941	        membership row
+  5942	          (BlockerVExactFifteenFourRowCoverage.fixedHit₂ row) = true := by
+  5943	      intro row
+  5944	      fin_cases row <;>
+  5945	        simp [membership, f, rowSupport,
+  5946	          BlockerVExactFifteenFourRowCoverage.fixedHit₂,
+  5947	          hxuPoint, hxvPoint, hdeletedPoint,
+  5948	          Kxv.q_mem_support, hxuURow, hxvVRow, Kdel.q_mem_support]
+  5949	    have hrowCap : ∀ row,
+  5950	        (rowSupport row ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
+  5951	      intro row
+  5952	      fin_cases row
+  5953	      · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5954	          S D.convex S.oppIndex2 Kxv.toSelectedFourClass
+  5955	          (by simpa only [Hlate, Q.hblockerEqV] using interiorCap hvInterior)
+  5956	      · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5957	          S D.convex S.oppIndex2 Ku.toSelectedFourClass
+  5958	          (by simpa only [Hlate, hcenterU] using interiorCap hxvInterior)
+  5959	      · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5960	          S D.convex S.oppIndex2 Kv.toSelectedFourClass
+  5961	          (by simpa only [Hlate, hcenterV] using interiorCap hdeletedInterior)
+  5962	      · exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  5963	          S D.convex S.oppIndex2 Kdel.toSelectedFourClass
+  5964	          (by simpa only [Hlate, c] using interiorCap hcInterior)
+  5965	    have hlong : ∀ row,
+  5966	        (Finset.univ.filter fun point =>
+  5967	          membership row point &&
+  5968	            BlockerVExactFifteenFourRowCoverage.longLabelBool point).card ≤ 2 := by
+  5969	      intro row
+  5970	      exact filter_decide_mem_and_mask_card_le f hfInjective
+  5971	        (rowSupport row) (S.capByIndex S.oppIndex2)
+  5972	        BlockerVExactFifteenFourRowCoverage.longLabelBool hlongPoint
+  5973	        (hrowCap row)
+  5974	    have hshell : ∀ row point₁ point₂,
+  5975	        membership row point₁ = true → membership row point₂ = true →
+  5976	          dist
+  5977	              (boundary (labelIndex
+  5978	                (BlockerVExactFifteenFourRowCoverage.centerLabel row)))
+  5979	              (boundary (labelIndex point₁)) =
+  5980	            dist
+  5981	              (boundary (labelIndex
+  5982	                (BlockerVExactFifteenFourRowCoverage.centerLabel row)))
+  5983	              (boundary (labelIndex point₂)) := by
+  5984	      intro row point₁ point₂ hpoint₁ hpoint₂
+  5985	      have hmem₁ : f point₁ ∈ rowSupport row :=
+  5986	        of_decide_eq_true (by simpa only [membership] using hpoint₁)
+  5987	      have hmem₂ : f point₂ ∈ rowSupport row :=
+  5988	        of_decide_eq_true (by simpa only [membership] using hpoint₂)
+  5989	      fin_cases row
+  5990	      · have hdist := (Kxv.support_eq_radius _ hmem₁).trans
+  5991	          (Kxv.support_eq_radius _ hmem₂).symm
+  5992	        simpa only [f, rowSupport,
+  5993	          BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5994	          hvPoint, Hlate, Q.hblockerEqV] using hdist
+  5995	      · have hdist := (Ku.support_eq_radius _ hmem₁).trans
+  5996	          (Ku.support_eq_radius _ hmem₂).symm
+  5997	        simpa only [f, rowSupport,
+  5998	          BlockerVExactFifteenFourRowCoverage.centerLabel,
+  5999	          hxvPoint, Hlate, hcenterU] using hdist
+  6000	      · have hdist := (Kv.support_eq_radius _ hmem₁).trans
+  6001	          (Kv.support_eq_radius _ hmem₂).symm
+  6002	        simpa only [f, rowSupport,
+  6003	          BlockerVExactFifteenFourRowCoverage.centerLabel,
+  6004	          hdeletedPoint, Hlate, hcenterV] using hdist
+  6005	      · have hdist := (Kdel.support_eq_radius _ hmem₁).trans
+  6006	          (Kdel.support_eq_radius _ hmem₂).symm
+  6007	        simpa only [f, rowSupport,
+  6008	          BlockerVExactFifteenFourRowCoverage.centerLabel,
+  6009	          hcPoint, c, Hlate] using hdist
+  6010	    exact
+  6011	      BlockerVExactFifteenFourRowCoverage.false_of_positionEmbedding_membershipRows
+  6012	        D.convex hboundaryInjective hboundaryImage hboundaryCcw
+  6013	        orientation order labelIndex membership hposition htotal hfixed₁
+  6014	        hfixed₂ hlong hshell
+  6015	  have closeForward
+  6016	      (order : Fin 2)
+  6017	      (huPos :
+  6018	        (BlockerVExactFifteenFourRowCoverage.position order 6).val = iu.val)
+  6019	      (hxuPos :
+  6020	        (BlockerVExactFifteenFourRowCoverage.position order 7).val = ixu.val)
+  6021	      (hvPos :
+  6022	        (BlockerVExactFifteenFourRowCoverage.position order 8).val = iv.val)
+  6023	      (hxvPos :
+  6024	        (BlockerVExactFifteenFourRowCoverage.position order 9).val = ixv.val)
+  6025	      (hdeletedPos :
+  6026	        (BlockerVExactFifteenFourRowCoverage.position order 10).val = id.val)
+  6027	      (hcPos :
+  6028	        (BlockerVExactFifteenFourRowCoverage.position order 11).val = ic.val)
+  6029	      (hePos :
+  6030	        (BlockerVExactFifteenFourRowCoverage.position order 12).val = ie.val) :
+  6031	      False := by
+  6032	    let shifted : Fin B.n → ℝ² := fun point => B.phi (point + B.Block.lo)
+  6033	    let boundary : Fin D.A.card → ℝ² := fun point =>
+  6034	      shifted (Fin.cast B.ambient_card_eq.symm point)
+  6035	    let labelIndex : Fin 15 → Fin D.A.card := fun point =>
+  6036	      Fin.cast hcard.symm
+  6037	        (BlockerVExactFifteenFourRowCoverage.position order point)
+  6038	    have hshiftedInjective : Function.Injective shifted := by
+  6039	      simpa only [shifted] using
+  6040	        injective_cyclicShift B.phi_injective B.Block.lo
+  6041	    have hboundaryInjective : Function.Injective boundary := by
+  6042	      simpa only [boundary] using
+  6043	        injective_finCast_domain B.ambient_card_eq hshiftedInjective
+  6044	    have hshiftedImage : Finset.univ.image shifted = D.A := by
+  6045	      calc
+  6046	        Finset.univ.image shifted = Finset.univ.image B.phi := by
+  6047	          simpa only [shifted] using
+  6048	            image_univ_cyclicShift B.phi B.Block.lo
+  6049	        _ = D.A := B.Block.phi_image
+  6050	    have hboundaryImage : Finset.univ.image boundary = D.A := by
+  6051	      simpa only [boundary] using
+  6052	        (image_univ_finCast_domain B.ambient_card_eq shifted).trans
+  6053	          hshiftedImage
+  6054	    have hshiftedCcw : EuclideanGeometry.IsCcwConvexPolygon shifted := by
+  6055	      simpa only [shifted] using
+  6056	        isCcwConvexPolygon_cyclicShift B.phi_injective B.phi_ccw B.Block.lo
+  6057	    have hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary := by
+  6058	      simpa only [boundary] using
+  6059	        ccw_finCast_domain B.ambient_card_eq hshiftedCcw
+  6060	    have hposition :
+  6061	        BlockerVExactFifteenFourRowCoverage.PositionEmbedding
+  6062	          .forward order labelIndex := by
+  6063	      intro point₁ point₂ hlt
+  6064	      change labelIndex point₁ < labelIndex point₂
+  6065	      change
+  6066	        (BlockerVExactFifteenFourRowCoverage.position order point₁).val <
+  6067	          (BlockerVExactFifteenFourRowCoverage.position order point₂).val
+  6068	      exact hlt
+  6069	    have pointAt (point : Fin 15) (t : Fin B.m)
+  6070	        (hpoint :
+  6071	          (BlockerVExactFifteenFourRowCoverage.position order point).val =
+  6072	            t.val) :
+  6073	        boundary (labelIndex point) = B.L.points t := by
+  6074	      have hcast :
+  6075	          Fin.cast B.ambient_card_eq.symm
+  6076	              (Fin.cast hcard.symm
+  6077	                (BlockerVExactFifteenFourRowCoverage.position order point)) =
+  6078	            Fin.castLE (by have hspan := B.block_span; omega) t := by
+  6079	        apply Fin.ext
+  6080	        exact hpoint
+  6081	      simpa only [boundary, shifted, labelIndex, hcast] using
+  6082	        B.shifted_phi_cast_eq_points t
+  6083	    have hlongPosition : ∀ point,
+  6084	        BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  6085	          (BlockerVExactFifteenFourRowCoverage.position order point).val < 9 := by
+  6086	      fin_cases order <;> decide
+  6087	    have hlongPoint : ∀ point,
+  6088	        BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  6089	          boundary (labelIndex point) ∈ S.capByIndex S.oppIndex2 := by
+  6090	      intro point hlong
+  6091	      have hlt := hlongPosition point hlong
+  6092	      change B.phi
+  6093	        (Fin.cast B.ambient_card_eq.symm
+  6094	            (Fin.cast hcard.symm
+  6095	              (BlockerVExactFifteenFourRowCoverage.position order point)) +
+  6096	          B.Block.lo) ∈ S.capByIndex S.oppIndex2
+  6097	      rw [B.shifted_phi_mem_cap_iff]
+  6098	      change
+  6099	        (BlockerVExactFifteenFourRowCoverage.position order point).val < B.m
+  6100	      omega
+  6101	    exact close .forward order boundary hboundaryInjective hboundaryImage
+  6102	      hboundaryCcw labelIndex hposition
+  6103	      ((pointAt 6 iu huPos).trans hiu) ((pointAt 7 ixu hxuPos).trans hixu)
+  6104	      ((pointAt 8 iv hvPos).trans hiv) ((pointAt 9 ixv hxvPos).trans hixv)
+  6105	      ((pointAt 10 id hdeletedPos).trans hid) ((pointAt 11 ic hcPos).trans hic)
+  6106	      ((pointAt 12 ie hePos).trans hie) hlongPoint
+  6107	  have closeReverse
+  6108	      (order : Fin 2)
+  6109	      (huPos :
+  6110	        (BlockerVExactFifteenFourRowCoverage.position order 6).val + iu.val = 8)
+  6111	      (hxuPos :
+  6112	        (BlockerVExactFifteenFourRowCoverage.position order 7).val + ixu.val = 8)
+  6113	      (hvPos :
+  6114	        (BlockerVExactFifteenFourRowCoverage.position order 8).val + iv.val = 8)
+  6115	      (hxvPos :
+  6116	        (BlockerVExactFifteenFourRowCoverage.position order 9).val + ixv.val = 8)
+  6117	      (hdeletedPos :
+  6118	        (BlockerVExactFifteenFourRowCoverage.position order 10).val + id.val = 8)
+  6119	      (hcPos :
+  6120	        (BlockerVExactFifteenFourRowCoverage.position order 11).val + ic.val = 8)
+  6121	      (hePos :
+  6122	        (BlockerVExactFifteenFourRowCoverage.position order 12).val + ie.val = 8) :
+  6123	      False := by
+  6124	    letI : NeZero B.n := ⟨by have hspan := B.block_span; omega⟩
+  6125	    let cut : Fin B.n := ⟨(B.Block.hi.val + 1) % B.n,
+  6126	      Nat.mod_lt _ (by have := B.Block.hi.isLt; omega)⟩
+  6127	    let shifted : Fin B.n → ℝ² := fun point => B.phi (point + cut)
+  6128	    let boundary : Fin D.A.card → ℝ² := fun point =>
+  6129	      shifted (Fin.cast B.ambient_card_eq.symm point)
+  6130	    let labelIndex : Fin 15 → Fin D.A.card := fun point =>
+  6131	      Fin.cast hcard.symm
+  6132	        (Fin.rev (BlockerVExactFifteenFourRowCoverage.position order point))
+  6133	    have hshiftedInjective : Function.Injective shifted := by
+  6134	      simpa only [shifted] using injective_cyclicShift B.phi_injective cut
+  6135	    have hboundaryInjective : Function.Injective boundary := by
+  6136	      simpa only [boundary] using
+  6137	        injective_finCast_domain B.ambient_card_eq hshiftedInjective
+  6138	    have hshiftedImage : Finset.univ.image shifted = D.A := by
+  6139	      calc
+  6140	        Finset.univ.image shifted = Finset.univ.image B.phi := by
+  6141	          simpa only [shifted] using image_univ_cyclicShift B.phi cut
+  6142	        _ = D.A := B.Block.phi_image
+  6143	    have hboundaryImage : Finset.univ.image boundary = D.A := by
+  6144	      simpa only [boundary] using
+  6145	        (image_univ_finCast_domain B.ambient_card_eq shifted).trans
+  6146	          hshiftedImage
+  6147	    have hshiftedCcw : EuclideanGeometry.IsCcwConvexPolygon shifted := by
+  6148	      simpa only [shifted] using
+  6149	        isCcwConvexPolygon_cyclicShift B.phi_injective B.phi_ccw cut
+  6150	    have hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary := by
+  6151	      simpa only [boundary] using
+  6152	        ccw_finCast_domain B.ambient_card_eq hshiftedCcw
+  6153	    have hposition :
+  6154	        BlockerVExactFifteenFourRowCoverage.PositionEmbedding
+  6155	          .reverse order labelIndex := by
+  6156	      intro point₁ point₂ hlt
+  6157	      change labelIndex point₂ < labelIndex point₁
+  6158	      change
+  6159	        (Fin.rev
+  6160	            (BlockerVExactFifteenFourRowCoverage.position order point₂)).val <
+  6161	          (Fin.rev
+  6162	            (BlockerVExactFifteenFourRowCoverage.position order point₁)).val
+  6163	      rw [Fin.val_rev, Fin.val_rev]
+  6164	      omega
+  6165	    have pointAt (point : Fin 15) (t : Fin B.m)
+  6166	        (hpoint :
+  6167	          (BlockerVExactFifteenFourRowCoverage.position order point).val +
+  6168	              t.val = 8) :
+  6169	        boundary (labelIndex point) = B.L.points t := by
+  6170	      let offset : Fin B.n := ⟨B.n - B.m + t.val, by
+  6171	        have hspan := B.block_span
+  6172	        have hmpos := B.Block.hm
+  6173	        omega⟩
+  6174	      have hcast :
+  6175	          Fin.cast B.ambient_card_eq.symm
+  6176	              (Fin.cast hcard.symm
+  6177	                (Fin.rev
+  6178	                  (BlockerVExactFifteenFourRowCoverage.position order point))) =
+  6179	            offset := by
+  6180	        apply Fin.ext
+  6181	        simp only [Fin.val_cast, Fin.val_rev]
+  6182	        dsimp only [offset]
+  6183	        have hn : B.n = 15 := B.ambient_card_eq.trans hcard
+  6184	        omega
+  6185	      simpa only [boundary, shifted, labelIndex, cut, hcast, offset] using
+  6186	        B.shifted_after_block_phi_cast_eq_points t
+  6187	    have hlongPosition : ∀ point,
+  6188	        BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  6189	          (BlockerVExactFifteenFourRowCoverage.position order point).val < 9 := by
+  6190	      fin_cases order <;> decide
+  6191	    have hlongPoint : ∀ point,
+  6192	        BlockerVExactFifteenFourRowCoverage.longLabelBool point = true →
+  6193	          boundary (labelIndex point) ∈ S.capByIndex S.oppIndex2 := by
+  6194	      intro point hlong
+  6195	      have hlt := hlongPosition point hlong
+  6196	      let t : Fin B.m := ⟨B.m - 1 -
+  6197	          (BlockerVExactFifteenFourRowCoverage.position order point).val, by
+  6198	        omega⟩
+  6199	      have hsum :
+  6200	          (BlockerVExactFifteenFourRowCoverage.position order point).val +
+  6201	              t.val = 8 := by
+  6202	        change
+  6203	          (BlockerVExactFifteenFourRowCoverage.position order point).val +
+  6204	              (B.m - 1 -
+  6205	                (BlockerVExactFifteenFourRowCoverage.position order point).val) = 8
+  6206	        omega
+  6207	      exact (pointAt point t hsum) ▸ B.points_mem_cap t
+  6208	    exact close .reverse order boundary hboundaryInjective hboundaryImage
+  6209	      hboundaryCcw labelIndex hposition
+  6210	      ((pointAt 6 iu huPos).trans hiu) ((pointAt 7 ixu hxuPos).trans hixu)
+  6211	      ((pointAt 8 iv hvPos).trans hiv) ((pointAt 9 ixv hxvPos).trans hixv)
+  6212	      ((pointAt 10 id hdeletedPos).trans hid) ((pointAt 11 ic hcPos).trans hic)
+  6213	      ((pointAt 12 ie hePos).trans hie) hlongPoint
+  6214	  rcases horders with horder | horder | horder | horder
+  6215	  · exact closeForward 0 (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6216	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6217	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6218	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6219	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6220	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6221	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6222	  · exact closeForward 1 (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6223	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6224	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6225	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6226	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6227	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6228	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6229	  · exact closeReverse 0 (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6230	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6231	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6232	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6233	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6234	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6235	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6236	  · exact closeReverse 1 (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6237	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6238	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6239	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6240	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6241	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6242	      (by simp [BlockerVExactFifteenFourRowCoverage.position]; omega)
+  6243	
+  6244	/-- Exact-sixteen child with cap profile `(5,4,10)`.  The second strict cap
+  6245	has eight points: the seven named points plus one extra point.  Every source
+  6246	row already has two named hits in that cap and at most two cap hits, so the
+  6247	extra point lies on none of the four rows.  Skipping it embeds those complete
+  6248	rows in the exact-fifteen certificate bank. -/
+  6249	theorem
+  6250	    false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_sixteen_secondCapTen

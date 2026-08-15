@@ -1,0 +1,47 @@
+/-- Sole surviving subcase of the deleted-row blocker arm.  Its blocker lies
+strictly inside the second cap but outside the exact physical five-class.
+Those seven distinct interior points force the second cap to have cardinality
+at least nine and the whole carrier to have cardinality at least fifteen.
+Moreover, the critical row through that off-class blocker meets the physical
+five-class in at most one point, so at least three of its four support points
+lie outside the physical class.
+
+Coordinator-interface frontier: one child with `12 ≤ |A|` and an unrestricted
+next-row overlap before this narrowing, and one child with `15 ≤ |A|` and
+next-row overlap at most one after it.  Constructor fan-out remains one; the
+exact-cardinality 12, 13, and 14 strata and the two-hit next-row arm are
+eliminated.
+-/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (_Q : ExactFourRigid221PentagonBlockerVResidual P packet)
+    (_hcenterV :
+      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 =
+        P.jointDeletion.deleted.1)
+    (_hcenterDeletedInterior :
+      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2 ∈
+        S.capInteriorByIndex S.oppIndex2)
+    (_hcenterDeletedOffClass :
+      (lateFirstApexSystem R).centerAt P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2 ∉
+        SelectedClass D.A S.oppApex2 P.rho)
+    (_hcard : 15 ≤ D.A.card)
+    (_hnextRowPhysicalHits :
+      let Hlate := lateFirstApexSystem R
+      let c := Hlate.centerAt P.jointDeletion.deleted.1
+        P.jointDeletion.deleted.2
+      let hcA : c ∈ D.A := Finset.mem_of_mem_erase
+        (Hlate.selectedAt P.jointDeletion.deleted.1
+          P.jointDeletion.deleted.2).toCriticalFourShell.center_mem
+      (((Hlate.selectedAt c hcA).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex2 P.rho).card ≤ 1)) :
+    False := by
+  sorry
+

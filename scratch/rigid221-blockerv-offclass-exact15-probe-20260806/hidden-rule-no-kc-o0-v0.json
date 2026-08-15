@@ -1,0 +1,19 @@
+{
+  "candidate_counts": {
+    "10": 815,
+    "11": 815,
+    "12": 815,
+    "2": 32,
+    "8": 815,
+    "9": 815
+  },
+  "clauses": 2715360,
+  "hit_variables": 1365,
+  "local_templates": 68,
+  "order_index": 0,
+  "order_variant": 0,
+  "schema_clauses": 271180,
+  "status": "UNSAT",
+  "variables": 222204,
+  "variant": "no-kc"
+}

@@ -1,0 +1,1026 @@
+{
+  "complete_order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "cuts": 2447,
+  "history": [
+    {
+      "new_cuts": 22,
+      "round": 0,
+      "violations": 22
+    },
+    {
+      "new_cuts": 20,
+      "round": 1,
+      "violations": 20
+    },
+    {
+      "new_cuts": 18,
+      "round": 2,
+      "violations": 18
+    },
+    {
+      "new_cuts": 16,
+      "round": 3,
+      "violations": 16
+    },
+    {
+      "new_cuts": 19,
+      "round": 4,
+      "violations": 19
+    },
+    {
+      "new_cuts": 16,
+      "round": 5,
+      "violations": 16
+    },
+    {
+      "new_cuts": 19,
+      "round": 6,
+      "violations": 19
+    },
+    {
+      "new_cuts": 17,
+      "round": 7,
+      "violations": 17
+    },
+    {
+      "new_cuts": 17,
+      "round": 8,
+      "violations": 17
+    },
+    {
+      "new_cuts": 17,
+      "round": 9,
+      "violations": 17
+    },
+    {
+      "new_cuts": 15,
+      "round": 10,
+      "violations": 15
+    },
+    {
+      "new_cuts": 13,
+      "round": 11,
+      "violations": 13
+    },
+    {
+      "new_cuts": 14,
+      "round": 12,
+      "violations": 14
+    },
+    {
+      "new_cuts": 17,
+      "round": 13,
+      "violations": 17
+    },
+    {
+      "new_cuts": 15,
+      "round": 14,
+      "violations": 15
+    },
+    {
+      "new_cuts": 15,
+      "round": 15,
+      "violations": 15
+    },
+    {
+      "new_cuts": 16,
+      "round": 16,
+      "violations": 16
+    },
+    {
+      "new_cuts": 16,
+      "round": 17,
+      "violations": 16
+    },
+    {
+      "new_cuts": 13,
+      "round": 18,
+      "violations": 13
+    },
+    {
+      "new_cuts": 16,
+      "round": 19,
+      "violations": 16
+    },
+    {
+      "new_cuts": 12,
+      "round": 20,
+      "violations": 12
+    },
+    {
+      "new_cuts": 15,
+      "round": 21,
+      "violations": 15
+    },
+    {
+      "new_cuts": 14,
+      "round": 22,
+      "violations": 14
+    },
+    {
+      "new_cuts": 10,
+      "round": 23,
+      "violations": 10
+    },
+    {
+      "new_cuts": 13,
+      "round": 24,
+      "violations": 13
+    },
+    {
+      "new_cuts": 18,
+      "round": 25,
+      "violations": 18
+    },
+    {
+      "new_cuts": 16,
+      "round": 26,
+      "violations": 16
+    },
+    {
+      "new_cuts": 21,
+      "round": 27,
+      "violations": 21
+    },
+    {
+      "new_cuts": 20,
+      "round": 28,
+      "violations": 20
+    },
+    {
+      "new_cuts": 18,
+      "round": 29,
+      "violations": 18
+    },
+    {
+      "new_cuts": 18,
+      "round": 30,
+      "violations": 18
+    },
+    {
+      "new_cuts": 15,
+      "round": 31,
+      "violations": 15
+    },
+    {
+      "new_cuts": 19,
+      "round": 32,
+      "violations": 19
+    },
+    {
+      "new_cuts": 15,
+      "round": 33,
+      "violations": 15
+    },
+    {
+      "new_cuts": 14,
+      "round": 34,
+      "violations": 14
+    },
+    {
+      "new_cuts": 18,
+      "round": 35,
+      "violations": 18
+    },
+    {
+      "new_cuts": 13,
+      "round": 36,
+      "violations": 13
+    },
+    {
+      "new_cuts": 12,
+      "round": 37,
+      "violations": 12
+    },
+    {
+      "new_cuts": 14,
+      "round": 38,
+      "violations": 14
+    },
+    {
+      "new_cuts": 17,
+      "round": 39,
+      "violations": 17
+    },
+    {
+      "new_cuts": 11,
+      "round": 40,
+      "violations": 11
+    },
+    {
+      "new_cuts": 20,
+      "round": 41,
+      "violations": 20
+    },
+    {
+      "new_cuts": 14,
+      "round": 42,
+      "violations": 14
+    },
+    {
+      "new_cuts": 17,
+      "round": 43,
+      "violations": 17
+    },
+    {
+      "new_cuts": 16,
+      "round": 44,
+      "violations": 16
+    },
+    {
+      "new_cuts": 13,
+      "round": 45,
+      "violations": 13
+    },
+    {
+      "new_cuts": 15,
+      "round": 46,
+      "violations": 15
+    },
+    {
+      "new_cuts": 17,
+      "round": 47,
+      "violations": 17
+    },
+    {
+      "new_cuts": 16,
+      "round": 48,
+      "violations": 16
+    },
+    {
+      "new_cuts": 15,
+      "round": 49,
+      "violations": 15
+    },
+    {
+      "new_cuts": 12,
+      "round": 50,
+      "violations": 12
+    },
+    {
+      "new_cuts": 14,
+      "round": 51,
+      "violations": 14
+    },
+    {
+      "new_cuts": 18,
+      "round": 52,
+      "violations": 18
+    },
+    {
+      "new_cuts": 15,
+      "round": 53,
+      "violations": 15
+    },
+    {
+      "new_cuts": 15,
+      "round": 54,
+      "violations": 15
+    },
+    {
+      "new_cuts": 18,
+      "round": 55,
+      "violations": 18
+    },
+    {
+      "new_cuts": 17,
+      "round": 56,
+      "violations": 17
+    },
+    {
+      "new_cuts": 14,
+      "round": 57,
+      "violations": 14
+    },
+    {
+      "new_cuts": 16,
+      "round": 58,
+      "violations": 16
+    },
+    {
+      "new_cuts": 18,
+      "round": 59,
+      "violations": 18
+    },
+    {
+      "new_cuts": 16,
+      "round": 60,
+      "violations": 16
+    },
+    {
+      "new_cuts": 12,
+      "round": 61,
+      "violations": 12
+    },
+    {
+      "new_cuts": 14,
+      "round": 62,
+      "violations": 14
+    },
+    {
+      "new_cuts": 16,
+      "round": 63,
+      "violations": 16
+    },
+    {
+      "new_cuts": 17,
+      "round": 64,
+      "violations": 17
+    },
+    {
+      "new_cuts": 14,
+      "round": 65,
+      "violations": 14
+    },
+    {
+      "new_cuts": 10,
+      "round": 66,
+      "violations": 10
+    },
+    {
+      "new_cuts": 17,
+      "round": 67,
+      "violations": 17
+    },
+    {
+      "new_cuts": 13,
+      "round": 68,
+      "violations": 13
+    },
+    {
+      "new_cuts": 10,
+      "round": 69,
+      "violations": 10
+    },
+    {
+      "new_cuts": 13,
+      "round": 70,
+      "violations": 13
+    },
+    {
+      "new_cuts": 16,
+      "round": 71,
+      "violations": 16
+    },
+    {
+      "new_cuts": 10,
+      "round": 72,
+      "violations": 10
+    },
+    {
+      "new_cuts": 11,
+      "round": 73,
+      "violations": 11
+    },
+    {
+      "new_cuts": 11,
+      "round": 74,
+      "violations": 11
+    },
+    {
+      "new_cuts": 10,
+      "round": 75,
+      "violations": 10
+    },
+    {
+      "new_cuts": 16,
+      "round": 76,
+      "violations": 16
+    },
+    {
+      "new_cuts": 14,
+      "round": 77,
+      "violations": 14
+    },
+    {
+      "new_cuts": 8,
+      "round": 78,
+      "violations": 8
+    },
+    {
+      "new_cuts": 11,
+      "round": 79,
+      "violations": 11
+    },
+    {
+      "new_cuts": 13,
+      "round": 80,
+      "violations": 13
+    },
+    {
+      "new_cuts": 12,
+      "round": 81,
+      "violations": 12
+    },
+    {
+      "new_cuts": 17,
+      "round": 82,
+      "violations": 17
+    },
+    {
+      "new_cuts": 13,
+      "round": 83,
+      "violations": 13
+    },
+    {
+      "new_cuts": 12,
+      "round": 84,
+      "violations": 12
+    },
+    {
+      "new_cuts": 14,
+      "round": 85,
+      "violations": 14
+    },
+    {
+      "new_cuts": 13,
+      "round": 86,
+      "violations": 13
+    },
+    {
+      "new_cuts": 15,
+      "round": 87,
+      "violations": 15
+    },
+    {
+      "new_cuts": 11,
+      "round": 88,
+      "violations": 11
+    },
+    {
+      "new_cuts": 13,
+      "round": 89,
+      "violations": 13
+    },
+    {
+      "new_cuts": 14,
+      "round": 90,
+      "violations": 14
+    },
+    {
+      "new_cuts": 14,
+      "round": 91,
+      "violations": 14
+    },
+    {
+      "new_cuts": 14,
+      "round": 92,
+      "violations": 14
+    },
+    {
+      "new_cuts": 11,
+      "round": 93,
+      "violations": 11
+    },
+    {
+      "new_cuts": 12,
+      "round": 94,
+      "violations": 12
+    },
+    {
+      "new_cuts": 8,
+      "round": 95,
+      "violations": 8
+    },
+    {
+      "new_cuts": 11,
+      "round": 96,
+      "violations": 11
+    },
+    {
+      "new_cuts": 9,
+      "round": 97,
+      "violations": 9
+    },
+    {
+      "new_cuts": 8,
+      "round": 98,
+      "violations": 8
+    },
+    {
+      "new_cuts": 8,
+      "round": 99,
+      "violations": 8
+    },
+    {
+      "new_cuts": 9,
+      "round": 100,
+      "violations": 9
+    },
+    {
+      "new_cuts": 7,
+      "round": 101,
+      "violations": 7
+    },
+    {
+      "new_cuts": 10,
+      "round": 102,
+      "violations": 10
+    },
+    {
+      "new_cuts": 8,
+      "round": 103,
+      "violations": 8
+    },
+    {
+      "new_cuts": 12,
+      "round": 104,
+      "violations": 12
+    },
+    {
+      "new_cuts": 9,
+      "round": 105,
+      "violations": 9
+    },
+    {
+      "new_cuts": 9,
+      "round": 106,
+      "violations": 9
+    },
+    {
+      "new_cuts": 12,
+      "round": 107,
+      "violations": 12
+    },
+    {
+      "new_cuts": 11,
+      "round": 108,
+      "violations": 11
+    },
+    {
+      "new_cuts": 14,
+      "round": 109,
+      "violations": 14
+    },
+    {
+      "new_cuts": 10,
+      "round": 110,
+      "violations": 10
+    },
+    {
+      "new_cuts": 9,
+      "round": 111,
+      "violations": 9
+    },
+    {
+      "new_cuts": 13,
+      "round": 112,
+      "violations": 13
+    },
+    {
+      "new_cuts": 13,
+      "round": 113,
+      "violations": 13
+    },
+    {
+      "new_cuts": 13,
+      "round": 114,
+      "violations": 13
+    },
+    {
+      "new_cuts": 12,
+      "round": 115,
+      "violations": 12
+    },
+    {
+      "new_cuts": 13,
+      "round": 116,
+      "violations": 13
+    },
+    {
+      "new_cuts": 14,
+      "round": 117,
+      "violations": 14
+    },
+    {
+      "new_cuts": 14,
+      "round": 118,
+      "violations": 14
+    },
+    {
+      "new_cuts": 13,
+      "round": 119,
+      "violations": 13
+    },
+    {
+      "new_cuts": 13,
+      "round": 120,
+      "violations": 13
+    },
+    {
+      "new_cuts": 14,
+      "round": 121,
+      "violations": 14
+    },
+    {
+      "new_cuts": 14,
+      "round": 122,
+      "violations": 14
+    },
+    {
+      "new_cuts": 18,
+      "round": 123,
+      "violations": 18
+    },
+    {
+      "new_cuts": 14,
+      "round": 124,
+      "violations": 14
+    },
+    {
+      "new_cuts": 14,
+      "round": 125,
+      "violations": 14
+    },
+    {
+      "new_cuts": 18,
+      "round": 126,
+      "violations": 18
+    },
+    {
+      "new_cuts": 13,
+      "round": 127,
+      "violations": 13
+    },
+    {
+      "new_cuts": 12,
+      "round": 128,
+      "violations": 12
+    },
+    {
+      "new_cuts": 10,
+      "round": 129,
+      "violations": 10
+    },
+    {
+      "new_cuts": 14,
+      "round": 130,
+      "violations": 14
+    },
+    {
+      "new_cuts": 15,
+      "round": 131,
+      "violations": 15
+    },
+    {
+      "new_cuts": 8,
+      "round": 132,
+      "violations": 8
+    },
+    {
+      "new_cuts": 11,
+      "round": 133,
+      "violations": 11
+    },
+    {
+      "new_cuts": 12,
+      "round": 134,
+      "violations": 12
+    },
+    {
+      "new_cuts": 10,
+      "round": 135,
+      "violations": 10
+    },
+    {
+      "new_cuts": 12,
+      "round": 136,
+      "violations": 12
+    },
+    {
+      "new_cuts": 16,
+      "round": 137,
+      "violations": 16
+    },
+    {
+      "new_cuts": 14,
+      "round": 138,
+      "violations": 14
+    },
+    {
+      "new_cuts": 13,
+      "round": 139,
+      "violations": 13
+    },
+    {
+      "new_cuts": 16,
+      "round": 140,
+      "violations": 16
+    },
+    {
+      "new_cuts": 9,
+      "round": 141,
+      "violations": 9
+    },
+    {
+      "new_cuts": 10,
+      "round": 142,
+      "violations": 10
+    },
+    {
+      "new_cuts": 10,
+      "round": 143,
+      "violations": 10
+    },
+    {
+      "new_cuts": 8,
+      "round": 144,
+      "violations": 8
+    },
+    {
+      "new_cuts": 10,
+      "round": 145,
+      "violations": 10
+    },
+    {
+      "new_cuts": 9,
+      "round": 146,
+      "violations": 9
+    },
+    {
+      "new_cuts": 8,
+      "round": 147,
+      "violations": 8
+    },
+    {
+      "new_cuts": 13,
+      "round": 148,
+      "violations": 13
+    },
+    {
+      "new_cuts": 8,
+      "round": 149,
+      "violations": 8
+    },
+    {
+      "new_cuts": 11,
+      "round": 150,
+      "violations": 11
+    },
+    {
+      "new_cuts": 7,
+      "round": 151,
+      "violations": 7
+    },
+    {
+      "new_cuts": 14,
+      "round": 152,
+      "violations": 14
+    },
+    {
+      "new_cuts": 10,
+      "round": 153,
+      "violations": 10
+    },
+    {
+      "new_cuts": 10,
+      "round": 154,
+      "violations": 10
+    },
+    {
+      "new_cuts": 10,
+      "round": 155,
+      "violations": 10
+    },
+    {
+      "new_cuts": 7,
+      "round": 156,
+      "violations": 7
+    },
+    {
+      "new_cuts": 7,
+      "round": 157,
+      "violations": 7
+    },
+    {
+      "new_cuts": 3,
+      "round": 158,
+      "violations": 3
+    },
+    {
+      "new_cuts": 3,
+      "round": 159,
+      "violations": 3
+    },
+    {
+      "new_cuts": 5,
+      "round": 160,
+      "violations": 5
+    },
+    {
+      "new_cuts": 6,
+      "round": 161,
+      "violations": 6
+    },
+    {
+      "new_cuts": 8,
+      "round": 162,
+      "violations": 8
+    },
+    {
+      "new_cuts": 7,
+      "round": 163,
+      "violations": 7
+    },
+    {
+      "new_cuts": 10,
+      "round": 164,
+      "violations": 10
+    },
+    {
+      "new_cuts": 9,
+      "round": 165,
+      "violations": 9
+    },
+    {
+      "new_cuts": 13,
+      "round": 166,
+      "violations": 13
+    },
+    {
+      "new_cuts": 10,
+      "round": 167,
+      "violations": 10
+    },
+    {
+      "new_cuts": 7,
+      "round": 168,
+      "violations": 7
+    },
+    {
+      "new_cuts": 3,
+      "round": 169,
+      "violations": 3
+    },
+    {
+      "new_cuts": 3,
+      "round": 170,
+      "violations": 3
+    },
+    {
+      "new_cuts": 3,
+      "round": 171,
+      "violations": 3
+    },
+    {
+      "new_cuts": 4,
+      "round": 172,
+      "violations": 4
+    },
+    {
+      "new_cuts": 10,
+      "round": 173,
+      "violations": 10
+    },
+    {
+      "new_cuts": 4,
+      "round": 174,
+      "violations": 4
+    },
+    {
+      "new_cuts": 7,
+      "round": 175,
+      "violations": 7
+    },
+    {
+      "new_cuts": 6,
+      "round": 176,
+      "violations": 6
+    },
+    {
+      "new_cuts": 3,
+      "round": 177,
+      "violations": 3
+    },
+    {
+      "new_cuts": 3,
+      "round": 178,
+      "violations": 3
+    },
+    {
+      "new_cuts": 6,
+      "round": 179,
+      "violations": 6
+    },
+    {
+      "new_cuts": 4,
+      "round": 180,
+      "violations": 4
+    },
+    {
+      "new_cuts": 4,
+      "round": 181,
+      "violations": 4
+    },
+    {
+      "new_cuts": 6,
+      "round": 182,
+      "violations": 6
+    },
+    {
+      "new_cuts": 8,
+      "round": 183,
+      "violations": 8
+    },
+    {
+      "new_cuts": 10,
+      "round": 184,
+      "violations": 10
+    },
+    {
+      "new_cuts": 8,
+      "round": 185,
+      "violations": 8
+    },
+    {
+      "new_cuts": 13,
+      "round": 186,
+      "violations": 13
+    },
+    {
+      "new_cuts": 9,
+      "round": 187,
+      "violations": 9
+    },
+    {
+      "new_cuts": 10,
+      "round": 188,
+      "violations": 10
+    },
+    {
+      "new_cuts": 9,
+      "round": 189,
+      "violations": 9
+    },
+    {
+      "new_cuts": 16,
+      "round": 190,
+      "violations": 16
+    },
+    {
+      "new_cuts": 14,
+      "round": 191,
+      "violations": 14
+    },
+    {
+      "new_cuts": 12,
+      "round": 192,
+      "violations": 12
+    },
+    {
+      "new_cuts": 13,
+      "round": 193,
+      "violations": 13
+    },
+    {
+      "new_cuts": 9,
+      "round": 194,
+      "violations": 9
+    },
+    {
+      "new_cuts": 11,
+      "round": 195,
+      "violations": 11
+    },
+    {
+      "new_cuts": 10,
+      "round": 196,
+      "violations": 10
+    },
+    {
+      "new_cuts": 7,
+      "round": 197,
+      "violations": 7
+    },
+    {
+      "new_cuts": 9,
+      "round": 198,
+      "violations": 9
+    },
+    {
+      "new_cuts": 10,
+      "round": 199,
+      "violations": 10
+    }
+  ],
+  "long_order_index": 0,
+  "order_variant": 0,
+  "rounds": 200,
+  "status": "ROUND_LIMIT"
+}

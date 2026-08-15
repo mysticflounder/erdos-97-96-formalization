@@ -1,0 +1,29 @@
+{
+  "clauses_after": 2482455,
+  "clauses_before": 2150519,
+  "complete_order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    12,
+    9,
+    7,
+    2,
+    3,
+    5,
+    4,
+    1,
+    14,
+    13
+  ],
+  "hit_variables": 1365,
+  "local_templates": 68,
+  "long_order_index": 1,
+  "order_variant": 3,
+  "schema_clauses": 271180,
+  "status": "UNSAT",
+  "variables_after": 208590,
+  "variables_before": 207225
+}

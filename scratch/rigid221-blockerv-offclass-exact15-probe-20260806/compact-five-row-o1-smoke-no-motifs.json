@@ -1,0 +1,31 @@
+{
+  "candidate_counts": {
+    "10": 15,
+    "11": 15,
+    "2": 126,
+    "8": 15,
+    "9": 15
+  },
+  "clauses": 3761,
+  "include_motifs": false,
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    12,
+    9,
+    7,
+    2,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 1,
+  "status": "SAT",
+  "variables": 1488
+}

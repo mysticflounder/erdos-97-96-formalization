@@ -1,0 +1,242 @@
+[
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap",
+    "centerAt_c": 7,
+    "clauses": 1968623,
+    "cuts": [
+      "d_in_cap"
+    ],
+    "order": 0,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap",
+    "centerAt_c": 7,
+    "clauses": 1968623,
+    "cuts": [
+      "d_in_cap"
+    ],
+    "order": 1,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_interior",
+    "centerAt_c": 7,
+    "clauses": 1968623,
+    "cuts": [
+      "d_in_interior"
+    ],
+    "order": 0,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_interior",
+    "centerAt_c": 7,
+    "clauses": 1968623,
+    "cuts": [
+      "d_in_interior"
+    ],
+    "order": 1,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_e_in_kc",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "e_in_kc"
+    ],
+    "order": 0,
+    "status": "UNSAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_e_in_kc",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "e_in_kc"
+    ],
+    "order": 1,
+    "status": "UNSAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap_e_not_in_kc",
+    "centerAt_c": 7,
+    "clauses": 1970863,
+    "cuts": [
+      "d_in_cap",
+      "e_not_in_kc"
+    ],
+    "order": 0,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      1,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap_e_not_in_kc",
+    "centerAt_c": 7,
+    "clauses": 1970863,
+    "cuts": [
+      "d_in_cap",
+      "e_not_in_kc"
+    ],
+    "order": 1,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      2,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      2,
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap_two_cap_hits",
+    "centerAt_c": 7,
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_two_cap_hits"
+    ],
+    "order": 0,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "Kc": [
+      2,
+      3,
+      5,
+      11
+    ],
+    "Kc_cap_hits": [
+      2,
+      11
+    ],
+    "Kc_class_hits": [],
+    "case": "d_in_cap_two_cap_hits",
+    "centerAt_c": 7,
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_two_cap_hits"
+    ],
+    "order": 1,
+    "status": "SAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_second_interior_hit",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_second_interior_hit"
+    ],
+    "order": 0,
+    "status": "UNSAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_second_interior_hit",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_second_interior_hit"
+    ],
+    "order": 1,
+    "status": "UNSAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_one_class_hit",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_one_class_hit"
+    ],
+    "order": 0,
+    "status": "UNSAT",
+    "variables": 146470
+  },
+  {
+    "case": "d_in_cap_one_class_hit",
+    "clauses": 1968636,
+    "cuts": [
+      "d_in_cap",
+      "kc_one_class_hit"
+    ],
+    "order": 1,
+    "status": "UNSAT",
+    "variables": 146470
+  }
+]
