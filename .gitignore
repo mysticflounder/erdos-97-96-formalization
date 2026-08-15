@@ -196,6 +196,8 @@ scratch/atail-force/exact7-role-coverage-gate/smoke_l2u_fc_results.json
 scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 
 # Project-wide scratch generated artifacts (regenerate, do not commit by default).
+# Quarantined v1: its receipt recorded the unlinked temporary export path.
+/scratch/exact17-two-triple-row-package/
 /scratch/**/*.log
 /scratch/**/*.out
 /scratch/**/*.lrat
