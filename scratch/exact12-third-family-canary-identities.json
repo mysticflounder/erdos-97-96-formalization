@@ -1,0 +1,22 @@
+{
+  "final": {
+    "clauses": 638183,
+    "installation_sha256": "9927c4524ef6af28de8cace3f58be35590701ab197eed42dc92a48617c19f89f",
+    "sha256": "844941ffca98247cc410185bac2a727189fe7e4af0a3ce06da4cd25fc8453aab",
+    "source_bank_sha256": "62d2da2694df59af89f6c6cd2cb1d537a979ad85990e4d65faf100977fe08700",
+    "source_entries": 80,
+    "variables": 45000
+  },
+  "post_arm": {
+    "clauses": 638103,
+    "sha256": "49cce02a343b01b1959e5ae71cc8ad9736650a2cde8ff33d3965a477ab2b8d00",
+    "suffix_clauses": 867,
+    "variables": 45000
+  },
+  "prefix": {
+    "clauses": 637236,
+    "sha256": "2a7a0f63bcbeb983d9019b87797ffb8fa4c1c644045a21c1e79141b631075f90",
+    "variables": 45000
+  },
+  "third_bank_sha256": "3387f95c17fda928cee19f4bbbee2545e62d715967a53796018c6e169750a72f"
+}
