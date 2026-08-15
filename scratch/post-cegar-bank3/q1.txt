@@ -1,0 +1,10 @@
+The matching docs for your query is the first-fiber theorem family around
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber`, specifically the
+`..._acyclicHardResidual` stage.
+
+It says there is a theorem that packages the **remaining universal first-fiber obligation** after acyclic ingress is normalized and the common-radius mutual-incidence part is discharged. The nearby theorems show the surrounding flow: `..._acyclicIngress` is the live enlarged-first-fiber ingress split, `..._viaAcyclicIngress` is the adapter to that reduced residual, and `..._freshOutsideFirstBlockerFiber` is the larger load-bearing first enlarged-fiber residual the chain is reducing from.
+
+I did not read any chunk in this pass that explicitly states “B3/B4” or a literal “five-center saturation” inside this exact first-fiber acyclic hard-residual theorem family.
+  handles: PSXJVV DN13W9 420NPA NPC457  (read with `nthdegree docs show <handle>`)
+searched: nthdegree docs show PSXJVV --corpus erdos-97-96-formalization-lean, nthdegree docs show DN13W9 --corpus erdos-97-96-formalization-lean, nthdegree docs show 420NPA --corpus erdos-97-96-formalization-lean, nthdegree docs show NPC457 --corpus erdos-97-96-formalization-lean, nthdegree docs show 5SP1V8 --corpus erdos-97-96-formalization-lean, nthdegree docs show DT1X8P --corpus erdos-97-96-formalization-lean, nthdegree docs search --corpus erdos-97-96-formalization-lean "twoCapSources freshOutsideFirstBlockerFiber acyclic hard …, nthdegree docs search --corpus erdos-97-96-formalization-lean "B3 B4 two-center saturation" --limit 10, nthdegree docs search --corpus erdos-97-96-formalization-lean "five blocker centers" --limit 10, nthdegree docs search --corpus erdos-97-96-formalization-lean "twoCapSources_freshOutsideFirstBlockerFiber B3 B4" --limi…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
