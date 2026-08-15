@@ -205,19 +205,39 @@ structure RelationalTheory
     (A.InCap left cap ↔ A.InCap right cap)
   inCapInterior_congr : ∀ {left right cap}, A.Same left right →
     (A.InCapInterior left cap ↔ A.InCapInterior right cap)
+  interior_in_cap : ∀ {point cap}, A.InCapInterior point cap → A.InCap point cap
+  interior_not_in_other_cap : ∀ {point firstCap secondCap},
+    A.InCapInterior point firstCap → firstCap ≠ secondCap →
+      ¬ A.InCap point secondCap
   before_congr : ∀ {left left' right right'},
     A.Same left left' → A.Same right right' →
       (A.Before left right ↔ A.Before left' right')
+  before_irrefl : ∀ point, ¬ A.Before point point
+  before_trans : ∀ {left middle right},
+    A.Before left middle → A.Before middle right → A.Before left right
+  before_or_same_or_after : ∀ left right,
+    A.Before left right ∨ A.Same left right ∨ A.Before right left
   sameDistanceFrom_congr : ∀
       {center center' left left' right right'},
     A.Same center center' → A.Same left left' → A.Same right right' →
       (A.SameDistanceFrom center left right ↔
         A.SameDistanceFrom center' left' right')
+  sameDistanceFrom_refl : ∀ center point,
+    A.SameDistanceFrom center point point
+  sameDistanceFrom_symm : ∀ center left right,
+    A.SameDistanceFrom center left right ↔
+      A.SameDistanceFrom center right left
+  sameDistanceFrom_trans : ∀ center left middle right,
+    A.SameDistanceFrom center left middle →
+      A.SameDistanceFrom center middle right →
+        A.SameDistanceFrom center left right
   hasFourAfterDeleting_congr : ∀
       {deleted deleted' atCenter atCenter'},
     A.Same deleted deleted' → A.Same atCenter atCenter' →
       (A.HasFourAfterDeleting deleted atCenter ↔
         A.HasFourAfterDeleting deleted' atCenter')
+  blocked_deletion_nonrobust : ∀ deleted atCenter,
+    ¬ A.HasFourAfterDeleting deleted atCenter → A.Nonrobust atCenter
   nonrobust_congr : ∀ {left right}, A.Same left right →
     (A.Nonrobust left ↔ A.Nonrobust right)
 
@@ -444,9 +464,18 @@ theorem relationalTheory_ofView
     incident_congr := ?_
     inCap_congr := ?_
     inCapInterior_congr := ?_
+    interior_in_cap := ?_
+    interior_not_in_other_cap := ?_
     before_congr := ?_
+    before_irrefl := ?_
+    before_trans := ?_
+    before_or_same_or_after := ?_
     sameDistanceFrom_congr := ?_
+    sameDistanceFrom_refl := ?_
+    sameDistanceFrom_symm := ?_
+    sameDistanceFrom_trans := ?_
     hasFourAfterDeleting_congr := ?_
+    blocked_deletion_nonrobust := ?_
     nonrobust_congr := ?_ }
   · intro point
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
@@ -471,6 +500,16 @@ theorem relationalTheory_ofView
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff,
       FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
     rw [hsame]
+  · intro point cap hInterior
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff]
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+      at hInterior
+    exact S.capInteriorByIndex_subset_capByIndex cap hInterior
+  · intro point firstCap secondCap hInterior hne hCap
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+      at hInterior
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff] at hCap
+    exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hInterior hne hCap
   · intro left left' right right' hleft hright
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hleft hright
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff,
@@ -496,17 +535,67 @@ theorem relationalTheory_ofView
                 P Pρ View right'⟩ :=
       congrArg B.indexOf (Subtype.ext hright)
     rw [hleftIndex, hrightIndex]
+  · intro point
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff]
+    exact lt_irrefl _
+  · intro left middle right hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff] at hleft hright ⊢
+    exact lt_trans hleft hright
+  · intro left right
+    let leftPoint : D.A :=
+      ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View left,
+        FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier P Pρ View left⟩
+    let rightPoint : D.A :=
+      ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right,
+        FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier P Pρ View right⟩
+    rcases lt_trichotomy (B.indexOf leftPoint) (B.indexOf rightPoint) with
+      hlt | heq | hgt
+    · left
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff]
+      exact hlt
+    · right
+      left
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+      calc
+        FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View left =
+            B.boundary (B.indexOf leftPoint) := by
+          simpa [leftPoint] using (B.point_eq leftPoint).symm
+        _ = B.boundary (B.indexOf rightPoint) := congrArg B.boundary heq
+        _ = FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right := by
+          simpa [rightPoint] using B.point_eq rightPoint
+    · right
+      right
+      rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff]
+      exact hgt
   · intro centerRole centerRole' left left' right right'
       hcenter hleft hright
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hcenter hleft hright
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff,
       FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff]
     rw [hcenter, hleft, hright]
+  · intro centerRole point
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff]
+  · intro centerRole left right
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff]
+    exact eq_comm
+  · intro centerRole left middle right hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff]
+      at hleft hright ⊢
+    exact hleft.trans hright
   · intro deleted deleted' atCenter atCenter' hdeleted hcenter
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hdeleted hcenter
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff,
       FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
     rw [hdeleted, hcenter]
+  · intro deleted atCenter hblocked
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff]
+    intro hrobust
+    apply hblocked
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+    exact hrobust.survives _
+      (FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+        P Pρ View deleted)
   · intro left right hsame
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff,
