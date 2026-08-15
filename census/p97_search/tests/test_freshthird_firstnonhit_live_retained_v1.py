@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import copy
 import importlib
 import sys
 from itertools import product
 from pathlib import Path
 
+import pytest
 from z3 import sat, unsat
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -92,3 +94,18 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
     claims = manifest["false_claims"]
     assert claims
     assert all(value is False for value in claims.values())
+
+
+def test_full_semantic_signature_replays_and_tampering_fails_closed() -> None:
+    solver, context = packet.build_packet(
+        "sourceRowOmission", "distinctBlockersDifferentCaps", "P"
+    )
+    assert solver.check() == sat
+    signature = packet.validate_model(solver.model(), context)
+    assert packet.replay_signature(signature) == signature
+
+    tampered = copy.deepcopy(signature)
+    ranks = tampered["semantic_assignment"]["rank"]
+    ranks["q1"] = ranks["q0"]
+    with pytest.raises(packet.LiveRetainedEncodingError):
+        packet.replay_signature(tampered)

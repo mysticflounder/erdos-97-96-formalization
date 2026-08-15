@@ -14,7 +14,7 @@ import argparse
 import hashlib
 import itertools
 import json
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 import z3
@@ -720,6 +720,46 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         if ranks[x_role] in row_ranks or ranks[y_role] in row_ranks:
             raise LiveRetainedEncodingError("chosen retained endpoint was not omitted")
         retained_choices[row] = {"x": x_selected[0], "y": y_selected[0]}
+    semantic_assignment = {
+        "rank": ranks,
+        "in_cap": {
+            role: [_truth(model, packet.in_cap[role, cap]) for cap in range(3)]
+            for role in ROLES
+        },
+        "interior": {
+            role: [_truth(model, packet.interior[role, cap]) for cap in range(3)]
+            for role in ROLES
+        },
+        "opp_radius": {
+            role: model.eval(packet.opp_radius[role], model_completion=True).as_long()
+            for role in ROLES
+        },
+        "source_cap": [_truth(model, atom) for atom in packet.source_cap],
+        "fresh_cap": [_truth(model, atom) for atom in packet.fresh_cap],
+        "nonhit_deleted": [_truth(model, atom) for atom in packet.nonhit_deleted],
+        "interaction_deleted": [
+            _truth(model, atom) for atom in packet.interaction_deleted
+        ],
+        "deletion_survives": {
+            family: _truth(model, atom)
+            for family, atom in packet.deletion_survives.items()
+        },
+        "retained_x": {
+            row: [_truth(model, atom) for atom in packet.retained_x[row]]
+            for row in ("first", "second")
+        },
+        "retained_y": {
+            row: [_truth(model, atom) for atom in packet.retained_y[row]]
+            for row in ("first", "second")
+        },
+        "double_survives": {
+            row: _truth(model, atom) for row, atom in packet.double_survives.items()
+        },
+        "opp_double_blocked": {
+            row: _truth(model, atom) for row, atom in packet.opp_double_blocked.items()
+        },
+        "cap_card_ge_eight": _truth(model, packet.cap_card_ge_eight),
+    }
     signature = {
         "schema": RESULT_SCHEMA,
         "nonhit": packet.nonhit,
@@ -731,6 +771,7 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         "candidate_origin_overlap": overlap,
         "candidate_origin_outside": outside,
         "retained_choices": retained_choices,
+        "semantic_assignment": semantic_assignment,
         "clause_count": len(packet.provenance),
         "false_claims": FALSE_CLAIMS,
     }
@@ -738,6 +779,102 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         _canonical_json(signature)
     ).hexdigest()
     return signature
+
+
+def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
+    """Rebuild a fresh solver, bind every semantic atom, and replay a model."""
+    try:
+        nonhit = str(signature["nonhit"])
+        interaction = str(signature["interaction"])
+        origin = str(signature["origin"])
+        assignment = signature["semantic_assignment"]
+    except KeyError as exc:
+        raise LiveRetainedEncodingError("signature is missing replay fields") from exc
+    if not isinstance(assignment, Mapping):
+        raise LiveRetainedEncodingError("semantic_assignment must be an object")
+    solver, packet = build_packet(nonhit, interaction, origin)
+
+    def mapping_field(name: str) -> Mapping[str, object]:
+        value = assignment.get(name)
+        if not isinstance(value, Mapping):
+            raise LiveRetainedEncodingError(f"{name} must be an object")
+        return value
+
+    ranks = mapping_field("rank")
+    radii = mapping_field("opp_radius")
+    in_cap = mapping_field("in_cap")
+    interior = mapping_field("interior")
+    for role in ROLES:
+        if role not in ranks or role not in radii:
+            raise LiveRetainedEncodingError(f"missing scalar assignment for {role}")
+        solver.add(packet.rank[role] == int(ranks[role]))
+        solver.add(packet.opp_radius[role] == int(radii[role]))
+        for field_name, field, atoms in (
+            ("in_cap", in_cap, packet.in_cap),
+            ("interior", interior, packet.interior),
+        ):
+            values = field.get(role)
+            if not isinstance(values, Sequence) or len(values) != 3:
+                raise LiveRetainedEncodingError(
+                    f"{field_name}.{role} must have three booleans"
+                )
+            for cap, value in enumerate(values):
+                if not isinstance(value, bool):
+                    raise LiveRetainedEncodingError(
+                        f"{field_name}.{role}.{cap} is not Boolean"
+                    )
+                solver.add(atoms[role, cap] == value)
+
+    def bind_bool_list(name: str, atoms: Sequence[z3.BoolRef]) -> None:
+        values = assignment.get(name)
+        if not isinstance(values, Sequence) or len(values) != len(atoms):
+            raise LiveRetainedEncodingError(f"{name} has the wrong length")
+        for atom, value in zip(atoms, values, strict=True):
+            if not isinstance(value, bool):
+                raise LiveRetainedEncodingError(f"{name} contains a non-Boolean")
+            solver.add(atom == value)
+
+    bind_bool_list("source_cap", packet.source_cap)
+    bind_bool_list("fresh_cap", packet.fresh_cap)
+    bind_bool_list("nonhit_deleted", packet.nonhit_deleted)
+    bind_bool_list("interaction_deleted", packet.interaction_deleted)
+
+    for name, atoms in (
+        ("deletion_survives", packet.deletion_survives),
+        ("double_survives", packet.double_survives),
+        ("opp_double_blocked", packet.opp_double_blocked),
+    ):
+        values = mapping_field(name)
+        for key, atom in atoms.items():
+            value = values.get(key)
+            if not isinstance(value, bool):
+                raise LiveRetainedEncodingError(f"{name}.{key} is not Boolean")
+            solver.add(atom == value)
+    for name, atoms in (
+        ("retained_x", packet.retained_x),
+        ("retained_y", packet.retained_y),
+    ):
+        values = mapping_field(name)
+        for row, row_atoms in atoms.items():
+            row_values = values.get(row)
+            if not isinstance(row_values, Sequence) or len(row_values) != 2:
+                raise LiveRetainedEncodingError(f"{name}.{row} has wrong length")
+            for atom, value in zip(row_atoms, row_values, strict=True):
+                if not isinstance(value, bool):
+                    raise LiveRetainedEncodingError(
+                        f"{name}.{row} contains a non-Boolean"
+                    )
+                solver.add(atom == value)
+    cap_card = assignment.get("cap_card_ge_eight")
+    if not isinstance(cap_card, bool):
+        raise LiveRetainedEncodingError("cap_card_ge_eight is not Boolean")
+    solver.add(packet.cap_card_ge_eight == cap_card)
+    if solver.check() != z3.sat:
+        raise LiveRetainedEncodingError("bound semantic assignment is not SAT")
+    replayed = validate_model(solver.model(), packet)
+    if replayed != signature:
+        raise LiveRetainedEncodingError("replayed signature differs from source")
+    return replayed
 
 
 def smoke_wave() -> list[dict[str, object]]:
