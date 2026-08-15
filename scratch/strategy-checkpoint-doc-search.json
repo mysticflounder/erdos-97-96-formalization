@@ -1,0 +1,219 @@
+[
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Computational closure plan — remaining frontier (updated 2026-08-12) — 13.28.14 Child44 serial gate and bounded placement pivot — 2026-08-14\n\nThe post-Child44 route is a source-total split by `SourceModel.nextCenter`.\nThere are thirteen legal next-center values after excluding the four old row\ncenters.  Child41--43 all used named order `1` and next center `0`, so the\nserial loop repeatedly refined one of the 26 order/center cells.  The next\ncampaign solves the thirteen next-center cells in parallel.  Every `SAT` model\nis independently replayed and passed through the existing complete strict-\nKalmanson oracle; linearly infeasible models yield exact positive weighted\ncertificates admitted in one batch.  A Kalmanson-feasible cell transfers to\nEuclidean/EDM/Ptolemy analysis instead of receiving another pair-cancellation\nsuffix.  A cell closes only after proof-producing `UNSAT` replay against its\nexact unit-augmented root.  A source-total Lean case split over `nextCenter`\ncomposes the thirteen cell theorems.",
+    "embed_text": "Computational closure plan — remaining frontier (updated 2026-08-12) — 13.28.14 Child44 serial gate and bounded placement pivot — 2026-08-14\n\nThe post-Child44 route is a source-total split by `SourceModel.nextCenter`.\nThere are thirteen legal next-center values after excluding the four old row\ncenters.  Child41--43 all used named order `1` and next center `0`, so the\nserial loop repeatedly refined one of the 26 order/center cells.  The next\ncampaign solves the thirteen next-center cells in parallel.  Every `SAT` model\nis independently replayed and passed through the existing complete strict-\nKalmanson oracle; linearly infeasible models yield exact positive weighted\ncertificates admitted in one batch.  A Kalmanson-feasible cell transfers to\nEuclidean/EDM/Ptolemy analysis instead of receiving another pair-cancellation\nsuffix.  A cell closes only after proof-producing `UNSAT` replay against its\nexact unit-augmented root.  A source-total Lean case split over `nextCenter`\ncomposes the thirteen cell theorems.",
+    "id": "61ZKV8VYNR5Q41MMPQ4VKZ7J1R",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9513484928609204,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/computational-closure-plan-2026-07-28.md",
+      "section:13.28.14 Child44 serial gate and bounded placement pivot — 2026-08-14",
+      "line:12413"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract — Canonical Child44 fixture\n\nCanonical finalization and a separate Child44-only replayer both checked all\n5,848,820 parent clauses.  The custody-final SHA-256 is\n`b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa`, the\ncustody-model file SHA-256 is\n`2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a`, and the\ncanonical assignment/model-check SHA-256 is\n`5436c27196fd618ed7641c940fb56cfb7ee20a4e0f2c777c171da8e7c45af819`.\nThe model selects next center `15` and named order `1`, so\n`next-center-15` is the positive production canary.\n\nThe mandatory wave-only theorem mine found 99 paired source-checked\ntwo-Kalmanson cancellation occurrences, or 396 clauses if banked.  All belong\nto the existing generic family; ten other diagnostic records lack a\n`SourceRealization` bridge.  Thus this SAT model is already certified\nKalmanson-infeasible, but it produced no new theorem family and does not\nauthorize Child45.",
+    "embed_text": "Exact-17 Child44 next-center cell contract — Canonical Child44 fixture\n\nCanonical finalization and a separate Child44-only replayer both checked all\n5,848,820 parent clauses.  The custody-final SHA-256 is\n`b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa`, the\ncustody-model file SHA-256 is\n`2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a`, and the\ncanonical assignment/model-check SHA-256 is\n`5436c27196fd618ed7641c940fb56cfb7ee20a4e0f2c777c171da8e7c45af819`.\nThe model selects next center `15` and named order `1`, so\n`next-center-15` is the positive production canary.\n\nThe mandatory wave-only theorem mine found 99 paired source-checked\ntwo-Kalmanson cancellation occurrences, or 396 clauses if banked.  All belong\nto the existing generic family; ten other diagnostic records lack a\n`SourceRealization` bridge.  Thus this SAT model is already certified\nKalmanson-infeasible, but it produced no new theorem family and does not\nauthorize Child45.",
+    "id": "1THM8MVV6ZX9KJK6XVJA56CDF9",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9359875097580017,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "section:Canonical Child44 fixture",
+      "line:27"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nAn end-to-end replay of the canonical Child44 `next-center-15` fixture passed\nall parent clauses and source predicates.  It returned\n`LINEARLY_INFEASIBLE` with two positive terms.  The source-model SHA-256 is\n`60f04afd571ffc7de346c14f4c243bbdcc16dc78bea864994763943355439588`, the\ncomplete Kalmanson-system SHA-256 is\n`6d77cb8563c76af4445d3da73d6892ee44c24b898b931211852200dd29236c77`, the\nexact weighted-evidence SHA-256 is\n`61187759cbf51ddae1371e9e8755ce5cb27de42cf426ef24f7daa6cc867c9c6f`, and the\nclosed replay-result SHA-256 is\n`d995b8cb5b8b3599c3f2902fea6a546c207e07da7f5f7dcf63a766543a15f10d`.\nThese hashes authenticate the replay implementation's current output; they do\nnot close a cell or authorize a learned clause without the shared campaign's\nseparate source-clause admission step.",
+    "embed_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nAn end-to-end replay of the canonical Child44 `next-center-15` fixture passed\nall parent clauses and source predicates.  It returned\n`LINEARLY_INFEASIBLE` with two positive terms.  The source-model SHA-256 is\n`60f04afd571ffc7de346c14f4c243bbdcc16dc78bea864994763943355439588`, the\ncomplete Kalmanson-system SHA-256 is\n`6d77cb8563c76af4445d3da73d6892ee44c24b898b931211852200dd29236c77`, the\nexact weighted-evidence SHA-256 is\n`61187759cbf51ddae1371e9e8755ce5cb27de42cf426ef24f7daa6cc867c9c6f`, and the\nclosed replay-result SHA-256 is\n`d995b8cb5b8b3599c3f2902fea6a546c207e07da7f5f7dcf63a766543a15f10d`.\nThese hashes authenticate the replay implementation's current output; they do\nnot close a cell or authorize a learned clause without the shared campaign's\nseparate source-clause admission step.",
+    "id": "0XJJKBNNT2FNH02PT1K8SA3EG0",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8500948766603416,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "section:Public SAT replay seam",
+      "line:109"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nBefore evaluating an assignment, the Child45 callback streams the Child44 and\nChild45 files in lockstep: their canonical headers must differ only by the\nfour-clause count, all 5,848,820 parent body lines must be byte-identical, and\nthe ordered four-clause suffix must equal the Lean-owned source-valid suffix.\nIt authenticates both complete hashes and rejects symlinked, changed, extra,\nor noncanonical inputs.  It then streams and evaluates all 5,848,824 Child45\nclauses without loading the 291 MB root into memory, inverts the Lean atom map,\nand independently checks every `SourceModel` field.  Its Kalmanson stage\nconstructs all 4,760 strict atoms modulo the selected-row equality closure.\nIn-process Z3 may propose rational data, but is not an authority: the standalone\n`verify_exact17_kalmanson_proposal` function imports and calls no solver.  It\nreplays a feasible witness using exact `Fraction` arithmetic, or clears and\nchecks nonnegative Farkas weights before calling\n`producer_bank.certify_weighted_kalmanson_cancellation`.\nThe standalone verifier establishes only this exact metric classification for\nits structurally checked decoded object; production source custody still\nrequires the combined callback.  `KALMANSON_FEASIBLE` likewise means only that\nthe quotient-distance variables satisfy the Kalmanson system.  It makes no\ntriangle, EDM, coordinate, or Euclidean-realizability claim.",
+    "embed_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nBefore evaluating an assignment, the Child45 callback streams the Child44 and\nChild45 files in lockstep: their canonical headers must differ only by the\nfour-clause count, all 5,848,820 parent body lines must be byte-identical, and\nthe ordered four-clause suffix must equal the Lean-owned source-valid suffix.\nIt authenticates both complete hashes and rejects symlinked, changed, extra,\nor noncanonical inputs.  It then streams and evaluates all 5,848,824 Child45\nclauses without loading the 291 MB root into memory, inverts the Lean atom map,\nand independently checks every `SourceModel` field.  Its Kalmanson stage\nconstructs all 4,760 strict atoms modulo the selected-row equality closure.\nIn-process Z3 may propose rational data, but is not an authority: the standalone\n`verify_exact17_kalmanson_proposal` function imports and calls no solver.  It\nreplays a feasible witness using exact `Fraction` arithmetic, or clears and\nchecks nonnegative Farkas weights before calling\n`producer_bank.certify_weighted_kalmanson_cancellation`.\nThe standalone verifier establishes only this exact metric classification for\nits structurally checked decoded object; production source custody still\nrequires the combined callback.  `KALMANSON_FEASIBLE` likewise means only that\nthe quotient-distance variables satisfy the Kalmanson system.  It makes no\ntriangle, EDM, coordinate, or Euclidean-realizability claim.",
+    "id": "7HGY2SERSZE38RV43CR4FFE1DB",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8070652173913044,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "section:Public SAT replay seam",
+      "line:89"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract\n\nThis contract replaces serial Child45-style model blocking after Child44's\nauthenticated `SAT` result.  It is a finite discovery and proof-ingress plan,\nnot an exact-17 closure claim.\n\nThe machine-readable manifest is\n`census/p97_search/exact17_child44_nextcenter_cells_v1.json`.  It fixes the\nChild44 raw root and producer-manifest identities, the CaDiCaL worker identity,\none deterministic conflict limit, and thirteen signed assumption cells.  Cell\n`c` consists only of the positive literal `290 + c`; named order remains free.\nThe legal centers are `0` through `7` and `12` through `16`.  The four omitted\ncenters are exactly the old row centers `8`, `9`, `10`, and `11`.",
+    "embed_text": "Exact-17 Child44 next-center cell contract\n\nThis contract replaces serial Child45-style model blocking after Child44's\nauthenticated `SAT` result.  It is a finite discovery and proof-ingress plan,\nnot an exact-17 closure claim.\n\nThe machine-readable manifest is\n`census/p97_search/exact17_child44_nextcenter_cells_v1.json`.  It fixes the\nChild44 raw root and producer-manifest identities, the CaDiCaL worker identity,\none deterministic conflict limit, and thirteen signed assumption cells.  Cell\n`c` consists only of the positive literal `290 + c`; named order remains free.\nThe legal centers are `0` through `7` and `12` through `16`.  The four omitted\ncenters are exactly the old row centers `8`, `9`, `10`, and `11`.",
+    "id": "6WPVY34FA3FH2CRBARCNKE8CXE",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.8054298642533937,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "line:3"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nThat admission step is now banked in\n`BlockerVExactSeventeenFortyFourthModelRefinements.lean`.  The exact replay\nreduces the canonical model to the two weight-one Kalmanson terms\n`innerOuter (0,1,2,11)` and `adjacentSides (0,2,8,12)` in selected-order\ncoordinates.  One checked `CancellationOccurrence` records the five required\nrow equalities and emits four guarded clauses (two named orders times two\norientations).  Its source-assignment theorem extends the authenticated\nChild44 root from 5,848,820 to 5,848,824 clauses.  A direct Boolean replay\nconfirms that the order-one/forward clause rejects the authenticated Child44\nassignment.  This is a source-valid model refinement, not a cell verdict.  The\nLean-owned extended root has now been exported and published through the\nledger-last Child45 custody path.  It has 308 variables and 5,848,824 clauses,\nSHA-256\n`3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2`,\nand preserves all 5,848,820 Child44 body clauses byte-for-byte after the\nrequired DIMACS header-count rewrite.  Streaming validation records suffix\nclause 1 as already parent-subsumed and suffix clause 3 as the nonredundant\nclause that rejects the authenticated Child44 model.  The immutable export\nreceipt is `scratch/exact17-lean-to-sat/child45-export-receipt.json`, SHA-256\n`fd12b39d26f9fbe82f9e06edad9d7183b3af5b9b4c8cad1fa7ae2fa3f032e8a3`.\nThe next gate is a fresh authenticated static PIQD child rooted at these exact\nbytes, followed by the ordered thirteen-cell assumption campaign.",
+    "embed_text": "Exact-17 Child44 next-center cell contract — Public SAT replay seam\n\nThat admission step is now banked in\n`BlockerVExactSeventeenFortyFourthModelRefinements.lean`.  The exact replay\nreduces the canonical model to the two weight-one Kalmanson terms\n`innerOuter (0,1,2,11)` and `adjacentSides (0,2,8,12)` in selected-order\ncoordinates.  One checked `CancellationOccurrence` records the five required\nrow equalities and emits four guarded clauses (two named orders times two\norientations).  Its source-assignment theorem extends the authenticated\nChild44 root from 5,848,820 to 5,848,824 clauses.  A direct Boolean replay\nconfirms that the order-one/forward clause rejects the authenticated Child44\nassignment.  This is a source-valid model refinement, not a cell verdict.  The\nLean-owned extended root has now been exported and published through the\nledger-last Child45 custody path.  It has 308 variables and 5,848,824 clauses,\nSHA-256\n`3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2`,\nand preserves all 5,848,820 Child44 body clauses byte-for-byte after the\nrequired DIMACS header-count rewrite.  Streaming validation records suffix\nclause 1 as already parent-subsumed and suffix clause 3 as the nonredundant\nclause that rejects the authenticated Child44 model.  The immutable export\nreceipt is `scratch/exact17-lean-to-sat/child45-export-receipt.json`, SHA-256\n`fd12b39d26f9fbe82f9e06edad9d7183b3af5b9b4c8cad1fa7ae2fa3f032e8a3`.\nThe next gate is a fresh authenticated static PIQD child rooted at these exact\nbytes, followed by the ordered thirteen-cell assumption campaign.",
+    "id": "5G5ANZD5DTFPDT8C1DNZP8DSK8",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.791044776119403,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "section:Public SAT replay seam",
+      "line:123"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "P97 exact-17 cap-nine Lean-to-SAT closure route v1 — Post-Child44 bounded placement campaign\n\nThe frontier measure is now the number of open next-center cells, followed by\nthe number of Kalmanson-feasible cells.  A round that merely adds another\nassignment-specific pair-cancellation suffix without reducing either measure\nis not progress.  Before production use, a small assumption/cell canary must\nbind the Lean variable map, replay `SAT` models, replay any `UNSAT` proofs, and\nverify the finite coverage split.  PIQD supports session assumptions, but the\ncurrent P97 runner does not yet authenticate that interface; separately rooted\nunit-clause jobs remain the proof-producing fallback.",
+    "embed_text": "P97 exact-17 cap-nine Lean-to-SAT closure route v1 — Post-Child44 bounded placement campaign\n\nThe frontier measure is now the number of open next-center cells, followed by\nthe number of Kalmanson-feasible cells.  A round that merely adds another\nassignment-specific pair-cancellation suffix without reducing either measure\nis not progress.  Before production use, a small assumption/cell canary must\nbind the Lean variable map, replay `SAT` models, replay any `UNSAT` proofs, and\nverify the finite coverage split.  PIQD supports session assumptions, but the\ncurrent P97 runner does not yet authenticate that interface; separately rooted\nunit-clause jobs remain the proof-producing fallback.",
+    "id": "592T52CGYY3ZT5EZE0EPQ2QZ61",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.7662337662337662,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+      "area:specs",
+      "section:Post-Child44 bounded placement campaign",
+      "line:1064"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "Exact-17 Child44 next-center cell contract — Result semantics\n\nA `SAT` cell result is accepted for theorem discovery only after independent\nreplay of the complete assignment against the raw Child44 CNF, the session\njournal, and the cell assumption.  The decoded assignment must pass the\nsource-semantic checker.  It then receives the complete exact Kalmanson replay:\n\n- linear infeasibility must produce an exactly replayed positive weighted\n  Kalmanson certificate before a learned clause is admitted;\n- Kalmanson feasibility transfers that model to Euclidean EDM/Ptolemy\n  realizability and forbids another Kalmanson-only refinement.\n\nAn incremental `UNSAT` result is discovery evidence.  Promotion requires a\nstatic handoff that materializes the exact parent-plus-unit CNF, a fresh\nproof-producing solve, independent proof replay, and a named Lean cell theorem.\n`UNKNOWN` leaves the cell open and must retain the conflict-limit receipt.",
+    "embed_text": "Exact-17 Child44 next-center cell contract — Result semantics\n\nA `SAT` cell result is accepted for theorem discovery only after independent\nreplay of the complete assignment against the raw Child44 CNF, the session\njournal, and the cell assumption.  The decoded assignment must pass the\nsource-semantic checker.  It then receives the complete exact Kalmanson replay:\n\n- linear infeasibility must produce an exactly replayed positive weighted\n  Kalmanson certificate before a learned clause is admitted;\n- Kalmanson feasibility transfers that model to Euclidean EDM/Ptolemy\n  realizability and forbids another Kalmanson-only refinement.\n\nAn incremental `UNSAT` result is discovery evidence.  Promotion requires a\nstatic handoff that materializes the exact parent-plus-unit CNF, a fresh\nproof-producing solve, independent proof replay, and a named Lean cell theorem.\n`UNKNOWN` leaves the cell open and must retain the conflict-limit receipt.",
+    "id": "2P2E689A9TBB029WCJDAT2YDF7",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.7449947312961012,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-child44-nextcenter-cells-v1.md",
+      "area:specs",
+      "section:Result semantics",
+      "line:62"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "P97 exact-17 cap-nine Lean-to-SAT closure route v1 — Post-Child44 bounded placement campaign\n\n1. split first into the thirteen `nextCenter` cells, using the source theorem\n   that these cells cover every realization;\n2. solve all still-open cells in parallel while preserving a separate\n   immutable root, model, or proof record for each cell;\n3. independently replay every `SAT` model and run the already implemented\n   complete strict-Kalmanson linear oracle, rather than only the first static\n   motif matcher;\n4. for a linearly infeasible model, extract and exactly replay a deletion-\n   minimal positive weighted Kalmanson certificate, then admit the whole batch\n   through the existing source-clean weighted consumer;\n5. for a Kalmanson-feasible model, stop refining that cell with Kalmanson\n   clauses and send it to the Euclidean/EDM/Ptolemy realizability lane; and\n6. for an `UNSAT` cell, replay its proof against the exact cell root and mark\n   that cell closed.  Exact 17 closes when all thirteen cells are closed and a\n   thin Lean coordinator consumes the source-total case split.",
+    "embed_text": "P97 exact-17 cap-nine Lean-to-SAT closure route v1 — Post-Child44 bounded placement campaign\n\n1. split first into the thirteen `nextCenter` cells, using the source theorem\n   that these cells cover every realization;\n2. solve all still-open cells in parallel while preserving a separate\n   immutable root, model, or proof record for each cell;\n3. independently replay every `SAT` model and run the already implemented\n   complete strict-Kalmanson linear oracle, rather than only the first static\n   motif matcher;\n4. for a linearly infeasible model, extract and exactly replay a deletion-\n   minimal positive weighted Kalmanson certificate, then admit the whole batch\n   through the existing source-clean weighted consumer;\n5. for a Kalmanson-feasible model, stop refining that cell with Kalmanson\n   clauses and send it to the Euclidean/EDM/Ptolemy realizability lane; and\n6. for an `UNSAT` cell, replay its proof against the exact cell root and mark\n   that cell closed.  Exact 17 closes when all thirteen cells are closed and a\n   thin Lean coordinator consumes the source-total case split.",
+    "id": "3MBWVT2E8QM5PX8HX6E7DTS8QP",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.7269736842105263,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+      "area:specs",
+      "section:Post-Child44 bounded placement campaign",
+      "line:1031"
+    ],
+    "title": null,
+    "unit_type": null
+  },
+  {
+    "corpus": "erdos-97-96-formalization",
+    "display_text": "P97 CEGAR wave framework consolidation plan — Streaming `ASSUMPTION_CNF` engine checkpoint — 2026-08-14\n\nThe v3 control and closed registry now add exactly one assumption campaign:\nthe reviewed Exact17 Child44 next-center profile. The profile authenticates one\n308-variable, 5,848,820-clause, 291,704,790-byte parent; thirteen canonical\nnext-center cells; the exact CaDiCaL identity and deterministic resource\nlimits; and the sole registered source-semantic SAT replay. Manifests select\nthis reviewed identifier, never a Python import string or caller-supplied\ncallback.",
+    "embed_text": "P97 CEGAR wave framework consolidation plan — Streaming `ASSUMPTION_CNF` engine checkpoint — 2026-08-14\n\nThe v3 control and closed registry now add exactly one assumption campaign:\nthe reviewed Exact17 Child44 next-center profile. The profile authenticates one\n308-variable, 5,848,820-clause, 291,704,790-byte parent; thirteen canonical\nnext-center cells; the exact CaDiCaL identity and deterministic resource\nlimits; and the sole registered source-semantic SAT replay. Manifests select\nthis reviewed identifier, never a Python import string or caller-supplied\ncallback.",
+    "id": "15HBKMHFF1WFFKQEDNFW7SNE6R",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.6784037558685447,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "kind:prose",
+      "project:erdos-97-96-formalization",
+      "source:docs/p97-cegar-wave-framework-consolidation-plan-2026-08-13.md",
+      "section:Streaming `ASSUMPTION_CNF` engine checkpoint — 2026-08-14",
+      "line:491"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]
