@@ -1,0 +1,8 @@
+The relevant result is:
+
+`selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers`.
+
+It says that if the same pair is already “saturated” at two distinct carrier centers (meeting the convex-carrier perpendicular-bisector bound), then any selected four-class at a third carrier center can include at most one of that pair (the pair’s intersection with that class has size ≤ 1).
+  handles: X6H8QX  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs search --lean "selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers" --limit 5, nthdegree docs show X6H8QX --lean, nthdegree docs show X6H8QX --corpus erdos-97-96-formalization-lean, nthdegree docs search --lean "selectedFourClass at any third carrier center can contain at most one point" --limit 10, nthdegree docs search --lean "convex-carrier perpendicular-bisector" --limit 5, nthdegree docs search --lean "inter_pair_card_le_one" --limit 20
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
