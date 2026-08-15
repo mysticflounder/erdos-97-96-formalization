@@ -283,6 +283,13 @@ class FreshThirdCarrierSourceTotalCnfEncoding(FreshThirdCarrierCnfEncoding):
     ) -> SemanticReplay:
         try:
             self._validate_result_metadata(result)
+            signature = result["model_signature"]
+            if type(signature) is not dict:
+                raise FreshThirdCarrierCnfError("missing model signature")
+            if self.cap_alternation_refinement_from_signature(signature) is not None:
+                raise FreshThirdCarrierCnfError(
+                    "source-total replay found an alternating cap"
+                )
             source_result = dict(result)
             source_result["constraint_groups"] = list(SOURCE_CONSTRAINT_GROUPS)
             replay_sat_result(source_result, timeout_ms=timeout_ms)
@@ -311,7 +318,7 @@ def dry_run_manifest(boundary_index: int) -> dict[str, object]:
         "encoding": encoding.encoding_manifest(),
         "launch_eligible": False,
         "blocked_on": [
-            "v2 provenance/terminal hardening checkpoint",
-            "Lean no-alternation/three-phase ingress theorem",
+            "static one-shot runner validation",
+            "independent source-total semantic launch audit",
         ],
     }
