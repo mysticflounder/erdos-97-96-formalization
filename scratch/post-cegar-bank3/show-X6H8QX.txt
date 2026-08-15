@@ -1,0 +1,8 @@
+theorem selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers
+
+Two distinct carrier centers already saturate the convex-carrier
+perpendicular-bisector bound for a pair.  Consequently a selected four-class
+at any third carrier center can contain at most one point of that pair.
+
+This generic form is useful for deletion rows whose center is a named Moser
+apex rather than an actual blocker selected by `CriticalShellSystem`.
