@@ -19,7 +19,7 @@
       "proof_verified": false,
       "run": "dr-d1",
       "verdict": "SAT",
-      "wall_seconds": 0.011
+      "wall_seconds": 0.01
     },
     {
       "expected": "SAT",
@@ -29,7 +29,7 @@
       "proof_verified": false,
       "run": "dr-d2",
       "verdict": "SAT",
-      "wall_seconds": 0.011
+      "wall_seconds": 0.01
     },
     {
       "expected": "SAT",
@@ -39,7 +39,7 @@
       "proof_verified": false,
       "run": "dr-common",
       "verdict": "SAT",
-      "wall_seconds": 0.011
+      "wall_seconds": 0.01
     },
     {
       "expected": "UNSAT",
@@ -48,7 +48,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.037
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -57,7 +57,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -66,7 +66,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -75,7 +75,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.037
     },
     {
       "expected": "UNSAT",
@@ -93,7 +93,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.039
     },
     {
       "expected": "UNSAT",
@@ -111,7 +111,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.038
     },
     {
       "expected": "UNSAT",
@@ -120,7 +120,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.039
     },
     {
       "expected": "UNSAT",
@@ -129,7 +129,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.037
     },
     {
       "expected": "UNSAT",
@@ -147,7 +147,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -156,7 +156,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -165,7 +165,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -174,7 +174,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.035
     },
     {
       "expected": "UNSAT",
@@ -183,7 +183,7 @@
       "proof_verified": true,
       "run": "dr-d1",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.034
     },
     {
       "expected": "UNSAT",
@@ -219,7 +219,7 @@
       "proof_verified": true,
       "run": "dr-d2",
       "verdict": "UNSAT",
-      "wall_seconds": 0.038
+      "wall_seconds": 0.039
     },
     {
       "expected": "UNSAT",
@@ -246,7 +246,7 @@
       "proof_verified": true,
       "run": "dr-d2",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.048
     },
     {
       "expected": "UNSAT",
@@ -255,7 +255,7 @@
       "proof_verified": true,
       "run": "dr-common",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.037
     },
     {
       "expected": "UNSAT",
@@ -264,7 +264,7 @@
       "proof_verified": true,
       "run": "dr-common",
       "verdict": "UNSAT",
-      "wall_seconds": 0.04
+      "wall_seconds": 0.036
     },
     {
       "expected": "UNSAT",
@@ -273,7 +273,7 @@
       "proof_verified": true,
       "run": "dr-common",
       "verdict": "UNSAT",
-      "wall_seconds": 0.039
+      "wall_seconds": 0.036
     }
   ],
   "scope": "named-local incidence shadow; not a carrier enumeration"

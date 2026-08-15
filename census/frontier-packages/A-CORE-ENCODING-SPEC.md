@@ -1,4 +1,4 @@
-# A-core Layer-1 incidence encoding — specification (2026-07-29, v1.4)
+# A-core Layer-1 incidence encoding — specification (2026-08-04, v1.5)
 
 Session-1 artifact of `docs/computational-closure-plan-2026-07-28.md` (§4, §5
 row 1, §8). Source of truth for the hypotheses:
@@ -163,10 +163,16 @@ over p ∈ {zd,u,xu,v,xv,qh,wh,f1,f2} — projections only:
   |Cl(a₂,ρ)|=5, ρ>0 (B3)]. — This is a deliberate seed-level deduction;
   keep both clauses so the solver derives s5a (sanity: unit-propagates).
 
-**Integer layer** (unary/order encoding, bound MAXN=24):
+**Integer layer** (one-hot threshold abstraction):
 vars nSig, nO1, nO2 (strict-interior cardinalities |Σ°|,|O₁°|,|O₂°|), n.
+- Every variable has exact buckets `0,...,24` and one overflow bucket `GE25`,
+  meaning the concrete value is at least 25. This is an abstraction boundary,
+  not an upper bound on the live carrier.
 - (N1) n = nSig + nO1 + nO2 + 3 [cap partition: non-Moser points split among
-  the three interiors; 3 Moser vertices].
+  the three interiors; 3 Moser vertices]. Exact input buckets select the exact
+  output while the sum is at most 24 and `GE25` otherwise; any overflow input
+  selects the overflow output. Thus every concrete cardinality tuple has an
+  abstract image.
 - (N2) n ≥ 12 (B1).
 - (N3) nO1 ≥ 2 [(S3): |O₁|≥4, closed cap contains exactly 2 Moser vertices].
 - (N4) nO2 ≥ 3 [(S4): |O₂|≥5].

@@ -1,4 +1,4 @@
-# E-package Layer-1 encoding — specification (2026-07-28, v1.0)
+# E-package Layer-1 encoding — specification (2026-08-04, v1.1)
 
 Session-2 artifact of `docs/computational-closure-plan-2026-07-28.md` (§5
 row 3, §8). Source of truth:
@@ -95,7 +95,18 @@ of the product qs1∧qs2 over {x1,x2} [(E3.6) |B₁∩B₂| ≤ 2; only provably
 distinct pairs counted]. Thin — tagged for honesty, near-zero pruning
 expected.
 
-## 3. Integer layer (unary, MAXN=24)
+## 3. Integer layer (unary, exact buckets 0..24 plus GE25)
+
+Every integer variable has one-hot exact buckets `0,...,24` and an overflow
+bucket `GE25`, denoting a value at least 25.  Arithmetic is threshold-safe:
+an exact sum at most 24 selects its exact output bucket, while any overflow
+input or sum above 24 selects `GE25`; comparisons forbid only assignments that
+are definitely false.  Thus this finite abstraction is an over-approximation
+of the unbounded cardinality domain and does not assume `|A| ≤ 24`.
+
+The old exact-only 0..24 encoding was bounded and must not be used to interpret
+an UNSAT result as a universal statement.  All production verdicts below are
+valid only after replay under this overflow-aware encoding.
 
 Vars nSig, nO1, nO2 (strict interiors), n, nN (=|𝒩|), nG1 (=|G1|),
 nG1O1 (=|G1 ∩ C_{i1}°|).
