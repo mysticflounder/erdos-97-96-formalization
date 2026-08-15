@@ -2152,6 +2152,34 @@ Python family bank mirroring `rolesValid` and
 `source_boundary_orders()`.  No successor formula, canary, or solver
 wave is authorized by this banking.
 
+The label-general route's computational obligations O5 and O6 are now
+banked.  The twentieth membership bank
+(`census/card_head/exact12_all_order_common_five_membership_family_bank.py`,
+FAMILY_ID `all-order-common-five-label-general-abcxy.v1`, banked, not
+chained) installs the realizable sub-orbit of the validated all-order
+common-five orbit.  The full orbit's 15,588 unordered patterns (2,585
+rows: 641 pair + 1,944 triple; EMPIRICAL, independently re-derived
+twice) contain patterns whose rows have no candidate realization on
+the frozen source-faithful surface; an unrealizable row can never be
+selected in any model, so restricting to the 11,052 realizable
+patterns (2,230 rows: 603 pair + 1,627 triple; 583 reused parent-chain
+variables 44,876–45,489 and 1,647 fresh variables 45,490–47,136) loses
+no blocking strength.  The v23 dominant mined core (a, b, c, x, y) =
+(1, 7, 6, 9, 11) survives the filter.  The frozen identity — final
+47,136 variables / 676,147 clauses, delta 30,044 clauses (18,992
+implications + 11,052 blocks) — is byte-stable across two independent
+chain runs and was custodian-validated by an independent re-derivation
+of the filter, an exact role-set comparison, and the bank's five green
+tests.  The generated binding module
+`ExactTwelveRigid221AllOrderCommonFiveMembershipFamilyCnf.lean`
+anchors the exact definition bindings, implication order, role list,
+and block order under `native_decide` (approved `Lean.trustCompiler`
+policy) and closes `false_of_blockingClause_false` through the
+label-general producer; the bank's Python↔Lean cross-check test
+compares both sides literal by literal, and the refrozen bank hash
+covers the module's bytes.  The chain itself is unchanged: no canary,
+validator, or successor-formula edit is part of this checkpoint.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no

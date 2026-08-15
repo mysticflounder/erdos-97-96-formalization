@@ -95,11 +95,10 @@ EXPECTED_DELTA_SHA256 = (
 EXPECTED_COMPILED_SHA256 = (
     "54c666518e5a547af921bb5c611e82469486e4a4dd779146453a4f5e2f61a058"
 )
-# The bank hash covers the source manifest, so it is refrozen in the O5
-# step after the generated MembershipFamilyCnf module joins
-# LEAN_ROOT_MODULES.
+# The bank hash covers the source manifest, including the generated
+# MembershipFamilyCnf module in LEAN_ROOT_MODULES.
 EXPECTED_BANK_SHA256 = (
-    "e7f5d680b155d5d34379b5f0d7c1d77eee6166417fef7a6cc096426c4ec34d33"
+    "4fd026449734be426cfd5efee2eb9d21b5a2c9e6dfee0f58050f7a387ddb9a14"
 )
 EXPECTED_ROLES_SHA256 = (
     "7c5d4985772d96146f08d93061c6a661e1b70b6e21ae9e70261c7c555d8dd9b6"
