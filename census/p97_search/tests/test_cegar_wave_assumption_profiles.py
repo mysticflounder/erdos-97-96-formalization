@@ -517,7 +517,11 @@ def test_replay_rejects_crossed_result_identity(monkeypatch, tmp_path: Path) -> 
 
 def test_replay_rejects_non_total_or_bool_assignments(tmp_path: Path) -> None:
     profile = _profile()
-    for assignment in (tuple(range(1, 308)), (True,) + tuple(range(2, 309))):
+    for assignment in (
+        tuple(range(1, 308)),
+        (True,) + tuple(range(2, 309)),
+        tuple(reversed(range(1, 309))),
+    ):
         with pytest.raises(AssumptionProfileError, match="canonical total"):
             replay_sat(
                 profile,
