@@ -379,3 +379,19 @@ docs/live-blueprint.md.tmp
 # Heavy regenerable output; the driver and the curated ingress-report/contract
 # JSON at the scratch/ top level stay tracked.
 /scratch/p10a-targeted-run/
+
+# Local Lean build overlays. These trees are regenerated from checked-in Lean
+# sources and contain package oleans, traces, hashes, and copied build outputs.
+/lean/scratch/u3-mixed-extraction-full-overlay/
+/scratch/exact12-overlay-20260810/
+/scratch/exact17-lean-to-sat/lean-overlay-full/
+
+# Local agent/runtime configuration and root-level diagnostic spill files.
+/.claude/settings.json
+/exact12-v13-xu-w-*.log
+/lift-rg.txt
+/search-lift*.txt
+/show-lift.txt
+/scratch-status.txt
+/=3
+/phi
